@@ -211,13 +211,13 @@ Choosing the radius only to cancel the radial component gives $R/R_*=0.247157606
 
 Plainly: shrinking the radius can repair the inward amount only; it cannot remove the sideways or axial acceleration, so neither the old nor the radial-only radius is a full balance.
 
-A nearby continuation over $2.3743071761\leq\beta_f\leq3.5743071761$ evaluated 1,201 base samples together with fold-boundary probes and refined the detected component zeros. Its tangential zero retained a nonzero axial residual, and its axial zeros retained nonzero tangential residuals; no sampled or refined point achieved full balance. This is a bounded measured diagnostic, not an interval-certified exclusion of every translated solution in that range or elsewhere.
+A nearby continuation over $2.3743071761\leq\beta_f\leq3.5743071761$ evaluated 1,201 base samples together with fold-boundary probes and refined the detected component zeros. Its tangential zero retained a nonzero axial residual, and its axial zeros retained nonzero tangential residuals; no sampled or refined point achieved full balance. This is a bounded measured diagnostic; the subsequent [fixed axial-translation study](../dynamics/shared-circle-assemblies.md#fixed-axial-translation-study) supplies the interval-certified exclusion on this fixed-speed domain.
 
-Plainly: changing transverse speed moved the two residuals through zero at different places. The search found no speed where both vanished together, but a finite probe set cannot rule out an unsampled coincidence.
+Plainly: changing transverse speed moved the two residuals through zero at different places. The finite probe set could not rule out an unsampled coincidence, so the later interval proof covers the entire declared speed interval, including its causal-root folds.
 
 > Claim grade: measured prescribed-path control. The fixed-translation instrument retained the declared phases, polarities, transverse speed, and normalized $c_f=1$ scale; root-tolerance refinement preserved the topology and compatible radial scale, and the unchanged generic prescribed-history evaluator reproduced the root and acceleration rows. The result record has SHA-256 `145b29e3986478813eb36731bd0f2df358b32ae52170723a65336754d63a6538`. A changed root count under valid refinement, a generic-evaluator mismatch, simultaneous vanishing of all three residual components at the declared point, or a certified nearby full balance overturns the corresponding conclusion.
 
-Plainly: this control rejects the idea that the stationary T04 radius remains balanced after adding $0.1c_f$ axial translation. It does not reject every translated B1.3 screw path.
+Plainly: this control rejects the idea that the stationary T04 radius remains balanced after adding $0.1c_f$ axial translation. The linked certificate rejects every equal-radius regular-phase screw-path balance in the declared transverse-speed interval at that fixed axial speed, but neither result rejects other axial speeds or broader B1.3 geometries.
 
 ## Boundary with Family A
 

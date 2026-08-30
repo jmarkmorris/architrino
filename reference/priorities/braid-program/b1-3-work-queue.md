@@ -20,7 +20,7 @@ The queue excludes other shared-circle inventories, the orthogonal-plane weave, 
 | Root topology and asymptotic laws | Derived root-count, fold-sign, spacing, and radius laws on the fixed equal-radius regular-phase circular chart | [B1.3 shared-circle balance-ladder evidence](evidence/2026-08-29-b13-shared-circle-balance-ladder.md) |
 | Exact circular continuation | Derived exact periodic solution for each exact complete-simple-ledger balance; no nearby-history uniqueness or perturbation stability | [Exact circular-solution theorem](evidence/2026-08-29-b13-shared-circle-balance-ladder.md#exact-circular-solution-theorem) |
 | T04 past-only release | Measured accepted prefix through $T=0.0029296875$; no full-cycle return and no retention or stability verdict | [T04 release prefix](evidence/2026-08-29-b13-shared-circle-balance-ladder.md#t04-past-only-release-prefix) |
-| Fixed $0.1c_f$ axial translation | Measured bounded negative diagnostic at the original and radial-only scales plus a finite nearby search; no interval-wide exclusion | [Family-B fixed translation control](../../../content/markdown/aaa/noether-braid/braid-family-b.md#fixed-axial-translation-control) |
+| Fixed $0.1c_f$ axial translation | Computer-assisted derived bounded nonexistence on $2.3743071761\leq\beta_f\leq3.5743071761$ for the equal-radius regular-phase prescribed screw-path chart; no other-speed or release claim | [Fixed axial-translation certificate](evidence/2026-08-29-b13-fixed-axial-translation-certificate.md) |
 | Documentation synthesis | The tracked evidence packet and reader-facing AP-STEM explanation are complete; no active writer task remains | [Work-log entry](work-log.md#2026-08-29--b13-shared-circle-balance-ladder-durably-synthesized) |
 
 Plainly: exact prescribed circles and the bounded ladder mathematics are established at their stated grades. Numerical release, response to disturbances, translated balance, generalized planar geometry, and energy remain separate open questions.
@@ -28,7 +28,7 @@ Plainly: exact prescribed circles and the bounded ladder mathematics are establi
 ## Ranked Next Objects
 
 1. `t04_exact_reference_solver_handoff` — [B13-001](#b13-001--t04-exact-reference-to-solver-handoff). Status: `Queued`.
-2. `fixed_translation_interval_certificate` — [B13-003](#b13-003--fixed-axial-translation-interval-certificate). Status: `Queued`.
+2. `axial_translation_speed_chart` — [B13-012](#b13-012--axial-translation-speed-chart). Status: `Queued`.
 3. `global_equal_radius_ladder_theorem` — [B13-002](#b13-002--global-equal-radius-ladder-theorem). Status: `Queued`.
 4. `local_history_flow_well_posedness` — [B13-004](#b13-004--local-history-flow-well-posedness). Status: `Queued`.
 5. `equal_radius_phase_deformation` — [B13-005](#b13-005--equal-radius-phase-deformed-chart). Status: `Queued`.
@@ -38,13 +38,25 @@ Plainly: exact prescribed circles and the bounded ladder mathematics are establi
 9. `nearby_history_return_map` — [B13-009](#b13-009--nearby-history-return-map-and-stability). Status: `Deferred / blocked`.
 10. `same_record_action_energy_ledger` — [B13-010](#b13-010--same-record-action-and-energy-ledger). Status: `Deferred / blocked`.
 11. `mode_transition_ledger` — [B13-011](#b13-011--mode-transition-ledger). Status: `Deferred / blocked`.
-12. `axial_translation_speed_chart` — [B13-012](#b13-012--axial-translation-speed-chart). Status: `Deferred / blocked`.
-13. `higher_order_ladder_asymptotics` — [B13-013](#b13-013--higher-order-ladder-asymptotics). Status: `Deferred / blocked`.
-14. `full_ladder_action_energy_evaluation` — [B13-014](#b13-014--full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
+12. `higher_order_ladder_asymptotics` — [B13-013](#b13-013--higher-order-ladder-asymptotics). Status: `Deferred / blocked`.
+13. `full_ladder_action_energy_evaluation` — [B13-014](#b13-014--full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
 
 ## In progress
 
 No rows.
+
+## Completed
+
+### B13-003 — Fixed axial-translation interval certificate
+
+- **Status:** Completed
+- **Closure goal:** Prove existence or bounded nonexistence of a translated equal-radius B1.3 screw-path balance on the already sampled neighborhood.
+- **Result:** At $s_{\mathrm{grp}}=0.1c_f$, the exact screw-path reduction maps the declared transverse interval to the accepted stationary circular root chart. That chart contains one possible tangential zero, mapped T04, where the axial residual is enclosed strictly below zero. An outward-rounded 80-decimal cover, including all three fold neighborhoods, certifies $\sqrt{\mathcal R_t^2+\mathcal R_z^2}>0.53621974374818399910424108224171645$ wherever the ordinary-root residual is finite.
+- **Evidence:** [Fixed axial-translation certificate](evidence/2026-08-29-b13-fixed-axial-translation-certificate.md). The frozen certificate is byte-identical across two consecutive runs at SHA-256 `135e6b73f83c3427f56ef5bf717d8b133da8b993b94b92329ead80c5c0dd88af`.
+- **Boundary:** This completes bounded nonexistence only for the equal-radius regular-phase prescribed screw-path chart at the fixed translation speed and declared transverse interval. It establishes no result for other translation speeds, unequal radii, phase deformation, release, retention, or stability.
+- **Falsifier:** A root-complete common zero inside the declared domain, an invalid stationary zero count, a failed screw-path reduction, or an outward-rounding failure overturns completion.
+
+Plainly: the finite discovery sweep has been replaced by a continuous-domain proof. Every possible sideways-balanced speed in the fixed slice retains a nonzero axial acceleration error.
 
 ## Queued
 
@@ -58,15 +70,15 @@ No rows.
 
 Plainly: the exact circle is already known mathematically. This task proves that the finite numerical history handed to the EOM solver is a controlled representation of that exact circle.
 
-### B13-003 — Fixed axial-translation interval certificate
+### B13-012 — Axial-translation-speed chart
 
 - **Status:** Queued
-- **Closure goal:** Prove existence or bounded nonexistence of a translated equal-radius B1.3 screw-path balance on the already sampled neighborhood.
-- **Request / acceptance:** Hold $s_{\mathrm{grp}}=0.1c_f$ and the regular B1.3 phases fixed. On $2.3743071761\leq\beta_f\leq3.5743071761$, partition at every causal-root fold, interval-isolate every positive radial-compatible branch satisfying $\mathcal R_r(\beta_f,R)=0$, and then compare the tangential and axial zero sets on each branch. Bounded nonexistence requires a strictly positive enclosure for $\sqrt{\mathcal R_t^2+\mathcal R_z^2}$, including fold boxes. Existence requires one root-complete common zero of all three residuals, not merely overlapping residual intervals.
-- **Evidence / blocker:** The 1,201-sample continuation found separated tangential and axial zeros but cannot exclude an unsampled coincidence. The existing generic prescribed-history evaluator supplies discovery evidence, not the required interval oracle by itself.
-- **Completion:** Every radial branch in the declared domain receives an independently checked existence or no-common-zero disposition. A certified common zero falsifies bounded nonexistence; a positive residual lower bound falsifies existence on the declared domain.
+- **Closure goal:** Determine whether translated equal-radius regular-phase B1.3 balances exist at axial speeds other than the fixed $0.1c_f$ control.
+- **Request / acceptance:** Use the exact reduction from B13-003 rather than launching an unconstrained three-coordinate continuation. For a declared compact sub-field interval in $u=s_{\mathrm{grp}}/c_f$, map each stationary tangential ladder zero $b_n$ to $\beta_f=\sqrt{1-u^2}\,b_n$ and certify the signed axial weight $S(b_n)=\sum_m(-1)^m/[4\sin^2v_m\,|b_n\cos v_m-1|]$. A nonzero translation can balance only if $S(b_n)=0$; a certified zero would generate the candidate branch $R(u)=R_n/\sqrt{1-u^2}$ and must then receive an independent full-vector check. Preserve $c_f=1$ in every numerical instantiation and partition any unbounded ladder claim by topology.
+- **Evidence / blocker:** B13-003 is complete and proves the reduction $\mathcal R_t^{\mathrm{tr}}=\sqrt{1-u^2}\,\mathcal R_t^{\mathrm{circ}}$ and $\mathcal R_z^{\mathrm{tr}}=uS(b)$. The fixed-speed T04 enclosure proves $S(b_{\mathrm{T04}})\neq0$. The open burden is a signed-weight census over a declared set of stationary ladder zeros, not a new radial search.
+- **Completion:** The declared speed-and-topology domain has an independently checked signed-weight zero census and corresponding full-vector branch or bounded-no-branch disposition. A root-complete common zero establishes a translated prescribed-balance branch only; it does not establish free translation, retention, or stability.
 
-Plainly: radius is first reduced to every value that supplies the required inward acceleration. The proof then asks whether the remaining sideways and axial errors can vanish at the same speed.
+Plainly: changing the translation speed rescales where each stationary mode appears, but it does not change that mode's signed axial-weight test. The next proof can therefore inspect one discrete stationary ladder instead of sweeping a three-dimensional box.
 
 ### B13-002 — Global equal-radius ladder theorem
 
@@ -154,16 +166,6 @@ Plainly: the familiar words “potential energy” and “kinetic energy” do n
 - **Evidence / blocker:** No retained stable mode neighborhood, native energy difference, transition mechanism, preparation measure, or probability law currently exists. The present “quantum-like” description refers only to emergent discreteness of prescribed balance modes.
 - **Completion:** One accepted transition or a bounded no-transition result is reproduced independently under the declared history and account. Quantum-probability or observer-level quantum-recovery claims remain separate later obligations.
 
-### B13-012 — Axial-translation-speed chart
-
-- **Status:** Deferred / blocked
-- **Closure goal:** Determine whether translated equal-radius regular-phase B1.3 balances exist at axial speeds other than the fixed $0.1c_f$ control.
-- **Request / acceptance:** After B13-003 closes its fixed-speed domain, declare one compact sub-field interval for $s_{\mathrm{grp}}/c_f$ and continue every certified radial-compatible branch in $(s_{\mathrm{grp}},\beta_f,R/R_*)$. Partition the domain at every causal-root fold and chart boundary, require simultaneous radial, tangential, and axial balance, and preserve $c_f=1$ in every numerical instantiation. Do not assume that common translation leaves delayed geometry invariant.
-- **Evidence / blocker:** Blocked on B13-003. The current measured result covers one fixed translation speed and cannot determine whether a balance appears at a slower or faster sub-field axial speed.
-- **Completion:** The declared speed domain has an independently checked balance-branch census or bounded no-balance disposition. A root-complete common zero establishes a translated prescribed-balance branch only; it does not establish free translation, retention, or stability.
-
-Plainly: the first translation study takes one horizontal slice through a three-coordinate problem. This follow-on moves that slice up and down in translation speed to determine whether a balanced screw-path branch exists elsewhere.
-
 ### B13-013 — Higher-order ladder asymptotics
 
 - **Status:** Deferred / blocked
@@ -201,7 +203,7 @@ These user-visible tasks remain open. This queue reconciliation does not authori
 | --- | --- | --- |
 | `#1 B1.3 circular prehistory` | B13-001, B13-004, B13-008, and B13-009 | finish the exact-reference-to-solver receipt, then local history-flow uniqueness, one full-cycle conformance check, and only then perturbation stability |
 | `#2 B1.3 3:3 velocity search` | B13-002 and B13-013 | prove one root in every later admissible fold cell and none in every intervening cell; treat higher-order coefficients as a separate follow-on |
-| `#4 B1.3 axial translation` | B13-003 and B13-012 | interval-certify the fixed-$0.1c_f$ domain before varying axial translation speed |
+| `#4 B1.3 axial translation` | B13-012; B13-003 is complete | certify the stationary-ladder signed axial weights, which decide whether any nonzero-speed screw branch can exist on the declared topology range |
 
 Plainly: the queue now records every remaining line reported by the three open tasks. The tasks stay available for continued investigation while the repository owns the durable status and acceptance boundaries.
 
@@ -211,7 +213,7 @@ Plainly: the queue now records every remaining line reported by the three open t
 | --- | --- | --- |
 | Circular prehistory and numerical release | B13-001, B13-004, B13-008 | the exact-reference handoff, local uniqueness disposition, and one-cycle numerical reproduction each have a durable accepted or explicit negative result; perturbation stability may continue separately under B13-009 |
 | Equal-radius velocity ladder | B13-002, B13-013 | the global tail theorem is proved or falsified with an explicit finite boundary and independently checkable artifact; higher-order asymptotics may close separately or remain explicitly deferred |
-| Axial translation | B13-003, B13-012 | the declared fixed-$0.1c_f$ domain has an interval-certified existence or bounded-nonexistence disposition; the speed chart may close separately or remain explicitly deferred |
+| Axial translation | B13-012; B13-003 complete | the stationary-ladder signed axial weights have a certified zero census on the declared topology range; any surviving zero receives an independent full-vector branch check |
 | Investigation writing | no active row | closed: the evidence packet is tracked and the writer thread is archived |
 
 ## Aggregate Completion

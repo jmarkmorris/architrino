@@ -76,7 +76,7 @@ Plainly: $\delta r_k$ changes distance from the center, $\delta\phi_k$ changes a
 | Out-of-plane displacement and rate | $\delta z_k(T)$ and $\delta\dot z_k(T)$ | Open for the balanced ladder | Test loss of planarity, axial buckling, three-dimensional retention, and nearby connections to non-equatorial braid charts |
 | B1 axial half-separations | $h_a$ for the three binaries | Fixed at $h_a=0$ on B1.3; nonzero values leave B1.3 | Explore adjacent B1 loci and determine whether axial binary structure repairs or destroys the planar balance mechanism |
 | Plane orientation, tilt, and wobble | Time-dependent orthonormal frame $(\hat{\mathbf e}_1,\hat{\mathbf e}_2,\hat{\mathbf n})(T)$ | A constant common orientation is removable by global rotation; time dependence is open | Test orientational retention, precession-like path histories, and coupling between planar circulation and axial motion without assuming an imported magnetic mechanism |
-| Center translation | $\mathbf C(T)$, including axial and transverse components | One fixed axial-speed B1.3 control was negative; broader coverage is open | Search for translating or screw-path balances and test whether internal balance survives assembly transport |
+| Center translation | $\mathbf C(T)$, including axial and transverse components | Bounded nonexistence is certified for the fixed $0.1c_f$ B1.3 axial-speed slice; other speeds and transverse translation remain open | Search for translating or screw-path balances and test whether internal balance survives assembly transport |
 | Complete retained prehistory | History functions $\mathbf X_k(T)$ on $-H\leq T\leq0$, including their certified causal-root ledger | Exact circular histories are defined; nearby-history uniqueness and stability remain open | Supply the actual initial data required by a delayed equation, test release and restart, and distinguish exact continuation from perturbation stability |
 | Root-topology or ladder index | Topology class $\mathrm T_t$ or balance index $n$ | Derived discrete label, not a freely assigned coordinate | Organize branches, bracket searches, count directed roots, and study mode adjacency or transitions without treating the label as an imposed quantum number |
 | Global phase, position, and constant orientation | Common phase shift, constant $\mathbf C$, and constant rigid rotation of the frame | Symmetry coordinates on the fixed model | Remove duplicate descriptions and provide covariance checks; these do not change the assembly's internal geometry |
@@ -120,7 +120,7 @@ B1.3 and the shared-circle chart are not interchangeable. General B1.3 permits t
 
 Plainly: the overlap is exact but narrow. The verified hexagon belongs to both descriptions; the other tested inventories remain shared-circle assemblies, and unequal-radius B1.3 remains outside this chapter's chart.
 
-A common translation along the circle's axis moves the center $\mathbf C(T)$ and turns each circular worldline into a screw path, so it leaves the fixed-center chart defined here while remaining a B1 specialization. The measured translated control and its no-full-balance result therefore belong with [Family B axial translation](../noether-braid/braid-family-b.md#fixed-axial-translation-control), not with the stationary balance ladder.
+A common translation along the circle's axis moves the center $\mathbf C(T)$ and turns each circular worldline into a screw path, so it leaves the fixed-center chart defined here while remaining a B1 specialization. [Family B axial translation](../noether-braid/braid-family-b.md#fixed-axial-translation-control) owns the general geometry. Because the fixed-speed control begins from the verified equal-radius B1.3 shared-circle row, the adjacent translated study and its bounded certificate are recorded below without folding them into the stationary balance ladder.
 
 Plainly: carrying the whole rotating hexagon upward changes every delayed chord even though its instantaneous cross-section still looks like the same circle. That is a different path history, so the stationary radius and speed cannot be assumed to remain balanced.
 
@@ -618,9 +618,151 @@ The 100/120-digit campaign supplies the accepted existence rows through T200. Th
 
 Plainly: the high-speed rows are individually accepted arbitrary-precision balances, while the exact formulas stand or fall with the ledger derivation and its stated falsifiers. The list does not prove that no additional high-speed balance exists.
 
-For $N=2$ through $N=6$, every other regular polarity class is a measured bounded-search negative on $0.05\leq\beta_f\leq20$: one class for $N=2$, two for $N=3$, six for $N=4$, twelve for $N=5$, and thirty-four for $N=6$. The discrete regular polarity-word census is complete through $N=6$, while the no-balance verdicts retain the declared sampled and adaptively refined search grade rather than a continuous zero-count grade. The nonuniform fixed-phase searches found no additional nonregular solution but do not cover their multidimensional domains; those charts remain unresolved. The dedicated equal-radius antipodal-neutral B1.3 phase search found the regular hexagon and left unequal phases unresolved. The velocity search above held those regular phases fixed. Unequal B1.3 radii were not searched.
+For $N=2$ through $N=6$, exactly one orbit at each inventory is alternating. Every other regular polarity orbit is a measured bounded-search negative on $0.05\leq\beta_f\leq20$: one of the two orbits for $N=2$, two of the three for $N=3$, six of the seven for $N=4$, twelve of the thirteen for $N=5$, and thirty-four of the thirty-five for $N=6$. The discrete regular polarity-word census is complete through $N=6$, while the no-balance verdicts retain the declared sampled and adaptively refined search grade rather than a continuous zero-count grade. The nonuniform fixed-phase searches found no additional nonregular solution but do not cover their multidimensional domains; those charts remain unresolved. The dedicated equal-radius antipodal-neutral B1.3 phase search found the regular hexagon and left unequal phases unresolved. The velocity search above held those regular phases fixed. Unequal B1.3 radii were not searched.
 
 Plainly: the negative rows reject only the tested regular polarity words below speed 20. They say nothing global about faster, variable-speed, breathing, eccentric, nonplanar, or freely evolving assemblies.
+
+## Fixed Axial-Translation Study
+
+The translating study begins with the regular equal-radius B1.3 hexagon and prescribes a common constant center velocity along its circle axis. Write
+
+$$
+\mathbf C(T)
+=
+\mathbf C(0)+s_{\mathrm{grp}}T\hat{\mathbf n},
+\qquad
+u=\frac{s_{\mathrm{grp}}}{c_f}=0.1,
+$$
+
+while retaining the regular phases, common circulation, and normalized wake speed $c_f=1$. Each member then follows a screw path: circular transverse motion together with uniform axial translation.
+
+Plainly: the instantaneous cross-section remains the same rotating hexagon, but its stored paths are helices rather than circles. Delayed separations and arrival directions therefore change even though every member receives the same added axial velocity.
+
+### Fixed T04 Control
+
+Holding the transverse speed at the stationary T04 value $\beta_f=2.974307176117306$ retained 72 ordinary directed roots but destroyed full acceleration balance. At the stationary radius $R/R_*=0.5617317000713459$, the radial, tangential, and axial residuals were
+
+$$
+(\mathcal R_r,\mathcal R_t,\mathcal R_z)
+=
+(2.7828807183,\ 0.9764357759,\ -0.6131383055).
+$$
+
+Choosing $R/R_*=0.2471576065$ cancelled only $\mathcal R_r$; the tangential and axial components remained nonzero. A nearby continuation over $2.3743071761\leq\beta_f\leq3.5743071761$ evaluated 1,201 base samples, probed every detected fold boundary, and refined the component zeros without finding a common zero.
+
+Plainly: translation did not delete any T04 causal roots, but it changed their acceleration directions and weights enough to spoil the stationary balance. Shrinking the radius repaired only the inward amount, and the finite speed sweep found no point where the sideways and axial errors disappeared together.
+
+> Claim grade: measured for the fixed T04 row and the finite continuation. The frozen diagnostic result has SHA-256 `145b29e3986478813eb36731bd0f2df358b32ae52170723a65336754d63a6538`. A changed complete root inventory, failed generic-evaluator comparison, or full-vector zero at a reported control point overturns the corresponding measured result. Finite sampling alone does not establish continuous-domain nonexistence.
+
+Plainly: the numerical control identifies the obstruction and checks the implementation, but the continuous-domain conclusion comes from the reduction and interval proof below.
+
+### Exact Screw-Path Reduction
+
+Define
+
+$$
+\gamma=\sqrt{1-u^2},
+\qquad
+b=\frac{\beta_f}{\gamma}.
+$$
+
+For phase difference $\Delta$ and angular causal delay $\chi$, the screw-path chord equation is
+
+$$
+2\beta_f\left|\sin\left(\frac{\Delta+\chi}{2}\right)\right|
+=
+\gamma\chi,
+$$
+
+or equivalently
+
+$$
+\chi
+=
+2b\left|\sin\left(\frac{\Delta+\chi}{2}\right)\right|.
+$$
+
+Plainly: after dividing the transverse speed by $\gamma$, every translated causal root obeys the already derived stationary circular equation. The phase channel, root level, and topology are preserved by this exact remapping.
+
+Let $a_r^{\mathrm{circ}}(b)$ and $a_t^{\mathrm{circ}}(b)$ be the stationary radial and tangential ledger coefficients at effective speed $b$. The translated planar coefficients satisfy
+
+$$
+a_r^{\mathrm{tr}}(\beta_f,u)
+=
+\gamma a_r^{\mathrm{circ}}(b),
+\qquad
+a_t^{\mathrm{tr}}(\beta_f,u)
+=
+\gamma a_t^{\mathrm{circ}}(b).
+$$
+
+For integer root level $m$ and stationary root coordinate $v_m$, the translated axial coefficient is
+
+$$
+a_z^{\mathrm{tr}}(\beta_f,u)
+=
+u\sum_m
+\frac{(-1)^m}
+{4\sin^2v_m\,|b\cos v_m-1|}.
+$$
+
+Where the radial coefficient is inward, the compatible translated scale is
+
+$$
+\frac{R_{\mathrm{tr}}}{R_*}
+=
+\frac{1}{\gamma}\frac{R_{\mathrm{circ}}(b)}{R_*}.
+$$
+
+Plainly: the scalar acceleration weight of each mapped root is unchanged. Its planar direction is multiplied by $\gamma$, and it acquires an axial component proportional to $u$. Because $\gamma$ is positive, a translated tangential zero can occur only at a mapped stationary tangential zero; radius remains an algebraically determined scale rather than an independent way to cancel the other components.
+
+### Bounded Nonexistence at $s_{\mathrm{grp}}=0.1c_f$
+
+The declared transverse interval maps to $2.3862684970218133124<b<3.5923138753328678031$. The accepted stationary zero-count theorem proves that this mapped interval contains exactly one tangential zero, the T04 zero. Its translated speed lies in
+
+$$
+2.95939827433277403511221251179364328
+<
+\beta_f
+<
+2.95939827433277403511221251179364497.
+$$
+
+At that entire interval, the compatible radius and axial residual satisfy
+
+$$
+0.56456160060149250752877405249224746
+<
+\frac{R}{R_*}
+<
+0.56456160060149250752877405249242015,
+$$
+
+$$
+-0.90436553591877968626800461058875866
+<
+\mathcal R_z
+<
+-0.90436553591877968626800461058859418.
+$$
+
+Plainly: the only possible sideways-balanced speed has a positive radial scale, but its axial acceleration error is rigorously negative and far from zero. It cannot be a full screw-path balance.
+
+An 80-decimal outward-rounded interval pass covered the regular T02, T03, T04, and T05 pieces and the three intervening fold neighborhoods. After eliminating radius, it certified
+
+$$
+\sqrt{\mathcal R_t^2+\mathcal R_z^2}
+>
+0.53621974374818399910424108224171645
+$$
+
+throughout the declared domain wherever the ordinary-root residual is finite. At each fold, zero transversality makes the newborn acceleration weight divergent; the same-sign newborn-pair bound excludes a cancelling finite balance across the certified right neighborhood.
+
+Plainly: the proof covers every speed in the interval, including the topology changes, rather than checking more sample points. At every admissible speed, the combined sideways and axial error stays strictly above zero.
+
+> Claim grade: computer-assisted derived bounded nonexistence. The interval oracle imports no prescribed-path subject implementation. It consumes the frozen stationary interval receipt and independently evaluates the exact axial signed-weight sum. Two consecutive runs reproduced the certificate byte for byte at SHA-256 `135e6b73f83c3427f56ef5bf717d8b133da8b993b94b92329ead80c5c0dd88af`. A root-complete common zero inside the declared domain, an invalid stationary zero count, a failed screw-path reduction, or an outward-rounding failure overturns the conclusion.
+
+Plainly: the fixed $0.1c_f$ translation slice is closed. The result does not exclude another axial speed, unequal radii, phase deformation, non-axial transport, or another B1 chart, and it establishes no release, retention, stability, binding, physical identity, or scientific acceptance.
 
 ## Exact Circular-Solution Theorem
 
