@@ -4003,23 +4003,23 @@ Every published candidate analysis must identify one source record. At minimum t
 
 - the paths $\mathbf X_j(T)$, velocities $\mathbf V_j(T)$, polarities $q_j$, and persistent identities of all architrinos;
 - the family/member identifier and complete taxonomy-coordinate row;
-- the prescribed-geometry engine and chart version;
+- the mathematical chart and numerical method used to evaluate the prescribed geometry;
 - the retained history interval, analysis window, return duration $P_{\mathrm{ret}}$, and absolute-time origin $T_0$;
 - when envelope geometry is reported, the exact directional-support grid, constant-time emission measure, centered path second-moment convention, and any quadratic-fit rule, tie-break, and tolerance;
 - the field speed $c_f$, coupling convention, root policy, self-hit policy, and any mollifier or cutoff;
 - the spatial probe set, enclosing surfaces, temporal sampling rule, and numerical tolerances; and
-- the source hash, engine identity, parameter vector, sampling seed, and generated result hash.
+- the complete parameter vector, sampling algorithm and seed, and a publicly identifiable account of the numerical implementation.
 
 Write the scored result as $\mathbf G[S;P]$, where $S$ is the complete source record and $P$ is the complete analysis protocol. The protocol includes the probe set, history depth, root policy, surface geometry, normalization, tolerances, and sampling rule.
 
-Any source change $S\rightarrow S'$ invalidates the prior score by default. A score may be retained only when a dependency review demonstrates that the changed field cannot enter that measure. In particular:
+A result for $S$ also applies to a changed source $S'$ only when the measure is invariant under that change. In particular:
 
 - a path, radius, frequency, phase, group-translation, polarity, or retained-history change requires new roots and recomputation of every downstream wake measure;
 - a probe, boundary, root-policy, normalization, or tolerance change defines a new protocol $P'$ and requires every compared candidate to be evaluated under $P'$;
 - an added environmental response defines a different analysis outside the scope of this method; and
-- a metadata-only correction may preserve numerical measures only when the source identity and dependency review are recorded with the correction.
+- a correction to descriptive labels leaves a numerical measure unchanged only when its mathematical inputs are unchanged.
 
-Comparing $\mathbf G[S;P]$ directly with $\mathbf G[S';P']$ is uncontrolled unless the difference is explicitly presented as a sensitivity study. The dependency review must state which measures were invalidated, which were recomputed, and why any retained measure is invariant.
+Comparing $\mathbf G[S;P]$ directly with $\mathbf G[S';P']$ is uncontrolled unless the difference is explicitly presented as a sensitivity study. Any comparison that retains an earlier measure must explain why that measure is invariant under the changed inputs.
 
 ### Superimposed Causal-Wake Map
 
@@ -4123,7 +4123,7 @@ to certify one of two dispositions:
 1. the residual interval excludes zero, so the partition is root-free; or
 2. the derivative interval excludes zero, so the partition is monotonic and any endpoint sign change isolates exactly one simple root.
 
-Every isolated root is retained, including a descending branch with $D_{t,j}<0$. The root ordinal is assigned in increasing emission-time order for that transmitter. The event is complete only when every retained partition has one of the two certified dispositions. If the subdivision depth or candidate-interval limit is reached while a possible root or fold remains, the event is **drawn but not evaluated**: it receives no score, and the unresolved interval, reason code, transmitter identity, and exact rerun instruction must remain in the campaign table. This fail-closed disposition is distinct from a measured gate rejection.
+Every isolated root is retained, including a descending branch with $D_{t,j}<0$. The root ordinal is assigned in increasing emission-time order for that transmitter. The event is complete only when every retained partition has one of the two certified dispositions. If a numerical subdivision limit is reached while a possible root or fold remains, the event is unresolved and has no valid score. The unresolved interval, transmitter identity, and reason the root count remains uncertain must be stated. An incomplete evaluation is not evidence that the geometry fails an analytical condition.
 
 The unsigned companion ledger
 
@@ -4269,7 +4269,7 @@ $$
 
 Here $P_{\mathrm{ret}}$ is the declared complete-history return period of the braid.
 
-the internal report must retain each pairwise contribution, the net vector, its components in the declared braid frame, root identities, $D_t$ margins, and root-playback derivatives. Cycle averages must not replace peak values or root-transition events.
+The cycle-resolved analysis retains each pairwise contribution, the net vector, its components in the declared braid frame, root identities, $D_t$ margins, and root-playback derivatives. Cycle averages must not replace peak values or root-transition events.
 
 Because the paths are known, their required kinematic acceleration is also known analytically. Define the prescribed-path equation mismatch
 
@@ -4348,7 +4348,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-114a9d058c00b424)
 
-where $G_W$ is the declared time grid in window $W$. Any sampled member residual above the adjudication threshold falsifies that exact isolated prescribed history even when $\sum_i\mathbf R_i^{\mathrm{path}}=0$. A sampled near-zero is only a search diagnostic and must survive time-grid refinement and independent causal-root residual checks.
+where $G_W$ is the declared time grid in window $W$. Any sampled member residual above the declared numerical threshold falsifies that exact isolated prescribed history even when $\sum_i\mathbf R_i^{\mathrm{path}}=0$. A sampled near-zero is only a search diagnostic and must survive time-grid refinement and independent causal-root residual checks.
 
 Plainly: two wrong accelerations can cancel in the total. Checking every architrino separately prevents that cancellation from hiding a bad prescribed record.
 
@@ -4410,7 +4410,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Minimum separation | $d_{\min}=\min_{T,i\ne j}\|\mathbf X_i(T)-\mathbf X_j(T)\|$ | Whether the prescribed chart contains a collision, an undeclared coincidence, or a near-singular pair geometry |
 | Exact directional support | $H_{\mathrm{env}}(\hat{\mathbf m};W)$ on a declared directional grid, with angular refinement | The furthest centered constituent-path excursion in each direction and therefore the convex hull over the declared window; non-convex indentations are not retained |
 | Centered path second moment | Six independent components, eigenvalues, and non-degenerate principal directions of $\mathsf M_{\mathrm{env}}^{ab}(W)$ under the constant-time emission measure | Dwell-weighted scale, anisotropy, and orientation of the centered path distribution |
-| Quadratic-envelope fit | Positive-definite $\mathsf Q_{\mathrm{env}}^{ab}(W)$, angular fitting rule, tie-break, and $\mathcal R_Q(W)$ | Whether the exact directional support is adequately compressed by one ellipsoid for the declared consumer |
+| Quadratic-envelope fit | Positive-definite $\mathsf Q_{\mathrm{env}}^{ab}(W)$, angular fitting rule, tie-break, and $\mathcal R_Q(W)$ | Whether the exact directional support is adequately compressed by one ellipsoid for the intended geometric approximation |
 | Support-moment disagreement | Principal-subspace angles or normalized-tensor mismatch between admitted $\mathsf Q_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ | Whether boundary extrema and dwell-weighted path occupancy support one quadratic summary |
 | Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved causal-root fold |
 | Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide causal-branch changes |
@@ -4435,13 +4435,13 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Source-parameter sensitivity | Recomputed measures under declared changes of radius, frequency, phase, orientation, and translation | How dependent the analytical result is on the prescribed coordinates |
 | Numerical convergence | Change under tighter root and quadrature tolerances for the same $S$ and $P$ | Whether the analytical result has been evaluated accurately |
 
-Minimum separation is a validity diagnostic, not a claim that architrinos are hard objects. A zero separation may make the $1/r^2$ response singular or expose an undeclared coincidence in the chart. A small separation warns that a reported score may be dominated by a near-singular pair. It should normally be a gate or an annotation, not a reward to maximize.
+Minimum separation is a validity diagnostic, not a claim that architrinos are hard objects. A zero separation may make the $1/r^2$ response singular or expose an undeclared coincidence in the chart. A small separation warns that a reported score may be dominated by a near-singular pair. It should normally be a validity condition or an annotation, not a reward to maximize.
 
-Envelope extraction follows [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#exact-support-and-centered-path-second-moments). Report $H_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ from the same declared source record and emission window, refine both temporal sampling and the support-direction grid, and preserve rank loss or repeated-eigenvalue ambiguity rather than inventing a three-dimensional principal frame. A quadratic fit is reportable only when its angular quadrature, optimizer, deterministic tie-break, and tolerance were fixed before inspection and $\mathcal R_Q$ passes that tolerance. Agreement between the support fit and the second moment is same-record implementation consistency, not independent confirmation; disagreement falsifies only the proposed single-quadratic compression for that consumer.
+Envelope extraction follows [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#exact-support-and-centered-path-second-moments). Report $H_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ from the same declared source record and emission window, refine both temporal sampling and the support-direction grid, and preserve rank loss or repeated-eigenvalue ambiguity rather than inventing a three-dimensional principal frame. A quadratic fit is reportable only when its angular quadrature, optimizer, deterministic tie-break, and tolerance were fixed before inspection and $\mathcal R_Q$ passes that tolerance. Agreement between the support fit and the second moment is same-record implementation consistency, not independent confirmation; disagreement falsifies only the proposed single-quadratic compression for the intended geometric approximation.
 
 Plainly: the maximum-reach envelope and the dwell-weighted tensor are two readings of the same paths. Refinement checks whether those readings were computed accurately, but their mutual agreement cannot prove that the prescribed paths are dynamically retained or physically realized.
 
-The term **return residual** is replaced here by **prescribed-period closure residual**. It checks only that the declared orbital path formulas return to the same position relative to the declared common translating center, and to the same velocity and phase, after $P_{\mathrm{ret}}$. The absolute displacement of a translating source is recorded separately as $\mathbf V_{\mathrm{grp}}P_{\mathrm{ret}}$ and is subtracted before computing the orbital position residual. Closure is often zero by construction and is an integrity check on the chart and selected period, not a stability measure. Root and wake ledgers may also be checked for periodicity, but their endpoint differences remain analytical consistency diagnostics.
+The **prescribed-period closure residual** checks only that the declared orbital path formulas return to the same position relative to the declared common translating center, and to the same velocity and phase, after $P_{\mathrm{ret}}$. The absolute displacement of a translating source is recorded separately as $\mathbf V_{\mathrm{grp}}P_{\mathrm{ret}}$ and is subtracted before computing the orbital position residual. Closure is often zero by construction and is an integrity check on the chart and selected period, not a stability measure. Root and wake ledgers may also be checked for periodicity, but their endpoint differences remain analytical consistency diagnostics.
 
 Spatial and temporal derivatives must be evaluated branch by branch. At a causal-root birth, death, or fold, the discontinuity or singular behavior is itself the reported event; a derivative must not be fabricated by differencing across it.
 
@@ -4566,7 +4566,7 @@ $$
 
 This identity is both the source-normalized reference and an independent implementation check. The signed global integral similarly equals $P_{\mathrm{ret}}\sum_jq_j$ and therefore vanishes for a polarity-neutral braid. The residual $F_{\mathrm{res}}(R)$ and its ratio may still depend on radius because the signed contributions superpose differently after different causal travel delays. A far-field plateau is a measured radial result, not an assumed invariance.
 
-These quantities measure causal-wake crossings only. They are not energy, potential, realized work, braid depletion, intrinsic leakage, or stability. A packet must reject the accepted wake-flux measures when roots or history are incomplete, a transmitter leaves an enclosing surface, the raw cycle integral fails its source-normalized reference after refinement, or the primary and refined time-and-surface quadratures fail their declared tolerance.
+These quantities measure causal-wake crossings only. They are not energy, potential, realized work, braid depletion, intrinsic leakage, or stability. The wake-flux measures are invalid when roots or history are incomplete, a transmitter leaves an enclosing surface, the raw cycle integral fails its source-normalized reference after refinement, or the primary and refined time-and-surface quadratures fail their declared tolerance.
 
 ##### Frequency-Resolved Normal Wake-Flux Cancellation
 
@@ -4626,25 +4626,25 @@ These complex coefficients, coefficient magnitudes, and cancellation ratios are 
 
 The signed wake $\mathcal W$, unsigned wake $\mathcal W_{\mathrm{abs}}$, virtual-probe response $\mathbf A_p$, angular coefficients, exposure fraction $\eta_{\mathrm{ext}}$, and complete-cycle normal wake-flux measures are the available analytical ledgers. None is an energy quantity. This method therefore does not report total energy, apparent energy, apparent-energy fractions, escaping energy, intrinsic leakage, or stability scores. It also does not include a Noether-sea response. Introducing any such quantity requires a separate definition and cannot be accomplished by relabeling a wake-exposure measure.
 
-### Analytical Evaluation Programs
+### Numerical Evaluation
 
 The measures in this chapter require analytical programs that evaluate the declared formulas for an exact source record. These programs are not assembly-evolution simulations. They hold the prescribed paths fixed and calculate their consequences at the requested absolute-coordinate events.
 
-The analytical program suite should have separable components for:
+Numerical evaluation consists of:
 
 1. validating and evaluating the source paths, velocities, accelerations, periods, and taxonomy coordinates;
 2. enumerating every retained causal root and recording its identity, topology, and $D_t$ margin;
 3. evaluating $\mathcal W$, $\mathcal W_{\mathrm{abs}}$, $\chi_{\mathcal W}$, and $\mathbf A_p$ at internal and external probes;
 4. reducing the event-level results into the separation, root, mismatch, exposure, complete-cycle normal wake-flux, angular, spectral, radial-scaling, symmetry, and sensitivity measures defined above; and
-5. emitting a result packet keyed by the exact source hash and protocol hash.
+5. reporting the results together with the complete source definition and analysis protocol.
 
-Each component must expose numerical tolerances and convergence checks. Where a closed-form, symmetry-protected, static, or other independently known analytical case exists, it should be used as an independent check. Replaying output from the same program establishes reproducibility, not correctness.
+Each calculation must state its numerical tolerances and convergence checks. Where a closed-form, symmetry-protected, static, or other independently known analytical case exists, it should be used as an independent check. Replaying output from the same program establishes reproducibility, not correctness.
 
-Only after these programs can calculate the common measure set should a broad parameter campaign begin. Otherwise a sampling run merely produces many configurations without a controlled basis for comparing them.
+A common, validated set of measures is necessary for comparing a broad sample of configurations. Sampling more configurations cannot compensate for an undefined or unreliable comparison.
 
 ### Monte Carlo Configuration-Space Analysis
 
-Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
+Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group speed, phase origin, and any permitted prescribed-history coordinates. A sampling study must specify the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
 
 #### Degrees of Freedom by Braid Class
 
@@ -4674,7 +4674,7 @@ The coordinate types recur across the taxonomy, but they are not all independent
 
 Thus radius, frequency, phase, and group translation are the common kinematic coordinate types. Axis and midpoint data, circulation, and endpoint polarity assignment are also required source coordinates. Axial spacing and axial order belong only to charts that actually have a common axis; they must not be imposed on all A, B, and C candidates.
 
-The member-level inventory below describes the admissible taxonomy space, not the single display coordinate selected by a catalog source record. In particular, the current Family-A Borg reference records select $\lambda_A=0$; varying $\lambda_A$ requires a campaign that explicitly includes the wider Family-A coordinate.
+The member-level inventory below describes the admissible taxonomy space. A Family-A sample restricted to $\lambda_A=0$ covers only that subspace; conclusions about variable flattening require sampling the wider Family-A coordinate.
 
 | Braid class or catalog members | Independent continuous coordinates beyond the common radius, frequency, phase, and group-translation columns | Relations that add or remove freedom |
 | --- | --- | --- |
@@ -4694,11 +4694,11 @@ The member-level inventory below describes the admissible taxonomy space, not th
 | `C3`, `C4` | Two inherited B1 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial. `C3` fixes equal component circulation senses and `C4` fixes opposite senses; equality of the two component frequencies is not required. |
 | `C5`, `C6` | Two inherited B1.3 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial and all-equatorial. `C5` fixes equal component circulation senses and `C6` fixes opposite senses; equality of the two component frequencies is not required. |
 
-An overall shift of absolute-time origin changes the stored phase coordinates, and an overall global spatial placement changes the stored centers and frames. Whether those are sampled coordinates or fixed frame conventions depends on the probe and environment protocol. A campaign must state that convention before reporting a numerical degree-of-freedom count.
+An overall shift of absolute-time origin changes the stored phase coordinates, and an overall global spatial placement changes the stored centers and frames. Whether those are sampled coordinates or fixed frame conventions depends on the probe and environment protocol. A sampling study must state that convention before reporting a numerical degree-of-freedom count.
 
-The active B1 sampling domain requires $\sum_a\rho_a^2>0$. The former `B1.4` source fixes $\rho_a=0$ and $h_a=R_a$ for every binary, so its frequency and phase labels do not change its endpoint paths. Its immutable historical rows remain valid records of the deprecated axial-limit null control, but future active-candidate sampling and comparative rankings exclude it.
+The B1 sampling domain requires $\sum_a\rho_a^2>0$. In the purely axial limit, $\rho_a=0$ and $h_a=R_a$ for every binary, so frequency and phase no longer change the endpoint paths. This limit has no internal orbital motion and serves only as an axial-limit control, not an orbiting B1 candidate.
 
-For C3 through C6, the axial component-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the campaign's declared positive domain and sampling measure. The constrained display records use a dimensionless catalog length coordinate, so $d_C=1.10$ means $1.10$ catalog length units rather than a dimensional physical length. It is one reference point, not a fixed sampling value. A campaign must publish the minimum, maximum, unit conversion or normalized-unit convention, and probability measure for $d_C$ before drawing samples.
+For C3 through C6, the axial component-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the declared positive domain and sampling measure. The constrained display records use a dimensionless catalog length coordinate, so $d_C=1.10$ means $1.10$ catalog length units rather than a dimensional physical length. It is one reference point, not a fixed sampling value. A sampling study must specify the minimum, maximum, unit conversion or normalized-unit convention, and probability measure for $d_C$ before drawing samples.
 
 #### Declared Full-Taxonomy Reference Measure
 
@@ -4717,9 +4717,9 @@ A deterministic counter-based sampler supplies a reproducible bounded reference 
 | Circulation and polarity | Draw every permitted independent sign from a balanced two-point distribution, then impose exact same-sense or opposite-sense member relations. |
 | Common translation | Draw a permitted direction and a speed uniformly from zero to one-half of the conservative envelope-safe speed. Family A uses its declared translation direction. The resulting exact source must remain inside radius $0.99$ through the retained record. |
 
-The sampler constructs the constrained coordinates directly and then calls the canonical member validator. A validator failure is a sampler defect, not a Monte Carlo gate rejection. The seed, member identifier, sample ordinal, every drawn coordinate, the complete sampled source, and the validator result are retained.
+The sampler constructs the constrained coordinates directly and checks the defining member relations. A draw that violates those relations is a sampling error, not evidence against that member. Reproducibility requires the seed, member identifier, sample ordinal, complete drawn coordinates, and results of the constraint checks.
 
-For a family/member candidate $M$, define its admissible configuration space by
+For a family/member candidate $M$, the analysis gates are the declared validity conditions. Define its admissible configuration space by
 
 $$
 \Theta_M
@@ -4732,7 +4732,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6d2001fa252a0ee2)
 
-A Monte Carlo campaign draws prescribed instantiations $\boldsymbol\theta^{(k)}\in\Theta_M$, builds the exact source record $S(\boldsymbol\theta^{(k)})$, and runs the analytical programs to obtain
+A Monte Carlo study draws prescribed instantiations $\boldsymbol\theta^{(k)}\in\Theta_M$, builds the exact source record $S(\boldsymbol\theta^{(k)})$, and runs the analytical programs to obtain
 
 $$
 \mathbf G^{(k)}
@@ -4742,19 +4742,19 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bad8e277d9a3d067)
 
-The common protocol $P$ must remain fixed across the compared sample. A changed source definition, measure, probe set, history depth, root policy, boundary, or normalization requires an impact review and invalidates every affected score. The campaign must recompute those scores before they re-enter the comparison population.
+The common protocol $P$ must remain fixed across the compared sample. Changing the source definition, measure, probe set, history depth, root policy, boundary, or normalization requires recomputation of every affected measure before comparison.
 
 #### Balanced Per-Member Sampling Procedure
 
-A complete initial campaign samples every catalog member rather than drawing the member identity from a probability distribution. If the catalog contains $N_M$ members and assigns $N$ initial cases to each member, the balanced campaign contains $N_M N$ cases before directed refinement. The execution order should be randomized so temperature, memory pressure, or other machine-time effects do not remain correlated with family order.
+A balanced initial sample includes every catalog member rather than drawing the member identity from a probability distribution. If the catalog contains $N_M$ members and assigns $N$ initial cases to each member, the sample contains $N_M N$ cases before directed refinement. Randomizing evaluation order helps distinguish geometric differences from changes in numerical conditions over the course of a study.
 
-Before the first draw, freeze a versioned campaign declaration containing:
+Before sampling, specify:
 
 - every included family/member identifier;
 - the bounds, units, constraints, and probability measure for each continuous coordinate;
 - the probabilities or balanced quotas for each discrete source choice;
 - the fixed-frame convention for coordinates removed as global spatial placement or absolute-time origin;
-- the common analytical protocol $P$, including $c_f=1$, numerical resolutions, tolerances, and gate definitions;
+- the common analytical protocol $P$, including $c_f=1$, numerical resolutions, tolerances, and validity conditions;
 - the pseudorandom or randomized space-filling algorithm, seed, and stream-assignment rule; and
 - the initial quota $N$, any later adaptive-allocation rule, and the stopping rule.
 
@@ -4763,131 +4763,50 @@ Then, for every included member $M$:
 1. draw $\boldsymbol\theta^{(k)}$ from the declared measure on $\Theta_M$, using a constraint-preserving parameterization or a recorded reject-and-redraw rule;
 2. assign every discrete choice, including circulation and persistent endpoint polarity data, under the declared quota or probability rule;
 3. construct and validate the exact source record $S(\boldsymbol\theta^{(k)})$;
-4. attempt to evaluate the fixed metric and gate vector with protocol $P$;
-5. append one compact, reproducible case row whether the evaluation succeeds or balks; and
+4. evaluate the fixed measures and validity conditions with protocol $P$;
+5. record the result, including an explicit unresolved outcome when evaluation is incomplete; and
 6. repeat until the member has its declared initial quota.
 
-The same procedure is repeated for all members. Equal initial quotas make the first family comparison transparent. Adaptive top-ups may then spend more evaluations near favorable regions, gate boundaries, or poorly resolved strata, but the adaptive rows must retain their selection rule and must not be mixed into estimates for the original sampling measure without the corresponding statistical weighting.
+The same procedure is repeated for all members. Equal initial quotas make the first family comparison transparent. Adaptive top-ups may then spend more evaluations near favorable regions, validity boundaries, or poorly resolved strata, but the adaptive rows must retain their selection rule and must not be mixed into estimates for the original sampling measure without the corresponding statistical weighting.
 
-#### Compact Reproducible Case Row
+#### Reproducible Sampling Results
 
-“Store only the test case and its scores” is a valid coverage policy only when the test case is an exact rerun instruction. Each compact row must contain:
+A reproducible result identifies both the sampled configuration and the calculation performed on it.
 
-| Record group | Required contents |
+| Information | Required contents |
 | --- | --- |
-| Case identity | Campaign identifier, family/member identifier, case ordinal, and unique case identifier |
-| Draw provenance | Sampling algorithm, seed, stream index, measure, stratum, and any rejection count or directed-selection rule |
-| Exact source | Complete continuous parameter vector, all discrete choices, frame convention, source-schema version, and exact source hash |
-| Analytical protocol | Protocol identifier and hash, $c_f=1$, resolution tier, tolerances, and gate-definition version |
-| Result | Evaluation status; metric values, gate outcomes, convergence and uncertainty rows, disposition, and score hash when evaluated; otherwise a null score plus the stage, reason code, error type, message, and structured unresolved details |
-| Implementation provenance | Evaluator identifier and version plus an immutable implementation or build identifier |
-| Measured cost | Wall time, processor time when available, peak memory, and retained-byte count |
-| Evidence references | Independent-check receipt and content-addressed raw-artifact references when those artifacts were retained |
+| Sample identity | Family/member, sample ordinal, and complete source coordinates |
+| Sampling measure | Algorithm, seed, distribution, stratum, and any rejection or directed-selection rule |
+| Source definition | Continuous parameters, discrete choices, and frame convention |
+| Analysis protocol | Normalized wake-speed units with $c_f=1$, numerical resolutions, tolerances, and validity conditions |
+| Result | Evaluated measures, uncertainty, convergence behavior, and any unresolved interval or failed validity condition |
+| Independent support | A named analytical reference or independently authored calculation or measurement that supports the stated conclusion |
 
-The source vector, protocol hash, and implementation identifier are necessary because a seed alone does not guarantee that a later program version will reconstruct the same source or calculation. Recomputing an exact compact row establishes reproducibility. It does not establish correctness unless the recomputation includes the declared independent check.
+Plainly: a seed alone is insufficient: a changed parameterization or sampling algorithm can map it to a different source. Reproducing a result requires the source coordinates and analysis protocol as well as the numerical method. Repeating the same implementation establishes repeatability; correctness requires an independent check.
 
-#### Coverage and Full-Adjudication Lanes
+#### Screening Resolution and Independent Verification
 
-The broad campaign should separate cheap configuration-space coverage from evidence-bearing adjudication:
+Broad sampling and detailed evaluation answer different questions. A coarse calculation can identify promising regions and obvious mismatches. It cannot support a conclusion whose required roots, time resolution, angular resolution, or independent evidence are absent.
 
-1. **Coverage lane.** Evaluate every sampled source with a declared screening resolution and retain compact rows. Raw event ledgers may be omitted. These rows are diagnostic and may rank regions, reveal correlations, and identify obvious failures, but they cannot receive an acceptance grade that requires absent raw or independent evidence.
-2. **Full-adjudication lane.** Rerun selected favorable points, points near gate boundaries, anomalies, and a stratified audit sample at the complete protocol resolution. Retain the raw ledgers and independent-check receipts required by the gates. Only this lane can support catalog acceptance.
-3. **False-negative audit.** Full-adjudicate a declared sample of ordinary coverage-lane rejects. The observed disagreement rate measures whether the screening lane is discarding potentially favorable points and determines whether its resolution must be increased.
+Selected favorable points, points near validity boundaries, anomalous results, and a stratified sample of the remaining population require evaluation at the full declared resolution. A separate sample of coarse-screen rejections tests for false negatives: configurations discarded at coarse resolution that satisfy the conditions when evaluated more accurately. The observed disagreement estimates screening error under that sampling measure; it is not a guarantee about unsampled configurations.
 
-The coverage resolution must therefore be calibrated against the full protocol rather than assumed adequate. A faster grid that changes a frequency, radial-scaling, root-topology, or other gate remains useful for screening only. Local finite-difference sensitivity calculations should likewise be deferred to selected points unless they are an explicit initial-campaign objective; running them for every broad-coverage draw multiplies cost without increasing configuration-space coverage.
+Calibration compares identical sources at coarse and refined resolution, distinguishing agreement, false positives, false negatives, and unresolved evaluations. This comparison measures sensitivity to numerical resolution. It does not independently verify the underlying formulas, because both calculations may share the same implementation error.
 
-The compact calibration runner first compares coverage and full numerical resolution on identical sampled sources. It classifies both-pass, both-reject, coverage-false-negative, coverage-false-positive, and inconclusive-not-evaluated rows, with per-gate disagreements and exact source hashes. This is a measured resolution calibration, not independent acceptance, because compact rows omit the acceptance-bearing raw ledgers. A stratified raw-evidence audit remains necessary before any selected row can enter the accepted catalog.
+Plainly: a faster calculation can help locate candidates, but its selection errors must be measured. Refining the same calculation checks resolution; an independent calculation or derivation checks whether the method itself is correct.
 
-An initial quota such as $N=64$ per member is not a production rule merely because the runner accepts that integer. Production designation requires: successful constraint-preserving draws across every catalog member; no unexplained not-evaluated stratum; a declared false-negative audit large enough to bound the missed-candidate risk; stable wall-time and memory measurements under the intended worker count; and a frozen campaign declaration. Until those conditions are met, $N=64$ is a capacity-planning value, not a statistically or evidentially calibrated quota.
+A sample quota requires statistical justification under the declared measure and desired uncertainty. The number of completed samples alone does not establish adequate coverage or a bound on the probability of missing a favorable region.
 
-Campaign storage should follow the same split. Compact rows belong in an append-oriented tabular store suited to filtering and aggregation. Large raw ledgers should be content-addressed and retained only for full-adjudication rows, anomalies, boundary cases, and the declared audit sample. The logical evidence contract is independent of whether the compact table is implemented as a database or a columnar or delimited file.
+#### Adaptive Sampling and Robustness
 
-#### Performance Measurement
-
-Cost is a measured property of the implementation and machine, not a consequence inferred from sample counts alone. A campaign pilot must profile at least one complete point and report stage-level wall time for source construction, root evaluation, surface reduction, metric reduction, hashing, serialization, compression, storage, independent checks, and sensitivity evaluation. It must also report median and upper-quantile point times across members, because one member need not represent the full catalog.
-
-Optimization experiments must compare the same exact source and protocol and verify equality of the compact score record when claiming an output-preserving speedup. Lower resolutions, omitted sensitivity rows, or missing evidence artifacts are separate evaluation tiers, not output-preserving optimizations. Campaign-level parallel execution may reduce elapsed campaign time, but it does not reduce the processor cost of one point and must be evaluated under measured memory and storage contention.
-
-#### Local and Cloud Throughput
-
-One **test point** in this supplement means one exact source-protocol pair evaluated into one compact reproducible case row. Throughput is the number of completed points divided by total elapsed campaign time, including dispatch, retries, merging, and final verification:
-
-$$
-R_{\mathrm{test}}
-=
-\frac{N_{\mathrm{verified}}}{t_{\mathrm{elapsed}}}
-$$
-
-[View →](../../../../../equation-mapping.html#corpus-equation-fe9e90c74f31c35a)
-
-where $R_{\mathrm{test}}$ is reported in verified tests per hour. A worker count is an implementation setting, not a throughput prediction. The useful count is the measured maximum before processor scheduling, memory pressure, compression, or storage contention makes another worker counterproductive.
-
-Machine-specific benchmarks and dated price observations belong in operational campaign records rather than this reader-facing method. The portable rule is to use a bounded dynamic queue, measure worker scaling on every selected platform, and remeasure whenever the protocol, member mix, runtime, or machine changes. Interruptible cloud execution is appropriate only after every completed point is checkpointed independently, an interrupted point can be retried without changing its identity, and duplicate results are rejected by case hash. On-demand and interruptible runs must be priced and reported separately.
-
-##### Deterministic Cloud Execution
-
-Monte Carlo points are independent after the campaign declaration and random streams are frozen. The controller should construct the immutable test-point definitions, place them in a deterministic queue, and let each worker claim one point at a time. Each worker returns one compact case row to a single deterministic merger. Workers should not write concurrently into one shared database file. The merger sorts by family/member identifier and case ordinal, rejects conflicting duplicates, records retries, and performs the final hash and inventory checks.
-
-Cloud execution does not change the coverage and full-adjudication distinction:
-
-- ordinary coverage workers return compact rows and do not upload large raw ledgers;
-- selected full-adjudication points retain the required content-addressed raw ledgers and independent-check receipts; and
-- a preempted point contributes no result until one complete verified row is committed.
-
-Before cloud results enter a comparison population, freeze the runtime, dependencies, evaluator implementation, source schema, campaign declaration, and analytical protocol. Run the same qualification fixture locally and on each selected cloud machine type, then require identical sampled-source definitions, source hashes, protocol hashes, compact score-record hashes, case hashes, aggregate hash, and gate inventory. Different processor, operating-system, and compression environments require byte identity to be tested rather than assumed. If any required identity differs, cloud coverage remains diagnostic-only and selected points must be rerun on the declared canonical platform before promotion. Same-output replay establishes determinism; it does not replace an independent correctness check.
-
-##### Price-Performance Measurement
-
-For a cloud run using instances indexed by $i$, define
-
-$$
-K_{\mathrm{compute}}
-=
-\sum_i p_i h_i
-$$
-
-[View →](../../../../../equation-mapping.html#corpus-equation-0fe62ed06ad9f221)
-
-where $p_i$ is the actual instance price in dollars per billed hour and $h_i$ is its billed duration. Total campaign cost is
-
-$$
-K_{\mathrm{campaign}}
-=
-K_{\mathrm{compute}}
-+K_{\mathrm{storage}}
-+K_{\mathrm{network}}
-+K_{\mathrm{operations}}.
-$$
-
-[View →](../../../../../equation-mapping.html#corpus-equation-e0961207c46d7b81)
-
-The measured price-performance quantities are
-
-$$
-P_{\mathrm{test}}
-=
-\frac{N_{\mathrm{verified}}}{K_{\mathrm{campaign}}},
-\qquad
-C_{\mathrm{million}}
-=
-\frac{10^6}{P_{\mathrm{test}}}.
-$$
-
-[View →](../../../../../equation-mapping.html#corpus-equation-d7e40d0ed1fa813d)
-
-Thus $P_{\mathrm{test}}$ is verified tests per dollar and $C_{\mathrm{million}}$ is dollars per million verified tests. Billed startup time, idle capacity, failed or preempted attempts, retries, compact-output storage, network transfer, deterministic merge, and final verification all remain in the denominator. Quoting core count times a local single-worker rate is only a capacity estimate and must not be reported as measured cloud throughput.
-
-The controlled cloud experiment should sweep worker counts from one through the selected machine's useful concurrency range, using one warm-up and at least three repetitions per setting. It should then compare several fleet sizes of identical instances on one fixed logical workload. Every run must report individual and median wall time, tests/hour, processor utilization, peak memory, retries, bytes transferred, total billed cost, tests/dollar, and exact-output comparison. The preferred execution mode is the one with the lowest measured cost per verified test that also meets the desired completion time and every evidence boundary.
-
-The analytical campaign has three stages:
+Configuration-space analysis has three stages:
 
 1. **Monte Carlo coverage.** Draw a reproducible, seeded sample from each declared measure over $\Theta_M$. Use stratification so narrow coordinate regions are not lost by chance.
 2. **Directed refinement.** Add targeted samples around strong external cancellation, admissible root margins, candidate optima, and boundaries where root topology or prescribed-period closure changes. Include deliberately adverse directions so the method does not optimize only one favorable projection.
 3. **Robustness and sensitivity analysis.** Resample neighborhoods around leading instantiations, vary one declared coordinate at a time where useful, and report whether the apparent advantage survives small changes in coordinates, sampling measure, and numerical resolution.
 
-Every result row must include the family/member identifier, full parameter vector, source grade, sampling measure, seed or directed-selection rule, root status, numerical resolution, and metric uncertainty.
+Each sampled result identifies the family/member, full parameter vector, prescribed-path claim level, sampling measure, seed or directed-selection rule, root completeness, numerical resolution, and metric uncertainty.
 
-The campaign output should include the distribution of every objective and gate, parameter-to-measure sensitivity, correlations that may reveal redundant coordinates, the non-dominated set under $\mathbf G_{\mathrm{an}}$, and the location and width of robust favorable regions. A single best sampled point is not enough: the central question is whether a candidate has a reproducible favorable region in configuration space or only a narrowly tuned instantiation.
+The analysis reports the distribution of each objective, the frequency of each failed validity condition, parameter-to-measure sensitivity, correlations that may reveal redundant coordinates, the non-dominated set under $\mathbf G_{\mathrm{an}}$, and the location and width of robust favorable regions. A single best sampled point is not enough: the central question is whether a candidate has a reproducible favorable region in configuration space or only a narrowly tuned instantiation.
 
 #### Common-Axis Architrino-Worldline Chart
 
@@ -5024,26 +4943,24 @@ The analysis has two evidential stages. **Prescribed screening** evaluates the m
 
 #### Proof-Burden Order
 
-Evidence closes in a fixed order. First comes **rest branch retention**: the complete delayed-history record must persist in its declared rest environment. Second comes **Noether sea embedded retention**: the same branch must remain coherent when the surrounding population response is included. Third comes **moving observer export**: a retained moving branch must supply its transport, clock, ruler, action, and leakage rows from the same record. Only then may **downstream assembly consumers** use that retained record for particle roles, effective-metric recovery, or other observer-level claims.
+Claims about assemblies depend on evidence at several levels. **Rest branch retention** requires the complete delayed-history record to persist in its declared rest environment. **Noether sea embedded retention** additionally requires the same branch to remain coherent when the surrounding population response is included. **Observer-level descriptions of a moving branch** require transport, clock, ruler, action, and leakage quantities derived from that same retained record. Particle assignments, effective-metric recovery, and other observer-level claims depend on these underlying results.
 
 A later rung cannot repair an earlier one. A favorable particle, mass, topology, clock, or metric diagnostic may classify a retained branch, but it cannot establish that the branch is retained; equally, a prescribed-path balance result can nominate an evolution seed without supplying any rung of the retention ladder by itself.
 
 ### Prescribed-Record Grading
 
-The prescribed-record analytical grade is fail-closed and occurs in this order:
+A valid prescribed-record comparison requires:
 
-1. **Record validity:** complete provenance, finite values, legal coordinates, reproducible paths, and a current score for the exact source hash.
+1. **Record validity:** a complete source definition, finite values, admissible coordinates, reproducible paths, and measures evaluated for that exact source.
 2. **Geometric admissibility:** no undeclared collision or coincidence, a complete declared period, and converged geometric extraction.
 3. **Causal admissibility:** complete retained roots, declared self-hit treatment, resolved fold events, and converged root sums.
 4. **Analytical wake comparison:** signed and raw exposure, complete-cycle normal wake flux and cancellation, anisotropy, spectra, peak response, and source-parameter sensitivity under one common protocol.
 
 A prescribed chart receives only an analytical prescribed-record grade. Stability and energy are outside the method and outside its score.
 
-#### Reader-Facing Result Boundary
+#### Interpretation of Results
 
-This chapter does not publish the current campaign table, metric leaders, candidate rankings, case hashes, work queue, or changing gate status. Those records belong to the operational braid-search program. Regenerating or extending an analytical database therefore does not update this chapter. Exact byte identifiers, reproduction commands, local artifact paths, process receipts, and resource telemetry remain in the corresponding validation or data-availability record rather than in a promoted mathematical statement.
-
-A candidate-specific result enters the reader-facing corpus only after it is established at its stated claim level and can be presented as durable mathematics or evidence rather than program status. The promoted statement must name its assumptions, domain, claim grade, instrument or independent derivation, uncertainty when measured, and an operator-checkable falsifier. A prescribed-path result remains labeled as prescribed-path evidence, and no such result is described as retention, stability, binding, or physical realization without the corresponding EOM-evolution evidence.
+A candidate-specific conclusion states its assumptions, domain, claim grade, instrument or independent derivation, uncertainty when measured, and the observation that would falsify it. Prescribed-path evidence supports conclusions about the declared geometry and its analytical wake response. It does not establish retention, stability, binding, or physical realization without the corresponding EOM-evolution evidence.
 
 Among prescribed candidates evaluated under the same protocol, report an analytical objective vector rather than hiding choices inside one number. One suitable starting vector is
 
@@ -5062,15 +4979,17 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2619367386ede276)
 
-where $S_{\boldsymbol\theta}$ is the declared sensitivity of the wake measures to source-coordinate changes. Prescribed-period closure, minimum separation, and the root-transversality margin are validity gates or annotations rather than performance rewards.
+where $S_{\boldsymbol\theta}$ is the declared sensitivity of the wake measures to source-coordinate changes. Prescribed-period closure, minimum separation, and the root-transversality margin are validity conditions or annotations rather than performance rewards.
 
 One candidate dominates another only when it is no worse on every declared objective and better on at least one. A single weighted score is permitted only after the weights and normalization are fixed before inspecting the result. “Strongest analytical wake cancellation” is a legitimate comparison question. “Lowest apparent energy” is not a quantity defined by this methodology.
 
 Separate grades are required for a family/member chart and for a particular instantiation. A strong instantiation supports existence within a sampled region; it does not establish that the family as a whole has the same performance.
 
-### Borg Analysis Surface
+<a id="borg-analysis-surface"></a>
 
-Borg should expose this method as a record-derived analysis surface. A user should be able to place fixed or moving probes at arbitrary $(T,\mathbf X)$ coordinates and display:
+### Visualization of Analytical Results
+
+Fixed or moving probes at specified $(T,\mathbf X)$ coordinates provide complementary views of the same prescribed source. Useful visualizations include:
 
 - $\mathcal W$, $\mathcal W_{\mathrm{abs}}$, and $\chi_{\mathcal W}$;
 - positive- and negative-polarity virtual-probe responses;
@@ -5080,27 +4999,27 @@ Borg should expose this method as a record-derived analysis surface. A user shou
 - spatial slices, enclosing-surface maps, spectra, and angular coefficients;
 - complete-cycle signed, raw, and residual normal wake flux together with $\eta_{\mathcal W,\mathrm{flux}}(R)$ and the raw emission-reference residual;
 - transmitter-root-tagged complex normal wake-flux coefficients and $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$ across the declared enclosing radii; and
-- source-parameter sensitivity, invalidated-score status, and the exact source and protocol hashes.
+- source-parameter sensitivity and the source coordinates, analysis interval, and numerical resolution used for each comparison.
 
-The graph must remain synchronized with animation time and preserve source-record provenance. Borg may also present a teaching sequence that highlights selected binaries, axes, wakes, envelopes, roots, or probes while explanatory text appears on the canvas. Teaching cues are annotations on the record; they are not evidence generated by the record.
+Time-dependent plots and geometric views must refer to the same absolute time and prescribed source. Highlighting selected binaries, axes, wakes, envelopes, roots, or probes can clarify the calculation, but visual annotations supply no additional evidence.
 
-Energy and stability controls should not appear as outputs of this analytical surface because the method does not define them.
+These views display analytical wake properties. They do not supply energy or stability measurements, which this method does not define.
 
-### Minimum Publication Packet
+### Reproducible Candidate Comparisons
 
-A publishable candidate analysis contains:
+A complete candidate comparison specifies:
 
 1. the complete source record and taxonomy row;
 2. the superimposed causal-wake formula and all normalization choices;
-3. the internal receiver-wake ledger through one complete return cycle;
+3. the receiver-wake contributions inside the braid through one complete return cycle;
 4. the probe geometry and raw time-dependent curves;
 5. prescribed-period closure, root, separation, cancellation, anisotropy, spectral, source-sensitivity, and any claimed envelope support, moment, quadratic-fit, and support-moment disagreement metrics;
 6. an explicit analytical claim boundary that excludes energy and stability conclusions;
 7. the Monte Carlo, directed-refinement, and robustness sampling declarations;
-8. the gate result and multi-objective comparison vector; and
-9. the exact observation that would falsify each promoted claim.
+8. the validity results and multi-objective comparison vector; and
+9. the exact observation that would falsify each claim.
 
-This packet makes analytical candidate comparison reproducible. A prescribed braid remains a prescribed geometry with analytically evaluated causal-wake properties; the method makes no claim about stability or physical retention.
+Together, these specifications make analytical candidate comparison reproducible. A prescribed braid remains a prescribed geometry with analytically evaluated causal-wake properties; the method makes no claim about stability or physical retention.
 
 ## Braid Envelope Geometry
 

@@ -2844,10 +2844,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Analytical Evaluation Programs",
+                "title": "Numerical Evaluation",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Analytical Evaluation Programs",
-                "sectionKey": "analytical evaluation programs",
+                "markdownSection": "Numerical Evaluation",
+                "sectionKey": "numerical evaluation",
                 "headingLevel": 2
               },
               {
@@ -2876,18 +2876,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Borg Analysis Surface",
+                "title": "Visualization of Analytical Results",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Borg Analysis Surface",
-                "sectionKey": "borg analysis surface",
+                "markdownSection": "Visualization of Analytical Results",
+                "sectionKey": "visualization of analytical results",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Minimum Publication Packet",
+                "title": "Reproducible Candidate Comparisons",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Minimum Publication Packet",
-                "sectionKey": "minimum publication packet",
+                "markdownSection": "Reproducible Candidate Comparisons",
+                "sectionKey": "reproducible candidate comparisons",
                 "headingLevel": 2
               }
             ]
