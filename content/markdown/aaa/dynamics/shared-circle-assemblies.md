@@ -14,7 +14,7 @@ Plainly: putting several architrinos on the same rotating circle defines a usefu
 
 Choose a fixed center $\mathbf C$, an oriented orthonormal planar basis $(\hat{\mathbf e}_1,\hat{\mathbf e}_2)$, a radius $R > 0$, an angular rate $\Omega\ne 0$, and $2N$ distinct fixed phases $\phi_k$. The worldlines are $\mathbf X_k(T)=\mathbf C+R[\cos(\Omega T+\phi_k)\hat{\mathbf e}_1+\sin(\Omega T+\phi_k)\hat{\mathbf e}_2]$ for $k\in\{0,\ldots,2N-1\}$. A balanced $N{:}N$ polarity word assigns $N$ sites each polarity, so $q_k\in\{+\epsilon,-\epsilon\}$ and $\sum_k q_k=0$. Neutrality is a declared restriction of this chart; net-polarity shared-circle inventories lie outside its coverage. Unequal polarity magnitudes are not an additional assembly coordinate because $\epsilon$ is the fundamental polarity magnitude. The speed coordinate is $\beta_f=|\Omega|R/c_f$; every numerical result below uses normalized units with $c_f=1$.
 
-The phase gaps and polarity word are part of the geometry. A global phase shift only rotates the whole record and may be removed. Global polarity conjugation leaves every receiver-transmitter polarity product unchanged. Reflection is a valid reduction only together with the applicable circulation reversal and only after that covariance is checked. The regular-ring search removes duplicates under exactly these three transformations: cyclic label rotation, global polarity conjugation, and reflection together with circulation reversal. On the regular ring, cyclic label rotation is the discrete form of a global phase rotation. A focused generic full-ledger test checks the reflection-plus-circulation covariance on a nonuniform six-phase, balanced-polarity record, and the retained regular campaign records a passing full-ledger check for each inventory $N=2,\ldots,6$, with exact zero even- and odd-projection differences. The campaign record has SHA-256 `f17525aa2bccbf884a50ebedb0e58f68d6c81fdc6a770b103f3ad37502eb604d`.
+The phase gaps and polarity word are part of the geometry. A global phase shift only rotates the whole record and may be removed. Global polarity conjugation leaves every receiver-transmitter polarity product unchanged. Reflection is a valid reduction only together with the applicable circulation reversal and only after that covariance is checked. The regular-ring search removes duplicates under exactly these three transformations: cyclic label rotation, global polarity conjugation, and reflection together with circulation reversal. On the regular ring, cyclic label rotation is the discrete form of a global phase rotation. A focused generic full-ledger test checks the reflection-plus-circulation covariance on a nonuniform six-phase, balanced-polarity record, and the regular-ring evaluation confirms the same covariance for each inventory $N=2,\ldots,6$, with exact zero even- and odd-projection differences.
 
 Plainly: all labels travel at the same constant speed and keep the same cyclic order. What can still change from one record to another is the angular spacing and the placement of the two polarities around the circle. This chart tests neutral inventories made from the one fundamental polarity magnitude; rings with a net polarity count belong to a different chart.
 
@@ -130,7 +130,7 @@ Plainly: taxonomy follows the coordinate record, not visual resemblance or arith
 
 ## Verified Bounded Landscape
 
-The complete-root evidence gives the following prescribed acceleration-balanced regular alternating loci under the uncapped Master Equation with $c_f=1$. The table compares inventory sizes; its $N=3$ row is one member of the more detailed equal-radius B1.3 sequence recorded below. The $N=1$ row is the first binary all-root simple-chart candidate on $1<\beta_f<20$; the lower endpoint follows the special same-transmitter topology onset at $\beta_f=1$. For $N=2$ through $N=6$, the campaign enumerated every one of the $\binom{2N}{N}$ regular neutral polarity words and canonicalized the resulting orbits under global phase rotation, global polarity conjugation, and checked reflection with circulation reversal. The resulting orbit counts are $2$, $3$, $7$, $13$, and $35$ for $N=2,\ldots,6$; focused executable tests protect those counts. The campaign searched $0.05\leq\beta_f\leq20$ with base step $0.025$, explicit probes around $\beta_f=1$ and root births, topology-boundary bisection, tangential-zero bisection, and local-minimum refinement. The $N=7$ through $N=12$ extensions tested only the regular alternating $2N$-gon at each inventory on the same bounded speed interval.
+The complete-root evidence gives the following prescribed acceleration-balanced regular alternating loci under the uncapped Master Equation with $c_f=1$. The table compares inventory sizes; its $N=3$ row is one member of the more detailed equal-radius B1.3 sequence recorded below. The $N=1$ row is the first binary all-root simple-chart candidate on $1<\beta_f<20$; the lower endpoint follows the special same-transmitter topology onset at $\beta_f=1$. For $N=2$ through $N=6$, the enumeration covers every one of the $\binom{2N}{N}$ regular neutral polarity words and identifies the resulting orbits under global phase rotation, global polarity conjugation, and checked reflection with circulation reversal. The orbit counts are $2$, $3$, $7$, $13$, and $35$ for $N=2,\ldots,6$. The bounded search covers $0.05\leq\beta_f\leq20$ with base step $0.025$, explicit probes around $\beta_f=1$ and root births, topology-boundary bisection, tangential-zero bisection, and local-minimum refinement. The $N=7$ through $N=12$ extensions test only the regular alternating $2N$-gon at each inventory on the same bounded speed interval.
 
 Plainly: the list of neutral regular polarity patterns is complete through $N=6$, but each no-balance verdict across speed remains a measured bounded search result rather than a continuous-domain zero-count theorem. A balance between the declared probes would overturn the affected negative row.
 
@@ -149,7 +149,7 @@ Plainly: the list of neutral regular polarity patterns is complete through $N=6$
 | 11 | 22 | Shared-circle assembly | 1.3097107443722018 | 11.928820792539806 | 528 | $3.509299589578857\times10^{-10}$ | Balanced candidate in one tested class |
 | 12 | 24 | Shared-circle assembly | 1.290840841384326 | 13.982496760466805 | 624 | $5.858187577303801\times10^{-10}$ | Balanced candidate in one tested class |
 
-> Claim grade: measured. `PlanarCoRotatingRingBalance` supplies the complete prescribed-path ledgers. The unchanged `CircularSelfHitBinaryAnalysis` independently checks the same-transmitter roots, and the unchanged generic `AnalyticalBraidEvaluator` independently checks the cross-transmitter roots and acceleration contributions for the promoted many-member candidates. The generic evaluator predates the specialized ring evaluator and follows its separate `ExactPrescribedSourceWake` record-validation and root-evaluation path; the specialized evaluator is self-contained and imports neither that root solver nor its acceleration kernel. Their agreement checks two separately implemented evaluations under the same declared Master Equation, not the Master Equation itself. The $N=1$ specialization is independently compared with the circular-binary instrument. The other regular classes through $N=6$ are measured bounded-search negatives under the declared adaptive speed protocol, not certified no-zero intervals. The exhaustive orbit enumeration and the per-inventory reflection checks are retained in the campaign record named above. Falsifier: a missing polarity orbit, a missing or displaced causal root, a failed independent comparison or covariance check, an incompatible receiver scale, a topology change under refinement, a residual outside the declared tolerance, or a valid balance between tested speeds overturns the corresponding row.
+> Claim grade: measured. The specialized regular-ring evaluator supplies the complete prescribed-path ledgers. An independently implemented circular-binary evaluator checks the same-transmitter roots, while a generic prescribed-history evaluator checks the cross-transmitter roots and acceleration contributions for the reported many-member candidates. Their agreement tests two separately implemented evaluations under the same declared Master Equation, not the Master Equation itself. The $N=1$ specialization is also compared with the circular-binary benchmark. The other regular classes through $N=6$ are measured bounded-search negatives under the declared adaptive speed protocol, not certified no-zero intervals. Falsifier: a missing polarity orbit, a missing or displaced causal root, a failed independent comparison or covariance check, an incompatible receiver scale, a topology change under refinement, a residual outside the declared tolerance, or a valid balance between tested speeds overturns the corresponding row.
 
 Plainly: the table reports measured regular candidates, not a ranking of physical assemblies. A lower speed, larger scale, or smaller residual does not imply greater stability or greater physical importance. The other enumerated polarity patterns have bounded search negatives, so a newly found between-probe balance would extend the table and overturn only its affected negative verdict.
 
@@ -192,13 +192,13 @@ Plainly: speed must first make the sideways acceleration vanish. The inward radi
 
 Plainly: each row gives one balanced state of the complete six-member assembly: one value of $\beta_f$ and the common radius that cancels the radial, tangential, and axial residuals. Zero degenerate roots is the required result: every balance is simple even though it lies just above a fold that created a causal-root pair. The row does not describe an individual binary; all three neutral binaries share that radius and retain their $120^\circ$ phase separation.
 
-> Claim grade: measured. The `run-b13-velocity-search.mjs` instrument used complete emission-site, all-causal-root ledgers, a primary root tolerance of $2\times10^{-13}$, a tightened root tolerance of $2\times10^{-14}$, a balance tolerance of $2\times10^{-8}$, and tangential bisection to $2\times10^{-13}$. The separately authored `verify-b13-velocity-solutions.mjs` instrument checked all eighteen rows with the unchanged `AnalyticalBraidEvaluator` for cross-transmitter acceleration and the unchanged `CircularSelfHitBinaryAnalysis` for same-transmitter roots and acceleration. Its tolerances were $2\times10^{-7}$ for cross acceleration and independent balance, $2\times10^{-9}$ for self acceleration, and $4\times10^{-10}$ for self-root location; the observed maxima were respectively $3.637030232539473\times10^{-8}$, $2.6856177678495606\times10^{-9}$, $3.5166314305001833\times10^{-14}$, and $9.237055564881302\times10^{-14}$. The search record has SHA-256 `406379db93e051453a2df97ba6a2f9ccff1241c2222fd777117fd96fe8833c81`; the independent-check record has SHA-256 `4e7305575b543ae1079ce104c8d347ca2ec3883b1299ab4a3796ee6d709e711c`. A missing or displaced causal root, a nonzero fold on a reported row, a failed topology match under tightening, an incompatible scale, or an independent residual outside these tolerances overturns that row.
+> Claim grade: measured. The primary binary64 velocity search used complete emission-site, all-causal-root ledgers, a primary root tolerance of $2\times10^{-13}$, a tightened root tolerance of $2\times10^{-14}$, a balance tolerance of $2\times10^{-8}$, and tangential bisection to $2\times10^{-13}$. A separately authored verification instrument checked all eighteen rows with independent cross-transmitter and same-transmitter evaluators. Its tolerances were $2\times10^{-7}$ for cross acceleration and independent balance, $2\times10^{-9}$ for self acceleration, and $4\times10^{-10}$ for self-root location; the observed maxima were respectively $3.637030232539473\times10^{-8}$, $2.6856177678495606\times10^{-9}$, $3.5166314305001833\times10^{-14}$, and $9.237055564881302\times10^{-14}$. A missing or displaced causal root, a nonzero fold on a reported row, a failed topology match under tightening, an incompatible scale, or an independent residual outside these tolerances overturns that row.
 
 Plainly: the search and the separately authored checker agree within declared error limits on all eighteen rows. Those limits grade the binary64 table; the arbitrary-precision table below is a separate numerical evaluation of the same mathematical loci.
 
-The inventory table retains a `PlanarCoRotatingRingBalance` campaign refinement, while the eighteen-row table retains the dedicated binary64 velocity-search coordinates associated with its measured search record. The arbitrary-precision checkpoints below are separately recomputed point estimates and are the preferred coordinates when one displayed numerical value is required. Their additional digits and small coordinate shifts, including the T04 values across all three tables and the T20 radius difference between the latter two, belong to those separate instruments and do not change the independent-check tolerances declared for the binary64 table.
+The inventory table and the eighteen-row table come from separate binary64 evaluations, while the arbitrary-precision checkpoints below are independently recomputed point estimates and are the preferred coordinates when one displayed numerical value is required. Their additional digits and small coordinate shifts, including the T04 values across all three tables and the T20 radius difference between the latter two, belong to those separate instruments and do not change the independent-check tolerances declared for the binary64 table.
 
-Plainly: T04 and T20 appear in more than one table because separate campaign, search, and arbitrary-precision instruments refined the same loci. Their small decimal differences are instrument-specific refinements, not evidence of distinct balance modes.
+Plainly: T04 and T20 appear in more than one table because separate regular-ring, velocity-search, and arbitrary-precision evaluations refined the same loci. Their small decimal differences are instrument-specific refinements, not evidence of distinct balance modes.
 
 #### Circular Root Ledger and Fold Signs
 
@@ -356,9 +356,9 @@ The certificate encloses every causal-root branch with opposite endpoint residua
 
 Plainly: a dense graph can jump over a zero that only touches the axis. The certificate does not sample and hope: it traps the entire curve and its slope inside guaranteed bounds, subdividing until every piece is either safely away from zero or contains exactly one crossing. The fold calculation separately controls the narrow regions where a new root pair first appears.
 
-> Claim grade: computer-assisted derived bounded zero count for the fixed equal-radius, phase-symmetric circular ledger. The interval receipt has SHA-256 `fd83e4ea68aace450fc945e410182177c048be05a592608a865e14bc93e463af`; a second full run reproduced it byte for byte. A separately authored 100-decimal point instrument checked all eighteen certified brackets and passed 18 of 18, with receipt SHA-256 `87eaa5770abc06308a3ca8d9b72817a52057d33e596d510a31198dc5f4eee22e`. The theorem record has SHA-256 `f1430523c1b1316435adbe521ffc1c9aaa82f6f9feeb7771917ddeb36464e637`. An independently certified unresolved branch, extra tangential zero, non-simple listed zero, or nonnegative radial coefficient in the declared domain falsifies the result.
+> Claim grade: computer-assisted derived bounded zero count for the fixed equal-radius, phase-symmetric circular ledger. The outward-rounded interval calculation certifies the complete zero count over the declared domain. A separately authored 100-decimal point instrument checked all eighteen certified brackets and passed 18 of 18. An independently certified unresolved branch, extra tangential zero, non-simple listed zero, or nonnegative radial coefficient in the declared domain falsifies the result.
 
-Plainly: the outward-rounded receipt, not numerical repetition or a dense graph, supplies the bounded zero-count authority. It would fail rather than certify the theorem if any branch, touching zero, or inward-radius check remained unresolved.
+Plainly: the outward-rounded certificate, not numerical repetition or a dense graph, supplies the bounded zero-count authority. It would fail rather than certify the theorem if any branch, touching zero, or inward-radius check remained unresolved.
 
 The expanding-offset probes and the 199,555-point grid are discovery instruments, not the authority for exhaustiveness. A discrete no-solution probe list cannot exclude a balance between tested speeds. The fine grid finds no extra solution between the 72-root and 96-root rows, including the intervening 84-root interval; the outward-rounded cover upgrades that observation to a continuous-domain theorem.
 
@@ -366,7 +366,7 @@ Plainly: the search found the pattern and the certificate proved the bounded cou
 
 #### Arbitrary-Precision Continuation
 
-A separate arbitrary-precision campaign accepted all one hundred listed balances from T02 through T200. It imports neither the binary64 subject code nor its reported coordinates: a frozen Python point oracle independently solves each odd-fold bracket, after which a separate six-receiver pass evaluates all 36 directed phase channels. Every row was solved at 100 decimal digits and repeated at 120 digits. Because a one-hundred-row decimal table would obscure the structure, the table below retains the first two rows and every tenth-rung checkpoint; the exact index law above supplies every topology label and root count, while the acceptance record retains every full-precision speed and radius.
+A separate arbitrary-precision calculation establishes all one hundred listed balances from T02 through T200. It imports neither the binary64 subject code nor its reported coordinates: an independent point oracle solves each odd-fold bracket, after which a separate six-receiver pass evaluates all 36 directed phase channels. Every row was solved at 100 decimal digits and repeated at 120 digits. Because a one-hundred-row decimal table would obscure the structure, the table below retains the first two rows and every tenth-rung checkpoint; the exact index law above supplies every topology label and root count.
 
 | Ladder index $n$ | Topology interval | $\beta_f$ | $R/R_*$ | Directed roots |
 | ---: | --- | ---: | ---: | ---: |
@@ -385,7 +385,7 @@ A separate arbitrary-precision campaign accepted all one hundred listed balances
 
 Plainly: the table uses checkpoints so the trend remains readable, not because the omitted rows were skipped. All one hundred even classes were solved. Speed rises by roughly the same amount per rung, radius steadily falls, and the delayed-root ledger grows from 48 to 2,424 directed roots.
 
-> Claim grade: independently measured prescribed acceleration-balance existence for the one hundred listed rows. Against the frozen binary64 discovery list, the independently reconstructed rows match all one hundred topology labels and directed-root counts; the maximum coordinate differences are $2.54\times10^{-12}$ in $\beta_f$ and $1.38\times10^{-9}$ in $R/R_*$. This cross-instrument comparison identifies the same loci, while the 100-to-120-digit repetition is only the arbitrary-precision instrument's roundoff check: its maximum speed difference was $1.03\times10^{-105}$ and its maximum radius difference was $9.49\times10^{-95}$. The maximum complete six-receiver residual was $1.25\times10^{-110}$, and the maximum causal-root residual was $1.00\times10^{-85}$. The measured minimum transversality—the smallest absolute root-Jacobian margin from a fold—decreases monotonically across the recorded rows from $0.195548$ at T02 to $0.003151$ at T200, where the minimum occurs. No asymptotic transversality law is claimed. The record has SHA-256 `cd2745bffbe792e7d8030d6382ee7f6b76d3f7670d3292559567c46217c70c6b`. A failed cross-instrument topology or root-count match, precision comparison, phase-channel identity, receiver residual, root residual, transversality, topology label, or directed-root count overturns the affected row.
+> Claim grade: independently measured prescribed acceleration-balance existence for the one hundred listed rows. Against the frozen binary64 discovery list, the independently reconstructed rows match all one hundred topology labels and directed-root counts; the maximum coordinate differences are $2.54\times10^{-12}$ in $\beta_f$ and $1.38\times10^{-9}$ in $R/R_*$. This cross-instrument comparison identifies the same loci, while the 100-to-120-digit repetition is only the arbitrary-precision instrument's roundoff check: its maximum speed difference was $1.03\times10^{-105}$ and its maximum radius difference was $9.49\times10^{-95}$. The maximum complete six-receiver residual was $1.25\times10^{-110}$, and the maximum causal-root residual was $1.00\times10^{-85}$. The measured minimum transversality—the smallest absolute root-Jacobian margin from a fold—decreases monotonically across the recorded rows from $0.195548$ at T02 to $0.003151$ at T200, where the minimum occurs. No asymptotic transversality law is claimed. A failed cross-instrument topology or root-count match, precision comparison, phase-channel identity, receiver residual, root residual, transversality, topology label, or directed-root count overturns the affected row.
 
 Plainly: the independent arbitrary-precision instrument makes roundoff far smaller than the reported balance residuals and evaluates every receiver. Its root branches become progressively more weakly separated from folds, with T200 the closest recorded row; that measured conditioning trend helps explain why higher-topology enclosure work is more demanding, but it does not prove a completeness obstruction. The solution list is not a zero-count theorem, completeness above $\beta_f=20$ remains open, and existence still says nothing about release, retention, binding, stability, a physical spectrum, or scientific acceptance.
 
@@ -548,7 +548,7 @@ $$
 
 Plainly: the balance spacing approaches $\pi/3$ from above, and the radius falls like $1/(n+1)$. Writing the sequence by ladder index restores explicit powers of $\pi$ even though the leading speed-scaled radius is the rational constant $3/2$.
 
-> Claim grade: derived. The derivation record has SHA-256 `2d36cadd03f3fe92cf73690cccf4e4e5722ea6106bc5234c38e64bef22600b54`. Its proof uses the exact integer-level root ledger, endpoint pairing, alternating-series tail bounds, the odd-fold newborn-pair expansion, and the complete radial acceleration sum. A failure of the unified ledger to reproduce the six-channel root count, a nonvanishing upper-level remainder, a high-precision sequence for which $\beta_f^3(\beta_{\mathrm{bal}}-\beta_q)$ fails to approach $1/18$, or accepted values that fail either displayed scale limit overturns the corresponding result. Higher coefficients remain unclaimed because the endpoint expansion becomes nonuniform in the level index and may introduce logarithmic corrections.
+> Claim grade: derived. The proof uses the exact integer-level root ledger, endpoint pairing, alternating-series tail bounds, the odd-fold newborn-pair expansion, and the complete radial acceleration sum. A failure of the unified ledger to reproduce the six-channel root count, a nonvanishing upper-level remainder, a high-precision sequence for which $\beta_f^3(\beta_{\mathrm{bal}}-\beta_q)$ fails to approach $1/18$, or accepted values that fail either displayed scale limit overturns the corresponding result. Higher coefficients remain unclaimed because the endpoint expansion becomes nonuniform in the level index and may introduce logarithmic corrections.
 
 Plainly: the leading high-speed law and its first correction are mathematical results. The proof does not establish one and only one balance in every topology interval.
 
@@ -614,7 +614,7 @@ The exact coefficients $C_\infty=3/2$ and $3\log 2/\pi$ rest on the complete led
 
 Plainly: curve fits record the numerical pattern but do not prove its constants. The authority comes from pairing every old causal root, evaluating the alternating series, and matching that background against the newborn fold pair.
 
-The 100/120-digit campaign supplies the accepted existence rows through T200. The binary64 extension and empirical regression coefficients remain non-authoritative discovery provenance for the high-topology coordinates and exact asymptotic coefficients. Neither numerical instrument supplies interval-by-interval completeness above the certified domain.
+The 100/120-digit calculation supplies the accepted existence rows through T200. The binary64 extension and empirical regression coefficients remain non-authoritative discovery provenance for the high-topology coordinates and exact asymptotic coefficients. Neither numerical instrument supplies interval-by-interval completeness above the certified domain.
 
 Plainly: the high-speed rows are individually accepted arbitrary-precision balances, while the exact formulas stand or fall with the ledger derivation and its stated falsifiers. The list does not prove that no additional high-speed balance exists.
 
@@ -634,6 +634,8 @@ $$
 u=\frac{s_{\mathrm{grp}}}{c_f}=0.1,
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-c8403419239fde49)
+
 while retaining the regular phases, common circulation, and normalized wake speed $c_f=1$. Each member then follows a screw path: circular transverse motion together with uniform axial translation.
 
 Plainly: the instantaneous cross-section remains the same rotating hexagon, but its stored paths are helices rather than circles. Delayed separations and arrival directions therefore change even though every member receives the same added axial velocity.
@@ -648,13 +650,15 @@ $$
 (2.7828807183,\ 0.9764357759,\ -0.6131383055).
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-6187af52b75e4cf8)
+
 Choosing $R/R_*=0.2471576065$ cancelled only $\mathcal R_r$; the tangential and axial components remained nonzero. A nearby continuation over $2.3743071761\leq\beta_f\leq3.5743071761$ evaluated 1,201 base samples, probed every detected fold boundary, and refined the component zeros without finding a common zero.
 
 Plainly: translation did not delete any T04 causal roots, but it changed their acceleration directions and weights enough to spoil the stationary balance. Shrinking the radius repaired only the inward amount, and the finite speed sweep found no point where the sideways and axial errors disappeared together.
 
-> Claim grade: measured for the fixed T04 row and the finite continuation. The frozen diagnostic result has SHA-256 `145b29e3986478813eb36731bd0f2df358b32ae52170723a65336754d63a6538`. A changed complete root inventory, failed generic-evaluator comparison, or full-vector zero at a reported control point overturns the corresponding measured result. Finite sampling alone does not establish continuous-domain nonexistence.
+> Claim grade: measured for the fixed T04 row and the finite continuation. A changed complete root inventory, failed generic-evaluator comparison, or full-vector zero at a reported control point overturns the corresponding measured result. Finite sampling alone does not establish continuous-domain nonexistence.
 
-Plainly: the numerical control identifies the obstruction and checks the implementation, but the continuous-domain conclusion comes from the reduction and interval proof below.
+Plainly: the numerical control identifies the obstruction and checks the calculation, but the continuous-domain conclusion comes from the reduction and interval proof below.
 
 ### Exact Screw-Path Reduction
 
@@ -666,6 +670,8 @@ $$
 b=\frac{\beta_f}{\gamma}.
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-7046c4ff479e2a7b)
+
 For phase difference $\Delta$ and angular causal delay $\chi$, the screw-path chord equation is
 
 $$
@@ -674,6 +680,8 @@ $$
 \gamma\chi,
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-b464d3ab7365c59b)
+
 or equivalently
 
 $$
@@ -681,6 +689,8 @@ $$
 =
 2b\left|\sin\left(\frac{\Delta+\chi}{2}\right)\right|.
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-0d038537212c572f)
 
 Plainly: after dividing the transverse speed by $\gamma$, every translated causal root obeys the already derived stationary circular equation. The phase channel, root level, and topology are preserved by this exact remapping.
 
@@ -696,6 +706,8 @@ a_t^{\mathrm{tr}}(\beta_f,u)
 \gamma a_t^{\mathrm{circ}}(b).
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-3f01068cf7c89739)
+
 For integer root level $m$ and stationary root coordinate $v_m$, the translated axial coefficient is
 
 $$
@@ -706,6 +718,8 @@ u\sum_m
 {4\sin^2v_m\,|b\cos v_m-1|}.
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-42ae48bccd081c3f)
+
 Where the radial coefficient is inward, the compatible translated scale is
 
 $$
@@ -713,6 +727,8 @@ $$
 =
 \frac{1}{\gamma}\frac{R_{\mathrm{circ}}(b)}{R_*}.
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-db82504fac1553d1)
 
 Plainly: the scalar acceleration weight of each mapped root is unchanged. Its planar direction is multiplied by $\gamma$, and it acquires an axial component proportional to $u$. Because $\gamma$ is positive, a translated tangential zero can occur only at a mapped stationary tangential zero; radius remains an algebraically determined scale rather than an independent way to cancel the other components.
 
@@ -728,6 +744,8 @@ $$
 2.95939827433277403511221251179364497.
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-d126ef67717dc2eb)
+
 At that entire interval, the compatible radius and axial residual satisfy
 
 $$
@@ -738,6 +756,8 @@ $$
 0.56456160060149250752877405249242015,
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-3e442839ac367bc9)
+
 $$
 -0.90436553591877968626800461058875866
 <
@@ -745,6 +765,8 @@ $$
 <
 -0.90436553591877968626800461058859418.
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-e2119b8a41ee946f)
 
 Plainly: the only possible sideways-balanced speed has a positive radial scale, but its axial acceleration error is rigorously negative and far from zero. It cannot be a full screw-path balance.
 
@@ -756,11 +778,13 @@ $$
 0.53621974374818399910424108224171645
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-52e911d1b38a66a6)
+
 throughout the declared domain wherever the ordinary-root residual is finite. At each fold, zero transversality makes the newborn acceleration weight divergent; the same-sign newborn-pair bound excludes a cancelling finite balance across the certified right neighborhood.
 
 Plainly: the proof covers every speed in the interval, including the topology changes, rather than checking more sample points. At every admissible speed, the combined sideways and axial error stays strictly above zero.
 
-> Claim grade: computer-assisted derived bounded nonexistence. The interval oracle imports no prescribed-path subject implementation. It consumes the frozen stationary interval receipt and independently evaluates the exact axial signed-weight sum. Two consecutive runs reproduced the certificate byte for byte at SHA-256 `135e6b73f83c3427f56ef5bf717d8b133da8b993b94b92329ead80c5c0dd88af`. A root-complete common zero inside the declared domain, an invalid stationary zero count, a failed screw-path reduction, or an outward-rounding failure overturns the conclusion.
+> Claim grade: computer-assisted derived bounded nonexistence. The interval oracle is implemented independently of the prescribed-path evaluator. It takes the certified stationary root enclosures as inputs and independently evaluates the exact axial signed-weight sum. A root-complete common zero inside the declared domain, an invalid stationary zero count, a failed screw-path reduction, or an outward-rounding failure overturns the conclusion.
 
 Plainly: the fixed $0.1c_f$ translation slice is closed. The result does not exclude another axial speed, unequal radii, phase deformation, non-axial transport, or another B1 chart, and it establishes no release, retention, stability, binding, physical identity, or scientific acceptance.
 
@@ -889,7 +913,7 @@ Plainly: the history need not extend arbitrarily far into the past. Storing enou
 
 Plainly: exact balance and a complete simple causal-root ledger make the prescribed circle an all-time solution. This theorem does not say that approximate initial data select that solution uniquely or return after a perturbation.
 
-The theorem attaches to the mathematically defined balance zero and its compatible radius, not to a finite decimal treated as exact. The outward-rounded T04 zero certificate establishes a unique exact member in its certified interval, and the independent arbitrary-precision evaluation estimates that member's coordinates. The EOM-solver release packet uses rounded values and enclosed cubic history segments, so it supplies a distinct numerical-continuation test. Direct substitution proves that the exact member is a global solution. The stronger statement that one supplied past-only history admits no other future requires a local well-posedness and uniqueness theorem for the state-dependent delayed history problem on the same complete-simple-root chart; that uniqueness theorem remains an explicit closure target. Perturbation stability is a further and separate question.
+The theorem attaches to the mathematically defined balance zero and its compatible radius, not to a finite decimal treated as exact. The outward-rounded T04 zero certificate establishes a unique exact member in its certified interval, and the independent arbitrary-precision evaluation estimates that member's coordinates. The EOM-solver release calculation uses rounded values and enclosed cubic history segments, so it supplies a distinct numerical-continuation test. Direct substitution proves that the exact member is a global solution. The stronger statement that one supplied past-only history admits no other future requires a local well-posedness and uniqueness theorem for the state-dependent delayed history problem on the same complete-simple-root chart; that uniqueness theorem remains an explicit closure target. Perturbation stability is a further and separate question.
 
 Plainly: an exact circle exists and repeats. What remains unproved is that every sufficiently exact numerical release must select only that continuation and that a slightly disturbed circle returns rather than departing.
 
@@ -899,13 +923,13 @@ Acceleration balance makes a prescribed ring a legitimate initial-history candid
 
 Plainly: the release supplied enough past time to contain every circular causal root under the chord bound. When the prescribed future was removed, the generated motion initially stayed extremely close to the circle and kept the expected roots, but the certified calculation then became unable to prove the next tiny step's complete root inventory. A quarter of one percent of a cycle is far too short to call the circle retained, rejected, or stable.
 
-The medium rung exceeded its declared 2 GiB supervised memory limit before publishing an authoritative response, so that resource failure is non-authoritative telemetry rather than a dynamical result. The fine rung did not run, and no rung reached one full period. Consequently no position return, rate return, retained-history return, root-timing return, or adjacent-rung convergence measurement exists.
+The medium calculation exceeded its declared 2 GiB memory limit before producing an accepted result, so that computational failure is not dynamical evidence. The fine calculation did not run, and no calculation reached one full period. Consequently no position return, rate return, retained-history return, root-timing return, or adjacent-resolution convergence measurement exists.
 
 Plainly: there is no one-cycle endpoint to compare with the starting circle. Resource exhaustion and a fail-closed root-continuation halt are unresolved instrumentation boundaries, not evidence that the ring physically flies apart.
 
-> Claim grade: measured finite-prefix release evidence plus unresolved continuation. The coarse response has SHA-256 `084f6e99154f4e140db13f72dfe6147691206773c6bf50147df1bc77e6d21748`; its supervised process receipt has SHA-256 `2728943df5a4ab52b31adc201837926b3709682ad872eac37d4bf3e03b22ffc6`. The medium resource record has SHA-256 `175f25da85a273ad7e5651d2ef993e85299069ca9ca55a35231cf0e369c61c1b` but carries no scientific-result authority. A faithful independent evaluation outside the reported prefix enclosures, a changed bound input, a missing root owner in an accepted snapshot, or certified continuation through the refused interval falsifies the corresponding finite-prefix or blocker statement.
+> Claim grade: measured finite-prefix release evidence plus unresolved continuation. The accepted coarse snapshots are the measuring instrument; the medium calculation produced no scientific result. A faithful independent evaluation outside the reported prefix enclosures, a changed bound input, a missing root owner in an accepted snapshot, or certified continuation through the refused interval falsifies the corresponding finite-prefix or blocker statement.
 
-Plainly: the receipt supports only the short accepted prefix and the reported instrumentation blockers. It supplies no full-cycle, retention, stability, escape, or physical-fate result.
+Plainly: the calculation supports only the short accepted prefix and the reported numerical blockers. It supplies no full-cycle, retention, stability, escape, or physical-fate result.
 
 The B1.3 circular result is a mathematically structured prescribed-balance ladder with one hundred independently accepted consecutive even-class balances. The bounded T00 through T36 zero count is certified, the map $n\mapsto\mathrm{T}_{2n}$ fixes their complete directed-root counts, local polarity controls the fold-born crossing mechanism, and the high-speed spacing and radius laws are derived. Above speed 20, interval completeness remains open. The exact circular-solution theorem supplies an invariant mathematical reference orbit for every exact complete-simple-ledger balance member. The EOM-solver continuation and memory problems remain instrumentation barriers to an independent past-only numerical reproduction, while perturbation stability still requires a well-posed nearby-history flow and a separate return-map analysis.
 

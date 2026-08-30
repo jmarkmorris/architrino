@@ -147,10 +147,10 @@
 <li><code>inferred</code>: a stated conclusion drawn from derived or measured premises, with the extra inference identified</li>
 <li><code>guessed</code>: a candidate interpretation or hypothesis that is not yet derived, measured, or securely inferred</li>
 </ul>
-<p>Every claim block must state an operator-checkable falsifier: the observation that would overturn the claim and the file, instrument, command, or artifact where that observation can be checked. A measured claim also names its instrument, the instrument’s evidence grade, and the boundary of what it can establish. Agreement with a replay, golden output, or same-implementation control is determinism evidence unless an independent reference is named.</p>
+<p>Every claim block must state a checkable falsifier: the observation or counterexample that would overturn the claim, together with enough information for a reader to evaluate it. A measured claim also names its instrument, the kind of evidence it provides, and the boundary of what it can establish. Repeating the same computation establishes repeatability; correctness requires comparison with an independent derivation, measurement, or reference.</p>
 <p>Example:</p>
 <blockquote>
-<p>Claim grade: measured. The independent closed-form root oracle found one simple root on the declared interval. Falsifier: rerun the named oracle artifact and find zero, multiple, or non-simple roots on that same interval.</p>
+<p>Claim grade: derived. The function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">f(x)=x-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> has exactly one simple root on <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,2]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span></span>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(1)=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>, and its derivative is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> throughout the interval. Falsifier: a second zero of this function, or a zero derivative at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>, would contradict the claim.</p>
 </blockquote>
 <p>Use these tags for explicit claim or evidence blocks, not as status flags scattered through ordinary explanatory prose.</p>
 <h2 id="what-to-avoid">What To Avoid</h2>
@@ -170,10 +170,10 @@
 <p>Reader-facing prose should state the architecture, claim, rule, or curriculum directly. It should not preserve drafting history, migration story, abandoned counts, old names, or “what changed from the last version” unless that history is the subject of the document.</p>
 <p>Use present-tense, source-of-truth wording:</p>
 <ul>
-<li>“The series uses age-numbered books.”</li>
-<li>“A source illustration is…”</li>
-<li>“The production target is…”</li>
-<li>“The active proof obligation is…”</li>
+<li>“The chapter distinguishes two cases.”</li>
+<li>“The diagram shows the causal geometry.”</li>
+<li>“The derivation assumes a smooth trajectory.”</li>
+<li>“The remaining proof obligation is…”</li>
 </ul>
 <p>Avoid process-history wording:</p>
 <ul>
@@ -182,7 +182,7 @@
 <li>“This is now obsolete…”</li>
 <li>“The old version used to…”</li>
 </ul>
-<p>Historical or process context belongs only where it serves a specific purpose: historical analysis, an Architecture Decision Record, a priority ledger, a release note, an audit trail, or a source comparison where the earlier state is evidence. In ordinary textbook, outreach, style-guide, and reference prose, Git history and GitHub records are enough to preserve the past. The document itself should move forward.</p>
+<p>Historical context belongs where it helps explain the subject, such as a history of an idea or a comparison in which an earlier formulation is relevant evidence. Ordinary textbook and reference prose should present the current explanation without narrating its drafting or revision history.</p>
 <h2 id="project-specific-rules">Project-Specific Rules</h2>
 <h3 id="mathbbamathbbamathbba-styling"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">A</mi><mi mathvariant="double-struck">A</mi><mi mathvariant="double-struck">A</mi></mrow><annotation encoding="application/x-tex">\mathbb{A}\mathbb{A}\mathbb{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">AAA</span></span></span></span> styling</h3>
 <p>When referring to the theory in prose or math, use the stylized form <code>$\mathbb{A}\mathbb{A}\mathbb{A}$</code>.</p>
@@ -209,8 +209,8 @@
 <h3 id="links">Links</h3>
 <ul>
 <li>Use relative link targets resolved from the current document.</li>
-<li>Do not use root-absolute deployment paths such as <code>/content/...</code> or machine-local paths such as <code>/Users/...</code>.</li>
-<li>Documents under <code>content/markdown/aaa</code> must not link into <code>reference/priorities</code>; promote or restate the required material inside the reader-facing corpus.</li>
+<li>Link to published chapters, references, or data sources rather than locations on an author’s machine.</li>
+<li>Keep the explanation self-contained. State the necessary definitions, assumptions, and reasoning in the text; links provide supporting detail rather than access to unpublished working notes.</li>
 </ul>
 <h3 id="causal-delay-terminology">Causal-delay terminology</h3>
 <p>Prefer:</p>
@@ -258,7 +258,7 @@
 </ul>
 <p>If a sentence could refer either to the background, the contents, or the emergent geometry, rewrite it until the level is explicit.</p>
 <h3 id="reader-facing-posture">Reader-facing posture</h3>
-<p>Documents in <code>content/markdown/aaa</code> should be reader-ready.</p>
+<p>Chapters and explanatory references should be complete enough to read without access to private working notes.</p>
 <p>Avoid:</p>
 <ul>
 <li>internal team notes</li>
@@ -266,6 +266,9 @@
 <li>status flags embedded in the body</li>
 <li>references to private collaboration context</li>
 </ul>
+<h3 id="self-contained-exposition">Self-contained exposition</h3>
+<p>Organize each explanation in the order a reader needs to understand it: definitions and assumptions, reasoning and evidence, then conclusions and remaining mathematical questions. Preserve the substance of an argument without reproducing the sequence in which it was discovered or drafted.</p>
+<p>Identify published computational evidence by a comprehensible title and stable public identifier, and explain what it establishes. Technical reproduction details belong in the accompanying methods or data-availability record. Raw content hashes do not belong in explanatory prose or visible link labels; hashes within URLs and functional link anchors may be retained.</p>
 <h2 id="section-length-standard">Section-Length Standard</h2>
 <p>For substantial conceptual leaves, the default target is at least one page of meaningful prose, and often more.</p>
 <p>Length is justified when it adds one or more of the following:</p>
@@ -299,9 +302,10 @@
 </ul>
 <p>Do not use qualification to evade commitment. If the text is making a real claim, state it plainly and then delimit its scope.</p>
 <h3 id="source-and-ai-assistance-disclosure">Source and AI-Assistance Disclosure</h3>
-<p>Factual, legal, and scientific assertions must point to independently checkable sources or declared validation records appropriate to the claim. Model output is not source evidence. Model-training or training-data provenance is neither author credit nor source evidence and does not substitute for identifying and checking the underlying source. AI-assisted wording, analysis, or implementation does not acquire authority from generation alone.</p>
+<p>About Architrino is the policy authority for references and sources. Follow its <a href="about-architrino.md#sources-references-and-attribution">selective-reference policy</a> for inclusion, omission, durable identification, and presentation, and its <a href="about-architrino.md#ai-assisted-research-and-review">AI-assisted research and review policy</a> for source checking and disclosure. Apply those policies rather than maintaining a separate citation requirement in a chapter template or review checklist.</p>
+<p>Factual, legal, and scientific assertions require support appropriate to their kind: an explicit derivation, an independently checkable source, or a declared validation record. Model output is not source evidence. Model-training or training-data provenance is neither author credit nor source evidence and does not substitute for identifying and checking the underlying source. AI-assisted wording, analysis, or implementation does not acquire authority from generation alone.</p>
 <p>When AI systems, including generative-AI tools or local AI agents, materially assist a publication, they may be acknowledged by a documented, reader-comprehensible contribution role such as research synthesis, analysis, drafting, critique, software implementation, or review support. Do not claim that every AI use is individually recorded or that attribution is exhaustive unless such a record actually exists. Named human contributors retain editorial and publication accountability; do not present an AI system as an independent legal person or academically accountable author.</p>
-<p>Repository history, review records, and source notes support transparency and reconstruction, but they do not prove that every claim has been independently verified. Do not imply passage-level AI provenance unless the project actually retains that record.</p>
+<p>Published source notes and contribution statements support transparency, but they do not prove that every claim has been independently verified. Do not attribute individual passages to particular AI systems unless that attribution is documented.</p>
 <h2 id="editorial-checklist">Editorial Checklist</h2>
 <p>Before finalizing a reader-facing chapter or section, check the following:</p>
 <ol>
@@ -312,7 +316,7 @@
 <li>Is the tone formal and explanatory rather than conversational?</li>
 <li>Are all project-specific notation and terminology rules respected?</li>
 <li>Does the final paragraph clarify what survives, what changes, or what remains open?</li>
-<li>Are factual, legal, and scientific assertions tied to independently checkable sources or declared validation records?</li>
+<li>Are factual, legal, and scientific assertions supported by explicit derivations, independently checkable sources, or declared validation records as appropriate, with references selected under the About Architrino policy?</li>
 <li>Does any material AI assistance use clear contribution language without implying independent AI authorship or accountability?</li>
 </ol>
 <h2 id="relation-to-local-templates">Relation to Local Templates</h2>

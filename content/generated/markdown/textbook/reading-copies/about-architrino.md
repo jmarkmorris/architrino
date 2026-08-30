@@ -53,6 +53,8 @@ The explanation must remain understandable without following external links. Pre
 
 A useful reference identifies the work beyond its current web address: author, title, year, and a stable identifier such as a DOI or arXiv identifier where available, with page, section, equation, or dataset details when needed. Links provide convenient access without a guarantee of permanent availability. A changed address does not by itself invalidate the work or justify discarding its bibliographic identity.
 
+Published computational evidence follows the same reader-value rule. Name a durable, reader-accessible validation record or data release and explain what it establishes. A raw content hash, local artifact path, process receipt, or internal run label does not by itself identify usable evidence and does not belong in ordinary chapter prose; byte-level identifiers and reproduction commands belong in the linked validation or data-availability record. Hash-bearing URLs and functional link anchors are acceptable; their visible labels should describe the evidence or mathematical object.
+
 Required attribution for third-party material remains separate from this selective-reference policy. The applicable notices and credit requirements are preserved for each item, as described in the project’s [Licenses, Attribution & Source Use](../../../../markdown/aaa/archie/licenses-attributions.md) page.
 
 ### AI-Assisted Research and Review

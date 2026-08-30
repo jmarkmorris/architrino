@@ -7,109 +7,118 @@
       "id": "foundations",
       "title": "Foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "sourceSha256": "bfc2aa1c089d72c90865f00fa87276a572b34229df85c9511b36bf8f6b5dc413",
+      "sourceSha256": "f02e63e1b3bca0b65aee87edae628987cd7301af22a202c9ef1649d47c3592ce",
       "pdfPath": "content/generated/pdf/textbook/review-copies/foundations.pdf",
-      "pdfSha256": "69835216d866c933843d4622d058dda1f8932a479afe0895eab9f190ad57e12b",
-      "pdfBytes": 1500499
+      "pdfSha256": "c6bd87b507d7f3a4431f15faed58a6b23b2403624074af1eac335d2bec8364c1",
+      "pdfBytes": 1679050
     },
     {
       "id": "dynamics",
       "title": "Dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "sourceSha256": "4049cf1878e5ae97153ace2fc4c923afff0a2a87e5c16ceefc23a03f855c10e3",
+      "sourceSha256": "0d496c307aff3d90767310e3c0a04b023ad1cae413d30ca007c344bace61a6c2",
       "pdfPath": "content/generated/pdf/textbook/review-copies/dynamics.pdf",
-      "pdfSha256": "9c78b6849b611d449f9ef0e0d1940a8dc8761bb8524c13292750d4c3c55bc52d",
-      "pdfBytes": 3675662
+      "pdfSha256": "b86aab200d7ada5da85ba8e2060fbdd78a88b59852702a4ca655a0e52eec266d",
+      "pdfBytes": 4623647
     },
     {
       "id": "noether_braid",
       "title": "Noether Braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "sourceSha256": "c09571c9fbeb286c323e9966bcae786d1c05385ba195dc196d5f7e5e3371ebcd",
+      "sourceSha256": "526bfe373e1f1b518ec0aa2d84834487fabdb379f6f0e80502bb4f0376742526",
       "pdfPath": "content/generated/pdf/textbook/review-copies/noether-braid.pdf",
-      "pdfSha256": "8f23f518c1b3804ae1398b2e090956ec74862776ac0944ba0c47425b5407dce0",
-      "pdfBytes": 2073925
+      "pdfSha256": "8d17c9be9eb772e558ee4d946b022cb31a815134e3f10643223a3c53bd496593",
+      "pdfBytes": 2427455
     },
     {
       "id": "spacetime",
       "title": "Noether Sea and Effective Spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "sourceSha256": "3c5f8cc64968b396a4596c664a8edee8244366fa822a53d49a9d4cbfb46fb589",
+      "sourceSha256": "6384b895d5d384edce3991b17afcfe8902b8d7294afde56a6d403265de85725a",
       "pdfPath": "content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
-      "pdfSha256": "e985a5201c02fd0bc2910be87c7a39585b9c3b68ad345c998543569f85292e72",
-      "pdfBytes": 2456307
+      "pdfSha256": "8b1b8d754515113d70482c1b51c87d9b2e86a69b4d75f12eb34d378aacb4cb98",
+      "pdfBytes": 3008396
     },
     {
       "id": "assemblies",
       "title": "Standard Model Assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
-      "sourceSha256": "c931f5b18bc8b0488d39c157b465035fd9edfd17d9731135d92320d7bdadeb2f",
+      "sourceSha256": "527c290136331412d46f3b323b0fbc97e241610588a4934fb67f88216fb2030d",
       "pdfPath": "content/generated/pdf/textbook/review-copies/standard-model-assemblies.pdf",
-      "pdfSha256": "02a63712ee42c8d526913603be15156f0139bbb7caecf67f5fc91f89d32488cd",
-      "pdfBytes": 2573386
+      "pdfSha256": "3d00c1dfab2fe8476135ccdc64ffee71abb5606d48984dcc9c3c6c6cd07dc678",
+      "pdfBytes": 2775418
     },
     {
       "id": "nuclear_atomic",
       "title": "Atomic and Nuclear Assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "sourceSha256": "c5c01be214a9ed0a963703a126f93d502e2f92b9ba5dfb7f04d367c03c5b8d91",
+      "sourceSha256": "eb9de33f6bb58733cfc98d7ef5e654586a679246305d987e928ac7cd8b38b6f1",
       "pdfPath": "content/generated/pdf/textbook/review-copies/atomic-and-nuclear-assemblies.pdf",
-      "pdfSha256": "6f8fdcc00d1c8120cbc642fbc5c11703ebf20c84a0153044d501b4e2433c260c",
-      "pdfBytes": 924164
+      "pdfSha256": "39299a81e82edaa85d47b46742b38c0bfe5c0121815116310d2e34ca8a348380",
+      "pdfBytes": 1047027
     },
     {
       "id": "reactions",
       "title": "Reactions",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
-      "sourceSha256": "26eb15f42a6aed37b601bf59630ed0ce471f148bbf8c750b70ed3498f3e8f85e",
+      "sourceSha256": "1087cd78c438daec434c829d70067ad2485a547b5e0aad3ff42878a26f2985be",
       "pdfPath": "content/generated/pdf/textbook/review-copies/reactions.pdf",
-      "pdfSha256": "2b31b51a26b24b6b550acc660ed33768d6305c1e2998d7f9e418b1c92e95fa98",
-      "pdfBytes": 1075442
+      "pdfSha256": "2f2286f86cfe5e0f9249c7d413e0dcc18b4670131ee7a1c48ae080771a9bc54d",
+      "pdfBytes": 1195074
     },
     {
       "id": "quantum",
       "title": "Quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "sourceSha256": "9d767d4afb7521f65532f3bd8e9089bbc77403fe5da259abd3b1cfdcd5838a00",
+      "sourceSha256": "5305bdc72f5ec4389de6e354bb17fe18d05b3e599f7afd70249ed620318b5e23",
       "pdfPath": "content/generated/pdf/textbook/review-copies/quantum.pdf",
-      "pdfSha256": "ed1a60418ce9735427a731f60c9f870f7395972e5ae97e4fdb1cefd4b9bdc081",
-      "pdfBytes": 1072902
+      "pdfSha256": "de1a41457853b0c0782eba583cab3f7c5034a7aaedcd45da7edeeb687dfb5c84",
+      "pdfBytes": 1285358
     },
     {
       "id": "cosmology",
       "title": "Cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
-      "sourceSha256": "940c1f210c949845750b748b27c21559322683908d04c19e3258f1bbba0ba594",
+      "sourceSha256": "6c2d477efca1d863d1a295158c0f3b03ec06ba07960116e7b6bcce05a4781d0d",
       "pdfPath": "content/generated/pdf/textbook/review-copies/cosmology.pdf",
-      "pdfSha256": "0b6e04dd68e939962cca9f8af2fd6ad8e2895bf175a65ec8ae9a9d5af6226113",
-      "pdfBytes": 1992259
+      "pdfSha256": "13b9dc2eb86e58639e9a5ea020f29b411be3d598d1b757f3c14a3e83f6382885",
+      "pdfBytes": 2252501
     },
     {
       "id": "validation",
       "title": "Validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "sourceSha256": "b12b6bd5a1200f9232d6fb52bc2e8f7ce861cd0ed3cb2a2af17b5f6e83c5d7c0",
+      "sourceSha256": "8a3f764b4f18552f043b0c68e81dfdf829f5b6553f71feab1db99d50a08c89ca",
       "pdfPath": "content/generated/pdf/textbook/review-copies/validation.pdf",
-      "pdfSha256": "8ca00c5f354fcbe899d059a1ee82134b7c6b3ce4ae1e4db2c3f9dea3a045be83",
-      "pdfBytes": 3414743
+      "pdfSha256": "f71dab70e3489cdc0a60c8fa4eb86ae0a30bfc420a2cdf6f041e2374c15f4d3c",
+      "pdfBytes": 3661789
     },
     {
       "id": "philosophy_history",
       "title": "Philosophy-History",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "sourceSha256": "a74792aa4412a23a0d027d092b48c76c242a7643f73bd4c04c6631f74a0c5d12",
+      "sourceSha256": "f354c56234f512424430e0ebf47a061e06d68c45c87eeebd54e9dc86c6401423",
       "pdfPath": "content/generated/pdf/textbook/review-copies/philosophy-history.pdf",
-      "pdfSha256": "58e1acdf8251feccb45bb8ff4921e3d762c6da9ed19b9de4fd78487399c0d98c",
-      "pdfBytes": 7955595
+      "pdfSha256": "35ca2f8a75d55e8599e2af02da2106a6fc0cf96a8fecbbed9a12dac529feaf3b",
+      "pdfBytes": 8676608
+    },
+    {
+      "id": "archie__about_architrino",
+      "title": "About Architrino",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/about-architrino.md",
+      "sourceSha256": "b8586736ea3e0a81d0574e43ea23c8687051222250a3a329f5b89441ab0f212d",
+      "pdfPath": "content/generated/pdf/textbook/review-copies/about-architrino.pdf",
+      "pdfSha256": "69c896383a4485abacbe57d8017528ecfdebf35509c2816d9cff6c874f23f8b8",
+      "pdfBytes": 85404
     },
     {
       "id": "architrino-textbook",
       "title": "Architrino Textbook",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
-      "sourceSha256": "7891b2f7758553eb3e93fe689e46b3bd74eb062a644ed868a760f9009528c8f6",
+      "sourceSha256": "90e23507071ddbcfcf22a66b0ecbe8e7f55be222998064d096f61525e3e138ca",
       "pdfPath": "content/generated/pdf/textbook/review-copies/architrino-textbook.pdf",
-      "pdfSha256": "686f993348db52801862300311d3578ad5be3c3b6325cd47166a8f2d93274f1c",
-      "pdfBytes": 18194319
+      "pdfSha256": "ba6c2c7d5fbd9e4b48102e779c6722e6ac2da1afd907a735d71b518edc7e2a9f",
+      "pdfBytes": 20665288
     }
   ]
 }

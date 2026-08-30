@@ -173,6 +173,26 @@ Plainly: the current table shows how the first several balanced regular rings gr
 
 Plainly: the Braid Program says which mathematical objects and records exist; Borg decides how to identify, browse, display, and animate them. Keeping those responsibilities separate prevents a menu label or visual resemblance from becoming scientific authority.
 
+## Shared-sphere research-draft controls
+
+These controls belong to the [shared-sphere research draft](shared-sphere-assemblies.md), created 2026-08-29. They were separated from its mathematical exposition so document status, task ordering, operator decisions, and reproduction instructions cannot be mistaken for promotable chapter text. This relocation creates no new run authorization, candidate, score, registry entry, or queue rank.
+
+- **Development status:** In progress, unbooked, and not promoted. The chart algebra, taxonomy intersections, restricted exclusions, and discrete enumeration are research material; no retained-branch, binding, stability, particle-identity, effective-mass, or formation claim is accepted here.
+- **Terminology:** `shared-sphere assembly` and `balanced polarity word` are adopted. Preserve the distinction from `spherical envelope` in the envelope-aspect-ratio sense and from the reserved absolute-frame use of `concentric`. Spherical polarity-word notation does not rename braid taxonomy or broaden shared-circle labels.
+- **Booking boundary:** No shared-circle-registry entry, configuration-chart slice, candidate-registry row, or evidence booking is created by the draft. Cite the research note without treating it as an admitted candidate inventory.
+- **Development order:** Establish a complete residual criterion for actual moving histories; derive same-latitude and cross-latitude collision-clearance conditions; specify the complete causal-root calculation; and write the exact two-latitude `C5`/`C6` chart. The fixed-point-cloud common-mode criterion cannot substitute for an orbiting history. The existing two-ring sign exclusion retains only its stated simple-root scope.
+- **Remaining physics questions:** Evaluate the unexamined Platonic word-axis-history combinations, including mixed-polarity octahedral rings; distinguish non-rigid octahedral histories from the cited rigid and stationary exclusions; analyze three-ring partitions and independent ring cadences; and prove or falsify a nonplanar co-sphericity obstruction without contradicting the known planar shared-circle subset. Member-count coincidences do not establish polyhedral geometry or symmetry selection.
+- **Symmetry boundary:** A scalar tensor forced by symmetry is not itself an exclusion. Any obstruction must establish that the scalar residual cannot vanish, with the polarity word, axis, and complete history included in the symmetry action.
+- **Deferred operator decisions:** Registry and chart routing remain deferred until the four mathematical development items above are complete. Corpus promotion additionally requires a separate explicit decision.
+- **Promotion contract:** Any future `content/markdown/aaa` chapter must be written anew from accepted definitions, derivations, evidence, assumptions, and remaining proof burdens in reader-facing teaching order. Do not copy or move the research draft. This work-queue section, internal evidence paths, source commands, operational status, and decision history remain outside the textbook. Publication must not imply that editorial cleanup has established mathematical acceptance.
+- **Closure goal:** Develop the moving-history balance, collision-clearance, causal-root, and two-latitude mathematics before reopening registry, chart, or promotion decisions.
+
+The measured 917-class enumeration is produced by `scripts/prescribed-path-analysis/oracle/platonic_balanced_word_enumeration.py`. It enumerates exact coloured vertex sets and has no dynamical authority. Reproduce it with:
+
+```bash
+"${AAA_VENV:-../.venv}/bin/python" scripts/prescribed-path-analysis/oracle/platonic_balanced_word_enumeration.py
+```
+
 ## Deferred / blocked
 
 ### BP-001 — Binary subfield fate

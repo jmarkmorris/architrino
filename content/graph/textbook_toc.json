@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 187,
-      "sections": 1569
+      "sections": 1570
     }
   },
   "tocRoot": {
@@ -1714,6 +1714,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
                 "markdownSection": "Verified Bounded Landscape",
                 "sectionKey": "verified bounded landscape",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Fixed Axial-Translation Study",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "Fixed Axial-Translation Study",
+                "sectionKey": "fixed axial translation study",
                 "headingLevel": 2
               },
               {

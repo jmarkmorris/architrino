@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>architrino · borg assembly library</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="./ui-tokens.css" />
+  <link rel="stylesheet" href="./src/apps/borg/library/library.css" />
+</head>
+<body>
+  <header class="library-header">
+    <a class="brand" href="./borg-library.html"><span class="brand-mark" aria-hidden="true"></span><strong>Borg</strong><span>Assembly library</span></a>
+    <a class="workbench-link" href="./borg.html">Open workbench <span aria-hidden="true">↗</span></a>
+  </header>
+  <div class="library-layout">
+    <aside class="filters" aria-label="Assembly filters">
+      <div class="rail-heading"><h2>Find assemblies</h2><button id="clear-filters" type="button">Clear all</button></div>
+      <label class="search-label" for="search">Search the collection</label>
+      <input id="search" type="search" placeholder="Name, alias, ID or record hash" autocomplete="off" aria-describedby="search-help" />
+      <p id="search-help" class="search-help">Record hash prefixes need at least 8 characters.</p>
+      <div id="filter-fields"></div>
+      <p class="filter-help">Filters combine to narrow the collection. An unavailable value is unknown, not “no.”</p>
+      <details class="scope-note"><summary>About this demonstrator</summary><p>Live previews of the existing sealed catalog. No simulation runs here. Full registry migration and million-entry indexing remain separate work.</p><p>Nesting, speed-cap policy, and some shape descriptors are not declared in the seed records. Those filters deliberately do not invent matches.</p></details>
+    </aside>
+    <main>
+      <div class="page-heading"><div><p class="eyebrow">VISUAL ASSEMBLY EXPLORER</p><h1>Structure, at a glance.</h1><p class="intro">Filter by properties. Turn a sphere. Inspect the exact record.</p></div><span class="demo-badge">Demonstrator</span></div>
+      <div class="collection-toolbar">
+        <div><strong id="result-count" role="status" aria-live="polite">Loading catalog…</strong><span id="result-context"></span></div>
+        <label class="group-control">Group by <select id="group-by"><option value="none">Individual records</option><option value="count">Architrino count</option><option value="dimension">Dimensions</option><option value="breathing">Breathing</option></select></label>
+      </div>
+      <div class="playback-toolbar"><button id="play-pause" type="button" aria-pressed="true">Pause previews</button><label class="timeline-label">Record progress <input id="progress" type="range" min="0" max="1000" value="500" /></label><button id="reset-views" type="button">Reset views</button></div>
+      <p class="gesture-help">Drag to rotate · Arrow keys rotate a focused sphere · Enter inspects · Wheel scrolls, never zooms</p>
+      <div id="active-filters" class="active-filters" aria-label="Active filters"></div>
+      <div id="errors" role="alert" hidden></div>
+      <section id="results" class="result-grid" aria-label="Matching assemblies" aria-busy="true"></section>
+      <div id="empty-state" hidden><h2>No matching assemblies</h2><p>These filters have no declared matches in the seed catalog.</p><button id="empty-reset">Clear filters</button></div>
+      <nav class="pagination" aria-label="Result pages"><button id="previous-page" disabled>Previous</button><span id="page-label"></span><button id="next-page" disabled>Next</button></nav>
+      <footer class="library-footer"><span><i class="polarity red"></i>Positrino <i class="polarity blue"></i>Electrino</span><span>Sealed paths only · Independent record timelines · No physics claims</span></footer>
+    </main>
+  </div>
+  <dialog id="inspector" aria-labelledby="inspector-title">
+    <div class="inspector-top"><p class="eyebrow">EXACT RECORD</p><button id="close-inspector" aria-label="Close inspector">Close</button></div>
+    <h2 id="inspector-title"></h2><p id="inspector-alias" class="muted"></p>
+    <canvas id="inspector-canvas" class="sphere large-sphere" tabindex="0" role="img" aria-label="Selected assembly. Drag or use arrow keys to rotate."></canvas>
+    <div class="detail-time"><span id="record-time"></span><button id="detail-play" type="button">Pause previews</button></div>
+    <p id="inspector-description"></p><div id="inspector-facets" class="detail-facets"></div>
+    <div class="detail-actions"><a id="open-record" class="primary-action">Open in Borg ↗</a><button id="copy-selection">Copy exact link</button></div>
+    <p id="copy-status" role="status"></p>
+    <details><summary>Identity and source</summary><dl id="identity"></dl><p class="muted">Catalog IDs are legacy aliases. This demonstrator does not claim a completed semantic model-identity migration.</p><a id="raw-record">View sealed JSON</a></details>
+    <details><summary>Why these filters match</summary><dl id="facet-reasons"></dl></details>
+  </dialog>
+  <script type="module" src="./src/apps/borg/library/main.js"></script>
+</body>
+</html>

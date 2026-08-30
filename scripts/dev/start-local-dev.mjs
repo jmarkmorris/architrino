@@ -9,6 +9,7 @@ import {
   isFreshDevServerHttpCacheRequest,
 } from "./DevServerHttpCache.mjs";
 import { createPdgLiveArtifactRuntime } from "./PdgLiveArtifactRuntime.mjs";
+import { createBorgLibraryService } from "./BorgLibraryService.mjs";
 import { createBorgNativeEomProcessClient } from "../eom/BorgNativeEomProcessClient.mjs";
 import {
   createBorgDisplayHostMemoryEnvelope,
@@ -312,8 +313,10 @@ function serveFile(request, response) {
   createReadStream(filePath).pipe(response);
 }
 
+const serveBorgLibrary = createBorgLibraryService({ repoRoot: REPO_ROOT });
 const server = createServer(async (request, response) => {
   try {
+    if (await serveBorgLibrary(request, response)) return;
     if (new URL(request.url, `http://${HOST}:${PORT}`).pathname === "/api/eom/borg-shadow/v0") {
       await serveEomBorgShadow(request, response);
       return;

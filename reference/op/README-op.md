@@ -29,6 +29,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [x] State whether a mixed prompt requests implementation, review, planning, or brainstorming.
 - [ ] Prefer one hard target per turn; batch only independent items with clear file boundaries.
 - [x] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
+- [*] Finish and review documents before promotion; promote ready prose without an unnecessary rewrite, keeping status, queues, operator or agent dialogue, raw hashes, receipts, and resource telemetry separate from the publication-ready document.
 - [x] Keep generated-artifact writes out of ordinary turns; reserve generator `--write` commands for explicit regeneration/fix-drift requests or the `codex-pr-branch.md` final branch/PR process.
 - [ ] Keep iOS textbook packaging on demand rather than requiring it for each PR; preserve the app/exporter and defer App Store release until theory closure and an explicit operator release decision.
 - [ ] Keep the children's-book pilot as preserved sources plus verified on-demand local exports, without adding generated books to routine PRs or the website.

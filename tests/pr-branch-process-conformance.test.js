@@ -46,6 +46,8 @@ test("PR procedure, pre-push hook, and CI share the aggregate gate", () => {
   assert.match(aggregate, /tests\/pre-push-gate-policy\.test\.js/);
   assert.match(aggregate, /tests\/pr-branch-process-conformance\.test\.js/);
   assert.match(aggregate, /tests\/pr-validation-receipt\.test\.js/);
+  assert.match(aggregate, /scripts\/check-reader-facing-publication-boundary\.mjs/);
+  assert.match(aggregate, /tests\/reader-facing-publication-boundary\.test\.js/);
 });
 
 test("routine PR validation excludes on-demand iOS package freshness without dropping web checks", () => {

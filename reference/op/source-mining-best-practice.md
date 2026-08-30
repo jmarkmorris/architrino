@@ -277,7 +277,7 @@ Acquisition steps:
 3. Build a hierarchy map: parent page, child posts, cross-links, outbound references, and publication order.
 4. Identify idea development: original intuition, later correction, recurring analogy, source lead, naming decision, and abandoned path.
 5. Keep historical process material out of the reader-facing corpus unless it yields a current definition, equation, proof route, worked example, or reader-facing bridge.
-6. Do not preserve process-history prose in corpus drafts; rewrite promoted material as current source of truth.
+6. Prepare corpus drafts as the current source of truth, without process-history prose. Complete any necessary revision before promotion; preserve already-ready material when moving or integrating it into the corpus.
 
 For long-running blog archives, preserve the normalized post registry in `reference/priorities/source-mining/`, not only in platform temporary storage. A temporary queue is acceptable as an active-session working copy, but the durable inventory is the post registry JSONL plus generated markdown views. Do not treat ordinary post completion as a permanent post property; record mining and incorporation events in source-mining history because the same post may later be mined again by topic.
 

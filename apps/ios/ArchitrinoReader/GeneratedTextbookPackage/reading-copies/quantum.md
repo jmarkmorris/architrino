@@ -92,7 +92,7 @@ At the absolute level, any local neighborhood is crowded:
   4\pi n q^2(R-r_{\min})
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-589e939b80cc180d)
+  [View →](../../../../../equation-mapping.html#corpus-equation-589e939b80cc180d)
   while one Cartesian component of the acceleration-kernel sum has
   $$
   \operatorname{Var}A_x(R)
@@ -103,7 +103,7 @@ At the absolute level, any local neighborhood is crowded:
   \right)
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d1683b47e66d4fc1)
+  [View →](../../../../../equation-mapping.html#corpus-equation-d1683b47e66d4fc1)
   The potential variance is infrared divergent, whereas the acceleration variance converges at large $R$ and is controlled by nearby sources. Because the master equation consumes acceleration contributions, the dynamically relevant screening claim belongs to the acceleration sum; the scalar potential remains a conditionally defined reconstruction unless a separate summation prescription is declared.
 
 "Stable" particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are retained stable or metastable branch structures, not static beads; they qualify as attractor-basin structures only where reduced-flow contraction and exported-flux accounting have been established.
@@ -140,7 +140,7 @@ At the fundamental level:
   T_{\text{arrival}} = T_{\text{emission}} + \frac{r}{c_f}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1978c3603ab166f9)
+  [View →](../../../../../equation-mapping.html#corpus-equation-1978c3603ab166f9)
 - The acceleration at time $T$ of a given architrino depends only on:
   - Its own past trajectory (self-hit),
   - Other architrinos' past trajectories, via wakes that have reached the point by $T$.
@@ -221,7 +221,7 @@ S(T_0):\Phi_{T_0\to T_1}(S(T_0))\in\mathcal{A}_k
 \right\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4e0253263e707c5a)
+[View →](../../../../../equation-mapping.html#corpus-equation-4e0253263e707c5a)
 Here $B_k$ is the basin of initial path-history states that resolve to outcome branch $\mathcal{A}_k$ over the declared window. Apparent randomness enters through observer access to the basin boundary, not through a break in absolute-time causality.
 
 #### Chaos and Effective Unpredictability
@@ -258,7 +258,7 @@ $$
 \left(\Gamma(T_0),\{\mathbf X_i(T),\mathbf V_i(T),q_i\}_{T\in[T_0,T_1]},\mathcal{K}_{\mathrm{app}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58ef9f6649f6624b)
+[View →](../../../../../equation-mapping.html#corpus-equation-58ef9f6649f6624b)
 
 where $\mathcal{K}_{\mathrm{app}}$ is the apparatus kernel retained for the declared record channel. Quantum randomness is closed only if pushing $\Gamma_{[T_0,T_1]}$ through the deterministic flow yields the same record frequencies, restartability behavior, and thermodynamic ledger used by the effective probability description.
 
@@ -374,7 +374,7 @@ k_B T_{\mathrm{temp}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e3107e9accbef65b)
+[View →](../../../../../equation-mapping.html#corpus-equation-e3107e9accbef65b)
 for the declared reset protocol. A reliably retained bit gives the familiar comparison floor $k_BT_{\mathrm{temp}}\log2$ up to the error allowance. Agency is therefore a thermodynamic process with an operator-checkable memory cost, not merely a qualitative requirement to export entropy.
 
 ---
@@ -441,7 +441,7 @@ $$
 \dot u = F(u,\; \text{recent attractor visits},\; \text{coarse features of inputs}),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b5bdca2399361ffe)
+[View →](../../../../../equation-mapping.html#corpus-equation-b5bdca2399361ffe)
 
   where $F$ is not merely random but reflects the internal architecture.
 
@@ -555,7 +555,7 @@ P_{c_\Omega,u,T_W}(i)
 \mu_{c_\Omega,u,T_W}\!\left(B_i(u)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8e18ca22bd7b49c0)
+[View →](../../../../../equation-mapping.html#corpus-equation-8e18ca22bd7b49c0)
 A Switch claim requires two preparations $u_a,u_b$ such that
 $$
 D\!\left(
@@ -566,7 +566,7 @@ P_{c_\Omega,u_b,T_W}
 \epsilon_{\mathrm{sw}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7fbcc844222b7add)
+[View →](../../../../../equation-mapping.html#corpus-equation-7fbcc844222b7add)
 where $D$ is a declared statistical distance — total variation in the first pass — so that $\epsilon_{\mathrm{sw}}$ has definite meaning, while the boundary context $c_\Omega$ is held fixed and the work ledger remains finite. This knob sweep establishes only a Switch response. A Decider claim additionally requires a record-sensitive internal update map $u_{n+1}=G(u_n,r_n,\chi_n)$, a retained hold time, the reset-cost bound above, and later basin weights that differ above tolerance under the same fixed external context.
 
 Here $\mu_{c_\Omega,u,T_W}$ is the normalized restriction of the branch-wide finite-window measure $\mu_{*,T_W}$ to the fixed boundary context $c_\Omega$ and preparation $u$. The variable $r_n$ is the retained outcome record from cycle $n$, while $\chi_n$ is the declared coarse environment/context summary supplied to the next feedback update.
@@ -611,7 +611,7 @@ $$
 \Gamma_\vartheta(T)=\left(\mathbf X_{\mathrm{asm}}(T),\mathcal{W}_\vartheta(T),\Xi_\vartheta(T)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8765300b403ebfee)
+[View →](../../../../../equation-mapping.html#corpus-equation-8765300b403ebfee)
 where $\mathbf X_{\mathrm{asm}}$ denotes the localized assembly coordinates retained by the chart, $\mathcal{W}_\vartheta$ denotes the causal-wake/path-history data still relevant to the record channel, and $\Xi_\vartheta$ denotes retained Noether sea and apparatus-environment context (written $\Xi$ to keep $Z$ reserved for proton number). Localization and countable detector records belong primarily to the assembly and apparatus basin. Interference and phase transport belong primarily to unresolved wake history in $\mathcal{W}_\vartheta$.
 
 The double-slit lesson is therefore not that an ontic particle becomes a wave before becoming a particle again. The lesson is that a localized assembly can leave and receive distributed wake structure whose path history remains live until an apparatus creates a restartable record. If no which-path record has formed at the slit plane, the effective wavefunction must continue to carry the unresolved branch envelope. If a which-path apparatus forms a durable record, the record channel changes and interference is removed by apparatus coupling, not by an observer's act of looking.
@@ -629,7 +629,7 @@ $$
 \int_{M_\vartheta}\psi^*(q)\phi(q)\,d\nu_\vartheta(q)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7ac3a3fc8600816f)
+[View →](../../../../../equation-mapping.html#corpus-equation-7ac3a3fc8600816f)
 The effective state is a normalized ray,
 $$
 \|\psi\|_\vartheta^2=1,
@@ -637,7 +637,7 @@ $$
 \psi\sim\lambda\psi,\quad \lambda\in\mathbb{C}\setminus\{0\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d35e8a1ef2c9f320)
+[View →](../../../../../equation-mapping.html#corpus-equation-d35e8a1ef2c9f320)
 because a constant nonzero complex rescaling does not change the record statistics after normalization. On a spatial chart define $\gamma_{\mathrm{sp}}\equiv\det(\gamma_{ij}^{\mathrm{eff}})$. The measure is
 $$
 d\nu_\vartheta
@@ -645,7 +645,7 @@ d\nu_\vartheta
 \sqrt{\gamma_{\mathrm{sp}}}\,d^3x_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1b502bf411f5cb8d)
+[View →](../../../../../equation-mapping.html#corpus-equation-1b502bf411f5cb8d)
 unless the chart declares a different density explicitly. A spatially varying phase is different: it changes momentum, current, and interference data, so it cannot be quotiented away by the same rule. The Aharonov-Bohm phase is an observer-level benchmark for this non-removable holonomy; its derivation belongs to the [holonomy recovery program](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md), not to a substrate potential postulate in this chapter.
 
 If a declared apparatus channel is represented by a self-adjoint effective operator $\hat O_\vartheta$ with orthonormal eigenstates $\{\phi_n\}$, then the standard comparison expansion is
@@ -657,7 +657,7 @@ a_n=\langle\phi_n|\psi\rangle_\vartheta,
 \sum_n |a_n|^2=1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-97f45a7ab9dadc1e)
+[View →](../../../../../equation-mapping.html#corpus-equation-97f45a7ab9dadc1e)
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive the chart, the inner product, the admissible operator, and the coefficients from the retained deterministic flow and apparatus kernel. If those objects are inserted independently of the record-forming dynamics, the formal Hilbert-space description has been assumed rather than recovered.
 
 #### Representation and Decomposition Discipline
@@ -671,7 +671,7 @@ $$
 \mathcal{H}_S\otimes\mathcal{H}_A\otimes\mathcal{H}_E
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-329790be2b3233b8)
+[View →](../../../../../equation-mapping.html#corpus-equation-329790be2b3233b8)
 for system, apparatus, and environment. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this factorization is accepted only where the same retained flow supplies stable subsystem boundaries, local transport or bounded causal coupling, and record persistence for the apparatus channel. It is not enough to choose factors that look like objects or spatial cells after the fact. The chosen decomposition must be compatible with $\mathcal{K}_A$, $\mu_{*,T_W}$, the action-to-envelope residual, and the record-autonomy tests in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md).
 
 This keeps the useful part of Hilbert-space formalism while reversing its ontological priority. Bases, observables, and tensor-product factors are recovery products. If they are assumed before the branch record is derived, the calculation may still be a useful comparison, but it has not shown that the wavefunction is fundamental or that space, particles, systems, and environments have been recovered from substrate dynamics.
@@ -702,7 +702,7 @@ P_{\mathrm{obs}}(\cdot\mid C)
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0e04fc26bfd9bbda)
+[View →](../../../../../equation-mapping.html#corpus-equation-0e04fc26bfd9bbda)
 The first term tests the effective operator or channel residual against the loop benchmark; the second tests the actual recorded statistics. Passing this residual licenses the perturbative virtual-particle description as an economical calculation layer. It does not license a substrate claim that additional short-lived particles are being created and erased between records.
 
 #### Density-Current Closure Target
@@ -717,13 +717,13 @@ $$
 \left(\psi_{\mathrm{std}}^*\nabla_{\mathrm{std}}\psi_{\mathrm{std}}-\psi_{\mathrm{std}}\nabla_{\mathrm{std}}\psi_{\mathrm{std}}^*\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e93645f88799c566)
+[View →](../../../../../equation-mapping.html#corpus-equation-e93645f88799c566)
 and
 $$
 \partial_{t_{\mathrm{std}}}\rho_{\psi,\mathrm{std}}+\nabla_{\mathrm{std}}\cdot\mathbf{J}_{\psi,\mathrm{std}}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#schrodinger-born-current)
+[View →](../../../../../equation-mapping.html#schrodinger-born-current)
 
 For an effective single-assembly chart with mass parameter $m_{\mathrm{eff}}$ and action constant $\hbar_{\mathrm{eff}}$, the layer-explicit target is
 $$
@@ -736,7 +736,7 @@ J_{\psi,\mathrm{eff}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 (\gamma_{\mathrm{eff}}^{-1})^{ij}\left(\psi_{\mathrm{eff}}^*\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}-\psi_{\mathrm{eff}}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}^*\right),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cd0d94c63d036a34)
+[View →](../../../../../equation-mapping.html#corpus-equation-cd0d94c63d036a34)
 $$
 \partial_{t_{\mathrm{eff}}}\!\left(
 \sqrt{\gamma_{\mathrm{sp}}}\rho_{\psi,\mathrm{eff}}
@@ -748,7 +748,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3c4aacf9a9865e77)
+[View →](../../../../../equation-mapping.html#corpus-equation-3c4aacf9a9865e77)
 Here $(\gamma_{\mathrm{eff}}^{-1})^{ij}$ is the inverse effective spatial metric of the declared observer chart, reducing to $\delta^{ij}$ in its flat weak-response limit. This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $J_{\mathrm{rec}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T_W}$ through the deterministic assembly flow and the declared position projection, and define
 $$
 \mathcal C_{\mathrm{rec}}
@@ -765,7 +765,7 @@ $$
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b2a6d14a731aeee4)
+[View →](../../../../../equation-mapping.html#corpus-equation-b2a6d14a731aeee4)
 A Born-current recovery should report
 $$
 \mathcal{R}_{\rho J}(W,\mathcal T_{\mathrm{eff}};\vartheta)
@@ -778,7 +778,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-133b32c4260b2e7e)
+[View →](../../../../../equation-mapping.html#corpus-equation-133b32c4260b2e7e)
 The first term checks Born density, the second checks local conservation for the derived record flow, and the third checks the standard probability-current benchmark. The continuity term is a projection, boundary, and coarse-graining leakage diagnostic; exact conservation of a full deterministic pushforward would make it an identity and would not independently validate the extracted current. The norm $\|\cdot\|_{\mathrm{BL}^*(W)}$ is the dual bounded-Lipschitz, or flat, norm on finite signed scalar or vector measures: it tests against functions with bounded amplitude and Lipschitz constant. It supplies a finite, weakly stable tolerance for measure-valued residuals without relying on the delicate $p=1$ endpoint of a negative-order Sobolev space. A model that matches $|\psi|^2$ only after allowing probability to disappear from one region and reappear elsewhere before a record has formed has not recovered Schrödinger continuity.
 
 The same target can be sharpened into a guidance-ratio test. Wherever $\rho_{\psi,\mathrm{eff}}>0$, the effective quantum velocity field is
@@ -789,7 +789,7 @@ $$
 {\rho_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a057e41a70928a3)
+[View →](../../../../../equation-mapping.html#corpus-equation-3a057e41a70928a3)
 Let $\mathbf{v}_{\mathrm{rec}}$ be the velocity field obtained by projecting the deterministic assembly-flow current through the same record chart. The local guidance residual is
 $$
 \mathcal{R}_{\mathrm{guid}}(W,\mathcal T_{\mathrm{eff}};\vartheta)
@@ -805,7 +805,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a0c0bd6a74f49738)
+[View →](../../../../../equation-mapping.html#corpus-equation-a0c0bd6a74f49738)
 This is a stricter recovery target than Born density alone. It asks whether the extracted wavefunction gives the same local transport law as the underlying causal-wake basin flow, not merely the same final histogram.
 
 The phrase "the system is in a superposition" is therefore not a standalone ontological claim in this chapter. It is an effective statement relative to a declared representation and record channel. If the preparation, apparatus kernel, retained coarse-graining, or access region changes, the apparent basis in which a branch expansion is written may change while the underlying assembly and causal-wake history do not. The substrate claim remains the same: one deterministic history is unfolding, while the effective wavefunction carries alternatives that have not yet become autonomous records.
@@ -844,7 +844,7 @@ $$
 \varepsilon_{\mathrm{G}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0820ebd952e29e27)
+[View →](../../../../../equation-mapping.html#corpus-equation-0820ebd952e29e27)
 For a free retained chart, the same packet must move and spread with the standard effective kinematics,
 $$
 \left\|
@@ -867,7 +867,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a51f7da516400be9)
+[View →](../../../../../equation-mapping.html#corpus-equation-a51f7da516400be9)
 Here $\Delta_{x,\mathrm{eff}}^{2,\mathrm{QM}}(t_{\mathrm{eff}})$ is the standard Gaussian spreading benchmark for the same initial covariance. If the derived envelope violates this bound in ordinary free-packet regimes, then the uncertainty explanation has remained qualitative rather than becoming a quantum closure.
 
 The WKB comparison supplies the corresponding semi-classical envelope test. For a one-dimensional retained effective chart with effective momentum
@@ -875,7 +875,7 @@ $$
 p_\vartheta(x_{\mathrm{eff}};E)=\sqrt{2m_{\mathrm{eff}}\left(E-V_{\mathrm{eff}}(x_{\mathrm{eff}})\right)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8a61f5b486fc21cd)
+[View →](../../../../../equation-mapping.html#corpus-equation-8a61f5b486fc21cd)
 the standard oscillatory benchmark away from turning points is
 $$
 \psi_{\mathrm{WKB}}(x_{\mathrm{eff}})
@@ -884,7 +884,7 @@ $$
 \exp\!\left(\pm\frac{i}{\hbar_{\mathrm{eff}}}\int^{x_{\mathrm{eff}}} p_\vartheta(x'_{\mathrm{eff}};E)\,dx'_{\mathrm{eff}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3c4e58465a32bf66)
+[View →](../../../../../equation-mapping.html#corpus-equation-3c4e58465a32bf66)
 with validity only when the effective wavelength varies slowly across one wavelength. A closure packet should therefore report a WKB-envelope residual on the declared access interval $W$:
 $$
 \mathcal{R}_{\mathrm{WKB}}(W,E;\vartheta)
@@ -897,7 +897,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e0f56d1c9a3f2dbf)
+[View →](../../../../../equation-mapping.html#corpus-equation-e0f56d1c9a3f2dbf)
 Here $\varphi_{\mathrm{rec}}$ is the phase extracted with the same phase-amplitude map that produces the effective envelope from the retained action field; it is not a phase assigned to the real density $\rho_{\mathrm{rec}}$. The final term is the turning-point matching check: near $E=V_{\mathrm{eff}}(x_{\mathrm{eff}})$ the effective chart must pass through the Airy-function benchmark rather than pretending the WKB expression remains valid at $p_\vartheta=0$. This makes the semi-classical wavefunction comparison a falsifiable envelope recovery, not a visual analogy.
 
 For a metastable barrier, the same comparison gives a tunneling-action benchmark. If $x_0$ and $x_1$ are the effective turning points bounding the forbidden region, the standard exponent is
@@ -910,7 +910,7 @@ S_{\mathrm{tun}}(E)
 T_{\mathrm{WKB}}\sim e^{-2S_{\mathrm{tun}}/\hbar_{\mathrm{eff}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5cbac40922d628e8)
+[View →](../../../../../equation-mapping.html#corpus-equation-5cbac40922d628e8)
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ target is to derive $S_{\mathrm{tun}}$ from the action accumulated by deterministic assembly histories that cross the retained separatrix tube. A fitted barrier exponent that is not tied to the same $\mu_{*,T_W}$, apparatus kernel, and path-history flow used for record probabilities is only a comparison curve.
 
 Weak probes sit below the record-forming part of this back-action. They may perturb the target and apparatus by a small amount, but they do not by themselves force the target across a separatrix or create a durable apparatus/environment asymmetry. In the notation of [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#weak-probe-limit), the retained weak-probe window satisfies
@@ -918,7 +918,7 @@ $$
 \tau_{\text{meas}}^{(\epsilon)}>t_1-t_0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5910a4a9bd58d868)
+[View →](../../../../../equation-mapping.html#corpus-equation-5910a4a9bd58d868)
 while an ensemble pointer displacement remains $O(\epsilon)$. The wavefunction remains useful in that regime because it tracks the still-accessible coarse-grained branch envelope rather than a completed record.
 
 Post-selection should be read as conditioning on a later ordinary record, not as a backward-in-time substrate influence. The conditional ensemble
@@ -928,7 +928,7 @@ $$
 \mu\!\left(B\mid R_{\mathrm{post}}\in\mathcal{R}_f\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a9c1523359c69be2)
+[View →](../../../../../equation-mapping.html#corpus-equation-a9c1523359c69be2)
 may reveal weak-probe structure that is invisible in single trials, but it does not change the underlying rule that architrino and assembly histories evolve forward in absolute time.
 
 This is also the correct home for anomalous signed weak-probe averages. A weak-value calculation may assign a negative or otherwise counterintuitive sign to the conditional pointer shift, but the wavefunction-side interpretation remains effective: the signed response is a property of the post-selected ensemble and the still-live branch envelope. The validation target belongs to [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#weak-probe-limit): reproduce the normalized conditional response $\bar{Y}_{\epsilon\mid\mathcal{R}_f}$ from the deterministic weak-probe flow while keeping each retained trial below the record-forming threshold. The sign should not be promoted into a negative-mass entity, a retrocausal substrate process, or a completed intermediate record.
@@ -960,13 +960,13 @@ $$
 \pi_{T_W}:\Gamma_{\text{eff}}^{(T_W)}\to\mathcal{R}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58f260d47ff088a1)
+[View →](../../../../../equation-mapping.html#corpus-equation-58f260d47ff088a1)
 maps the retained record-window section to observer records, then the record probability must be
 $$
 P_n(T_W)=\mu_{*,T_W}\!\left(\pi_{T_W}^{-1}(R_n)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d55ae145f48052de)
+[View →](../../../../../equation-mapping.html#corpus-equation-d55ae145f48052de)
 with $\mu_{*,T_W}$ derived from the finite-window coarse-grained measure of the same dynamics that supplies the effective wave equation. A free-standing external geometric measure, by contrast, is only a scaffold until it is tied to the Master Equation, record formation, and the retained measurement channel.
 
 Subsystem decomposition carries the same burden. A useful comparison may speak about probability moving between subsystems, but the native statement is not a free tensor-factor flow. The preparation, apparatus kernel, coarse-graining, access region, and record window must first determine which reduced metastable coordinates and boundary data are retained. Only then can $\mu_{*,T_W}$ assign weights to the record basins $\pi_{T_W}^{-1}(R_n)$, and only the same retained transfer law may decide whether those weights are restartable after a record or still carry unresolved path-history influence before a record.
@@ -990,7 +990,7 @@ $$
 \varepsilon_{\mathrm{Born}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cc304e7a7e34575d)
+[View →](../../../../../equation-mapping.html#corpus-equation-cc304e7a7e34575d)
 not the stronger claim that no substrate history exists. The substrate-side question remains whether $B_i$ is a completed, recordable basin for the declared setup $\theta$, not whether one coordinate chart happens to give a vanishing expansion coefficient.
 
 The boundary between an unresolved branch envelope and a completed record should therefore be tested by the record-autonomy residual in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#what-makes-an-interaction-a-record), not by a metaphysical decision about how many worlds exist. Record-channel times $t$ inherited from that chapter are effective-chart times throughout. In the wavefunction description, interference remains live while
@@ -998,7 +998,7 @@ $$
 \Delta_{\mathrm{rec}}(t;k)=O(1)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fec0dcc811de0caf)
+[View →](../../../../../equation-mapping.html#corpus-equation-fec0dcc811de0caf)
 because the candidate alternatives still affect the record channel at observable scale. A record-facing wavefunction update is justified only after the relevant apparatus basin satisfies $\Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}}$ across the persistence window. This keeps the useful lesson from decoherence language while rejecting branching as substrate ontology.
 
 This also prevents the branch picture from becoming a literal one-way tree. Before record autonomy, two coarse branch tubes can separate and later overlap again in the retained readout channel. For candidate branch basins $B_i$ and $B_j$, define a recoherence residual
@@ -1014,7 +1014,7 @@ N_\varepsilon(\Phi_t(B_i))\cap N_\varepsilon(\Phi_t(B_j))
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3ab694ef74e30552)
+[View →](../../../../../equation-mapping.html#corpus-equation-3ab694ef74e30552)
 where $N_\varepsilon$ denotes an $\varepsilon$-thickened tube in the retained coarse-grained record coordinates. If $\Delta_{\mathrm{recoh}}=O(1)$ before the persistence window closes, the alternatives have not become independent records; the effective wavefunction must continue to carry their mutual influence. A completed record requires both $\Delta_{\mathrm{rec}}\le\varepsilon_{\mathrm{rec}}$ and recoherence residuals below the apparatus-class tolerance for competing basin pairs.
 
 For a declared apparatus kernel, coarse-graining, access region, and record window $(\mathcal{K}_A,\mathcal{Q},W,T_W)$, a candidate branch $B_i$ may be counted as an independent observer-level alternative only when the same retained window clears the basin, recoherence, Born-weight, and thermodynamic projection tests:
@@ -1024,14 +1024,14 @@ N_{\mathcal{Q},W}(B_i)\ge 1,
 \sup_{j\ne i}\sup_{t\in T_W}\Delta_{\mathrm{recoh}}(t;i,j)\le\varepsilon_{\mathrm{recoh}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d90bfa0d81e9535a)
+[View →](../../../../../equation-mapping.html#corpus-equation-d90bfa0d81e9535a)
 $$
 \Delta_{\mathrm{Born}}(T_W)\le\varepsilon_{\mathrm{Born}},
 \qquad
 \Delta_{\mathrm{ens}}(\mathcal{Q},W,T_W)\le\varepsilon_{\mathrm{ens}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-162f7d2da4efa764)
+[View →](../../../../../equation-mapping.html#corpus-equation-162f7d2da4efa764)
 This condition keeps the useful Everettian lesson that branch descriptions become robust through dynamics, while refusing to count a formal Hilbert-space expansion as a substrate event. If any line fails, the effective wavefunction still carries an unresolved branch envelope; it has not earned a completed record or an independent outcome count in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 Equivalently, for this declared record setup $\theta$, the effective branch family available for record counting is
@@ -1047,7 +1047,7 @@ B_i:
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5038e2d3f237657d)
+[View →](../../../../../equation-mapping.html#corpus-equation-5038e2d3f237657d)
 Only basins in $\mathcal{B}_{\mathrm{rec}}(\theta)$ may be counted as completed observer-level alternatives. Formal components outside this family may remain useful for calculation, but they are unresolved envelope structure rather than independent outcomes.
 
 The same boundary can be checked from the effective transition law. Let $\mathcal{T}^{\mathcal{Q},W}_{a\to b}$ denote the observer-level transition operator induced by the same deterministic substrate flow after coarse-graining by $\mathcal{Q}$ and restricting to access region $W$. For $t_0<t_1<t_2$, define the coarse-grained divisibility residual
@@ -1062,7 +1062,7 @@ $$
 \right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c320ac1e81bb5f27)
+[View →](../../../../../equation-mapping.html#corpus-equation-c320ac1e81bb5f27)
 When $\Delta_{\mathrm{div}}=O(1)$, the coarse-grained state has not retained enough path-history information to be restarted at $t_1$ without loss; in the wavefunction representation, that missing history appears as live phase, coherence, or interference structure. After a valid record, the retained record channel should satisfy $\Delta_{\mathrm{div}}\le\varepsilon_{\mathrm{div}}$ on the same persistence window used for $\Delta_{\mathrm{rec}}$. This is a closure diagnostic for the effective description, not a new substrate law.
 
 This restartability test is the $\mathbb{A}\mathbb{A}\mathbb{A}$-native way to use comparisons with stochastic or transition-law reformulations. If an external framework says that interference appears when a process cannot be split into independent intermediate-time transitions, the retained content is not the external ontology. The retained content is the diagnostic: the effective wavefunction must carry whatever path-history the reduced transition operator loses. A proposed coarse-graining therefore earns its quantum interpretation only by showing where $\Delta_{\mathrm{div}}$ is order one before a record and why it falls below tolerance after record autonomy.
@@ -1072,7 +1072,7 @@ $$
 \Delta_{\mathrm{div}}(t_0,t_h,t_s;\mathcal{Q}_{\mathrm{path}},W_{\mathrm{path}})=O(1)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-46bd3b88d8b67ad5)
+[View →](../../../../../equation-mapping.html#corpus-equation-46bd3b88d8b67ad5)
 In that regime the effective wavefunction must continue to carry the branch envelope, and interference remains an observer-level consequence of incomplete restartability. If a which-path apparatus creates a record channel $R_h$ satisfying the record-autonomy test, the retained coarse-graining changes. The accepted closure condition becomes
 $$
 \Delta_{\mathrm{rec}}(t_h;k)\le\varepsilon_{\mathrm{rec}},
@@ -1080,8 +1080,24 @@ $$
 \Delta_{\mathrm{div}}(t_0,t_h,t_s;\mathcal{Q}_{\mathrm{path}}\cup R_h,W_{\mathrm{path}})\le\varepsilon_{\mathrm{div}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f6dd5c3a04344607)
+[View →](../../../../../equation-mapping.html#corpus-equation-f6dd5c3a04344607)
 The disappearance of interference is then attributed to a completed record and a restartable reduced description, not to an ontological wave splitting and then collapsing.
+
+### Indivisible Stochastic Reformulations
+
+The closest external framework to the restartability diagnostic is the stochastic-quantum correspondence of Jacob Barandes, which represents a quantum system as a stochastic process over ordinary configurations whose transition law is *indivisible*: for generic intermediate times there exists no valid transition law whose composition reproduces the law across the whole interval ([Barandes 2023](https://arxiv.org/abs/2302.10778), [Barandes 2025](https://arxiv.org/abs/2507.21192)). That failure of Chapman-Kolmogorov composition is exactly what $\Delta_{\mathrm{div}}$ measures, and the observation that interference is the failure of the intermediate-configuration sum is the same observation made above in the double-slit setup. The correspondence enters here at recovery-target grade as a comparison framework; its ontology of primitive indivisible stochastic laws is not adopted.
+
+The substantive difference is the direction of explanation, and it favors $\mathbb{A}\mathbb{A}\mathbb{A}$. In the stochastic-quantum framework indivisibility is postulated: it is the defining property of the admitted class of laws, and no account is given of why the laws of nature should fail to divide. In $\mathbb{A}\mathbb{A}\mathbb{A}$ indivisibility is a consequence of the substrate law. Because the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) determines acceleration from intersections between a receiver trajectory and causal-wake surfaces emitted earlier, any coarse-graining $\mathcal{Q}$ that retains only configuration data at a single instant necessarily omits influence that has been emitted and not yet received. Restarting the reduced description at $t_1$ discards that in-flight budget, so $\Delta_{\mathrm{div}}=O(1)$ generically rather than by stipulation. This is an inferred structural consequence of delayed path-history coupling, not yet a proved bound; the proof burden is to exhibit a lower bound on $\Delta_{\mathrm{div}}$ in terms of the retained in-flight wake measure. Its falsifier is operator-checkable: exhibit a coarse-graining that retains only instantaneous configuration data for a delay-coupled assembly and still measures $\Delta_{\mathrm{div}}\le\varepsilon_{\mathrm{div}}$ across an interval spanning a wake transit.
+
+This also corrects what the word *memory* is doing in the phrase *non-Markovian*. A memory-kernel law stores the past in an auxiliary variable that the present state carries forward. Nothing in $\mathbb{A}\mathbb{A}\mathbb{A}$ stores anything: the past is still in transit. The reduced description fails to compose because the state variable is incomplete, not because the substrate consults a history buffer. That is why $\Delta_{\mathrm{div}}$ is a diagnostic of the chosen coarse-graining rather than a substrate law, and why the residual is a property of the pair $(\mathcal{Q},W)$ and not of the architrinos.
+
+The comparison also supplies a referent for the framework's *division events*, the system-centric times at which an indivisible law does divide and which that framework takes as given. In $\mathbb{A}\mathbb{A}\mathbb{A}$ a division event is the time at which a record channel becomes autonomous, and the paired closure condition on $\Delta_{\mathrm{rec}}$ and $\Delta_{\mathrm{div}}$ in the which-path setup above is that statement written out. Deriving the implication in the required direction, that record autonomy in the sense of [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#what-makes-an-interaction-a-record) entails $\Delta_{\mathrm{div}}\le\varepsilon_{\mathrm{div}}$ on the same persistence window, is a closure target and is not established here.
+
+One import is barred. The correspondence obtains Born weights by requiring the transition law to be unistochastic, $\Gamma_{ij}=\lvert U_{ij}\rvert^2$ for a unitary $U$. That condition is a recovery target under the import test, never a premise, because $U$ is read off from the quantum side rather than derived from the substrate. Declaring the coarse-grained transition operator $\mathcal{T}^{\mathcal{Q},W}$ unistochastic in order to obtain $P_n(T_W)$ would assume the result the basin-measure route exists to derive. The Born rule in $\mathbb{A}\mathbb{A}\mathbb{A}$ is earned through $\mu_{*,T_W}$ over record-forming basins, as set out below.
+
+A discriminating consequence follows from the same difference. A primitively indivisible law carries no intrinsic scale for its indivisibility, so the residual has no predicted recovery time. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the residual inherits a scale from the delay geometry: the interval over which $\Delta_{\mathrm{div}}$ can stay order one is bounded by the causal-wake transit budget of the assembly and its apparatus channel, which in $c_f=1$ units is set by their spatial extent. This is inferred from the delay structure and not yet computed for a concrete apparatus class; a measured recovery timescale that is independent of assembly extent, or that scales inconsistently with the wake transit budget of the same apparatus, would falsify the scale-setting claim while leaving the restartability diagnostic intact.
+
+The Bell-family entry in [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md) already records Markov screening as a non-substrate assumption. The correspondence reaches the same verdict from a different starting point, which strengthens the assumption-status column without discharging the obligation: $\mathbb{A}\mathbb{A}\mathbb{A}$ still owes a derivation showing that its delayed shared-history geometry produces the observed CHSH value, and the failure of Markov screening alone does not supply one.
 
 ### Falsifiability and Predictions
 
@@ -1104,13 +1120,13 @@ d_{\mathrm{TV}}\!\left((\Phi_{T_W})_*\mu_{*,T_W},\,\mu_{*,T_W}\right)\le\varepsi
 \varepsilon_\mu\ll 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-20b8dc2146c2112f)
+[View →](../../../../../equation-mapping.html#corpus-equation-20b8dc2146c2112f)
 For record-forming attractor basins $\{B_n^{(T_W)}\}$,
 $$
 P_n(T_W)=\int_{B_n^{(T_W)}} d\mu_{*,T_W}(\Gamma)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cb38af313db73a86)
+[View →](../../../../../equation-mapping.html#corpus-equation-cb38af313db73a86)
 Here $B_n^{(T_W)}$ means a record-forming basin for the declared apparatus channel, not every formal component of a Hilbert-space expansion. If the channel carries candidate branches that have not yet satisfied the record-autonomy, persistence, event-ledger, and energy-residual tests in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#what-makes-an-interaction-a-record), the Born-side weight is computed only after applying that record filter:
 $$
 P_n(T_W)
@@ -1127,7 +1143,7 @@ P_n(T_W)
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b9c88661c3f64916)
+[View →](../../../../../equation-mapping.html#corpus-equation-b9c88661c3f64916)
 
 This filtered weight is defined conditional on at least one completed record in the window; runs in which no candidate basin passes the record filter are routed to the weak-probe regime rather than assigned weights by a vanishing denominator.
 
@@ -1143,7 +1159,7 @@ P_n(T_W)-\int_{\Omega_n^\theta}|\psi_\theta(q)|^2\,d\nu_\theta(q)
 \varepsilon_{\mathrm{Born}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4cd37d81d5708cff)
+[View →](../../../../../equation-mapping.html#corpus-equation-4cd37d81d5708cff)
 in the same regime where the envelope dynamics reduce to effective Schrödinger evolution.
 
 Equivalently, the native basin measure must push forward to the effective Hilbert-envelope density,
@@ -1154,7 +1170,7 @@ $$
 |\psi_\theta(q)|^2d\nu_\theta(q)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ec080a5f95ad8ff1)
+[View →](../../../../../equation-mapping.html#corpus-equation-ec080a5f95ad8ff1)
 
 on the declared record regions. This keeps basin-space measures and effective wavefunction measures in their proper domains.
 
@@ -1175,7 +1191,7 @@ p_i
 \mu_*(B_i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-94eb5ce56040c37b)
+[View →](../../../../../equation-mapping.html#corpus-equation-94eb5ce56040c37b)
 within the finite-window error budget. A representative acceptance bound is
 $$
 \left|
@@ -1190,7 +1206,7 @@ $$
 +\varepsilon_C
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-967463458ae078fe)
+[View →](../../../../../equation-mapping.html#corpus-equation-967463458ae078fe)
 
 where $\varepsilon_{\mathrm{meta}}$ budgets the metastability drift of $\mu_*$ over the record time, $\varepsilon_{\mathrm{leak},i}$ the separatrix leakage into or out of $B_i$, $\varepsilon_{\mathrm{esc}}$ the escape of retained states from the finite-window section, and $\varepsilon_C$ the resolution tolerance of the declared apparatus channel $C$.
 
@@ -1204,7 +1220,7 @@ $$
 \mu_*(B_i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a5fa9d869a17cb0b)
+[View →](../../../../../equation-mapping.html#corpus-equation-a5fa9d869a17cb0b)
 for $\mu_*$-typical preparations, together with a finite-sample error bound for the actual protocol. If a model cannot select one measure or cannot establish this convergence, its basin labels do not yet supply an observer-level probability law. If it assigns branch weights that are not the basin measures of the same record-forming flow, it has added an untracked transition kernel, an external interpretive rule, or a hidden ensemble change.
 
 The same measure must also survive thermodynamic projection checks. When the measurement story uses apparatus entropy, decoherence rates, or environment summaries, those quantities may not be fitted by a second ensemble unrelated to the Born-rule basin measure. The finite-window version $\mu_{*,T_W}$ in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence) must project to the thermodynamic summary used by the same record channel, within an explicitly declared tolerance.
@@ -1223,7 +1239,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-12be7cd8e72cdd1d)
+[View →](../../../../../equation-mapping.html#corpus-equation-12be7cd8e72cdd1d)
 This residual is not an additional probability postulate. It is the finite-window acceptance test for treating the effective wavefunction as having updated to a completed record rather than to an unresolved branch envelope.
 
 #### Lower Bound on Recordable Basin Measure
@@ -1245,7 +1261,7 @@ B\subset\Gamma_{\mathrm{eff}}^{(T_W)}:
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0473fecbdd805a55)
+[View →](../../../../../equation-mapping.html#corpus-equation-0473fecbdd805a55)
 The lower measure unit must come from an independent apparatus calibration, not from taking the infimum over the same candidate family that it later classifies. Let $\mathcal{C}_{\mathrm{cal}}(\mathcal{Q},W)$ be a predeclared set of calibration cells whose false-accept and false-reject rates have been measured for this apparatus class. Define
 $$
 \mu_{\min}^{\mathrm{cal}}(\mathcal{Q},W)
@@ -1254,13 +1270,13 @@ $$
 \mu_{\mathcal{Q}}(C)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c1ef686ac8731390)
+[View →](../../../../../equation-mapping.html#corpus-equation-c1ef686ac8731390)
 with the required closure condition
 $$
 0<\mu_{\min}^{\mathrm{cal}}(\mathcal{Q},W)<\infty
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-188911929e14f8ee)
+[View →](../../../../../equation-mapping.html#corpus-equation-188911929e14f8ee)
 When this condition holds, the resolved-state count of a basin is
 $$
 N_{\mathcal{Q},W}(B)
@@ -1268,7 +1284,7 @@ N_{\mathcal{Q},W}(B)
 \frac{\mu_{\mathcal{Q}}(B)}{\mu_{\min}^{\mathrm{cal}}(\mathcal{Q},W)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-34636787abf3100b)
+[View →](../../../../../equation-mapping.html#corpus-equation-34636787abf3100b)
 Basins with $N_{\mathcal{Q},W}(B)<1$ fall below the independently calibrated apparatus resolution and are not independent record states in the declared window. Basins in the calibrated family need not exhaust the candidate family, so the test is no longer true by definition. Plain language: the state count is not an information-theory primitive; it is a derived claim about which basins the actual apparatus dynamics can separate, lock, and preserve as records.
 
 This is a closure target, not a completed derivation of the action quantum. In an effective canonical chart with $n$ conjugate pairs, the stronger result would be a derivation that relates the lower basin measure to the standard action cell,
@@ -1276,7 +1292,7 @@ $$
 \mu_{\min}^{\mathrm{cal}}(\mathcal{Q},W)\longrightarrow C_{\mathcal{Q},W}h^n
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7678243636565a5b)
+[View →](../../../../../equation-mapping.html#corpus-equation-7678243636565a5b)
 with the normalization factor $C_{\mathcal{Q},W}$ fixed by the same assembly and apparatus reduction rather than chosen after the fact. If the infimum is zero, if $\mu_{\min}^{\mathrm{cal}}$ changes arbitrarily with readout convention, or if the resulting cell fails to match the observer-level $h,\hbar$ benchmarks in the parameter ledger, this route does not close the quantum state-counting problem.
 
 Bohr-Sommerfeld or geometric-quantization comparisons are useful only at this effective chart level. Counting integer action-angle leaves can serve as a benchmark for the recordable state count, but it is not the native ontology and not a replacement for the basin-record construction above. The native requirement is that the Master-Equation reduction, root-ledger admissibility, apparatus coupling, and record-autonomy tests derive the finite basin family first; only then may an action-angle chart summarize that family by an $h^n$ cell. If a singular chart or a changed polarization produces an infinite or apparatus-dependent count while $\mathcal{B}_{\mathcal{Q},W}^{\mathrm{rec}}$ remains finite, the comparison chart has overcounted unresolved substructure rather than discovered new record states.
@@ -1351,13 +1367,13 @@ $$
 (\mathcal{K}_A,\mathcal{Q},W,T_W,\{R_k\},\mu_{*,T_W})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1e97dfd8148981fe)
+[View →](../../../../../equation-mapping.html#corpus-equation-1e97dfd8148981fe)
 whose apparatus kernel, coarse-graining, access region, record window, record classes, and finite-time basin measure all belong to the same coupled flow. The observer-level probability is then a record statistic,
 $$
 p_k(\theta)=\mu_{*,T_W}\!\left(\pi^{-1}(R_k)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2d97c861f41c6dd7)
+[View →](../../../../../equation-mapping.html#corpus-equation-2d97c861f41c6dd7)
 and is valid only after a branch has earned a record. A record is not every formal correlation. It is a branch that closes the full physical transition:
 
 For an initial retained state $\gamma\in\Gamma_{\mathrm{tot}}$, define the state-dependent eligibility map
@@ -1370,7 +1386,7 @@ $$
 \mathsf N_\theta(\gamma,T_W)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c8fe5cae0f3ec7ec)
+[View →](../../../../../equation-mapping.html#corpus-equation-c8fe5cae0f3ec7ec)
 
 where $\mathsf C_\theta$ is a genuine detector-target coupling, $\mathsf L_\theta$ is ledger closure for conservation and recoil transfer, $\mathsf P_\theta$ is persistence over the record window, and $\mathsf N_\theta$ is no-signaling consistency. The last factor consumes the setting-independent marginal residual defined in the [Bell closure diagnostics](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md#bell-closure-diagnostics); it is not a label inserted after the record classes are counted.
 
@@ -1382,7 +1398,7 @@ p_k^{\mathrm{rec}}(\theta)=
 {\sum_j\mu_{*,T_W}\!\left(\pi^{-1}(R_j)\cap \mathsf R_\theta^{-1}(1)\right)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bcc487ab8cd1f34e)
+[View →](../../../../../equation-mapping.html#corpus-equation-bcc487ab8cd1f34e)
 
 not an extra rule assigned after the dynamics. The unfiltered statistic $p_k(\theta)$ and the eligible-record-normalized weight $p_k^{\mathrm{rec}}(\theta)$ are generally different quantities. The latter is written $P_\theta(k)$ once the concrete state-dependent record indicator $\mathbf{1}_{\mathrm{rec}}(\gamma;k,\theta)$ is available. They coincide only when record eligibility is constant and equal to one on every outcome preimage. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel. The formal rule survives; the unsupported cut between quantum target and classical apparatus does not.
 
@@ -1411,7 +1427,7 @@ $$
 U
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f87d209689980889)
+[View →](../../../../../equation-mapping.html#corpus-equation-f87d209689980889)
 The coarse-state map is
 $$
 C_{\eta,h}:
@@ -1423,7 +1439,7 @@ C_{\eta,h}:
 \Gamma_{\eta,h}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-915cf2c09557552a)
+[View →](../../../../../equation-mapping.html#corpus-equation-915cf2c09557552a)
 where $\mathbb{U}_{\text{now}}(T)\equiv S(T)$ is the instantaneous ontic substrate state on the simultaneity slice at absolute time $T$ retained by the model and $U$ records declared apparatus controls or settings.
 
 Two time labels appear in this chapter and must not be conflated. The ontic substrate flow — $\mathbb{U}_{\text{now}}$, its retained history $\mathcal{H}_{\eta,h}$, and the causal-wake background — is always indexed by absolute time $T$. The reduced record-channel coordinates $(\Gamma_{\mathrm{tot}},X,A,\Xi)$ and every bare record-channel time $t$ below live in the reduced effective chart that this coarse-state map produces; $t$ coincides with $T$ in the laboratory limit and is the effective-chart time inherited by [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md). Where an open-system or effective-metric reconstruction carries its own rescaled clock, that time is written $t_{\mathrm{eff}}$.
@@ -1437,7 +1453,7 @@ $$
 \right)_*\rho
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ece0feb545452cba)
+[View →](../../../../../equation-mapping.html#corpus-equation-ece0feb545452cba)
 A reduced Markov kernel is a later compression of this pushforward, not an assumed Born kernel. It is licensed only after unresolved variables receive an explicit occupation measure from a material return map, a record cycle, or the Noether sea context used by the same apparatus channel. Otherwise the probability rule has been inserted at the cut rather than derived from the record-forming flow.
 
 The rejection of the cut can be stated as a closure condition on the dynamics. Let
@@ -1445,7 +1461,7 @@ $$
 \Gamma_{\mathrm{tot}}(t)=(X(t),A(t),\Xi(t),\mathcal{W}(t))
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7a82c3e9eb7c9d1e)
+[View →](../../../../../equation-mapping.html#corpus-equation-7a82c3e9eb7c9d1e)
 collect the target coordinates $X$, apparatus coordinates $A$, retained environment coordinates $\Xi$, and causal-wake history $\mathcal{W}$. The symbol $\Xi$ keeps $Z$ available for proton number and keeps the incoming spin-ledger state $Z_{\mathrm{in}}$ below distinct from the environment. A valid measurement model must be the projection of one substrate flow,
 $$
 \dot{\Gamma}_{\mathrm{tot}}
@@ -1455,7 +1471,7 @@ F_{\mathrm{tot}}(\Gamma_{\mathrm{tot}}),
 \pi_{XA}\Phi_t^{\mathrm{tot}}(\Gamma_0)=(X(t),A(t))
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b54d12e373ea0d1c)
+[View →](../../../../../equation-mapping.html#corpus-equation-b54d12e373ea0d1c)
 not a splice between quantum dynamics on the target side and a separate classical-observer dynamics on the apparatus side. A human observer, laboratory notebook, or downstream database is therefore another possible record-bearing assembly, not an ontologically privileged endpoint of the measurement.
 
 When the environment is compressed to an open-system map, the compression must declare its memory assumption. A standard trace-preserving completely positive comparison map has Kraus form
@@ -1467,7 +1483,7 @@ $$
 \sum_m M_m^\dagger M_m=I
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0b2498da11e53f36)
+[View →](../../../../../equation-mapping.html#corpus-equation-0b2498da11e53f36)
 A differential Lindblad comparison is admissible only after the environment correlation time $\tau_{\mathrm{env}}$ is short compared with the effective relaxation time $\tau_{\mathrm{relax}}$ of the density-state chart. The record-persistence time is a separate apparatus property and cannot replace this Born-Markov scale separation. In the admissible regime the benchmark generator has the form
 $$
 \partial_{t_{\mathrm{eff}}}\rho
@@ -1484,7 +1500,7 @@ L_m\rho L_m^\dagger
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dc6e50f871ecfe5f)
+[View →](../../../../../equation-mapping.html#corpus-equation-dc6e50f871ecfe5f)
 The native residual is a comparison-chart memory check, not a demand that the substrate be Markovian. Let $\mathcal E_{a\to b}$ be the effective density-state propagator on the chart used by the Lindblad fit. Then
 $$
 \mathcal{R}_{\mathrm{open}}(\theta)
@@ -1497,7 +1513,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f89c2980512aadb8)
+[View →](../../../../../equation-mapping.html#corpus-equation-f89c2980512aadb8)
 where $\varepsilon_{\mathrm{BM}}\ll1$ is the declared scale-separation tolerance and $\varepsilon_{\mathrm M}$ is the propagator-composition tolerance on that density-state chart. If the first two terms are large, a Kraus or Lindblad description may remain a useful short-time fit, but it has not earned a Markovian open-system interpretation. This comparison is distinct from the record-channel divisibility residual below: the latter may be order one before a record because its reduced variables deliberately omit live phase and path-history data.
 
 ### Schrödinger's Cat as a Record-Channel Problem
@@ -1518,7 +1534,7 @@ T_{\mathrm{box}},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-99bd145487f161c3)
+[View →](../../../../../equation-mapping.html#corpus-equation-99bd145487f161c3)
 where the trigger, box, internal apparatus, enclosed environment, animal body, and later observer access all belong to one declared physical channel. The outside observer's ignorance is not the same thing as substrate indeterminacy. It is an access limitation: the external observer does not yet possess a record of which internal basin has been reached.
 
 The mature record-channel translation is therefore simple. If the internal trigger and apparatus have crossed a separatrix, closed the event ledger, generated a durable internal record, and locked that record into the box environment, then the macroscopic state has already resolved inside the physical channel. Opening the box imports that completed record into the observer's own access region. If the internal apparatus has not yet produced a record, then the effective wavefunction may still carry an unresolved branch envelope for that declared channel; but that is a statement about incomplete record formation, not about a metaphysical blend of living and dead macroscopic states.
@@ -1538,7 +1554,7 @@ c_{i\leftarrow j}(k|\theta_i)
 \mu_{*,T_W}^{(i)}\!\left(\pi_i^{-1}(C_{j\to i,k})\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-17c19f3897bf99b8)
+[View →](../../../../../equation-mapping.html#corpus-equation-17c19f3897bf99b8)
 Here $p_i$ is $O_i$'s direct record probability for outcome $R_\ell$, while $c_{i\leftarrow j}$ is the probability that $O_i$ has a valid physical record of $O_j$'s certified conclusion. The imported statement is eligible as a near-certainty claim only when $c_{i\leftarrow j}(k|\theta_i)\ge1-\delta_{\mathrm{cert}}$. For mutually exclusive record classes $R_k\cap R_\ell=\varnothing$, the stronger consistency test is the same-measure joint-occurrence residual
 $$
 \Delta_{\mathrm{cert}}^{ij}
@@ -1551,7 +1567,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c40058fccc4a9cbb)
+[View →](../../../../../equation-mapping.html#corpus-equation-c40058fccc4a9cbb)
 Here $\delta_{\mathrm{cert}}$ is the eligibility gap for the imported near-certainty claim. It is distinct from the joint-occurrence tolerance $\varepsilon_{\mathrm{cert}}$ below, and from the apparatus-channel resolution tolerance $\varepsilon_C$ of [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), which is a different object. A valid observed-observer measurement model should satisfy
 $$
 \Delta_{\mathrm{cert}}^{ij}
@@ -1559,7 +1575,7 @@ $$
 \varepsilon_{\mathrm{cert}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-410c32ed6f0c75ea)
+[View →](../../../../../equation-mapping.html#corpus-equation-410c32ed6f0c75ea)
 on the same declared apparatus kernel, coarse-graining, access region, and persistence window used for the ordinary record tests. The two premises immediately imply the conflict bound
 $$
 p_i(\ell\mid\theta_i)
@@ -1571,7 +1587,7 @@ p_i(\ell\mid\theta_i)
 \varepsilon_{\mathrm{cert}}+\delta_{\mathrm{cert}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-df2d7888fcd736a3)
+[View →](../../../../../equation-mapping.html#corpus-equation-df2d7888fcd736a3)
 for every $\ell\ne k$. Thus a physically imported near-certainty forces every conflicting direct-record probability to be small. A chain of imported certainties must apply this bound at each handoff and add the corresponding $\delta_{\mathrm{cert}}$ and $\varepsilon_{\mathrm{cert}}$ budgets; transitivity is not granted to a communication statement that failed its own record test. This is not a new probability postulate. It is the measurement-cut rejection applied recursively: if $O_i$ can physically record $O_j$'s certified conclusion, that imported record must be part of the same substrate flow as $O_i$'s direct prediction. If the communication record, reference resources, or record-autonomy test fails, the observed-observer setup is an incomplete measurement comparison rather than a contradiction in the ontology.
 
 ### Minimal Dynamical Model
@@ -1585,7 +1601,7 @@ $$
 F_{\mathrm{tot}}(X,A,\Xi,\mathcal W)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58609440dd56fd86)
+[View →](../../../../../equation-mapping.html#corpus-equation-58609440dd56fd86)
 where $\mathcal{W}$ denotes the local causal-wake background inherited from the apparatus, environment, and prior path history. The two-coordinate equations for $X$ and $A$ are projections of this flow; leaving $\Xi$ or $\mathcal W$ without an evolution law would not define the basins or first-crossing time used below.
 
 Let the metastable branch boundary be defined by a separatrix
@@ -1593,7 +1609,7 @@ $$
 \Sigma_{\mathcal K_A}(\Gamma_{\mathrm{tot}})=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4b6de8c5da64ad8e)
+[View →](../../../../../equation-mapping.html#corpus-equation-4b6de8c5da64ad8e)
 The elapsed measurement duration and its corresponding chart instant are
 $$
 \tau_{\text{meas}}
@@ -1606,7 +1622,7 @@ $$
 t_{\mathrm{meas}}=t_0+\tau_{\mathrm{meas}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fd08080dd71de5df)
+[View →](../../../../../equation-mapping.html#corpus-equation-fd08080dd71de5df)
 
 This is the ontology-level replacement for instantaneous collapse. The underlying substrate flow $\mathbb{U}_{\text{now}}(T)$ evolves continuously in absolute time $T$, so the reduced record-channel description it projects to crosses the separatrix continuously as well, even though the crossing may appear effectively abrupt to a coarse observer.
 
@@ -1621,7 +1637,7 @@ d_O\!\left(
 \epsilon_O
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8e1b1ea72f3c9f5f)
+[View →](../../../../../equation-mapping.html#corpus-equation-8e1b1ea72f3c9f5f)
 
 This condition does not add a second ontology or a language-level vagueness postulate. It says only that the available record cannot decide the basin side. If the full measurement dynamics place $(X(t),A(t),\mathcal{W})$ inside or outside $B_k$, that fact remains substrate-level; a failure claim must instead show that the basin family or its boundary is absent, unstable under the declared coarse-graining, or not tied to the record channel.
 
@@ -1637,7 +1653,7 @@ N_{\mathcal{Q},W}(B_j(t))\ge 1,
 t_{\mathrm{split}}=t_0+\tau_{\mathrm{split}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dca880ae8e6ab9a7)
+[View →](../../../../../equation-mapping.html#corpus-equation-dca880ae8e6ab9a7)
 Here $N_{\mathcal{Q},W}$ is the recordable basin count from [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure), and $\Delta_{\mathrm{div}}$ is the restartability residual defined below for the same coarse-graining, access region, and record window.
 
 The record time is later, and stricter:
@@ -1652,7 +1668,7 @@ $$
 t_{\mathrm{rec}}=t_0+\tau_{\mathrm{rec}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5bcb19d59f2bae24)
+[View →](../../../../../equation-mapping.html#corpus-equation-5bcb19d59f2bae24)
 An admissible channel that uses a pre-record branch interval must report
 $$
 0\le
@@ -1663,7 +1679,7 @@ $$
 \tau_{\mathrm{rec}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-192c76520e93d8a1)
+[View →](../../../../../equation-mapping.html#corpus-equation-192c76520e93d8a1)
 on the same initial-state and apparatus record. If the candidate split occurs only after the first separatrix crossing, it does not license a pre-crossing branch interval. The unresolved interval $\tau_{\mathrm{rec}}-\tau_{\mathrm{split}}$ is a validation target for a concrete apparatus model. It is not a new collapse law and not a substrate-level consciousness event. It names the window in which an effective wavefunction may need to carry multiple alternatives while the ontology still owes a finite-time persistent record.
 
 Because this definition is windowed, it does not require a global decision procedure for every future trajectory question. The measurement claim is narrower: within a declared apparatus kernel, coarse-graining, access region, and record window, the coupled dynamics either reaches a recordable basin satisfying the residual tests or remains unresolved. Unbounded reachability questions for the same dynamical law belong to a separate theorem class and should not be treated as prerequisites for ordinary record formation.
@@ -1677,7 +1693,7 @@ $$
 \left(\Phi_{\tau_{\mathrm{rec}}}^{\mathrm{tot}}\right)_*\mu_{0,\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a0b9983b6f71b3d)
+[View →](../../../../../equation-mapping.html#corpus-equation-3a0b9983b6f71b3d)
 be the pushed-forward ensemble at the record time. If the completed record is the basin $B_k^{\mathrm{rec}}(\theta)$ and its measure is nonzero, then the native post-record update is conditionalization on the realized basin:
 $$
 \mu_{\theta,k}^{+}(B)
@@ -1689,7 +1705,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-650bdfa9bec118d9)
+[View →](../../../../../equation-mapping.html#corpus-equation-650bdfa9bec118d9)
 This is not a new stochastic law. It is the observer's effective ensemble after the deterministic apparatus-target flow has crossed the separatrix, locked the record, and passed the record-autonomy tests.
 
 Let $\mathcal{E}_\theta$ denote the effective wavefunction extraction map for the same retained chart. The wavefunction update is then a derived description,
@@ -1703,7 +1719,7 @@ $$
 \mathcal{E}_\theta(\mu_{\theta,k}^{+})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4774e10c49b2bb7b)
+[View →](../../../../../equation-mapping.html#corpus-equation-4774e10c49b2bb7b)
 In subsystem language this is the measurement analogue of a conditional or effective wavefunction. If a total extracted state is written on a target-apparatus chart as $\Psi_{\mathrm{tot}}(x_S,y_A,t)$ and the apparatus record has entered the basin coordinate $Y_{A,k}$, the comparison update has the schematic form
 $$
 \psi_{S,k}^{\mathrm{cond}}(x_S,t)
@@ -1712,7 +1728,7 @@ $$
 \Psi_{\mathrm{tot}}(x_S,Y_{A,k},t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0e8100fa0baee3fe)
+[View →](../../../../../equation-mapping.html#corpus-equation-0e8100fa0baee3fe)
 with normalization $\mathcal{N}_k$ fixed after the record exists. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a primitive collapse event. It is the effective description extracted from the basin-conditioned measure $\mu_{\theta,k}^{+}$ after the apparatus has produced a persistent record.
 
 For a non-degenerate operator benchmark with eigenstate $\phi_k$, the recovery target is
@@ -1727,7 +1743,7 @@ e^{i\alpha_k}\phi_k
 \varepsilon_{\mathrm{upd}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ebea67e6f30ccb61)
+[View →](../../../../../equation-mapping.html#corpus-equation-ebea67e6f30ccb61)
 For a degenerate outcome $\lambda$, with projector $\Pi_\lambda$, the corresponding target is
 $$
 \inf_{\alpha_\lambda\in\mathbb{R}}
@@ -1741,7 +1757,7 @@ e^{i\alpha_\lambda}
 \varepsilon_{\mathrm{upd}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-01105a975c9db4d6)
+[View →](../../../../../equation-mapping.html#corpus-equation-01105a975c9db4d6)
 whenever the denominator is nonzero. This equation is the measurement-basin version of the textbook projection rule: first the coupled physical system selects and records a basin, then the observer-level wavefunction is updated to the corresponding effective eigenspace.
 
 Generalized measurements sharpen this requirement because the observer-level measurement record is not always projective. A calibrated record channel may be represented by a POVM $\{E_m\}$ with
@@ -1749,7 +1765,7 @@ $$
 E_m=E_m^\dagger,\qquad E_m\ge0,\qquad \sum_m E_m=I
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6aefbf3189e0bbef)
+[View →](../../../../../equation-mapping.html#corpus-equation-6aefbf3189e0bbef)
 and an instrument choice $\{M_m\}$ satisfying
 $$
 E_m=M_m^\dagger M_m,
@@ -1757,7 +1773,7 @@ E_m=M_m^\dagger M_m,
 \sum_m M_m^\dagger M_m=I
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0dbbf1ee433657b8)
+[View →](../../../../../equation-mapping.html#corpus-equation-0dbbf1ee433657b8)
 The comparison probabilities and conditional updates are
 $$
 p_m=\operatorname{Tr}(\rho E_m),
@@ -1767,7 +1783,7 @@ p_m=\operatorname{Tr}(\rho E_m),
 \frac{M_m\rho M_m^\dagger}{p_m}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-86d193f13a693332)
+[View →](../../../../../equation-mapping.html#corpus-equation-86d193f13a693332)
 At the probability level, the native record map should first recover the POVM outcome distribution before any operator is treated as a valid comparison label:
 $$
 \Delta_{\mathrm{POVM}}^\theta
@@ -1781,7 +1797,7 @@ P_{\mathrm{rec}}^{\theta}(\cdot\mid\psi),
 \varepsilon_{\mathrm{POVM}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b70e32d90ebeeac4)
+[View →](../../../../../equation-mapping.html#corpus-equation-b70e32d90ebeeac4)
 This residual says that the operator summary is licensed by the apparatus record map; it is not a primitive property carried into the interaction.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is not merely to reproduce the POVM probabilities. The same coupled target-apparatus-environment flow must also recover the instrument update, because different $M_m$ can give the same $E_m$ while leaving different post-record states.
@@ -1799,7 +1815,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5b730d4a402c75b9)
+[View →](../../../../../equation-mapping.html#corpus-equation-5b730d4a402c75b9)
 This is the measurement-channel version of the usual dilation result: a POVM can be represented as a projective measurement on a larger Hilbert space, but the native account must identify the physical apparatus, environment, and inaccessible degrees of freedom that realize that larger record space. Photon detection is the warning case. The record may use projective effects for "photon absent" and "photon present," while the instrument maps both outcomes to the no-photon post-record channel because the photon assembly has been absorbed into the apparatus/event ledger.
 
 ### What Makes an Interaction a Record
@@ -1811,13 +1827,13 @@ $$
 |R(A(t)) - R(A_{\text{pre}})| > R_*
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-64c10fd668a2344c)
+[View →](../../../../../equation-mapping.html#corpus-equation-64c10fd668a2344c)
 for some readout threshold $R_*$, and if the new branch remains stable for a persistence time $T_{\text{rec}}$:
 $$
 \tau_{\text{persist}} > T_{\text{rec}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-edd88cc57a7006e4)
+[View →](../../../../../equation-mapping.html#corpus-equation-edd88cc57a7006e4)
 
 Environmental locking can be sharpened as an entropy diagnostic rather than left as a prose condition. For a declared coarse-graining $\mathcal{Q}$ and retained access region $W$, let
 $$
@@ -1828,13 +1844,13 @@ S_{\mathcal{Q},W}^{\mathrm{app+env}}(t_{\text{meas}}+T_{\text{rec}})
 S_{\mathcal{Q},W}^{\mathrm{app+env}}(t_{\text{meas}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9ebe7131e95dd9b6)
+[View →](../../../../../equation-mapping.html#corpus-equation-9ebe7131e95dd9b6)
 measure the apparatus/environment entropy change associated with the candidate record channel. A strong record candidate should satisfy
 $$
 \Delta S_{\mathrm{lock};\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dbfa8b8c878e83f9)
+[View →](../../../../../equation-mapping.html#corpus-equation-dbfa8b8c878e83f9)
 with $S_{\mathrm{lock}}$ fixed by the apparatus class and readout channel. This is not a new collapse law. It is a closure check that the branch has exported enough unresolved apparatus/environment history that coherent reversal is no longer part of the retained measurement window.
 
 A cyclic record channel also needs a reset-cost subgate. Let a memory-bearing apparatus have $N$ distinguishable retained record classes in the declared window, and let $\varepsilon_\mu$ bound the failure of the retained apparatus/environment flow to preserve the relevant measure during the reset comparison. Resetting those classes to one blank class is admissible only if the missing state count is exported into apparatus/environment entropy:
@@ -1846,7 +1862,7 @@ k_B\log N-k_B\varepsilon_\mu,
 N\ge2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-22365349396b7d5e)
+[View →](../../../../../equation-mapping.html#corpus-equation-22365349396b7d5e)
 For a non-uniform retained distribution, replace $k_B\log N$ by $-k_B\sum_i p_i\log p_i$. If the apparatus is not reset, the blank memory itself has been consumed as a finite physical resource and that depletion must appear in the event ledger. This reset test is a measurement-record closure condition, not a fundamental information ontology.
 
 In plain terms, a record needs both:
@@ -1869,7 +1885,7 @@ R(A(\Phi_t^{(k)}(\Gamma_0)))
 }{R_*}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-80271d376cc45d27)
+[View →](../../../../../equation-mapping.html#corpus-equation-80271d376cc45d27)
 The candidate record is autonomous on the persistence window only if
 $$
 \sup_{t\in[t_{\text{meas}},\,t_{\text{meas}}+T_{\text{rec}}]}
@@ -1880,7 +1896,7 @@ $$
 \varepsilon_{\mathrm{rec}}\ll 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-640855e605b01fdf)
+[View →](../../../../../equation-mapping.html#corpus-equation-640855e605b01fdf)
 If $\Delta_{\mathrm{rec}}=O(1)$ on that window, the apparatus has not yet produced an independent record in the ontology of this chapter. The correct description is still an unresolved interference or weak-probe regime, not a completed branch selection.
 
 A completed record should also make the retained reduced description restartable. Let $\mathcal{T}^{\mathcal{Q},W}_{a\to b}$ be the transition operator induced by the same substrate flow after projecting to a declared coarse-graining $\mathcal{Q}$ and retained access region $W$. For $t_0<t_1<t_2$, with $t_1$ and $t_2$ inside the candidate record window, define
@@ -1895,7 +1911,7 @@ $$
 \right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b19365e89624e8e3)
+[View →](../../../../../equation-mapping.html#corpus-equation-b19365e89624e8e3)
 The restartability closure condition is
 $$
 \sup_{t_1,t_2\in[t_{\text{meas}},\,t_{\text{meas}}+T_{\text{rec}}]}
@@ -1906,7 +1922,7 @@ $$
 \varepsilon_{\mathrm{div}}\ll 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-920b7fc4aac588a5)
+[View →](../../../../../equation-mapping.html#corpus-equation-920b7fc4aac588a5)
 This condition says that, after record formation, the retained apparatus-target record can be treated as a new effective starting point without carrying unresolved cross-basin history as live interference. If $\Delta_{\mathrm{div}}=O(1)$, the interaction may have decohered in a reduced description, but it has not yet supplied the independent record assumed by a wave function transition.
 
 A candidate record must also close the same event bookkeeping that the measurement claims to expose. For a declared channel $\theta=(\mathcal{K}_A,\mathcal{Q},W,T_W)$ and candidate outcome event $\mathsf e_k$, define the record indicator
@@ -1927,7 +1943,7 @@ $$
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-150d653a571ab984)
+[View →](../../../../../equation-mapping.html#corpus-equation-150d653a571ab984)
 Here $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger for energy, momentum, and angular momentum, while $\Delta E_{\mathrm{unrec}}$ is the unrecorded energy residual used in the [Measurement and Heating Residual](#measurement-and-heating-residual). This filter prevents a mere correlation, weak probe, or formal branch label from being counted as a measurement outcome before it has supplied a persistent record, closed the event ledger, and kept unrecorded energy below tolerance.
 
 ### Repeated-Record Confirmation
@@ -1946,7 +1962,7 @@ P_\theta(k)
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-07f6452804dd0398)
+[View →](../../../../../equation-mapping.html#corpus-equation-07f6452804dd0398)
 for the declared record map $\pi$ and model record $\theta$, with the denominator required to be nonzero on the completed measurement channel. This $P_\theta(k)$ is the same eligible-record-normalized weight introduced as $p_k^{\mathrm{rec}}(\theta)$ above; the concrete state-dependent record indicator realizes the abstract eligibility event $\mathsf R_\theta^{-1}(1)$. A compact confirmation residual is
 $$
 \Delta_{\mathrm{freq}}^{\mathrm{meas}}(N;\theta)
@@ -1955,7 +1971,7 @@ $$
 \frac{\left|\widehat f_k-P_\theta(k)\right|}{\varepsilon_k(N)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3311faa04dfc3925)
+[View →](../../../../../equation-mapping.html#corpus-equation-3311faa04dfc3925)
 The validation target is
 $$
 \mathbb P_{\theta,N}\!\left[
@@ -1968,7 +1984,7 @@ $$
 \alpha_N\to0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-80576fe9b8ee42c9)
+[View →](../../../../../equation-mapping.html#corpus-equation-80576fe9b8ee42c9)
 in the calibrated repeated-record regime. Here $\mathbb P_{\theta,N}=\mu_{*,T_W}^{\otimes N}$ only for independently prepared record cycles. A correlated apparatus cycle must instead supply its own $N$-record joint measure from the declared return map. This is not a new probability ontology. It is the ordinary scientific-inference burden stated in measurement language: the same substrate flow, record channel, and basin measure that produce a completed record must also produce the frequencies used to test the theory. If a model changes the measure between record formation, Born weights, thermodynamic summaries, and repeated-record statistics, it has hidden an ensemble retuning inside the measurement account.
 
 The tolerance and confidence sequences must be coupled. In the independent-trial comparison with $K$ record classes, one admissible Hoeffding calibration is
@@ -1980,7 +1996,7 @@ $$
 \sqrt{\frac{\log(2K/\alpha_N)}{2N}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4ed911d524218e16)
+[View →](../../../../../equation-mapping.html#corpus-equation-4ed911d524218e16)
 so both sequences vanish and the tolerance has the expected square-root sampling scale, with the logarithmic factor required by the shrinking failure probability. Correlated record cycles must replace $N$ by a declared effective sample size derived from the same apparatus return map; writing $\varepsilon_k(N)\sim N^{-1/2}$ while separately sending $\alpha_N\to0$ is not sufficient unless that coupling is supplied.
 
 The same finite-window measure must also survive the Born-window, thermodynamic-ensemble, and energy-ledger checks used elsewhere in the quantum closure chain. For a declared channel $\theta=(\mathcal{K}_A,\mathcal{Q},W,T_W)$, define the same-measure record residual
@@ -1995,7 +2011,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1c3f303ba650ba3a)
+[View →](../../../../../equation-mapping.html#corpus-equation-1c3f303ba650ba3a)
 Here the Born-window and thermodynamic-ensemble terms are the residuals defined in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence), while the energy term is the event-ledger residual used below. A completed measurement account requires $\mathcal{R}_{\mathrm{same}}\le1$ on the same retained window. Otherwise the model has fit several observer-level summaries with different hidden ensembles rather than deriving one record-forming channel.
 
 ### Quantum-Zeno and Anti-Zeno Benchmark
@@ -2011,7 +2027,7 @@ q_j=\widetilde{\mu}_j(B_s),
 \mu_j^+=\widetilde{\mu}_j(\,\cdot\mid B_s)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b051aef61226b0a2)
+[View →](../../../../../equation-mapping.html#corpus-equation-b051aef61226b0a2)
 The survival probability after $N$ completed records is
 $$
 P_{\mathrm{surv}}(N,t)
@@ -2019,7 +2035,7 @@ P_{\mathrm{surv}}(N,t)
 \prod_{j=1}^{N}q_j
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-51b67a9fae66615b)
+[View →](../../../../../equation-mapping.html#corpus-equation-51b67a9fae66615b)
 For this construction the product telescopes:
 $$
 P_{\mathrm{surv}}(N,t)
@@ -2033,7 +2049,7 @@ B_s\cap\bigcap_{j=1}^{N}\Phi_{j\delta t}^{-1}(B_s)
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f505e4d6fea871a6)
+[View →](../../../../../equation-mapping.html#corpus-equation-f505e4d6fea871a6)
 Along nested grid refinements the intersection can only shrink. Pure conditionalization of one fixed deterministic flow therefore cannot create the quantum-Zeno limit; it can only remove histories that escaped between probes.
 
 The probe must instead change the flow. Let $\mathcal M_{\delta t}$ be the physical probe-and-reset map and replace the free step by $\Psi_{\delta t}=\mathcal M_{\delta t}\circ\Phi_{\delta t}$. The decidable short-time criterion is
@@ -2052,7 +2068,7 @@ q_j(\delta t)
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e75851d7c13b9368)
+[View →](../../../../../equation-mapping.html#corpus-equation-e75851d7c13b9368)
 for the post-probe conditioned density $\rho_j^+$. The positive outward flux is required; a signed net flux could vanish by cancellation while survival still leaks. A Zeno-class apparatus must derive $\sup_j\kappa_j\to0$ and a uniform quadratic loss as $\delta t\to0$. An anti-Zeno regime occurs when probe back-action increases the effective escape coefficient or separatrix access relative to the unprobed channel. The Master-Equation apparatus model must therefore derive the rate-dependent map $\mathcal M_{\delta t}$, the record basin, the back-action, and the spacing dependence.
 
 Repeated multi-spin projections have experimentally produced quantum-Zeno subspaces and a measured projection-number scaling law in a diamond platform ([Kalb et al. 2016](https://doi.org/10.1038/ncomms13111)). This is an observer-level benchmark for the record-channel calculation, not evidence that projection is a substrate axiom.
@@ -2066,7 +2082,7 @@ $$
 \tau_{\text{meas}}^{(\epsilon)}>t_1-t_0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5f11efdb69a7958d)
+[View →](../../../../../equation-mapping.html#corpus-equation-5f11efdb69a7958d)
 where
 $$
 \tau_{\text{meas}}^{(\epsilon)}
@@ -2075,7 +2091,7 @@ $$
 \Sigma_{\mathcal K_A}(\Gamma_{\mathrm{tot},\epsilon}(t_0+\Delta t))=0\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9b1b6ae5a482bbe4)
+[View →](../../../../../equation-mapping.html#corpus-equation-9b1b6ae5a482bbe4)
 Thus the individual retained interaction remains below the same record threshold used above. It may still produce a small pointer displacement $Y(A)$ whose ensemble mean is visible:
 $$
 \left\langle
@@ -2087,7 +2103,7 @@ O(\epsilon),
 \mathrm{Var}_{\mathcal{E}}\!\left(Y(A_\epsilon(t_1))\right)=O(1)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-23063657b7ead4a7)
+[View →](../../../../../equation-mapping.html#corpus-equation-23063657b7ead4a7)
 The signal is therefore statistical: many similarly prepared trials can expose the weak channel even though no single trial has generated a durable record of the target variable.
 
 Post-selection does not add future causation. It is ordinary conditioning on a later record-forming event. If $\mathcal{R}_f$ is the accepted later record class, let $\mu_0$ be the preparation measure and let $\Phi^{\mathrm{tot}}_{t-t_0}$ be the coupled substrate flow for the same target, apparatus, environment, and causal-wake variables used by the record channel. The physical evolution is the pushforward
@@ -2097,7 +2113,7 @@ $$
 (\Phi^{\mathrm{tot}}_{t-t_0})_*\mu_0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aac68c6730e2eec3)
+[View →](../../../../../equation-mapping.html#corpus-equation-aac68c6730e2eec3)
 The post-selected ensemble measure is then
 $$
 \mu_{\mathrm{post}}(B)
@@ -2111,7 +2127,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-32bb9edf1e083ece)
+[View →](../../../../../equation-mapping.html#corpus-equation-32bb9edf1e083ece)
 where $\pi$ is the declared record map for the later apparatus channel. This conditional measure can sharpen which weak-probe displacements are averaged, but all substrate evolution still runs forward in absolute time. The closure target is to derive the weak-probe response and its post-selected statistics from the same deterministic flow, separatrix geometry, and record criterion used for ordinary measurements.
 
 The signed-response benchmark for post-selected weak probes should therefore be stated at the ensemble level. For a declared weak-probe pointer coordinate $Y$ and accepted later record class $\mathcal{R}_f$, define the normalized conditional response
@@ -2126,7 +2142,7 @@ Y(A_\epsilon(t_1))-Y(A_{\text{pre}})
 d\mu_{\mathrm{post}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-932c8bba60fa819a)
+[View →](../../../../../equation-mapping.html#corpus-equation-932c8bba60fa819a)
 If standard weak-value analysis predicts a signed displacement, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover that sign and magnitude as a conditional average over below-threshold probe trajectories:
 $$
 \left|
@@ -2138,7 +2154,7 @@ $$
 \varepsilon_Y
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-84a08b2011d3428c)
+[View →](../../../../../equation-mapping.html#corpus-equation-84a08b2011d3428c)
 while still satisfying the no-record condition for each retained weak-probe trial. A negative or otherwise anomalous signed average is therefore a constraint on the conditional response kernel, not evidence for negative-mass ontology, backward substrate causation, or a completed measurement record inside the weak-probe window.
 
 The same discipline applies when the weak probe is calibrated as a time-like observable. Let $\Omega$ be the declared region, barrier, channel, or internal state being sampled, let $Y_\Omega$ be the weak clock-pointer coordinate, and let $\alpha_T$ convert pointer displacement into the calibrated clock unit for that apparatus. The conditional weak-time response is
@@ -2154,7 +2170,7 @@ Y_\Omega(A_\epsilon(t_1))-Y_\Omega(A_{\text{pre}})
 d\mu_{\mathrm{post}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-202c72511afb4e99)
+[View →](../../../../../equation-mapping.html#corpus-equation-202c72511afb4e99)
 For a standard weak-measurement benchmark with prediction $T_{\Omega\mid\mathcal{R}_f}^{\mathrm{QM,weak}}$, the recovery target is
 $$
 \left|
@@ -2166,7 +2182,7 @@ T_{\Omega\mid\mathcal{R}_f}^{\mathrm{QM,weak}}
 \varepsilon_T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f36c548b9abecaf3)
+[View →](../../../../../equation-mapping.html#corpus-equation-f36c548b9abecaf3)
 while the no-record condition above still holds on each retained trial. If two clock designs are known to agree in a calibrated regime, such as a dwell-style internal-state clock and a delay-style pulse clock, the additional equality target is
 $$
 \left|
@@ -2178,7 +2194,7 @@ $$
 \varepsilon_{\mathrm{eq}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fc6c64e3ee41eb2e)
+[View →](../../../../../equation-mapping.html#corpus-equation-fc6c64e3ee41eb2e)
 A negative value of $\bar{T}_{\Omega\mid\mathcal{R}_f}$ is therefore a signed conditional clock response in the post-selected ensemble. It is not negative absolute time, not a backward-in-time causal process, and not a claim that an intermediate record has already formed inside the weak-probe window.
 
 ### Relation to the Wavefunction
@@ -2209,7 +2225,7 @@ $$
 \mathcal{R}_{\mathcal{K}_A}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-140de5aecab6b09e)
+[View →](../../../../../equation-mapping.html#corpus-equation-140de5aecab6b09e)
 be the record map from the coupled target-apparatus-environment state to the retained record classes. A claimed observable label $O$ is admissible in this chapter only after it has been represented by a family of record basins
 $$
 B_k^{O,\mathcal{K}_A}
@@ -2219,7 +2235,7 @@ B_k^{O,\mathcal{K}_A}
 \{\gamma:\mathbf{1}_{\mathrm{rec}}(\gamma;k,\theta)=1\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-193215dbfaee7a79)
+[View →](../../../../../equation-mapping.html#corpus-equation-193215dbfaee7a79)
 This condition keeps the Bricmont-Goldstein/Bohmian warning in native form: a channel may reveal a position-like record, but spin-, momentum-, phase-, and energy-like labels are often apparatus-defined outcomes of an interaction. They need not be primitive properties carried unchanged into the apparatus. The deterministic substrate may still contain velocities, angular-momentum ledgers, phases, and causal-wake histories; the measurement claim is narrower, namely that the chosen apparatus kernel maps the coupled flow into a persistent record with the advertised observer-level statistics.
 
 For composite assemblies, position-like and energy-like records are projections of a retained internal ledger, not primitive one-body properties. A detector may report a response center, arrival cell, ionization energy, calorimeter deposit, or spectral transition, but the substrate variables are constituent positions, velocities, shielded internal causal history, exposed coupling rows, recoil, and Noether sea response. The apparatus kernel must state which projection it reports and what internal rows are left unmeasured.
@@ -2262,7 +2278,7 @@ P_{+}(\hat{\mathbf m})+P_{-}(\hat{\mathbf m}),
 \le\varepsilon_{\mathrm{herald}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1cefe0676f86223c)
+[View →](../../../../../equation-mapping.html#corpus-equation-1cefe0676f86223c)
 Here $\eta_{\mathrm{SG}}^{\mathrm{obs}}$ is the independently measured fraction of prepared trials that produce either accepted detector record for the same apparatus class, including failed capture and rejected events in the denominator. This gate can expose detector loss or failed record formation. The internal consistency identity remains $K_{+}^{\mathrm{SG}}+K_{-}^{\mathrm{SG}}=G_{\mathrm{rec}}$ when $\mathcal Q_{\hat{\mathbf m}}\ne0$; the $\mathcal Q_{\hat{\mathbf m}}=0$ separatrix requires the higher-order resolution already stated by the source derivation.
 
 The second gate is the half-angle law, read as a consistency residual rather than an inserted record rule. For a spin-$\tfrac{1}{2}$ preparation at effective angle $\alpha$ relative to $\hat{\mathbf m}$,
@@ -2277,7 +2293,7 @@ $$
 \le\varepsilon_{\mathrm{half}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8d471f9920ac21c0)
+[View →](../../../../../equation-mapping.html#corpus-equation-8d471f9920ac21c0)
 with $P_{+}+P_{-}>0$. The conditional plus-channel probability is averaged over the incoming measure in the invariant-measure record coordinate $u_{\hat{\mathbf m}}(\theta_{\mathrm{rec}})=\int_0^{\theta_{\mathrm{rec}}}\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(s)\,ds$ of the locked apparatus record cycle, not the raw phase $\theta_{\mathrm{rec}}/(2\pi)$ (which is only the calibrated constant-phase-speed limit). The effective spinor coordinate and the record-cycle density $\rho_{\hat{\mathbf m}}^{\mathrm{rec}}$ are supplied by the same ordered-frame derivation, so this residual imports them rather than re-deriving them.
 
 This is a single-assembly measurement statement. Bell-pair response and photon-polarization correlations additionally require the pair-provenance ledger and photon Gate B; they should not be treated as closed by the measurement ontology alone.
@@ -2293,7 +2309,7 @@ $$
 \eta_{\mathrm{IFM}}^{(1)}=\frac{1}{4}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f0c8086c13d6c685)
+[View →](../../../../../equation-mapping.html#corpus-equation-f0c8086c13d6c685)
 and, for an ideal $N$-stage Zeno-chained interferometer,
 $$
 \eta_{\mathrm{IFM}}^{(N)}
@@ -2302,7 +2318,7 @@ $$
 \longrightarrow 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c6e1bb6e33b761a0)
+[View →](../../../../../equation-mapping.html#corpus-equation-c6e1bb6e33b761a0)
 subject to the apparatus losses, visibility, and record-class convention declared for the experimental realization.
 
 The native account may use the probe's unresolved causal-wake and apparatus history across the full interferometer even when the localized probe assembly is recorded in the unblocked output channel. That possibility is a mechanism target, not a completed explanation. Closure requires the declared apparatus kernel to reproduce the interaction-free success probability and visibility while the retained detected-object trials show no absorption or target-transit event, and while the photon Gate A/B/C and source-depletion/recoil ledgers remain closed. A statement that "the wake sampled the blocked arm" is not enough without that record and energy accounting.
@@ -2316,7 +2332,7 @@ $$
 P_k = \mu_*(B_k)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1685da9dd6809d0d)
+[View →](../../../../../equation-mapping.html#corpus-equation-1685da9dd6809d0d)
 with $B_k$ the record-forming attractor basins that satisfy the record, persistence, and event-ledger tests above, and $\mu_*$ the relevant invariant or coarse-grained measure. When the channel includes candidate branches that do not yet pass those tests, the normalized record probability is the filtered quantity $P_\theta(k)$ rather than a weight assigned to every formal branch label.
 
 Born-rule statements must also stay at the preparation-to-record level. In a destructive channel, a formal comparison state need not survive as an outstate after the apparatus interaction. Photon absorption by a polarizer is the standard example: the admissible question is the probability that the declared preparation is routed into a record class such as transmitted, absorbed, or scattered by the apparatus kernel. The post-measurement state catalog is a later record update, not the object whose existence supplies the Born weight.
@@ -2330,7 +2346,7 @@ $$
 P(R_k)=\mu_*\!\left(\pi^{-1}(R_k)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5678e98a1e754406)
+[View →](../../../../../equation-mapping.html#corpus-equation-5678e98a1e754406)
 The source of $\mu_*$ is therefore part of the measurement closure, not an optional interpretive add-on.
 
 The load-bearing step is measure selection, not the indicator identity. Let $\nu_{\mathrm{prep}}$ be the preparation-limited unresolved-history measure, and let
@@ -2342,7 +2358,7 @@ $$
 \nu_{\mathrm{prep}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f1e9bc199f4814e9)
+[View →](../../../../../equation-mapping.html#corpus-equation-f1e9bc199f4814e9)
 be its deterministic pushforward into the retained chart. A basin law is predictive only if a declared selection principle — for example a unique physical/SRB measure, a zero-noise limit, or unique ergodicity of a material return map — selects one $\mu_*$ for the admissible preparation class. It must also supply the equidistribution step
 $$
 \frac{1}{N}
@@ -2352,7 +2368,7 @@ $$
 \mu_*(B_i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-959a1ace5e405d7e)
+[View →](../../../../../equation-mapping.html#corpus-equation-959a1ace5e405d7e)
 for preparation-almost-every retained state $\gamma$, where $\mathcal F_{\mathrm{ret}}$ is the declared material return map, or a finite-window error bound that plays the same role. Only after those two obligations are met does
 $$
 p_i
@@ -2362,7 +2378,7 @@ p_i
 \mu_*(B_i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f1153a8f230c56c7)
+[View →](../../../../../equation-mapping.html#corpus-equation-f1153a8f230c56c7)
 up to the metastability, leakage, escape, and coarse-state errors declared for that same finite window. A weight assignment that is not this basin measure introduces an untracked kernel between the substrate flow and the recorded outcome.
 
 Finite record resolution can export a probability interval before it exports a point probability. Let a finite partition $\mathcal{P}_N=\{C_a\}$ cover the retained history chart $\Gamma_{\eta,h}$ for the same setup $\theta$, and let
@@ -2372,7 +2388,7 @@ E_k(\theta)
 \pi^{-1}(R_k)\cap\mathsf R_\theta^{-1}(1)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-25d0bbb79bf32871)
+[View →](../../../../../equation-mapping.html#corpus-equation-25d0bbb79bf32871)
 be the eligible record event. The lower and upper record weights at that resolution are
 $$
 p_{k,N}^-
@@ -2386,13 +2402,13 @@ p_{k,N}^+
 \mu_*(C_a).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bc539d6e63d1e054)
+[View →](../../../../../equation-mapping.html#corpus-equation-bc539d6e63d1e054)
 The Born-rule closure target is not merely to name a formal projector, but to show that the finite-window width
 $$
 \Delta p_{k,N}=p_{k,N}^+-p_{k,N}^-
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9cbf7ae57bd60068)
+[View →](../../../../../equation-mapping.html#corpus-equation-9cbf7ae57bd60068)
 falls below apparatus tolerance while the calibrated central value matches the Born weight. Low-amplitude or unresolved branch labels that remain inside the boundary cells of this finite partition do not yet count as independent record probabilities; they remain unresolved measure until the apparatus channel and record partition separate them.
 
 The same restriction applies to branch language. If a branch or record class is emergent from later apparatus/environment dynamics, its probability cannot be inserted as an axiom before the record map, basin family, and measure source have been fixed. Assigning weights to emergent branches without that pullback repeats the measurement cut in probabilistic form. A valid branch probability must be a derived property of the same deterministic flow that creates and preserves the record, not a label attached after the ontology has already been compressed.
@@ -2410,13 +2426,13 @@ $$
 {\|x_{\mathrm{eff}}^i-y_{\mathrm{eff}}^i\|}\,d^3x_{\mathrm{eff}}\,d^3y_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4273fd356f135273)
+[View →](../../../../../equation-mapping.html#corpus-equation-4273fd356f135273)
 and a corresponding lifetime estimate
 $$
 \tau_G\sim \frac{\hbar}{\Delta E_G}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f7488e6af04de800)
+[View →](../../../../../equation-mapping.html#corpus-equation-f7488e6af04de800)
 
 The layer-explicit effective-metric comparison replaces the displayed integration variables by $x_{\mathrm{eff}}^i$ and $y_{\mathrm{eff}}^i$ and computes the mass-density histories from the declared branch projection before interpreting $\Delta E_G$.
 
@@ -2431,7 +2447,7 @@ $$
 \frac{\tau_{\text{meas}}\Delta E_G}{\hbar}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e0eeb26c9198651a)
+[View →](../../../../../equation-mapping.html#corpus-equation-e0eeb26c9198651a)
 This ratio is not an ontology selector. It is a validation diagnostic: $\tau_{\text{meas}}$ must be derived from the Master-Equation separatrix and record-locking dynamics, while $\tau_G$ supplies an external mass-displacement benchmark. Collapse-model variants that imply persistent spontaneous heating add a separate empirical pressure, because neutron-star and low-background heating bounds can exclude that heating channel without deciding the $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold-resolution mechanism.
 
 #### Measurement and Heating Residual
@@ -2447,7 +2463,7 @@ $$
 {}-E_{\mathrm{boundary}}(T_W;\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3bf8b7dd9ded3c6b)
+[View →](../../../../../equation-mapping.html#corpus-equation-3bf8b7dd9ded3c6b)
 Here $\theta$ is the apparatus and environment record used for the same measurement run. The combined validation diagnostic is
 $$
 \mathcal{R}_{\mathrm{meas+heat}}(T_W;\theta)
@@ -2459,7 +2475,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-48b93873d06f1bcf)
+[View →](../../../../../equation-mapping.html#corpus-equation-48b93873d06f1bcf)
 A measurement model that fits Born weights only by changing the thermodynamic ensemble, or that leaves a persistent unexplained heating term, has not closed the record-forming channel. A model may still compare to CSL-like or Penrose-Diosi-like formulas, but the retained content is the observable residual, not the external collapse mechanism.
 
 ### External Gravitational Which-Path Benchmark
@@ -2473,7 +2489,7 @@ $$
 s_A(t_{\mathrm{eff}};\rho_1,\theta)-s_A(t_{\mathrm{eff}};\rho_2,\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4b1e33cc2e330467)
+[View →](../../../../../equation-mapping.html#corpus-equation-4b1e33cc2e330467)
 If $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')$ is the covariance of unresolved detector, environmental, and boundary-wake contributions over the coherence window $T_W$, the gravitational distinguishability diagnostic is
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
@@ -2484,14 +2500,14 @@ N^{-1}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')\,
 \Delta s_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-09d074ff8fe774a5)
+[View →](../../../../../equation-mapping.html#corpus-equation-09d074ff8fe774a5)
 
 The comparison criterion is:
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)\le\varepsilon_{\mathrm{wp}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9d5387e3f626c402)
+[View →](../../../../../equation-mapping.html#corpus-equation-9d5387e3f626c402)
 for an interference-preserving branch pair, unless the apparatus-target dynamics explicitly show a record-forming separatrix crossing with finite $\tau_{\text{meas}}$ and a persistent record variable. If $\mathcal{D}_{\mathrm{grav}}\gg1$ while the interference pattern remains intact and no record-autonomy condition is satisfied, the proposed effective-metric response has overproduced observable which-path information.
 
 The covariance $N_{AB}$ is not an ontological randomness postulate in this chapter. It must be derived, or bounded, from unresolved deterministic boundary data, local Noether sea state, detector calibration residuals, and ordinary environmental channels. This keeps the useful lesson from classical-quantum gravity comparisons while preserving the native claim that branch selection is finite-time assembly dynamics rather than fundamental metric collapse.
@@ -2505,7 +2521,7 @@ x_{\pm,\mathrm{eff}}^i(t_{\mathrm{eff}})
 x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})\pm\frac{1}{2}d_{\mathrm{eff}}^i(t_{\mathrm{eff}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-69b5f61929f8c109)
+[View →](../../../../../equation-mapping.html#corpus-equation-69b5f61929f8c109)
 with branch densities
 $$
 \rho_{\pm}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
@@ -2515,7 +2531,7 @@ M\,\delta_{\eta}\!\left(x_{\mathrm{eff}}^i-x_{\pm,\mathrm{eff}}^i(t_{\mathrm{eff
 \rho_{\mathrm{app}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5f0d0a2b62d184de)
+[View →](../../../../../equation-mapping.html#corpus-equation-5f0d0a2b62d184de)
 where $\rho_{\mathrm{app}}$ is the shared apparatus and environmental mass density. For a differential gravity readout channel $A$, define
 $$
 s_A(t_{\mathrm{eff}};\rho_{\pm},\theta)
@@ -2528,7 +2544,7 @@ a_i^{\mathrm{eff}}(y_{0,\mathrm{eff}}^i,t_{\mathrm{eff}};\rho_{\pm},\theta)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9f0932f3b1b5de50)
+[View →](../../../../../equation-mapping.html#corpus-equation-9f0932f3b1b5de50)
 where $y_{A,\mathrm{eff}}^i$ and $y_{0,\mathrm{eff}}^i$ are detector reference points, $e_A^i$ is the channel projection, and $a_i^{\mathrm{eff}}$ is the effective metric or weak-field acceleration readout derived from the same constitutive record $\theta$ used in the spacetime chapters.
 
 In the weak, slowly varying limit, the branch difference has the schematic tidal form
@@ -2544,7 +2560,7 @@ D_{ij}(y_{0,\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i)
 d_{\mathrm{eff}}^j(t_{\mathrm{eff}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0aab7090391b5ffe)
+[View →](../../../../../equation-mapping.html#corpus-equation-0aab7090391b5ffe)
 with
 $$
 D_{ij}(R_{\mathrm{eff}}^i)
@@ -2552,7 +2568,7 @@ D_{ij}(R_{\mathrm{eff}}^i)
 \frac{3R_{\mathrm{eff},i}R_{\mathrm{eff},j}-\|R_{\mathrm{eff}}^i\|^2 \gamma_{ij}^{\mathrm{eff}}}{\|R_{\mathrm{eff}}^i\|^5}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-606e461dfb8a3794)
+[View →](../../../../../equation-mapping.html#corpus-equation-606e461dfb8a3794)
 where $\gamma_{ij}^{\mathrm{eff}}$ is the effective spatial metric of the declared observer chart and reduces to $\delta_{ij}$ in the flat weak-response limit used by this toy model. If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')=S_{AB}\delta(t_{\mathrm{eff}}-t_{\mathrm{eff}}')$, then
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
@@ -2563,7 +2579,7 @@ S^{-1}_{AB}\,
 \Delta s_B(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-72bafc1f86965ce7)
+[View →](../../../../../equation-mapping.html#corpus-equation-72bafc1f86965ce7)
 
 This toy model turns the benchmark into a simulation target. The required inputs are $M$, $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$, $x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})$, detector geometry $(y_{A,\mathrm{eff}}^i,y_{0,\mathrm{eff}}^i,e_A)$, noise matrix $S_{AB}$, coherence time $T_W$, and the constitutive weak-field map in $\theta$. An interference-preserving run passes the gravitational which-path gate only if $\mathcal{D}_{\mathrm{grav}}(T_W;\theta)\le\varepsilon_{\mathrm{wp}}$ or if the same apparatus model derives a record-forming separatrix crossing with a persistent record variable.
 
@@ -2594,7 +2610,7 @@ $$
 \tau_{\text{meas}} > 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6f5144aaa8420307)
+[View →](../../../../../equation-mapping.html#corpus-equation-6f5144aaa8420307)
 for real record-forming interactions, even if that time becomes extremely short in ordinary laboratory practice.
 
 The last comparison is the operator-checkable form of the finite-time claim. No finite-resolution experiment is required to establish an exactly zero duration; the model must instead expose a positive lower bound that a tighter experimental upper bound can contradict.
@@ -2645,7 +2661,7 @@ $$
 f(x)=a^x\bmod N
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-670c164773e4c6e6)
+[View →](../../../../../equation-mapping.html#corpus-equation-670c164773e4c6e6)
 is implemented by controlled assembly couplings rather than by abstract gate labels alone.
 
 This is where implementation cannot be skipped. The standard algorithm may treat modular exponentiation as a reversible operation in a circuit. The assembly account must say which physical carriers are coupled, how long the coupling remains coherent, which causal wakes carry the interaction, and which apparatus record confirms that the operation actually entered the intended channel.
@@ -2671,7 +2687,7 @@ $$
 \tau_{\mathrm{gate}}\ge \frac{d_{\mathrm{ctrl}}}{c_0}+\tau_{\mathrm{settle}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f18880dda062717d)
+[View →](../../../../../equation-mapping.html#corpus-equation-f18880dda062717d)
 Here $c_0$ is the calibrated asymptotic observer-sector value of the dressed assembly-channel speed $c_{\mathrm{eff}}$ in the laboratory regime, not the primitive wake speed $c_f$. The two symbols are not universally identical: $c_{\mathrm{eff}}(\mathbf X,T)$ may vary with the declared Noether sea state, while $c_0$ is the observer calibration used by the apparatus bound. Control signals traverse the dressed assembly network in the Noether sea, so the tighter apparatus bound uses the effective channel speed rather than the substrate carrier speed. The propagation term is directly calibrated once $d_{\mathrm{ctrl}}$ and $c_0$ are known; the native burden is to derive $\tau_{\mathrm{settle}}$ and its scaling with coupling strength, Noether sea density $\rho_{\mathrm{NS}}$, and susceptibility $\chi_{\mathrm{sea}}$. Inherited pair provenance is a separate case. It may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
 
 Quantum error correction is the sharpest benchmark for that scaling claim. The comparison is not whether error correction is conceptually possible in the standard circuit model. The comparison is whether a physical register can keep the encoded logical basin stable while each correction cycle remains below the record-forming and dissociation thresholds of the underlying assemblies. A candidate implementation should therefore track at least three timescales:
@@ -2683,7 +2699,7 @@ $$
 \tau_{\mathrm{decoh}}(\rho_{\text{NS}},\chi_{\text{sea}},\mathcal{H}_{\mathrm{reg}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a3af9e43f43dd49b)
+[View →](../../../../../equation-mapping.html#corpus-equation-a3af9e43f43dd49b)
 where $\tau_{\mathrm{gate}}$ is the controlled operation time, $\tau_{\mathrm{corr}}$ is the full syndrome-extraction and recovery cycle, and $\tau_{\mathrm{decoh}}$ is the medium- and path-history-dependent coherence time of the encoded assembly network with register path-history ledger $\mathcal{H}_{\mathrm{reg}}$. All three are apparatus-clock readouts in the effective chart, not substrate absolute-time intervals.
 
 The decoherence time is not a free phenomenological constant in the native record model. For a declared environment coarse-graining $\mathcal Q_{\mathrm{env}}$, retained access region $W_{\mathrm{env}}$, persistence time $T_{\mathrm{rec}}$, and candidate environment record basin $B_{k_{\mathrm{env}}}$ for the register channel, define it as the first passage at which the reduced register becomes restartable and that environment record becomes autonomous:
@@ -2702,7 +2718,7 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-28c79cbc5db20ea9)
+[View →](../../../../../equation-mapping.html#corpus-equation-28c79cbc5db20ea9)
 Before that first passage, $\Delta_{\mathrm{div}}=O(1)$ marks live path-history dependence that cannot be restarted from the reduced register state alone. The necessary validation inequality is
 $$
 p_{\mathrm{cyc}}(\theta)
@@ -2710,7 +2726,7 @@ p_{\mathrm{cyc}}(\theta)
 p_{\mathrm{th}}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2f2ada6e6823170e)
+[View →](../../../../../equation-mapping.html#corpus-equation-2f2ada6e6823170e)
 where $p_{\mathrm{cyc}}(\theta)$ is the physical error probability per correction cycle derived or independently measured for hardware-and-noise context $\theta$, and $p_{\mathrm{th}}(\theta)$ is the threshold of the declared code and decoder under that same error model. In a weak, approximately memoryless regime,
 $$
 p_{\mathrm{cyc}}(\theta)
@@ -2718,7 +2734,7 @@ p_{\mathrm{cyc}}(\theta)
 \frac{\tau_{\mathrm{gate}}+\tau_{\mathrm{corr}}}{\tau_{\mathrm{decoh}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d4c7beb34c242578)
+[View →](../../../../../equation-mapping.html#corpus-equation-d4c7beb34c242578)
 so the operational time-scale condition is $(\tau_{\mathrm{gate}}+\tau_{\mathrm{corr}})/\tau_{\mathrm{decoh}}\lesssim p_{\mathrm{th}}$, which is much stronger than merely requiring the ratio to be below one. The threshold must be predicted from the declared physical error channel or calibrated independently; it may not be replaced by unity. The correction operation must also close its energy, momentum, angular-momentum, and record ledgers. Failure of this inequality in a hardware-dependent but reproducible way would be a useful departure from ideal unitary scaling; success over increasing code distance would constrain how weak the Noether sea decoherence channel must be in calibrated laboratory conditions.
 
 That increasing-distance success is now an observed constraint rather than a wholly open possibility. A superconducting surface-code memory operated below threshold showed a logical-error suppression factor $\Lambda=2.14\pm0.02$ when code distance increased by two ([Google Quantum AI and Collaborators, 2025](https://doi.org/10.1038/s41586-024-08449-y)). This observer-level result does not identify a Noether sea mechanism. It requires any register model to permit the measured suppression and long-cycle stability in the calibrated regime, and it bounds any proposed deterministic decoherence channel strongly enough that increasing code distance must improve rather than degrade the logical record over the tested range.
@@ -2793,7 +2809,7 @@ $$
 \Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8c70ff41dec834b0)
+[View →](../../../../../equation-mapping.html#corpus-equation-8c70ff41dec834b0)
 
 and with the corresponding angular-momentum residuals below tolerance. Without that row, volumetric exclusion may explain why same-state packing is dynamically costly, but it does not yet derive the antisymmetric exchange phase used by the observer-level fermion chart.
 
@@ -2828,7 +2844,7 @@ $$
 \prod_{a=1}^{m}\epsilon_{\mathrm{ex}}(r_a).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7cd0aaa3cd8f79bc)
+[View →](../../../../../equation-mapping.html#corpus-equation-7cd0aaa3cd8f79bc)
 If exactly $f$ of those rows are fermionic and the remaining rows have trivial bosonic sign, then $\epsilon_{\mathrm{ex}}(C)=(-1)^f$. An even number of fermionic rows therefore gives the symmetric composite sign $+1$, while an odd number gives $-1$. This is the observer-level exchange-composition target; it does not assert that the constituents lose identity or that a product sign alone guarantees condensation.
 
 That product law is not the general two-dimensional braid rule. For an Abelian anyon representation with single-anyon generator phase $e^{i\alpha}$, exchanging two identical composites containing $m$ matched anyons winds every constituent of one composite around every constituent of the other and gives
@@ -2838,7 +2854,7 @@ U_{\mathrm{comp}}(\sigma)
 e^{im^2\alpha}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-65a9428b7cdf5492)
+[View →](../../../../../equation-mapping.html#corpus-equation-65a9428b7cdf5492)
 when the composites remain bound and the braid is adiabatic. The fermionic endpoint agrees with parity because $m^2\equiv m\pmod 2$ at $\alpha=\pi$; intermediate anyonic phases retain the $m^2$ dependence.
 
 The derivation burden is stricter than parity counting. The same retained composite record must show that whole-composite exchange preserves binding, returns the internal state to the same gauge class, keeps constituent overlap corrections below tolerance, and supplies the effective center-of-assembly state on which $P_+$ acts. At densities where the constituent wave or wake histories overlap strongly enough to expose their internal labels, ideal composite-boson behavior may fail. Atomic condensates, paired-electron channels, and massive bosonic assemblies therefore constrain this composition map independently of the planar photon-like route.
@@ -2850,7 +2866,7 @@ $$
 U(\sigma_a)=e^{i\alpha}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6f7c3ea33fafafc5)
+[View →](../../../../../equation-mapping.html#corpus-equation-6f7c3ea33fafafc5)
 to a braid generator $\sigma_a$. The bosonic and fermionic cases are the endpoints $\alpha=0$ and $\alpha=\pi$, while intermediate phases are anyonic. Fractional-quantum-Hall interferometry has directly observed a fractional braiding phase ([Nakamura et al. 2020](https://doi.org/10.1038/s41567-020-1019-1)), so this is an observer-level constraint rather than an optional comparison.
 
 The planar-channel hypothesis must therefore distinguish two physical situations:
@@ -2862,13 +2878,13 @@ For a photon-like planar carrier, $\xi\to0$ removes the volumetric obstruction b
 
 ### The 3D-to-2D Transition
 
-The transition can be summarized by the canonical Noether braid shape ratio from [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
+The transition can be summarized by the canonical Noether braid shape ratio from [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or group-velocity-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-16d7c673e31ee783)
+[View →](../../../../../equation-mapping.html#corpus-equation-16d7c673e31ee783)
 
 For compact notation, let $\xi_{\mathrm{stat}}$ denote the statistics-classifying ratio: $\xi_{\mathrm{stat}}=\xi_q(0)$ when an admissible rest branch exists, and otherwise the direct axis ratio of the retained null-channel support. It never denotes the Lorentz moving-branch projection $\xi_q(v)/\xi_q(0)$. A boosted massive fermion may therefore satisfy $\xi_q(v)/\xi_q(0)\to0$ while its rest-envelope class and fermionic exchange row remain unchanged. A photon-like carrier with no admissible rest branch must instead earn the planar classification from its null-channel support and exchange holonomy.
 
@@ -2877,7 +2893,7 @@ $$
 0\le\xi_B<\xi_F\le1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-867964abee197d8d)
+[View →](../../../../../equation-mapping.html#corpus-equation-867964abee197d8d)
 where $\xi_{\mathrm{stat}}\ge\xi_F$ is the calibrated volumetric regime and $\xi_{\mathrm{stat}}\le\xi_B$ is the calibrated planar-support regime. The intermediate window $\xi_B<\xi_{\mathrm{stat}}<\xi_F$ is unresolved by geometry alone. It is not automatically an anyonic sector: an anyonic classification additionally requires a two-dimensional non-contractible braid record and a measured nontrivial exchange holonomy. If a claimed elementary family crosses this window, closure requires either a theorem excluding stable retained branches there or an explicit exchange classification throughout it.
 
 The elementary fermion candidate regime has $\xi_{\mathrm{stat}}\ge\xi_F$. The rest envelope is oblate but still volumetric. The candidate planar coherent-channel regime has $\xi_{\mathrm{stat}}\le\xi_B$ along an intrinsic carrier-family continuation, or reaches a rest-chartless null endpoint whose support is independently shown to be planar. Composite-boson exchange is not classified by this axis ratio.
@@ -2890,7 +2906,7 @@ Neutrality is not enough to make a carrier bosonic. A neutral Noether braid may 
 
 #### Spin-Geometry Co-Variation Target
 
-The missing spin-statistics bridge is the co-variation of exchange character with geometry on one retained deformation family. It is not enough to derive $r_\star$ on one volumetric branch and $\xi_{\mathrm{stat}}\to0$ on a different planar ansatz, and ordinary drift at fixed family member does not count as this continuation. A candidate elementary carrier family $\lambda\mapsto\mathfrak B(\lambda)$ must carry both records through the same rest-branch continuation, with a rest-chartless endpoint interpreted by the limiting family record:
+The missing spin-statistics bridge is the co-variation of exchange character with geometry on one retained deformation family. It is not enough to derive $r_\star$ on one volumetric branch and $\xi_{\mathrm{stat}}\to0$ on a different planar ansatz, and ordinary group velocity at fixed family member does not count as this continuation. A candidate elementary carrier family $\lambda\mapsto\mathfrak B(\lambda)$ must carry both records through the same rest-branch continuation, with a rest-chartless endpoint interpreted by the limiting family record:
 $$
 \xi_{\mathrm{stat}}(\lambda)\ge\xi_F
 \Longrightarrow
@@ -2901,7 +2917,7 @@ $$
 e^{i\alpha_{\mathrm{ex}}(\lambda)}=+1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-97e266b5c357c397)
+[View →](../../../../../equation-mapping.html#corpus-equation-97e266b5c357c397)
 for the claimed fermion-to-planar-boson route, with all gauge-control, angular-momentum, stability, and event-ledger residuals evaluated on that same family. The first implication consumes the retained non-gauge ordered-frame row. The second must show why the ordered-frame obstruction disappears and why the remaining planar braid holonomy is trivial rather than anyonic. This co-variation is the actual geometry-side spin-statistics theorem target.
 
 ### Effective Exchange-State Contract
@@ -2919,7 +2935,7 @@ P_-
 \sum_{\sigma\in S_N}\operatorname{sgn}(\sigma)U_\sigma
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2dfe60cf8c3f09f2)
+[View →](../../../../../equation-mapping.html#corpus-equation-2dfe60cf8c3f09f2)
 The Bose-Einstein and Fermi-Dirac comparison spaces are therefore
 $$
 \mathcal{H}_{\theta,+}^{(N)}
@@ -2931,7 +2947,7 @@ P_+\mathcal{H}_\theta^{\otimes N},
 P_-\mathcal{H}_\theta^{\otimes N}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3797a609f9dad969)
+[View →](../../../../../equation-mapping.html#corpus-equation-3797a609f9dad969)
 The exchange rule is a statement about the effective quotient after inaccessible provenance has been compressed, not a claim that substrate identities disappear. Individual architrinos still retain path history and provenance; $P_\pm$ acts only after the apparatus and coarse-graining have made those labels unavailable to the observer-level state.
 
 The standard Slater-determinant construction is the first finite-$N$ benchmark for the fermionic side of this quotient. For one-particle states $\{\psi_i\}_{i=1}^N$, the observer-level comparison state is
@@ -2942,7 +2958,7 @@ $$
 \det\!\left[\psi_i(j)\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c27ab1917437b99f)
+[View →](../../../../../equation-mapping.html#corpus-equation-c27ab1917437b99f)
 This state changes sign under exchange and vanishes when two effective rows become identical, so it packages both antisymmetry and Pauli exclusion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this determinant is not substrate identity loss; it is the record-facing compression obtained after the apparatus cannot access individual architrino provenance.
 
 Two-electron atoms give a sharper energy benchmark because the Coulomb exchange integral separates the direct repulsion from the exchange contribution. The direct and exchange integrals are written here in the standard SI two-electron comparison form, with $\epsilon_0$ the vacuum permittivity (not the polarity unit $\epsilon$):
@@ -2956,7 +2972,7 @@ J_{ab}
 d^3r_1d^3r_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b5ee7bc93b4c92f9)
+[View →](../../../../../equation-mapping.html#corpus-equation-b5ee7bc93b4c92f9)
 $$
 K_{ab}
 =
@@ -2970,7 +2986,7 @@ K_{ab}
 d^3r_1d^3r_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f130aae00ec77bde)
+[View →](../../../../../equation-mapping.html#corpus-equation-f130aae00ec77bde)
 The symmetric and antisymmetric spatial states split as $J_{ab}\pm K_{ab}$, with the fermionic spin sector supplying the compensating exchange symmetry. A useful exchange-energy recovery residual is therefore
 $$
 \mathcal{R}_{\mathrm{Slater}}(\theta)
@@ -2984,7 +3000,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6ce567e40f314b4e)
+[View →](../../../../../equation-mapping.html#corpus-equation-6ce567e40f314b4e)
 Here $\Delta E_{ab}^{\mathrm{antisym}}$ and $\Delta E_{ab}^{\mathrm{sym}}$ are the $\mathbb{A}\mathbb{A}\mathbb{A}$-predicted antisymmetric-spatial (spin-triplet) and symmetric-spatial (spin-singlet) energies, compared against the standard $J_{ab}-K_{ab}$ and $J_{ab}+K_{ab}$ respectively; the split is by spatial exchange symmetry. This does not replace the ordered-frame spinor proof. It prevents a purely geometric exclusion story from missing the experimentally important exchange-energy splitting that appears before full many-electron Hartree-Fock closure.
 
 The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric Noether braid configurations with $\xi_{\mathrm{stat}}\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi_{\mathrm{stat}}\le\xi_B$. The exchange closure target is
@@ -2999,7 +3015,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-63822b0d5b43cbf8)
+[View →](../../../../../equation-mapping.html#corpus-equation-63822b0d5b43cbf8)
 Here $\mathcal{H}^{(N)}_\theta=\mathcal{H}_\theta^{\otimes N}$ and $\mu^{\mathrm{prov}}$ denotes the same retained physical ensemble after a swap of inaccessible provenance labels. The first two terms demand antisymmetric and symmetric state-space recovery in the proposed geometric regimes. The third term checks that the observer-level quotient is legitimate: swapping labels that the apparatus cannot access should not change the retained observable state beyond tolerance. If this residual fails, the proposed Fermi-Dirac or Bose-Einstein rule has been imposed as formal bookkeeping rather than derived from assembly geometry.
 
 For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on records that also satisfy $\Delta_{\mathrm{pull}}(\theta;W,r_\star)\le\varepsilon_{\mathrm{pull}}$ with zero retune penalty in the same-record spinor-label pullback. This ties the effective exchange projection to the same non-gauge ordered-frame row instead of allowing the antisymmetric projector to be fitted after the fact.
@@ -3018,7 +3034,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2a0cf75ae6f72777)
+[View →](../../../../../equation-mapping.html#corpus-equation-2a0cf75ae6f72777)
 where $T_{\mathrm{temp}}$ is thermodynamic temperature and $\mu_{\mathrm{chem}}$ is the chemical potential. The use of $T_{\mathrm{temp}}$ keeps temperature distinct from absolute time $T$.
 
 Let $N_E$ be the occupation count extracted from many-excitation record basins in an effective energy bin $E$. The native recovery target is not a separately fitted thermodynamic ensemble, but
@@ -3030,7 +3046,7 @@ $$
 \bar n_\sigma(E)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-66da337573f8a173)
+[View →](../../../../../equation-mapping.html#corpus-equation-66da337573f8a173)
 under the same $\mu_{*,T_W}$ that supplies exchange-state weights, apparatus records, energy accounting, and repeated frequencies. For photons, the $\mu_{\mathrm{chem}}=0$ limit must also join the Gate C Planck-spectrum recovery. A successful projector calculation without this same-measure occupation law closes exchange symmetry but not Fermi-Dirac or Bose-Einstein statistics.
 
 ### Interfaces

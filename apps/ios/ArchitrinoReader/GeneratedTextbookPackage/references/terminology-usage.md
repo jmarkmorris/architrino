@@ -168,7 +168,7 @@ $$
 \operatorname{sign}(\mathbf p\cdot\mathbf S)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d1eb63e6aa052ed1)
+[View →](../../../../equation-mapping.html#corpus-equation-d1eb63e6aa052ed1)
 
 denote the polarity-weighted handedness when the polarity dipole $\mathbf p$ is nonzero. Define the polarity-assignment sign on that chart by
 
@@ -180,7 +180,7 @@ c_{\mathrm{pol}}
 \chi_{\mathrm{pol}}=o_{\mathrm{PA}}c_{\mathrm{pol}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3923ecd52c10f674)
+[View →](../../../../equation-mapping.html#corpus-equation-3923ecd52c10f674)
 
 Then $C$ leaves $o_{\mathrm{PA}}$ fixed and reverses $c_{\mathrm{pol}}$; $P$ reverses $o_{\mathrm{PA}}$ and leaves $c_{\mathrm{pol}}$ fixed; both reverse $\chi_{\mathrm{pol}}$; and $CP$ preserves $\chi_{\mathrm{pol}}$. This factorization is definition-level symmetry bookkeeping on a chart where both signs exist. It is not a retained-branch theorem, and it does not manufacture either sign when the underlying orientation or dipole is absent.
 
@@ -196,15 +196,19 @@ The hypothesis is discriminable. The $C$-image and $CP$-image relations differ i
 
 Usage license: pair-production prose may use `pro-anti fermion pair` as shorthand for this hypothesis-attached relation. At first use in a document, name or link this hypothesis so the underived half stays visible. Claim level: named hypothesis with a stated discriminator; not a retained-branch result.
 
-## Site and Drift Usage
+## Site and Group Velocity Usage
 
-Two frequently used kinematic terms with canonical meanings (operator-ratified 2026-07-08).
+Use `group velocity` for translation of a complete assembly, and `group speed` for its magnitude. State the declared center and reference frame. A velocity includes direction; a speed does not. `Translation` may explain the motion, but `translation velocity`, `bulk velocity`, and assembly `drift` are not competing canonical names. Preserve any averaging, constant-motion, or center-of-mass convention explicitly rather than silently removing it.
 
 | When you mean... | Prefer | Notes | Example |
 | --- | --- | --- | --- |
 | the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site can transmit and receive; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The B1 record has six sites on its prescribed common-axis paths." |
 | the point an arriving causal wake was born | `transmitter site at emission time $T_t$` | the delayed formalism evaluates the transmitter at the causal root's emission time, not at reception time | "The line of action runs from the transmitter site at $T_t$ to the receiver site at $T_r$." |
-| uniform, unaccelerated translation of an assembly (or of the medium) relative to the void frame | `drift`, `drift speed` $u$ | drift deliberately connotes non-acceleration — uniform rotation plus drift is a screw motion; accelerated translation should be named as such, never called drift | "At drift $u$ the branch cadence is $\omega_0\sqrt{1-u^2/c_f^2}$." |
+| uniform, unaccelerated translation of an assembly relative to the declared frame | `constant group velocity`, `constant group speed` $u$ when only magnitude is used | Constant group velocity means both magnitude and direction are fixed; constant group speed alone does not exclude a change of direction. Uniform rotation plus constant group velocity along its axis is a screw motion. | "For uniform translation at group speed $u$ the branch cadence is $\omega_0\sqrt{1-u^2/c_f^2}$." |
+
+Group velocity may vary with time; name acceleration when it matters. A mean group velocity retains its declared averaging interval. The declared translation center, geometric center, center of mass, and response center are not automatically interchangeable. Preserve the local center definition and any unclosed center-of-response comparison. Likewise, group velocity relative to the Euclidean void and group velocity relative to local Noether sea flow are distinct frame-dependent quantities.
+
+Keep `Noether sea drift` or `sea flow` for the medium, `phase drift` and `numerical drift` for their distinct meanings, and conventional historical or statistical uses in their own contexts. In wave comparisons, explicitly distinguish `wave-packet group velocity` from `assembly group velocity`; equality is a recovery target unless derived in the stated regime. This vocabulary does not import a wave dispersion law or a constituent speed limit. Preserve mathematical symbols, machine identifiers, and provenance-bound records until a separate notation or interface migration is approved.
 
 ## Transmitter and Receiver Event Usage
 
@@ -216,7 +220,7 @@ $$
 \mathbf r_t=\mathbf X_r(T_r)-\mathbf X_t(T_t).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2e23f88469d83d13)
+[View →](../../../../equation-mapping.html#corpus-equation-2e23f88469d83d13)
 
 The corresponding factors are
 
@@ -226,7 +230,7 @@ D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_t(T_t),
 D_r=c_f-\hat{\mathbf r}_t\cdot\mathbf V_r(T_r),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f2154af5114cf473)
+[View →](../../../../equation-mapping.html#corpus-equation-f2154af5114cf473)
 
 with exact root playback
 
@@ -234,7 +238,7 @@ $$
 \frac{dT_t}{dT_r}=\frac{D_r}{D_t}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-88969056b8a4fbfe)
+[View →](../../../../equation-mapping.html#corpus-equation-88969056b8a4fbfe)
 
 Use `transmitter-side factor` for $D_t$ and `receiver-side factor` for $D_r$. Use `root-playback derivative` for the signed ratio $D_r/D_t$. In the canonical acceleration law, use `transmitter-side acceleration weight` for $W^{\mathrm{acc}}=c_f/|D_t|$. Never describe $D_r/D_t$ as an acceleration weight.
 
@@ -487,7 +491,7 @@ R_{\mathrm{plane}}
 \right),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5835bbbeb0e2e8d4)
+[View →](../../../../equation-mapping.html#corpus-equation-5835bbbeb0e2e8d4)
 
 where $\mathcal L_{\mathrm{pair}}$ identifies the common assembly ledger; $R_C$ declares the polarity-conjugation relation; $R_o$ declares the pro/anti-orientation relation when that orientation exists; $R_{\omega}$ declares relative circulation; $R_{\mathrm{axis}}$ declares the axis relation; and $R_{\mathrm{plane}}$ declares planarity. An omitted row is unknown, not false. This is a relation record, not a new braid family or particle species.
 
