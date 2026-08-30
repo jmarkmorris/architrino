@@ -113,3 +113,38 @@ test("reader-facing publication boundary rejects priority and operator scaffoldi
     assert.match(result.stderr, new RegExp(rule, "u"));
   }
 });
+
+test("reader-facing publication boundary rejects embedded editing and implementation instructions", (t) => {
+  const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), "architrino-publication-instructions-"));
+  t.after(() => fs.rmSync(fixtureRoot, { recursive: true, force: true }));
+  const file = path.join(fixtureRoot, "chapter.md");
+  fs.writeFileSync(file, [
+    "# Chapter",
+    "## Reusable Assessment Prompt",
+    "## Planned Runtime Artifacts",
+    "**Implementation status:** not implemented. The reserved paths do not exist.",
+    "The medium calculation exceeded its declared 2 GiB memory limit.",
+  ].join("\n"));
+
+  const result = run(file);
+  assert.equal(result.status, 1);
+  for (const rule of ["internal-assessment-prompt", "internal-runtime-plan", "internal-implementation-status", "internal-resource-limit"]) {
+    assert.match(result.stderr, new RegExp(rule, "u"));
+  }
+});
+
+test("reader-facing publication boundary preserves uncertainty, public history, and scientific terminology", (t) => {
+  const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), "architrino-publication-science-"));
+  t.after(() => fs.rmSync(fixtureRoot, { recursive: true, force: true }));
+  const file = path.join(fixtureRoot, "chapter.md");
+  fs.writeFileSync(file, [
+    "# Historical Assessment",
+    "No numerical evaluation is reported here; perturbation stability remains unresolved.",
+    "The 2026 assessment distinguished geometric consistency from dynamical evidence.",
+    "Spatial hashing indexes the retained history. The record reached T=0.0029.",
+    "Finite memory bounds and independent checks remain part of the numerical method.",
+  ].join("\n"));
+
+  const result = run(file);
+  assert.equal(result.status, 0, result.stderr);
+});

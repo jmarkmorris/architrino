@@ -26,6 +26,7 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 - Long-running tests, simulations, rebuilds, and analytical campaigns: [long-running-test-heartbeats.md](long-running-test-heartbeats.md).
 - Retention of large generated and machine-readable records: [machine-artifact-retention.md](machine-artifact-retention.md).
 - Plain-language explanation in operator-facing output: [operator-explanation-standard.md](operator-explanation-standard.md).
+- Textbook reading-copy and PDF regeneration: [textbook-review-exports.md](textbook-review-exports.md).
 - Closure curation (milestone corpus reorganization and the volume-split plan): [closure-curation-procedure.md](closure-curation-procedure.md).
 
 Research Lead procedures and historical checkpoints live in [Research Office](../research-office/research-lead/research-lead.md). Do not treat them as general Codex task-start guidance unless the operator/developer explicitly requests that workflow.

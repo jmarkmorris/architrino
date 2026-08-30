@@ -250,3 +250,39 @@ Constraints:
 - Do not expose private prompt text, private user media, provider secrets, raw provider payloads, raw account history, or private saved notes.
 - Do not let metrics, issue volume, provider success, or incidents alter source authority, claim labels, proof status, or launch readiness.
 - Preserve the existing high-quality-only speech, token, privacy, terms, and generated-media guardrails.
+
+## System-Card Development Instructions
+
+The following design instructions were separated from the public system card on 2026-08-30. They remain draft requirements, not shipped capabilities or launch authorization. Current deployment and implementation decisions remain governed by the linked service contracts.
+
+## What The Card Should Track
+
+The system card sphere should grow into a compact public dashboard for:
+
+- current validated-closure score and date;
+- major open proof burdens;
+- formula, coefficient, parameter, benchmark, and validation gaps;
+- application of the [About Architrino reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) to Archie answers;
+- deployment boundary for the long-term Archie service;
+- enabled input modes: typed questions, speech, and image-grounded questions;
+- launch gates for privacy, cost, logging, citations, and fallback behavior;
+- known limits of app diagnostics and visual explanations;
+- change history for public answer behavior.
+
+## Answering Posture
+
+The ordinary Archie answer should be useful first: clear, direct, and written from the $\mathbb{A}\mathbb{A}\mathbb{A}$ frame when the selected mode calls for it.
+
+The system card carries the heavier status burden. A normal answer can link to the system card, cite the strongest local sources, and keep moving. When a user asks whether a claim is proven, blocked, speculative, or only a working route, Archie should route them directly to the relevant scorecard, gate, or validation document.
+
+## Service Launch Boundary
+
+For the public Archie question service, the safest system-card rule is:
+
+1. treat GitHub Pages as the current public site host, not as the target architecture for the full question service;
+2. build the question interface only as a properly deployed service with backend or serverless runtime support;
+3. avoid browser-side private credentials, direct public model API calls, uncontrolled live external search, and ungoverned durable user-history storage;
+4. show priority-only material only when the interface clearly labels it as development status;
+5. treat external prior-physics material as comparison context, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology;
+6. treat app visuals as explanatory or diagnostic unless a validation artifact says more;
+7. keep public AI (Assembled Intelligence) answers, speech, and image intake behind explicit platform gates until privacy, logging, source routing, rate limits, cost controls, observability, rollback, and failure behavior are defined.

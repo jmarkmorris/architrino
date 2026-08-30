@@ -368,3 +368,31 @@ Plainly: one result constrains collision-free labeled motion on a shared circle;
 - Updated the B1.3 queue row to acknowledge that a past-only T04 attempt already ran but halted after a short accepted prefix on `root_completeness_not_certified`; the medium rung supplied resource telemetry only, the fine rung did not run, and no full-cycle return exists.
 
 Plainly: the B1.3 evidence is now tracked in one reviewable packet. The documentation advance does not make the short release attempt a successful orbit or a physical result.
+
+## 2026-08-30 — Publication separation of notebook development records
+
+The following development details were relocated from the public [Research Notebook](../../../content/markdown/aaa/archie/research-notebook.md). They preserve the notebook's historical account; this relocation is not a new measurement or independent verification.
+
+### Historical July 22 performance account
+
+The measured current-binary result was stark. In the six-path endurance matrix that motivated this entry, with no modeled Noether-sea response, most runs halted within roughly ten wall-clock seconds; the two longer difficult routes lasted about thirty and forty-five seconds. The accepted solver histories reached only about $T=5$ to $T=11.5$, and no preset survived one wall-clock minute on all four declared seeds. That is woefully inadequate for discovering a braid by long-horizon evolution. This is a campaign-specific performance result, not a theorem that every braid evolution must fail. It would be overturned by a same-binary, same-budget run that retains complete roots and bounded numerical error across a useful long horizon.
+
+### Analytical storage account
+
+where $\Theta_M$ is the admissible configuration space of family member $M$, $S$ is the exact prescribed source record, $P$ is the fixed analysis protocol, and $\mathbf G$ is the resulting analytical measure vector. Result packets, raw ledgers, source and protocol hashes, acceptance state, and indexed measures are stored in a versioned SQLite analytical database so that large campaigns can be queried without separating a result from the exact record that produced it.
+
+The live storage specification is [Analytical Campaign Database Requirements](analytical-campaign-database-requirements.md). Historical naming and catalog dispositions remain in [Taxonomy Migration](taxonomy-migration.md) and [Terminology Audit](terminology-audit-2026-07-22.md). The shared-circle resource limit and unexecuted refinement rung remain in the [B1.3 evidence record](evidence/2026-08-29-b13-shared-circle-balance-ladder.md#t04-past-only-release-prefix).
+
+### Historical March 12 editorial requirements
+
+Corpus requirements:
+
+- include the transmitter-side acceleration weight wherever the canonical per-hit law is stated,
+- avoid splitting the theory into a permanent "reduced model" and a separate "candidate action" unless the local document is explicitly discussing an approximation,
+- replace over-broad conservation claims with assumption-scoped theorem language,
+- keep constant emission cadence distinct from received causal-flux modulation,
+- and retain receiver velocity only in root playback, future geometry, and derived energy-rate accounts where it is actually used.
+
+
+
+These requirements record the editorial work described by the historical notebook entry. Current equations and policy remain controlled by their live owners.

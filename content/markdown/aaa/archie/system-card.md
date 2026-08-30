@@ -1,48 +1,30 @@
 # Archie System Card
 
-The Archie system card is the public status sphere for the Archie question interface. It collects the claim-status, validation, caveat, and launch-readiness material that should be easy to inspect without forcing every ordinary answer to restate the whole proof posture.
+For questions about Architrino, the recommended starting point is to give your AI assistant the [Architrino repository’s main branch](https://github.com/jmarkmorris/architrino/tree/main) and ask it to read the relevant corpus documents before answering. The hosted Archie question service is not yet available. An assistant with repository access can consult the current text directly; if yours cannot open the repository, provide the relevant documents as attachments or pasted text.
 
-The ordinary answer can be direct. The system card carries the heavier context: what is validated, what is open, what is only an app diagnostic, and what still has to be built before a public question service is safe.
+Ask for answers grounded in the documents, with links to the passages used and a clear distinction between established results and unresolved questions. Begin with the reader-facing corpus; development notes and implementation plans do not establish scientific results.
 
-The planned Archie question service is designed to answer from an $\mathbb{A}\mathbb{A}\mathbb{A}$-native educational stance so an explanation can use the framework as its working premise. That public service is not currently shipped. The contracts and fixtures under `src/archie-service` are implementation scaffolding, not a live reader capability. This system card records how the planned stance must relate to validated closure, open proof burdens, known tensions, and launch gates.
+This card explains the availability and evidence limits of the Archie question interface. It distinguishes an educational explanation of $\mathbb{A}\mathbb{A}\mathbb{A}$ from a demonstrated scientific result.
 
-## Core Status Surfaces
+## Service Availability
 
-- [Closure Scorecard](../validation/closure-scorecard.md): the reusable numeric assessment surface for mathematics and geometry closure.
-- [Failure Criteria](../validation/failure-criteria.md): conditions under which a claim, derivation route, or validation program should fail.
-- [Validation Protocols](../validation/validation-protocols.md): reusable protocols for testing recovery, coherence, simulations, and benchmark contact.
-- [Known Tensions](../validation/known-tensions.md): live tensions and recovery gaps that constrain interpretation.
-- [No-Go Theorems](../validation/no-go-theorems.md): constraints and blocked routes that protect the theory from unsupported shortcuts.
-- [Parameter Ledger](../validation/parameter-ledger.md): parameter, scale, and coefficient status for closure work.
+The public Archie question service is not currently available. Descriptions of typed, spoken, or image-grounded questions describe intended capabilities, not features readers can use today. The existing website provides corpus navigation, explanatory applications, and published documents.
 
-## What The Card Should Track
+## Understanding the Evidence
 
-The system card sphere should grow into a compact public dashboard for:
+An explanation may use $\mathbb{A}\mathbb{A}\mathbb{A}$ as its working framework without implying that every recovery claim is established. Definitions, derivations, numerical results, and open hypotheses have different evidential roles. A visualization illustrates geometry or a declared calculation; it does not by itself demonstrate physical stability or agreement with experiment.
 
-- current validated-closure score and date;
-- major open proof burdens;
-- formula, coefficient, parameter, benchmark, and validation gaps;
-- application of the [About Architrino reference policy](about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](about-architrino.md#ai-assisted-research-and-review) to Archie answers;
-- deployment boundary for the long-term Archie service;
-- enabled input modes: typed questions, speech, and image-grounded questions;
-- launch gates for privacy, cost, logging, citations, and fallback behavior;
-- known limits of app diagnostics and visual explanations;
-- change history for public answer behavior.
+The following references explain those distinctions:
 
-## Answering Posture
+- [Closure Scorecard](../validation/closure-scorecard.md): the dated assessment of mathematical and geometrical development under a declared rubric.
+- [Failure Criteria](../validation/failure-criteria.md): observations or mathematical failures that would invalidate particular claims.
+- [Validation Protocols](../validation/validation-protocols.md): methods for checking derivations, simulations, and empirical comparisons.
+- [Known Tensions](../validation/known-tensions.md): unresolved questions that constrain interpretation.
+- [No-Go Theorems](../validation/no-go-theorems.md): mathematical exclusions and their assumptions.
+- [Parameter Ledger](../validation/parameter-ledger.md): the distinction between specified parameters, measured inputs, and quantities still requiring derivation.
 
-The ordinary Archie answer should be useful first: clear, direct, and written from the $\mathbb{A}\mathbb{A}\mathbb{A}$ frame when the selected mode calls for it.
+## Sources and Limitations
 
-The system card carries the heavier status burden. A normal answer can link to the system card, cite the strongest local sources, and keep moving. When a user asks whether a claim is proven, blocked, speculative, or only a working route, Archie should route them directly to the relevant scorecard, gate, or validation document.
+An answer's evidence comes from its reasoning and identifiable supporting sources, not from the fluency of its wording. The [About Architrino reference policy](about-architrino.md#sources-references-and-attribution) and [source-checking standard](about-architrino.md#ai-assisted-research-and-review) explain how references and AI-assisted contributions are evaluated.
 
-## Service Launch Boundary
-
-For the public Archie question service, the safest system-card rule is:
-
-1. treat GitHub Pages as the current public site host, not as the target architecture for the full question service;
-2. build the question interface only as a properly deployed service with backend or serverless runtime support;
-3. avoid browser-side private credentials, direct public model API calls, uncontrolled live external search, and ungoverned durable user-history storage;
-4. show priority-only material only when the interface clearly labels it as development status;
-5. treat external prior-physics material as comparison context, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology;
-6. treat app visuals as explanatory or diagnostic unless a validation artifact says more;
-7. keep public AI (Assembled Intelligence) answers, speech, and image intake behind explicit platform gates until privacy, logging, source routing, rate limits, cost controls, observability, rollback, and failure behavior are defined.
+The absence of a completed derivation or validated result remains a limitation even when a proposed mechanism is coherent. A future question service does not change that scientific boundary.

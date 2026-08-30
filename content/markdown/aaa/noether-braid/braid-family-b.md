@@ -145,9 +145,9 @@ Because 12 is even, antipodal members of this alternating ring have like polarit
 
 Plainly: the larger ring is included here to mark the exact B1.3 boundary, not to enlarge B1.3. Its acceleration balance says nothing about retention, binding, stability, release survival, physical identity, or scientific acceptance, and it does not cover other $12{:}12$ polarity words or nonuniform phase gaps.
 
-### Deprecated Axial-Limit Control
+### All-Axial Boundary
 
-The former catalog identifier `B1.4` selected the all-axial limit
+The all-axial boundary is defined by
 
 $$
 \rho_a=0,
@@ -173,7 +173,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ebaf153c4e2667f7)
 
-This limit has $\mathcal K_{\perp}=0$: frequency, phase, and circulation labels do not create internal motion, and translation of $\mathbf C(T)$ only transports the static axial arrangement. The stable `B1.4` identifier and its prescribed source and record remain a deprecated axial-limit null control for historical reproducibility. It is not an active taxonomy member, a Borg catalog selection, a future sweep candidate, or a comparative-ranking participant.
+This limit has $\mathcal K_{\perp}=0$: frequency, phase, and circulation labels do not create internal motion, and translation of $\mathbf C(T)$ only transports the static axial arrangement. It is therefore a static coordinate boundary, not a distinct internally moving B1 member.
 
 ## Axial Translation
 

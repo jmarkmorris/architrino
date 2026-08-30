@@ -49,6 +49,26 @@ const RULES = [
     pattern: /^\s*#{1,6}\s+Deferred by operator decision\b/iu,
     message: "Operator decisions belong in priority or audit records, not textbook prose.",
   },
+  {
+    id: "internal-assessment-prompt",
+    pattern: /^\s*#{1,6}\s+Reusable Assessment Prompt\s*$/iu,
+    message: "Publish the assessment method, not the instructions for editing the assessment document.",
+  },
+  {
+    id: "internal-runtime-plan",
+    pattern: /^\s*#{1,6}\s+Planned Runtime Artifacts\s*$/iu,
+    message: "Unimplemented runtime specifications belong in development documentation.",
+  },
+  {
+    id: "internal-implementation-status",
+    pattern: /^\s*(?:\*\*)?Implementation status:(?:\*\*)?\s*not implemented\b/iu,
+    message: "State the scientific evidence limit in prose and keep implementation status separately.",
+  },
+  {
+    id: "internal-resource-limit",
+    pattern: /\b\d+(?:\.\d+)?\s*[KMGT]i?B\s+(?:supervised\s+)?memory\s+(?:limit|budget)\b/iu,
+    message: "Run resource limits belong in supporting execution records, not explanatory prose.",
+  },
 ];
 
 function markdownFiles(target) {

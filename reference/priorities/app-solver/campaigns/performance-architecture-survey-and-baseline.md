@@ -1,5 +1,7 @@
 # EOM Performance Architecture Survey And Baseline
 
+For the current live-source boundary, repeated worker measurements, delay-aware block design, and Mac mini/Mac Studio purchase analysis, see [Borg and EOM Solver on a Larger Apple Silicon Workstation](apple-silicon-workstation-analysis.md) (2026-08-30). The dated baseline below retains its original evidence scope; it is not a statement that every historical implementation limitation remains current.
+
 ## Status
 
 - Baseline id: `eom_performance_architecture_baseline/v0`

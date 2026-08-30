@@ -64,7 +64,7 @@ These definitions name prescribed coordinate classes, not retained-branch existe
 
 The word **braid** names the family-declared retained worldline strands together with their shared causal-return ledger: six strands in the base and Family-A/B cases, and twelve in Family C. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](noether-braid-topological-charge.md) program.
 
-Canonical reader-facing prose uses **Noether braid** for the assembly class, **neutral braid** for the base case, and the family/member identifiers for prescribed geometry. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [Braid Envelope Geometry](braid-envelope-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+**Noether braid** denotes the assembly class, **neutral braid** its base case, and the family/member identifiers its prescribed geometries. The braid's dynamic envelope geometry is developed separately in [Braid Envelope Geometry](braid-envelope-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
 ## Simple Picture
 

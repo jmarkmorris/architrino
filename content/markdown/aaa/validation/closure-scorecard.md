@@ -4,24 +4,11 @@ This chapter is the reusable assessment surface for closure progress across the 
 
 It is meant to be used with [Failure Criteria](failure-criteria.md), [Validation Protocols](validation-protocols.md), [No-Go Theorems](no-go-theorems.md), and [Parameter Ledger](parameter-ledger.md).
 
-## Reusable Assessment Prompt
+## Assessment Method
 
-Use this prompt for each new assessment cycle:
+Each assessment considers the complete corpus against the categories below. The criteria are certified equations, derivation depth, coefficient recovery, parameter determination, empirical precision, consistency between geometry and dynamics, unresolved assumptions, and falsifiable predictions. Architectural coherence and explanatory reach do not compensate for missing coefficients or unvalidated benchmark recovery.
 
-```text
-Perform a full validated-closure assessment of theory, mathematics, and geometry of modern physics vs. architrino theory.
-Requirements:
-1) Do a full read of all markdown documents in content/markdown/aaa (including subdirectories).
-2) Evaluate each existing scorecard category in closure-scorecard.md on a 0-100 scale.
-3) Use the validated-closure lens: certified equations, derivation depth, coefficient recovery, parameter determination, empirical precision, geometry/dynamics consistency, unresolved placeholders, and falsification-readiness.
-4) Do not let architectural coherence, explanatory logic, or ontology compensate for missing equations, missing coefficients, unfixed parameters, or unvalidated benchmark recovery.
-5) Apply anti-ratchet scoring discipline: begin from null movement, require category-specific accepted evidence before increasing a score, and lower a score when new evidence shows that an earlier assessment counted scaffolding, plans, local fits, or provisional diagnostics as accepted closure.
-6) Add or populate the next dated assessment column in closure-scorecard.md with raw numeric scores, placing it after existing dated $\mathbb{A}\mathbb{A}\mathbb{A}$ columns and before $\Delta$; preserve previous assessment columns unless explicitly told to replace or remove them.
-7) Recompute each $\Delta$ value as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$.
-8) Recompute the TOTAL row as the weighted arithmetic mean using the Weight column; round the displayed TOTAL only after computing the weighted mean from the raw row scores.
-9) Add a dated assessment-notes section for the new column, naming concrete gains, regressions, and remaining blockers. If an assessment column or note is removed, remove or rewrite stale date references that pointed to it.
-10) Keep all TeX intact and preserve category definitions unless explicitly asked to revise them.
-```
+The scores are structured assessments under the declared rubric, not measurements of the probability that a theory is correct. Dated results describe the evidence available at that assessment; later exposition or additional documents do not automatically increase a score.
 
 Scale: `0-100` (standard numeric grading scale).  
 Total score rule: weighted arithmetic mean using the Weight column.
@@ -38,7 +25,7 @@ Shared-record discipline is part of the score. A result that works only after ch
 
 ### Anti-Ratchet Scoring Discipline
 
-Score changes are symmetric. A new assessment may increase, decrease, or leave unchanged any row, and the default posture is null movement unless category-specific evidence crosses the score boundary. Do not award points merely because a new assessment was requested, more documents exist, more ledgers, gates, or protocols were added, or a workstream feels closer than before.
+Score changes are symmetric. A new assessment may increase, decrease, or leave unchanged any row, and the default posture is null movement unless category-specific evidence crosses the score boundary. Do not award points merely because a new assessment was requested, more documents exist, more ledgers, gates, or protocols were added, or a research direction appears more promising.
 
 The burden of proof is highest for upward movement. A score can rise only when the new evidence satisfies the category being scored: accepted coefficients for Formula+Coefficient Recovery, fixed constants for Parameter+Scale Closure, benchmark passes for Empirical Precision+Benchmark Validation, certified dynamics for Master EOM+Local Dynamics, and so on. If new work clarifies that an earlier assessment counted scaffolding, provisional diagnostics, local fits, or bookkeeping as accepted closure, the score must go down.
 
@@ -103,7 +90,7 @@ The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ column is also replaced with the 202
 
 ## 2026-06-26 Assessment Notes
 
-*Lineage note: the corresponding dated table column has been retired; this assessment note is retained under rule 9.*
+*Historical assessment: the corresponding dated column is not included in the summary table.*
 
 The 2026-06-26 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `68` after assessing the current `167` markdown files under `content/markdown/aaa` through the validated-closure lens. The gain over the prior retained assessment is real but intentionally bounded. The corpus now has a sharper proof and validation spine: shared closure is expressed as an intersection of sector acceptance sets, null-result residuals now include same-record split penalties, simulation campaigns require artifact-bearing proof handoffs, and equation-mapping checkers more aggressively reject priority prose, generated shells, probes, mocks, and source-evidence fixtures as accepted retained evidence.
 
@@ -117,7 +104,7 @@ The score is still held below modern operational closure by the same central blo
 
 ## 2026-06-20 Assessment Notes
 
-*Lineage note: the corresponding dated table column has been retired; this assessment note is retained under rule 9.*
+*Historical assessment: the corresponding dated column is not included in the summary table.*
 
 The 2026-06-20 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The score is concentrated in mathematical scaffolding, validation discipline, and interface coverage rather than in final recovery of observed coefficients. The corpus now has a much stronger causal-action and energy/conservation spine: the scalar causal-hit functional has a regularized theorem spine and finite-memory bounds, the energy chapter separates finite-window wake-history balances from particle-only conservation, and Noether braid dynamics states a shared causal-closure certificate target that ties causal-root ledgers, Jacobian floors, transmitter-side acceleration weights, mass response, observer exports, event ledgers, and stability rows to the same retained branch.
 
@@ -129,7 +116,7 @@ Falsification and coverage now score near modern-operational levels because the 
 
 ## 2026-05-22 Assessment Notes
 
-*Lineage note: the corresponding dated table column has been retired; the predecessor `59` score was an intermediate assessment column that is no longer displayed, and this note is retained under rule 9.*
+*Historical assessment: this note compares the May 22 result with an intermediate score of `59`; neither intermediate column is included in the summary table.*
 
 The 2026-05-22 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `59` to `61`. The increase is concentrated in notation, internal constituent dynamics, cross-regime bridge quality, and falsification discipline. It is not a coefficient-recovery jump: the central benchmark rows still lack a retained branch that recovers masses, Lorentz / PPN coefficients, photon-channel coefficients, Born/Bell measures, weak mixing, Standard Model masses, or cosmological residuals from one accepted native record.
 
@@ -186,7 +173,7 @@ The total remains far below modern operational closure for the same reason as th
 
 ## 2026-05-19 Assessment Notes
 
-*Lineage note: the corresponding dated table column has been retired; this assessment note is retained under rule 9.*
+*Historical assessment: the corresponding dated column is not included in the summary table.*
 
 The 2026-05-19 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `55`. The gain is broad but still pre-closure: the corpus now carries more explicit proof scaffolds, branch-certificate packet schemas, CODATA benchmark discipline, Standard Model mapping targets, quantum record-measure residuals, and shared cosmology residual gates. These changes improve mathematical auditability and executable validation readiness, but they do not yet close the first accepted branch, derive the central constants, or pass precision benchmark rows.
 

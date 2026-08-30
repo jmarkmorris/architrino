@@ -6,9 +6,7 @@ Read it as project memory. The notebook preserves the turning points that change
 
 It records turning points, major corrections, conceptual reframings, and other moments that materially changed how the theory was written, organized, or understood.
 
-Each dated section should preserve the reasoning of the moment closely enough that later readers can see what changed and why.
-
-Entries are maintained in descending date order, with the newest `##` section first.
+The dated entries preserve the reasoning of the moment and appear in reverse chronological order.
 
 ## 2026-07-22: Braid Geometry Campaign: From Direct Evolution to an Analytical Atlas
 
@@ -26,7 +24,7 @@ Relevant files:
 - [EOM Solver](../../../../src/eom/README.md)
 - [Prescribed-Path Analysis](../../../../src/prescribed-path-analysis/README.md)
 
-The campaign to determine the geometry of the Noether braid reached a strategic turning point. The first ambition was direct: begin with six architrinos, evolve them under the Master Equation, and let the EOM solver reveal which geometries survive. That route produced an extraordinarily precise solver in which verification is required for advancement. It certifies causal-root completeness, acceleration enclosures, local error, and retained-history state before publishing an accepted step. Its precision is a genuine achievement, but that same precision exposed how severe the braid problem is.
+The campaign to determine the geometry of the Noether braid reached a strategic turning point. The first ambition was direct: begin with six architrinos, evolve them under the Master Equation, and let the EOM solver reveal which geometries survive. That route produced a solver that verifies each accepted step. It certifies causal-root completeness, acceleration enclosures, local error, and retained-history state before publishing an accepted step. Its precision is a genuine achievement, but that same precision exposed how severe the braid problem is.
 
 The architecture permits architrino trajectories below, at, and above the field speed $c_f$. Near the exact-field-speed boundary, the transmitter-side factor
 
@@ -38,7 +36,7 @@ $$
 
 can approach zero. The canonical per-hit acceleration weight $c_f/|D_t|$ then becomes extremely large, causal roots can approach a fold, and a small uncertainty in the retained state can be amplified into a much larger uncertainty in the next candidate state. The practical problem is therefore not that the solver casually loses precision. It is that the solver correctly refuses to certify a next position when the root set, acceleration, or state enclosure no longer closes under the declared error budget.
 
-The measured current-binary result was stark. In the six-path endurance matrix that motivated this entry, with no modeled Noether-sea response, most runs halted within roughly ten wall-clock seconds; the two longer difficult routes lasted about thirty and forty-five seconds. The accepted solver histories reached only about $T=5$ to $T=11.5$, and no preset survived one wall-clock minute on all four declared seeds. That is woefully inadequate for discovering a braid by long-horizon evolution. This is a campaign-specific performance result, not a theorem that every braid evolution must fail. It would be overturned by a same-binary, same-budget run that retains complete roots and bounded numerical error across a useful long horizon.
+The six-path endurance tests described in this entry, with no modeled Noether sea response, produced accepted histories extending only to approximately $T=5$ to $T=11.5$. These short histories did not supply the long-duration evolution needed to determine braid survival. This was a limitation of the particular computations, not a theorem that every braid evolution must fail.
 
 A parallel effort reorganized the entire Noether Braid section of the textbook so that the document structure matches the new research program. Large overlapping treatments were replaced by a layered architecture: the Noether Braid entry point, a coordinate taxonomy, separate Family A, B, and C definitions, shared braid mathematics, configuration space, recovery requirements, and focused dynamics and symmetry chapters. The former omnibus family and spindle treatments were removed after their durable material was reassigned to those owners. This was not merely editorial cleanup. It separates exact prescribed geometry from analytical consequences, EOM-solver retention, Noether-sea support, and downstream recovery claims, so each document now states one evidence level without borrowing authority from another.
 
@@ -56,7 +54,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d96f71ab0ea12bae)
 
-where $\Theta_M$ is the admissible configuration space of family member $M$, $S$ is the exact prescribed source record, $P$ is the fixed analysis protocol, and $\mathbf G$ is the resulting analytical measure vector. Result packets, raw ledgers, source and protocol hashes, acceptance state, and indexed measures are stored in a versioned SQLite analytical database so that large campaigns can be queried without separating a result from the exact record that produced it.
+where $\Theta_M$ is the admissible configuration space of family member $M$, $S$ is the exact prescribed source record, $P$ is the fixed analysis protocol, and $\mathbf G$ is the resulting analytical measure vector. Each result remains associated with its complete prescribed coordinates, numerical method, and stated evidence level, so different geometries can be compared under a common analysis.
 
 The search begins with basic prescribed geometries. Reproducible Monte Carlo campaigns will vary the allowed coordinates of each family and measure points across its configuration space. A single attractive point will not be treated as a solution. Interesting points will receive directed refinement and local differential analysis: small declared coordinate changes will measure gradients, sensitivities, root-topology boundaries, numerical convergence, and the width of any favorable neighborhood. The useful object is a robust region that remains favorable under small perturbations and a fixed common protocol, not a narrowly tuned sample or a hidden weighted score.
 
@@ -424,24 +422,18 @@ Receiver velocity appears in signed root playback through $D_{r,ij}/D_{t,ij}$ an
 
 The canon separates theorem-backed statements from closure targets. Current documents should not state, without local hypotheses, that the master equation is already the exact Euler-Lagrange variation of a completed non-local action or that global energy-momentum conservation is fully restored in every regime. The canonical stance is narrower: the regularized action-functional program supplies a variational lens, the per-hit law supplies the acceleration-first dynamics, and energy bookkeeping must state the assumptions under which work-energy, Noether-style, or action-based conclusions are being claimed.
 
-Corpus requirements:
-
-- include the transmitter-side acceleration weight wherever the canonical per-hit law is stated,
-- avoid splitting the theory into a permanent "reduced model" and a separate "candidate action" unless the local document is explicitly discussing an approximation,
-- replace over-broad conservation claims with assumption-scoped theorem language,
-- keep constant emission cadence distinct from received causal-flux modulation,
-- and retain receiver velocity only in root playback, future geometry, and derived energy-rate accounts where it is actually used.
+The revision made the transmitter-side acceleration weight explicit in the per-hit law, separated constant emission cadence from received causal-flux modulation, and confined receiver-velocity effects to root playback, future geometry, and derived energy-rate accounts. It also replaced broad conservation assertions with conclusions tied to stated assumptions.
 
 The master equation is a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. The closure burdens are sharp: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from delayed geometry rather than asserted through imported field-theory vocabulary.
 
 ## 2026-03-11 Closure Scorecard
 
-A reusable prompt was defined to compare $\mathbb{A}\mathbb{A}\mathbb{A}$ to modern physics along two distinct axes: operational effectiveness and foundational mechanism. The resulting scorecard makes the comparison explicit rather than rhetorical, and it can be reused in later assessment cycles without changing the basic lens.
+A common assessment method was defined to compare $\mathbb{A}\mathbb{A}\mathbb{A}$ to modern physics along two distinct axes: operational effectiveness and foundational mechanism. The resulting scorecard makes the comparison explicit rather than rhetorical, and it can be reused in later assessment cycles without changing the basic lens.
 
 Relevant files:
 
 - [Closure scorecard](../validation/closure-scorecard.md)
-- [Reusable assessment prompt](../validation/closure-scorecard.md#reusable-assessment-prompt)
+- [Assessment method](../validation/closure-scorecard.md#assessment-method)
 - [Assessment table](../validation/closure-scorecard.md#assessment-table)
 
 The scores illustrate both sides of the present situation. They show where $\mathbb{A}\mathbb{A}\mathbb{A}$ already does well, especially in architectural coherence and ontic-mechanism framing, and they also show where the framework still needs more development and improvement, particularly in coverage depth, parameter closure, and several mathematical bridge areas. That makes the scorecard useful not just as a verdict sheet, but as a development map.

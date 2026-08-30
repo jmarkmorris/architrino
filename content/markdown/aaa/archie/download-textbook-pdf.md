@@ -14,29 +14,11 @@ This keeps the source flow simple:
 Textbook source markdown -> generated reading-copy Markdown -> generated PDF review copy
 ```
 
-Refresh the review copies after canonical textbook markdown, textbook scene ordering, or the generated Textbook TOC changes:
-
-```bash
-node scripts/build-scene-graph.mjs --write --strict
-node scripts/build-textbook-md-pdf.mjs --write
-node scripts/build-textbook-md-pdf.mjs --check
-node scripts/build-textbook-review-pdfs.mjs --write
-node scripts/build-textbook-review-pdfs.mjs --check
-```
-
 ### Source of Record
 
 The webapp remains the source of record because it can change faster, preserve interactive context, and expose the current Textbook TOC. A generated PDF is useful for exchange and review, but it is not the canonical source.
 
-### Publication Export Pipeline
-
-The PDF review exporter reads the generated Textbook TOC from:
-
-```text
-content/graph/textbook_toc.json
-```
-
-The exporter should not infer reading order from directories or filenames. The scene graph owns reading order, and the Textbook TOC is the generated publication manifest for that order.
+The chapter order follows the website’s textbook reading order. PDFs preserve that order at the time of export.
 
 ## Full Textbook
 
