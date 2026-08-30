@@ -579,6 +579,42 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(terminal["causticContractRow"], "")
         self.assertEqual(terminal["causticRegulatorLevel"], "not-applicable")
 
+    def test_complete_roots_with_oversized_acceleration_have_distinct_halt(self) -> None:
+        exact_origin = "\t".join(("SEG", "0", "5", *(["0"] * 18)))
+        exact_offset = "\t".join((
+            "SEG", "0", "5", "2", *(["0"] * 17),
+        ))
+        protocol = "\n".join((
+            PROTOCOL_MAGIC,
+            run_record(
+                "acceleration-width", "5", "5.01",
+                initial_step="0.01", minimum_step="0.01",
+                maximum_step="0.01", root_tolerance="0.001",
+                acceleration_tolerance="1e-12", path_count="2",
+            ).replace(
+                "\tsharp_with_finite_width_fallback\t", "\tsharp\t"
+            ),
+            "PATH\treceiver\t1\t1\t0\t1", exact_origin,
+            "PATH\tsource\t-1\t1\t0\t1", exact_offset,
+            "END", "",
+        ))
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"], input=protocol,
+            check=True, cwd=ROOT, capture_output=True, text=True,
+        )
+        response = json.loads(completed.stdout)
+        self.assertEqual(response["status"], "halted")
+        self.assertEqual(
+            response["haltCode"], "acceleration_enclosure_not_certified"
+        )
+        terminal = response["stepFailures"][-1]
+        self.assertEqual(
+            terminal["failureCode"], "acceleration_enclosure_not_certified"
+        )
+        self.assertEqual(terminal["traversalUnresolvedPairs"], 0)
+        self.assertEqual(terminal["rootFailures"], [])
+        self.assertEqual(response["retainedWarmRootCellCount"], 0)
+
     def test_memory_budget_halts_before_evolution_without_publication(self) -> None:
         protocol = "\n".join((
             PROTOCOL_MAGIC,

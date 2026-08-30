@@ -15,6 +15,9 @@ test('B1.3 release carries only a complete past cycle and exact strength factori
   assert.equal(prepared.transportRequest.modelControls.futurePathPolicy,'prohibited');
   assert.equal(prepared.transportRequest.modelControls.coupling,'1');
   assert.equal(prepared.transportRequest.histories.length,6);
+  assert.equal(prepared.transportRequest.numericalControls.threadCount,8);
+  assert.equal(B13_RELEASE.resources.aggregateRssBytes,1610612736);
+  assert.equal(B13_RELEASE.precisionPolicy.sharpAccelerationRootRefinement.finiteWidthFallback,false);
 });
 
 test('B1.3 frozen topology and return action preserve all six identities', () => {

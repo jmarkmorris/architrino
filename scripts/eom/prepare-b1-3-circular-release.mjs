@@ -19,16 +19,22 @@ const token = value => {
 export const B13_RELEASE = Object.freeze({
   schema: 'braid-program/b1-3-circular-release-declaration.v1',
   candidateId: 'b1-3-circular-balanced-locus',
-  fieldSpeed: '1', beta: '2.974307176117306', radius: '0.5617317000713459',
+  fieldSpeed: '1', beta: '2.974307176117293568027380199624405914686222541005478142309948089455288', radius: '0.5617317000712902207417147050795197657217944026929011952931141159066451',
   radiusStar: '1', effectiveStrength: '1', chargeMagnitude: '1', coupling: '1',
-  angularVelocity: '5.294889314132597', period: '1.1866509259049338',
-  releaseTime: '0', historyStart: '-1.1866509259049338', historyDepth: '1.1866509259049338',
-  maximumChordDelay: '1.1234634001426918', historyClearance: '0.063187525762242',
+  angularVelocity: '5.2948893141330990222198341218550365272093435090874684611564960934394992274289131', period: '1.1866509259048213597786822809197254921825571223936242037859209975941094859055343',
+  releaseTime: '0', historyStart: '-1.1866509259048213597786822809197254921825571223936242037859209975941094859055343', historyDepth: '1.1866509259048213597786822809197254921825571223936242037859209975941094859055343',
+  maximumChordDelay: '1.1234634001425804414834294101590395314435888053858023905862282318132902', historyClearance: '0.0631875257622409182952528707606859607389683170078218131996927657808192859055343',
+  exactBalanceTarget: {
+    definition: 'the unique simple zero of the regular alternating hexagon tangential acceleration coefficient inside betaBracket',
+    betaBracket: ['2.974307176117283568027380199624405914686222541005478142309948089455288','2.974307176117303568027380199624405914686222541005478142309948089455288'],
+    radiusRule: 'R/R_*= -a_radial(beta)/beta^2 with R_*=1',
+    intervalProofStatus: 'pending independent directed-rounding sign and range certificate',
+  },
   historySegmentsPerMember: 4096,
   historyPositionError: '2e-13', historyVelocityError: '2e-9',
   historyErrorMethod: {
-    fourthDerivativeUpper: '441.526197100233',
-    maximumSegmentWidth: '0.0002897096987073',
+    fourthDerivativeUpper: '441.526197100356184101474226690183942827528968678356556062001',
+    maximumSegmentWidth: '0.000289709698707231777289717353740167356489882109959380909127422',
     positionRule: 'M4*h^4/300 plus 128 binary64 eps times max(1,R,beta)',
     velocityRule: 'M4*h^3/8 plus 256 binary64 eps times max(1,beta,omega*beta)',
   },
@@ -43,9 +49,9 @@ export const B13_RELEASE = Object.freeze({
     birthDeathFoldPolicy: 'fail-closed: stop the rung and report the first nonordinary or ownership-changing event; no finite-width rescue',
   },
   returnAction: {
-    eventTime: '1.1866509259049338', rotation: [[1,0,0],[0,1,0],[0,0,1]], translation: ['0','0','0'],
+    eventTime: '1.1866509259048213597786822809197254921825571223936242037859209975941094859055343', rotation: [[1,0,0],[0,1,0],[0,0,1]], translation: ['0','0','0'],
     memberPermutation: [0,1,2,3,4,5], lift: 'one positive circular turn', retainedHistoryDepthLambda: '2',
-    comparedHistorySeconds: '1.1234634001426918',
+    comparedHistorySeconds: '1.1234634001425804414834294101590395314435888053858023905862282318132902',
   },
   rungs: [
     { id:'coarse', initialStep:'0.00390625', minimumStep:'0.0001220703125', maximumStep:'0.00390625', rootTolerance:'2e-8', accelerationTolerance:'8e-6', positionTolerance:'1e-7', velocityTolerance:'1e-7', correctionTolerance:'1e-6' },
@@ -56,9 +62,9 @@ export const B13_RELEASE = Object.freeze({
     positionReturn:'0.0001', velocityReturn:'0.0001', retainedHistoryReturn:'0.0002', rootTimingReturn:'0.0001',
     adjacentRungPosition:'0.0001', adjacentRungVelocity:'0.0001',
   },
-  precisionPolicy: { bulk:'binary64-outward', difficultRowInitialBits:128, difficultRowMaximumBits:512, roundingMode:'outward', deterministicReduction:'fixed-pairwise' },
+  precisionPolicy: { bulk:'binary64-outward', difficultRowInitialBits:128, difficultRowMaximumBits:512, roundingMode:'outward', deterministicReduction:'fixed-pairwise', sharpAccelerationRootRefinement:{levels:2,ratio:'0.1',finiteWidthFallback:false} },
   stoppingRules: ['requested one-cycle horizon','EOM solver halt','missing or non-bijective root ownership','root birth, death, fold, or other nonordinary event','resource limit','operator stop','input or executable identity change'],
-  resources: { wallSecondsPerRung:1800, heartbeatSeconds:15, rssSampleSeconds:1, aggregateRssBytes:2147483648, outputBytesPerRung:268435456, aggregateOutputBytes:1073741824, diskMinimumBytes:5368709120, workerThreads:1, requestMemoryBytes:1073741824 },
+  resources: { wallSecondsPerRung:7200, heartbeatSeconds:15, rssSampleSeconds:1, aggregateRssBytes:1610612736, outputBytesPerRung:268435456, aggregateOutputBytes:1073741824, diskMinimumBytes:5368709120, workerThreads:8, requestMemoryBytes:1073741824 },
   claimBoundary: 'questions 1-3 only; no perturbation or positive-width work; no retained, stable, bound, or physical claim without the declared gates',
 });
 
@@ -80,7 +86,7 @@ export function buildHandoff() {
     for(let j=0;j<count;j++){
       const a=j===0?start:start+h*j, b=j===count-1?end:start+h*(j+1);
       const coefficients=cubic(a,b,state(phase,a),state(phase,b));
-      segments.push({ startTime:token(a), endTime:token(b), coefficients,
+      segments.push({ startTime:j===0?B13_RELEASE.historyStart:token(a), endTime:j===count-1?'0':token(b), coefficients,
         positionErrors:Array(3).fill(B13_RELEASE.historyPositionError), velocityErrors:Array(3).fill(B13_RELEASE.historyVelocityError) });
     }
     const material=JSON.stringify(segments);
@@ -99,7 +105,7 @@ function allocationsFor(rung) {
     ordinary:{rootTimeEnclosure:rung.rootTolerance,accelerationEnclosure:rung.accelerationTolerance,farFieldEnclosureFraction:'0',acceptedStepPosition:rung.positionTolerance,acceptedStepVelocity:rung.velocityTolerance,correctionAccelerationResidual:rung.correctionTolerance,transmitterFactorFloor:'1e-12',chartPolicy:'sharp',quadratureTolerance:f.quadratureTolerance},
     finiteWidth:{...f,quadratureMaximumDepth:undefined,quadratureMaximumCells:undefined,eventMaximumDepth:undefined,eventMaximumCells:undefined},
     precision:{bulk:'binary64-outward',difficultRowInitialBits:128,difficultRowMaximumBits:512,forceEventPrecisionEscalation:false,deterministicReduction:'fixed-pairwise',roundingMode:'outward'},
-    resources:{rootMaximumDepth:256,rootMaximumCells:100000,quadratureMaximumDepth:16,quadratureMaximumCells:10000,eventMaximumDepth:16,eventMaximumCells:10000,correctionIterations:16,maximumStepAttempts:4096,maximumRejectedSteps:128,workerThreads:1,requestMemoryBytes:1073741824} };
+    resources:{rootMaximumDepth:256,rootMaximumCells:100000,quadratureMaximumDepth:16,quadratureMaximumCells:10000,eventMaximumDepth:16,eventMaximumCells:10000,correctionIterations:16,maximumStepAttempts:4096,maximumRejectedSteps:128,workerThreads:8,requestMemoryBytes:1073741824} };
 }
 export function makePrepared(handoff, rung) {
   const allocations=allocationsFor(rung);
@@ -110,9 +116,9 @@ export function makePrepared(handoff, rung) {
     historyEvidence:[{role:'balanced-locus',path:'reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.md',sha256:sha256(readFileSync(resolve(ROOT,'reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.md')))}],
     histories:handoff.members.map(({pathId,sourceHistoryId,sourceFingerprint,polarity,segments})=>({pathId,sourceHistoryId,sourceFingerprint,polarity,segments})),
     settings:{runId:presetId,endTime:B13_RELEASE.period,strength:{effectiveStrength:'1',chargeMagnitude:'1',coupling:'1'},
-      numericalControls:{initialStep:rung.initialStep,minimumStep:rung.minimumStep,maximumStep:rung.maximumStep,useAdaptiveStepGrowth:false,rootTolerance:rung.rootTolerance,accelerationTolerance:rung.accelerationTolerance,farFieldEnclosureFraction:'0',positionTolerance:rung.positionTolerance,velocityTolerance:rung.velocityTolerance,correctionTolerance:rung.correctionTolerance,threadCount:1},
+      numericalControls:{initialStep:rung.initialStep,minimumStep:rung.minimumStep,maximumStep:rung.maximumStep,useAdaptiveStepGrowth:false,rootTolerance:rung.rootTolerance,accelerationTolerance:rung.accelerationTolerance,farFieldEnclosureFraction:'0',positionTolerance:rung.positionTolerance,velocityTolerance:rung.velocityTolerance,correctionTolerance:rung.correctionTolerance,threadCount:8},
       coreScale:'0.0001',certifiedBudget:{presetId,allocations,allocationCanonicalJson:canonical,allocationHash:sha256(canonical)},
-      operationalLimits:{wallSeconds:1800,heartbeatSeconds:15,aggregateRssBytes:2147483648,rssSampleIntervalSeconds:1,logBytes:16777216,outputBytes:268435456,diskMinimumBytes:5368709120}} });
+      operationalLimits:{wallSeconds:7200,heartbeatSeconds:15,aggregateRssBytes:1610612736,rssSampleIntervalSeconds:1,logBytes:16777216,outputBytes:268435456,diskMinimumBytes:5368709120}} });
 }
 
 function main(args=process.argv.slice(2)) {

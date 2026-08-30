@@ -1,6 +1,6 @@
 # EOM Attractor-Search Instrument Work Log
 
-Chronological status, run narratives, handoffs, and failed paths for the EOM-owned profiler and checkpoint-chunked ensemble harness. Keep the live instrument state in [Attractor-Search Execution Instrument](./attractor-search-instrument.md). The [Braid Program](../../braid-program/priorities.md) owns the scientific campaign and keeps its design in [Undirected Ensemble Search](../../braid-program/undirected-ensemble-search.md).
+Chronological status, run narratives, handoffs, and failed paths for the EOM-owned profiler and checkpoint-chunked ensemble harness. Keep the live instrument state in [Attractor-Search Execution Instrument](./attractor-search-instrument.md). Scientific campaign design and fate classification remain with the relevant scientific owner.
 
 ## 2026-07-27 — Corrected resume accounting and G3/G4 reaccepted
 
@@ -11,7 +11,6 @@ Chronological status, run narratives, handoffs, and failed paths for the EOM-own
 ## 2026-07-26 — Focused packet distributed to canonical owners
 
 - Moved the reusable execution-instrument state and this chronological log under EOM.
-- Moved the undirected ensemble campaign rationale, observables, seed design, persistence criteria, and promotion rules under Braid Program.
 - Removed the redundant `eom-attractor-search` routing directory. This changes no instrument acceptance, campaign gate, or physical claim.
 
 ## 2026-07-24 — Historical simulation outputs removed
@@ -25,14 +24,13 @@ Chronological status, run narratives, handoffs, and failed paths for the EOM-own
 ## 2026-07-16 — Ownership consolidated
 
 - This directory ceased to be an independently ranked workstream.
-- Braid Program owns the undirected ensemble campaign, persistence criterion, fate classification, and collapse adjudication.
+- Scientific campaign owners retain their seed definitions, persistence criteria, fate classifications, and collapse adjudications.
 - EOM owns the reusable checkpointed harness, deterministic replay, campaign-driver behavior, performance attribution, and cost instrument.
 - At that time, existing evidence, validation artifacts, host-control instructions, and chronological notes remained here as a focused packet. The 2026-07-24 reset above supersedes that artifact-retention decision.
 
 ## 2026-07-15 — Workstream opened
 
-- Bucket created by operator direction. Full context is now retained in [Undirected Ensemble Search](../../braid-program/undirected-ensemble-search.md).
-- Operator inputs: Borg app (eom-backed) releases show early escapes plus transient couplings, including an observed 2:2 assembly (anecdotal grade, reproduce first); the final eom performance improvement has landed, so the previously planned single-enhancement decision is superseded and Phase 0 profiling now sizes the campaign instead of choosing an optimization.
+- Bucket created by operator direction to characterize population-release workload. The final EOM performance improvement had already landed, so Phase 0 profiling sized the reusable harness rather than choosing another optimization.
 - Next action: Phase 0 headless release profile at $N \in \{6,12,24,48\}$.
 
 ## 2026-07-15 — Phase 0 workload characterization complete

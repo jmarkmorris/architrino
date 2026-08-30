@@ -61,12 +61,6 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 - Moved the requirements sketch to `reference/priorities/app-borg/assembly-viewer-requirements.md`, where Borg design, requirements, and build handoffs are owned. The Braid Program retains the adopted `assembly-view-record.v0` schema, emitter acceptance, and per-run booking duty in `campaigns/instrument-gate.md`.
 - The ownership move changes no campaign schema or evidence grade. Instrument gate §4 now links to the Borg-owned requirements packet; prior dated log entries retain their historical path text.
 
-## 2026-07-16 — Undirected ensemble campaign ownership consolidated
-
-- Braid Program is the sole scientific owner for the undirected ensemble campaign: declared seed coordinates, persistence criterion, fate classification, collapse adjudication, and promotion routing.
-- EOM owns the reusable checkpointed harness, campaign-driver behavior, deterministic replay, convergence/provenance capability, and cost instrument. The former `eom-attractor-search` directory remains a focused evidence index.
-- This consolidation changes no harness measurement, campaign criterion, or booked physical fate.
-
 ## 2026-07-20 — Illustrative spindle chart display pipeline
 
 - Added the focused `spindle-braid-chart-spec.v0` source with the operator-approved illustrative dimensionless member: zero drift; common angular frequency $\pi/2$; radii $0.22$, $0.32$, $0.44$; cap angles $20^\circ$, $40^\circ$, $65^\circ$; phases $0^\circ$, $120^\circ$, $240^\circ$; and polarity-assignment signs $+1,-1,+1$. These values are explicitly refinable chart choices, not physically selected parameters. Claim grade: declared input. Falsifier: the source JSON differs from any listed value.
@@ -265,11 +259,10 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 - No crossing, rebound, outer turn, recapture, or minimum-maximum-minimum excursion is certified; the return-map trend is unresolved. R0 histories with stationary horizons $H=10$, $20$, and $40$ produce byte-identical frame and release-acceleration streams.
 - G3 remains unaccepted and no campaign fate, energy account, retention, stability, binding, or physical-realization claim is booked. See the [predeclared protocol](campaigns/stationary-binary-breather-diagnostic.md) and [diagnostic packet](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md).
 
-## 2026-07-26 — Attractor-search packet distributed
+## 2026-07-26 — Attractor-search execution packet distributed
 
-- Moved the undirected ensemble rationale, seed and campaign design, observables, persistence criteria, and promotion rules into [undirected-ensemble-search.md](undirected-ensemble-search.md).
 - EOM now retains the reusable profiler and checkpoint-chunked harness state in its [attractor-search instrument packet](../app-solver/campaigns/attractor-search-instrument.md) and [work log](../app-solver/campaigns/attractor-search-work-log.md).
-- Deleted the redundant `eom-attractor-search` directory. No gate, evidence status, campaign rank, or physical claim changed.
+- Deleted the redundant `eom-attractor-search` directory. No gate, evidence status, or physical claim changed.
 
 ## 2026-07-27 — Sealed B1/Family-C diagnostic landed in the live record
 

@@ -2,7 +2,7 @@
 
 A shared-circle assembly is a prescribed collection of architrinos whose worldlines remain on one common circle. The chart provides a direct bridge from the two-body circular benchmark to many-member rings while keeping braid taxonomy separate from circular appearance. A shared-circle record becomes a named Noether-braid locus only when its member inventory, polarity pairing, centers, axes, frequencies, and circulation satisfy that braid's exact coordinate contract.
 
-The equal-radius, phase-symmetric B1.3 intersection now contains one hundred independently accepted prescribed acceleration balances in the consecutive even topology classes T02 through T200. Their complete causal-root ledgers obey an exact polarity-controlled fold mechanism, an exact root-count ladder, and derived high-speed spacing and scale laws. On $0.05\leq\beta_f\leq20$, an outward-rounded interval certificate now proves that the T02 through T36 rows are the only balances: each even interval contains exactly one simple inward-radial zero, while T00, T01, and every odd interval contain none. Above speed 20, the accepted rows establish existence but not interval-by-interval completeness; none of these results establishes release survival or stability.
+The equal-radius, phase-symmetric B1.3 intersection now contains one hundred independently accepted prescribed acceleration balances in the consecutive even topology classes T02 through T200. Their complete causal-root ledgers obey an exact polarity-controlled fold mechanism, an exact root-count ladder, and derived high-speed spacing and scale laws. On $0.05\leq\beta_f\leq20$, an outward-rounded interval certificate now proves that the T02 through T36 rows are the only balances: each even interval contains exactly one simple inward-radial zero, while T00, T01, and every odd interval contain none. This is an emergent discrete mode ladder and therefore quantum-like behavior in the restricted sense of internally selected, isolated admissible modes. Above speed 20, the accepted rows establish existence but not interval-by-interval completeness. The exact circular-solution theorem below proves that an exact balance with its exact complete circular history is an invariant periodic solution; it does not establish perturbation stability, physical energy quantization, or selection of that solution from an approximate history.
 
 Plainly: the major advance is a structured B1.3 balance ladder, not one isolated numerical point. The first eighteen rungs are now proven to exhaust the whole declared speed interval through 20, and another eighty-two rungs have been checked at arbitrary precision. The higher-speed existence checks do not rule out extra rungs between the listed ones, and no prescribed calculation says the assembly survives release.
 
@@ -66,17 +66,22 @@ Plainly: taxonomy follows the coordinate record, not visual resemblance or arith
 
 ## Verified Bounded Landscape
 
-The current complete-root evidence gives the following prescribed acceleration-balanced regular alternating loci under the uncapped Master Equation with $c_f=1$. The table compares inventory sizes; its $N=3$ row is one member of the more detailed equal-radius B1.3 sequence recorded below. The $N=1$ row is the first binary all-root simple-chart candidate on $1<\beta_f<20$. The $N=2$ through $N=6$ campaign scanned $0.05\leq\beta_f\leq20$ and enumerated every balanced regular polarity class modulo the proven symmetries. The $N=12$ extension tested only the one regular alternating 24-gon on the same bounded speed interval.
+The current complete-root evidence gives the following prescribed acceleration-balanced regular alternating loci under the uncapped Master Equation with $c_f=1$. The table compares inventory sizes; its $N=3$ row is one member of the more detailed equal-radius B1.3 sequence recorded below. The $N=1$ row is the first binary all-root simple-chart candidate on $1<\beta_f<20$. The $N=2$ through $N=6$ campaign scanned $0.05\leq\beta_f\leq20$ and enumerated every balanced regular polarity class modulo the proven symmetries. The $N=7$ through $N=12$ extensions tested only the regular alternating $2N$-gon at each inventory on the same bounded speed interval.
 
 | $N$ | Members | Regular alternating taxonomy | $\beta_f$ | $R/R_*$ | Directed roots | Maximum full residual | Verdict |
 | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- |
 | 1 | 2 | Neutral antipodal binary benchmark | 3.070356625390253 | 0.08694167347390959 | 8 | $6.153430859539067\times10^{-13}$ | Balanced candidate on the simple-root chart |
-| 2 | 4 | Shared-circle assembly outside B1.3 | 2.1472456589006224 | 0.4161828083090951 | 24 | $5.366541004644862\times10^{-13}$ | Balanced candidate |
+| 2 | 4 | Shared-circle assembly | 2.1472456589006224 | 0.4161828083090951 | 24 | $5.366541004644862\times10^{-13}$ | Balanced candidate |
 | 3 | 6 | Equal-radius phase-symmetric B1.3 locus | 2.974307176117306 | 0.5617317000713459 | 72 | $7.62510728881475\times10^{-14}$ | Balanced candidate |
-| 4 | 8 | Shared-circle assembly outside B1.3 | 1.6595117714602787 | 1.7441728749235372 | 80 | $2.8634872251132037\times10^{-12}$ | Balanced candidate |
-| 5 | 10 | Shared-circle assembly outside B1.3 | 1.5556550244378213 | 2.7040642782802484 | 120 | $7.644554186576438\times10^{-12}$ | Balanced candidate |
-| 6 | 12 | Shared-circle assembly outside B1.3 and Family C | 1.484095961562689 | 3.842971035530748 | 168 | $1.8199219995557143\times10^{-11}$ | Balanced candidate |
-| 12 | 24 | Shared-circle assembly outside B1.3 and Family C | 1.290840841384326 | 13.982496760466805 | 624 | $5.858187577303801\times10^{-10}$ | Balanced candidate in one tested class |
+| 4 | 8 | Shared-circle assembly | 1.6595117714602787 | 1.7441728749235372 | 80 | $2.8634872251132037\times10^{-12}$ | Balanced candidate |
+| 5 | 10 | Shared-circle assembly | 1.5556550244378213 | 2.7040642782802484 | 120 | $7.644554186576438\times10^{-12}$ | Balanced candidate |
+| 6 | 12 | Shared-circle assembly | 1.484095961562689 | 3.842971035530748 | 168 | $1.8199219995557143\times10^{-11}$ | Balanced candidate |
+| 7 | 14 | Shared-circle assembly | 2.971792998251308 | 2.7703101410483426 | 392 | $1.5050370836631377\times10^{-11}$ | Balanced candidate in one tested class |
+| 8 | 16 | Shared-circle assembly | 1.39081847593345 | 6.619764316624935 | 288 | $1.9614856077388694\times10^{-11}$ | Balanced candidate in one tested class |
+| 9 | 18 | Shared-circle assembly | 1.3584259179735925 | 8.242755286052253 | 360 | $3.2103210208693483\times10^{-11}$ | Balanced candidate in one tested class |
+| 10 | 20 | Shared-circle assembly | 1.3318963796099441 | 10.014108665969196 | 440 | $5.709370772628467\times10^{-10}$ | Balanced candidate in one tested class |
+| 11 | 22 | Shared-circle assembly | 1.3097107443722018 | 11.928820792539806 | 528 | $3.509299589578857\times10^{-10}$ | Balanced candidate in one tested class |
+| 12 | 24 | Shared-circle assembly | 1.290840841384326 | 13.982496760466805 | 624 | $5.858187577303801\times10^{-10}$ | Balanced candidate in one tested class |
 
 > Claim grade: measured. `PlanarCoRotatingRingBalance` supplies the complete prescribed-path ledgers. The unchanged `CircularSelfHitBinaryAnalysis` independently checks the same-transmitter roots, and the unchanged generic `AnalyticalBraidEvaluator` independently checks the cross-transmitter roots and acceleration contributions for the promoted many-member candidates. The $N=1$ specialization is independently compared with the circular-binary instrument. Falsifier: a missing or displaced causal root, a failed independent comparison, an incompatible receiver scale, a topology change under refinement, or a residual outside the declared tolerance overturns the corresponding row.
 
@@ -85,6 +90,16 @@ Plainly: the table reports exact regular candidates, not a ranking of physical a
 ### Equal-Radius B1.3 Velocity Search
 
 Holding the B1.3 overlap at the regular alternating hexagon fixes the positive-endpoint binary phases at $0$, $2\pi/3$, and $4\pi/3$ and leaves the dimensionless speed $\beta_f$ and compatible scale $R/R_*$ to be solved. The following eighteen independently checked prescribed acceleration balances are now certified to exhaust $0.05\leq\beta_f\leq20$. A topology interval is a speed interval over which the ordinary causal-root inventory is unchanged; its label is not an additional braid-family label.
+
+Let $a_t(\beta_f)$ and $a_r(\beta_f)$ be the complete dimensionless tangential and radial ledger coefficients after the regular-hexagon symmetry reduction. Planar symmetry makes the axial coefficient zero, while full balance requires
+
+$$
+a_t(\beta_f)=0
+\qquad
+\frac{R}{R_*}=-\frac{a_r(\beta_f)}{\beta_f^2}>0
+$$
+
+Plainly: speed must first make the sideways acceleration vanish. The inward radial coefficient at that selected speed then fixes the common radius. Choosing an arbitrary radius and tuning only speed does not guarantee a solution, because the tangential and radial requirements are separate.
 
 | Topology interval | $\beta_f$ | $R/R_*$ | Directed roots | Fold events |
 | --- | ---: | ---: | ---: | ---: |
@@ -107,7 +122,7 @@ Holding the B1.3 overlap at the regular alternating hexagon fixes the positive-e
 | T34 | 18.82299475976613 | 0.08145652726640888 | 432 | 0 |
 | T36 | 19.871593704659002 | 0.07707425407357736 | 456 | 0 |
 
-Plainly: every row is one balanced speed-radius pair, meaning one value of $\beta_f$ together with the common radius required to cancel radial, tangential, and axial residuals. It is not one of the three neutral binaries. All three binaries still share the listed radius and retain their $120^\circ$ phase separation.
+Plainly: each row gives one balanced state of the complete six-member assembly: one value of $\beta_f$ and the common radius that cancels the radial, tangential, and axial residuals. The row does not describe an individual binary; all three neutral binaries share that radius and retain their $120^\circ$ phase separation.
 
 > Claim grade: measured. The `run-b13-velocity-search.mjs` instrument used complete emission-site, all-causal-root ledgers, a primary root tolerance of $2\times10^{-13}$, a tightened root tolerance of $2\times10^{-14}$, a balance tolerance of $2\times10^{-8}$, and tangential bisection to $2\times10^{-13}$. The separately authored `verify-b13-velocity-solutions.mjs` instrument checked all eighteen rows with the unchanged `AnalyticalBraidEvaluator` for cross-transmitter acceleration and the unchanged `CircularSelfHitBinaryAnalysis` for same-transmitter roots and acceleration. Its tolerances were $2\times10^{-7}$ for cross acceleration and independent balance, $2\times10^{-9}$ for self acceleration, and $4\times10^{-10}$ for self-root location; the observed maxima were respectively $3.637030232539473\times10^{-8}$, $2.6856177678495606\times10^{-9}$, $3.5166314305001833\times10^{-14}$, and $9.237055564881302\times10^{-14}$. The search record has SHA-256 `406379db93e051453a2df97ba6a2f9ccff1241c2222fd777117fd96fe8833c81`; the independent-check record has SHA-256 `4e7305575b543ae1079ce104c8d347ca2ec3883b1299ab4a3796ee6d709e711c`. A missing or displaced causal root, a nonzero fold on a reported row, a failed topology match under tightening, an incompatible scale, or an independent residual outside these tolerances overturns that row.
 
@@ -228,7 +243,7 @@ Plainly: every other fold boundary approaches a spacing of $\pi/3$. The balance-
 
 #### Certified Bounded Zero Count
 
-The independently authored `interval_b13_zero_count.py` instrument uses outward-rounded interval arithmetic, meaning that every computed numerical interval is rounded slightly outward so the exact mathematical value is guaranteed to remain inside it. It covered all thirty-seven topology intervals on $0.05\leq\beta_f\leq20$ with 613 deterministic boxes at maximum subdivision depth 14 and 80-decimal arithmetic. The result is
+The independently authored `interval_b13_zero_count.py` instrument uses outward-rounded interval arithmetic, meaning that every computed numerical interval is rounded slightly outward so the exact mathematical value is guaranteed to remain inside it. It covered all thirty-seven topology intervals on $0.05\leq\beta_f\leq20$ with 613 deterministic boxes at maximum subdivision depth 14 and 80-decimal arithmetic. Let $Z(\mathrm T)$ denote the number of tangential-ledger zeros in topology interval $\mathrm T$. The result is
 
 $$
 Z(\mathrm{T}_{2n})=1
@@ -237,11 +252,13 @@ Z(\mathrm{T}_{2n})=1
 Z(\mathrm{T}_{00})=Z(\mathrm{T}_{01})=Z(\mathrm{T}_{2n+1})=0
 $$
 
-where $Z(\mathrm T)$ is the number of tangential-ledger zeros in topology interval $\mathrm T$. Every listed zero is simple, meaning its derivative does not include zero, and its complete radial coefficient is strictly inward, so it determines one positive compatible radius.
-
 Plainly: between speed 0.05 and 20, the table of eighteen rows is complete. Each even interval contains one crossing that can support a circular radius; the two lowest intervals and every odd interval contain none. “Simple” means the ledger crosses zero rather than merely touching it, while “inward radial” means the remaining acceleration points in the direction required for a circle.
 
-The certificate encloses every causal-root branch with opposite endpoint residual signs and one fixed Jacobian sign. Each ledger box is then closed either because the tangential interval has one sign, or because its derivative has one sign and its endpoints settle the zero count. Near a fold, the newborn-pair lower bound is proved to dominate the outward-rounded absolute bound on all older roots; the smallest dominance ratio is greater than $2.7755$. This covering also excludes an even-multiplicity zero, which would touch zero without changing sign, because any box in which neither the function nor derivative argument settles the question would make the certificate fail closed.
+Every listed zero is simple, meaning its derivative does not include zero, and its complete radial coefficient is strictly inward, so it determines one positive compatible radius.
+
+Plainly: the zero-count result supplies both parts of balance on this chart: tangential cancellation selects the speed, and the inward radial coefficient then fixes one positive common radius.
+
+The certificate encloses every causal-root branch with opposite endpoint residual signs and one fixed root-Jacobian sign, where the root Jacobian is the delay derivative of the causal-root equation. Each ledger box is then closed either because the tangential interval has one sign, or because its derivative has one sign and its endpoints settle the zero count. Near a fold, the newborn-pair lower bound is proved to dominate the outward-rounded absolute bound on all older roots; the smallest dominance ratio is greater than $2.7755$. This covering also excludes an even-multiplicity zero, which would touch zero without changing sign, because any box in which neither the function nor derivative argument settles the question would make the certificate fail closed.
 
 Plainly: a dense graph can jump over a zero that only touches the axis. The certificate does not sample and hope: it traps the entire curve and its slope inside guaranteed bounds, subdividing until every piece is either safely away from zero or contains exactly one crossing. The fold calculation separately controls the narrow regions where a new root pair first appears.
 
@@ -272,7 +289,7 @@ A separate arbitrary-precision campaign accepted all one hundred listed balances
 
 Plainly: the table uses checkpoints so the trend remains readable, not because the omitted rows were skipped. All one hundred even classes were solved. Speed rises by roughly the same amount per rung, radius steadily falls, and the delayed-root ledger grows from 48 to 2,424 directed roots.
 
-> Claim grade: independently measured prescribed acceleration-balance existence for the one hundred listed rows. The maximum 100-to-120-digit speed difference was $1.03\times10^{-105}$, the maximum radius difference was $9.49\times10^{-95}$, the maximum complete six-receiver residual was $1.25\times10^{-110}$, the maximum causal-root residual was $1.00\times10^{-85}$, and the minimum transversality was $0.003151$. The record has SHA-256 `cd2745bffbe792e7d8030d6382ee7f6b76d3f7670d3292559567c46217c70c6b`. A failed precision comparison, phase-channel identity, receiver residual, root residual, transversality, topology label, or directed-root count overturns the affected row.
+> Claim grade: independently measured prescribed acceleration-balance existence for the one hundred listed rows. The maximum 100-to-120-digit speed difference was $1.03\times10^{-105}$, the maximum radius difference was $9.49\times10^{-95}$, the maximum complete six-receiver residual was $1.25\times10^{-110}$, the maximum causal-root residual was $1.00\times10^{-85}$, and the minimum transversality—the smallest absolute root-Jacobian margin from a fold—was $0.003151$. The record has SHA-256 `cd2745bffbe792e7d8030d6382ee7f6b76d3f7670d3292559567c46217c70c6b`. A failed precision comparison, phase-channel identity, receiver residual, root residual, transversality, topology label, or directed-root count overturns the affected row.
 
 Plainly: arbitrary precision makes roundoff far smaller than the reported balance residuals and independently checks every receiver, but it does not turn a list of solutions into a zero-count theorem. Completeness above $\beta_f=20$ remains open, and existence still says nothing about release, retention, binding, stability, a physical spectrum, or scientific acceptance.
 
@@ -427,6 +444,38 @@ Plainly: the compatible radius is a balance coordinate, not an observed size-cha
 
 > Claim grade: measured for the monotone speed-radius ordering of the one hundred accepted rows and derived for its displayed high-speed law. A verified accepted row that reverses the ordering falsifies the measured pattern; a valid root-ledger derivation or accepted asymptotic sequence that changes either $3/2$ or $3\log 2/\pi$ falsifies the corresponding scale coefficient. Neither grade extends beyond the fixed equal-radius, regular-phase B1.3 circular chart.
 
+#### Emergent Discrete Mode Ladder and Quantum-Like Behavior
+
+Define the prescribed B1.3 balance-mode set by
+
+$$
+\mathcal M_{\mathrm{B1.3}}^{\mathrm{bal}}
+=
+\left\{
+\left(\beta_n,\frac{R_n}{R_*},\mathrm{T}_{2n},N_{\mathrm{root},n}\right)
+:
+a_t(\beta_n)=0,
+\quad
+\frac{R_n}{R_*}=-\frac{a_r(\beta_n)}{\beta_n^2}>0
+\right\}
+$$
+
+with $N_{\mathrm{root},n}=24(n+1)$. On $0.05\leq\beta_f\leq20$, the bounded zero-count theorem gives exactly eighteen members, one in each even topology interval $\mathrm{T}_{02}$ through $\mathrm{T}_{36}$ and none in the intervening odd intervals. Simplicity of every zero makes each admitted speed isolated rather than part of a continuous balance band. The arbitrary-precision continuation supplies accepted members through $n=100$, while completeness above speed 20 remains open.
+
+Plainly: the equations do not balance at every speed and radius. They select separate allowed speed-radius pairs, and the causal-root inventory changes by a whole-number step from one selected pair to the next.
+
+This discreteness is emergent because no integer mode rule is inserted into the Master Equation. The integer $n$ labels the causal-root topology that survives the complete delayed acceleration sum: fold births change the root ledger, polarity makes only the even classes support a tangential crossing on the certified domain, and the inward radial coefficient fixes the corresponding scale. In this precise sense the B1.3 ladder is **quantum-like behavior**: a continuous substrate equation produces isolated, ledger-indexed admissible modes.
+
+Plainly: the quantum-like feature is mode selection generated by causal history itself. It is not a claim that the architrinos were assigned quantum numbers or that a quantum postulate was added to make the sequence discrete.
+
+> Claim grades: derived for the existence, isolation, and bounded completeness of the eighteen modes on the certified domain; measured for the continued existence list through $n=100$. A certified additional balance in an odd interval, a second balance in one of the certified even intervals, a nonsimple listed zero, or a failed full-vector balance overturns the corresponding statement.
+
+Calling the ladder quantum-like is an inferred comparison, not a promotion to a physical quantum spectrum. The current modes do not yet carry a derived history-aware energy value $E_n$, a transition law between $n$ and $n\pm1$, an action increment, a preparation measure, or a perturbation-stability certificate. They therefore provide a concrete realized subcase of the discrete residual-system mechanism anticipated by the [eigen-braid spectrum](../noether-braid/braid-mathematics.md#the-eigen-braid-spectrum), but they are not yet members of a certified physical eigen-braid spectrum.
+
+Plainly: an allowed-note pattern has appeared, but the theory has not yet shown that a released assembly occupies the notes stably, jumps between them in whole energy steps, or reproduces quantum probabilities.
+
+> Claim grade: inferred. The quantum-like description is falsified on this chart if the certified isolated ladder collapses into a continuous balance family. A physical-quantum interpretation additionally fails unless same-record dynamics supply retained modes, energy or action values, transitions, and observer-level quantum recovery.
+
 #### From Numerical Pattern to Theorem
 
 Inverse-power fits to the first numerical ladder first suggested that $C(\beta_f)$ approached a value near $1.5$ and that its leading correction was proportional to $1/\beta_f$. Those regressions were discovery evidence: their decimal coefficients depended on the finite fitting window and could not decide whether factors such as $\pi$, $\sqrt{3}$, or $\log 2$ survived exact sixfold summation. The complete ledger derivation replaced those decimals with the exact coefficients $C_\infty=3/2$ and $3\log 2/\pi$.
@@ -445,14 +494,135 @@ For $N=2$ through $N=6$, every other regular polarity class is a bounded negativ
 
 Plainly: the negative rows reject only the tested regular polarity words below speed 20. They say nothing global about faster, variable-speed, breathing, eccentric, nonplanar, or freely evolving assemblies.
 
-## Dynamical Boundary
+## Exact Circular-Solution Theorem
 
-Acceleration balance makes a prescribed ring a legitimate initial-history candidate for further testing. It does not show that the EOM solver will retain the circle after release. Stability analysis is meaningful only after an ordinary evolution preserves the relevant balanced branch with complete history, controlled root transitions, and a nontrivial return record.
+The balance condition has a stronger consequence than a one-phase numerical observation. Let $Q_\Omega(T)$ be rotation through angle $\Omega T$ in the shared-circle plane, let $\mathbf x_j$ be the fixed center-relative phase vector of member $j$, and consider the exact circular histories
 
-The B1.3 circular result is therefore a mathematically structured prescribed-balance ladder: the original isolated point has become thirty-six independently accepted consecutive even-class balances, the map $n\mapsto\mathrm{T}_{2n}$ fixes their complete directed-root counts, local polarity controls the fold-born crossing mechanism, and the high-speed spacing and radius laws are derived. The result still lacks an outward-rounded global zero-count certificate, so it does not establish uniqueness within every even interval or absence of balances from every odd interval.
+$$
+\mathbf X_j(T)
+=
+\mathbf C+Q_\Omega(T)\mathbf x_j,
+\qquad
+\|\mathbf x_j\|=R.
+$$
 
-Plainly: the work has advanced from finding a point to understanding a long balance family and its asymptotic mathematics. The remaining zero-count question is global interval control, not the existence or local fold mechanism of the thirty-six accepted rows.
+Assume that every directed pair has a complete finite set of ordinary causal roots, every retained root is simple, and the full-vector Master Equation acceleration at one phase satisfies
 
-The next dynamical blocker is a separately frozen EOM-solver evolution from a balanced locus with complete retained prehistory, unchanged coupling, guarded root continuity, and a candidate-specific return or escape decision. Broader geometric closure separately requires controlled coverage of unequal phase gaps and, for B1.3, unequal binary radii.
+$$
+\mathbf A_j^{\mathrm{ME}}(0)
+=
+-\Omega^2\mathbf x_j
+$$
 
-Plainly: this chapter closes the shared-circle taxonomy bridge and records the accepted acceleration-balance ladder at its exact grade. It does not promote any ring from prescribed geometry to a retained physical assembly, and it supplies no release, binding, retention, stability, physical-spectrum, or scientific-acceptance verdict.
+for every member $j$.
+
+Plainly: the theorem begins with the exact circle, its complete nondegenerate causal-root ledger, and exact acceleration equality for every architrino. A rounded decimal with a small residual is evidence for such a member, but is not itself the exact mathematical member.
+
+**Theorem.** Under these assumptions, the displayed circular histories satisfy the Master Equation for every absolute time $T$. They are exact periodic solutions with period $P=2\pi/|\Omega|$. If the retained-history depth obeys $H\geq2R/c_f$, the complete dynamically relevant position, rate, and causal-root history returns after every period.
+
+**Proof.** Write one causal delay as $\Delta=T_r-T_t>0$ and set $T_r=T$, $T_t=T-\Delta$. The directed-pair causal equation becomes
+
+$$
+\begin{aligned}
+0
+&=
+\left\|
+\mathbf X_i(T)-\mathbf X_j(T-\Delta)
+\right\|-c_f\Delta\\
+&=
+\left\|
+Q_\Omega(T)
+\left[
+\mathbf x_i-Q_\Omega(-\Delta)\mathbf x_j
+\right]
+\right\|-c_f\Delta\\
+&=
+\left\|
+\mathbf x_i-Q_\Omega(-\Delta)\mathbf x_j
+\right\|-c_f\Delta
+\equiv g_{ij}(\Delta).
+\end{aligned}
+$$
+
+The absolute reception time has disappeared. Each causal delay is therefore a zero of one fixed function $g_{ij}$, so the complete root set, its ownership, its ordering, and every nonzero root-Jacobian sign are constant around the circle. A root birth, death, or fold cannot occur on the exact history because such an event would require a zero root Jacobian, contrary to the simple-root assumption.
+
+Plainly: every delayed triangle keeps the same shape while the assembly rotates. The wake travel times do not slide, appear, or disappear; the whole causal ledger simply turns with the circle.
+
+For a retained root $\Delta$, the reception-to-emission displacement is
+
+$$
+\mathbf r_{i\leftarrow j}(T;\Delta)
+=
+Q_\Omega(T)
+\left[
+\mathbf x_i-Q_\Omega(-\Delta)\mathbf x_j
+\right].
+$$
+
+The receiver and transmitter velocities rotate by the same $Q_\Omega(T)$. Euclidean distances and dot products are rotation invariant, so the separation, polarity, transmitter-side factor $D_t$, and acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ are unchanged, while the line-of-action vector rotates. Every root-resolved acceleration contribution therefore transforms covariantly. Summing the complete ledger gives
+
+$$
+\mathbf A_i^{\mathrm{ME}}(T)
+=
+Q_\Omega(T)\mathbf A_i^{\mathrm{ME}}(0).
+$$
+
+Plainly: all scalar strengths stay fixed and all directions rotate together. The total Master Equation acceleration at any later phase is the rotated copy of the acceleration at the starting phase.
+
+Using exact balance at $T=0$,
+
+$$
+\mathbf A_i^{\mathrm{ME}}(T)
+=
+-\Omega^2Q_\Omega(T)\mathbf x_i
+=
+\frac{d^2\mathbf X_i}{dT^2}(T).
+$$
+
+Thus the circular histories satisfy the Master Equation for every $T$. Because $Q_\Omega(T+P)=Q_\Omega(T)$, positions and rates repeat after $P$. For every history coordinate $\theta\in[-H,0]$, $\mathbf X_i(T+P+\theta)=\mathbf X_i(T+\theta)$ and the fixed causal delays give the same root ledger, so the retained history also returns.
+
+Plainly: exact balance at one phase is enough because symmetry carries the complete equality around the circle. After one turn, not only the visible positions and rates but also the relevant delayed history is the same.
+
+Finally, any two points on the common circle are separated by at most $2R$. The causal equation therefore implies
+
+$$
+c_f\Delta
+=
+\left\|
+\mathbf X_i(T)-\mathbf X_j(T-\Delta)
+\right\|
+\leq
+2R,
+\qquad
+\Delta\leq\frac{2R}{c_f}.
+$$
+
+Hence $H\geq2R/c_f$ contains every possible circular causal root. For the T04 mode, one period is already deeper than this requirement because $2R/c_f<P$ is equivalent to $\beta_f<\pi$, and its exact balance root lies near $\beta_f=2.9743071761<\pi$. Higher modes may require more than one period of exact circular prehistory even though their paths are periodic.
+
+Plainly: the history need not extend arbitrarily far into the past. It only needs to reach beyond the longest possible chord delay; for T04, one complete prior turn is enough.
+
+> Claim grade: derived. The theorem proves exact circular-solution existence and complete-history periodic return for the exact balance root under the stated complete-simple-ledger assumptions. It is falsified by a missing circular root, a zero root Jacobian, a noncovariant Master Equation contribution, or a nonzero full-vector balance residual at the exact root.
+
+The theorem attaches to the mathematically defined balance zero and its compatible radius, not to a finite decimal treated as exact. The outward-rounded T04 zero certificate establishes a unique exact member in its certified interval, and the independent arbitrary-precision evaluation estimates that member's coordinates; the earlier EOM-solver release packet instead used rounded values and enclosed cubic history segments. Direct substitution proves that the exact member is a global solution. The stronger statement that one supplied past-only history admits no other future requires a local well-posedness and uniqueness theorem for the state-dependent delayed history problem on the same complete-simple-root chart; that uniqueness theorem remains an explicit closure target. Perturbation stability is a further and separate question.
+
+Plainly: an exact circle exists and repeats. What remains unproved is that every sufficiently exact numerical release must select only that continuation and that a slightly disturbed circle returns rather than departing.
+
+## Release Attempt and Dynamical Boundary
+
+Acceleration balance makes a prescribed ring a legitimate initial-history candidate for further testing, but the T04 row has now also undergone one bounded past-only EOM-solver release attempt. The declared circular period was $P=1.1866509259049338$. The coarse rung generated an accepted prefix only through $T=0.0029296875$, about $0.25\%$ of one period, before halting with `root_completeness_not_certified`. All accepted snapshots retained the expected 72-root ownership topology, meaning the same roots remained assigned to the same receiver-transmitter channels with no observed root birth, root death, or fold. Over that short prefix, the normalized RMS position departure from the declared circle was at most $2.9544\times10^{-10}$, the RMS rate departure was at most $9.3288\times10^{-8}$, and the final dimensionless acceleration residual was at most $2.3923\times10^{-6}$.
+
+Plainly: when the prescribed future was removed, the generated motion initially stayed extremely close to the circle and kept the expected roots. The certified calculation then became unable to prove the next tiny step's complete root inventory. A quarter of one percent of a cycle is far too short to call the circle retained, rejected, or stable.
+
+The medium rung exceeded its declared 2 GiB supervised memory limit before publishing an authoritative response, so that resource failure is non-authoritative telemetry rather than a dynamical result. The fine rung did not run, and no rung reached one full period. Consequently no position return, rate return, retained-history return, root-timing return, or adjacent-rung convergence measurement exists.
+
+Plainly: there is no one-cycle endpoint to compare with the starting circle. Resource exhaustion and a fail-closed root-continuation halt are unresolved instrumentation boundaries, not evidence that the ring physically flies apart.
+
+> Claim grade: measured finite-prefix release evidence plus unresolved continuation. The coarse response has SHA-256 `084f6e99154f4e140db13f72dfe6147691206773c6bf50147df1bc77e6d21748`; its supervised process receipt has SHA-256 `2728943df5a4ab52b31adc201837926b3709682ad872eac37d4bf3e03b22ffc6`. The medium resource record has SHA-256 `175f25da85a273ad7e5651d2ef993e85299069ca9ca55a35231cf0e369c61c1b` but carries no scientific-result authority. A faithful independent evaluation outside the reported prefix enclosures, a changed bound input, a missing root owner in an accepted snapshot, or certified continuation through the refused interval falsifies the corresponding finite-prefix or blocker statement.
+
+The B1.3 circular result is therefore a mathematically structured prescribed-balance ladder: the original isolated point has become one hundred independently accepted consecutive even-class balances, the bounded T00 through T36 zero count is certified, the map $n\mapsto\mathrm{T}_{2n}$ fixes their complete directed-root counts, local polarity controls the fold-born crossing mechanism, and the high-speed spacing and radius laws are derived. Above speed 20, interval completeness remains open. The exact circular-solution theorem supplies an invariant mathematical reference orbit for every exact complete-simple-ledger balance member. The EOM-solver continuation and memory problems remain instrumentation barriers to an independent past-only numerical reproduction, while perturbation stability still requires a well-posed nearby-history flow and a separate return-map analysis.
+
+Plainly: the exact-root mathematics establishes continuing circular solutions, while the release experiment reached only a very short approximation to one of them. Exact continuation, numerical reproduction, and stability are three different evidence levels; none yet establishes a bound or perturbatively stable physical assembly.
+
+Broader geometric closure separately requires controlled coverage of unequal phase gaps, unequal B1.3 binary radii, and translated screw paths beyond the bounded diagnostic recorded in Family B.
+
+Plainly: this chapter closes the shared-circle taxonomy bridge, derives exact circular continuation for the exact balance members, and records the separate release-prefix evidence at its measured grade. It supplies no binding, perturbation-stability, physical-spectrum, energy-quantization, transition, or scientific-acceptance verdict.

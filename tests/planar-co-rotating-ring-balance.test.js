@@ -304,3 +304,55 @@ test("the regular alternating 12:12 candidate balances and matches both unchange
     closeTo(actualAcceleration.z, expectedAcceleration[2], 7e-8);
   });
 });
+
+test("the regular alternating N=7 through N=11 candidates match both unchanged independent root instruments", () => {
+  const candidates = [
+    { n: 7, beta: 2.971792998251308, rootCount: 392 },
+    { n: 8, beta: 1.39081847593345, rootCount: 288 },
+    { n: 9, beta: 1.3584259179735925, rootCount: 360 },
+    { n: 10, beta: 1.3318963796099441, rootCount: 440 },
+    { n: 11, beta: 1.3097107443722018, rootCount: 528 },
+  ];
+  for (const candidate of candidates) {
+    const phases = regularRingPhases(candidate.n);
+    const polarities = alternatingPolarityClass(candidate.n).polarities;
+    const specialized = evaluatePlanarCoRotatingRing({
+      phases,
+      polarities,
+      beta: candidate.beta,
+      rootTolerance: 2e-14,
+      foldTolerance: 2e-11,
+    });
+    assert.equal(specialized.rootCompleteness.complete, true, `specialized completeness for N=${candidate.n}`);
+    assert.equal(specialized.rootCount, candidate.rootCount);
+    assert.ok(specialized.compatibleScale > 0);
+    assert.ok(specialized.residuals.maximumFullVector <= 2e-8);
+
+    const generic = genericCrossLedger({
+      phases,
+      polarities,
+      beta: candidate.beta,
+      rootTolerance: 1e-12,
+      refinedRootTolerance: 1e-13,
+      maxIterations: 180,
+      refinedMaxIterations: 200,
+    });
+    assert.equal(generic.reducedMeasures.validity.passed, true,
+      `generic validity for N=${candidate.n}: ${JSON.stringify(generic.reducedMeasures.numericalConvergence)}`);
+    const independentSelf = selfRoots(candidate.beta).map((value) => 2 * value);
+    generic.rawLedgers.causalRoots.forEach((event, receiverIndex) => {
+      const receiver = specialized.receivers[receiverIndex];
+      const selfLedger = receiver.directedPairs[receiverIndex];
+      assert.equal(selfLedger.rootCount, independentSelf.length);
+      selfLedger.roots.forEach((root, rootIndex) => closeTo(root.delayAngle, independentSelf[rootIndex], 4e-10));
+      const specializedCount = receiver.directedPairs.reduce(
+        (sum, pair) => sum + (pair.transmitterIndex === receiverIndex ? 0 : pair.rootCount), 0);
+      assert.equal(event.rootCount, specializedCount);
+      const expectedAcceleration = crossAcceleration(specialized, receiverIndex);
+      const actualAcceleration = event.measures.probeResponses[0].acceleration;
+      closeTo(actualAcceleration.x, expectedAcceleration[0], 7e-8);
+      closeTo(actualAcceleration.y, expectedAcceleration[1], 7e-8);
+      closeTo(actualAcceleration.z, expectedAcceleration[2], 7e-8);
+    });
+  }
+});

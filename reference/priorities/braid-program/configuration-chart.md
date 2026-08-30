@@ -132,7 +132,6 @@ Proposed downstream frequency and B1-outward protocols are not current slices be
 
 | Queue target | Current abstention |
 | --- | --- |
-| BP-004 `undirected_ensemble_campaign` | A priority-design packet exists, but its executable seed distributions, exact population counts, endpoint-matched histories, horizon, and persistence classifier are not yet frozen. It therefore has no admitted expressible, evaluated, or coverage-certified campaign subchart in this inventory. |
 | BP-007 `a1_3_c5_v2_adjudication_packet` | A1.3 and C5 remain admitted taxonomy rows, but no V2 packet defines the proposed $172$-row adjudication representation. V1 is closed as calibration-insufficient and does not supply current executable coverage. |
 
 BP-006 is a product/record-consumer target rather than a scientific configuration subchart. BP-008 is a completed documentary diagnosis, not a current campaign slice. Neither receives an overlay row here. No row in this inventory consumes an MEC-005 or MEC-006 result.

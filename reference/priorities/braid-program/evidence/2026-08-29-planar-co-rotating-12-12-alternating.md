@@ -18,7 +18,7 @@ Plainly: the calculation found a circular acceleration balance for one precisely
 
 | $N$ | Members | Phase configuration | Polarity word | Symmetry class | Neutral antipodes | Taxonomy | Scan interval | Root-topology intervals | Verdict |
 | ---: | ---: | --- | --- | --- | --- | --- | --- | ---: | --- |
-| 12 | 24 | Regular 24-gon | `+-+-+-+-+-+-+-+-+-+-+-+-` | `n12-pmpmpmpmpmpmpmpmpmpmpmpm`; rotation, conjugation, and reflection-with-circulation-reversal reduced | No; every antipode has like polarity | $12{:}12$ shared-circle assembly outside B1.3; not C5/C6 | $0.05\leq\beta_f\leq20$, base step $0.025$ plus adaptive refinement | 142 | Balanced candidate |
+| 12 | 24 | Regular 24-gon | `+-+-+-+-+-+-+-+-+-+-+-+-` | `n12-pmpmpmpmpmpmpmpmpmpmpmpm`; rotation, conjugation, and reflection-with-circulation-reversal reduced | No; every antipode has like polarity | $12{:}12$ shared-circle assembly | $0.05\leq\beta_f\leq20$, base step $0.025$ plus adaptive refinement | 142 | Balanced candidate |
 
 Plainly: B1.3 contains exactly six architrinos arranged as three neutral antipodal binaries. This record has 24 architrinos, and its alternating word has like-polarity antipodes because $N$ is even. It therefore cannot be added to the B1.3 inventory. It is also not C5 or C6: it has one common center, no positive component-center separation, and no decomposition into antipodal-neutral B1.3 components.
 

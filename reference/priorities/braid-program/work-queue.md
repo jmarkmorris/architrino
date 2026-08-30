@@ -9,11 +9,10 @@ The [H3 velocity-domain rule](braid-candidate-requirement-adjudication.md#veloci
 1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
 2. `configuration_chart_completion` — [BP-002](#bp-002--configuration-chart-completion). Status: `Queued`.
 3. `collinear_breather_campaign` — [BP-003](#bp-003--collinear-breather-campaign). Status: `Deferred / blocked`.
-4. `undirected_ensemble_campaign` — [BP-004](#bp-004--undirected-ensemble-campaign). Status: `Deferred / blocked`.
-5. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
-6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
-7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
-8. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Full conditional cover independently verified; one-cell acceleration range accepted, full M05/M06 quadrature and three-rung measurement outstanding`.
+4. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
+5. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
+6. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
+7. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Full conditional cover independently verified; one-cell acceleration range accepted, full M05/M06 quadrature and three-rung measurement outstanding`.
 
 ## Shared search prerequisites
 
@@ -89,7 +88,7 @@ This register owns every deferred action from the [Neutral-Braid Configuration A
 | Open — minimum topology inventory | BP-002, `Queued` | Freeze closure conventions, then run unlink, square-knot, Hopf, Whitehead, and Borromean controls with independent classifications. |
 | Open — drifting enclosure or undeclared transmitter tail contract | BP-002, `Queued`; EOM contracts own only declared retained computation | Prove the horizon/restriction theorem or keep the claim limited to the declared retained interval and inventory. |
 | Open — finite-width omitted-tail bound | Same explicit BP-002/EOM-contract handoff | Apply the shared T5 acceptance boundary; a retained computation is not an omitted-tail certificate. |
-| Open — candidate retention, stability, physical realization, or solver preference | BP-001, BP-003, and BP-004, each `Deferred / blocked`; MEC-002 only where a mature wake state is consumed | Apply the candidate-specific EOM evolution, complete-root, multi-prehistory, refinement, fate, and independent-instrument gates. |
+| Open — candidate retention, stability, physical realization, or solver preference | BP-001 and BP-003, both `Deferred / blocked`; MEC-002 only where a mature wake state is consumed | Apply the candidate-specific EOM evolution, complete-root, multi-prehistory, refinement, fate, and independent-instrument gates. |
 
 Plainly: atlas mathematics remains available within its declared history scope. Physical fate stays with the candidate-specific rows, and the Gaussian-tail question keeps its two-owner handoff.
 
@@ -131,14 +130,6 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 - **Request / acceptance:** Extend certified close-approach roots and rerun the unchanged stationary seed; run the at/above-field stage only after fold-root completeness.
 - **Evidence / blocker:** The refined-prefix stationary joint-history fixture now certifies through `1.394999999999996`; its next fixed step fails closed because the certified joint root-time width exceeds the unchanged tolerance. Current runs still halt before crossing and do not establish breathing.
 - **Completion:** The unchanged protocol resolves inner turn, crossing, outer turn, recapture, return, or a fail-closed no-go.
-
-### BP-004 — Undirected ensemble campaign
-
-- **Status:** Deferred / blocked
-- **Priority object:** `undirected_ensemble_campaign`
-- **Request / acceptance:** Execute the first declared undirected ensemble with seeds and persistence criterion fixed before scoring.
-- **Evidence / blocker:** Depends on reaccepted App Solver checkpoint/campaign instrumentation and the Braid instrument gate.
-- **Completion:** Complete census and fate rows are booked under the predeclared classifier.
 
 ### BP-006 — Borg braid-analysis mode
 

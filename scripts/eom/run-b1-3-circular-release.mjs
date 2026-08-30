@@ -13,7 +13,7 @@ async function main(args=process.argv.slice(2)){
   check(args.length===10&&args[0]==='--prepared'&&args[2]==='--binary'&&args[4]==='--manifest'&&args[6]==='--acceptance'&&args[8]==='--out','usage: --prepared DIR --binary FILE --manifest FILE --acceptance FILE --out FRESH_DIR');
   const prepared=resolve(args[1]), binary=resolve(args[3]), manifestPath=resolve(args[5]), acceptancePath=resolve(args[7]), out=resolve(args[9]);
   check(!existsSync(out),'fresh output directory required'); mkdirSync(out,{mode:0o700});
-  const limits={wallSeconds:1800,heartbeatSeconds:15,aggregateRssBytes:2147483648,rssSampleIntervalSeconds:1,
+  const limits={wallSeconds:7200,heartbeatSeconds:15,aggregateRssBytes:1610612736,rssSampleIntervalSeconds:1,
     maximumRssSampleGapSeconds:2,logBytes:16777216,outputBytes:268435456,aggregateOutputBytes:1073741824,
     diskMinimumBytes:5368709120,minimumHostMemoryFreePercent:20};
   const acceptedBytes=capture(acceptancePath,1024*1024), acceptance=JSON.parse(acceptedBytes.data);

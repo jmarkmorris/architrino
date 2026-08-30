@@ -12,18 +12,16 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 
 1. `eom_bounded_population_acceptance_stack` — Route to [App Solver](../app-solver/work-queue.md). Status: `In progress`.
 2. `braid_campaign_1_execution` — Route to [Braid Program](../braid-program/work-queue.md). Status: `Deferred / blocked`.
-3. `attractor_instrument_reacceptance_and_ensemble` — Route to App Solver and Braid Program. Status: `Deferred / blocked`.
-4. `causal_wake_update_law_joint_acceptance` — Route to [Master-Equation Closure](../master-equation-closure/work-queue.md). Status: `In progress`.
-5. `pressure_dependent_noether_sea_response` — Route to Master-Equation Closure. Status: `Deferred / blocked`.
-6. `atomic_nuclear_review_cleanup` — Status: `Deferred / blocked`.
-7. `spacetime_review_cleanup` — Status: `Deferred / blocked`.
-8. `lorentz_composition_target` — Status: `Deferred / blocked`.
-9. `branch_spectrum_transport_map` — Status: `Deferred / blocked`.
-10. `terrestrial_transported_clock_target` — Status: `Deferred / blocked`.
-11. `full_ppn_completion` — Status: `Deferred / blocked`.
-12. `two_plus_two_cluster_test` — Status: `Deferred / blocked`.
-13. `horizon_diagnostics_consumer` — Status: `Deferred / blocked`.
-14. `speed_symbol_consolidation` — Status: `Deferred / blocked`.
+3. `causal_wake_update_law_joint_acceptance` — Route to [Master-Equation Closure](../master-equation-closure/work-queue.md). Status: `In progress`.
+4. `pressure_dependent_noether_sea_response` — Route to Master-Equation Closure. Status: `Deferred / blocked`.
+5. `atomic_nuclear_review_cleanup` — Status: `Deferred / blocked`.
+6. `spacetime_review_cleanup` — Status: `Deferred / blocked`.
+7. `lorentz_composition_target` — Status: `Deferred / blocked`.
+8. `branch_spectrum_transport_map` — Status: `Deferred / blocked`.
+9. `terrestrial_transported_clock_target` — Status: `Deferred / blocked`.
+10. `full_ppn_completion` — Status: `Deferred / blocked`.
+11. `horizon_diagnostics_consumer` — Status: `Deferred / blocked`.
+12. `speed_symbol_consolidation` — Status: `Deferred / blocked`.
 
 ## In progress
 
@@ -49,13 +47,6 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 - **Request / acceptance:** Execute the frozen Campaign 1 workload without changing the production instrument in the same change.
 - **Evidence / blocker:** Blocked on instrument reacceptance and certified close-approach root completeness.
 - **Completion:** Braid Program books one accepted fate or a declared failure under the frozen gate.
-
-### AWT-003 — Attractor instrument and ensemble
-
-- **Status:** Deferred / blocked
-- **Request / acceptance:** Reaccept checkpoint/resume and release-root instrumentation, then execute the first declared undirected ensemble with persistence fixed before scoring.
-- **Evidence / blocker:** App Solver owns the reusable instrument; Braid Program owns the campaign.
-- **Completion:** Both owner queues close their respective instrument and campaign objects.
 
 ### AWT-005 — Pressure-dependent Noether sea response
 
@@ -105,13 +96,6 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 - **Request / acceptance:** Attach primary sources and numerical tolerances to the Lense-Thirring, $\xi_{\mathrm W}$, and $\zeta_{1,2,3,4}$ rows.
 - **Evidence / blocker:** The current reduced synthetic likelihood cannot close them.
 - **Completion:** Each added channel has a versioned benchmark and residual.
-
-### AWT-012 — Two-plus-two cluster test
-
-- **Status:** Deferred / blocked
-- **Request / acceptance:** Run a prescribed-record static pairwise-orientation scan of the speculative two-pro plus two-anti cluster.
-- **Evidence / blocker:** Energy-minimum language remains barred without an independent energy functional and same-record stability test.
-- **Completion:** The scan returns diagnostic geometry only, or later independent evidence closes the added claims.
 
 ### AWT-013 — Horizon diagnostics consumer
 
