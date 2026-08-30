@@ -54,7 +54,6 @@ export function createBorgAssemblyViewControls({
     renderFieldRows(documentLike, dom.provenance, [
       [prescribedGeometry ? "Geometry source" : "Engine", `${presentation.provenance.engineId} ${presentation.provenance.engineVersion}`],
       ...(taxonomy ? [
-        ["Braid family", taxonomy.familyLabel],
         ["Candidate", presentation.catalogLabel ?? taxonomy.displayLabel],
         ["Geometry class", `${taxonomy.memberId} — ${taxonomy.memberLabel}`],
         ...(presentation.catalogLabel && presentation.catalogLabel !== taxonomy.displayLabel

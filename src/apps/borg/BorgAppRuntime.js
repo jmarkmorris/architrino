@@ -1313,23 +1313,11 @@ export function mountBorgApp(options = {}) {
       label: "Random architrinos",
     });
     const entries = navigation?.catalog?.entries ?? [];
-    const familyGroups = new Map();
     entries.forEach((catalogEntry) => {
-      const group = familyGroups.get(catalogEntry.familyId) ?? [];
-      group.push(catalogEntry);
-      familyGroups.set(catalogEntry.familyId, group);
-    });
-    familyGroups.forEach((familyEntries) => {
-      const heading = documentLike.createElement("div");
-      heading.className = "borg-radio-heading";
-      heading.textContent = familyEntries[0].familyLabel;
-      dom.startingGeometryOptions.append(heading);
-      familyEntries.forEach((catalogEntry) => {
-        appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
-          name: "borg-starting-geometry",
-          value: catalogEntry.id,
-          label: catalogEntry.label,
-        });
+      appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
+        name: "borg-starting-geometry",
+        value: catalogEntry.id,
+        label: catalogEntry.label,
       });
     });
     if (activeStartingGeometryId !== "random" &&

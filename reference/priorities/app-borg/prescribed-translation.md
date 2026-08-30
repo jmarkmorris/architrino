@@ -255,7 +255,7 @@ Do not hardcode the implementation to catalog labels such as `B1` or `B1.3`. Bui
 
 If a B-family record lacks a field required by the design, show the missing carrier and remain not advanced. Do not add per-candidate browser constants.
 
-The current Borg catalog contains twenty-one sealed prescribed records: eleven Family-A members, four Family-B members, and six Family-C members. The current Family-C source specifications, generated records, catalog labels, and analytical routing are synchronized on the C1 through C6 identities. Account explicitly for those identities:
+The current Borg catalog is a flat list of twenty-four sealed prescribed records, including SD3, F5, F6c, and F6b, with no required family metadata. The C1 through C6 source specifications, generated records, catalog labels, and analytical routing retain their exact identities. Account explicitly for those identities:
 
 - C1 and C2 are the general co-rotating and counter-rotating coaxial twelve-worldline records and are not required to decompose into B1 components;
 - C3 and C4 are the constrained coaxial two-B1 loci;

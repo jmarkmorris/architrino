@@ -609,7 +609,7 @@ test("F6b exact clearance and fail-closed status preserve the scoped-negative re
     DEPRECATED_PRESCRIBED_BRAID_TARGETS.some((row) => row.specPath.endsWith("f6b-scoped-negative-circular.v2.json")),
     true,
   );
-  const catalogEntry = BORG_BRAID_RECORD_CATALOG.entries.find((row) => row.familyId === "F6b");
+  const catalogEntry = BORG_BRAID_RECORD_CATALOG.entries.find((row) => row.id === "f6b-scoped-negative-circular-v2");
   assert.ok(catalogEntry);
   assert.match(catalogEntry.label, /scoped-negative circular realization/);
 });

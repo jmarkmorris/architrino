@@ -8,4 +8,4 @@ Accepted implementation work belongs in [work-queue.md](work-queue.md), strategi
 
 ## Unresolved Ideas
 
-Further removal of family-led organization remains part of the broader registry design. Reusable coordinate constraints can support generation and explanation without becoming mandatory GUI parents. The accepted A1.0/A2.0/A3.0 example-name rule is maintained in [the naming contract](requirements-and-design.md#concrete-example-names), not as a provisional proposal here.
+No unresolved family-navigation proposal remains here. Flat catalog organization and peer example names are accepted rules in [the catalog contract](requirements-and-design.md#flat-catalog-and-selection). Open identity relations and general facet definitions remain in BORG-014 rather than reinstating a family hierarchy.

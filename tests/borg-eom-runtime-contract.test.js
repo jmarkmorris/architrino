@@ -544,7 +544,7 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   );
   assert.match(runtimeSource, /assemblyViewScene\.setPathVisible\(pathGroup\.visible\);/);
   assert.match(runtimeSource, /"diagnostics",\s*\]\);/);
-  assert.match(htmlSource, /grid-template-columns: minmax\(620px, 930px\) minmax\(360px, 1fr\);/);
+  assert.match(htmlSource, /grid-template-columns: minmax\(620px, 1395px\) minmax\(360px, 1fr\);/);
   assert.match(htmlSource, /@media \(max-width: 980px\)[\s\S]*#borg-app \{\s*grid-template-columns: 1fr;/);
   assert.match(
     runtimeSource,
@@ -811,14 +811,15 @@ test("Borg surface keeps EOM-native policy requiring verification for advancemen
   );
 });
 
-test("Borg prescribed-geometry provenance presents source-carried braid taxonomy", () => {
+test("Borg presents the catalog alias separately from source-carried geometry classes and labels", () => {
   const assemblyViewControlsSource = readFileSync(
     new URL("../src/apps/borg/BorgAssemblyViewControls.js", import.meta.url),
     "utf8",
   );
-  assert.match(assemblyViewControlsSource, /\["Braid family", taxonomy\.familyLabel\]/);
-  assert.match(assemblyViewControlsSource, /\["Candidate", taxonomy\.displayLabel\]/);
-  assert.match(assemblyViewControlsSource, /\["Member definition", `\$\{taxonomy\.memberId\} — \$\{taxonomy\.memberLabel\}`\]/);
+  assert.doesNotMatch(assemblyViewControlsSource, /taxonomy\.family(?:Id|Label)|"Braid family"/);
+  assert.match(assemblyViewControlsSource, /\["Candidate", presentation\.catalogLabel \?\? taxonomy\.displayLabel\]/);
+  assert.match(assemblyViewControlsSource, /\["Geometry class", `\$\{taxonomy\.memberId\} — \$\{taxonomy\.memberLabel\}`\]/);
+  assert.match(assemblyViewControlsSource, /\["Recorded label", taxonomy\.displayLabel\]/);
   assert.match(assemblyViewControlsSource, /\["Instantiation", taxonomy\.instantiationLabel\]/);
   assert.match(assemblyViewControlsSource, /\["Canon source", taxonomy\.canonSource\]/);
   assert.match(assemblyViewControlsSource, /\["Record date", presentation\.provenance\.date\]/);

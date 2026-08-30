@@ -153,7 +153,7 @@ function targetByRecordPath() {
   ]));
 }
 
-function validateCandidateInventory(registry) {
+export function validateCandidateInventory(registry) {
   const catalogEntries = BORG_BRAID_RECORD_CATALOG.entries;
   const catalogById = new Map(catalogEntries.map((entry) => [entry.id, entry]));
   const excludedIds = new Set();
@@ -181,7 +181,6 @@ function validateCandidateInventory(registry) {
       fail(`registry analytical candidate ${candidate.candidateId} is absent from or separately dispositioned by the Borg catalog.`);
     }
     if (candidate.candidateId !== catalog.id ||
-        candidate.familyId !== catalog.familyId ||
         candidate.recordPath !== catalog.recordUrl) {
       fail(`registry candidate ${ordinal} differs from the canonical Borg catalog.`);
     }
@@ -198,6 +197,7 @@ function validateCandidateInventory(registry) {
     const specBytes = readFileSync(specPath);
     const recordBytes = readFileSync(recordPath);
     const spec = validatePrescribedBraidSpec(JSON.parse(specBytes.toString("utf8")));
+    // Geometry constraints belong to the source, not to the flat browse catalog.
     if (spec.specId !== candidate.candidateId ||
         spec.identity.taxonomy.familyId !== candidate.familyId ||
         spec.identity.taxonomy.memberId !== candidate.memberId) {

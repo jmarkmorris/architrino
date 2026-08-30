@@ -29,6 +29,7 @@ Maintain Borg as an app-facing surface for EOM-solver simulation and sealed-reco
 5. Keep the UI minimal while preserving required authority, error-budget, path-history, wake-history, boundary-shell, and diagnostic state.
 6. Use normalized field speed $c_f=1$ for Borg EOM runs unless an explicit manifest transform is present.
 7. Borg owns the selected teaching surfaces for prescribed geometry, source-carried classification and polarity rows, and interaction-ledger display; the scientific owner must supply every non-display row.
+8. The assembly catalog is flat: no required family or parent metadata, no family menu headings, and no name-derived classifications. [The accepted decision](../../architectural-decisions/flat-assembly-catalog.md) preserves mathematical constraints and exact source provenance separately.
 
 ## Work Queue
 

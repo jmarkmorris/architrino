@@ -52,10 +52,23 @@ test("prescribed Display profile is explicit, fixed-grade, and non-promotable", 
   });
 });
 
+test("Starting geometry renders one ordered list without family headings or regrouping", () => {
+  const runtime = readFileSync(new URL("../src/apps/borg/BorgAppRuntime.js", import.meta.url), "utf8");
+  const control = runtime.split("function configureStartingGeometryControl() {")[1].split("function configureAssemblyViewControls()")[0];
+  assert.match(control, /label: "Random architrinos"/);
+  assert.match(control, /entries\.forEach\(\(catalogEntry\) => \{/);
+  assert.match(control, /value: catalogEntry\.id/);
+  assert.match(control, /label: catalogEntry\.label/);
+  assert.match(control, /label: "External prescribed geometry"/);
+  assert.doesNotMatch(control, /family|heading|new Map|\.sort\(/i);
+  const html = readFileSync(new URL("../borg.html", import.meta.url), "utf8");
+  assert.doesNotMatch(html, /borg-radio-heading/);
+});
+
 test("Borg workbench loads any catalog entry in place", async () => {
   const catalog = createBorgBraidRecordCatalog([
-    { id: "first", label: "First", recordUrl: "first.json", familyId: "A", familyLabel: "Family A" },
-    { id: "second", label: "Second", recordUrl: "second.json", familyId: "B", familyLabel: "Family B" },
+    { id: "first", label: "First", recordUrl: "first.json" },
+    { id: "second", label: "Second", recordUrl: "second.json" },
   ]);
   const fetched = [];
   const navigation = createBorgBraidRecordNavigation({

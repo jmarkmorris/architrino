@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFileSync } from "node:fs";
 
 import {
   BORG_BRAID_RECORD_CATALOG,
@@ -73,17 +74,35 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   );
   BORG_BRAID_RECORD_CATALOG.entries.forEach((entry) => {
     assert.equal(Object.isFrozen(entry), true);
-    assert.deepEqual(Object.keys(entry), ["id", "label", "recordUrl", "familyId", "familyLabel"]);
+    assert.deepEqual(Object.keys(entry), ["id", "label", "recordUrl"]);
     assert.match(entry.recordUrl, /\.assembly-view-record\.v0\.json$/);
   });
-  assert.deepEqual(
-    BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.familyId),
-    ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "C", "C", "C", "C", "C", "C", "SD3", "F5", "F6c", "F6b"],
-  );
+});
+
+test("current example tables use the catalog names without changing mathematical class identifiers", () => {
+  const audit = readFileSync(new URL("../reference/priorities/app-borg/selector-assignment-audit.md", import.meta.url), "utf8");
+  const taxonomy = readFileSync(new URL("../content/markdown/aaa/noether-braid/braid-taxonomy.md", import.meta.url), "utf8");
+  const readiness = readFileSync(new URL("../reference/priorities/braid-program/prescribed-worldline-readiness-matrix.md", import.meta.url), "utf8");
+  const signoff = readFileSync(new URL("../reference/priorities/braid-program/borg-candidate-signoff.md", import.meta.url), "utf8");
+  assert.ok(taxonomy.includes("| Example ID | Geometry record | Borg depiction | Description |"));
+  assert.doesNotMatch(taxonomy, /\| Family name \||\| Member name \|/);
+  for (const entry of BORG_BRAID_RECORD_CATALOG.entries) {
+    assert.equal(audit.split("\n").filter((line) => line.startsWith(`| ${entry.label} |`)).length, 1, entry.label);
+    if (/^[ABC]\d/.test(entry.label)) {
+      const navigationRow = taxonomy.split("\n").find((line) => line.includes(`| \`${entry.id}\` |`));
+      assert.ok(navigationRow?.includes(`| \`${entry.label}\` |`), entry.label);
+    }
+    if (/^A[123]\.0 —/.test(entry.label)) {
+      assert.ok(readiness.includes(`| \`${entry.label.split(" —")[0]}\` | 1 |`));
+      assert.ok(signoff.includes(`\`${entry.id}\` — ${entry.label} |`));
+    }
+  }
+  const definitions = readFileSync(new URL("../content/markdown/aaa/noether-braid/braid-family-a.md", import.meta.url), "utf8");
+  for (const member of ["A1", "A2", "A3"]) assert.ok(definitions.includes(`## ${member}\n`));
 });
 
 test("Borg braid catalog rejects duplicate identities, duplicate URLs, and embedded fields", () => {
-  const entry = { id: "a", label: "A", recordUrl: "a.json", familyId: "A", familyLabel: "Family A" };
+  const entry = { id: "a", label: "A", recordUrl: "a.json" };
   assert.throws(
     () => createBorgBraidRecordCatalog([entry, { ...entry, recordUrl: "b.json" }]),
     /id a is duplicated/,
@@ -91,20 +110,24 @@ test("Borg braid catalog rejects duplicate identities, duplicate URLs, and embed
   assert.throws(
     () => createBorgBraidRecordCatalog([
       entry,
-      { id: "b", label: "B", recordUrl: "a.json", familyId: "B", familyLabel: "Family B" },
+      { id: "b", label: "B", recordUrl: "a.json" },
     ]),
     /URL a\.json is duplicated/,
   );
   assert.throws(
     () => createBorgBraidRecordCatalog([{ ...entry, radius: 1 }]),
-    /may contain only id, label, recordUrl, familyId, familyLabel/,
+    /may contain only id, label, recordUrl/,
   );
+  for (const field of ["familyId", "familyLabel", "parentId"]) {
+    assert.throws(() => createBorgBraidRecordCatalog([{ ...entry, [field]: "parent" }]),
+      /may contain only id, label, recordUrl/);
+  }
 });
 
 test("Borg braid catalog preserves declared source order", () => {
   const catalog = createBorgBraidRecordCatalog([
-    { id: "z", label: "Z", recordUrl: "z.json", familyId: "C", familyLabel: "Family C" },
-    { id: "a", label: "A", recordUrl: "a.json", familyId: "A", familyLabel: "Family A" },
+    { id: "z", label: "Z", recordUrl: "z.json" },
+    { id: "a", label: "A", recordUrl: "a.json" },
   ]);
   assert.deepEqual(catalog.entries.map((entry) => entry.id), ["z", "a"]);
 });

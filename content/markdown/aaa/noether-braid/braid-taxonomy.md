@@ -2,7 +2,9 @@
 
 This chapter describes prescribed Noether braid geometries through explicit coordinates. The taxonomy has three levels: assembly composition, individual braid, and individual binary.
 
-Each taxonomy member receives a neutral identifier consisting of a family letter and a member number, such as `A1`, `A2`, `A3`, or `B1`. A decimal suffix identifies a constrained variant of a member, such as `A1.1` or `B1.1`. The identifier carries no geometric meaning. The first three master tables together with the source record define the geometry; the Borg depiction renders that declared record. Family and member names are optional aliases.
+Assembly catalog entries are peers, identified by their exact records and optional human-readable aliases such as `A1.0`, `A2.0`, `A3.0`, and `B1.1`. Letters and decimal suffixes do not impose family membership or parent-child navigation. A1, A2, A3, and the other constraint definitions below describe mathematical sets of coordinates; a concrete example selects one complete geometry and motion from such a set. The first three master tables together with the source record define the geometry, and Borg renders that declared record.
+
+Family terminology in the mathematical sections groups shared equations for exposition only. It is not an assembly-identity relation, a required record classification, or a browser hierarchy. Discovery uses independently assigned properties and exact record targets. Actual composition into braids and binaries remains a physical coordinate relationship, separate from how the catalog is organized.
 
 This is a geometry-and-motion taxonomy. It does not establish that a prescribed configuration is generated, retained, or stable under the EOM solver.
 
@@ -384,7 +386,7 @@ The all-axial boundary is not a distinct internally moving member. Its coordinat
 
 ### Naming and Navigation Master Table
 
-Family and member names are optional aliases. The Description column may aid navigation, but it does not define the geometry and must not introduce a characteristic absent from the first three master tables.
+Example names are optional aliases in a flat catalog. The Description column may aid navigation, but it does not define the geometry and must not introduce a characteristic absent from the first three master tables. No family assignment is required to list or select an example.
 
 This navigation table lists concrete record examples. A1.0, A2.0, and A3.0 are examples of the A1, A2, and A3 geometry classes defined above; `.0` does not denote a parent or a new parameterized class. A1.0 and A3.0 select indexed frequencies $(0.25,0.5,0.75)$, a $1:2:3$ ratio, while their `.1` examples use equal frequencies. A2.0 selects one fully symmetric geometry. Each name resolves to the complete recorded coordinates and motion, not to every configuration admitted by its class.
 
@@ -392,25 +394,25 @@ Plainly: the examples are peers for browsing. The reusable mathematical definiti
 
 Every Family-A Borg depiction in this table selects the near-rest endpoint $\lambda_A=0$. Its three source-defined binary axes are the mutually orthogonal $x$, $y$, and $z$ axes, so the corresponding binary orbit planes are yz, xz, and xy. The wider taxonomy retains the prescribed interpolation through $0 < \lambda_A < 1$ and the coincident-axis endpoint at $\lambda_A=1$.
 
-| Example ID | Family name | Member name | Geometry record | Borg depiction | Description |
-| --- | --- | --- | --- | --- | --- |
-| `A1.0` | Noether core | Coincident endpoint orbits | `family-a-a1-general-v1` | `A1.0 — coincident endpoint orbits` | Zero-axial-offset A1 example with indexed frequency ratio $1:2:3$; the two endpoint paths share one geometric circle within each binary. |
-| `A1.1` | Noether core | Equal-frequency | `family-a-a1-1-equal-frequency-v1` | `A1.1 — equal frequency` | A1 constrained to one common binary frequency while retaining independently assignable radii. |
-| `A1.2` | Noether core | Equal-frequency equal-radius | `family-a-a1-2-equal-frequency-equal-radius-v1` | `A1.2 — equal frequency, equal radius` | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
-| `A1.3` | Noether core | 4:2:1-frequency | `family-a-a1-3-4-2-1-frequency-v1` | `A1.3 — 4:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
-| `A1.4` | Noether core | 3:2:1-frequency | `family-a-a1-4-3-2-1-frequency-v1` | `A1.4 — 3:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `A2.0` | Noether core | Fully symmetric | `family-a-a2-fully-symmetric-v1` | `A2.0 — fully symmetric` | A2 example with three equivalent binaries, equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
-| `A3.0` | Noether core | General axial decomposition | `family-a-a3-general-v1` | `A3.0 — general` | A3 example with positive axial offsets and indexed frequency ratio $1:2:3$; its remaining coordinates are fixed by the record. |
-| `A3.1` | Noether core | Equal-frequency axial decomposition | `family-a-a3-1-equal-frequency-v1` | `A3.1 — equal frequency` | A3 constrained to one common binary frequency while retaining independently assignable radii and decompositions. |
-| `A3.2` | Noether core | Equal-frequency equal-radius axial decomposition | `family-a-a3-2-equal-frequency-equal-radius-v1` | `A3.2 — equal frequency, equal radius` | A3 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
-| `A3.3` | Noether core | 4:2:1-frequency axial decomposition | `family-a-a3-3-4-2-1-frequency-v1` | `A3.3 — 4:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
-| `A3.4` | Noether core | 3:2:1-frequency axial decomposition | `family-a-a3-4-3-2-1-frequency-v1` | `A3.4 — 3:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `B1.1` | Coincident binary axes | Interior reference | `illustrative-spindle-chart-hypothesis-v0` | `B1.1 — interior reference` | B1 with $h_a>0$ and $\rho_a>0$ for all three binaries. |
-| `B1.2` | Coincident binary axes | High-axial interior | `illustrative-extreme-cap-tilt-spindle-variant-v0` | `B1.2 — high-axial interior` | B1 with $h_a>\rho_a>0$ for all three binaries. |
-| `B1.3` | Coincident binary axes | All-equatorial boundary | `illustrative-planar-tri-binary-spindle-boundary-v0` | `B1.3 — all-equatorial boundary` | B1 with $h_a=0$ and $\rho_a=R_a$ for all three binaries. |
-| `C1` | Coaxial twelve-architrino geometry | Co-rotating | `family-c-c1-co-rotating-general-v1` | `C1 — co-rotating` | Twelve ordered coaxial architrino worldlines with one common circulation sense and an explicit neutral-binary counterpart map. |
-| `C2` | Coaxial twelve-architrino geometry | Counter-rotating | `family-c-c2-counter-rotating-general-v1` | `C2 — counter-rotating` | Twelve ordered coaxial architrino worldlines with opposite circulation senses on the two declared index subsets and an explicit neutral-binary counterpart map. |
-| `C3` | Coaxial twelve-architrino geometry | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C3 — co-rotating B1 pair` | C1 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
-| `C4` | Coaxial twelve-architrino geometry | Counter-rotating B1 pair | `family-c-c2-counter-rotating-b1-pair-v1` | `C4 — counter-rotating B1 pair` | C2 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
-| `C5` | Coaxial twelve-architrino geometry | Co-rotating B1.3 pair | `family-c-c1-1-co-rotating-b1-3-pair-v1` | `C5 — co-rotating B1.3 pair` | C3 constrained to two all-equatorial B1.3 components. |
-| `C6` | Coaxial twelve-architrino geometry | Counter-rotating B1.3 pair | `family-c-c2-1-counter-rotating-b1-3-pair-v1` | `C6 — counter-rotating B1.3 pair` | C4 constrained to two all-equatorial B1.3 components. |
+| Example ID | Geometry record | Borg depiction | Description |
+| --- | --- | --- | --- |
+| `A1.0` | `family-a-a1-general-v1` | `A1.0 — coincident endpoint orbits` | Zero-axial-offset A1 example with indexed frequency ratio $1:2:3$; the two endpoint paths share one geometric circle within each binary. |
+| `A1.1` | `family-a-a1-1-equal-frequency-v1` | `A1.1 — equal frequency` | A1 constrained to one common binary frequency while retaining independently assignable radii. |
+| `A1.2` | `family-a-a1-2-equal-frequency-equal-radius-v1` | `A1.2 — equal frequency, equal radius` | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
+| `A1.3` | `family-a-a1-3-4-2-1-frequency-v1` | `A1.3 — 4:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
+| `A1.4` | `family-a-a1-4-3-2-1-frequency-v1` | `A1.4 — 3:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
+| `A2.0` | `family-a-a2-fully-symmetric-v1` | `A2.0 — fully symmetric` | A2 example with three equivalent binaries, equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
+| `A3.0` | `family-a-a3-general-v1` | `A3.0 — general` | A3 example with positive axial offsets and indexed frequency ratio $1:2:3$; its remaining coordinates are fixed by the record. |
+| `A3.1` | `family-a-a3-1-equal-frequency-v1` | `A3.1 — equal frequency` | A3 constrained to one common binary frequency while retaining independently assignable radii and decompositions. |
+| `A3.2` | `family-a-a3-2-equal-frequency-equal-radius-v1` | `A3.2 — equal frequency, equal radius` | A3 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
+| `A3.3` | `family-a-a3-3-4-2-1-frequency-v1` | `A3.3 — 4:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
+| `A3.4` | `family-a-a3-4-3-2-1-frequency-v1` | `A3.4 — 3:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
+| `B1.1` | `illustrative-spindle-chart-hypothesis-v0` | `B1.1 — interior reference` | B1 with $h_a>0$ and $\rho_a>0$ for all three binaries. |
+| `B1.2` | `illustrative-extreme-cap-tilt-spindle-variant-v0` | `B1.2 — high-axial interior` | B1 with $h_a>\rho_a>0$ for all three binaries. |
+| `B1.3` | `illustrative-planar-tri-binary-spindle-boundary-v0` | `B1.3 — all-equatorial boundary` | B1 with $h_a=0$ and $\rho_a=R_a$ for all three binaries. |
+| `C1` | `family-c-c1-co-rotating-general-v1` | `C1 — co-rotating` | Twelve ordered coaxial architrino worldlines with one common circulation sense and an explicit neutral-binary counterpart map. |
+| `C2` | `family-c-c2-counter-rotating-general-v1` | `C2 — counter-rotating` | Twelve ordered coaxial architrino worldlines with opposite circulation senses on the two declared index subsets and an explicit neutral-binary counterpart map. |
+| `C3` | `family-c-c1-co-rotating-b1-pair-v1` | `C3 — co-rotating B1 pair` | C1 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C4` | `family-c-c2-counter-rotating-b1-pair-v1` | `C4 — counter-rotating B1 pair` | C2 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C5` | `family-c-c1-1-co-rotating-b1-3-pair-v1` | `C5 — co-rotating B1.3 pair` | C3 constrained to two all-equatorial B1.3 components. |
+| `C6` | `family-c-c2-1-counter-rotating-b1-3-pair-v1` | `C6 — counter-rotating B1.3 pair` | C4 constrained to two all-equatorial B1.3 components. |
