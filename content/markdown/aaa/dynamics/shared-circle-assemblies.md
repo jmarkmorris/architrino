@@ -114,6 +114,10 @@ Plainly: every member must receive exactly the inward acceleration required by i
 
 The $N=1$ regular alternating record is the neutral antipodal two-body circular benchmark. It is a binary dynamics chart, not a six-worldline Noether braid.
 
+For the isolated antipodal binary with strictly sub-field-speed circular prehistory, the complete causal-root ledger contains one partner root per receiver and no nontrivial self roots, as derived in [Binary Dynamics](binary-dynamics.md#sub-field-speed-simplification). The forward tangential acceleration excludes uniform circular balance; a radially balanced release departs outward locally. This result excludes the prescribed circle, not subsequent radial reversal, sustained breathing, or other retained two-body motion. Super-field-speed, multi-root circular balances belong to a separate regime.
+
+Plainly: this pair cannot keep its prescribed uniform circular orbit after release. That does not establish that it will expand forever or cannot remain together in a different motion.
+
 The shared-circle chart intersects B1.3 exactly when $N=3$ and the six members can be partitioned into three opposite-polarity antipodal pairs with one common center, one common axis, one common frequency, one common circulation sense, and $h_a=0$, $\rho_a=R_a$ for every binary. Within that intersection, equal radii are already supplied by the shared circle. The regular alternating hexagon is the further phase-symmetric point whose three positive-endpoint phases may be chosen as $0$, $2\pi/3$, and $4\pi/3$.
 
 B1.3 and the shared-circle chart are not interchangeable. General B1.3 permits three independent radii, and a B1.3 record with unequal radii does not lie on one common circle. General shared-circle assemblies may have any balanced inventory size and need not possess three neutral antipodal binaries, so most shared-circle records are not B1.3.

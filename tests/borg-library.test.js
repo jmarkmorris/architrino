@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readFile, mkdtemp, writeFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 import { createBorgLibraryService } from "../scripts/dev/BorgLibraryService.mjs";
@@ -8,6 +10,8 @@ import { BORG_BRAID_RECORD_CATALOG } from "../src/apps/borg/BorgBraidRecordCatal
 import { describeBounds, recordControlPoints, describeLibraryRecord, createLibraryPreview } from "../src/apps/borg/library/BorgLibraryDescriptors.mjs";
 import { queryLibraryRows } from "../src/apps/borg/library/BorgLibraryQuery.mjs";
 import { bootBorgApp } from "../src/apps/borg/BorgBootstrap.js";
+import { describeBraidComposition, validateLibraryClassifications, recordClassification } from "../src/apps/borg/library/BorgLibraryComposition.mjs";
+import { LIBRARY_FACETS } from "../src/apps/borg/library/BorgLibraryQuery.mjs";
 
 const repoRoot = fileURLToPath(new URL("../", import.meta.url));
 const entry = { id: "fixture", label: "Example — straight line", recordUrl: "fixture.json" };
@@ -105,7 +109,9 @@ test("seed provider covers all 24 records, paginates deterministically, and veri
   assert.deepEqual(first.body.failures, []);
   assert.equal(first.body.results.length, 12);
   assert.equal(first.body.counts.speedPolicy.unavailable, 24);
-  assert.equal(first.body.counts.nested.unavailable, 24);
+  assert.equal(first.body.counts.nested.unavailable, 15);
+  assert.equal(first.body.counts.nested.yes, 9);
+  assert.deepEqual(first.body.counts.braidCount, { 1: 18, 2: 6 });
   const second = await request(service, `/api/borg/library?cursor=${first.body.nextCursor}`);
   assert.equal(second.body.offset, 12);
   const all = [...first.body.results, ...second.body.results];
@@ -136,6 +142,76 @@ test("seed provider covers all 24 records, paginates deterministically, and veri
   assert.equal((await request(service, `/api/borg/library?count=8&cursor=${first.body.nextCursor}`)).status, 400);
   assert.equal((await request(service, "/api/borg/library", "POST")).status, 405);
   assert.equal((await request(service, "/not-the-library")).handled, false);
+});
+
+test("operator-confirmed nesting and spindle sets match the requested configurations exactly", async () => {
+  const service = createBorgLibraryService({ repoRoot });
+  const aliases = async (query) => (await request(service, `/api/borg/library?${query}`)).body.results.map((r) => r.alias.split(" —")[0]);
+  assert.deepEqual(await aliases("nested=yes"), ["A1.1", "A1.3", "A1.4", "A3.1", "A3.3", "A3.4", "B1.3", "C5", "C6"]);
+  assert.deepEqual(await aliases("shape=spindle"), ["B1.1", "B1.2", "C1", "C2", "C3", "C4"]);
+  assert.deepEqual(await aliases("braidCount=2"), ["C1", "C2", "C3", "C4", "C5", "C6"]);
+  assert.deepEqual(await aliases("braidCount=2&nested=yes"), ["C5", "C6"]);
+  assert.deepEqual(await aliases("braidCount=2&shape=spindle"), ["C1", "C2", "C3", "C4"]);
+  assert.deepEqual(await aliases("braidCount=3"), []);
+  const groups = (await request(service, "/api/borg/library?groupBy=braidCount")).body.results;
+  assert.deepEqual(groups.map((g) => [g.id, g.memberCount]), [["group:braidCount:1", 18], ["group:braidCount:2", 6]]);
+  const spindle = (await request(service, "/api/borg/library?shape=spindle")).body.results[0];
+  assert.deepEqual(spindle.facets.shape, ["circles", "spindle"]);
+  assert.equal(spindle.classificationRevision, "2026-08-30.operator-1");
+  assert.match(spindle.classificationSha256, /^[a-f0-9]{64}$/);
+});
+
+test("braid count follows complete source memberships, including three braids, not particle arithmetic", () => {
+  assert.deepEqual(LIBRARY_FACETS.braidCount.options.map(([value]) => value), ["1", "2", "3", "unavailable"]);
+  for (const n of [1, 2, 3]) {
+    const coordinates = { constituentInventory: Array.from({ length: n * 2 }, (_, i) => ({ id: `p${i}` })),
+      relationships: { componentBraids: Array.from({ length: n }, (_, i) => ({ id: `braid-${i}`, members: [`p${2 * i}`, `p${2 * i + 1}`] })) } };
+    assert.equal(describeBraidComposition(coordinates).braidCount, String(n));
+    coordinates.relationships.componentBraids[0].members.pop();
+    assert.equal(describeBraidComposition(coordinates).braidCount, "unavailable");
+    coordinates.relationships.componentBraids[0].members.push("p0");
+    assert.equal(describeBraidComposition(coordinates).braidCount, "unavailable");
+  }
+  assert.equal(describeBraidComposition({}).braidCount, "unavailable");
+  assert.equal(describeBraidComposition({ constituentInventory: [null], relationships: { componentBraids: [null] } }).braidCount, "unavailable");
+  assert.equal(describeBraidComposition({ constituentInventory: [{ id: "p" }], relationships: { componentBraids: [null] } }).braidCount, "unavailable");
+});
+
+test("classification pins survive renaming but never transfer to changed record bytes", () => {
+  const pin = "a".repeat(64);
+  const policy = { schema: "borg-library-classifications.v1", authority: "operator", revision: "test", source: "test", nested: [{ alias: "renamable", recordSha256: pin }], spindle: [] };
+  validateLibraryClassifications(policy);
+  assert.equal(recordClassification(policy, pin, "nested"), true);
+  policy.nested[0].alias = "a new name";
+  assert.equal(recordClassification(policy, pin, "nested"), true);
+  assert.equal(recordClassification(policy, "b".repeat(64), "nested"), false);
+  assert.equal(recordClassification(policy, pin, "spindle"), false);
+  policy.nested.push({ recordSha256: pin });
+  assert.throws(() => validateLibraryClassifications(policy), /duplicate/);
+});
+
+test("editing classification data refreshes cached facets and invalidates old page cursors without changing records", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "borg-classifications-test-"));
+  try {
+    const classificationFile = join(directory, "classifications.json");
+    const source = await readFile(new URL("../reference/priorities/app-borg/library-classifications.v1.json", import.meta.url), "utf8");
+    await writeFile(classificationFile, source);
+    const service = createBorgLibraryService({ repoRoot, classificationFile });
+    const first = (await request(service, "/api/borg/library")).body;
+    const policy = JSON.parse(source);
+    policy.revision = "independent-test-reclassification";
+    policy.nested = [];
+    await writeFile(classificationFile, JSON.stringify(policy));
+    assert.equal((await request(service, `/api/borg/library?cursor=${first.nextCursor}`)).status, 400);
+    const refreshed = (await request(service, "/api/borg/library")).body;
+    assert.equal(refreshed.counts.nested.unavailable, 24);
+    assert.equal((await request(service, "/api/borg/library?nested=yes")).body.total, 0);
+    assert.deepEqual(refreshed.results.map((r) => r.recordSha256), first.results.map((r) => r.recordSha256));
+    assert.notEqual(refreshed.results[0].classificationSha256, first.results[0].classificationSha256);
+    assert.equal(refreshed.results[0].classificationRevision, policy.revision);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 test("missing registered records remain explicit failures", async () => {

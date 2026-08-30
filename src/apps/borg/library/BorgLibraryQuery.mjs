@@ -1,5 +1,6 @@
 export const LIBRARY_FACETS = Object.freeze({
   count: { label: "Architrinos", options: [] },
+  braidCount: { label: "Braids in assembly", options: [["1", "1"], ["2", "2"], ["3", "3"], ["unavailable", "Unavailable"]] },
   breathing: { label: "Breathing", options: [["yes", "Breather"], ["no", "Non-breather"], ["unavailable", "Unavailable"]] },
   nested: { label: "Nesting", options: [["yes", "Nested"], ["no", "Not nested"], ["unavailable", "Unavailable"]] },
   dimension: { label: "Dimensions", options: [["2d", "2D · planar"], ["3d", "3D · spatial"], ["boundary", "Line / point"], ["unavailable", "Unavailable"]] },
@@ -30,7 +31,7 @@ export function queryLibraryRows(rows, params) {
   }));
   const groupBy = params.get("groupBy");
   if (!groupBy || groupBy === "none") return { total: matches.length, results: matches.map((row) => ({ kind: "leaf", ...row })), counts };
-  if (!["count", "dimension", "breathing"].includes(groupBy)) throw new RangeError("Unsupported grouping.");
+  if (!["count", "braidCount", "dimension", "breathing"].includes(groupBy)) throw new RangeError("Unsupported grouping.");
   const groups = new Map();
   for (const row of matches) {
     const value = row.facets[groupBy];

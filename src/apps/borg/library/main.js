@@ -196,7 +196,7 @@ async function loadResults() {
         .filter(([key, value]) => (!group || key === result.groupBy) && [].concat(value).includes("unavailable"))
         .map(([key]) => [key, row.reasons[key]])));
       card.dataset.selected = String(state.params.get("selected") === row.id && !group);
-      const title = group ? `${facetLabel(result.groupBy, result.value)}${result.groupBy === "count" ? " architrinos" : ""}` : row.label;
+      const title = group ? `${facetLabel(result.groupBy, result.value)}${result.groupBy === "count" ? " architrinos" : result.groupBy === "braidCount" ? ` braid${result.value === "1" ? "" : "s"}` : ""}` : row.label;
       const top = element("div", null, "card-top"); top.append(element("span", group ? `${result.memberCount} members` : `${row.facets.count} architrinos`), element("span", group ? "GROUP" : facetLabel("dimension", row.facets.dimension)));
       const canvas = element("canvas", null, "sphere"); canvas.tabIndex = 0; canvas.setAttribute("role", "button"); canvas.setAttribute("aria-label", `${group ? "Explore group" : "Inspect"}: ${title}`);
       const action = () => {
@@ -246,7 +246,7 @@ async function openInspector(row, persist = true) {
     $("inspector-title").textContent = row.label; $("inspector-alias").textContent = row.alias;
     $("inspector-description").textContent = row.description; $("copy-status").textContent = "";
     $("identity").replaceChildren();
-    for (const [key, value] of [["Catalog identity", row.id], ["Source identity", row.sourceId], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Descriptor", row.descriptorVersion]]) addDefinition($("identity"), key, value);
+    for (const [key, value] of [["Catalog identity", row.id], ["Source identity", row.sourceId], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
     $("facet-reasons").replaceChildren(); $("inspector-facets").replaceChildren();
     for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
       const value = [].concat(row.facets[key]).map((v) => facetLabel(key, v)).join(", ");

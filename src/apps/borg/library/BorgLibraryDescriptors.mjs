@@ -1,6 +1,7 @@
 import { createEomHistoryDataset } from "../../shared/EomHistoryDataset.mjs";
+import { describeBraidComposition, recordClassification } from "./BorgLibraryComposition.mjs";
 
-export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v1";
+export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v2";
 const norm = (v) => Math.hypot(...v);
 const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);
 const subtract = (a, b) => a.map((v, i) => v - b[i]);
@@ -52,11 +53,12 @@ function breathingState(operators) {
   return states.includes("yes") ? "yes" : states.every((s) => s === "no") ? "no" : "unavailable";
 }
 
-export function describeLibraryRecord(record, catalogEntry, recordSha256) {
+export function describeLibraryRecord(record, catalogEntry, recordSha256, classifications = null) {
   const dataset = createEomHistoryDataset(record);
   const bounds = describeBounds(recordControlPoints(dataset));
   const prescribed = record.provenance?.prescribedGeometry;
   const coordinates = prescribed?.coordinates;
+  const composition = describeBraidComposition(coordinates);
   const sourceLines = coordinates?.worldlines ?? [];
   const operators = sourceLines.map((line) => line.operator ?? {});
   const completeOperators = sourceLines.length === dataset.worldlines.length && dataset.worldlines.every((line) => sourceLines.some((source) => source.id === line.id));
@@ -65,24 +67,30 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256) {
   const speedPolicy = sourcePolicy?.owner && sourcePolicy?.version && sourcePolicy?.quantity && sourcePolicy?.frame && sourcePolicy?.unitConvention &&
     ["uncapped", "capped-cf"].includes(sourcePolicy.mode) ? sourcePolicy.mode : "unavailable";
   const nesting = coordinates?.relationships?.nesting;
-  const nested = nesting?.owner && typeof nesting?.nested === "boolean" ? (nesting.nested ? "yes" : "no") : "unavailable";
+  const confirmedNested = recordClassification(classifications, recordSha256, "nested");
+  const confirmedSpindle = recordClassification(classifications, recordSha256, "spindle");
+  const nested = confirmedNested ? "yes" : nesting?.owner && typeof nesting?.nested === "boolean" ? (nesting.nested ? "yes" : "no") : "unavailable";
   const shapes = allCircular ? ["circles"] : ["unavailable"];
-  const facets = { count: String(dataset.worldlines.length), breathing: completeOperators ? breathingState(operators) : "unavailable", nested,
+  if (confirmedSpindle) { if (shapes[0] === "unavailable") shapes.length = 0; shapes.push("spindle"); }
+  const facets = { count: String(dataset.worldlines.length), braidCount: composition.braidCount, breathing: completeOperators ? breathingState(operators) : "unavailable", nested,
     dimension: bounds.dimension, shape: shapes, speedPolicy };
   const label = catalogEntry.label.replace(/^[^—]+—\s*/, "");
   const summary = {
     id: catalogEntry.id, sourceId: record.sourceId, label, alias: catalogEntry.label,
     recordUrl: catalogEntry.recordUrl, recordSha256, facets, bounds,
     descriptorVersion: LIBRARY_DESCRIPTOR_VERSION, window: dataset.window,
+    classificationRevision: classifications?.revision ?? null, classificationSource: classifications?.source ?? null,
+    braids: composition.braids,
     claimGrade: dataset.provenance.claimGrade, evidenceStatus: dataset.provenance.evidenceStatus,
     description: prescribed?.description ?? "Sealed assembly record.",
     source: dataset.provenance.generatingSpec,
     reasons: {
       count: "Number of persistent worldlines in the sealed record.",
+      braidCount: composition.reason,
       breathing: "Moving-circular operators with fixed centers have fixed radii. Nonzero F6c radial or axial harmonics mark breathing. Other operators remain unclassified.",
-      nested: "Requires an explicit source-owned nesting declaration; component count alone is insufficient.",
+      nested: confirmedNested ? `Operator-confirmed different binary layer radii within each braid (${composition.braidCount} braid groups), classification ${classifications.revision}. This means binary-radius nesting, not one braid inside another.` : "Not classified by the operator-confirmed nesting set. Unlisted records remain unavailable unless the source explicitly declares nesting; differing radii alone are pending the broader classification decision.",
       dimension: `Affine rank of all retained cubic control points over the complete record window, tolerance ${bounds.tolerance}. This describes recorded paths, not dynamical stability.`,
-      shape: "Circular paths require every source worldline to declare moving-circular.v1 with a fixed center. Spherical and spindle envelopes are not yet classified by this descriptor.",
+      shape: `Circular paths require every source worldline to declare moving-circular.v1 with a fixed center. ${confirmedSpindle ? `Spindle envelope is operator-confirmed for this exact record under ${classifications.revision}.` : "No spindle classification is assigned to this record."} Spherical distribution remains unclassified.`,
       speedPolicy: "Requires an explicit source policy with owner, version, speed quantity, frame and unit convention. Recorded speed alone does not establish a cap.",
     },
   };

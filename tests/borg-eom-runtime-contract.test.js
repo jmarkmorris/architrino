@@ -544,7 +544,8 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   );
   assert.match(runtimeSource, /assemblyViewScene\.setPathVisible\(pathGroup\.visible\);/);
   assert.match(runtimeSource, /"diagnostics",\s*\]\);/);
-  assert.match(htmlSource, /grid-template-columns: 620px minmax\(0, 1fr\);/);
+  assert.match(htmlSource, /grid-template-columns: minmax\(620px, 930px\) minmax\(360px, 1fr\);/);
+  assert.match(htmlSource, /@media \(max-width: 980px\)[\s\S]*#borg-app \{\s*grid-template-columns: 1fr;/);
   assert.match(
     runtimeSource,
     /if \(autoStartEom\) \{\s*if \(replayActive\) \{\s*startRunAndPlayback\(\);\s*\} else \{\s*startDynamicRunner\(\);/,
