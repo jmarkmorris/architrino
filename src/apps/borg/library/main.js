@@ -1,4 +1,4 @@
-import { LIBRARY_FACETS } from "./BorgLibraryQuery.mjs";
+import { LIBRARY_FACETS, isLibrarySelectorValue, normalizeLibraryBrowseParams } from "./BorgLibraryQuery.mjs";
 import { createSpherePreview } from "./BorgSpherePreview.js";
 
 const $ = (id) => document.getElementById(id);
@@ -10,7 +10,7 @@ const api = "/api/borg/library";
 let searchTimer;
 
 function facetLabel(key, value) {
-  return LIBRARY_FACETS[key].options.find(([v]) => v === value)?.[1] ?? value;
+  return LIBRARY_FACETS[key].options.find(([v]) => v === value)?.[1] ?? (value === "unavailable" ? "Not assigned" : value);
 }
 
 for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
@@ -41,6 +41,8 @@ for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
 }
 
 function restoreControls() {
+  const normalized = normalizeLibraryBrowseParams(state.params);
+  if (normalized.toString() !== state.params.toString()) { state.params = normalized; saveUrl(true); }
   $("search").value = state.params.get("q") ?? "";
   $("group-by").value = state.params.get("groupBy") ?? "none";
   for (const key of Object.keys(LIBRARY_FACETS)) {
@@ -156,7 +158,7 @@ function renderCounts(data) {
       document.querySelectorAll("[data-facet-count]").forEach((node) => { node.textContent = counts[node.dataset.facetCount] ?? 0; });
     } else {
       const select = $(`filter-${key}`); const current = state.params.get(key) ?? "";
-      const options = key === "count" ? Object.keys(counts).sort((a, b) => Number(a) - Number(b)).map((v) => [v, v]) : definition.options;
+      const options = key === "count" ? Object.keys(counts).filter((v) => isLibrarySelectorValue(key, v)).sort((a, b) => Number(a) - Number(b)).map((v) => [v, v]) : definition.options;
       select.replaceChildren(new Option("Any", ""));
       for (const [value, label] of options) select.append(new Option(`${label} (${counts[value] ?? 0})`, value));
       if (current && !options.some(([v]) => v === current)) select.append(new Option(`${current} (0)`, current));
@@ -187,6 +189,7 @@ async function loadResults() {
     }, { rootMargin: "100px" });
     for (const result of data.results) {
       const group = result.kind === "group", row = group ? result.representative : result;
+      const canExplore = !group || isLibrarySelectorValue(result.groupBy, result.value);
       const card = element("article", null, "assembly-card"); card.dataset.resultId = result.id; card.dataset.resultKind = result.kind;
       card.dataset.recordSha256 = group ? "" : row.recordSha256; card.dataset.facets = JSON.stringify(group ? { [result.groupBy]: result.value } : row.facets); card.dataset.memberCount = String(group ? result.memberCount : 1);
       card.dataset.targetId = group ? "" : row.id;
@@ -199,11 +202,14 @@ async function loadResults() {
       const title = group ? `${facetLabel(result.groupBy, result.value)}${result.groupBy === "count" ? " architrinos" : result.groupBy === "braidCount" ? ` braid${result.value === "1" ? "" : "s"}` : ""}` : row.label;
       const top = element("div", null, "card-top"); top.append(element("span", group ? `${result.memberCount} members` : `${row.facets.count} architrinos`), element("span", group ? "GROUP" : facetLabel("dimension", row.facets.dimension)));
       const canvas = element("canvas", null, "sphere"); canvas.tabIndex = 0; canvas.setAttribute("role", "button"); canvas.setAttribute("aria-label", `${group ? "Explore group" : "Inspect"}: ${title}`);
+      if (!canExplore) { canvas.setAttribute("aria-disabled", "true"); canvas.setAttribute("aria-label", `Unassigned group: ${title}. Preview only.`); }
       const action = () => {
+        if (!canExplore) return;
         if (group) { state.params.set(result.groupBy, result.value); state.params.set("groupBy", "none"); changeQuery(); }
         else openInspector(row);
       };
       const button = element("button", group ? "Explore group →" : "Inspect assembly →", "card-action"); button.addEventListener("click", action);
+      if (!canExplore) { button.disabled = true; button.textContent = "Classification not assigned"; button.title = "These records remain visible with Any selected; unassigned values are not menu choices."; }
       const note = element("p", "Loading sealed preview…", "preview-state");
       card.append(top, canvas, element("h2", title, "card-title"), element("p", group ? `Example: ${row.alias}` : row.alias, "card-alias"), button, note);
       $("results").append(card);

@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 import { createBorgLibraryService } from "../scripts/dev/BorgLibraryService.mjs";
 import { BORG_BRAID_RECORD_CATALOG } from "../src/apps/borg/BorgBraidRecordCatalog.js";
 import { describeBounds, recordControlPoints, describeLibraryRecord, createLibraryPreview } from "../src/apps/borg/library/BorgLibraryDescriptors.mjs";
-import { queryLibraryRows } from "../src/apps/borg/library/BorgLibraryQuery.mjs";
+import { queryLibraryRows, isLibrarySelectorValue, normalizeLibraryBrowseParams } from "../src/apps/borg/library/BorgLibraryQuery.mjs";
 import { bootBorgApp } from "../src/apps/borg/BorgBootstrap.js";
 import { describeBraidComposition, validateLibraryClassifications, recordClassification } from "../src/apps/borg/library/BorgLibraryComposition.mjs";
 import { LIBRARY_FACETS } from "../src/apps/borg/library/BorgLibraryQuery.mjs";
@@ -162,7 +162,7 @@ test("operator-confirmed nesting and spindle sets match the requested configurat
 });
 
 test("braid count follows complete source memberships, including three braids, not particle arithmetic", () => {
-  assert.deepEqual(LIBRARY_FACETS.braidCount.options.map(([value]) => value), ["1", "2", "3", "unavailable"]);
+  assert.deepEqual(LIBRARY_FACETS.braidCount.options.map(([value]) => value), ["1", "2", "3"]);
   for (const n of [1, 2, 3]) {
     const coordinates = { constituentInventory: Array.from({ length: n * 2 }, (_, i) => ({ id: `p${i}` })),
       relationships: { componentBraids: Array.from({ length: n }, (_, i) => ({ id: `braid-${i}`, members: [`p${2 * i}`, `p${2 * i + 1}`] })) } };
@@ -175,6 +175,24 @@ test("braid count follows complete source memberships, including three braids, n
   assert.equal(describeBraidComposition({}).braidCount, "unavailable");
   assert.equal(describeBraidComposition({ constituentInventory: [null], relationships: { componentBraids: [null] } }).braidCount, "unavailable");
   assert.equal(describeBraidComposition({ constituentInventory: [{ id: "p" }], relationships: { componentBraids: [null] } }).braidCount, "unavailable");
+});
+
+test("selector menus hide unavailable values, keep unclassified shape, and label the low-dimensional bucket 1D", () => {
+  for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
+    assert.equal(definition.options.some(([value]) => value === "unavailable"), key === "shape");
+  }
+  assert.deepEqual(LIBRARY_FACETS.dimension.options, [["boundary", "1D"], ["2d", "2D · planar"], ["3d", "3D · spatial"]]);
+  assert.ok(LIBRARY_FACETS.shape.options.some(([value, label]) => value === "unavailable" && label === "Unclassified"));
+  assert.equal(isLibrarySelectorValue("breathing", "unavailable"), false);
+  assert.equal(isLibrarySelectorValue("shape", "unavailable"), true);
+  assert.equal(isLibrarySelectorValue("count", "1000000"), true);
+  assert.equal(isLibrarySelectorValue("count", "unavailable"), false);
+  const saved = new URLSearchParams("braidCount=2&nested=unavailable&speedPolicy=unavailable&shape=unavailable&selected=exact-record&sha256=exact-pin&cursor=old");
+  const normalized = normalizeLibraryBrowseParams(saved);
+  assert.equal(normalized.toString(), "braidCount=2&shape=unavailable&selected=exact-record&sha256=exact-pin");
+  assert.equal(saved.get("nested"), "unavailable");
+  const supported = new URLSearchParams("dimension=boundary&count=99&nested=no&cursor=current");
+  assert.equal(normalizeLibraryBrowseParams(supported).toString(), supported.toString());
 });
 
 test("classification pins survive renaming but never transfer to changed record bytes", () => {

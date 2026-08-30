@@ -12,6 +12,8 @@ Try `Architrinos: 8` to see the current breather and non-breather together, or `
 
 Try `Braids in assembly: 2` plus `Nesting: Nested` for C5/C6, or two braids plus the spindle shape for C1–C4. The braid-count selector always offers 1, 2, and 3; three currently returns no records.
 
+The menus omit `Unavailable`; `Any` includes records whose classification is missing, while a chosen value includes only confirmed matches. Shape retains `Unclassified`. Dimensions uses `1D` for the combined line/point bucket. Record details preserve missing values as `Not assigned`. Withdrawn choices in old browse links reset to `Any` without changing the selected record pin. See [the individual A/B/C assignment audit](../../../../reference/priorities/app-borg/selector-assignment-audit.md) for all seven dimensions and the unassigned spherical candidates.
+
 ## Responsibilities
 
 - [BorgLibraryDescriptors.mjs](BorgLibraryDescriptors.mjs): versioned record facets and complete cubic-path bounds; preview positions are sampled exclusively through the shared history dataset. The cubic bound uses the Bernstein convex-hull property and a fixed display scale under rotations.

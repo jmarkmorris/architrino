@@ -6,6 +6,16 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-30 - Selector Menu Cleanup and Individual-Geometry Audit
+
+- Applied the operator's menu changes: `1D` labels the line/point bucket; `Unavailable` options are removed; shape retains `Unclassified`. `Any` still includes unassigned records, and selected-record details render `Not assigned`. The internal descriptor values remain unchanged and never become false. Saved browse links drop withdrawn choices without retargeting their selected record/hash; unassigned group previews remain counted but cannot recreate a removed menu option.
+- Captured [all twenty individual A/B/C representatives across the seven selector dimensions](selector-assignment-audit.md). A one-off comparison verified every table row against current descriptor/assignment output. Eleven nesting cells and twenty speed-policy cells lack assignments. Source equal-radius data supports non-nesting for A1.2, A2, and A3.2 under the operator's stated radius criterion; the other eight unassigned nesting cases await the broader predicate decision. Source `preserve-and-report` speed guards are migration-bound checks, not sufficient model/run speed-policy declarations.
+
+Plainly: removing an unknown menu choice does not remove the underlying uncertainty or invent an answer for the table.
+
+- Spherical finding: the separate source-coordinate audit and explicit orthogonality derivation in the report identify A1.2, A2, and A3.2 as common-spherical-surface candidates with radius 0.32. This is a derived analytical-path property, not a filled sphere, uniform surface coverage, stability, or a statement about every parameter variation of those names. The spherical browse definition remains `discussion-scoped` in BORG-014; no classification file or sealed record was changed.
+- Verification: all 30 focused library, preview, catalog, assembly-view, and history-evaluation tests pass. Browser-control checks verify 1D's honest empty result, the three existing unclassified-shape records, disabled descent for an unassigned breathing group, preserved C5 identity when opening an old unavailable-filter link, all twenty-four records after clearing filters, and no warning/error logs. Priority-ranking validation and `git diff --check` pass. Falsifier: a retired option reappears, clearing filters loses records with missing assignments, an old selected-record pin changes, or the report differs from its exact source representatives.
+
 ### 2026-08-30 - Wider Borg Taxonomy Panel
 
 - Increased Borg's desktop left panel from 620 to 930 pixels, as requested, while allowing it to shrink to preserve a 360-pixel assembly viewport. The existing 980-pixel single-column breakpoint remains unchanged. This affects the Borg workbench, not the separate Assembly Library filter rail.
