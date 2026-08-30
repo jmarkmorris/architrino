@@ -4,6 +4,8 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 
 The [H3 velocity-domain rule](braid-candidate-requirement-adjudication.md#velocity-domain-and-instrument-scope) separates the uncapped canonical theory from method-specific sub-field guards. Existing speed stops and campaign exclusions remain binding for their declared instruments; they are not physical rejection of at/above-field histories. This scope correction authorizes no run, candidate promotion, guard relaxation, or historical rescore.
 
+The detailed B1.3 investigation is maintained in the subordinate [B1.3 work queue](b1-3-work-queue.md). This parent queue owns only its aggregate BP-011 status and candidate disposition; the subordinate queue owns individual B1.3 task status and acceptance.
+
 ## Ranked Next Objects
 
 1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
@@ -13,6 +15,7 @@ The [H3 velocity-domain rule](braid-candidate-requirement-adjudication.md#veloci
 5. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
 6. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
 7. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Full conditional cover independently verified; one-cell acceleration range accepted, full M05/M06 quadrature and three-rung measurement outstanding`.
+8. `b1_3_investigation` — [BP-011](#bp-011--b13-investigation). Status: `Queued`; detailed status lives in the [B1.3 work queue](b1-3-work-queue.md).
 
 ## Shared search prerequisites
 
@@ -52,7 +55,7 @@ The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evalua
 | `B1` | `STASIS` | `BP-002` remains queued | chart ratification followed by one frozen executable slice |
 | `B1.1` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed; `BP-009` compatibility receipt verified | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; score-free freeze acceptance and center-pilot authorization remain distinct operator decisions |
 | `B1.2` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
-| `B1.3` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed; the [T04 past-only release attempt](evidence/2026-08-29-b13-shared-circle-balance-ladder.md#t04-past-only-release-prefix) accepted only a short finite prefix before `root_completeness_not_certified`, while the medium rung supplied non-authoritative resource telemetry and no full-cycle return exists | repair or bypass the root-continuation and memory barriers, then separately declare the next continuation or full-cycle attempt with explicit coupling and numerical controls; no score, retention, or stability promotion |
+| `B1.3` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed; the [T04 past-only release attempt](evidence/2026-08-29-b13-shared-circle-balance-ladder.md#t04-past-only-release-prefix) accepted only a short finite prefix before `root_completeness_not_certified`, while the medium rung supplied non-authoritative resource telemetry and no full-cycle return exists; detailed investigation is queued under [BP-011](#bp-011--b13-investigation) | execute the ranked objects in the [B1.3 work queue](b1-3-work-queue.md), beginning with the exact-reference solver handoff; no score, retention, or stability promotion |
 | `C1`--`C4` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
 | `C5`, `C6` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; `C5` has no remaining direct H2 dependency on `BP-007`; no score or retention promotion |
 | `F1`, `F2` | `STASIS` | executable-representation proposals available; operator selection required | ratify the proposed F1 circulation/sign sheet and F2 component-relation sheet before creating executable JSON; polarity is already declared or derived |
@@ -113,6 +116,14 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 - **Request / acceptance:** Adjudicate the 47 curated `mining/` leads and record one keep, route, defer, or reject disposition for each.
 - **Evidence / blocker:** Mined leads remain priority-only until accepted into a proof route or corpus edit.
 - **Completion:** No curated lead remains without a disposition.
+
+### BP-011 — B1.3 investigation
+
+- **Status:** Queued
+- **Priority object:** `b1_3_investigation`
+- **Request / acceptance:** Execute the accepted mathematical, numerical-release, axial-translation, generalized-planar, stability, and same-record action objects in the subordinate [B1.3 work queue](b1-3-work-queue.md). Preserve the separate grades of prescribed balance, exact continuation, numerical reproduction, nearby-history retention, perturbation stability, translated balance, action/energy, and quantum-recovery comparison.
+- **Evidence / blocker:** The [tracked evidence packet](evidence/2026-08-29-b13-shared-circle-balance-ladder.md) closes the accepted foundation and names the numerical-release boundary. Individual dependencies and falsifiers live only in the subordinate queue. Reusable EOM-solver capability and delayed-action closure remain owned by their existing workstreams.
+- **Completion:** No B1.3 detailed object remains `Queued`, `In progress`, or `Awaiting verification`; every completed result has durable evidence, and every remaining object is explicitly withdrawn, superseded, or dependency-blocked. Completion grants no automatic score, retention, stability, binding, physical identity, energy-spectrum, transition, or scientific-acceptance promotion.
 
 ## Deferred / blocked
 
