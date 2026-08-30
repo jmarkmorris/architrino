@@ -16,6 +16,10 @@ The detailed B1.3 investigation is maintained in the subordinate [B1.3 work queu
 6. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
 7. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Full conditional cover independently verified; one-cell acceleration range accepted, full M05/M06 quadrature and three-rung measurement outstanding`.
 8. `b1_3_investigation` — [BP-011](#bp-011--b13-investigation). Status: `Queued`; detailed status lives in the [B1.3 work queue](b1-3-work-queue.md).
+9. `shared_circle_regular_polarity_completion` — [BP-012](#bp-012--shared-circle-regular-polarity-completion). Status: `Queued`.
+10. `shared_circle_nonuniform_phase_census` — [BP-013](#bp-013--shared-circle-nonuniform-phase-census). Status: `Queued`.
+11. `shared_circle_large_n_law` — [BP-014](#bp-014--shared-circle-large-n-law). Status: `Queued`.
+12. `borg_assembly_source_inventory_handoff` — [BP-015](#bp-015--borg-assembly-source-inventory-handoff). Status: `Queued`; Borg implementation remains owned by [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser).
 
 ## Shared search prerequisites
 
@@ -124,6 +128,50 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 - **Request / acceptance:** Execute the accepted mathematical, numerical-release, axial-translation, generalized-planar, stability, and same-record action objects in the subordinate [B1.3 work queue](b1-3-work-queue.md). Preserve the separate grades of prescribed balance, exact continuation, numerical reproduction, nearby-history retention, perturbation stability, translated balance, action/energy, and quantum-recovery comparison.
 - **Evidence / blocker:** The [tracked evidence packet](evidence/2026-08-29-b13-shared-circle-balance-ladder.md) closes the accepted foundation and names the numerical-release boundary. Individual dependencies and falsifiers live only in the subordinate queue. Reusable EOM-solver capability and delayed-action closure remain owned by their existing workstreams.
 - **Completion:** No B1.3 detailed object remains `Queued`, `In progress`, or `Awaiting verification`; every completed result has durable evidence, and every remaining object is explicitly withdrawn, superseded, or dependency-blocked. Completion grants no automatic score, retention, stability, binding, physical identity, energy-spectrum, transition, or scientific-acceptance promotion.
+
+### BP-012 — Shared-circle regular-polarity completion
+
+- **Status:** Queued
+- **Priority object:** `shared_circle_regular_polarity_completion`
+- **Closure goal:** Complete the bounded regular-ring polarity-word landscape for the inventories whose alternating rows alone have been tested.
+- **Request / acceptance:** For each regular neutral $N{:}N$ ring with $7\leq N\leq12$, enumerate every polarity-word orbit modulo cyclic rotation, global polarity conjugation, and the already checked reflection-with-circulation action. Search each representative on the existing $0.05\leq\beta_f\leq20$ domain with complete prescribed-path root ledgers, explicit topology-boundary probes, residual refinement, and an unchanged independent evaluator. Preserve the distinction between a measured bounded-search negative and an interval-certified no-zero result.
+- **Evidence / blocker:** Every regular polarity orbit is already enumerated and searched through $N=6$; for $N=7$ through $N=12$, only the alternating word has been tested. The accepted alternating candidates therefore establish existence in one class per inventory, not polarity completeness.
+- **Completion:** Every symmetry-distinct regular polarity word for $N=7$ through $N=12$ has a source-bound ledger, an independently checked balanced candidate or bounded negative disposition, and an explicit falsifier. Completion grants no nonregular-phase, evolution, retention, stability, binding, or physical-ranking conclusion.
+
+Plainly: the larger regular rings currently have one tested plus-minus pattern each. This object checks the other distinct ways to place equal numbers of the two polarities around the same regular polygon.
+
+### BP-013 — Shared-circle nonuniform-phase census
+
+- **Status:** Queued
+- **Priority object:** `shared_circle_nonuniform_phase_census`
+- **Closure goal:** Determine whether fixed unequal angular gaps add prescribed acceleration balances beyond the accepted regular shared-circle rows.
+- **Request / acceptance:** Freeze a staged sequence of compact collision-free phase-gap domains for neutral shared-circle inventories, quotient only the checked global phase, polarity-conjugation, and reflection-with-circulation symmetries, and evaluate the complete receiver-by-receiver vector residual without importing regular-polygon cancellations. Begin with the already enumerated $2\leq N\leq6$ polarity representatives, then extend only through separately declared domains. The six-member equal-radius B1.3 phase deformation remains owned by [B13-005](b1-3-work-queue.md#b13-005--equal-radius-phase-deformed-chart) and must not be duplicated here.
+- **Evidence / blocker:** Existing nonuniform searches found no additional solution but did not cover their multidimensional phase domains. Regular balances are symmetry landmarks and do not establish isolation in the larger fixed-phase chart.
+- **Completion:** Each declared phase domain has an independently checked zero census or an explicit fold, collision, or coverage boundary. A global nonregular-phase claim requires coverage of the stated collision-free quotient domain; a finite sample remains discovery evidence only.
+
+Plainly: this object moves the sites away from equal angular spacing while keeping them on one common circle. It asks whether exact balance is tied to a regular polygon or also occurs in lopsided fixed arrangements.
+
+### BP-014 — Shared-circle large-N law
+
+- **Status:** Queued
+- **Priority object:** `shared_circle_large_n_law`
+- **Closure goal:** Prove or falsify an asymptotic speed-and-radius law for the regular alternating shared-circle branch as member count grows.
+- **Request / acceptance:** Derive the large-$N$ causal-root equation for the regular alternating $2N$-gon, separate the even- and odd-$N$ antipodal-polarity cases, identify the topology branch followed by the accepted $N=2$ through $N=12$ rows, and obtain controlled existence, speed, compatible-radius, and remainder statements. Numerical regression may guide conjectures but cannot establish exact constants or branch uniqueness.
+- **Evidence / blocker:** Measured candidates exist through $N=12$ and their scales suggest a pattern, but the finite inventory does not prove persistence, uniqueness, parity independence, or an asymptotic law.
+- **Completion:** A derivation with explicit hypotheses and error bounds proves one declared large-$N$ branch and its speed/radius scaling, or a certified counterexample or branch change falsifies the proposed law. No stability or physical-spectrum conclusion follows from geometric scaling.
+
+Plainly: the current table shows how the first several balanced regular rings grow. This object decides whether those rows follow one mathematical rule or merely resemble one over a short finite range.
+
+### BP-015 — Borg assembly-source inventory handoff
+
+- **Status:** Queued
+- **Priority object:** `borg_assembly_source_inventory_handoff`
+- **Closure goal:** Give Borg a complete source-owner inventory of admitted braid and shared-circle assemblies without asking the app to infer scientific geometry or taxonomy.
+- **Request / acceptance:** Enumerate every admitted braid-taxonomy member and separately registered assembly, distinguishing a taxonomy member, a concrete representative, a parameter or history revision, one top-level braid with component-braid rows, and multiple separate top-level braids. For each row, bind the source specification, dimensionality, component inventory and relations, motion prescription, available sealed records, existing aliases, and any missing source coordinates. Produce explicit unavailable rows rather than borrowing a visually similar representative.
+- **Evidence / blocker:** [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) owns durable app identity, taxonomy navigation, visual coverage, and honest animation. Its coverage cannot close until scientific source owners supply a complete inventory and concrete-representative dispositions.
+- **Completion:** A source-bound machine-readable inventory is accepted by both the Braid Program and Borg owners, every missing representative has an explicit source-owner blocker, and Borg can consume the inventory without reconstructing geometry or dynamics. This row does not implement the app, assign hashes, or establish scientific acceptance.
+
+Plainly: the Braid Program says which mathematical objects and records exist; Borg decides how to identify, browse, display, and animate them. Keeping those responsibilities separate prevents a menu label or visual resemblance from becoming scientific authority.
 
 ## Deferred / blocked
 

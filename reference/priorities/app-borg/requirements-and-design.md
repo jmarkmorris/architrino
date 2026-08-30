@@ -166,13 +166,31 @@ The canonical Borg page is one persistent workbench with visibly distinct random
 
 Replay exposes persistent provenance, prescribed/evolved labels, retained-segment playback, delay-horizon trails, coverage-clamped scrub and playback, chart pose, co-rotating camera, display-only swept envelope, static image export, a disabled animation-export placeholder, catalog-backed prescribed-geometry navigation, and raw source-order collection navigation. For a prescribed `chart-hypothesis`, playback is animation of the declared analytical path, not simulated evolution. Optional $S_3$ grouping and filters consume source-carried fields only and never replace the selected raw record.
 
-The unified `Starting geometry` selector contains `Random architrinos` plus the immutable active prescribed catalog. Selecting a prescribed entry loads its sealed record in place by stable id and URL; selecting random restores the saved simulation workspace rather than converting a chart into live initial conditions. The animated catalog contains the illustrative tilted iso-frequency spindle member, its extreme cap-tilt parameter variant, and its planar tri-binary boundary member. The extreme parameter variant keeps the original radii, common frequency, phases, and polarity assignments while changing the three cap angles to $70^\circ$, $80^\circ$, and $85^\circ$ for visual inspection; these are cap tilts within the common coaxial source frame, not independent orbit-plane orientations. The generated full-cap axial-pair record is a deprecated axial-limit null control outside the active catalog because its $\pi/2$ cap angle makes every transverse radius and carrier speed zero. Its stable URL remains directly loadable for historical reproduction. All active records are emitted from complete source specifications with `engineId: prescribed-geometry`; source-carried taxonomy metadata states whether an entry is a family member, parameter variant, or boundary member. Pressing Play from chart pose switches to prescribed-path playback and starts the timeline. `Continue with Display simulation` creates a separate child branch at an exact common segment boundary. Its fixed-width label does not contain the changing time; the status line reports the selected cut with three decimal places. The branch copies the source's exact piecewise-cubic segment prefix through that cut into EOM retained history, uses the fixed `borg-prescribed-display-v1` profile, starts directly at Display grade, and remains promotion-ineligible. It never reconstructs history from rendered frames, never changes the source record's grade, and is not cached under the source record's catalog identity. Each source-carried binary axis is rendered as a dashed guide; coincident axes remain coincident. Chart-pose orbit curves use light purple. Prescribed replay retains perspective projection because the visible depth and tilt are part of reading the braid. The desktop left rail is `620px`; the narrow layout retains its single-column breakpoint. The selector is not a geometry source and does not solve the deferred external packet/manifest carrier.
+The unified `Starting geometry` selector contains `Random architrinos` plus the immutable active prescribed catalog. Selecting a prescribed entry loads its sealed record in place by stable id and URL; selecting random restores the saved simulation workspace rather than converting a chart into live initial conditions. The animated catalog contains the illustrative tilted iso-frequency spindle member, its extreme cap-tilt parameter variant, and its planar tri-binary boundary member. The extreme parameter variant keeps the original radii, common frequency, phases, and polarity assignments while changing the three cap angles to $70^\circ$, $80^\circ$, and $85^\circ$ for visual inspection; these are cap tilts within the common coaxial source frame, not independent orbit-plane orientations. The generated full-cap axial-pair record is a deprecated axial-limit null control outside the active catalog because its $\pi/2$ cap angle makes every transverse radius and carrier speed zero. Its stable URL remains directly loadable for historical reproduction. All active records are emitted from complete source specifications with `engineId: prescribed-geometry`; source-carried taxonomy metadata states whether an entry is a family member, parameter variant, or boundary member. Pressing Play from chart pose switches to prescribed-path playback and starts the timeline. `Continue with Display simulation` creates a separate child branch at an exact common segment boundary. Its fixed-width label does not contain the changing time; the status line reports the selected cut with three decimal places. The branch copies the source's exact piecewise-cubic segment prefix through that cut into EOM retained history, uses the fixed `borg-prescribed-display-v1` profile, starts directly at Display grade, and remains promotion-ineligible. It never reconstructs history from rendered frames, never changes the source record's grade, and is not cached under the source record's catalog identity. Each source-carried binary axis is rendered as a dashed guide; coincident axes remain coincident. Chart-pose paths use the same exact standard polarity color as their architrinos and obey the half-turn fade contract below. Prescribed replay retains perspective projection because the visible depth and tilt are part of reading the braid. The desktop left rail is `620px`; the narrow layout retains its single-column breakpoint. The selector is not a geometry source and does not solve the deferred external packet/manifest carrier.
 
 Parameter variations remain source-defined. A change to labeled member radii, cap angles, phases, or other chart parameters produces a separate complete source specification, sealed record, and catalog entry. Borg does not synthesize a variation in the browser, and an `I:M:O` label mapping is never inferred from binary source order.
 
 The active planar boundary record and deprecated full-cap control reuse the illustrative spindle's declared radii, angular frequency, phases, polarity assignments, record interval, and frame. The planar record changes only the three canon-defined cap angles to $0$; the full-cap control changes only those angles to $\pi/2$. These are controlled boundary constructions, not numerical selections of new braid families.
 
 `assembly-view-record.v0` currently lacks declared comparison time/unit transforms, an external multi-record collection carrier, a required field-speed carrier, and spin/polarity-dipole vector carriers. Borg therefore rejects synchronized comparison and presents the other affected fields as unavailable. These are instrument-gate contract blockers, not authority for the app to define substitute fields.
+
+### Taxonomy Selection Canvas
+
+Borg must replace the flat prescribed-geometry selection treatment with a taxonomy-based selection canvas backed by the accepted assembly registry. The canvas presents many independently interactive spherical previews in a responsive grid. Taxonomy facets, search, labels, metadata, focus treatment, selection state, spacing, typography, borders, and responsive behavior follow the canonical [UI Guidelines](../../../content/markdown/aaa/archie/ui-guidelines.md): dark navy or near-black shell surfaces, thin cool-gray borders, compact rounded geometry, `8px`-`12px` gaps, `8px`-`16px` panel padding, shared UI typography tokens, visible keyboard focus, and short functional transitions. Those shell rules do not constrain the scientific colors inside a preview sphere.
+
+Each preview sphere contains only the source-carried architrinos and their paths. A plain non-dotted circular perimeter may define its clipping edge, but it renders no dotted globe or outer-boundary overlay, globe dots, latitude or longitude marks, great-circle guides, axes, labels, wake shells, diagnostic glyphs, panels, or decorative interior texture. The sphere is a clipping and interaction frame for the assembly preview, not a second scientific boundary or evidence surface.
+
+Each preview supports independent unrestricted three-dimensional rotation by pointer or touch drag and by an accessible keyboard equivalent. It provides no zoom: wheel and trackpad scrolling continue to move the selection canvas, pinch does not rescale the preview, and no zoom, fit, or focus control is exposed inside a selection cell. Reset returns only the preview orientation to its deterministic poster orientation.
+
+The complete visible assembly must remain inside the sphere at every rotation. For preview center $\mathbf c$ and the set $\mathcal P$ of every displayed architrino position and path point, define the rotation-invariant preview bound
+
+$$
+R_{\mathrm{preview}}=\max_{\mathbf x\in\mathcal P}\lVert\mathbf x-\mathbf c\rVert.
+$$
+
+The fixed preview projection and safe-frame margin must contain that bound under every allowed orientation; selection-cell rotation must not change projection scale. Records without enough source-carried geometry to compute a complete bound remain visibly unavailable rather than being partially clipped or silently rescaled during interaction.
+
+Plainly: turning a preview can change which part is in front, but it can never push an architrino or its path out of the circular selection frame. The operator should be able to judge the assembly by eye without fighting zoom or mistaking a globe decoration for part of the geometry.
 
 ## Path-History Retention
 
@@ -187,6 +205,20 @@ Path history means the recorded source and receiver motion needed to replay wher
 | Replay index | Fast lookup for path id, time range, frame range, and root/wake consumers. |
 
 The app should render trails and playback from these records, but the authoritative data is the solver-owned path stream and manifest.
+
+## Polarity-Matched Path Color And Half-Turn Fade
+
+Every Borg path is visually owned by the architrino that traverses it. An electrino path uses the same exact standard blue as its electrino, `#0000ff`; a positrino path uses the same exact standard red as its positrino, `#ff0000`. Borg must not substitute pastel tints, white fallback paths, a shared purple prescribed-path color, speed colors, family colors, or per-binary colors for this base path identity. Any optional diagnostic overlay must remain separable from the canonical polarity-colored path.
+
+For rotating assembly geometry, the visible trailing path spans one half-turn and fades from full intensity at the current architrino to transparent at angular lag $\pi$. With source-declared unwrapped path phase $\phi$ and trailing phase lag $\Delta\phi\ge 0$, the canonical linear opacity profile is
+
+$$
+\alpha(\Delta\phi)=\max\!\left(0,1-\frac{\Delta\phi}{\pi}\right).
+$$
+
+The renderer draws no future path. A phase lag at or beyond $\pi$ is invisible, and the current path endpoint meets the architrino at full base color. The rule applies to live rotational geometry, prescribed replay, chart pose, comparison views, taxonomy-preview spheres, and exports. A non-rotational history may retain its declared time- or depth-based visible window, but it still uses the exact owning-architrino color. If a rotating record does not carry enough source-declared phase, period, axis, or equivalent parameterization to evaluate the half-turn window without app-side physics or taxonomy inference, the half-turn trail remains unavailable and the missing carrier is shown explicitly.
+
+Plainly: each architrino leaves a same-color comet tail covering only the previous half rotation. The tail is brightest where it touches the architrino and disappears smoothly by the point one half-turn behind it.
 
 ### Live-Run Browser Retention
 
@@ -608,7 +640,10 @@ The first app design pass should not advance if any of these occur:
 12. the app treats `centralArchitrinoCount` as the total solver `architrinoCount` after a nonzero `radialBufferMargin` is declared;
 13. $b_{\mathrm{shell}}(\mathcal C)<\max(c_fh,\ v_{\max}T_{\mathcal C})$ while central-ball values are still presented as satisfying the strict central-ball buffer target;
 14. $R_{\mathrm{boundary\to central}}>\tau_{\mathcal C}$ while central-ball values are still displayed as inside the declared boundary-influence budget;
-15. a candidate run is described as proof of AAA ontology without same-record retained evidence.
+15. a candidate run is described as proof of AAA ontology without same-record retained evidence;
+16. a taxonomy selection sphere permits zoom, draws the dotted globe or any interior object other than source-carried architrinos and paths, or clips the complete assembly at any allowed rotation;
+17. a Borg path uses a color other than the exact standard color of its owning architrino; or
+18. a rotating geometry path shows future history, remains visible beyond a trailing phase of $\pi$, or fails to fade to zero at that half-turn boundary.
 
 ## Next Exact Proof/Build Burden
 

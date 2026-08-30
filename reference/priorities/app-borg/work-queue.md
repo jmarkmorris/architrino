@@ -18,17 +18,19 @@ This is the canonical execution ledger for accepted Borg work. `priorities.md` o
 1. `native_wake_history_and_boundary_residual_fixture` — [BORG-001](#borg-001--native-wake-history-and-boundary-residuals). Status: `Queued`.
 2. `assembly_viewer_record_contract_carriers` — [BORG-002](#borg-002--assembly-viewer-record-contract-carriers). Status: `Queued`.
 3. `assembly_registry_identity_and_taxonomy_browser` — [BORG-014](#borg-014--assembly-registry-durable-identity-and-taxonomy-browser). Status: `Queued`.
-4. `velocity_scale_sampling_evidence` — [BORG-003](#borg-003--velocity-scale-sampling-evidence). Status: `Queued`.
-5. `assembly_explorer_disposition` — [BORG-004](#borg-004--assembly-explorer-disposition). Status: `Queued`.
-6. `borg_runtime_decomposition` — [BORG-005](#borg-005--borg-runtime-decomposition). Status: `Queued`.
-7. `borg_prescribed_translation_tubes` — [BORG-006](#borg-006--prescribed-translation-and-causal-history-tubes). Status: `Queued`.
-8. `borg_taxonomy_morph_lab` — [BORG-007](#borg-007--taxonomy-morph-lab). Status: `Deferred / blocked`.
-9. `borg_braid_harmonics_studio` — [BORG-008](#borg-008--braid-harmonics-studio). Status: `Deferred / blocked`.
-10. `borg_family_a_exclusion_geometry` — [BORG-009](#borg-009--family-a-exclusion-geometry). Status: `Deferred / blocked`.
-11. `borg_gell_mann_pattern_atlas` — [BORG-010](#borg-010--gell-mann-pattern-atlas). Status: `Deferred / blocked`.
-12. `borg_polarity_ledger_builder` — [BORG-011](#borg-011--polarity-ledger-builder). Status: `Deferred / blocked`.
-13. `borg_conservation_flow_board` — [BORG-012](#borg-012--conservation-flow-board). Status: `Deferred / blocked`.
-14. `borg_material_surface_routing` — [BORG-013](#borg-013--material-surface-routing). Status: `Deferred / blocked`.
+4. `borg_taxonomy_selection_canvas` — [BORG-015](#borg-015--taxonomy-selection-canvas). Status: `Queued`.
+5. `borg_polarity_path_color_and_half_turn_fade` — [BORG-016](#borg-016--polarity-path-color-and-half-turn-fade). Status: `Queued`.
+6. `velocity_scale_sampling_evidence` — [BORG-003](#borg-003--velocity-scale-sampling-evidence). Status: `Queued`.
+7. `assembly_explorer_disposition` — [BORG-004](#borg-004--assembly-explorer-disposition). Status: `Queued`.
+8. `borg_runtime_decomposition` — [BORG-005](#borg-005--borg-runtime-decomposition). Status: `Queued`.
+9. `borg_prescribed_translation_tubes` — [BORG-006](#borg-006--prescribed-translation-and-causal-history-tubes). Status: `Queued`.
+10. `borg_taxonomy_morph_lab` — [BORG-007](#borg-007--taxonomy-morph-lab). Status: `Deferred / blocked`.
+11. `borg_braid_harmonics_studio` — [BORG-008](#borg-008--braid-harmonics-studio). Status: `Deferred / blocked`.
+12. `borg_family_a_exclusion_geometry` — [BORG-009](#borg-009--family-a-exclusion-geometry). Status: `Deferred / blocked`.
+13. `borg_gell_mann_pattern_atlas` — [BORG-010](#borg-010--gell-mann-pattern-atlas). Status: `Deferred / blocked`.
+14. `borg_polarity_ledger_builder` — [BORG-011](#borg-011--polarity-ledger-builder). Status: `Deferred / blocked`.
+15. `borg_conservation_flow_board` — [BORG-012](#borg-012--conservation-flow-board). Status: `Deferred / blocked`.
+16. `borg_material_surface_routing` — [BORG-013](#borg-013--material-surface-routing). Status: `Deferred / blocked`.
 
 ## Awaiting verification
 
@@ -100,10 +102,26 @@ No rows.
 - **Evidence / blocker:** The current `BorgBraidRecordCatalog.js` is a flat braid-oriented catalog whose ids and primary labels contain taxonomy semantics. The live taxonomy already separates assembly composition, individual braid, and individual binary, while the assembly-view requirements already require immutable record navigation and source-defined parameter variants. Some admitted or separately studied assemblies may not yet have a sealed Borg record or a source-owner-approved concrete representative; those gaps must be inventoried before visual coverage can close.
 - **Completion:** A versioned assembly-registry schema, canonical model-hash procedure, alias and migration contract, and machine-readable coverage report are accepted. The Assembly Library works at desktop and narrow widths; every admitted taxonomy member has at least one source-declared visual representative; every registered concrete assembly has a deterministic poster, a loadable inspection view, and an honest prescribed, evolved, or presentation-only animation. Focused tests cover identity stability, hash sensitivity, alias and short-hash ambiguity, component inventory, source order, registry completeness, deep-link migration, and no-physics boundaries. Browser QA verifies taxonomy browsing, search by every identity form, model/record hash copying, representative planar and spatial single-braid entries, representative multi-braid and non-family entries, component isolation, playback/scrubbing, static turntable labeling, and zero missing or silently substituted registry rows.
 
+### BORG-015 — Taxonomy selection canvas
+
+- **Status:** Queued
+- **Source:** Operator direction on 2026-08-29.
+- **Request / acceptance:** Implement the taxonomy-based Borg selection canvas specified in [requirements-and-design.md](requirements-and-design.md#taxonomy-selection-canvas), using the BORG-014 registry and taxonomy facets. Render many selectable spherical assembly previews in a responsive standard grid. Each sphere must rotate independently in three dimensions, expose no zoom path, keep the complete assembly visible at every orientation, and contain only source-carried architrinos and their paths. Do not render Borg's dotted spherical-envelope or globe-dot overlay inside these selection spheres.
+- **Evidence / blocker:** Depends on BORG-014 for durable assembly identity, taxonomy membership, and complete source-declared preview geometry. A missing or incomplete representative remains an unavailable row; Borg may not invent coordinates to fill the canvas.
+- **Completion:** Focused tests prove no zoom handlers or controls, rotation-invariant fixed framing, deterministic poster/reset orientation, source-only preview content, taxonomy-to-registry identity preservation, and fail-closed missing bounds. Browser QA at desktop and narrow widths performs the operator eye test across representative planar, spatial, multi-braid, and boundary entries: the grid matches canonical UI shell standards, each assembly remains fully visible through arbitrary rotations, wheel scrolling moves the grid rather than zooming a sphere, and no preview contains globe dots or any object other than architrinos and paths.
+
+### BORG-016 — Polarity path color and half-turn fade
+
+- **Status:** Queued
+- **Source:** Operator direction on 2026-08-29.
+- **Request / acceptance:** Repair Borg path styling so every path uses the exact standard color of its owning architrino—electrino blue `#0000ff`, positrino red `#ff0000`—and every rotating geometry trail fades from full intensity at the architrino to transparent at trailing phase $\pi$. Apply the rule across live rotational geometry, prescribed replay and chart pose, comparison views, taxonomy-preview spheres, exports, and every existing Borg geometry scene that uses the affected renderers. Preserve the no-future-path rule and keep optional diagnostics separate from the canonical base path.
+- **Evidence / blocker:** Current Borg runtime styles use lighter `pathColor` values, prescribed paths use a shared purple constant, and current prescribed chart requirements record whole-period/light-purple trails. Rotating rows without a source-declared phase, period, axis, or equivalent parameterization cannot receive an app-inferred half-turn; they must expose the missing carrier.
+- **Completion:** A renderer/scene inventory identifies every affected Borg path surface and records its disposition. Focused tests assert exact path-to-architrino color equality, full opacity at the current endpoint, monotonic linear fade, zero opacity and clipping at $\Delta\phi=\pi$, no future segments, correct wraparound, and fail-closed missing rotational carriers. Browser QA performs the operator eye test on representative live, prescribed, comparison, selection-canvas, and export scenes and finds no pastel, white, or purple base path and no visible rotational trail older than one half-turn.
+
 ### BORG-003 — Velocity-scale sampling evidence
 
 - **Status:** Queued
-- **Priority source:** [Ranked Next Objects item 3](priorities.md#ranked-next-objects)
+- **Priority source:** [Ranked Next Objects item 6](priorities.md#ranked-next-objects)
 - **Request / acceptance:** Produce measured velocity-scale-aware boundary-shell replay sampling evidence across the declared range using EOM-run rows, under the existing velocity-sampling protocol.
 - **Evidence / blocker:** Depends on BORG-001 retained wake/history and residual rows. Affected boundary replay output remains display-only or fail-closed until measured evidence exists.
 - **Completion:** Declared calibration and holdout evidence is produced with the protocol’s residual, tail-mass, correlation, seed-variance, patch-replay, and central-ball contribution checks.
@@ -111,7 +129,7 @@ No rows.
 ### BORG-004 — Assembly Explorer disposition
 
 - **Status:** Queued
-- **Priority source:** [Ranked Next Objects item 4](priorities.md#ranked-next-objects)
+- **Priority source:** [Ranked Next Objects item 7](priorities.md#ranked-next-objects)
 - **Request / acceptance:** Decide whether the standalone Assembly Explorer can be retired or redirected after Borg replay reaches the declared parity for raw-record navigation, source ordering, optional source-carried $S_3$ grouping, and source-carried search diagnostics.
 - **Evidence / blocker:** Depends on BORG-002.
 - **Completion:** A documented disposition is accepted and any authorized retirement or redirect work is verified without losing the required replay capabilities.
