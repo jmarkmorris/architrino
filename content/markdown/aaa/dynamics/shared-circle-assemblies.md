@@ -26,6 +26,68 @@ The nonuniform fixed-phase subchart keeps the same circle, angular rate, and cyc
 
 Plainly: regular polygons are symmetry landmarks inside a larger fixed-phase chart. A search that stops at those landmarks has not tested every shared-circle arrangement.
 
+## Degrees of Freedom and Search Directions
+
+A degree of freedom in this discussion is a geometric coordinate, discrete assembly choice, or retained path-history function that may be varied while the Master Equation and its normalization remain fixed. For a rigid shared circle with $2N$ labeled members, removing one common phase leaves $2N-1$ independent relative phases, together with the common radius and angular rate. Inventory, polarity word, and circulation sense are additional discrete choices. The balance equations do not leave all of these coordinates free: they select the combinations whose complete radial, tangential, and axial residuals vanish.
+
+Plainly: before imposing balance, the members may be rearranged around the circle and the circle's size and turning rate may be changed. Balance then acts like a set of filters, retaining only the combinations compatible with the complete delayed acceleration ledger.
+
+A common notation for nearby prescribed paths is
+
+$$
+\mathbf X_k(T)
+=
+\mathbf C(T)
++
+\bigl[R+\delta r_k(T)\bigr]
+\left[
+\cos\theta_k(T)\,\hat{\mathbf e}_1(T)
++
+\sin\theta_k(T)\,\hat{\mathbf e}_2(T)
+\right]
++
+\delta z_k(T)\,\hat{\mathbf n}(T),
+\qquad
+\theta_k(T)
+=
+\Omega T+\phi_k+\delta\phi_k(T),
+$$
+
+where $(\hat{\mathbf e}_1,\hat{\mathbf e}_2,\hat{\mathbf n})$ is an oriented orthonormal frame. The rigid fixed-center chart has constant $\mathbf C$ and frame, with $\delta r_k=\delta\phi_k=\delta z_k=0$. This notation is a search scaffold, not an assertion that every listed variation contains a balanced or retained solution.
+
+Plainly: $\delta r_k$ changes distance from the center, $\delta\phi_k$ changes angular placement, and $\delta z_k$ moves a member out of the plane. Moving the center or the frame explores transport and reorientation of the whole assembly.
+
+| Degree, choice, or control | Mathematical representation | Present status | Purpose of exploring it |
+| --- | --- | --- | --- |
+| Member inventory | Integer $N$, giving $2N$ members | Regular alternating candidates measured for $1\leq N\leq12$; polarity completeness is narrower | Test which inventories admit balance, derive large-$N$ laws, and distinguish a general ring mechanism from an isolated six-member effect |
+| Polarity word | $q_k\in\{+\epsilon,-\epsilon\}$ with $\sum_kq_k=0$ | All regular classes are bounded through $N=6$; only the alternating class was tested for $N=7$ through $N=12$ | Identify which delayed acceleration channels cancel and whether strict alternation is necessary or merely favored |
+| Pairing and label map | A declared fixed-point-free pairing or other taxonomy map on the labels | Fixed on the B1.3 overlap; not every ring possesses such a map | Separate path geometry from braid identity and test neutral-antipode or Family-C decompositions without inferring them from member count |
+| Fixed relative phase offsets | $2N-1$ independent relative phases, or positive gaps summing to $2\pi$ | Regular gaps are solved extensively; asymmetric fixed gaps have only bounded exploratory coverage | Search for asymmetric balances, determine whether regular spacing is isolated, and test which symmetry cancellations are essential |
+| Time-dependent phase offsets | $\delta\phi_k(T)$ | Open beyond limited prescribed variable-speed constructions | Test phase locking, internal angular shear, collision-free speed exchange, and possible paths between discrete balance modes |
+| Common angular speed | $\Omega$, equivalently $\beta_f=|\Omega|R/c_f$ | The equal-radius B1.3 ladder is solved through T200; completeness is certified through $\beta_f=20$ | Locate balance modes, causal-root folds, high-speed spacing laws, and topology changes |
+| Circulation sense | $s=\operatorname{sgn}\Omega\in\{-1,+1\}$ | Related by checked reflection only where the full ledger transforms covariantly | Test handedness, reflection covariance, and any genuine circulation asymmetry after symmetry-equivalent cases are removed |
+| Common radius | $R$, or $R/R_*$ | Solved jointly with $\beta_f$ on the regular B1.3 ladder | Determine the compatible assembly scale, test scalability, and measure how scale changes across root-topology modes |
+| Independent member or binary radii | $R_k$, or $(R_1,R_2,R_3)$ for general B1.3 | Open; unequal radii leave the one-shared-circle chart | Explore the broader B1.3 family, symmetry breaking, nested radial structure, and whether unequal-radius balance families exist |
+| Common radial breathing | $\delta r_k(T)=\delta R(T)$ for every member | Open as a retained-history problem | Test coherent expansion and contraction, radial oscillation, and whether the exact circle is a center, attractor, repeller, or separatrix in the radial direction |
+| Differential planar shape modes | Nonidentical $\delta r_k(T)$ and $\delta\phi_k(T)$ | Open | Test elliptical, alternating, binary-splitting, and higher cyclic deformations; construct the planar return map around an exact balance mode |
+| Perturbative planar acceleration diagnostic | A small prescribed planar path perturbation with controlled $\delta\ddot{\mathbf X}_k^{\parallel}(T)$ | Available as a prescribed-path probe, not as an independent released-state coordinate | Measure acceleration response, identify coupled radial and tangential modes, and design stability perturbations; under EOM release the acceleration must be recomputed from causal history rather than freely assigned |
+| Out-of-plane displacement and rate | $\delta z_k(T)$ and $\delta\dot z_k(T)$ | Open for the balanced ladder | Test loss of planarity, axial buckling, three-dimensional retention, and nearby connections to non-equatorial braid charts |
+| B1 axial half-separations | $h_a$ for the three binaries | Fixed at $h_a=0$ on B1.3; nonzero values leave B1.3 | Explore adjacent B1 loci and determine whether axial binary structure repairs or destroys the planar balance mechanism |
+| Plane orientation, tilt, and wobble | Time-dependent orthonormal frame $(\hat{\mathbf e}_1,\hat{\mathbf e}_2,\hat{\mathbf n})(T)$ | A constant common orientation is removable by global rotation; time dependence is open | Test orientational retention, precession-like path histories, and coupling between planar circulation and axial motion without assuming an imported magnetic mechanism |
+| Center translation | $\mathbf C(T)$, including axial and transverse components | One fixed axial-speed B1.3 control was negative; broader coverage is open | Search for translating or screw-path balances and test whether internal balance survives assembly transport |
+| Complete retained prehistory | History functions $\mathbf X_k(T)$ on $-H\leq T\leq0$, including their certified causal-root ledger | Exact circular histories are defined; nearby-history uniqueness and stability remain open | Supply the actual initial data required by a delayed equation, test release and restart, and distinguish exact continuation from perturbation stability |
+| Root-topology or ladder index | Topology class $\mathrm T_t$ or balance index $n$ | Derived discrete label, not a freely assigned coordinate | Organize branches, bracket searches, count directed roots, and study mode adjacency or transitions without treating the label as an imposed quantum number |
+| Global phase, position, and constant orientation | Common phase shift, constant $\mathbf C$, and constant rigid rotation of the frame | Symmetry coordinates on the fixed model | Remove duplicate descriptions and provide covariance checks; these do not change the assembly's internal geometry |
+| Coupling scale and Master-Equation variant | $R_*=\kappa\epsilon^2/c_f^2$ and the declared uncapped, capped, or instrument-limited equation | Experimental controls, not assembly degrees of freedom | Test scale covariance or compare explicitly versioned dynamical laws without confusing a changed model with a new state of one assembly |
+
+> Scope note: this table is a coordinate and research map. Its status entries summarize the scoped evidence and claim grades documented in the corresponding sections below; the table introduces no new balance, retention, or stability result. A proposed variation remains open unless a complete causal-root calculation or retained-history test explicitly closes it.
+
+Plainly: the most direct next searches are asymmetric fixed phases, unequal B1.3 radii, and small planar and axial history perturbations around an exact ladder member. Phase and radius searches ask whether more exact balances exist. Perturbation searches ask the different question of whether a known exact balance retains nearby histories.
+
+Acceleration requires special care. In a prescribed-path diagnostic, a small acceleration-shaped deformation may be imposed to measure the Master Equation residual. In a released calculation, positions, rates, and the complete retained history are supplied, while acceleration is the Master Equation's output. Treating released acceleration as an independently adjustable knob would test a different problem.
+
+Plainly: we may push a trial path in a chosen planar pattern to learn how the ledger responds. Once the path is released, however, the theory—not the investigator—chooses its acceleration from the causal history.
+
 ## Collision-Free Winding Constraint
 
 For continuous labeled paths on one fixed nondegenerate circle, one common labelwise return period and no pairwise coincidence force every label to have the same signed winding number. If $\theta_i$ is a continuous angular lift, then $w_i=[\theta_i(P)-\theta_i(0)]/(2\pi)$ is an integer. The difference $\theta_i-\theta_j$ cannot cross $2\pi\mathbb Z$ without a coincidence, so its endpoint change cannot be a nonzero multiple of $2\pi$; hence $w_i=w_j$.

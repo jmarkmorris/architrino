@@ -10,7 +10,7 @@ Plainly: this chapter is about assemblies whose members all sit at the same dist
 
 - Owner: [Braid Program](priorities.md)
 - Kind: classification chapter, chart definition, and screening record
-- Status: in progress, unbooked, and not promoted. The chart, the taxonomy intersections, the evaluated inventory, and the Platonic discrete enumeration are written; the sections under [Material Still To Be Written](#material-still-to-be-written) are pending, and the Platonic corner is enumerated but unscreened. No registry entry, chart slice, candidate row, or evidence booking is claimed — see [Standing Dispositions](#standing-dispositions).
+- Status: in progress, unbooked, and not promoted. The chart, the taxonomy intersections, the evaluated inventory, and the Platonic discrete enumeration are written; the items under [Outstanding Work](#outstanding-work) are pending, and the Platonic corner is enumerated but unscreened. No registry entry, chart slice, candidate row, or evidence booking is claimed — see [Standing Dispositions](#standing-dispositions).
 - Created: 2026-08-29
 - Claim level: derived chart algebra and taxonomy intersections; one complete discrete enumeration with no dynamical content; cited measured results owned by their originating documents; explicitly marked inference and speculation. No screening result is claimed on any co-spherical configuration in this document.
 - Scope: prescribed co-spherical configurations, their polarity words, their intersections with the braid taxonomy, and the screening results available on them
@@ -23,6 +23,10 @@ Choose a fixed center $\mathbf C$, a radius $R>0$, and $2N$ distinct members. Th
 $$\|\mathbf X_k(T)-\mathbf C\|=R\qquad\text{for all }k\text{ and all }T.$$
 
 A balanced $N{:}N$ polarity word assigns $N$ sites each polarity, so $q_k\in\{+\epsilon,-\epsilon\}$ and $\sum_k q_k=0$, in the sense already canon for the shared circle. Compatible scale is reported as $R/R_*$ with $R_*=\kappa\epsilon^2/c_f^2$, and every numerical result uses normalized units with $c_f=1$. Global rotation about $\mathbf C$ and global polarity conjugation are gauge; reflection is a valid reduction only together with the applicable circulation reversal and only after that covariance is checked.
+
+**The condition is on members, and only on members.** This has to be said at the definition rather than in a footnote, because an assembly can carry several distinguishable spheres at once and only one of them qualifies. `F6c` already documents the hazard in its own terms: its four track centers lie on a track-center circumsphere of radius $|h_\sigma|$, while the complete circular tracks lie on the generally larger orbit spherical envelope of radius $\sqrt{h_\sigma^2+\rho_\sigma^2}$, and the two coincide only when $\rho_\sigma=0$. A configuration whose *track centers* are co-spherical, or whose centers form a regular polyhedron, is not thereby a shared-sphere assembly. Only $\|\mathbf X_k(T)-\mathbf C\|=R$ on the architrino worldlines admits a record to this chart.
+
+Plainly: the moving architrinos have to be on the sphere. It is not enough that the centers of their orbits are, and mistaking one for the other is the easiest way to think a candidate belongs here when it does not.
 
 The shared circle is the degenerate case. Any circle lies on a sphere, so every shared-circle record is a shared-sphere record whose members happen to be coplanar with the center. The converse fails, and the way it fails is the whole content of this chapter.
 
@@ -101,15 +105,7 @@ Plainly: when eight members were pinned to one sphere the acceleration law pushe
 
 **[inference; pattern across the inventory, not a theorem]** No unconditionally co-spherical object in the program has passed a balance test, on any channel, at any member count. The four failures are independent in kind — an axial-sum sign argument, an interval-certified bounded exclusion, a measured tangent-projection residual, and a stationary-strata sweep — and they do not compose into a proof. What would establish the pattern as a theorem is a general co-sphericity obstruction argument; what would overturn it is a single balanced nondegenerate co-spherical history, for which `C5`/`C6` two-latitude configurations are the most promising unexamined stratum.
 
-## Material Still To Be Written
-
-The sections above define the chart and collect what is known. The chapter is not complete, and the following belong before the Platonic corner rather than after it. Item 4 is the gating one: until it exists, no configuration in this classification can be screened at all.
-
-1. **Collision-free structure on the sphere.** The shared-circle winding lemma has no direct analogue: co-spherical members at different latitudes never meet regardless of phase, while members sharing a latitude circle inherit the circular constraint exactly. The correct statement is a per-latitude condition plus a cross-latitude clearance bound, and it needs to be derived rather than asserted. The `F5` collapse and the `F6c` clearance warning both belong here: equal center radii say how far members are from the center, not how far they are from one another.
-2. **Complete causal-root balance protocol on the sphere.** The canonical ledger must include every cross-transmitter root and every nontrivial same-transmitter root, and the latitude-dependent speed family means fold structure varies across members of one arrangement. The shared-circle root algebra does not transfer.
-3. **The two-latitude chart.** Exact coordinates, admissible polarity words, and the balance conditions for the `C5`/`C6` shared-sphere sub-locus.
-4. **A moving-assembly residual criterion for co-spherical arrangements.** The natural replacement for the shared circle's signed second-harmonic condition, evaluated on actual histories rather than frozen phases. This is the missing instrument: the corpus's fixed-point-cloud operator assumes zero internal motion and cannot substitute for it, and without it the Platonic corner and every other co-spherical stratum stay unscreened.
-5. **Registry and chart routing.** Whether shared-sphere records get a registry parallel to the shared-circle assembly registry, and whether the co-sphericity sub-locus becomes a named cross-layer slice of the configuration chart.
+The sections above define the chart and collect what is known. The chapter is not complete; what remains is consolidated in [Outstanding Work](#outstanding-work) at the end, and the three missing chapter sections listed there belong before the Platonic corner rather than after it.
 
 ## Part III — The Platonic Corner
 
@@ -155,7 +151,7 @@ Plainly: every regular solid can be polarity-balanced for free, and the three co
 
 The search space here is finite, and it is small. Because the point groups are finite and the polarity assignment is discrete, the balanced words on a Platonic vertex set can be enumerated completely, up to the solid's full point group together with global polarity conjugation.
 
-**[measured; pure enumeration, no dynamical content; instrument `platonic-balanced-word-enumeration.py`]**
+**[measured; pure enumeration, no dynamical content; instrument `scripts/prescribed-path-analysis/oracle/platonic_balanced_word_enumeration.py`]**
 
 | Solid | $V$ | Word | Point group order | Balanced colourings | Inequivalent classes | Antipodal-alternating classes |
 |---|---|---|---|---|---|---|
@@ -168,7 +164,23 @@ The search space here is finite, and it is small. Because the point groups are f
 
 That is the whole discrete axis: **917 configurations**, of which 28 resolve into neutral binaries through the center. Anything the program eventually wants to say about co-spherical Platonic arrangements can be said about all of them, exhaustively, in one pass. The enumeration is a reusable input and carries no physics.
 
-One structural note that survives independently of any dynamical criterion. On the octahedron, the antipodal-alternating class — three neutral binaries on three orthogonal axes — is the *same* configuration as the two-segregated-triangle split, because each face triangle is the antipodal image of the other. On the cube, the antipodal-alternating stella-octangula class is the frozen shape of the `F6b` single-sphere specialization. The polyhedral labels and the program's own candidates are describing the same objects.
+One structural note survives independently of any dynamical criterion. On the octahedron, the antipodal-alternating class — three neutral binaries on three orthogonal axes — is the *same* configuration as the two-segregated-triangle split, because each face triangle is the antipodal image of the other. That identification is exact and it is why the octahedron is the one solid this program has actually tested.
+
+The cube tempts an analogous identification and does not support it. The cube's antipodal-alternating class is the stella octangula, and equal-scale `F6c` reproduces that compound — but at the level of **track centers**, with $h_+=h_-$, not at the level of the moving members. The corpus rejects the member identification outright except in the degenerate limit $\rho_+=\rho_-=0$: for nonzero transverse radii the instantaneous member positions are displaced from those centers and are generally not cube vertices. The evaluated `F6b` representative has $h=\rho=0.30$, nowhere near that limit. **No architrino assembly on cube vertices has been evaluated**, and reading `F6b`'s negative as a cube result would be a track-center-versus-member confusion the F6c chapter exists partly to prevent.
+
+### What Is And Is Not Excluded
+
+**[derived and measured, per row; owned by the cited documents]**
+
+| Solid | Negative on record | Motion class covered | Open |
+|---|---|---|---|
+| Octahedron | **yes, two** — the face-opposite A2 octahedron fails the stationary condition with partner contribution $\sqrt{17}/4\ne0$, and the regular-octahedral stratum contains no stationary balance; separately, the rigid co-rotating octahedron is excluded for $h>0$ by a one-signed axial sum | stationary; rigid co-rotation about a body diagonal | every non-rigid octahedral history: breathing, independent cadences, sector-decoupled radii |
+| Cube | **no** | — | everything |
+| Tetrahedron | **no** | — | everything; the 2:2 transient remains unreproduced |
+| Icosahedron | **no** | — | everything, including whether any Family-C history is icosahedral |
+| Dodecahedron | **no** | — | everything |
+
+So the honest position is that **one of the five solids has been tested, and it failed twice** — which is also the only one the program had an independent reason to test, since six members is the base braid count. The other four are unexamined, and the enumeration above is a queue against that gap rather than a report on it.
 
 ### The Screen That Does Not Exist Yet
 
@@ -182,7 +194,7 @@ Plainly: the shapes are worth checking, the tool to check them with does not exi
 
 **[derived; conditional obligation on the future instrument]** One consequence is available in advance, and it should constrain how that instrument is built. If the criterion produces a second-rank tensor constructed *equivariantly* from the configuration, and the subgroup preserving a given polarity word acts irreducibly on $\mathbb R^3$, then Schur's lemma forces that tensor to be a multiple of the identity, and the criterion can only be satisfied degenerately. Under that hypothesis, residual symmetry is a liability rather than an asset, and the polarity word is the lever that breaks it. Whether the applicable moving-assembly criterion is equivariant in the required sense is exactly the thing to check first.
 
-The instrument that would license real due diligence is the spherical-harmonic reduction of the residual listed under [Material Still To Be Written](#material-still-to-be-written) — the moving-assembly replacement for the shared circle's signed second-harmonic condition. Until it exists, the Platonic corner is an open obligation, not a discharged one, and the 917 classes are a queue rather than a result.
+The instrument that would license real due diligence is item 1 of [Outstanding Work](#outstanding-work) — the moving-assembly replacement for the shared circle's signed second-harmonic condition. Until it exists, the Platonic corner is an open obligation, not a discharged one, and the 917 classes are a queue rather than a result.
 
 ### Why The Corner Is Worth Holding
 
@@ -197,7 +209,7 @@ And that is where Kepler's ghost stops being a warning and becomes a useful prec
 ### Reproduction
 
 ```
-python3 reference/priorities/braid-program/platonic-balanced-word-enumeration.py
+"${AAA_VENV:-../.venv}/bin/python" scripts/prescribed-path-analysis/oracle/platonic_balanced_word_enumeration.py
 ```
 
 The instrument builds each solid's vertex set at unit circumradius in exact algebraic form, derives each point group by enumerating the orthogonal maps preserving the vertex set, orbit-marks balanced colourings as bitmasks under that group together with global polarity conjugation, and reports class counts, one representative word per class, and which classes are antipodal-alternating. It performs no dynamical evaluation and asserts nothing about motion.
@@ -208,8 +220,37 @@ The instrument builds each solid's vertex set at unit circumradius in exact alge
 
 **`N:N` scope is settled.** Shared-circle `N:N` remains reserved to the circle chart and is never braid notation. The spherical use inherits the polarity-word semantics only.
 
-**Nothing is booked.** This chapter is not entered in the [shared-circle assembly registry](shared-circle-assembly-registry.md), is not a named slice of the [configuration chart](configuration-chart.md), holds no row in the [candidate registry](candidate-registry.md), and books no evidence file. The classification needs substantially more work and review before any ledger entry is appropriate, and the sections under [Material Still To Be Written](#material-still-to-be-written) gate that. Cite this document; do not index it.
+**Nothing is booked.** This chapter is not entered in the [shared-circle assembly registry](shared-circle-assembly-registry.md), is not a named slice of the [configuration chart](configuration-chart.md), holds no row in the [candidate registry](candidate-registry.md), and books no evidence file. The classification needs substantially more work and review before any ledger entry is appropriate, and items 1 through 4 of [Outstanding Work](#outstanding-work) gate that. Cite this document; do not index it.
 
 **Not promoted.** The chapter stays under `reference/priorities`. It parallels a `content/markdown/aaa/dynamics` chapter in architecture, and that resemblance is not a promotion path. Nothing here moves into the corpus without a separate theory decision.
 
-Closure goal: develop shared-sphere assemblies into a complete classification — chart, collision structure, root-balance protocol, and the two-latitude sub-chart — and convert the accumulated co-sphericity negatives into either a general obstruction theorem or a nondegenerate two-latitude candidate, before any registry, chart, or promotion question is reopened.
+## Outstanding Work
+
+Ordered by what blocks what. Everything that involves evaluating a configuration waits on the first item.
+
+### Gating
+
+1. **A moving-assembly residual criterion for co-spherical arrangements.** The replacement for the shared circle's signed second-harmonic condition, evaluated on actual histories rather than frozen phases. This is the missing instrument. The corpus's fixed-point-cloud common-mode operator assumes $\mathbf X_i(T)=\mathbf R_i+\mathbf UT$ — zero internal motion, constant pair distances — and cannot substitute for it under any framing. Until this exists, **no configuration in this classification can be screened at all**: not the Platonic corner, not `C5`/`C6`, not any taxonomy sub-locus. A first check on whatever is built: is the resulting tensor equivariant, and does the Schur argument in Part III therefore bite?
+
+### Chapter sections still to write
+
+These belong before Part III rather than after it.
+
+2. **Collision-free structure on the sphere.** The shared-circle winding lemma has no direct analogue: co-spherical members at different latitudes never meet regardless of phase, while members sharing a latitude circle inherit the circular constraint exactly. The correct statement is a per-latitude condition plus a cross-latitude clearance bound, derived rather than asserted. The `F5` collapse and the `F6c` clearance warning both belong here — equal center radii say how far members are from the center, not how far they are from one another.
+3. **Complete causal-root balance protocol on the sphere.** The canonical ledger must include every cross-transmitter root and every nontrivial same-transmitter root, and the latitude-dependent speed family means fold structure varies across members of one arrangement. The shared-circle root algebra does not transfer.
+4. **The two-latitude chart.** Exact coordinates, admissible polarity words, and balance conditions for the `C5`/`C6` shared-sphere sub-locus.
+
+### Open physics
+
+5. **Four of the five solids are unexamined.** Only the octahedron carries a negative. The cube, tetrahedron, icosahedron, and dodecahedron have no evaluation of any kind, and the 917-class enumeration is a queue against that gap rather than a report on it.
+6. **Octahedral non-rigid histories are open.** The two negatives on record cover the stationary case and rigid co-rotation about a body diagonal. Breathing, independent cadences, and sector-decoupled radii are untouched.
+7. **`C5`/`C6` two parallel latitude circles on one sphere** is the most promising unexamined stratum — the only member of the classification with no shared-circle analogue and no single-latitude degeneracy. A balanced nondegenerate co-spherical history there would overturn the inventory's negative pattern.
+8. **The count coincidence is undecided.** Whether six, eight, and twelve landing on the octahedron, cube, and icosahedron reflects symmetry selection or the scarcity of small even numbers. Confirmed by a retained branch whose stabilizer is a polyhedral point group; deflated by a retained branch at an odd or non-Platonic count.
+9. **A general co-sphericity obstruction argument**, which is what would convert the four independent negatives from a pattern into a theorem.
+
+### Deferred by operator decision — no action
+
+10. **Registry and chart routing.** Whether shared-sphere records get a registry parallel to the [shared-circle assembly registry](shared-circle-assembly-registry.md), and whether co-sphericity becomes a named cross-layer slice of the [configuration chart](configuration-chart.md). Not to be reopened until items 1 through 4 are done. See [Standing Dispositions](#standing-dispositions).
+11. **Promotion** to `content/markdown/aaa`. Same gate, and a separate theory decision besides.
+
+Closure goal: develop shared-sphere assemblies into a complete classification — chart, collision structure, root-balance protocol, and the two-latitude sub-chart — build the moving-assembly criterion that lets any of it be screened, and convert the accumulated co-sphericity negatives into either a general obstruction theorem or a nondegenerate two-latitude candidate, before any registry, chart, or promotion question is reopened.

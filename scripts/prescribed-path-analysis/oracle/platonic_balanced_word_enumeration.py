@@ -19,9 +19,14 @@ criterion is not supplied here, and the fixed-point-cloud common-mode residual
 is deliberately NOT used, because its zero-internal-motion ansatz does not
 describe a co-spherical orbiting assembly.
 
-Companion chapter: shared-sphere-assemblies.md, Part III.
+Companion chapter: reference/priorities/braid-program/shared-sphere-assemblies.md,
+Part III. That chapter is unbooked and unpromoted; this file is a discrete
+inventory for it and is not evidence for any candidate.
+
 Project python: prefer "${AAA_VENV:-../.venv}/bin/python".
 """
+
+from __future__ import annotations
 
 import itertools
 
