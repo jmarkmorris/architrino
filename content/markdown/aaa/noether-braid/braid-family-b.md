@@ -203,6 +203,8 @@ $$
 (2.7828807183,\ 0.9764357759,\ -0.6131383055)
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-645829ac93cac25b)
+
 Plainly: the translated history still has the same number of delayed intersections, yet their acceleration contributions no longer point in the combination required by the original circle. The positive radial entry means the old radius misses the required inward circular acceleration, while the nonzero tangential and axial entries show independent sideways and common-axis errors.
 
 Choosing the radius only to cancel the radial component gives $R/R_*=0.2471576065$, but leaves the tangential and axial residuals unchanged to the displayed precision.

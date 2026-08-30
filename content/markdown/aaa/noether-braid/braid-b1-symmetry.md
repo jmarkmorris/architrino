@@ -48,6 +48,8 @@ $$
 -s_i\frac{2\kappa |q_iq_j|h}{r_{ij}^{3}}W^{\mathrm{acc}}_{ij},
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-41c91addc9177652)
+
 where $W^{\mathrm{acc}}_{ij}=c_f/|D_{t,ij}|>0$ on an ordinary simple root. Thus every opposite-plane hit accelerates the receiver strictly toward the midplane, while every same-plane hit contributes exactly zero axially. The signs cannot cancel. A bounded complete opposite-plane history supplies at least one cross-plane root: for delay $\tau\ge0$, the continuous root residual $F(\tau)=c_f\tau-\|\mathbf X_i(T)-\mathbf X_j(T-\tau)\|$ begins negative and becomes positive once $c_f\tau$ exceeds the bounded separation. If that crossing is non-simple, the history has left the lemma's ordinary-root domain rather than produced axial balance.
 
 A fixed-height path has $\hat{\mathbf n}\cdot\ddot{\mathbf X}_i=0$, contradicting the strictly inward axial sum. Therefore no polarity-segregated rigid two-ring history satisfying these assumptions is acceleration-balanced at nonzero height. The conclusion includes finite sub-field, field-speed, and super-field-speed motions because member speed changes the root inventory and positive weights but not the axial signs.

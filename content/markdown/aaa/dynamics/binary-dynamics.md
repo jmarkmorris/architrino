@@ -137,11 +137,15 @@ $$
 w_i=\frac{\theta_i(P)-\theta_i(0)}{2\pi}.
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-ceb41420e72a533c)
+
 For a pair of labels, $\delta_{ij}=\theta_i-\theta_j$ is continuous and avoids $2\pi\mathbb Z$ because the paths never coincide. It therefore remains in one connected component of $\mathbb R\setminus2\pi\mathbb Z$. Both endpoint values lie in the same open interval of width $2\pi$, while
 
 $$
 \delta_{ij}(P)-\delta_{ij}(0)=2\pi(w_i-w_j).
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-d983a9fef902c818)
 
 The left side has magnitude less than $2\pi$ and the right side is an integer multiple of $2\pi$, so $w_i=w_j$. Hence every labeled architrino has the same signed net lap count and the same signed mean angular rate over the common period.
 

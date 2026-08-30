@@ -360,3 +360,11 @@ Plainly: the proposed weave does not balance at the binary cadence, and the boun
 - Propagated the independently established scope into Binary Dynamics, B1 symmetry, Braid Mathematics, and the owning A2 rotating-chart evidence. See the [theorem-review packet](evidence/2026-08-29-shared-circle-winding-and-two-ring-axial-no-balance-theorem-review.md).
 
 Plainly: one result constrains collision-free labeled motion on a shared circle; the other rejects acceleration balance only for the stated fixed-parallel-plane polarity chart. Neither result decides whether a three-dimensional orthogonal weave persists.
+
+## 2026-08-29 — B1.3 shared-circle balance ladder durably synthesized
+
+- Added the tracked [B1.3 shared-circle balance-ladder evidence packet](evidence/2026-08-29-b13-shared-circle-balance-ladder.md), consolidating the accepted derived ledger identities, computer-assisted bounded zero count through T36, independently measured T02 through T200 balance witnesses, derived asymptotic laws, exact circular-solution theorem, inferred scalability and quantum-like comparisons, finite T04 release prefix, artifact hashes, claim boundaries, and falsifiers.
+- Preserved the grades exactly. Derived mathematics, measured prescribed balances, measured finite-prefix release evidence, inferred comparisons, and explicitly unresolved dynamics remain separate. No retention, stability, binding, physical quantization, transition, quantum-recovery, score, identity, or scientific-acceptance claim was added.
+- Updated the B1.3 queue row to acknowledge that a past-only T04 attempt already ran but halted after a short accepted prefix on `root_completeness_not_certified`; the medium rung supplied resource telemetry only, the fine rung did not run, and no full-cycle return exists.
+
+Plainly: the B1.3 evidence is now tracked in one reviewable packet. The documentation advance does not make the short release attempt a successful orbit or a physical result.

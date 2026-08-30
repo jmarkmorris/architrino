@@ -12,7 +12,7 @@ Plainly: this chapter is about assemblies whose members all sit at the same dist
 - Kind: classification chapter, chart definition, and screening record
 - Status: in progress, unbooked, and not promoted. The chart, the taxonomy intersections, the evaluated inventory, and the Platonic discrete enumeration are written; the items under [Outstanding Work](#outstanding-work) are pending, and the Platonic corner is enumerated but unscreened. No registry entry, chart slice, candidate row, or evidence booking is claimed — see [Standing Dispositions](#standing-dispositions).
 - Created: 2026-08-29
-- Claim level: derived chart algebra and taxonomy intersections; one complete discrete enumeration with no dynamical content; cited measured results owned by their originating documents; explicitly marked inference and speculation. No screening result is claimed on any co-spherical configuration in this document.
+- Claim level: derived chart algebra, degree-of-freedom counting, and taxonomy intersections; one derived exclusion (latitude-segregated two-ring polarity words) with its own scope and falsifier; one complete discrete enumeration with no dynamical content; cited measured results owned by their originating documents; explicitly marked inference and speculation. No evaluated screening result is claimed on any co-spherical configuration in this document.
 - Scope: prescribed co-spherical configurations, their polarity words, their intersections with the braid taxonomy, and the screening results available on them
 - Exclusions: no retained-branch, binding, stability, particle-identity, effective-mass, or formation claim; co-sphericity is prescribed geometry and is never supplied by the substrate
 
@@ -48,6 +48,83 @@ Two immediate corollaries fall out. Setting $\theta_k=\pi/2$ for every member re
 
 A third possibility — a frozen arrangement with no internal motion, translating rigidly at constant group velocity — is *not* a sub-chart of this classification. It is the corpus's deliberately restricted negative control, its members do not orbit, and nothing in this chapter is evaluated on it. See [Part III](#part-iii--the-platonic-corner) for why that control cannot stand in for a co-spherical screen.
 
+## Degrees of Freedom and Search Directions
+
+A degree of freedom here is a geometric coordinate, discrete assembly choice, or retained path-history function that may be varied while the Master Equation and its normalization remain fixed. The shared-circle inventory does not transfer by adding a dimension, and the differences run in both directions: the sphere opens coordinates the circle does not have, and it opens obligations the circle discharges for free.
+
+**[derived; coordinate count]** Fix the center and the rotation axis by global translation and rotation, leaving one rotation about the axis to remove a common longitude. A rigid co-rotating shared sphere with $2N$ members then carries $2N$ fixed colatitudes $\theta_k$, $2N-1$ relative longitudes, the common radius $R$, and the common rate $\Omega$: **$4N+1$ continuous coordinates**. The same reduction on the shared circle leaves $2N-1$ relative phases, $R$, and $\Omega$: $2N+1$. The sphere therefore adds exactly $2N$ coordinates, and every one of them is a colatitude. For six members that is seven coordinates against thirteen.
+
+Plainly: on a circle you can only slide members around the ring. On a sphere you can also slide each one north or south, and that second freedom is the entire difference in the count.
+
+**[derived; the obligation the sphere adds]** Those $2N$ coordinates are not free gifts. Under rigid co-rotation the required acceleration for member $k$ is centripetal toward the *rotation axis*, not toward the center, so the residual is $\boldsymbol{\mathcal R}_k=\mathbf A_k^{\mathrm{ME}}+\Omega^2\bigl[\mathbf X_k-(\mathbf X_k\cdot\hat{\mathbf n})\hat{\mathbf n}\bigr]$. The centripetal term has no component along $\hat{\mathbf n}$. **The axial component of the delayed acceleration must therefore vanish on its own, for every member, as a separate condition.** On the planar circle chart that condition is discharged by the reflection symmetry of the plane. On a sphere with distinct colatitudes there is no such symmetry, and each member carries an independent axial obligation. The $2N$ new coordinates arrive with new equations attached.
+
+**[derived; two-ring segregation exclusion — a screen available now]** One consequence is immediate and does not wait on the missing instrument of [Outstanding Work](#outstanding-work). Consider a rigid co-rotating shared sphere whose members occupy exactly two latitude rings. Same-ring and same-transmitter hits have separation vectors perpendicular to $\hat{\mathbf n}$ and so contribute nothing axially. Every cross-ring hit contributes axially, with sign fixed by the polarity product $\sigma_{tr}$, because the canonical acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ is nonnegative on every admitted simple root. If the polarity word is **segregated by latitude** — each ring carrying one polarity — then every cross-ring product has the same sign, the axial sum is one-signed, and it cannot vanish. Therefore:
+
+> In a two-latitude rigid co-rotating shared sphere, at least one ring must carry both polarities. Latitude-segregated polarity words are excluded.
+
+This is exactly the octahedron exclusion in general form, and it generalizes usefully: with three or more rings, contributions from rings above and below a receiver can cancel against each other, so segregation is no longer automatically fatal. Scope and falsifier follow the corpus statement it generalizes — the argument covers admitted simple roots only, caustic and collision events lie outside it, and an admitted root with a negative canonical acceleration weight, or a nonzero axial same-ring line of action, would overturn it.
+
+Plainly: if the northern members are all one polarity and the southern members all the other, every north-south pull leans the same way and nothing can cancel it. Mixing the polarities within a ring, or using three rings instead of two, restores the possibility of cancellation. This is a real filter and it can be applied today.
+
+It bears directly on `C5`/`C6`, which are two-ring objects: their co-spherical sub-locus is live only if the component rings are not polarity-segregated.
+
+**[derived; mixed wake-speed regime]** A second structural feature has no circle analogue. Because $\beta_{f,k}=\beta_f^{\mathrm{eq}}\sin\theta_k$, when $\beta_f^{\mathrm{eq}}>1$ there is a critical colatitude
+
+$$\theta_c=\arcsin\!\left(\frac{1}{\beta_f^{\mathrm{eq}}}\right),$$
+
+with members nearer the poles below wake speed and members nearer the equator above it, and two critical latitude circles exactly at $c_f$. A single rigid arrangement can therefore host sub-wake-speed and super-wake-speed members simultaneously, and the causal-root fold structure differs from member to member within one configuration. A shared circle is always entirely on one side of $c_f$.
+
+A common notation for nearby prescribed paths is
+
+$$
+\mathbf X_k(T)
+=
+\mathbf C(T)
++
+\bigl[R+\delta r_k(T)\bigr]
+\Bigl[
+\sin\Theta_k(T)\bigl(\cos\Phi_k(T)\hat{\mathbf e}_1(T)+\sin\Phi_k(T)\hat{\mathbf e}_2(T)\bigr)
++
+\cos\Theta_k(T)\hat{\mathbf n}(T)
+\Bigr],
+$$
+
+with $\Theta_k(T)=\theta_k+\delta\theta_k(T)$ and $\Phi_k(T)=\Omega T+\phi_k+\delta\phi_k(T)$. The rigid chart has constant $\mathbf C$ and frame with $\delta r_k=\delta\theta_k=\delta\phi_k=0$. This notation is a search scaffold, not an assertion that any listed variation contains a balanced or retained solution.
+
+Plainly: $\delta\theta_k$ slides a member in latitude and $\delta\phi_k$ slides it in longitude — both keep it on the sphere. Only $\delta r_k$ takes it off. That asymmetry is the important one.
+
+**[derived; chart-preserving deformation]** It is worth stating separately, because it is the sphere's structural advantage over the circle. The circle is a one-dimensional constraint surface, so every internal deformation except sliding along it leaves the chart: the circle's $\delta z_k$ is an exit. The sphere is two-dimensional, so latitude drift $\delta\theta_k(T)$ is an internal deformation that *preserves co-sphericity*. A shared sphere can deform, shear, and exchange latitude while remaining a member of this classification. A shared circle cannot deform at all without ceasing to be one.
+
+| Degree, choice, or control | Mathematical representation | Present status | Purpose of exploring it |
+| --- | --- | --- | --- |
+| Member inventory | Integer $N$, giving $2N$ members | Nothing measured on this chart; the program's structural counts are 6, 8, and 12 | Test which inventories admit a non-segregated latitude partition and a balanced polarity word together |
+| Latitude partition | Composition of $2N$ into ring occupancies $(n_1,\dots,n_L)$, $L\geq1$ | **The primary new discrete axis.** $L=1$ degenerates to the shared circle; only $L=1$ and the two-ring staggered case have been tested | Determine how many independent axial obligations exist and whether $L\geq3$ opens the cross-ring cancellation channel |
+| Fixed colatitudes | $\theta_k$, $2N$ of them | Open; these are the $2N$ coordinates the sphere adds | Search the latitude structure that the circle chart cannot represent at all |
+| Polarity word | Balanced $q_k\in\{+\epsilon,-\epsilon\}$, $\sum_kq_k=0$ | Enumerated exhaustively on Platonic vertex sets (917 classes, 28 antipodal-alternating); otherwise open | Identify which delayed acceleration channels cancel; must be varied jointly with the latitude partition, never independently of it |
+| Latitude-segregation status | Whether any ring carries a single polarity | **Derived gate, not a free coordinate.** Excluded for $L=2$ | Apply the two-ring exclusion above before spending any evaluation on a candidate |
+| Relative longitudes | $2N-1$ independent relative longitudes | Open | Inherit the circle's phase searches; asymmetric longitude gaps are unexplored here |
+| Common angular rate | $\Omega$, with the speed *family* $\beta_{f,k}=\beta_f^{\mathrm{eq}}\sin\theta_k$ | Open. There is no single speed coordinate, so the certified shared-circle velocity ladder does not lift | Locate balance modes without assuming one scalar balance condition selects the rate |
+| Critical colatitude | $\theta_c=\arcsin(1/\beta_f^{\mathrm{eq}})$ for $\beta_f^{\mathrm{eq}}>1$ | Derived structural feature, not a coordinate | Organize the mixed sub- and super-wake-speed regime and the latitude-dependent fold structure |
+| Per-ring angular rates | Independent $\Omega_\ell$ per latitude ring | **New; unavailable on the shared circle**, where opposed members on one radius coincide | Supply independent counterflow without collision — functional requirement `R2` — which the circle chart structurally cannot meet |
+| Per-ring circulation senses | $s_\ell=\operatorname{sgn}\Omega_\ell$ | New; open | Test counter-rotation between latitudes, handedness, and reflection covariance with the applicable circulation reversal |
+| Common radius | $R$, or $R/R_*$ | Open | Determine the compatible assembly scale |
+| Per-sector or per-ring radii | $R_\sigma$, $R_\ell$ | **Activating this exits the chart.** The `F6b`-to-`F6c` evidence indicates the dynamics moves this way when released | Document the exit route honestly rather than treating co-sphericity as preserved under release |
+| Common radial breathing | $\delta r_k(T)=\delta R(T)$ for every member | Open; preserves co-sphericity with time-varying $R(T)$ | Test coherent expansion and contraction while remaining in the classification |
+| Latitude drift | $\delta\theta_k(T)$ | **New; chart-preserving, with no circle analogue** | Test latitude exchange, meridional shear, and internal deformation that does not leave the sphere |
+| Longitude modulation | $\delta\phi_k(T)$ | Open | Test phase locking, angular shear, and collision-free speed exchange within a ring |
+| Axis orientation and precession | Time-dependent $\hat{\mathbf n}(T)$ and frame | A constant orientation is removable by global rotation; time dependence is open | Test precession-like histories and coupling between latitude structure and axis motion |
+| Center translation | $\mathbf C(T)$ | Open; no co-spherical translating control has been run | Test whether internal balance survives assembly transport |
+| Antipodal pairing map | Whether binaries are diameters, pairing ring $\ell$ with its mirror ring | 28 of the 917 Platonic classes; the general case is open | Connect to the braid taxonomy's neutral-binary primitive without inferring it from member count |
+| Complete retained prehistory | History functions on $-H\leq T\leq0$ with a certified causal-root ledger | Open; the maximum chord is $2R$, so $H\geq2R/c_f$ as on the circle | Supply the initial data a delayed equation actually requires |
+| Global rotation and constant center | $SO(3)$ and constant $\mathbf C$ | Gauge coordinates on the fixed model | Remove duplicate descriptions and provide covariance checks |
+| Coupling scale and Master-Equation variant | $R_*=\kappa\epsilon^2/c_f^2$ and the declared uncapped or capped equation | Experimental controls, not assembly degrees of freedom | Test scale covariance without confusing a changed model with a new state of one assembly |
+
+> Scope note: this table is a coordinate and research map. It introduces no balance, retention, or stability result. The one exclusion it carries — latitude-segregated two-ring words — is derived above with its own scope and falsifier. Every other row remains open unless a complete causal-root calculation or retained-history test explicitly closes it, and no row can be *screened* until the moving-assembly criterion of [Outstanding Work](#outstanding-work) exists.
+
+Plainly: the most direct next searches are three-ring latitude partitions, non-segregated two-ring words, and independent per-ring rates. The first two ask whether the axial obligation can be discharged at all. The third asks whether the sphere delivers the counterflow the circle cannot.
+
+The reason to care about this chart is not the coordinate count. Two of the six functional requirements are unreachable on a circle: a volumetric body frame, and independent counterflow between parts of one assembly. A shared circle is planar and single-rate, and cannot supply either. The shared sphere is the smallest chart in which both become available, and that — not the extra $2N$ coordinates — is what makes the classification worth developing.
+
 ## The Sphere Is Not Supplied By The Substrate
 
 Before any member of this classification is taken seriously, one obligation has to be stated, because the chart's convenience actively conceals it.
@@ -76,7 +153,7 @@ For a Family-A or Family-B member with all three binary midpoints at the braid c
 | `C3`, `C4` | constrained sub-locus | component centers are separated by $d_C>0$, so at most one component center can be the sphere center and the other component must be all-equatorial |
 | `C5`, `C6` | sub-locus | equal radii *within* each component; the two components need not share a radius |
 
-**[inference; the C5/C6 row is the one worth the attention]** `C5` and `C6` already declare $h_{ba}=0$ within each component, so their co-spherical sub-locus resolves into **two parallel latitude circles on one sphere**, offset along the common axis by $d_C$, with the sphere center at $\zeta=(d_C^2+R_2^2-R_1^2)/2d_C$ and $R^2=\zeta^2+R_1^2$. This is the only member of the classification that is a genuinely two-dimensional shared-sphere object with no shared-circle analogue and no single-latitude degeneracy, and it is the natural place to look for a nondegenerate co-spherical history. What would confirm its interest is an acceleration-balanced two-latitude configuration; what would deflate it is a proof that the two-ring axial no-balance argument already covering staggered rings extends to unequal component radii.
+**[inference; the C5/C6 row is the one worth the attention]** `C5` and `C6` already declare $h_{ba}=0$ within each component, so their co-spherical sub-locus resolves into **two parallel latitude circles on one sphere**, offset along the common axis by $d_C$, with the sphere center at $\zeta=(d_C^2+R_2^2-R_1^2)/2d_C$ and $R^2=\zeta^2+R_1^2$. This is the only member of the classification that is a genuinely two-dimensional shared-sphere object with no shared-circle analogue and no single-latitude degeneracy, and it is the natural place to look for a nondegenerate co-spherical history. It is also a two-ring object, so the [two-ring segregation exclusion](#degrees-of-freedom-and-search-directions) applies to it directly: a `C5`/`C6` co-spherical candidate is live only if its component rings are *not* polarity-segregated. That filter can be applied before any evaluation. What would confirm the stratum's interest is an acceleration-balanced non-segregated two-latitude configuration; what would deflate it is an extension of the axial no-balance argument to unequal component radii and mixed rings.
 
 Plainly: most braid families can be made co-spherical by setting their radii equal. Two families are co-spherical by definition. One family, C5/C6, becomes something the circle chapter could never describe — two rings at different heights on one sphere — and that is the shape most worth testing.
 
@@ -174,13 +251,20 @@ The cube tempts an analogous identification and does not support it. The cube's 
 
 | Solid | Negative on record | Motion class covered | Open |
 |---|---|---|---|
-| Octahedron | **yes, two** — the face-opposite A2 octahedron fails the stationary condition with partner contribution $\sqrt{17}/4\ne0$, and the regular-octahedral stratum contains no stationary balance; separately, the rigid co-rotating octahedron is excluded for $h>0$ by a one-signed axial sum | stationary; rigid co-rotation about a body diagonal | every non-rigid octahedral history: breathing, independent cadences, sector-decoupled radii |
+| Octahedron | **yes, two — but on one polarity class only.** The face-opposite A2 octahedron fails the stationary condition with partner contribution $\sqrt{17}/4\ne0$; separately, the rigid co-rotating octahedron is excluded for $h>0$ by a one-signed axial sum, stated explicitly for *the polarity-segregated assignment* | stationary; rigid co-rotation about a body diagonal — segregated word | **the second polarity class** (see below); every non-rigid history: breathing, independent cadences, sector-decoupled radii |
 | Cube | **no** | — | everything |
 | Tetrahedron | **no** | — | everything; the 2:2 transient remains unreproduced |
 | Icosahedron | **no** | — | everything, including whether any Family-C history is icosahedral |
 | Dodecahedron | **no** | — | everything |
 
-So the honest position is that **one of the five solids has been tested, and it failed twice** — which is also the only one the program had an independent reason to test, since six members is the base braid count. The other four are unexamined, and the enumeration above is a queue against that gap rather than a report on it.
+**[derived; scope refinement, from the two-ring exclusion above]** The octahedron's negatives are narrower than they look, and the degrees-of-freedom analysis is what exposes it. The octahedron has exactly **two** balanced polarity classes. Under rotation about a body diagonal its members fall into two triangular rings at $\pm h$, and:
+
+- the **antipodal-alternating class** — equivalently the face-triangle split, since each face triangle is the antipodal image of the other — puts one polarity on each ring. It is latitude-segregated, and it is the assignment the rigid co-rotating exclusion explicitly names;
+- the **second class** carries both polarities in each ring. It is *not* latitude-segregated, so the one-signed axial sum does not apply to it, and it is not covered by that negative.
+
+The stationary sweep carries its own limit in the same direction: it states that the derivation does not classify every finite colored symmetry action on six points. So the honest position is that **one of the five solids has been tested, on one of its two polarity classes** — and it is the only solid the program had an independent reason to test, since six members is the base braid count. Note that the surviving class breaks the threefold symmetry of the rotation it rides on, which is consistent with the pattern this chapter keeps finding: symmetry is what gets spent.
+
+The other four solids are unexamined, and the enumeration above is a queue against that gap rather than a report on it.
 
 ### The Screen That Does Not Exist Yet
 
@@ -230,7 +314,7 @@ Ordered by what blocks what. Everything that involves evaluating a configuration
 
 ### Gating
 
-1. **A moving-assembly residual criterion for co-spherical arrangements.** The replacement for the shared circle's signed second-harmonic condition, evaluated on actual histories rather than frozen phases. This is the missing instrument. The corpus's fixed-point-cloud common-mode operator assumes $\mathbf X_i(T)=\mathbf R_i+\mathbf UT$ — zero internal motion, constant pair distances — and cannot substitute for it under any framing. Until this exists, **no configuration in this classification can be screened at all**: not the Platonic corner, not `C5`/`C6`, not any taxonomy sub-locus. A first check on whatever is built: is the resulting tensor equivariant, and does the Schur argument in Part III therefore bite?
+1. **A moving-assembly residual criterion for co-spherical arrangements.** The replacement for the shared circle's signed second-harmonic condition, evaluated on actual histories rather than frozen phases. This is the missing instrument. The corpus's fixed-point-cloud common-mode operator assumes $\mathbf X_i(T)=\mathbf R_i+\mathbf UT$ — zero internal motion, constant pair distances — and cannot substitute for it under any framing. Until this exists, **no configuration in this classification can be screened for balance**: not the Platonic corner, not `C5`/`C6`, not any taxonomy sub-locus. The one exception is the sign-level two-ring segregation exclusion derived in [Degrees of Freedom](#degrees-of-freedom-and-search-directions), which needs only the nonnegativity of $W^{\mathrm{acc}}$ and can be applied today. A first check on whatever is built: is the resulting tensor equivariant, and does the Schur argument in Part III therefore bite?
 
 ### Chapter sections still to write
 
@@ -243,14 +327,17 @@ These belong before Part III rather than after it.
 ### Open physics
 
 5. **Four of the five solids are unexamined.** Only the octahedron carries a negative. The cube, tetrahedron, icosahedron, and dodecahedron have no evaluation of any kind, and the 917-class enumeration is a queue against that gap rather than a report on it.
-6. **Octahedral non-rigid histories are open.** The two negatives on record cover the stationary case and rigid co-rotation about a body diagonal. Breathing, independent cadences, and sector-decoupled radii are untouched.
-7. **`C5`/`C6` two parallel latitude circles on one sphere** is the most promising unexamined stratum — the only member of the classification with no shared-circle analogue and no single-latitude degeneracy. A balanced nondegenerate co-spherical history there would overturn the inventory's negative pattern.
-8. **The count coincidence is undecided.** Whether six, eight, and twelve landing on the octahedron, cube, and icosahedron reflects symmetry selection or the scarcity of small even numbers. Confirmed by a retained branch whose stabilizer is a polyhedral point group; deflated by a retained branch at an odd or non-Platonic count.
-9. **A general co-sphericity obstruction argument**, which is what would convert the four independent negatives from a pattern into a theorem.
+6. **The octahedron's second polarity class is open, and it is the nearest concrete target in the chapter.** The rigid co-rotating exclusion is stated for the polarity-segregated assignment, which is the antipodal-alternating class. The other balanced class carries both polarities in each ring, escapes the two-ring segregation exclusion, and has never been evaluated. Six members, a configuration the program already cares about, and a polarity word that is not covered by any negative on record.
+7. **Octahedral non-rigid histories are open.** The negatives on record cover the stationary case and rigid co-rotation about a body diagonal. Breathing, independent cadences, and sector-decoupled radii are untouched.
+8. **Three-ring latitude partitions.** With $L\geq3$, contributions from rings above and below a receiver can cancel against each other, so latitude segregation stops being automatically fatal. No three-ring co-spherical configuration has been constructed.
+9. **Per-ring independent rates.** Whether the sphere actually delivers the counterflow the circle cannot — functional requirement `R2` — and at what cost in the axial ledger.
+10. **`C5`/`C6` two parallel latitude circles on one sphere** remains the most promising unexamined stratum, subject to the segregation filter: its component rings must carry mixed polarity. A balanced nondegenerate co-spherical history there would overturn the inventory's negative pattern.
+11. **The count coincidence is undecided.** Whether six, eight, and twelve landing on the octahedron, cube, and icosahedron reflects symmetry selection or the scarcity of small even numbers. Confirmed by a retained branch whose stabilizer is a polyhedral point group; deflated by a retained branch at an odd or non-Platonic count.
+12. **A general co-sphericity obstruction argument**, which is what would convert the four independent negatives from a pattern into a theorem. The two-ring segregation exclusion is the first fragment of one.
 
 ### Deferred by operator decision — no action
 
-10. **Registry and chart routing.** Whether shared-sphere records get a registry parallel to the [shared-circle assembly registry](shared-circle-assembly-registry.md), and whether co-sphericity becomes a named cross-layer slice of the [configuration chart](configuration-chart.md). Not to be reopened until items 1 through 4 are done. See [Standing Dispositions](#standing-dispositions).
-11. **Promotion** to `content/markdown/aaa`. Same gate, and a separate theory decision besides.
+13. **Registry and chart routing.** Whether shared-sphere records get a registry parallel to the [shared-circle assembly registry](shared-circle-assembly-registry.md), and whether co-sphericity becomes a named cross-layer slice of the [configuration chart](configuration-chart.md). Not to be reopened until items 1 through 4 are done. See [Standing Dispositions](#standing-dispositions).
+14. **Promotion** to `content/markdown/aaa`. Same gate, and a separate theory decision besides.
 
 Closure goal: develop shared-sphere assemblies into a complete classification — chart, collision structure, root-balance protocol, and the two-latitude sub-chart — build the moving-assembly criterion that lets any of it be screened, and convert the accumulated co-sphericity negatives into either a general obstruction theorem or a nondegenerate two-latitude candidate, before any registry, chart, or promotion question is reopened.

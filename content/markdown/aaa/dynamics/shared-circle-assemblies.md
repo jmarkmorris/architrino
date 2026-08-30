@@ -53,6 +53,8 @@ $$
 \Omega T+\phi_k+\delta\phi_k(T),
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-f78ebcb870b3d251)
+
 where $(\hat{\mathbf e}_1,\hat{\mathbf e}_2,\hat{\mathbf n})$ is an oriented orthonormal frame. The rigid fixed-center chart has constant $\mathbf C$ and frame, with $\delta r_k=\delta\phi_k=\delta z_k=0$. This notation is a search scaffold, not an assertion that every listed variation contains a balanced or retained solution.
 
 Plainly: $\delta r_k$ changes distance from the center, $\delta\phi_k$ changes angular placement, and $\delta z_k$ moves a member out of the plane. Moving the center or the frame explores transport and reorientation of the whole assembly.
@@ -161,6 +163,8 @@ a_t(\beta_f)=0
 \frac{R}{R_*}=-\frac{a_r(\beta_f)}{\beta_f^2}>0
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-c9d8be5d3d20955b)
+
 Plainly: speed must first make the sideways acceleration vanish. The inward radial coefficient at that selected speed then fixes the common radius. Choosing an arbitrary radius and tuning only speed does not guarantee a solution, because the tangential and radial requirements are separate.
 
 | Topology interval | $\beta_f$ | $R/R_*$ | Directed roots | Fold events |
@@ -202,6 +206,8 @@ $$
 0 < \varphi \leq 2\beta_f
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-158e235cccb0cbda)
+
 Plainly: the left side is how far the ring turns while the wake travels; the right side is the same travel time obtained from the chord length in units with $c_f=1$. Every circular causal root is a solution of this one scalar equation.
 
 For a receiver at phase zero, transmitter channel $j\in\{0,\ldots,5\}$ has $\Delta_j=-j\pi/3$ and polarity product $p_j=(-1)^j$. Write
@@ -214,6 +220,8 @@ k\pi+v
 0 < v < \pi
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-d6238041ad0c49e5)
+
 and define $m=6k+j$. All six phase channels then obey one integer-level equation,
 
 $$
@@ -225,6 +233,8 @@ F_{\beta_f}(v)
 \qquad
 p_j=(-1)^m
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-d219e5657ba28a40)
 
 Plainly: the six transmitter channels are one root lattice with level spacing $\pi/6$. Moving up one integer level reverses polarity, so the level number carries both the root geometry and the alternating sign.
 
@@ -240,6 +250,8 @@ a_t^{(m,v)}
 \frac{(-1)^m\cos v}{4\sin^2v\,|D|}
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-c3cd4034d6c1112d)
+
 Plainly: these two expressions determine whether each delayed hit contributes inward or outward acceleration and whether it advances or opposes the prescribed circular motion.
 
 Ordering the root births by speed gives fold boundaries indexed by $q=0,1,2,\ldots$, with
@@ -252,6 +264,8 @@ $$
 0 \leq \xi_q < \frac{\pi}{2}
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-947366c70a4adf78)
+
 Plainly: a fold is the speed at which a pair of causal-root solutions first touches into existence. The auxiliary angle $\xi_q$ locates that tangency, and the hexagon's six phase steps produce the increment $\pi/6$ in the ordered boundary equation.
 
 Let $M(\beta_f)=\tan\xi-\xi$, where $\beta_f=\sec\xi$. Immediately above the $q$th fold, the newborn pair contributes
@@ -263,6 +277,8 @@ N_t(\beta_f)
 {2\sqrt{2}\,\beta_q^{3/2}\sqrt{M(\beta_f)-q\pi/6}}
 \left(1+o(1)\right)
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-3243bd7902f61a01)
 
 Plainly: an odd-$q$ opposite-polarity birth sends the one-sided tangential ledger to $-\infty$, while an even-$q$ like-polarity or same-transmitter birth sends it to $+\infty$. This local sign is derived; it does not say that the ledger is monotone throughout either neighboring interval.
 
@@ -279,6 +295,8 @@ N_{\mathrm{root}}(\mathrm{T}_t)=12t+24
 \quad(t\geq1)
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-501c2ed241513ebb)
+
 Plainly: T00 begins with five roots per receiver. T01 adds the special same-transmitter onset and has 36 directed roots; after that, every topology boundary creates two roots in each of six symmetry-related channels, so the total rises by 12.
 
 Index the independently accepted balances by $n=1,\ldots,100$, beginning with T02. Under this established topology convention,
@@ -289,6 +307,8 @@ $$
 N_{\mathrm{root}}(n)=24(n+1)
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-f01069b7c26ed631)
+
 Plainly: the first accepted balance is T02 with 48 directed roots, and the hundredth is T200 with 2,424. Each accepted rung skips the intervening odd class, so adjacent rungs differ by two $+12$ transitions, or 24 roots. The bounded certificate proves uniqueness and odd-class absence only through T36; above that boundary, the map identifies and counts the accepted rows without proving that no extra zero exists.
 
 Define $A_q=\pi(q+3)/6$. Expanding the boundary equation as $\xi_q\to\pi/2$ gives
@@ -298,6 +318,8 @@ $$
 =
 A_q-\frac{1}{2A_q}+O\left(A_q^{-3}\right)
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-a9840ea27e6bd0ff)
 
 Plainly: every other fold boundary approaches a spacing of $\pi/3$. The balance-to-fold calculation below strengthens this boundary result into an asymptotic expansion for the balance sequence itself.
 
@@ -313,6 +335,8 @@ Z(\mathrm{T}_{2n})=1
 \qquad
 Z(\mathrm{T}_{00})=Z(\mathrm{T}_{01})=Z(\mathrm{T}_{2n+1})=0
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-bbf3d4f8ff9e6e9d)
 
 Plainly: between speed 0.05 and 20, the table of eighteen rows is complete. Each even interval contains one crossing that can support a circular radius; the two lowest intervals and every odd interval contain none. “Simple” means the ledger crosses zero rather than merely touching it, while “inward radial” means the remaining acceleration points in the direction required for a circle.
 
@@ -365,6 +389,8 @@ C(\beta_f)
 \beta_f\frac{R}{R_*}
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-fff8b7a1799534b9)
+
 Plainly: $C(\beta_f)$ removes the leading inverse-speed contraction from the compatible radius. A finite limit for $C$ is therefore the precise signature of an asymptotic $R/R_*\sim C_\infty/\beta_f$ scale law on this chart.
 
 Let $h=\pi/6$ and $x_l=lh$ for $l\geq1$. Pair the rising root at integer level $m=l$, which approaches $v=0$, with the descending root at level $m=l-6$, which approaches $v=\pi$. The shift by six preserves polarity because $(-1)^{l-6}=(-1)^l$. If $w=\pi-v_{\mathrm{descending}}$, their endpoint locations satisfy
@@ -380,6 +406,8 @@ w
 \frac{x_l}{\beta_f}-\frac{x_l}{\beta_f^2}
 +O\left(\beta_f^{-3}\right)
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-0f5c963a985cf27f)
 
 Plainly: each old rising root has a descending partner six levels below it with the same polarity. Their small endpoint angles differ only in the sign of the first finite-speed correction.
 
@@ -398,6 +426,8 @@ a_{r,l}^{\mathrm{pair}}
 {2l\pi/6}
 +O\left(\beta_f^{-2}\right)
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-70fd11c6bd20f572)
 
 Plainly: the paired tangential terms form an alternating inverse-square series, and the paired radial terms form an alternating harmonic series. Individual hexagonal channels can contain $\sqrt{3}$ through their phase trigonometry, but the unified six-channel lattice depends only on $l\pi/6$ and parity; the complete pairing therefore cancels $\sqrt{3}$ before the limiting sums are taken.
 
@@ -419,6 +449,8 @@ B_r
 -\frac{3\log 2}{\pi}
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-e2d96034fa11dda8)
+
 Plainly: the complete alternating ledger makes the old roots approach a positive tangential background of $3/2$ and a finite inward radial correction of $-3\log 2/\pi$. Sixfold summation cancels $\sqrt{3}$ at this order, while the alternating harmonic sum introduces $\log 2$.
 
 At an odd fold, the negative newborn pair balances the old-root tangential background at
@@ -429,6 +461,8 @@ $$
 \frac{1}{18\beta_q^3}
 +o\left(\beta_q^{-3}\right)
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-1749dc47c30a2e0d)
 
 Plainly: each high-speed balance lies just above its odd fold. The gap shrinks as the inverse cube of speed, with leading coefficient $1/18$.
 
@@ -447,6 +481,8 @@ C(\beta_f)
 +o\left(\beta_f^{-2}\right)
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-84fef59fc30af599)
+
 Plainly: $C_\infty=3/2$ and the next coefficient $3\log 2/\pi$ are derived, not fitted. Compatible radius is inversely proportional to speed at leading order, with a positive inverse-square correction.
 
 For ladder index $n\geq1$, let $A_n=\pi(n+1)/3$. The balance speed, adjacent spacing, and compatible radius have the expansions
@@ -457,6 +493,8 @@ $$
 A_n-\frac{1}{2A_n}-\frac{17}{72A_n^3}
 +o\left(A_n^{-3}\right)
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-262fef840d9360e5)
 
 Equivalently, with the sixfold phase structure displayed explicitly,
 
@@ -469,6 +507,8 @@ $$
 +o\left(n^{-3}\right)
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-376a433af0a2f644)
+
 Plainly: the two speed formulas are identical. The second makes visible that the leading ladder spacing comes from the hexagon's $\pi/3$ same-parity step and that the next corrections retain explicit powers of $\pi$.
 
 $$
@@ -480,6 +520,8 @@ $$
 +o\left(n^{-3}\right)
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-2bf697b55e2c996c)
+
 $$
 \frac{R_n}{R_*}
 =
@@ -487,6 +529,8 @@ $$
 +\frac{27\log 2}{\pi^3(n+1)^2}
 +o\left(n^{-2}\right)
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-9ab8fe5a1a9469a3)
 
 Plainly: the balance spacing approaches $\pi/3$ from above, and the radius falls like $1/(n+1)$. Writing the sequence by ladder index restores explicit powers of $\pi$ even though the leading speed-scaled radius is the rational constant $3/2$.
 
@@ -521,6 +565,8 @@ a_t(\beta_n)=0,
 \frac{R_n}{R_*}=-\frac{a_r(\beta_n)}{\beta_n^2}>0
 \right\}
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-89d075dff9c5aed0)
 
 with $N_{\mathrm{root},n}=24(n+1)$. On $0.05\leq\beta_f\leq20$, the bounded zero-count theorem gives exactly eighteen members, one in each even topology interval $\mathrm{T}_{02}$ through $\mathrm{T}_{36}$ and none in the intervening odd intervals. Simplicity of every zero makes each admitted speed isolated rather than part of a continuous balance band. The arbitrary-precision continuation supplies accepted members through $n=100$, while completeness above speed 20 remains open.
 
@@ -568,6 +614,8 @@ $$
 \|\mathbf x_j\|=R.
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-0016451ae014a9e6)
+
 Assume that every directed pair has a complete finite set of ordinary causal roots, every retained root is simple, and the full-vector Master Equation acceleration at one phase satisfies
 
 $$
@@ -575,6 +623,8 @@ $$
 =
 -\Omega^2\mathbf x_j
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-9ecbc3777f5802b4)
 
 for every member $j$.
 
@@ -606,6 +656,8 @@ Q_\Omega(T)
 \end{aligned}
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-f5a283ecaefdfb53)
+
 The absolute reception time has disappeared. Each causal delay is therefore a zero of one fixed function $g_{ij}$, so the complete root set, its ownership, its ordering, and every nonzero root-Jacobian sign are constant around the circle. A root birth, death, or fold cannot occur on the exact history because such an event would require a zero root Jacobian, contrary to the simple-root assumption.
 
 Plainly: every delayed triangle keeps the same shape while the assembly rotates. The wake travel times do not slide, appear, or disappear; the whole causal ledger simply turns with the circle.
@@ -621,6 +673,8 @@ Q_\Omega(T)
 \right].
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-508e3289df4b0bcb)
+
 The receiver and transmitter velocities rotate by the same $Q_\Omega(T)$. Euclidean distances and dot products are rotation invariant, so the separation, polarity, transmitter-side factor $D_t$, and acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ are unchanged, while the line-of-action vector rotates. Every root-resolved acceleration contribution therefore transforms covariantly. Summing the complete ledger gives
 
 $$
@@ -628,6 +682,8 @@ $$
 =
 Q_\Omega(T)\mathbf A_i^{\mathrm{ME}}(0).
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-70cccff9947f0320)
 
 Plainly: all scalar strengths stay fixed and all directions rotate together. The total Master Equation acceleration at any later phase is the rotated copy of the acceleration at the starting phase.
 
@@ -640,6 +696,8 @@ $$
 =
 \frac{d^2\mathbf X_i}{dT^2}(T).
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-505b7601c3b46137)
 
 Thus the circular histories satisfy the Master Equation for every $T$. Because $Q_\Omega(T+P)=Q_\Omega(T)$, positions and rates repeat after $P$. For every history coordinate $\theta\in[-H,0]$, $\mathbf X_i(T+P+\theta)=\mathbf X_i(T+\theta)$ and the fixed causal delays give the same root ledger, so the retained history also returns.
 
@@ -658,6 +716,8 @@ c_f\Delta
 \qquad
 \Delta\leq\frac{2R}{c_f}.
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-3c27f58f9dac6f1f)
 
 Hence $H\geq2R/c_f$ contains every possible circular causal root. For the T04 mode, one period is already deeper than this requirement because $2R/c_f<P$ is equivalent to $\beta_f<\pi$, and its exact balance root lies near $\beta_f=2.9743071761<\pi$. Higher modes may require more than one period of exact circular prehistory even though their paths are periodic.
 
