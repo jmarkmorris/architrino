@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
+import { runInNewContext } from "node:vm";
+import { spawnSync } from "node:child_process";
 import { buildStaticSite, WEB_KATEX_DIRECTORY } from "../scripts/build-static-site.mjs";
 import { runtimeAssetPaths, readRuntimeAssetFamilies } from "../scripts/prepare-runtime-assets.mjs";
 import { buildEquationMappingCorpus } from "../scripts/build-equation-mapping-corpus.mjs";
@@ -128,10 +130,78 @@ test("local, CI, service, and Pages entrypoints explicitly prepare runtime outpu
   const workflow = read(".github/workflows/pages.yml");
   assert.match(workflow, /pull_request:/);
   assert.match(workflow, /github.ref == 'refs\/heads\/main'/);
-  assert.match(workflow, /github.event_name != 'pull_request'/);
+  assert.match(workflow, /vars.ARCHITRINO_PAGES_DEPLOY_ENABLED == 'true'/);
+  assert.match(workflow, /github.event_name == 'push' \|\| github.event_name == 'workflow_dispatch'/);
   assert.match(workflow, /node --test tests\/runtime-asset-fresh-checkout.test.js/);
   assert.match(workflow, /build-static-site\.mjs --out \.tmp\/site/);
   assert.match(workflow, /retention-days: 1/);
   assert.match(workflow, /needs: build/);
   assert.match(read(".github/workflows/content-integrity.yml"), /fetch-depth: 0/);
+});
+
+test("Pages opt-in gates the entire deployment job, not builds or validation", () => {
+  const workflow = read(".github/workflows/pages.yml");
+  const [beforeDeploy, deployment] = workflow.split("\n  deploy:\n");
+  assert.ok(deployment);
+  assert.doesNotMatch(beforeDeploy, /ARCHITRINO_PAGES_DEPLOY_ENABLED|^    if:|pages: write|id-token: write/m);
+  assert.match(beforeDeploy, /^  push:\n    branches: \[main\]\n  pull_request:\n  workflow_dispatch:/m);
+  assert.match(beforeDeploy, /node scripts\/check-content-integrity.mjs/);
+  assert.match(beforeDeploy, /node --test tests\/runtime-asset-fresh-checkout.test.js/);
+  assert.match(deployment, /^    needs: build$/m);
+  assert.ok(deployment.indexOf("Require Actions publishing before deployment") < deployment.indexOf("uses: actions/configure-pages@"));
+  assert.ok(deployment.indexOf("uses: actions/configure-pages@") < deployment.indexOf("uses: actions/deploy-pages@"));
+});
+
+test("Pages deployment expression rejects default/off settings, PRs and non-main refs", () => {
+  const deployment = read(".github/workflows/pages.yml").split("\n  deploy:\n")[1];
+  const expression = deployment.match(/^    if: (.+)$/m)?.[1];
+  assert.equal(expression, "vars.ARCHITRINO_PAGES_DEPLOY_ENABLED == 'true' && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')");
+  // Independently declared expectations; evaluate the actual workflow expression.
+  // Its subset uses only string equality and boolean operators. Normalize strings
+  // to match GitHub's case-insensitive comparison and unset-variable semantics.
+  const cases = [
+    [undefined, "refs/heads/main", "push", false],
+    [undefined, "refs/heads/main", "workflow_dispatch", false],
+    ["", "refs/heads/main", "push", false],
+    ["false", "refs/heads/main", "push", false],
+    ["false", "refs/heads/main", "workflow_dispatch", false],
+    ["1", "refs/heads/main", "push", false],
+    ["yes", "refs/heads/main", "push", false],
+    ["true", "refs/heads/main", "push", true],
+    ["TRUE", "refs/heads/main", "push", true],
+    ["true", "refs/heads/main", "workflow_dispatch", true],
+    ["true", "refs/heads/codex/jasper", "push", false],
+    ["true", "refs/heads/codex/jasper", "workflow_dispatch", false],
+    ["true", "refs/pull/1/merge", "pull_request", false],
+    ["true", "refs/heads/main", "pull_request", false],
+    ["true", "refs/heads/main", "pull_request_target", false],
+    ["true", "refs/heads/main", "workflow_run", false],
+    ["true", "refs/heads/main", "schedule", false],
+    ["true", "refs/tags/main", "push", false],
+  ];
+  for (const [enabled, ref, event_name, expected] of cases) {
+    const actual = runInNewContext(expression, {
+      vars: { ARCHITRINO_PAGES_DEPLOY_ENABLED: (enabled ?? "").toLowerCase() },
+      github: { ref, event_name },
+    }, { timeout: 100 });
+    assert.equal(actual, expected, JSON.stringify({ enabled, ref, event_name }));
+  }
+});
+
+test("Pages publishing-source preflight fails closed on legacy, missing metadata or API failure", () => {
+  const deployment = read(".github/workflows/pages.yml").split("\n  deploy:\n")[1];
+  const preflight = deployment.split("      - name: Require Actions publishing before deployment\n")[1]?.split("      - uses:")[0];
+  assert.ok(preflight);
+  assert.match(preflight, /GH_TOKEN: \$\{\{ github.token \}\}/);
+  assert.match(preflight, /GH_REPO: \$\{\{ github.repository \}\}/);
+  const script = preflight.split("        run: |\n")[1].replace(/^          /gm, "");
+  assert.equal(spawnSync("bash", ["-n"], { input: script, encoding: "utf8" }).status, 0);
+  for (const [buildType, apiStatus, expectedStatus] of [["workflow", "0", 0], ["legacy", "0", 1], ["", "0", 1], ["null", "0", 1], ["workflow", "1", 1]]) {
+    // Execute the actual shell with a read-only stub, never a GitHub request.
+    const result = spawnSync("bash", ["-e", "-c", `gh() { printf '%s\\n' "$PAGES_TEST_BUILD_TYPE"; return "$PAGES_TEST_API_STATUS"; }\n${script}`], {
+      encoding: "utf8",
+      env: { ...process.env, GH_REPO: "test/repo", PAGES_TEST_BUILD_TYPE: buildType, PAGES_TEST_API_STATUS: apiStatus },
+    });
+    assert.equal(result.status, expectedStatus, JSON.stringify({ buildType, apiStatus, stderr: result.stderr }));
+  }
 });

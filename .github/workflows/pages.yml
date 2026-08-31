@@ -37,7 +37,9 @@ jobs:
           retention-days: 1
   deploy:
     needs: build
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    # Missing/false keeps the first migration merge build-only for this workflow.
+    # Enable the repository variable only during the documented Pages cutover.
+    if: vars.ARCHITRINO_PAGES_DEPLOY_ENABLED == 'true' && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -46,6 +48,16 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Require Actions publishing before deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          pages_build_type="$(gh api "repos/${GH_REPO}/pages" --jq .build_type)"
+          if [ "$pages_build_type" != "workflow" ]; then
+            echo "::error::Pages must use GitHub Actions before enabling deployment."
+            exit 1
+          fi
       - uses: actions/configure-pages@v5
       - name: Deploy built site
         id: deployment
