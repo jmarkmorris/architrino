@@ -26,7 +26,6 @@ function repository(t, { limit = 100 } = {}) {
   git(cwd, "config", "user.email", "storage@example.invalid");
   git(cwd, "config", "core.hooksPath", "/dev/null");
   const policy = structuredClone(registry);
-  delete policy.runtimeTransition;
   policy.collections = [];
   policy.thresholds = { lineCount: limit, byteCount: 100000, evidenceLineCount: limit, evidenceByteCount: 100000 };
   policy.collectionThresholds = { lineCount: limit, byteCount: 100000 };
@@ -53,9 +52,12 @@ test("a collection of individually sub-threshold records is rejected, including 
   assert.ok(!result.errors.some((error) => error.includes("large machine file")));
 });
 
-test("generated runtime paths cannot be force-added even when tiny", () => {
-  const files = new Map([["content/assets/borg/records/tiny.json", { lineCount: 1, byteCount: 2 }]]);
-  assert.ok(auditMachineFiles(files, { registry, families }).errors.some((error) => error.includes("must not be tracked")));
+test("every runtime family rejects tracked output even when tiny", () => {
+  for (const family of families) {
+    const name = family.path ?? `${family.directory}/tiny.json`;
+    const files = new Map([[name, { lineCount: 1, byteCount: 2 }]]);
+    assert.ok(auditMachineFiles(files, { registry, families }).errors.some((error) => error.includes(`must not be tracked: ${name}`)), name);
+  }
 });
 
 test("collection allowances are capped, not unlimited exemptions", () => {
@@ -98,18 +100,15 @@ test("ignored runtime files stay outside the audit unless force-added", (t) => {
   assert.ok(fixture.validate().errors.some((error) => error.includes("must not be tracked")));
 });
 
-test("Pages proof phase retains a bounded explicit set; removal and extra outputs fail", () => {
+test("the retired Pages exception cannot permit tracked runtime outputs", (t) => {
+  const fixture = repository(t);
   const name = "content/assets/borg/records/retained.json";
   const policy = { ...registry, runtimeTransition: {
     phase: "prove-pages-build", paths: [name], budget: { lineCount: 10, byteCount: 100 },
+    exitCondition: "obsolete migration allowance",
   } };
   const files = new Map([[name, { lineCount: 1, byteCount: 2 }]]);
-  assert.deepEqual(auditMachineFiles(files, { registry: policy, families }).errors, []);
-  assert.ok(auditMachineFiles(new Map(), { registry: policy, families }).errors.some((error) => error.includes("requires retained runtime file")));
-  files.set("content/assets/borg/records/unapproved.json", { lineCount: 1, byteCount: 2 });
   assert.ok(auditMachineFiles(files, { registry: policy, families }).errors.some((error) => error.includes("must not be tracked")));
-  files.set(name, { lineCount: 10, byteCount: 2 });
-  assert.ok(auditMachineFiles(files, { registry: policy, families }).errors.some((error) => error.includes("temporary Pages runtime budget exceeded")));
-  delete policy.runtimeTransition;
-  assert.ok(auditMachineFiles(files, { registry: policy, families }).errors.some((error) => error.includes("must not be tracked")));
+  fixture.write(policyPath, JSON.stringify(policy));
+  assert.throws(fixture.validate, /runtimeTransition is retired/);
 });

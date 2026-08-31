@@ -27,7 +27,7 @@ jobs:
         run: node scripts/check-content-integrity.mjs
       - name: Verify deployment image selection
         run: node --test tests/pages-image-assets.test.js
-      - name: Prove reconstruction without retained runtime files
+      - name: Prove runtime reconstruction from source
         run: node --test tests/runtime-asset-fresh-checkout.test.js
       - name: Build static payload from source
         run: node scripts/build-static-site.mjs --out .tmp/site
@@ -37,8 +37,8 @@ jobs:
           retention-days: 1
   deploy:
     needs: build
-    # Missing/false keeps the first migration merge build-only for this workflow.
-    # Enable the repository variable only during the documented Pages cutover.
+    # Missing/false pauses deployment while builds and PR checks remain enabled.
+    # PRs never deploy; only verified main builds may publish.
     if: vars.ARCHITRINO_PAGES_DEPLOY_ENABLED == 'true' && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     permissions:

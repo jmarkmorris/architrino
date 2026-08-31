@@ -31,25 +31,14 @@ const exceeds = (value, limit) => value.lineCount >= limit.lineCount || value.by
 
 export function auditMachineFiles(files, { registry, families, allPaths = [...files.keys()] }) {
   const errors = [];
-  const transition = registry.runtimeTransition;
-  const retainedRuntime = new Set(transition?.paths ?? []);
-  const retainedTotal = { lineCount: 0, byteCount: 0 };
-  for (const name of retainedRuntime) {
-    if (!files.has(name)) errors.push(`Pages proof phase requires retained runtime file: ${name}`);
-  }
   for (const record of registry.records) {
     if (!files.has(record.path)) errors.push(`registered machine file is absent: ${record.path}`);
   }
   for (const name of allPaths) {
-    if (isGeneratedRuntimeAsset(name, families) && !retainedRuntime.has(name)) errors.push(`generated runtime output must not be tracked: ${name}`);
+    if (isGeneratedRuntimeAsset(name, families)) errors.push(`generated runtime output must not be tracked: ${name}`);
   }
   const totals = new Map();
   for (const [name, value] of files) {
-    if (retainedRuntime.has(name)) {
-      retainedTotal.lineCount += value.lineCount;
-      retainedTotal.byteCount += value.byteCount;
-      continue;
-    }
     const threshold = name.startsWith("reference/priorities/") && name.includes("/evidence/")
       ? { lineCount: registry.thresholds.evidenceLineCount, byteCount: registry.thresholds.evidenceByteCount }
       : registry.thresholds;
@@ -69,9 +58,6 @@ export function auditMachineFiles(files, { registry, families, allPaths = [...fi
     if (exceeds(value, limit)) {
       errors.push(`machine collection budget exceeded: ${name} (${value.fileCount} files, ${value.lineCount} lines, ${value.byteCount} bytes)`);
     }
-  }
-  if (transition && exceeds(retainedTotal, transition.budget)) {
-    errors.push(`temporary Pages runtime budget exceeded: ${retainedTotal.lineCount} lines, ${retainedTotal.byteCount} bytes`);
   }
   return { errors, totals };
 }
@@ -94,15 +80,7 @@ function validateRegistry(registry) {
     if (record.sourceKind !== "authored" && !record.regenerationCommand?.trim()) throw new Error(`retention entry needs regeneration command: ${record.path}`);
     if (record.budget && !Object.values(record.budget).every((n) => Number.isSafeInteger(n) && n > 0)) throw new Error("invalid collection budget");
   }
-  if (registry.runtimeTransition) {
-    const transition = registry.runtimeTransition;
-    if (transition.phase !== "prove-pages-build" || !Array.isArray(transition.paths) || !transition.paths.length ||
-        new Set(transition.paths).size !== transition.paths.length ||
-        ![transition.budget?.lineCount, transition.budget?.byteCount].every((n) => Number.isSafeInteger(n) && n > 0) ||
-        typeof transition.exitCondition !== "string" || !transition.exitCondition.trim()) {
-      throw new Error("invalid bounded Pages proof transition");
-    }
-  }
+  if (Object.hasOwn(registry, "runtimeTransition")) throw new Error("runtimeTransition is retired; generated runtime outputs must remain untracked");
 }
 
 // Audit the index itself: a small unstaged file cannot hide a large staged
@@ -170,9 +148,6 @@ export function validateMachineArtifactRetention({ rootDir = ROOT, baseRef = "or
   const registry = JSON.parse(fs.readFileSync(path.join(rootDir, REGISTRY_PATH), "utf8"));
   validateRegistry(registry);
   const families = readRuntimeAssetFamilies(rootDir);
-  for (const name of registry.runtimeTransition?.paths ?? []) {
-    if (typeof name !== "string" || !isGeneratedRuntimeAsset(name, families)) throw new Error(`transition path is not a runtime output: ${name}`);
-  }
   const base = git(rootDir, ["merge-base", baseRef, "HEAD"]).trim();
   const index = readIndex(rootDir);
   const working = readWorking(rootDir, index.allPaths);
