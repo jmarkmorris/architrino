@@ -28,7 +28,7 @@ E_{\mathrm{rel}}(Y;A,B)\equiv
 {\|R(Y_B)\|_{L^2(W,\{\mathbf X_k\})}+\varepsilon_{0,Y}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5d43236ba1f86777)
+[View →](../../../../../equation-mapping.html#corpus-equation-5d43236ba1f86777)
 Here $R$ is restriction of the finer run to the coarser sampling grid, and $\varepsilon_{0,Y}$ is a predeclared floor with the same units as the norm of $Y$. A bare dimensionless constant must not be added to a dimensional channel.
 
 For provenance distributions of solved `t_emit`, define:
@@ -38,7 +38,7 @@ D_W \equiv \frac{W_1(P_A,P_B)}{\mathrm{IQR}(P_B)+\varepsilon_T},
 D_{JS}\equiv \mathrm{JSD}(P_A\|P_B)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-72d15bc24c00f4fb)
+[View →](../../../../../equation-mapping.html#corpus-equation-72d15bc24c00f4fb)
 where $W_1$ is 1-Wasserstein distance, JSD uses logarithm base $2$, and $\varepsilon_T$ is a predeclared absolute-time floor.
 
 For delayed source-state interpolation, the run must declare an order-$q$ history interpolation operator $I_{\Delta H_{\mathrm{hist}}}^q$. On a fixed analysis window $W$, define
@@ -52,7 +52,7 @@ E_{\mathrm{hist}}(S_\eta;\Delta H_{\mathrm{hist}},\Delta H_{\mathrm{hist}}/2;W)
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6beb3447a5cd62ba)
+[View →](../../../../../equation-mapping.html#corpus-equation-6beb3447a5cd62ba)
 The weights $w_m\ge0$ are predeclared quadrature or sample weights normalized by $\sum_{m\in W}w_m=1$, and $\varepsilon_{0,S}$ has the same units as the weighted state norm.
 
 For nonsmooth state-dependent delay windows, define the jump residual rows
@@ -67,7 +67,7 @@ R_{\mathrm{jump},a}
 {\max(\Delta T,\Delta H_{\mathrm{hist}},\eta/c_f,\varepsilon_T)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-98702b057ef78ec6)
+[View →](../../../../../equation-mapping.html#corpus-equation-98702b057ef78ec6)
 Here $\xi_a$ is a sampled reception time in the transition window, $k_a$ is the tracked root index, $\ell_a$ is its branch/root-class label, and $\pi(a)$ is the predeclared matching permutation into the comparison run. The map $T_{0,\ell_a}(\xi_a)$ returns the matched transition time for that labeled root. A row is invalid if the matching rule or permutation is chosen after inspecting the residual.
 
 ### Required refinements with pass/fail thresholds
@@ -80,7 +80,7 @@ p_{\mathrm{obs}}(Y)=\log_2\!\frac{E_{\mathrm{rel}}(Y;\Delta T,\Delta T/2)}
 {E_{\mathrm{rel}}(Y;\Delta T/2,\Delta T/4)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b32cc921fe0fef67)
+[View →](../../../../../equation-mapping.html#corpus-equation-b32cc921fe0fef67)
 Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$ or $\|\nabla\Phi\|$).
 
 2. History-resolution refinement (history step halved or interpolation order increased):
@@ -107,7 +107,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   E_{\mathrm{rel}}(R_E^{\mathrm{cg}})\le0.05
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c74a4352b28ee9e6)
+  [View →](../../../../../equation-mapping.html#corpus-equation-c74a4352b28ee9e6)
 - The moment-closure residual must decrease under temporal, history, and spatial refinement. A continuum plot is not promotion evidence if the next unresolved moment grows or if the memory-current residual is absorbed into fitted constants.
 
 6. Stochastic and response refinement when a run adds Langevin, Fokker-Planck, or fluctuation-response summaries:
@@ -118,7 +118,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   E_{\mathrm{rel}}(\operatorname{Cov}(z))\le0.05
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aac85420eb464059)
+  [View →](../../../../../equation-mapping.html#corpus-equation-aac85420eb464059)
 - If a diffusion tensor $D^{ij}(z)$ is inferred from jump or ledger increments, require it to remain positive semidefinite on the retained domain and stable under refinement.
 - If a response kernel $\chi_{AB}$ is promoted, require the causal dispersion residual $\mathcal R_{\mathrm{KK}}(\chi_{AB})\le0.05$ on the declared frequency band and require any fluctuation-dissipation residual to be reported from the same record.
 
@@ -134,7 +134,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   \max_i H_{ii}\le\frac{1}{2}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1bce23587507a703)
+  [View →](../../../../../equation-mapping.html#corpus-equation-1bce23587507a703)
   or an explicitly justified equivalent if a linear hat matrix $H$ is not available.
 - Branch identity must persist under temporal refinement, history-window refinement, regulator refinement when a regulator is used, and root-ledger refinement. A coordinate that only improves the fitted residual while changing the active branch identity fails model selection.
 
@@ -158,7 +158,7 @@ E_\eta(Y;\eta,\eta/2)
 {\|R(Y_{\eta/2})\|_{L^2(W,\{\mathbf X_k\})}+\varepsilon_{0,Y}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4ef903e8a02b096f)
+[View →](../../../../../equation-mapping.html#corpus-equation-4ef903e8a02b096f)
 It also records whether active root-ledger entries match between $\eta$ and $\eta/2$ after matching source, receiver, root class, and branch status. A convergence plot is not promotion evidence unless the table row containing the plotted quantity is present and tied to the campaign artifact hash.
 
 Regulator extrapolation fits must report the fitted observable, the regulator ladder, the assumed asymptotic form, excluded points if any, stability under fit-window changes, endpoint or singular-window controls when they affect the extrapolation, and a negative-control observable. A fit that behaves smoothly but has no declared observable map, topology, normalization, volume or window estimate when relevant, remainder bound, or independent continuum reconstruction remains below theorem-grade evidence.

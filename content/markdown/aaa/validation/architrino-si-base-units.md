@@ -50,7 +50,7 @@ $$
 u_r(\alpha)\approx1.51\times10^{-10}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6fb75e10f6253f63)
+[View →](../../../../equation-mapping.html#corpus-equation-6fb75e10f6253f63)
 while the Newtonian constant is
 $$
 G=6.67430\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}},
@@ -58,7 +58,7 @@ G=6.67430\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}},
 u_r(G)\approx2.25\times10^{-5}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3ba8046cca4fb71f)
+[View →](../../../../equation-mapping.html#corpus-equation-3ba8046cca4fb71f)
 Thus $\alpha$ is a much sharper dimensionless target than $G$, while Planck-unit rows such as $\ell_P$, $m_P$, and $t_P$ inherit roughly half of the relative uncertainty of $G$ through square-root dependence. A Planck-alignment claim should therefore not over-read the apparent precision of derived Planck-unit numbers.
 
 The standard uncertainty convention matters for scoring. For a measured or adjusted row $X$, use
@@ -68,7 +68,7 @@ Z_X
 \frac{X_{\mathbb{A}\mathbb{A}\mathbb{A}}-X_{\mathrm{CODATA}}}{u(X_{\mathrm{CODATA}})}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8086133e73d9fc7c)
+[View →](../../../../equation-mapping.html#corpus-equation-8086133e73d9fc7c)
 when the same observable has been derived from the same record. For exact SI rows, do not form a false zero-uncertainty residual; instead test whether the unit map and the adjusted rows that depend on it close simultaneously.
 
 ---
@@ -120,7 +120,7 @@ $$
 1 \text{ s} = \frac{9,192,631,770}{\Delta \nu_{\text{Cs}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1588e1af2a0e26f2)
+[View →](../../../../equation-mapping.html#corpus-equation-1588e1af2a0e26f2)
 
 **Architrino Interpretation:**
 
@@ -135,7 +135,7 @@ $$
 \Delta \nu_{\text{Cs}} = f(\text{candidate indexed braid geometry, } c_f, \epsilon, \text{ Noether sea coupling})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d7d54a608eba2015)
+[View →](../../../../equation-mapping.html#corpus-equation-d7d54a608eba2015)
 
 **Challenge:** The frequency is determined by:
 - The source record's binary-2 orbital frequency (sets the candidate magnetic-moment row)
@@ -158,7 +158,7 @@ $$
 1 \text{ m} = \frac{c}{299,792,458} \text{ seconds}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f61b3d6b23fd83d3)
+[View →](../../../../equation-mapping.html#corpus-equation-f61b3d6b23fd83d3)
 where $c$ is the speed of light.
 
 **Architrino Interpretation:**
@@ -172,14 +172,14 @@ c_\gamma(\mathbf X,T)=\frac{c_f}{\chi_\gamma(\mathbf X,T)},
 \chi_\gamma(\mathbf X,T)=f_\gamma\!\left(\rho_{\text{NS}}(\mathbf X,T),n(\mathbf X,T),\text{Noether sea state}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1a2f168d268128da)
+[View →](../../../../equation-mapping.html#corpus-equation-1a2f168d268128da)
 
 In the low-energy limit (flat spacetime, weak Noether sea gradients):
 $$
 c \approx c_f \quad (\text{small corrections from Noether sea refraction})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aaa74c94b6bb625d)
+[View →](../../../../equation-mapping.html#corpus-equation-aaa74c94b6bb625d)
 
 **What we must show:**
 - Photons are coaxial contra-rotating polarity-conjugate planar pairs whose bosonic/statistical behavior is recovered as a downstream closure target
@@ -200,7 +200,7 @@ $$
 1 \text{ kg} = \frac{h}{(6.62607015 \times 10^{-34}) \text{ m}^2 \text{ s}^{-1}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-31393e5ede6a895d)
+[View →](../../../../equation-mapping.html#corpus-equation-31393e5ede6a895d)
 via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
@@ -210,7 +210,7 @@ $$
 \mu_{\text{arch}}I_3=n\hbar=n\frac{h}{2\pi}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-781f2ac09c5affe0)
+[View →](../../../../equation-mapping.html#corpus-equation-781f2ac09c5affe0)
 
 The dimensionally admissible hypothesis is
 $$
@@ -223,7 +223,7 @@ $$
 h = 2\pi\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-30d92a90f0b0e032)
+[View →](../../../../equation-mapping.html#corpus-equation-30d92a90f0b0e032)
 where $\kappa\epsilon^2/c_f$ has units of specific action and $\mathcal J_3$ is a dimensionless branch output built from the declared indexed geometry and causal-root record. The normalization $\mu_{\text{arch}}$ must be fixed before comparison with $h$. This is a candidate internal braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The particle assignment and action role are source-record hypotheses, not meanings of index 3 or of an A1 taxonomy label.
 
 **Derivation pathway:**
@@ -240,7 +240,7 @@ h
 \mathcal J_3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5150234f2e692da3)
+[View →](../../../../equation-mapping.html#corpus-equation-5150234f2e692da3)
 
 
 ---
@@ -252,7 +252,7 @@ $$
 1 \text{ A} = \frac{e}{1.602176634 \times 10^{-19}} \text{ C/s}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0ea5b1cad3404774)
+[View →](../../../../equation-mapping.html#corpus-equation-0ea5b1cad3404774)
 
 **Architrino Interpretation:**
 
@@ -261,7 +261,7 @@ $$
 |e| = 6\epsilon
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2672169532aa37cf)
+[View →](../../../../equation-mapping.html#corpus-equation-2672169532aa37cf)
 
 **What we must explain:**
 - Why only integer multiples of $\epsilon$ appear in stable observer-level electric-charge inventories (charge quantization)
@@ -278,7 +278,7 @@ $$
 1 \text{ K} = \frac{1.380649 \times 10^{-23}}{k_B} \text{ J}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9ebeaf5fc2b28f45)
+[View →](../../../../equation-mapping.html#corpus-equation-9ebeaf5fc2b28f45)
 
 **Architrino Interpretation:**
 
@@ -289,7 +289,7 @@ $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T_{\mathrm{temp}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-727378deccb8f892)
+[View →](../../../../equation-mapping.html#corpus-equation-727378deccb8f892)
 
 For a neutral Noether braid assembly in the Noether sea, a six-channel comparison is available only after the three translational and three rotational channels have been shown to be accessible thermalized modes of the retained ensemble. In that special limit,
 
@@ -297,7 +297,7 @@ $$
 \langle E_{\mathrm{acc}} \rangle = 3 k_B T_{\mathrm{temp}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7feeee8f66e8b549)
+[View →](../../../../equation-mapping.html#corpus-equation-7feeee8f66e8b549)
 
 This is a recovery target, not the general definition of temperature. If the energy is shielded, stored as configuration energy, or confined to a non-equilibrium branch, it does not enter the scalar temperature until the declared ensemble measure exposes it.
 
@@ -306,7 +306,7 @@ $$
 k_B = f(\text{thermalized ensemble measure, accessible mode energy, } c_f, \theta_{\text{sea}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-053769453c128364)
+[View →](../../../../equation-mapping.html#corpus-equation-053769453c128364)
 
 **Pathway:**
 1. Derive the effective assembly mass or accessible mode-energy scale from A1 dynamics.
@@ -321,7 +321,7 @@ $$
 \frac{3k_B T_{\mathrm{temp}}}{m_{\mathrm{eff}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-df39b3f7358076e5)
+[View →](../../../../equation-mapping.html#corpus-equation-df39b3f7358076e5)
 
 where $m_{\mathrm{eff}}$ is an observer-level effective assembly mass or mode inertia supplied by the same retained record, not a primitive architrino mass.
 
@@ -335,7 +335,7 @@ $$
 1 \text{ mol} = \frac{N_A}{6.02214076 \times 10^{23}} \text{ entities}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6eb9f380eafc80fe)
+[View →](../../../../equation-mapping.html#corpus-equation-6eb9f380eafc80fe)
 
 **Architrino Interpretation:**
 
@@ -348,7 +348,7 @@ N_A=\frac{M_u}{m_u},
 m_u=\frac{m({}^{12}\mathrm C)}{12}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4b4a0af04b5029f5)
+[View →](../../../../equation-mapping.html#corpus-equation-4b4a0af04b5029f5)
 where $m_u$ is the unified atomic mass constant and $M_u$ is the molar-mass constant. The proton mass is not one twelfth of the carbon-12 mass.
 
 **What we must derive:**
@@ -364,7 +364,7 @@ $$
 1 \text{ cd} = \frac{683}{K_{\text{cd}}} \text{ lm/W at 540 THz}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cf962aafd06dee6e)
+[View →](../../../../equation-mapping.html#corpus-equation-cf962aafd06dee6e)
 
 **Architrino Interpretation:**
 
@@ -460,7 +460,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
      \alpha(\mu_0;\theta_{\mathrm{sea}})
      $$
 
-     [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3760e7503aee13bf)
+     [View →](../../../../equation-mapping.html#corpus-equation-3760e7503aee13bf)
      where $\mu_0$ is the reference probe scale and $\theta_{\mathrm{sea}}$ denotes the fixed Noether sea record for the comparison window.
    - Running with probe scale must be recovered as an effective electromagnetic response:
      $$
@@ -470,7 +470,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
      \mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)
      $$
 
-     [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f87315c0fab0a87f)
+     [View →](../../../../equation-mapping.html#corpus-equation-f87315c0fab0a87f)
      where $\mathcal K_{\mathrm{EM}}$ carries wake dressing, shielding exposure, and vacuum-polarization-like response, while $I_\mu$ records the charged thresholds visible at scale $\mu$.
    - In architrino terms, the fixed part of the low-energy anchor must be derived from $\epsilon$, the geometry-derived action period $h_\vartheta$, the photon-channel speed $c_\gamma$, and the declared Noether sea record; the scale-dependent part belongs in $\mathcal K_{\mathrm{EM}}$ and $I_\mu$, not in hidden retuning of $c_f$, $h_\vartheta$, the observer charge convention, or the Noether sea state.
    - Derive numerically; explain why $\alpha_{\mathrm{ref}}\ll 1$ and why $\alpha(\mu)$ runs with energy without changing the primitive wake speed or the action-period carrier.

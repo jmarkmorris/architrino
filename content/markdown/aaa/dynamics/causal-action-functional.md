@@ -15,7 +15,7 @@ W_{ij}^{\mathrm{acc}}(T_r;T_t)
 \frac{c_f}{|D_{t,ij}(T_r;T_t)|},
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-590fe06025cd1656)
+[View →](../../../../equation-mapping.html#corpus-equation-590fe06025cd1656)
 with
 $$
 D_{t,ij}
@@ -27,7 +27,7 @@ D_{r,ij}
 c_f-\mathbf V_i(T_r)\cdot\hat{\mathbf r}_{ij}(T_r;T_t).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8a6251085e86126c)
+[View →](../../../../equation-mapping.html#corpus-equation-8a6251085e86126c)
 
 Plain language: a retained hit must say how densely the transmitter laid down the arriving wake surface. The receiver-side quantity is recorded separately through the signed playback derivative $D_r/D_t$.
 
@@ -48,7 +48,7 @@ $$
 \,dT.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1dd1374a989fc66f)
+[View →](../../../../equation-mapping.html#corpus-equation-1dd1374a989fc66f)
 
 This statistic is sign-blind and coupling-normalized: it suppresses $\kappa$, $|q_iq_j|$, and the polarity sign $\sigma_{ij}=\mathrm{sign}(q_iq_j)$. Attractive and repulsive records therefore add by received magnitude rather than canceling by direction. After the native-time average, $\bar{\mathcal A}_{\mathrm{rec}}$ has inverse-area units; it is action-like only in the sense that it accumulates receiver-side branch-magnitude density on the retained causal record. It is not automatically the exact Fokker-type variational action, whose causal kernel is tested separately in [Master Equation](master-equation.md#exact-causal-delay-fokker-type-interaction-term).
 
@@ -67,7 +67,7 @@ $$
 \hat{\mathbf r}_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1c3f87e44bcd0f9a)
+[View →](../../../../equation-mapping.html#corpus-equation-1c3f87e44bcd0f9a)
 on the same retained branch record. A scalar extremum of $\bar{\mathcal A}_{\mathrm{rec}}$ is therefore only a candidate branch label until the vector residuals close.
 
 ## Geometric/Topological Framework
@@ -79,7 +79,7 @@ g_{ij}(T_r,T_t)
 \|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t)=0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-40b63d537ff1ba90)
+[View →](../../../../equation-mapping.html#corpus-equation-40b63d537ff1ba90)
 
 Plain language: the root condition says that a wake emitted by transmitter $j$ at $T_t$ reaches receiver $i$ exactly at reception time $T_r$.
 
@@ -108,7 +108,7 @@ Wr_c(\mathfrak B)
 \chi_{\mathrm{causal}}(\alpha,\beta).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d01dac9d72a83d7d)
+[View →](../../../../equation-mapping.html#corpus-equation-d01dac9d72a83d7d)
 
 This notation records signed causal-locus crossings or linkages in the retained record. Here $\alpha$ and $\beta$ index oriented retained causal-locus strands or strand segments in the declared projection. The indicator $\chi_{\mathrm{causal}}(\alpha,\beta)$ equals $1$ only when the two strands form an admissible crossing or linkage event on the same retained record, and equals $0$ otherwise. The sign $\operatorname{sgn}(\alpha,\beta)$ is the orientation sign of the ordered strand pair relative to the declared branch framing; it is not defined at a fold, framing slip, or unresolved collision record.
 
@@ -123,7 +123,7 @@ $$
 \beta_f(T)=\frac{\omega(T)R(T)}{c_f}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dbf48509e929cd9b)
+[View →](../../../../equation-mapping.html#corpus-equation-dbf48509e929cd9b)
 If $|\beta_f(T)|\le\beta_{\max}<\infty$ uniformly, then the active circular self-hit count is uniformly bounded:
 $$
 N_{\mathrm{self}}(T)
@@ -131,13 +131,13 @@ N_{\mathrm{self}}(T)
 \frac{\beta_{\max}}{\pi}+C_{\mathrm{circ}},
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a320e7a66f6e837c)
+[View →](../../../../equation-mapping.html#corpus-equation-a320e7a66f6e837c)
 where $C_{\mathrm{circ}}$ is an absolute endpoint-count constant for the circular root equation. On a one-sign subchart this has the sharper asymptotic form
 $$
 N_{\mathrm{self}}^{(+)}(\beta_f)=\frac{\beta_f}{\pi}+O(1).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2376285d1dd4b77c)
+[View →](../../../../equation-mapping.html#corpus-equation-2376285d1dd4b77c)
 The branch births occur at tangencies of the circular root equation, so the root census, Jacobian-null thresholds, and inactive-gap changes are one topological ledger. On the non-translating circular chart, $D_r=D_t$, so the playback ratio is one. The acceleration weight is instead $W^{\mathrm{acc}}=c_f/|D_t|=1/|J|$ in normalized units and is not generally one. The branch-count theorem therefore uses the root structure and does not certify acceleration balance, action closure, or stability. The detailed circular derivations are in [Master Equation](master-equation.md) and the winding-index census in [Binary Dynamics](binary-dynamics.md#root-multiplicity-vs-speed).
 
 A current circular benchmark must emit:
@@ -172,7 +172,7 @@ B_{\mathrm{rec}}(\lambda_0,\lambda_1)
 \right]_+
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7f3f13319fb1edf1)
+[View →](../../../../equation-mapping.html#corpus-equation-7f3f13319fb1edf1)
 
 This is a transition-cost target, not a proof of stability. A promoted barrier must state the retained branch path, the root identity across the path, the regulator state, and the same-record transmitter-side acceleration-weight records. If a later certificate uses an integral barrier instead, the promoted record must also declare the path measure, for example arclength in a stated metric on chart space.
 

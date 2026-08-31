@@ -37,7 +37,7 @@ $$
 \ddot{\delta}_{\mathrm{std}} + 2H_{\mathrm{std}}(t_{\mathrm{std}})\,\dot{\delta}_{\mathrm{std}} - 4\pi G_{\text{eff,std}}(t_{\mathrm{std}}, k)\,\bar{\rho}_{m,\mathrm{std}}(t_{\mathrm{std}})\,\delta_{\mathrm{std}} = 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2700ac5bdc03bb3c)
+[View →](../../../../equation-mapping.html#corpus-equation-2700ac5bdc03bb3c)
 The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation is
 $$
 \frac{d^2\delta_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}
@@ -46,7 +46,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-29408ed41d012c05)
+[View →](../../../../equation-mapping.html#corpus-equation-29408ed41d012c05)
 
 Each symbol carries a specific medium-level meaning:
 
@@ -78,7 +78,7 @@ $$
 D(a) \propto H(a) \int_0^a \frac{da'}{[a' H(a')]^3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6654c50f206f6ee3)
+[View →](../../../../equation-mapping.html#corpus-equation-6654c50f206f6ee3)
 
 Within $\mathbb{A}\mathbb{A}\mathbb{A}$ the same integral structure holds in the observer chart, with $H_{\mathrm{eff}}(a_{\mathrm{eff}})$ and $G_{\text{eff}}$ determined by the Noether sea equation of state. The growth rate $f(a_{\mathrm{eff}}) = d\ln D / d\ln a_{\mathrm{eff}}$ is a direct observable (via redshift-space distortions) and provides a clean test:
 
@@ -96,7 +96,7 @@ T(k)\sim1\ \text{for }k\ll k_{\mathrm{eq}},
 T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-61c91d955cd3ead3)
+[View →](../../../../equation-mapping.html#corpus-equation-61c91d955cd3ead3)
 up to the declared baryon acoustic, neutrino/free-streaming, and nonlinear corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an import of metric expansion ontology. It is the observer-level shape test that the same Noether sea state history must pass while computing $G_{\text{eff}}(a,k)$, CMB lensing, $f\sigma_8$, and high-redshift halo statistics.
 
 ### Component Transfer and Free-Streaming Interface
@@ -113,7 +113,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9c7129902b2d41dd)
+[View →](../../../../equation-mapping.html#corpus-equation-9c7129902b2d41dd)
 where $\delta_x$ is the density contrast, $\theta_x$ is the velocity-divergence variable, $\sigma_x$ is the anisotropic-stress variable, and $\delta p_x$ is the pressure perturbation. A transfer-function branch is then a map
 $$
 \mathbf{y}_x^\theta(k,z)
@@ -126,7 +126,7 @@ P_{xy}^\theta(k,z)
 T_x^\theta(k,z)T_y^\theta(k,z)P_{\mathrm{seed}}^\theta(k)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2b281c6178c9dc12)
+[View →](../../../../equation-mapping.html#corpus-equation-2b281c6178c9dc12)
 with the same $\theta_{\mathrm{sea}}$ used for CMB lensing, BAO, BBN, and low-redshift growth. In an adiabatic comparison packet the initial component contrasts must satisfy
 $$
 \frac{\delta\rho_x^\theta}
@@ -144,7 +144,7 @@ $$
 \frac{3}{4}\delta_\gamma^\theta
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4de833ac52f80e51)
+[View →](../../../../equation-mapping.html#corpus-equation-4de833ac52f80e51)
 unless the branch explicitly declares an isocurvature source and carries it through the CMB, BBN, and matter-power residuals.
 
 Neutrino and warm-dark-sector signals sharpen the small-scale transfer test. For ordinary massive neutrinos,
@@ -161,7 +161,7 @@ f_\nu^\theta
 -8f_\nu^\theta
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5870b21b4b669e6d)
+[View →](../../../../equation-mapping.html#corpus-equation-5870b21b4b669e6d)
 below the free-streaming scale. For a sterile-neutrino or warm neutral-assembly comparison branch, retain the production-history dependence explicitly:
 $$
 \lambda_{\mathrm{FS}}^\theta
@@ -174,7 +174,7 @@ $$
 \left(\frac{\langle p/T\rangle_\theta}{3.15}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f26dcb882346e448)
+[View →](../../../../equation-mapping.html#corpus-equation-f26dcb882346e448)
 The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
 
 Cosmological neutrino-mass bounds also depend on the late matter-source accounting used by the expansion fit. A DESI-era matter-conversion comparison can relax or shift $\Sigma m_\nu$ constraints because converting part of the late matter budget into an effective dark-energy component changes the nonrelativistic matter inventory sampled by BAO, CMB, and growth. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the lesson is not that the neutrino branch has changed ontology. The lesson is that any bound on $\Sigma m_\nu^\theta$ must be read together with the same late-time source term, baryon-accounting record, and Noether sea transport history used for expansion and structure formation.
@@ -189,7 +189,7 @@ $$
 c_{s,\mathrm{lin}}^2\ll1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bf6fe768596d32b3)
+[View →](../../../../equation-mapping.html#corpus-equation-bf6fe768596d32b3)
 
 That success does not by itself solve the nonlinear missing-mass problem in galaxies or clusters. Conversely, a MOND-like or medium-compliance law can fit low-acceleration rotation curves without automatically recovering the CMB peak structure or the linear transfer function. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure requirement is therefore a shared-record split:
 
@@ -202,7 +202,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-04fe49326bb84f3b)
+[View →](../../../../equation-mapping.html#corpus-equation-04fe49326bb84f3b)
 
 where $\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}}$ supplies $P(k,z)$, $D(z,k)$, $C_L^{\phi\phi}$, and $f\sigma_8$, while $\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}$ supplies the radial-acceleration relation, the local missing-baryon benchmark, cluster hydrostatic profiles, and rotation-curve residuals. A compact split residual is
 
@@ -220,7 +220,7 @@ d_{\mathrm{shared}}\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e048e84e03be5bc6)
+[View →](../../../../equation-mapping.html#corpus-equation-e048e84e03be5bc6)
 
 The last term is the important one. It prevents the model from behaving like CDM in the linear packet and like a separate modified-gravity theory in the nonlinear packet unless both projections come from the same Noether sea state and neutral-assembly state. This also protects the $S_8$ discussion: late-time growth suppression may be allowed, but it must not erase the linear-regime matter loading that fixes the CMB and equality-scale transfer function.
 
@@ -273,7 +273,7 @@ $$
 M_X = f_bM_{200} - M_b
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1bd44cf36c3eac2f)
+[View →](../../../../equation-mapping.html#corpus-equation-1bd44cf36c3eac2f)
 
 into one low-redshift readout. The important signal is not only that $m_b=M_b/M_{200}$ falls below $f_b$ in lower-mass systems. It is that the trend is smooth, low-scatter, and weakly dependent on whether the observed baryons are stars or gas.
 
@@ -285,7 +285,7 @@ D_{\mathrm{local\ baryon}}^{\mathrm{obs}}(E)
 \{M_b,V_f,M_{200},m_b,M_X,\Sigma_{\mathrm{gas/lens}}\}_E,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d16516cecaf232ee)
+[View →](../../../../equation-mapping.html#corpus-equation-d16516cecaf232ee)
 
 where $E$ labels the environment class and $\Sigma_{\mathrm{gas/lens}}$ records the gas and lensing reconstruction used for groups and clusters. A branch cannot explain this packet by feedback, circumgalactic retention, ejection to the intergalactic medium, or a velocity-factor recalibration unless the same source-history record also recovers the baryonic Tully-Fisher relation, group weak-lensing velocities, rich-cluster baryon closure, and cluster-offset behavior. The group-to-X-ray-cluster transition is therefore a high-value structure-formation band: it decides where Noether sea medium response, observed hot gas, and collisionless neutral-assembly loading must separate or couple.
 
@@ -322,7 +322,7 @@ r^{-n_\theta},
 W_{\mathrm{kSZ}}=[30,230]\,\mathrm{Mpc}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4c5aaaf80578ac1f)
+[View →](../../../../equation-mapping.html#corpus-equation-4c5aaaf80578ac1f)
 The structure-formation residual is then
 $$
 \mathcal{R}_{\mathrm{kSZ}\text{-}force}(\theta)
@@ -338,7 +338,7 @@ d_{\mathrm{shared}}\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-45ff932993554856)
+[View →](../../../../equation-mapping.html#corpus-equation-45ff932993554856)
 This residual protects the level distinction. A Noether sea response may still modify galaxy-scale low-acceleration behavior, but it cannot become a free large-scale modified-gravity law. On the ACT/SDSS halo-pair window the same $\theta_{\mathrm{sea}}$ must recover an approximately inverse-square effective pull while preserving CMB lensing, weak lensing, redshift-space distortions, and the matter power spectrum.
 
 The Lyman-$\alpha$ forest supplies a small-scale transfer gate on the same branch. Let $P_F^\theta(k,z)$ be the transmitted-flux power spectrum projected from the matter, thermal, ionization, and photon-transfer record. Then
@@ -354,7 +354,7 @@ P_F^\theta(k,z)-P_F^{\mathrm{obs}}(k,z)
 \right\|^2.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ef499dbcee5e6c46)
+[View →](../../../../equation-mapping.html#corpus-equation-ef499dbcee5e6c46)
 This is an observer-level recovery target, not a direct matter-power measurement. A branch fails if it fits the CMB optical depth with one ionization history while changing the thermal or small-scale growth record for the forest.
 
 Pre-BBN comparison branches enter structure formation only through the transfer record they leave behind. For any branch $X$ retained by [Inflation Model](./inflation-model.md#pre-bbn-comparison-gate) and [BBN Constraints](./BBN-constraints.md#pre-bbn-handoff-gate), the growth-side observable is
@@ -366,7 +366,7 @@ P(k,z\mid \theta_{\mathrm{sea}},\theta_X)
 P(k,z\mid \theta_{\mathrm{sea}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-54d06df6116df70e)
+[View →](../../../../equation-mapping.html#corpus-equation-54d06df6116df70e)
 This quantity must be evaluated with the same $\theta_{\mathrm{sea}}$ used for BBN, CMB, cluster offsets, weak lensing, and redshift-space distortions. If a weakly coupled component is invisible to light elements only by acquiring a free-streaming length, abundance, or interaction history that later changes independently in $P(k,z)$, $C_L^{\phi\phi}$, or halo statistics, the comparison branch fails the shared-record gate.
 
 ### High-Redshift Structure
@@ -399,7 +399,7 @@ Z^\theta[
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3e148cfbdad91ebb)
+[View →](../../../../equation-mapping.html#corpus-equation-3e148cfbdad91ebb)
 Here the first term tests whether the shared source history can grow the compact object, while the second tests whether the same source-to-receiver and selection records support the reported redshift. A branch fails this row if quasar growth is repaired by changing the age, redshift-transfer, or Noether sea state independently of the growth, CMB, lensing, and source-history records.
 
 Little-red-dot spectra add the obscured-accretion side of the same early-growth test. In a system such as GLIMPSE-17775, the compact red source is not interpreted from brightness alone: lensing reconstruction, deep JWST spectroscopy, line-profile modeling, host decomposition, gas density, optical depth, fluorescence, absorption, and X-ray or radio suppression all help determine whether the object is a rapidly accreting black hole hidden inside a dense gas envelope. If electron scattering and radiative transfer set much of the broad-line profile, then the inferred black-hole mass and Eddington ratio are coupled to gas-state modeling rather than to virial motion alone. The structure-formation branch must therefore explain the compact source, its host contribution, and its line-formation environment with one source-history record instead of treating little red dots as either overmassive galaxies or ordinary exposed quasars.
@@ -440,7 +440,7 @@ Y_{\mathrm{gal/AGN}}^{\mathrm{obs}},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7e000792d8d28181)
+[View →](../../../../equation-mapping.html#corpus-equation-7e000792d8d28181)
 where $Y_{\mathrm{gal/AGN}}^{\mathrm{obs}}$ denotes the chosen galaxy or AGN observable packet and $\Pi_{\mathrm{gal/AGN}}$ projects the shared history model onto the observables being compared. The same $\theta_{\mathrm{sea}}$ must also supply the growth, redshift, CMB, lensing, and dark-sector rows. If jet morphology or host evolution can be fit only by changing the Noether sea state independently of the cosmology packet, the branch is a local fit rather than a shared history.
 
 ---
@@ -469,7 +469,7 @@ $$
 G_{\text{eff}}(a, k) = G_N \bigl[1 + \mu(a, k)\bigr]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-858a7b7670c0d31a)
+[View →](../../../../equation-mapping.html#corpus-equation-858a7b7670c0d31a)
 
 where $\mu(a, k)$ is a dimensionless modification function.
 
@@ -480,7 +480,7 @@ $$
 \theta \equiv \nabla\cdot\mathbf{u}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-14c64e3d2934eb29)
+[View →](../../../../equation-mapping.html#corpus-equation-14c64e3d2934eb29)
 
 Use isotropic linear constitutive response (elastic + Kelvin-Voigt damping):
 $$
@@ -492,7 +492,7 @@ K(a)\,\delta_{ij}\,\theta
 +2\eta(a)\!\left(\dot{u}_{ij}-\frac{1}{3}\delta_{ij}\dot{\theta}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-500a4a13cf59a017)
+[View →](../../../../equation-mapping.html#corpus-equation-500a4a13cf59a017)
 with bulk modulus $K$, shear modulus $S$, and viscosities $(\zeta_{\text{bulk}},\eta)$. The subscript prevents confusion with the shielding factor $\zeta(A)$ used in assembly-mass closure.
 
 For scalar/longitudinal modes in Fourier space, the linear response equation is
@@ -502,7 +502,7 @@ $$
 g_m(a)\,\delta\rho_m(a,k,\omega)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ab273ab17ca69d13)
+[View →](../../../../equation-mapping.html#corpus-equation-ab273ab17ca69d13)
 where
 $$
 M_L(a)\equiv K(a)+\frac{4}{3}S(a),
@@ -510,7 +510,7 @@ M_L(a)\equiv K(a)+\frac{4}{3}S(a),
 \Gamma_L(a)\equiv \zeta_{\text{bulk}}(a)+\frac{4}{3}\eta(a)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6624ca6af422330f)
+[View →](../../../../equation-mapping.html#corpus-equation-6624ca6af422330f)
 and $m_L(a)$ is the finite-range restoring scale (equivalently $k_\ast(a)^2=m_L^2/M_L$).
 
 Use the Fourier convention $e^{-i\omega t_{\mathrm{eff}}}$. For a stable static response, $M_Lk^2+m_L^2>0$. Under the displacement convention above, an overdensity $\delta\rho_m>0$ produces compression when $\theta<0$, so the positive-response branch requires $g_m<0$. Then $\delta u_{\mathrm{sea}}=-\bar u_{\mathrm{sea}}\theta>0$ and $\mu_{\mathrm{sea}}>0$, enhancing $G_{\mathrm{eff}}$. Increasing $M_L$ or $m_L$ reduces the response magnitude but cannot reverse its sign.
@@ -524,7 +524,7 @@ $$
 \mu_{\text{sea}}(a,k,\omega)\,\delta\rho_m(a,k,\omega)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-19ee86226b43db38)
+[View →](../../../../equation-mapping.html#corpus-equation-19ee86226b43db38)
 with susceptibility
 $$
 \mu_{\text{sea}}(a,k,\omega)
@@ -533,7 +533,7 @@ $$
 {M_L(a)k^2+m_L^2(a)-i\omega\,\Gamma_L(a)k^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f75dcf676aa58c1d)
+[View →](../../../../equation-mapping.html#corpus-equation-f75dcf676aa58c1d)
 
 Insert this into the linear Poisson source:
 $$
@@ -542,7 +542,7 @@ $$
 4\pi G_N a^2\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr]\delta\rho_m
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-db5c7368c777da5e)
+[View →](../../../../equation-mapping.html#corpus-equation-db5c7368c777da5e)
 Therefore
 $$
 G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr],
@@ -550,7 +550,7 @@ G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr],
 \mu(a,k,\omega)=\mu_{\text{sea}}(a,k,\omega)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f2d3519b7d633fc7)
+[View →](../../../../equation-mapping.html#corpus-equation-f2d3519b7d633fc7)
 
 For growth calculations use the quasi-static branch $\omega\simeq H(a)f(a)$ and the real part:
 $$
@@ -560,7 +560,7 @@ $$
 {\bigl[M_L(a)k^2+m_L^2(a)\bigr]^2+\bigl[H(a)f(a)\Gamma_L(a)k^2\bigr]^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-002befecb3fc00bd)
+[View →](../../../../equation-mapping.html#corpus-equation-002befecb3fc00bd)
 
 In the strictly quasi-static limit ($Hf\,\Gamma_Lk^2\ll M_Lk^2+m_L^2$), this reduces to the closed Yukawa-like form
 $$
@@ -572,14 +572,14 @@ $$
 \frac{\mu_0(a)}{1+\bigl(k/k_\ast(a)\bigr)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3dc324e5bcd8ddaf)
+[View →](../../../../equation-mapping.html#corpus-equation-3dc324e5bcd8ddaf)
 $$
 \mu_0(a)\equiv-\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}{m_L^2(a)},
 \qquad
 k_\ast(a)^2\equiv\frac{m_L^2(a)}{M_L(a)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9eafb824ea09421e)
+[View →](../../../../equation-mapping.html#corpus-equation-9eafb824ea09421e)
 
 Setting $g_m=0$ (or equivalently $\mu=0$) recovers standard GR growth. Current data constrain $|\mu| \lesssim 0.1$ (Planck modified-gravity + DES/KiDS-class weak-lensing constraints) on the scales probed by galaxy surveys and CMB lensing.
 
@@ -592,13 +592,13 @@ G_N\left[1+\mu(a,k)S_{\mathrm{loc}}(\mathcal{I}_{\mathrm{loc}})\right],
 0\leq S_{\mathrm{loc}}\leq 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-059cf9517a79ca91)
+[View →](../../../../equation-mapping.html#corpus-equation-059cf9517a79ca91)
 For every validated solar-system, binary-pulsar, lensing, and gravitational-wave record $r$, the recovery requirement is
 $$
 \left|\mu(a_r,k_r)S_{\mathrm{loc}}(\mathcal{I}_r)\right|<\epsilon_r
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f7d6c88b62143c87)
+[View →](../../../../equation-mapping.html#corpus-equation-f7d6c88b62143c87)
 Cosmological deviations are viable only when the same coefficient record also fits BAO, CMB lensing, supernova distances, and $f\sigma_8$ growth without retuning $S_{\mathrm{loc}}$ by observational channel.
 
 Late-time growth suppression requires $\mu<0$ on the relevant scales. With the conventions and stable denominator above, that sign requires $g_m>0$, which is opposite to the positive-density compression branch, or an additional constitutive term that changes sign with scale or epoch. Cooling or increased stiffness alone reduces $|\mu|$; it does not produce negative $\mu$. Deriving the required sign change from one stable Noether sea constitutive law is therefore an explicit closure burden for any proposed $S_8$ explanation.

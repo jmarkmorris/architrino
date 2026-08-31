@@ -33,7 +33,7 @@ $$
 }{c_0}\,d\ell
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cfbc53f331d1f5c8)
+[View →](../../../../equation-mapping.html#corpus-equation-cfbc53f331d1f5c8)
 Here $\Gamma_z$ is the observer-level path used by the comparison, and $\chi_\gamma$ is the photon-channel delay factor from the same branch record used for photon synchronization. A useful residual is
 $$
 \mathcal{R}_{\gamma\mathrm{disp}}
@@ -50,7 +50,7 @@ $$
 }{\sigma_{\Delta t}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1abb38f3751b71cb)
+[View →](../../../../equation-mapping.html#corpus-equation-1abb38f3751b71cb)
 where $\mathcal{E}$ is the declared transient catalog, $\Delta t_{\mathrm{src}}$ is the modeled source lag, and $\sigma_{\Delta t}$ is the adopted timing uncertainty.
 
 * **Constraint** – the same photon branch that recovers local Lorentz synchronization must keep $\mathcal{R}_{\gamma\mathrm{disp}}$ below the declared catalog threshold without per-source retuning.
@@ -95,7 +95,7 @@ The propagation speed of gravitational-wave disturbances in the Noether sea must
   7\times10^{-16}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e5dc0f030c4b58dc)
+  [View →](../../../../equation-mapping.html#corpus-equation-e5dc0f030c4b58dc)
   Equivalently, for the weak homogeneous observer branch in which $c_\gamma\to c_0$,
   $$
   \left|
@@ -107,7 +107,7 @@ The propagation speed of gravitational-wave disturbances in the Noether sea must
   10^{-15}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1a57d4fecb90841c)
+  [View →](../../../../equation-mapping.html#corpus-equation-1a57d4fecb90841c)
   is the order-of-magnitude ledger tolerance. Any tighter ledger tolerance adopted for a specific validation band should be stated explicitly rather than inferred from ontology.
 * **Shared-Channel Requirement** – the effective gravitational-wave channel and photon channel must be derived from one Noether sea state record in the weak-field branch, as required by [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). A medium-based gravity model fails this row if it lets gravitational waves and photons acquire independently tunable dressed speeds in the same region.
 * **Mode and Dispersion Gate** – finite-range or medium-compliance corrections must keep accumulated dispersion, false-alarm residuals, calibration residuals, and any scalar, vector, or longitudinal gravitational-wave detector response below the residual bounds for the validated band.
@@ -143,7 +143,7 @@ Massive-interference experiments and precision gravity readouts jointly test whe
   \Delta h_B(t'_{\mathrm{eff}})\,dt_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ad599d5e1bd52189)
+  [View →](../../../../equation-mapping.html#corpus-equation-ad599d5e1bd52189)
   with $\Delta h_A(t_{\mathrm{eff}})=h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)$, must remain below the declared which-path threshold for any interference-preserving run unless a record-forming separatrix crossing and persistence window are also derived.
 * **Observable** – the data products are massive-superposition coherence time, branch separation and mass-displacement history, precision-gravity response, detector noise covariance, any two-probe entanglement witness, non-gravitational coupling residuals, and the absence or presence of a durable which-path record.
 * **Validation Target** – combine long-coherence interferometry with Cavendish-like, atom-interferometric, or gravitational-wave-instrument precision bounds to constrain $\mathcal{D}_{\mathrm{grav}}$ using one effective-metric constitutive record $\theta$; the concrete scaffold is [Massive-Superposition Gravity Validation Packet](massive-superposition-gravity.md).
@@ -170,7 +170,7 @@ $$
 \langle v_{\mathrm{rel}}\rangle_{\theta_A}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8fbef462600b538c)
+[View →](../../../../equation-mapping.html#corpus-equation-8fbef462600b538c)
 The corresponding impulse scale on a tracked body is
 $$
 \Delta v_{\mathrm{test}}
@@ -178,7 +178,7 @@ $$
 \frac{2GM_A}{b\,v_{\mathrm{rel}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d00c040262a64977)
+[View →](../../../../equation-mapping.html#corpus-equation-d00c040262a64977)
 with the accepted comparison using the full ephemeris covariance rather than this estimate alone.
 
 * **Constraint** – any claimed local compact dark-sector signal must produce an ephemeris residual $\Delta x_{\mathrm{ephem,eff}}^{i,\theta}(t_{\mathrm{eff}})$ above the declared ranging and model-error floor while remaining inconsistent with ordinary catalogued bodies under the same orbit-reconstruction covariance.
@@ -214,5 +214,5 @@ $$
 \neq \varnothing
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b6a0379c548612df)
+[View →](../../../../equation-mapping.html#corpus-equation-b6a0379c548612df)
 If the intersection is empty after uncertainty propagation, the integrated model version is rejected.

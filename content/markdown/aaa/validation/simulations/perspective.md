@@ -42,7 +42,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
   \mathcal{C}_{aa}(T_r)=\{\,T_t<T_r:\|\mathbf X_a(T_r)-\mathbf X_a(T_t)\|=c_f(T_r-T_t)\,\}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c1c370d5a364709f)
+  [View →](../../../../../equation-mapping.html#corpus-equation-c1c370d5a364709f)
   is nonempty and the active root passes the transversality/Jacobian floor and carries a retained transmitter-side acceleration weight. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).
 

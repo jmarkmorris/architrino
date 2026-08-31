@@ -16,6 +16,7 @@ import {
   buildAllCandidateAnalyticalCampaign,
   loadAllCandidateCampaignRegistry,
   validateMethodologyCoverageContract,
+  validateCandidateInventory,
 } from "../src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs";
 import {
   adjudicateTransmitterSensitivityConvergence,
@@ -47,6 +48,20 @@ function temporaryDirectory(label) {
 function sha256File(filePath) {
   return createHash("sha256").update(readFileSync(filePath)).digest("hex");
 }
+
+test("flat catalog routing leaves analytical geometry checks owned by source specifications", () => {
+  const registry = JSON.parse(readFileSync(DEFAULT_ALL_CANDIDATE_CAMPAIGN_REGISTRY_PATH, "utf8"));
+  const candidates = validateCandidateInventory(registry);
+  assert.equal(candidates.length, 20);
+  assert.ok(BORG_BRAID_RECORD_CATALOG.entries.every((row) => !("familyId" in row)));
+  for (const candidate of candidates) {
+    assert.equal(candidate.spec.identity.taxonomy.familyId, candidate.declaration.familyId);
+    assert.equal(candidate.spec.identity.taxonomy.memberId, candidate.declaration.memberId);
+  }
+  const changed = structuredClone(registry);
+  changed.candidates[0].familyId = "B";
+  assert.throws(() => validateCandidateInventory(changed), /differs from its source specification/);
+});
 
 test("all-candidate registry explicitly covers or excludes every live Borg catalog entry", () => {
   const campaign = buildAllCandidateAnalyticalCampaign(undefined, {

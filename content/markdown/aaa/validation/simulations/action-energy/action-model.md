@@ -14,7 +14,7 @@ This note compares three modeling options for the emission-propagation-interacti
   r(T,T_t) = c_f\,(T-T_t) \quad \text{for } T\ge T_t
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-6d62a72cb059c662)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-6d62a72cb059c662)
 
   where $c_f$ is the constant **field speed**.
 * Each emitted wake surface carries a **strength** $Q$, interpreted here as wake-surface amplitude. Its physical bookkeeping role depends on the comparison target: polarity, potential impulse, energy, or another declared quantity.
@@ -38,7 +38,7 @@ $$
 \boxed{\;\frac{\partial^2 \phi}{\partial T^2}(\mathbf X,T) - c_f^2 \,\nabla^2 \phi(\mathbf X,T) \;=\; c_f^2 S(\mathbf X,T)\;}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-b7443792b3fc11a9)
+[View →](../../../../../../equation-mapping.html#corpus-equation-b7443792b3fc11a9)
 
 **Symbols**
 
@@ -55,7 +55,7 @@ $$
 S(\mathbf X,T) \;=\; q(T)\,\delta\!\big(\mathbf X-\mathbf X_t(T)\big)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-f2d9279a5d05f9d6)
+[View →](../../../../../../equation-mapping.html#corpus-equation-f2d9279a5d05f9d6)
 
 Here $q(T)$ has units “amplitude per unit time.” The finite-speed wave operator then generates outgoing spherical causal wake surfaces automatically; no discrete wake surface count is assumed.
 
@@ -96,7 +96,7 @@ $$
 \frac{\partial^2 \phi}{\partial T^2} - c_f^2 \nabla^2 \phi = c_f^2 S(\mathbf X,T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-1735c6072eb804c0)
+[View →](../../../../../../equation-mapping.html#corpus-equation-1735c6072eb804c0)
 
 then the solution may be written as the space–time convolution with the Green’s function $G$:
 
@@ -106,7 +106,7 @@ $$
 \iint G\big(\mathbf X,T;\mathbf Y,T_t\big)\;S(\mathbf Y,T_t)\;dT_t\,d^3Y\;}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-b6aacae5e98e622d)
+[View →](../../../../../../equation-mapping.html#corpus-equation-b6aacae5e98e622d)
 
 * $G(\mathbf X,T;\mathbf Y,T_t)$ is the response at $(\mathbf X,T)$ to an instantaneous unit impulse at $(\mathbf Y,T_t)$.
 
@@ -121,7 +121,7 @@ G(\mathbf X,T;\mathbf Y,T_t)
 \qquad T>T_t
 $$
 
-[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-8217f0db27be9e8e)
+[View →](../../../../../../equation-mapping.html#corpus-equation-8217f0db27be9e8e)
 
 **Interpretation:** a unit impulse at location $\mathbf Y$ and time $T_t$ influences $\mathbf X$ at time $T$ only when the travel time $\|\mathbf X-\mathbf Y\|/c_f$ has elapsed; the $1/(4\pi r)$ factor is the usual geometric decay of an outgoing spherical wave in 3D.
 
@@ -137,7 +137,7 @@ $$
 {4\pi\,\|\mathbf X-\mathbf X_t(T_t)\|}\; dT_t\;}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-6e6292bf1f2b171a)
+[View →](../../../../../../equation-mapping.html#corpus-equation-6e6292bf1f2b171a)
 
 * $q(T_t)$ is the continuous emission density per unit time at the emission instant $T_t$. For a steady transmitter, $q(T_t)=q_0$ (constant); more generally, $q$ may vary smoothly with $T_t$.
 
@@ -149,7 +149,7 @@ $$
 T-T_t=\frac{r(T_t)}{c_f}, \qquad r(T_t)\equiv\|\mathbf X-\mathbf X_t(T_t)\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-fb1ccbe031c60bee)
+[View →](../../../../../../equation-mapping.html#corpus-equation-fb1ccbe031c60bee)
 
 So the contribution to $\phi(\mathbf X,T)$ comes only from times $T_t$ such that the expanding causal wake surface emitted at $T_t$ has just reached $\mathbf X$ at time $T$.
 
@@ -164,7 +164,7 @@ $$
 \frac{q(T_{t,i})}{4\pi\,r(T_{t,i})\,\big|1 - \tfrac{\mathbf{n}(T_{t,i})\cdot\mathbf V_t(T_{t,i})}{c_f}\big|}\;}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-e747c94dfd869141)
+[View →](../../../../../../equation-mapping.html#corpus-equation-e747c94dfd869141)
 
 where:
 
@@ -209,13 +209,13 @@ Field representation (transport/continuity form)
   \rho(T,\mathbf X) \;=\; \frac{q}{4\pi r^2}\,\delta\!\big(r - c_f(T-T_t)\big)\,H(T-T_t),\quad r=\|\mathbf X-\mathbf X_0\|
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-2b7111dd5480ce0b)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-2b7111dd5480ce0b)
 - This solves the radial continuity (transport) equation
   $$
   \partial_T \rho + \nabla_{\mathbf X}\!\cdot\!\big(c_f\,\hat{\mathbf{r}}\,\rho\big) \;=\; q\,\delta(T-T_t)\,\delta^{(3)}(\mathbf X-\mathbf X_0)
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-206248c4dd4c66c3)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-206248c4dd4c66c3)
 - A continuous emission density is obtained by integrating these impulse responses over $T_t$ with $q(T_t)\equiv q_0$.
 
 Per-hit equation of motion (EOM)
@@ -224,7 +224,7 @@ Per-hit equation of motion (EOM)
   \|\mathbf X_{o'}(T_r) - \mathbf X_j(T_t)\| = c_f\,(T_r-T_t),\qquad T_t<T_r
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-ba3fb2308de0f62e)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-ba3fb2308de0f62e)
 - Each root contributes a line-of-action acceleration
   $$
   \mathbf A_{o'\leftarrow j}(T_r;T_t)
@@ -235,7 +235,7 @@ Per-hit equation of motion (EOM)
   \hat{\mathbf{r}}=\frac{\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)}{r},\ r>0
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-257a5ab02e2be0c7)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-257a5ab02e2be0c7)
   with $W_{o'j}^{\mathrm{acc}}=c_f/\lvert D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$. Total acceleration is the sum over transmitters and roots. Convention $H(0)=0$ removes the instantaneous self-kick at zero delay. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth acceleration contributions.
 
 Implementation checklist
@@ -258,7 +258,7 @@ Operator diagnostics (finite-window checks)
   {\int_{\partial V}\left|\mathbf{Y}_\eta\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\int_V\left|\nabla\!\cdot\!\mathbf{Y}_\eta\right|\,dV+\varepsilon_G}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-e42c5aa6dbc91b27)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-e42c5aa6dbc91b27)
 - For any oriented smooth surface $S\subset\Sigma_T$ with boundary $\partial S$, define the Stokes residual
   $$
   R_S[S,T;\mathbf{Y}_\eta]\equiv
@@ -266,14 +266,14 @@ Operator diagnostics (finite-window checks)
   {\oint_{\partial S}\left|\mathbf{Y}_\eta\!\cdot d\mathbf X\right|+\int_S\left|(\nabla\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\varepsilon_S}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-01ccdd4818c686c6)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-01ccdd4818c686c6)
 - A PDE surrogate and event-root reconstruction are comparable only after a common observable map, normalization, boundary condition, and regulator have been declared. Their agreement then tests the implementations of that declared map; it is not independent evidence for the canonical acceleration law. If $\Delta\mathbf{Y}_\eta=\mathbf{Y}^{\mathrm{PDE}}_\eta-R(\mathbf{Y}^{\mathrm{root}}_\eta)$, use
   $$
   E_{\mathrm{op}}(V,S,T)\equiv
   \max\!\left\{R_G[V,T;\Delta\mathbf{Y}_\eta],\,R_S[S,T;\Delta\mathbf{Y}_\eta]\right\}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-a73f55aca07554f3)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-a73f55aca07554f3)
   For the conservative potential channel $\mathbf{Y}_\eta=\nabla\Phi_\eta$, nonzero circulation is a numerical, boundary, or coordinate-operator error unless a non-gradient effective channel has been explicitly declared.
 
 Plain language: treat the potential contribution as a conserved amount spread over a growing causal wake surface. When a wake surface reaches a receiver, the receiver gets a straight-line push that falls off like $1/r^2$; the calculation may treat it as a sharp kick or as a short, smooth nudge.

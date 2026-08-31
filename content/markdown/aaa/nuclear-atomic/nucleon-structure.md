@@ -38,7 +38,7 @@ p = uud,
 n = udd
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3469a5c7b05eb186)
+[View →](../../../../equation-mapping.html#corpus-equation-3469a5c7b05eb186)
 
 With the quark charge assignments
 $$
@@ -47,7 +47,7 @@ Q_u=+\frac{2}{3},
 Q_d=-\frac{1}{3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-89f41ebbbbfbe6ac)
+[View →](../../../../equation-mapping.html#corpus-equation-89f41ebbbbfbe6ac)
 one immediately gets
 $$
 Q_p = 2Q_u+Q_d = +1,
@@ -55,7 +55,7 @@ Q_p = 2Q_u+Q_d = +1,
 Q_n = Q_u+2Q_d = 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2af091a364c5a864)
+[View →](../../../../equation-mapping.html#corpus-equation-2af091a364c5a864)
 
 ## Color-Singlet Closure
 
@@ -66,7 +66,7 @@ $$
 |q_H\rangle,\quad |q_M\rangle,\quad |q_L\rangle
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-30014fffc3ef5a2f)
+[View →](../../../../equation-mapping.html#corpus-equation-30014fffc3ef5a2f)
 or equivalently Red, Green, Blue. A baryon singlet uses each exceptional-axis sector once, so the net color flux closes.
 
 This is the nucleon-level meaning of
@@ -74,7 +74,7 @@ $$
 3\otimes 3\otimes 3 \supset 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b5a2bd5e2b2f7dad)
+[View →](../../../../equation-mapping.html#corpus-equation-b5a2bd5e2b2f7dad)
 
 In geometric language:
 
@@ -98,7 +98,7 @@ s_{u_1},s_{u_2},s_d\in\{1,2,3\},
 \{1,2,3\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-07895e8bb69a87be)
+[View →](../../../../equation-mapping.html#corpus-equation-07895e8bb69a87be)
 
 The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger required to lock these three quark branches into one candidate proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
 
@@ -119,7 +119,7 @@ C_{\ell,X}^{p}
 d_N\ll\ell\ll R_p
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-198eeed4b7f297a5)
+[View →](../../../../equation-mapping.html#corpus-equation-198eeed4b7f297a5)
 
 Here $C_{\ell,X}^{p}$ is the declared proton-window projection and $\mathcal W_{\mathrm{strong},X}^{uud}$ is the channel exposure of $\mathcal L_{\mathrm{strong}}^{uud}(T)$. The strong-sector term includes the closed color-corridor contribution needed to make the three quark branches one proton source; it is not ambient Noether sea and is not a fourth quark-like constituent.
 
@@ -145,7 +145,7 @@ $$
 \Delta_{p,X}^{\mathrm{color}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0793a282f4464132)
+[View →](../../../../equation-mapping.html#corpus-equation-0793a282f4464132)
 
 The projection $\Pi_{\mathrm{singlet},X}$ retains the channel entries that are compatible with the color-singlet branch, while $\Pi_{\mathrm{open},X}$ retains any residual open-color exposure. This is a closure target, not a completed confinement proof. It should later be derived from the same color-corridor dynamics that recover the static strong potential and no-free-color benchmark in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md#confinement-and-energetics).
 
@@ -174,7 +174,7 @@ C_{\ell_{\mathrm{atom}},X}
 \Delta_{p,X}^{\mathrm{env,tol}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6e0d1561e235ec0b)
+[View →](../../../../equation-mapping.html#corpus-equation-6e0d1561e235ec0b)
 
 This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether braids from being counted as free atomic sources.
 
@@ -199,7 +199,7 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-56eb232ccfd04975)
+[View →](../../../../equation-mapping.html#corpus-equation-56eb232ccfd04975)
 
 The first inequality blocks open-color leakage, the second blocks unstable quark-resolution dependence after atomic projection, and the third keeps the strong-sector corridor inside the matter assembly ledger. Hydrogen corridor and packing tolerances may then ask different stability questions, but they cannot be looser than this proton source-envelope acceptance.
 
@@ -237,7 +237,7 @@ m_{\mathrm{tr}}(p)
 \frac{1}{3}h_{ab}\mathsf{I}_{p}^{ab}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-abb4e8c28a51b939)
+[View →](../../../../equation-mapping.html#corpus-equation-abb4e8c28a51b939)
 
 Here $\mathsf{I}_{\mathrm{strong},uud}^{ab}$ denotes the closed color-corridor and flux contribution, $\mathsf{I}_{\mathrm{cross},uud}^{ab}$ denotes branch-cross terms created by locking the three quark records into one baryon, and $\mathsf{I}_{\mathrm{sea},uud}^{ab}$ denotes the retained local Noether sea response for the proton branch. This is hadronic composite closure, not a conversion of Generation-I quarks into higher-generation exposed cores. Strong-sector exchange may change color exceptionality and flux routing, but on the strong-interaction timescale it must preserve the generation tier unless a separate weak or high-energy branch-transition ledger is supplied.
 
@@ -263,7 +263,7 @@ $$
 \mathbf J_{\mathrm{sea}}(Q).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aa1c04fb26d9f078)
+[View →](../../../../equation-mapping.html#corpus-equation-aa1c04fb26d9f078)
 
 Here $\mathbf J_{q,\mathrm{braid}}$ is the retained internal Noether braid angular-momentum contribution of each quark branch, $\mathbf L_{q,\mathrm{orb}}$ is the quark-branch orbital contribution inside the accepted proton envelope, $\mathbf J_{\mathrm{color\ corr}}$ is the angular momentum carried by color-corridor and flux-tube reconfiguration, $\mathbf L_{\mathrm{tube}}$ records tube geometry and recoil circulation, and $\mathbf J_{\mathrm{sea}}$ records Noether sea and sea-pair dressing that remains inside the proton branch rather than outside as ambient medium.
 
@@ -286,7 +286,7 @@ $$
 \Delta_{J_p}(Q),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2fb0c1ee7e228847)
+[View →](../../../../equation-mapping.html#corpus-equation-2fb0c1ee7e228847)
 with the realized proton spin axis defined as $\hat{\mathbf J}_p=\mathbf J_p(Q)/\lVert\mathbf J_p(Q)\rVert$; alignment of that axis with an external quantization direction is a measurement-layer question, not part of this residual. This is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of the proton-spin puzzle. Standard quark-spin, gluon-spin, sea, and orbital fractions are useful resolution-dependent comparison data, but "gluon spin" should map to color-corridor and flux-tube angular-momentum rows rather than to a standalone point-particle spin inserted into the proton.
 
 ## Proton and Neutron as Color-Singlet Baryon Assemblies
@@ -305,13 +305,13 @@ $$
 (5\epsilon_+ + 1\epsilon_-)+(5\epsilon_+ + 1\epsilon_-)+(2\epsilon_+ + 4\epsilon_-)=(12\epsilon_+ + 6\epsilon_-)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f1acf7d0d19927d4)
+[View →](../../../../equation-mapping.html#corpus-equation-f1acf7d0d19927d4)
 which gives net charge
 $$
 \frac{12-6}{6}e=+e
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aea66e2016332c2f)
+[View →](../../../../equation-mapping.html#corpus-equation-aea66e2016332c2f)
 
 ### Neutron
 
@@ -322,13 +322,13 @@ $$
 (5\epsilon_+ + 1\epsilon_-)+(2\epsilon_+ + 4\epsilon_-)+(2\epsilon_+ + 4\epsilon_-)=(9\epsilon_+ + 9\epsilon_-)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-13e321745905b9db)
+[View →](../../../../equation-mapping.html#corpus-equation-13e321745905b9db)
 so the net charge is
 $$
 \frac{9-9}{6}e=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6b1e0b7d29fc9529)
+[View →](../../../../equation-mapping.html#corpus-equation-6b1e0b7d29fc9529)
 
 The neutron is therefore not neutral because it lacks internal charge structure, but because its quark-level axial asymmetries cancel in total.
 
@@ -345,7 +345,7 @@ $$
 \sum_{a\in A_n}\sigma_a=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a4fe2acddb657279)
+[View →](../../../../equation-mapping.html#corpus-equation-a4fe2acddb657279)
 The second condition is the neutron's neutral axial inventory $(9\epsilon_+ + 9\epsilon_-)$; it cancels net charge but does not by itself prove that the first moment vanishes. For a declared neutron envelope scale $R_n$ and spin direction $\hat{\mathbf{J}}_n$, define the dimensionless CP-odd axial imbalance
 $$
 \vartheta_n
@@ -353,7 +353,7 @@ $$
 \frac{\hat{\mathbf{J}}_n\cdot\mathbf{d}_{n,\mathrm{ax}}}{\epsilon R_n}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0d9d5af073ed0a0d)
+[View →](../../../../equation-mapping.html#corpus-equation-0d9d5af073ed0a0d)
 
 The strong-sector flux corridor and local Noether sea response may contribute additional spin-aligned effective moments. A compact neutron-assembly residual is therefore
 $$
@@ -373,7 +373,7 @@ d_n^{\mathrm{asm}}
 \frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0c2093b8465afaa2)
+[View →](../../../../equation-mapping.html#corpus-equation-0c2093b8465afaa2)
 
 where $d_n^{\max}$ is the declared experimental ceiling on the neutron electric dipole moment used as the comparison bound.
 
@@ -394,7 +394,7 @@ $$
 \frac{d_n^{\max}}{\epsilon R_n}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-80aa62f1e6a60401)
+[View →](../../../../equation-mapping.html#corpus-equation-80aa62f1e6a60401)
 
 The tolerance scale shows what kind of proof is required. Using the declared comparison values $d_n^{\max}=1.8\times10^{-26}\,e\cdot\mathrm{cm}$ from the [PSI ultracold-neutron measurement](https://doi.org/10.1103/PhysRevLett.124.081803) and $R_n=0.8\,\mathrm{fm}$ gives
 
@@ -407,7 +407,7 @@ $$
 1.4\times10^{-12}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-89c62c9263d5d4e9)
+[View →](../../../../equation-mapping.html#corpus-equation-89c62c9263d5d4e9)
 
 This is a conditional scale estimate, not a fitted assembly parameter. A generic near-cancellation is not an adequate proof route at this tolerance: the leading contribution must vanish by an exact symmetry or quotient identity, with any surviving residual traced to declared perturbations and tested against the same neutron branch record.
 
@@ -449,7 +449,7 @@ $$
 J=\frac{1}{2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8f500787531a71d1)
+[View →](../../../../equation-mapping.html#corpus-equation-8f500787531a71d1)
 for the coupled color-singlet baryon assembly. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
@@ -484,7 +484,7 @@ m_n-m_p
 +\Delta E_{\text{flux}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-994ce4a6ba086d9e)
+[View →](../../../../equation-mapping.html#corpus-equation-994ce4a6ba086d9e)
 where:
 
 - $\Delta E_{\text{down-up}}$ is the core/axial-layer energy shift from replacing one up-type branch with one down-type branch,

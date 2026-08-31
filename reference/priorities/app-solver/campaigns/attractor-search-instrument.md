@@ -6,14 +6,13 @@
 - Status: `accepted-for-bounded-campaign-use`
 - Claim level: `priority-design`
 - Scientific campaign owner: [Braid Program](../../braid-program/priorities.md)
-- Campaign design: [Undirected Ensemble Search](../../braid-program/undirected-ensemble-search.md)
 - Instrument history: [Attractor-Search Instrument Work Log](./attractor-search-work-log.md)
 
 ## Purpose
 
 EOM owns the reusable execution capability for native ensemble-release campaigns on the `src/eom` coupled delayed-history integrator. The retained instrument consists of the release-workload profiler and checkpoint-chunked ensemble harness, together with deterministic resume, record emission, performance attribution, and campaign-driver behavior.
 
-The [Braid Program](../../braid-program/priorities.md) owns the scientific use of that capability: declared seed families, persistence criteria, fate classification, collapse adjudication, and any physical promotion.
+The scientific owner of any future campaign using that capability must declare its seed families, persistence criteria, fate classification, collapse adjudication, and any physical-promotion boundary before execution.
 
 ## Current Evidence State
 

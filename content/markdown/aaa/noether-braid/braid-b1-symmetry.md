@@ -19,7 +19,7 @@ $$
 h=\frac{R}{\sqrt3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fc7bcb8b643c7fc8)
+[View →](../../../../equation-mapping.html#corpus-equation-fc7bcb8b643c7fc8)
 and transverse radius
 $$
 \rho=R\sqrt{\frac23},
@@ -27,10 +27,34 @@ $$
 \frac{h}{\rho}=\frac{1}{\sqrt2}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fdf6b8e61333862d)
+[View →](../../../../equation-mapping.html#corpus-equation-fdf6b8e61333862d)
 The three equal-radius path pairs share that axis, a common angular frequency and circulation sense, and phases separated by $120^\circ$. Under common-frequency co-rotation about $\hat{\mathbf n}$ they therefore occupy a cyclic-symmetric B1 sublocus. The same prescribed worldlines admit an A2 rotating-channel chart and a B1 chart; the labels describe coordinate structures and do not duplicate the physical inventory.
 
-This overlap is independent of the Family-A $\lambda_A=1$ boundary. It also does not certify retention. The [scoped anti-damping results](braid-mathematics.md#scoped-anti-damping-results) derive axial no-balance for a polarity-segregated interior fixed-coordinate two-ring chart, so that chart cannot be an equilibrium under those assumptions. The all-equatorial boundary remains the only fixed-coordinate B1-family locus not excluded by that axial argument, but it still requires the full retained-branch certificate.
+This overlap is independent of the Family-A $\lambda_A=1$ boundary. It also does not certify retention. The fixed-plane lemma below derives axial no-balance for a polarity-segregated interior two-ring chart on every ordinary simple-root branch chart, without imposing a member-speed ceiling. The all-equatorial boundary remains the only fixed-coordinate B1-family locus not excluded by that axial argument, but it still requires the full retained-branch certificate.
+
+### Fixed-Plane Axial No-Balance Lemma
+
+Fix an oriented axis $\hat{\mathbf n}$ and two parallel planes at signed axial heights $+h$ and $-h$, where $h>0$. Let each labeled worldline remain in its assigned plane throughout the complete active emission-to-reception history, let the axial center be stationary, and segregate the polarities so that every site in one plane has one polarity and every site in the other plane has the opposite polarity. Assume bounded continuous histories that are differentiable with finite velocity at each admitted root, positive ranges, and a complete ledger of ordinary simple causal roots with finite nonzero transmitter factors. No common angular frequency, constant member velocity, or bound on member speed is required.
+
+Write $s_i\in\{+1,-1\}$ for receiver $i$'s plane, so $\hat{\mathbf n}\cdot\mathbf X_i=s_i h$. For a hit emitted by a site $j$ in the same plane, including a same-transmitter hit, the canonical delayed separation has zero axial projection. For a hit emitted from the opposite plane,
+
+$$
+\hat{\mathbf n}\cdot\hat{\mathbf r}_{ij}
+=
+\frac{2s_i h}{r_{ij}},
+\qquad
+\hat{\mathbf n}\cdot\mathbf A_{ij}
+=
+-s_i\frac{2\kappa |q_iq_j|h}{r_{ij}^{3}}W^{\mathrm{acc}}_{ij},
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-41c91addc9177652)
+
+where $W^{\mathrm{acc}}_{ij}=c_f/|D_{t,ij}|>0$ on an ordinary simple root. Thus every opposite-plane hit accelerates the receiver strictly toward the midplane, while every same-plane hit contributes exactly zero axially. The signs cannot cancel. A bounded complete opposite-plane history supplies at least one cross-plane root: for delay $\tau\ge0$, the continuous root residual $F(\tau)=c_f\tau-\|\mathbf X_i(T)-\mathbf X_j(T-\tau)\|$ begins negative and becomes positive once $c_f\tau$ exceeds the bounded separation. If that crossing is non-simple, the history has left the lemma's ordinary-root domain rather than produced axial balance.
+
+A fixed-height path has $\hat{\mathbf n}\cdot\ddot{\mathbf X}_i=0$, contradicting the strictly inward axial sum. Therefore no polarity-segregated rigid two-ring history satisfying these assumptions is acceleration-balanced at nonzero height. The conclusion includes finite sub-field, field-speed, and super-field-speed motions because member speed changes the root inventory and positive weights but not the axial signs.
+
+Claim level: **derived** from the canonical [Master Equation](../dynamics/master-equation.md#transmitter-side-roots-acceleration-weight-and-action-residual) on the stated ordinary simple-root chart. The lemma excludes caustics, non-simple roots and any associated event contribution, collisions, incomplete or unbounded histories, variable ring height, plane precession, axial translation, old history outside the two fixed planes, mixed polarity within a plane, and any external, constraint, or Noether-sea acceleration. The $h=0$ planar boundary is outside its strict conclusion. A complete bounded ordinary-root history meeting the assumptions whose exact canonical axial acceleration sum vanishes would falsify the result. The lemma makes no claim about retention, stability, post-release fate, or an orthogonal-plane weave.
 
 ## Discrete-Symmetry Structure
 
@@ -44,7 +68,7 @@ $$
 \chi=\operatorname{sign}(\mathbf p\cdot\mathbf S),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fb282f2daf21e3eb)
+[View →](../../../../equation-mapping.html#corpus-equation-fb282f2daf21e3eb)
 
 the declared chiral invariant of that prescribed member. Its transformation law is forced by the vector characters above:
 
@@ -66,7 +90,7 @@ c_{\mathrm{pol}}
 \chi=o_{\mathrm{PA}}c_{\mathrm{pol}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9860f65e88fc9cff)
+[View →](../../../../equation-mapping.html#corpus-equation-9860f65e88fc9cff)
 
 Thus $C$ reverses $c_{\mathrm{pol}}$ at fixed $o_{\mathrm{PA}}$, while $P$ reverses $o_{\mathrm{PA}}$ at fixed $c_{\mathrm{pol}}$. With left/right defined by the sign of $\chi$, $C$ maps a left braid to a right polarity-conjugate braid on the same pro/anti orientation; $CP$ maps it to a left polarity-conjugate braid on the mirrored orientation. This is exact covariance of the declared kernel plus definition-level sign bookkeeping. It does not establish formation, branch retention, or $CP$ conservation in weak reaction channels.
 

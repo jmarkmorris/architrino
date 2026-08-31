@@ -6,7 +6,7 @@ Architrino is a human-led, AI-assisted research and publishing project devoted t
 
 J Mark Morris works with AI research collaborators on mathematical reasoning, computational investigation, writing, and critique. The partnership brings questions, proposed explanations, and detailed checks into a shared process of inquiry. The corpus uses AI (Assembled Intelligence) as its theory-specific term for these collaborators.
 
-Architrino is also the company that gives the public project an accountable home. The theory sets out the physics, the webapp makes the work available to readers, and the repository preserves its development and review.
+Architrino is also the company that gives the public project an accountable home. The theory sets out the physics, and the website makes its explanations, source materials, and computational tools available to readers.
 
 ### What Architrino Provides
 
@@ -24,16 +24,16 @@ The project’s human and AI collaborators work within that shared inheritance. 
 
 The public project is available through:
 
-- `architrino.com`, the reader-facing webapp and knowledge graph;
-- the GitHub repository, the versioned workbench for documents, scenes, checks, and critique;
-- generated reading copies and review artifacts for exchange and annotation;
+- [architrino.com](https://architrino.com), with connected explanations and interactive visualizations;
+- the public GitHub repository, with source documents and software available for inspection;
+- downloadable reading copies for study and annotation;
 - support and contact routes for readers, critics, contributors, and patrons.
 
 [About the Webapp](../../../../markdown/aaa/archie/about-the-webapp.md) introduces the reading experience, and [GitHub Presence and Community](../../../../markdown/aaa/archie/github-presence-and-community.md) describes ways to follow and contribute to the work.
 
 ### Sources, References, and Attribution
 
-Architrino uses references selectively to support understanding, verification, and continued research. They help human and AI readers recover assumptions, inspect original arguments, and reconsider conclusions across research sessions. They are neither an exhaustive account of intellectual influences nor a reading requirement for every reader, and are not added merely to give an explanation the appearance of authority.
+Architrino uses references selectively to support understanding, verification, and continued research. They help readers examine assumptions, inspect original arguments, and evaluate conclusions. They are neither an exhaustive account of intellectual influences nor a reading requirement for every reader, and are not added merely to give an explanation the appearance of authority.
 
 A reference earns its place through a specific contribution to the passage in which it is used. Reasons to seek one include:
 
@@ -43,23 +43,25 @@ A reference earns its place through a specific contribution to the passage in wh
 - A quotation, attribution, or substantive account or criticism of another person’s work that readers should be able to check against its source.
 - An especially useful treatment of a difficult concept that offers a clear, bounded benefit to readers or future research beyond the explanation already given.
 
-These are reasons to consider a reference, not instructions to attach one to every occurrence of a topic. Selection requires an identifiable purpose, checked relevance, and a benefit not already supplied by the page or its existing references. A source’s fame, age, citation count, topical resemblance, or status as a seminal work is not sufficient. Nor is a desire to complete a bibliography, decorate familiar explanations, or send readers into a broad literature survey. There is no reference quota; a page with no references can be complete.
+Each reference serves an identifiable purpose, has checked relevance, and adds something not already supplied by the explanation or its existing references. A source’s fame, age, citation count, topical resemblance, or status as a seminal work is not sufficient reason to include it. A page with no references can be complete when its claims are supported by explicit reasoning and do not depend on external evidence.
 
-Choose the source best suited to the purpose: original work for a contribution or direct result, scholarly history for historical interpretation, an authoritative dataset for a measurement, and a reliable review or textbook for a mature principle or synthesis. Popular and encyclopedia accounts are useful discovery aids, not substitutes for checking the underlying evidence. A source is not excluded merely because it challenges Architrino; relevant contrary evidence and limits belong in an honest account. Citing an external theory for comparison does not make its assumptions premises of an Architrino derivation.
+The source must suit its purpose: original work for a contribution or direct result, scholarly history for historical interpretation, an authoritative dataset for a measurement, and a reliable review or textbook for a mature principle or synthesis. Popular and encyclopedia accounts can orient readers, but do not replace the underlying evidence. A source is not excluded merely because it challenges Architrino; relevant contrary evidence and limits belong in an honest account. Citing an external theory for comparison does not make its assumptions premises of an Architrino derivation.
 
-Original derivations are supported by their stated premises and reasoning; they do not require external citations merely because they are original. Familiar background explanations do not require a citation on every sentence, but consequential or disputed claims need identifiable support. An unchecked or inaccessible candidate remains a research lead, not verified support.
+Original derivations are supported by their stated premises and reasoning; they do not require external citations merely because they are original. Familiar background explanations do not require a citation on every sentence, but consequential or disputed claims need identifiable support. A source that has not been inspected cannot be presented as verified support.
 
-The explanation must remain understandable without following external links. Prefer a short source note near the end of the page, identifying the passage it serves and explaining the reference’s role in one sentence. Use a local citation when needed to make a quotation, attribution, or evidentiary dependency unambiguous. Choose the smallest set that serves the distinct purposes; additional references should add something material rather than repeat the same support.
+The explanation must remain understandable without following external links. A short source note near the end of a page identifies the passage it supports and explains the reference’s role. Citations accompany particular passages when needed to make a quotation, attribution, or dependence on external evidence unambiguous. Additional references should add something material rather than repeat the same support.
 
 A useful reference identifies the work beyond its current web address: author, title, year, and a stable identifier such as a DOI or arXiv identifier where available, with page, section, equation, or dataset details when needed. Links provide convenient access without a guarantee of permanent availability. A changed address does not by itself invalidate the work or justify discarding its bibliographic identity.
+
+Published computational evidence is identified by a comprehensible title and stable public identifier, with an explanation of what it establishes. The accompanying methods or data-availability record provides the information needed to inspect and reproduce the result. Chapters explain the result’s assumptions, scope, and limitations; links give readers access to the supporting evidence.
 
 Required attribution for third-party material remains separate from this selective-reference policy. The applicable notices and credit requirements are preserved for each item, as described in the project’s [Licenses, Attribution & Source Use](../../../../markdown/aaa/archie/licenses-attributions.md) page.
 
 ### AI-Assisted Research and Review
 
-When adding a reference or relying substantively on one, contributors—including AI collaborators—are expected to inspect the relevant source material and check that it supports the stated use. A working link, a plausible citation, or an AI-generated summary is not sufficient verification.
+References used as evidence require inspection of the relevant source material and confirmation that it supports the stated claim. This standard applies equally to human and AI-assisted contributions. A working link, a plausible citation, or an AI-generated summary is not sufficient verification.
 
-Source checking is part of research and revision rather than a promise that every reference is continuously monitored. Existing references are not presumed verified merely because they appear in the corpus. Uncertainty about a source or its relevance should be stated when it affects a claim.
+The presence of a reference does not guarantee its accuracy or establish that it has been independently verified. Uncertainty about a source or its relevance should be stated when it affects a claim.
 
 AI-generated wording and model-training provenance are not independent evidence. Claims require support appropriate to their kind: an explicit derivation, an independently checkable source, or a declared validation record. Broad acknowledgment of inherited knowledge does not replace that support.
 
@@ -67,12 +69,12 @@ AI-generated wording and model-training provenance are not independent evidence.
 
 J Mark Morris retains human editorial judgment and publication accountability, including responsibility for published claims and corrections. This does not assert that the publisher has personally read every cited work or independently repeated every check.
 
-The Chief Technology Officer (CTO) and Chief Science Officer (CSO) offices serve as AI research synthesizers and collaborators under CEO authority. These and other materially assisting AI systems may be acknowledged by documented contribution role: research synthesis, analysis, drafting, critique, software implementation, or review support. They are not independent legal persons, human employees, or academically accountable authors; human review remains required for publication.
+AI assistance may be acknowledged through its documented contribution to research synthesis, analysis, drafting, critique, software implementation, or review. Such acknowledgment describes the assistance provided; it does not transfer authorship accountability or responsibility for published claims from people to AI systems.
 
-Source notes, review records, and repository history support examination and correction. They do not imply exhaustive verification, attribution of every AI contribution, or a complete record of how each passage was produced.
+Published source notes and contribution statements help readers examine the evidence and understand the assistance acknowledged. They do not imply exhaustive verification or a complete account of how each passage was produced.
 
 [People](../../../../markdown/aaa/archie/people.md), [Values](../../../../markdown/aaa/archie/values.md), [Validation Protocols](../../../../markdown/aaa/validation/validation-protocols.md), and [Legal Terms](../../../../markdown/aaa/archie/legal-terms.md) provide the surrounding role, evidence, and publication standards.
 
 ### Operating Standard
 
-Architrino open-source offers should remain public, inspectable, and claim-disciplined. Clear explanations, visible evidence, and honestly stated open questions make it possible for others to join the inquiry and help improve the work.
+Architrino’s public work is intended to be accessible, inspectable, and clear about what each claim establishes. Clear explanations, visible evidence, and honestly stated open questions make it possible for others to join the inquiry and help improve the work.

@@ -13,7 +13,7 @@ $$
 |\psi\rangle = \sum_n c_n |n\rangle
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-532f618d9a79c292)
+[View →](../../../../../equation-mapping.html#corpus-equation-532f618d9a79c292)
 The coefficients $c_n$ are complex probability amplitudes. In ordinary non-relativistic, fixed-particle-number quantum mechanics, the system evolves deterministically according to the linear Schrödinger equation until a measurement occurs. Upon measurement, the orthodox (Copenhagen) interpretation posits a discontinuous "collapse" of the wavefunction, where the system instantaneously projects into a single basis state $|k\rangle$ with probability $P_k = |c_k|^2$ (the Born rule). 
 
 Traditional superposition treats the indeterminacy as fundamental and ontological: prior to measurement, the particle possesses no definite state or trajectory.
@@ -59,7 +59,7 @@ $$
 \tau_c=\inf\{t>0:\Sigma(X_t)=0\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-72f990d4e0d44671)
+[View →](../../../../../equation-mapping.html#corpus-equation-72f990d4e0d44671)
 
 For a declared apparatus kernel $\mathcal{K}_A$, coarse-graining $\mathcal{Q}$, access region $W$, and competing basin family $\{B_i(t)\}$, the pre-record branch interval can be bounded by the first time at which multiple alternatives are recordable in the retained description:
 $$
@@ -71,7 +71,7 @@ N_{\mathcal{Q},W}(B_j(t))\ge 1,
 \Delta_{\mathrm{div}}(t_0,t,T;\mathcal{Q},W)>\varepsilon_{\mathrm{div}}\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-92f993a995edd85f)
+[View →](../../../../../equation-mapping.html#corpus-equation-92f993a995edd85f)
 Here $N_{\mathcal{Q},W}$ is the recordable basin count defined in [Wavefunction Ontology](../../quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure), and $\Delta_{\mathrm{div}}$ is the restartability residual used in [Measurement Ontology](../../quantum/measurement-ontology.md#what-makes-an-interaction-a-record). This is not a consciousness criterion. It is a guardrail against treating an arbitrary basis expansion as a physical branch event.
 
 Closure requirements:

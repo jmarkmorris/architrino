@@ -6,21 +6,13 @@ import {
   assertBorgPrescribedDisplayFrame,
   resolveBorgPrescribedTranslation,
 } from "./BorgPrescribedTranslation.js";
+import { borgPolarityColor, describeBorgOrbitTrails, borgTrailSegments } from "./BorgOrbitTrails.mjs";
 import { clearBorgSceneGroup } from "./BorgSceneDisposal.js";
 
-const ANSATZ_COLOR = 0xc6b6ff;
 const AXIS_COLORS = Object.freeze([0x8fdcf2, 0xf0a6d2, 0xb8a8ff]);
 const COINCIDENT_AXIS_COLOR = 0xd6dde3;
 const AXIS_COINCIDENCE_TOLERANCE = 1e-9;
 const SWEPT_ENVELOPE_COLOR = 0x7bd6c2;
-const PRESCRIBED_PATH_COLORS = Object.freeze([
-  0x82c7ff,
-  0xff9b92,
-  0xb7e89b,
-  0xffd37a,
-  0xc6b6ff,
-  0x83e2d1,
-]);
 const DEFAULT_TUBE_RADIUS = 0.018;
 const DEFAULT_TUBE_OPACITY = 0.2;
 
@@ -34,8 +26,6 @@ export function createBorgAssemblyViewScene({
   }
   const axisGroup = new THREE.Group();
   axisGroup.userData.kind = "source-carried-binary-axes";
-  const ansatzGroup = new THREE.Group();
-  ansatzGroup.userData.kind = "source-carried-ansatz-curves";
   const sweptEnvelopeGroup = new THREE.Group();
   sweptEnvelopeGroup.userData.kind = "display-only-swept-envelope";
   const prescribedPathGroup = new THREE.Group();
@@ -44,7 +34,6 @@ export function createBorgAssemblyViewScene({
   prescribedTubeGroup.userData.kind = "display-only-path-history-tubes";
   group.add(
     axisGroup,
-    ansatzGroup,
     sweptEnvelopeGroup,
     prescribedPathGroup,
     prescribedTubeGroup,
@@ -66,7 +55,6 @@ export function createBorgAssemblyViewScene({
   function setRecord(nextEntry) {
     entry = nextEntry;
     clearBorgSceneGroup(axisGroup);
-    clearBorgSceneGroup(ansatzGroup);
     clearBorgSceneGroup(sweptEnvelopeGroup);
     clearBorgSceneGroup(prescribedPathGroup);
     clearBorgSceneGroup(prescribedTubeGroup);
@@ -77,10 +65,8 @@ export function createBorgAssemblyViewScene({
     selectedWorldlineId = null;
     tubeVisible = false;
     buildBinaryAxes(nextEntry?.dataset?.binaries ?? []);
-    buildAnsatz(nextEntry?.dataset?.ansatz ?? []);
     buildPrescribedPathStrands();
     referenceRotation = resolveSourceRotation(nextEntry);
-    ansatzGroup.visible = pathVisible && displayMode === "chart-pose";
     sweptEnvelopeGroup.visible = displayMode === "swept-envelope";
     prescribedPathGroup.visible = pathVisible;
     prescribedTubeGroup.visible = pathVisible && tubeVisible;
@@ -89,7 +75,6 @@ export function createBorgAssemblyViewScene({
 
   function setDisplayMode(mode) {
     displayMode = mode;
-    ansatzGroup.visible = pathVisible && mode === "chart-pose";
     sweptEnvelopeGroup.visible = mode === "swept-envelope";
     if (mode === "swept-envelope" && sweptEnvelopeGroup.children.length === 0) {
       buildSweptEnvelope();
@@ -99,7 +84,6 @@ export function createBorgAssemblyViewScene({
 
   function setPathVisible(visible) {
     pathVisible = Boolean(visible);
-    ansatzGroup.visible = pathVisible && displayMode === "chart-pose";
     prescribedPathGroup.visible = pathVisible;
     prescribedTubeGroup.visible = pathVisible && tubeVisible;
     render?.();
@@ -115,17 +99,7 @@ export function createBorgAssemblyViewScene({
       );
     }
     translationFrame = nextFrame;
-    prescribedPathGroup.children.forEach((line) => {
-      const positions = line.userData.positionArrays?.[translationFrame];
-      if (positions) {
-        line.geometry.setAttribute(
-          "position",
-          new THREE.Float32BufferAttribute(positions, 3),
-        );
-        line.geometry.computeBoundingSphere();
-        line.frustumCulled = false;
-      }
-    });
+    updatePrescribedPathWindows();
     rebuildSelectedTube();
     render?.();
   }
@@ -207,8 +181,8 @@ export function createBorgAssemblyViewScene({
       end: dataset.window.end,
       sampleInterval: dataset.window.sampleInterval,
     });
-    const binaryIndexByWorldline = binaryMembership(dataset.binaries);
-    dataset.worldlines.forEach((worldline, worldlineIndex) => {
+    const trailPolicies = describeBorgOrbitTrails(dataset);
+    dataset.worldlines.forEach((worldline) => {
       const fixed = [];
       const coTranslating = [];
       const times = [];
@@ -246,22 +220,21 @@ export function createBorgAssemblyViewScene({
         new THREE.Float32BufferAttribute(fixed, 3),
       );
       geometry.computeBoundingSphere();
-      const binaryIndex = binaryIndexByWorldline.get(worldline.id) ?? worldlineIndex;
+      const trailPolicy = trailPolicies.get(worldline.id);
       const material = new THREE.LineBasicMaterial({
-        color: PRESCRIBED_PATH_COLORS[
-          binaryIndex % PRESCRIBED_PATH_COLORS.length
-        ],
+        color: borgPolarityColor(worldline.polarity),
+        vertexColors: true,
         transparent: true,
-        opacity: 0.88,
+        opacity: 1,
         depthWrite: false,
       });
-      const line = new THREE.Line(geometry, material);
+      const line = new THREE.LineSegments(geometry, material);
       line.frustumCulled = false;
       line.userData = {
         kind: "prescribed-path-history-strand",
         worldlineId: worldline.id,
         pathKey: worldline.pathKey,
-        binaryIndex,
+        trailPolicy,
         times: Object.freeze(times),
         positionArrays: Object.freeze({
           [BORG_PRESCRIBED_DISPLAY_FRAME_FIXED]: new Float32Array(fixed),
@@ -272,6 +245,12 @@ export function createBorgAssemblyViewScene({
         }),
         valueAuthority: "display-only-declared-interpolation",
       };
+      line.userData.pointsByFrame = Object.fromEntries(Object.entries(line.userData.positionArrays).map(([frame, values]) =>
+        [frame, Array.from({length:times.length}, (_,i) => Array.from(values.slice(i*3,i*3+3)))]));
+      geometry.setAttribute("position", new THREE.Float32BufferAttribute(new Float32Array((times.length-1)*6),3));
+      geometry.setAttribute("color", new THREE.Float32BufferAttribute(new Float32Array((times.length-1)*8),4));
+      geometry.attributes.position.setUsage(THREE.DynamicDrawUsage);
+      geometry.attributes.color.setUsage(THREE.DynamicDrawUsage);
       prescribedPathGroup.add(line);
     });
     updatePrescribedPathWindows();
@@ -280,11 +259,18 @@ export function createBorgAssemblyViewScene({
   function updatePrescribedPathWindows() {
     if (!Number.isFinite(currentTime)) return;
     prescribedPathGroup.children.forEach((line) => {
-      const times = line.userData.times ?? [];
-      const firstTime = currentTime - historyDepth;
-      const start = lowerBound(times, firstTime);
-      const end = upperBound(times, currentTime + 1e-12, start);
-      line.geometry.setDrawRange(start, Math.max(0, end - start));
+      const { times, pointsByFrame, trailPolicy } = line.userData;
+      const points = pointsByFrame[translationFrame] ?? pointsByFrame[BORG_PRESCRIBED_DISPLAY_FRAME_FIXED];
+      const segments = borgTrailSegments(points, times, currentTime, Math.min(historyDepth,trailPolicy.duration), trailPolicy.fade);
+      const positions=line.geometry.attributes.position, colors=line.geometry.attributes.color;
+      segments.forEach((segment,i) => {
+        positions.array.set([...segment.a,...segment.b],i*6);
+        colors.array.set([1,1,1,segment.startAlpha,1,1,1,segment.endAlpha],i*8);
+      });
+      positions.needsUpdate=true;
+      colors.needsUpdate=true;
+      line.geometry.setDrawRange(0,segments.length*2);
+      line.userData.visibleSegments = segments.map(({start,end,startAlpha,endAlpha}) => ({start,end,startAlpha,endAlpha}));
     });
   }
 
@@ -305,6 +291,7 @@ export function createBorgAssemblyViewScene({
     if (!worldline) return;
     const depth = Math.min(
       historyDepth,
+      describeBorgOrbitTrails(dataset).get(worldline.id)?.duration ?? 0,
       currentTime - dataset.window.start,
     );
     if (!(depth > 0)) return;
@@ -337,11 +324,8 @@ export function createBorgAssemblyViewScene({
       8,
       false,
     );
-    const strand = prescribedPathGroup.children.find(
-      (line) => line.userData.worldlineId === worldline.id,
-    );
     const material = new THREE.MeshBasicMaterial({
-      color: strand?.material?.color ?? 0xc6b6ff,
+      color: borgPolarityColor(worldline.polarity),
       transparent: true,
       opacity: tubeOpacity,
       depthWrite: false,
@@ -363,37 +347,6 @@ export function createBorgAssemblyViewScene({
     const origin = toWorld({ x: 0, y: 0, z: 0 }, new THREE.Vector3());
     const endpoint = toWorld({ x: radius, y: 0, z: 0 }, new THREE.Vector3());
     return Math.max(1e-6, origin.distanceTo(endpoint));
-  }
-
-  function buildAnsatz(ansatzRows) {
-    ansatzRows.forEach((row, rowIndex) => {
-      const points = readPolylinePoints(row);
-      if (points.length < 2) {
-        return;
-      }
-      const positions = [];
-      const from = new THREE.Vector3();
-      const to = new THREE.Vector3();
-      for (let index = 0; index + 1 < points.length; index += 1) {
-        toWorld(points[index], from);
-        toWorld(points[index + 1], to);
-        positions.push(from.x, from.y, from.z, to.x, to.y, to.z);
-      }
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-      const material = new THREE.LineBasicMaterial({
-        color: row?.color ?? ANSATZ_COLOR,
-        transparent: true,
-        opacity: 0.92,
-        depthWrite: false,
-      });
-      const line = new THREE.LineSegments(geometry, material);
-      line.userData = {
-        sourceIndex: rowIndex,
-        sourceLabel: row?.label ?? `ansatz-${rowIndex + 1}`,
-      };
-      ansatzGroup.add(line);
-    });
   }
 
   function buildBinaryAxes(binaryRows) {
@@ -467,13 +420,11 @@ export function createBorgAssemblyViewScene({
 
   function dispose() {
     clearBorgSceneGroup(axisGroup);
-    clearBorgSceneGroup(ansatzGroup);
     clearBorgSceneGroup(sweptEnvelopeGroup);
     clearBorgSceneGroup(prescribedPathGroup);
     clearBorgSceneGroup(prescribedTubeGroup);
     group.remove(
       axisGroup,
-      ansatzGroup,
       sweptEnvelopeGroup,
       prescribedPathGroup,
       prescribedTubeGroup,
@@ -504,16 +455,6 @@ export function createBorgAssemblyViewScene({
       return translationFrame;
     },
   });
-}
-
-function binaryMembership(binaryRows) {
-  const map = new Map();
-  binaryRows.forEach((binary, index) => {
-    const members = binary?.members ?? binary?.worldlineIds;
-    if (!Array.isArray(members)) return;
-    members.forEach((worldlineId) => map.set(String(worldlineId), index));
-  });
-  return map;
 }
 
 function groupCoincidentBinaryAxes(binaryRows) {
@@ -613,46 +554,6 @@ function resolveSourceRotation(entry) {
   return null;
 }
 
-function readPolylinePoints(row) {
-  const points = row?.points ?? row?.samples ?? row?.polyline;
-  if (!Array.isArray(points)) {
-    return [];
-  }
-  return points.map((point) => point?.position ?? point).filter((point) =>
-    Number.isFinite(Number(point?.x)) &&
-    Number.isFinite(Number(point?.y)) &&
-    Number.isFinite(Number(point?.z)),
-  );
-}
-
 function finiteVector(vector) {
   return ["x", "y", "z"].every((axis) => Number.isFinite(Number(vector?.[axis])));
-}
-
-function lowerBound(values, target, start = 0) {
-  let low = start;
-  let high = values.length;
-  while (low < high) {
-    const middle = low + Math.floor((high - low) / 2);
-    if (values[middle] < target) {
-      low = middle + 1;
-    } else {
-      high = middle;
-    }
-  }
-  return low;
-}
-
-function upperBound(values, target, start = 0) {
-  let low = start;
-  let high = values.length;
-  while (low < high) {
-    const middle = low + Math.floor((high - low) / 2);
-    if (values[middle] <= target) {
-      low = middle + 1;
-    } else {
-      high = middle;
-    }
-  }
-  return low;
 }

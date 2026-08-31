@@ -8,4 +8,6 @@ Accepted implementation work belongs in [work-queue.md](work-queue.md), strategi
 
 ## Unresolved Ideas
 
-- None currently recorded.
+No unresolved family-navigation proposal remains here. Flat catalog organization and peer example names are accepted rules in [the catalog contract](requirements-and-design.md#flat-catalog-and-selection). Open identity relations and general facet definitions remain in BORG-014 rather than reinstating a family hierarchy.
+
+Orbit sharing is accepted and implemented; its definitions and source-comparison boundary live in [the orbit-sharing contract](requirements-and-design.md#orbit-sharing), not in this provisional-ideas file.

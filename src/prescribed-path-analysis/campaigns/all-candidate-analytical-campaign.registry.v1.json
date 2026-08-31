@@ -1,7 +1,7 @@
 {
   "schema": "prescribed-path-analysis/all-candidate-campaign-registry.v1",
   "registryId": "all-borg-braid-candidates.v1",
-  "catalogId": "borg-braid-record-catalog.v0",
+  "catalogId": "borg-braid-record-catalog.v1",
   "generatedCampaign": {
     "campaignId": "all-braid-candidate-complete-cycle-v1",
     "campaignStage": "all-candidate-complete-cycle-prescribed-record-analysis",

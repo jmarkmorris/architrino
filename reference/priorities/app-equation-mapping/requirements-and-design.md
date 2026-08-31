@@ -65,7 +65,7 @@ Two collection views separate curated maps from the full corpus:
 
 Opening an equation from a textbook link selects All equations and reveals its chapter, section, and selected row. This navigation does not change promotion, equation identity, or the return destination.
 
-In the web reader, every canonical post-equation link is rendered as a compact `View →` action beside the display equation. The source-relative Markdown link remains unchanged for portable readers, and returning from Equation Mapping restores the exact source route and focuses the originating action.
+Every canonical post-equation link uses the compact `View →` label in portable Markdown readers, including VS Code preview. The web reader renders the same link as a styled action beside the display equation, and returning from Equation Mapping restores the exact source route and focuses the originating action.
 
 ## Visual Language
 

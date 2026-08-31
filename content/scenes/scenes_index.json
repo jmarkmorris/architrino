@@ -1964,6 +1964,11 @@
       "id": "philosophy_history__information_and_the_wake",
       "name": "Information and the Wake",
       "path": "content/scenes/philosophy_history/information_and_the_wake.json"
+    },
+    {
+      "id": "dynamics__shared_circle_assemblies",
+      "name": "Shared-Circle Assemblies",
+      "path": "content/scenes/dynamics/shared_circle_assemblies.json"
     }
   ]
 }

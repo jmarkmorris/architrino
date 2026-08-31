@@ -29,13 +29,13 @@ For principal quantum number $n$, the shell capacity is:
 
 $$N_{\text{shell}} = 2n^2$$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a134096a2afea7f8)
+[View →](../../../../equation-mapping.html#corpus-equation-a134096a2afea7f8)
 
 For subshell angular momentum $\ell$, the capacity is:
 
 $$N_{\ell} = 2(2\ell+1)$$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4dff3ed9dcfc1966)
+[View →](../../../../equation-mapping.html#corpus-equation-4dff3ed9dcfc1966)
 
 This yields:
 

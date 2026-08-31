@@ -15,7 +15,6 @@ import {
   mergeBorgFrameRows,
 } from "../src/apps/borg/BorgFrameRows.js";
 import {
-  BORG_PRESCRIBED_PATH_TRAIL_COLOR,
   calculateBorgOrthographicFrustum,
   createBorgParticleStyles,
   createDefaultEomShadowRunnerOptions,
@@ -83,18 +82,19 @@ test("Borg path history is on and visible by default", () => {
   );
 });
 
-test("prescribed orbital trails are neutral purple while endpoint colors retain polarity", () => {
+test("all Borg trails use exact endpoint polarity colors", () => {
   const frames = [
     { pathKey: 1, stateFlags: 1 },
     { pathKey: 2, stateFlags: 2 },
   ];
-  const prescribed = createBorgParticleStyles(frames, { prescribedGeometry: true });
-  assert.equal(prescribed.get(1).pathColor, BORG_PRESCRIBED_PATH_TRAIL_COLOR);
-  assert.equal(prescribed.get(2).pathColor, BORG_PRESCRIBED_PATH_TRAIL_COLOR);
+  const prescribed = createBorgParticleStyles(frames);
+  assert.equal(prescribed.get(1).pathColor, 0xff0000);
+  assert.equal(prescribed.get(2).pathColor, 0x0000ff);
   assert.notEqual(prescribed.get(1).color, prescribed.get(2).color);
 
   const evolved = createBorgParticleStyles(frames);
-  assert.notEqual(evolved.get(1).pathColor, evolved.get(2).pathColor);
+  assert.equal(evolved.get(1).pathColor, evolved.get(1).color);
+  assert.equal(evolved.get(2).pathColor, evolved.get(2).color);
 });
 
 test("Borg timeline uses a fixed-width hours-minutes-seconds clock", () => {
@@ -544,7 +544,8 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   );
   assert.match(runtimeSource, /assemblyViewScene\.setPathVisible\(pathGroup\.visible\);/);
   assert.match(runtimeSource, /"diagnostics",\s*\]\);/);
-  assert.match(htmlSource, /grid-template-columns: 620px minmax\(0, 1fr\);/);
+  assert.match(htmlSource, /grid-template-columns: minmax\(620px, 1395px\) minmax\(360px, 1fr\);/);
+  assert.match(htmlSource, /@media \(max-width: 980px\)[\s\S]*#borg-app \{\s*grid-template-columns: 1fr;/);
   assert.match(
     runtimeSource,
     /if \(autoStartEom\) \{\s*if \(replayActive\) \{\s*startRunAndPlayback\(\);\s*\} else \{\s*startDynamicRunner\(\);/,
@@ -810,14 +811,15 @@ test("Borg surface keeps EOM-native policy requiring verification for advancemen
   );
 });
 
-test("Borg prescribed-geometry provenance presents source-carried braid taxonomy", () => {
+test("Borg presents the catalog alias separately from source-carried geometry classes and labels", () => {
   const assemblyViewControlsSource = readFileSync(
     new URL("../src/apps/borg/BorgAssemblyViewControls.js", import.meta.url),
     "utf8",
   );
-  assert.match(assemblyViewControlsSource, /\["Braid family", taxonomy\.familyLabel\]/);
-  assert.match(assemblyViewControlsSource, /\["Candidate", taxonomy\.displayLabel\]/);
-  assert.match(assemblyViewControlsSource, /\["Member definition", `\$\{taxonomy\.memberId\} — \$\{taxonomy\.memberLabel\}`\]/);
+  assert.doesNotMatch(assemblyViewControlsSource, /taxonomy\.family(?:Id|Label)|"Braid family"/);
+  assert.match(assemblyViewControlsSource, /\["Candidate", presentation\.catalogLabel \?\? taxonomy\.displayLabel\]/);
+  assert.match(assemblyViewControlsSource, /\["Geometry class", `\$\{taxonomy\.memberId\} — \$\{taxonomy\.memberLabel\}`\]/);
+  assert.match(assemblyViewControlsSource, /\["Recorded label", taxonomy\.displayLabel\]/);
   assert.match(assemblyViewControlsSource, /\["Instantiation", taxonomy\.instantiationLabel\]/);
   assert.match(assemblyViewControlsSource, /\["Canon source", taxonomy\.canonSource\]/);
   assert.match(assemblyViewControlsSource, /\["Record date", presentation\.provenance\.date\]/);

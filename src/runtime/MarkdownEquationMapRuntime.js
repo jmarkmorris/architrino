@@ -1,6 +1,6 @@
 import { createEquationMappingLaunchHref, EQUATION_RETURN_PARAM } from "./EquationMappingNavigation.js";
 
-const EQUATION_MAPPING_SOURCE_LABEL = "Explore this equation in Equation Mapping";
+const EQUATION_MAPPING_SOURCE_LABEL = "View →";
 const EQUATION_MAPPING_SOURCE_HREF = /^(?:\.\.\/)+equation-mapping\.html#([a-z0-9][a-z0-9._~-]*)$/iu;
 
 export function resolveEquationMappingSemanticId(rawHref) {
@@ -39,7 +39,7 @@ export function createMarkdownEquationMapRuntime({ markdownBody, documentLike, g
       tooltip.setAttribute("role", "tooltip");
       tooltip.textContent = "View in Equation Mapping";
       link.className = "markdown-equation-map-link";
-      link.textContent = "View →";
+      link.textContent = EQUATION_MAPPING_SOURCE_LABEL;
       link.setAttribute("aria-label", "View in Equation Mapping");
       link.setAttribute("aria-describedby", tooltip.id);
       const updateHref = () => {

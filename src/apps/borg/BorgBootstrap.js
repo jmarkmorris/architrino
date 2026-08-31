@@ -48,8 +48,12 @@ export async function bootBorgApp({
   let eomRecordReplay = null;
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
     const recordUrls = query.getAll("eomRecord");
+    const recordSha256 = query.get("recordSha256");
+    if (recordSha256 !== null && (recordUrls.length !== 1 || !/^[a-f0-9]{64}$/.test(recordSha256))) {
+      throw new TypeError("A pinned record requires exactly one record URL and a lowercase SHA-256 hash.");
+    }
     const records = await Promise.all(recordUrls.map((recordUrl) =>
-      fetchBorgRecord(fetchLike, recordUrl, "assembly-view record")));
+      fetchBorgRecord(fetchLike, recordUrl, "assembly-view record", recordSha256)));
     assemblyViewSession = createBorgAssemblyViewSession(records);
     eomRecordReplay = {
       record: records[0],
@@ -209,7 +213,7 @@ export function createBorgBraidRecordNavigation({
   });
 }
 
-async function fetchBorgRecord(fetchLike, recordUrl, label) {
+async function fetchBorgRecord(fetchLike, recordUrl, label, expectedSha256 = null) {
   if (typeof fetchLike !== "function") {
     throw new TypeError(`Borg ${label} loading requires fetch().`);
   }
@@ -219,7 +223,12 @@ async function fetchBorgRecord(fetchLike, recordUrl, label) {
       `Borg ${label} fetch failed (${response?.status ?? "no response"}): ${recordUrl}`,
     );
   }
-  return response.json();
+  if (expectedSha256 === null) return response.json();
+  const bytes = await response.arrayBuffer();
+  const digest = await globalThis.crypto.subtle.digest("SHA-256", bytes);
+  const actual = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+  if (actual !== expectedSha256) throw new Error("The selected Borg record changed. Return to the assembly library and select its current version; the saved hash was not retargeted.");
+  return JSON.parse(new TextDecoder().decode(bytes));
 }
 
 export function createBorgStartupSeedIndex(cryptoLike = globalThis.crypto) {

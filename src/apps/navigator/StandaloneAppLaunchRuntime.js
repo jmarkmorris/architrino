@@ -26,9 +26,21 @@ const standaloneAppPathBySceneToken = Object.freeze({
   molecule: "molecule.html",
 });
 
+const internalStandaloneAppSceneTokens = new Set([
+  "braid-search",
+  "content/scenes/archie/braid_search.json",
+]);
+
 export function getStandaloneAppPathForScene(sceneToken = "") {
   const normalizedSceneToken = String(sceneToken ?? "").trim();
   return standaloneAppPathBySceneToken[normalizedSceneToken] ?? null;
+}
+
+export function isPublicStandaloneAppSearchEntry(entry = {}) {
+  const tokens = [entry?.id, entry?.path]
+    .map((token) => String(token ?? "").trim())
+    .filter(Boolean);
+  return tokens.every((token) => !internalStandaloneAppSceneTokens.has(token));
 }
 
 export function resolveStandaloneAppHrefForScene(sceneToken = "", currentHref = "") {

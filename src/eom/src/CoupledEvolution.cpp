@@ -1194,6 +1194,30 @@ bool snapshot_evaluation_succeeded(
   return snapshot.status == "certified_complete";
 }
 
+void discard_warm_root_cells(
+    NativeAccelerationSnapshotCertificate& snapshot) {
+  for (auto& row : snapshot.root_certificates) {
+    std::vector<NativeRootFreeCell>().swap(row.certificate.root_free_cells);
+  }
+}
+
+void compact_completed_step_diagnostics(
+    NativeAtomicStepCertificate& step,
+    bool preserve_accepted_warm_start) {
+  for (auto& substep : step.substeps) {
+    discard_warm_root_cells(substep.start_snapshot);
+    if (substep.endpoint_snapshot.has_value()) {
+      discard_warm_root_cells(*substep.endpoint_snapshot);
+    }
+  }
+  if (step.recertification_snapshot.has_value()) {
+    discard_warm_root_cells(*step.recertification_snapshot);
+  }
+  if (step.accepted_snapshot.has_value() && !preserve_accepted_warm_start) {
+    discard_warm_root_cells(*step.accepted_snapshot);
+  }
+}
+
 bool step_contains_caustic_entry_trigger(
     const NativeAtomicStepCertificate& step) {
   const auto snapshot_contains_trigger = [](const auto& snapshot) {
@@ -6591,22 +6615,21 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
           pair.precision_escalation_attempt_count;
     }
   };
-  if (request.chart_policy == "sharp_with_finite_width_fallback") {
-    bool retry_acceleration = false;
-    for (std::size_t pair_index = 0;
-         pair_index < acceleration.pair_certificates.size(); ++pair_index) {
-      const auto& pair = acceleration.pair_certificates[pair_index];
-      if (pair.status == "uncertified" && pair.chart == "sharp" &&
-          pair.failure_code ==
-              "sharp acceleration enclosure exceeds the declared tolerance" &&
-          !root_certificates[pair_index].memory_boundary_contact) {
-        bool refined_sharp_certified = false;
-        double refined_root_tolerance =
-            scalar_token(root_certificates[pair_index].root_tolerance);
-        for (std::size_t level = 0; level < 2U; ++level) {
-          refined_root_tolerance *= 0.1;
-          const auto refined_root_timing_start = SteadyClock::now();
-          const auto refined_root = certify_exact_pair({
+  bool retry_acceleration = false;
+  for (std::size_t pair_index = 0;
+       pair_index < acceleration.pair_certificates.size(); ++pair_index) {
+    const auto& pair = acceleration.pair_certificates[pair_index];
+    if (pair.status == "uncertified" && pair.chart == "sharp" &&
+        pair.failure_code ==
+            "sharp acceleration enclosure exceeds the declared tolerance" &&
+        !root_certificates[pair_index].memory_boundary_contact) {
+      bool refined_sharp_certified = false;
+      double refined_root_tolerance =
+          scalar_token(root_certificates[pair_index].root_tolerance);
+      for (std::size_t level = 0; level < 2U; ++level) {
+        refined_root_tolerance *= 0.1;
+        const auto refined_root_timing_start = SteadyClock::now();
+        const auto refined_root = certify_exact_pair({
               .row_id = root_certificates[pair_index].row_id +
                   "/acceleration-refinement-" + std::to_string(level + 1U),
               .receiver = pair_requests[pair_index].receiver_history,
@@ -6622,47 +6645,47 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
               .maximum_mpfr_bits = request.maximum_mpfr_bits,
               .force_precision_escalation = false,
           });
-          timing.exact_root_batch_wall_seconds +=
-              elapsed_seconds(refined_root_timing_start);
-          ++timing.root_pair_count;
-          timing.root_reevaluated_cells += refined_root.reevaluated_cells;
-          timing.root_warm_excluded_cells += refined_root.warm_excluded_cells;
-          timing.root_binary64_worker_wall_seconds +=
-              refined_root.binary64_worker_wall_seconds;
-          timing.root_mpfr_worker_wall_seconds +=
-              refined_root.mpfr_worker_wall_seconds;
-          timing.root_mpfr_pair_count +=
-              refined_root.mpfr_attempt_count > 0U ? 1U : 0U;
-          timing.root_mpfr_attempt_count += refined_root.mpfr_attempt_count;
-          timing.root_mpfr_escalation_worker_wall_seconds +=
-              refined_root.mpfr_escalation_worker_wall_seconds;
-          timing.root_mpfr_escalation_attempt_count +=
-              refined_root.mpfr_escalation_attempt_count;
-          if (refined_root.status != "certified_complete" ||
-              !refined_root.root_free_complement ||
-              refined_root.memory_boundary_contact) {
-            break;
-          }
-          root_certificates[pair_index] = refined_root;
-          const auto refined_pair =
-              certify_pair_acceleration(pair_requests[pair_index]);
-          if (refined_pair.status != "uncertified") {
-            refined_sharp_certified = true;
-            break;
-          }
+        timing.exact_root_batch_wall_seconds +=
+            elapsed_seconds(refined_root_timing_start);
+        ++timing.root_pair_count;
+        timing.root_reevaluated_cells += refined_root.reevaluated_cells;
+        timing.root_warm_excluded_cells += refined_root.warm_excluded_cells;
+        timing.root_binary64_worker_wall_seconds +=
+            refined_root.binary64_worker_wall_seconds;
+        timing.root_mpfr_worker_wall_seconds +=
+            refined_root.mpfr_worker_wall_seconds;
+        timing.root_mpfr_pair_count +=
+            refined_root.mpfr_attempt_count > 0U ? 1U : 0U;
+        timing.root_mpfr_attempt_count += refined_root.mpfr_attempt_count;
+        timing.root_mpfr_escalation_worker_wall_seconds +=
+            refined_root.mpfr_escalation_worker_wall_seconds;
+        timing.root_mpfr_escalation_attempt_count +=
+            refined_root.mpfr_escalation_attempt_count;
+        if (refined_root.status != "certified_complete" ||
+            !refined_root.root_free_complement ||
+            refined_root.memory_boundary_contact) {
+          break;
         }
-        if (!refined_sharp_certified) {
-          pair_requests[pair_index].chart = "finite_width";
+        root_certificates[pair_index] = refined_root;
+        const auto refined_pair =
+            certify_pair_acceleration(pair_requests[pair_index]);
+        if (refined_pair.status != "uncertified") {
+          refined_sharp_certified = true;
+          break;
         }
-        root_rows[pair_index].certificate = root_certificates[pair_index];
-        retry_acceleration = true;
       }
+      if (!refined_sharp_certified &&
+          request.chart_policy == "sharp_with_finite_width_fallback") {
+        pair_requests[pair_index].chart = "finite_width";
+      }
+      root_rows[pair_index].certificate = root_certificates[pair_index];
+      retry_acceleration = true;
     }
-    if (retry_acceleration) {
-      accumulate_acceleration_detail(acceleration);
-      acceleration = certify_acceleration_reconstruction(
-          path_ids(request), pair_requests, request.thread_count);
-    }
+  }
+  if (retry_acceleration) {
+    accumulate_acceleration_detail(acceleration);
+    acceleration = certify_acceleration_reconstruction(
+        path_ids(request), pair_requests, request.thread_count);
   }
   accumulate_acceleration_detail(acceleration);
   timing.acceleration_wall_seconds +=
@@ -6706,7 +6729,21 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
           [](const auto& root) { return root.memory_boundary_contact; })) {
     failure_code = "insufficient_history_depth";
   } else if (acceleration.status != "certified_complete") {
-    failure_code = "root_completeness_not_certified";
+    const bool roots_complete = std::all_of(
+        root_certificates.begin(), root_certificates.end(),
+        [](const auto& root) {
+          return root.status == "certified_complete" &&
+              root.root_free_complement && !root.memory_boundary_contact;
+        });
+    const bool sharp_width_failure = std::any_of(
+        acceleration.pair_certificates.begin(),
+        acceleration.pair_certificates.end(), [](const auto& pair) {
+          return pair.failure_code ==
+              "sharp acceleration enclosure exceeds the declared tolerance";
+        });
+    failure_code = roots_complete && sharp_width_failure
+        ? "acceleration_enclosure_not_certified"
+        : "root_completeness_not_certified";
   }
   timing.total_wall_seconds = elapsed_seconds(total_timing_start);
   return {
@@ -7446,6 +7483,10 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       certificate_cost_probe_adjustments = 0U;
       step.certificate_cost_cooldown_remaining =
           certificate_cost_cooldown_remaining;
+      for (auto& prior_step : steps) {
+        compact_completed_step_diagnostics(prior_step, false);
+      }
+      compact_completed_step_diagnostics(step, true);
       steps.push_back(std::move(step));
       if (request.accepted_step_callback) {
         request.accepted_step_callback(accepted_count, current_time_token);
@@ -7499,6 +7540,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     if (step.failure_code == "coupled_correction_failed") {
       step.correction_retry_scale = retry_scale;
     }
+    compact_completed_step_diagnostics(step, false);
     steps.push_back(std::move(step));
     if (ordinary_joint_event_fallback_retry) {
       if (rejected_count > request.max_rejected_steps) {
@@ -7594,6 +7636,10 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
           steps.back().failure_code == "root_completeness_not_certified") {
         halt_code = "root_completeness_not_certified";
       } else if (
+          steps.back().failure_code ==
+              "acceleration_enclosure_not_certified") {
+        halt_code = "acceleration_enclosure_not_certified";
+      } else if (
           steps.back().failure_code == "coupled_correction_failed") {
         halt_code = "coupled_correction_failed";
       } else {
@@ -7613,6 +7659,9 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   const bool all_atomic = std::all_of(
       steps.begin(), steps.end(),
       [](const auto& step) { return step.publication_atomic; });
+  for (auto& step : steps) {
+    compact_completed_step_diagnostics(step, false);
+  }
   NativeEvolutionTiming timing = summarize_evolution_timing(steps);
   timing.total_wall_seconds = elapsed_seconds(timing_start);
   return {

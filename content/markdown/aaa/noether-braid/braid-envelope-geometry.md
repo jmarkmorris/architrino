@@ -13,6 +13,7 @@ That is why this geometry matters downstream. Pressure, packing, clock/ruler res
 This chapter is the envelope and export-interface chapter for braid geometry. It owns:
 
 - the dynamic exclusion-envelope interpretation of a braid assembly,
+- the exact directional-support and dwell-weighted second-moment descriptions of a declared path-history envelope,
 - the envelope forms associated with the member coordinates — B1's common-axis envelope and the Family-A oblate spheroidal envelope,
 - the role of the boundary layer in setting the leading envelope surface,
 - and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether sea conditions.
@@ -49,7 +50,7 @@ P_{\mathrm{pack}}(\Omega,T)
 \operatorname{tr} S_{\mathrm{excl}}(\mathbf X,T)\,d^3X
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6f4df3ac04a85bfd)
+[View →](../../../../equation-mapping.html#corpus-equation-6f4df3ac04a85bfd)
 
 Here $S_{\mathrm{excl}}$ is the coarse-grained tensor assembled from the local entries $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ in the packing projector below. The factor $1/3$ extracts the isotropic pressure component in three spatial dimensions; anisotropic residuals remain in the stress tensor and must not be hidden when the local packing is directionally biased.
 
@@ -75,7 +76,7 @@ D_{a,X}(\mathbf X,T)
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c4bd1ce4ef31d222)
+[View →](../../../../equation-mapping.html#corpus-equation-c4bd1ce4ef31d222)
 
 The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining kernel $K_\ell$, a channel $X$ being tested, and a sample event $(\mathbf X,T)$. For a transmitter constituent $j$ at emission time $T_t$, define
 
@@ -89,7 +90,7 @@ g_{\mathbf Xj}(T;T_t)
 r_{\mathbf Xj}(T;T_t)-c_f(T-T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e369c630f8b1cb9c)
+[View →](../../../../equation-mapping.html#corpus-equation-e369c630f8b1cb9c)
 
 $$
 J_{\mathbf Xj}(T;T_t)
@@ -102,7 +103,7 @@ J_{\mathbf Xj}(T;T_t)
 \{T_t<T:g_{\mathbf Xj}(T;T_t)=0\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-565087d4d00ff675)
+[View →](../../../../equation-mapping.html#corpus-equation-565087d4d00ff675)
 
 Let $\mathcal{I}_a(T)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\text{sea}}(\Omega_\ell,T)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(T)$. Let $w_{j,a}^{\mathrm{lock}}(T_t;T)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(T_t;T)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf X,T;T_t)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$.
 
@@ -118,7 +119,7 @@ D_{r,\mathbf Xj}^{(X)}(T;T_t)
 c_f-\mathbf V_{\mathrm{probe},X}(\mathbf X,T)\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7299f8740a5b9694)
+[View →](../../../../equation-mapping.html#corpus-equation-7299f8740a5b9694)
 
 and
 
@@ -128,7 +129,7 @@ W_{\mathbf Xj}^{\mathrm{acc},X}(T;T_t)
 \frac{c_f}{|D_{t,\mathbf Xj}(T;T_t)|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-341ac44eba2604dd)
+[View →](../../../../equation-mapping.html#corpus-equation-341ac44eba2604dd)
 
 as the transmitter-side acceleration weight on the same root record. Then the simple-root diagnostic is
 
@@ -143,7 +144,7 @@ w_{j,a}^{\mathrm{lock}}(T_t;T)
 {r_{\mathbf Xj}^2(T;T_t)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-906d721d7225c2ee)
+[View →](../../../../equation-mapping.html#corpus-equation-906d721d7225c2ee)
 
 and
 
@@ -158,7 +159,7 @@ w_j^{\mathrm{sea}}(T_t;T)
 {r_{\mathbf Xj}^2(T;T_t)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-99185c292dfab3f1)
+[View →](../../../../equation-mapping.html#corpus-equation-99185c292dfab3f1)
 
 These coefficients are not fit amplitudes. For each accepted causal root, define the root-selected branch record
 
@@ -177,7 +178,7 @@ q_j,\,
 \right)_{(\mathbf X,T;T_t)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c32e08955dcab4ff)
+[View →](../../../../equation-mapping.html#corpus-equation-c32e08955dcab4ff)
 
 Here $\mathcal{L}_{j}^{\mathrm{wake}}$ is the wake-history ledger carried by the transmitter branch and $\Lambda_j$ is the closure label or neutral braid label available on that branch. The locked weight is the assembly projector
 
@@ -192,7 +193,7 @@ w_{j,a}^{\mathrm{lock}}(T_t;T)
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-197e667da3878918)
+[View →](../../../../equation-mapping.html#corpus-equation-197e667da3878918)
 
 where $\zeta_a\in[0,1]$ is one for an accepted phase-locked branch of $\Lambda_a(T)$ and zero for a rejected branch in the exact ledger limit. A regularized branch chart may replace this sharp value by
 
@@ -214,7 +215,7 @@ d_{\Lambda_a}^2
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-978763202cb96e16)
+[View →](../../../../equation-mapping.html#corpus-equation-978763202cb96e16)
 
 where $d_{\Lambda_a}$ measures closure-label, phase, and branch-provenance mismatch against the accepted assembly ledger. The ambient weight is the complement projector
 
@@ -229,7 +230,7 @@ w_j^{\mathrm{sea}}(T_t;T)
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-24509915a63bf851)
+[View →](../../../../equation-mapping.html#corpus-equation-24509915a63bf851)
 
 where $\zeta_{\mathrm{sea}}^{(\ell)}\in[0,1]$ retains branches belonging to the neutral braid equilibrium record in the coarse window after all resolved assembly ledgers have been removed. Thus a branch cannot contribute to the locked numerator and the ambient denominator by relabeling alone; it must pass the corresponding ledger projector.
 
@@ -252,7 +253,7 @@ $$
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-88dcff7b795a752a)
+[View →](../../../../equation-mapping.html#corpus-equation-88dcff7b795a752a)
 
 For any neutral braid branch quantity $f_k(T)$, write the ambient window average after resolved assembly ledgers have been removed as
 
@@ -268,7 +269,7 @@ K_\ell(\mathbf X-\mathbf{X}_k(T))
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-07ff692f168e1b81)
+[View →](../../../../equation-mapping.html#corpus-equation-07ff692f168e1b81)
 
 Let $\nu_k$ be the cadence variable of neutral braid $k$, let $\bar\nu_{\mathrm{sea}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and let $\sigma_{\nu,\ell}^2=\left\langle(\nu-\bar\nu_{\mathrm{sea}}^{(\ell)})^2\right\rangle_{\mathrm{sea},\ell}$. The cadence residual of the candidate branch is
 
@@ -285,7 +286,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5edae661eda74388)
+[View →](../../../../equation-mapping.html#corpus-equation-5edae661eda74388)
 
 Let $\mathcal N_{\ell}^{\setminus\mathrm{res}}$ be the neutral-pairing residual and $\mathbf P_{\ell}^{\setminus\mathrm{res}}$ the orientation/polarization residual of the same window after resolved assembly ledgers have been removed. The window-balance residual is
 
@@ -305,7 +306,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d9a09050f8d7a0f0)
+[View →](../../../../equation-mapping.html#corpus-equation-d9a09050f8d7a0f0)
 
 The ambient acceptance is then
 
@@ -331,7 +332,7 @@ $$
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-51249ff31cd13c76)
+[View →](../../../../equation-mapping.html#corpus-equation-51249ff31cd13c76)
 
 This form rejects assembly-locked branches because any resolved locked projector $\zeta_{a'}=1$ drives the complement factor to zero in the exact ledger limit. It retains ambient Noether sea branches in the same coarse window when they remain outside all resolved assembly ledgers and agree with the locally smoothed neutral braid cadence and balance record. The tolerances $\epsilon_\nu$, $\epsilon_N$, and $\epsilon_P$ are resolution tolerances for the chosen window and ledger chart; they are not channel-specific fit parameters. Channel differences still enter through $\Pi_X$ and $Q_X$, while the assembly/complement split and neutral-equilibrium projector remain common to the diagnostic.
 
@@ -359,7 +360,7 @@ Q_X
 \right\|_X
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b9bad59db24dfc4b)
+[View →](../../../../equation-mapping.html#corpus-equation-b9bad59db24dfc4b)
 
 The projection $\Pi_X$ selects the channel being tested and $Q_X$ removes only equivalences that preserve that channel's benchmark. The intensity $\alpha_{j,X}$ is dimensionless because the channel norms are tolerance ratios. The dimensional coupling $\kappa$ and polarity factors enter only through retained channel entries that already require them, such as the signed acceleration used by penetration. Clock-coupling keeps cadence and phase entries that perturb the clock functional. Reaction-corridor calculations keep the oriented exchange, line-defect, color, weak, or provenance entries declared by that corridor. Packing keeps scalar or tensor exclusion-stress magnitude after acceleration signs are discarded. Penetration keeps the local acceleration and phase-disruption entries along the tested path. These channels may use different $\Pi_X$, but they must not change the causal-root kernel, the assembly/complement split, or the transmitter branch record.
 
@@ -379,7 +380,7 @@ J_{\mathbf Xj},\,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6e7d7b3caa169fd9)
+[View →](../../../../equation-mapping.html#corpus-equation-6e7d7b3caa169fd9)
 
 where $\delta\theta_{\mathrm{clk}}^{(j)}$ and $\delta\omega_{\mathrm{clk}}^{(j)}$ are the branch-induced phase and cadence increments of the declared clock functional, and $\delta\chi_{\text{sea}}^{(\ell,j)}$ is the branch contribution to the coarse Noether sea delay factor. The quotient $Q_{\mathrm{clock}}$ may remove phase-origin choices and hidden constituent relabelings only when $\omega_{\mathrm{clk}}/\omega_0$ is unchanged.
 
@@ -399,7 +400,7 @@ q_j,\,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a63ddeb8b176992b)
+[View →](../../../../equation-mapping.html#corpus-equation-a63ddeb8b176992b)
 
 where $\mathcal{L}_{j}^{\mathrm{corr}}$ is the declared strong, weak, color, electromagnetic, or material corridor ledger, $\mathcal{P}_{j}^{\mathrm{prov}}$ is the provenance record of participating architrinos and energy entries, and $\Theta_j^{\mathrm{strain}}$ is the line-defect or medium-strain entry when the corridor calculation requires one. The quotient $Q_{\mathrm{corridor}}$ may remove only corridor-basis relabelings that preserve the recovered reaction channel, provenance ledger, and line-defect energy.
 
@@ -412,6 +413,8 @@ $$
 \left(
 \left\|\mathcal{L}_{j}^{\mathrm{wake}}\right\|_{\mathrm{excl}},\,
 \mathcal{S}_{j,\mathrm{excl}}^{ab},\,
+H_{\mathrm{env}}(\,\cdot\,;W),\,
+\mathsf M_{\mathrm{env}}^{ab}(W),\,
 R_{\parallel,j},\,
 R_{\perp,j},\,
 \lambda_j,\,
@@ -419,9 +422,9 @@ R_{\perp,j},\,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-676036fdd1fafea9)
+[View →](../../../../equation-mapping.html#corpus-equation-676036fdd1fafea9)
 
-where $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ is the local exclusion-stress entry and $(R_{\parallel,j},R_{\perp,j},\lambda_j,\xi_j)$ are the envelope entries exposed by the branch. Packing deliberately discards attraction/repulsion sign after the exclusion magnitude and stress tensor are retained, because the benchmark is stable adjacency rather than signed acceleration along one path.
+where $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ is the local exclusion-stress entry, $H_{\mathrm{env}}(\,\cdot\,;W)$ is the exact directional support record, $\mathsf M_{\mathrm{env}}^{ab}(W)$ is the centered path second-moment tensor defined below, and $(R_{\parallel,j},R_{\perp,j},\lambda_j,\xi_j)$ are the axisymmetric envelope entries exposed by the branch when that reduction is admitted. The window $W$ and the source record that produced the two envelope objects remain part of the packing provenance. Packing deliberately discards attraction/repulsion sign after the exclusion magnitude and stress tensor are retained, because the benchmark is stable adjacency rather than signed acceleration along one path.
 
 For penetration along a declared test path with tangent $\hat{\mathbf{u}}$ at $\mathbf X$,
 
@@ -439,7 +442,7 @@ J_{\mathbf Xj},\,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-039c84c7f73b1fe3)
+[View →](../../../../equation-mapping.html#corpus-equation-039c84c7f73b1fe3)
 
 where $\mathbf{a}_{\mathbf X\leftarrow j}$ is the signed branch acceleration obtained from the same causal-root law and $\Delta\phi_{\mathrm{disrupt}}^{(j)}$ is the induced phase-disruption increment on the tested transit branch. Unlike packing, penetration keeps the signed line-of-action entry because the benchmark asks whether the transit path remains dynamically stable.
 
@@ -461,7 +464,7 @@ $$
 \right\|_{\mathrm{phase}}^2}{\epsilon_{\mathrm{phase}}^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f1fa18ef26fd21ab)
+[View →](../../../../equation-mapping.html#corpus-equation-f1fa18ef26fd21ab)
 
 For a declared reaction corridor with oriented corridor record $\hat{\mathbf c}_X$,
 
@@ -485,7 +488,7 @@ $$
 \frac{\left\|\Theta_j^{\mathrm{strain}}\right\|^2}{\epsilon_{\Theta}^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-136208a6927949ea)
+[View →](../../../../equation-mapping.html#corpus-equation-136208a6927949ea)
 
 For packing, signs of attraction and repulsion have already been quotiented out, but exclusion magnitude and shape remain:
 
@@ -506,6 +509,12 @@ $$
 \right\|_{S}^2
 }{\epsilon_S^2}
 +
+\frac{
+\left\|
+\Delta\mathsf M_{\mathrm{env},j}
+\right\|_{F}^2
+}{\epsilon_M^2}
++
 \frac{\left(\Delta\ln R_{\parallel,j}\right)^2}{\epsilon_{\parallel}^2}
 +
 \frac{\left(\Delta\ln R_{\perp,j}\right)^2}{\epsilon_{\perp}^2}
@@ -515,9 +524,9 @@ $$
 \frac{\left(\Delta\ln\xi_j\right)^2}{\epsilon_\xi^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3cc3305cd81ddde2)
+[View →](../../../../equation-mapping.html#corpus-equation-3cc3305cd81ddde2)
 
-Here each $\Delta\ln$ term is measured relative to the declared same-member branch reference for the channel: the retained rest branch of the member under test for clock/ruler calibration, the candidate neighboring braid for packing, or the pre-entry path branch for penetration. A weak homogeneous A1 record is one possible A1 calibration branch; it is not the reference for a B1 calculation.
+Here $\|\cdot\|_F$ is the Frobenius norm in the declared Euclidean frame, $\Delta\mathsf M_{\mathrm{env},j}$ is measured against the same-member branch reference, and $\epsilon_M$ is a predeclared second-moment sensitivity with units of length squared. Each $\Delta\ln$ term is measured relative to the declared same-member branch reference for the channel: the retained rest branch of the member under test for clock/ruler calibration, the candidate neighboring braid for packing, or the pre-entry path branch for penetration. A weak homogeneous A1 record is one possible A1 calibration branch; it is not the reference for a B1 calculation.
 
 For penetration along $\hat{\mathbf u}$, decompose the signed branch acceleration into tangent and transverse parts,
 
@@ -533,7 +542,7 @@ a_{\parallel,j}
 a_{\parallel,j}\hat{\mathbf u}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6158e32912c99c90)
+[View →](../../../../equation-mapping.html#corpus-equation-6158e32912c99c90)
 
 The dominance norm is
 
@@ -553,7 +562,7 @@ $$
 \frac{\left(\Delta\ln|J_{\mathbf Xj}|\right)^2}{\epsilon_J^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9984df16179cb133)
+[View →](../../../../equation-mapping.html#corpus-equation-9984df16179cb133)
 
 The signed entries in the penetration record remain available before the norm is taken, so a stabilizing tangent push and a destabilizing tangent push are not treated as the same path-history branch. The scalar norm is used only after the sign-sensitive admissibility test has decided which branch contributes to the penetration benchmark.
 
@@ -581,7 +590,7 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-097fced51c1ca56c)
+[View →](../../../../equation-mapping.html#corpus-equation-097fced51c1ca56c)
 
 This definition makes the $\epsilon$ values derived chart scales: they are how far a retained ledger entry may move before the declared channel readout changes by more than the accepted tolerance. The practical first estimates are:
 
@@ -593,7 +602,7 @@ $$
 \epsilon_\chi=\Delta_{\chi}^{\mathrm{clk\text{-}sig,tol}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4e211ddec3218d4d)
+[View →](../../../../equation-mapping.html#corpus-equation-4e211ddec3218d4d)
 
 for clock scans;
 
@@ -607,7 +616,7 @@ $$
 \Delta_{\mathrm{prov},X}^{\mathrm{tol}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e6c51ab39d77c678)
+[View →](../../../../equation-mapping.html#corpus-equation-e6c51ab39d77c678)
 
 for corridor scans, with exact provenance closure represented by the limit $\Delta_{\mathrm{prov},X}^{\mathrm{tol}}\to0$ after regularization; and
 
@@ -629,7 +638,7 @@ $$
 \Delta\ln\xi^{\mathrm{stab}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a1c5748ca3288605)
+[View →](../../../../equation-mapping.html#corpus-equation-a1c5748ca3288605)
 
 for packing scans, where the stable ranges are measured over accepted neighboring-braid branches rather than chosen per atom or line. For penetration over a trial path of duration $T_{\mathrm{path}}$ and speed $v_{\mathrm{path}}$,
 
@@ -647,7 +656,7 @@ a_{\perp,\mathrm{tol}}
 \Delta\phi_{\mathrm{path}}^{\mathrm{tol}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1cb2181c47c7e07b)
+[View →](../../../../equation-mapping.html#corpus-equation-1cb2181c47c7e07b)
 
 Thus tolerance derivation is a ledger-replay problem. A hydrogen line, packing calculation, or penetration test may choose a different channel tolerance because it asks a different stability question, but it may not retune the tolerance after seeing the observable.
 
@@ -689,7 +698,7 @@ d_{\mathrm{prov}}^2
 {\epsilon_{\mathrm{cons}}^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1d35ab61a33bfbb6)
+[View →](../../../../equation-mapping.html#corpus-equation-1d35ab61a33bfbb6)
 
 Here $d_{\mathrm{disc}}=0$ when the discrete closure labels are compatible and $d_{\mathrm{disc}}=\infty$ when they are incompatible; $\operatorname{dist}_{S^1}$ is phase distance; $d_{\mathrm{root}}$ compares active causal-root ledgers; $d_{\mathrm{prov}}$ compares participating-source provenance; and $\Delta\mathcal{N}_{j\to a}$ collects the energy, momentum, angular-momentum, polarity, and other conserved-increment residuals needed by the assembly ledger. This makes $\zeta_a$ a branch-admission test. If any term has to be chosen separately for clock, corridor, packing, and penetration benchmarks, the interface diagnostic has reverted to a fitted surface rather than a closure-ledger projection.
 
@@ -706,7 +715,7 @@ D_{a,X}(\mathbf X,T)=D_X
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-55278e54a86b6e9a)
+[View →](../../../../equation-mapping.html#corpus-equation-55278e54a86b6e9a)
 
 The level-set threshold is not universal. A penetration calculation, packing calculation, clock-coupling calculation, and reaction-corridor calculation choose different $D_X$ values because they test different stability criteria. A useful ordering of first thresholds is
 
@@ -724,7 +733,7 @@ D_{\mathrm{penetration}}
 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ee9177a571a425fe)
+[View →](../../../../equation-mapping.html#corpus-equation-ee9177a571a425fe)
 
 Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether braid or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,T)$ is a spatial interface extracted from that ledger and the surrounding Noether sea response.
 
@@ -745,7 +754,7 @@ H_a(\hat{\mathbf m};W)
 \left(\mathbf X_{aj}(T)-\mathbf X_{\mathrm{grp}}(T)\right),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-89aafdc4b2c8e842)
+[View →](../../../../equation-mapping.html#corpus-equation-89aafdc4b2c8e842)
 and the full path-history support by
 $$
 H_{\mathrm{env}}(\hat{\mathbf m};W)
@@ -753,10 +762,104 @@ H_{\mathrm{env}}(\hat{\mathbf m};W)
 \max_{a\in\{1,2,3\}}H_a(\hat{\mathbf m};W).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a95f5f4756939763)
+[View →](../../../../equation-mapping.html#corpus-equation-a95f5f4756939763)
 An index is boundary-leading in direction $\hat{\mathbf m}$ only when it attains this maximum on the retained record. The maximizer may depend on direction or time, may be nonunique, and does not relabel the binary. Under the prescribed compression response, the union of all six paths produces the flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
 
 In low-stress A1 prose, "A1 envelope" means this effective path-history envelope, not a literal material surface.
+
+### Exact Support and Centered Path Second Moments
+
+The support function above and a dwell-weighted moment answer different geometric questions. The support function records the furthest excursion reached in each direction and is therefore the exact directional-support description of the swept path set on $W$, equivalently of its convex hull. It does not preserve non-convex indentations. The companion **centered path second-moment tensor** records how the constituent paths occupy directions over the same window. Let $\mathcal I_{\mathrm{env}}$ be the declared constituent-worldline inventory, let $N_{\mathrm{env}}=|\mathcal I_{\mathrm{env}}|$, let $W=[T_0,T_1]$ with $|W|=T_1-T_0>0$, and define the centered path coordinates
+
+$$
+Y_j^a(T_t)
+=
+X_j^a(T_t)-X_{\mathrm{grp}}^a(T_t)
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-71cc9254719c4a76)
+
+The centered path second-moment tensor is
+
+$$
+\mathsf M_{\mathrm{env}}^{ab}(W)
+=
+\frac{1}{N_{\mathrm{env}}|W|}
+\sum_{j\in\mathcal I_{\mathrm{env}}}
+\int_W
+Y_j^a(T_t)Y_j^b(T_t)\,dT_t
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-2f81fc5593eff930)
+
+The averaging measure is the constant-time emission measure $dT_t$ declared in [Architrino](../foundations/architrino.md#constant-time-emission-measure-postulate). Each constituent therefore receives equal weight per unit absolute emission time. A receiver-selected root window is a different object: it must retain the delay-map Jacobian and may not be substituted for this emission-window moment without an explicit measure conversion.
+
+Plainly: $H_{\mathrm{env}}$ asks how far the braid ever reaches in a direction. $\mathsf M_{\mathrm{env}}$ asks how much of the declared emission window the paths spend distributed through the directions around the group position. A brief excursion can set the support boundary while contributing little to the second moment, although a sufficiently large excursion can still dominate both.
+
+**Derived geometric fact.** The tensor is symmetric and positive semidefinite because, for every Euclidean covector $z_a$,
+
+$$
+z_a\mathsf M_{\mathrm{env}}^{ab}(W)z_b
+=
+\frac{1}{N_{\mathrm{env}}|W|}
+\sum_{j\in\mathcal I_{\mathrm{env}}}
+\int_W
+\left(z_aY_j^a(T_t)\right)^2dT_t
+\ge 0
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-f241eb36678c47f1)
+
+It is positive definite only when the centered paths span all three spatial directions on a set of nonzero emission measure. Planar and collinear records are allowed to produce rank-two and rank-one tensors. If the eigenpairs are $(\mu_r,\hat{\mathbf e}_r)$, the principal RMS radii are $\sigma_r=\sqrt{\mu_r}$. Repeated eigenvalues leave the corresponding principal directions non-unique, so an orientation angle must not be reported in a degenerate eigenspace.
+
+Plainly: the tensor always has non-negative directional spreads, but it need not describe a full three-dimensional ellipsoid. A planar braid record has no measured thickness normal to its plane, and a spherical or axisymmetric record does not select every orientation uniquely.
+
+**Defined compression.** When a consumer requires a six-component ellipsoidal compression of the exact directional support, it may fit a separate symmetric positive-definite tensor $\mathsf Q_{\mathrm{env}}^{ab}(W)$ through
+
+$$
+H_Q(\hat{\mathbf m};W)
+=
+\sqrt{
+\hat m_a\mathsf Q_{\mathrm{env}}^{ab}(W)\hat m_b
+}
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-292e81a56fdc8ee0)
+
+and minimize the declared angular residual
+
+$$
+\mathcal R_Q(W)
+=
+\frac{
+\left\|H_{\mathrm{env}}(\,\cdot\,;W)-H_Q(\,\cdot\,;W)\right\|_{L^2(S^2)}
+}{
+\left\|H_{\mathrm{env}}(\,\cdot\,;W)\right\|_{L^2(S^2)}
+}
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-3a6ae971a10fb849)
+
+The angular quadrature, fitting rule, deterministic tie-break, and acceptance tolerance must be declared before the result is inspected. $\mathsf Q_{\mathrm{env}}$ is an admitted quadratic approximation only when $\mathcal R_Q$ passes that tolerance; it is not the exact envelope for a general swept path set and is not identified with $\mathsf M_{\mathrm{env}}$. Agreement between $\mathsf Q_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ is an internal same-record consistency check, not independent evidence that either object is physically correct.
+
+**Derived axisymmetric reduction.** For an admitted axisymmetric quadratic reduction with declared axis $\hat{\mathbf u}$,
+
+$$
+\mathsf Q_{\mathrm{env}}^{ab}
+=
+R_{\perp}^2h^{ab}
++
+\left(R_{\parallel}^2-R_{\perp}^2\right)
+\hat u^a\hat u^b
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-5082f154a32a705f)
+
+Its eigenvalues are $R_{\parallel}^2$ along $\hat{\mathbf u}$ and $R_{\perp}^2$ on the transverse plane. The existing variables $\xi=R_{\parallel}/R_{\perp}$ and $\lambda=R_{\perp}/R_{\perp,0}$ therefore survive unchanged as the axisymmetric reduction of $\mathsf Q_{\mathrm{env}}$. They are not redefined from the eigenvalues of $\mathsf M_{\mathrm{env}}$.
+
+Plainly: the optional tensor $\mathsf Q_{\mathrm{env}}$ compresses a genuinely ellipsoidal or nearly ellipsoidal boundary into three semiaxes and an orientation. The moment tensor records dwell-weighted path spread. Keeping them separate prevents an attractive ellipsoid fit from erasing a rare but real boundary excursion or from being mistaken for the exact path-history envelope.
+
+If the fitted support axes and the moment axes disagree beyond a predeclared angular or normalized-tensor tolerance, the record falsifies a single-quadratic summary for that consumer. Both source-derived objects remain exportable with the disagreement attached; the mismatch does not erase either the exact directional-support record or the dwell-weighted moment record.
 
 ## Canonical Geometry Variables
 
@@ -765,7 +868,7 @@ $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3d77ce3fdd0bd0f3)
+[View →](../../../../equation-mapping.html#corpus-equation-3d77ce3fdd0bd0f3)
 so $\xi=1$ denotes a spherical envelope, $\xi>1$ denotes a fusiform envelope elongated along the parallel axis, and $\xi<1$ denotes an oblate spheroidal envelope compressed along the parallel axis. A family label must accompany any rest-envelope value of $\xi$.
 
 Use
@@ -773,7 +876,7 @@ $$
 \lambda\equiv\frac{R_{\perp}}{R_{\perp,0}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ce95cf622b5d9db6)
+[View →](../../../../equation-mapping.html#corpus-equation-ce95cf622b5d9db6)
 for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to braid envelope geometry: $\xi$ records shape and $\lambda$ records scale.
 
 The oblate spheroidal envelope volume is
@@ -784,7 +887,7 @@ V_{\mathrm{env}}(v)
 \frac{4\pi}{3}R_{\perp}^2(v)R_{\parallel}(v)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3e2737d0578d0b50)
+[View →](../../../../equation-mapping.html#corpus-equation-3e2737d0578d0b50)
 
 Relative to the declared rest envelope,
 
@@ -794,7 +897,7 @@ $$
 \lambda^3(v)\,\xi(v)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-42219d941e2bd344)
+[View →](../../../../equation-mapping.html#corpus-equation-42219d941e2bd344)
 
 This identity is geometric. If a homogeneous moving branch independently closes the Lorentz projection $\xi(v)=1/\gamma_{\mathrm{eff}}(v)+O(\epsilon_{\mathrm{LV}})$, then
 
@@ -805,7 +908,7 @@ $$
 +O(\epsilon_{\mathrm{LV}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ed296930498af1b1)
+[View →](../../../../equation-mapping.html#corpus-equation-ed296930498af1b1)
 
 and the zero-extra-scale subclass $\lambda=1$ reduces to $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma_{\mathrm{eff}}+O(\epsilon_{\mathrm{LV}})$. The volume law does not establish $\lambda=1$ or Lorentz closure; it exposes the packing and exclusion-volume quantity once those branch relations are supplied.
 
@@ -814,7 +917,7 @@ $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3070bac4118bc111)
+[View →](../../../../equation-mapping.html#corpus-equation-3070bac4118bc111)
 but this is a moving-branch closure target linking the clock channel to the envelope projection. It should not be used to define $\xi$, and it does not determine B1's rest-envelope aspect ratio.
 
 ## Lorentz Projection Role
@@ -830,7 +933,7 @@ $$
 \frac{1}{\xi_q(v)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-59914dc6e5c6b742)
+[View →](../../../../equation-mapping.html#corpus-equation-59914dc6e5c6b742)
 but the branch $q$ is accepted only when all three binary ledgers also retune consistently with clock closure, conservation, and preferred-frame leakage bounds.
 
 The direct Lorentz-to-geometry map comes from a closed return cycle. In a homogeneous cell, define
@@ -840,7 +943,7 @@ $$
 \frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bd38f42906e3952d)
+[View →](../../../../equation-mapping.html#corpus-equation-bd38f42906e3952d)
 Let $P_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
 P_{\parallel}
@@ -852,7 +955,7 @@ P_{\parallel}
 \frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f4371071956b229d)
+[View →](../../../../equation-mapping.html#corpus-equation-f4371071956b229d)
 while the transverse causal-budget return time is
 $$
 P_{\perp}
@@ -860,7 +963,7 @@ P_{\perp}
 \frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e661dcb2facaa3ca)
+[View →](../../../../equation-mapping.html#corpus-equation-e661dcb2facaa3ca)
 Requiring $P_{\parallel}=P_{\perp}+O(\epsilon_{\mathrm{LV}}P_{\mathrm{ref}})$ gives
 $$
 \xi_q(v)
@@ -871,7 +974,7 @@ $$
 +O(\epsilon_{\mathrm{LV}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-54df338e8e9033cd)
+[View →](../../../../equation-mapping.html#corpus-equation-54df338e8e9033cd)
 The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
 
 This distinction prevents a single-binary shortcut. A branch-derived boundary-leading channel can estimate one visible deformation contribution, while a mature Lorentz closure must show that the same branch update also determines the clock factor
@@ -879,7 +982,7 @@ $$
 \gamma_{\mathrm{clk}}^{(q)}(v)=\frac{P_q(v)}{P_{\mathrm{ref}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f80c6c5e569c99b5)
+[View →](../../../../equation-mapping.html#corpus-equation-f80c6c5e569c99b5)
 
 Here $P_q$ is the cycle period of clock branch $q$.
 
@@ -891,7 +994,7 @@ $$
 +O(\epsilon_{\mathrm{LV}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-277a6d51ffcecf41)
+[View →](../../../../equation-mapping.html#corpus-equation-277a6d51ffcecf41)
 The envelope is therefore the visible projection of the retained causal-root ledger, not an independently assigned Lorentz surface.
 
 ## Retuning Projection to Envelope Variables
@@ -909,7 +1012,7 @@ $$
 \right)^{T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7528aa39e3a75875)
+[View →](../../../../equation-mapping.html#corpus-equation-7528aa39e3a75875)
 
 denote the logarithmic semiaxis record of branch $q$. The envelope projection is a branch-dependent map
 
@@ -924,7 +1027,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d9838cedbc63b78a)
+[View →](../../../../equation-mapping.html#corpus-equation-d9838cedbc63b78a)
 
 where the axes, root ledger, and wake ledger are part of the branch data. The induced geometry increments are therefore
 
@@ -940,7 +1043,7 @@ $$
 \Delta\ln R_{\perp,q}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-214b7336f7cd4528)
+[View →](../../../../equation-mapping.html#corpus-equation-214b7336f7cd4528)
 
 If one binary $a_{\mathrm{env}}$ is uniquely boundary-leading over the relevant directions and window, the projection reduces to the useful estimate
 
@@ -956,7 +1059,7 @@ $$
 \Delta\ln R_{\perp,a_{\mathrm{env}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b770f470c5c45133)
+[View →](../../../../equation-mapping.html#corpus-equation-b770f470c5c45133)
 
 This approximation is a projection estimate, not a branch proof. It fails when the maximizer changes with direction or time, when more than one binary contributes at the same order, or when root-history, axis precession, or neighbor-induced strain changes the interface independently of a single radius. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether sea transport calculations.
 
@@ -981,11 +1084,21 @@ The claim that those coarse-grained changes reconstruct observer-level gravity i
 
 For the special-relativity-facing comparison of this deformation channel, see [the deformable Noether braid comparison](../philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
+## Why Envelope Geometry Does Not Determine Mass
+
+**Inferred ownership boundary.** The exact directional support, centered path second moment, and any admitted quadratic fit are spatial projections of a fuller delayed branch record. They discard which historical path segments are selected by the active causal roots, how self-hit and partner-hit contributions are phased, how the internal energy ledger closes, how shielding partitions exposed response, and how the surrounding Noether sea responds. Two retained branches can therefore share $H_{\mathrm{env}}$, $\mathsf M_{\mathrm{env}}$, and $\mathsf Q_{\mathrm{env}}$ while carrying different internal causal-history and exposure ledgers. The mass program accordingly remains owned by the closed-history, shielding, and response construction in [Braid Mathematics](braid-mathematics.md#mass-thesis-as-a-dynamics-target) and [Energy](../dynamics/energy.md#emergent-inertia-mass-from-shielded-energy).
+
+Plainly: the envelope says where the paths reach and how their positions are distributed. It does not say which past emissions act now or how much of the internal history is visible to an external probe, so shape alone cannot determine inertial mass.
+
+This separation would be overturned only by a theorem on an accepted branch family proving that the complete mass functional factors through the envelope record alone. Matching masses on branches generated from the same envelope-fitting code would not establish that theorem because the subject and comparison would not be independent.
+
 ## Geometry Interfaces
 
 For local assembly modeling, use this page as the geometric source for:
 
 - a family-declared fusiform or oblate spheroidal envelope boundary,
+- the exact directional support and centered path second-moment tensor over a declared emission window,
+- an optional quadratic-envelope tensor only when its angular fit residual passes a predeclared tolerance,
 - principal axes set by the retained family's orientation,
 - deformation of the family-leading envelope paths under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
@@ -1001,3 +1114,5 @@ For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [No
 > **Member-Scoping Commitment:** B1's rest aspect ratio depends on its prescribed binary coordinates; A1 is near spherical in its weak-stress reference state and becomes increasingly oblate along its prescribed compression response. The moving Lorentz-projection target $\xi\to1/\gamma$ is a branch-response statement and must be derived separately for each member.
 
 > **Lorentz Projection Commitment:** In Lorentz closure, the full six-path envelope supplies the observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to one binary path or to envelope shape alone.
+
+> **Envelope-Record Commitment:** $H_{\mathrm{env}}$ is the exact directional-support record of the declared swept paths and therefore determines their convex hull rather than any non-convex indentations, $\mathsf M_{\mathrm{env}}$ is their centered emission-time second moment, and $\mathsf Q_{\mathrm{env}}$ is optional quadratic compression admitted only by a declared angular fit. Same-record agreement among these objects is consistency evidence, not independent physical confirmation.

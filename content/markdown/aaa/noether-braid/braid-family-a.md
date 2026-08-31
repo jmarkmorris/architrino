@@ -4,6 +4,8 @@ Family A contains prescribed one-braid geometries whose three binary axes are mu
 
 Family A is a geometry-and-motion definition. It does not establish that an A1, A2, or A3 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
 
+The concrete catalog examples A1.0, A2.0, and A3.0 instantiate the A1, A2, and A3 definitions respectively. The `.0` suffix identifies an example, not a parent class or an additional defining constraint. Their record identities and prescribed paths are listed in the [naming and navigation table](braid-taxonomy.md#naming-and-navigation-master-table); statements about the full A1, A2, or A3 class do not follow from one example's assigned properties.
+
 ## Shared Family-A Geometry
 
 Every Family-A member is one complete Noether braid composed of three neutral binaries. Each binary contains one electrino and one positrino. The three binary midpoints coincide with the braid center. The binaries share a braid-level phase zero, while radius, axial half-separation, transverse orbit radius, frequency, phase, and circulation are binary coordinates.
@@ -38,7 +40,7 @@ h_a=0,
 \rho_a=R_a.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a1527409c4a34726)
+[View →](../../../../equation-mapping.html#corpus-equation-a1527409c4a34726)
 
 The two architrinos therefore remain antipodal while traversing the same geometric circle, whose center is the braid center. The three binary circles need not share one plane: at the near-rest endpoint their plane normals are the three mutually orthogonal Family-A axes.
 
@@ -75,7 +77,7 @@ $$
 R_a^2=h_a^2+\rho_a^2.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7e6f31f81fbb0c72)
+[View →](../../../../equation-mapping.html#corpus-equation-7e6f31f81fbb0c72)
 
 For endpoint sign $\sigma\in\{+1,-1\}$, the center of the endpoint's circular path is
 
@@ -87,7 +89,7 @@ $$
 \sigma h_a\hat{\mathbf n}_a.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d58d2d8ae9db1d0c)
+[View →](../../../../equation-mapping.html#corpus-equation-d58d2d8ae9db1d0c)
 
 Thus $h_a>0$ separates the two endpoint orbit centers by $2h_a\hat{\mathbf n}_a$, even though the endpoint positions remain antipodal about the binary midpoint at every common time. A3 permits $h_a=0$, so A1 is its exact zero-axial-offset subset rather than a disjoint class.
 
@@ -108,7 +110,7 @@ $$
 A1.n=A3.n\mathbin{\cap}\{h_1=h_2=h_3=0\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-63d084e7f4c1ef0c)
+[View →](../../../../equation-mapping.html#corpus-equation-63d084e7f4c1ef0c)
 
 ## A1, A2, and A3 Relations
 

@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 186,
-      "sections": 1558
+      "entries": 187,
+      "sections": 1567
     }
   },
   "tocRoot": {
@@ -1661,6 +1661,88 @@
             ]
           },
           {
+            "id": "dynamics__shared_circle_assemblies",
+            "title": "Shared-Circle Assemblies",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/shared_circle_assemblies.json",
+            "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Rigid Co-Rotating Chart",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "The Rigid Co-Rotating Chart",
+                "sectionKey": "the rigid co rotating chart",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Degrees of Freedom and Search Directions",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "Degrees of Freedom and Search Directions",
+                "sectionKey": "degrees of freedom and search directions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Collision-Free Winding Constraint",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "Collision-Free Winding Constraint",
+                "sectionKey": "collision free winding constraint",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Complete Causal-Root Balance",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "Complete Causal-Root Balance",
+                "sectionKey": "complete causal root balance",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Taxonomy Intersections",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "Exact Taxonomy Intersections",
+                "sectionKey": "exact taxonomy intersections",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Verified Bounded Landscape",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "Verified Bounded Landscape",
+                "sectionKey": "verified bounded landscape",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Fixed Axial-Translation Study",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "Fixed Axial-Translation Study",
+                "sectionKey": "fixed axial translation study",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Circular-Solution Theorem",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "Exact Circular-Solution Theorem",
+                "sectionKey": "exact circular solution theorem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Release Attempt and Dynamical Boundary",
+                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownSection": "Release Attempt and Dynamical Boundary",
+                "sectionKey": "release attempt and dynamical boundary",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "dynamics__causal_action_functional",
             "title": "Causal Action Functional",
             "kind": "markdown-view",
@@ -2762,10 +2844,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Analytical Evaluation Programs",
+                "title": "Numerical Evaluation",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Analytical Evaluation Programs",
-                "sectionKey": "analytical evaluation programs",
+                "markdownSection": "Numerical Evaluation",
+                "sectionKey": "numerical evaluation",
                 "headingLevel": 2
               },
               {
@@ -2778,26 +2860,34 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Candidate Grading",
+                "title": "How Braid Candidates Are Tested",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Candidate Grading",
-                "sectionKey": "candidate grading",
+                "markdownSection": "How Braid Candidates Are Tested",
+                "sectionKey": "how braid candidates are tested",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Borg Analysis Surface",
+                "title": "Prescribed-Record Grading",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Borg Analysis Surface",
-                "sectionKey": "borg analysis surface",
+                "markdownSection": "Prescribed-Record Grading",
+                "sectionKey": "prescribed record grading",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Minimum Publication Packet",
+                "title": "Visualization of Analytical Results",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Minimum Publication Packet",
-                "sectionKey": "minimum publication packet",
+                "markdownSection": "Visualization of Analytical Results",
+                "sectionKey": "visualization of analytical results",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reproducible Candidate Comparisons",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
+                "markdownSection": "Reproducible Candidate Comparisons",
+                "sectionKey": "reproducible candidate comparisons",
                 "headingLevel": 2
               }
             ]
@@ -2872,6 +2962,14 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "A1 Envelope Deformability",
                 "sectionKey": "a1 envelope deformability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why Envelope Geometry Does Not Determine Mass",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+                "markdownSection": "Why Envelope Geometry Does Not Determine Mass",
+                "sectionKey": "why envelope geometry does not determine mass",
                 "headingLevel": 2
               },
               {
@@ -6389,6 +6487,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Indivisible Stochastic Reformulations",
+                "markdownPath": "content/markdown/aaa/quantum/wavefunction-ontology.md",
+                "markdownSection": "Indivisible Stochastic Reformulations",
+                "sectionKey": "indivisible stochastic reformulations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Falsifiability and Predictions",
                 "markdownPath": "content/markdown/aaa/quantum/wavefunction-ontology.md",
                 "markdownSection": "Falsifiability and Predictions",
@@ -8840,10 +8946,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Certificate Packet Schema",
+                    "title": "Evidence Required for a Branch",
                     "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
-                    "markdownSection": "Certificate Packet Schema",
-                    "sectionKey": "certificate packet schema",
+                    "markdownSection": "Evidence Required for a Branch",
+                    "sectionKey": "evidence required for a branch",
                     "headingLevel": 2
                   },
                   {
@@ -8876,14 +8982,6 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
                     "markdownSection": "Tier 3: Medium-Response Probe",
                     "sectionKey": "tier 3 medium response probe",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Planned Runtime Artifacts",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
-                    "markdownSection": "Planned Runtime Artifacts",
-                    "sectionKey": "planned runtime artifacts",
                     "headingLevel": 2
                   },
                   {
@@ -8931,10 +9029,10 @@
                     "sections": [
                       {
                         "kind": "markdown-section",
-                        "title": "Output Status",
+                        "title": "Interpretation of a Candidate",
                         "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-                        "markdownSection": "Output Status",
-                        "sectionKey": "output status",
+                        "markdownSection": "Interpretation of a Candidate",
+                        "sectionKey": "interpretation of a candidate",
                         "headingLevel": 2
                       },
                       {
@@ -8963,26 +9061,26 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Floquet Handoff",
+                        "title": "Floquet Stability",
                         "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-                        "markdownSection": "Floquet Handoff",
-                        "sectionKey": "floquet handoff",
+                        "markdownSection": "Floquet Stability",
+                        "sectionKey": "floquet stability",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Certificate Gates and Failure Codes",
+                        "title": "Preliminary Consistency Conditions",
                         "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-                        "markdownSection": "Certificate Gates and Failure Codes",
-                        "sectionKey": "certificate gates and failure codes",
+                        "markdownSection": "Preliminary Consistency Conditions",
+                        "sectionKey": "preliminary consistency conditions",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Promotion Boundary",
+                        "title": "Scope of the Preliminary Result",
                         "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-                        "markdownSection": "Promotion Boundary",
-                        "sectionKey": "promotion boundary",
+                        "markdownSection": "Scope of the Preliminary Result",
+                        "sectionKey": "scope of the preliminary result",
                         "headingLevel": 2
                       }
                     ]
@@ -9145,10 +9243,10 @@
                     "sections": [
                       {
                         "kind": "markdown-section",
-                        "title": "Runtime Artifact",
+                        "title": "Scope and Evidence",
                         "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Runtime Artifact",
-                        "sectionKey": "runtime artifact",
+                        "markdownSection": "Scope and Evidence",
+                        "sectionKey": "scope and evidence",
                         "headingLevel": 2
                       },
                       {
@@ -9161,34 +9259,18 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Input Packet",
+                        "title": "Model Inputs",
                         "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Input Packet",
-                        "sectionKey": "input packet",
+                        "markdownSection": "Model Inputs",
+                        "sectionKey": "model inputs",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Output Diagnostics",
+                        "title": "Consistency Tests",
                         "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Output Diagnostics",
-                        "sectionKey": "output diagnostics",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Required Mock Behavior",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Required Mock Behavior",
-                        "sectionKey": "required mock behavior",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Failure Reading",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Failure Reading",
-                        "sectionKey": "failure reading",
+                        "markdownSection": "Consistency Tests",
+                        "sectionKey": "consistency tests",
                         "headingLevel": 2
                       }
                     ]
@@ -9611,10 +9693,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Reusable Assessment Prompt",
+                "title": "Assessment Method",
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "Reusable Assessment Prompt",
-                "sectionKey": "reusable assessment prompt",
+                "markdownSection": "Assessment Method",
+                "sectionKey": "assessment method",
                 "headingLevel": 2
               },
               {

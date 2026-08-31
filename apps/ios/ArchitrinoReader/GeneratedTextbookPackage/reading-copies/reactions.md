@@ -64,7 +64,7 @@ The reaction row therefore records a Standard Model prediction as a structured o
 
 4. **Characterize local Noether sea state** Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear: $(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$. Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record transmitter-side acceleration weight — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
 
-Magnetic-like observer language belongs at this mapping layer. It is not a substrate-level law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
+Magnetic-like observer language belongs at this mapping layer. It is not a substrate-level law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly group velocity and after Noether sea anisotropy/vorticity dressing.
 
 For an assembly $A$ with $\|\mathbf{V}_A\| > 0$, define
 $$
@@ -75,7 +75,7 @@ $$
 \hat{\mathbf{V}}_A=\frac{\mathbf{V}_A}{\|\mathbf{V}_A\|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f749e629ce4f75fc)
+[View →](../../../../../equation-mapping.html#corpus-equation-f749e629ce4f75fc)
 
 A minimal transverse-channel map is
 $$
@@ -87,7 +87,7 @@ A_{\perp,A}^{i}(T)
 \hat r_{Ak,j}(T;T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-89a7192db3da63be)
+[View →](../../../../../equation-mapping.html#corpus-equation-89a7192db3da63be)
 
 The weight $\mathcal{K}_{Ak}$ packages the inverse-square causal-wake factor, the transmitter-side acceleration-weight factor of the $W^{\mathrm{acc}}$ family, the polarity sign, and the local Noether sea anisotropy/vorticity response; the transmitter-side (causal) Jacobian $D_t$ enters only as the transversality and root-density data that make each causal root legal, not as a separate multiplicative factor stacked on $W^{\mathrm{acc}}$ (which already carries the $1/D_t$ branch density). It is named $\mathcal{K}$ rather than $W$ because it is a channel-level composite, not the canonical per-hit acceleration weight alone. The argument $R_A$ is the assembly envelope scale-and-orientation record inherited from Noether braid geometry. This equation is the allowed bridge to magnetic-like language: transverse acceleration is to be recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
 
@@ -107,7 +107,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ba312b24b795bddb)
+[View →](../../../../../equation-mapping.html#corpus-equation-ba312b24b795bddb)
 
 where the continuity component is
 
@@ -119,7 +119,7 @@ $$
 \nabla_{\mathrm{eff}}\cdot\mathbf{J}_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-452b366787f8f374)
+[View →](../../../../../equation-mapping.html#corpus-equation-452b366787f8f374)
 
 and the gauge component requires every observer-level observable $\mathcal O$ used by the channel to obey
 
@@ -132,7 +132,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9d522820850a7f72)
+[View →](../../../../../equation-mapping.html#corpus-equation-9d522820850a7f72)
 
 with $\chi_{\mathrm g}$ the gauge function, subscripted to keep it distinct from the delay-factor family $\chi_{\text{sea}}$, $\chi_\gamma$, $\chi_{\mathrm{eff}}$.
 
@@ -173,7 +173,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7b6389e8d8494465)
+[View →](../../../../../equation-mapping.html#corpus-equation-7b6389e8d8494465)
 
 Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\parallel}^{\mathrm{sub}}$, $\Delta_{\mathrm{hel}}^\gamma$, and $\Delta_{\epsilon}^{\gamma}$ test the planar-pair substrate, transverse survival, longitudinal exclusion, helicity, and analyzer-basin rows; and $\Delta_{\mathrm{src}}^\gamma$, $\Delta_{\mathrm{recoil}}^\gamma$, $\Delta_{\mathrm{med}}^\gamma$, $\Delta_{\mathrm{wake}}^\gamma$, $\Delta_{\mathrm{handoff}}^\gamma$, $\Delta_{\mathrm{rem}}^\gamma$, and $\Delta_{\mathrm{bal}}^\gamma$ test the source, recoil, medium, causal-wake, analyzer-handoff, remnant, and event-balance rows. A reaction chapter may cite this vector as a bookkeeping contract, not as a derivation of photon polarization.
 
@@ -207,26 +207,26 @@ $$
 e^\pm + Z \rightarrow e^\pm + Z + \gamma
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-df6eee7222616d8d)
+[View →](../../../../../equation-mapping.html#corpus-equation-df6eee7222616d8d)
 
 $$
 p^\mu_{e,\mathrm{in}} + p^\mu_{Z,\mathrm{in}} = p^\mu_{e,\mathrm{out}} + p^\mu_{Z,\mathrm{out}} + k^\mu_{\gamma}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-47c0f5549f5ccada)
+[View →](../../../../../equation-mapping.html#corpus-equation-47c0f5549f5ccada)
 
 $$
 \sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-88ff383d1656ebfe)
+[View →](../../../../../equation-mapping.html#corpus-equation-88ff383d1656ebfe)
 
 $$
 \left(\frac{d\sigma}{dk}\right)_{\mathrm{map}} \rightarrow \left(\frac{d\sigma}{dk}\right)_{\mathrm{std}}
 \quad \text{(validated limit)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2234c027eda6b60d)
+[View →](../../../../../equation-mapping.html#corpus-equation-2234c027eda6b60d)
 
 #### Detailed Scenario B: Synchrotron Emission and Pair-Loaded Loop
 
@@ -253,26 +253,26 @@ P_{\mathrm{syn}}=\frac{4}{3}\sigma_T c\,U_B\,\gamma^2,
 U_B=\frac{B^2}{8\pi}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3188bc68d54493d1)
+[View →](../../../../../equation-mapping.html#corpus-equation-3188bc68d54493d1)
 
 $$
 \tau_{\mathrm{syn}} \sim \frac{E_e}{P_{\mathrm{syn}}} \propto \frac{1}{\gamma B^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f6999760323a2911)
+[View →](../../../../../equation-mapping.html#corpus-equation-f6999760323a2911)
 
 $$
 s=(k_1+k_2)^2 \ge 4m_e^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-983a302c7545ca17)
+[View →](../../../../../equation-mapping.html#corpus-equation-983a302c7545ca17)
 
 $$
 \sigma_{\gamma\gamma,\mathrm{map}}(s) \rightarrow \sigma_{\gamma\gamma,\mathrm{BW}}(s)
 \quad \text{(validated limit)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-da9a4c71cb774c8c)
+[View →](../../../../../equation-mapping.html#corpus-equation-da9a4c71cb774c8c)
 
 #### Detailed Scenario C: Pair Production as Standalone Conversion
 
@@ -291,26 +291,26 @@ $$
 \gamma + \gamma \rightarrow e^+ + e^-
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b085125ff6c1bafc)
+[View →](../../../../../equation-mapping.html#corpus-equation-b085125ff6c1bafc)
 
 $$
 s=(k_1+k_2)^2=2E_1E_2(1-\cos\theta)\ge 4m_e^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9b851271dd15de01)
+[View →](../../../../../equation-mapping.html#corpus-equation-9b851271dd15de01)
 
 $$
 k_1^\mu+k_2^\mu=p^\mu_{e^-}+p^\mu_{e^+}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e24a26c65e73f194)
+[View →](../../../../../equation-mapping.html#corpus-equation-e24a26c65e73f194)
 
 $$
 \sigma_{\gamma\gamma,\mathrm{map}}(s) \rightarrow \sigma_{\gamma\gamma,\mathrm{BW}}(s)
 \quad \text{(validated limit)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-da9a4c71cb774c8c-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-da9a4c71cb774c8c-2)
 
 #### Detailed Scenario D: Weak-Channel Transition (Terminology Boundary)
 
@@ -329,7 +329,7 @@ $$
 \quad \text{(validated limit)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9124b64811fc0bce)
+[View →](../../../../../equation-mapping.html#corpus-equation-9124b64811fc0bce)
 
 Here $\mathcal{M}$ is standard amplitude notation for the comparison row, not the timespace manifold $\mathcal{M}$.
 
@@ -339,7 +339,7 @@ $$
 \mathrm{BR}_{\mathrm{map}} \rightarrow \mathrm{BR}_{\mathrm{PDG}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-112c86834436b765)
+[View →](../../../../../equation-mapping.html#corpus-equation-112c86834436b765)
 
 For weak-channel rows that report a mass, width, branching fraction, lifetime, or mixing entry, the observer-facing comparison must keep the published uncertainty convention as part of the target. A compact residual is
 
@@ -354,7 +354,7 @@ C_{\mathrm{weak}}^{-1/2}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-375afdbe6ba0b446)
+[View →](../../../../../equation-mapping.html#corpus-equation-375afdbe6ba0b446)
 
 where $\mathbf y_{\mathrm{PDG}}$ may include $M_W$, $\Gamma_W$, $M_Z$, $\Gamma_Z$, weak mixing angles, CKM entries, PMNS entries, lifetimes, or branching fractions, and $C_{\mathrm{weak}}$ is the declared covariance or uncertainty rule for those rows. If a row is an upper limit, an asymmetric uncertainty, or a result with separated statistical and systematic errors, the channel must preserve that convention instead of converting it into an unmarked symmetric error.
 
@@ -365,7 +365,7 @@ $$
 -\frac{4G_F}{\sqrt 2}\,J_+^\mu J^-_\mu
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-411cbec73e234e62)
+[View →](../../../../../equation-mapping.html#corpus-equation-411cbec73e234e62)
 with $G_F$ supplied by the electroweak corridor scale rather than by an independent contact parameter. This keeps corridor-mode bookkeeping tied to measured beta-reaction and muon-reaction limits (SM labels: `beta decay`, `muon decay`) while leaving the finite $W^\pm$ channel as the higher-energy provenance record.
 
 $$
@@ -374,7 +374,7 @@ $$
 \sum p^\mu_{\mathrm{in}}=\sum p^\mu_{\mathrm{out}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0c0c70834a1feab9)
+[View →](../../../../../equation-mapping.html#corpus-equation-0c0c70834a1feab9)
 
 #### Practical Authoring Rule for `reactions/*.md`
 
@@ -446,7 +446,7 @@ Plainly: the Master Equation is acceleration-blind only at one fixed hit. That d
 
 Claim level: candidate mechanism and derivation target for the accelerated sector; it sharpens the routed-residual reading above without adding a new primitive.
 
-The primary statement is the event-ledger rule above. The unprepared-path picture is a sea-dependent candidate for how a residual can arise: in steady sub-field-speed drift, forward causal influence and the local Noether sea response can settle into a phase-matched channel, whereas acceleration, an abrupt material boundary, or transport faster than a medium's phase speed can make arrival geometry differ from the prepared response. The resulting mismatch is a candidate contribution to $\mathcal R_{\Theta}$, not a replacement for its Master Equation derivation. In a sea-free idealization this preparation picture has no medium response to invoke; the prediction must then come entirely from the causal-root density, return map, and photon event ledger. This separation makes Cherenkov and transition radiation decisive recovery tests rather than exceptions hidden by the word “acceleration.”
+The primary statement is the event-ledger rule above. The unprepared-path picture is a sea-dependent candidate for how a residual can arise: at constant sub-field-speed group velocity, forward causal influence and the local Noether sea response can settle into a phase-matched channel, whereas acceleration, an abrupt material boundary, or transport faster than a medium's phase speed can make arrival geometry differ from the prepared response. The resulting mismatch is a candidate contribution to $\mathcal R_{\Theta}$, not a replacement for its Master Equation derivation. In a sea-free idealization this preparation picture has no medium response to invoke; the prediction must then come entirely from the causal-root density, return map, and photon event ledger. This separation makes Cherenkov and transition radiation decisive recovery tests rather than exceptions hidden by the word “acceleration.”
 
 One quantitative scaffold can test that candidate. If a medium response must prepare a distance $d$ ahead while the source moves at speed $v<c_f$, define
 
@@ -456,7 +456,7 @@ t_{\mathrm{prep}}=\frac{d}{c_f-v},
 \delta_\perp\simeq\frac{1}{2}\|\mathbf a_\perp\|t_{\mathrm{prep}}^2.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-79e0f11197f23c62)
+[View →](../../../../../equation-mapping.html#corpus-equation-79e0f11197f23c62)
 
 With $\beta_f=v/c_f$ and $1/(1-\beta_f)\simeq2\gamma_f^2$ near the field-speed edge,
 
@@ -466,7 +466,7 @@ $$
 \frac{2\|\mathbf a_\perp\|\gamma_f^4d^2}{c_f^2}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0be17fe0322e3638)
+[View →](../../../../../equation-mapping.html#corpus-equation-0be17fe0322e3638)
 
 This is a kinematic candidate, not a power law. At fixed path curvature, the radiation-zone target is the standard $P_{\perp}\propto\gamma^4\|\mathbf a_\perp\|^2$ limit; at fixed $B$, the trajectory response changes with $\gamma$ and the target becomes $P_{\mathrm{syn}}\propto U_B\gamma^2$. A completed derivation must decide whether routed power is linear or nonlinear in $\delta_\perp$ and whether the probe distance $d$ is state dependent. A quadratic fixed-$d$ rule would overproduce a $\gamma^8$ factor and falsify this simplest preparation map.
 
@@ -517,7 +517,7 @@ $$
 \Theta_a(T;\mathbf{V}_{\text{after}},G_{\text{grad}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0f5343bbfbab6607)
+[View →](../../../../../equation-mapping.html#corpus-equation-0f5343bbfbab6607)
 
 Here $\Theta_a$ denotes binary $a$'s phase-closure ledger over the comparison interval $T$ — distinct from the coarse Noether sea response record $\Theta_E^{(\ell)}$ used in the material sections below — $\mathbf{V}$ denotes the transport state being retuned, and $G_{\text{grad}}$ denotes the local gradient data that modifies the delay loops. The index is persistent, $a\in\{1,2,3\}$, and does not encode radius order or a fixed dynamical role.
 
@@ -531,7 +531,7 @@ $$
 w_a>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b11866cd30210706)
+[View →](../../../../../equation-mapping.html#corpus-equation-b11866cd30210706)
 
 The weights $w_a$ are not free phenomenology in the completed theory. They must be derived from the layer hierarchy, active causal-root branches, and local Noether sea coupling. At this overview level, $\mathcal{R}_{\Theta}$ is only a bookkeeping norm for how far the post-drive assembly has been pushed away from the nearest closure class.
 
@@ -545,7 +545,7 @@ $$
 \frac{\tau_{\text{retune}}}{\tau_{\text{drive}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fe68e3eec7132cc4)
+[View →](../../../../../equation-mapping.html#corpus-equation-fe68e3eec7132cc4)
 
 When $\epsilon_{\text{ad}}\ll 1$, the three persistently indexed ledgers remain near their stable return map, and the disturbance appears as smooth transport or small local heating. When $\epsilon_{\text{ad}}\gtrsim 1$, the post-drive state can carry a finite closure residual after the external impulse has passed. Radiation begins only if that residual is routed through an allowed shedding channel.
 
@@ -559,7 +559,7 @@ $$
 t_{\mathrm{dyn}}\sim\frac{\ell_j}{v_j}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e946ba3b255c89bc)
+[View →](../../../../../equation-mapping.html#corpus-equation-e946ba3b255c89bc)
 
 with an observer-level thermal-plasma estimate
 
@@ -570,7 +570,7 @@ t_{\mathrm{cool}}
 {(\gamma_{\mathrm{gas}}-1)n_e n_H\Lambda(T_s)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-03f4023e6a7897a8)
+[View →](../../../../../equation-mapping.html#corpus-equation-03f4023e6a7897a8)
 
 Here $v_j$ and $\ell_j$ are the effective jet speed and propagation scale, $T_s$ is the post-shock temperature, and $\Lambda(T_s)$ is the standard cooling function. These variables do not become substrate ontology. They define an observational closure target: when $\mathcal{R}_{\mathrm{cool}}\ll1$, shocked material should route a large fraction of $E_{\text{exc}}$ into thermal line, free-free, and medium-heating rows; when $\mathcal{R}_{\mathrm{cool}}\gg1$, the same shock geometry may remain adiabatic enough for non-thermal acceleration, synchrotron emission, inverse-Compton output, and cocoon/lobe energy storage to dominate. A radiation map that uses the same shock residual for both cases must therefore expose the branch decision rather than treating "shock" as a single radiative outcome.
 
@@ -591,7 +591,7 @@ $$
 \mathcal{R}_{\Theta}\!\left(\Gamma(T),\mathcal{C}_{o'j}(T),J_{o'j},\rho_{\text{NS}}(\mathbf X,T),\chi_{\text{sea}}(\mathbf X,T)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c37c9be06f023431)
+[View →](../../../../../equation-mapping.html#corpus-equation-c37c9be06f023431)
 
 where $\Gamma(T)$ is the assembly microstate and the other inputs are the causal-root, Jacobian, density, and delay data already used elsewhere in the corpus.
 
@@ -611,7 +611,7 @@ $$
 \Delta P^\mu_{\mathrm{mass/rem}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a7fcee81ae6640f3)
+[View →](../../../../../equation-mapping.html#corpus-equation-a7fcee81ae6640f3)
 
 where $\Delta P^\mu_{\mathrm{near}}$ is the reversible near-field or acceleration-energy comparison row, $\Delta P^\mu_{\mathrm{wake}}$ is the causal-wake branch exchange computed from delayed path-history data, and $\Delta P^\mu_{\mathrm{mass/rem}}$ is the finite internal mass or remnant ledger that prevents electromagnetic self-energy from being mistaken for the whole mass story. The radiation-reaction target is $\mathcal{D}_{\mathrm{rad}}=0$ with every row individually finite. A completed radiation-reaction derivation must show that the observer-level damping term is the irreversible part of this conservation residual after the reversible near-field row is separated, not an independently appended self-force.
 
@@ -629,7 +629,7 @@ E_C(\Gamma_{\text{post shock}})
 E_C(\Gamma_{\text{nearest stable rung}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-73e2a1b9f3769f52)
+[View →](../../../../../equation-mapping.html#corpus-equation-73e2a1b9f3769f52)
 
 where $E_C$ is the closure-class energy functional evaluated on the assembly microstate. An excitation basin is the set of post-drive states that share the same available relaxation routes. The simplest basin classification is:
 
@@ -656,7 +656,7 @@ $$
 E_{\text{exc}}\ge E_{\gamma,\min}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-982ba49e54ca79ee)
+[View →](../../../../../equation-mapping.html#corpus-equation-982ba49e54ca79ee)
 
 Here $\mathcal{S}_{\gamma}$ is the local photon-channel drive, $\mathcal{S}_{\gamma,*}$ is the planar-mode stability boundary, $J_{\text{loc}}$ is the local causal-root/Jacobian data — including the same-record transmitter-side acceleration weight — as declared in [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md), and $E_{\gamma,\min}$ is the minimum stable planar-mode cost if such a floor survives the derivation. This form is only a scaffold. The burden is to derive $\mathcal{S}_{\gamma}$ from wake-strain geometry, causal-root branch data, and Noether sea coupling, then recover the validated limits used by bremsstrahlung, synchrotron emission, atomic transitions, Compton-like scattering, pair channels, and thermal radiation.
 
@@ -680,7 +680,7 @@ E_\gamma
 \Delta E_{\text{rxn}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ca32fb61bc15bc55)
+[View →](../../../../../equation-mapping.html#corpus-equation-ca32fb61bc15bc55)
 
 The pure radiative limit has $\Delta E_{\text{rxn}}=0$. A sub-threshold transport event has $E_\gamma=0$ and routes energy into $\Delta E_{\text{med}}$, $\Delta E_{\text{recoil}}$, or $\Delta E_{\text{rem}}$. A reaction event has nonzero $\Delta E_{\text{rxn}}$ and must use the full reaction provenance ledger.
 
@@ -693,7 +693,7 @@ $$
 \rho_f
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1f60966cc39e9463)
+[View →](../../../../../equation-mapping.html#corpus-equation-1f60966cc39e9463)
 with $\rho_f$ the density of accepted final records. For scattering channels, cross sections must be the same transition probability divided by incoming flux and integrated over the outgoing phase-space ledger. Thus amplitudes, decay widths, and cross sections are comparison-layer summaries of one provenance record, not independent event ontologies.
 
 Momentum and angular momentum must close at the same vertex:
@@ -712,7 +712,7 @@ $$
 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bbb8335828dd3cfd)
+[View →](../../../../../equation-mapping.html#corpus-equation-bbb8335828dd3cfd)
 
 The corresponding polarity, architrino-inventory, identity-routing, and path-history ledgers must also close. Non-radiative shedding is therefore not a discard bin. It is the required accounting for medium heating, turbulence, phonon/plasmon-like excitations, unresolved causal-wake stress, recoil, and residual internal excitation when no stable photon assembly leaves the event.
 
@@ -736,7 +736,7 @@ h(\nu^+-\nu^-)
 }{\epsilon_E}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f9443e4a405cfbd4)
+[View →](../../../../../equation-mapping.html#corpus-equation-f9443e4a405cfbd4)
 
 The signs of the $\Delta E$ terms are ledger signs. A frequency boost has $h(\nu^+-\nu^-) > 0$ and therefore requires a corresponding loss from the target or medium rows. A frequency depletion requires a named gain in target, medium, recoil, remnant, or thermalization rows. The photon Gate A and Gate B records also persist through the segment: the outgoing packet must retain a valid photon-channel kinematic and polarization handoff, or else the process becomes absorption plus re-emission, pair production, or another reaction channel with a different event record.
 
@@ -753,7 +753,7 @@ $$
 \right\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-efaeee5116926cc9)
+[View →](../../../../../equation-mapping.html#corpus-equation-efaeee5116926cc9)
 the Euclidean path-curvature proxy along the transported packet; during coherent transport the path tangent $\hat{\mathbf{k}}(\ell)$ coincides at each point with the Gate A propagation axis $\hat{\mathbf k}$ of the packet. The coherent-lensing branch requires
 $$
 E_{\gamma}^{+}
@@ -768,7 +768,7 @@ E_{\gamma}^{-}
 +\Delta\mathbf p_{\mathrm{recoil}},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3767dd0c9810d99c)
+[View →](../../../../../equation-mapping.html#corpus-equation-3767dd0c9810d99c)
 with no free-photon identity change. A high-gradient or strong-field candidate may instead open a transverse residual
 $$
 \mathcal R_{\perp}^{\gamma}
@@ -788,7 +788,7 @@ $$
 \mathcal R_{\mathrm{GateA/B}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-47a8993ebc3f74b2)
+[View →](../../../../../equation-mapping.html#corpus-equation-47a8993ebc3f74b2)
 This is not a claim that lensing normally emits radiation. It is a branch-selection target: weak lensing should remain coherent photon transport, while any proposed strong transverse acceleration emission must declare the source of the residual, the recoil or medium uptake, and the threshold at which the packet leaves the ordinary lensing class.
 
 **Effective electromagnetic energy-momentum gate.** Standard electromagnetic energy and momentum bookkeeping supplies a useful recovery ledger for radiation, but only at the observer/channel level. The fields $\mathbf{E}_{\mathrm{eff}}$ and $\mathbf{B}_{\mathrm{eff}}$ in this subsection are effective comparison variables reconstructed from the channel map. They are not substrate objects added to the Euclidean void or to the Noether sea.
@@ -807,7 +807,7 @@ u_{\mathrm{EM}}
 \frac{1}{\mu_0}\mathbf{E}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f903c7efe3a0e88f)
+[View →](../../../../../equation-mapping.html#corpus-equation-f903c7efe3a0e88f)
 
 and
 
@@ -819,7 +819,7 @@ $$
 \epsilon_0\mathbf{E}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0b63dd026736b930)
+[View →](../../../../../equation-mapping.html#corpus-equation-0b63dd026736b930)
 
 The corresponding Maxwell-stress comparison tensor is
 
@@ -841,7 +841,7 @@ B_{\mathrm{eff}}^iB_{\mathrm{eff}}^j
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-181c8e23e97f48f5)
+[View →](../../../../../equation-mapping.html#corpus-equation-181c8e23e97f48f5)
 
 Note the sign convention: $\sigma_{\mathrm{EM}}^{ij}$ is the momentum flux out of $V$, the negative of the textbook Maxwell stress tensor $T_{\mathrm{Maxwell}}^{ij}$, which is why it enters the momentum residual below with a plus sign.
 
@@ -857,7 +857,7 @@ $$
 \int_V\mathbf{J}_{\mathrm{eff}}\cdot\mathbf{E}_{\mathrm{eff}}\,d^3x_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-984703fdc12f15a2)
+[View →](../../../../../equation-mapping.html#corpus-equation-984703fdc12f15a2)
 
 The effective Lorentz-force density is
 
@@ -869,7 +869,7 @@ f_{\mathrm{L}}^i
 \left(\mathbf{J}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}\right)^i
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f7297c236c971227)
+[View →](../../../../../equation-mapping.html#corpus-equation-f7297c236c971227)
 
 and the momentum residual is
 
@@ -883,7 +883,7 @@ $$
 \int_V f_{\mathrm{L}}^i\,d^3x_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e662bc8aaa5b64e0)
+[View →](../../../../../equation-mapping.html#corpus-equation-e662bc8aaa5b64e0)
 
 The angular-momentum residual is the corresponding moment of the momentum ledger:
 
@@ -897,7 +897,7 @@ $$
 \int_V\epsilon^i{}_{jk}x_{\mathrm{eff}}^j f_{\mathrm{L}}^k\,d^3x_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a5f6beeca298812f)
+[View →](../../../../../equation-mapping.html#corpus-equation-a5f6beeca298812f)
 
 The tensor $\sigma_{\mathrm{EM}}^{ij}$ is symmetric, so this effective comparison ledger carries the standard angular-momentum closure condition. A radiation, scattering, or material-capture event may use this gate only as a benchmark: the $\mathbb{A}\mathbb{A}\mathbb{A}$ event record must still name the source assembly, causal-root history, medium rows, recoil, and identity routing that generate the effective quantities.
 
@@ -920,7 +920,7 @@ E_\gamma
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-503ce3cc8156900b)
+[View →](../../../../../equation-mapping.html#corpus-equation-503ce3cc8156900b)
 
 The photon event closes this check only when $\Delta_{\gamma,\mathrm{flux}}=0$ in the declared standard-limit comparison, or when the residual is explicitly routed into material, recoil, remnant, or unresolved wake rows. This is the radiation energy-momentum closure check used by the channel pages.
 
@@ -966,7 +966,7 @@ $$
 \mathcal Q\in\{E,\mathbf p,\mathbf J\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7572f20bbbfa4ac3)
+[View →](../../../../../equation-mapping.html#corpus-equation-7572f20bbbfa4ac3)
 
 For Gate B, the $\mathcal Q=\mathbf J$ component is the transverse angular-momentum balance. Photon polarization, helicity, and analyzer handoff are therefore not detached labels; they are the photon-side component of one event-window conservation record.
 
@@ -990,7 +990,7 @@ $$
 \mathbf J_{\mathrm{rem}}^{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0f23e3d04627e3a5)
+[View →](../../../../../equation-mapping.html#corpus-equation-0f23e3d04627e3a5)
 
 Then
 
@@ -1019,7 +1019,7 @@ $$
 \lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-05b96accb5630ef4)
+[View →](../../../../../equation-mapping.html#corpus-equation-05b96accb5630ef4)
 
 when $\mathbf B_{\gamma}^{0}=\mathbf 0$ and the photon substrate row has no transverse leakage. If the balance defect is nonzero, the projection error is bounded by $\|\mathbf B_{\gamma}^{0}\|/\hbar$.
 
@@ -1039,7 +1039,7 @@ E_\gamma
 \Delta E_{\text{rxn}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ca32fb61bc15bc55-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-ca32fb61bc15bc55-2)
 
 Channel pages may add specialized variables, but they should not remove these fields. The polarization handoff remains inherited from photon Gate B; radiation records carry the fields needed by that gate, while the photon-spin and polarization proof remains outside the local radiation event record.
 
@@ -1057,7 +1057,7 @@ $$
 \operatorname{Bench}_{\gamma}(\mathsf e)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1baa56cbe8ea2339)
+[View →](../../../../../equation-mapping.html#corpus-equation-1baa56cbe8ea2339)
 
 Here $\operatorname{Ledger}_{\gamma}$ requires the event ledger to close after photon output, recoil, remnant, medium update, wake handoff, and provenance rows are included. The transversality row is inherited from photon Gate B:
 
@@ -1072,7 +1072,7 @@ P_{\parallel,\hat{\mathbf{k}}}
 \epsilon_{\gamma,\parallel}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a42eb2252cc2697c)
+[View →](../../../../../equation-mapping.html#corpus-equation-a42eb2252cc2697c)
 
 so any longitudinal response must cancel, remain unexposed below tolerance, or route to a material, remnant, medium-bound, or massive-vector channel rather than a free photon.
 
@@ -1091,7 +1091,7 @@ R_{\mathrm{replay},b}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9f79567629bf1e99)
+[View →](../../../../../equation-mapping.html#corpus-equation-9f79567629bf1e99)
 
 The benchmark scales $E_b$, $p_b$, and $J_b$ are declared comparison scales, not fitted recovery knobs. $R_{\mathrm{bench},b}$ is the family-specific residual, such as Larmor/Liénard power, Compton shift, pair threshold, or Planck occupation. $R_{\mathrm{replay},b}$ vanishes only when the same residual definition, channel boundary, and Noether sea variables replay across the selected event panel without retuning. The acceptance target is
 
@@ -1101,7 +1101,7 @@ $$
 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bc46a40eed5f69a4)
+[View →](../../../../../equation-mapping.html#corpus-equation-bc46a40eed5f69a4)
 
 after photon Gate A supplies the admissible massless branch and photon Gate B supplies the transverse ledger. A radiation family is therefore not closed by matching one scalar benchmark if energy, momentum, angular momentum, transversality, provenance, or replayability still fails.
 
@@ -1121,7 +1121,7 @@ W_{\mathrm{int}},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-008b07a26ad17060)
+[View →](../../../../../equation-mapping.html#corpus-equation-008b07a26ad17060)
 
 The five entries are theorem-target data, not a completed QFT scattering derivation:
 
@@ -1147,7 +1147,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7250d9451a9eb8e3)
+[View →](../../../../../equation-mapping.html#corpus-equation-7250d9451a9eb8e3)
 
 with every component required to vanish, or to be assigned to a named residual row, before the channel can be used as a completed scattering or reaction ledger. Here $\Delta\mathcal{N}_{\mathrm{id}}$ is the identity-routing residual after explicit Noether sea reservoir terms are included, and $\Delta_{\mathrm{bench}}$ is the observer-level benchmark residual for the declared regime. At validated relativistic collision limits, this grammar must reproduce the standard incoming/outgoing state accounting, thresholds, and conservation laws. It does not by itself derive amplitudes, cross sections, or particle-creation rates.
 
@@ -1168,7 +1168,7 @@ X_{\mathrm{surf}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-04359a740f4c3947)
+[View →](../../../../../equation-mapping.html#corpus-equation-04359a740f4c3947)
 
 where $\gamma_{\mathrm{in}}$ carries $E_{\gamma,\mathrm{in}}$, $\mathbf{p}_{\gamma,\mathrm{in}}$, direction, phase frequency, local $c_\gamma$, and transverse ledger data; $\mathcal B_e$ is the realized electron-envelope branch; $\mathcal A_{\mathrm{nuc}}^{Z,N}$ is the nuclear assembly ledger; $\mathcal B_{\mathrm{lat}}$ is the realized material bonding or lattice branch; $\Theta_E^{(\ell)}$ is the coarse Noether sea response record in the surface cell; and $\mathcal H_{\gamma\to\Omega}$ is the causal-wake and path-history ledger for the incoming packet and local material window.
 
@@ -1187,7 +1187,7 @@ B_{\mathrm{rem}}
 \}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6be2dcca60eb646f)
+[View →](../../../../../equation-mapping.html#corpus-equation-6be2dcca60eb646f)
 
 The selected route must close the scalar ledger
 
@@ -1207,7 +1207,7 @@ E_{\gamma,\mathrm{out}}
 \Delta E_{\mathrm{rem}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3964eee95d15b27d)
+[View →](../../../../../equation-mapping.html#corpus-equation-3964eee95d15b27d)
 
 with corresponding momentum and angular-momentum rows
 
@@ -1225,7 +1225,7 @@ $$
 \Delta \mathbf{p}_{\mathrm{recoil}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9ae869e9778345e5)
+[View →](../../../../../equation-mapping.html#corpus-equation-9ae869e9778345e5)
 
 $$
 \mathcal J_{\gamma,\mathrm{in}}^{\perp}
@@ -1241,7 +1241,7 @@ $$
 \Delta \mathcal J_{\mathrm{wake}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6266434e70904a89)
+[View →](../../../../../equation-mapping.html#corpus-equation-6266434e70904a89)
 
 Here $E_{\gamma,\mathrm{out}}=0$ when no free photon leaves the cell. In that case the photon branch has been captured or dephased as a free planar-pair mode, but the event has not lost energy; the electron-envelope, lattice, Noether sea, recoil, remnant, and wake rows carry the balance. For ordinary optical or infrared surface events, the nuclear inventory remains fixed: $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is explicitly supplied.
 
@@ -1276,7 +1276,7 @@ E_{\gamma,b}^{\mathrm{in}}+\varepsilon_E
 +\mathcal R_{\mathbf p\mathbf J,b}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-36c52d182bec59e9)
+[View →](../../../../../equation-mapping.html#corpus-equation-36c52d182bec59e9)
 The cavity loss residual over $N$ bounces is
 $$
 \mathcal R_{\mathrm{cav}}
@@ -1287,7 +1287,7 @@ w_b\,\mathcal R_{\mathrm{mir}}(b),
 w_b\ge0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b48b7fce650d8573)
+[View →](../../../../../equation-mapping.html#corpus-equation-b48b7fce650d8573)
 Apparent lossless reflection means $\mathcal R_{\mathrm{mir}}(b)$ and the accumulated absorption, recoil, phase, and heating rows remain below the declared tolerance. It does not mean the photon bounced from a passive wall with zero material update.
 
 The worked surface case is still a derivation target. It fails if reflection is modeled as a hard geometric bounce with no electron-envelope response, if absorption becomes annihilation or untracked heat, if the same material requires separate Noether sea variables for reflection and absorption, if a hidden longitudinal free-photon channel is used, or if ordinary optical events change nuclear inventory without a separate reaction provenance ledger.
@@ -1302,7 +1302,7 @@ $$
 \mathbf{E}_{\Omega}(t'_{\mathrm{eff}},x_{\mathrm{eff}}^i)\,dt'_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0f13f0aff8c9a897)
+[View →](../../../../../equation-mapping.html#corpus-equation-0f13f0aff8c9a897)
 
 with causality requiring
 
@@ -1313,7 +1313,7 @@ $$
 \Delta t_{\mathrm{eff}}<0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-42bb821f98b93e5f)
+[View →](../../../../../equation-mapping.html#corpus-equation-42bb821f98b93e5f)
 
 Throughout this response-function subsection the harmonic convention is $e^{-i\omega t_{\mathrm{eff}}}$; the Kramers-Kronig signs, the conductor combination $\epsilon_{\mathrm{eff}}=\epsilon+i\sigma/\omega$, and the analyticity domain all assume it. Therefore the frequency-domain response $\mathcal X_\Omega(\omega;x_{\mathrm{eff}}^i)$ must be analytic for $\operatorname{Im}\omega > 0$ in the validated linear-response regime. The Noether sea dressing map for material response must recover the Kramers-Kronig residuals
 
@@ -1327,7 +1327,7 @@ $$
 \frac{\operatorname{Im}\mathcal X_\Omega(\omega')}{\omega'-\omega}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a7b245913068f53b)
+[View →](../../../../../equation-mapping.html#corpus-equation-a7b245913068f53b)
 
 $$
 \Delta_{\mathrm{KK}}^{\operatorname{Im}}(\omega)
@@ -1339,7 +1339,7 @@ $$
 \frac{\operatorname{Re}\mathcal X_\Omega(\omega')}{\omega'-\omega}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7a6d4752a389de6f)
+[View →](../../../../../equation-mapping.html#corpus-equation-7a6d4752a389de6f)
 
 and pass only when both residuals vanish, up to declared coarse-graining error. This is a causality test for Noether sea dressing, not a claim that the effective response kernel is the substrate ontology.
 
@@ -1359,7 +1359,7 @@ k^2(\omega)
 k(\omega)=k_1(\omega)+ik_2(\omega)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-04aa86114c3eda82)
+[View →](../../../../../equation-mapping.html#corpus-equation-04aa86114c3eda82)
 
 The attenuation and phase rows are
 
@@ -1369,7 +1369,7 @@ $$
 \phi_{EB}(\omega)=\tan^{-1}\!\left(\frac{k_2(\omega)}{k_1(\omega)}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dbde9590ecc164bd)
+[View →](../../../../../equation-mapping.html#corpus-equation-dbde9590ecc164bd)
 
 In the low-frequency Drude conductor limit,
 
@@ -1383,7 +1383,7 @@ $$
 \left(\frac{2}{\mu_\Omega\omega\sigma_{\mathrm{DC}}}\right)^{1/2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d58a53912edab28d)
+[View →](../../../../../equation-mapping.html#corpus-equation-d58a53912edab28d)
 
 In the high-frequency plasma limit, with carrier density $n_{\mathrm{car}}$,
 
@@ -1397,7 +1397,7 @@ $$
 \epsilon_0\left(1-\frac{\omega_p^2}{\omega^2}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4cf951f35ad17f55)
+[View →](../../../../../equation-mapping.html#corpus-equation-4cf951f35ad17f55)
 
 The transparent branch must recover
 
@@ -1407,7 +1407,7 @@ $$
 (\omega>\omega_p)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d67c651eb40622de)
+[View →](../../../../../equation-mapping.html#corpus-equation-d67c651eb40622de)
 
 while $\omega < \omega_p$ routes to an evanescent reflection/skin-depth row rather than to an untracked disappearance of the photon ledger. If $\epsilon_{\mathrm{eff}}(\omega)=0$ supports a longitudinal plasma oscillation, that excitation belongs in the medium-excitation row; it is not a hidden longitudinal free-photon branch.
 
@@ -1432,7 +1432,7 @@ k_2,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7411087d400d5fe6)
+[View →](../../../../../equation-mapping.html#corpus-equation-7411087d400d5fe6)
 
 with scalar routing condition
 
@@ -1440,7 +1440,7 @@ $$
 R_b+T_b+A_b+Q_b^{\mathrm{rem}}=1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cc8c8d46d80be6bf)
+[View →](../../../../../equation-mapping.html#corpus-equation-cc8c8d46d80be6bf)
 
 Here $R_b$ is coherent reflected flux, $T_b$ is transmitted flux, $A_b$ is thermalized or dephased absorption, and $Q_b^{\mathrm{rem}}$ is retained bound excitation. In transparent interface limits the same ledger must recover Snell and Brewster behavior,
 
@@ -1450,7 +1450,7 @@ n_1\sin\theta_I=n_2\sin\theta_T,
 \tan\theta_B=\frac{n_2}{n_1}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fed3080c4f36c7b8)
+[View →](../../../../../equation-mapping.html#corpus-equation-fed3080c4f36c7b8)
 
 with the polarization branch $b$ selecting the relevant Fresnel amplitude. In absorbing or conducting limits, the ledger must recover attenuation through $k_2$ and $\delta_{\mathrm{skin}}$ while keeping energy, momentum, and transverse angular momentum assigned to the same event record.
 
@@ -1466,7 +1466,7 @@ $$
 \left(\frac{\partial S_{\text{ens}}}{\partial E_{\text{ens}}}\right)_{\mathcal{N},\mathcal{V}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-24b769c1a722aa26)
+[View →](../../../../../equation-mapping.html#corpus-equation-24b769c1a722aa26)
 
 or from an equivalent kinetic distribution that has already been shown to thermalize under the local interaction rules. The symbols $\mathcal{N}$ and $\mathcal{V}$ denote the conserved inventory and effective volume variables held fixed in the chosen coarse-graining; they are bookkeeping variables, not new ontology.
 
@@ -1478,7 +1478,7 @@ $$
 \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-42013aabe5e135c7)
+[View →](../../../../../equation-mapping.html#corpus-equation-42013aabe5e135c7)
 
 When $\mathcal{R}_{\mathrm{LTE}}\ll 1$, assembly-medium coupling is fast enough that local emissivity may be computed from instantaneous ensemble variables. When $\mathcal{R}_{\mathrm{LTE}}\gtrsim 1$, the channel remains non-equilibrium, and a single local temperature is not a sufficient state description.
 
@@ -1492,7 +1492,7 @@ $$
 \frac{1}{\exp(h\nu/(k_B T_{\mathrm{temp}}))-1}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8c0ea9bd422d056e)
+[View →](../../../../../equation-mapping.html#corpus-equation-8c0ea9bd422d056e)
 
 with effective photon chemical potential driven to zero in the fully thermalized photon bath. This is an observer-level recovery target. The foundation-up task is to show how planar-mode nucleation, planar-mode capture, Compton-like redistribution, pair channels, and non-radiative medium exchange jointly produce the same limit.
 
@@ -1506,7 +1506,7 @@ $$
 \Gamma_{j+\gamma\to i}\,f_j\,\bar n_\gamma
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-49ab805967d09a67)
+[View →](../../../../../equation-mapping.html#corpus-equation-49ab805967d09a67)
 
 Here $f_i$ and $f_j$ are ensemble occupation weights for material or assembly states, while $\Gamma$ denotes the effective transition rate after the underlying assembly dynamics have been coarse-grained. This equation is not a proof of blackbody behavior. It states the rate symmetry that the completed Gate C radiation derivation must recover.
 
@@ -1518,7 +1518,7 @@ $$
 \frac{g_i}{g_j}\exp\!\left(-\frac{h\nu}{k_B T_{\text{ens}}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5399475bb00ebeb1)
+[View →](../../../../../equation-mapping.html#corpus-equation-5399475bb00ebeb1)
 
 from the thermalized assembly ensemble, together with a rate-degeneracy relation
 
@@ -1528,7 +1528,7 @@ $$
 \Gamma_{j+\gamma\to i}\,g_j
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b39b780bb35f9e95)
+[View →](../../../../../equation-mapping.html#corpus-equation-b39b780bb35f9e95)
 
 Those two conditions make the detailed-balance equation imply
 
@@ -1538,7 +1538,7 @@ $$
 \exp\!\left(-\frac{h\nu}{k_B T_{\text{ens}}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ddb17a2e31fb1116)
+[View →](../../../../../equation-mapping.html#corpus-equation-ddb17a2e31fb1116)
 
 and therefore recover the Planck occupation. The point is not to postulate these relations at the substrate level; the point is to identify exactly what the assembly return map, planar-mode capture/release rates, and coarse-grained ensemble measure must prove before blackbody language becomes available.
 
@@ -1559,7 +1559,7 @@ $$
 \right](\nu,t)\,dt
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c23f3cbef64110c7)
+[View →](../../../../../equation-mapping.html#corpus-equation-c23f3cbef64110c7)
 
 where the terms respectively summarize planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange after those channels have been tied to event records. The condition $\mathcal{D}_{\mathrm{th}}\gg1$ is necessary for a source population to approach a blackbody photon bath, but it is not sufficient unless the same provenance record also closes Gate A kinematics, Gate B transverse handoff, Gate C transition rates, and the Noether sea state map used for redshift and damping.
 
@@ -1594,7 +1594,7 @@ $$
 \text{planar-mode photon, medium excitation, recoil, residual internal energy, or reaction products}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1b9394889f3c87c2)
+[View →](../../../../../equation-mapping.html#corpus-equation-1b9394889f3c87c2)
 
 Gravitational-wave radiation sits outside this table. It is a tensor/effective-metric channel whose closure targets are speed, dispersion, polarization content, detector-side strain provenance, and source-side quadrupole recovery, handled in [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md). It should not be promoted as another photon-output branch.
 
@@ -1643,7 +1643,7 @@ $$
 \text{observer-level spectrum or thermal bath}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-736f16fe291fca45)
+[View →](../../../../../equation-mapping.html#corpus-equation-736f16fe291fca45)
 
 This is a radiative closure program, not yet a completed derivation of blackbody radiation. It keeps strong source insights in play while preserving the distinction between ontology, derivation targets, effective summaries, and speculative extensions.
 
@@ -1668,7 +1668,7 @@ E_{\mathrm{env}}\!\left(b;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\te
 >0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b9be97b2cf002651)
+[View →](../../../../../equation-mapping.html#corpus-equation-b9be97b2cf002651)
 
 Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{NS}}(\mathbf X,T)$ is the physical Noether braid density, $n(\mathbf X,T)$ is the normalized Noether braid density, and $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether braid ledgers of the nucleus or electron have already been derived.
 
@@ -1686,7 +1686,7 @@ h\nu_{a\to b}^{\mathrm{loc}}
 \Delta E_{\mathrm{rem}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-85d921c8becb36d5)
+[View →](../../../../../equation-mapping.html#corpus-equation-85d921c8becb36d5)
 
 The observer-level frequency comparison then applies the $\left(\Gamma_N^{(\ell)}\right)^{-1}$ clock-rate conversion owned by [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md) and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md); this page does not perform that conversion. In the ideal isolated line limit, the non-photon terms are negligible and $E_\gamma\simeq h\nu_{a\to b}^{\mathrm{loc}}$. In dense media, strong gradients, or unresolved recoil regimes, those terms must remain in the ledger rather than being silently absorbed into the line frequency.
 
@@ -1706,7 +1706,7 @@ E_\gamma
 \Delta E_{\mathrm{rem}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2f406f80f0996c17)
+[View →](../../../../../equation-mapping.html#corpus-equation-2f406f80f0996c17)
 
 with $\Delta E_{\mathrm{med}}$ and $\Delta E_{\mathrm{rem}}$ bounded by the declared isolated-line tolerance rather than hidden in the fitted line frequency. A compact event residual is
 
@@ -1736,7 +1736,7 @@ E_\gamma
 \Delta_{\mathrm{evt}}^{\mathrm{tol}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2e0c9ac5db9d4b6b)
+[View →](../../../../../equation-mapping.html#corpus-equation-2e0c9ac5db9d4b6b)
 
 The frequency readout must then agree with the local photon record:
 
@@ -1760,7 +1760,7 @@ E_\gamma
 \Delta_{\gamma}^{\mathrm{tol}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4bd962be19ab37c8)
+[View →](../../../../../equation-mapping.html#corpus-equation-4bd962be19ab37c8)
 
 The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the coaxial contra-rotating polarity-conjugate planar pair.
 
@@ -1780,7 +1780,7 @@ $$
 \Delta E_{a\to b}^{\mathrm{env}}\ge E_{\gamma,\min}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0d48d686f1b59903)
+[View →](../../../../../equation-mapping.html#corpus-equation-0d48d686f1b59903)
 
 The symbol $\mathcal S_{\gamma}^{\mathrm{at}}$ denotes the atomic-transition specialization of the photon-channel drive. Its arguments record the pre/post atomic microstates $\Gamma_a,\Gamma_b$, the nuclear causal-wake envelope, local Noether sea density and delay state, and the local causal-root/Jacobian data including the same-record transmitter-side acceleration weight. This is a derivation target: the completed Gate C account must compute this drive from the assembly return map and delayed causal-wake ledger, not fit it separately for each line.
 
@@ -1795,7 +1795,7 @@ $$
 \end{cases}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cbca9f1eaffa2e4e)
+[View →](../../../../../equation-mapping.html#corpus-equation-cbca9f1eaffa2e4e)
 
 ### Event Ledger
 
@@ -1813,7 +1813,7 @@ E_\gamma
 \Delta E_{\mathrm{rem}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2f406f80f0996c17-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-2f406f80f0996c17-2)
 
 The corresponding momentum ledger is
 
@@ -1829,7 +1829,7 @@ $$
 \mathbf 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-24c602bf263c5241)
+[View →](../../../../../equation-mapping.html#corpus-equation-24c602bf263c5241)
 
 Here $\Delta \mathbf p_{\mathrm{atom}}$ is the internal envelope-redistribution row and $\Delta \mathbf p_{\mathrm{recoil}}$ is the center-of-mass recoil row; for an isolated atom the internal row closes to zero and the recoil row is the atom's whole momentum change, so the two rows partition the atomic side rather than double-count it.
 
@@ -1853,7 +1853,7 @@ $$
 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-92574b5038daf361)
+[View →](../../../../../equation-mapping.html#corpus-equation-92574b5038daf361)
 
 The photon term $\mathcal J_{\gamma}^{\perp}$ is a Gate B handoff. Recoil, wake, material handoff, medium, and remnant rows are shown explicitly because a clean photon transverse ledger is not enough to close the event. This page records that an emitted or absorbed photon assembly must carry the transverse angular-momentum ledger, polarization basis, helicity label where applicable, accepted/rejected handoff where applicable, and no-longitudinal-mode status. It does not locally prove photon spin, Malus' law, or the squared-amplitude capture rule.
 
@@ -1887,7 +1887,7 @@ E_\gamma
 \Delta E_{\mathrm{med}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8e7a69364d20e9b9)
+[View →](../../../../../equation-mapping.html#corpus-equation-8e7a69364d20e9b9)
 
 with all rows non-negative in the same convention as the emission ledger: the incoming photon must supply the envelope gap plus the recoil kinetic energy and any medium uptake, which is the source of the emission/absorption line offset measured by recoil-sensitive spectroscopy.
 
@@ -1915,7 +1915,7 @@ E_{\gamma,\mathrm{out}}
 \Delta E_{\mathrm{rem}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-44c7979f1ff98aac)
+[View →](../../../../../equation-mapping.html#corpus-equation-44c7979f1ff98aac)
 
 This is the same Gate C vertex as atomic absorption, but with the final state distributed over the material branch rather than one isolated envelope label. A Vantablack-like branch is a high-depth repeated-capture limit with $E_{\gamma,\mathrm{out}}\approx0$ after many cells. A metal-like branch is a coherent re-release limit in which the conduction-electron response carries most of the incoming ledger back into an outgoing planar-pair mode. Both limits remain provisional until the same basin-measure and event-ledger program recovers standard absorption, reflection, scattering, and thermalization behavior.
 
@@ -1927,7 +1927,7 @@ $$
 \Gamma_{b+\gamma\to a}\,f_b\,\bar n_\gamma
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2036c6f12a4f721e)
+[View →](../../../../../equation-mapping.html#corpus-equation-2036c6f12a4f721e)
 
 Here $f_a$ and $f_b$ are ensemble occupation weights for the atomic basins and $\bar n_\gamma$ is the effective photon occupation. This is an observer-level recovery target, not a substrate postulate.
 
@@ -1951,7 +1951,7 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-241c2b2b9867e389)
+[View →](../../../../../equation-mapping.html#corpus-equation-241c2b2b9867e389)
 
 The set $\mathcal B_a$ denotes the resolved microstate basin corresponding to the effective atomic state $a$, $\mathcal B_{b+\gamma}$ denotes the basin in which the lower atomic state and outgoing photon assembly are accepted, $\Phi_{T_W}$ is the deterministic return map across the record window, and $\mu_{T_W}$ is the unresolved-material measure induced by the local ensemble and path-history distribution.
 
@@ -1967,7 +1967,7 @@ $$
 \rho_\gamma(\Delta E)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-56ce8a6c189f5810)
+[View →](../../../../../equation-mapping.html#corpus-equation-56ce8a6c189f5810)
 
 The operator $\widehat V_{\mathrm{eff}}$ is only an effective comparison object. The foundation-up burden is to show that its matrix-element behavior emerges from overlap and capture probabilities between the atomic assembly and the photon planar-mode branch. The same passage must recover the effective electromagnetic coupling scale $\alpha$ without treating $\alpha$ as a separate ontology.
 
@@ -1980,7 +1980,7 @@ $$
 \rho_f
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-542b0eccb2bd0902)
+[View →](../../../../../equation-mapping.html#corpus-equation-542b0eccb2bd0902)
 The important closure is not the symbol $\mathcal{M}$ itself; it is that the same event window, source basin, accepted photon branch, recoil row, and residual row generate both the discrete line rate and the continuum final-state density used by the comparison formula.
 
 Selection rules should be carried as Gate C closure targets. In this framing, an allowed line corresponds to a nonzero basin measure for the accepted photon channel after energy, momentum, transverse angular momentum, parity-like geometry, and local Noether sea constraints are applied. A forbidden or suppressed line corresponds to zero or small basin measure in the leading channel, with possible recovery through higher-order routing, medium coupling, or multi-photon channels only when the event ledger closes.
@@ -2082,7 +2082,7 @@ $$
 \text{planar-mode photon, recoil, medium excitation, or residual internal energy}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-329c2e76557aa51d)
+[View →](../../../../../equation-mapping.html#corpus-equation-329c2e76557aa51d)
 
 For this channel, the radiation residual can be specialized as the derivation target
 
@@ -2099,7 +2099,7 @@ Z,b,\left\|\frac{d\mathbf{V}_e}{dT}\right\|
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2e76edb7b02fd102)
+[View →](../../../../../equation-mapping.html#corpus-equation-2e76edb7b02fd102)
 
 Here $\Gamma_e(T)$ is the electron-assembly microstate, $\mathcal{C}_{o'j}(T)$ and $J_{o'j}$ are the active causal-root and Jacobian data during the target encounter, $Z$ and $b$ summarize the observer-level target charge and impact-parameter geometry, and $\left\| d\mathbf{V}_e/dT\right\|$ is the deceleration magnitude in absolute time. This equation does not derive the QED bremsstrahlung cross-section. It names the closure functional that must later recover the validated cross-section and emissivity limits.
 
@@ -2117,7 +2117,7 @@ E_C(\Gamma_{e,\text{post shock}})
 E_C(\Gamma_{e,\text{nearest stable rung}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a469384a4795245d)
+[View →](../../../../../equation-mapping.html#corpus-equation-a469384a4795245d)
 
 The planar-mode gate is likewise inherited:
 
@@ -2129,7 +2129,7 @@ $$
 E_{\text{exc}}^{\mathrm{br}}\ge E_{\gamma,\min}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5b70f06ee5831829)
+[View →](../../../../../equation-mapping.html#corpus-equation-5b70f06ee5831829)
 
 Only when both conditions are met is photon output allowed. If the closure residual remains below the planar-mode basin, or if $E_{\text{exc}}^{\mathrm{br}}$ is sub-threshold, the event must route energy into medium excitation, recoil, or residual internal energy instead of treating the missing photon as a silent loss.
 
@@ -2143,7 +2143,7 @@ $$
 \mathcal{I}_e\!\left(\rho_{\text{NS}}(\mathbf X,T),\left\|\frac{d\mathbf{V}_e}{dT}\right\|,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1bc47837a9f5324b)
+[View →](../../../../../equation-mapping.html#corpus-equation-1bc47837a9f5324b)
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
 
@@ -2171,7 +2171,7 @@ $$
 \mathcal Q_{\mathrm{rem}}^{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5bddc2ba724f7231)
+[View →](../../../../../equation-mapping.html#corpus-equation-5bddc2ba724f7231)
 
 The energy component reduces to
 
@@ -2187,7 +2187,7 @@ E_{\gamma}
 \Delta E_{\text{rem}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6152bb94e2f88850)
+[View →](../../../../../equation-mapping.html#corpus-equation-6152bb94e2f88850)
 
 where $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments), and $\Delta E_{\text{rem}}$ is residual internal excitation left in the source assembly. The projectile energy loss $\Delta E_e$ supplies this ledger at event level, with the common approximation $\Delta E_e\approx E_{\text{exc}}^{\mathrm{br}}$ used only when untracked stopping, recoil preparation, and remnant channels are negligible. In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses the photon-composite stability threshold so discrete photon output is recovered from continuous transport.
 
@@ -2201,7 +2201,7 @@ $$
 \mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{NS}}(\mathbf X,T)\bigr]^{p_\rho} \left\|\frac{d\mathbf{V}_e}{dT}\right\|^{p_a}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58c156aba5292fb1)
+[View →](../../../../../equation-mapping.html#corpus-equation-58c156aba5292fb1)
 
 Conceptual nucleation picture for this ansatz: a photon mode modeled as a coaxial contra-rotating polarity-conjugate planar pair is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether sea stiffness plus local Noether braid geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\mathrm{ref}}$ normalizes the available shed energy without deciding whether a minimum photon energy exists. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
 
@@ -2209,7 +2209,7 @@ $$
 P_{\mathrm{nuc}} = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\mathrm{ref}}}\right)\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-39838758c5c2a16a)
+[View →](../../../../../equation-mapping.html#corpus-equation-39838758c5c2a16a)
 
 with $(x)_+ \equiv \max(x,0)$. The probability carries no per-photon-energy argument at this stage; a spectral decomposition of $P_{\mathrm{nuc}}$ over $E_\gamma$ is part of the pending derivation, not of this ansatz. Here $A_{\mathrm{tb}},p_\rho,p_a,\mathcal{S}_*$ are effective Noether sea response parameters. A nonzero-floor branch may set $E_{\mathrm{ref}}=E_{\gamma,\min}$ after deriving that floor; a zero-floor branch must derive another finite reference scale. Thus $E_{\gamma,\min}\to0$ does not make the ansatz singular. This is explicitly a mapping goal, not yet a closed derivation.
 
@@ -2233,7 +2233,7 @@ $$
 \mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g^{\mathrm{eff}}_{\mu\nu},\nabla g^{\mathrm{eff}}_{\mu\nu},u_e^\mu,\rho_{\text{NS}}(\mathbf X,T)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-933fba4042b97473)
+[View →](../../../../../equation-mapping.html#corpus-equation-933fba4042b97473)
 
 #### Emergence of Radiation from Assembly Dynamics
 
@@ -2254,7 +2254,7 @@ $$
 \epsilon_{\nu}^{\mathrm{ff}} \propto Z^2 n_e n_i T_{\mathrm{temp}}^{-1/2} e^{-h\nu/(k_B T_{\mathrm{temp}})} g_{\mathrm{ff}}(\nu,T_{\mathrm{temp}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-520d7f9d5ee80114)
+[View →](../../../../../equation-mapping.html#corpus-equation-520d7f9d5ee80114)
 
 where $Z$ is ion charge, $n_e$ and $n_i$ are number densities, and $g_{\mathrm{ff}}$ is the Gaunt factor (quantum correction). In dense plasma or condensed regimes, screening-length limits (Debye/collective shielding) modify both the effective interaction range and the integration limits folded into $g_{\mathrm{ff}}$. Frequency-integrated thermal emissivity scales approximately as
 
@@ -2262,7 +2262,7 @@ $$
 \epsilon_{\mathrm{ff}} \propto Z^2 n_e n_i T_{\mathrm{temp}}^{1/2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-647af9e15934a4da)
+[View →](../../../../../equation-mapping.html#corpus-equation-647af9e15934a4da)
 
 For high-energy scattering language, the differential yield is tracked with $d\sigma/dk$ (photon energy $k$), including screening and Coulomb corrections in the target.
 
@@ -2276,7 +2276,7 @@ $$
 \frac{\epsilon_\nu^{\mathrm{ff}}}{B_\nu(T_{\mathrm{temp}})}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cd313d722c812c8b)
+[View →](../../../../../equation-mapping.html#corpus-equation-cd313d722c812c8b)
 
 After frequency and ensemble integration, the corresponding Kramers-opacity target has the familiar scaling $\kappa_{\mathrm{ff}}\propto\rho T_{\mathrm{temp}}^{-7/2}$ up to composition and Gaunt-factor corrections. Emission and absorption must project from the same charged-encounter event family run in opposite transfer directions; fitting $\epsilon_\nu^{\mathrm{ff}}$ and $\alpha_\nu^{\mathrm{ff}}$ with unrelated Noether sea variables fails the detailed-balance test.
 
@@ -2293,7 +2293,7 @@ t_{\mathrm{cool}}
 {(\gamma_{\mathrm{gas}}-1)n_e n_H\Lambda(T_s)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ee71137279fbf3b4)
+[View →](../../../../../equation-mapping.html#corpus-equation-ee71137279fbf3b4)
 
 and compare it to the flow time $t_{\mathrm{dyn}}\sim \ell_j/v_j$. The free-free branch is promoted when its fractional cooling contribution
 
@@ -2304,7 +2304,7 @@ f_{\mathrm{ff}}
 {\Lambda(T_s)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-078029bf434891a8)
+[View →](../../../../../equation-mapping.html#corpus-equation-078029bf434891a8)
 
 is above the channel-inclusion threshold for the modeled zone. Otherwise the same shock residual should remain in the line, molecular, heat, recoil, or medium-excitation rows rather than being silently folded into bremsstrahlung. This is an observer-level plasma diagnostic. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive which event records feed $\Lambda_{\mathrm{ff}}$ and which feed the competing channels while preserving the shared energy ledger.
 
@@ -2378,7 +2378,7 @@ $$
 \frac{d\sigma}{dk} \propto Z_{\mathrm{eff}}^2 \, |F(q^2)|^2 \, \left[1+\delta_g(r,\Phi_{\text{eff}})\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-81a3234d5ca1d29f)
+[View →](../../../../../equation-mapping.html#corpus-equation-81a3234d5ca1d29f)
 
 where $\delta_g$ parameterizes local metric/Noether sea corrections. For standard nuclei in laboratory regimes, $\delta_g$ is expected to be subdominant; the term is retained so compact-object surface applications can be treated in one formalism.
 
@@ -2390,7 +2390,7 @@ $$
 \Delta \mathbf{p}_e + \mathbf{p}_{\gamma} + \Delta \mathbf{p}_{\mathrm{recoil}} + \Delta \mathbf{p}_{\mathrm{med}} = 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7c49bf1ca81f2945)
+[View →](../../../../../equation-mapping.html#corpus-equation-7c49bf1ca81f2945)
 
 Photon emission angle is therefore constrained by incident electron momentum, target potential geometry, and local wake transfer into planar mode plus recoil channel. For isolated heavy targets, momentum closure is dominated by $\Delta \mathbf{p}_{\mathrm{recoil}}$ with negligible recoil energy; medium momentum terms are reserved for explicit collective-excitation environments. This is the micro-level closure condition behind macroscopic angular spectra.
 
@@ -2403,7 +2403,7 @@ $$
 \frac{\sin^2\theta}{(1-\beta\cos\theta)^5}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e95e79369ff6f294)
+[View →](../../../../../equation-mapping.html#corpus-equation-e95e79369ff6f294)
 
 The corresponding total-power target is
 
@@ -2413,7 +2413,7 @@ P_{\mathrm{br,std}}
 \frac{q^2\gamma^6\|\mathbf{a}\|^2}{6\pi\epsilon_0c^3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5184fa9700cf1bac)
+[View →](../../../../../equation-mapping.html#corpus-equation-5184fa9700cf1bac)
 
 This supplies a channel-local radiation energy-momentum closure check:
 
@@ -2431,7 +2431,7 @@ $$
 -1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f154785a1a258d4a)
+[View →](../../../../../equation-mapping.html#corpus-equation-f154785a1a258d4a)
 
 In validated weak-field bremsstrahlung regimes, $\Delta_{\mathrm{br,pow}}\rightarrow0$ and $\Delta_{\mathrm{br,ang}}(\theta)\rightarrow0$ after screening, recoil, and form-factor corrections are applied through the same event record. The emitted photon ledger must also pass $\Delta_{\gamma,\mathrm{flux}}=0$ from [Radiation](../../../../markdown/aaa/reactions/radiation.md); otherwise a correct-looking photon spectrum has not closed the local energy-momentum route.
 
@@ -2445,7 +2445,7 @@ $$
 \frac{dt_{\mathrm{eff}}}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\text{NS}}(\mathbf X,T),\Phi_{\text{eff}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ffca71ed870457ae)
+[View →](../../../../../equation-mapping.html#corpus-equation-ffca71ed870457ae)
 
 Here $\Gamma_{\mathrm{eff}}$ is this chapter's working name for the projected cadence-stretch conversion $\Gamma_N$ of [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), with $\Gamma_{\mathrm{eff}}\to\Gamma_N\to\gamma$ in the homogeneous moving branch; it is not a new conversion family. For operational closure in this chapter, use the provisional split
 
@@ -2453,7 +2453,7 @@ $$
 \Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\text{NS}}(\mathbf X,T))+\delta_{\Phi}(\Phi_{\text{eff}})\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-153e484cb4cb3d2c)
+[View →](../../../../../equation-mapping.html#corpus-equation-153e484cb4cb3d2c)
 
 with $\gamma(v_e)=1/\sqrt{1-v_e^2/c^2}$ and $|\delta_{\rho}|,|\delta_{\Phi}|\ll 1$ in laboratory and weak-field astrophysical regimes where standard relativistic timing is already validated. The full derivation and regime-dependent corrections are delegated to the metric/time foundations chapter; this file uses the above form as a controlled working map.
 
@@ -2476,7 +2476,7 @@ Z_{\mathrm{endpoint},X}
 +Y_{X,\mathrm{path}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-46bbdaa5dfbbd001)
+[View →](../../../../../equation-mapping.html#corpus-equation-46bbdaa5dfbbd001)
 
 The observer-level mapping target is then
 
@@ -2484,7 +2484,7 @@ $$
 I_\nu^{\mathrm{obs}}(R) = (1+z_X)^{-3}\,I_{\nu(1+z_X)}(E)\,\mathcal{T}(\nu, E\to R)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-593608113225bea2)
+[View →](../../../../../equation-mapping.html#corpus-equation-593608113225bea2)
 
 The mapped observable is the received per-frequency specific intensity along the ray, with $I_\nu(E)$ the source-side specific intensity assembled from the free-free emissivity $\epsilon_\nu^{\mathrm{ff}}$ along the emitting column. The $(1+z_X)^{-3}$ factor is the per-frequency intensity transfer implied by the invariance of $I_\nu/\nu^3$; the bolometric factor is $(1+z_X)^{-4}$ and must not be combined with a shifted per-frequency argument. Here $\mathcal{T}$ is the transfer factor for absorption, scattering in plasma, and any Noether sea-specific opacity. The $Y_{X,\mathrm{path}}$ term records signed frequency exchange along the path; $\mathcal{T}$ must not hide an unlogged photon-energy gain or loss. In the standard homogeneous limit this reduces to the conventional redshift notation with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$, where the em and obs factors are the segment budgets accumulated at the emission and observation ends of the declared record pair, so the ratio is the net transfer between them.
 
@@ -2496,7 +2496,7 @@ $$
 \mathcal{R}_{\mathrm{LTE}} \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-96f88ca8e700036b)
+[View →](../../../../../equation-mapping.html#corpus-equation-96f88ca8e700036b)
 
 - **$\mathcal{R}_{\mathrm{LTE}} \ll 1$:** assembly-medium coupling is fast, LTE emissivity is valid with instantaneous state variables.
 - **$\mathcal{R}_{\mathrm{LTE}} \gtrsim 1$:** non-equilibrium corrections are required; emissivity must be computed from evolving distribution functions rather than a single local $T$.
@@ -2511,7 +2511,7 @@ $$
 ds_{\mathrm{eff}}^2 = 0,\qquad k^\mu \nabla^{\mathrm{eff}}_\mu k^\nu = 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3891d730ab9c321d)
+[View →](../../../../../equation-mapping.html#corpus-equation-3891d730ab9c321d)
 
 with $ds_{\mathrm{eff}}^2$ and $\nabla^{\mathrm{eff}}$ built from the effective metric $g^{\mathrm{eff}}_{\mu\nu}$. This keeps transport treatment aligned with the same geometric sector used across the spacetime mapping.
 
@@ -2592,7 +2592,7 @@ $$
 P_{\mathrm{syn}} = \frac{4}{3}\sigma_T c\,U_B\,\gamma^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e4160624af592502)
+[View →](../../../../../equation-mapping.html#corpus-equation-e4160624af592502)
 
 with magnetic energy density
 
@@ -2600,7 +2600,7 @@ $$
 U_B=\frac{B^2}{8\pi}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aec046c00aefc21b)
+[View →](../../../../../equation-mapping.html#corpus-equation-aec046c00aefc21b)
 
 Magnetic-field expressions in this chapter use Gaussian units; the radiation-zone angular and total-power targets below are quoted in SI with explicit $\epsilon_0$. Each display is internally consistent within its declared system, and constants must not be mixed across systems.
 
@@ -2610,7 +2610,7 @@ $$
 E_{\gamma,\mathrm{syn}} \sim h\nu_c \propto \gamma^2 B
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4ed82a7bf474887f)
+[View →](../../../../../equation-mapping.html#corpus-equation-4ed82a7bf474887f)
 
 For pitch angle $\alpha$, a standard critical-frequency expression is
 
@@ -2618,7 +2618,7 @@ $$
 \nu_c = \frac{3}{2}\gamma^2\frac{eB}{2\pi m_e c}\sin\alpha
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1f79f6da2093da4e)
+[View →](../../../../../equation-mapping.html#corpus-equation-1f79f6da2093da4e)
 
 For isotropic pitch-angle distributions, $\langle\sin\alpha\rangle = \pi/4$, so the ensemble-averaged characteristic frequency becomes $\nu_c \approx (3e/16 m_e c)\gamma^2 B$.
 
@@ -2628,7 +2628,7 @@ $$
 \tau_{\mathrm{syn}} \sim \frac{E_e}{P_{\mathrm{syn}}} \propto \frac{1}{\gamma B^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a323ffe1b97df9dd)
+[View →](../../../../../equation-mapping.html#corpus-equation-a323ffe1b97df9dd)
 
 Here $\tau_{\mathrm{syn}}$ denotes a characteristic energy-loss timescale ($E/|dE/dt|$), distinct from the instantaneous synchrotron power rate $P_{\mathrm{syn}}$.
 
@@ -2648,7 +2648,7 @@ j_\nu \propto \begin{cases}
 \end{cases}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b9c3b8dbea91403e)
+[View →](../../../../../equation-mapping.html#corpus-equation-b9c3b8dbea91403e)
 
 Here $\nu_{\mathrm{max}} \propto \gamma_{\mathrm{max}}^2 B$ is the maximum synchrotron frequency set by the highest injected Lorentz factor. The middle slope alone must not be extended below $\nu_m$ or above the cooling break.
 
@@ -2658,7 +2658,7 @@ $$
 \gamma_{\mathrm{cool}} \approx \frac{6\pi m_e c}{\sigma_T B^2 t_{\mathrm{esc}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6175116390eb6d7d)
+[View →](../../../../../equation-mapping.html#corpus-equation-6175116390eb6d7d)
 
 and, with $\nu_m=\nu_c(\gamma_{\min})$ the injection frequency of the minimum injected Lorentz factor $\gamma_{\min}$, the fast-cooling spectrum has the standard three-segment form
 
@@ -2670,7 +2670,7 @@ j_\nu \propto \begin{cases}
 \end{cases}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1509956092cf52e8)
+[View →](../../../../../equation-mapping.html#corpus-equation-1509956092cf52e8)
 
 The $-1/2 \to -p/2$ break sits at the injection frequency $\nu_m$, not at $\nu_c(\gamma_{\mathrm{cool}})$.
 
@@ -2684,7 +2684,7 @@ S_\nu^{\mathrm{ssa}}
 \frac{j_\nu}{\alpha_\nu^{\mathrm{ssa}}},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d93aee8fd229eedf)
+[View →](../../../../../equation-mapping.html#corpus-equation-d93aee8fd229eedf)
 
 a homogeneous optically thick power-law source approaches the standard $I_\nu\propto\nu^{5/2}$ branch below its self-absorption turnover. The same charged-transport event family must generate $j_\nu$, $\alpha_\nu^{\mathrm{ssa}}$, and the source function; otherwise emission and absorption have been fitted independently. Plasma suppression, including the observer-level Razin-Tsytovich limit, is a separate transport recovery and must not be hidden inside the self-absorption coefficient.
 
@@ -2714,7 +2714,7 @@ $$
 \text{planar-mode photon, medium excitation, recoil, residual internal energy, or pair-channel handoff}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7577cbec246f202a)
+[View →](../../../../../equation-mapping.html#corpus-equation-7577cbec246f202a)
 
 The radiation page writes the retuned transport state as $\mathbf{V}$. In this channel, $\mathbf{V}$ is the Noether braid velocity-deformation state of the charged assembly during curved transport through $\mathcal{V}_{\mathrm{NS}}$. A channel-local closure mismatch can therefore be written as the derivation target
 
@@ -2728,7 +2728,7 @@ $$
 a\in\{1,2,3\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b4332d9cf3c37357)
+[View →](../../../../../equation-mapping.html#corpus-equation-b4332d9cf3c37357)
 
 The corresponding residual norm specializes the shared radiation residual:
 
@@ -2749,7 +2749,7 @@ G_{\text{grad}},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ba1184981f472f21)
+[View →](../../../../../equation-mapping.html#corpus-equation-ba1184981f472f21)
 
 Here $\Gamma_{e^\pm}(T)$ is the charged assembly microstate; $\mathcal{C}_{o'j}(T)$ and $J_{o'j}$ are the active causal-root and Jacobian data; $\mathcal{V}_{\mathrm{NS}}$ is the anisotropic Noether sea state provisionally mapped to the observer-level $B$ field; and $G_{\text{grad}}$ records the gradient forcing that skews delay loops. This equation is not a derivation of synchrotron radiation. It names the residual functional that must later recover the validated frequency, power, cooling-break, and polarization limits.
 
@@ -2771,7 +2771,7 @@ J_{\text{loc}}
 E_{\text{exc}}^{\mathrm{syn}}\ge E_{\gamma,\min}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bb43b2bd72ee9989)
+[View →](../../../../../equation-mapping.html#corpus-equation-bb43b2bd72ee9989)
 
 The wake-strain threshold is therefore the channel's local expression of the planar-mode basin boundary. If the residual is sub-threshold, the event must route energy into medium excitation, recoil, or residual internal energy rather than silently declaring a missing photon. If the threshold is crossed, the emitted photon must still satisfy the standard synchrotron scaling target
 
@@ -2783,7 +2783,7 @@ $$
 \frac{3}{2}\gamma^2\frac{eB_{\mathrm{eff}}}{2\pi m_e c}\sin\alpha
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-51eba6dbe379aab4)
+[View →](../../../../../equation-mapping.html#corpus-equation-51eba6dbe379aab4)
 
 in weak homogeneous limits, with $B_{\mathrm{eff}}$ the observer-level magnetic amplitude reconstructed from $\mathcal{V}_{\mathrm{NS}}$. The $\gamma^2B$ scaling must come from the coupled velocity-deformation and anisotropic-state map, not from tuning $\mathcal{S}_{\gamma,*}$ after the fact.
 
@@ -2824,7 +2824,7 @@ $$
 \mathcal Q\in\{E,\mathbf p,\mathbf J\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ff7680b64eda969a)
+[View →](../../../../../equation-mapping.html#corpus-equation-ff7680b64eda969a)
 
 Pair-production cascade vertices close the incoming photon ledger and then recruit identity-routed charged-assembly content from the named target or Noether sea reservoir; they do not treat photon energy alone as an identity source.
 
@@ -2847,7 +2847,7 @@ $$
 \right\rangle_{x_{\mathrm{eff}}^i\in K}^{1/2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-76c8e0c9627088f2)
+[View →](../../../../../equation-mapping.html#corpus-equation-76c8e0c9627088f2)
 where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment, after accounting for Faraday rotation, beam averaging, and turbulent depolarization, would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
 - Radiation-zone closure: for the local transverse-acceleration segment with $\mathbf{v}\cdot\mathbf{a}_\perp=0$, axes chosen so $\mathbf{v}$ lies along $z$ and $\mathbf{a}_\perp$ along $x$, and $\beta=\|\mathbf{v}\|/c$, recover the angular target
 
@@ -2864,7 +2864,7 @@ $$
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f5ba8d661bd2a9a3)
+[View →](../../../../../equation-mapping.html#corpus-equation-f5ba8d661bd2a9a3)
 
 and the total-power target
 
@@ -2874,7 +2874,7 @@ P_{\perp,\mathrm{std}}
 \frac{q^2\gamma^4\|\mathbf{a}_\perp\|^2}{6\pi\epsilon_0c^3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3490e3f8e44afe77)
+[View →](../../../../../equation-mapping.html#corpus-equation-3490e3f8e44afe77)
 
 The channel residual is
 
@@ -2888,7 +2888,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b1a9e7b2750d57fb)
+[View →](../../../../../equation-mapping.html#corpus-equation-b1a9e7b2750d57fb)
 
 with $\Delta_{\gamma,\mathrm{flux}}$ inherited from [Radiation](../../../../markdown/aaa/reactions/radiation.md). In validated weak homogeneous limits, all components must tend to zero without retuning the $B\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map.
 - Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
@@ -2931,7 +2931,7 @@ I_{\nu}^{\mathrm{IC}},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-341f21dbefe125fb)
+[View →](../../../../../equation-mapping.html#corpus-equation-341f21dbefe125fb)
 
 where $I_{\nu}^{\mathrm{syn}}$ and $I_{\nu}^{\mathrm{IC}}$ are the synthetic synchrotron and inverse-Compton maps, $\Pi_{\nu}$ and $\psi_{\nu}$ are the linear-polarization fraction and angle, $\nu_{\mathrm{br}}$ is the cooling-break frequency, and $\Delta_{\mathrm{pol}}^{K}$ is evaluated on knots or shock-compressed regions. A source model passes this benchmark only if the same electron transport, $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map, and photon event ledger recover both the radio synchrotron and X-ray inverse-Compton morphology without separately tuning the field map for each band.
 
@@ -2960,7 +2960,7 @@ $$
 \sigma_{\gamma\gamma} = \frac{\pi r_e^2}{2}\left(1-\beta^2\right)\left[\left(3-\beta^4\right)\ln\left(\frac{1+\beta}{1-\beta}\right) - 2\beta(2-\beta^2)\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-275707859b37a0e9)
+[View →](../../../../../equation-mapping.html#corpus-equation-275707859b37a0e9)
 (where $\beta = \sqrt{1-4m_e^2c^4/s}$) to within factor-of-2 accuracy across the range $4m_e^2c^4 < s < 100m_e^2c^4$ used in cascade modeling. Deviations larger than this bound would constitute observable new physics and require dedicated experimental tests beyond astrophysical inference.
 
 These mapping targets are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
@@ -2991,7 +2991,7 @@ $$
 \mathcal{C}_{\mathrm{cas}} \equiv \left(\frac{\tau_{\mathrm{esc}}}{\tau_{\mathrm{syn}}}\right) \left(\frac{L}{L_{\gamma\gamma}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7449c337cd365bf6)
+[View →](../../../../../equation-mapping.html#corpus-equation-7449c337cd365bf6)
 
 where
 
@@ -2999,7 +2999,7 @@ $$
 L_{\gamma\gamma} \equiv (n_\gamma \sigma_{\gamma\gamma})^{-1}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7b571f94ead81a99)
+[View →](../../../../../equation-mapping.html#corpus-equation-7b571f94ead81a99)
 
 is the photon-photon mean free path and $L$ is the characteristic source size.
 
@@ -3028,13 +3028,13 @@ Z_{\mathrm{endpoint},X}
 +Y_{X,\mathrm{path}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e2d9f8e741f2a1ce)
+[View →](../../../../../equation-mapping.html#corpus-equation-e2d9f8e741f2a1ce)
 
 $$
 I_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, I_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1d2109501424b0d2)
+[View →](../../../../../equation-mapping.html#corpus-equation-1d2109501424b0d2)
 
 Here $I_\nu^{\mathrm{em}}(E)$ is the source-side specific intensity assembled by integrating $j_\nu$ and absorption through the emitting column. The $(1+z_X)^{-3}$ law applies to this mapped intensity because $I_\nu/\nu^3$ is invariant; it does not by itself map a volume emissivity without the column and volume factors. The function $\mathcal{T}(\nu,E\rightarrow R)$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. The signed $Y_{X,\mathrm{path}}$ term must carry any Compton/Sunyaev-Zeldovich-like frequency exchange rather than being folded into a primitive expansion factor or hidden inside $\mathcal{T}$. For nearby sources ($z_X \ll 1$) with negligible path exchange, $\mathcal{T} \approx 1$.
 
@@ -3050,7 +3050,7 @@ $$
 \omega_p^2=\frac{n_{\mathrm{car}}q^2}{m\epsilon_0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-772117694e1ea48c)
+[View →](../../../../../equation-mapping.html#corpus-equation-772117694e1ea48c)
 
 For $\omega > \omega_p$, the transparent branch must recover
 
@@ -3058,7 +3058,7 @@ $$
 \omega^2=\omega_p^2+c^2k^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ac3cff5bf8e5bdd1)
+[View →](../../../../../equation-mapping.html#corpus-equation-ac3cff5bf8e5bdd1)
 
 while $\omega < \omega_p$ is an evanescent or reflected transport row with $k=i\kappa_{\mathrm{ev}}$ rather than a lost photon ledger. Absorbing conductors use $k=k_1+ik_2$ and add an attenuation factor schematically of the form
 
@@ -3068,7 +3068,7 @@ $$
 \exp\!\left[-2\int_{\mathrm{path}}k_2(\omega,s)\,ds\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-34c0239a48b401b7)
+[View →](../../../../../equation-mapping.html#corpus-equation-34c0239a48b401b7)
 
 If $\epsilon_{\mathrm{eff}}(\omega)=0$ produces a longitudinal plasma oscillation, the cascade record routes it into medium excitation or plasmon-like content. It is not counted as a free photon branch and it cannot repair a failed Gate B no-longitudinal-mode check.
 
@@ -3082,7 +3082,7 @@ $$
 \tau_{\mathrm{syn}}^{\mathrm{obs}} \approx \frac{6\pi m_e c}{\sigma_T B^2\gamma}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5adba000797d941e)
+[View →](../../../../../equation-mapping.html#corpus-equation-5adba000797d941e)
 
 For ontology-level bookkeeping, use the conversion
 
@@ -3090,7 +3090,7 @@ $$
 dT = \Gamma_{\mathrm{eff}}(v,\rho_{\text{NS}},n,\Phi_{\text{eff}})\,d\tau_{\mathrm{asm}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cacc475e84329389)
+[View →](../../../../../equation-mapping.html#corpus-equation-cacc475e84329389)
 
 where $T$ is substrate absolute time and $\tau_{\mathrm{asm}}$ is assembly proper time. A $dT/d\tau_{\mathrm{asm}}$ ratio requires a declared clock map; $\Gamma_{\mathrm{eff}}$ is this chapter's working name for the projected cadence-stretch conversion $\Gamma_N$ of [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), with $\Gamma_{\mathrm{eff}}\to\Gamma_N\to\gamma$ in the homogeneous moving branch — one subscript away from the microstate symbol $\Gamma_{e^\pm}$ but a different object. Then
 
@@ -3100,7 +3100,7 @@ $$
 \tau_{\mathrm{syn}}^{\mathrm{abs}}=\Gamma_{\mathrm{eff}}\,\tau_{\mathrm{syn}}^{\mathrm{asm}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-03cc899056a134f5)
+[View →](../../../../../equation-mapping.html#corpus-equation-03cc899056a134f5)
 
 Toy mapping example (local weak-gravity zone): if $\gamma=10^4$, $B=1\,\mathrm{G}$, and $\Gamma_{\mathrm{eff}}\approx\gamma$, then
 
@@ -3110,7 +3110,7 @@ $$
 \tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2997ff94cf43b4c7)
+[View →](../../../../../equation-mapping.html#corpus-equation-2997ff94cf43b4c7)
 
 Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
 

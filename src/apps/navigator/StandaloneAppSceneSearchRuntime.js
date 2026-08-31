@@ -2,7 +2,10 @@ import { createSceneSearchRuntime } from "../../runtime/SceneSearchRuntime.js";
 import { createSceneSearchUiRuntime } from "../../runtime/SceneSearchUiRuntime.js";
 import { SceneIndexService } from "../../services/SceneIndexService.js";
 import { createSceneSearchCoordinatorService } from "../../services/SceneSearchCoordinatorService.js";
-import { resolveStandaloneAppHrefForScene } from "./StandaloneAppLaunchRuntime.js";
+import {
+  isPublicStandaloneAppSearchEntry,
+  resolveStandaloneAppHrefForScene,
+} from "./StandaloneAppLaunchRuntime.js";
 
 export const GLOBAL_SCENE_GRAPH_MANIFEST_PATH = "content/graph/scene_graph.json";
 export const TEXTBOOK_TOC_SCENE_PATH = "content/scenes/archie/textbook_toc.json";
@@ -76,6 +79,7 @@ export function createStandaloneAppSceneSearchRuntime({
     },
     documentRef: documentLike,
     onOpenChange,
+    isSearchEntryVisible: isPublicStandaloneAppSearchEntry,
   });
   const sceneSearchCoordinator = createSceneSearchCoordinatorService({
     sceneIndexService,

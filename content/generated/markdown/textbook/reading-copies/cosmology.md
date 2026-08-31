@@ -75,7 +75,7 @@ Z_X^{E\to R}
 \ln\frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d678c8283a8c2d05)
+[View →](../../../../../equation-mapping.html#corpus-equation-d678c8283a8c2d05)
 
 whose positive and negative contributions must be assigned to endpoint cadence, source-branch state, launch geometry, and path-history exchange through the Noether sea. Sunyaev-Zeldovich-type CMB measurements make the path-history part observationally concrete: intervening medium can shift photon frequencies after emission. A valid cosmology must preserve that fact while still recovering the standard data products, rather than using redshift alone to promote literal expansion of the Euclidean void.
 
@@ -93,7 +93,7 @@ ds_{\mathrm{FRW,eff}}^2
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#effective-frw-scale-factor)
+[View →](../../../../../equation-mapping.html#effective-frw-scale-factor)
 
 but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv (1/a_{\mathrm{eff}})\,d a_{\mathrm{eff}}/dt_{\mathrm{eff}}$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether sea evolution, clock comparison, and transport records.
 
@@ -106,14 +106,14 @@ H_{\mathrm{eff}}^2
 +\frac{\Lambda_{\mathrm{eff}}}{3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fbb07bf38039cf5d)
+[View →](../../../../../equation-mapping.html#corpus-equation-fbb07bf38039cf5d)
 $$
 \frac{d\rho_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#friedmann-continuity-lcdm)
+[View →](../../../../../equation-mapping.html#friedmann-continuity-lcdm)
 
 Passing these equations does not by itself promote metric expansion. It means that the fixed-void medium history has an observer-level FRW projection accurate enough to feed distance-redshift, CMB, BBN, and growth comparisons.
 
@@ -127,7 +127,7 @@ $$
 {3\left(H_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})\right)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f503ba14ec668301)
+[View →](../../../../../equation-mapping.html#corpus-equation-f503ba14ec668301)
 For a component recorded first as an energy density $u_i^\theta$, use
 $$
 \Omega_i^\theta(t_{\mathrm{eff}})
@@ -136,7 +136,7 @@ $$
 {3c_0^2\left(H_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})\right)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a51fc2eb96ffe4d1)
+[View →](../../../../../equation-mapping.html#corpus-equation-a51fc2eb96ffe4d1)
 These $\Omega_i$ variables are data-product coordinates. They do not say that the Euclidean void contains independent density fluids. They say that the same Noether sea state and assembly record has been projected into the standard component language at the observer epoch.
 
 A compact inventory residual is
@@ -150,7 +150,7 @@ $$
 -1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-15f238ff7cdbed95)
+[View →](../../../../../equation-mapping.html#corpus-equation-15f238ff7cdbed95)
 where $\mathcal{I}_{\mathrm{cos}}$ includes only declared comparison rows, such as dark energy, neutral assemblies, baryons, radiation, neutrinos, binding-energy entries, kinetic or plasma entries, and wake-history or medium-response entries when the local branch has supplied them. Passing this residual means the effective inventory closes; it does not identify the substrate carrier of each row.
 
 The stronger test is cross-row provenance. Let $Q_i^\theta$ and $Q_j^\theta$ be two inventory quantities that should be related by an energy-transfer, reaction, transport, or remnant ledger, and let $\mathcal{T}_{ij}^\theta$ be the declared transfer map between them. Then
@@ -162,7 +162,7 @@ Q_i^\theta-\mathcal{T}_{ij}^\theta Q_j^\theta
 \right\|_{C_{ij}^{-1}}^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d3446ef967cf8dab)
+[View →](../../../../../equation-mapping.html#corpus-equation-d3446ef967cf8dab)
 Examples include nuclear binding versus radiation and neutrino backgrounds, baryon density versus BBN and CMB inference, quasar luminosity versus massive-black-hole remnant density, and lensing mass versus galaxy luminosity and clustering. A component row that cannot be connected to the rest of the ledger remains an interpretation placeholder.
 
 #### Steady-State Failure Test for Effective Variables
@@ -175,7 +175,7 @@ $$
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8171e93602eadc6c)
+[View →](../../../../../equation-mapping.html#corpus-equation-8171e93602eadc6c)
 If one imposes $d\rho_{m,\mathrm{eff}}/dt_{\mathrm{eff}}=0$ while $H_{\mathrm{eff}}\ne0$, the equation forces $\rho_{m,\mathrm{eff}}=0$. A nontrivial constant-density branch therefore requires
 $$
 \frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
@@ -189,7 +189,7 @@ $$
 \text{for constant }\rho_{m,\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-90de70e5c3dbc51f)
+[View →](../../../../../equation-mapping.html#corpus-equation-90de70e5c3dbc51f)
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm{eff}}$ cannot mean matter produced by the Euclidean void. It must be a projection of assembly association, dissociation, recycling, transport, or Noether sea exchange already present in the absolute record $S(T)$. If no such provenance route is supplied, the model is only an effective parameter fit and fails as cosmology closure.
 
 For a recycling or cyclical comparison branch, this source term must also close over the declared cycle window:
@@ -203,7 +203,7 @@ $$
 3H_{\mathrm{eff}}(t_{\mathrm{eff}})\rho_{m,\mathrm{eff}}(t_{\mathrm{eff}})a_{\mathrm{eff}}^3(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-be92b99610e5da53)
+[View →](../../../../../equation-mapping.html#corpus-equation-be92b99610e5da53)
 The pass condition is not a preferred external cosmology. It is that $\Delta M_{\mathrm{eff}}$ be supplied by assembly association, dissociation, transport, recycling, or Noether sea exchange in the same absolute record. Otherwise the branch has kept an effective density constant by inserting a source without provenance.
 
 #### Steady-State Thermodynamic Ledger
@@ -221,7 +221,7 @@ j_{\nu_e}\!\left(\mathbf X(s),T(s),\hat{\mathbf k}\right)
 \,ds,
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5df7f19eb9f4cbad)
+[View →](../../../../../equation-mapping.html#corpus-equation-5df7f19eb9f4cbad)
 
 where $j_{\nu_e}$ is the source emissivity on the retained photon-channel path and $\mathcal T_{\nu_e\to\nu}$ contains absorption, reprocessing, frequency transfer, and survival to $R$. The all-sky brightness is
 
@@ -233,7 +233,7 @@ $$
 I_{\nu,R}^{(T_-)}(\hat{\mathbf k})\,d\nu.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f46d33960a021d8a)
+[View →](../../../../../equation-mapping.html#corpus-equation-f46d33960a021d8a)
 
 The dark-sky convergence condition is
 
@@ -244,7 +244,7 @@ $$
 \infty
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f7501ad78aca7f56)
+[View →](../../../../../equation-mapping.html#corpus-equation-f7501ad78aca7f56)
 
 for each declared receiver class. A branch fails if finite brightness is obtained by deleting absorbed or redshift-transferred energy from the source, Noether sea, remnant, recoil, or boundary ledger.
 
@@ -264,7 +264,7 @@ $$
 \Sigma_{\mathrm{int},c}\ge0,
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6a051c403a3869fc)
+[View →](../../../../../equation-mapping.html#corpus-equation-6a051c403a3869fc)
 
 where $\Sigma_{\mathrm{int},c}$ is interior entropy production, $\Phi_{S,\mathrm{in/out},c}$ are entropy-bearing boundary records, and $\mathcal R_{S,c}$ records changes in coarse-graining or retained access. Statistical recurrence requires more than return of the visible matter variables:
 
@@ -293,7 +293,7 @@ $$
 \mathcal O(1).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9356cfffd5bfd52b)
+[View →](../../../../../equation-mapping.html#corpus-equation-9356cfffd5bfd52b)
 
 The Noether sea retuning ratio $\Lambda_{\mathrm{sea}}=T_{\mathrm{retune}}/P_{\mathrm{cycle}}$ determines how the cycle is read. When $\Lambda_{\mathrm{sea}}\ll1$, a state-function entropy comparison may be available. When $\Lambda_{\mathrm{sea}}\gtrsim1$, the hysteresis-loop record must remain in $\mathcal R_{S,c}$ or the interior-production row; resetting the visible macrostate does not reset the path history. SMBH processing closes this ledger only if its captured assemblies, emitted photon and neutrino channels, Noether sea update, remnants, causal wakes, and boundary fluxes satisfy the same balance.
 
@@ -334,7 +334,7 @@ H_{\mathrm{eff,ladder}}
 c_0\left.\frac{\partial z_X}{\partial D}\right|_{D\to0}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b928b32709bd5438)
+[View →](../../../../../equation-mapping.html#corpus-equation-b928b32709bd5438)
 These are retained comparison quantities. They do not say that the Euclidean void expands, that absolute time began, or that the full architrino inventory was created at the observer-era boundary. They say that a successful fixed-void branch must reproduce the calibrated distance ladder, redshift catalogue, effective Hubble slope, CMB thermal record, and BBN yields through one shared Noether sea and assembly record. A unique global origin becomes a promoted claim only if the same record removes the ambiguity described in the global-reconstruction test below.
 
 #### Effective Observer-Era Age Boundary
@@ -362,7 +362,7 @@ $$
 \Pi_v(\theta_{\mathrm{sea}};x_{\mathrm{eff},i}^i,\hat n_i^i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0f7ff88195a8e1c8)
+[View →](../../../../../equation-mapping.html#corpus-equation-0f7ff88195a8e1c8)
 where $\Pi_v$ includes the declared Noether sea flow, density, delay, clock-rate, CMB-frame, and local-calibration terms. A historical rotation-like comparison can then be expressed only as a residual template,
 $$
 T_i(x_{\mathrm{eff},c}^i,\boldsymbol{\omega},g)
@@ -374,7 +374,7 @@ g(D_i)\,\boldsymbol{\omega}\times(x_{\mathrm{eff},i}^i-x_{\mathrm{eff},c}^i)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2b8645b0395fb52a)
+[View →](../../../../../equation-mapping.html#corpus-equation-2b8645b0395fb52a)
 with the center $x_{\mathrm{eff},c}^i$, angular-rate vector $\boldsymbol{\omega}$, and distance profile $g$ declared as comparison parameters rather than new ontology. The corresponding all-sky antisymmetric-flow residual on a survey shell $S$ is
 $$
 \mathcal{R}_{\mathrm{rot}}(\theta_{\mathrm{sea}};S)
@@ -392,7 +392,7 @@ w_i\left(
 W_S=\sum_{i\in S}w_i
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d3838b965cc75861)
+[View →](../../../../../equation-mapping.html#corpus-equation-d3838b965cc75861)
 This diagnostic protects the fixed-void ontology in both directions. If the best-fit template is insignificant or survey-dependent, the rotation story is rejected. If a stable double-sine, dipole, quadrupole, or higher directional pattern remains, it must be derived from the same $\theta_{\mathrm{sea}}$ that also fits expansion, CMB transfer, BBN, growth, lensing, and calibration; it cannot be absorbed silently into $H(z)$, $w(z)$, or a new global-rotation premise.
 
 A scale-neutral homogeneity check should also be part of the shared ledger. For a large effective comparison window $W_{\mathrm{eff}}\subset\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}$ with resolved tracer index set $I_{W_{\mathrm{eff}}}(t_{\mathrm{eff}})$ and $N_{W_{\mathrm{eff}}}=\lvert I_{W_{\mathrm{eff}}}(t_{\mathrm{eff}})\rvert$, define the root-mean-square separation scale
@@ -404,7 +404,7 @@ L_{W_{\mathrm{eff}}}^2(t_{\mathrm{eff}})
 \|x_{\mathrm{eff},i}^i(t_{\mathrm{eff}})-x_{\mathrm{eff},j}^i(t_{\mathrm{eff}})\|^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-59ccbbe9e080798e)
+[View →](../../../../../equation-mapping.html#corpus-equation-59ccbbe9e080798e)
 The corresponding dimensionless pair-separation distribution is
 $$
 \widehat{\mu}_{W_{\mathrm{eff}},t_{\mathrm{eff}}}(u)
@@ -416,7 +416,7 @@ u-\frac{\|x_{\mathrm{eff},i}^i(t_{\mathrm{eff}})-x_{\mathrm{eff},j}^i(t_{\mathrm
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b39d66efd92a7aa7)
+[View →](../../../../../equation-mapping.html#corpus-equation-b39d66efd92a7aa7)
 For a declared family of same-scale windows $\mathcal{W}_L(t_{\mathrm{eff}})$ and a declared distribution distance $d$, a candidate Noether sea state record should expose
 $$
 \mathcal{R}_{\mathrm{hom}}(\theta_{\mathrm{sea}};L,t_{\mathrm{eff}})
@@ -425,7 +425,7 @@ $$
 d\!\left(\widehat{\mu}_{W_a,t_{\mathrm{eff}}},\widehat{\mu}_{W_b,t_{\mathrm{eff}}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e100df1da74bec64)
+[View →](../../../../../equation-mapping.html#corpus-equation-e100df1da74bec64)
 Large-scale homogeneity is accepted only when this residual remains within the declared tolerance while the same $\theta_{\mathrm{sea}}$ also passes the expansion, CMB, BBN, growth, lensing, and calibration gates. This is a scale-neutral diagnostic over observer-facing data products, not an import of a shape-first cosmology or a replacement for the fixed Euclidean void.
 
 The same rule applies across modules. A promoted cosmology claim must preserve one shared Noether sea state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The dark-energy branch states this as a shared residual gate in [dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates), while [Cosmology Shared Residual Fit](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md) owns the cross-module packet schema and residual-vector protocol. This page does not duplicate those operational definitions.
@@ -447,7 +447,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2c8a362044fc01b1)
+[View →](../../../../../equation-mapping.html#corpus-equation-2c8a362044fc01b1)
 where the entries are respectively the Noether sea state, initial basin, source or release record, thermalization record, path-history record, growth/lensing record, and frame record. Let $\mathcal{R}_{\mathcal{D}_{\mathrm{cos}}}(\theta_{\mathrm{cosmo}};o)$ be the shared residual over the declared cosmology data-product family. The allowed-output neighborhood is
 $$
 \mathcal{O}_{\epsilon}(\theta_{\mathrm{cosmo}})
@@ -461,7 +461,7 @@ o \in \mathcal{O}_{\mathrm{near}}
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ed7fe7f5dcce7dec)
+[View →](../../../../../equation-mapping.html#corpus-equation-ed7fe7f5dcce7dec)
 Fitting asks only that the observed packet belongs to this set. Predictive closure asks that the set be narrow under the declared comparison measure,
 $$
 \mu\!\left(\mathcal{O}_{\epsilon}(\theta_{\mathrm{cosmo}})\right)
@@ -469,7 +469,7 @@ $$
 \mu\!\left(\mathcal{O}_{\mathrm{near}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bc09aabda5a7f51a)
+[View →](../../../../../equation-mapping.html#corpus-equation-bc09aabda5a7f51a)
 This criterion does not require zero flexibility. It requires the branch record to exclude nearby alternatives before a data fit is counted as a cosmology claim.
 
 Initial-condition specialness is the companion burden. Let $\Gamma_{\mathrm{init}}$ be the declared initial state or path-history chart for the branch, with measure $\mu_{\mathrm{init}}$ internal to that chart. Define
@@ -485,7 +485,7 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ca87a2f9c5e670ca)
+[View →](../../../../../equation-mapping.html#corpus-equation-ca87a2f9c5e670ca)
 and report the basin burden
 $$
 \mathcal{S}_{\mathrm{init}}
@@ -498,7 +498,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-14b520c046689b68)
+[View →](../../../../../equation-mapping.html#corpus-equation-14b520c046689b68)
 A high $\mathcal{S}_{\mathrm{init}}$ means the smoothing or release explanation has been moved into a small allowed initial basin. A low value means the declared mechanism is robust under the chosen chart. This is a diagnostic on the branch record, not an external probability assigned after the dynamics.
 
 Penrose-style estimates of early-universe specialness are retained here at exactly this level. The familiar order-of-magnitude claim that a smooth low-gravitational-entropy early record occupies a fraction near $1/10^{10^{123}}$ of a maximum-entropy comparison space is not imported as a literal sampling story for the Euclidean void. It is a scale warning: if a cosmology branch recovers CMB smoothness, low gravitational free-mode content, and later black-hole-dominated entropy only by selecting an exponentially tiny $\mathcal{B}_{\mathrm{obs}}$, then the branch has relocated the arrow-of-time problem into $\theta_{\mathrm{init}}$ rather than deriving it from Noether sea dynamics.
@@ -511,7 +511,7 @@ I_{\mathrm{init}}(\theta)
 \mu_{\mathrm{state}}\!\left(B_\theta\mid C_{\mathrm{cos}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f17225fa08bcbe35)
+[View →](../../../../../equation-mapping.html#corpus-equation-f17225fa08bcbe35)
 Here $C_{\mathrm{cos}}$ is the declared cosmology constraint set, $B_\theta$ is the subset of admissible Noether sea and path-history states that project to the observed CMB, BBN, growth/lensing, and frame packet, and $\mu_{\mathrm{state}}$ is the branch-internal state measure conditioned on $C_{\mathrm{cos}}$. A branch that explains smoothness only by making $\mu_{\mathrm{state}}(B_\theta\mid C_{\mathrm{cos}})$ tiny has relocated the burden into initial selection rather than deriving it from Noether sea dynamics.
 
 Claims about observer selection, anthropic conditioning, or typicality belong inside the same inference ledger. They should not be promoted as cosmological facts unless their weights are projected from the declared data-product family and the same shared Noether sea state record. For an observer-accessible datum $D_a$ on a window $W$, write
@@ -521,7 +521,7 @@ P_{\theta_{\mathrm{sea}},W}(D_a)
 \mu_{\theta_{\mathrm{sea}},W}\!\left(\pi_D^{-1}(D_a)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9bdb7766de22d075)
+[View →](../../../../../equation-mapping.html#corpus-equation-9bdb7766de22d075)
 with $\mu_{\theta_{\mathrm{sea}},W}$ conditioned by the same $\theta_{\mathrm{sea}}$ used for expansion, CMB, BBN, growth, lensing, and calibration. A compact selection-admissibility guardrail is
 $$
 \mathcal{R}_{\mathrm{sel}}(\theta_{\mathrm{sea}},W)
@@ -535,7 +535,7 @@ d_{\mathcal{D}_{\mathrm{cos}}}\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3fca0a30e9795388)
+[View →](../../../../../equation-mapping.html#corpus-equation-3fca0a30e9795388)
 Here $\widehat{\mu}_{\mathcal{D}_{\mathrm{cos}},W}$ is the empirical distribution of the declared cosmology data products on the same window. If $\mathcal{R}_{\mathrm{sel}}$ is large, the corpus should retain the observable data product and classify the typicality claim as interpretation rather than cosmology closure.
 
 #### Global-Reconstruction Promotion Gate
@@ -557,7 +557,7 @@ d_{\mathcal{D}_{\mathrm{cos}}}\!\left(
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4186cc48098d3021)
+[View →](../../../../../equation-mapping.html#corpus-equation-4186cc48098d3021)
 For a proposed global cosmology claim $P_{\mathrm{glob}}$, define
 $$
 \Delta_{\mathrm{glob}}(P_{\mathrm{glob}};\theta_{\mathrm{sea}})
@@ -569,7 +569,7 @@ P_{\mathrm{glob}}(\theta_1)\ne P_{\mathrm{glob}}(\theta_2)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0a1596b31a0b1c50)
+[View →](../../../../../equation-mapping.html#corpus-equation-0a1596b31a0b1c50)
 A claim about a unique global chronology, asymptotic de Sitter state, global topology, or one-time origin is promoted only when this ambiguity indicator vanishes or when a native derivation selects that claim without using the fitted data products as the selection rule. Otherwise the corpus should retain the observational data product and classify the global statement as an effective reconstruction.
 
 Flatness constraints require the same layer discipline. CMB, BAO, lensing, and large-scale-structure fits may strongly constrain the effective curvature parameter used in observer reconstructions, but that is not by itself a proof of global topology or of the Euclidean void postulate. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void is an ontological background claim, while $\Omega_k$ or any fitted curvature variable is a data-product coordinate exported by the effective metric and inference pipeline. A successful cosmology must therefore recover near-flat observer data without converting the data product into a topology proof.
@@ -631,7 +631,7 @@ $$
 \frac{|r_{d,pb}^{\theta}-\bar r_d^\theta|}{\sigma_{r,pb}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-517c97f45c9f8b76)
+[View →](../../../../../equation-mapping.html#corpus-equation-517c97f45c9f8b76)
 
 The branch must satisfy $\mathcal R_{\mathrm{BAO,coh}}\le1$ without tuning the ruler separately by source patch or tracer bin. Failure means local recycling has not recovered the coherent standard-ruler data product, even if it supplies a qualitative thermal-background story.
 
@@ -712,7 +712,7 @@ $$
 \frac{\nu_{\mathrm{emit}}}{\nu_{\mathrm{obs}}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-40debe224727b7d9)
+[View →](../../../../../equation-mapping.html#corpus-equation-40debe224727b7d9)
 
 That much is direct bookkeeping. The extra Lambda-CDM step is to identify the same ratio with the scale factor:
 
@@ -726,7 +726,7 @@ $$
 \frac{a(t_{\mathrm{obs}})}{a(t_{\mathrm{emit}})}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-425758b6e3c675ca)
+[View →](../../../../../equation-mapping.html#corpus-equation-425758b6e3c675ca)
 
 This is the big conversion. A frequency ratio becomes a scale-factor ratio. Once that conversion is accepted, $z$ becomes more than a line shift. It becomes the coordinate used to infer distance, lookback time, source volume, population history, matter density, dark energy, curvature, neutrino masses, and the age of the observable universe.
 
@@ -747,7 +747,7 @@ H_0
 \right]^{1/2},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c4b7dfeedc2b8eec)
+[View →](../../../../../equation-mapping.html#corpus-equation-c4b7dfeedc2b8eec)
 
 with the precise dark-energy term generalized when $w(z)$ is not fixed at $-1$. The comoving radial distance is then modeled by
 
@@ -759,7 +759,7 @@ c_0
 \frac{dz'}{H(z')},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0f4ecab8abce4709)
+[View →](../../../../../equation-mapping.html#corpus-equation-0f4ecab8abce4709)
 
 and the lookback time by
 
@@ -770,7 +770,7 @@ t_L(z)
 \frac{dz'}{(1+z')H(z')}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7a04a0fbe7e97db5)
+[View →](../../../../../equation-mapping.html#corpus-equation-7a04a0fbe7e97db5)
 
 In a flat comparison model, luminosity distance is summarized by
 
@@ -780,7 +780,7 @@ d_L(z)
 (1+z)\chi(z),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6e0e0e9b24a6ba30)
+[View →](../../../../../equation-mapping.html#corpus-equation-6e0e0e9b24a6ba30)
 
 while the flux relation is
 
@@ -790,7 +790,7 @@ F
 \frac{L}{4\pi d_L^2}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-12c6b174942e554b)
+[View →](../../../../../equation-mapping.html#corpus-equation-12c6b174942e554b)
 
 This is why redshift is so important. A measured line shift becomes $z$. The model turns $z$ into $H(z)$, $d_L(z)$, $d_A(z)$, lookback time, source volume, and population history. The fitted parameters then support statements about cosmic acceleration, dark energy, matter density, curvature, neutrino masses, and cosmic age.
 
@@ -807,7 +807,7 @@ Z_X^{E\to R}
 \frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-18e80cb7ac250754)
+[View →](../../../../../equation-mapping.html#corpus-equation-18e80cb7ac250754)
 
 Here $X$ labels the calibrated channel: a spectral line, supernova light-curve class, CMB band, or other identifiable photon record. The observed redshift is the exponential of this ledger:
 
@@ -817,7 +817,7 @@ $$
 \exp Z_X^{E\to R}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c013e880f634ab91)
+[View →](../../../../../equation-mapping.html#corpus-equation-c013e880f634ab91)
 
 The useful decomposition is
 
@@ -835,7 +835,7 @@ Y_{X,E\to R}
 \ln D_v.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6a88827a144da6cd)
+[View →](../../../../../equation-mapping.html#corpus-equation-6a88827a144da6cd)
 
 Each term answers a plain question:
 
@@ -863,7 +863,7 @@ Z_X^{E\to R}
 \ln D_v.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d7eaa172d7bb9813)
+[View →](../../../../../equation-mapping.html#corpus-equation-d7eaa172d7bb9813)
 
 Only this residual is eligible to define an effective Hubble-like coefficient along a calibrated line of sight:
 
@@ -873,7 +873,7 @@ H_{\mathrm{eff},X}(R,\hat{\mathbf k})
 c_0\,\partial_R Z_{\mathrm{prop},X}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d18ea9ad793b67e6)
+[View →](../../../../../equation-mapping.html#corpus-equation-d18ea9ad793b67e6)
 
 This $H_{\mathrm{eff}}$ is not the expansion rate of the Euclidean void. It is the observer-level slope of the corrected redshift-transfer ledger after the local channel, source, endpoint, and path terms have been separated as far as the data allow.
 
@@ -918,7 +918,7 @@ t_0
 \frac{dz}{(1+z)H(z)}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d36ffebfb0d45ba0)
+[View →](../../../../../equation-mapping.html#corpus-equation-d36ffebfb0d45ba0)
 
 This works inside Lambda-CDM because $z$ is interpreted as a scale-factor coordinate and $H(z)$ as the expansion rate of the metric background. The model age is the elapsed effective time along the fitted expansion history.
 
@@ -942,7 +942,7 @@ d_{L,X}^{\mathrm{eff}}
 \right)^{1/2}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9291eb71cf443f52)
+[View →](../../../../../equation-mapping.html#corpus-equation-9291eb71cf443f52)
 
 But this quantity is not automatically a geometric radius in an expanding metric. It includes source calibration, arrival-rate changes, photon-channel transport, beam geometry, absorption or scattering where present, and receiver calibration.
 
@@ -962,7 +962,7 @@ d_L^{\Lambda\mathrm{CDM}}(z)
 \frac{dz'}{H_0\left[\Omega_r(1+z')^4+\Omega_m(1+z')^3+\Omega_\Lambda\right]^{1/2}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-72f5db2649607b23)
+[View →](../../../../../equation-mapping.html#corpus-equation-72f5db2649607b23)
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ column is not a completed native prediction. It is the constant corrected-transfer benchmark obtained when endpoint, source, launch, and inhomogeneous path terms have been removed and the remaining propagation residual has a constant local slope $H_{\mathrm{eff},0}=H_0$:
 
@@ -972,7 +972,7 @@ d_{L,\mathrm{bench}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(z)
 (1+z)\frac{c_0}{H_{\mathrm{eff},0}}\ln(1+z).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-64b2002e83b09c0e)
+[View →](../../../../../equation-mapping.html#corpus-equation-64b2002e83b09c0e)
 
 The percent difference is
 
@@ -989,7 +989,7 @@ d_L^{\Lambda\mathrm{CDM}}
 }.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5a58ce43c20eb651)
+[View →](../../../../../equation-mapping.html#corpus-equation-5a58ce43c20eb651)
 
 | Redshift $z$ | Lambda-CDM $d_L$ (Mpc) | $\mathbb{A}\mathbb{A}\mathbb{A}$ benchmark $d_L$ (Mpc) | $\Delta_{\%}$ |
 | ---: | ---: | ---: | ---: |
@@ -1065,7 +1065,7 @@ $$
 \text{native Noether sea and assembly history}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-06bc75825ef1607d)
+[View →](../../../../../equation-mapping.html#corpus-equation-06bc75825ef1607d)
 
 The standard model reads the middle of this chain as expanding spacetime. $\mathbb{A}\mathbb{A}\mathbb{A}$ reads it as a successful effective compression of deeper medium, source, and clock records. The observational burden is to recover every strong Lambda-CDM data product while moving the ontology from metric expansion to ledgers propagating through an evolving Noether sea in a fixed Euclidean void.
 
@@ -1091,7 +1091,7 @@ a_{\mathrm{eff}}(T)\propto
 {\langle L_{\text{core}}(T_{\mathrm{ref}})\rangle}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-676b4e0caa38e42a)
+[View →](../../../../../equation-mapping.html#corpus-equation-676b4e0caa38e42a)
 
 where $L_{\text{core}}$ is a representative assembly-separation scale in the declared averaging domain.
 
@@ -1105,7 +1105,7 @@ a_{\mathrm{eff}}(T)\ \leftrightarrow\ \langle R_{\text{braid}}(T)\rangle
 a_{\mathrm{eff}}(T)\propto u_{\text{sea}}(T)^{-1/3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7e06fb377bcf7ea1)
+[View →](../../../../../equation-mapping.html#corpus-equation-7e06fb377bcf7ea1)
 
 These are effective parameterizations of Noether sea state, not interchangeable identities. Their equivalence has to be derived on the same retained record. In particular, a galaxy-local recycling branch cannot interpret a smaller local $L_{\text{core}}$ literally as a smaller global source separation without first deriving the observer-level distance and ruler map.
 
@@ -1121,7 +1121,7 @@ e^{t_{\mathrm{eff}}/P}
 P\gg Q
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8aa5960f3b4c4fe3)
+[View →](../../../../../equation-mapping.html#corpus-equation-8aa5960f3b4c4fe3)
 In this framework that expression is only a projection of Noether sea state recurrence, source recycling, and clock or transport response. It does not describe expansion of the Euclidean void. Such a branch is admissible only if the same Noether sea state record supplies the source term, redshift-transfer map, CMB thermal record, and BBN yield record.
 
 #### Exponential Scale History as a Comparison Limit
@@ -1133,13 +1133,13 @@ a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0 e^{H_*t_{\mathrm{eff}}},
 H_{\mathrm{eff}}=H_*
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dd7b6d658a9d21b0)
+[View →](../../../../../equation-mapping.html#corpus-equation-dd7b6d658a9d21b0)
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not evidence that the Euclidean void expands. It is a special homogeneous projection in which the corrected redshift-transfer slope is constant over the comparison interval. In the endpoint-subtracted propagation language below, the nearby homogeneous limit must satisfy
 $$
 \bar{\alpha}_X=\frac{H_*}{c_0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d09afaecdf3a8df3)
+[View →](../../../../../equation-mapping.html#corpus-equation-d09afaecdf3a8df3)
 after endpoint cadence, source-branch change, and relative launch motion have been removed.
 
 The steady-state lesson is a conservation check on this limit. Holding an effective matter density constant while $a_{\mathrm{eff}}$ grows requires a source term
@@ -1147,7 +1147,7 @@ $$
 \mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-783b6eebc7bac4e1)
+[View →](../../../../../equation-mapping.html#corpus-equation-783b6eebc7bac4e1)
 and that source must be routed through the same assembly and Noether sea provenance record that computes the redshift-transfer slope. A constant $H_*$ fit without this ledger is only a kinematic comparison curve.
 
 ### Clock-Rate Redshift Interpretation
@@ -1169,7 +1169,7 @@ n(\mathbf X,T),
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-68a987c0ba1c9d31)
+[View →](../../../../../equation-mapping.html#corpus-equation-68a987c0ba1c9d31)
 
 A photon that traverses regions with different $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, and $\Phi_{\text{eff}}$ is read by clocks with different local rates after projection into the observer chart. The observed $z$ is then an emergent comparison of those rates along the path-history record.
 
@@ -1180,7 +1180,7 @@ $$
 = \frac{(d\tau/dt_{\mathrm{eff}})_o}{(d\tau/dt_{\mathrm{eff}})_e}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d61bae0ae4c93ee3)
+[View →](../../../../../equation-mapping.html#corpus-equation-d61bae0ae4c93ee3)
 
 so redshift is treated as path-integrated medium evolution plus endpoint clock-rate comparison.
 
@@ -1192,7 +1192,7 @@ Z_X^{E\to R}
 \ln\frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ed0da5d6fb73446d)
+[View →](../../../../../equation-mapping.html#corpus-equation-ed0da5d6fb73446d)
 
 so $Z_X>0$ is redward relative to the clean reference line and $Z_X<0$ is blueward. A path segment that transfers energy from an energetic intervening medium into the photon-channel packet contributes a negative increment to the path term, while a segment that transfers photon energy into a lower-energy medium contributes a positive increment. Sunyaev-Zeldovich-type comparisons are the observed calibration family for this point (the Planck/ACT/SPT cluster-SZ measurements): CMB photon frequencies can be shifted by intervening electron populations, so photon frequency is a path-history observable rather than a primitive expansion clock.
 
@@ -1212,7 +1212,7 @@ $$
 \mathbb{U}_{\text{now}}=S(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3ff5659c9044632e)
+[View →](../../../../../equation-mapping.html#corpus-equation-3ff5659c9044632e)
 
 where absolute time $T$ indexes definite architrino positions, velocities, assemblies, causal wakes, Noether sea state variables, and path-history ledgers in the fixed Euclidean void. Redshift must therefore be read as an observer-level extraction from that absolute record, not as a primitive change in space or time.
 
@@ -1240,7 +1240,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf X,T)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0566b52c894e5738)
+[View →](../../../../../equation-mapping.html#corpus-equation-0566b52c894e5738)
 
 Here $P_{N0}$ is the reference Noether sea braid cycle period.
 
@@ -1256,7 +1256,7 @@ $$
 {B_X(E)\,\mathcal{L}_{E\to R}(\hat{\mathbf{k}})}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b18001d9f09b6898)
+[View →](../../../../../equation-mapping.html#corpus-equation-b18001d9f09b6898)
 
 Here $\Gamma_{N,E}/\Gamma_{N,R}$ is the emitter-to-receiver Noether sea braid cadence ratio, $\mathcal{P}_{E\to R}$ is the path-history propagation factor through the intervening Noether sea, $B_X(E)$ records any real source-branch shift in the emitting transition, and $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$ records directional launch geometry from relative motion. The clean reference case has $B_X(E)=1$ and negligible path accumulation. Strong local-gradient redshift is dominated by $\Gamma_{N,E}/\Gamma_{N,R}$; gentle deep-space redshift may instead accumulate mainly through $\mathcal{P}_{E\to R}$.
 
@@ -1272,7 +1272,7 @@ $$
 -\ln\mathcal{L}_{E\to R}(\hat{\mathbf{k}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6941d4eed521f704)
+[View →](../../../../../equation-mapping.html#corpus-equation-6941d4eed521f704)
 
 A factor may be set to $1$ only when its logarithmic contribution is small relative to the dominant contribution and to the observational tolerance. This prevents the same redshift record from silently switching between gravitational, relative-motion, source-branch, and propagation explanations.
 
@@ -1290,7 +1290,7 @@ Y_{X,E\to R}
 \text{after endpoint, source, and launch terms are held fixed}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3c3a153b755ae514)
+[View →](../../../../../equation-mapping.html#corpus-equation-3c3a153b755ae514)
 
 Here $\nu_{X,j}^{-}$ and $\nu_{X,j}^{+}$ are the photon-channel frequencies immediately before and after the segment-level exchange as read by the same comparison clock. A frequency boost has $\Delta Y_{X,j}<0$; a frequency depletion has $\Delta Y_{X,j}>0$. The local exchange must close an energy ledger such as
 
@@ -1307,7 +1307,7 @@ h(\nu_{X,j}^{+}-\nu_{X,j}^{-})
 }{\epsilon_E}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-89e9386fffe0f461)
+[View →](../../../../../equation-mapping.html#corpus-equation-89e9386fffe0f461)
 
 where $\Delta E_{\mathrm{med}}$, $\Delta E_{\mathrm{recoil}}$, and $\Delta E_{\mathrm{rem}}$ are positive or negative according to the retained medium, target, and remnant energy changes. A cosmological path term is admissible only when the signed frequency transfer, image sharpness, packet cadence, spectral coherence, and energy ledger are supplied by one Noether sea record.
 
@@ -1327,7 +1327,7 @@ $$
 }{\epsilon_E}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7a896caaab2478d9)
+[View →](../../../../../equation-mapping.html#corpus-equation-7a896caaab2478d9)
 
 The signs follow the same retained path-history record: $\Delta E_{\gamma,\Omega}$ is the photon-channel change across the comparison window, $\Delta E_{\mathrm{sea},\Omega}$ is the Noether sea update, $\Delta E_{\mathrm{src/rem},\Omega}$ covers declared source or remnant rows, $\Delta E_{\mathrm{recoil},\Omega}$ covers material recoil or target exchange, and the boundary flux term records energy entering or leaving the finite window. A deep-space redshift branch earns standing only when the same Noether sea transport that preserves image sharpness and occupation shape also makes this residual small under the declared tolerance.
 
@@ -1345,7 +1345,7 @@ E_{\mathrm{arch}}(T)
 \frac{dE_{\mathrm{tot}}}{dT}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3deccbdc94c3d7e8)
+[View →](../../../../../equation-mapping.html#corpus-equation-3deccbdc94c3d7e8)
 
 where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, $E_{\mathrm{wake}}$ collects causal-wake energy in flight, and $E_{\mathrm{sea}}$ collects Noether sea constitutive energy. This is a conservation target rather than a proved theorem until the delayed action or a quasi-Noether replacement supplies the required invariant.
 
@@ -1360,7 +1360,7 @@ $$
 7\times10^{-16}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c52689ebe78f0047)
+[View →](../../../../../equation-mapping.html#corpus-equation-c52689ebe78f0047)
 This bound constrains the integrated gravitational-wave and photon-channel propagation records for that event; it does not identify either substrate speed with the primitive wake speed $c_f$. Any Noether sea dispersion or clock reconstruction used for cosmological redshift must preserve this near-coincidence on the same path.
 
 The global form also assumes that the total energy on the constant-$T$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
@@ -1369,7 +1369,7 @@ $$
 \partial_T\rho_E+\nabla\cdot\mathbf{S}_E=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f3727b0119e27745)
+[View →](../../../../../equation-mapping.html#corpus-equation-f3727b0119e27745)
 
 and, for a finite comparison window $\Omega$,
 
@@ -1379,7 +1379,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-962377ac119458c3)
+[View →](../../../../../equation-mapping.html#corpus-equation-962377ac119458c3)
 
 This is the same content as the finite-window residual above. The global ledger is the stronger theorem target; the bounded-region flux balance is the safe falsification form for cosmological transport.
 
@@ -1393,7 +1393,7 @@ E_{\mathrm{emit}}-E_{\mathrm{obs}}
 E_{\mathrm{emit}}\frac{z}{1+z}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8f58f2bdd2526ce6)
+[View →](../../../../../equation-mapping.html#corpus-equation-8f58f2bdd2526ce6)
 
 This per-packet identity does not yet license a fixed fraction of present critical density for the integrated deposit. An estimate such as $\rho_{\gamma,0}(a_{\mathrm{dec}}^{-1}-1)$ imports the standard comoving-volume and scale-history map that the fixed-void branch is required to derive. The native calculation must instead integrate retained photon bundles and Noether sea exchange over a bounded constant-$T$ region, with source, remnant, recoil, and boundary terms included. Until that mapping exists, a nominal percent-level deposit is a heuristic comparison, not a measured Noether sea loading.
 
@@ -1412,7 +1412,7 @@ a_{\mathrm{dec}}^{-1}-1
 \mathcal O(10^{-2}),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b25476482b165d65)
+[View →](../../../../../equation-mapping.html#corpus-equation-b25476482b165d65)
 
 which is far below the effective dark-energy comparison row $\Omega_{\mathrm{DE}}\approx0.7$. Transparent-path redshift deposition therefore cannot by itself supply the required dark-energy loading on such a recovered branch. The exact native deposit and its destination remain outputs of the bounded constant-$T$ ledger, not imported inputs.
 
@@ -1424,7 +1424,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7fdafb628116feda)
+[View →](../../../../../equation-mapping.html#corpus-equation-7fdafb628116feda)
 
 The same term $\Delta E_{\mathrm{sea,path}}$ is then not adjustable per observable. It must be the energy face of the transport operator that preserves occupation shape and image sharpness; its path integral must recover redshift-distance and observed $(1+z)$ time dilation; and its spatial gradient must remain compatible with the lensing and growth budgets. If those rows require separate Noether sea responses, the branch has reproduced the standard tension split rather than closing it.
 
@@ -1444,7 +1444,7 @@ D_v\,
 \frac{1}{\mathcal{P}_{E\to R}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-18c3a3e2c90538de)
+[View →](../../../../../equation-mapping.html#corpus-equation-18c3a3e2c90538de)
 
 Equivalently,
 
@@ -1457,7 +1457,7 @@ $$
 \frac{\mathcal{P}_{E\to R}}{B_X(E)D_v}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#redshift-factorization)
+[View →](../../../../../equation-mapping.html#redshift-factorization)
 
 Here $D_v$ is the launch or relative-motion frequency factor. In the homogeneous absolute-record replay, let
 
@@ -1467,7 +1467,7 @@ v_{E,k}\equiv\mathbf v_E\cdot\hat{\mathbf k},
 v_{R,k}\equiv\mathbf v_R\cdot\hat{\mathbf k}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5c7bfbbd4d006645)
+[View →](../../../../../equation-mapping.html#corpus-equation-5c7bfbbd4d006645)
 
 where $\hat{\mathbf{k}}$ points from emitter to receiver. Adjacent phase markers emitted with absolute-time separation $\Delta T_E$ arrive with
 
@@ -1477,7 +1477,7 @@ D_v
 \frac{c_0-v_{R,k}}{c_0-v_{E,k}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cd75327381f544c7)
+[View →](../../../../../equation-mapping.html#corpus-equation-cd75327381f544c7)
 
 For a fixed emitter and a receiver receding along $\hat{\mathbf k}$, this gives $D_v=1-v_{R,k}/c_0$. For a fixed receiver and an emitter receding opposite $\hat{\mathbf k}$ with speed $v_r>0$, it gives $D_v=1/(1+v_r/c_0)$. The special-relativistic square-root comparison factor is not inserted here: any moving-clock correction belongs in the independently derived endpoint cadence factor $\Gamma_N$. Multiplying both would count that correction twice.
 
@@ -1501,7 +1501,7 @@ $$
 {1-\beta_R\beta_E},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-72ad9e71984ddfdb)
+[View →](../../../../../equation-mapping.html#corpus-equation-72ad9e71984ddfdb)
 
 where $\beta_A=v_{A,k}/c_0$. If the endpoint extraction gives $\Gamma_{N,A}\to(1-\beta_A^2)^{-1/2}$, then
 
@@ -1520,7 +1520,7 @@ $$
 }.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-35a997a26b60e260)
+[View →](../../../../../equation-mapping.html#corpus-equation-35a997a26b60e260)
 
 The reciprocal $(\Gamma_{N,E}/\Gamma_{N,R})/D_v$ is the corresponding redshift factor. This cancellation is the recovery target: the separate preferred-frame endpoint velocities may occur in the absolute record, but the homogeneous observer comparison must depend only on relative velocity. Any residual dependence is bounded preferred-frame leakage, not Lorentz closure.
 
@@ -1538,7 +1538,7 @@ D_v\,
 \frac{1}{\mathcal{P}_{E\to R}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-68b646023bd40fa8)
+[View →](../../../../../equation-mapping.html#corpus-equation-68b646023bd40fa8)
 
 This is not an additional energy-loss term. The local emission ledger is carried by $\nu_{X,0}B_X(E)$, while the receiver reads that packet through endpoint cadence, launch geometry, and path-history propagation.
 
@@ -1556,7 +1556,7 @@ $$
 S(T)\big|_{\{E,R,X,\gamma_{E\to R},\theta_{\mathrm{sea}},\mathcal{H}_{\mathrm{wake}}\}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-02a58b814d7e69f5)
+[View →](../../../../../equation-mapping.html#corpus-equation-02a58b814d7e69f5)
 
 denote the restricted record containing the source assembly branch, receiver assembly branch, path-history wake ledger, Noether sea state variables, and photon-channel path data needed for the comparison. This is not an observer frame; it is the part of $\mathbb{U}_{\text{now}}\equiv S(T)$ consumed by the redshift calculation.
 
@@ -1574,7 +1574,7 @@ Y_{X,E\to R}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-06df774951fcffc9)
+[View →](../../../../../equation-mapping.html#corpus-equation-06df774951fcffc9)
 
 with
 
@@ -1584,7 +1584,7 @@ Y_{X,E\to R}
 \ln\mathcal{P}_{E\to R,X}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-db1cc56dea450750)
+[View →](../../../../../equation-mapping.html#corpus-equation-db1cc56dea450750)
 
 The recovered redshift is then
 
@@ -1600,7 +1600,7 @@ Z_X[\mathcal{S}_{X,E\to R}]
 -\ln D_v
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2aad24cdc9d5fb16)
+[View →](../../../../../equation-mapping.html#corpus-equation-2aad24cdc9d5fb16)
 
 Each term has a separate extraction rule.
 
@@ -1615,7 +1615,7 @@ $$
 A\in\{E,R\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a6ffde7e733faa95)
+[View →](../../../../../equation-mapping.html#corpus-equation-a6ffde7e733faa95)
 
 where $\Pi_N S(T_A)$ is the local Noether sea braid record near endpoint $A$. Source-branch shift is read before propagation:
 
@@ -1626,7 +1626,7 @@ B_X(E)
 {\nu_{X,0}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-54cc0a4c27b624ee)
+[View →](../../../../../equation-mapping.html#corpus-equation-54cc0a4c27b624ee)
 
 where $\Pi_E S(T_E)$ is the local source-assembly and environment record that determines whether the transition remains on the clean reference branch.
 
@@ -1642,7 +1642,7 @@ D_v
 \right|_{\theta_{\mathrm{sea}}=\theta_0,\;\Gamma_N=1,\;B_X=1}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1a7b60c66570a746)
+[View →](../../../../../equation-mapping.html#corpus-equation-1a7b60c66570a746)
 
 where $N_\phi$ counts adjacent emitted phase markers received in the reference Noether sea state $\theta_0$. This definition isolates source/receiver motion and emission direction from endpoint cadence and path-history propagation. In the homogeneous radial replay it reduces exactly to
 
@@ -1653,7 +1653,7 @@ D_v
 {c_0-\mathbf v_E\cdot\hat{\mathbf k}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-279edf3a03d3510a)
+[View →](../../../../../equation-mapping.html#corpus-equation-279edf3a03d3510a)
 
 Path-history propagation is then the remaining Noether sea transport integral:
 
@@ -1668,7 +1668,7 @@ Y_{X,E\to R}
 \right)d\ell
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2529621bef351e2b)
+[View →](../../../../../equation-mapping.html#corpus-equation-2529621bef351e2b)
 
 with
 
@@ -1683,7 +1683,7 @@ S_{ij},\,
 \right)_{\gamma(\ell),T(\ell)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7d6298f0f137d36e)
+[View →](../../../../../equation-mapping.html#corpus-equation-7d6298f0f137d36e)
 
 This makes the proof obligation explicit. A gravitational endpoint redshift is the special case $B_X=1$, $D_v=1$, and $Y_X\approx0$, with $\Gamma_N$ supplying the weak-field benchmark. A homogeneous relative-motion redshift is the special case $\Gamma_{N,E}=\Gamma_{N,R}=1$, $B_X=1$, and $Y_X=0$, with $D_v$ supplying the shift. A deep-space propagation redshift is the special case where endpoint and launch terms are controlled while $Y_X$ accumulates from the path-history Noether sea record.
 
@@ -1694,7 +1694,7 @@ $$
 \quad\text{uses one }S(T)\text{ restriction and one coefficient record.}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fe3ba4527c00d558)
+[View →](../../../../../equation-mapping.html#corpus-equation-fe3ba4527c00d558)
 
 If the endpoint, launch, and propagation terms can be made to fit only by changing $\Pi_N S$, $\Pi_E S$, $\Pi_\gamma S$, or the coefficient row independently for each observational family, then the factorization is a useful diagnostic but not yet an $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
@@ -1717,7 +1717,7 @@ T_R=\frac{T_E}{\lambda_{E\to R,X}},
 +O(\epsilon_{\mathrm{spec}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f2d718dc5b2e9855)
+[View →](../../../../../equation-mapping.html#corpus-equation-f2d718dc5b2e9855)
 
 with the bundle map also satisfying
 
@@ -1733,7 +1733,7 @@ $$
 \le\epsilon_{\mathrm{tof}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d498da3cb1b20d0e)
+[View →](../../../../../equation-mapping.html#corpus-equation-d498da3cb1b20d0e)
 
 after declared lensing, aperture, and detector terms have been removed. Equivalently, let $\mathcal{D}_{\lambda}$ denote global frequency dilation on the admitted photon-channel band and let $\mathcal{G}_{\mathrm{tr}}$ denote the transparent-transport generator. The coherent branch must satisfy
 
@@ -1746,7 +1746,7 @@ $$
 \partial_\omega v_{g,\gamma}=O(\epsilon_{\mathrm{tof}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9f87186e4396bc92)
+[View →](../../../../../equation-mapping.html#corpus-equation-9f87186e4396bc92)
 
 for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, frequency-dependent group velocity, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name or failed the long-baseline photon time-of-flight row.
 
@@ -1765,7 +1765,7 @@ f_N
 \right\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-84c5f04140bad2d2)
+[View →](../../../../../equation-mapping.html#corpus-equation-84c5f04140bad2d2)
 
 with the average taken over accepted branch changes inside the coarse-graining cell. A provisional transport packet is
 
@@ -1779,7 +1779,7 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aa6a11ab7a328480)
+[View →](../../../../../equation-mapping.html#corpus-equation-aa6a11ab7a328480)
 
 where $J_\nu$ is the frequency-space relaxation current, $S_{\mathrm{BH}}$ is medium loading from black-hole recycling regions, $S_{\mathrm{GW}}$ is a gravitational-wave perturbation term, and $R_{\mathrm{eq}}[f_N]$ is the local neighbor-equilibration operator. The projection into the redshift budget should have the form
 
@@ -1796,7 +1796,7 @@ R_{\mathrm{eq}};
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-47a0255ea8683f65)
+[View →](../../../../../equation-mapping.html#corpus-equation-47a0255ea8683f65)
 
 This is a closure target. If $J_\nu$ vanishes after coarse-graining, or if the source and equilibration terms cancel without a signed large-scale drift, the equilibrium law supplies no expansion-like effect. If the projection is nonzero, it must still pass the same image-sharpness, chromaticity, and packet time-dilation checks as the rest of $\mathcal{P}_{E\to R}$. That condition keeps the hypothesis out of the excluded tired-light class.
 
@@ -1808,7 +1808,7 @@ $$
 -\sum_a \frac{G M_a}{\|\mathbf X-\mathbf X_a\|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7860972b6a49af38)
+[View →](../../../../../equation-mapping.html#corpus-equation-7860972b6a49af38)
 
 and the endpoint cadence recovery target gives
 
@@ -1818,7 +1818,7 @@ $$
 1-\frac{\Phi_N(\mathbf X)}{c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-701ab4d8e0427e42)
+[View →](../../../../../equation-mapping.html#corpus-equation-701ab4d8e0427e42)
 
 For one approximately isolated mass $M$, this becomes
 
@@ -1828,7 +1828,7 @@ $$
 1+\frac{G M}{r c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-db4a666729883f2c)
+[View →](../../../../../equation-mapping.html#corpus-equation-db4a666729883f2c)
 
 Thus the familiar weak-field received-frequency estimate is
 
@@ -1842,7 +1842,7 @@ D_v\,
 \frac{1-\Phi_N(R)/c_0^2}{1-\Phi_N(E)/c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fc52093f433d6b3d)
+[View →](../../../../../equation-mapping.html#corpus-equation-fc52093f433d6b3d)
 
 This expression is useful because the factors show which effect is being neglected in a given environment. A laboratory line comparison may set $\mathcal{P}_{E\to R}\approx1$ and $B_X(E)\approx1$; a weak local-galaxy redshift may keep $D_v$ and suppress endpoint gravity; a black-hole-adjacent line must not suppress $\Gamma_{N,E}$ or the possibility that $B_X(E)$ has changed.
 
@@ -1857,7 +1857,7 @@ $$
 +\gamma_{21}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c00e7ca5268b3fc5)
+[View →](../../../../../equation-mapping.html#corpus-equation-c00e7ca5268b3fc5)
 
 The reference observer frequency is
 
@@ -1865,7 +1865,7 @@ $$
 \nu_{21,0}\approx1.420405751\;\mathrm{GHz}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0d3dfd7e1cf25d88)
+[View →](../../../../../equation-mapping.html#corpus-equation-0d3dfd7e1cf25d88)
 
 This subsection does not derive the hyperfine splitting from $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics. That derivation remains downstream of the atomic spin and angular-momentum closure program described in [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md) and [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md). The purpose here is to show how an accepted line record is routed through the redshift factorization.
 
@@ -1877,7 +1877,7 @@ B_{21}(E)
 \frac{\nu_{21,E}^{\mathrm{branch}}}{\nu_{21,0}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8195b25f51760a83)
+[View →](../../../../../equation-mapping.html#corpus-equation-8195b25f51760a83)
 
 where $\nu_{21,E}^{\mathrm{branch}}$ is the effective transition frequency of the emitting hydrogen branch after local material conditions are included but before endpoint clock-cadence comparison, launch geometry, or path propagation are applied. Then
 
@@ -1891,7 +1891,7 @@ D_v\,
 \frac{1}{\mathcal{P}_{E\to R}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aec35a83f5653b2a)
+[View →](../../../../../equation-mapping.html#corpus-equation-aec35a83f5653b2a)
 
 and
 
@@ -1902,7 +1902,7 @@ $$
 \frac{\mathcal{P}_{E\to R}}{B_{21}(E)D_v}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2876ca9d0248a80e)
+[View →](../../../../../equation-mapping.html#corpus-equation-2876ca9d0248a80e)
 
 Clean 21 cm emission means $B_{21}(E)=1$. In that case the hydrogen transition remains on its reference branch, and the observed shift is assigned to endpoint Noether sea cadence, relative launch motion, and path-history propagation. Uniform source motion through a homogeneous Noether sea should therefore enter $D_v$ by default, not $B_{21}$.
 
@@ -1919,7 +1919,7 @@ $$
 \frac{\mathcal{P}_{E\to R}}{B_X(E)D_v}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-283e71b7cc80b83a)
+[View →](../../../../../equation-mapping.html#corpus-equation-283e71b7cc80b83a)
 
 The practical question is which logarithmic terms are small enough to set to $1$ after the environment and tolerance have been stated.
 
@@ -1947,7 +1947,7 @@ $$
 1-\frac{\Phi_N}{c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-35559cac19a5eefc)
+[View →](../../../../../equation-mapping.html#corpus-equation-35559cac19a5eefc)
 
 then
 
@@ -1959,7 +1959,7 @@ $$
 \frac{\Phi_N(R)-\Phi_N(E)}{c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e61d28994bb2adae)
+[View →](../../../../../equation-mapping.html#corpus-equation-e61d28994bb2adae)
 
 A source deeper in the potential has $\Phi_N(E) < \Phi_N(R)$, so the endpoint ratio produces redshift. This is the local strong-gradient limit of the same cadence map.
 
@@ -1971,7 +1971,7 @@ $$
 1+\frac{(\mathbf{v}_E-\mathbf{v}_R)\cdot\hat{\mathbf{k}}}{c_0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-01ffafba20882119)
+[View →](../../../../../equation-mapping.html#corpus-equation-01ffafba20882119)
 
 so
 
@@ -1981,7 +1981,7 @@ $$
 \frac{1}{\mathcal{L}_{E\to R}(\hat{\mathbf{k}})}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-724ebf40c6335ef8)
+[View →](../../../../../equation-mapping.html#corpus-equation-724ebf40c6335ef8)
 
 Motion that compresses the emitted phase train toward the receiver gives $\mathcal{L}_{E\to R} > 1$ and a blueward shift; motion that stretches the phase train gives $\mathcal{L}_{E\to R} < 1$ and a redward shift.
 
@@ -1995,7 +1995,7 @@ $$
 \mathcal{P}_{E\to R}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aad616683cedd2f1)
+[View →](../../../../../equation-mapping.html#corpus-equation-aad616683cedd2f1)
 
 A useful continuous form is
 
@@ -2009,7 +2009,7 @@ $$
 \right)\,d\ell
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f519bd18f3b0060e)
+[View →](../../../../../equation-mapping.html#corpus-equation-f519bd18f3b0060e)
 
 where $\alpha_{\mathrm{prop}}$ is a path-local propagation-rate functional along the Euclidean path element $d\ell$. Any nonzero $\alpha_{\mathrm{prop}}$ must preserve image sharpness, spectral coherence, and $(1+z)$ time-dilation consistency; otherwise it degenerates into an excluded tired-light mechanism.
 
@@ -2023,7 +2023,7 @@ $$
 \text{for static homogeneous no-flow reference conditions}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eef536463ae112f9)
+[View →](../../../../../equation-mapping.html#corpus-equation-eef536463ae112f9)
 
 A minimal candidate form is
 
@@ -2038,7 +2038,7 @@ a_\chi^X\,\frac{1}{c_\gamma}\,\partial_T\ln\chi_\gamma
 +\mathcal{R}_{\mathrm{prop},X}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ae82849cec398a51)
+[View →](../../../../../equation-mapping.html#corpus-equation-ae82849cec398a51)
 
 Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf X,T)\equiv c_0/c_\gamma(\mathbf X,T)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf X,T)$ and $R_{\text{braid}}(\mathbf X,T)$ denote normalized Noether braid density and a representative local Noether braid scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether sea flow velocity, and
 
@@ -2054,7 +2054,7 @@ S_{ij}
 \left(\nabla\cdot\mathbf{u}_{\text{sea}}\right)h_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d3cdf99f5014e951)
+[View →](../../../../../equation-mapping.html#corpus-equation-d3cdf99f5014e951)
 
 is the trace-free strain-rate part, with contractions taken using the Euclidean spatial metric $h_{ij}$. The coefficients $a_\chi^X$, $a_n^X$, $a_R^X$, $a_u^X$, and $a_S^X$ are dimensionless closure coefficients for the line family $X$, not independent fitting parameters for each object. The residual $\mathcal{R}_{\mathrm{prop},X}$ contains unresolved higher-order and anisotropic terms and must be bounded by the same image-sharpness, coherence, and time-dilation constraints that exclude ordinary tired-light loss.
 
@@ -2071,7 +2071,7 @@ $$
 -E_\gamma\alpha_{\mathrm{prop},X},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-da56b058855e655b)
+[View →](../../../../../equation-mapping.html#corpus-equation-da56b058855e655b)
 with $E_\gamma=h\nu_\gamma$ on the retained photon-channel ledger. Conservation then requires a compensating path row
 $$
 \mathcal R_{E,\mathrm{prop}}
@@ -2091,7 +2091,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-70e189905e6faf6c)
+[View →](../../../../../equation-mapping.html#corpus-equation-70e189905e6faf6c)
 that vanishes in a valid propagation-redshift segment. The term $E_{\mathrm{sea,path}}$ is the Noether sea uptake or release associated with the same local transport record; $E_{\mathrm{recoil/path}}$ and $E_{\mathrm{rem/path}}$ are retained only when the path segment crosses material, strong-gradient, or nontransparent regions. In transparent cosmological use those latter rows should be negligible, and the surviving energy transfer must still preserve image sharpness and $(1+z)$ time dilation. This keeps propagation redshift from becoming untracked photon energy loss under another name.
 
 #### First-Order Coefficient Constraints
@@ -2108,7 +2108,7 @@ a_\chi^X\,\frac{\dot{\bar\chi}_\gamma}{c_\gamma\bar\chi_\gamma}
 +\bar{\mathcal R}_{\mathrm{prop},X}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-76f810ec0832bd2b)
+[View →](../../../../../equation-mapping.html#corpus-equation-76f810ec0832bd2b)
 
 After endpoint cadence, source branch, and relative motion are removed, the nearby homogeneous limit requires
 
@@ -2120,7 +2120,7 @@ $$
 \frac{H_{0,\mathbb{A}\mathbb{A}\mathbb{A}}(X)}{c_0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f0003741b7e5c646)
+[View →](../../../../../equation-mapping.html#corpus-equation-f0003741b7e5c646)
 
 If the corrected low-redshift relation is line-family independent, then two clean line families $X$ and $Y$ must also satisfy the chromaticity bound
 
@@ -2132,7 +2132,7 @@ $$
 \epsilon_{\mathrm{chrom}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-026f65d5131dd87e)
+[View →](../../../../../equation-mapping.html#corpus-equation-026f65d5131dd87e)
 
 where $\epsilon_{\mathrm{chrom}}$ is set by corrected multi-line spectroscopy. This prevents the line-family coefficients from being used as arbitrary object-by-object fitting parameters.
 
@@ -2145,7 +2145,7 @@ $$
 +\delta\alpha_{\mathrm{prop},X}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eb98f621d4a520b4)
+[View →](../../../../../equation-mapping.html#corpus-equation-eb98f621d4a520b4)
 
 Then
 
@@ -2158,7 +2158,7 @@ Z_{\mathrm{prop},X}
 +O(D^2\partial_\ell\bar\alpha_X)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-27453c0d75a53ddd)
+[View →](../../../../../equation-mapping.html#corpus-equation-27453c0d75a53ddd)
 
 The simple distance estimate $D\approx Z_{\mathrm{prop},X}/\bar\alpha_X$ is therefore valid only when the path residual is small compared with the homogeneous term:
 
@@ -2171,7 +2171,7 @@ $$
 \bar\alpha_X D
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e01a73013eb82c67)
+[View →](../../../../../equation-mapping.html#corpus-equation-e01a73013eb82c67)
 
 Image sharpness and spectral coherence constrain the same residual. Across neighboring rays in the image bundle,
 
@@ -2184,7 +2184,7 @@ $$
 \epsilon_{\mathrm{img}}^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fb7d9567c9fdabe9)
+[View →](../../../../../equation-mapping.html#corpus-equation-fb7d9567c9fdabe9)
 
 and across a narrow corrected line profile,
 
@@ -2197,7 +2197,7 @@ $$
 \sigma_{\ln\nu,X}^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f4cd2e4125067755)
+[View →](../../../../../equation-mapping.html#corpus-equation-f4cd2e4125067755)
 
 These bounds mainly discipline the anisotropic strain term, environmental gradients, and $\mathcal{R}_{\mathrm{prop},X}$. A propagation explanation that accumulates redshift by large stochastic phase loss would violate these inequalities and would fall back into the excluded tired-light class.
 
@@ -2217,7 +2217,7 @@ $$
 \epsilon_{\mathrm{TD}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c1d7accaf49fa78c)
+[View →](../../../../../equation-mapping.html#corpus-equation-c1d7accaf49fa78c)
 
 The strongest closure is to derive one $\alpha_{\mathrm{prop},X}$ from the Noether sea transport dynamics so that frequency shift and arrival-cadence stretching are the same path-history effect rather than two separately fitted rules.
 
@@ -2231,7 +2231,7 @@ Y_X(\ell)
 \ln\mathcal{P}_{E\to \ell,X}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c9eeb76baa6e9010)
+[View →](../../../../../equation-mapping.html#corpus-equation-c9eeb76baa6e9010)
 
 denote the accumulated logarithmic propagation stretch from the emitter to path location $\ell$. Along a photon-channel ray, define the path derivative
 
@@ -2242,7 +2242,7 @@ $$
 +\frac{1}{c_\gamma}\partial_T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e405889ed2dba972)
+[View →](../../../../../equation-mapping.html#corpus-equation-e405889ed2dba972)
 
 The minimal transport closure target is
 
@@ -2256,7 +2256,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e6411d0de1dfa8a6)
+[View →](../../../../../equation-mapping.html#corpus-equation-e6411d0de1dfa8a6)
 
 with
 
@@ -2270,7 +2270,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-be353df14be4dfa3)
+[View →](../../../../../equation-mapping.html#corpus-equation-be353df14be4dfa3)
 
 Here $Y_X$ is an effective packet bookkeeping variable, not a new substrate object. The substrate content is the Noether sea state and its path-history response; $Y_X$ records how that state changes the packet spacing seen by the receiver after endpoint and source corrections are removed.
 
@@ -2287,7 +2287,7 @@ a_\chi^X\,\frac{1}{c_\gamma}\,\partial_T\ln\chi_\gamma
 +\mathcal{R}_{\mathrm{prop},X}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f65abb67a9fee510)
+[View →](../../../../../equation-mapping.html#corpus-equation-f65abb67a9fee510)
 
 which reproduces the candidate $\alpha_{\mathrm{prop},X}$ when $dY_X/d\ell=\alpha_{\mathrm{prop},X}$. The coefficients are the linear-response derivatives of the transport map at the static homogeneous no-flow reference state, conditional on that reference state — the homogeneous quiescent Noether sea — being an equilibrium of the constitutive dynamics, an open closure item of the [Noether sea program](../../../../markdown/aaa/spacetime/noether-sea.md). For example, for $q\in\{\ln\chi_\gamma,\ln n,\ln R_{\text{braid}}\}$,
 
@@ -2300,7 +2300,7 @@ a_q^X
 \right|_0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-095e62aac740d0eb)
+[View →](../../../../../equation-mapping.html#corpus-equation-095e62aac740d0eb)
 
 The same closure must show that the phase-frequency rate and the arrival-cadence rate share this $Y_X$ variable. If the Noether sea transport dynamics instead require separate variables for frequency shift and packet cadence, then the unified propagation explanation fails the time-dilation recovery and the residual must be moved out of $\mathcal{P}_{E\to R}$.
 
@@ -2316,7 +2316,7 @@ $$
 \partial_T\boldsymbol{\theta}_{\gamma,\mathrm{local}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dda21007aa998646)
+[View →](../../../../../equation-mapping.html#corpus-equation-dda21007aa998646)
 
 where
 
@@ -2331,7 +2331,7 @@ $$
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b67b2c0567d02706)
+[View →](../../../../../equation-mapping.html#corpus-equation-b67b2c0567d02706)
 
 the induced propagation contribution is
 
@@ -2345,7 +2345,7 @@ a_\chi^X & a_n^X & a_R^X
 \mathbf{J}_{\mathrm{DE}}\mathbf{q}_{\mathrm{DE}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3314634d41b01b91)
+[View →](../../../../../equation-mapping.html#corpus-equation-3314634d41b01b91)
 
 This bridge keeps the level distinction explicit. The effective quantities $\rho_{\mathrm{DE,eff}}$ and $w_{\mathrm{eff}}$ remain observer-side summaries of medium relaxation. They affect redshift only insofar as the underlying Noether sea response changes $\chi_\gamma$, $n$, $R_{\text{braid}}$, flow, or strain along the path. A fit that assigns $H(z)$ directly while bypassing this handoff is a comparison model, not a completed $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
@@ -2364,7 +2364,7 @@ a_\chi^X & a_n^X & a_R^X
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ee173397d2bd60a2)
+[View →](../../../../../equation-mapping.html#corpus-equation-ee173397d2bd60a2)
 
 Then
 
@@ -2380,7 +2380,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0e30df7d0a9fb581)
+[View →](../../../../../equation-mapping.html#corpus-equation-0e30df7d0a9fb581)
 
 with $q_\rho=\partial_{t_{\mathrm{eff}}}\ln\rho_{\mathrm{DE,eff}}$, $q_w=\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}$, $q_{\mathrm{sea}}=\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$, and $q_{\mathrm{BH}}=\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}$. If the same homogeneous branch also obeys the effective continuity identity
 
@@ -2392,7 +2392,7 @@ q_\rho
 +q_{\mathrm{BH}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e633f89a403e392f)
+[View →](../../../../../equation-mapping.html#corpus-equation-e633f89a403e392f)
 
 and if $H_{\mathrm{eff},X}^{\mathrm{DE}}=c_0\alpha_{\mathrm{prop},X}^{\mathrm{DE}}$, then the redshift-transfer slope implied by this coefficient packet is
 
@@ -2411,7 +2411,7 @@ H_{\mathrm{eff},X}^{\mathrm{DE}}
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5ba50d392f76ce8c)
+[View →](../../../../../equation-mapping.html#corpus-equation-5ba50d392f76ce8c)
 
 This is the first coefficient-level meaning of an $\mathbb{A}\mathbb{A}\mathbb{A}$ Hubble-like number. It is a solved transfer coefficient for a declared clean branch, not a primitive expansion rate. The denominator must stay finite, and the numerator must be compatible across line families and cadence diagnostics before the result can be promoted from coefficient packet to cosmological closure.
 
@@ -2429,7 +2429,7 @@ Z_{\mathrm{prop},X}
 +\ln D_v
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-37e1b6290fbb914d)
+[View →](../../../../../equation-mapping.html#corpus-equation-37e1b6290fbb914d)
 
 When the factorization is valid,
 
@@ -2442,7 +2442,7 @@ Z_{\mathrm{prop},X}
 \alpha_{\mathrm{prop}}\!\left(\ell,\hat{\mathbf{k}},X,\theta_{\mathrm{sea}}\right)\,d\ell
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-612fa5be83f3a744)
+[View →](../../../../../equation-mapping.html#corpus-equation-612fa5be83f3a744)
 
 where $D$ is Euclidean path length through the Euclidean void and $\theta_{\mathrm{sea}}$ denotes the shared Noether sea state record used by the cosmology modules. If the path-local propagation rate is approximately constant over the relevant nearby region, $\alpha_{\mathrm{prop}}\approx\alpha_0$, then
 
@@ -2452,7 +2452,7 @@ D
 \frac{Z_{\mathrm{prop},X}}{\alpha_0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1d53125b89918924)
+[View →](../../../../../equation-mapping.html#corpus-equation-1d53125b89918924)
 
 The effective present-epoch Hubble coefficient is therefore a transfer-map slope, not an expansion rate of the Euclidean void:
 
@@ -2467,7 +2467,7 @@ c_0
 c_0\alpha_0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-92d9c13153559967)
+[View →](../../../../../equation-mapping.html#corpus-equation-92d9c13153559967)
 
 In the homogeneous, isotropic, clean-source, low-redshift limit this reproduces the familiar observer formula
 
@@ -2480,7 +2480,7 @@ D
 \frac{c_0 z}{H_{0,\mathbb{A}\mathbb{A}\mathbb{A}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2849fc77ac5edfb8)
+[View →](../../../../../equation-mapping.html#corpus-equation-2849fc77ac5edfb8)
 
 The symbol $H_0$ can therefore remain in the comparison language, but its physical meaning changes. It summarizes the present local redshift-per-distance coefficient of Noether sea transport and clock-rate comparison after source and motion corrections. It is not a direct measurement of space stretching. Directional or environmental variation in the inferred $H_0$ is not automatically a calibration failure; it is a diagnostic of whether the local Noether sea state is close enough to the homogeneous limit used by the distance ladder.
 
@@ -2493,7 +2493,7 @@ F
 d_L=(1+z)^2D_A
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-05ee791efa619244)
+[View →](../../../../../equation-mapping.html#corpus-equation-05ee791efa619244)
 For a low-redshift effective FRW projection this becomes
 $$
 d_L(z)
@@ -2504,7 +2504,7 @@ z+\frac12(1-q_{0,\mathrm{eff}})z^2+O(z^3)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ec98bfcd4c8c4d62)
+[View →](../../../../../equation-mapping.html#corpus-equation-ec98bfcd4c8c4d62)
 In the fixed-void reading, $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coefficients of the corrected transport and clock-comparison map. A branch that fits redshift but fails the two flux factors, time-dilation factor, or angular-distance reciprocity has not recovered the cosmological distance ladder.
 
 #### Local Redshift-Transfer Curve
@@ -2519,7 +2519,7 @@ T(s)
 T_R-\int_0^s\frac{d\ell}{c_\gamma(\mathbf X(\ell),T(\ell))}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8e503f8d49ac0b60)
+[View →](../../../../../equation-mapping.html#corpus-equation-8e503f8d49ac0b60)
 
 For a source at corrected Euclidean path length $D$, the propagation residual is
 
@@ -2536,7 +2536,7 @@ T(s),
 \right)\,ds
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b85ca7c5b0220bcb)
+[View →](../../../../../equation-mapping.html#corpus-equation-b85ca7c5b0220bcb)
 
 The local effective Hubble coefficient is only the first derivative of this curve at the receiver:
 
@@ -2551,7 +2551,7 @@ c_0
 c_0\,\alpha_{R,X}(\hat{\mathbf{k}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b1cf486221fc0dea)
+[View →](../../../../../equation-mapping.html#corpus-equation-b1cf486221fc0dea)
 
 where
 
@@ -2567,7 +2567,7 @@ T_R,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-33cf12163370c1ae)
+[View →](../../../../../equation-mapping.html#corpus-equation-33cf12163370c1ae)
 
 The second derivative records the first local departure from a constant-slope Hubble law:
 
@@ -2582,7 +2582,7 @@ $$
 -\frac{1}{c_{\gamma,R}}\partial_T\alpha_{\mathrm{prop},X}\big|_R
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e8d937021680bfb9)
+[View →](../../../../../equation-mapping.html#corpus-equation-e8d937021680bfb9)
 
 Thus the local curve has the expansion
 
@@ -2596,7 +2596,7 @@ Z_{\mathrm{prop},X}(D,\hat{\mathbf{k}})
 O(D^3\nabla^2\theta_{\mathrm{sea}},D^3\partial_T^2\theta_{\mathrm{sea}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-14ed45a9b73b826f)
+[View →](../../../../../equation-mapping.html#corpus-equation-14ed45a9b73b826f)
 
 The ordinary constant-$H_0$ approximation is the special case in which $\alpha_{R,X}$ is independent of direction, line family, environment, and observation time, while $\mathcal{K}_{X}$ and higher derivatives remain negligible over the fitted distance range. In the general $\mathbb{A}\mathbb{A}\mathbb{A}$ case, $\alpha_{R,X}$ and $\mathcal{K}_{X}$ are observables of the local Noether sea state, not universal constants.
 
@@ -2620,7 +2620,7 @@ $$
 \right\rangle_{\mathcal{E},T,\hat{\mathbf{k}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3dd91da676dc4e41)
+[View →](../../../../../equation-mapping.html#corpus-equation-3dd91da676dc4e41)
 
 The useful first question is whether local voids, filaments, clusters, galaxy halos, and strong-source recycling environments share one $\alpha_{\mathcal{E},X}$ within tolerance after endpoint cadence, launch geometry, and source-branch factors have been removed. If they do not, a single all-sky $H_0$ is a lossy summary of distinct redshift-transfer environments.
 
@@ -2635,7 +2635,7 @@ Y_{\mathrm{endpoint},X}
 \Delta Y_{X,j}(\mathcal{E}_j,\theta_{\mathrm{sea},j}),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2d63baa0d5860730)
+[View →](../../../../../equation-mapping.html#corpus-equation-2d63baa0d5860730)
 with each $\Delta Y_{X,j}$ allowed to be positive, negative, or negligible only when its energy, medium-update, and coherence rows close in the same transport record. This segment form is the mathematical place for galaxy-local expansion-like regions, contraction-like regions, cluster crossings, void paths, and strong-source recycling environments. A fitted Hubble-like slope is then a coarse derivative of this path sum, not a primitive universal constant.
 
 #### $\Lambda\mathrm{CDM}$ Reference Curve
@@ -2650,7 +2650,7 @@ Z_{\Lambda\mathrm{CDM}}(D;\Theta_{\Lambda\mathrm{CDM}})
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e2d56d56a93df21d)
+[View →](../../../../../equation-mapping.html#corpus-equation-e2d56d56a93df21d)
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ residual against that reference is
 
@@ -2663,7 +2663,7 @@ Z_{\mathrm{prop},X}^{\mathbb{A}\mathbb{A}\mathbb{A}}
 Z_{\Lambda\mathrm{CDM}}(D;\Theta_{\Lambda\mathrm{CDM}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cf9cafcb024ca427)
+[View →](../../../../../equation-mapping.html#corpus-equation-cf9cafcb024ca427)
 
 This residual should be read as a comparison diagnostic, not as evidence that the Euclidean void literally follows the reference model. A successful reduction would show that $\Delta Z_X$ is produced by one shared Noether sea state record across supernovae, BAO, CMB transfer, and local calibration data. A failed reduction would require replacing $\theta_{\mathrm{sea}}$ or the transfer coefficients separately for each observable family.
 
@@ -2686,7 +2686,7 @@ D_v,\,
 \right\}_{j=0}^{N-1}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d391129040fe62e4)
+[View →](../../../../../equation-mapping.html#corpus-equation-d391129040fe62e4)
 
 where
 
@@ -2705,7 +2705,7 @@ S_{ij}^{(j)},\,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a686c5d4174c6421)
+[View →](../../../../../equation-mapping.html#corpus-equation-a686c5d4174c6421)
 
 The propagation update is
 
@@ -2722,7 +2722,7 @@ Y_{X,j}
 \right)\Delta s_j
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9eac83ddfc962447)
+[View →](../../../../../equation-mapping.html#corpus-equation-9eac83ddfc962447)
 
 At the end of the path,
 
@@ -2732,7 +2732,7 @@ $$
 \exp(Y_{X,N})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aa0268a03b9901da)
+[View →](../../../../../equation-mapping.html#corpus-equation-aa0268a03b9901da)
 
 and the reconstructed redshift budget is
 
@@ -2748,7 +2748,7 @@ Z_X
 -\ln D_v
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1491d61b5c82e9b7)
+[View →](../../../../../equation-mapping.html#corpus-equation-1491d61b5c82e9b7)
 
 The corresponding observed frequency and receiver-facing photon energy are
 
@@ -2762,7 +2762,7 @@ E_{\mathrm{obs},X}
 h\nu_{\mathrm{obs},X}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-93ac6a5a0e642b9a)
+[View →](../../../../../equation-mapping.html#corpus-equation-93ac6a5a0e642b9a)
 
 The toy model should report at least five diagnostics:
 
@@ -2793,7 +2793,7 @@ O_{X,2}(z,\hat{\mathbf{n}})
 +\cdots
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ddc52f0fc9af9e12)
+[View →](../../../../../equation-mapping.html#corpus-equation-ddc52f0fc9af9e12)
 
 where $X$ may denote supernova distance modulus, BAO scale, CMB-frame correction, or another expansion observable. The monopole $O_{X,0}$ records the isotropic fit offset, $\mathbf{O}_{X,1}$ records the dipole, and higher terms record quadrupole and mask-dependent structure.
 
@@ -2827,7 +2827,7 @@ $$
 w=\frac{p}{\rho}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6c379607b1e04570)
+[View →](../../../../../equation-mapping.html#corpus-equation-6c379607b1e04570)
 
 remains useful as an effective descriptor, but its physical content is medium stress and relaxation state, not an independent vacuum-fluid ontology.
 
@@ -2870,7 +2870,7 @@ H_{\mathrm{eff}}^2
 -\frac{k_{\text{eff}}c_0^2}{a_{\mathrm{eff}}^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a605dcdf9fc89946)
+[View →](../../../../../equation-mapping.html#corpus-equation-a605dcdf9fc89946)
 
 with $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ interpreted as a Noether sea state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-Noether sea response. If a pressure variable is used in the same projection, it must satisfy the comparison continuity row
 $$
@@ -2879,7 +2879,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9bd4b54d525ce466)
+[View →](../../../../../equation-mapping.html#corpus-equation-9bd4b54d525ce466)
 or declare the residual source term supplied by Noether sea transport.
 
 This equation is a comparison layer for the homogeneous and isotropic limit. It does not by itself justify the assumption that supernovae, BAO, CMB distances, and local-ladder calibrations all share one isotropic background. That shared background must be recovered as a limit of the Noether sea state model or replaced by an explicitly directional effective map.
@@ -2950,7 +2950,7 @@ $$
 \Delta \rho_{\mathrm{locked}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-13f90e8e9fca11a0)
+[View →](../../../../../equation-mapping.html#corpus-equation-13f90e8e9fca11a0)
 
 with each term tied to the same Noether sea response variables used by the CMB, BBN, and expansion modules. This preserves the perturbation-success target of inflationary models while rejecting a free "use it, then lose it" vacuum-energy channel.
 
@@ -2968,7 +2968,7 @@ d_E\!\left(
 d_{\mathrm{seed}}(P_{\mathrm{seed}}^\theta,P_{\mathrm{seed}}^{\mathrm{obs}}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1a4d05b308ce80b7)
+[View →](../../../../../equation-mapping.html#corpus-equation-1a4d05b308ce80b7)
 This keeps the useful inflation target--rapid smoothing and perturbation seeding--while forcing the energy accounting through shielding, release, and apparent-energy projection.
 
 ### Scalar and Tensor Benchmark
@@ -2982,13 +2982,13 @@ $$
 \left(A_{\mathrm{s}}^{\mathrm{obs}},n_{\mathrm{s}}^{\mathrm{obs}},\alpha_{\mathrm{s}}^{\mathrm{obs}},r_{\max}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0cfaf304adff478e)
+[View →](../../../../../equation-mapping.html#corpus-equation-0cfaf304adff478e)
 within the declared observational tolerances, with
 $$
 r^{\theta}(k_*) \le r_{\max}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9ce4719a6d42e6e0)
+[View →](../../../../../equation-mapping.html#corpus-equation-9ce4719a6d42e6e0)
 
 The scalar/tensor gate should be read as a closure burden on the high-curvature transfer channel. If $\mathbb{A}\mathbb{A}\mathbb{A}$ uses SMBH-core or horizon-interface dynamics to explain inflation-like behavior, those dynamics must supply the same near-Gaussian scalar spectrum and allowed tensor sector without retuning the CMB, BBN, and expansion interfaces separately.
 
@@ -3013,7 +3013,7 @@ o \in \mathcal{O}_{\mathrm{CMB,near}}
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-46b5400cbdf98783)
+[View →](../../../../../equation-mapping.html#corpus-equation-46b5400cbdf98783)
 The branch is predictive only when this set is narrow under the declared CMB comparison measure. The companion initial-basin burden is $\mathcal{S}_{\mathrm{init}}$: if the release channel succeeds only for a tiny set of pre-release Noether sea states, then the smoothing explanation has been moved into the starting chart rather than derived from the high-curvature dynamics.
 
 #### Slow-Roll Comparison Dictionary
@@ -3028,7 +3028,7 @@ Z_{\mathrm{endpoint},X}^{\theta}
 +Y_{X,\mathrm{path}}^{\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-59f311f9eafc8602)
+[View →](../../../../../equation-mapping.html#corpus-equation-59f311f9eafc8602)
 with $Y_{X,\mathrm{path}}^\theta$ carrying any Compton/Sunyaev-Zeldovich-like exchange rows. A branch may use $a_\theta$ and $N_\theta$ only after this budget has been reduced to the homogeneous comparison limit. The first comparison slow-roll coordinate is
 $$
 \varepsilon_\theta
@@ -3038,7 +3038,7 @@ $$
 \varepsilon_\theta < 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-73135c1eaadfb915)
+[View →](../../../../../equation-mapping.html#corpus-equation-73135c1eaadfb915)
 for an inflation-like effective interval, and the second coordinate is
 $$
 \eta_\theta
@@ -3049,7 +3049,7 @@ $$
 \frac{d\varepsilon_\theta}{dN_\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-afb8ffc2f2715a2a)
+[View →](../../../../../equation-mapping.html#corpus-equation-afb8ffc2f2715a2a)
 If a branch introduces an effective potential surrogate $V_\theta(\varphi)$ for comparison with single-field models, it must also expose
 $$
 \epsilon_{v,\theta}
@@ -3063,7 +3063,7 @@ M_{\mathrm{pl}}^2
 \frac{V_{\theta,\varphi\varphi}}{V_\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-07b3da278ebc1f8c)
+[View →](../../../../../equation-mapping.html#corpus-equation-07b3da278ebc1f8c)
 with $\varepsilon_\theta\approx\epsilon_{v,\theta}$ and $\eta_\theta\approx\eta_{v,\theta}-\epsilon_{v,\theta}$ only in the effective slow-roll limit. These are not new substrate fields; they are a way to test whether the release record lands in the same observable region as slow-roll inflation.
 
 At the comparison horizon-crossing surface $k=a_\theta H_\theta$, the scalar and tensor amplitudes become
@@ -3083,7 +3083,7 @@ $$
 \right|_{k=a_\theta H_\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-257753b409ec6a38)
+[View →](../../../../../equation-mapping.html#corpus-equation-257753b409ec6a38)
 so that
 $$
 n_{\mathrm{s}}^\theta - 1
@@ -3097,7 +3097,7 @@ r^\theta
 16\varepsilon_\theta
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8b501124c4d9932d)
+[View →](../../../../../equation-mapping.html#corpus-equation-8b501124c4d9932d)
 A branch that claims a slow-roll-like scalar/tensor match should therefore supply $\{\varepsilon_\theta,\eta_\theta,N_\theta,\Delta_{\mathrm{s}}^{2,\theta},\Delta_{\mathrm{t}}^{2,\theta},n_{\mathrm{s}}^\theta,r^\theta\}$ from one high-curvature release record. If it also predicts a bispectrum, the single-field slow-roll comparison target is $f_{\mathrm{NL}}^\theta=O(\varepsilon_\theta,\eta_\theta)$; a large non-Gaussian residual requires an explicit additional interaction, branch, or source-measure record.
 
 Eternal-inflation and landscape language add no ontology by themselves. A cosmological ensemble does not explain observed parameters merely by containing them somewhere; its explanatory content comes from the physical mechanism that generates the sampling measure and connects that measure to this observed record. These frameworks become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
@@ -3109,7 +3109,7 @@ d_\Omega\!\left(\Omega_k^{\theta},\Omega_k^{\mathrm{obs}}\right)
 +d_{\mathrm{shared}}\!\left(\theta_{\mathrm{CMB}},\theta_{\mathrm{growth}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-be07f425eb5abcdc)
+[View →](../../../../../equation-mapping.html#corpus-equation-be07f425eb5abcdc)
 Here $S_{PW}$ is the cross-map localized-feature statistic defined in [CMB](../../../../markdown/aaa/cosmology/CMB.md), and $d_{\mathrm{shared}}$ penalizes a fit that explains localized features or curvature by changing the cosmology state independently from the acoustic peaks, lensing, BAO, BBN, or structure-growth records. A positive localized feature, negative-curvature trend, or bubble-collision-style template would be an observational pressure to explain, not evidence that the external population picture has become $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
 ### Pre-BBN Comparison Gate
@@ -3130,7 +3130,7 @@ w_X(a),\;
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8758a93614d6238d)
+[View →](../../../../../equation-mapping.html#corpus-equation-8758a93614d6238d)
 where $\Omega_X(a)$ and $w_X(a)$ summarize effective energy density and equation of state, $\tau_X$ is the dissociation or handoff timescale if the branch is transient, $\Delta N_{\text{eff}}^X$ is the relativistic-species contribution, $\lambda_{\mathrm{fs}}^X$ is the structure-growth free-streaming scale, and $\Omega_{\mathrm{GW}}^X(f)$ is the stochastic gravitational-wave energy-density spectrum when present. The branch is admissible only if the same $\theta_{\mathrm{sea}}$ used for the scalar/tensor, BBN, CMB, and growth records satisfies
 $$
 \mathcal{R}_{\mathrm{preBBN}}(\theta_X,\theta_{\mathrm{sea}})
@@ -3144,7 +3144,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a286b927dc916196)
+[View →](../../../../../equation-mapping.html#corpus-equation-a286b927dc916196)
 This gate preserves the observable pressure while rejecting the interpretation shortcut. A pre-BBN branch that disappears only by changing state variables between BBN, CMB, structure formation, and gravitational-wave comparisons is not hidden; it has split the cosmology record.
 
 If $X$ is a compact-object branch, the projection must also record the mass function and release history rather than only an effective density:
@@ -3160,7 +3160,7 @@ t_{\mathrm{eff},f}(M),\;
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8e47a653a819c88e)
+[View →](../../../../../equation-mapping.html#corpus-equation-8e47a653a819c88e)
 Here $\psi_X(M)$ is the comparison mass function, $f_X$ is the dark-sector fraction in that branch, $t_{\mathrm{eff},f}(M)$ is the inferred formation or release clock, $\Gamma_{\mathrm{release}}^X$ is any Hawking-like or native release spectrum, and $\Delta x_{\mathrm{eff,ephem}}^{i,X}$ is retained only for late-time local-detection consistency. These variables do not add compact-object ontology to the inflation module; they make explicit which observables a pre-BBN compact branch must carry into the BBN, CMB, growth, gravitational-wave, and local-detection ledgers.
 
 ### Planck-Alignment Boundary
@@ -3179,7 +3179,7 @@ $$
 H^2(a) = H_0^2\left[\Omega_r a^{-4} + \Omega_m a^{-3} + \Omega_{\text{eff}}(a)\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aeb08cfd345e35c3)
+[View →](../../../../../equation-mapping.html#corpus-equation-aeb08cfd345e35c3)
 
 where $\Omega_{\text{eff}}(a)$ encodes the emergent high-curvature phase and its relaxation.
 
@@ -3188,7 +3188,7 @@ $$
 \dot{R}(t) = v_1(t) + c_f + v_3(t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6d4488b0633aa4b1)
+[View →](../../../../../equation-mapping.html#corpus-equation-6d4488b0633aa4b1)
 Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the conjecture that inflation-like release, horizon-scale transport, and late-time expansion could be different channels of one candidate continuation of the Family-A response.
 
 ### Expansion-Module Interface
@@ -3262,7 +3262,7 @@ $$
 \rho_b=\eta_{b\gamma}n_\gamma m_b\sim2\times10^{-5}\,\mathrm{g/cm^3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-30e1c5c21c995879)
+[View →](../../../../../equation-mapping.html#corpus-equation-30e1c5c21c995879)
 for $\eta_{b\gamma}\sim6\times10^{-10}$. This is not the total radiation mass-equivalent density. A local-reactor branch must declare which density enters each reaction row and reproduce the coupled temperature-density history rather than matching one nominal point. Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
 
 2. **Outward Release and Cooling:**
@@ -3285,7 +3285,7 @@ $$
 - \sum_l\langle\sigma v_{\mathrm{rel}}\rangle_{il}n_in_l
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4ccff45d27ba9dd3)
+[View →](../../../../../equation-mapping.html#corpus-equation-4ccff45d27ba9dd3)
 
 The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
 
@@ -3305,7 +3305,7 @@ N_{\mathrm{eff}}^\theta,\,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-adff5f84f61e3323)
+[View →](../../../../../equation-mapping.html#corpus-equation-adff5f84f61e3323)
 is propagated through the same source window that produces the yields. A source story that changes the photon loading, neutron fraction, entropy per baryon, or relativistic-species count independently of the light-element network has not supplied a BBN mechanism; it has assigned separate fit parameters to the outputs.
 
 The multi-channel reading is useful only when it is made provenance-explicit. High-energy compact-object release, supernova-like processing, jet channels, quasar or blazar environments, and ordinary stellar processing may all be source leads for later abundance history, but none of them replaces the BBN comparison surface unless it enters a declared source-window record
@@ -3323,7 +3323,7 @@ n_{\nu,s}(t),
 \right)_s.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c047808244f4a655)
+[View →](../../../../../equation-mapping.html#corpus-equation-c047808244f4a655)
 The yields are then acceptable only if D/H, $Y_p$, lithium, $\eta_{b\gamma}$, and $N_{\text{eff}}$ are all computed from the same channel-weighted record. A branch that treats one source family as an explanation for helium, another as an explanation for lithium, and a third as a photon-loading fix without a shared source-window ledger has not improved on the one-time-origin story; it has split the provenance.
 
 The standard freeze-out scalings should remain explicit because they are the hard targets for any SMBH-local or transport-cooling replacement. In a radiation-dominated comparison packet,
@@ -3334,7 +3334,7 @@ t
 \left(\frac{1\ \mathrm{MeV}}{k_BT_{\mathrm{temp}}}\right)^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7a76b30502e7a057)
+[View →](../../../../../equation-mapping.html#corpus-equation-7a76b30502e7a057)
 where $g_*$ is the effective relativistic-species loading. The neutron-to-proton ratio follows the equilibrium estimate
 $$
 \frac{n_n}{n_p}
@@ -3342,7 +3342,7 @@ $$
 \exp\!\left(-\frac{\Delta m\,c_0^2}{k_BT_{\mathrm{temp}}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9a894c0b2375e38e)
+[View →](../../../../../equation-mapping.html#corpus-equation-9a894c0b2375e38e)
 until weak reactions fall out of equilibrium. Deuterium survival is delayed by the high photon loading; a schematic bottleneck condition is
 $$
 \frac{n_D}{n_p}
@@ -3352,7 +3352,7 @@ $$
 \exp\!\left(\frac{E_D}{k_BT_{\mathrm{temp}}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5d124b91adcd4eb2)
+[View →](../../../../../equation-mapping.html#corpus-equation-5d124b91adcd4eb2)
 with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
 
 #### Weak-Rate and Relativistic-Species Gate
@@ -3374,7 +3374,7 @@ p+e^-+\bar{\nu}_e\to n.
 \end{cases}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e624672373de783c)
+[View →](../../../../../equation-mapping.html#corpus-equation-e624672373de783c)
 The freeze-out comparison is controlled by when these rates fall below the effective BBN clock,
 $$
 \lambda_{n\to p}^{\theta}(T_{\mathrm{temp}})
@@ -3384,7 +3384,7 @@ $$
 H_{\mathrm{eff,BBN}}^\theta(T_{\mathrm{temp}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a34b812929f48825)
+[View →](../../../../../equation-mapping.html#corpus-equation-a34b812929f48825)
 where $H_{\mathrm{eff,BBN}}^\theta$ is the observer-level cooling and dilution rate inferred from the local transport record, not expansion of the Euclidean void. Any extra relativistic component changes the same clock through
 $$
 H_{\mathrm{eff,BBN}}^\theta
@@ -3398,7 +3398,7 @@ H_{\mathrm{eff,BBN}}^\theta
 \right)^{1/2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8821f40ec36ed562)
+[View →](../../../../../equation-mapping.html#corpus-equation-8821f40ec36ed562)
 so the relativistic-species residual must be tracked as
 $$
 N_{\text{eff}}^\theta
@@ -3407,7 +3407,7 @@ N_{\text{eff}}^\theta
 {\rho_{\nu,1}^\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e9237a193c1a0868)
+[View →](../../../../../equation-mapping.html#corpus-equation-e9237a193c1a0868)
 The equilibrium neutron-to-proton comparison then reads
 $$
 \frac{n_n^\theta}{n_p^\theta}
@@ -3418,7 +3418,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fb9e55095714519e)
+[View →](../../../../../equation-mapping.html#corpus-equation-fb9e55095714519e)
 where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-sector asymmetry. A viable branch must therefore recover the same $n_n/n_p$, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ surfaces from one local source-window record. A sterile or hidden relativistic sector that improves one isotope while shifting the weak-rate clock, neutrino asymmetry, or photon loading independently fails this gate.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ SMBH-Local Nucleation Chain
@@ -3486,7 +3486,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2d553828c3fbd6c4)
+[View →](../../../../../equation-mapping.html#corpus-equation-2d553828c3fbd6c4)
 The branch may remain in the comparison ledger only when $\mathcal{R}_{\mathrm{BBN},X}\le1$ using the same provenance and Noether sea record carried into [CMB](../../../../markdown/aaa/cosmology/CMB.md), [Structure Formation](../../../../markdown/aaa/cosmology/structure-formation.md), and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md). A component that repairs one BBN channel while spoiling deuterium survival, helium clustering, or $N_{\text{eff}}$ compatibility is a failed comparison branch, not a new explanatory resource.
 
 The $\eta_X$ term is the BBN-facing projection of the matter-asymmetry ledger in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#matter-asymmetry-provenance). It should be computed from transported baryon, antibaryon, and photon event records over the declared source window, not assigned independently after the yields are fit.
@@ -3501,7 +3501,7 @@ n_n^X(\tau,s)\,
 d\tau
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fda82c84820ce47f)
+[View →](../../../../../equation-mapping.html#corpus-equation-fda82c84820ce47f)
 and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T_{\mathrm{temp}},\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
 $$
 \mathcal{R}_{\mathrm{exp},X}
@@ -3510,7 +3510,7 @@ $$
 \frac{|\mathcal{E}_{i,\mathrm{eff}}^X-\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{obs}}|}{\epsilon_{\mathcal{E}_i}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-15cf2016b6de39e6)
+[View →](../../../../../equation-mapping.html#corpus-equation-15cf2016b6de39e6)
 where $\mathcal{E}_{i,\mathrm{eff}}^X$ is the channel-weighted exposure reaching the BBN comparison surface. A SMBH-local or fixed-void replacement branch fails this gate if it matches final D/H, $Y_p$, or lithium while its integrated exposure requires a different density-temperature timing record than the one used for photon loading, weak freeze-out, and the CMB handoff.
 
 Compact-object comparison branches add a sharper injection test. If the branch contains a small-mass tail with late release near the BBN window, record the injected spectrum as
@@ -3521,7 +3521,7 @@ $$
 \Gamma_{\mathrm{release}}^X(E,t;M)\,dM
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1a3c5a58a4df14ab)
+[View →](../../../../../equation-mapping.html#corpus-equation-1a3c5a58a4df14ab)
 where $\psi_X(M,t)$ is the branch mass function and $\Gamma_{\mathrm{release}}^X$ is the Hawking-like or native release channel being compared. The yield shifts $\Delta\mathbf{Y}_{\mathrm{BBN}}^X$ must be computed from $\mathcal{I}_X$ and the same thermal, photon-loading, neutrino, and Noether sea state used elsewhere in the BBN gate. A branch that uses late energetic injection to repair one isotope while changing $\eta_X$, $N_{\text{eff}}$, or the CMB handoff independently is a failed comparison branch, not a promoted source mechanism.
 
 If the compact branch evaporates, releases, or otherwise injects energy before or during the BBN window, the sharper residual is
@@ -3537,7 +3537,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1cc2859b3073bde0)
+[View →](../../../../../equation-mapping.html#corpus-equation-1cc2859b3073bde0)
 Here $\Delta f_\gamma^X$ and $\Delta f_\nu^X$ are photon- and neutrino-sector spectral distortions induced by the release history. This term keeps primordial-compact-object comparisons as constraints on a shared thermal history rather than a license to import compact objects as an explanatory ontology.
 
 ### Observable-Mapping Goals (Interpretation-Scoped)
@@ -3670,7 +3670,7 @@ $$
 K_X(\alpha_X,x_X)\,\mathbf{D}_{\mathrm{CMB}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fcf045812f79ccd4)
+[View →](../../../../../equation-mapping.html#corpus-equation-fcf045812f79ccd4)
 
 where $\mathbf{D}_{X}$ is the measured source-count dipole, $\mathbf{D}_{\mathrm{CMB}}$ is the CMB dipole vector, and $K_X(\alpha_X,x_X)$ is the catalogue-dependent kinematic amplification factor built from spectral index $\alpha_X$ and number-count slope $x_X$.
 
@@ -3686,7 +3686,7 @@ $$
 \mathbf{D}_{\mathrm{mask/source}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cc962422ae239a51)
+[View →](../../../../../equation-mapping.html#corpus-equation-cc962422ae239a51)
 
 where $\mathbf{D}_{\mathrm{kin}}$ is ordinary observer motion, $\mathbf{D}_{\mathrm{sea}}$ is the contribution from Noether sea flow, density, delay, and clock-rate gradients, and $\mathbf{D}_{\mathrm{mask/source}}$ records survey selection and source-population effects. Closure requires the same Noether sea term to remain compatible with CMB anisotropy, quasar and radio-source dipoles, supernova directionality, BAO measurements, and local $H$ scatter.
 
@@ -3712,7 +3712,7 @@ S_{PW}(\hat{\mathbf{n}},\theta)
 \frac{\langle M_W,T_{\theta,\hat{\mathbf{n}}}\rangle_{C_W^{-1}}}{\sigma_W(\theta)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3b930c43ccb882b1)
+[View →](../../../../../equation-mapping.html#corpus-equation-3b930c43ccb882b1)
 For a proposed set of $N$ localized features, the comparison pressure is the null probability
 $$
 p_N
@@ -3726,7 +3726,7 @@ S_{\mathrm{obs}}
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5c821724536ea090)
+[View →](../../../../../equation-mapping.html#corpus-equation-5c821724536ea090)
 
 This statistic is a validation target, not a permission to import an external cosmology. If such a residual remains significant after foreground, mask, and look-elsewhere accounting, a viable $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must either reproduce it from the same Noether sea state used for TT/TE/EE, blackbody behavior, lensing, BAO, and structure growth, or show why it is a foreground, systematic, or null-fluctuation artifact. A fit that explains localized features by changing the cosmology state independently from the acoustic peaks or lensing record fails the shared-state requirement.
 
@@ -3886,7 +3886,7 @@ Y_{\gamma,H},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cd45449201b499ca)
+[View →](../../../../../equation-mapping.html#corpus-equation-cd45449201b499ca)
 where $\mathcal{B}_{H}$ is the horizon-interface label ensemble, $Y_{\gamma,H}$ is the signed strong-field photon-frequency exchange row, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{H\gamma}$ is the energy, momentum, angular-momentum, provenance, and medium-update ledger for the released channel, $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}$ is the thermalization depth, and $\mathcal{P}_{E\to R}$ is the path-history propagation factor. This packet is admissible only if it feeds the same blackbody, anisotropy, polarization, damping, lensing, redshift, and BBN handoff records already required by the CMB module.
 
 The candidate is strong because it links several otherwise separate clues: black-hole recycling, horizon-interface planar lock, photon-channel ontology, signed redshift/blueshift transport, and CMB thermalization. Its failure mode is equally clear. If the horizon contribution can explain only an energy scale while spoiling the near-blackbody spectrum, erasing TT/TE/EE information, overproducing spectral distortions, or requiring a different Noether sea state from the one used for redshift and growth, then it is not a valid CMB source branch.
@@ -3937,7 +3937,7 @@ Y_p,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-39683ab2f74c5d17)
+[View →](../../../../../equation-mapping.html#corpus-equation-39683ab2f74c5d17)
 where $T_{\mathrm{src}}$ is the effective source or last-thermalization temperature, $\eta_{\gamma b}$ is the photon-to-baryon loading ledger, $N_{\mathrm{eff}}$ and $Y_p$ carry the neutrino and helium-facing constraints, $\mathcal{P}_{\mathrm{instr}}$ records the antenna, atmosphere, calibration, foreground, polarization, and seasonal checks, and $\mathbf{D}_{\mathrm{frame}}$ is the residual frame vector used in the dipole gate above. A distributed or recycling interpretation is admissible only when the same $\Theta_{\mathrm{CMB}}$ supports the spectrum, isotropy, BBN handoff, and frame correction. Fitting the microwave temperature while assigning the helium abundance, neutrino history, foreground subtraction, or dipole correction to separate records would reproduce a number while failing the CMB constraint.
 
 The same record must close the photon energy inventory, not only the fitted temperature. For a declared source-and-thermalization branch $\theta$, let $u_\gamma^\theta(t_{\mathrm{eff}})$ be the effective photon energy density that reaches the CMB comparison surface, $B_{\mathrm{therm}}^\theta$ the energy transferred through thermalizing channels, $B_{\mathrm{loss}}^\theta$ the energy irreversibly routed into non-photon reservoirs, and $\mathcal{F}_\gamma^\theta$ the boundary flux through the selected comparison window. The CMB energy-budget residual can be written schematically as
@@ -3965,7 +3965,7 @@ B_{\mathrm{loss}}^\theta
 }{\epsilon_E}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f1fecc4aa9a229d6)
+[View →](../../../../../equation-mapping.html#corpus-equation-f1fecc4aa9a229d6)
 This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
 
 Post-free-streaming redshift adds the same constraint on the transport side. Once source, recoil, remnant, and boundary rows are separated, a redshifted photon bundle must close its energy deficit into the Noether sea path update,
@@ -3976,7 +3976,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-259699baa36eff16)
+[View →](../../../../../equation-mapping.html#corpus-equation-259699baa36eff16)
 
 This is the CMB-facing projection of the bounded-region continuity law, with boundary flux, source rows, recoil, and remnant exchange separated before the transparent-path term is evaluated. It need not assume a convergent universe-wide scalar energy in order to falsify a transport branch locally. Without that local closure, a CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
 
@@ -4015,7 +4015,7 @@ $$
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cff6a7b35592c256)
+[View →](../../../../../equation-mapping.html#corpus-equation-cff6a7b35592c256)
 Here $T_0^\theta$ is the present observer-side radiation temperature, while $z_{\mathrm{eq}}^\theta$ and $k_{\mathrm{eq}}^\theta$ are the matter-radiation equality redshift and scale in observer variables. The term $H_{\mathrm{eff}}^\theta$ is the effective expansion or relaxation projection, and $\Omega_{K,\mathrm{eff}}^\theta$ is the effective curvature projection of the same Noether sea record. The positive-scale terms $M_{\mathrm{grow}}^\theta$ and $R_{\mathrm{grow}}^\theta$ are declared condensation/growth-scale comparisons supplied by the structure-formation packet rather than imported 1948 values. A successful CMB record must make this residual small without changing $\theta$ between the blackbody, equality, effective expansion, curvature, and growth projections.
 
 #### Thermalization-Depth and Planck-Recovery Target
@@ -4029,7 +4029,7 @@ $$
 \tau_{\mathrm{th}}^{-1}(\nu,t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e559ff59eea9704b)
+[View →](../../../../../equation-mapping.html#corpus-equation-e559ff59eea9704b)
 
 where $\tau_{\mathrm{th}}^{-1}$ is the effective rate for the already-recorded capture/release, Compton-like redistribution, pair-channel, and medium-exchange processes. The target is $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before decoupling for spectral relaxation, followed by sufficiently weak post-decoupling coupling to preserve anisotropy, polarization, and damping information rather than erase it.
 
@@ -4048,7 +4048,7 @@ D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})
 \inf\{D>0:\tau_{\mathrm{mw}}^\theta(\nu,\hat{\mathbf{n}},D)\ge1\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-810538e241564243)
+[View →](../../../../../equation-mapping.html#corpus-equation-810538e241564243)
 
 Here $\chi_{\mathrm{op}}^\theta$ is the proposed microwave-band opacity, not the Noether sea delay factor $\chi_{\text{sea}}$. The CMB-pixel question is therefore a derived closure target. For angular beam or pixel width $\Delta\alpha$ in radians, use the transverse comparison scale
 $$
@@ -4057,7 +4057,7 @@ L_{\perp}^{\theta}(\nu,\hat{\mathbf{n}},\Delta\alpha)
 D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})\,\Delta\alpha
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-11d9312a2348d80b)
+[View →](../../../../../equation-mapping.html#corpus-equation-11d9312a2348d80b)
 This scale is meaningful only after the branch computes $D_{\mathrm{eff}}^\theta$ from its source, transport, and thermalization record. If no finite $D_{\mathrm{eff}}^\theta$ exists, or if it varies too strongly with frequency or sky direction, the distributed-source interpretation has not supplied a stable CMB comparison surface.
 
 Thermalization mechanisms that use this opacity or distributed absorbers must also pass a side-effect test. Let $\mathcal{A}_{\ell}^{\theta}$, $\mathcal{P}_{\ell}^{\theta}$, and $\mathcal{D}_{\mathrm{FIR}}^\theta$ denote the induced changes in temperature anisotropy, polarization, and far-infrared/submillimeter background intensity. The side-effect residual is
@@ -4073,7 +4073,7 @@ $$
 \frac{\|\partial_\nu\chi_{\mathrm{op}}^\theta\|_{\mathrm{CMB}}}{\epsilon_\chi}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1065f140442c611a)
+[View →](../../../../../equation-mapping.html#corpus-equation-1065f140442c611a)
 A thermalizing component is admissible only if it helps make $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before the free-streaming record is fixed while keeping $\mathcal{R}_{\mathrm{op}}^\theta\le1$ afterward. This is the native exclusion of absorber stories that smooth the spectrum by erasing the anisotropy and polarization record they must also preserve.
 
 In the weak homogeneous photon-channel limit, the observer-level recovery target is the Planck spectral form
@@ -4085,7 +4085,7 @@ u_\nu^{\mathrm{eff}}(T_{\text{ens}})
 \frac{1}{\exp(h\nu/(k_B T_{\text{ens}}))-1}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#planck-blackbody-occupancy)
+[View →](../../../../../equation-mapping.html#planck-blackbody-occupancy)
 
 This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether sea state and clock-rate comparison variables used elsewhere in this document.
 
@@ -4098,7 +4098,7 @@ $$
 +O(\epsilon_{\mathrm{spec}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d846fa25c465ce88)
+[View →](../../../../../equation-mapping.html#corpus-equation-d846fa25c465ce88)
 
 where $\mathcal{B}_{T}$ denotes the observer-level Planck spectrum at temperature $T$ and $\lambda=1+z$ for the declared path after endpoint and launch terms are separated. This condition is stronger than fitting a final temperature. It says the transport has preserved the occupation-number shape rather than re-thermalizing an arbitrary distorted spectrum by coincidence.
 
@@ -4118,7 +4118,7 @@ I_j-F_j(\psi)-B_{\nu_j}(T;\theta)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7d35f666919edf64)
+[View →](../../../../../equation-mapping.html#corpus-equation-7d35f666919edf64)
 where $B_\nu(T;\theta)$ is the photon-channel blackbody comparison spectrum projected through the same medium record $\theta$. A distributed or recycling source story must make $\mathcal{R}_{\mathrm{spec}}$ small without using a foreground, calibration, or post-decoupling transport residual to erase the acoustic and polarization information.
 
 In the homogeneous comparison limit, the redshift handoff must preserve the Planck form by scaling frequency and temperature together:
@@ -4132,7 +4132,7 @@ T_{\mathrm{obs}}
 \frac{T_{\mathrm{dec}}}{1+z}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-99a74cfa3937210c)
+[View →](../../../../../equation-mapping.html#corpus-equation-99a74cfa3937210c)
 This is an observer-level transport benchmark. It does not say that the Euclidean void expanded; it says the photon-channel distribution, endpoint clock comparison, and path-history propagation must carry a blackbody spectrum into the present microwave band without generating a chemical-potential or chromaticity residual above the CMB tolerance.
 
 Transparency supplies the complementary exclusion test. Once the universe is optically thin in the microwave band, a redshift mechanism that changes photon frequencies without the same temperature scaling generically distorts the spectrum. The CMB branch therefore carries the distortion residual
@@ -4146,7 +4146,7 @@ $$
 \mathcal{R}_{\mathrm{spec}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c78e3506e83a37f1)
+[View →](../../../../../equation-mapping.html#corpus-equation-c78e3506e83a37f1)
 where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. The [COBE/FIRAS full-data analysis](https://arxiv.org/abs/astro-ph/9605054) gives the observer-level 95% bounds $|\mu|<9\times10^{-5}$ and $|y|<1.5\times10^{-5}$. Translating either bound into a generic energy-injection fraction requires a declared thermalization epoch and spectrum; it is not a universal $10^{-4}$ energy-budget shortcut. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
 
 The last-scattering benchmark should also retain the rate condition that makes the surface sharp. In standard comparison language decoupling occurs when the scattering rate falls through the effective expansion or relaxation rate,
@@ -4158,7 +4158,7 @@ n_e\sigma_T c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{dec}})
 H_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-34084353b5f94348)
+[View →](../../../../../equation-mapping.html#corpus-equation-34084353b5f94348)
 where $c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{dec}})$ is the dressed photon-channel speed in the decoupling environment and reduces to $c_0$ only in the weak homogeneous calibration limit. With recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN, the native CMB record has to recover a thin enough last-scattering window, not only a plausible source story.
 
 The same ionization and transfer history must continue through reionization. It has to recover the integrated optical depth $\tau$, the low-$\ell$ $EE$ polarization enhancement, and the quasar Gunn-Peterson and Lyman-$\alpha$ absorption record without changing the source or photon-transport branch per observable.
@@ -4181,7 +4181,7 @@ $$
 \mathcal R_{\mathrm{GP/Ly}\alpha}(\theta).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e6c4f45ccd2d03d9)
+[View →](../../../../../equation-mapping.html#corpus-equation-e6c4f45ccd2d03d9)
 The final term projects the same ionization record into Gunn-Peterson trough and Lyman-$\alpha$ forest observables. The numerical tolerances belong to the declared CMB and quasar data products, not to a separately tuned source model.
 
 ### Consistency Anchors
@@ -4208,7 +4208,7 @@ $$
 C_\ell = \langle |a_{\ell m}|^2 \rangle
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1ced8de62fcc162b)
+[View →](../../../../../equation-mapping.html#corpus-equation-1ced8de62fcc162b)
 
 The formal observables remain standard; in practice this includes TT/TE/EE spectra (with damping-tail and lensing behavior), with $C_\ell$ as compact notation.
 
@@ -4230,14 +4230,14 @@ r^{\theta}(k_*)
 \frac{\mathcal{P}_{\mathrm{T}}^{\theta}(k_*)}{\mathcal{P}_{\mathcal{R}}^{\theta}(k_*)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-02cdf455709d3747)
+[View →](../../../../../equation-mapping.html#corpus-equation-02cdf455709d3747)
 
 Here $A_{\mathrm{s}}^{\theta}$ is the scalar amplitude, $n_{\mathrm{s}}^{\theta}$ the scalar tilt, $\alpha_{\mathrm{s}}^{\theta}$ an optional running term, and $r^{\theta}$ the tensor-to-scalar comparison ratio. The tensor condition is a bound,
 $$
 r^{\theta}(k_*) \le r_{\max}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0d7b24448d3984f9)
+[View →](../../../../../equation-mapping.html#corpus-equation-0d7b24448d3984f9)
 with $r_{\max}$ supplied by the current observational analysis being used for the comparison. This keeps tensor non-detection as a pressure on source models without turning any particular inflationary or anti-inflationary interpretation into corpus doctrine.
 
 The tensor row should not collapse all early sources into a single inflation signal. Split the tensor-to-scalar comparison into vacuum-like and causal-source components,
@@ -4248,7 +4248,7 @@ r_{\mathrm{vac}}^\theta(k_*)
 +r_{\mathrm{causal}}^\theta(k_*)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f0a1292ed287e3c9)
+[View →](../../../../../equation-mapping.html#corpus-equation-f0a1292ed287e3c9)
 where $r_{\mathrm{vac}}^\theta$ is the vacuum-like tensor contribution and $r_{\mathrm{causal}}^\theta$ is any tensor power sourced by phase-transition-like, defect-like, strong-release, recycling, or other causal-source processes. Finite-range or medium-compliance gravity comparisons enter this same tensor gate. They do not add a massive-graviton ontology; they add the requirement that the same Noether sea record which weakens the large-scale response also predicts the tensor and B-mode data products. A compact comparison residual is
 $$
 \mathcal{R}_{\mathrm{T,split}}(\theta)
@@ -4269,7 +4269,7 @@ $$
 \lambda_{\mathrm{low}}\mathcal{R}_{\mathrm{GW,low}}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b0e1c1deff18955)
+[View →](../../../../../equation-mapping.html#corpus-equation-6b0e1c1deff18955)
 where $\mathcal{L}_{\mathrm{BB}}$ is the declared B-mode comparison window, $r_{\mathrm{vac},\max}$ and $r_{\mathrm{causal},\max}$ are supplied by the data product or simulation protocol, and $\mathcal{R}_{\mathrm{GW,low}}$ is the low-frequency dispersion forecast from [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md#linear-wave-equation). This keeps the CMB tensor bound, causal-source tensor bound, and gravitational-wave dispersion gate tied to one comparison record rather than allowing a finite-range branch to fit them separately.
 
 A compact residual for CMB closure is
@@ -4286,7 +4286,7 @@ $$
 \lambda_{\mathrm{T}}\max\!\left(0, r^{\theta}-r_{\max}\right)^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3e8962abbbd2edb1)
+[View →](../../../../../equation-mapping.html#corpus-equation-3e8962abbbd2edb1)
 
 The closure target is one medium-and-assembly model with bounded $\mathcal{R}_{\mathrm{CMB}}$, not a separate fit for each observable family.
 
@@ -4302,7 +4302,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-34ce9001ef644684)
+[View →](../../../../../equation-mapping.html#corpus-equation-34ce9001ef644684)
 where $\ell_{p,X}$ denotes the location of the $p$th acoustic feature in spectrum $X$. This residual keeps acoustic ringing as an observational phase-coherence requirement. It does not select a particular origin story for why those phases are coherent.
 
 The vector sector supplies a separate absence gate. For an effective pre-decoupling velocity field $\mathbf{u}_{\theta}^{\mathrm{eff}}$ and vorticity $\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}\equiv\nabla\times\mathbf{u}_{\theta}^{\mathrm{eff}}$, use
@@ -4319,7 +4319,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ddf9fcdcab75c536)
+[View →](../../../../../equation-mapping.html#corpus-equation-ddf9fcdcab75c536)
 Here $\delta_{\gamma}^{\theta}$ is the photon-channel density contrast in the observer-level reconstruction. The numerator tests effective vector/vorticity content; the denominator normalizes it against the scalar contrast being recovered. A successful CMB history must keep this residual small in the same state record that fits TT/TE/EE.
 
 The CMB-lensing sector adds a late-time integrated-mass reconstruction gate. In standard comparison language, lensing remaps the primary CMB by an effective lensing potential $\phi$ and yields a lensing-potential spectrum $C_{L}^{\phi\phi}$. For a candidate history $\theta$, use
@@ -4334,7 +4334,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-86cd266e69f8ec1e)
+[View →](../../../../../equation-mapping.html#corpus-equation-86cd266e69f8ec1e)
 This is a data-product constraint, not a dark-sector ontology by itself. The same Noether sea and assembly history that fits the primary TT/TE/EE spectra must also project to the lensing potential consumed by the growth and dark-matter modules.
 
 The same gate should include the smoothness pressure usually hidden inside origin-story language. Conformal-cosmology comparisons are useful here only because they isolate a real burden: the effective early record must have a very small free gravitational-mode contribution compared with the complicated strong-field behavior expected near generic collapse. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import conformal continuation as ontology. It preserves the observable requirement by asking the CMB-producing Noether sea history to suppress effective Weyl-like curvature in the decoupling comparison layer.
@@ -4353,7 +4353,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-278e52f291555db1)
+[View →](../../../../../equation-mapping.html#corpus-equation-278e52f291555db1)
 
 This is not a statement that the Euclidean void is curved. It is an observer-level diagnostic on the effective reconstruction used to compare with CMB data. A stronger closure criterion is therefore
 $$
@@ -4374,7 +4374,7 @@ $$
 \varepsilon_{\mathrm{CMB}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-26206ee0894c78a1)
+[View →](../../../../../equation-mapping.html#corpus-equation-26206ee0894c78a1)
 with $\lambda_{\mathrm{T,eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{T,split}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same Noether sea and assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, causal-source tensor limits, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
 
 #### Forward Prediction Map
@@ -4410,7 +4410,7 @@ $$
 \right),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-acfe5f51c56ce43a)
+[View →](../../../../../equation-mapping.html#corpus-equation-acfe5f51c56ce43a)
 where $\mathcal{S}_{\gamma}$ is the photon-channel source and release record, $\mathcal{D}_{\mathrm{th}}$ is the thermalization-depth record, $\mathcal{T}_{\gamma}$ is the coherent photon-channel transport record, and $\mathcal{P}_{\mathrm{TT/TE/EE}}$ is the transfer record for temperature and polarization spectra. A distributed-source or recycling interpretation is admissible only if these four rows are restrictions of one Noether sea and source-history record. It is not enough to fit the monopole with one story and then import acoustic peaks, damping, lensing, or polarization from a different state record.
 
 #### Redshift and Clock Link
@@ -4421,7 +4421,7 @@ $$
 \frac{d\tau}{dt_{\mathrm{eff}}}=F\!\left(\mathbf V,\rho_{\text{NS}}(\mathbf X,T),n(\mathbf X,T),\chi_{\text{sea}}(\mathbf X,T),\Phi_{\text{eff}},\text{clock geometry}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ebd38b0f4c21bd08)
+[View →](../../../../../equation-mapping.html#corpus-equation-ebd38b0f4c21bd08)
 
 So CMB temperature/redshift summaries remain usable while their mechanism is grounded in assembly-medium dynamics.
 
@@ -4442,7 +4442,7 @@ Y_{\gamma}^{\mathrm{post}}
 \frac{\nu_{\gamma,j}^{+}}{\nu_{\gamma,j}^{-}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f2968b018d636df8)
+[View →](../../../../../equation-mapping.html#corpus-equation-f2968b018d636df8)
 
 where negative increments are frequency boosts and positive increments are frequency depletions relative to the local comparison clock. The corresponding exchange residual is
 
@@ -4460,7 +4460,7 @@ h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
 }{\epsilon_{E,j}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cea08cd76f9ba137)
+[View →](../../../../../equation-mapping.html#corpus-equation-cea08cd76f9ba137)
 
 This row is a calibration and provenance requirement, not a claim that all cosmological redshift is SZ scattering. A CMB history must still preserve the near-blackbody spectrum, anisotropy, polarization, damping, and lensing records. The SZ lesson is narrower and important: any use of CMB temperature, redshift, or kSZ velocity data must keep photon frequency transfer tied to the same Noether sea, electron-population, and path-history record rather than treating frequency as a pure expansion clock.
 
@@ -4521,7 +4521,7 @@ x_{\mathrm{img,eff}}^i
 \Delta_{\mathrm{eff}}\psi_{\mathrm{lens,eff}}(x_{\mathrm{img,eff}}^i)=2\kappa_{\mathrm{eff}}(x_{\mathrm{img,eff}}^i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bb4748ea70db7178)
+[View →](../../../../../equation-mapping.html#corpus-equation-bb4748ea70db7178)
 
 where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units. The layer-explicit observer-chart version is
 $$
@@ -4536,7 +4536,7 @@ x_{\mathrm{eff}}^i
 2\kappa_{\mathrm{eff}}(x_{\mathrm{eff}}^i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6760ae2433021768)
+[View →](../../../../../equation-mapping.html#corpus-equation-6760ae2433021768)
 
 The layer-explicit local image distortion is encoded by the Jacobian
 
@@ -4552,7 +4552,7 @@ $$
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1b01d9ecd90a6110)
+[View →](../../../../../equation-mapping.html#corpus-equation-1b01d9ecd90a6110)
 
 where $g_1$ and $g_2$ are reduced-shear components. For two resolved images $i$ and $j$ of the same background source, the image-to-image transformation has the local form
 
@@ -4562,7 +4562,7 @@ T_{ij}
 A_{\mathrm{eff}}(x_{\mathrm{eff},j}^k)^{-1}A_{\mathrm{eff}}(x_{\mathrm{eff},i}^k)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8a60f05eff5c2364)
+[View →](../../../../../equation-mapping.html#corpus-equation-8a60f05eff5c2364)
 
 This transformation constrains local reduced shear and relative convergence near the observed images. It does not by itself determine a unique global mass map in regions not sampled by the light bundles. For a candidate medium-and-assembly record $\theta$, let $\psi_\theta$ define the projected observer-level lensing potential, let $A_\theta(x_{\mathrm{eff}}^i)$ be its local Jacobian, and let
 
@@ -4572,7 +4572,7 @@ T_{ij}^{\theta}
 A_\theta(x_{\mathrm{eff},j}^i)^{-1}A_\theta(x_{\mathrm{eff},i}^i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-257d9007e4b4dc6f)
+[View →](../../../../../equation-mapping.html#corpus-equation-257d9007e4b4dc6f)
 
 The data-supported local part of the lensing comparison can then be recorded as
 
@@ -4585,7 +4585,7 @@ C_{ij}^{-1}
 \left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8c7e4dfcdf0ca5ba)
+[View →](../../../../../equation-mapping.html#corpus-equation-8c7e4dfcdf0ca5ba)
 
 where $C_{ij}$ is the covariance model for the measured image-to-image transformation. This residual tests what the multiple-image data constrain before a global mass profile is imposed.
 
@@ -4600,7 +4600,7 @@ w_{\mathrm{img}}(x_{\mathrm{eff}}^i)
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-31853295dd08f454)
+[View →](../../../../../equation-mapping.html#corpus-equation-31853295dd08f454)
 
 Then the inferred convergence can be reported in two pieces,
 
@@ -4616,7 +4616,7 @@ M_{\mathrm{extrapolated}}
 \left(1-w_{\mathrm{img}}(x_{\mathrm{eff}}^i)\right)\kappa_\theta(x_{\mathrm{eff}}^i)\,d^2x_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-31703d666bcf8f81)
+[View →](../../../../../equation-mapping.html#corpus-equation-31703d666bcf8f81)
 
 These are not new dark-sector variables. They are inference-discipline diagnostics: $M_{\mathrm{supported}}$ records the part of the projected map close to the local lensing constraints, while $M_{\mathrm{extrapolated}}$ records the model-projected part that must be justified by priors, weak-lensing data, gas dynamics, galaxy kinematics, CMB lensing, or the shared Noether sea state record.
 
@@ -4657,7 +4657,7 @@ D_{\mathrm{cl}}^{\mathrm{obs}}
 \mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-40ca8425a88434d6)
+[View →](../../../../../equation-mapping.html#corpus-equation-40ca8425a88434d6)
 
 Here $D_{\mathrm{cl}}^{\mathrm{obs}}$ is the retained cluster-offset data packet and $C_{\mathrm{cl}}$ records the covariance of the lensing, gas, and tracer reconstruction. The residual should be evaluated across an ensemble of merging clusters, not treated as a one-image proof. A pure medium-response branch fails this gate only when
 
@@ -4668,7 +4668,7 @@ $$
 \varepsilon_{\mathrm{cl}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-374348bc1b94e3ef)
+[View →](../../../../../equation-mapping.html#corpus-equation-374348bc1b94e3ef)
 
 with the same lensing priors, gas model, and shared Noether sea state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
 
@@ -4680,7 +4680,7 @@ $$
 M_b = M_\star + M_g
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ae2442843c21bdcb)
+[View →](../../../../../equation-mapping.html#corpus-equation-ae2442843c21bdcb)
 
 and the enclosed dynamical mass $M_{200}$ inferred from kinematics or weak gravitational lensing. Let
 
@@ -4690,7 +4690,7 @@ m_b^{\mathrm{obs}}(M_b)
 \frac{M_b}{M_{200}^{\mathrm{obs}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f9374e2e40ca2379)
+[View →](../../../../../equation-mapping.html#corpus-equation-f9374e2e40ca2379)
 
 record the observed baryonic mass fraction. A [2026 baryonic mass-halo mass compilation](https://arxiv.org/abs/2603.06479), assembled from kinematic and weak-lensing mass estimates across dwarfs through rich clusters, reports the empirical summary
 
@@ -4705,7 +4705,7 @@ f_b \simeq 0.157,
 M_0 \simeq 5\times 10^{13}M_\odot.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a2cd930574f737f2)
+[View →](../../../../../equation-mapping.html#corpus-equation-a2cd930574f737f2)
 
 Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. The compilation establishes an empirical fit across its heterogeneous inference instruments; it does not establish the mechanism behind the missing condensed baryons. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
 
@@ -4734,7 +4734,7 @@ d_{\mathrm{shared}}\!\left(
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1f50eb8e098d3700)
+[View →](../../../../../equation-mapping.html#corpus-equation-1f50eb8e098d3700)
 
 Here $D_{\mathrm{BTFR}}^{\mathrm{obs}}$ is the retained baryonic Tully-Fisher data packet, $D_{\mathrm{BTFR}}^\theta$ is the branch prediction from the same medium-and-assembly record, and $M_{200}^{\theta}$ is the model's dynamical or lensing projection. The velocity ratio $q_{\mathrm{vel}}=V_{\mathrm{flat}}/V_{200}$ belongs inside the same comparison. A fit cannot remove the missing-baryon trend by retuning $q_{\mathrm{vel}}$ unless that retuning remains compatible with rotation curves, weak-lensing velocities, rich-cluster baryon closure, CMB loading, and the cluster-offset residual above.
 
@@ -4756,7 +4756,7 @@ F_{\mathrm{DM}}\!\left(\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}\right)
 \mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c0c4b78671d9b8b5)
+[View →](../../../../../equation-mapping.html#corpus-equation-c0c4b78671d9b8b5)
 
 Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dark-sector comparison, and $\mathcal{R}_{\mathrm{shared}}$ is the shared calibration residual from [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates). A dark-sector scale relation is promotable only if this residual stays small without assigning one Noether sea state to dark-energy data and another to dark-matter data. If the relation fits one observable family by changing $\theta_{\mathrm{sea}}$ for another, it remains an interpretation artifact rather than a substrate claim.
 
@@ -4785,7 +4785,7 @@ $$
 \langle v_{\mathrm{rel}}\rangle
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9c752dd8f9966fd0)
+[View →](../../../../../equation-mapping.html#corpus-equation-9c752dd8f9966fd0)
 A nearby passage gives the order-of-magnitude impulse
 $$
 \Delta v_{\mathrm{test}}
@@ -4793,7 +4793,7 @@ $$
 \frac{2GM_A}{b\,v_{\mathrm{rel}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-00db7bd49d0b2570)
+[View →](../../../../../equation-mapping.html#corpus-equation-00db7bd49d0b2570)
 before detailed $N$-body and relativistic corrections. The retained observable is the ephemeris residual, not the compact-object interpretation: a candidate detection must produce a trajectory-consistent perturbation above the ranging error floor, fail ordinary visible-object and catalogued-asteroid explanations under the same covariance model, and carry any high-energy co-signature through the same branch record.
 
 A compact dark-candidate branch also admits a track-search comparison. For a candidate compact fraction $f_X$, mass $M_X$, local dark-sector density $\rho_{\mathrm{DM}}$, and relative-speed distribution with mean $\langle v_{\mathrm{rel}}\rangle$, the flux estimate is
@@ -4808,7 +4808,7 @@ N_{\mathrm{track}}
 \Phi_X A_{\mathrm{scan}}T_{\mathrm{age}}P_{\mathrm{surv}}P_{\mathrm{det}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-38f668495f2a6a81)
+[View →](../../../../../equation-mapping.html#corpus-equation-38f668495f2a6a81)
 Here $A_{\mathrm{scan}}$ is the scanned cross-section, $T_{\mathrm{age}}$ is the exposure time of the material, $P_{\mathrm{surv}}$ is the survival probability of the track under thermal, geological, and mechanical erasure, and $P_{\mathrm{det}}$ is the detection efficiency after morphology cuts. The residual is not simply a count mismatch:
 $$
 \mathcal{R}_{\mathrm{track}}
@@ -4820,7 +4820,7 @@ $$
 \mathcal{R}_{\mathrm{ordinary}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fb10fb66f506875f)
+[View →](../../../../../equation-mapping.html#corpus-equation-fb10fb66f506875f)
 The morphology term requires the candidate track to match the predicted energy-deposition and damage profile for the branch, while $\mathcal{R}_{\mathrm{ordinary}}$ penalizes fits explained by ordinary radiation, defects, inclusions, machining damage, or impact history. A null search becomes a constraint on $f_X(M_X)$ only after the survival and detection functions are declared; a positive search becomes a compact-object claim only after the same branch also passes the BBN, CMB, ephemeris, and high-energy co-signature tests.
 
 #### Candidate B — Noether Sea Medium Response
@@ -4844,7 +4844,7 @@ a_0^{\mathrm{MOND}}
 \quad\text{as comparison coefficients.}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d0484585d21aa990)
+[View →](../../../../../equation-mapping.html#corpus-equation-d0484585d21aa990)
 
 For a shared Noether sea record $\theta$, define the low-acceleration comparison residual
 
@@ -4865,7 +4865,7 @@ d_{\mathrm{RAR}}\!\left(\mathrm{RAR}^{\theta},\mathrm{RAR}^{\mathrm{obs}}\right)
 \lambda\,\mathcal{R}_{\mathrm{shared}}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a54df89975fb43e0)
+[View →](../../../../../equation-mapping.html#corpus-equation-a54df89975fb43e0)
 
 Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by the coupled neutral-assembly plus medium-response model, $\mathrm{RAR}^{\mathrm{obs}}$ is the observed relation, and $\mathcal{R}_{\mathrm{shared}}$ is the cosmology shared residual in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates). If no value of $\alpha_H$ follows from the Noether sea response law while preserving CMB loading, cluster offsets, BAO, supernova, growth, and lensing constraints, the horizon-scale coincidence remains a heuristic rather than a derived result.
 
@@ -4909,7 +4909,7 @@ S_{\mathrm{loc}}(\mathcal I_{\mathrm{loc}}),\,
 \right),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1decb6afec2b0178)
+[View →](../../../../../equation-mapping.html#corpus-equation-1decb6afec2b0178)
 with every environment projection derived from one constitutive and assembly history. It earns predictive standing only if the allowed set $\mathcal O_\epsilon(\theta_{\mathrm{hyb}})$ is narrow relative to the nearby comparison family. If $a_\star$, $f$, screening, or $\mu$ can be changed independently by galaxy, cluster, CMB, lensing, and growth channel, Candidate C has widened the fit space rather than closed the dark sector.
 
 **Coupled equations (schematic).** Let $\rho_A(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ denote the observer-level neutral-assembly density and $\rho_{\text{NS}}(\mathbf X,T)$ the native Noether braid density. In the Newtonian limit, the effective Poisson equation becomes:
@@ -4918,7 +4918,7 @@ $$
 (\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}((\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}},\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-168be3c219b73152)
+[View →](../../../../../equation-mapping.html#corpus-equation-168be3c219b73152)
 
 where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. This linearization is conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../../../../markdown/aaa/spacetime/noether-sea.md). In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in a positive-response low-acceleration branch, the effective coupling is enhanced above $G_N$ because the Noether sea is more compliant, and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
 
@@ -4940,7 +4940,7 @@ f\,a_N, & a_N\ll a_\star/f^2,
 \end{cases}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a98eadec7919d4bd)
+[View →](../../../../../equation-mapping.html#corpus-equation-a98eadec7919d4bd)
 
 where $a_N$ is the baryonic Newtonian benchmark acceleration, $a_\star$ is the environment-dependent low-acceleration transition scale, and $f$ is the ultra-low-acceleration inverse-square enhancement. For the $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid branch these are not new constants. They are observer-level summaries of a shared Noether sea state:
 
@@ -4964,7 +4964,7 @@ F_\star
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-35f14dc32227b019)
+[View →](../../../../../equation-mapping.html#corpus-equation-35f14dc32227b019)
 
 with $E$ denoting an environment class such as spiral galaxies, pressure-supported dwarfs, clusters, or diffuse absorbers. $\mathcal{H}_{\mathrm{src/rel}}$ records compact-source, feedback, release, and capture history, while $\mathcal{T}_{\mathrm{path}}$ records transport loading that changes the local Noether sea state. The environment label is therefore not a private fit bucket: a viable branch must reproduce the galaxy radial-acceleration relation in the middle regime while allowing clusters to fall in the ultra-low-acceleration regime without assigning a separate medium record to each class.
 
@@ -4988,7 +4988,7 @@ d_{\mathrm{shared}}\!\left(
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5946006f7891c649)
+[View →](../../../../../equation-mapping.html#corpus-equation-5946006f7891c649)
 
 This residual is useful because it turns the cluster-versus-galaxy pressure into a falsifiable question. If the observed cluster temperature and lensing profiles require an $a_\star$ scale significantly above the galaxy radial-acceleration scale, that scale shift must be derived from environment-dependent Noether sea density, delay, stress, or neutral-assembly loading. If the same shift is inserted by hand, the branch has reproduced a comparison curve but not closed a native dark-sector mechanism.
 
@@ -5010,7 +5010,7 @@ $$
 1-\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-408eaf834a699b39)
+[View →](../../../../../equation-mapping.html#corpus-equation-408eaf834a699b39)
 
 Here $E$ is an observer-level environment class, such as spiral galaxies, pressure-supported dwarfs, clusters, or the cosmological background. The temperature ratio and fractions are comparison coordinates only. A native branch must instead derive their effective values from $\Pi_E\theta_{\mathrm{sea}}$, $\rho_A$, $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, and $\chi_{\text{sea}}(\mathbf X,T)$:
 
@@ -5036,7 +5036,7 @@ n(\mathbf X,T),
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a644b46ea4ae5cc5)
+[View →](../../../../../equation-mapping.html#corpus-equation-a644b46ea4ae5cc5)
 
 The comparison target is therefore not "make a superfluid." It is the stronger phase-environment closure: galaxy environments should project toward a large low-acceleration response coordinate, cluster environments should retain a substantial CDM-like or normal component, and the cosmological background should remain pressureless enough to preserve CMB loading and growth. The MOND-like part is fixed by the radial-acceleration relation and by the BTFR limit
 
@@ -5046,7 +5046,7 @@ a_{\mathrm{obs}}(r)\simeq\sqrt{a_N(r)a_0^{\mathrm{MOND}}},
 v_c^4\simeq G_NM_ba_0^{\mathrm{MOND}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#rar-btfr-galaxy-response)
+[View →](../../../../../equation-mapping.html#rar-btfr-galaxy-response)
 
 A compact version of the closure residual is
 
@@ -5072,7 +5072,7 @@ D_{\mathrm{cos+cl}}^{\mathrm{obs}},
 \end{aligned}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-31f382863d273e87)
+[View →](../../../../../equation-mapping.html#corpus-equation-31f382863d273e87)
 
 This residual records the Berezhiani-Khoury pressure in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms. The same $\theta_{\mathrm{sea}}$ must pass the galaxy RAR/BTFR comparison, the cluster temperature/lensing comparison, and the cosmological CDM-like comparison. $\mathcal{R}_{\mathrm{stable\ branch}}$ is included because the source's MOND branch requires finite-temperature stabilization; the native analogue is that a low-acceleration Noether sea response branch must be dynamically stable, not only curve-fit successful.
 
@@ -5090,7 +5090,7 @@ $$
 \varphi_2^{\mathrm{cmp}}-\varphi_1^{\mathrm{cmp}}+\Delta E\,t
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5e5a400bce3431bb)
+[View →](../../../../../equation-mapping.html#corpus-equation-5e5a400bce3431bb)
 
 and the source-side phase-coupling potential
 
@@ -5103,7 +5103,7 @@ M_J^4
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f2d7ec44948f9738)
+[View →](../../../../../equation-mapping.html#corpus-equation-f2d7ec44948f9738)
 
 The native branch must derive these comparison coordinates from a medium-and-assembly projection, not fit them independently:
 
@@ -5126,7 +5126,7 @@ n(\mathbf X,T),
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3e7dbbb0f47af501)
+[View →](../../../../../equation-mapping.html#corpus-equation-3e7dbbb0f47af501)
 
 The conversion discipline can be recorded in source-term form,
 
@@ -5144,7 +5144,7 @@ Q_J^\theta
 \Delta E\,\partial_{\varphi_{\mathrm{rel}}}V_J^{\mathrm{cmp}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b4a107dac071b917)
+[View →](../../../../../equation-mapping.html#corpus-equation-b4a107dac071b917)
 
 so that the total dark-sector count $N_1+N_2$ is conserved while the relative population can evolve. The comparison background equation then becomes
 
@@ -5155,7 +5155,7 @@ $$
 \frac{V_J^{\mathrm{cmp}}(t)}{M_{\mathrm{Pl}}^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2ec3e848387bf574)
+[View →](../../../../../equation-mapping.html#corpus-equation-2ec3e848387bf574)
 
 as a source-side benchmark for late-time acceleration without adding an independent dark-energy fluid. A native $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may pass this benchmark only if the right-hand side is reconstructed from $\theta_{\mathrm{sea}}$ and $\rho_A$ through $\mathcal{J}_{\mathrm{dark}}$.
 
@@ -5167,7 +5167,7 @@ c_{s,\mathrm{lin}}^{2,\theta}(a,k)
 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5cdbb3e773980a9a)
+[View →](../../../../../equation-mapping.html#corpus-equation-5cdbb3e773980a9a)
 
 over the CMB and large-scale-structure regime, while allowing nonlinear galaxy-scale medium response to depart from pressureless CDM. Growth must be tested with both the growth factor $D(z)$ and the growth rate
 
@@ -5179,7 +5179,7 @@ f_{\mathrm{grow}}(z)
 -\frac{d\ln D}{d\ln(1+z)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a1fd967fd6e8e34e)
+[View →](../../../../../equation-mapping.html#corpus-equation-a1fd967fd6e8e34e)
 
 The paper's numerical examples show why this matters: the background history and growth factor can remain close to $\Lambda\mathrm{CDM}$ while the late-time growth rate deviates more strongly. The $\mathbb{A}\mathbb{A}\mathbb{A}$ residual should therefore not stop at an $H(z)$ fit:
 
@@ -5210,7 +5210,7 @@ d_f\!\left(f_{\mathrm{grow}}^\theta,f_{\mathrm{grow}}^{\mathrm{obs}}\right)
 \end{aligned}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d329f9fd39d06fa8)
+[View →](../../../../../equation-mapping.html#corpus-equation-d329f9fd39d06fa8)
 
 This residual is the safe promoted signal from the two-state dark-sector comparison. It tests whether one shared Noether sea state and neutral-assembly record can supply effective acceleration, conserve the total dark-sector count while allowing internal conversion, keep the linear sound speed low, and reproduce growth observations without assigning separate medium histories to dark matter and dark energy.
 
@@ -5265,7 +5265,7 @@ m_{\nu_R},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4847224167751044)
+[View →](../../../../../equation-mapping.html#corpus-equation-4847224167751044)
 with
 $$
 \tau_{\nu_R}\gg t_0,
@@ -5279,7 +5279,7 @@ $$
 \Delta N_{\mathrm{eff}}\in\mathcal{B}_{\mathrm{BBN/CMB}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b5ba8639ea024dd6)
+[View →](../../../../../equation-mapping.html#corpus-equation-b5ba8639ea024dd6)
 Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether sea response map derives its mass and coupling suppression.
 
 #### Source-Limited WIMP/Neutralino Comparison Benchmark
@@ -5304,7 +5304,7 @@ m_A,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b471422bf5d3c24)
+[View →](../../../../../equation-mapping.html#corpus-equation-6b471422bf5d3c24)
 
 The entries track assembly mass, relic abundance, annihilation rate, scalar and axial scattering channels for direct detection, neutrino rates from solar or terrestrial capture, and indirect antiproton, positron, and gamma-ray fluxes. The native branch may pass this benchmark only if one medium-and-assembly record predicts or bounds all entries while satisfying direct-detection, indirect-detection, collider, CMB/BBN, structure-growth, and other relevant null-result constraints. Matching $\Omega_A h^2$ alone is not dark-matter closure; the same branch must also keep scattering and annihilation channels below excluded levels or declare a detectable channel.
 
@@ -5329,7 +5329,7 @@ $$
 \Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.26
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ec21297dfc477d64)
+[View →](../../../../../equation-mapping.html#corpus-equation-ec21297dfc477d64)
 
 Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the [CMB](../../../../markdown/aaa/cosmology/CMB.md) power spectrum: baryon loading enhances the odd (compression) peaks and suppresses the even (rarefaction) peaks, while the neutral-assembly matter loading sets the third-peak height and the overall peak-height ratios through $\Omega_A/\Omega_b$.
 
@@ -5341,7 +5341,7 @@ $$
 \ddot{\delta}_A + 2H\dot{\delta}_A = 4\pi G_{\mathrm{eff}}\,\rho_m\,\delta_m
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-12fde09db30a8c5f)
+[View →](../../../../../equation-mapping.html#corpus-equation-12fde09db30a8c5f)
 
 where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from Noether sea response. This linearization is conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../../../../markdown/aaa/spacetime/noether-sea.md). In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0^{\mathrm{MOND}} \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.
 
@@ -5412,7 +5412,7 @@ $$
 \dot R = 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-650d0335c8d1eccc)
+[View →](../../../../../equation-mapping.html#corpus-equation-650d0335c8d1eccc)
 
 where $\rho_m$ is the mean matter density in the static comparison, $R$ is the closed-universe radius used by that model, and $\kappa_E$ is the standard Einstein gravitational constant used in the comparison equations. Those equations are not a native $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation of dark energy. They are a branch-support relation: $\Lambda$ was doing the job of holding a matter-filled static solution in place. Once the static assumption was weakened by redshift-distance evidence and by the instability of the static branch, the same symbol no longer had the same warrant.
 
@@ -5424,7 +5424,7 @@ $$
 \{\mathrm{static\ support},\mathrm{branch\ constant},\mathrm{vacuum\ comparison},\mathrm{late\text{-}time\ fit},\mathrm{Noether\text{-}Sea\ output}\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4d7efd9e9f73c12b)
+[View →](../../../../../equation-mapping.html#corpus-equation-4d7efd9e9f73c12b)
 
 The residual is not just numerical agreement with a preferred $\Lambda$. It is agreement between the claimed branch role and the data product that selected it. A constant introduced to repair a static branch cannot be reified as a medium density merely because a later accelerated-expansion fit also uses the symbol $\Lambda$.
 
@@ -5445,7 +5445,7 @@ T_{\mu\nu}^{(\Lambda)}
 -\frac{c^4\Lambda}{8\pi G}g_{\mu\nu}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-80716be6de715a5f)
+[View →](../../../../../equation-mapping.html#corpus-equation-80716be6de715a5f)
 
 Thus the geometric-$\Lambda$ and vacuum-stress readings are the same comparison model written with the term on different sides of the equation. That equivalence should be preserved in the inherited effective theory. It should not be promoted into the stronger claim that the Euclidean void itself carries energy.
 
@@ -5477,7 +5477,7 @@ $$
 u_{\mathrm{sea}} = \rho_{\text{NS}}\,\langle E_{\mathrm{braid}} \rangle
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-775738f0ce5865ce)
+[View →](../../../../../equation-mapping.html#corpus-equation-775738f0ce5865ce)
 
 where $\rho_{\text{NS}}$ is the canonical Noether braid density field and $\langle E_{\mathrm{braid}} \rangle$ is the mean energy per Noether braid. This quantity sets the scale of the effective dark-energy density:
 
@@ -5485,7 +5485,7 @@ $$
 \rho_{\mathrm{DE,eff}} \sim u_{\mathrm{sea}}\,f(\text{binary-3 state})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5f501885f73e7d29)
+[View →](../../../../../equation-mapping.html#corpus-equation-5f501885f73e7d29)
 
 where $f$ encodes what fraction of the baseline energy acts as an effective negative pressure on cosmological scales.
 
@@ -5503,7 +5503,7 @@ $$
 \tau_{\mathrm{relax}}^{\mathrm{outer}} \gtrsim H_0^{-1} \approx 1.4 \times 10^{10}\;\mathrm{yr}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d4f27359eb56f641)
+[View →](../../../../../equation-mapping.html#corpus-equation-d4f27359eb56f641)
 
 This sets a strong dynamical condition on binary-3 relaxation.
 
@@ -5521,7 +5521,7 @@ R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-12a905179b778a6d)
+[View →](../../../../../equation-mapping.html#corpus-equation-12a905179b778a6d)
 
 This strain is not enough by itself to define pressure. The binary-3 sector must also say whether stored energy has an available release channel. If neighbouring Noether braids share the same diffused or slowly relaxing state, the local energy current can be nearly zero even when $\epsilon_O$ is nonzero. The medium is then in a quasi-equilibrium: not necessarily at the lowest available branch energy, but at a no-current balance point because no neighbouring state or boundary channel is able to accept the energy on the relevant timescale.
 
@@ -5538,7 +5538,7 @@ $$
 +\mathcal S_O
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a9fcf66bbe23bfc8)
+[View →](../../../../../equation-mapping.html#corpus-equation-a9fcf66bbe23bfc8)
 
 Here $\mathcal A_{\downarrow}$ denotes the availability of lower-energy or accepting channels, and $\mathcal S_O$ denotes incoming source or neighbour loading. When $\mathcal A_{\downarrow}$ is small, stored binary-3 stress can persist and read out as slowly varying negative pressure. When an accepting channel opens, the same ledger can release energy into neighbouring Noether sea states or outward transport. A cascading relaxation claim is admissible only if the event ledger shows where that energy goes and the same $\theta_{\mathrm{sea}}$ still passes the redshift, CMB, lensing, growth, and calibration gates.
 
@@ -5556,7 +5556,7 @@ $$
 p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;d\rho_{\text{NS}}/dT,\;n,\;\chi_{\text{sea}},\;\langle R_3 \rangle,\;T_{\mathrm{sea}}^{\mathrm{th}}\bigr)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-99413eca46ab54f3)
+[View →](../../../../../equation-mapping.html#corpus-equation-99413eca46ab54f3)
 
 where $\langle R_3 \rangle$ is the mean binary-3 radius for the declared source record and $T_{\mathrm{sea}}^{\mathrm{th}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled Noether braid populations is a primary simulation target. Index 3 identifies the record row; it does not encode the exposed or largest-radius role in the taxonomy.
 
@@ -5580,7 +5580,7 @@ A_\mu(z)\,\hat{\mathbf{n}}\cdot\hat{\mathbf{d}}_\mu
 \epsilon_\mu
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-399ab18dd8401358)
+[View →](../../../../../equation-mapping.html#corpus-equation-399ab18dd8401358)
 
 Here $\hat{\mathbf{n}}$ is the line of sight, $\mathcal{E}$ denotes source and host environment, $A_\mu\hat{\mathbf{d}}_\mu$ is a possible dipolar component, $\delta\mu_{\mathrm{cal}}$ records standardization and population-evolution corrections, $\delta\mu_{\mathrm{sea}}$ records Noether sea state contributions, and $\epsilon_\mu$ is the remaining noise term. A Noether sea acceleration or relaxation claim is promotable only after the dipole, calibration, and environment terms are either bounded below the claimed effect or derived from the same medium variables used elsewhere.
 
@@ -5601,7 +5601,7 @@ $$
 \Pi_{\mathrm{sea}},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8949217b136ce9d0)
+[View →](../../../../../equation-mapping.html#corpus-equation-8949217b136ce9d0)
 where $\Pi_{\mathrm{flow}}$ removes dipole and bulk-flow structure, $\Pi_{\mathrm{cal}}$ removes standard-candle calibration and host-population drift, $\Pi_{\mathrm{cat}}$ removes catalogue and selection effects, and $\Pi_{\mathrm{sea}}$ records the declared Noether sea transport term. A nonzero $\mathcal{R}_{\mathrm{iso\text{-}acc}}$ can motivate a dark-energy comparison only after those rows share the same medium state as lensing, BAO, CMB, and growth.
 
 For BAO and CMB distance anchors, the corresponding requirement is frame consistency. A fit that assumes a homogeneous and isotropic Friedmann-Lemaître-Robertson-Walker background must also report whether the BAO scale, source-count dipoles, and local supernova residuals remain consistent with the CMB-frame correction. If they do not, the result becomes a directional cosmology problem before it becomes a dark-energy mechanism.
@@ -5617,7 +5617,7 @@ $$
 X\in\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{growth}\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a55fc60624c2ed16)
+[View →](../../../../../equation-mapping.html#corpus-equation-a55fc60624c2ed16)
 
 Here $\mathcal{D}_X$ is the calibrated observable record, $\mathcal{I}_X$ is the declared projection from the shared Noether sea record into that observable family, $\nu_X$ collects nuisance and calibration variables, and $r_X$ is the residual. A successful $\Lambda$ or $w(a)$ fit belongs first to $\mathcal{I}_X$; it becomes a native dark-energy claim only if the same $\theta_{\mathrm{sea}}$ projects through the other observable families without changing the branch story.
 
@@ -5632,7 +5632,7 @@ Z_{\mathrm{endpoint},X}
 +Z_{\mathrm{path},X}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-603de6098feee058)
+[View →](../../../../../equation-mapping.html#corpus-equation-603de6098feee058)
 
 with $Z_{\mathrm{path},X}$ allowed to be positive or negative only when the corresponding energy and medium-state exchange rows close. The dark-energy residual must not treat all leftover frequency shift as expansion after suppressing endpoint, source, launch, or SZ-like path terms. It must show that the same $\theta_{\mathrm{sea}}$ supplies the redshift-transfer curvature, blackbody preservation, supernova flux factors, BAO ruler projection, and growth response.
 
@@ -5648,7 +5648,7 @@ $$
 \{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{WL},\mathrm{RSD},\mathrm{BBN}\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3d194dfcd2453ff7)
+[View →](../../../../../equation-mapping.html#corpus-equation-3d194dfcd2453ff7)
 
 For a candidate Noether sea state parameter record $\theta_{\mathrm{sea}}$, define
 
@@ -5669,7 +5669,7 @@ r_X(\theta_{\mathrm{sea}},\nu_X)
 \right\|^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d45375d6521cb67f)
+[View →](../../../../../equation-mapping.html#corpus-equation-d45375d6521cb67f)
 
 Here $r_X$ is the residual vector for observable family $X$, $\nu_X$ records nuisance and calibration variables, $C_X$ is the covariance model, and $\Pi_X$ projects the shared Noether sea state record into the variables consumed by that observable family. A dark-energy interpretation is promotable only if both the ordinary residuals and the cross-projection penalty can be controlled without replacing $\theta_{\mathrm{sea}}$ separately for each pipeline. The first mock validation artifact for this gate is [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md).
 
@@ -5685,7 +5685,7 @@ $$
 r_X(\Lambda,\nu_X)^T C_X^{-1}r_X(\Lambda,\nu_X)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f0a38e4631e89d81)
+[View →](../../../../../equation-mapping.html#corpus-equation-f0a38e4631e89d81)
 
 Second, an integration-constant reading treats $\Lambda$ as a branch constant fixed by the effective solution class rather than as a local material density. In comparison language this means
 
@@ -5695,7 +5695,7 @@ $$
 \Lambda_{\mathrm{int}}=\text{constant on the chosen effective branch}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3d475681b2dfb841)
+[View →](../../../../../equation-mapping.html#corpus-equation-3d475681b2dfb841)
 
 but it does not explain why that branch constant has the observed value.
 
@@ -5711,7 +5711,7 @@ $$
 \rho_{\mathrm{zf}}+\rho_{\mathrm{ew}}+\rho_{\mathrm{qcd}}+\cdots
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0c0965b360387474)
+[View →](../../../../../equation-mapping.html#corpus-equation-0c0965b360387474)
 
 This estimate is not a measurement of energy in the Euclidean void. In this chapter it is a stress test for the Noether sea coupling-selection theorem target: a viable constitutive law must explain why high-frequency internal energy is shielded from the observer-level cosmological channel while the slow binary-3 and transport sectors remain exposed.
 
@@ -5729,7 +5729,7 @@ $$
 \right],
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-22217dbba517cb43)
+[View →](../../../../../equation-mapping.html#corpus-equation-22217dbba517cb43)
 not whether every internal mode contributes equally to $\rho_{\mathrm{DE,eff}}$.
 
 This reframes the usual vacuum-catastrophe problem as a sector-exposure problem. A large internal Noether sea energy inventory may be real at the substrate level while only a small projection enters the homogeneous cosmological stress channel. In schematic form,
@@ -5746,7 +5746,7 @@ u_{\mathrm{sea}}^{\mathrm{outer}},
 \right],
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f2653d2b09afd5bc)
+[View →](../../../../../equation-mapping.html#corpus-equation-f2653d2b09afd5bc)
 where $\Pi_{\mathrm{cos}}$ is the observer-level cosmology projection. The closure burden is to derive why $\Pi_{\mathrm{cos}}$ exposes the slow stress, transport, and binary-3 response while suppressing the high-frequency internal inventory, not to deny that the suppressed inventory exists.
 
 Fourth, the native closure target is the effective constant reconstructed from a shared Noether sea state:
@@ -5760,7 +5760,7 @@ $$
 \text{on the homogeneous } w_{\mathrm{eff}}\approx -1 \text{ comparison branch}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#dark-energy-equation-of-state)
+[View →](../../../../../equation-mapping.html#dark-energy-equation-of-state)
 
 No identity is assumed among $\Lambda_{\mathrm{fit}}$, $\Lambda_{\mathrm{int}}$, $\Lambda_{\mathrm{vac}}^{\mathrm{QFT}}$, and $\Lambda_{\mathrm{eff}}^{\mathrm{sea}}$. A native dark-energy claim must instead pass a residual matching test,
 
@@ -5774,7 +5774,7 @@ $$
 X\in\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{growth}\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9fca6743415e34ac)
+[View →](../../../../../equation-mapping.html#corpus-equation-9fca6743415e34ac)
 
 with all $\Delta_X$ controlled by the same covariance and nuisance records used in $\mathcal{R}_{\mathrm{shared}}$. If SN, BAO, CMB, or growth data require different $\theta_{\mathrm{sea}}$ records, the result is only a fitted constant, not a closed Noether sea derivation.
 
@@ -5795,7 +5795,7 @@ S_{\mathrm{sea}}[\theta_{\mathrm{sea}}]
 \sum_a \mu_a Q_a[\theta_{\mathrm{sea}}]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a4d41fa045dee968)
+[View →](../../../../../equation-mapping.html#corpus-equation-a4d41fa045dee968)
 
 The closure target is stationarity of this functional under allowed Noether sea variations,
 
@@ -5809,7 +5809,7 @@ $$
 \right|_{Q_a}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-734890a3102149fd)
+[View →](../../../../../equation-mapping.html#corpus-equation-734890a3102149fd)
 
 with $\Lambda_{\mathrm{eff}}>0$ only if the same $\theta_{\mathrm{sea}}$ also passes $\mathcal{R}_{\mathrm{shared}}$. This makes small positive $\Lambda_{\mathrm{eff}}$ a constrained output of Noether sea state entropy and conserved-record selection, not a license to fit an isolated constant after the fact. If the stationary point requires changing $\theta_{\mathrm{sea}}$ separately for SN, BAO, CMB, WL, RSD, or BBN, the thermodynamic reading fails as a closure and remains only a comparison analogy.
 
@@ -5825,7 +5825,7 @@ $$
 \mathcal{S}_{m,\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b867b1c534ba7656)
+[View →](../../../../../equation-mapping.html#corpus-equation-b867b1c534ba7656)
 The dark-energy branch supplies $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, $\mathcal{S}_{\mathrm{sea}}$, and $\mathcal{S}_{\mathrm{BH}}$ as Noether sea state and recycling variables. It does not automatically supply $\mathcal{S}_{m,\mathrm{eff}}$. A proposed conversion from dark-energy-like stress into matter must therefore close the provenance residual
 $$
 \mathcal{R}_{\mathrm{src}}
@@ -5841,7 +5841,7 @@ S(T);
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1178a0d8bfca72f9)
+[View →](../../../../../equation-mapping.html#corpus-equation-1178a0d8bfca72f9)
 where $\Pi_m$ projects the absolute assembly, reaction, recycling, and Noether sea histories into the effective matter source. The residual must vanish within tolerance before a constant-density or matter-creation-like interpretation is promoted. This is the safe lesson from failed steady-state models: conservation can be preserved only by an explicit source channel, not by assigning unexplained energy to the container.
 
 The same discipline applies to comparison models that obtain acceleration through negative effective mass, phase-transition vacuum energy, time-varying $\Lambda_{\mathrm{eff}}(t_{\mathrm{eff}})$, or Hubble-age pressure on $\Lambda$. These are useful as branch-role stress tests, not as imported ontology. Let the comparison branch declare
@@ -5852,7 +5852,7 @@ $$
 \{\mathrm{negative\ effective\ fluid},\mathrm{phase\text{-}transition\ vacuum\ comparison},\mathrm{time\text{-}varying\ }\Lambda,\mathrm{Hubble\text{-}age\ pressure}\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-76919b8e13faf11d)
+[View →](../../../../../equation-mapping.html#corpus-equation-76919b8e13faf11d)
 
 For that branch, the promoted Noether sea account must keep the effective stress, matter source, and observer-level constant separate:
 
@@ -5878,7 +5878,7 @@ p_{\mathrm{sea}} \\
 \right\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eafd116dfe490285)
+[View →](../../../../../equation-mapping.html#corpus-equation-eafd116dfe490285)
 
 The closure condition is $\mathcal{R}_{\mathrm{role}}\to 0$ without changing $\theta_{\mathrm{sea}}$ between the distance, age, growth, and source ledgers. A negative sign in an effective fluid may be retained only as a sign in the comparison stress tensor; it does not license negative masses as native assemblies. A phase-transition or vacuum-energy comparison may constrain $\dot{\Lambda}_{\mathrm{eff}}$ or the shielding law; it does not make $\Lambda_{\mathrm{eff}}(t_{\mathrm{eff}})$ fundamental. A Hubble-age repair may motivate a branch constant; it does not supply $\mathcal{S}_{m,\mathrm{eff}}$. This protects the Noether sea derivation from smuggling negative masses, matter creation, or variable $\Lambda$ into $\mathbb{A}\mathbb{A}\mathbb{A}$ as doctrine.
 
@@ -5891,7 +5891,7 @@ $$
 \mathrm{sign}\!\left(\Pi_{\mathrm{cos}}\mathcal{L}_{\mathrm{sea}}\right),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c4078a7ea47a6abe)
+[View →](../../../../../equation-mapping.html#corpus-equation-c4078a7ea47a6abe)
 not to a new negative-energy assembly. A dark-energy branch may expose shielded energy with a negative-pressure readout, or route energy between matter, radiation, black-hole recycling, and Noether sea tension sectors, but the event ledger must still close with positive native inventories and declared transfer signs.
 
 ### Effective Friedmann Framework
@@ -5904,7 +5904,7 @@ $$
 H^2(z) = \frac{8\pi G_{\mathrm{eff}}}{3}\bigl[\rho_r(z) + \rho_m(z) + \rho_{\mathrm{DE,eff}}(z)\bigr]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9790ce7ac7cd0254)
+[View →](../../../../../equation-mapping.html#corpus-equation-9790ce7ac7cd0254)
 
 where $\rho_r$, $\rho_m$, and $\rho_{\mathrm{DE,eff}}$ are the effective energy densities of radiation-mode assemblies, matter assemblies (baryonic + neutral dark assemblies), and the Noether sea baseline/tension term respectively. In the standard limit, $G_{\mathrm{eff}} \to G_N$ and $\rho_{\mathrm{DE,eff}} \to \rho_\Lambda = \text{const}$, recovering $\Lambda\mathrm{CDM}$.
 
@@ -5916,7 +5916,7 @@ a_{\mathrm{eff}}(t_{\mathrm{eff}})
 \exp(H_{\mathrm{eff}}t_{\mathrm{eff}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f58ed95a71853ff8)
+[View →](../../../../../equation-mapping.html#corpus-equation-f58ed95a71853ff8)
 
 This is the clean comparison reason that a constant density produces accelerated expansion. The negative-pressure statement is mathematically equivalent in the standard acceleration equation, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it should not be translated into a literal force that pushes on the Euclidean void.
 
@@ -5926,7 +5926,7 @@ $$
 \frac{d\rho_{\mathrm{DE,eff}}}{dt_{\mathrm{eff}}} + 3H_{\mathrm{eff}}(1 + w_{\mathrm{eff}})\,\rho_{\mathrm{DE,eff}} = \mathcal{S}_{\mathrm{relax}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-62bf4728333bdaae)
+[View →](../../../../../equation-mapping.html#corpus-equation-62bf4728333bdaae)
 
 where $w_{\mathrm{eff}} = p_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$ and $\mathcal{S}_{\mathrm{relax}}$ is a source term encoding energy exchange between the dark-energy sector and other components during medium relaxation. In the $\Lambda\mathrm{CDM}$ limit, $w_{\mathrm{eff}} = -1$ and $\mathcal{S}_{\mathrm{relax}} = 0$.
 
@@ -5938,7 +5938,7 @@ $$
 w = \frac{p}{\rho}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b976c25fbf98ae4b)
+[View →](../../../../../equation-mapping.html#corpus-equation-b976c25fbf98ae4b)
 
 is treated as an emergent summary of the Noether sea state, not as a fundamental ontological quantity. In lowest-order fits, $w \approx -1$ is admissible as an effective description while the underlying mechanism remains medium-based. Time variation can be parameterized in the standard $w_0$–$w_a$ form:
 
@@ -5946,7 +5946,7 @@ $$
 w(a) = w_0 + w_a(1-a)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-558db0f2184488c8)
+[View →](../../../../../equation-mapping.html#corpus-equation-558db0f2184488c8)
 
 with $a = 1/(1+z)$ the effective scale factor (defined operationally through the redshift of photon-mode assemblies).
 
@@ -5958,7 +5958,7 @@ $$
 a^{-3(1+w)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b7d81363109c13e6)
+[View →](../../../../../equation-mapping.html#corpus-equation-b7d81363109c13e6)
 
 This compact scaling keeps the phenomenology legible. If $w=-1$, the fitted density is constant. If $w > -1$, it fades as the observer-level scale variable increases. If $w < -1$, the fitted density grows. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this last case is not promoted to a literal negative-kinetic-energy component. It is first a warning that the fit may be absorbing a source term, projection drift, scalar-tensor leakage, or an incomplete data-product model.
 
@@ -5971,7 +5971,7 @@ $$
 -3\bigl(1+w_{\mathrm{obs}}(a)\bigr)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cf9e527cd4ca3cf7)
+[View →](../../../../../equation-mapping.html#corpus-equation-cf9e527cd4ca3cf7)
 In a Noether sea state model, the same fitted trend can absorb at least three distinct effects: the native pressure ratio $w_{\mathrm{source}}(a)$, an actual source or transfer term $\mathcal{S}_{\mathrm{relax}}$, and drift in the observer-level map from Noether sea variables to effective dark-energy density. If
 $$
 \rho_{\mathrm{DE,fit}}(a)
@@ -5979,7 +5979,7 @@ $$
 \Pi_{\mathrm{DE}}(a)\,\rho_{\mathrm{DE,eff}}(a)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b7c2ae39395a1ef3)
+[View →](../../../../../equation-mapping.html#corpus-equation-b7c2ae39395a1ef3)
 with $\Pi_{\mathrm{DE}}$ denoting the declared projection from the shared medium record into the fitted dark-energy density, then the accounting identity is
 $$
 1+w_{\mathrm{obs}}(a)
@@ -5992,7 +5992,7 @@ $$
 \frac{d\ln\Pi_{\mathrm{DE}}}{d\ln a}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-604790db6ea2d71c)
+[View →](../../../../../equation-mapping.html#corpus-equation-604790db6ea2d71c)
 This split prevents a time-varying $w(a)$ preference from being promoted too quickly. The observable to preserve is the distance, lensing, growth, and covariance record that produced $w_{\mathrm{obs}}(a)$; the interpretation remains open until the same $\theta_{\mathrm{sea}}$ derives the source term and the projection drift without changing records between pipelines.
 
 #### de Sitter and Phantom-$w$ Comparison
@@ -6016,7 +6016,7 @@ d_H\!\left(H_{\mathrm{eff}}^{\theta},H_{\mathrm{obs}}\right)
 +d_{\mathrm{obs}}\!\left(\mathcal{B}_{\mathrm{SN/BAO/CMB/growth}}^{\theta},\mathcal{B}_{\mathrm{obs}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a622a70c8174e152)
+[View →](../../../../../equation-mapping.html#corpus-equation-a622a70c8174e152)
 The distances here are comparison metrics fixed by the data product being tested, not new ontological variables. The residual passes only when the same $\theta_{\mathrm{sea}}$ accounts for the effective Hubble history, equation-of-state fit, curvature bound, horizon-access entropy, and SN/BAO/CMB/growth records. This keeps de Sitter language as an observer-level benchmark rather than a boundary theory imported into the Euclidean void.
 
 A fitted value $w_{\mathrm{eff}} < -1$ requires special care. In standard perfect-fluid language, persistent phantom behavior threatens the energy-condition and causality assumptions that also protect ordinary horizon and wormhole results. In this framework, such a fit is admissible only if it is an effective transfer signature, for example energy being routed between matter, radiation, black-hole recycling channels, and the slowly varying binary-3 tension sector. It should not be read as permission for acausal propagation or unaccounted energy creation.
@@ -6033,7 +6033,7 @@ $$
 \rho_{\mathrm{vac}}^{\mathrm{QFT}} \sim \frac{\Lambda_{\mathrm{UV}}^4}{\hbar^3 c^5}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-08541699b20151cd)
+[View →](../../../../../equation-mapping.html#corpus-equation-08541699b20151cd)
 
 which for $\Lambda_{\mathrm{UV}} = M_{\mathrm{Pl}}c$ exceeds the observed $\rho_\Lambda$ by $\sim 120$ orders of magnitude. This is the cosmological-constant problem.
 
@@ -6057,7 +6057,7 @@ $$
 \ll 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b52d657792412e5c)
+[View →](../../../../../equation-mapping.html#corpus-equation-b52d657792412e5c)
 
 while also retaining an exposed slow sector,
 
@@ -6071,7 +6071,7 @@ $$
 O(\epsilon_{\mathrm{shield}}\rho_{\mathrm{locked}}^{\mathrm{inner+middle}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-80f837df59398b62)
+[View →](../../../../../equation-mapping.html#corpus-equation-80f837df59398b62)
 
 This separates two claims that are often conflated. The first claim is a shielding claim: large internal energies do not automatically enter the effective cosmological constant. The second is an exposure claim: binary-3 stress, transport history, and validated recycling channels can still contribute to the effective dark-energy sector. Both must be derived from one Noether sea response law; otherwise the proposal merely moves the cosmological-constant fine-tuning into an unaccounted coupling rule.
 
@@ -6097,7 +6097,7 @@ $$
 d_L(z) = (1+z)\int_0^z \frac{c_0\,dz'}{H(z')}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-48423898e2e6f65b)
+[View →](../../../../../equation-mapping.html#corpus-equation-48423898e2e6f65b)
 
 where $c_0$ is the asymptotic observer-channel speed used in the effective comparison layer. This serves as the effective expansion-history map used by observers.
 
@@ -6121,7 +6121,7 @@ $$
 \partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_{\gamma,\mathrm{local}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0d940d12c0cec7cb)
+[View →](../../../../../equation-mapping.html#corpus-equation-0d940d12c0cec7cb)
 
 where
 
@@ -6135,7 +6135,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a1c6cb61b1bec984)
+[View →](../../../../../equation-mapping.html#corpus-equation-a1c6cb61b1bec984)
 
 The matrix $\mathbf{J}_{\mathrm{DE}}$ is a constitutive derivative of the Noether sea response law, not a new dark-energy fluid. The residual term $\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_{\gamma,\mathrm{local}}$ records local environment, source-neighborhood, and calibration effects that must be separated before attributing a redshift-transfer slope to the dark-energy sector.
 
@@ -6157,7 +6157,7 @@ a_\chi^X & a_n^X & a_R^X
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-92c6c406b9ee0e5c)
+[View →](../../../../../equation-mapping.html#corpus-equation-92c6c406b9ee0e5c)
 
 This is a derivation target. It says that $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, and recycling source terms become observable in redshift only by changing the Noether sea delay, density, or braid-scale state sampled by the photon path. If the same $\mathbf{J}_{\mathrm{DE}}$ cannot also support CMB, BAO, supernova, and growth projections, then the dark-energy handoff has not closed.
 
@@ -6183,7 +6183,7 @@ q_{\mathrm{BH}}
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-905347cb5964d6d4)
+[View →](../../../../../equation-mapping.html#corpus-equation-905347cb5964d6d4)
 
 Each entry has dimensions of inverse time. The matrix $\mathbf{J}_{\mathrm{DE}}$ is therefore dimensionless in the minimal first-order closure, because it maps rate variables in $\mathbf{q}_{\mathrm{DE}}$ to the rate vector $\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_\gamma$. For a clean line family $X$, define the transport-facing coefficient row
 
@@ -6200,7 +6200,7 @@ a_\chi^X & a_n^X & a_R^X
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a06656ce2a663139)
+[View →](../../../../../equation-mapping.html#corpus-equation-a06656ce2a663139)
 
 Then the dark-energy contribution to the corrected propagation slope is
 
@@ -6211,7 +6211,7 @@ $$
 \boldsymbol{\lambda}_X^T\mathbf{q}_{\mathrm{DE}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9c45af8adba110c2)
+[View →](../../../../../equation-mapping.html#corpus-equation-9c45af8adba110c2)
 
 The effective continuity equation already constrains $q_\rho$. In the homogeneous comparison branch,
 
@@ -6223,7 +6223,7 @@ q_\rho
 +q_{\mathrm{BH}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4260e0209af74890)
+[View →](../../../../../equation-mapping.html#corpus-equation-4260e0209af74890)
 
 where $H_{\mathrm{eff}}$ is the redshift-transfer slope inferred from the same propagation record, not expansion of the Euclidean void. Combining this identity with $H_{\mathrm{eff},X}^{\mathrm{DE}}=c_0\alpha_{\mathrm{prop},X}^{\mathrm{DE}}$ gives the first closed coefficient equation:
 
@@ -6242,7 +6242,7 @@ H_{\mathrm{eff},X}^{\mathrm{DE}}
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-60312e97ff43b7fa)
+[View →](../../../../../equation-mapping.html#corpus-equation-60312e97ff43b7fa)
 
 This equation is not yet a measured value of $H_0$. It is the first coefficient closure target for interpreting a Hubble-like slope inside $\mathbb{A}\mathbb{A}\mathbb{A}$: the slope comes from a Noether sea relaxation rate, a line-family transport row, and source terms, with no stretching of the Euclidean void.
 
@@ -6261,7 +6261,7 @@ $$
 E_N=h\nu_N
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-46b09a7aa4f69791)
+[View →](../../../../../equation-mapping.html#corpus-equation-46b09a7aa4f69791)
 
 Individual Noether braids may change branch through $h$-scale ledger steps. Each accepted step forces a branchwise retuning of cadence and scale variables, not a simple rise in thermodynamic temperature, but a large population can still coarse-grain into a smooth medium response. For the dark-energy module, the relevant object is not a single transition. It is a distribution $f_N(\nu,\mathbf X,T)$ and its cadence-space current:
 
@@ -6275,7 +6275,7 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-410a6d093995be9b)
+[View →](../../../../../equation-mapping.html#corpus-equation-410a6d093995be9b)
 
 This packet gives a more microscopic reading of $\mathcal{S}_{\mathrm{sea}}$ and $\mathcal{S}_{\mathrm{BH}}$. The term $R_{\mathrm{eq}}[f_N]$ is local neighbor equilibration in the Noether sea, $S_{\mathrm{BH}}$ is loading from strong-field recycling regions, and $S_{\mathrm{GW}}$ is the bounded perturbation from gravitational-wave disturbances. The projection into the redshift handoff should be a constitutive map
 
@@ -6286,7 +6286,7 @@ $$
 +\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_{\gamma,\mathrm{local}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1dee7c4fec4e2815)
+[View →](../../../../../equation-mapping.html#corpus-equation-1dee7c4fec4e2815)
 
 This strengthens the expansion claim and limits it at the same time. If $J_\nu$ vanishes in the homogeneous coarse-grained limit, or if the source and equilibration terms cancel with no signed large-scale current, the equilibrium hypothesis does not generate a dark-energy-like redshift-transfer slope. If a signed current remains, it may contribute to $H_{\mathrm{eff},X}^{\mathrm{DE}}$ only through the same $\boldsymbol{\theta}_\gamma$ variables already used for redshift, CMB, BAO, lensing, and growth. It is therefore a candidate mechanism for the effective expansion history, not a separate expansion of the Euclidean void and not a standalone photon-energy loss channel.
 
@@ -6322,7 +6322,7 @@ $$
 M_{\mathrm{BH}}(a) \propto a^{K}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6cab637c4a387ef9)
+[View →](../../../../../equation-mapping.html#corpus-equation-6cab637c4a387ef9)
 
 where $a$ is the effective scale factor and $K$ measures the strength of the proposed cosmological coupling. In the source material motivating this scaffold, the interesting regime is the one in which $K$ is appreciably positive rather than consistent with zero after ordinary astrophysical channels are removed.
 
@@ -6336,7 +6336,7 @@ a^{-3}a^K
 a^{K-3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-008c062b49d3dfed)
+[View →](../../../../../equation-mapping.html#corpus-equation-008c062b49d3dfed)
 
 Comparing this with the observer-level continuity relation $d\ln\rho/d\ln a=-3(1+w_{\mathrm{eff}})$ gives the effective comparison
 
@@ -6346,7 +6346,7 @@ w_{\mathrm{BH,eff}}
 -\frac{K}{3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6e54254a60526cd9)
+[View →](../../../../../equation-mapping.html#corpus-equation-6e54254a60526cd9)
 
 Thus $K\approx3$ is the special case in which the population contribution looks approximately constant at the effective level. This is not a native proof of dark energy. It is a compact recovery target: a Noether sea source history that claims an SMBH-correlated channel must explain why the inferred population behaves near this scaling, or why the observational reconstruction only appears to do so.
 
@@ -6376,7 +6376,7 @@ u_{\mathrm{sea,relax}}(z)
 \rho_{\mathrm{BH,coup}}(z)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3024de13e0b2dc99)
+[View →](../../../../../equation-mapping.html#corpus-equation-3024de13e0b2dc99)
 
 The first term is the default Noether sea relaxation channel developed above. The second term is reserved for any statistically supported black-hole population effect that cannot be re-expressed as ordinary heating, accretion history, merger history, or selection bias.
 
@@ -6390,7 +6390,7 @@ $$
 \mathcal{S}_{\mathrm{BH}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cc21e187a0a6ff77)
+[View →](../../../../../equation-mapping.html#corpus-equation-cc21e187a0a6ff77)
 
 where $\mathcal{S}_{\mathrm{BH}}$ captures the net transfer from SMBH recycling zones into the slowly varying binary-3 tension sector. The sign and magnitude of $\mathcal{S}_{\mathrm{BH}}$ are empirical questions, not inputs fixed by ontology alone.
 
@@ -6408,7 +6408,7 @@ $$
 \mathcal{F}\!\left[\mathcal{H}_{\mathrm{form}},\mathcal{H}_{\mathrm{feed}},\mathcal{H}_{\mathrm{release}}\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bccd7d7e579f7ce2)
+[View →](../../../../../equation-mapping.html#corpus-equation-bccd7d7e579f7ce2)
 
 where $\mathcal{H}_{\mathrm{form}}$ denotes the compact-object formation history, $\mathcal{H}_{\mathrm{feed}}$ the inflow history into recycling sites, and $\mathcal{H}_{\mathrm{release}}$ the history of outward channels that load the Noether sea. The point of this notation is conceptual rather than final: any viable black-hole contribution must be history-dependent, not merely appended as a static late-time correction.
 
@@ -6508,7 +6508,7 @@ $$
 \ddot{\delta}_{\mathrm{std}} + 2H_{\mathrm{std}}(t_{\mathrm{std}})\,\dot{\delta}_{\mathrm{std}} - 4\pi G_{\text{eff,std}}(t_{\mathrm{std}}, k)\,\bar{\rho}_{m,\mathrm{std}}(t_{\mathrm{std}})\,\delta_{\mathrm{std}} = 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2700ac5bdc03bb3c)
+[View →](../../../../../equation-mapping.html#corpus-equation-2700ac5bdc03bb3c)
 The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation is
 $$
 \frac{d^2\delta_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}
@@ -6517,7 +6517,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-29408ed41d012c05)
+[View →](../../../../../equation-mapping.html#corpus-equation-29408ed41d012c05)
 
 Each symbol carries a specific medium-level meaning:
 
@@ -6549,7 +6549,7 @@ $$
 D(a) \propto H(a) \int_0^a \frac{da'}{[a' H(a')]^3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6654c50f206f6ee3)
+[View →](../../../../../equation-mapping.html#corpus-equation-6654c50f206f6ee3)
 
 Within $\mathbb{A}\mathbb{A}\mathbb{A}$ the same integral structure holds in the observer chart, with $H_{\mathrm{eff}}(a_{\mathrm{eff}})$ and $G_{\text{eff}}$ determined by the Noether sea equation of state. The growth rate $f(a_{\mathrm{eff}}) = d\ln D / d\ln a_{\mathrm{eff}}$ is a direct observable (via redshift-space distortions) and provides a clean test:
 
@@ -6567,7 +6567,7 @@ T(k)\sim1\ \text{for }k\ll k_{\mathrm{eq}},
 T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-61c91d955cd3ead3)
+[View →](../../../../../equation-mapping.html#corpus-equation-61c91d955cd3ead3)
 up to the declared baryon acoustic, neutrino/free-streaming, and nonlinear corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an import of metric expansion ontology. It is the observer-level shape test that the same Noether sea state history must pass while computing $G_{\text{eff}}(a,k)$, CMB lensing, $f\sigma_8$, and high-redshift halo statistics.
 
 #### Component Transfer and Free-Streaming Interface
@@ -6584,7 +6584,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9c7129902b2d41dd)
+[View →](../../../../../equation-mapping.html#corpus-equation-9c7129902b2d41dd)
 where $\delta_x$ is the density contrast, $\theta_x$ is the velocity-divergence variable, $\sigma_x$ is the anisotropic-stress variable, and $\delta p_x$ is the pressure perturbation. A transfer-function branch is then a map
 $$
 \mathbf{y}_x^\theta(k,z)
@@ -6597,7 +6597,7 @@ P_{xy}^\theta(k,z)
 T_x^\theta(k,z)T_y^\theta(k,z)P_{\mathrm{seed}}^\theta(k)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2b281c6178c9dc12)
+[View →](../../../../../equation-mapping.html#corpus-equation-2b281c6178c9dc12)
 with the same $\theta_{\mathrm{sea}}$ used for CMB lensing, BAO, BBN, and low-redshift growth. In an adiabatic comparison packet the initial component contrasts must satisfy
 $$
 \frac{\delta\rho_x^\theta}
@@ -6615,7 +6615,7 @@ $$
 \frac{3}{4}\delta_\gamma^\theta
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4de833ac52f80e51)
+[View →](../../../../../equation-mapping.html#corpus-equation-4de833ac52f80e51)
 unless the branch explicitly declares an isocurvature source and carries it through the CMB, BBN, and matter-power residuals.
 
 Neutrino and warm-dark-sector signals sharpen the small-scale transfer test. For ordinary massive neutrinos,
@@ -6632,7 +6632,7 @@ f_\nu^\theta
 -8f_\nu^\theta
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5870b21b4b669e6d)
+[View →](../../../../../equation-mapping.html#corpus-equation-5870b21b4b669e6d)
 below the free-streaming scale. For a sterile-neutrino or warm neutral-assembly comparison branch, retain the production-history dependence explicitly:
 $$
 \lambda_{\mathrm{FS}}^\theta
@@ -6645,7 +6645,7 @@ $$
 \left(\frac{\langle p/T\rangle_\theta}{3.15}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f26dcb882346e448)
+[View →](../../../../../equation-mapping.html#corpus-equation-f26dcb882346e448)
 The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
 
 Cosmological neutrino-mass bounds also depend on the late matter-source accounting used by the expansion fit. A DESI-era matter-conversion comparison can relax or shift $\Sigma m_\nu$ constraints because converting part of the late matter budget into an effective dark-energy component changes the nonrelativistic matter inventory sampled by BAO, CMB, and growth. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the lesson is not that the neutrino branch has changed ontology. The lesson is that any bound on $\Sigma m_\nu^\theta$ must be read together with the same late-time source term, baryon-accounting record, and Noether sea transport history used for expansion and structure formation.
@@ -6660,7 +6660,7 @@ $$
 c_{s,\mathrm{lin}}^2\ll1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bf6fe768596d32b3)
+[View →](../../../../../equation-mapping.html#corpus-equation-bf6fe768596d32b3)
 
 That success does not by itself solve the nonlinear missing-mass problem in galaxies or clusters. Conversely, a MOND-like or medium-compliance law can fit low-acceleration rotation curves without automatically recovering the CMB peak structure or the linear transfer function. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure requirement is therefore a shared-record split:
 
@@ -6673,7 +6673,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-04fe49326bb84f3b)
+[View →](../../../../../equation-mapping.html#corpus-equation-04fe49326bb84f3b)
 
 where $\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}}$ supplies $P(k,z)$, $D(z,k)$, $C_L^{\phi\phi}$, and $f\sigma_8$, while $\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}$ supplies the radial-acceleration relation, the local missing-baryon benchmark, cluster hydrostatic profiles, and rotation-curve residuals. A compact split residual is
 
@@ -6691,7 +6691,7 @@ d_{\mathrm{shared}}\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e048e84e03be5bc6)
+[View →](../../../../../equation-mapping.html#corpus-equation-e048e84e03be5bc6)
 
 The last term is the important one. It prevents the model from behaving like CDM in the linear packet and like a separate modified-gravity theory in the nonlinear packet unless both projections come from the same Noether sea state and neutral-assembly state. This also protects the $S_8$ discussion: late-time growth suppression may be allowed, but it must not erase the linear-regime matter loading that fixes the CMB and equality-scale transfer function.
 
@@ -6744,7 +6744,7 @@ $$
 M_X = f_bM_{200} - M_b
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1bd44cf36c3eac2f)
+[View →](../../../../../equation-mapping.html#corpus-equation-1bd44cf36c3eac2f)
 
 into one low-redshift readout. The important signal is not only that $m_b=M_b/M_{200}$ falls below $f_b$ in lower-mass systems. It is that the trend is smooth, low-scatter, and weakly dependent on whether the observed baryons are stars or gas.
 
@@ -6756,7 +6756,7 @@ D_{\mathrm{local\ baryon}}^{\mathrm{obs}}(E)
 \{M_b,V_f,M_{200},m_b,M_X,\Sigma_{\mathrm{gas/lens}}\}_E,
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d16516cecaf232ee)
+[View →](../../../../../equation-mapping.html#corpus-equation-d16516cecaf232ee)
 
 where $E$ labels the environment class and $\Sigma_{\mathrm{gas/lens}}$ records the gas and lensing reconstruction used for groups and clusters. A branch cannot explain this packet by feedback, circumgalactic retention, ejection to the intergalactic medium, or a velocity-factor recalibration unless the same source-history record also recovers the baryonic Tully-Fisher relation, group weak-lensing velocities, rich-cluster baryon closure, and cluster-offset behavior. The group-to-X-ray-cluster transition is therefore a high-value structure-formation band: it decides where Noether sea medium response, observed hot gas, and collisionless neutral-assembly loading must separate or couple.
 
@@ -6793,7 +6793,7 @@ r^{-n_\theta},
 W_{\mathrm{kSZ}}=[30,230]\,\mathrm{Mpc}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4c5aaaf80578ac1f)
+[View →](../../../../../equation-mapping.html#corpus-equation-4c5aaaf80578ac1f)
 The structure-formation residual is then
 $$
 \mathcal{R}_{\mathrm{kSZ}\text{-}force}(\theta)
@@ -6809,7 +6809,7 @@ d_{\mathrm{shared}}\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-45ff932993554856)
+[View →](../../../../../equation-mapping.html#corpus-equation-45ff932993554856)
 This residual protects the level distinction. A Noether sea response may still modify galaxy-scale low-acceleration behavior, but it cannot become a free large-scale modified-gravity law. On the ACT/SDSS halo-pair window the same $\theta_{\mathrm{sea}}$ must recover an approximately inverse-square effective pull while preserving CMB lensing, weak lensing, redshift-space distortions, and the matter power spectrum.
 
 The Lyman-$\alpha$ forest supplies a small-scale transfer gate on the same branch. Let $P_F^\theta(k,z)$ be the transmitted-flux power spectrum projected from the matter, thermal, ionization, and photon-transfer record. Then
@@ -6825,7 +6825,7 @@ P_F^\theta(k,z)-P_F^{\mathrm{obs}}(k,z)
 \right\|^2.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ef499dbcee5e6c46)
+[View →](../../../../../equation-mapping.html#corpus-equation-ef499dbcee5e6c46)
 This is an observer-level recovery target, not a direct matter-power measurement. A branch fails if it fits the CMB optical depth with one ionization history while changing the thermal or small-scale growth record for the forest.
 
 Pre-BBN comparison branches enter structure formation only through the transfer record they leave behind. For any branch $X$ retained by [Inflation Model](../../../../markdown/aaa/cosmology/inflation-model.md#pre-bbn-comparison-gate) and [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md#pre-bbn-handoff-gate), the growth-side observable is
@@ -6837,7 +6837,7 @@ P(k,z\mid \theta_{\mathrm{sea}},\theta_X)
 P(k,z\mid \theta_{\mathrm{sea}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-54d06df6116df70e)
+[View →](../../../../../equation-mapping.html#corpus-equation-54d06df6116df70e)
 This quantity must be evaluated with the same $\theta_{\mathrm{sea}}$ used for BBN, CMB, cluster offsets, weak lensing, and redshift-space distortions. If a weakly coupled component is invisible to light elements only by acquiring a free-streaming length, abundance, or interaction history that later changes independently in $P(k,z)$, $C_L^{\phi\phi}$, or halo statistics, the comparison branch fails the shared-record gate.
 
 #### High-Redshift Structure
@@ -6870,7 +6870,7 @@ Z^\theta[
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3e148cfbdad91ebb)
+[View →](../../../../../equation-mapping.html#corpus-equation-3e148cfbdad91ebb)
 Here the first term tests whether the shared source history can grow the compact object, while the second tests whether the same source-to-receiver and selection records support the reported redshift. A branch fails this row if quasar growth is repaired by changing the age, redshift-transfer, or Noether sea state independently of the growth, CMB, lensing, and source-history records.
 
 Little-red-dot spectra add the obscured-accretion side of the same early-growth test. In a system such as GLIMPSE-17775, the compact red source is not interpreted from brightness alone: lensing reconstruction, deep JWST spectroscopy, line-profile modeling, host decomposition, gas density, optical depth, fluorescence, absorption, and X-ray or radio suppression all help determine whether the object is a rapidly accreting black hole hidden inside a dense gas envelope. If electron scattering and radiative transfer set much of the broad-line profile, then the inferred black-hole mass and Eddington ratio are coupled to gas-state modeling rather than to virial motion alone. The structure-formation branch must therefore explain the compact source, its host contribution, and its line-formation environment with one source-history record instead of treating little red dots as either overmassive galaxies or ordinary exposed quasars.
@@ -6911,7 +6911,7 @@ Y_{\mathrm{gal/AGN}}^{\mathrm{obs}},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7e000792d8d28181)
+[View →](../../../../../equation-mapping.html#corpus-equation-7e000792d8d28181)
 where $Y_{\mathrm{gal/AGN}}^{\mathrm{obs}}$ denotes the chosen galaxy or AGN observable packet and $\Pi_{\mathrm{gal/AGN}}$ projects the shared history model onto the observables being compared. The same $\theta_{\mathrm{sea}}$ must also supply the growth, redshift, CMB, lensing, and dark-sector rows. If jet morphology or host evolution can be fit only by changing the Noether sea state independently of the cosmology packet, the branch is a local fit rather than a shared history.
 
 ---
@@ -6940,7 +6940,7 @@ $$
 G_{\text{eff}}(a, k) = G_N \bigl[1 + \mu(a, k)\bigr]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-858a7b7670c0d31a)
+[View →](../../../../../equation-mapping.html#corpus-equation-858a7b7670c0d31a)
 
 where $\mu(a, k)$ is a dimensionless modification function.
 
@@ -6951,7 +6951,7 @@ $$
 \theta \equiv \nabla\cdot\mathbf{u}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-14c64e3d2934eb29)
+[View →](../../../../../equation-mapping.html#corpus-equation-14c64e3d2934eb29)
 
 Use isotropic linear constitutive response (elastic + Kelvin-Voigt damping):
 $$
@@ -6963,7 +6963,7 @@ K(a)\,\delta_{ij}\,\theta
 +2\eta(a)\!\left(\dot{u}_{ij}-\frac{1}{3}\delta_{ij}\dot{\theta}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-500a4a13cf59a017)
+[View →](../../../../../equation-mapping.html#corpus-equation-500a4a13cf59a017)
 with bulk modulus $K$, shear modulus $S$, and viscosities $(\zeta_{\text{bulk}},\eta)$. The subscript prevents confusion with the shielding factor $\zeta(A)$ used in assembly-mass closure.
 
 For scalar/longitudinal modes in Fourier space, the linear response equation is
@@ -6973,7 +6973,7 @@ $$
 g_m(a)\,\delta\rho_m(a,k,\omega)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ab273ab17ca69d13)
+[View →](../../../../../equation-mapping.html#corpus-equation-ab273ab17ca69d13)
 where
 $$
 M_L(a)\equiv K(a)+\frac{4}{3}S(a),
@@ -6981,7 +6981,7 @@ M_L(a)\equiv K(a)+\frac{4}{3}S(a),
 \Gamma_L(a)\equiv \zeta_{\text{bulk}}(a)+\frac{4}{3}\eta(a)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6624ca6af422330f)
+[View →](../../../../../equation-mapping.html#corpus-equation-6624ca6af422330f)
 and $m_L(a)$ is the finite-range restoring scale (equivalently $k_\ast(a)^2=m_L^2/M_L$).
 
 Use the Fourier convention $e^{-i\omega t_{\mathrm{eff}}}$. For a stable static response, $M_Lk^2+m_L^2>0$. Under the displacement convention above, an overdensity $\delta\rho_m>0$ produces compression when $\theta<0$, so the positive-response branch requires $g_m<0$. Then $\delta u_{\mathrm{sea}}=-\bar u_{\mathrm{sea}}\theta>0$ and $\mu_{\mathrm{sea}}>0$, enhancing $G_{\mathrm{eff}}$. Increasing $M_L$ or $m_L$ reduces the response magnitude but cannot reverse its sign.
@@ -6995,7 +6995,7 @@ $$
 \mu_{\text{sea}}(a,k,\omega)\,\delta\rho_m(a,k,\omega)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-19ee86226b43db38)
+[View →](../../../../../equation-mapping.html#corpus-equation-19ee86226b43db38)
 with susceptibility
 $$
 \mu_{\text{sea}}(a,k,\omega)
@@ -7004,7 +7004,7 @@ $$
 {M_L(a)k^2+m_L^2(a)-i\omega\,\Gamma_L(a)k^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f75dcf676aa58c1d)
+[View →](../../../../../equation-mapping.html#corpus-equation-f75dcf676aa58c1d)
 
 Insert this into the linear Poisson source:
 $$
@@ -7013,7 +7013,7 @@ $$
 4\pi G_N a^2\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr]\delta\rho_m
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-db5c7368c777da5e)
+[View →](../../../../../equation-mapping.html#corpus-equation-db5c7368c777da5e)
 Therefore
 $$
 G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr],
@@ -7021,7 +7021,7 @@ G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr],
 \mu(a,k,\omega)=\mu_{\text{sea}}(a,k,\omega)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f2d3519b7d633fc7)
+[View →](../../../../../equation-mapping.html#corpus-equation-f2d3519b7d633fc7)
 
 For growth calculations use the quasi-static branch $\omega\simeq H(a)f(a)$ and the real part:
 $$
@@ -7031,7 +7031,7 @@ $$
 {\bigl[M_L(a)k^2+m_L^2(a)\bigr]^2+\bigl[H(a)f(a)\Gamma_L(a)k^2\bigr]^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-002befecb3fc00bd)
+[View →](../../../../../equation-mapping.html#corpus-equation-002befecb3fc00bd)
 
 In the strictly quasi-static limit ($Hf\,\Gamma_Lk^2\ll M_Lk^2+m_L^2$), this reduces to the closed Yukawa-like form
 $$
@@ -7043,14 +7043,14 @@ $$
 \frac{\mu_0(a)}{1+\bigl(k/k_\ast(a)\bigr)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3dc324e5bcd8ddaf)
+[View →](../../../../../equation-mapping.html#corpus-equation-3dc324e5bcd8ddaf)
 $$
 \mu_0(a)\equiv-\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}{m_L^2(a)},
 \qquad
 k_\ast(a)^2\equiv\frac{m_L^2(a)}{M_L(a)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9eafb824ea09421e)
+[View →](../../../../../equation-mapping.html#corpus-equation-9eafb824ea09421e)
 
 Setting $g_m=0$ (or equivalently $\mu=0$) recovers standard GR growth. Current data constrain $|\mu| \lesssim 0.1$ (Planck modified-gravity + DES/KiDS-class weak-lensing constraints) on the scales probed by galaxy surveys and CMB lensing.
 
@@ -7063,13 +7063,13 @@ G_N\left[1+\mu(a,k)S_{\mathrm{loc}}(\mathcal{I}_{\mathrm{loc}})\right],
 0\leq S_{\mathrm{loc}}\leq 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-059cf9517a79ca91)
+[View →](../../../../../equation-mapping.html#corpus-equation-059cf9517a79ca91)
 For every validated solar-system, binary-pulsar, lensing, and gravitational-wave record $r$, the recovery requirement is
 $$
 \left|\mu(a_r,k_r)S_{\mathrm{loc}}(\mathcal{I}_r)\right|<\epsilon_r
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f7d6c88b62143c87)
+[View →](../../../../../equation-mapping.html#corpus-equation-f7d6c88b62143c87)
 Cosmological deviations are viable only when the same coefficient record also fits BAO, CMB lensing, supernova distances, and $f\sigma_8$ growth without retuning $S_{\mathrm{loc}}$ by observational channel.
 
 Late-time growth suppression requires $\mu<0$ on the relevant scales. With the conventions and stable denominator above, that sign requires $g_m>0$, which is opposite to the positive-density compression branch, or an additional constitutive term that changes sign with scale or epoch. Cooling or increased stiffness alone reduces $|\mu|$; it does not produce negative $\mu$. Deriving the required sign change from one stable Noether sea constitutive law is therefore an explicit closure burden for any proposed $S_8$ explanation.
@@ -7135,7 +7135,7 @@ c_0\,
 \partial_D Z_{\mathrm{prop},X}(D,\hat{\mathbf{k}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e55662180c01fb8b)
+[View →](../../../../../equation-mapping.html#corpus-equation-e55662180c01fb8b)
 
 after endpoint cadence, source-branch changes, and launch geometry are removed, where $D$ is Euclidean path distance and $R$ remains reserved for the reception event. A net positive $\partial_D Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
 
@@ -7147,7 +7147,7 @@ H_{\mathrm{eff},X}(D,\hat{\mathbf{k}})
 c_0\,\alpha_{D,X}(\hat{\mathbf{k}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bb0591aa65cf2fba)
+[View →](../../../../../equation-mapping.html#corpus-equation-bb0591aa65cf2fba)
 
 with the next correction governed by the local curvature $\mathcal{K}_X(D,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether sea state record.
 
@@ -7158,7 +7158,7 @@ H_{\mathrm{eff},X}^{E}(D,\hat{\mathbf{k}})
 c_0\,\partial_D Z_{\mathrm{prop},X}^{E}(D,\hat{\mathbf{k}}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-77f839463513e38c)
+[View →](../../../../../equation-mapping.html#corpus-equation-77f839463513e38c)
 Here $E$ denotes the source, host, line-of-sight, and observer-environment class after catalogue corrections. A local ladder can be promoted to a universal $H_0$ coefficient only after the residual scatter in $H_{\mathrm{eff},X}^{E}$ is either bounded or derived from the same Noether sea density, delay, flow, and calibration record used by CMB, BAO, and growth.
 
 Gravitational-wave standard sirens add an independent distance channel, but not an ontology shortcut. A GWTC-style $H_0$ estimate combines luminosity distances inferred from calibrated strain with redshift information inferred from host association, an electromagnetic counterpart, or population features such as the mass spectrum. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is valuable because photon-ladder calibration is not the only distance route. The comparison still belongs to the same corrected transfer problem: gravitational-wave propagation, detector calibration, host or population redshift inference, photon redshift correction, and the Noether sea state must be carried together before a discrepancy is read as physical $H_0$ structure.
@@ -7175,7 +7175,7 @@ Z_{\mathrm{prop},X}
 +\ln D_v
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-806551d1c46982f5)
+[View →](../../../../../equation-mapping.html#corpus-equation-806551d1c46982f5)
 
 so that endpoint cadence, source-branch shifts, and launch motion are not folded into a single apparent $H_0$ offset. Only then should local and early-inferred transfer slopes be compared.
 
@@ -7200,7 +7200,7 @@ H_{\mathrm{eff,local}}
 H_{\mathrm{eff,early}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-50fbceb5fbf52932)
+[View →](../../../../../equation-mapping.html#corpus-equation-50fbceb5fbf52932)
 
 To address the observed direction of the $H_0$ tension, the constitutive and clock map must derive $\Delta H_{\mathrm{relax}}>0$. A branch that gives $\Delta H_{\mathrm{relax}}\le0$ fails as an explanation even if it produces environment-dependent scatter.
 
@@ -7221,7 +7221,7 @@ H_{\mathrm{chron}}^{\mathrm{obs}}(z)
 -\frac{1}{1+z}\frac{dz}{dt_{\mathrm{age}}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cc7ebc4b1fe74e78)
+[View →](../../../../../equation-mapping.html#corpus-equation-cc7ebc4b1fe74e78)
 
 The stellar-aging interval is local to the source population, but both its population-synthesis calibration and the measured redshift remain photon-mediated. Chronometers are therefore not a path-free measurement. Their value is as a cross-pipeline discriminator. For one shared record, retain
 
@@ -7235,7 +7235,7 @@ H_{\mathrm{SN}}^\theta
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-771efd562842152a)
+[View →](../../../../../equation-mapping.html#corpus-equation-771efd562842152a)
 
 and predict the pairwise residual pattern after each pipeline's source, clock, and photon-transfer terms are declared. A branch that explains only one component by changing the Noether sea history has not explained the tension.
 
@@ -7273,7 +7273,7 @@ $$
 \neq \varnothing
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-06c9a134aa9ebba0)
+[View →](../../../../../equation-mapping.html#corpus-equation-06c9a134aa9ebba0)
 without assigning separate Noether sea states to each inference pipeline. If the preferred $w(a)$ trend requires one state for distance data and another for growth, the cosmology branch has only hidden the tension.
 
 This is the local form of the shared calibration gate in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates). The sets $\mathcal{C}_{H_0}$, $\mathcal{C}_{S_8}$, $\mathcal{C}_{\mathrm{BAO/SN/CMB}}$, and $\mathcal{C}_{\mathrm{growth}}$ should be read as constraints on projections of one $\theta_{\mathrm{sea}}$, not as independent fit islands. A low distance residual paired with an incompatible growth projection is therefore not a win for the Noether sea relaxation interpretation; it is evidence that the interpretation has not yet closed.
@@ -7310,7 +7310,7 @@ $$
 +\lambda_{\mathrm{split}}\mathcal{P}_{\mathrm{proj}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-44567cb1d0a3d6fa)
+[View →](../../../../../equation-mapping.html#corpus-equation-44567cb1d0a3d6fa)
 
 Here $\mathbf b_{\mathrm{BAO}}(z_i)$ contains the reported subset of $D_M/r_d$, $D_H/r_d$, and $D_V/r_d$ for each tracer bin. The last term is not optional bookkeeping. It prevents a branch from fitting a DESI-like distance trend, a Planck-like CMB anchor, and a DES-like growth amplitude by using three incompatible Noether sea projections.
 
@@ -7328,7 +7328,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f85ad00ecc193c9a)
+[View →](../../../../../equation-mapping.html#corpus-equation-f85ad00ecc193c9a)
 
 Here $\delta H(z,\hat{\mathbf{n}})$ is the directional departure from an isotropic inferred transfer slope, and $\Delta_{\mathrm{dip}}^{X}$ is the source-catalogue dipole residual defined in [CMB](../../../../markdown/aaa/cosmology/CMB.md). Operationally, the Hubble residual should be computed from corrected propagation slopes, for example
 
@@ -7342,7 +7342,7 @@ c_0
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1e0fcf7134fab90b)
+[View →](../../../../../equation-mapping.html#corpus-equation-1e0fcf7134fab90b)
 
 after source, endpoint, and launch factors have been removed. The expected sign and scale of $\mathcal{R}_{H,D}$ must come from the same Noether sea density, delay, and flow variables used by the expansion and growth modules. If the correlation is absent after known survey systematics are controlled, the local-environment explanation for $H_0$ loses support. If the correlation exists but requires a different Noether sea state from the one used for CMB, BAO, or growth, the cosmology branch has split its ontology and fails the shared-closure requirement.
 
@@ -7360,7 +7360,7 @@ z+\frac12(1-q_{0,\mathrm{eff}})z^2+O(z^3)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3cf237f25239d2e6)
+[View →](../../../../../equation-mapping.html#corpus-equation-3cf237f25239d2e6)
 where $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coefficients of the corrected redshift-transfer map. For the growth side, retain
 $$
 f\sigma_8(z,k)
@@ -7371,7 +7371,7 @@ f\sigma_8(z,k)
 S_8=\sigma_8\sqrt{\Omega_m/0.3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-39420ac076bfa912)
+[View →](../../../../../equation-mapping.html#corpus-equation-39420ac076bfa912)
 A compact shared-state diagnostic is
 $$
 \mathcal{R}_{H_0S_8}(\theta_{\mathrm{sea}})
@@ -7385,7 +7385,7 @@ d_{\mathrm{shared}}\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-abbb0cbc57720547)
+[View →](../../../../../equation-mapping.html#corpus-equation-abbb0cbc57720547)
 A distance improvement that raises the shared-state penalty or worsens $f\sigma_8$ is therefore not a resolution of the tension pair. It is a sign that the fit has separated the background and growth projections.
 
 ### Low-Acceleration Scale Coupling
@@ -7412,7 +7412,7 @@ a_\star(E)
 \lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl/gal}}(\theta_{\mathrm{sea}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a4bbdba477cf3dde)
+[View →](../../../../../equation-mapping.html#corpus-equation-a4bbdba477cf3dde)
 
 where $\alpha_E$ is a declared comparison coefficient rather than a fitted afterthought. The cluster-versus-galaxy term $\mathcal{R}_{\mathrm{cl/gal}}$ records whether the same Noether sea state explains any required difference between galaxy-scale and cluster-scale acceleration thresholds. A branch that fits galaxy rotation curves with one $a_\star$, cluster gas with another, and the $H_0/S_8$ pair with a third effective history has not linked the tensions; it has split the Noether sea record.
 

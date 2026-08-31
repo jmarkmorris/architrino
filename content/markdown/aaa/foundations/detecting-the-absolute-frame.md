@@ -86,7 +86,7 @@ W_a(T_t;T)
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-70fa004fb29fc77e)
+[View →](../../../../equation-mapping.html#corpus-equation-70fa004fb29fc77e)
 In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(T_t;T)$ is known as a transmitter-tagged support, its emission center $\mathbf Z_a(T_t)$ is geometrically reconstructible without first assigning coordinates to the void.
 
 Equivalently, Euclidean geometry gives a bijection between nondegenerate metric spheres and center-radius pairs:
@@ -95,7 +95,7 @@ W_a(T_t;T)\longleftrightarrow
 \left(\mathbf Z_a(T_t),\,c_f(T-T_t)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9b2967e14028431c)
+[View →](../../../../equation-mapping.html#corpus-equation-9b2967e14028431c)
 for full spherical supports. In a finite sampled reconstruction, a clean nondegeneracy certificate is supplied by four support points $\mathbf Y_0,\ldots,\mathbf Y_3$ whose displacement Gram determinant is bounded away from zero:
 $$
 \Delta_{\mathrm{sph}}
@@ -108,7 +108,7 @@ $$
 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-98d283752f1455bc)
+[View →](../../../../equation-mapping.html#corpus-equation-98d283752f1455bc)
 with a declared numerical floor in simulation. This is the same determinant family as the volume test used in [Constructing the Absolute Frame](constructing-the-absolute-frame.md): when the sampled support collapses toward a line, plane, or tiny aperture, the inverse center fit is no longer a stable complete-state reconstruction. If the radius $c_f(T-T_t)$ is already supplied, three non-collinear points plus a side convention can reduce the data requirement, but the four-point certificate is the safer branch-independent test.
 
 For a full spherical support, uniqueness is exact. A finite reconstruction usually sees only a partial support $U_a(T_t;T)\subset W_a(T_t;T)$, so the inverse-center problem needs its own conditioning floor. Let
@@ -122,13 +122,13 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cbf26eb9bce2cdc5)
+[View →](../../../../equation-mapping.html#corpus-equation-cbf26eb9bce2cdc5)
 The reconstructed center is admissible only when
 $$
 \omega_a(T_t;T)\ge \omega_{\min} > 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0ec92f269c9d25a5)
+[View →](../../../../equation-mapping.html#corpus-equation-0ec92f269c9d25a5)
 on the declared support window. Below that solid-angle floor, the center may remain formally unique in the full-support idealization while the finite inverse problem becomes ill-conditioned.
 
 The solid-angle floor is a practical proxy for a smallest-eigenvalue floor in the sphere-fit Jacobian. For sampled directions $\hat{\mathbf{n}}_k=(\mathbf Y_k-\mathbf Z)/\|\mathbf Y_k-\mathbf Z\|$ with positive weights $w_k$, define the direction design matrix
@@ -136,7 +136,7 @@ $$
 G_a=\sum_k w_k\,\hat{\mathbf{n}}_k\hat{\mathbf{n}}_k^{T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-387e8ed2a2a758c3)
+[View →](../../../../equation-mapping.html#corpus-equation-387e8ed2a2a758c3)
 The finite-aperture inverse is accepted only when $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ on the reconstruction window, or when an equivalent continuous-support bound is supplied. A direction cloud concentrated in a small cap or nearly planar arc is rank-deficient in the same way that a near-collinear tuple is rank-deficient in frame construction. Thus $\omega_{\min}$, the basis floor $\sin\theta_{\min}$, separatrix regularity, and the causal-root transversality floor $\kappa_{\mathrm{hit}}$ are all instances of one non-degeneracy requirement: the retained reconstruction map must have a bounded local inverse on the chart being used.
 
 A future finite reconstruction must fail closed, returning no absolute-rest verdict, when transmitter tags are absent, $\omega_a<\omega_{\min}$, or the declared rank floor fails. These are implementation acceptance conditions for a reconstruction that does not yet exist, not evidence supplied by the complete-state injectivity lemma itself; executable negative controls belong with that implementation when it is built.
@@ -146,20 +146,20 @@ $$
 Z_a(I)=\{\mathbf Z_a(T_t):T_t\in I\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-322da7f047873084)
+[View →](../../../../equation-mapping.html#corpus-equation-322da7f047873084)
 and its Euclidean diameter
 $$
 D_a(I)=\sup_{T_t,T'_t\in I}\|\mathbf Z_a(T_t)-\mathbf Z_a(T'_t)\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a52adb1cf67c9b5d)
+[View →](../../../../equation-mapping.html#corpus-equation-a52adb1cf67c9b5d)
 
 Equivalently,
 $$
 D_a(I)=\operatorname{diam}Z_a(I)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b55589f8dd99eea7)
+[View →](../../../../equation-mapping.html#corpus-equation-b55589f8dd99eea7)
 With exact complete-state access and transmitter-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf Z_a(T_t)$ is constant on $I$, so the transmitter is at absolute rest almost everywhere on that interval. For uniform motion over a duration $\Delta T_I$, $D_a(I)=\|\mathbf V_a\|\Delta T_I$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the transmitter-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
 
 The velocity readout in the uniform case assumes $\mathbf Z_a(T_t)=\mathbf Z_0+\mathbf V_a(T_t-T_0)$ on the interval. For accelerated or curved transmitter histories, $D_a(I)$ measures only the chord-span of the center curve and cannot determine the velocity history by itself. The faithful complete-state object is the full center curve $T_t\mapsto\mathbf Z_a(T_t)$, including its tangent, curvature, and torsion where those derivatives exist; that curve is the geometric record the self-hit ledger later samples.
@@ -185,7 +185,7 @@ The concentricity diagnostic connects directly to the geometry developed in [Sel
   \|\mathbf Z_a(T)-\mathbf Z_a(T_t)\|=c_f(T-T_t)
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d13fc0e3f2c35584)
+  [View →](../../../../equation-mapping.html#corpus-equation-d13fc0e3f2c35584)
   This is re-entry into the expanding-sphere foliation generated by the past center curve. It is not a requirement that the spatial curve literally intersect itself in $\mathbb{R}^3$. For closed or recurrent framed branches, the protected topology row should be stated as a linking or framed self-linking record, such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when the branch supplies a nonsingular frame. Thus absolute rest and self-hit are distinct invariants: rest is concentricity of transmitter-tagged centers, while self-hit is a transmitter-identity root with a retained wake/worldline linking or framing record when such a record is part of the branch certificate.
 - For bound assemblies, the corresponding closure problem is conditional: a translating Noether braid must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
 - This moving-assembly bias is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
@@ -259,7 +259,7 @@ $$
 \mathcal{H}_{\mathrm{tag}}=\mathcal{H}'_{\mathrm{tag}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-34d9786056214f65)
+[View →](../../../../equation-mapping.html#corpus-equation-34d9786056214f65)
 
 *Proof.* Equality of the nondegenerate tagged supports gives the same unique center for every $(a,T_t)$ and therefore the same center curves. Those curves are the transmitter worldlines; absolute continuity then gives the same velocities almost everywhere, while the retained tags carry identity and polarity. Translation, rotation, and time-origin conventions enter only when the same records are presented in convention-relative charts.
 
@@ -323,5 +323,5 @@ $$
 \epsilon_{\mathrm{PF}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-50fa63b4aacb7a83)
+[View →](../../../../equation-mapping.html#corpus-equation-50fa63b4aacb7a83)
 Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ denotes the tagged record produced by re-preparing the same experiment with absolute group velocity $\mathbf w$ inside the tested low-energy comparison window, and $\mathcal{O}$ denotes the admitted observer-accessible functionals. The first condition makes the preferred frame real in complete-state geometry. The second is the Lorentz-recovery burden that makes that frame hidden from embedded Physical Observers.

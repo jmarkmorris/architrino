@@ -24,7 +24,7 @@ $$
 \text{axial inventory}(e^+)=6\epsilon_+
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e92a1e95b71a8ce3)
+[View →](../../../../../equation-mapping.html#corpus-equation-e92a1e95b71a8ce3)
 
 This framing keeps lepton universality disciplined. The charged-lepton side of universality says that $e$, $\mu$, and $\tau$ share the same six-site charged-lepton axial pattern and weak-coupling-triad bookkeeping. Their mass hierarchy and lifetime differences must come from shielding coherence, internal causal history, and medium response, not from changing the electric-charge inventory or adding lepton-specific gauge couplings.
 
@@ -35,7 +35,7 @@ m_{\mathrm{tr}}(e^-)=m_{\mathrm{tr}}(e^+),
 Q_{\mathrm{eff}}(e^-)=-Q_{\mathrm{eff}}(e^+)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bd7e8a8f67e81046)
+[View →](../../../../../equation-mapping.html#corpus-equation-bd7e8a8f67e81046)
 The equality is a constraint on the mass-facing causal ledger: complete polarity inversion preserves the polarity-even internal products, shielding-coherence class, and medium response that feed scalar rest mass, while reversing the exposed electric bookkeeping. A partial polarity replacement inside the axial layer would not be the positron branch; it would generally change the assembly ledger and must be classified as a different or unstable charged-fermion candidate.
 
 ## Assembly and Detection Map
@@ -55,7 +55,7 @@ $$
 \right](x_{\mathrm{eff}}^i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-26f0ee43f6048d8e)
+[View →](../../../../../equation-mapping.html#corpus-equation-26f0ee43f6048d8e)
 
 where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\Theta_{\mathrm{atom}}$ is the declared atomic-condition bundle containing the four displayed inputs, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.
 

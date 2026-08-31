@@ -1,0 +1,119 @@
+{
+  "schema": "app-photon/helical-self-hit-phase-lock-sweep-receipt.v1",
+  "receiptId": "helical-self-hit-phase-lock-sweep-v1",
+  "sourceRecord": {
+    "schema": "photon-helical-self-hit-phase-lock-sweep.v1",
+    "generatingCommit": "4047368648927fbb108406f8e08ba0c46da01481",
+    "deterministic": true
+  },
+  "rawArtifact": {
+    "retention": "ignored-local-analytical-storage",
+    "path": ".local-data/braid-analysis/retained-evidence/photon/helical-self-hit-phase-lock-sweep.v1.json",
+    "sha256": "e17439dc0639ecc3be2fdf65c8055ad2235da1aab04d19c88fdf0c2a8855b9c1",
+    "byteCount": 3860250,
+    "lineCount": 113380,
+    "requiredForRuntime": false,
+    "requiredForTests": false
+  },
+  "audit": {
+    "literalRepositoryConsumersAtMigration": [],
+    "producer": "src/apps/photon/PhotonSelfHitSweepRuntime.js",
+    "focusedTest": "tests/photon-runtime.test.js",
+    "disposition": "full case rows removed from Git; compact summary retained"
+  },
+  "summary": {
+    "schema": "photon-helical-self-hit-phase-lock-sweep.v1",
+    "sweepId": "photon_helical_self_hit_phase_lock_sweep_v1",
+    "caseCount": 756,
+    "presetIds": [
+      "balanced_contra_rotating_pair",
+      "linear_polarization_candidate",
+      "right_circular_candidate",
+      "left_circular_candidate",
+      "phase_offset_stress_test",
+      "layer_radius_stress_test"
+    ],
+    "photonSpeedCfValues": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      0.95,
+      1
+    ],
+    "signalSpeedCfValues": [
+      0.6,
+      0.8,
+      1
+    ],
+    "observationProgressValues": [
+      0,
+      0.125,
+      0.25,
+      0.375,
+      0.5,
+      0.75,
+      0.875
+    ],
+    "helicalSelfHitHistoryCycles": 3,
+    "helicalSelfHitScanSubdivisions": 160,
+    "helicalSelfHitMaxRoots": 12,
+    "totalPhaseFamilies": 5116,
+    "totalHelicalRoots": 5068,
+    "stablePhaseLockFound": false,
+    "stablePhaseLockCaseCount": 0,
+    "candidatePhaseLockCaseCount": 0,
+    "singularCandidateCaseCount": 42,
+    "totalStablePhaseLockFamilies": 0,
+    "totalCandidatePhaseLockFamilies": 0,
+    "totalSingularCandidateFamilies": 422,
+    "classificationCounts": {
+      "single_hit": 4666,
+      "singular_candidate": 422,
+      "phase_drift": 28
+    },
+    "speedFamilyCounts": {
+      "self_hit": 4836,
+      "field_speed_boundary": 280
+    },
+    "bestStableCase": null,
+    "bestCandidateCase": null,
+    "bestSingularCase": {
+      "caseId": "phase_offset_stress_test__cg1__cs1__p0_125",
+      "presetId": "phase_offset_stress_test",
+      "photonSpeedCf": 1,
+      "signalSpeedCf": 1,
+      "observationProgress": 0.125,
+      "observationTime": 0.5625,
+      "helicalRootFoundCount": 12,
+      "helicalPhaseFamilyCount": 12,
+      "helicalStablePhaseLockFamilyCount": 0,
+      "helicalCandidatePhaseLockFamilyCount": 0,
+      "helicalSingularCandidateFamilyCount": 12,
+      "bestPhaseFamily": {
+        "key": "leading|I|positrino|0",
+        "label": "leading I + c0",
+        "role": "leading",
+        "layerId": "I",
+        "chargeType": "positrino",
+        "sourceCycleIndex": 0,
+        "rootCount": 2,
+        "sourcePhaseSpreadDeg": 0,
+        "receiverPhaseSpreadDeg": 0,
+        "minJacobianAbs": 0.000001098633,
+        "maxFieldSpeedRatio": 1.56205,
+        "speedFamily": "self_hit",
+        "phaseLockClassification": "singular_candidate",
+        "phaseLockStable": false,
+        "phaseLockCandidate": false
+      }
+    }
+  },
+  "reproduction": {
+    "rawCommand": "node scripts/photon/run-helical-self-hit-phase-lock-sweep.mjs --write=.local-data/braid-analysis/retained-evidence/photon/helical-self-hit-phase-lock-sweep.v1.json",
+    "receiptCommand": "node scripts/build-machine-artifact-receipts.mjs --target=photon --write",
+    "exactByteReproduction": false,
+    "exactByteLimitation": "A fresh migration rerun reproduced the recorded headline counts but not the historical raw SHA-256 because the case-row schema has since evolved."
+  },
+  "claimBoundary": "Bounded application diagnostic only; the sweep establishes no retained photon branch, stability, binding, or physical identity."
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "borg-library-classifications.v3",
+  "revision": "2026-08-30.operator-spindle-1",
+  "authority": "operator",
+  "source": "reference/priorities/app-borg/requirements-and-design.md#catalog-composition-classifications",
+  "scope": "Operator-confirmed spindle assignments pinned to exact records. Assembly-centered radii are source-derived, not inherited from former nesting assignments. No scientific acceptance is asserted.",
+  "spindle": [
+    {
+      "alias": "B1.1",
+      "value": true,
+      "recordSha256": "2f80ed9d56e2b2f165fb05b29162189085a54ef77e8210d9d81a418cadac8e43"
+    },
+    {
+      "alias": "B1.2",
+      "value": true,
+      "recordSha256": "6860d39900cb89e4bc3b21f7a6527dd9fc75ee5dcbeefdecceb47d2d046e83c9"
+    },
+    {
+      "alias": "C1",
+      "value": true,
+      "recordSha256": "c70d3e23449501fa55a2378cc08c2ec92ad0d82f744bb95aca49987d13244ea5"
+    },
+    {
+      "alias": "C2",
+      "value": true,
+      "recordSha256": "906e994c6c243e21b9af9c46c7f49237ed264673dff6bebed167a90b03cdef48"
+    },
+    {
+      "alias": "C3",
+      "value": true,
+      "recordSha256": "58a089f0c1c7ef2954f7e9d1ccb3a6c7b35120643b4bf248ce86df527c8030a4"
+    },
+    {
+      "alias": "C4",
+      "value": true,
+      "recordSha256": "b182de1cb837f5ceea3e2536a032e86caddf2a82a7bccb096a46b938200c4a92"
+    }
+  ]
+}

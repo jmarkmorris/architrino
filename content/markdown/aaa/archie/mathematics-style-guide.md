@@ -21,13 +21,13 @@ Authors must define every newly introduced symbol in the equation's local prose 
   \mathcal{M} = \mathbb{R}\times \mathbb{R}^3
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ce1ed8c3c92ade1c)
+  [View →](../../../../equation-mapping.html#corpus-equation-ce1ed8c3c92ade1c)
   with native absolute coordinates $(T, X, Y, Z)$.
   $$
   \Sigma_T = \{T\}\times \mathbb{R}^3
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-203e58669ae272dd)
+  [View →](../../../../equation-mapping.html#corpus-equation-203e58669ae272dd)
   are simultaneity slices (Euclidean 3-space snapshots).
 - Vectors and norms:
   - Native spatial, velocity, and acceleration vectors are bold: $\mathbf X$, $\mathbf V$, $\mathbf A$.
@@ -76,7 +76,7 @@ $$
 \chi_{\mathrm{eff}}(T,\mathbf X,\mathcal N_{\mathrm{sea}},\text{observer record}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4a534da97c5bc4b0)
+[View →](../../../../equation-mapping.html#corpus-equation-4a534da97c5bc4b0)
 
 This map is a closure target unless the local document has already derived the needed mapping. It must not be smuggled in by reusing the same letters on both sides. In programs and app data, the same rule applies to field names and labels: EOM solver state, display coordinates, and effective observer coordinates must not share one undifferentiated symbol when a calculation or claim depends on the distinction.
 
@@ -104,7 +104,7 @@ Plainly: $T$ tells us when; $P$ tells us how long one cycle takes. A cycle can r
   \Delta T = |\,T_2 - T_1\,|
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e61e9dc6efd80eb9)
+  [View →](../../../../equation-mapping.html#corpus-equation-e61e9dc6efd80eb9)
 
 - Space is Euclidean with metric
 
@@ -112,7 +112,7 @@ Plainly: $T$ tells us when; $P$ tells us how long one cycle takes. A cycle can r
   h_{ij} = \delta_{ij}\quad\text{on each slice }\Sigma_T
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-860a529a94d1a978)
+  [View →](../../../../equation-mapping.html#corpus-equation-860a529a94d1a978)
 
   Notation: We use $h_{ij}$ exclusively for the spatial metric; do not use $g_{ij}$.
 
@@ -135,7 +135,7 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
   r=\|\mathbf r_t\|=c_f\,\Delta_{r\leftarrow t}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1de04f0e8ff46451)
+  [View →](../../../../equation-mapping.html#corpus-equation-1de04f0e8ff46451)
 - Causal set:
   $$
   \mathcal C_{r\leftarrow t}(T_r)
@@ -143,7 +143,7 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
   \{\,T_t<T_r\mid\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|=c_f(T_r-T_t)\,\}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a0da82a20deadbab)
+  [View →](../../../../equation-mapping.html#corpus-equation-a0da82a20deadbab)
 - Conventions:
   - $H(0)=0$ (no instantaneous self-kick).
   - No $r=0$ causal roots exist beyond $\Delta_{r\leftarrow t}=0$: because $r=c_f(T_r-T_t)$, $r=0$ implies $T_r=T_t$; that coincident-time case is excluded by $H(0)=0$.
@@ -160,24 +160,24 @@ Plain language: A push now only happens if a past causal wake surface has had ex
   \text{source} = q\,\delta(T - T_t)\,\delta^{(3)}(\mathbf X - \mathbf X_{\mathrm{em}})
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-83e434800a542d5b)
+  [View →](../../../../equation-mapping.html#corpus-equation-83e434800a542d5b)
 - Expanding causal wake surface at speed $c_f$:
   $$
   \rho(T,\mathbf X) = \frac{q}{4\pi r^2}\,\delta(r - c_f\,\Delta)\,H(\Delta),\quad r=\|\mathbf X-\mathbf X_{\mathrm{em}}\|,\ \Delta=T-T_t
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-41494e9e2536ea37)
+  [View →](../../../../equation-mapping.html#corpus-equation-41494e9e2536ea37)
   $$
   \rho = \frac{q}{4\pi r^2}\,\delta_{S_{c_f\Delta}}(\mathbf X-\mathbf X_{\mathrm{em}})\,H(\Delta)
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-89d585b137da7a8d)
+  [View →](../../../../equation-mapping.html#corpus-equation-89d585b137da7a8d)
 - Regularization:
   $$
   \delta(r - c_f\,\Delta)\ \to\ \delta_\eta(r - c_f\,\Delta) \;=\; \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(\!-\frac{(r - c_f\,\Delta)^2}{2\,\eta^2}\Big)
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-19de06f3e97e6332)
+  [View →](../../../../equation-mapping.html#corpus-equation-19de06f3e97e6332)
   - Use $\eta > 0$ when differentiability is required; take $\eta\to 0$ limits in the weak/integrated sense.
 
 Plain language: Each emission is a razor-thin causal wake surface; when needed, we thicken it slightly so calculus works smoothly.
@@ -193,7 +193,7 @@ r(T_r;T_t)=\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|,
 \hat{\mathbf r}_t(T_r;T_t)=\frac{\mathbf X_r(T_r)-\mathbf X_t(T_t)}{r(T_r;T_t)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a8d8303a9aabb2a0)
+[View →](../../../../equation-mapping.html#corpus-equation-a8d8303a9aabb2a0)
 and $\sigma_{tr}=\operatorname{sign}(q_tq_r)\in\{+1,-1\}$.
 
 Canonical per-hit acceleration:
@@ -204,7 +204,7 @@ $$
 W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)\,\hat{\mathbf r}_t(T_r;T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a51dcb9c70d498e2)
+[View →](../../../../equation-mapping.html#corpus-equation-a51dcb9c70d498e2)
 where
 $$
 D_t(T_r;T_t)
@@ -216,7 +216,7 @@ D_r(T_r;T_t)
 c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}_t(T_r;T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fbc30fc4f202854b)
+[View →](../../../../equation-mapping.html#corpus-equation-fbc30fc4f202854b)
 and
 $$
 W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)
@@ -224,7 +224,7 @@ W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)
 \frac{c_f}{|D_t(T_r;T_t)|}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0db3f36e9d32f5a9)
+[View →](../../../../equation-mapping.html#corpus-equation-0db3f36e9d32f5a9)
 The transmitter-side factor $D_t$ controls root transversality and wake-front compression or dilation from transmitter motion. The receiver-side factor $D_r$ controls how the moving receiver cuts through the same emitted wake sequence. The exact signed root-playback derivative is $dT_t/dT_r=D_r/D_t$. The transmitter-side acceleration weight is $W^{\mathrm{acc}}=c_f/|D_t|$; it is not the magnitude of root playback.
 
 Total acceleration:
@@ -232,14 +232,14 @@ $$
 \mathbf A_r(T_r)=\sum_t\ \sum_{T_t\in\mathcal C_{r\leftarrow t}(T_r)}\mathbf A_{r\leftarrow t}(T_r;T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a00f53b4a1a53e1d)
+[View →](../../../../equation-mapping.html#corpus-equation-a00f53b4a1a53e1d)
 
 DDE view: let native state $\mathsf Z = (\mathbf X, \mathbf V)$. With $\eta>0$ regularization, the dynamics admit a causal functional form
 $$
 \frac{d \mathsf Z}{dT} = F\big(\mathsf Z(T), \{\mathsf Z_j(T - \Delta_j)\}_j, T\big)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-738999c80e2c8ef1)
+[View →](../../../../equation-mapping.html#corpus-equation-738999c80e2c8ef1)
 with $\Delta_j$ determined implicitly by $\|\mathbf X(T)-\mathbf X_j(T-\Delta_j)\| = c_f\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
@@ -256,7 +256,7 @@ Receiver velocity decomposition (instantaneous):
   V_{r,\parallel}=\mathbf V_r\cdot\hat{\mathbf r}_t
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6936fdc66791a896)
+  [View →](../../../../equation-mapping.html#corpus-equation-6936fdc66791a896)
 - Because $\mathbf A_{r\leftarrow t}\parallel\hat{\mathbf r}_t$, a single hit updates only the radial component:
   $$
   \frac{d}{dT_r}\mathbf V_{r,\perp}=0,
@@ -264,7 +264,7 @@ Receiver velocity decomposition (instantaneous):
   \frac{d}{dT_r}V_{r,\parallel}=\mathbf A_{r\leftarrow t}\cdot\hat{\mathbf r}_t
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5e380ac954c81743)
+  [View →](../../../../equation-mapping.html#corpus-equation-5e380ac954c81743)
 - Local trend: inward motion ($V_{r,\parallel}<0$) tends to strengthen subsequent per-hit contributions via the $1/r^2$ factor; outward motion ($V_{r,\parallel}>0$) tends to weaken them, all else equal.
 
 Plain language: a hit changes only the along-the-line piece of your velocity right then; sideways motion is unchanged at that instant.
@@ -279,20 +279,20 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
     U_{\text{pot}} = q'\,\Phi_\eta
     $$
 
-    [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1b6e8a47dea58f29)
+    [View →](../../../../equation-mapping.html#corpus-equation-1b6e8a47dea58f29)
 - Potential-gradient bookkeeping relation:
   - Holds pointwise for $\Phi_\eta$; the force symbol is optional assembly-level bookkeeping, and as $\eta \to 0$, interpret it in the weak sense over resolved intervals:
     $$
     \mathbf{F} = -\nabla U_{\text{pot}}
     $$
 
-    [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5014f350e3600243)
+    [View →](../../../../equation-mapping.html#corpus-equation-5014f350e3600243)
 - Work–energy:
   $$
   \Delta E_k \;=\; \int \mathbf{F}\cdot d\mathbf X \;=\; -\,\Delta U_{\text{pot}}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-12fd04f32ba7f1d5)
+  [View →](../../../../equation-mapping.html#corpus-equation-12fd04f32ba7f1d5)
 
 Plain language: With slightly thick causal wake surfaces, the optional force-bookkeeping variable is minus the potential gradient; the primitive substrate statement remains the per-hit acceleration law, and the razor-thin limit is interpreted after integrating over small time windows.
 

@@ -4,16 +4,22 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 
 The [H3 velocity-domain rule](braid-candidate-requirement-adjudication.md#velocity-domain-and-instrument-scope) separates the uncapped canonical theory from method-specific sub-field guards. Existing speed stops and campaign exclusions remain binding for their declared instruments; they are not physical rejection of at/above-field histories. This scope correction authorizes no run, candidate promotion, guard relaxation, or historical rescore.
 
+The detailed B1.3 investigation is maintained in the subordinate [B1.3 work queue](b1-3-work-queue.md). This parent queue owns only its aggregate BP-011 status and candidate disposition; the subordinate queue owns individual B1.3 task status and acceptance.
+
 ## Ranked Next Objects
 
 1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
 2. `configuration_chart_completion` — [BP-002](#bp-002--configuration-chart-completion). Status: `Queued`.
 3. `collinear_breather_campaign` — [BP-003](#bp-003--collinear-breather-campaign). Status: `Deferred / blocked`.
-4. `undirected_ensemble_campaign` — [BP-004](#bp-004--undirected-ensemble-campaign). Status: `Deferred / blocked`.
-5. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
-6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
-7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
-8. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Full conditional cover independently verified; one-cell acceleration range accepted, full M05/M06 quadrature and three-rung measurement outstanding`.
+4. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
+5. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
+6. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
+7. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Full conditional cover independently verified; one-cell acceleration range accepted, full M05/M06 quadrature and three-rung measurement outstanding`.
+8. `b1_3_investigation` — [BP-011](#bp-011--b13-investigation). Status: `Queued`; detailed status lives in the [B1.3 work queue](b1-3-work-queue.md).
+9. `shared_circle_regular_polarity_completion` — [BP-012](#bp-012--shared-circle-regular-polarity-completion). Status: `Queued`.
+10. `shared_circle_nonuniform_phase_census` — [BP-013](#bp-013--shared-circle-nonuniform-phase-census). Status: `Queued`.
+11. `shared_circle_large_n_law` — [BP-014](#bp-014--shared-circle-large-n-law). Status: `Queued`.
+12. `borg_assembly_source_inventory_handoff` — [BP-015](#bp-015--borg-assembly-source-inventory-handoff). Status: `Queued`; Borg implementation remains owned by [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser).
 
 ## Shared search prerequisites
 
@@ -52,7 +58,8 @@ The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evalua
 | `A3` measured slice, `SD3` | `STASIS` | Not queued | independent same-history member-acceleration packet or new campaign predeclared under the accepted ruler/clock and full leakage contract |
 | `B1` | `STASIS` | `BP-002` remains queued | chart ratification followed by one frozen executable slice |
 | `B1.1` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed; `BP-009` compatibility receipt verified | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; score-free freeze acceptance and center-pilot authorization remain distinct operator decisions |
-| `B1.2`, `B1.3` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
+| `B1.2` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
+| `B1.3` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed; the [T04 past-only release attempt](evidence/2026-08-29-b13-shared-circle-balance-ladder.md#t04-past-only-release-prefix) accepted only a short finite prefix before `root_completeness_not_certified`, while the medium rung supplied non-authoritative resource telemetry and no full-cycle return exists; detailed investigation is queued under [BP-011](#bp-011--b13-investigation) | execute the ranked objects in the [B1.3 work queue](b1-3-work-queue.md), beginning with the exact-reference solver handoff; no score, retention, or stability promotion |
 | `C1`--`C4` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
 | `C5`, `C6` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; `C5` has no remaining direct H2 dependency on `BP-007`; no score or retention promotion |
 | `F1`, `F2` | `STASIS` | executable-representation proposals available; operator selection required | ratify the proposed F1 circulation/sign sheet and F2 component-relation sheet before creating executable JSON; polarity is already declared or derived |
@@ -89,7 +96,7 @@ This register owns every deferred action from the [Neutral-Braid Configuration A
 | Open — minimum topology inventory | BP-002, `Queued` | Freeze closure conventions, then run unlink, square-knot, Hopf, Whitehead, and Borromean controls with independent classifications. |
 | Open — drifting enclosure or undeclared transmitter tail contract | BP-002, `Queued`; EOM contracts own only declared retained computation | Prove the horizon/restriction theorem or keep the claim limited to the declared retained interval and inventory. |
 | Open — finite-width omitted-tail bound | Same explicit BP-002/EOM-contract handoff | Apply the shared T5 acceptance boundary; a retained computation is not an omitted-tail certificate. |
-| Open — candidate retention, stability, physical realization, or solver preference | BP-001, BP-003, and BP-004, each `Deferred / blocked`; MEC-002 only where a mature wake state is consumed | Apply the candidate-specific EOM evolution, complete-root, multi-prehistory, refinement, fate, and independent-instrument gates. |
+| Open — candidate retention, stability, physical realization, or solver preference | BP-001 and BP-003, both `Deferred / blocked`; MEC-002 only where a mature wake state is consumed | Apply the candidate-specific EOM evolution, complete-root, multi-prehistory, refinement, fate, and independent-instrument gates. |
 
 Plainly: atlas mathematics remains available within its declared history scope. Physical fate stays with the candidate-specific rows, and the Gaussian-tail question keeps its two-owner handoff.
 
@@ -114,6 +121,78 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 - **Evidence / blocker:** Mined leads remain priority-only until accepted into a proof route or corpus edit.
 - **Completion:** No curated lead remains without a disposition.
 
+### BP-011 — B1.3 investigation
+
+- **Status:** Queued
+- **Priority object:** `b1_3_investigation`
+- **Request / acceptance:** Execute the accepted mathematical, numerical-release, axial-translation, generalized-planar, stability, and same-record action objects in the subordinate [B1.3 work queue](b1-3-work-queue.md). Preserve the separate grades of prescribed balance, exact continuation, numerical reproduction, nearby-history retention, perturbation stability, translated balance, action/energy, and quantum-recovery comparison.
+- **Evidence / blocker:** The [tracked evidence packet](evidence/2026-08-29-b13-shared-circle-balance-ladder.md) closes the accepted foundation and names the numerical-release boundary. Individual dependencies and falsifiers live only in the subordinate queue. Reusable EOM-solver capability and delayed-action closure remain owned by their existing workstreams.
+- **Completion:** No B1.3 detailed object remains `Queued`, `In progress`, or `Awaiting verification`; every completed result has durable evidence, and every remaining object is explicitly withdrawn, superseded, or dependency-blocked. Completion grants no automatic score, retention, stability, binding, physical identity, energy-spectrum, transition, or scientific-acceptance promotion.
+
+### BP-012 — Shared-circle regular-polarity completion
+
+- **Status:** Queued
+- **Priority object:** `shared_circle_regular_polarity_completion`
+- **Closure goal:** Complete the bounded regular-ring polarity-word landscape for the inventories whose alternating rows alone have been tested.
+- **Request / acceptance:** For each regular neutral $N{:}N$ ring with $7\leq N\leq12$, enumerate every polarity-word orbit modulo cyclic rotation, global polarity conjugation, and the already checked reflection-with-circulation action. Search each representative on the existing $0.05\leq\beta_f\leq20$ domain with complete prescribed-path root ledgers, explicit topology-boundary probes, residual refinement, and an unchanged independent evaluator. Preserve the distinction between a measured bounded-search negative and an interval-certified no-zero result.
+- **Evidence / blocker:** Every regular polarity orbit is already enumerated and searched through $N=6$; for $N=7$ through $N=12$, only the alternating word has been tested. The accepted alternating candidates therefore establish existence in one class per inventory, not polarity completeness.
+- **Completion:** Every symmetry-distinct regular polarity word for $N=7$ through $N=12$ has a source-bound ledger, an independently checked balanced candidate or bounded negative disposition, and an explicit falsifier. Completion grants no nonregular-phase, evolution, retention, stability, binding, or physical-ranking conclusion.
+
+Plainly: the larger regular rings currently have one tested plus-minus pattern each. This object checks the other distinct ways to place equal numbers of the two polarities around the same regular polygon.
+
+### BP-013 — Shared-circle nonuniform-phase census
+
+- **Status:** Queued
+- **Priority object:** `shared_circle_nonuniform_phase_census`
+- **Closure goal:** Determine whether fixed unequal angular gaps add prescribed acceleration balances beyond the accepted regular shared-circle rows.
+- **Request / acceptance:** Freeze a staged sequence of compact collision-free phase-gap domains for neutral shared-circle inventories, quotient only the checked global phase, polarity-conjugation, and reflection-with-circulation symmetries, and evaluate the complete receiver-by-receiver vector residual without importing regular-polygon cancellations. Begin with the already enumerated $2\leq N\leq6$ polarity representatives, then extend only through separately declared domains. The six-member equal-radius B1.3 phase deformation remains owned by [B13-005](b1-3-work-queue.md#b13-005--equal-radius-phase-deformed-chart) and must not be duplicated here.
+- **Evidence / blocker:** Existing nonuniform searches found no additional solution but did not cover their multidimensional phase domains. Regular balances are symmetry landmarks and do not establish isolation in the larger fixed-phase chart.
+- **Completion:** Each declared phase domain has an independently checked zero census or an explicit fold, collision, or coverage boundary. A global nonregular-phase claim requires coverage of the stated collision-free quotient domain; a finite sample remains discovery evidence only.
+
+Plainly: this object moves the sites away from equal angular spacing while keeping them on one common circle. It asks whether exact balance is tied to a regular polygon or also occurs in lopsided fixed arrangements.
+
+### BP-014 — Shared-circle large-N law
+
+- **Status:** Queued
+- **Priority object:** `shared_circle_large_n_law`
+- **Closure goal:** Prove or falsify an asymptotic speed-and-radius law for the regular alternating shared-circle branch as member count grows.
+- **Request / acceptance:** Derive the large-$N$ causal-root equation for the regular alternating $2N$-gon, separate the even- and odd-$N$ antipodal-polarity cases, identify the topology branch followed by the accepted $N=2$ through $N=12$ rows, and obtain controlled existence, speed, compatible-radius, and remainder statements. Numerical regression may guide conjectures but cannot establish exact constants or branch uniqueness.
+- **Evidence / blocker:** Measured candidates exist through $N=12$ and their scales suggest a pattern, but the finite inventory does not prove persistence, uniqueness, parity independence, or an asymptotic law.
+- **Completion:** A derivation with explicit hypotheses and error bounds proves one declared large-$N$ branch and its speed/radius scaling, or a certified counterexample or branch change falsifies the proposed law. No stability or physical-spectrum conclusion follows from geometric scaling.
+
+Plainly: the current table shows how the first several balanced regular rings grow. This object decides whether those rows follow one mathematical rule or merely resemble one over a short finite range.
+
+### BP-015 — Borg assembly-source inventory handoff
+
+- **Status:** Queued
+- **Priority object:** `borg_assembly_source_inventory_handoff`
+- **Closure goal:** Give Borg a complete source-owner inventory of admitted braid and shared-circle assemblies without asking the app to infer scientific geometry or taxonomy.
+- **Request / acceptance:** Enumerate every admitted braid-taxonomy member and separately registered assembly, distinguishing a taxonomy member, a concrete representative, a parameter or history revision, one top-level braid with component-braid rows, and multiple separate top-level braids. For each row, bind the source specification, dimensionality, component inventory and relations, motion prescription, available sealed records, existing aliases, and any missing source coordinates. Produce explicit unavailable rows rather than borrowing a visually similar representative.
+- **Evidence / blocker:** [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) owns durable app identity, taxonomy navigation, visual coverage, and honest animation. Its coverage cannot close until scientific source owners supply a complete inventory and concrete-representative dispositions.
+- **Completion:** A source-bound machine-readable inventory is accepted by both the Braid Program and Borg owners, every missing representative has an explicit source-owner blocker, and Borg can consume the inventory without reconstructing geometry or dynamics. This row does not implement the app, assign hashes, or establish scientific acceptance.
+
+Plainly: the Braid Program says which mathematical objects and records exist; Borg decides how to identify, browse, display, and animate them. Keeping those responsibilities separate prevents a menu label or visual resemblance from becoming scientific authority.
+
+## Shared-sphere research-draft controls
+
+These controls belong to the [shared-sphere research draft](shared-sphere-assemblies.md), created 2026-08-29. They were separated from its mathematical exposition so document status, task ordering, operator decisions, and reproduction instructions cannot be mistaken for promotable chapter text. This relocation creates no new run authorization, candidate, score, registry entry, or queue rank.
+
+- **Development status:** In progress, unbooked, and not promoted. The chart algebra, taxonomy intersections, restricted exclusions, and discrete enumeration are research material; no retained-branch, binding, stability, particle-identity, effective-mass, or formation claim is accepted here.
+- **Terminology:** `shared-sphere assembly` and `balanced polarity word` are adopted. Preserve the distinction from `spherical envelope` in the envelope-aspect-ratio sense and from the reserved absolute-frame use of `concentric`. Spherical polarity-word notation does not rename braid taxonomy or broaden shared-circle labels.
+- **Booking boundary:** No shared-circle-registry entry, configuration-chart slice, candidate-registry row, or evidence booking is created by the draft. Cite the research note without treating it as an admitted candidate inventory.
+- **Development order:** Establish a complete residual criterion for actual moving histories; derive same-latitude and cross-latitude collision-clearance conditions; specify the complete causal-root calculation; and write the exact two-latitude `C5`/`C6` chart. The fixed-point-cloud common-mode criterion cannot substitute for an orbiting history. The existing two-ring sign exclusion retains only its stated simple-root scope.
+- **Remaining physics questions:** Evaluate the unexamined Platonic word-axis-history combinations, including mixed-polarity octahedral rings; distinguish non-rigid octahedral histories from the cited rigid and stationary exclusions; analyze three-ring partitions and independent ring cadences; and prove or falsify a nonplanar co-sphericity obstruction without contradicting the known planar shared-circle subset. Member-count coincidences do not establish polyhedral geometry or symmetry selection.
+- **Symmetry boundary:** A scalar tensor forced by symmetry is not itself an exclusion. Any obstruction must establish that the scalar residual cannot vanish, with the polarity word, axis, and complete history included in the symmetry action.
+- **Deferred operator decisions:** Registry and chart routing remain deferred until the four mathematical development items above are complete. Corpus promotion additionally requires a separate explicit decision.
+- **Promotion contract:** Any future `content/markdown/aaa` chapter must be written anew from accepted definitions, derivations, evidence, assumptions, and remaining proof burdens in reader-facing teaching order. Do not copy or move the research draft. This work-queue section, internal evidence paths, source commands, operational status, and decision history remain outside the textbook. Publication must not imply that editorial cleanup has established mathematical acceptance.
+- **Closure goal:** Develop the moving-history balance, collision-clearance, causal-root, and two-latitude mathematics before reopening registry, chart, or promotion decisions.
+
+The measured 917-class enumeration is produced by `scripts/prescribed-path-analysis/oracle/platonic_balanced_word_enumeration.py`. It enumerates exact coloured vertex sets and has no dynamical authority. Reproduce it with:
+
+```bash
+"${AAA_VENV:-../.venv}/bin/python" scripts/prescribed-path-analysis/oracle/platonic_balanced_word_enumeration.py
+```
+
 ## Deferred / blocked
 
 ### BP-001 — Binary subfield fate
@@ -131,14 +210,6 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 - **Request / acceptance:** Extend certified close-approach roots and rerun the unchanged stationary seed; run the at/above-field stage only after fold-root completeness.
 - **Evidence / blocker:** The refined-prefix stationary joint-history fixture now certifies through `1.394999999999996`; its next fixed step fails closed because the certified joint root-time width exceeds the unchanged tolerance. Current runs still halt before crossing and do not establish breathing.
 - **Completion:** The unchanged protocol resolves inner turn, crossing, outer turn, recapture, return, or a fail-closed no-go.
-
-### BP-004 — Undirected ensemble campaign
-
-- **Status:** Deferred / blocked
-- **Priority object:** `undirected_ensemble_campaign`
-- **Request / acceptance:** Execute the first declared undirected ensemble with seeds and persistence criterion fixed before scoring.
-- **Evidence / blocker:** Depends on reaccepted App Solver checkpoint/campaign instrumentation and the Braid instrument gate.
-- **Completion:** Complete census and fate rows are booked under the predeclared classifier.
 
 ### BP-006 — Borg braid-analysis mode
 

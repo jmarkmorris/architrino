@@ -158,7 +158,7 @@ $$
 \exists y\,\operatorname{Causes}(y,\mathcal{U}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b5fe76699d24b7cb)
+[View →](../../../../equation-mapping.html#corpus-equation-b5fe76699d24b7cb)
 
 The inference is only as strong as its premises and scope. The first premise extrapolates a causal rule from events within an existing world to the existence of the whole world. The second requires a defensible meaning of "begins" and independent warrant that the physical order has such a boundary. Neither premise may be imported from an observer-level singular chart as though the chart were automatically substrate history.
 

@@ -130,7 +130,10 @@ import {
   isPeriodicTableScene,
   isStandardModelScene,
 } from "../../services/SceneCapabilitiesService.js";
-import { resolveStandaloneAppHrefForScene } from "../navigator/StandaloneAppLaunchRuntime.js";
+import {
+  isPublicStandaloneAppSearchEntry,
+  resolveStandaloneAppHrefForScene,
+} from "../navigator/StandaloneAppLaunchRuntime.js";
 import {
   ANIMATOR_SCENE_PATH,
   STANDALONE_ANIMATOR_NAVIGATOR_HREF,
@@ -8891,6 +8894,7 @@ const sceneSearchRuntime = createSceneSearchRuntime({
   navigationStack,
   searchBackStack,
   jumpToScene,
+  isSearchEntryVisible: isPublicStandaloneAppSearchEntry,
 });
 const sceneSearchCoordinator = createSceneSearchCoordinatorService({
   sceneIndexService,

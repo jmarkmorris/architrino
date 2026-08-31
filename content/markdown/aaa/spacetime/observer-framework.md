@@ -72,7 +72,7 @@ C_A,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bd2f2b1bf274c58b)
+[View →](../../../../equation-mapping.html#corpus-equation-bd2f2b1bf274c58b)
 where $Y_A(t_{\mathrm{eff}})$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, $\mathcal{N}_A$ is the declared nuisance family, and $\mathcal{B}_{\partial\Omega}^{(O)}(W)$ is the retained boundary-wake family defined below. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t_{\mathrm{eff}})$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
 
 Photon-distance records need the same separation. For an emission event $E$, reception event $R$, and transported photon-channel packet $\gamma$, a Physical Observer should not collapse three different quantities into one distance:
@@ -86,7 +86,7 @@ L_{\gamma}(E\to R)
 \int_{T_E}^{T_R}\left\|\frac{d\mathbf X_{\gamma}}{dT}\right\|\,dT,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-770497f4ad02ba87)
+[View →](../../../../equation-mapping.html#corpus-equation-770497f4ad02ba87)
 and
 $$
 D_O(E,R)
@@ -99,7 +99,7 @@ z_\gamma,
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-538f878e44e4d7d8)
+[View →](../../../../equation-mapping.html#corpus-equation-538f878e44e4d7d8)
 Here $d_{\mathrm{void}}$ is the Euclidean coordinate separation of the two recorded events in the fixed void, $L_\gamma$ is the photon-channel path-history length through the Noether sea, and $D_O$ is the Physical Observer's inferred distance under a declared inference map. In this expression $\mathcal{K}_O$ and $\mathcal{N}_O$ are inference-stage kernel and nuisance choices, distinct from the apparatus-stage response and nuisance fields already retained inside $\Theta_{\gamma}^{(O,W)}$. Redshift may constrain $D_O$, but it is not by itself a measurement of either absolute separation or photon path length unless the endpoint clock, launch, path-history, and calibration rows are held fixed in the same record.
 
 This is the central observational warning for cosmology: photons are the dominant observation channel, but a photon record is a transport record through the Noether sea before it is a direct distance label.
@@ -143,7 +143,7 @@ T_t<T_{\mathrm{cross}}\le T,\quad
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4bd95728a21d1b6c)
+[View →](../../../../equation-mapping.html#corpus-equation-4bd95728a21d1b6c)
 
 The root-chart entry $\mathcal C_j^{\mathrm{root}}$ retains the causal branch identifier and the transmitter-side root derivatives. On a simple-root chart it includes
 $$
@@ -156,7 +156,7 @@ W_j^{\mathrm{acc}}
 \frac{c_f}{|D_{t,j}|},
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d58208739536d488)
+[View →](../../../../equation-mapping.html#corpus-equation-d58208739536d488)
 where $\widehat{\mathbf r}_{j,\mathrm{cross}}$ points from the transmitter event to the boundary crossing. At a transmitter-side fold, $D_{t,j}=0$ and the simple-root weight diverges. Such an entry is fail-closed unless the chart also retains the root multiplicity and the next nonzero derivative needed for a fold or multi-root evaluation; substituting a finite simple-root weight is not an admissible boundary approximation.
 
 The crossing time $T_{\mathrm{cross}}$ separates instantaneous influx from already admitted exterior history. An interior receiver at $T$ may depend on a boundary entry with $T_{\mathrm{cross}}<T$, so the boundary ledger is accumulated rather than only evaluated at the present boundary. For non-convex $\Omega$, the ledger retains each boundary-crossing event rather than assuming that the active exterior isochron still intersects $\partial\Omega$ at the evaluation time.
@@ -173,7 +173,7 @@ X_\Omega(T),
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-419240b4b05ccc7d)
+[View →](../../../../equation-mapping.html#corpus-equation-419240b4b05ccc7d)
 where $\mathcal N_{\text{sea}}|_{\Omega}(T)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(T)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
@@ -197,7 +197,7 @@ d_{\mathcal{D}}\!\left(
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5b70b378a955856f)
+[View →](../../../../equation-mapping.html#corpus-equation-5b70b378a955856f)
 For a proposed global claim $P$, the observer-side ambiguity indicator is
 $$
 \Delta_P^{(O,W)}(\theta)
@@ -209,7 +209,7 @@ P(\theta_1)\ne P(\theta_2)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e0cc3f1961814ee4)
+[View →](../../../../equation-mapping.html#corpus-equation-e0cc3f1961814ee4)
 If $\Delta_P^{(O,W)}(\theta)=1$, the Physical Observer has not measured $P$ as a global fact. The data product may still be valid, but $P$ remains an effective reconstruction or comparison interpretation unless an independent $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation selects it from the same complete-state and boundary-wake record.
 
 For local-horizon thermodynamic comparisons, the countable object is not the raw boundary history by itself. It is the retained boundary-wake label family after the Physical Observer's record channel has identified histories that cannot be distinguished on the declared window:
@@ -223,7 +223,7 @@ $$
 \sim_{O,\theta,W}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-85633fd824cef966)
+[View →](../../../../equation-mapping.html#corpus-equation-85633fd824cef966)
 Here $\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
 
 ## Boundary-Wake Covariance Scaffold
@@ -239,7 +239,7 @@ $$
 \widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-db369d1f5d950f7c)
+[View →](../../../../equation-mapping.html#corpus-equation-db369d1f5d950f7c)
 For a readout channel $Y_A(t_{\mathrm{eff}})$, define the residual induced by unresolved boundary histories as
 $$
 \delta Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)
@@ -251,7 +251,7 @@ Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)
 \right\rangle_{\mu_{\Omega,\theta}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-941f56b80cd7ab45)
+[View →](../../../../equation-mapping.html#corpus-equation-941f56b80cd7ab45)
 Here $\mu_{\Omega,\theta}$ is a coarse-grained conditional measure over complete states whose resolved projection agrees with the Physical Observer's record $\theta$. It is an epistemic measure over unresolved deterministic histories, not a new substrate law.
 
 The boundary-wake covariance is then
@@ -264,7 +264,7 @@ $$
 d\mu_{\Omega,\theta}(\mathcal{B})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c59d39d1d41c800f)
+[View →](../../../../equation-mapping.html#corpus-equation-c59d39d1d41c800f)
 It is positive semidefinite by construction as a channel covariance:
 $$
 \int\!\!\int
@@ -274,7 +274,7 @@ f_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
 \ge 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9d05965974a2b42a)
+[View →](../../../../equation-mapping.html#corpus-equation-9d05965974a2b42a)
 for every resolved test channel $f_A(t_{\mathrm{eff}})$ on the observation window. A model that violates this condition has broken the covariance decomposition rather than discovered a new observer-layer effect.
 
 A detector model may add separately calibrated residuals,
@@ -288,7 +288,7 @@ $$
 \mathsf N^{\mathrm{env}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-388721577cb3d390)
+[View →](../../../../equation-mapping.html#corpus-equation-388721577cb3d390)
 The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
 For weak-field GR comparisons, this page treats the ADM/Cartan projection defined by [Emergent Metric](emergent-metric.md) as an input consumed by the observer record. The observer layer should carry the whole channel bundle at once:
@@ -308,7 +308,7 @@ O_W,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7935beeee6d483c3)
+[View →](../../../../equation-mapping.html#corpus-equation-7935beeee6d483c3)
 where $\Pi_{\mathrm{ADM}}$ is the observer-level projection, owned by the effective-metric map, to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},\Phi_{\text{eff}},\chi_{\text{sea}})$. The lapse $N$ inside $\Pi_{\mathrm{ADM}}$, the medium-state notation $\mathcal N_{\text{sea}}$, and the covariance kernels $\mathsf N_{AB}$ are distinct objects. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $\mathsf N^{\mathrm{bw}}_{AB}$, or the imported $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
 
 The same declared-measure discipline applies to observer-level probability tables and ensemble summaries. For a Physical Observer record $\theta$, observation window $W$, readout channel $Y_A$, and event set $B$, the probability assigned to that readout should be a pushforward of the conditional measure already tied to retained boundary data:
@@ -320,7 +320,7 @@ P_{\Omega,\theta,W}(Y_A\in B)
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-24df9d631c9600b9)
+[View →](../../../../equation-mapping.html#corpus-equation-24df9d631c9600b9)
 If a comparison requires different measures for branch weights, thermodynamic noise, observer selection, or readout covariance while holding the same observer record $\theta$, it is a set of separately fitted summaries rather than one observer-model closure.
 
 ## Absolute and Operational Simultaneity
@@ -332,20 +332,20 @@ $$
 (T_2,\mathbf X_2)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-583c1a08ed514685)
+[View →](../../../../equation-mapping.html#corpus-equation-583c1a08ed514685)
 are simultaneous exactly when
 $$
 T_1=T_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ba421917b1afa127)
+[View →](../../../../equation-mapping.html#corpus-equation-ba421917b1afa127)
 
 The simultaneity slice is
 $$
 \Sigma_T=\{T\}\times\mathbb{R}^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-07d3ca3f11d055d3)
+[View →](../../../../equation-mapping.html#corpus-equation-07d3ca3f11d055d3)
 
 This is a statement about the substrate foliation of absolute timespace. It is not a statement that any Physical Observer can operationally reconstruct the whole slice.
 
@@ -378,7 +378,7 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \sum_{i=1}^{3}\alpha_i(\theta)^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ae6894a4e5c2651c)
+[View →](../../../../equation-mapping.html#corpus-equation-ae6894a4e5c2651c)
 Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN group velocity coefficients. The labels $\tau_{\mathrm{eff}}$ and $\tau_{\mathrm{GR}}$ mark the candidate observer-record clock readout and the GR comparison clock readout; they are not additional substrate time variables. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
 
 A causal-set comparison adds a useful uniqueness discipline after the effective-metric map has supplied the candidate metric family. It is not enough for Physical Observer records to fit one effective metric; the same causal-order, clock, ruler, and preferred-frame data should not also fit macroscopically distinct effective metrics at the same declared coarse-graining scale. For a scale $\ell$ and tolerance $\varepsilon$, let $\mathcal{G}_{\ell,\varepsilon}(\theta)$ be the family of GR comparison metrics on the domain whose coarse-grained causal-order and clock/ruler diagnostics satisfy $\mathcal{R}_{\mathrm{causal}}(\theta;g)\le\varepsilon$, using the same residual above with $g$ supplying the target causal order and GR proper-time terms. Define the observer-side reconstruction-uniqueness residual
@@ -389,7 +389,7 @@ $$
 d_{\mathrm{geom},\ell}(g_1,g_2)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b957339721c910a6)
+[View →](../../../../equation-mapping.html#corpus-equation-b957339721c910a6)
 Small $\mathcal{H}_{\mathrm{eff}}$ says that the observer record determines a unique effective geometry up to the declared coarse-graining scale. Large $\mathcal{H}_{\mathrm{eff}}$ means the observer layer has not supplied enough scale, transport, or preferred-frame information to identify a stable GR comparison geometry. This residual is unrelated to the path-history ledger $\mathcal{H}_{\Omega}^{<T}$ above. It is an effective-reconstruction test only; it does not promote a Lorentzian metric to substrate ontology.
 
 Process-matrix and indefinite-causal-order formalisms are useful here only as comparison frameworks. They test whether operational records can be represented without assuming a prior observer-level causal order, but their generalized process object is not a substrate replacement for absolute timespace. For settings or interventions $\mathbf{s}$ and records $\mathbf{r}$, let $P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s})$ be the external process-table benchmark and let $P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})$ be the record distribution derived from Physical Observer laboratories, boundary wake data, apparatus kernels, and the candidate observer-state record $\theta$. A compact diagnostic is
@@ -404,7 +404,7 @@ P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})
 \lambda_{\mathrm{causal}}\mathcal{R}_{\mathrm{causal}}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-36fafdb993a33177)
+[View →](../../../../equation-mapping.html#corpus-equation-36fafdb993a33177)
 Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a warning that the observer layer has not recovered an effective causal order. It is not evidence that the ontic substrate lacks absolute time. The admissible lesson is diagnostic: preserve the operational record constraint while forcing the Physical Observer account to say how causal order, clocks, and records are recovered together.
 
 ## Physical Observer Clocks and Rulers

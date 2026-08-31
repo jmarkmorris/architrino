@@ -132,7 +132,7 @@ x_{\mathrm{VO}}\hat{\mathbf x}
 +z_{\mathrm{VO}}\hat{\mathbf z}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-524af9a996ac9d55)
+[View →](../../../../equation-mapping.html#corpus-equation-524af9a996ac9d55)
 
 In co-moving mode, for braid $s$, layer $\ell$, and polarity sign $q\in\{+1,-1\}$, the app places the source at
 
@@ -144,7 +144,7 @@ x_s\hat{\mathbf x}
 +R_{s\ell}\sin\theta_{s\ell q}(\tau)\hat{\mathbf z}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b630d70816225b2a)
+[View →](../../../../equation-mapping.html#corpus-equation-b630d70816225b2a)
 
 with
 
@@ -156,7 +156,7 @@ $$
 +\pi\,\mathbf 1_{q=-1}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-753bd2dc141a821c)
+[View →](../../../../equation-mapping.html#corpus-equation-753bd2dc141a821c)
 
 Here $\sigma_s=+1$ for the trailing counter-clockwise braid and $\sigma_s=-1$ for the leading clockwise braid.
 
@@ -176,7 +176,7 @@ F_i(t;\tau)
 \tau<t
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f7c4ffcc11b8796e)
+[View →](../../../../equation-mapping.html#corpus-equation-f7c4ffcc11b8796e)
 
 For each retained root $\tau_{i,k}$, define
 
@@ -193,7 +193,7 @@ R_{i,k}
 \right\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-eb17a864a54835f0)
+[View →](../../../../equation-mapping.html#corpus-equation-eb17a864a54835f0)
 
 and
 
@@ -207,7 +207,7 @@ D_{r,i,k}
 c_{\mathrm{sig}}-\mathbf v_{\mathrm{VO}}(t)\cdot\mathbf n_{i,k}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4908cf680c045ba4)
+[View →](../../../../equation-mapping.html#corpus-equation-4908cf680c045ba4)
 
 The displayed electric readout is reconstructed from the transverse part of the receiver-side radial hit sum
 
@@ -221,7 +221,7 @@ q_i
 {R_{i,k}^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5ccf1efa247710d8)
+[View →](../../../../equation-mapping.html#corpus-equation-5ccf1efa247710d8)
 
 by taking
 
@@ -233,7 +233,7 @@ $$
 \left(\mathbf a_{\mathrm{VO}}(t)\cdot\hat{\mathbf z}\right)\hat{\mathbf z}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d6716301f80c0d30)
+[View →](../../../../equation-mapping.html#corpus-equation-d6716301f80c0d30)
 
 This is a Virtual Observer diagnostic. It uses Master-EOM-style causal hits to inspect a candidate branch, but it does not prove that the displayed state is a physical photon.
 
@@ -253,7 +253,7 @@ E_y(t)\approx A_y\cos(\omega t+\phi_y),
 E_z(t)\approx A_z\cos(\omega t+\phi_z)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b670029604621023)
+[View →](../../../../equation-mapping.html#corpus-equation-b670029604621023)
 
 with phase lag $\Delta\phi=\phi_z-\phi_y$.
 
@@ -269,7 +269,7 @@ $$
 \sin\theta\,\hat{\mathbf z}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ec56fa8bc7a3eaf9)
+[View →](../../../../equation-mapping.html#corpus-equation-ec56fa8bc7a3eaf9)
 
 and the displayed analyzer fraction is
 
@@ -280,7 +280,7 @@ $$
 {|\mathbf E|^2+\varepsilon}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d228c113519bdd05)
+[View →](../../../../equation-mapping.html#corpus-equation-d228c113519bdd05)
 
 The common-period energy fraction is
 
@@ -291,7 +291,7 @@ $$
 {\left\langle|\mathbf E|^2\right\rangle+\varepsilon}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aee3d3488a713162)
+[View →](../../../../equation-mapping.html#corpus-equation-aee3d3488a713162)
 
 Treat polarization agreement as a diagnostic signal. A useful fit can identify a parameter regime worth studying, but it does not by itself establish a physical photon branch.
 

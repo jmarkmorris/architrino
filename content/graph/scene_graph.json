@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 610,
-      "edges": 1379,
-      "scenes": 393,
+      "nodes": 612,
+      "edges": 1380,
+      "scenes": 394,
       "markdownIndexes": 0,
-      "markdownDocs": 200,
+      "markdownDocs": 201,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -200,12 +200,6 @@
       "id": "borg",
       "name": "Borg App",
       "path": "content/scenes/archie/borg.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "braid-search",
-      "name": "Braid Search",
-      "path": "content/scenes/archie/braid_search.json",
       "nodeType": "scene"
     },
     {
@@ -2507,6 +2501,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "dynamics__shared_circle_assemblies",
+      "name": "Shared-Circle Assemblies",
+      "path": "content/scenes/dynamics/shared_circle_assemblies.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2924,6 +2924,12 @@
       "id": "content/markdown/aaa/dynamics/master-equation.md",
       "name": "Master Equation",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+      "name": "Shared-Circle Assemblies",
+      "path": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3516,7 +3522,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-      "name": "$A_0$ Tier 0 Result-Schema Interpretation",
+      "name": "$A_0$ Tier 0 Result Interpretation: Reduced Branch Search",
       "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "nodeType": "markdown_doc"
     },
@@ -4678,6 +4684,15 @@
       "name": "Master Equation",
       "path": "content/scenes/dynamics/master_equation_of_motion.json",
       "searchTarget": "content/scenes/dynamics/master_equation_of_motion.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/shared_circle_assemblies.json",
+      "nodeType": "scene",
+      "id": "dynamics__shared_circle_assemblies",
+      "name": "Shared-Circle Assemblies",
+      "path": "content/scenes/dynamics/shared_circle_assemblies.json",
+      "searchTarget": "content/scenes/dynamics/shared_circle_assemblies.json",
       "implicit": false
     },
     {
@@ -7876,6 +7891,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+      "name": "Shared-Circle Assemblies",
+      "path": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+      "searchTarget": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/absolute-time-defense.md",
@@ -8761,7 +8785,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-      "name": "$A_0$ Tier 0 Result-Schema Interpretation",
+      "name": "$A_0$ Tier 0 Result Interpretation: Reduced Branch Search",
       "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "implicit": false
@@ -9202,17 +9226,10 @@
   "edges": [
     {
       "from": "scene:content/scenes/archie/applications_analyze_evidence.json",
-      "to": "scene:content/scenes/archie/braid_search.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_analyze_evidence.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications_analyze_evidence.json",
       "to": "scene:content/scenes/archie/equation_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications_analyze_evidence.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/archie/applications_build_simulate.json",
@@ -10122,14 +10139,14 @@
       "to": "scene:content/scenes/dynamics/causal_action_functional.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -10151,6 +10168,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/shared_circle_assemblies.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -14469,6 +14493,13 @@
       "to": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/master_equation_of_motion.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/shared_circle_assemblies.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/shared_circle_assemblies.json",
       "field": "scene.source.path"
     },
     {

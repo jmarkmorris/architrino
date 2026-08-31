@@ -35,7 +35,8 @@
 
       #borg-app {
         display: grid;
-        grid-template-columns: 620px minmax(0, 1fr);
+        /* Give the taxonomy rail room while reserving a usable viewport. */
+        grid-template-columns: minmax(620px, 1395px) minmax(360px, 1fr);
         grid-template-rows: minmax(0, 1fr) 108px;
         width: 100%;
         height: 100%;
@@ -257,15 +258,6 @@
 
       .borg-radio-options.is-inline {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .borg-radio-heading {
-        margin-top: 4px;
-        color: #a8c9bd;
-        font-size: 11px;
-        font-weight: 820;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
       }
 
       .borg-radio-choice {
@@ -1521,13 +1513,14 @@
           <div class="borg-title">
             <h1>Borg</h1>
             <p>EOM simulation surface</p>
+            <a href="./borg-library.html">Browse assembly library</a>
           </div>
         </header>
 
         <div id="borg-mode-boundary" class="borg-mode-boundary" data-mode="simulation-workspace">
           <fieldset id="borg-starting-geometry" class="borg-radio-group">
             <legend>Starting geometry</legend>
-            <div id="borg-starting-geometry-options" class="borg-radio-options">
+            <div id="borg-starting-geometry-options" class="borg-radio-options is-inline">
               <label class="borg-radio-choice">
                 <input type="radio" name="borg-starting-geometry" value="random" checked />
                 <span>Random architrinos</span>

@@ -12,7 +12,7 @@ import {
 } from "../src/apps/borg/BorgPrescribedTranslation.js";
 import { createEomHistoryDataset } from "../src/apps/shared/EomHistoryDataset.mjs";
 
-test("Borg merges coincident binary axes and renders light-purple chart curves", () => {
+test("Borg merges coincident binary axes without unowned chart-path overlays", () => {
   const root = new THREE.Group();
   let renderCount = 0;
   const scene = createBorgAssemblyViewScene({
@@ -49,9 +49,6 @@ test("Borg merges coincident binary axes and renders light-purple chart curves",
   const axisGroup = root.children.find((child) =>
     child.userData.kind === "source-carried-binary-axes"
   );
-  const ansatzGroup = root.children.find((child) =>
-    child.userData.kind === "source-carried-ansatz-curves"
-  );
   assert.equal(axisGroup.children.length, 1);
   assert.deepEqual(
     axisGroup.children[0].userData.sourceBinaryIds,
@@ -59,20 +56,15 @@ test("Borg merges coincident binary axes and renders light-purple chart curves",
   );
   assert.equal(axisGroup.children[0].userData.coincidentSourceCount, 3);
   assert.equal(axisGroup.children[0].material.isLineBasicMaterial, true);
-  assert.equal(ansatzGroup.children.length, 1);
-  assert.equal(ansatzGroup.children[0].material.color.getHex(), 0xc6b6ff);
+  assert.equal(root.children.some(child => child.userData.kind === "source-carried-ansatz-curves"), false);
 
   scene.setDisplayMode("chart-pose");
   assert.equal(axisGroup.visible, true);
-  assert.equal(ansatzGroup.visible, true);
   scene.setPathVisible(false);
   assert.equal(axisGroup.visible, true);
-  assert.equal(ansatzGroup.visible, false);
   scene.setPathVisible(true);
-  assert.equal(ansatzGroup.visible, true);
   scene.setDisplayMode("animated");
   assert.equal(axisGroup.visible, true);
-  assert.equal(ansatzGroup.visible, false);
 
   scene.setRecord({
     dataset: {
@@ -150,7 +142,7 @@ test("prescribed strands and selected tubes share the finite no-future display w
     child.userData.kind === "display-only-path-history-tubes"
   );
   const strand = pathGroup.children[0];
-  assert.deepEqual(strand.geometry.drawRange, { start: 1, count: 2 });
+  assert.deepEqual(strand.geometry.drawRange, { start: 0, count: 2 });
   assert.equal(strand.frustumCulled, false);
   assert.ok(strand.geometry.boundingSphere);
 
@@ -159,8 +151,8 @@ test("prescribed strands and selected tubes share the finite no-future display w
   assert.equal(strand.frustumCulled, false);
   assert.ok(strand.geometry.boundingSphere);
   assert.deepEqual(
-    Array.from({ length: coPositions.count }, (_, index) => coPositions.getX(index)),
-    [0, 0, 0, 0],
+    Array.from({ length: strand.geometry.drawRange.count }, (_, index) => coPositions.getX(index)),
+    [0, 0],
   );
 
   scene.setSelectedWorldlineId("worldline-0");
@@ -250,7 +242,7 @@ function prescribedDataset({ group }) {
     provenance: {
       engineId: "prescribed-geometry",
       prescribedGeometry: {
-        coordinates: group == null ? {} : { group },
+        coordinates: { ...(group == null ? {} : { group }), worldlines: [{ id: "worldline-0", operator: { kind: "inertial.v1" } }] },
       },
     },
     window: {

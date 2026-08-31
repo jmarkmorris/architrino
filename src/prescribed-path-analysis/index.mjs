@@ -17,6 +17,8 @@ export * from "./A11ReceiverPhaseProjectionMonotonicityCertifier.mjs";
 export * from "./A11OuterRadiusBandExpansionDiagnostic.mjs";
 export * from "./A11HistoryPolicyExtensionIndependentVerifier.mjs";
 export * from "./A11IndependentResidualRecomputation.mjs";
+export * from "./PlanarCoRotatingRingBalance.mjs";
+export * from "./PlanarCoRotatingRingSearch.mjs";
 export * from "./database/IndependentAnalyticalAcceptance.mjs";
 export * from "./database/AnalyticalCampaignDatabase.mjs";
 export * from "./database/AnalyticalCampaignRebuild.mjs";

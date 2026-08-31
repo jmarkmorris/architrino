@@ -13,6 +13,10 @@ const CHECKS = [
     args: ["scripts/validate-content.mjs", "--check", "--strict"],
   },
   {
+    name: "Check reader-facing publication boundary",
+    args: ["scripts/check-reader-facing-publication-boundary.mjs"],
+  },
+  {
     name: "Validate generated scene graph manifest",
     args: ["scripts/build-scene-graph.mjs", "--check", "--strict"],
   },
@@ -31,6 +35,10 @@ const CHECKS = [
   {
     name: "Validate generated textbook reading copies",
     args: ["scripts/build-textbook-md-pdf.mjs", "--check"],
+  },
+  {
+    name: "Validate large machine-artifact retention",
+    args: ["scripts/validate-machine-artifact-retention.mjs"],
   },
   {
     name: "Check current Master Equation terminology",
@@ -71,6 +79,10 @@ const CHECKS = [
   {
     name: "Test exact-state PR validation receipts",
     args: ["--test", "tests/pr-validation-receipt.test.js"],
+  },
+  {
+    name: "Test reader-facing publication boundary",
+    args: ["--test", "tests/reader-facing-publication-boundary.test.js"],
   },
 ];
 

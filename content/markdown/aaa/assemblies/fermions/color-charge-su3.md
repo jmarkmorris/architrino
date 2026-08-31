@@ -109,13 +109,13 @@ $$
 \phi \in \left\{0,\frac{2\pi}{3},\frac{4\pi}{3}\right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-985d948dac6c319b)
+[View →](../../../../../equation-mapping.html#corpus-equation-985d948dac6c319b)
 for which
 $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c6a24b397e517747)
+[View →](../../../../../equation-mapping.html#corpus-equation-c6a24b397e517747)
 This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether braid survive without strong radiative leakage.
 
 ### Electron and positron
@@ -147,13 +147,13 @@ $$
 (-/+,\ -/+,\ -/+)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6aeebafc1b64fb61)
+[View →](../../../../../equation-mapping.html#corpus-equation-6aeebafc1b64fb61)
 or
 $$
 (+/+,\ -/+,\ -/-)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b92b8f5b6c5072e5)
+[View →](../../../../../equation-mapping.html#corpus-equation-b92b8f5b6c5072e5)
 are therefore best read as effective exposure diagrams for weak-channel coupling, not as the canonical neutrino inventory. Residual internal-binary exposure inside the near-photon pair remains the natural place to seek neutrino mass eigenstates and oscillation structure.
 
 A PMNS-level derivation remains a closure target in the [neutrino section](./neutrinos.md).
@@ -182,7 +182,7 @@ $$
 n_+ + n_- + n_m=3.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-37437a664aa7329c)
+[View →](../../../../../equation-mapping.html#corpus-equation-37437a664aa7329c)
 
 For the up-type inventory $(N_+,N_-)=(5,1)$, the unique nonnegative solution is $(n_+,n_-,n_m)=(2,0,1)$. For the down-type inventory $(2,4)$, the solutions are $(1,2,0)$ and $(0,1,2)$. Thus every charged quark inventory forces exactly two axes into one dyad class and one axis into a different class. The pattern is a counting consequence, not an added stability postulate.
 
@@ -288,7 +288,7 @@ $$
 F_\star(q,\mathcal{B})\in\{I,II\},\qquad q\in\{d,s,b\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b1634b00731f6506)
+[View →](../../../../../equation-mapping.html#corpus-equation-b1634b00731f6506)
 where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether sea environment. Once $F_\star$ is selected, its three 1/2/3 permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
 
 ### Rigorous low-energy branch-selection criterion
@@ -300,13 +300,13 @@ $$
 E_F^\star \equiv \min_{X\in\Omega_F}\mathcal{E}(X),\qquad F\in\{I,II\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4e0dda62c362d76d)
+[View →](../../../../../equation-mapping.html#corpus-equation-4e0dda62c362d76d)
 and local Hessians
 $$
 H_F \equiv D^2\mathcal{E}(X_F^\star)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-80764e22d02435e2)
+[View →](../../../../../equation-mapping.html#corpus-equation-80764e22d02435e2)
 For finite but low noise/temperature scale $T_{\mathcal Q,W}$, with temperature understood as a same-record ensemble variable in the sense of [Entropy](../../dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable), use the harmonic free-energy approximation
 $$
 \mathcal{F}_F(T_{\mathcal Q,W})
@@ -315,14 +315,14 @@ E_F^\star+\frac{T_{\mathcal Q,W}}{2}\log\det H_F
 +\mathcal{O}(T_{\mathcal Q,W}^2)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-26b0a28b74e0ec23)
+[View →](../../../../../equation-mapping.html#corpus-equation-26b0a28b74e0ec23)
 
 Linearize the delay dynamics about each minimizer and let
 $$
 \rho_F\equiv \max_{j\neq 1}|\mu_j^{(F)}|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9b04cfae33bdb36c)
+[View →](../../../../../equation-mapping.html#corpus-equation-9b04cfae33bdb36c)
 be the Floquet spectral radius of nontrivial multipliers.
 
 **Theorem (Single-family low-energy survival).** Assume there exists $F_\star\in\{I,II\}$ such that:
@@ -333,7 +333,7 @@ $$
 \Delta\mathcal{F}\equiv \mathcal{F}_{\bar F}-\mathcal{F}_{F_\star}>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5796b4e75f8a39f8)
+[View →](../../../../../equation-mapping.html#corpus-equation-5796b4e75f8a39f8)
 3. **Low-energy regime:** $T_{\mathcal Q,W}\ll \Delta\mathcal{F}$ and forcing amplitude is below the inter-family escape barrier.
 
 Then stationary occupation satisfies
@@ -343,7 +343,7 @@ $$
 \exp\!\left(-\frac{\Delta\mathcal{F}}{T_{\mathcal Q,W}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8eeb0253a343f421)
+[View →](../../../../../equation-mapping.html#corpus-equation-8eeb0253a343f421)
 so $\pi_{\bar F}\to 0$ as $T_{\mathcal Q,W}\to 0$. Hence exactly one down-family survives as the low-energy ambient family.
 
 *Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight. The harmonic free-energy and Kramers steps are part of the approximation burden: the reduced state-dependent delay record must admit this metastable-well reduction before the criterion becomes quantitative.
@@ -353,7 +353,7 @@ $$
 E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{\mathrm{mix}}^{(F)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-93d87b36626184d3)
+[View →](../../../../../equation-mapping.html#corpus-equation-93d87b36626184d3)
 with $N_{\mathrm{mix}}^{(I)}=0$, $N_{\mathrm{mix}}^{(II)}=2$, then Family II is selected whenever
 $$
 2s>
@@ -362,7 +362,7 @@ $$
 +\big(E_{\text{strain},II}-E_{\text{strain},I}\big)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-43164c6e0accf6cf)
+[View →](../../../../../equation-mapping.html#corpus-equation-43164c6e0accf6cf)
 and the stability condition $\rho_{II}<1$ holds.
 
 **Failure condition (theory-level, explicit).** The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
@@ -371,7 +371,7 @@ $$
 |\mathcal{F}_{II}-\mathcal{F}_I|\le \varepsilon_F
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-66f8ed6018bf8bb6)
+[View →](../../../../../equation-mapping.html#corpus-equation-66f8ed6018bf8bb6)
 for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening. In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
 
 
@@ -383,13 +383,13 @@ $$
 \mathcal{H}^{\text{color}}_q \equiv \mathrm{span}\{|q_1\rangle,|q_2\rangle,|q_3\rangle\}\cong\mathbb{C}^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-24b6c355c2866dad)
+[View →](../../../../../equation-mapping.html#corpus-equation-24b6c355c2866dad)
 where $|q_1\rangle,|q_2\rangle,|q_3\rangle$ mean "axis-exceptionality on 1/2/3", respectively. Fix this ordered basis and identify it with the canonical triplet basis
 $$
 |q_1\rangle\leftrightarrow e_1,\quad |q_2\rangle\leftrightarrow e_2,\quad |q_3\rangle\leftrightarrow e_3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-30a5c9141568d298)
+[View →](../../../../../equation-mapping.html#corpus-equation-30a5c9141568d298)
 
 ### Admissible color transformations
 
@@ -405,7 +405,7 @@ $$
 U\in SU(3)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d1916ab721488ee2)
+[View →](../../../../../equation-mapping.html#corpus-equation-d1916ab721488ee2)
 
 The usual global phase map $|q\rangle\to e^{i\theta}|q\rangle$ is treated as unobservable gauge redundancy (it does not change which axis is exceptional or relative axis phases).
 
@@ -418,14 +418,14 @@ T^{(y)}_{ab}\equiv -\frac{i}{2}(E_{ab}-E_{ba})
 \quad (a<b)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4a6d6184bfe40c01)
+[View →](../../../../../equation-mapping.html#corpus-equation-4a6d6184bfe40c01)
 giving six off-diagonal generators: $(12),(13),(23)$ each with $(x,y)$ components. Define diagonal generators:
 $$
 H_1\equiv \frac{1}{2}(E_{11}-E_{22}),\qquad
 H_2\equiv \frac{1}{2\sqrt{3}}(E_{11}+E_{22}-2E_{33})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-303a244bf5bcafe7)
+[View →](../../../../../equation-mapping.html#corpus-equation-303a244bf5bcafe7)
 These eight matrices are exactly the standard $T^a=\lambda_a/2$ basis in the indexed-axis ordering.
 
 ### Algebra closure (rigorous statement)
@@ -435,13 +435,13 @@ $$
 \mathcal{B}=\{T^{(x)}_{12},T^{(y)}_{12},T^{(x)}_{13},T^{(y)}_{13},T^{(x)}_{23},T^{(y)}_{23},H_1,H_2\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7d62774375504791)
+[View →](../../../../../equation-mapping.html#corpus-equation-7d62774375504791)
 is an 8-dimensional Lie algebra isomorphic to $\mathfrak{su}(3)$; equivalently,
 $$
 [T^a,T^b]=i f^{abc}T^c
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c4dd5017232ecae4)
+[View →](../../../../../equation-mapping.html#corpus-equation-c4dd5017232ecae4)
 for the standard SU(3) structure constants in this basis.
 
 **Proof.** Each element of $\mathcal{B}$ is Hermitian and traceless, and there are eight linearly independent such matrices. Under the basis identification above, $\mathcal{B}$ maps one-to-one to the Gell-Mann basis $\{\lambda_a/2\}_{a=1}^8$, whose commutator algebra is $\mathfrak{su}(3)$. Therefore the axis-exceptionality generators close under commutator with the same structure constants.
@@ -457,14 +457,14 @@ $$
 \mathrm{span}_{\mathbb{R}}\mathcal{B}\cong 8_{\mathrm{adj}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-892ca4158548e42b)
+[View →](../../../../../equation-mapping.html#corpus-equation-892ca4158548e42b)
 with the observable closed sectors assembled through the usual singlet-containing products
 $$
 3\otimes\bar 3=1\oplus 8,\qquad
 3\otimes 3\otimes 3\supset 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-adca47545bca5d8c)
+[View →](../../../../../equation-mapping.html#corpus-equation-adca47545bca5d8c)
 This does not identify the Eightfold Way flavor octets with color itself. It says that any successful color branch must reproduce the same algebraic fact that eight traceless generators organize an octet-class residual, while native confinement and color-singlet closure still come from axis exceptionality, braid closure, and Noether sea energetics.
 
 Symmetry breaking is then tested as a residual, not promoted to a second color rule. Let $M_{\mathrm{obs}}$ be the observed hadron mass vector for a chosen baryon or meson octet, and let $M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)$ be the mass vector predicted after projecting a closed color-singlet assembly onto its flavor and axial-layer labels. The admissible branch must support a decomposition
@@ -472,7 +472,7 @@ $$
 M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)=m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-54d131a82e3e8d73)
+[View →](../../../../../equation-mapping.html#corpus-equation-54d131a82e3e8d73)
 where $T_8$ and $D_8$ denote the two octet-breaking directions available to the adjoint classification, and $\Delta_{\mathrm{axis}}(\theta)$ is the native correction from indexed-axis response differences, axial-layer family selection, and braid energy. The recovery residual is
 $$
 \mathcal{R}_{8}
@@ -480,7 +480,7 @@ $$
 \left\|M_{\mathrm{obs}}-\left(m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)\right)\right\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-63e3efed5cc57877)
+[View →](../../../../../equation-mapping.html#corpus-equation-63e3efed5cc57877)
 A branch fails this Eightfold-way check if $\mathcal{R}_{8}$ can be made small only by fitting unrelated parameters separately for baryons, mesons, and color confinement, or if $\Delta_{\mathrm{axis}}$ erases the triplet/conjugate-triplet and adjoint structure above. The source signal to preserve is therefore narrow: algebraic classification and Gell-Mann-Okubo-style mass splitting are recovery constraints on the emergent branch, not evidence that the classification algebra is the underlying medium.
 
 ### Example: 1↔2 axis-swap generator
@@ -496,7 +496,7 @@ T^{(x)}_{12}
 =\frac{\lambda_1}{2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-06f8440b2a0e9bc5)
+[View →](../../../../../equation-mapping.html#corpus-equation-06f8440b2a0e9bc5)
 It continuously rotates exceptionality between 1 and 2 while leaving 3 unchanged at first order. Together with $T^{(y)}_{12}=\lambda_2/2$, it generates the embedded SU(2) subgroup acting on the $(1,2)$ color plane.
 
 
@@ -564,13 +564,13 @@ $$
 E_{\mathrm{open}}(\ell_{\mathrm{corr}})=\sigma_{\mathrm{eff}}\ell_{\mathrm{corr}}+E_0+\mathcal{O}(1/\ell_{\mathrm{corr}}),\qquad \sigma_{\mathrm{eff}}>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-426bafde2669cfd1)
+[View →](../../../../../equation-mapping.html#corpus-equation-426bafde2669cfd1)
 for open color braids/flux sectors, while closed singlet sectors satisfy
 $$
 E_{\mathrm{closed}}(\ell_{\mathrm{corr}})\to E_{\infty}<\infty
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e3d515945a0108c7)
+[View →](../../../../../equation-mapping.html#corpus-equation-e3d515945a0108c7)
 and vanishing far-field color flux. Here $\ell_{\mathrm{corr}}$ is the open color-corridor length, distinct from binary index 3.
 
 The Wilson-loop benchmark is the observer-level gauge-theory diagnostic for the same distinction. For a rectangular loop $C_{R,T}$ in the fundamental color representation, with $R$ and $T$ retained as standard lattice loop-extents rather than native axis or absolute-time labels, the strong-sector branch should recover
@@ -580,7 +580,7 @@ $$
 \exp\!\left[-\sigma_{\mathrm{eff}}(\theta)\,R\,T+\mathcal{O}(R+T)\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2008de96bfe403b9)
+[View →](../../../../../equation-mapping.html#corpus-equation-2008de96bfe403b9)
 in the confining window, while non-confining or screened limits must show the corresponding perimeter-law or string-breaking behavior. This target is not a claim that the lattice Wilson loop is fundamental ontology; it is the tested gauge-invariant way to compare open color-corridor energy with QCD.
 
 The same branch must also provide a closed-sector mass-gap diagnostic. For a pair of gauge-invariant closed color probes separated by $R$,
@@ -592,7 +592,7 @@ $$
 M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-183a360c95c75bde)
+[View →](../../../../../equation-mapping.html#corpus-equation-183a360c95c75bde)
 This is the mass-gap recovery target for closed strong-sector braids, separate from the open-string tension target.
 
 This energy law is a closure target, not a restatement of QCD in native vocabulary. The observer-level benchmarks to preserve are the static-potential string tension, the absence of asymptotic free color charge, a finite pure-gauge mass gap, and the hadron-spectrum constraints currently organized by QCD and lattice calculations. A useful confinement residual is
@@ -606,7 +606,7 @@ d_{\mathrm{gap}}\!\left(M_{\mathrm{glue}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\thet
 d_{\mathrm{free}}\!\left(O_{\mathrm{color}}(\theta),O_{\mathrm{color}}^{\max}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-836ac00bb9ffc403)
+[View →](../../../../../equation-mapping.html#corpus-equation-836ac00bb9ffc403)
 where the terms compare the extracted open-sector tension, the lowest closed strong-sector excitation scale, and the predicted free-color signal against the corresponding accepted benchmark or bound. The same branch record must drive all three terms. If $\sigma_{\mathrm{eff}}$, the mass gap, and free-color suppression require independent Noether sea variables or separate color-sector fits, the confinement program has reproduced the appearance of QCD rather than deriving its non-perturbative content.
 
 This chapter therefore carries:

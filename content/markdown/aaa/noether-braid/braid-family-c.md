@@ -18,7 +18,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b512dd169d4151dd)
+[View →](../../../../equation-mapping.html#corpus-equation-b512dd169d4151dd)
 
 where $\hat{\mathbf n}_C$ is the common axis of all twelve architrino worldlines. Assign persistent indices
 
@@ -26,7 +26,7 @@ $$
 m\in\{1,\ldots,12\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aee3b66945615003)
+[View →](../../../../equation-mapping.html#corpus-equation-aee3b66945615003)
 
 and strictly ordered axial coordinates
 
@@ -34,7 +34,7 @@ $$
 \xi_1<\xi_2<\cdots<\xi_{12}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2906606dee811b1c)
+[View →](../../../../equation-mapping.html#corpus-equation-2906606dee811b1c)
 
 The adjacent spacings and total train length are
 
@@ -44,7 +44,7 @@ d_m=\xi_{m+1}-\xi_m>0,
 m\in\{1,\ldots,11\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2596f73f93a2c254)
+[View →](../../../../equation-mapping.html#corpus-equation-2596f73f93a2c254)
 
 and
 
@@ -52,7 +52,7 @@ $$
 L_C=\xi_{12}-\xi_1=\sum_{m=1}^{11}d_m.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-867390011c64e68b)
+[View →](../../../../equation-mapping.html#corpus-equation-867390011c64e68b)
 
 The spacing vector
 
@@ -60,7 +60,7 @@ $$
 \mathbf d_C=(d_1,\ldots,d_{11})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d5fbf3807a2fffea)
+[View →](../../../../equation-mapping.html#corpus-equation-d5fbf3807a2fffea)
 
 is a primary Family-C coordinate because it changes the exact causal delays between architrino worldlines. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
 
@@ -72,7 +72,7 @@ $$
 \mathbf C_0+s_{\mathrm{grp}}T\hat{\mathbf n}_C.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-27664d32dd3bca91)
+[View →](../../../../equation-mapping.html#corpus-equation-27664d32dd3bca91)
 
 Worldline $m$ is
 
@@ -88,7 +88,7 @@ $$
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-797e910f52f511c6)
+[View →](../../../../equation-mapping.html#corpus-equation-797e910f52f511c6)
 
 with
 
@@ -100,7 +100,7 @@ q_m\omega_mT+\phi_m,
 q_m\in\{+1,-1\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8de2892fd5227395)
+[View →](../../../../equation-mapping.html#corpus-equation-8de2892fd5227395)
 
 The twelve radii $\rho_m>0$, angular frequencies $\omega_m>0$, phases $\phi_m$, and circulation senses $q_m$ are independently declared unless a member row constrains them. A complete-return record must declare a period $P_C>0$ satisfying
 
@@ -108,7 +108,7 @@ $$
 \frac{\omega_mP_C}{2\pi}\in\mathbb Z
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-75d719c7d6c79a80)
+[View →](../../../../equation-mapping.html#corpus-equation-75d719c7d6c79a80)
 
 for every $m$.
 
@@ -120,7 +120,7 @@ $$
 \pi:\{1,\ldots,12\}\to\{1,\ldots,12\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2389123cd27a8b4f)
+[View →](../../../../equation-mapping.html#corpus-equation-2389123cd27a8b4f)
 
 satisfying
 
@@ -130,7 +130,7 @@ $$
 \pi(m)\ne m.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-02df9e1c24fa8c02)
+[View →](../../../../equation-mapping.html#corpus-equation-02df9e1c24fa8c02)
 
 The six unordered pairs $\{m,\pi(m)\}$ are the six neutral binaries. For each pair, the record declares opposite endpoint polarities and explicitly states the radius, frequency, phase, circulation, axial-midpoint, and axial-separation relations. The binary map is not inferred from axial adjacency, drawing color, or an optional Accessory Configuration.
 
@@ -154,7 +154,7 @@ m\in\{1,\ldots,12\},
 q_C\in\{+1,-1\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2c260fe4c04b56e4)
+[View →](../../../../equation-mapping.html#corpus-equation-2c260fe4c04b56e4)
 
 C1 retains the full ordered-spacing, radius, frequency, phase, and binary-pairing coordinates. It does not require equal radii, equal spacings, equal frequencies, reflection symmetry, or decomposition into two B1 components.
 
@@ -168,7 +168,7 @@ $$
 \mathcal I_2=\{7,\ldots,12\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8a976e0e99f3631d)
+[View →](../../../../equation-mapping.html#corpus-equation-8a976e0e99f3631d)
 
 and imposes
 
@@ -180,7 +180,7 @@ q_m=-q_C
 \quad\text{for }m\in\mathcal I_2.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-daa9269995d3967c)
+[View →](../../../../equation-mapping.html#corpus-equation-daa9269995d3967c)
 
 The subsets define the circulation relation only. Neither subset is required to be a complete B1 braid, and binary counterparts may remain within one subset or cross between them when the source record declares the map exactly.
 
@@ -202,7 +202,7 @@ $$
 d_C>0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b9a0d3e6a07fc5ba)
+[View →](../../../../equation-mapping.html#corpus-equation-b9a0d3e6a07fc5ba)
 
 For each component, let $(R_{ba},h_{ba},\rho_{ba},\phi_{ba})$ be its B1 binary coordinates, with
 
@@ -210,7 +210,7 @@ $$
 R_{ba}^2=h_{ba}^2+\rho_{ba}^2.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-11c4b58e679a0c2a)
+[View →](../../../../equation-mapping.html#corpus-equation-11c4b58e679a0c2a)
 
 The half-separation vector is
 
@@ -225,7 +225,7 @@ h_{ba}\hat{\mathbf n}_C
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3909271a6331315f)
+[View →](../../../../equation-mapping.html#corpus-equation-3909271a6331315f)
 
 and the endpoint worldlines are
 
@@ -235,7 +235,7 @@ $$
 \mathbf X_{ba-}(T)=\mathbf C_b(T)-\mathbf s_{ba}(T).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6fb5a1df2182a13e)
+[View →](../../../../equation-mapping.html#corpus-equation-6fb5a1df2182a13e)
 
 Each component separately inherits the complete B1 common-midpoint, common-axis, common-frequency, common-circulation, antipodality, and polarity-conjugacy relations. The source record declares the bijection between these twelve endpoint labels and the persistent Family-C indices $m$.
 
@@ -255,7 +255,7 @@ b\in\{1,2\},
 a\in\{1,2,3\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2360831584533f3b)
+[View →](../../../../equation-mapping.html#corpus-equation-2360831584533f3b)
 
 C5 retains the common-circulation relation. C6 retains the opposite-component-circulation relation. The axial center separation $d_C$, component frequencies, internal phases, and relative phase remain declared coordinates unless a source record constrains them.
 
@@ -274,7 +274,7 @@ c_fu,
 u>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c2bef069b542523f)
+[View →](../../../../equation-mapping.html#corpus-equation-c2bef069b542523f)
 
 where
 
@@ -288,7 +288,7 @@ $$
 \right].
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3f1ae82c3759a4c8)
+[View →](../../../../equation-mapping.html#corpus-equation-3f1ae82c3759a4c8)
 
 This equation is exact for the prescribed chart and generally transcendental because $u$ appears inside the transmitter phase. Closed-form reduction is available only on separately demonstrated symmetric boundaries. Otherwise, prescribed-path analysis must enumerate every retained positive root without evolving any path.
 

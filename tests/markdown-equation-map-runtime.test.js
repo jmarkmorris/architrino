@@ -138,7 +138,7 @@ function fixture(entries = [{ semanticId, prefix: "../../../../" }]) {
     const equation = element("div", "markdown-math-block");
     const paragraph = element("p");
     const link = element("a");
-    link.textContent = paragraph.textContent = "Explore this equation in Equation Mapping";
+    link.textContent = paragraph.textContent = "View →";
     link.setAttribute("href", `${entry.prefix}equation-mapping.html#${entry.semanticId}`);
     paragraph.append(link);
     root.append(equation, paragraph);

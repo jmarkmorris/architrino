@@ -1,0 +1,889 @@
+{
+  "schema": "braid-program/orthogonal-plane-weave-fold-limiting-exclusion-receipt.v1",
+  "date": "2026-08-29",
+  "authority": "canonical fold-limit extension of a frozen independent ordinary certificate",
+  "disposition": "bounded no-balance theorem for the fixed-phase locus",
+  "logicalCertificate": {
+    "ordinaryDomain": "ordinary domain excluded with explicit unresolved fold boxes",
+    "foldBoxRule": "Below each interior lobe minimum the target pair is absent and the remaining transverse sum excludes zero. Above it, the born pair has a same-signed transverse contribution whose certified lower bound dominates every other row.",
+    "exactFoldRule": "Persistent D_t=0 circular folds fail the canonical chart; transverse folds have no finite pointwise acceleration; the beta_f=1 coincident root is excluded and its remaining ordinary tangent sum is nonzero.",
+    "conclusion": "No beta_f in [0.25,12] satisfies every-phase pointwise Master Equation acceleration balance on the fixed relative-phase orthogonal-plane history."
+  },
+  "domain": {
+    "fieldSpeed": "1",
+    "beta": [
+      "0.25",
+      "12"
+    ],
+    "receptionPhase": [
+      "0",
+      "2*pi"
+    ],
+    "relativeBinaryPhases": [
+      "0",
+      "2*pi/3",
+      "4*pi/3"
+    ],
+    "radiusInRootGeometry": "1",
+    "witnessReceiver": "a1+",
+    "witnessReceptionPhase": "0"
+  },
+  "modelScope": {
+    "model": "default uncapped canonical Master Equation with its existing caustic-transit and persistent-fold routing",
+    "doesNotDefineNewFoldLaw": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "fieldSpeedCeilingApplied": false,
+    "doesNotEstablish": [
+      "retention",
+      "stability",
+      "binding",
+      "physical realization",
+      "balance or failure outside beta_f in [0.25,12]",
+      "failure of other relative phasings",
+      "failure of variable-speed, breathing, or precessing-plane histories",
+      "failure of other three-dimensional 3:3 histories",
+      "any N>3 braid family",
+      "sharp-limit convergence of the dual-mollified equation at unrelated caustics"
+    ]
+  },
+  "provenance": {
+    "protocolPath": "src/prescribed-path-analysis/protocols/orthogonal-plane-weave-fold-limiting-exclusion-protocol.v1.json",
+    "protocolSha256": "d93bec1afdb104f682296281a0fd0bd3003cc9860d0492fd7c861f344beca91b",
+    "certificatePath": "scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_fold_limit_certificate.py",
+    "certificateSha256": "e6d0274eb27a613e21f5dd308a431bf0fe3a66bafeeca7c100cdaeaaa83295ca",
+    "frozenInputs": {
+      "ordinaryCertificatePath": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-separated-interval.v1.json",
+      "ordinaryCertificateSha256": "d65d556bd25ed6b40d8281aad53d6138daab042e80deb120cb97ae244a1b7b27",
+      "ordinaryOraclePath": "scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_interval_oracle.py",
+      "ordinaryOracleSha256": "b54a5ae488edb49dca8d58fbed8627f3edf912358dd4f4599e077b5136ffdec1",
+      "masterEquationPath": "content/markdown/aaa/dynamics/master-equation.md",
+      "masterEquationSha256": "0e8219c7a3cc750747c43030d5b998ddbf2de525a5469d32fa5e52fbae5ec63f",
+      "sixWorldlineSubjectPath": "src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs",
+      "sixWorldlineSubjectSha256": "109094c43b2df92dbe22338412dd2761e1933cf202b8e4957385d8716da252be",
+      "modificationRule": "All four frozen inputs are read-only controls for this extension."
+    },
+    "mpmathVersion": "1.3.0",
+    "decimalDigits": 80,
+    "reproductionCommand": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_fold_limit_certificate.py --write-receipt reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-limiting-exclusion.v1.json"
+  },
+  "canonicalFoldLaw": {
+    "simpleRootWeight": "W_acc=1/abs(D_t)",
+    "finiteOrderTransit": "A nondegenerate transverse fold is routed through the canonical caustic-transit chart: its ordinary branch acceleration scales as abs(T_r-T_r*)^(-1/2), is locally integrable in reception time, and is not assigned a finite pointwise acceleration at D_t=0.",
+    "persistentFold": "A persistent interval with D_t=0 is outside the finite-impulse lemma and remains a regularized-chart failure.",
+    "coincidentSelfBirth": "The x=0 coincident self root is excluded; a coincident same-transmitter root birth is not an accepted fold transition under the finite-regulator theorem target."
+  },
+  "analyticalReduction": {
+    "rootEquationsAtPhaseZero": {
+      "self": "H_s=2-2*cos(x)-x^2/beta_f^2",
+      "partner": "H_p=2+2*cos(x)-x^2/beta_f^2",
+      "crossPlus": "H_+=2+2*sin(x)-x^2/beta_f^2",
+      "crossMinus": "H_-=2-2*sin(x)-x^2/beta_f^2"
+    },
+    "interiorFold": "H=H_x=0, H_xx!=0, delay=x/beta_f>0",
+    "crossPhaseEquation": "F_sigma(phi,x;beta_f)=2-2*sigma*cos(phi)*sin(phi-x)-x^2/beta_f^2",
+    "crossTransversality": "At a crossPlus or crossMinus fold at phi=0, D_r=-beta_f^2*(F_phi+F_x)/(2*x)=1 exactly, so the reception phase crosses a nondegenerate fold transversely.",
+    "persistentIdentity": "For self and partner circular rows, the causal equation depends only on delay; D_r=D_t. Hence D_t=0 persists for every reception phase at an interior fold beta_f.",
+    "relevantComponents": {
+      "self": "each born root contributes +2*beta_f*sin(x)/(x^2*abs(H_x)) to the tangent component near the fold",
+      "partner": "each born root contributes 2*beta_f*sin(x)/(x^2*abs(H_x))<0 to the tangent component near the fold",
+      "crossPlus": "each born root contributes -2*beta_f*cos(x)/(x^2*abs(H_x))<0 to the plane-normal component near the fold",
+      "crossMinus": "each born root contributes -2*beta_f*cos(x)/(x^2*abs(H_x))>0 to the plane-normal component near the fold"
+    },
+    "limitingExclusion": "On the beta_f>beta_* side, the two roots born at every interior lobe minimum have one common transmitter, polarity, limiting line of action, and same-signed relevant transverse projection. Their combined magnitude diverges while all nonfold rows remain bounded. On the beta_f<beta_* side, the target pair is absent and the frozen root-sheet oracle interval-encloses the reduced transverse sum away from zero. At beta_f=beta_*, a persistent fold is a chart failure and a transverse fold has no finite pointwise acceleration; either disposition fails the declared every-phase acceleration-balance condition.",
+    "betaOneBoundary": "At beta_f=1, 2-2*cos(x)<x^2 for every x>0, so no nontrivial self root exists. The coincident root is excluded and the remaining phase-zero tangent sum is interval-enclosed away from zero. For beta_f>1 the born self contribution is positive and divergent."
+  },
+  "classificationCounts": {
+    "coincident-self-boundary": 1,
+    "persistent-circular-fold": 6,
+    "transverse-cross-binary-fold": 7
+  },
+  "foldBoxCount": 14,
+  "closedFoldBoxCount": 14,
+  "unresolvedFoldBoxes": [],
+  "foldBoxes": [
+    {
+      "kind": "self",
+      "lobeIndex": 0,
+      "betaBox": [
+        "0.9999999980000000000000000000000000000000",
+        "1.000000002000000000000000000000000000000"
+      ],
+      "foldBetaEnclosure": [
+        "1",
+        "1"
+      ],
+      "relevantComponent": "tangent",
+      "targetContributionSign": "positive",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "0.07393814889717874640466499760096972986565",
+          "upper": "0.07393815569396392312485838552079066162090"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 5,
+        "minimumAbsoluteH_x": "2.978830538923984586478777866464120487168",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 1,
+        "xHull": [
+          "0",
+          "0.0002190890228487041294630287980288856460578959083830409877902072277168421"
+        ],
+        "projectionMagnitudeLowerBound": "0.9999999920000000111999999828114285994057",
+        "maximumAbsoluteH_xOverHull": "0.0004381780474501204469738271941525982808309",
+        "perRootContributionMagnitudeLowerBound": "20833333.07083333440440476011635714387558",
+        "combinedContributionMagnitudeLowerBound": "20833333.07083333440440476011635714387558",
+        "signedDominanceMargin": "20833333.14477148330158350652102214147655",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "coincident-self-boundary",
+        "nontrivialSelfRootAtBetaOne": "absent exactly because 2-2*cos(x)<x^2 for x>0",
+        "coincidentSelfRoot": "excluded by the canonical convention",
+        "remainingComponent": {
+          "lower": "0.07393814889717874640466499760096972986565",
+          "upper": "0.07393815569396392312485838552079066162090"
+        },
+        "remainingComponentExcludesZero": true
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "minus",
+      "lobeIndex": 1,
+      "betaBox": [
+        "2.115062139886677673788511835084370591844",
+        "2.115062143886677673788511835084370591844"
+      ],
+      "foldBetaEnclosure": [
+        "2.11506214188667767378851183508437059184417534665607522782103098480532887482591026903148198",
+        "2.11506214188667767378851183508437059184417534665607522783011862087636273552212095860901593"
+      ],
+      "relevantComponent": "planeNormal",
+      "targetContributionSign": "positive",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "-1.020053254153512469572017169584999081248",
+          "upper": "-1.020053241732604283884133957368284134705"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 6,
+        "minimumAbsoluteH_x": "1.447955476612197224443245595046399107769",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "3.727459115291412899221042575524898165311929218974395095701022837075314",
+          "3.727546091766544570677535513392479078623008419149546773688568362939669"
+        ],
+        "projectionMagnitudeLowerBound": "0.8331852190539074752946111940757483255253",
+        "maximumAbsoluteH_xOverHull": "0.0001350770978729848376759845823053867330196",
+        "perRootContributionMagnitudeLowerBound": "1877.876028027789067047691697990230482764",
+        "combinedContributionMagnitudeLowerBound": "3755.752056055578134095383395980460965527",
+        "signedDominanceMargin": "3754.732002801424621625811378810875966446",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "transverse-cross-binary-fold",
+        "delay": {
+          "lower": "1.762340236474775592855591988844907187475",
+          "upper": "1.762340236474775592855591988844907187475"
+        },
+        "H_xx": {
+          "lower": "-1.552921554548983978472869831326332525553",
+          "upper": "-1.552921554548983978472869831326332525553"
+        },
+        "g_TtTt": {
+          "lower": "-1.970951915045819095757462468901434833093",
+          "upper": "-1.970951915045819095757462468901434833093"
+        },
+        "receiverSideFactor": "D_r=1 exactly from F_phi and the fold equation",
+        "exactFoldDisposition": "nondegenerate transverse caustic; canonical acceleration has no finite pointwise value at the fold, while the born-pair limit diverges in one transverse component"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "partner",
+      "lobeIndex": 1,
+      "betaBox": [
+        "2.971693868713802120810456962443884992721",
+        "2.971693872713802120810456962443884992721"
+      ],
+      "foldBetaEnclosure": [
+        "2.97169387071380212081045696244388499272105491261907254641170384917443155898582733989084746",
+        "2.97169387071380212081045696244388499272105491261907254642020753349912825143275389608633749"
+      ],
+      "relevantComponent": "tangent",
+      "targetContributionSign": "negative",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "0.6497105271704173775965056322561044533188",
+          "upper": "0.6497105326669694697797313412209759431002"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 8,
+        "minimumAbsoluteH_x": "0.9350648566778116702855285878970441917883",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "5.596772091567774273440497806279141341269217581508202087190644489073947",
+          "5.596845468551406222863542190427979632660019675110427947165062671149402"
+        ],
+        "projectionMagnitudeLowerBound": "0.6337100398826904827191635557384574427067",
+        "maximumAbsoluteH_xOverHull": "0.0001301409724223343170551118235529870861830",
+        "perRootContributionMagnitudeLowerBound": "923.8978832689220005280216296633051007463",
+        "combinedContributionMagnitudeLowerBound": "1847.795766537844001056043259326610201493",
+        "signedDominanceMargin": "1847.146056005177031586263527985389225549",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "persistent-circular-fold",
+        "delay": {
+          "lower": "1.883360916386527814546479023876285338410",
+          "upper": "1.883360916386527814546479023876285338410"
+        },
+        "H_xx": {
+          "lower": "-1.773524170686150906938436734691465266270",
+          "upper": "-1.773524170686150906938436734691465266270"
+        },
+        "g_TtTt": {
+          "lower": "-4.157973330073505321645171362388546538643",
+          "upper": "-4.157973330073505321645171362388546538643"
+        },
+        "receiverSideFactor": "D_r=D_t=0 exactly by delay-only circular symmetry",
+        "exactFoldDisposition": "persistent D_t=0 interval; outside the canonical finite-impulse fold lemma and therefore not a balanced pointwise history"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "plus",
+      "lobeIndex": 1,
+      "betaBox": [
+        "3.794439974085763595044085738870897918638",
+        "3.794439978085763595044085738870897918638"
+      ],
+      "foldBetaEnclosure": [
+        "3.79443997608576359504408573887089791863846663710075231322799825428127691666195650668091290",
+        "3.79443997608576359504408573887089791863846663710075231323629947649074942168506196972802322"
+      ],
+      "relevantComponent": "planeNormal",
+      "targetContributionSign": "negative",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "-1.223429914511512258262476759928101479513",
+          "upper": "-1.223429898271881535450210070828178753974"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 10,
+        "minimumAbsoluteH_x": "0.7860504875662559121329046763653209702311",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "7.320594164988994990763521976105685819628800310145128813262635229182787",
+          "7.320659101272906418369228724894856055326676799695550277311861892887016"
+        ],
+        "projectionMagnitudeLowerBound": "0.5083972502922044534254019753160339918204",
+        "maximumAbsoluteH_xOverHull": "0.0001208554615012229246838436202681875180045",
+        "perRootContributionMagnitudeLowerBound": "595.6816572040076602912884873428358816059",
+        "combinedContributionMagnitudeLowerBound": "1191.363314408015320582576974685671763212",
+        "signedDominanceMargin": "1192.586744306287202118027184756499941966",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "transverse-cross-binary-fold",
+        "delay": {
+          "lower": "1.929295024068535091144827872135364768960",
+          "upper": "1.929295024068535091144827872135364768960"
+        },
+        "H_xx": {
+          "lower": "-1.861089644947804698317451406406382435087",
+          "upper": "-1.861089644947804698317451406406382435087"
+        },
+        "g_TtTt": {
+          "lower": "-6.944388787083605666616267924318081585490",
+          "upper": "-6.944388787083605666616267924318081585490"
+        },
+        "receiverSideFactor": "D_r=1 exactly from F_phi and the fold equation",
+        "exactFoldDisposition": "nondegenerate transverse caustic; canonical acceleration has no finite pointwise value at the fold, while the born-pair limit diverges in one transverse component"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "self",
+      "lobeIndex": 1,
+      "betaBox": [
+        "4.603338846751700352556582029103016513067",
+        "4.603338850751700352556582029103016513067"
+      ],
+      "foldBetaEnclosure": [
+        "4.60333884875170035255658202910301651306739713416053234603532828558763475145715239753827177",
+        "4.60333884875170035255658202910301651306739713416053234604353194528928271247478959988447787"
+      ],
+      "relevantComponent": "tangent",
+      "targetContributionSign": "positive",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "-0.5730185808411444922109919424535575055719",
+          "upper": "-0.5730185765022229184713141371652528696145"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 12,
+        "minimumAbsoluteH_x": "0.6628968907009437330139652858882278285984",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "8.986818915818128350615761854560644164431167744580081605788527676619099",
+          "8.986877871337387885078754271227780143237380066064763476427599416990856"
+        ],
+        "projectionMagnitudeLowerBound": "0.4240386297671039232508116084797109756931",
+        "maximumAbsoluteH_xOverHull": "0.0001123489746412609288012438888396902180147",
+        "perRootContributionMagnitudeLowerBound": "430.2506839257815479503636148651044512588",
+        "combinedContributionMagnitudeLowerBound": "860.5013678515630959007272297302089025177",
+        "signedDominanceMargin": "859.9283492707219514085162377877553450121",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "persistent-circular-fold",
+        "delay": {
+          "lower": "1.952239279160409396001098928408235166757",
+          "upper": "1.952239279160409396001098928408235166757"
+        },
+        "H_xx": {
+          "lower": "-1.905619101548377444106876442366084326054",
+          "upper": "-1.905619101548377444106876442366084326054"
+        },
+        "g_TtTt": {
+          "lower": "-10.34234316047055672160558715567550291937",
+          "upper": "-10.34234316047055672160558715567550291937"
+        },
+        "receiverSideFactor": "D_r=D_t=0 exactly by delay-only circular symmetry",
+        "exactFoldDisposition": "persistent D_t=0 interval; outside the canonical finite-impulse fold lemma and therefore not a balanced pointwise history"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "minus",
+      "lobeIndex": 2,
+      "betaBox": [
+        "5.405013813230985985972484600493419162834",
+        "5.405013817230985985972484600493419162834"
+      ],
+      "foldBetaEnclosure": [
+        "5.40501381523098598597248460049341916283398837547934557808122833188442411324877317132495030",
+        "5.40501381523098598597248460049341916283398837547934557808937675971458667553294947856796591"
+      ],
+      "relevantComponent": "planeNormal",
+      "targetContributionSign": "positive",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "-0.08291506028437237917717184426000295947794",
+          "upper": "-0.08291504593998388066254062762664498983448"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 14,
+        "minimumAbsoluteH_x": "0.5704789067975624333700829811777879387602",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "10.62340328573434495604275458854195138348566268851333487221278311419613",
+          "10.62345769368005675918182681791661076303675293767306748601983822327944"
+        ],
+        "projectionMagnitudeLowerBound": "0.3635879788365503488327340315302899667088",
+        "maximumAbsoluteH_xOverHull": "0.0001050927425133397911822930848778785526227",
+        "perRootContributionMagnitudeLowerBound": "331.3842082121175337174953431675274435654",
+        "combinedContributionMagnitudeLowerBound": "662.7684164242350674349906863350548871309",
+        "signedDominanceMargin": "662.6855013639506950558135144907948841714",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "transverse-cross-binary-fold",
+        "delay": {
+          "lower": "1.965471994872292194022055793613835757162",
+          "upper": "1.965471994872292194022055793613835757162"
+        },
+        "H_xx": {
+          "lower": "-1.931540081313633896315611716529344146220",
+          "upper": "-1.931540081313633896315611716529344146220"
+        },
+        "g_TtTt": {
+          "lower": "-14.35491038104109604743133412498326155552",
+          "upper": "-14.35491038104109604743133412498326155552"
+        },
+        "receiverSideFactor": "D_r=1 exactly from F_phi and the fold equation",
+        "exactFoldDisposition": "nondegenerate transverse caustic; canonical acceleration has no finite pointwise value at the fold, while the born-pair limit diverges in one transverse component"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "partner",
+      "lobeIndex": 2,
+      "betaBox": [
+        "6.202395283573132444830119291987633329684",
+        "6.202395287573132444830119291987633329684"
+      ],
+      "foldBetaEnclosure": [
+        "6.20239528557313244483011929198763332968409394056639581754255052209173835680412298358333562",
+        "6.20239528557313244483011929198763332968409394056639581755066442821307273462332601035097356"
+      ],
+      "relevantComponent": "tangent",
+      "targetContributionSign": "negative",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "0.7517625054396707419697324314977908468939",
+          "upper": "0.7517625115449352698820669696830307997307"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 16,
+        "minimumAbsoluteH_x": "0.4999506341433578765961327645623825384281",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "12.24250093379613660257496530460755622727093122670710725012394302402986",
+          "12.24255172410705579734496160615142054877154106359743899430792342437846"
+        ],
+        "projectionMagnitudeLowerBound": "0.3181892838855972930939779995896630342384",
+        "maximumAbsoluteH_xOverHull": "0.00009894131786556211477278504682127004445334",
+        "perRootContributionMagnitudeLowerBound": "266.1665036260187979677061698018525755877",
+        "combinedContributionMagnitudeLowerBound": "532.3330072520375959354123396037051511753",
+        "signedDominanceMargin": "531.5812447404926606655302726340221203756",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "persistent-circular-fold",
+        "delay": {
+          "lower": "1.973834360778711331309830691329917806376",
+          "upper": "1.973834360778711331309830691329917806376"
+        },
+        "H_xx": {
+          "lower": "-1.948011041895351982563883293084710312778",
+          "upper": "-1.948011041895351982563883293084710312778"
+        },
+        "g_TtTt": {
+          "lower": "-18.98320751885045732651212046011223272340",
+          "upper": "-18.98320751885045732651212046011223272340"
+        },
+        "receiverSideFactor": "D_r=D_t=0 exactly by delay-only circular symmetry",
+        "exactFoldDisposition": "persistent D_t=0 interval; outside the canonical finite-impulse fold lemma and therefore not a balanced pointwise history"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "plus",
+      "lobeIndex": 2,
+      "betaBox": [
+        "6.997001905674047447161195146959379417981",
+        "6.997001909674047447161195146959379417981"
+      ],
+      "foldBetaEnclosure": [
+        "6.99700190767404744716119514695937941798109764535235917321379117405024571645296183953681933",
+        "6.99700190767404744716119514695937941798109764535235917322188198375803168212029273403759685"
+      ],
+      "relevantComponent": "planeNormal",
+      "targetContributionSign": "negative",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "-1.042992346171446772320599263194715718011",
+          "upper": "-1.042992329393577580271057758150864934988"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 18,
+        "minimumAbsoluteH_x": "0.4446887012371486737556055127678301033436",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "13.85034811057025515018102611231702451130020876850031121408525919462024",
+          "13.85039593001124818684118473707005577163695146545214021211395989173938"
+        ],
+        "projectionMagnitudeLowerBound": "0.2828565809647313820725147419539291074447",
+        "maximumAbsoluteH_xOverHull": "0.00009368636540823163883969873649629222822860",
+        "perRootContributionMagnitudeLowerBound": "220.2457353683607002506860650777366285184",
+        "combinedContributionMagnitudeLowerBound": "440.4914707367214005013721301554732570368",
+        "signedDominanceMargin": "441.5344630661149780816431879136241219718",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "transverse-cross-binary-fold",
+        "delay": {
+          "lower": "1.979468963039686527401329070188454137845",
+          "upper": "1.979468963039686527401329070188454137845"
+        },
+        "H_xx": {
+          "lower": "-1.959148687818705933740967449616281748373",
+          "upper": "-1.959148687818705933740967449616281748373"
+        },
+        "g_TtTt": {
+          "lower": "-24.22772803790242848237924355008476856608",
+          "upper": "-24.22772803790242848237924355008476856608"
+        },
+        "receiverSideFactor": "D_r=1 exactly from F_phi and the fold equation",
+        "exactFoldDisposition": "nondegenerate transverse caustic; canonical acceleration has no finite pointwise value at the fold, while the born-pair limit diverges in one transverse component"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "self",
+      "lobeIndex": 2,
+      "betaBox": [
+        "7.789705765492724681836698222254848329702",
+        "7.789705769492724681836698222254848329702"
+      ],
+      "foldBetaEnclosure": [
+        "7.78970576749272468183669822225484832970245446805217164533646139528449901470985944405730732",
+        "7.78970576749272468183669822225484832970245446805217164534453595955518513457743256659809389"
+      ],
+      "relevantComponent": "tangent",
+      "targetContributionSign": "positive",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "0.1360165247951884108654017186968932365733",
+          "upper": "0.1360165325541990071626776943003325685335"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 20,
+        "minimumAbsoluteH_x": "0.4003248277490316274451472043474751953138",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "15.45050367387541432839013786612597325275631860922158237329303796939766",
+          "15.45054899491768642937440965488503520743734470168625917965798646156839"
+        ],
+        "projectionMagnitudeLowerBound": "0.2545808746301592985960866473347629209601",
+        "maximumAbsoluteH_xOverHull": "0.00008914908510261777953568628292098251423276",
+        "perRootContributionMagnitudeLowerBound": "186.3683249706506873319878877661336256015",
+        "combinedContributionMagnitudeLowerBound": "372.7366499413013746639757755322672512031",
+        "signedDominanceMargin": "372.8726664660965630748411772509641444396",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "persistent-circular-fold",
+        "delay": {
+          "lower": "1.983451510884020635660459910325827702147",
+          "upper": "1.983451510884020635660459910325827702147"
+        },
+        "H_xx": {
+          "lower": "-1.967039948014052115062645298566989349860",
+          "upper": "-1.967039948014052115062645298566989349860"
+        },
+        "g_TtTt": {
+          "lower": "-30.08871939476371168507552231931474744789",
+          "upper": "-30.08871939476371168507552231931474744789"
+        },
+        "receiverSideFactor": "D_r=D_t=0 exactly by delay-only circular symmetry",
+        "exactFoldDisposition": "persistent D_t=0 interval; outside the canonical finite-impulse fold lemma and therefore not a balanced pointwise history"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "minus",
+      "lobeIndex": 3,
+      "betaBox": [
+        "8.581045624875285780941739254660649005250",
+        "8.581045628875285780941739254660649005250"
+      ],
+      "foldBetaEnclosure": [
+        "8.58104562687528578094173925466064900525002454376130358760409489858020234503173289616559376",
+        "8.58104562687528578094173925466064900525002454376130358761215758723577240577473427655690750"
+      ],
+      "relevantComponent": "planeNormal",
+      "targetContributionSign": "positive",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "-1.049770551937090435857765215650078839899",
+          "upper": "-1.049770535261456925814840296652124024285"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 22,
+        "minimumAbsoluteH_x": "0.3639637674037602081597018382442233046141",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "17.04515697205695625163944377886308983510351110335898509710718499908648",
+          "17.04520015281403177525096812010217926096422060925414009311817906388976"
+        ],
+        "projectionMagnitudeLowerBound": "0.2314417810154838582420547594911936490509",
+        "maximumAbsoluteH_xOverHull": "0.00008518931870146911803650400553765765809024",
+        "perRootContributionMagnitudeLowerBound": "160.4806275134726794186899623204632004871",
+        "combinedContributionMagnitudeLowerBound": "320.9612550269453588373799246409264009743",
+        "signedDominanceMargin": "319.9114844750082684015221594252763221344",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "transverse-cross-binary-fold",
+        "delay": {
+          "lower": "1.986372956539540516729700997544388749854",
+          "upper": "1.986372956539540516729700997544388749854"
+        },
+        "H_xx": {
+          "lower": "-1.972838761235817659243695608084872603268",
+          "upper": "-1.972838761235817659243695608084872603268"
+        },
+        "g_TtTt": {
+          "lower": "-36.56631742361803304939135223681670448324",
+          "upper": "-36.56631742361803304939135223681670448324"
+        },
+        "receiverSideFactor": "D_r=1 exactly from F_phi and the fold equation",
+        "exactFoldDisposition": "nondegenerate transverse caustic; canonical acceleration has no finite pointwise value at the fold, while the born-pair limit diverges in one transverse component"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "partner",
+      "lobeIndex": 3,
+      "betaBox": [
+        "9.371373184453026300626286529716191666958",
+        "9.371373188453026300626286529716191666958"
+      ],
+      "foldBetaEnclosure": [
+        "9.37137318645302630062628652971619166695775225137447391176303302933752074892609395568349915",
+        "9.37137318645302630062628652971619166695775225137447391177108676624682238437091895126379548"
+      ],
+      "relevantComponent": "tangent",
+      "targetContributionSign": "negative",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "-0.3701476053834954084153659882121291855435",
+          "upper": "-0.3701475989847645263239351008360846884601"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 24,
+        "minimumAbsoluteH_x": "0.3336357727716412873138110959370442800753",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "18.63573292358213075801917328828546077281578082017009932012852709383128",
+          "18.63577424342829259857665524493449593621555737084982091098938714773595"
+        ],
+        "projectionMagnitudeLowerBound": "0.2121569985319659975322199731021497620673",
+        "maximumAbsoluteH_xOverHull": "0.00008169925176477463553010007347845755790466",
+        "perRootContributionMagnitudeLowerBound": "140.1450072544675289788208713864785799243",
+        "combinedContributionMagnitudeLowerBound": "280.2900145089350579576417427729571598487",
+        "signedDominanceMargin": "280.6601621079198224839656778737932445372",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "persistent-circular-fold",
+        "delay": {
+          "lower": "1.988580814444715823544504371726218643414",
+          "upper": "1.988580814444715823544504371726218643414"
+        },
+        "H_xx": {
+          "lower": "-1.977226827788804652481696950609315829510",
+          "upper": "-1.977226827788804652481696950609315829510"
+        },
+        "g_TtTt": {
+          "lower": "-43.66060195748936110006915974314386698756",
+          "upper": "-43.66060195748936110006915974314386698756"
+        },
+        "receiverSideFactor": "D_r=D_t=0 exactly by delay-only circular symmetry",
+        "exactFoldDisposition": "persistent D_t=0 interval; outside the canonical finite-impulse fold lemma and therefore not a balanced pointwise history"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "plus",
+      "lobeIndex": 3,
+      "betaBox": [
+        "10.16092818522170993027308595415646616401",
+        "10.16092818922170993027308595415646616401"
+      ],
+      "foldBetaEnclosure": [
+        "10.1609281872217099302730859541564661640057897852307602152157214368051239774658990748397213",
+        "10.1609281872217099302730859541564661640057897852307602152237682547104136430441716047224648"
+      ],
+      "relevantComponent": "planeNormal",
+      "targetContributionSign": "negative",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "-0.04503321966275987013999106709188786532436",
+          "upper": "-0.04503320581972384987584253097672304311027"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 26,
+        "minimumAbsoluteH_x": "0.3079619739392948444722230700379418830952",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "20.22320069878916712015638885347941556322230101963879894740443689029529",
+          "20.22324038079205316584071488790425801890130046307379235555964259268153"
+        ],
+        "projectionMagnitudeLowerBound": "0.1958379440547327945279688851183189709853",
+        "maximumAbsoluteH_xOverHull": "0.00007859576852640739171553456024173203495238",
+        "perRootContributionMagnitudeLowerBound": "123.8110953136274724466035877715894838611",
+        "combinedContributionMagnitudeLowerBound": "247.6221906272549448932071755431789677221",
+        "signedDominanceMargin": "247.6672238330746687430830180741556907652",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "transverse-cross-binary-fold",
+        "delay": {
+          "lower": "1.990290682717517754627539456714846361633",
+          "upper": "1.990290682717517754627539456714846361633"
+        },
+        "H_xx": {
+          "lower": "-1.980628500856081463462170025389774004344",
+          "upper": "-1.980628500856081463462170025389774004344"
+        },
+        "g_TtTt": {
+          "lower": "-51.37162250404215734456945918383658354188",
+          "upper": "-51.37162250404215734456945918383658354188"
+        },
+        "receiverSideFactor": "D_r=1 exactly from F_phi and the fold equation",
+        "exactFoldDisposition": "nondegenerate transverse caustic; canonical acceleration has no finite pointwise value at the fold, while the born-pair limit diverges in one transverse component"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "self",
+      "lobeIndex": 3,
+      "betaBox": [
+        "10.94987986782626508808725514623436589949",
+        "10.94987987182626508808725514623436589949"
+      ],
+      "foldBetaEnclosure": [
+        "10.9498798698262650880872551462343658994918000141261340080292034978947674184946190544810515",
+        "10.9498798698262650880872551462343658994918000141261340080357951482364539607334164158404774"
+      ],
+      "relevantComponent": "tangent",
+      "targetContributionSign": "positive",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "0.8482636608810996169154336130992649237584",
+          "upper": "0.8482636656708281577888766950726852343130"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 28,
+        "minimumAbsoluteH_x": "0.2859511149507266613970210505038722337260",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "21.80824331885779965429740558037736774418971771563751717751637055494293",
+          "21.80828154456841986540404196266791047046598191979575868331855419750299"
+        ],
+        "projectionMagnitudeLowerBound": "0.1818495436962448498003723966010144493368",
+        "maximumAbsoluteH_xOverHull": "0.00007581419265552481457889237933839907147234",
+        "perRootContributionMagnitudeLowerBound": "110.4480774950482444996981743338867588445",
+        "combinedContributionMagnitudeLowerBound": "220.8961549900964889993963486677735176890",
+        "signedDominanceMargin": "221.7444186509775886163117822808727826128",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "persistent-circular-fold",
+        "delay": {
+          "lower": "1.991642244309280942291669175215886725783",
+          "upper": "1.991642244309280942291669175215886725783"
+        },
+        "H_xx": {
+          "lower": "-1.983319414658654757980041849265009222294",
+          "upper": "-1.983319414658654757980041849265009222294"
+        },
+        "g_TtTt": {
+          "lower": "-59.69941112835853964877766351356209657730",
+          "upper": "-59.69941112835853964877766351356209657730"
+        },
+        "receiverSideFactor": "D_r=D_t=0 exactly by delay-only circular symmetry",
+        "exactFoldDisposition": "persistent D_t=0 interval; outside the canonical finite-impulse fold lemma and therefore not a balanced pointwise history"
+      },
+      "boxClosed": true
+    },
+    {
+      "kind": "minus",
+      "lobeIndex": 4,
+      "betaBox": [
+        "11.73835121141305362722834398259371002693",
+        "11.73835121541305362722834398259371002693"
+      ],
+      "foldBetaEnclosure": [
+        "11.7383512134130536272283439825937100269340543629287431227522196332945249916411510982319189",
+        "11.7383512134130536272283439825937100269340543629287431227567984451690638791696520119317338"
+      ],
+      "relevantComponent": "planeNormal",
+      "targetContributionSign": "positive",
+      "otherRowsOverWholeBox": {
+        "componentInterval": {
+          "lower": "-1.299517351314703710839788250334565592806",
+          "upper": "-1.299517335989919138974173229134182575670"
+        },
+        "componentExcludesZeroOnNoRootSide": true,
+        "rootTubeCount": 30,
+        "minimumAbsoluteH_x": "0.2668734473446864878364114615578166793386",
+        "minimumAbsoluteD_t": "1.000000000000000000000000000000000000000"
+      },
+      "rootSideDominance": {
+        "bornRootCount": 2,
+        "xHull": [
+          "23.39135645570266696341676016887644090820366952331118459378236186088755",
+          "23.39139337527571341695557277807371026284636270357083601692645882649727"
+        ],
+        "projectionMagnitudeLowerBound": "0.1697258995709097130228020032215809063346",
+        "maximumAbsoluteH_xOverHull": "0.00007330360710110560326166957735814357677047",
+        "perRootContributionMagnitudeLowerBound": "99.34538184332681266891820966784851041756",
+        "combinedContributionMagnitudeLowerBound": "198.6907636866536253378364193356970208351",
+        "signedDominanceMargin": "197.3912463353389216269966310853624552423",
+        "excludesBalance": true
+      },
+      "exactFold": {
+        "classification": "transverse-cross-binary-fold",
+        "delay": {
+          "lower": "1.992729305030001311470377883096749196087",
+          "upper": "1.992729305030001311470377883096749196087"
+        },
+        "H_xx": {
+          "lower": "-1.985485041562676005055904686415727587046",
+          "upper": "-1.985485041562676005055904686415727587046"
+        },
+        "g_TtTt": {
+          "lower": "-68.64398935879366653679432006675936513402",
+          "upper": "-68.64398935879366653679432006675936513402"
+        },
+        "receiverSideFactor": "D_r=1 exactly from F_phi and the fold equation",
+        "exactFoldDisposition": "nondegenerate transverse caustic; canonical acceleration has no finite pointwise value at the fold, while the born-pair limit diverges in one transverse component"
+      },
+      "boxClosed": true
+    }
+  ],
+  "coverageAccounting": {
+    "domainWidth": "11.75000000000000000000000000000000000000",
+    "priorCertifiedOrdinaryWidth": "11.74999994400000000000000000000000000000",
+    "closedFoldBoxWidth": "0.00000005600000000000000000000000000000000000000",
+    "accountedWidth": "11.75000000000000000000000000000000000000",
+    "accountingResidual": "-7.484695031264327437341891298090972584808e-111"
+  },
+  "claimGrades": {
+    "canonicalFoldRouting": "derived in the frozen Master Equation",
+    "foldClassification": "derived from exact circular and cross-phase identities",
+    "boxExclusion": "measured by directed interval arithmetic with analytical dominance bounds",
+    "boundedFixedLocusConclusion": "derived from the ordinary and fold-box partition"
+  },
+  "falsifiers": [
+    "A fold box contains an ordinary beta_f at which both phase-zero transverse components vanish.",
+    "A target fold pair has opposite leading transverse signs or is canceled by another simultaneous unbounded contribution for the same receiver.",
+    "A self or partner interior fold is not persistent in reception phase, or a cross fold has D_r=0.",
+    "The canonical Master Equation supplies a finite pointwise D_t=0 acceleration that replaces the frozen caustic routing.",
+    "Any frozen input hash differs from the protocol binding."
+  ]
+}

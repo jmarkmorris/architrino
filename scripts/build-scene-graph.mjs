@@ -3,6 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { isPublicStandaloneAppSearchEntry } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
+
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
 const GENERATED_MARKDOWN_DIR = "content/generated/markdown";
@@ -1172,7 +1174,7 @@ const rawSearchEntries = [
     nodeType: node.nodeType,
   }));
 
-const searchEntries = rawSearchEntries;
+const searchEntries = rawSearchEntries.filter(isPublicStandaloneAppSearchEntry);
 
 for (const edge of edges) {
   if (!nodeById.has(edge.from)) {

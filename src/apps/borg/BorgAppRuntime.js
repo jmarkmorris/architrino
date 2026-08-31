@@ -1,4 +1,5 @@
 import * as THREE from "../../../vendor/three/three.module.js";
+import { BORG_ELECTRINO_COLOR, BORG_POSITRINO_COLOR } from "./BorgOrbitTrails.mjs";
 import {
   TRANSPORT_CONTROL_ICON,
   setTransportControlButtonPresentation,
@@ -213,22 +214,20 @@ const SOLVER_FAILURE_BANNERS = Object.freeze({
 
 const PARTICLE_POLARITY_STYLES = Object.freeze({
   electrino: Object.freeze({
-    color: 0x0000ff,
-    pathColor: 0x8fb4ff,
+    color: BORG_ELECTRINO_COLOR,
+    pathColor: BORG_ELECTRINO_COLOR,
     velocityColor: 0x9fefff,
     edgeColor: "#0000ff",
     polarity: "electrino",
   }),
   positrino: Object.freeze({
-    color: 0xff0000,
-    pathColor: 0xff8f86,
+    color: BORG_POSITRINO_COLOR,
+    pathColor: BORG_POSITRINO_COLOR,
     velocityColor: 0xff9b92,
     edgeColor: "#ff0000",
     polarity: "positrino",
   }),
 });
-
-export const BORG_PRESCRIBED_PATH_TRAIL_COLOR = 0xc6b6ff;
 
 export function mountBorgApp(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
@@ -430,9 +429,7 @@ export function mountBorgApp(options = {}) {
   const particleObjects = new Map();
   const velocityLines = new Map();
   const architrinoPointTexture = createArchitrinoPointTexture(documentLike);
-  const particleStyles = createBorgParticleStyles(currentFrames, {
-    prescribedGeometry: replayActive,
-  });
+  const particleStyles = createBorgParticleStyles(currentFrames);
   const pathTrails = createBorgPathTrails({
     group: pathGroup,
     renderOrder: PATH_RENDER_ORDER,
@@ -716,9 +713,7 @@ export function mountBorgApp(options = {}) {
   function rebuildParticleObjects() {
     disposeParticleObjects();
     particleStyles.clear();
-    createBorgParticleStyles(currentFrames, {
-      prescribedGeometry: replayActive,
-    }).forEach((style, pathKey) => {
+    createBorgParticleStyles(currentFrames).forEach((style, pathKey) => {
       particleStyles.set(pathKey, style);
     });
 
@@ -1313,23 +1308,11 @@ export function mountBorgApp(options = {}) {
       label: "Random architrinos",
     });
     const entries = navigation?.catalog?.entries ?? [];
-    const familyGroups = new Map();
     entries.forEach((catalogEntry) => {
-      const group = familyGroups.get(catalogEntry.familyId) ?? [];
-      group.push(catalogEntry);
-      familyGroups.set(catalogEntry.familyId, group);
-    });
-    familyGroups.forEach((familyEntries) => {
-      const heading = documentLike.createElement("div");
-      heading.className = "borg-radio-heading";
-      heading.textContent = familyEntries[0].familyLabel;
-      dom.startingGeometryOptions.append(heading);
-      familyEntries.forEach((catalogEntry) => {
-        appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
-          name: "borg-starting-geometry",
-          value: catalogEntry.id,
-          label: catalogEntry.label,
-        });
+      appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
+        name: "borg-starting-geometry",
+        value: catalogEntry.id,
+        label: catalogEntry.label,
       });
     });
     if (activeStartingGeometryId !== "random" &&
@@ -3673,7 +3656,7 @@ function queryRequiredElement(documentLike, selector) {
   return element;
 }
 
-export function createBorgParticleStyles(frames, { prescribedGeometry = false } = {}) {
+export function createBorgParticleStyles(frames) {
   const styles = new Map();
   frames.forEach((frame) => {
     if (styles.has(frame.pathKey)) {
@@ -3683,9 +3666,7 @@ export function createBorgParticleStyles(frames, { prescribedGeometry = false } 
       frame.stateFlags === 1 ? PARTICLE_POLARITY_STYLES.positrino : PARTICLE_POLARITY_STYLES.electrino;
     styles.set(frame.pathKey, {
       ...baseStyle,
-      pathColor: prescribedGeometry
-        ? BORG_PRESCRIBED_PATH_TRAIL_COLOR
-        : baseStyle.pathColor,
+      pathColor: baseStyle.color,
       label: String(frame.pathKey),
     });
   });
@@ -3694,15 +3675,10 @@ export function createBorgParticleStyles(frames, { prescribedGeometry = false } 
 
 function getParticleStyle(pathKey, particleStyles) {
   const numericPathKey = Number(pathKey);
-  return particleStyles?.get(pathKey) ??
-    (Number.isFinite(numericPathKey) ? particleStyles?.get(numericPathKey) : null) ?? {
-    label: String(pathKey),
-    color: 0xffffff,
-    pathColor: 0xe5f1ff,
-    velocityColor: 0xe5f1ff,
-    edgeColor: "#ffffff",
-    polarity: "architrino",
-  };
+  const style = particleStyles?.get(pathKey) ??
+    (Number.isFinite(numericPathKey) ? particleStyles?.get(numericPathKey) : null);
+  if (!style) throw new TypeError(`Missing Borg polarity style for path ${pathKey}.`);
+  return style;
 }
 
 function normalizePathTrailDuration(value) {

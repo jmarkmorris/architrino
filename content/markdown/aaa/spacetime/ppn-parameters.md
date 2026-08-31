@@ -32,7 +32,7 @@ $$
 \mathbf v\times\nabla U.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b3e6e1ba275c9b6e)
+[View →](../../../../equation-mapping.html#corpus-equation-b3e6e1ba275c9b6e)
 For a central source this becomes
 $$
 \boldsymbol\Omega_{\mathrm{dS}}
@@ -42,7 +42,7 @@ $$
 \mathbf r\times\mathbf v,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-68826ec78add1bfe)
+[View →](../../../../equation-mapping.html#corpus-equation-68826ec78add1bfe)
 giving the GR coefficient $3/2$ when $\gamma_{\mathrm{PPN}}=1$. The closure residual must compare the transported assembly-orientation frame with this estimator using the same effective metric record as Shapiro delay and lensing.
 
 
@@ -66,7 +66,7 @@ $$
 + \mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3cc63b1fc4ebd63d)
+[View →](../../../../equation-mapping.html#corpus-equation-3cc63b1fc4ebd63d)
 with $\Phi_N<0$ near a mass source. For a point mass $M$,
 $$
 \Phi_N(r)=-\frac{GM}{r}
@@ -75,7 +75,7 @@ $$
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_0^4 r^2}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-01a35d5ca30f9f21)
+[View →](../../../../equation-mapping.html#corpus-equation-01a35d5ca30f9f21)
 
 For a one-way signal along a Euclidean straight path $\Gamma$ (the $\mathbb{U}_{\text{now}}$ anchor),
 $$
@@ -84,7 +84,7 @@ t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}
 =\frac{R}{c_0}+\Delta t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e40463434fdc8ebb)
+[View →](../../../../equation-mapping.html#corpus-equation-e40463434fdc8ebb)
 where $R=\int_\Gamma ds$ is Euclidean path length and
 $$
 \Delta t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}
@@ -93,7 +93,7 @@ $$
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c4d819a3eb58620c)
+[View →](../../../../equation-mapping.html#corpus-equation-c4d819a3eb58620c)
 
 Evaluating the line integral for endpoint radii $r_1,r_2$ and Euclidean endpoint separation $R$ gives
 $$
@@ -103,7 +103,7 @@ $$
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dbfc1c9db0dff320)
+[View →](../../../../equation-mapping.html#corpus-equation-dbfc1c9db0dff320)
 which is the standard 1PN Shapiro form with $\gamma\to\gamma_{\mathrm{PPN}}$ and $c\to c_0$. The primitive wake speed $c_f$ remains in the unnormalized delay factor $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; observer-facing PPN timing uses the asymptotic dressed speed $c_0$.
 
 So the operational estimator is
@@ -115,7 +115,7 @@ $$
 -1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-394ab260d9cf36f8)
+[View →](../../../../equation-mapping.html#corpus-equation-394ab260d9cf36f8)
 with $\Delta t_{\text{obs}}=t_{\text{obs}}-R/c_0$.
 
 In the weak-field solar-system regime, $\gamma_{\mathrm{PPN}}$ is the direct refractive-space-curvature map parameter.
@@ -126,7 +126,7 @@ $$
 a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c407f0f6053a262a)
+[View →](../../../../equation-mapping.html#corpus-equation-c407f0f6053a262a)
 
 This is not automatically the clock coefficient $a_\chi$ used in the static $\Gamma_N$ endpoint row. The shared clock/signal delay branch is the additional condition
 
@@ -137,7 +137,7 @@ a_\chi-a_\chi^{\mathrm{sig}}
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-32a5bcc20a9cc9cc)
+[View →](../../../../equation-mapping.html#corpus-equation-32a5bcc20a9cc9cc)
 
 When this residual vanishes, Shapiro delay and gravitational clock redshift are using the same first-order Noether sea delay response. When it does not vanish, PPN delay, redshift, lensing, pressure-response, and cosmological redshift comparisons must carry the residual explicitly rather than refitting $\chi_{\text{sea}}$ per observable.
 
@@ -155,7 +155,7 @@ $$
 \frac{2GM}{b\,c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4f4bf9018b059731)
+[View →](../../../../equation-mapping.html#corpus-equation-4f4bf9018b059731)
 while the full GR-matching target is
 $$
 \Delta\theta_{\mathrm{GR}}
@@ -163,7 +163,7 @@ $$
 \frac{4GM}{b\,c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cbafbd2358fc044f)
+[View →](../../../../equation-mapping.html#corpus-equation-cbafbd2358fc044f)
 In the forward projection below, the missing half is precisely the $\gamma_{\mathrm{PPN}}$ spatial-compliance contribution. Therefore a constitutive map cannot claim PPN closure by matching Shapiro delay with a scalar delay factor while leaving the ruler/spatial-compliance row undefined.
 
 ### Parameter $\beta$ (Non-linearity of Gravity)
@@ -178,7 +178,7 @@ $$
 +\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1f1003778f3355c4)
+[View →](../../../../equation-mapping.html#corpus-equation-1f1003778f3355c4)
 Since $-g_{00}=(d\tau/dt_{\mathrm{eff}})^2$ for a static observer,
 $$
 g_{00}
@@ -189,7 +189,7 @@ g_{00}
 +\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8adef2f758c430a0)
+[View →](../../../../equation-mapping.html#corpus-equation-8adef2f758c430a0)
 In the static isolated-source subclass where the remaining standard PPN potentials already take their GR values or vanish, match to the PPN form
 $$
 g_{00}^{\mathrm{PPN}}
@@ -197,13 +197,13 @@ g_{00}^{\mathrm{PPN}}
 -1+2\frac{U}{c_0^2}-2\beta_{\mathrm{PPN}}\frac{U^2}{c_0^4}+\cdots
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-85274609a807572d)
+[View →](../../../../equation-mapping.html#corpus-equation-85274609a807572d)
 to obtain
 $$
 \boxed{\beta_{\mathrm{PPN}}=\frac{1+2C_2^{(U)}}{2}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b8a077bae49e26bd)
+[View →](../../../../equation-mapping.html#corpus-equation-b8a077bae49e26bd)
 The superscript is essential: $C_2^{(U)}$ is the coefficient after the clock law has been expanded in the Newtonian comparison potential $U$. Reading $\beta_{\mathrm{PPN}}$ from this coefficient alone is not valid in a general source where $\Phi_{\mathrm W}$, $\Phi_1,\ldots,\Phi_4$, $\mathcal A$, or preferred-frame potentials carry independent non-GR coefficients. No cosmological $(a,k)$ dependence is implied here; those arguments are reserved for effective cosmology transfer variables such as $\mu(a,k)$ and $G_{\mathrm{eff}}(a,k)$.
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
@@ -216,7 +216,7 @@ $$
 g_{00}=-(\Omega\xi)^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0ab0711bd8da118c)
+[View →](../../../../equation-mapping.html#corpus-equation-0ab0711bd8da118c)
 follows from the observer-side definition $\Phi_{\text{eff}}\equiv c_0^2\ln(\Omega\xi)$; it does not by itself determine a PPN parameter. With $U_{\Phi}\equiv -\Phi_{\text{eff}}$, it gives
 $$
 g_{00}
@@ -226,13 +226,13 @@ g_{00}
 -1+2\frac{U_{\Phi}}{c_0^2}-2\frac{U_{\Phi}^2}{c_0^4}+O(c_0^{-6})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a88d33a14eb1bf3d)
+[View →](../../../../equation-mapping.html#corpus-equation-a88d33a14eb1bf3d)
 and therefore fixes only the coefficient in the constitutive-potential expansion:
 $$
 \boxed{C_2^{(\Phi)}=\frac12}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-57ad27cf2d94d353)
+[View →](../../../../equation-mapping.html#corpus-equation-57ad27cf2d94d353)
 
 Write the second-order potential conversion as
 $$
@@ -243,7 +243,7 @@ $$
 +O\!\left(\frac{U^3}{c_0^6}\right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e9bfca514dd9b1b4)
+[View →](../../../../equation-mapping.html#corpus-equation-e9bfca514dd9b1b4)
 Then
 $$
 C_2^{(U)}=C_2^{(\Phi)}-D_2,
@@ -251,7 +251,7 @@ C_2^{(U)}=C_2^{(\Phi)}-D_2,
 \beta_{\mathrm{PPN}}=1-D_2.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e39c6c4aa467af09)
+[View →](../../../../equation-mapping.html#corpus-equation-e39c6c4aa467af09)
 Thus the exponential clock-coordinate identity yields $\beta_{\mathrm{PPN}}=1$ if and only if $D_2=0$, equivalently $U_{\Phi}/c_0^2=U/c_0^2+O(U^3/c_0^6)$. Deriving or bounding $D_2$ from the shared Noether sea response is the actual nonlinear-potential obligation.
 
 Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt_{\mathrm{eff}}$. The Noether sea cadence-stretch factor used in redshift bookkeeping is its inverse, $\Gamma_N=(\Omega\xi)^{-1}$, when the same local clock channel is being compared.
@@ -266,7 +266,7 @@ g_{0i}^{\text{leak}}
 -\Xi_2\frac{w^j U_{ij}}{c_0^3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8cb86fceb5fd8b4b)
+[View →](../../../../equation-mapping.html#corpus-equation-8cb86fceb5fd8b4b)
 $$
 g_{00}^{\text{leak}}
 =
@@ -275,25 +275,25 @@ g_{00}^{\text{leak}}
 +\Xi_4\frac{w^i V_i}{c_0^4}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-24e18fe96029530c)
+[View →](../../../../equation-mapping.html#corpus-equation-24e18fe96029530c)
 Matching to standard PPN preferred-frame structure gives
 $$
 \boxed{\alpha_1=\Xi_1},\qquad
 \boxed{\alpha_2=\Xi_2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9340d57c293b7e8a)
+[View →](../../../../equation-mapping.html#corpus-equation-9340d57c293b7e8a)
 $$
 \boxed{\alpha_3=\Xi_1-\Xi_2-\Xi_3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-629e98e67354d9ae)
+[View →](../../../../equation-mapping.html#corpus-equation-629e98e67354d9ae)
 with consistency relation
 $$
 \Xi_4=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-705843eb80c0c2ab)
+[View →](../../../../equation-mapping.html#corpus-equation-705843eb80c0c2ab)
 If a comparison source instead defines $\mathbf w_{\mathrm{sea}}=-\mathbf w$, all odd-in-$\mathbf w$ preferred-frame terms must be sign-translated before reading off the $\Xi_i\to\alpha_i$ map.
 
 ### Terrestrial Working Drift Profiles
@@ -312,7 +312,7 @@ $$
 \mathbf v_A(t_{\mathrm{eff}}),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a5b907b2895d6fc0)
+[View →](../../../../equation-mapping.html#corpus-equation-a5b907b2895d6fc0)
 
 where $\mathbf V_{\mathrm{CMB}}$ is the Solar-system motion inferred from the CMB dipole, $\mathbf V_{\mathrm{orb}}$ and $\mathbf V_{\mathrm{rot}}$ are the terrestrial orbital and rotational contributions, and $\mathbf v_A$ is the apparatus motion relative to the laboratory. A two-coefficient working family brackets the unresolved Noether sea response:
 
@@ -331,7 +331,7 @@ f_{\mathrm{rot}}\mathbf V_{\mathrm{rot}}(t_{\mathrm{eff}}),
 0\le f_{\mathrm{tr}},f_{\mathrm{rot}}\le1,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-15aef2459df8cfa8)
+[View →](../../../../equation-mapping.html#corpus-equation-15aef2459df8cfa8)
 
 so that
 
@@ -350,7 +350,7 @@ $$
 \mathbf v_A.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a0bbe59396df590f)
+[View →](../../../../equation-mapping.html#corpus-equation-a0bbe59396df590f)
 
 The non-entrained comparison is $(f_{\mathrm{tr}},f_{\mathrm{rot}})=(0,0)$. Ignoring the smaller annual, daily, and apparatus contributions, the [measured CMB dipole](https://lambda.gsfc.nasa.gov/education/lambda_graphics/cmb_dipole.html) gives $|\mathbf w_\oplus|\approx369\,\mathrm{km\,s^{-1}}$ and therefore $\beta_{0,\oplus}\approx1.23\times10^{-3}$. Translational entrainment uses $f_{\mathrm{tr}}\to1$ while leaving the rotational row independently testable; local co-rotation also takes $f_{\mathrm{rot}}\to1$. These are evaluation profiles, not derived constitutive solutions.
 
@@ -368,7 +368,7 @@ g_{0i}^{\mathrm{drag}}
 O(c_0^{-5}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ad32f1cf32b319b0)
+[View →](../../../../equation-mapping.html#corpus-equation-ad32f1cf32b319b0)
 The corresponding carried-gyroscope target is the Lense-Thirring precession
 $$
 \boldsymbol\Omega_{\mathrm{LT}}
@@ -380,7 +380,7 @@ $$
 \right].
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-08f89be880e48c87)
+[View →](../../../../equation-mapping.html#corpus-equation-08f89be880e48c87)
 In the constitutive map, this row must be projected from the same rotating-source angular-momentum ledger and Noether sea vorticity response that supply $u^i_{\mathrm{sea,eff}}$. The separation requirement is
 $$
 g_{0i}^{\mathrm{eff}}
@@ -396,7 +396,7 @@ g_{0i}^{\mathrm{leak}}\to0
 g_{0i}^{\mathrm{drag}}\not\to0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-37d90cf341114be3)
+[View →](../../../../equation-mapping.html#corpus-equation-37d90cf341114be3)
 for a rotating source. Lense-Thirring and geodetic precession must therefore be recovered from one effective metric but remain distinct observable projections.
 
 ### Remaining PPN Parameters
@@ -417,7 +417,7 @@ $$
 =0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-314de0287c83f753)
+[View →](../../../../equation-mapping.html#corpus-equation-314de0287c83f753)
 Here $\xi_{\mathrm W}$ tests preferred-location leakage, while nonzero $\zeta_i$ would signal failure of the effective momentum/conservation bookkeeping. A wake-ledger theory cannot infer these zeros from notation: the same architrino-plus-wake-plus-medium record that closes total energy and momentum must project them below their observer-level bounds.
 
 The missing decision rows are not equally well measured. Representative Will-style comparison pressures are
@@ -441,7 +441,7 @@ $$
 \alpha_1=\alpha_2=\alpha_3=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-51a274a461d28d14)
+[View →](../../../../equation-mapping.html#corpus-equation-51a274a461d28d14)
 
 Equivalent constitutive conditions:
 $$
@@ -452,7 +452,7 @@ $$
 \ \text{with zero traceless part}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3040cd0f79d7e23c)
+[View →](../../../../equation-mapping.html#corpus-equation-3040cd0f79d7e23c)
 and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
 The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion. This condition does not set the rotating-source row $g_{0i}^{\mathrm{drag}}(\mathbf J)$ to zero.
@@ -479,7 +479,7 @@ y_{A,0}
 +n_A(t_{\mathrm{eff}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2fdc9cbf8c9cf7d6)
+[View →](../../../../equation-mapping.html#corpus-equation-2fdc9cbf8c9cf7d6)
 Here $\mathbf{s}_A$ is the PPN sensitivity row for the channel, $\zeta_A$ is an allowed apparatus-calibration nuisance fixed by the instrument model, $n_A$ is detector/environment noise, and $y_A^\theta$ is the model readout projected from the retained record tuple $\theta$. The shared preferred-frame residual is
 $$
 \mathcal{R}_{\mathrm{PF\text{-}bundle}}
@@ -493,7 +493,7 @@ y_A^{\mathrm{obs}}-y_A^{\theta}
 \left(\alpha_1^2+\alpha_2^2+\alpha_3^2\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-69f82830af0f2f6b)
+[View →](../../../../equation-mapping.html#corpus-equation-69f82830af0f2f6b)
 The bundle fails if one clock or material channel requires a nonzero $\alpha_i$ that another channel excludes, or if the orientation/annual term is hidden in $\zeta_A$ rather than projected through $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$.
 
 ## Weak-Field Constraint Table (Decision Layer)
@@ -529,7 +529,7 @@ $$
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a2bf8068e72d1145)
+[View →](../../../../equation-mapping.html#corpus-equation-a2bf8068e72d1145)
 ordered as
 $$
 \left(
@@ -541,7 +541,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-44f6f782ffd68e68)
+[View →](../../../../equation-mapping.html#corpus-equation-44f6f782ffd68e68)
 The first row is the Cassini time-delay bound on $\gamma_{\mathrm{PPN}}-1$; the second uses the perihelion-shift row for $\beta_{\mathrm{PPN}}-1$; the preferred-frame rows use the best listed weak-field/strong-field analogue bounds, namely the $\alpha_1$ row from lunar-laser-ranging plus binary-pulsar bounds, the $\alpha_2$ row from the solar-spin-axis alignment bound, and the $\alpha_3$ row from pulsar-population $\dot p$ statistics, per the Will PPN living-review compilation. Strong-field pulsar bounds should not be silently reclassified as solar-system PPN measurements, but they are valid closure pressure: any $\mathbb{A}\mathbb{A}\mathbb{A}$ group-velocity-leakage that survives in ordinary clocks, orbits, or pulsar timing must project below the corresponding row unless a separate strong-field screening mechanism is derived.
 
 The decision residual is therefore the componentwise normalized vector
@@ -558,13 +558,13 @@ $$
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6eada48e5e333e47)
+[View →](../../../../equation-mapping.html#corpus-equation-6eada48e5e333e47)
 Weak-field closure requires
 $$
 \|\mathbf{q}_{\mathrm{PPN}}\|_\infty \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a95190bb18540d83)
+[View →](../../../../equation-mapping.html#corpus-equation-a95190bb18540d83)
 before any strong-field deviation is advertised as a prediction. This is stricter than matching Shapiro delay alone because it forces the same constitutive metric row to suppress preferred-frame terms in $g_{0i}^{\mathrm{eff}}$ and $g_{00}^{\mathrm{eff}}$.
 
 The SME-style Lorentz-test family supplies a second, non-PPN layer. Photon-sector cavity tests constrain two-way orientation-dependent frequency shifts at the $\Delta\nu/\nu\sim10^{-18}$ level, while the SME data tables organize photon, matter, neutrino, and gravity coefficients in the standard Sun-centered frame. For this chapter the safe import is not a new ontology. It is the validation rule that any effective metric or clock/ruler channel must report which SME-like residual it would excite:
@@ -579,7 +579,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7d3f70259b490fe2)
+[View →](../../../../equation-mapping.html#corpus-equation-7d3f70259b490fe2)
 with $\tilde\kappa_{\bullet}^{\mathrm{eff}}$ used as photon-sector comparison coefficients and $\bar{s}^{\mu\nu}_{\mathrm{eff}}$ used as a gravity-sector comparison coefficient. These are observer-level projection diagnostics; they are not substrate coefficients added to the Euclidean void.
 
 ## Closure Program Interface (Observable Decision Layer)
@@ -603,13 +603,13 @@ $$
 \bigr)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1b977b605cbf14fe)
+[View →](../../../../equation-mapping.html#corpus-equation-1b977b605cbf14fe)
 The weak-field closure target is
 $$
 \mathbf{p}_{\mathrm{PPN}}\approx \mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c2a65ff49642965e)
+[View →](../../../../equation-mapping.html#corpus-equation-c2a65ff49642965e)
 within the benchmark tolerances listed in the validation ledger.
 
 The synthetic calibration and likelihood sections below remain explicitly reduced fits over $(\gamma_{\mathrm{PPN}},C_2,\Xi_1,\Xi_2,\Xi_3)$. They do not numerically evaluate $\xi_{\mathrm W}$, $\zeta_i$, or the Lense-Thirring source-current row, so passing those reduced examples is not full PPN closure.
@@ -632,7 +632,7 @@ ds_{\mathrm{eff}}^2
 \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7c1521e0a983e8d8)
+[View →](../../../../equation-mapping.html#corpus-equation-7c1521e0a983e8d8)
 gives the observer-sector metric components
 $$
 g_{00}^{\mathrm{eff}}
@@ -646,7 +646,7 @@ g_{0i}^{\mathrm{eff}}
 g_{ij}^{\mathrm{eff}}=\gamma_{ij}^{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-19c2cccc2a2a1bbf)
+[View →](../../../../equation-mapping.html#corpus-equation-19c2cccc2a2a1bbf)
 
 In the local Noether sea rest weak-field row, write
 $$
@@ -657,7 +657,7 @@ N
 +O(c_0^{-6},\epsilon_{\mathrm{LV}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2bc4bb418f65a5c3)
+[View →](../../../../equation-mapping.html#corpus-equation-2bc4bb418f65a5c3)
 and extract
 $$
 \gamma_{\mathrm{PPN}}
@@ -671,7 +671,7 @@ $$
 \beta_{\mathrm{PPN}}-1=C_2^{(U)}-\frac12
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-126fe46ea130e20a)
+[View →](../../../../equation-mapping.html#corpus-equation-126fe46ea130e20a)
 The preferred-frame coefficients are the retained group velocity coefficients in $g_{0i}^{\mathrm{eff}}$ and $g_{00}^{\mathrm{eff}}$ under the $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ expansion above, with
 $$
 \alpha_1=\Xi_1,\qquad
@@ -679,7 +679,7 @@ $$
 \alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5b0443421239c8c3)
+[View →](../../../../equation-mapping.html#corpus-equation-5b0443421239c8c3)
 
 This extraction is the dictionary for the coefficient scaffold in [Emergent Metric](./emergent-metric.md#admcartan-reconstruction-surface). If
 $$
@@ -688,7 +688,7 @@ $$
 \varphi=-\frac{U}{c_0^2}+O(U^2/c_0^4),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4b16a5feda96d58a)
+[View →](../../../../equation-mapping.html#corpus-equation-4b16a5feda96d58a)
 then its scalar and spatial first-order rows must satisfy
 $$
 A_N^n a_n+A_N^\chi a_\chi-A_N^\Phi=-1,
@@ -698,7 +698,7 @@ A_N^n a_n+A_N^\chi a_\chi-A_N^\Phi=-1,
 A_\gamma^n a_n+A_\gamma^\chi a_\chi-A_\gamma^\Phi.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3d031d3d6a5836bf)
+[View →](../../../../equation-mapping.html#corpus-equation-3d031d3d6a5836bf)
 The coefficient $C_2^{(U)}$ is the complete coefficient of $(U/c_0^2)^2$ after $Q_N$ and the second-order pieces of $\delta n$, $\delta\chi$, and $\varphi$ are combined. It cannot be read from $Q_N$ alone.
 
 The group velocity row must contain both scalar and anisotropic PPN potentials:
@@ -710,7 +710,7 @@ D_U w^i\frac{U}{c_0^2}
 +O(c_0^{-4},\epsilon_{\mathrm{LV}}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1b11df1a936ad0d1)
+[View →](../../../../equation-mapping.html#corpus-equation-1b11df1a936ad0d1)
 At leading order in $g_{0i}^{\mathrm{eff}}=-\gamma_{ij}^{\mathrm{eff}}u^j_{\mathrm{sea,eff}}/c_0$, this gives
 $$
 D_U=\frac{\Xi_1}{2},
@@ -718,7 +718,7 @@ D_U=\frac{\Xi_1}{2},
 D_{\mathrm{aniso}}=\Xi_2.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-285e45aa68e32bb5)
+[View →](../../../../equation-mapping.html#corpus-equation-285e45aa68e32bb5)
 The remaining $\Xi_3$ and $\Xi_4$ require the quadratic group velocity terms in the lapse scaffold together with the shift-squared contribution to $g_{00}^{\mathrm{eff}}$. A scalar-only group velocity row has no $\Xi_2$ slot and therefore cannot be tested against the tight $\alpha_2$ channel.
 
 For a declared observation window $W$ and retained record tuple $\theta$, the shared weak-field residual can be recorded as
@@ -738,7 +738,7 @@ R_{\mathrm{acc}}\\
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c648ba8893f9e4d2)
+[View →](../../../../equation-mapping.html#corpus-equation-c648ba8893f9e4d2)
 with
 $$
 R_{\mathrm{acc}}
@@ -747,7 +747,7 @@ R_{\mathrm{acc}}
 {\left\|(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e1f1412704f76337)
+[View →](../../../../equation-mapping.html#corpus-equation-e1f1412704f76337)
 The other residuals are the redshift, Shapiro, and lensing differences computed from the same retained record tuple $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
 
 ## Numeric Closure Pipeline and Global Objective
@@ -777,7 +777,7 @@ C_2\\
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4975357010f06213)
+[View →](../../../../equation-mapping.html#corpus-equation-4975357010f06213)
 Using
 $$
 \beta_{\mathrm{PPN}}-1=\left(\frac{1+2C_2}{2}\right)-1=C_2-\frac12,
@@ -785,13 +785,13 @@ $$
 \alpha_1=\Xi_1,\ \alpha_2=\Xi_2,\ \alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cbe38ebcbeea53fb)
+[View →](../../../../equation-mapping.html#corpus-equation-cbe38ebcbeea53fb)
 the map is the exact linear projection
 $$
 \mathbf{p}_{\mathrm{PPN}}=\mathbf{J}\boldsymbol{\vartheta}_{\mathrm{PPN}}-\mathbf{p}_0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-30fd903420954368)
+[View →](../../../../equation-mapping.html#corpus-equation-30fd903420954368)
 with
 $$
 \mathbf{p}_0=
@@ -814,21 +814,21 @@ $$
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-74a697c00643ff13)
+[View →](../../../../equation-mapping.html#corpus-equation-74a697c00643ff13)
 
 If $\Sigma_{\vartheta}$ is the covariance of the constitutive fit from micro-simulations, propagate uncertainty by
 $$
 \Sigma_{\mathrm{PPN}}=\mathbf{J}\Sigma_{\vartheta}\mathbf{J}^{\mathsf T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-27282666c071ea37)
+[View →](../../../../equation-mapping.html#corpus-equation-27282666c071ea37)
 
 Define the single Tier-1 weighted closure objective
 $$
 \mathcal{L}(\boldsymbol{\vartheta}_{\mathrm{PPN}})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-94599078355f0e1e)
+[View →](../../../../equation-mapping.html#corpus-equation-94599078355f0e1e)
 where $\mathbf{W}$ is the precision matrix from ledger tolerances. With the source-mined benchmark vector above,
 $$
 \mathbf{W}
@@ -842,7 +842,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-543cc1b21431fe17)
+[View →](../../../../equation-mapping.html#corpus-equation-543cc1b21431fe17)
 
 Forward-only evaluation rule:
 1. Calibrate $\boldsymbol{\vartheta}_{\mathrm{PPN}}$ and $\Sigma_{\vartheta}$ from micro-scale clock/refraction simulations.
@@ -864,7 +864,7 @@ z_{\text{Red}}
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9765a56f27b2fa0d)
+[View →](../../../../equation-mapping.html#corpus-equation-9765a56f27b2fa0d)
 Using the weak-field constitutive map of $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
 1. Shapiro delay:
@@ -876,7 +876,7 @@ K_{\text{Shap}}=
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-123a47b0bb2b95c1)
+[View →](../../../../equation-mapping.html#corpus-equation-123a47b0bb2b95c1)
 For two-way radar-style Shapiro measurements, apply the same kernel on each leg and sum the two one-way contributions.
 2. Light deflection:
 $$
@@ -885,7 +885,7 @@ O_2(\boldsymbol{\vartheta}_{\mathrm{PPN}})=K_{\text{Def}}(1+\gamma_{\mathrm{PPN}
 K_{\text{Def}}=\frac{2GM}{b\,c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d19742985691a82c)
+[View →](../../../../equation-mapping.html#corpus-equation-d19742985691a82c)
 3. Perihelion precession per orbit:
 $$
 O_3(\boldsymbol{\vartheta}_{\mathrm{PPN}})
@@ -895,12 +895,12 @@ K_{\text{Prec}}\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 K_{\text{Prec}}\left(1.5+2\gamma_{\mathrm{PPN}}-C_2\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c5973d4fbefb8e3f)
+[View →](../../../../equation-mapping.html#corpus-equation-c5973d4fbefb8e3f)
 $$
 K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-44732eb0483d4e3f)
+[View →](../../../../equation-mapping.html#corpus-equation-44732eb0483d4e3f)
 4. Gravitational redshift (to retained order):
 $$
 O_4(\boldsymbol{\vartheta}_{\mathrm{PPN}})
@@ -912,7 +912,7 @@ K_{\text{Red1}}=\frac{\Delta U}{c_0^2},
 K_{\text{Red2}}=\frac{\Delta(U^2)}{c_0^4}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-60b5a1b9dbf68ce8)
+[View →](../../../../equation-mapping.html#corpus-equation-60b5a1b9dbf68ce8)
 
 First-order observable sensitivities are
 $$
@@ -928,13 +928,13 @@ K_{\text{Def}} & 0 & 0 & 0 & 0\\
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fdc30f37212861d7)
+[View →](../../../../equation-mapping.html#corpus-equation-fdc30f37212861d7)
 and the propagated covariance is
 $$
 \Sigma_O=\mathbf{J}_O\Sigma_{\vartheta}\mathbf{J}_O^{\mathsf T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3b36a186884b546a)
+[View →](../../../../equation-mapping.html#corpus-equation-3b36a186884b546a)
 For this spherically symmetric classical set, preferred-frame channels $(\Xi_1,\Xi_2,\Xi_3)$ decouple at leading order; they are constrained by dedicated group velocity/leakage observables.
 
 ## Worked Solar-System Reference Projection (Synthetic Calibration Example)
@@ -946,7 +946,7 @@ $$
 \frac{GM_\odot}{c_0^3}=4.925\times 10^{-6}\ \mathrm{s}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-976c7205bbf9ab2f)
+[View →](../../../../equation-mapping.html#corpus-equation-976c7205bbf9ab2f)
 with reference kernels
 $$
 K_{\text{Shap}}=70.4\ \mu\mathrm{s},
@@ -960,7 +960,7 @@ K_{\text{Red1}}=2.12\times 10^{-6},
 K_{\text{Red2}}=4.50\times 10^{-12}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-52252920a430478d)
+[View →](../../../../equation-mapping.html#corpus-equation-52252920a430478d)
 Take a synthetic constitutive fit
 $$
 \boldsymbol{\vartheta}_{\mathrm{PPN}}
@@ -974,7 +974,7 @@ $$
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e85ed6c8925ba8ef)
+[View →](../../../../equation-mapping.html#corpus-equation-e85ed6c8925ba8ef)
 $$
 \Sigma_{\vartheta}=
 \operatorname{diag}\!\left(
@@ -986,7 +986,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d8396d65f7345b2e)
+[View →](../../../../equation-mapping.html#corpus-equation-d8396d65f7345b2e)
 This block is an internal consistency projection example, not a claim of experimental pass/fail by itself.
 
 Projection to decision space gives
@@ -998,7 +998,7 @@ $$
 (\alpha_1,\alpha_2,\alpha_3)=\left(10^{-18},-0.5\times 10^{-18},1.3\times 10^{-18}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-104d8de3bee654e7)
+[View →](../../../../equation-mapping.html#corpus-equation-104d8de3bee654e7)
 Forward observables are
 $$
 \Delta t_{\text{Shap}}=140.80084\ \mu\mathrm{s},
@@ -1008,12 +1008,12 @@ $$
 \Delta\omega_{\text{Prec}}=42.9002\,\mathrm{arcsec}/\mathrm{cy}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-93df7884565949aa)
+[View →](../../../../equation-mapping.html#corpus-equation-93df7884565949aa)
 $$
 z_{\text{Red}}\approx 2.119997\times 10^{-6}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2c7788c527cfeea2)
+[View →](../../../../equation-mapping.html#corpus-equation-2c7788c527cfeea2)
 Propagated $1\sigma$ scales (diagonal approximation) are
 $$
 \sigma_{\text{Shap}}\approx 3.5\times 10^{-4}\ \mu\mathrm{s},
@@ -1025,14 +1025,14 @@ $$
 \sigma_{\text{Red}}\approx 1.8\times 10^{-17}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9c4d39dd2a0e51a4)
+[View →](../../../../equation-mapping.html#corpus-equation-9c4d39dd2a0e51a4)
 
 Failure rule for this closure layer: if any observed value lies outside
 $$
 \mathbf{O}(\boldsymbol{\vartheta}_{\mathrm{PPN}})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-14517e5f6c9a6b35)
+[View →](../../../../equation-mapping.html#corpus-equation-14517e5f6c9a6b35)
 the constitutive map fails this gate and must be replaced rather than re-fit per observable.
 
 ## Benchmark-Input Joint Likelihood (Reduced Fit)
@@ -1047,14 +1047,14 @@ $$
 \bigl(\mathbf{O}(\boldsymbol{\vartheta}_{\mathrm{PPN}})-\mathbf{O}_{\text{obs}}\bigr)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b7c02cfd6b2ac26c)
+[View →](../../../../equation-mapping.html#corpus-equation-b7c02cfd6b2ac26c)
 with
 $$
 \boldsymbol{\vartheta}_{\mathrm{PPN}}=
 \left(\gamma_{\mathrm{PPN}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bcadb607c738319d)
+[View →](../../../../equation-mapping.html#corpus-equation-bcadb607c738319d)
 
 Benchmark observable inputs for the classical weak-field suite are:
 1. Cassini Shapiro: $\gamma_{\text{obs}}-1=(2.1\pm2.3)\times 10^{-5}$.
@@ -1073,7 +1073,7 @@ $$
 \mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d8c34c634287effe)
+[View →](../../../../equation-mapping.html#corpus-equation-d8c34c634287effe)
 so the Fisher matrix is rank-2 in this fit and $(\Xi_1,\Xi_2,\Xi_3)$ remain unconstrained by this subset alone.
 
 The following is an inline reduced-fit example using the first three declared rows above. The Galileo/GPA row is not included because no second-order central value and covariance are specified here.
@@ -1088,7 +1088,7 @@ $$
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dea4d6aef888f9c5)
+[View →](../../../../equation-mapping.html#corpus-equation-dea4d6aef888f9c5)
 with maximum-likelihood point
 $$
 \gamma_{\mathrm{PPN}}=1+(1.74\pm2.26)\times 10^{-5},
@@ -1096,13 +1096,13 @@ $$
 C_2=0.5+(3.48\pm5.42)\times 10^{-5}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b87c0650e73c26bb)
+[View →](../../../../equation-mapping.html#corpus-equation-b87c0650e73c26bb)
 and correlation
 $$
 \rho(\gamma_{\mathrm{PPN}},C_2)=+0.83
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7499eca0d2948665)
+[View →](../../../../equation-mapping.html#corpus-equation-7499eca0d2948665)
 
 Interpretation for closure:
 1. A single constitutive vector can fit the selected classical observables without per-observable retuning; read this as consistency of the projection algebra, not independent evidence for the constitutive map.
@@ -1116,7 +1116,7 @@ $$
 \boldsymbol{\Xi}\equiv(\Xi_1,\Xi_2,\Xi_3)^{\mathsf T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4bbcf405465c674e)
+[View →](../../../../equation-mapping.html#corpus-equation-4bbcf405465c674e)
 For the spherical classical set above, $\boldsymbol{\Xi}$ is unconstrained. For an expanded group-velocity-sensitive baseline (ephemerides + LLR + anisotropy channels), treat the preferred-frame Fisher block as
 $$
 \mathcal{I}_{\Xi,\text{base}}
@@ -1128,13 +1128,13 @@ $$
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f5254ca7845d50ce)
+[View →](../../../../equation-mapping.html#corpus-equation-f5254ca7845d50ce)
 with rank-2 degeneracy and null direction $\hat n$:
 $$
 \mathcal{I}_{\Xi,\text{base}}\hat n=\mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5ffaf1982db92845)
+[View →](../../../../equation-mapping.html#corpus-equation-5ffaf1982db92845)
 
 Minimal augmentation:
 1. Binary-pulsar eccentricity drift channel $\dot e$ (orbital polarization sensitivity).
@@ -1149,7 +1149,7 @@ $$
 +\ln \mathcal{L}_{\dot P}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-76efce7a837881a6)
+[View →](../../../../equation-mapping.html#corpus-equation-76efce7a837881a6)
 The augmented Fisher matrix is
 $$
 \mathcal{I}_{\Xi,\text{total}}
@@ -1163,14 +1163,14 @@ $$
 \left(\nabla_{\boldsymbol{\Xi}}\dot P\right)^{\mathsf T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2e1587a5a29865a8)
+[View →](../../../../equation-mapping.html#corpus-equation-2e1587a5a29865a8)
 
 Degeneracy-lift criterion:
 $$
 \det\!\left(\mathcal{I}_{\Xi,\text{total}}\right)>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3707e632855e6e07)
+[View →](../../../../equation-mapping.html#corpus-equation-3707e632855e6e07)
 which is equivalent to nonzero projection of the added gradient span onto the null direction $\hat n$.
 
 Operational closure consequence: if this criterion is met with real timing data, the posterior over $(\Xi_1,\Xi_2,\Xi_3)$ closes to a bounded ellipsoid instead of a flat valley.
@@ -1183,5 +1183,5 @@ $$
 \nabla_{\boldsymbol{\Xi}}\dot P
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-94047a5df9087f85)
+[View →](../../../../equation-mapping.html#corpus-equation-94047a5df9087f85)
 for the group-velocity-sensitive channels that lift the preferred-frame degeneracy.

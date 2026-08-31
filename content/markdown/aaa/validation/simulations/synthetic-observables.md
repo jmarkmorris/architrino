@@ -51,7 +51,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   {\max(c_f\Delta T,\varepsilon_r)}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6ff7273d4e81cb6c)
+  [View →](../../../../../equation-mapping.html#corpus-equation-6ff7273d4e81cb6c)
   where $\varepsilon_r>0$ is a predeclared floor with units of length. Pass if at least $99.9\%$ of records satisfy $\rho_m\le 10^{-2}$ and $\max_m \rho_m \le 5\times 10^{-2}$.
 
 - **Temporal ordering check:**
@@ -59,7 +59,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \theta_m \equiv \frac{T_{t,m}-T_m}{\Delta T}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7ac22ecc1b685464)
+  [View →](../../../../../equation-mapping.html#corpus-equation-7ac22ecc1b685464)
   Pass if fraction with $\theta_m>10^{-9}$ is $\le 10^{-6}$.
 
 - **Cross-integrator parity:** For any channel $Y$ use a predeclared floor $\varepsilon_{0,Y}$ with the same units as the norm of $Y$:
@@ -68,7 +68,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \frac{\|R(Y_B)-Y_A\|_{L^2}}{\|R(Y_B)\|_{L^2}+\varepsilon_{0,Y}}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-45d921bacfcb3108)
+  [View →](../../../../../equation-mapping.html#corpus-equation-45d921bacfcb3108)
   Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$ and $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$. Passing shows implementation parity on the declared channels; it is not an independent correctness oracle.
 
 - **Finite-window Gauss/Stokes residuals:** for any declared reconstructed vector channel $\mathbf{Y}_\eta$ on $\Sigma_T$, use
@@ -78,7 +78,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   {\int_{\partial V}\left|\mathbf{Y}_\eta\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\int_V\left|\nabla\!\cdot\!\mathbf{Y}_\eta\right|\,dV+\varepsilon_G}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-de36de38c8014c6a)
+  [View →](../../../../../equation-mapping.html#corpus-equation-de36de38c8014c6a)
   and
   $$
   R_S[S,T;\mathbf{Y}_\eta]\equiv
@@ -86,7 +86,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   {\oint_{\partial S}\left|\mathbf{Y}_\eta\!\cdot dX^i\right|+\int_S\left|(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\varepsilon_S}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-71bcfdb75185b2f8)
+  [View →](../../../../../equation-mapping.html#corpus-equation-71bcfdb75185b2f8)
   Here $\varepsilon_G$ and $\varepsilon_S$ are predeclared floors with the units of their respective integral channels. Pass if both residuals are $\le 2\times10^{-2}$ on resolved windows and decrease under spatial refinement. These are diagnostics on reconstructed continuum channels, not claims that the channel is substrate ontology.
 
 - **Distributional wake-surface normalization:** for emitted wake surface $m$ with source strength $q_m$, causal delay $\Delta_m=T-T_{t,m}$, and radial annulus $R_-\le r_m\le R_+$ around the emission point, use
@@ -95,7 +95,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   q_mH(\Delta_m)\int_{R_-}^{R_+}\delta_\eta(r_m-c_f\Delta_m)\,dr_m
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-68fb0e6740be2980)
+  [View →](../../../../../equation-mapping.html#corpus-equation-68fb0e6740be2980)
   and
   $$
   R_{N,m}\equiv
@@ -103,7 +103,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   {|q_m|+\varepsilon_q}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-16c23eb963833104)
+  [View →](../../../../../equation-mapping.html#corpus-equation-16c23eb963833104)
   Here $\varepsilon_q$ is a predeclared source-strength floor with the same units as $q_m$. Pass if at least $99.9\%$ of emitted wake surfaces satisfy $R_{N,m}\le 10^{-2}$ and the maximum resolved-window residual is $\le 5\times10^{-2}$.
 
 - **Photon-frequency exchange closure:** when a photon packet changes frequency during transport, the logged before/after frequencies must close with medium, recoil, and remnant rows:
@@ -121,7 +121,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   {\varepsilon_{\nu\text{-}\mathrm{ex}}}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-052bcc73fc3ef5ff)
+  [View →](../../../../../equation-mapping.html#corpus-equation-052bcc73fc3ef5ff)
   Here $E_\gamma(\nu)$ is the declared photon-channel energy map and $\varepsilon_{\nu\text{-}\mathrm{ex}}>0$ is a predeclared photon-exchange tolerance with units of energy; it is distinct from the normalized energy-drift observable $\epsilon_E$ in [Convergence Tests](convergence-tests.md). Pass if $R_{\nu\text{-}\mathrm{ex},m}\le1$. The medium, recoil, and remnant entries use the same signed balance equation and outcome-neutral ledger convention defined in the [Redshift-Budget Toy Model](redshift-budget-toy-model.md#replay-equation). The observer-level comparison $E_\gamma=h\nu$ may be used only as a labeled recovery calibration after the $\mathbb{A}\mathbb{A}\mathbb{A}$ map is declared; it is not an architrino-level premise. A cosmology-facing redshift or blueshift product may consume this row only after the residual is reported with the same photon provenance used for arrival-time, flux, and image-sharpness outputs.
 
 - **Operator consistency across PDE and event-root runs:** after resampling the event-root reconstruction onto the PDE grid, define
@@ -133,7 +133,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \max\!\left\{R_G[V,T;\Delta\mathbf{Y}_\eta],\,R_S[S,T;\Delta\mathbf{Y}_\eta]\right\}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7ed20edd08550fc8)
+  [View →](../../../../../equation-mapping.html#corpus-equation-7ed20edd08550fc8)
   Pass if $E_{\mathrm{op}}\le0.03$ on the declared validation windows and decreases under temporal/history/spatial refinement. This is a parity check on the common observable map, not independent evidence for that map or the canonical law.
 
 - **Curvilinear-coordinate hygiene:** finite-window residuals must use the coordinate weights and operator formulas of the declared Euclidean scaffold. In spherical coordinates $(r,\theta,\varphi)$,
@@ -142,13 +142,13 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   w_{S_R}=R^2\sin\theta\,\Delta\theta\,\Delta\varphi
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e4643ea121b6bf2e)
+  [View →](../../../../../equation-mapping.html#corpus-equation-e4643ea121b6bf2e)
   and a radial channel must evaluate $\nabla\!\cdot(F_r\hat{\mathbf{r}})$ as
   $$
   \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2F_r\right)
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-abc15d6ef5fa2b06)
+  [View →](../../../../../equation-mapping.html#corpus-equation-abc15d6ef5fa2b06)
   not as $\partial_rF_r$. Fail the run if the coordinate scaffold does not declare these weights.
 
 - **Provenance distribution agreement:** for `t_emit` distributions, require
@@ -158,7 +158,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   D_{JS}\equiv \mathrm{JSD}(P_A\|P_B)\le 0.03
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1c462490bd67bf21)
+  [View →](../../../../../equation-mapping.html#corpus-equation-1c462490bd67bf21)
 
 - **Kinetic-moment closure:** for any promoted continuum observable, compute the direct event-root moments
   $$
@@ -168,7 +168,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \mathbf{J}_{e,\mathrm{dir}}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a3a1b083c3f39089)
+  [View →](../../../../../equation-mapping.html#corpus-equation-a3a1b083c3f39089)
   and compare them with the reduced continuum reconstruction. The reduced channel must report
   $$
   R_{\mathrm{mom}}
@@ -181,7 +181,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   }
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4417dca37385cf10)
+  [View →](../../../../../equation-mapping.html#corpus-equation-4417dca37385cf10)
   where $Y$ ranges over the retained density, current, momentum-current, and energy-flux channels. Pass if $R_{\mathrm{mom}}\le0.05$ and the omitted memory-current residual decreases under refinement.
 
 - **Drift-diffusion reconstruction:** if a Fokker-Planck or Langevin surrogate is emitted, estimate drift and diffusion from increments,
@@ -197,7 +197,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \frac{\langle\Delta z^a\Delta z^b\rangle_z}{2\Delta T}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fd952a25a000734c)
+  [View →](../../../../../equation-mapping.html#corpus-equation-fd952a25a000734c)
   The synthetic distribution must match direct event-root ensembles in $\langle z\rangle$ and $\operatorname{Cov}(z)$ before higher stochastic claims are trusted. Higher cumulants may differ from the surrogate unless a separate closure row has been declared.
 
 - **Reaction-diffusion and pattern probes:** when a reduced scalar or multi-channel field $y$ obeys
@@ -211,7 +211,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   R_{\mathrm{rd}}^a
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-934747a7edb23032)
+  [View →](../../../../../equation-mapping.html#corpus-equation-934747a7edb23032)
   the packet must report the fixed points, the linearized growth matrix, the unstable wavenumber band if one exists, and the front-speed estimate if a traveling-front claim is made. For two-channel pattern claims, the Turing-style gate is that the homogeneous fixed point is stable before diffusion and that the diffusion-shifted linear operator has a declared finite unstable band. Without those rows, visual pattern formation is not a validated synthetic observable.
 
 - **Jet/outflow head and radiation probes:** when a simulation claims an astrophysical jet, outflow, knot chain, or working surface, the synthetic packet must compare the logged event-root dynamics to the observer-level jet-head and radiation benchmarks. For a supersonic head with jet speed $v_j$, beam radius $R_j$, head radius $R_h$, density ratio $\eta_j=\rho_j/\rho_a$, and $a_h=(R_j/R_h)^2$, the bow-shock speed target is
@@ -224,7 +224,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \right]^{-1}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0dedd040f9d66e89)
+  [View →](../../../../../equation-mapping.html#corpus-equation-0dedd040f9d66e89)
   The head residual is
   $$
   R_{\mathrm{head}}
@@ -235,7 +235,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \right|
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1a782a336acb1682)
+  [View →](../../../../../equation-mapping.html#corpus-equation-1a782a336acb1682)
   For radiative shocks, also report
   $$
   \mathcal{R}_{\mathrm{cool}}
@@ -245,7 +245,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   t_{\mathrm{dyn}}\sim\frac{\ell_j}{v_j}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8a0d4df15f3b9d02)
+  [View →](../../../../../equation-mapping.html#corpus-equation-8a0d4df15f3b9d02)
   and route the synthetic emission to thermal line/free-free rows when $\mathcal{R}_{\mathrm{cool}}\ll1$, or to adiabatic, particle-acceleration, synchrotron, inverse-Compton, cocoon, and lobe rows when $\mathcal{R}_{\mathrm{cool}}\gg1$. If a pulsed inlet is declared with period $P$, the knot spacing should report
   $$
   R_{\mathrm{knot}}
@@ -256,7 +256,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \right|
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a616e48e6d3fc870)
+  [View →](../../../../../equation-mapping.html#corpus-equation-a616e48e6d3fc870)
   up to projection, cooling, and deceleration corrections named in the packet. For synchrotron-bearing jets, the same run must emit $I_\nu^{\mathrm{syn}}$, $I_\nu^{\mathrm{IC}}$, $\Pi_\nu$, and $\psi_\nu$ maps from one effective $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ reconstruction. These are observer-level comparison variables; passing them does not promote MHD fields into substrate ontology.
 
 - **Convergence triad:** must pass temporal/history/spatial gates from [convergence-tests.md](./convergence-tests.md), including null-test failure.

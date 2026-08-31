@@ -30,7 +30,7 @@ function createTrails(group = createGroupStub()) {
   return createBorgPathTrails({
     group,
     renderOrder: 2,
-    getStyle: () => ({ color: 0x336699 }),
+    getStyle: () => ({ color: 0x0000ff }),
     // Identity mapping keeps the assertions about time, not about camera space.
     toWorld: (position, target) => {
       target.x = position.x;

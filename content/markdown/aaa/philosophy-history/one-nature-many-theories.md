@@ -54,7 +54,7 @@ $$
 \frac{G_F}{\sqrt{2}}=\frac{g^2}{8M_W^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b44957fa1f24bad8)
+[View →](../../../../equation-mapping.html#corpus-equation-b44957fa1f24bad8)
 
 Plainly: $G_F$ is the effective low-energy interaction coefficient, $g$ is the electroweak coupling, and $M_W$ is the $W$-boson mass. The coefficient carries an effect of the higher-energy theory, but it does not contain enough information to infer uniquely that the hidden completion contains a spin-$1$ mediator with that structure. Prediction survived the compression; the detailed structure did not.
 
@@ -82,7 +82,7 @@ $$
 \mathcal{G}_{\mathrm{phys}}=(V,E)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a45e8630687b0793)
+[View →](../../../../equation-mapping.html#corpus-equation-a45e8630687b0793)
 
 where each node $v_i\in V$ is a declared theory or domain description and each directed edge $e_{j\leftarrow i}\in E$ is a bridge from description $i$ to description $j$. A bridge certificate is
 
@@ -101,7 +101,7 @@ M_{j\leftarrow i},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-db1aa95de946f160)
+[View →](../../../../equation-mapping.html#corpus-equation-db1aa95de946f160)
 
 where $\mathcal{D}_i$ and $\mathcal{D}_j$ are the source and target state domains, $M_{j\leftarrow i}$ is the bridge map, $\mathcal{R}_{ij}$ is its validity regime, $\epsilon_{ij}$ is its declared error or residual bound, $\mathcal{I}_{ij}$ is the information preserved, $\mathcal{L}_{ij}$ is the information discarded or left unresolved, and $\mathcal{F}_{ij}$ is an independently checkable failure condition.
 
@@ -118,7 +118,7 @@ d_j\!\left(M_{j\leftarrow i}(x),y\right)\leq\epsilon_{ij}
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b41ebfc1333e648f)
+[View →](../../../../equation-mapping.html#corpus-equation-b41ebfc1333e648f)
 
 Here $d_j$ is a declared distance or residual measure in the target record space. Plainly: an effective record may exclude many possible fine histories without identifying one. Forward prediction and reverse reconstruction are separate achievements.
 
@@ -135,7 +135,7 @@ P_j(H)
 \epsilon_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9a8a84e6187eb564)
+[View →](../../../../equation-mapping.html#corpus-equation-9a8a84e6187eb564)
 
 For three nested descriptions, direct and staged reduction must also agree within a declared composition tolerance:
 
@@ -145,7 +145,7 @@ M_{k\leftarrow j}\circ M_{j\leftarrow i}
 M_{k\leftarrow i}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-00f9558afc861775)
+[View →](../../../../equation-mapping.html#corpus-equation-00f9558afc861775)
 
 Plainly: one history should be readable in several scientific languages. Translating its fine description into a coarse description should agree with reading the coarse record directly from the same history, and an intermediate route should not silently change the answer.
 
@@ -161,7 +161,7 @@ C_{\ell_3\leftarrow\ell_1},
 \Pi_I(H)-\Phi_I(\partial W)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8b30dc678926f3e6)
+[View →](../../../../equation-mapping.html#corpus-equation-8b30dc678926f3e6)
 
 Plainly: changing resolution in two steps must agree with changing it directly. Coarse-graining may discard descriptive detail, but it may not create a different constituent inventory merely because the language changed; any actual gain or loss must be accounted for at the physical boundary.
 
@@ -175,7 +175,7 @@ P_\ell:\mathcal{H}\longrightarrow\mathcal{O}_\ell,
 \mathcal{F}_\ell(o)=\left\{H\in\mathcal{H}:P_\ell(H)=o\right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4514a1f4aead3177)
+[View →](../../../../equation-mapping.html#corpus-equation-4514a1f4aead3177)
 
 Here $o$ is the observed effective record, and $\mathcal F_\ell(o)$ is not a competing inverse notation; it is the $\epsilon=0$ scale case of the general fiber $\mathfrak F_{i\mid y}^{(\epsilon)}$. A protected cross-scale quantity $I_a$ must factor through the effective record:
 
@@ -183,7 +183,7 @@ $$
 I_a(H)=\overline I_{a,\ell}\!\left(P_\ell(H)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e897dc3f23a715e5)
+[View →](../../../../equation-mapping.html#corpus-equation-e897dc3f23a715e5)
 
 for every admissible history in the declared domain, where $\overline I_{a,\ell}$ reads the protected quantity from the scale-$\ell$ effective record.
 

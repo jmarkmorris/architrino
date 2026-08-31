@@ -29,7 +29,7 @@ c_0\,
 \partial_D Z_{\mathrm{prop},X}(D,\hat{\mathbf{k}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e55662180c01fb8b)
+[View →](../../../../equation-mapping.html#corpus-equation-e55662180c01fb8b)
 
 after endpoint cadence, source-branch changes, and launch geometry are removed, where $D$ is Euclidean path distance and $R$ remains reserved for the reception event. A net positive $\partial_D Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
 
@@ -41,7 +41,7 @@ H_{\mathrm{eff},X}(D,\hat{\mathbf{k}})
 c_0\,\alpha_{D,X}(\hat{\mathbf{k}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bb0591aa65cf2fba)
+[View →](../../../../equation-mapping.html#corpus-equation-bb0591aa65cf2fba)
 
 with the next correction governed by the local curvature $\mathcal{K}_X(D,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether sea state record.
 
@@ -52,7 +52,7 @@ H_{\mathrm{eff},X}^{E}(D,\hat{\mathbf{k}})
 c_0\,\partial_D Z_{\mathrm{prop},X}^{E}(D,\hat{\mathbf{k}}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-77f839463513e38c)
+[View →](../../../../equation-mapping.html#corpus-equation-77f839463513e38c)
 Here $E$ denotes the source, host, line-of-sight, and observer-environment class after catalogue corrections. A local ladder can be promoted to a universal $H_0$ coefficient only after the residual scatter in $H_{\mathrm{eff},X}^{E}$ is either bounded or derived from the same Noether sea density, delay, flow, and calibration record used by CMB, BAO, and growth.
 
 Gravitational-wave standard sirens add an independent distance channel, but not an ontology shortcut. A GWTC-style $H_0$ estimate combines luminosity distances inferred from calibrated strain with redshift information inferred from host association, an electromagnetic counterpart, or population features such as the mass spectrum. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is valuable because photon-ladder calibration is not the only distance route. The comparison still belongs to the same corrected transfer problem: gravitational-wave propagation, detector calibration, host or population redshift inference, photon redshift correction, and the Noether sea state must be carried together before a discrepancy is read as physical $H_0$ structure.
@@ -69,7 +69,7 @@ Z_{\mathrm{prop},X}
 +\ln D_v
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-806551d1c46982f5)
+[View →](../../../../equation-mapping.html#corpus-equation-806551d1c46982f5)
 
 so that endpoint cadence, source-branch shifts, and launch motion are not folded into a single apparent $H_0$ offset. Only then should local and early-inferred transfer slopes be compared.
 
@@ -94,7 +94,7 @@ H_{\mathrm{eff,local}}
 H_{\mathrm{eff,early}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-50fbceb5fbf52932)
+[View →](../../../../equation-mapping.html#corpus-equation-50fbceb5fbf52932)
 
 To address the observed direction of the $H_0$ tension, the constitutive and clock map must derive $\Delta H_{\mathrm{relax}}>0$. A branch that gives $\Delta H_{\mathrm{relax}}\le0$ fails as an explanation even if it produces environment-dependent scatter.
 
@@ -115,7 +115,7 @@ H_{\mathrm{chron}}^{\mathrm{obs}}(z)
 -\frac{1}{1+z}\frac{dz}{dt_{\mathrm{age}}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cc7ebc4b1fe74e78)
+[View →](../../../../equation-mapping.html#corpus-equation-cc7ebc4b1fe74e78)
 
 The stellar-aging interval is local to the source population, but both its population-synthesis calibration and the measured redshift remain photon-mediated. Chronometers are therefore not a path-free measurement. Their value is as a cross-pipeline discriminator. For one shared record, retain
 
@@ -129,7 +129,7 @@ H_{\mathrm{SN}}^\theta
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-771efd562842152a)
+[View →](../../../../equation-mapping.html#corpus-equation-771efd562842152a)
 
 and predict the pairwise residual pattern after each pipeline's source, clock, and photon-transfer terms are declared. A branch that explains only one component by changing the Noether sea history has not explained the tension.
 
@@ -167,7 +167,7 @@ $$
 \neq \varnothing
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-06c9a134aa9ebba0)
+[View →](../../../../equation-mapping.html#corpus-equation-06c9a134aa9ebba0)
 without assigning separate Noether sea states to each inference pipeline. If the preferred $w(a)$ trend requires one state for distance data and another for growth, the cosmology branch has only hidden the tension.
 
 This is the local form of the shared calibration gate in [Dark Energy](dark-energy.md#inference-dependency-and-calibration-gates). The sets $\mathcal{C}_{H_0}$, $\mathcal{C}_{S_8}$, $\mathcal{C}_{\mathrm{BAO/SN/CMB}}$, and $\mathcal{C}_{\mathrm{growth}}$ should be read as constraints on projections of one $\theta_{\mathrm{sea}}$, not as independent fit islands. A low distance residual paired with an incompatible growth projection is therefore not a win for the Noether sea relaxation interpretation; it is evidence that the interpretation has not yet closed.
@@ -204,7 +204,7 @@ $$
 +\lambda_{\mathrm{split}}\mathcal{P}_{\mathrm{proj}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-44567cb1d0a3d6fa)
+[View →](../../../../equation-mapping.html#corpus-equation-44567cb1d0a3d6fa)
 
 Here $\mathbf b_{\mathrm{BAO}}(z_i)$ contains the reported subset of $D_M/r_d$, $D_H/r_d$, and $D_V/r_d$ for each tracer bin. The last term is not optional bookkeeping. It prevents a branch from fitting a DESI-like distance trend, a Planck-like CMB anchor, and a DES-like growth amplitude by using three incompatible Noether sea projections.
 
@@ -222,7 +222,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f85ad00ecc193c9a)
+[View →](../../../../equation-mapping.html#corpus-equation-f85ad00ecc193c9a)
 
 Here $\delta H(z,\hat{\mathbf{n}})$ is the directional departure from an isotropic inferred transfer slope, and $\Delta_{\mathrm{dip}}^{X}$ is the source-catalogue dipole residual defined in [CMB](CMB.md). Operationally, the Hubble residual should be computed from corrected propagation slopes, for example
 
@@ -236,7 +236,7 @@ c_0
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1e0fcf7134fab90b)
+[View →](../../../../equation-mapping.html#corpus-equation-1e0fcf7134fab90b)
 
 after source, endpoint, and launch factors have been removed. The expected sign and scale of $\mathcal{R}_{H,D}$ must come from the same Noether sea density, delay, and flow variables used by the expansion and growth modules. If the correlation is absent after known survey systematics are controlled, the local-environment explanation for $H_0$ loses support. If the correlation exists but requires a different Noether sea state from the one used for CMB, BAO, or growth, the cosmology branch has split its ontology and fails the shared-closure requirement.
 
@@ -254,7 +254,7 @@ z+\frac12(1-q_{0,\mathrm{eff}})z^2+O(z^3)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3cf237f25239d2e6)
+[View →](../../../../equation-mapping.html#corpus-equation-3cf237f25239d2e6)
 where $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coefficients of the corrected redshift-transfer map. For the growth side, retain
 $$
 f\sigma_8(z,k)
@@ -265,7 +265,7 @@ f\sigma_8(z,k)
 S_8=\sigma_8\sqrt{\Omega_m/0.3}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-39420ac076bfa912)
+[View →](../../../../equation-mapping.html#corpus-equation-39420ac076bfa912)
 A compact shared-state diagnostic is
 $$
 \mathcal{R}_{H_0S_8}(\theta_{\mathrm{sea}})
@@ -279,7 +279,7 @@ d_{\mathrm{shared}}\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-abbb0cbc57720547)
+[View →](../../../../equation-mapping.html#corpus-equation-abbb0cbc57720547)
 A distance improvement that raises the shared-state penalty or worsens $f\sigma_8$ is therefore not a resolution of the tension pair. It is a sign that the fit has separated the background and growth projections.
 
 ## Low-Acceleration Scale Coupling
@@ -306,7 +306,7 @@ a_\star(E)
 \lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl/gal}}(\theta_{\mathrm{sea}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a4bbdba477cf3dde)
+[View →](../../../../equation-mapping.html#corpus-equation-a4bbdba477cf3dde)
 
 where $\alpha_E$ is a declared comparison coefficient rather than a fitted afterthought. The cluster-versus-galaxy term $\mathcal{R}_{\mathrm{cl/gal}}$ records whether the same Noether sea state explains any required difference between galaxy-scale and cluster-scale acceleration thresholds. A branch that fits galaxy rotation curves with one $a_\star$, cluster gas with another, and the $H_0/S_8$ pair with a third effective history has not linked the tensions; it has split the Noether sea record.
 

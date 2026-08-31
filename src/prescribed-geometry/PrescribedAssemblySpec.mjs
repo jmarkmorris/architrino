@@ -434,14 +434,14 @@ function validateConstraints(spec) {
   if (speed.policy === "reject" && !(maximum < NORMALIZED_FIELD_SPEED)) {
     throw new RangeError(`prescribed assembly speed guard failed: bound ${maximum} is not below c_f=1.`);
   }
-  if (speed.policy === "preserve-and-report") {
+  if (speed.policy === "preserve-and-report" || speed.policy === "report-only") {
     const declared = finite(speed.observedBound, "constraints.speedGuard.observedBound");
     requireNear(declared, maximum, GEOMETRY_TOLERANCE, "constraints.speedGuard.observedBound");
-    if (speed.migrationBoundary !== "geometry-preservation-only") {
+    if (speed.policy === "preserve-and-report" && speed.migrationBoundary !== "geometry-preservation-only") {
       throw new TypeError("preserve-and-report speed guards require migrationBoundary=geometry-preservation-only.");
     }
   } else if (speed.policy !== "reject") {
-    throw new TypeError("constraints.speedGuard.policy must be reject or preserve-and-report.");
+    throw new TypeError("constraints.speedGuard.policy must be reject, report-only, or preserve-and-report.");
   }
   if (spec.constraints.collisionGuard != null) {
     const samples = positiveInteger(

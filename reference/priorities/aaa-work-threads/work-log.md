@@ -76,7 +76,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-07-16 — Duplicate campaign and simulation ownership consolidated
 
-- Removed `eom-attractor-search` and `app-simulation` as independently ranked owners. Braid Program now owns the undirected ensemble campaign; EOM owns the reusable harness, checkpoint, deterministic-replay, campaign-driver, convergence, provenance, and cost-instrument capabilities.
+- Removed `eom-attractor-search` and `app-simulation` as independently ranked owners. Scientific campaign design remains with the relevant theory owner; EOM owns the reusable harness, checkpoint, deterministic-replay, campaign-driver, convergence, provenance, and cost-instrument capabilities.
 - Converted `eom-attractor-search` into a focused instrument/evidence packet and `app-simulation` into an unranked routing index so measured artifacts and detailed protocol definitions remain discoverable without duplicating authority.
 - Restored the pressure-dependent Noether sea constitutive response as a live focused packet under Master-Equation Closure and retained it as a separately ranked shared multiplier.
 - Preserved the concurrent Assembly Explorer consolidation into Borg and rescored Borg for its combined simulation and record-only inspection surface. No Borg or EOM implementation claim was upgraded by the ranking change.
@@ -87,7 +87,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 - Re-read every immediate live `reference/priorities/*/priorities.md` tracker, the dormant archive index, the closure join, the latest EOM/braid work logs, and the current 2026-06-28 scorecard deltas.
 - Recomputed all 40 ranked rows with the canonical Base, Cascade, Pressure, Engine, Eureka, and four-part Cost model. Specified round-half-up cost handling so half-tenth cases no longer depend on runtime floating-point formatting.
-- Ranked `app-solver`, `braid-program`, and `eom-attractor-search` first through third because the sole forward engine, the evolution-first N-ladder, and the implemented undirected ensemble harness now precede the older candidate-shape proof lanes.
+- Ranked `app-solver`, `braid-program`, and `eom-attractor-search` first through third because the sole forward engine, the evolution-first N-ladder, and the implemented checkpointed population harness then preceded the older candidate-shape proof lanes.
 - Archived legacy braid rows no longer consume numeric ranks. Their live obligations route through `braid-program`, `app-solver`, `master-equation-closure`, or downstream shared packets.
 - Updated every live workstream tracker's embedded Rank, Value, Cost, and ROI metadata to match the canonical table. Shared theorem packets remain table-only rows.
 - Claim grade: the ranking is an inferred attention allocation. It does not ratify the Braid Program charter, book a Campaign 1 fate, accept a retained branch, promote coefficients, or move the closure scorecard.

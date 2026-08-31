@@ -66,7 +66,7 @@ E_{\mathrm{work}}^{\mathrm{in}},
 \right),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b52163966c6d084d)
+[View →](../../../../equation-mapping.html#corpus-equation-b52163966c6d084d)
 
 where the first set ranges over the resolved incoming assemblies and the second set ranges over resolved outgoing or remnant assemblies. This is not a new conservation law. It is a collision-specific refinement of the same event record: shielding loss, shielding gain, dissociation, association, recoil, photon output, medium excitation, Noether sea update, detector-facing products, and any re-shielded remnant must all be named inside the same $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)$ balance. If the calculation exposes internal energy from an incoming assembly without routing it to one of those named terms, the reaction remains a provisional map rather than a closed provenance record.
 
@@ -88,7 +88,7 @@ P_{\Lambda\bar{\Lambda}}(\Delta R)
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5748c27fad026cad)
+[View →](../../../../equation-mapping.html#corpus-equation-5748c27fad026cad)
 
 where $X_{\mathrm{coll}}$ includes the incoming beam and local Noether sea state, $I_{\mathrm{had}}$ is the selected hadronization route, $Y_{\Lambda\bar{\Lambda}}$ names the outgoing hyperon pair and any feed-down or remnant rows, and $\Theta_{\mathrm{decay}}$ records the weak-decay analyser geometry. The comparison residual is not just whether two hyperons are produced. It is whether the same event record recovers
 
@@ -98,7 +98,7 @@ P_{\Lambda\bar{\Lambda}}(\Delta R\ \mathrm{short})>0,
 P_{\Lambda\bar{\Lambda}}(\Delta R\ \mathrm{long})\approx0,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0739d971321d33e1)
+[View →](../../../../equation-mapping.html#corpus-equation-0739d971321d33e1)
 
 without changing the source, hadronization, or detector-response record between the two bins. If the short-range signal is matched only by assigning an independent spin label after hadronization, the strong-sector map has fit a detector statistic while failing provenance closure.
 
@@ -114,7 +114,7 @@ $$
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-60630e8821df770c)
+[View →](../../../../equation-mapping.html#corpus-equation-60630e8821df770c)
 
 Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether braid density, Noether sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
 
@@ -132,7 +132,7 @@ Z_S
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f2c3abd2dad6a7db)
+[View →](../../../../equation-mapping.html#corpus-equation-f2c3abd2dad6a7db)
 
 where $Z_S$ denotes sector-local variables such as nuclear configuration, weak-corridor data, apparatus state, or horizon-interface boundary data when those variables control the route. A routed reaction event is a triple
 
@@ -140,7 +140,7 @@ $$
 \mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-80a897b3666bd7af)
+[View →](../../../../equation-mapping.html#corpus-equation-80a897b3666bd7af)
 
 where $I_{\mathsf e}$ is the selected finite channel set and $Y_{\mathsf e}$ lists outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records. A single reaction vertex may select more than one output channel when photon output, recoil, medium update, and reaction products are simultaneous terms in one closed event.
 
@@ -161,7 +161,7 @@ $$
 \right)(\mathsf e)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-11e1de72f52ff6f1)
+[View →](../../../../equation-mapping.html#corpus-equation-11e1de72f52ff6f1)
 
 Ledger closure means:
 
@@ -169,7 +169,7 @@ $$
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2a8a3adca4192257)
+[View →](../../../../equation-mapping.html#corpus-equation-2a8a3adca4192257)
 
 componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
 
@@ -187,7 +187,7 @@ B_{\mathrm{post}},
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-841b7edb919624f1)
+[View →](../../../../equation-mapping.html#corpus-equation-841b7edb919624f1)
 Here $B_{\mathrm{pre}}$ and $B_{\mathrm{post}}$ are the retained branch records before and after the interaction, $W_{\mathrm{in}}$ is the applied work or incoming excitation, $\Delta\mathcal A$ is the branch-action change, $\tau_{\mathrm{return}}$ is the return or relaxation time when a stable branch is recovered, and $\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{post}}$ is the post-event balance. This prevents a reaction map from closing only by label replacement while leaving the outgoing assemblies dynamically unsettled.
 
 The stronger event-balance target bundles energy, momentum, and angular momentum instead of checking photon polarization separately from the source ledger. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, define source depletion by
@@ -200,7 +200,7 @@ $$
 \mathcal Q_{\mathrm{src}}^{+}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d575eaa3ea0af7b8)
+[View →](../../../../equation-mapping.html#corpus-equation-d575eaa3ea0af7b8)
 
 A resolved radiative event closes only if
 
@@ -220,7 +220,7 @@ $$
 \mathcal Q_{\mathrm{rem}}^{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1d2026d1ba263da1)
+[View →](../../../../equation-mapping.html#corpus-equation-1d2026d1ba263da1)
 
 with normalized residual
 
@@ -253,7 +253,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2506d93e03bb04f0)
+[View →](../../../../equation-mapping.html#corpus-equation-2506d93e03bb04f0)
 
 The Gate B angular-momentum row is the $\mathcal Q=\mathbf J$ projection of this same identity. Let the event window be labeled by superscript $0$, and let $\mathbf J_{\mathrm{src}}^-$ and $\mathbf J_{\mathrm{src}}^+$ be the source angular-momentum ledger before and after the event. Define
 
@@ -265,7 +265,7 @@ $$
 \mathbf J_{\mathrm{src}}^+
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-27e50e7199e1a89f)
+[View →](../../../../equation-mapping.html#corpus-equation-27e50e7199e1a89f)
 
 The photon event row is
 
@@ -285,7 +285,7 @@ $$
 \mathbf J_{\mathrm{rem}}^{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-729845df1c51d616)
+[View →](../../../../equation-mapping.html#corpus-equation-729845df1c51d616)
 
 Define the corresponding balance defect by
 
@@ -307,7 +307,7 @@ $$
 \mathbf J_{\mathrm{rem}}^{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9c4e96401d520bed)
+[View →](../../../../equation-mapping.html#corpus-equation-9c4e96401d520bed)
 
 For a Gate B-admissible photon row, helicity is the projection
 
@@ -321,7 +321,7 @@ $$
 \lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-30eced4a51e02da5)
+[View →](../../../../equation-mapping.html#corpus-equation-30eced4a51e02da5)
 
 and the event balance bounds the projection error:
 
@@ -350,7 +350,7 @@ $$
 \frac{\|\mathbf B_{\gamma}^{0}\|}{\hbar}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7dfed49d1a382e14)
+[View →](../../../../equation-mapping.html#corpus-equation-7dfed49d1a382e14)
 
 The normalized event-balance residual is
 
@@ -378,7 +378,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-16c9cd66b736dd8e)
+[View →](../../../../equation-mapping.html#corpus-equation-16c9cd66b736dd8e)
 
 The denominator is understood in the normalized angular-momentum units of the event ledger. Missing source, recoil, medium, wake, handoff, or remnant rows keep the photon record provisional even when the outgoing photon substrate ledger is algebraically clean.
 
@@ -391,7 +391,7 @@ $$
 \Pi_{\mathsf e}:R_{\mathsf e}^{\mathrm{in}}\to R_{\mathsf e}^{\mathrm{out}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8909242d8a237edc)
+[View →](../../../../equation-mapping.html#corpus-equation-8909242d8a237edc)
 such that, for every routed identity $a$,
 $$
 q_{\Pi_{\mathsf e}(a)}=q_a,\qquad
@@ -399,7 +399,7 @@ q_a=\sigma_a\epsilon,\qquad
 \sigma_a\in\{-1,+1\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c4fd41e2c372412c)
+[View →](../../../../equation-mapping.html#corpus-equation-c4fd41e2c372412c)
 Equivalently, the polarity inventory vector
 $$
 \mathbf{N}_{\mathsf e}
@@ -410,7 +410,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dbe4751658e9ad74)
+[View →](../../../../equation-mapping.html#corpus-equation-dbe4751658e9ad74)
 must agree before and after the event once all named reservoir terms are included. Photon assemblies, causal wakes, and corridor payloads may carry energy, momentum, angular momentum, phase, and path-history data, but they do not create new elements of $\mathcal{A}$. If a pair-production, weak, charged-pair relock, bremsstrahlung, synchrotron, or scattering record lacks $\Pi_{\mathsf e}$ or an equivalent identity-routing statement, the record remains provisional even when its net observer-level charge balances.
 
 The contract for each serious channel is:
@@ -474,7 +474,7 @@ $$
 t \to b + W^+,\qquad W^+ \to e^+ + \nu_e
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-469dba1ff1902953)
+[View →](../../../../equation-mapping.html#corpus-equation-469dba1ff1902953)
 
 Native status: provisional weak-reaction provenance map.
 
@@ -484,7 +484,7 @@ $$
 (5\epsilon_+ + 1\epsilon_-)_{\text{axial}} \to (2\epsilon_+ + 4\epsilon_-)_{\text{axial}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d69b17996828fffc)
+[View →](../../../../equation-mapping.html#corpus-equation-d69b17996828fffc)
 
 Equivalently, the active quark sector requires a $+3\epsilon_-,-3\epsilon_+$ axial-inventory change. In observer language this is the $W^+$ channel. In substrate language it is a transient payload and coupling event whose geometry, chirality selection, and energy routing still need closure.
 
@@ -508,7 +508,7 @@ $$
 n \to p + e^- + \bar{\nu}_e
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ccf161f1794267ba)
+[View →](../../../../equation-mapping.html#corpus-equation-ccf161f1794267ba)
 
 with the active quark-level comparison
 
@@ -516,7 +516,7 @@ $$
 d \to u + W^-,\qquad W^- \to e^- + \bar{\nu}_e
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e1c1de79d984acfb)
+[View →](../../../../equation-mapping.html#corpus-equation-e1c1de79d984acfb)
 
 Native label: free-neutron beta reaction.
 
@@ -528,7 +528,7 @@ $$
 (2\epsilon_+ + 4\epsilon_-)_{\text{axial}} \to (5\epsilon_+ + 1\epsilon_-)_{\text{axial}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5b1e3302723ef84a)
+[View →](../../../../equation-mapping.html#corpus-equation-5b1e3302723ef84a)
 
 So the active quark assembly has a three-unit decrease in negative-polarity axial occupancy and a matching three-unit increase in positive-polarity axial occupancy. The natural provenance hypothesis is that local neutral Noether sea material supplies the compensating polarity units while the released negative-polarity axial material participates in electron axial-layer formation.
 
@@ -579,7 +579,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a1d64e6af84992a8)
+[View →](../../../../equation-mapping.html#corpus-equation-a1d64e6af84992a8)
 
 Here $\tau_n^{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the storage-style survival lifetime predicted by the branch record, while $\tau_{n,p}^{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the proton-counting readout in a beam geometry. The two entries must share the same weak-coupling-triad exposure, $V_{ud}$ overlap, lepton-provenance, recoil, and Noether sea rows. If the method residual remains nonzero after known detector, trap, wall-loss, and normalization systematics are represented at observer level, the residual stays an unresolved comparison pressure; it should not be promoted to hidden-channel ontology without explicit reaction provenance and null-result closure.
 

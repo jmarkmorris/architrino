@@ -284,6 +284,11 @@ export async function runPhotonSelfHitPhaseLockSweep(options = {}) {
   const caseResults = [];
   for (const sweepCase of cases) {
     caseResults.push(await evaluateSweepCase(sweepCase, config, options));
+    options.onProgress?.({
+      completed: caseResults.length,
+      total: cases.length,
+      caseId: sweepCase.caseId,
+    });
   }
   const summary = summarizeSweepCases(caseResults, config);
   return {

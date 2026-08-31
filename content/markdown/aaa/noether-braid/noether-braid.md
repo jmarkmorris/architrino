@@ -23,7 +23,7 @@ $$
 \sum_{i=1}^{6}\sigma_i=0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3aa40ddac12db18c)
+[View →](../../../../equation-mapping.html#corpus-equation-3aa40ddac12db18c)
 
 Equivalently, the compact inventory is $3\epsilon_+ + 3\epsilon_-$. This ledger is imposed before any binary partition, member assignment, or reference fixture. Each architrino has three attractive opposite-polarity channels and two repulsive same-polarity channels among the other five sites. The $3+2$ count is an inventory fact, not a compressed acceleration law; the net acceleration must still be assembled from the retained causal roots and path history.
 
@@ -35,7 +35,7 @@ $$
 \left\|\mathbf Y_i'(s)\right\|=1,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-234280b4040c395e)
+[View →](../../../../equation-mapping.html#corpus-equation-234280b4040c395e)
 
 with physical trajectory
 
@@ -47,7 +47,7 @@ $$
 0<\nu_-\leq\nu_i(T)\leq\nu_+<\infty.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-53e7eac1f9efc366)
+[View →](../../../../equation-mapping.html#corpus-equation-53e7eac1f9efc366)
 
 Thus the base class permits changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to exact binary rows. A retained neutral braid must still return to a closed causal ledger within the declared recovery tolerance. Families A and B inherit this six-site neutral inventory before adding member coordinates. Family C instead declares a twelve-worldline neutral inventory, while each exact B1 or B1.3 component on its C3–C6 loci inherits the six-site base inventory.
 
@@ -64,7 +64,7 @@ These definitions name prescribed coordinate classes, not retained-branch existe
 
 The word **braid** names the family-declared retained worldline strands together with their shared causal-return ledger: six strands in the base and Family-A/B cases, and twelve in Family C. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](noether-braid-topological-charge.md) program.
 
-Canonical reader-facing prose uses **Noether braid** for the assembly class, **neutral braid** for the base case, and the family/member identifiers for prescribed geometry. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [Braid Envelope Geometry](braid-envelope-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+**Noether braid** denotes the assembly class, **neutral braid** its base case, and the family/member identifiers its prescribed geometries. The braid's dynamic envelope geometry is developed separately in [Braid Envelope Geometry](braid-envelope-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
 ## Simple Picture
 

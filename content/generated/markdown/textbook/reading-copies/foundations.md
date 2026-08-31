@@ -85,7 +85,7 @@ S(T)
 \bar S(T).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-32735fe8bdc4051a)
+[View →](../../../../../equation-mapping.html#corpus-equation-32735fe8bdc4051a)
 Here $\mathfrak B(T)$ denotes the retained assembly and branch records and $\Pi_{\mathrm{record}}$ is the final record-extraction arrow. The canonical observer projection is the composite $\Pi_{\mathrm{obs}}=\Pi_{\mathrm{record}}\circ\Pi_{\mathrm{eff}}\circ\Pi_{\mathrm{assembly}}:S(T)\to\bar S(T)$, refining the monolithic definition in [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence). Pullback of retained information along the tower induces a decreasing filtration on $S(T)$. Each arrow keeps some information and discards some information. Individual provenance labels, path-history depth, inactive branch alternatives, fine assembly coordinates, medium microstate, and apparatus-inaccessible records may be lost at different stages.
 
 A quantity is well-defined at a level only if it survives the corresponding forgetting map. A residual measures failure to survive that quotient. Examples include provenance leakage $\epsilon_{\mathrm{prov}}$, branch or record residuals $\mathcal R_{\mathcal Q}$, clock-composition residuals $\Delta^{\mathrm{comp}}$, and clock-universality residuals $\epsilon_{\mathrm{univ}}$. This is why level discipline is not only vocabulary discipline. It decides which invariants remain meaningful after a projection.
@@ -227,7 +227,7 @@ P(a\mid \hat{m}_A,\lambda)\,
 P(b\mid \hat{m}_B,\lambda)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7d4586f544b65b38)
+[View →](../../../../../equation-mapping.html#corpus-equation-7d4586f544b65b38)
 without adding instantaneous causal influence between detectors. If instead measurement independence is relaxed, that relaxation must be stated quantitatively, and the text must not also claim exact measurement independence.
 
 These options are mutually exclusive at the bridge level:
@@ -339,13 +339,13 @@ W_{ij}^{\mathrm{acc}}
 \frac{c_f}{|D_{t,ij}|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-328843ac57852422)
+[View →](../../../../../equation-mapping.html#corpus-equation-328843ac57852422)
 Here $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ is the polarity sign factor: $+1$ for like-polarity pairs, which repel, and $-1$ for unlike-polarity pairs, which attract; $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the delayed separation evaluated at a retained causal root, where it equals $c_f(T_r-T_t)$, not the simultaneous distance; and $\hat{\mathbf{r}}_{ij}$ points from the transmitter's emission point $\mathbf X_j(T_t)$ toward the receiver's reception point $\mathbf X_i(T_r)$. $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the transmitter-side factor and $D_{r,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T_r)$ is the receiver-side factor. The acceleration weight depends only on $D_t$; the signed root-playback derivative $m_{ij}=D_{r,ij}/D_{t,ij}$ and root-degree data remain dynamics-level branch data in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form). The constraint conventions are: the causal constraint is length-valued, written $g_{ij}=r_{ij}-c_f(T_r-T_t)$ in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) and $F_{ij}$ in the foundations pages, and it carries the velocity-unit transversality floor $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$; when a dimensionless floor is needed, the time-normalized object is $\tilde F_{ij}=F_{ij}/c_f$. Then $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$ is the transmitter-side causal-root transversality Jacobian, and $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$. It is the density-of-states factor of the causal-root map, and $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$ is the active acceleration weight. The ordinary simple-root acceleration contribution is valid away from the Whitney-fold set
 $$
 \Sigma_{ij}=\{F_{ij}=0,\ \partial_{T_t} F_{ij}=0\},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-756246cb5822ff4b)
+[View →](../../../../../equation-mapping.html#corpus-equation-756246cb5822ff4b)
 while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the simple-root floor stated above before the schematic acceleration law is treated as an ordinary simple-root contribution rather than a catastrophe-theoretic transition.
 
 In dimensional form $\kappa$ has units
@@ -353,7 +353,7 @@ $$
 [\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-445f2c45b9f4defc)
+[View →](../../../../../equation-mapping.html#corpus-equation-445f2c45b9f4defc)
 where $\mathrm{Q}$ denotes the polarity unit. The coupling is recorded in the [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md#layer-i-substrate-and-kernel-parameters) and defined by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md); any later force-like variable is effective bookkeeping after an assembly response coefficient has been introduced, not primitive architrino inertia.
 
 This supplies a substrate universality seed: no individual architrino carries a separate inertial coefficient, so same-branch primitive response is governed by the same acceleration normalization. The mass-map and Noether sea programs must still show that assembly inertia and gravitational response preserve weak-equivalence bounds; see [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md) and [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md).
@@ -386,13 +386,13 @@ q_a=\sigma_a\epsilon,
 \sigma_a\in\{-1,+1\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-550a901c0cd4cbe3)
+[View →](../../../../../equation-mapping.html#corpus-equation-550a901c0cd4cbe3)
 The observer-level electron-charge benchmark is then
 $$
 |e|=6\epsilon
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-34db20aed0b8ea56)
+[View →](../../../../../equation-mapping.html#corpus-equation-34db20aed0b8ea56)
 
 The two polarity names are:
 
@@ -410,7 +410,7 @@ $$
 \lvert G_{\mathrm{ax}}\text{-orbit}\rvert=6,
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c4f0c84bfd575224)
+[View →](../../../../../equation-mapping.html#corpus-equation-c4f0c84bfd575224)
 with each orbit site carrying a fixed polarity sign. If assembly closure retains exactly that six-unit inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why a charged-fermion Noether braid supplies six protected axial polar sites, or whether a more general non-axial six-unit carrier is required, belongs to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
 
 ### Wake Response and Effective Electromagnetic Fields
@@ -430,7 +430,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e451e990f77f54d3)
+[View →](../../../../../equation-mapping.html#corpus-equation-e451e990f77f54d3)
 
 and
 
@@ -445,7 +445,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3865d67991bd26a9)
+[View →](../../../../../equation-mapping.html#corpus-equation-3865d67991bd26a9)
 
 so that
 
@@ -459,7 +459,7 @@ $$
 \sigma\in\{+1,-1\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-54f4896f741bb5ca)
+[View →](../../../../../equation-mapping.html#corpus-equation-54f4896f741bb5ca)
 
 The labels `even` and `odd` refer to receiver-polarity reversal. They do not refer to spatial parity. One actual architrino has one fixed polarity; the matched pair is a comparison instrument, not a co-located physical pair. If the even term vanishes in an isolated electric regime, the two receiver polarities acquire equal-and-opposite source-driven accelerations. This is the native electric-sign analogue, but it remains a decomposition of the causal-hit ledger rather than an imported $q\mathbf E/m$ law.
 
@@ -489,7 +489,7 @@ $$
 \Pi_{\mathrm{obs}}:S(T)\to\bar S(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0367eed81efc7a54)
+[View →](../../../../../equation-mapping.html#corpus-equation-0367eed81efc7a54)
 denote the projection from the complete provenance-bearing state to the variables exposed to Physical Observers. For any permutation $\pi$ of same-polarity architrinos inside an observationally unresolved class, observer-accessible quantities must satisfy
 $$
 \left\lVert
@@ -501,7 +501,7 @@ $$
 \epsilon_{\mathrm{prov}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4dc7c3b0f711d259)
+[View →](../../../../../equation-mapping.html#corpus-equation-4dc7c3b0f711d259)
 This is only the provenance-leakage closure. It says that inaccessible architrino labels do not leak into observer-accessible quantities beyond the residual $\epsilon_{\mathrm{prov}}$. Fermionic and bosonic exchange statistics require the stronger projector residuals owned by [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md). The coarse leakage residual and the fine exchange-sign carrier are different objects: $\epsilon_{\mathrm{prov}}$ bounds label leakage through $\Pi_{\mathrm{obs}}$, while the substrate carrier for an exchange sign must live in the joint framed-braid class, including protected rows such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when those rows are part of the branch certificate; see [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time). Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability begins with the leakage bound and then depends on the separate exchange-statistics closure after the Physical Observer projection and effective assembly-state extraction are specified.
 
 ### Non-Creation and Non-Destruction
@@ -536,7 +536,7 @@ K\!\left(\mathbf X,T;\mathbf X_a(T_t),T_t\right)
 \left\{\|\mathbf X-\mathbf X_a(T_t)\|=c_f(T-T_t)\right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1812cedf5e03f747)
+[View →](../../../../../equation-mapping.html#corpus-equation-1812cedf5e03f747)
 The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, transmitter-side factors, transmitter-side acceleration weights, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the transmitter identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
 Point-transceiver causal-delay theories carry a known pathology class. Classical point-charge electrodynamics develops divergent self-energy at zero radius, runaway solution branches, and pre-acceleration in Abraham-Lorentz-Dirac-type reductions. This chapter does not solve those issues by naming the architrino primitive. It routes them to the dynamics layer: coincidence handling, self-hit admissibility, regularized or weak-limit kernels, Jacobian/transversality floors, and energy-momentum accounting must remove or quarantine those pathology channels in the branch being used.
@@ -575,20 +575,20 @@ $$
 T\mapsto\mathbf X_a(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-442568aaf97724bf)
+[View →](../../../../../equation-mapping.html#corpus-equation-442568aaf97724bf)
 where $I_a$ is an interval of absolute time. It may equal $\mathbb{R}$, or it may be bounded by the domain of a realized cosmological solution. The worldline lies inside the product background
 $$
 \mathcal{M}=\mathbb{R}\times\mathbb{R}^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-39bfce941c4e965e)
+[View →](../../../../../equation-mapping.html#corpus-equation-39bfce941c4e965e)
 
 The worldline is at least absolutely continuous so that
 $$
 \mathbf V_a(T)=\frac{d\mathbf X_a}{dT}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f73ec1b1ba468c78)
+[View →](../../../../../equation-mapping.html#corpus-equation-f73ec1b1ba468c78)
 exists almost everywhere and is piecewise continuous in regular regimes.
 
 Because architrinos are point entities, multiple architrinos may occupy the same spatial coordinate at the same absolute time without volume exclusion. Collision regularization and received-hit kernels belong to the dynamics layer.
@@ -633,7 +633,7 @@ $$
 \mathbf V_a=\mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-49449cb9e308e424)
+[View →](../../../../../equation-mapping.html#corpus-equation-49449cb9e308e424)
 emits a concentric wake stream centered on one fixed point of the Euclidean void. This state is physically distinct from nonzero motion, where wake centers trace a path and the wake stream becomes non-concentric.
 
 Over a diagnostic interval $I$, the relevant complete-state object is the transmitter-tagged center curve
@@ -643,7 +643,7 @@ Z_a(I)=\{\mathbf Z_a(s):s\in I\},
 \mathbf Z_a(s)=\mathbf X_a(s),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4cade1897de0abb9)
+[View →](../../../../../equation-mapping.html#corpus-equation-4cade1897de0abb9)
 where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$. Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
 The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-transmitter wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from transmitter-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
@@ -700,7 +700,7 @@ Ordinary language uses the word "time" for several different things. $\mathbb{A}
    r_{ij}(T_r,T_t)=c_f(T_r-T_t),
    $$
 
-   [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-079f15c58f4fd603)
+   [View →](../../../../../equation-mapping.html#corpus-equation-079f15c58f4fd603)
 
    where $r_{ij}(T_r,T_t)=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the receiver-transmitter separation. In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
 3. **Assembly clock readout:** Physical clock time is an assembly-level phase extraction. A stable binary or Noether braid branch supplies repeatable internal cycles, and observer clock time is the count of those cycles relative to a reference branch, not another substrate parameter. In the notation of [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), with $\varphi_{\mathcal A}$ the counted clock phase and $\Omega_{\mathcal A}^{(0)}$ its rest-branch reference rate,
@@ -711,7 +711,7 @@ Ordinary language uses the word "time" for several different things. $\mathbb{A}
    \frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
    $$
 
-   [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6554a68e5088fcba)
+   [View →](../../../../../equation-mapping.html#corpus-equation-6554a68e5088fcba)
 
    Motion through the Euclidean void and coupling to the Noether sea can retune the internal cycle, so derived clock time changes even though absolute time does not.
 
@@ -726,7 +726,7 @@ $$
 \mathbb{R}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c2b8df32454a4ae6)
+[View →](../../../../../equation-mapping.html#corpus-equation-c2b8df32454a4ae6)
 
 A specific instant is a point $T \in \mathbb{R}$.
 
@@ -735,7 +735,7 @@ $$
 dT
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c6696fbaf71b269c)
+[View →](../../../../../equation-mapping.html#corpus-equation-c6696fbaf71b269c)
 on the oriented time line. This 1-form is closed and exact, and its level sets define simultaneity slices when combined with space in the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$.
 
 The notation keeps the levels apart. The symbol $\tau$ is reserved for derived observer proper time. Emission times use $T_t$, and causal delay is written $\Delta_{ij}=T-T_t$ rather than by reusing the proper-time symbol.
@@ -749,7 +749,7 @@ $$
 \hat T = T_0 \, T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1bd41191b2ccab82)
+[View →](../../../../../equation-mapping.html#corpus-equation-1bd41191b2ccab82)
 where $T$ is dimensionless.
 
 Positions require the corresponding length scale. Choose $L_0>0$ and write
@@ -761,7 +761,7 @@ $$
 c_f=\frac{\hat c_f T_0}{L_0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-68c0b410d718ed52)
+[View →](../../../../../equation-mapping.html#corpus-equation-68c0b410d718ed52)
 Here hatted quantities are dimensional and unhatted quantities are nondimensional. With this convention, the nondimensional causal-root condition keeps the same form,
 $$
 \|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|
@@ -769,7 +769,7 @@ $$
 c_f(T_r-T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b9d1a38632179a2)
+[View →](../../../../../equation-mapping.html#corpus-equation-6b9d1a38632179a2)
 while the dimensional condition is
 $$
 \|\hat{\mathbf X}_i(\hat T_r)-\hat{\mathbf X}_j(\hat T_t)\|
@@ -777,7 +777,7 @@ $$
 \hat c_f(\hat T_r-\hat T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9efbea1f31e04dd6)
+[View →](../../../../../equation-mapping.html#corpus-equation-9efbea1f31e04dd6)
 
 Choosing $T_0$ fixes the affine scale of $T$ for the declared model. Setting $c_f=1$ is the special unit convention $L_0/T_0=\hat c_f$; keeping $c_f$ explicit leaves the physical anchor visible.
 
@@ -792,14 +792,14 @@ $$
 \Delta T = |T_2 - T_1|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f5d569750586df42)
+[View →](../../../../../equation-mapping.html#corpus-equation-f5d569750586df42)
 
 The corresponding physical duration is:
 $$
 \Delta \hat T = T_0 \, \Delta T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9cff1d4d836b911c)
+[View →](../../../../../equation-mapping.html#corpus-equation-9cff1d4d836b911c)
 
 This duration rule is **invariant under time translation**. It is the same for all observers, regardless of their position or state of motion.
 
@@ -817,7 +817,7 @@ $$
 T_1 < T_2, \quad T_1 = T_2, \quad \text{or} \quad T_1 > T_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-73a406ffea6fd85b)
+[View →](../../../../../equation-mapping.html#corpus-equation-73a406ffea6fd85b)
 
 **Temporal ordering:** Event A temporally precedes event B if and only if $T_A < T_B$. This ordering is absolute and observer-independent.
 
@@ -863,13 +863,13 @@ $$
 (\mathbb{R}, +)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6ecdce42168d70f9)
+[View →](../../../../../equation-mapping.html#corpus-equation-6ecdce42168d70f9)
 of **time translations**. This acts on time via:
 $$
 T \mapsto T + T_{\mathrm{shift}}, \quad T_{\mathrm{shift}} \in \mathbb{R}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-42a6f1d16fa05d72)
+[View →](../../../../../equation-mapping.html#corpus-equation-42a6f1d16fa05d72)
 
 This symmetry expresses the principle that **the laws of physics are time-translation invariant**: the same admissible state and path-history data, translated by a constant amount in $T$, obey the same dynamical law.
 
@@ -882,7 +882,7 @@ $$
 T \mapsto -T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ccb6a1eab7aab2a3)
+[View →](../../../../../equation-mapping.html#corpus-equation-ccb6a1eab7aab2a3)
 
 This is a **mathematical symmetry** of the manifold $\mathbb{R}$, not automatically a symmetry of the declared dynamics. The master equation chooses future as increasing $T$ by summing only over causal-root rows with $T_t<T$. A reflected history would solve a different future-supported law unless the causal-support convention were changed. The **causal orientation** is therefore part of the dynamics' support rule; it is not curvature, force, or internal structure of the time background itself.
 
@@ -901,7 +901,7 @@ $$
 \mathbf X: I \subset \mathbb{R} \to \mathbb{R}^3, \quad T \mapsto \mathbf X(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c985db7235edb3a7)
+[View →](../../../../../equation-mapping.html#corpus-equation-c985db7235edb3a7)
 where $I$ is an interval and $T$ is **strictly increasing** with respect to the time orientation.
 
 **Key property:** Worldlines are **graphs over $T$**: each worldline is a map $T\mapsto\mathbf X(T)$ on its interval, so there is no admissible parametrization in which $T$ decreases, and closed timelike curves and backward segments are excluded by construction. Branching, when it occurs, is **deterministic multistability in the dynamics**: the complete history state selects among dynamically admitted branches, while an attractor description is reserved for a declared retained subsystem with established contraction and exported-flux accounting. This is not a splitting of the time parameter itself.
@@ -931,7 +931,7 @@ $$
 \{\,T_t<T_r:\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)\,\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dee62fd344eab043)
+[View →](../../../../../equation-mapping.html#corpus-equation-dee62fd344eab043)
 
 Only emission times in $\mathcal{C}_{ij}(T_r)$ contribute to the receiver at reception time $T_r$. Earlier events that miss this root condition do not contribute through this channel. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
 
@@ -944,7 +944,7 @@ F_{ij}(T_r,T_t)
 T_t<T_r
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6cfd6895bac76596)
+[View →](../../../../../equation-mapping.html#corpus-equation-6cfd6895bac76596)
 Then $\mathcal{C}_{ij}(T_r)=\{\,T_t<T_r:F_{ij}(T_r,T_t)=0\,\}$. The same set covers ordinary partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed. A simple-root branch chart requires
 $$
 \left|
@@ -958,7 +958,7 @@ c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 \kappa_{\mathrm{hit}}>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b36170ce274c583a)
+[View →](../../../../../equation-mapping.html#corpus-equation-b36170ce274c583a)
 where
 $$
 \mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
@@ -966,7 +966,7 @@ $$
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5cbd1d920a3685bc)
+[View →](../../../../../equation-mapping.html#corpus-equation-5cbd1d920a3685bc)
 Failure of this transversality floor marks a caustic-like or degenerate wake-root regime. It must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
 
 For self-hits, the shared root function does not erase the additional geometry carried by transmitter identity. When $i=j$, a root means the same worldline $\gamma_i$ re-enters its own forward causal isochron. In general this is a curvature, torsion, and return-geometry condition on $\gamma_i$, not a speed test by itself. A super-field-speed segment is a regime warning for possible self-hit roots, but the accepted branch is still defined by same-transmitter root existence together with the transversality floor and the retained transmitter-side acceleration weight.
@@ -982,7 +982,7 @@ $$
 \{(T_r,T_t):F_{ij}(T_r,T_t)=0,\ \partial_{T_t}F_{ij}(T_r,T_t)=0\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-177db29a2a4a5a62)
+[View →](../../../../../equation-mapping.html#corpus-equation-177db29a2a4a5a62)
 On a generic one-parameter branch this is a Whitney fold, or $A_2$ singularity, of the root map $T_t\mapsto F_{ij}(T,T_t)$. Higher events such as a cusp, where $\partial_{T_t}^2F_{ij}=0$ also holds, are codimension-two alarms for branch-pair creation, annihilation, or merger of fold events. In simulation language, fold contact is the first warning that the Jacobian floor has failed; cusp contact is a stronger warning that the local branch-count catalogue itself is changing.
 
 This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
@@ -1013,7 +1013,7 @@ $$
 \{(\mathbf X_i(T),\mathbf V_i(T),q_i,H_i(T))\}_i
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-791f39811d866128)
+[View →](../../../../../equation-mapping.html#corpus-equation-791f39811d866128)
 
 where $H_i(T)$ denotes the path-history and provenance record carried by architrino $i$, then a proposed exchange is exact only when it preserves the instantaneous data and the corresponding $H_i(T)$ records. Generic architrinos are therefore not interchangeable at the ontic level even when finite observers can treat their exposed properties as effectively identical.
 
@@ -1085,14 +1085,14 @@ $$
 \mathbb{R}^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2a1f8accd97364ee)
+[View →](../../../../../equation-mapping.html#corpus-equation-2a1f8accd97364ee)
 
 A location is represented by a point
 $$
 \mathbf X=(X,Y,Z)\in\mathbb{R}^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7b33e6104d1b8fa5)
+[View →](../../../../../equation-mapping.html#corpus-equation-7b33e6104d1b8fa5)
 or in index notation by $X^i$ where $i\in\{1,2,3\}$.
 
 The metric is fixed:
@@ -1100,7 +1100,7 @@ $$
 h_{ij}=\delta_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eb347191b1cc582e)
+[View →](../../../../../equation-mapping.html#corpus-equation-eb347191b1cc582e)
 where $\delta_{ij}$ is the Kronecker delta.
 
 The spatial line element is therefore
@@ -1108,7 +1108,7 @@ $$
 d\ell^2=h_{ij}\,dX^i dX^j=dX^2+dY^2+dZ^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-46e34d3a62d1491e)
+[View →](../../../../../equation-mapping.html#corpus-equation-46e34d3a62d1491e)
 
 The distance between two points $\mathbf{p}$ and $\mathbf{q}$ is
 $$
@@ -1116,7 +1116,7 @@ d(\mathbf{p},\mathbf{q})=
 \sqrt{(X_p-X_q)^2+(Y_p-Y_q)^2+(Z_p-Z_q)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f321b89253b61c9a)
+[View →](../../../../../equation-mapping.html#corpus-equation-f321b89253b61c9a)
 
 For fixed void points, this distance does not change with time. Equivalently, with
 $$
@@ -1125,7 +1125,7 @@ D_h(\mathbf{p},\mathbf{q})
 \sqrt{h_{ij}(p^i-q^i)(p^j-q^j)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-210385bea416c949)
+[View →](../../../../../equation-mapping.html#corpus-equation-210385bea416c949)
 the substrate condition is
 $$
 \partial_T h_{ij}=0,
@@ -1135,7 +1135,7 @@ R^i{}_{jkl}(h)=0,
 \frac{d}{dT}D_h(\mathbf{p},\mathbf{q})=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-850d59a011af5621)
+[View →](../../../../../equation-mapping.html#corpus-equation-850d59a011af5621)
 The consequence is immediate: a cosmological scale variable cannot be a time-dependent scale factor multiplying the void metric. It must be an effective summary of medium state, transport history, or observer records.
 
 This gives a clean accounting identity for later effective geometry:
@@ -1151,7 +1151,7 @@ O,
 +0_{\mathrm{void}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c16f849710508169)
+[View →](../../../../../equation-mapping.html#corpus-equation-c16f849710508169)
 The void contribution is exactly zero. Effective curvature, effective expansion, and effective anisotropy may still be recovered from Noether sea state, assembly clock/ruler response, signal transport, and observer reconstruction. They just cannot be charged to the Euclidean container.
 
 The zero term is also a topology-and-bundle statement. Because the void is $\mathbb{R}^3$, it is contractible and parallelizable; its oriented orthonormal frame bundle is globally trivial,
@@ -1159,7 +1159,7 @@ $$
 F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9c718bbca3ed6ab9)
+[View →](../../../../../equation-mapping.html#corpus-equation-9c718bbca3ed6ab9)
 and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$. The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
 
 > **Plain language:** The void is the ordinary three-dimensional space of rulers and straight-line distance. What changes is the content moving through it, not the space itself.
@@ -1179,20 +1179,20 @@ $$
 \nabla h=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-574414a3aaaead6d)
+[View →](../../../../../equation-mapping.html#corpus-equation-574414a3aaaead6d)
 and is torsion-free. In Cartesian coordinates, all Christoffel symbols vanish:
 $$
 \Gamma^i{}_{jk}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-598cf92bc0cace33)
+[View →](../../../../../equation-mapping.html#corpus-equation-598cf92bc0cace33)
 
 For the declared flat Levi-Civita connection, the geodesic equation in Cartesian coordinates becomes
 $$
 \frac{d^2X^i}{ds^2}=0,
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2af01472cd367095)
+[View →](../../../../../equation-mapping.html#corpus-equation-2af01472cd367095)
 with $s$ Euclidean arclength, so its solutions are straight lines.
 
 Topologically, the void stays $\mathbb{R}^3$: contractible, simply connected, and without substrate-level topology change. The interesting topology is not in the container. It is in architrino worldlines and assembly configurations inside the container.
@@ -1206,7 +1206,7 @@ $$
 \mathcal{C}=\{X,Y,Z\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-05df58e99bd76a4a)
+[View →](../../../../../equation-mapping.html#corpus-equation-05df58e99bd76a4a)
 on the Euclidean void.
 
 This differs from General Relativity. In GR, coordinates may function as gauge labels under diffeomorphism invariance. In $\mathbb{A}\mathbb{A}\mathbb{A}$, once a Cartesian chart has been declared, it names fixed spatial locations in the substrate. The chart is still just a representation for components and simulation addresses; it is not an extra ontological ingredient. Coordinate points do not move, curve, or stretch.
@@ -1224,13 +1224,13 @@ $$
 (j,T_t,\mathbf X_j(T_t),i,T_r,\mathbf X_i(T_r))
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c484874c67d67d6b)
+[View →](../../../../../equation-mapping.html#corpus-equation-c484874c67d67d6b)
 The causal-root condition is then
 $$
 \|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|_h=c_f(T_r-T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4b138a54485d4700)
+[View →](../../../../../equation-mapping.html#corpus-equation-4b138a54485d4700)
 This condition is invariant under Euclidean translations and rotations of the chosen chart. The chart may be changed for calculation, but relabeling does not move the underlying void point where the emission occurred.
 
 ### Curvilinear Coordinates
@@ -1242,7 +1242,7 @@ $$
 h=dr^2+r^2d\theta^2+r^2\sin^2\theta\,d\phi^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e44e96583aa67435)
+[View →](../../../../../equation-mapping.html#corpus-equation-e44e96583aa67435)
 with components
 $$
 h_{ij}=
@@ -1253,7 +1253,7 @@ h_{ij}=
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-30c4fd8263c17e84)
+[View →](../../../../../equation-mapping.html#corpus-equation-30c4fd8263c17e84)
 
 In cylindrical coordinates $(\rho,\phi,z)$,
 $$
@@ -1267,14 +1267,14 @@ h_{ij}=
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-468ca128cc62b125)
+[View →](../../../../../equation-mapping.html#corpus-equation-468ca128cc62b125)
 
 The metric components look different in these coordinates, but the geometry has not changed. Curvature is coordinate-invariant, and
 $$
 R^i{}_{jkl}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2eb51da7a56c1da7)
+[View →](../../../../../equation-mapping.html#corpus-equation-2eb51da7a56c1da7)
 in every coordinate system.
 
 ### Index Notation and Tensor Operations
@@ -1284,7 +1284,7 @@ $$
 h_{ij}=\delta_{ij},\qquad h^{ij}=\delta^{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d0b2005a6df8c8df)
+[View →](../../../../../equation-mapping.html#corpus-equation-d0b2005a6df8c8df)
 
 Raising and lowering indices then changes notation but not the component value:
 $$
@@ -1293,7 +1293,7 @@ v_i=h_{ij}v^j=\delta_{ij}v^j=v^i,
 v^i=h^{ij}v_j=\delta^{ij}v_j=v_i
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-71dc410249cdad23)
+[View →](../../../../../equation-mapping.html#corpus-equation-71dc410249cdad23)
 
 The dot product and norm are
 $$
@@ -1302,20 +1302,20 @@ $$
 =u^1v^1+u^2v^2+u^3v^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-abd08a67822fb8bb)
+[View →](../../../../../equation-mapping.html#corpus-equation-abd08a67822fb8bb)
 and
 $$
 \|\mathbf{v}\|^2=h_{ij}v^i v^j=(v^1)^2+(v^2)^2+(v^3)^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5e93be160258d5eb)
+[View →](../../../../../equation-mapping.html#corpus-equation-5e93be160258d5eb)
 
 The spatial volume element in Cartesian coordinates is
 $$
 dV=\sqrt{\det h}\,d^3X=dX\,dY\,dZ
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5f60583bc4888534)
+[View →](../../../../../equation-mapping.html#corpus-equation-5f60583bc4888534)
 
 Surface elements pick up the usual Jacobian factors when parametrized, for example $dA=r^2\sin\theta\,d\theta\,d\phi$ on a constant-$r$ sphere.
 
@@ -1334,7 +1334,7 @@ $$
 =h^{ij}\partial_i f\,\mathbf{e}_j
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0c325814536b5ba3)
+[View →](../../../../../equation-mapping.html#corpus-equation-0c325814536b5ba3)
 
 The divergence of a vector field is given by the invariant formula
 $$
@@ -1342,7 +1342,7 @@ $$
 =\frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,v^i\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7c557c9deebfbdb2)
+[View →](../../../../../equation-mapping.html#corpus-equation-7c557c9deebfbdb2)
 
 In Cartesian coordinates $\sqrt{\det h}=1$, so this reduces to
 $$
@@ -1351,7 +1351,7 @@ $$
 =\partial_{X^1} v^1+\partial_{X^2} v^2+\partial_{X^3} v^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4a03ae6e0da85106)
+[View →](../../../../../equation-mapping.html#corpus-equation-4a03ae6e0da85106)
 
 The scalar Laplacian in Cartesian coordinates is
 $$
@@ -1359,7 +1359,7 @@ $$
 =\partial_{X^1}^2f+\partial_{X^2}^2f+\partial_{X^3}^2f
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b7c27fb402defd01)
+[View →](../../../../../equation-mapping.html#corpus-equation-b7c27fb402defd01)
 
 In curvilinear coordinates on the same flat geometry, the invariant scalar Laplacian is
 $$
@@ -1368,7 +1368,7 @@ $$
 \frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,h^{ij}\partial_j f\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a0c3372a6954c172)
+[View →](../../../../../equation-mapping.html#corpus-equation-a0c3372a6954c172)
 
 The tensor expressions are the invariant statements. The component formulas change with the chosen chart.
 
@@ -1379,7 +1379,7 @@ $$
 E(3)=\mathbb{R}^3\rtimes O(3)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9bf150987f7a71fc)
+[View →](../../../../../equation-mapping.html#corpus-equation-9bf150987f7a71fc)
 
 This combines:
 
@@ -1392,14 +1392,14 @@ $$
 g\cdot\mathbf X=R\mathbf X+\mathbf a
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4889d5efc0407266)
+[View →](../../../../../equation-mapping.html#corpus-equation-4889d5efc0407266)
 
 The metric is invariant under all such transformations:
 $$
 g^*h=h
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f803c90ed11a7db3)
+[View →](../../../../../equation-mapping.html#corpus-equation-f803c90ed11a7db3)
 
 Homogeneity and isotropy give the container-level consequences:
 
@@ -1422,7 +1422,7 @@ $$
 \mathbf X(T)=\mathbf X_0+\mathbf V_0 T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2c33b5002c814ba3)
+[View →](../../../../../equation-mapping.html#corpus-equation-2c33b5002c814ba3)
 
 Only physical interactions can bend a trajectory. A curved path in the void is not the same thing as curvature of the void:
 
@@ -1471,7 +1471,7 @@ $$
 a_{\mathrm{eff}}(t_{\mathrm{eff}})=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(T),O(t_{\mathrm{eff}})]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f776a93cc8715c61)
+[View →](../../../../../equation-mapping.html#corpus-equation-f776a93cc8715c61)
 Here $\mathcal{N}_{\mathrm{sea}}(T)$ denotes the relevant Noether sea state variables, and $O(t_{\mathrm{eff}})$ denotes observer records and calibration data in the effective chart. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
 
 It yields a scalar global scale factor only when the retained Noether sea record and observer family are statistically homogeneous and isotropic over the declared averaging cell. Without that condition, the honest output is a local or tensorial effective metric summary such as $g^{\mathrm{eff}}_{\mu\nu}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, or an anisotropic scale response $a_{\mathrm{eff},ij}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, not a single FRW-style $a_{\mathrm{eff}}(t_{\mathrm{eff}})$.
@@ -1483,7 +1483,7 @@ a_0(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})=\frac{1}{3}h^{ij}a_{\mathrm{eff},ij}(x_
 a_{\langle ij\rangle}=a_{\mathrm{eff},ij}-a_0 h_{ij}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9f412c51252b80d8)
+[View →](../../../../../equation-mapping.html#corpus-equation-9f412c51252b80d8)
 The scalar scale-factor summary is admissible only in a sector where the trace-free obstruction $a_{\langle ij\rangle}$ is below the declared isotropy tolerance. The same obstruction appears as ruler anisotropy in response tensors such as $B_{ij}$ and in Hughes-Drever-style orientational residuals; it is a medium-and-assembly response question, not a hidden anisotropy of the void.
 
 These effective variables must not be interpreted as
@@ -1491,7 +1491,7 @@ $$
 h_{ij}(T)=a_{\mathrm{eff}}^2(t_{\mathrm{eff}})\delta_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4bca2a40c7b7f545)
+[View →](../../../../../equation-mapping.html#corpus-equation-4bca2a40c7b7f545)
 for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging. Any effective cosmological expansion factor belongs to observer-level metric reconstruction.
 
 The no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record, frequency-independent fractional redshift across declared clean spectral-line families, and photon-channel group-delay dispersion below the admitted time-of-flight tolerance.
@@ -1513,7 +1513,7 @@ $$
 \{(a,T_t):T_t<T,\ \|\mathbf X-\mathbf X_a(T_t)\|_h=c_f(T-T_t)\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5fcc7c89d3a27577)
+[View →](../../../../../equation-mapping.html#corpus-equation-5fcc7c89d3a27577)
 This set records source identities and emission times whose causal isochrons pass through the point. It is a provenance index set, not a field. It has no independent state variables, stress, density, energy, or equation of motion.
 
 Equivalently, $\mathcal{P}(\mathbf X,T)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf X,T)$ must converge after the transmitter-side acceleration weights, inverse-square distance factors, and transmitter-side transversality floors are applied. Convergence of the Noether sea background is not a new property of the void. It is a condition on the population of provenance labels and their wake weights.
@@ -1571,13 +1571,13 @@ $$
 \mathcal{M}=\mathbb{R}\times\mathbb{R}^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c17d24f0e7ad8f22)
+[View →](../../../../../equation-mapping.html#corpus-equation-c17d24f0e7ad8f22)
 with coordinates
 $$
 (T,\mathbf X)=(T,X,Y,Z)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e5f04fb02ab4af94)
+[View →](../../../../../equation-mapping.html#corpus-equation-e5f04fb02ab4af94)
 
 Each point in $\mathcal{M}$ represents an event: a fixed location $\mathbf X$ in the Euclidean void at a definite instant $T$.
 
@@ -1595,7 +1595,7 @@ $$
 \Sigma_{T_\ast}=\{T_\ast\}\times\mathbb{R}^3\cong\mathbb{R}^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7c8132d11e3e8cd2)
+[View →](../../../../../equation-mapping.html#corpus-equation-7c8132d11e3e8cd2)
 
 Every event $(T,\mathbf X)$ belongs to exactly one slice $\Sigma_T$. This foliation is absolute and frame-independent at the substrate level.
 
@@ -1606,7 +1606,7 @@ $$
 T\mapsto(T,\mathbf X(T))
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e40c37105a39c7cc)
+[View →](../../../../../equation-mapping.html#corpus-equation-e40c37105a39c7cc)
 
 Worldlines are graphs over $T$: there is no admissible parametrization in which $T$ decreases, so closed timelike curves and backward-time propagation are excluded by construction, and there is no fundamental reparametrization freedom that replaces the absolute time parameter.
 
@@ -1617,7 +1617,7 @@ $$
 \mathbb{U}_{\text{now}} \equiv S(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-905ffb69b4d67db6)
+[View →](../../../../../equation-mapping.html#corpus-equation-905ffb69b4d67db6)
 
 This denotes the complete ontic universe state on $\Sigma_T$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
 
@@ -1635,7 +1635,7 @@ H_T,
 \big)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b8f87e751d9129e0)
+[View →](../../../../../equation-mapping.html#corpus-equation-b8f87e751d9129e0)
 Here $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
 
 ### Newton-Cartan Data
@@ -1647,7 +1647,7 @@ $$
 dT
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0fe7adc347436e7a)
+[View →](../../../../../equation-mapping.html#corpus-equation-0fe7adc347436e7a)
 
 This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_T$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $T_t$, and causal delay is written $\Delta_{ij}=T-T_t$.
 
@@ -1656,13 +1656,13 @@ $$
 h=dX^2+dY^2+dZ^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-15c89c7543c55597)
+[View →](../../../../../equation-mapping.html#corpus-equation-15c89c7543c55597)
 with Cartesian components
 $$
 h_{ij}=\delta_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5bc8229205e63bfc)
+[View →](../../../../../equation-mapping.html#corpus-equation-5bc8229205e63bfc)
 
 The metric $h$ acts only on spatial vectors tangent to $\Sigma_T$. Time and space are therefore encoded separately by $(dT,h)$.
 
@@ -1673,14 +1673,14 @@ $$
 \nabla h=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5e8d2d2a37022aee)
+[View →](../../../../../equation-mapping.html#corpus-equation-5e8d2d2a37022aee)
 
 These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dT,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the connection is therefore a dynamically completed piece of substrate data: $(dT,h)$ supply the foliation and spatial metric, and the interaction law selects the rest frame in which the finite causal-wake speed $c_f$ is isotropic. In the corresponding global Cartesian rest coordinates, the selected connection has
 $$
 \Gamma^\lambda_{\mu\nu}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ced9e1e9a19afbc8)
+[View →](../../../../../equation-mapping.html#corpus-equation-ced9e1e9a19afbc8)
 
 Covariant derivatives then reduce to ordinary partial derivatives, and spatial geodesics within each slice are straight lines. Nonzero coefficients introduced by rotating or accelerating coordinates are non-inertial descriptions of the same fixed substrate, not background curvature.
 
@@ -1689,7 +1689,7 @@ $$
 \Omega^1(\mathcal{M})\otimes\mathfrak{so}(3)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-92b456bc0c19791a)
+[View →](../../../../../equation-mapping.html#corpus-equation-92b456bc0c19791a)
 with the corresponding boost or acceleration terms supplying the usual non-inertial chart data. Thus the family of compatible descriptions is a torsor over the inertial-gauge data, while the wake law selects the unique flat representative in the $c_f$-isotropic frame. Rotating-frame Christoffel symbols are therefore pure-gauge representatives of that same flat $\nabla$; their Riemann curvature remains zero.
 
 #### Non-Inertial Coordinate Terms
@@ -1706,7 +1706,7 @@ R(T)\left[
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-99a7e5771cb12c88)
+[View →](../../../../../equation-mapping.html#corpus-equation-99a7e5771cb12c88)
 
 The terms proportional to $2\boldsymbol{\Omega}\times\mathbf V'$, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf X')$, and $(d\boldsymbol{\Omega}/dT)\times\mathbf X'$ are coordinate descriptions on absolute timespace. They do not add curvature to the Euclidean void, and they do not introduce a substrate magnetic field. Their value is diagnostic: they show how transverse-looking observer equations can arise from a choice of non-inertial chart while the underlying substrate remains $\mathbb{R}\times\mathbb{R}^3$ with the selected flat connection in the Euclidean-void rest frame.
 
@@ -1717,7 +1717,7 @@ $$
 \mathcal{P}[\mathcal{T}_{\mathrm{inertial}}]=\varnothing
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fbcfc376e5f01a61)
+[View →](../../../../../equation-mapping.html#corpus-equation-fbcfc376e5f01a61)
 A physical wake-mediated transverse term must instead satisfy $\mathcal{P}[\mathcal{T}]\ne\varnothing$ after reduction to the retained branch record. This separates connection-gauge content from the image of the causal-wake provenance map.
 
 ### No Fundamental 4D Metric
@@ -1742,14 +1742,14 @@ d_{\text{spatial}}(\mathbf X_1,\mathbf X_2)
 \sqrt{\delta_{ij}(X_1^i-X_2^i)(X_1^j-X_2^j)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4ed111c880d463cf)
+[View →](../../../../../equation-mapping.html#corpus-equation-4ed111c880d463cf)
 
 Temporal duration between events is
 $$
 \Delta T=|T_2-T_1|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-102dc50f1575f4b3)
+[View →](../../../../../equation-mapping.html#corpus-equation-102dc50f1575f4b3)
 
 Spatial arc length along a path $\mathbf X(T)$ from $T_1$ to $T_2$ is
 $$
@@ -1765,14 +1765,14 @@ L[\mathbf X;T_1,T_2]
 }\,dT
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5517bcd09102947b)
+[View →](../../../../../equation-mapping.html#corpus-equation-5517bcd09102947b)
 
 A relativistic 4D arc length such as
 $$
 s=\int\sqrt{\left|g_{\mu\nu}\,dx^\mu dx^\nu\right|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b3f429e785a987e8)
+[View →](../../../../../equation-mapping.html#corpus-equation-b3f429e785a987e8)
 with the sign of the integrand fixed by the declared signature convention, is a standard comparison form, not a substrate-level object in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ### Velocity, Acceleration, and Momentum
@@ -1782,14 +1782,14 @@ $$
 \mathbf V(T)=\frac{d\mathbf X}{dT}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-03592408a97d58ff)
+[View →](../../../../../equation-mapping.html#corpus-equation-03592408a97d58ff)
 
 Speed is
 $$
 \|\mathbf V\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1d4a67bf31ec688e)
+[View →](../../../../../equation-mapping.html#corpus-equation-1d4a67bf31ec688e)
 
 Acceleration is
 $$
@@ -1798,7 +1798,7 @@ $$
 \frac{d^2\mathbf X}{dT^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b022bab9465b2ae3)
+[View →](../../../../../equation-mapping.html#corpus-equation-b022bab9465b2ae3)
 
 At the observer level, the usual low-velocity bookkeeping forms are
 $$
@@ -1807,7 +1807,7 @@ $$
 K=\frac{1}{2}m\|\mathbf V\|^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-672b055f139227e2)
+[View →](../../../../../equation-mapping.html#corpus-equation-672b055f139227e2)
 Here $m$ is an effective assembly-response coefficient, not substrate data; its derivation and possible anisotropy are stated below.
 
 Causal-root hits produce accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, acceleration, or clock dilation by itself.
@@ -1831,7 +1831,7 @@ $$
 \delta\Omega^j
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-03b78cbf7ecefc3c)
+[View →](../../../../../equation-mapping.html#corpus-equation-03b78cbf7ecefc3c)
 
 Here $\mathcal{H}_A$ denotes the closed internal path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
@@ -1844,7 +1844,7 @@ Q_A^{ij}
 \right\rangle_A^{\mathrm{frame}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e2f115e364e4de37)
+[View →](../../../../../equation-mapping.html#corpus-equation-e2f115e364e4de37)
 where the average is taken over the retained framed trajectory bundle or declared axial frame of the assembly. The Hughes-Drever row below is therefore a direct constraint on residual orientational symmetry breaking in the assembly framing.
 
 #### Framing-Quadrupole Economy Theorem Target
@@ -1869,7 +1869,7 @@ $$
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a5215f9ae9b96d4e)
+[View →](../../../../../equation-mapping.html#corpus-equation-a5215f9ae9b96d4e)
 after mapping the assembly response onto the tested matter-sector coefficients. The benchmark is not a single universal number: SME translations are species- and coefficient-dependent, with Hughes-Drever and clock-comparison rows reaching roughly the $10^{-27}$-class matter-anisotropy scale or stronger in several spin-coupling channels. Passing the scalar-mass limit therefore means driving the projected matter response below the declared Hughes-Drever/clock-comparison row, not only asserting isotropy in prose.
 
 ### Galilean Kinematic Structure
@@ -1883,7 +1883,7 @@ T'=T+T_0,
 \mathbf X'=\mathbf X
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8987a5718e9a16e3)
+[View →](../../../../../equation-mapping.html#corpus-equation-8987a5718e9a16e3)
 
 Spatial translation:
 $$
@@ -1892,7 +1892,7 @@ T'=T,
 \mathbf X'=\mathbf X+\mathbf X_0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-382eb44a0069c60c)
+[View →](../../../../../equation-mapping.html#corpus-equation-382eb44a0069c60c)
 
 Rotation:
 $$
@@ -1903,7 +1903,7 @@ T'=T,
 R\in SO(3)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-255b2a33ef41d60e)
+[View →](../../../../../equation-mapping.html#corpus-equation-255b2a33ef41d60e)
 
 Galilean boost:
 $$
@@ -1912,7 +1912,7 @@ T'=T,
 \mathbf X'=\mathbf X+\mathbf V_0T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2b31d19894e289a8)
+[View →](../../../../../equation-mapping.html#corpus-equation-2b31d19894e289a8)
 
 The transformation preserves simultaneity slices because $T'=T$ up to a constant shift.
 
@@ -1933,7 +1933,7 @@ c_f(T-T_t),
 T_t<T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-87cc85fb442bdb06)
+[View →](../../../../../equation-mapping.html#corpus-equation-87cc85fb442bdb06)
 Thus boosts preserve the product foliation and are allowed coordinate descriptions, but they do not preserve the same isotropic wake-law form unless $\mathbf U=\mathbf{0}$ relative to the Euclidean-void rest frame. Galilean boosts are therefore kinematic coordinate transformations of the background, not dynamical symmetries of the primitive wake law.
 
 This preferred frame is not curvature of the background. It is a structural consequence of the wake law: finite-speed causal wake propagation fixes $c_f$ relative to the void, and Noether sea and assembly dynamics build on that distinguished frame.
@@ -1967,13 +1967,13 @@ A=(T_A,\mathbf X_A),
 B=(T_B,\mathbf X_B)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5284a40dafc30538)
+[View →](../../../../../equation-mapping.html#corpus-equation-5284a40dafc30538)
 event $A$ can causally precede $B$ only if
 $$
 T_A<T_B
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e37ea6c0628046e5)
+[View →](../../../../../equation-mapping.html#corpus-equation-e37ea6c0628046e5)
 
 A wake emitted at $(T_t,\mathbf X_{\mathrm{em}})$ reaches points on the causal wake surface
 $$
@@ -1982,14 +1982,14 @@ $$
 T>T_t
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e07376a5400d1530)
+[View →](../../../../../equation-mapping.html#corpus-equation-e07376a5400d1530)
 
 The filled causal future of that emission is
 $$
 \{(T,\mathbf X):T\geq T_t,\ \|\mathbf X-\mathbf X_{\mathrm{em}}\|\leq c_f(T-T_t)\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1d76ea7bd73813c1)
+[View →](../../../../../equation-mapping.html#corpus-equation-1d76ea7bd73813c1)
 
 The equality surface is an expanding causal isochron: at each later $T$ it appears as a spatial sphere in the Euclidean void, not as a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability, but it is not the support of a single emitted wake. In the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
 
@@ -2002,7 +2002,7 @@ F_{ij}(T_r,T_t)
 T_t<T_r
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-24ab0b04a66ba894)
+[View →](../../../../../equation-mapping.html#corpus-equation-24ab0b04a66ba894)
 with active causal-root set
 $$
 \mathcal{C}_{ij}(T_r)
@@ -2010,7 +2010,7 @@ $$
 \{\,T_t<T_r:F_{ij}(T_r,T_t)=0\,\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e9bc8f92cc4493ea)
+[View →](../../../../../equation-mapping.html#corpus-equation-e9bc8f92cc4493ea)
 The same notation covers partner hits ($i\ne j$) and self-hits ($i=j$). Simple-root branch charts require the transversality floor
 $$
 \left|
@@ -2024,7 +2024,7 @@ c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 \kappa_{\mathrm{hit}}>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-66377babb203934c)
+[View →](../../../../../equation-mapping.html#corpus-equation-66377babb203934c)
 where
 $$
 \mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
@@ -2032,7 +2032,7 @@ $$
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0beea2d96374e0e7)
+[View →](../../../../../equation-mapping.html#corpus-equation-0beea2d96374e0e7)
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
 On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating $F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
@@ -2043,7 +2043,7 @@ $$
 {c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-44c0a4132a111eae)
+[View →](../../../../../equation-mapping.html#corpus-equation-44c0a4132a111eae)
 This identity is not a new coupling constant. It distinguishes the transmitter-side causal-root Jacobian from the rate at which a moving receiver path samples the same emitted causal wake sequence. A stationary receiver in the Euclidean-void rest frame sets the numerator to $c_f$; radial receiver motion changes the receiver-side action or wake-history rate and must be recorded when a proof uses accumulated action rather than only an event-local acceleration contribution.
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
@@ -2067,7 +2067,7 @@ N_+(A)-N_-(A)
 \operatorname{sgn}\!\left(\partial_{T_t}F_{ij}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-085c6e60abf7246e)
+[View →](../../../../../equation-mapping.html#corpus-equation-085c6e60abf7246e)
 with the sums taken over the retained self-hit and partner-hit rows on the branch chart. The two components detect different failure channels. Generic fold events create or annihilate root pairs of opposite Jacobian sign, so they change the unsigned count $N=N_++N_-$ by $\pm 2$ while leaving $\chi_{\mathrm{root}}$ invariant; this is the fold-pair surgery conservation recorded in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex) and [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md). A near-threshold fold cascade therefore appears as jumps in $(N_+,N_-)$, while a jump in $\chi_{\mathrm{root}}(A)$ signals a root crossing the chart or memory boundary, a pair-set change, or a degeneracy outside the generic fold class. A structural-integrity failure near the wake-speed threshold should appear in this sign-resolved ledger rather than as a smooth kinematic slowing of the substrate background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same value of $\|\mathbf{v}\|$.
 
 This structural-integrity claim is the central Lorentz-closure theorem target for this chapter and is restated as Theorem G in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It must prove more than the qualitative statement that assemblies fail mechanically near $c_f$. A successful recovered observer branch must show that the matter-assembly limiting speed, Noether sea dressed clock/ruler speed, photon-channel speed, and weak-homogeneous calibration speed collapse to one common limit:
@@ -2082,7 +2082,7 @@ c_0
 \left[1+O(\epsilon_{\mathrm{LV}})\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-526d35d9d534becb)
+[View →](../../../../../equation-mapping.html#corpus-equation-526d35d9d534becb)
 The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation. It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
 $$
 \frac{R_{\parallel}}{R_{\perp}}
@@ -2100,7 +2100,7 @@ $$
 \left(1-\frac{v_{\mathrm{eff}}^2}{c_0^2}\right)^{-1/2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c2c28880e4a680bb)
+[View →](../../../../../equation-mapping.html#corpus-equation-c2c28880e4a680bb)
 The proposed mechanism is one structural claim, not four independent coincidences. Matter transport, clock/ruler retiming, photon transport, and weak-homogeneous calibration must all be projections of the same causal-root ledger through the same Noether sea dressing map in the tested branch. The Lorentz shape is the same claim expressed in deformation variables: near the wake-speed threshold, the leading longitudinal-versus-transverse asymmetry of a closed return cycle must generate the same $\gamma_0(v_{\mathrm{eff}})$ in envelope shape and phase rate. A sharper formulation is that the translating branch's closed-cycle geometry should factor through one deformation family on its orbit moduli,
 $$
 \mathcal{D}(v_{\mathrm{eff}})=\exp\!\left(\varphi_{\text{eff}}K\right),
@@ -2108,7 +2108,7 @@ $$
 \tanh\varphi_{\text{eff}}=\frac{v_{\mathrm{eff}}}{c_0},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d47aad562c4e8ad1)
+[View →](../../../../../equation-mapping.html#corpus-equation-d47aad562c4e8ad1)
 with a single generator $K$ producing both the envelope ratio and the clock-phase rate at the tested order; the rapidity parameter $\varphi_{\text{eff}}$ matches the observer-level convention in [Special Relativity and the Noether Braid](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md) and makes the one-parameter family additive if the branch composes boosts. If the longitudinal envelope response and the phase-rate response require independent generators, the branch has not recovered Lorentzian shape even if one scalar speed limit happens to match. The proof burden is to derive these relations from that shared ledger, dressing, and assembly deformation law. The theorem target fails if stable matter classes acquire composition-dependent limiting speeds, if $c_\gamma$ remains independently dressed from matter transport in the weak homogeneous branch, or if the leading deformation is non-Lorentzian after the $c_0$ calibration is fixed. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier only after this common-limit and Lorentz-shape closure is satisfied.
 
 ### Coordinates and Forbidden Transformations
@@ -2135,21 +2135,21 @@ $$
 dT
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0fe7adc347436e7a-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-0fe7adc347436e7a-2)
 
 The spatial volume element on a slice is
 $$
 dV=dX\,dY\,dZ
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fdb88434d089d358)
+[View →](../../../../../equation-mapping.html#corpus-equation-fdb88434d089d358)
 
 The product measure is
 $$
 d\mathcal{V}=dT\,dX\,dY\,dZ=dT\,dV
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-37d05577c7335e04)
+[View →](../../../../../equation-mapping.html#corpus-equation-37d05577c7335e04)
 
 The spatial gradient is
 $$
@@ -2161,7 +2161,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-03dd2099e7af4a10)
+[View →](../../../../../equation-mapping.html#corpus-equation-03dd2099e7af4a10)
 
 The spatial Laplacian is
 $$
@@ -2172,14 +2172,14 @@ $$
 \delta^{ij}\partial_i\partial_j f
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fbae59b43cba1665)
+[View →](../../../../../equation-mapping.html#corpus-equation-fbae59b43cba1665)
 
 The temporal derivative is
 $$
 \frac{\partial}{\partial T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-625579eac01c110e)
+[View →](../../../../../equation-mapping.html#corpus-equation-625579eac01c110e)
 
 All dynamical equations should make clear which derivatives are temporal, which are spatial, and when a calculation is using an effective metric approximation rather than substrate geometry.
 
@@ -2203,7 +2203,7 @@ $$
 \mathbf A_{ij}(T_r;T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58b42e746cbf75dd)
+[View →](../../../../../equation-mapping.html#corpus-equation-58b42e746cbf75dd)
 with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. The exhaustion is over retained emission events, that is $(j,T_t)$ root pairs, not over sources: a super-wake-speed transmitter history can contribute several active roots entering the ball at different $R$, and the refinement-independence requirement applies to that event-level ordering.
 
 This is an admissibility lemma for branches and continuum reductions: the branch is well-defined only when the receiver-centered limit exists under the declared subtraction or screening rule, and allowed refinements of the exhaustion do not change the resulting local acceleration. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$. The lemma supplies the convergence condition used by emergence arguments to justify effective locality and metastable assembly behavior.
@@ -2221,19 +2221,19 @@ $$
 C\,e^{-\|\mathbf{r}-\mathbf{r}'\|/\ell}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7e63fec8490556b9)
+[View →](../../../../../equation-mapping.html#corpus-equation-7e63fec8490556b9)
 or a comparable summable vector-correlation bound. Partition space outside a fixed local ball into receiver-centered shells of thickness comparable to $\ell$, and group sources into neutral cells of diameter $O(\ell)$. Let $S_n$ be the vector acceleration contribution from shell $n$ after subtracting the local neutral mean. A shell at radius $r_n\sim n\ell$ contains $N_n=O(n^2)$ effectively independent cells, so signed fluctuations scale like $\sqrt{N_n}=O(n)$ while each cell contribution carries the inverse-square factor $O(r_n^{-2})=O(n^{-2})$. Hence
 $$
 \mathbb{E}\|S_n\|^2=O(n^{-2})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4b531110b8f53f7b)
+[View →](../../../../../equation-mapping.html#corpus-equation-4b531110b8f53f7b)
 under the declared mixing bound, and therefore
 $$
 \sum_{n=1}^{\infty}\mathbb{E}\|S_n\|^2<\infty
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1036eabe49f53f39)
+[View →](../../../../../equation-mapping.html#corpus-equation-1036eabe49f53f39)
 The shell series converges in $L^2$ and almost surely by the standard square-summable fluctuation criterion. Thus a homogeneous locally neutral Noether sea record supplies a convergent receiver-centered exhaustion under these assumptions. This result does not prove convergence for arbitrary inhomogeneous or coherent far populations. A coherent far dipole texture, long-range orientational correlation, or anisotropic source family can defeat vector cancellation even when scalar polarity neutrality holds. Every coherent assembly, anisotropic source family, or long-range correlated medium feature on top of the background must supply its own shielding, screening, finite active horizon, or explicit subtraction prescription before its many-source wake sum is treated as closed.
 
 The first inhomogeneous obligation is isolated in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). For a weak density gradient $\rho_{\mathrm{NS}}=\rho_0+\mathbf g_\rho\cdot\mathbf X+\cdots$, the neutral-cell multipole and the conditional shell mean must be derived and shown convergent. The homogeneous variance theorem therefore does not by itself imply an acceleration proportional to $-\nabla\rho_{\mathrm{NS}}$, fix the sign or coefficient of a weak-gradient response, or close the gravity, clock, and ruler maps.
@@ -2269,7 +2269,7 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d8fd4033b3daa123)
+[View →](../../../../../equation-mapping.html#corpus-equation-d8fd4033b3daa123)
 with $A>0$ and $B_{ij}$ symmetric positive definite. Equivalently, defining $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ gives the component export
 $$
 g^{\mathrm{eff}}_{00}
@@ -2285,7 +2285,7 @@ g^{\mathrm{eff}}_{ij}
 B_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a20b3912bb43ea2b)
+[View →](../../../../../equation-mapping.html#corpus-equation-a20b3912bb43ea2b)
 This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether sea state and Physical Observer assemblies into effective spacetime language.
 
 ### Role in $\mathbb{A}\mathbb{A}\mathbb{A}$
@@ -2319,7 +2319,7 @@ The teaching sequence is deliberately layered. First comes the ontological claim
    \Sigma_{T_\ast} = \pi_T^{-1}(\{T_\ast\}) = \{T_\ast\}\times \mathbb{R}^3
    $$
 
-   [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5e84fc71ef931610)
+   [View →](../../../../../equation-mapping.html#corpus-equation-5e84fc71ef931610)
 4. **Substrate clock form**: The substrate clock form $dT$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $T$, it fixes the tangent planes to the slices $\Sigma_T$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
 5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of Noether braid internal phase dynamics.
 
@@ -2350,7 +2350,7 @@ H_T,
 \big)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-32ba4361fc774e61)
+[View →](../../../../../equation-mapping.html#corpus-equation-32ba4361fc774e61)
 where $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
 The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_T$ is ontic only insofar as it records the dynamically occupied branch, active causal-root labels, and regularization regime of the deterministic history $H_T$. Where a reduced subsystem has a proved contraction after its exported fluxes are included, the record may also identify its attractor basin. A different analyst may choose different coordinates for describing the branch, but cannot choose a different occupied branch without changing $S(T)$ itself.
@@ -2385,7 +2385,7 @@ H_{\mathcal A}
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-105e00cb4ffec320)
+[View →](../../../../../equation-mapping.html#corpus-equation-105e00cb4ffec320)
 Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $R_{\mathcal A}$ is the clock assembly orientation and geometry record, and $H_{\mathcal A}$ is the relevant path-history ledger. Both $\Omega_{\mathcal A}$ and $\Omega_{\mathcal A}^{(0)}$ are phase rates per unit effective time $t_{\mathrm{eff}}$, so the ratio is dimensionless. The velocity relative to the local Noether sea flow in the observer-level bookkeeping map is
 $$
 w^i_{\mathcal A}
@@ -2395,7 +2395,7 @@ w^i_{\mathcal A}
 u^i_{\mathrm{sea,eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5ab406531d40bca2)
+[View →](../../../../../equation-mapping.html#corpus-equation-5ab406531d40bca2)
 for the clock worldline $x^i_{\mathcal A,\mathrm{eff}}(t_{\mathrm{eff}})$.
 
 This phase extraction is admissible only on a clock branch whose internal return map retains a normally hyperbolic invariant cycle with a unique rotation number. In plain terms, the assembly must keep returning to the same countable cycle before it can function as a clock. More explicitly, let $P_{\mathcal A}$ be the Poincare return map on the retained clock branch and let $\tilde P_{\mathcal A}$ be a lift of its action on the invariant phase circle. The clock rotation number is
@@ -2407,7 +2407,7 @@ $$
 \quad \mathrm{mod}\ 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-21cce4f28c680633)
+[View →](../../../../../equation-mapping.html#corpus-equation-21cce4f28c680633)
 defined mod 1 through the choice of lift. When $P_{\mathcal A}$ restricted to the retained clock circle is an orientation-preserving homeomorphism, this limit exists and is independent of $\theta$; that invertibility is the real hypothesis. If the restriction is only degree-one and non-invertible, the rotation set can be an interval rather than a point, and clock validity requires it to collapse to a point. The clock-validity domain is the parameter region where $P_{\mathcal A}$ restricted to the clock circle is topologically conjugate to a rigid rotation, or reduces to a unique normally hyperbolic periodic orbit with a well-defined phase advance. In that regime $\varphi_{\mathcal A}$ can be chosen continuously and $\Omega_{\mathcal A}$ is a branch observable. If the moving or dressed branch loses normal hyperbolicity through a saddle-node of cycles, torus breakdown, quasiperiodic transition, loss of return-map invertibility with an open rotation interval, or collapse of the cycle-stability floor, then a single rotation number no longer exists and $d\tau_{\mathcal A}$ is undefined for that branch. That event is a clock-failure mode, not a new proper-time law; in simulation it appears as a Floquet or Lyapunov-spectrum sign change in the transverse clock-cycle directions.
 
 In the Noether-braid clock class, this is the observer-side use of the [candidate and certified braid](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids) distinction. A physical clock is an admitted branch whose retained record returns under the delayed return map, modulo only true neutral symmetries, with a positive non-symmetry Floquet margin. Its declared clock phase $\varphi_{\mathcal A}$ is the rotation coordinate of that relative periodic orbit. Thus the clock-validity certificate can be written schematically as
@@ -2419,7 +2419,7 @@ $$
 \Delta_{\mathrm{Floquet}}^{\perp}(\mathcal A)>0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-860738cb635545d8)
+[View →](../../../../../equation-mapping.html#corpus-equation-860738cb635545d8)
 The certificate condition is open: a normally hyperbolic phase-locked cycle with positive Floquet margin persists under small perturbations of the dressing and retained record, which is why certified clocks are robust standards rather than fine-tuned branches. This certificate establishes transverse persistence on the retained clock branch; it does not by itself prove contraction of the complete history flow. The stronger word *attracting* applies only after a declared reduced clock subsystem includes the wake, Noether sea, and memory-boundary fluxes crossing its retained boundary and proves the required contraction. Loss of the clock certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
 
 The same condition has a memory-boundary form. A valid clock branch must replay the retained path-history window over one return, so that the memory-corrected symplectic flux has no secular remainder:
@@ -2430,7 +2430,7 @@ $$
 O(\epsilon_{\omega}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-13b3921c2e458f6a)
+[View →](../../../../../equation-mapping.html#corpus-equation-13b3921c2e458f6a)
 This is the clock-sector reading of the branch-symplectic-promotion condition in [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#effective-hamiltonian-domain-gate). A branch that leaks energy, symplectic area, or wake momentum through the memory boundary per cycle may still be a transient oscillator, but it is not a stable proper-time standard because its rotation number drifts.
 
 The full local Noether sea state is the retained state record $\mathcal{N}_{\mathrm{sea}}$, for example
@@ -2448,7 +2448,7 @@ Q^{\text{sea}}_{ij},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-60bfdf3c6a2e0b4e)
+[View →](../../../../../equation-mapping.html#corpus-equation-60bfdf3c6a2e0b4e)
 The scalar $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$ is only the Noether sea delay factor extracted for a specified channel. It is not the full Noether sea state.
 
 A broad constitutive expression $d\tau=F(\cdots)dt_{\mathrm{eff}}$ may still be used as a schematic summary after the clock channel has been declared, but the closure target is the extracted phase functional above. Proper time is not a free scalar function assigned independently of assembly dynamics.
@@ -2459,7 +2459,7 @@ $$
 \tau(t_{\mathrm{eff},1})-\tau(t_{\mathrm{eff},0})=\int_{t_{\mathrm{eff},0}}^{t_{\mathrm{eff},1}}\frac{\omega_{\text{clk}}(t_{\mathrm{eff}})}{\omega_0}\,dt_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d21e5fbcfc3a642b)
+[View →](../../../../../equation-mapping.html#corpus-equation-d21e5fbcfc3a642b)
 
 where $\omega_{\text{clk}}(t_{\mathrm{eff}})$ is the phase rate extracted from the declared Noether braid clock channel and $\omega_0$ is its rest-branch reference frequency; this is the integral form of the same phase extraction, with $\omega_{\text{clk}}=\Omega_{\mathcal A}$ and $\omega_0=\Omega_{\mathcal A}^{(0)}$ on the declared branch. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
 
@@ -2474,7 +2474,7 @@ B_{ij}^{(\mathcal A)}
 B_{ij}+\delta B_{ij}^{(\mathcal A)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e9e0a48dfe4c1487)
+[View →](../../../../../equation-mapping.html#corpus-equation-e9e0a48dfe4c1487)
 with the assembly-dependent remainders bounded by the clock-comparison, composition, and Lorentz-test rows below. The residual universality condition can be written schematically as
 $$
 \epsilon_{\mathrm{univ}}
@@ -2496,7 +2496,7 @@ B^{(\mathcal B)}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bce23479e117f7c9)
+[View →](../../../../../equation-mapping.html#corpus-equation-bce23479e117f7c9)
 with $\epsilon_{\mathrm{univ}}$ forced below the relevant residual ceilings for the comparison being made. The proposed mechanism is primitive-wake commonality: atomic, nuclear, and mechanical clocks are all architrino assemblies whose stable translating branches are solved from the same causal-wake law, causal-root ledger grammar, and Noether sea state. A moving branch should therefore deform its closed return cycles, clock periods, and ruler scales together rather than receiving separate Lorentz factors by definition.
 
 A useful sufficient-condition target is connected-moduli dressing. Let $\mathfrak M_{\mathrm{clk}}$ denote the retained moduli component for the admitted low-energy clock and ruler branches in a comparison class, and let $\Phi_\lambda$ be the Noether sea dressing flow on that component. If all admitted clock branches lie in one connected component of $\mathfrak M_{\mathrm{clk}}$, and if the generator $D_{\mathrm{dress}}$ of $\Phi_\lambda$ preserves the topological branch labels carried by the causal-root ledger and framing data, then clock universality reduces to the failure of dressing and branch-label transport to commute:
@@ -2513,7 +2513,7 @@ O\!\left(
 O(\epsilon_{\mathrm{chart}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-31a569f78e0dfb28)
+[View →](../../../../../equation-mapping.html#corpus-equation-31a569f78e0dfb28)
 Here $D_{\mathrm{br}}$ denotes transport along the retained branch-label flow and $\epsilon_{\mathrm{chart}}$ collects declared chart and regularization remainders. This is not yet a proof of universality; it states the topological route by which a single dressing map could move every admitted clock and ruler branch together.
 
 The topological route also needs a spectral separation condition. Primitive-wake commonality alone does not imply one effective clock/ruler channel. Let $\Delta_{\mathrm{sea,gap}}>0$ be the lowest frequency gap from the shared long-wavelength Noether sea sector to any other collective sector that couples to the admitted clock and ruler branches, and let $\omega_{\mathrm{test}}$ be the highest frequency in the declared comparison regime. The single-sector reduction requires
@@ -2523,7 +2523,7 @@ $$
 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a393148bda4b7213)
+[View →](../../../../../equation-mapping.html#corpus-equation-a393148bda4b7213)
 and can be organized schematically as
 $$
 \epsilon_{\mathrm{univ}}
@@ -2538,7 +2538,7 @@ $$
 \lim_{r\to0}\epsilon_{\mathrm{mix}}(r)=0,
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3bdffce6e2e36133)
+[View →](../../../../../equation-mapping.html#corpus-equation-3bdffce6e2e36133)
 where $\epsilon_{\mathrm{intra}}$ is the connected-moduli commutator and chart remainder above, while $\epsilon_{\mathrm{mix}}$ measures contamination by the gapped sectors. This is a conditional reduction target, not an automatic consequence of one microscopic law. A second gapless sector with a nonzero species-dependent leading coupling makes $\Delta_{\mathrm{sea,gap}}=0$ for this purpose and structurally defeats this route to clock universality.
 
 Plainly: common microscopic ingredients are not enough. The tested clocks and rulers must share one low-frequency medium response, while every competing response either decouples or remains above the tested frequency band.
@@ -2573,7 +2573,7 @@ O(w^4/c_0^4)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3f62541724b9b224)
+[View →](../../../../../equation-mapping.html#corpus-equation-3f62541724b9b224)
 The residuals record orientation leakage, composition dependence, and preferred-frame leakage. They must be bounded by clock-comparison and Lorentz-test rows rather than hidden inside the constitutive function. The leading orientation row should be read as the trace-free quadrupole of the clock branch's framed trajectory bundle, not as an independent nuisance. If $Q_{\mathcal A}^{ij}$ is the symmetric trace-free framing tensor
 $$
 Q_{\mathcal A}^{ij}
@@ -2585,7 +2585,7 @@ Q_{\mathcal A}^{ij}
 \right\rangle_{\mathcal A}^{\mathrm{frame}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-985e981bcb83865e)
+[View →](../../../../../equation-mapping.html#corpus-equation-985e981bcb83865e)
 then the lowest anisotropic clock response has the schematic form
 $$
 \Delta_{\mathcal A}^{\mathrm{ori}}(\hat{\mathbf n})
@@ -2601,7 +2601,7 @@ Q_{\mathcal A}^{ij}
 O_{\ell\ge4}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b77dc16ee840f76f)
+[View →](../../../../../equation-mapping.html#corpus-equation-b77dc16ee840f76f)
 The same $Q_{\mathcal A}^{ij}$ is the matter-response source constrained by Hughes-Drever-type anisotropy tests, so the clock orientation row and the inertial-response anisotropy row are two exports of one branch certificate.
 
 For Noether braid candidates, [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy) supplies the corresponding geometric order parameter. The theorem target is sharper than near-orthogonality alone: $|D_{\mathrm{plane}}|\to1$ suppresses the non-orthogonal-frame part of the trace-free framing quadrupole $Q_{\mathcal A}^{ij}$, while small total $\|Q_{\mathcal A}\|$ also requires near-degenerate retained spectral weights, shielding, or branch averaging in the same frame extraction. If those conditions close for a clock assembly, the strict orientation row, Hughes-Drever matter anisotropy, scalar-mass anisotropy, and translating-loop Lorentz period anisotropy become different projections of one $\ell=2$ framing-isotropy condition rather than separately tuned residuals.
@@ -2617,7 +2617,7 @@ $$
 \frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6527952b172a86b7)
+[View →](../../../../../equation-mapping.html#corpus-equation-6527952b172a86b7)
 The MICROSCOPE experiment platinum/titanium result supplies a $10^{-15}$-class benchmark for this free-fall row, not for $\Delta_{\mathcal A}^{\mathrm{comp}}$. The two residuals may be linked only after a formal cross-map derives both the gravitational/inertial response and the clock/ruler maps $(A,B_{ij})$ from the same retained assembly and Noether sea record.
 
 These scales are experimental requirements and bookkeeping ceilings, not framework-predicted amplitudes by themselves:
@@ -2637,7 +2637,7 @@ Required emergent limits:
   \qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-03a877c70273e6a2)
+  [View →](../../../../../equation-mapping.html#corpus-equation-03a877c70273e6a2)
   In the weak homogeneous sea-rest branch, $u^i_{\text{sea}}=0$, so $\mathbf{w}=\mathbf{v}$.
 - Weak field, low velocities, after the clock-channel potential has been matched to the Newtonian benchmark:
   $$
@@ -2646,13 +2646,13 @@ Required emergent limits:
   \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-53bfef88e39b1d25)
+  [View →](../../../../../equation-mapping.html#corpus-equation-53bfef88e39b1d25)
   Here $\Phi_N$ is the conventional negative Newtonian potential. If a positive PPN potential $U_N\ge0$ is used, set
   $$
   \Phi_N=-U_N
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-56e423932ee52960)
+  [View →](../../../../../equation-mapping.html#corpus-equation-56e423932ee52960)
   so the first-order clock expansion reads
   $$
   \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
@@ -2664,7 +2664,7 @@ Required emergent limits:
   -\frac{\|\mathbf{w}\|^2}{2c_0^2}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-06d0e5181bfb5d54)
+  [View →](../../../../../equation-mapping.html#corpus-equation-06d0e5181bfb5d54)
 
 **Speed convention table**
 
@@ -2687,7 +2687,7 @@ c_{2w}(\hat{\mathbf n})
 \frac{2L}{T_+(\hat{\mathbf n})+T_-(\hat{\mathbf n})}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e41b35d34629c42b)
+[View →](../../../../../equation-mapping.html#corpus-equation-e41b35d34629c42b)
 In ordinary low-energy conditions its anisotropy must fit
 $$
 \frac{c_{2w}(\hat{\mathbf n})-c_0}{c_0}
@@ -2702,7 +2702,7 @@ $$
 \cdots
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a7d979a4d966f967)
+[View →](../../../../../equation-mapping.html#corpus-equation-a7d979a4d966f967)
 with the trace-free anisotropy below the current hard-wall row in the constraint ledger, presently of order $|\zeta_{ij}^{\mathrm{TF}}|\lesssim10^{-17}$ and, for the strictest cavity rows, at the $10^{-18}$ scale. The PPN export must also pass the componentwise bound vector
 $$
 \left(
@@ -2722,7 +2722,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5330b39dbced67eb)
+[View →](../../../../../equation-mapping.html#corpus-equation-5330b39dbced67eb)
 Any screening mechanism must be included before exporting the observer-level PPN and Lorentz-test coefficients. The exported coefficients themselves must pass the ledger bounds. Preferred-frame hiding is therefore a numerical closure condition, not a prose reassurance.
 
 The trace-free coefficient $\zeta_{ij}^{\mathrm{TF}}$ is the photon-channel projection of the Noether sea framing quadrupole. It is parallel to, but not identical with, the matter framing tensor $Q_{\mathcal A}^{ij}$ above: matter leakage tests the retained assembly framing, while photon and PPN leakage test the sea-response framing sampled by the signal channel. Translation and rotation invariance forbid leading $\ell=1$ preferred-axis leakage in the homogeneous rest branch, so the first dangerous rows are $\ell=2$ trace-free projections. The preferred-frame budget is therefore a collection of framing-isotropy conditions on matter assemblies and on the Noether sea response, with the two-way photon row measuring the sea-side quadrupole.
@@ -2741,7 +2741,7 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0f9a5b68a09b6135)
+[View →](../../../../../equation-mapping.html#corpus-equation-0f9a5b68a09b6135)
 The metric handoff is admissible only on branches where
 $$
 A>0,
@@ -2753,7 +2753,7 @@ B_{ij}\xi^i\xi^j>0
 \text{for }\xi\ne0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d47797a6f7809924)
+[View →](../../../../../equation-mapping.html#corpus-equation-d47797a6f7809924)
 These inequalities have a physical meaning. $A>0$ says the declared clock phase remains monotone in absolute time, so the branch still supplies a usable clock. Positive-definite $B_{ij}$ says the local ruler/signal compliance remains an ordinary spatial quadratic form, so one observer-level light cone can be exported from the branch. The handoff fails when a certified clock cycle is lost, when a separator or branch-chart transition makes the causal-root ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive, birefringent, or multi-valued enough that no single $B_{ij}$ represents the local response. In those regimes the effective metric description is suspended and the analysis must return to finite branch data, as in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and the strong-field continuation criteria in [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md).
 
 **Conditional uniform-flow affine-equivalence lemma.** Suppose that, on one comparison window, $A$ is a positive constant, $B_{ij}$ is a constant symmetric positive-definite matrix, and $u^i_{\mathrm{sea,eff}}$ is constant. Suppose also that every admitted clock, ruler, and signal in that window couples only through this same effective handoff. Choose a constant matrix $L^a{}_i$ satisfying
@@ -2763,7 +2763,7 @@ B_{ij}
 \delta_{ab}L^a{}_iL^b{}_j
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ebb791623df657c4)
+[View →](../../../../../equation-mapping.html#corpus-equation-ebb791623df657c4)
 and define
 $$
 t'_{\mathrm{eff}}
@@ -2781,7 +2781,7 @@ u^i_{\mathrm{sea,eff}}t_{\mathrm{eff}}
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f1f3c9c3e04165e5)
+[View →](../../../../../equation-mapping.html#corpus-equation-f1f3c9c3e04165e5)
 The handoff then becomes
 $$
 d\tau^2
@@ -2791,7 +2791,7 @@ dt_{\mathrm{eff}}'^2
 \delta_{ab}\,dy^a_{\mathrm{eff}}dy^b_{\mathrm{eff}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9622f4df7a4487ec)
+[View →](../../../../../equation-mapping.html#corpus-equation-9622f4df7a4487ec)
 
 Plainly: a uniform sea flow with constant universal clock, ruler, and signal response is removable from the effective record by an affine coordinate change. This lemma does not remove the substrate preferred frame or establish universality. It localizes observable preferred-frame leakage to gradients or time dependence in the sea record, dispersion, non-universal assembly coupling, or channels not captured by the single metric handoff.
 
@@ -2804,7 +2804,7 @@ $$
 (A,B_{ij}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d13e1ce133948a4e)
+[View →](../../../../../equation-mapping.html#corpus-equation-d13e1ce133948a4e)
 On a regular branch, $\Psi_{\mathrm{cr}}$ has the fixed rank needed to export one clock rate and one positive spatial quadratic response. The failure set is the branch-fold locus
 $$
 \mathfrak{F}_{\mathrm{cr}}
@@ -2816,7 +2816,7 @@ $$
 \}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-855b8fb677f47adc)
+[View →](../../../../../equation-mapping.html#corpus-equation-855b8fb677f47adc)
 The conditioning face of the same admissibility condition is a singular-value floor:
 $$
 \sigma_{\min}
@@ -2827,7 +2827,7 @@ D\Psi_{\mathrm{cr}}\big|_{\mathrm{reg}}
 \sigma_{\mathrm{cr}}>0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b59763c66090a8a4)
+[View →](../../../../../equation-mapping.html#corpus-equation-b59763c66090a8a4)
 The inequalities $A>0$ and $B_{ij}\succ0$ are the positivity face of this condition, while the rank and singular-value bounds are the local-invertibility face. A branch can therefore fail metric export either by losing clock/ruler positivity or by becoming so ill-conditioned that the effective metric is locally multivalued under small retained-record perturbations.
 
 For a generic finite-dimensional retained branch chart, the regular clock/ruler region is the open complement of a stratified failure set. Its top stratum is expected to be codimension one: a fold hypersurface across which $\Psi_{\mathrm{cr}}$ loses local invertibility and the metric handoff must be suspended. Higher-codimension strata correspond to cusp, multiple-fold, or simultaneous clock/ruler degeneracies. The preceding list gives coordinate descriptions of the same loss of one-to-one branch structure. This is the clock/ruler version of the fold and non-degeneracy-floor discipline used for causal-root charts in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#causal-time-map-and-root-topology).
@@ -2837,7 +2837,7 @@ $$
 ds_{\mathrm{eff}}^2=-c_0^2d\tau^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-142d1bd421e3f1b2)
+[View →](../../../../../equation-mapping.html#corpus-equation-142d1bd421e3f1b2)
 With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the exported components are
 $$
 g^{\mathrm{eff}}_{00}
@@ -2845,14 +2845,14 @@ g^{\mathrm{eff}}_{00}
 -A^2+\frac{1}{c_0^2}B_{ij}u^i_{\mathrm{sea,eff}}u^j_{\mathrm{sea,eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-077f6f96b2236e09)
+[View →](../../../../../equation-mapping.html#corpus-equation-077f6f96b2236e09)
 $$
 g^{\mathrm{eff}}_{0i}
 =
 -\frac{1}{c_0}B_{ij}u^j_{\mathrm{sea,eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e0931c21a6845226)
+[View →](../../../../../equation-mapping.html#corpus-equation-e0931c21a6845226)
 and
 $$
 g^{\mathrm{eff}}_{ij}
@@ -2860,7 +2860,7 @@ g^{\mathrm{eff}}_{ij}
 B_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58d9d410e1c1b17a)
+[View →](../../../../../equation-mapping.html#corpus-equation-58d9d410e1c1b17a)
 Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether sea state rather than assigned independently:
 $$
 \frac{dx_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}}
@@ -2870,14 +2870,14 @@ u^i_{\mathrm{sea,eff}}
 c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})\hat k^i
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-53d3b79421c051ab)
+[View →](../../../../../equation-mapping.html#corpus-equation-53d3b79421c051ab)
 $$
 c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
 =
 \frac{c_0A}{\sqrt{B_{ij}\hat k^i\hat k^j}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b386c818670a88e7)
+[View →](../../../../../equation-mapping.html#corpus-equation-b386c818670a88e7)
 The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\mathrm{sea,eff}}\to0$.
 
 The same-record rule is stricter than using one symbol $\mathcal{N}_{\mathrm{sea}}$ in several equations. The clock/ruler map must consume the same Noether sea response record that supplies $G_{\mathrm{eff}}$ in the gravity inventory, $c_{\text{eff}}$ in the matter limiting-speed and mass-shell rows, and $c_\gamma$ in the photon channel:
@@ -2893,7 +2893,7 @@ c_\gamma
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-30f59d13f3892938)
+[View →](../../../../../equation-mapping.html#corpus-equation-30f59d13f3892938)
 If these projections require separate sea records or independently tuned response tensors, the effective metric is fitted rather than derived. The closure burden is therefore one sea-constitutive object with clock, ruler, gravity, matter-speed, and photon projections, not a separate clock-sector construction.
 
 **Key point**
@@ -2990,7 +2990,7 @@ W_a(T_t;T)
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-70fa004fb29fc77e)
+[View →](../../../../../equation-mapping.html#corpus-equation-70fa004fb29fc77e)
 In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(T_t;T)$ is known as a transmitter-tagged support, its emission center $\mathbf Z_a(T_t)$ is geometrically reconstructible without first assigning coordinates to the void.
 
 Equivalently, Euclidean geometry gives a bijection between nondegenerate metric spheres and center-radius pairs:
@@ -2999,7 +2999,7 @@ W_a(T_t;T)\longleftrightarrow
 \left(\mathbf Z_a(T_t),\,c_f(T-T_t)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9b2967e14028431c)
+[View →](../../../../../equation-mapping.html#corpus-equation-9b2967e14028431c)
 for full spherical supports. In a finite sampled reconstruction, a clean nondegeneracy certificate is supplied by four support points $\mathbf Y_0,\ldots,\mathbf Y_3$ whose displacement Gram determinant is bounded away from zero:
 $$
 \Delta_{\mathrm{sph}}
@@ -3012,7 +3012,7 @@ $$
 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-98d283752f1455bc)
+[View →](../../../../../equation-mapping.html#corpus-equation-98d283752f1455bc)
 with a declared numerical floor in simulation. This is the same determinant family as the volume test used in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md): when the sampled support collapses toward a line, plane, or tiny aperture, the inverse center fit is no longer a stable complete-state reconstruction. If the radius $c_f(T-T_t)$ is already supplied, three non-collinear points plus a side convention can reduce the data requirement, but the four-point certificate is the safer branch-independent test.
 
 For a full spherical support, uniqueness is exact. A finite reconstruction usually sees only a partial support $U_a(T_t;T)\subset W_a(T_t;T)$, so the inverse-center problem needs its own conditioning floor. Let
@@ -3026,13 +3026,13 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cbf26eb9bce2cdc5)
+[View →](../../../../../equation-mapping.html#corpus-equation-cbf26eb9bce2cdc5)
 The reconstructed center is admissible only when
 $$
 \omega_a(T_t;T)\ge \omega_{\min} > 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0ec92f269c9d25a5)
+[View →](../../../../../equation-mapping.html#corpus-equation-0ec92f269c9d25a5)
 on the declared support window. Below that solid-angle floor, the center may remain formally unique in the full-support idealization while the finite inverse problem becomes ill-conditioned.
 
 The solid-angle floor is a practical proxy for a smallest-eigenvalue floor in the sphere-fit Jacobian. For sampled directions $\hat{\mathbf{n}}_k=(\mathbf Y_k-\mathbf Z)/\|\mathbf Y_k-\mathbf Z\|$ with positive weights $w_k$, define the direction design matrix
@@ -3040,7 +3040,7 @@ $$
 G_a=\sum_k w_k\,\hat{\mathbf{n}}_k\hat{\mathbf{n}}_k^{T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-387e8ed2a2a758c3)
+[View →](../../../../../equation-mapping.html#corpus-equation-387e8ed2a2a758c3)
 The finite-aperture inverse is accepted only when $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ on the reconstruction window, or when an equivalent continuous-support bound is supplied. A direction cloud concentrated in a small cap or nearly planar arc is rank-deficient in the same way that a near-collinear tuple is rank-deficient in frame construction. Thus $\omega_{\min}$, the basis floor $\sin\theta_{\min}$, separatrix regularity, and the causal-root transversality floor $\kappa_{\mathrm{hit}}$ are all instances of one non-degeneracy requirement: the retained reconstruction map must have a bounded local inverse on the chart being used.
 
 A future finite reconstruction must fail closed, returning no absolute-rest verdict, when transmitter tags are absent, $\omega_a<\omega_{\min}$, or the declared rank floor fails. These are implementation acceptance conditions for a reconstruction that does not yet exist, not evidence supplied by the complete-state injectivity lemma itself; executable negative controls belong with that implementation when it is built.
@@ -3050,20 +3050,20 @@ $$
 Z_a(I)=\{\mathbf Z_a(T_t):T_t\in I\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-322da7f047873084)
+[View →](../../../../../equation-mapping.html#corpus-equation-322da7f047873084)
 and its Euclidean diameter
 $$
 D_a(I)=\sup_{T_t,T'_t\in I}\|\mathbf Z_a(T_t)-\mathbf Z_a(T'_t)\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a52adb1cf67c9b5d)
+[View →](../../../../../equation-mapping.html#corpus-equation-a52adb1cf67c9b5d)
 
 Equivalently,
 $$
 D_a(I)=\operatorname{diam}Z_a(I)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b55589f8dd99eea7)
+[View →](../../../../../equation-mapping.html#corpus-equation-b55589f8dd99eea7)
 With exact complete-state access and transmitter-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf Z_a(T_t)$ is constant on $I$, so the transmitter is at absolute rest almost everywhere on that interval. For uniform motion over a duration $\Delta T_I$, $D_a(I)=\|\mathbf V_a\|\Delta T_I$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the transmitter-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
 
 The velocity readout in the uniform case assumes $\mathbf Z_a(T_t)=\mathbf Z_0+\mathbf V_a(T_t-T_0)$ on the interval. For accelerated or curved transmitter histories, $D_a(I)$ measures only the chord-span of the center curve and cannot determine the velocity history by itself. The faithful complete-state object is the full center curve $T_t\mapsto\mathbf Z_a(T_t)$, including its tangent, curvature, and torsion where those derivatives exist; that curve is the geometric record the self-hit ledger later samples.
@@ -3089,7 +3089,7 @@ The concentricity diagnostic connects directly to the geometry developed in [Sel
   \|\mathbf Z_a(T)-\mathbf Z_a(T_t)\|=c_f(T-T_t)
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d13fc0e3f2c35584)
+  [View →](../../../../../equation-mapping.html#corpus-equation-d13fc0e3f2c35584)
   This is re-entry into the expanding-sphere foliation generated by the past center curve. It is not a requirement that the spatial curve literally intersect itself in $\mathbb{R}^3$. For closed or recurrent framed branches, the protected topology row should be stated as a linking or framed self-linking record, such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when the branch supplies a nonsingular frame. Thus absolute rest and self-hit are distinct invariants: rest is concentricity of transmitter-tagged centers, while self-hit is a transmitter-identity root with a retained wake/worldline linking or framing record when such a record is part of the branch certificate.
 - For bound assemblies, the corresponding closure problem is conditional: a translating Noether braid must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
 - This moving-assembly bias is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
@@ -3163,7 +3163,7 @@ $$
 \mathcal{H}_{\mathrm{tag}}=\mathcal{H}'_{\mathrm{tag}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-34d9786056214f65)
+[View →](../../../../../equation-mapping.html#corpus-equation-34d9786056214f65)
 
 *Proof.* Equality of the nondegenerate tagged supports gives the same unique center for every $(a,T_t)$ and therefore the same center curves. Those curves are the transmitter worldlines; absolute continuity then gives the same velocities almost everywhere, while the retained tags carry identity and polarity. Translation, rotation, and time-origin conventions enter only when the same records are presented in convention-relative charts.
 
@@ -3227,7 +3227,7 @@ $$
 \epsilon_{\mathrm{PF}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-50fa63b4aacb7a83)
+[View →](../../../../../equation-mapping.html#corpus-equation-50fa63b4aacb7a83)
 Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ denotes the tagged record produced by re-preparing the same experiment with absolute group velocity $\mathbf w$ inside the tested low-energy comparison window, and $\mathcal{O}$ denotes the admitted observer-accessible functionals. The first condition makes the preferred frame real in complete-state geometry. The second is the Lorentz-recovery burden that makes that frame hidden from embedded Physical Observers.
 
 ## Constructing the Absolute Frame
@@ -3255,7 +3255,7 @@ $$
 \mathbf{d}_1=\mathbf X_A(T_\ast)-\mathbf X_O(T_\ast)\ne\mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-703cdd1a293f81c3)
+[View →](../../../../../equation-mapping.html#corpus-equation-703cdd1a293f81c3)
 and
 $$
 \mathbf{d}_2=\mathbf X_B(T_\ast)-\mathbf X_O(T_\ast),
@@ -3263,33 +3263,33 @@ $$
 \|\mathbf{d}_1\times\mathbf{d}_2\|\ne0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9d9f0c637c1adaba)
+[View →](../../../../../equation-mapping.html#corpus-equation-9d9f0c637c1adaba)
 Then the first two unit axes are fixed by
 $$
 \hat{\mathbf e}_1=\frac{\mathbf{d}_1}{\|\mathbf{d}_1\|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9ab08029dbdf3267)
+[View →](../../../../../equation-mapping.html#corpus-equation-9ab08029dbdf3267)
 $$
 \mathbf{d}_2^{\perp}=\mathbf{d}_2-(\mathbf{d}_2\cdot\hat{\mathbf e}_1)\hat{\mathbf e}_1,
 \qquad
 \hat{\mathbf e}_2=\frac{\mathbf{d}_2^{\perp}}{\|\mathbf{d}_2^{\perp}\|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a0ffdb7086cc4c79)
+[View →](../../../../../equation-mapping.html#corpus-equation-a0ffdb7086cc4c79)
 Read the first displacement as the first arrow from the origin, and the second displacement as the arrow that fixes the plane. Once those are nondegenerate, only one binary choice remains. The remaining completion has exactly two signs. Once an orientation convention is declared, the right-handed completion is
 $$
 \hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ca4ef3def46df100)
+[View →](../../../../../equation-mapping.html#corpus-equation-ca4ef3def46df100)
 
 Geometrically, the lemma constructs a section of the orthonormal frame bundle over the selected Euclidean point from a nondegenerate ordered tuple. In plainer language, the tuple removes the freedom to slide the origin around and spin the axes freely. The continuous freedoms removed are the translations and rotations of the special Euclidean group:
 $$
 SE(3)=\mathbb{R}^3\rtimes SO(3)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b399e459906d0fd5)
+[View →](../../../../../equation-mapping.html#corpus-equation-b399e459906d0fd5)
 This is the identity component of the full Euclidean group $E(3)=\mathbb{R}^3\rtimes O(3)$, while the remaining parity choice is the connected-component label of the full orthogonal group, $\pi_0(O(3))\cong\mathbb{Z}_2$. Thus the two signs are not an extra dynamical datum. They are the residual component choice left after the ordered tuple fixes the connected Euclidean-frame freedom.
 
 The construction fails only when the chosen reference data do not actually define a plane. That happens when the first displacement is coincident with the origin or the first two displacements are collinear:
@@ -3299,7 +3299,7 @@ $$
 \|\mathbf{d}_1\times\mathbf{d}_2\|=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5e179351141d1a8a)
+[View →](../../../../../equation-mapping.html#corpus-equation-5e179351141d1a8a)
 For simulation and finite-precision reconstruction, exact nondegeneracy is not enough. The ordered tuple should also carry a conditioning floor
 $$
 \frac{\|\mathbf{d}_1\times\mathbf{d}_2\|}
@@ -3308,7 +3308,7 @@ $$
 \sin\theta_{\min} > 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4d911da3b862103f)
+[View →](../../../../../equation-mapping.html#corpus-equation-4d911da3b862103f)
 on the retained reconstruction window. If this floor is small, the projection defining $\hat{\mathbf e}_2$ is ill-conditioned and the completed $\hat{\mathbf e}_3$ amplifies roundoff or perturbation error. The simulator should then choose a better-conditioned tuple rather than treating the near-collinear basis as an ordinary pass.
 
 This floor is one instance of the non-degeneracy floors used throughout the foundation stack. The common idea is simple: do not trust a reconstruction that would change wildly under a tiny perturbation. In each case the retained chart is accepted only when the relevant reconstruction map has a scale-appropriate nonzero floor. For causal-root charts this is the transversality floor, such as $\lvert\partial_{T_t}F_{ij}\rvert\ge\kappa_{\mathrm{hit}}$; for basin partitions it is the separatrix floor; for this frame construction the scale-free floor is the conditioning of the normalized direction pair $(\mathbf{d}_1/\|\mathbf{d}_1\|,\mathbf{d}_2/\|\mathbf{d}_2\|)$, recorded above by the sine of their angle. The common mathematical content is controlled local invertibility: the map has a bounded inverse-Lipschitz constant on the retained chart, so small perturbations of the complete-state data do not create a different branch or frame.
@@ -3320,7 +3320,7 @@ $$
 V_{\mathrm{vol}}=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-60b3c28cbc6bba07)
+[View →](../../../../../equation-mapping.html#corpus-equation-60b3c28cbc6bba07)
 Here $V_{\mathrm{vol}}\ne0$ is the structural non-coplanarity test for basis completion. The sign $\operatorname{sgn}(V_{\mathrm{vol}})$ reports which side of the already oriented plane the marker occupies relative to a declared orientation. It does not by itself turn coordinate parity into a dynamical chirality claim.
 
 This lemma is an existence claim at the complete-state level. It does not say that the Euclidean void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough invariant structure to construct a coordinate basis for calculation.
@@ -3345,7 +3345,7 @@ $$
 V_{\mathrm{vol}}=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ac975a3834957f4d)
+[View →](../../../../../equation-mapping.html#corpus-equation-ac975a3834957f4d)
 with $V_{\mathrm{vol}}>0$ and $V_{\mathrm{vol}}<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V_{\mathrm{vol}}$ does not turn coordinate parity into a dynamical handedness law.
 
 Equivalently, $\operatorname{sgn}(V_{\mathrm{vol}})$ is gauge data for the selected coordinate chart, while dynamical chirality must be an invariant of the retained branch record. Coordinate parity lives in $\pi_0(O(3))$ for the chart; dynamical chirality lives in the connected-component data of framed worldline or assembly-branch configuration space. A simulation may align these signs as a reporting convention, but a nonzero $V_{\mathrm{vol}}$ does not imply that the assembly itself is chiral.
@@ -3357,7 +3357,7 @@ Lk(\gamma,\gamma^{\mathrm{fr}})
 \operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma,\gamma^{\mathrm{fr}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b3e9e39386cbd52e)
+[View →](../../../../../equation-mapping.html#corpus-equation-b3e9e39386cbd52e)
 for a closed framed constituent trace, or the linking number of distinct constituent worldlines. If that branch record supplies a nonzero handed marker, a simulation may choose the coordinate parity convention so that $\operatorname{sgn}(V_{\mathrm{vol}})$ reports the same sign as $\operatorname{sgn}(Lk)$. If the framed self-linking or linking row is zero, uncomputed, or not protected under branch-preserving deformation, the coordinate parity remains a reporting convention with no dynamical chirality content.
 
 The self-linking row is defined only on a regular closed return cycle or on an explicitly closed and nonsingular framed trace. A raw open worldline does not by itself carry a deformation-invariant writhe, and a near self-hit or fold crossing is exactly where the framing can degenerate. Chirality is therefore a regular-branch certificate: it is admissible where the retained roots and nonsingular frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ for the relevant causal-root rows. At a fold, reconnection, or framing slip, $Lk$ can jump; that jump is a branch-transition event, not a change in coordinate convention.
@@ -3394,7 +3394,7 @@ $$
 Q_{\mathrm{erase}}:\mathcal{T}\to\mathcal{T}/\!\sim_{\mathrm{erase}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b154232fac8d3d1c)
+[View →](../../../../../equation-mapping.html#corpus-equation-b154232fac8d3d1c)
 be the map that forgets the labels retained only by complete-state bookkeeping. The summed observer record lies in the quotient fiber, not in $\mathcal{T}$ itself. Absolute-frame reconstruction requires a section of $Q_{\mathrm{erase}}$ selecting the correct tagged representative. No such section is determined by the superposed potential alone, because many tagged configurations can lie over the same unlabeled record. This is the same kind of label-erasure map that appears in the provenance-leakage bound of [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence).
 
 The reconstruction described here is a **foundational consistency proof**. It shows that the theory has the mathematical structure necessary to define absolute rest and an absolute-frame coordinate system **in principle** from complete ontic data. It does not claim that an embedded observer can perform the reconstruction directly. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological background beneath the effective geometry.
@@ -3449,7 +3449,7 @@ G_\alpha(\Pi_L\phi(0),c)=0\ \text{for all}\ \alpha,
 \ \exists\gamma\in\Gamma_{\mathrm{adm}}(c):\phi\in\mathcal H_\gamma\,\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dec5af64b60d25c8)
+[View →](../../../../../equation-mapping.html#corpus-equation-dec5af64b60d25c8)
 Here $\mathcal H_\gamma$ denotes the path-history domain associated with the branch chart $\gamma$.
 
 The native state is $\mathsf Z=(\mathbf X,\mathbf V)$. The constrained flow is still the lower-level causal-wake dynamics,
@@ -3458,7 +3458,7 @@ $$
 \frac{d\mathsf Z}{dT}=F_L(\mathsf Z_T),\qquad \mathsf Z_T\in \mathcal K_c
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a22147c2836f6f9e)
+[View →](../../../../../equation-mapping.html#corpus-equation-a22147c2836f6f9e)
 
 where $\mathsf Z_T(\theta)=\mathsf Z(T+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
 
@@ -3472,7 +3472,7 @@ B_k^W(c)
 \{\phi\in\mathcal K_c\mid \Pi_{\mathrm{br}}\Phi_T^c(\phi)=k,\ \Phi_s^c(\phi)\in\mathcal K_c\ \text{for }0\le s\le T\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b767f484238c02b2)
+[View →](../../../../../equation-mapping.html#corpus-equation-b767f484238c02b2)
 
 The measure $\mu_c$ must come from a declared preparation, return section, coarse-graining, or unresolved Noether sea occupation rule; it is not an external probability assigned after the outcome. With that rule fixed, the context-conditioned branch weight is
 
@@ -3480,7 +3480,7 @@ $$
 P_c(k)=\mu_c(B_k^W(c))
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b765c7f1fa3ef956)
+[View →](../../../../../equation-mapping.html#corpus-equation-b765c7f1fa3ef956)
 
 This is only the foundation-level basin-measure form. It says how branch weights can be assigned after the physical preparation and measure source are declared. It becomes a quantum-probability recovery only after a measurement chart supplies an apparatus kernel, record map, interference or coherence bookkeeping, and a proof that the same declared measure pushes forward to Born statistics across the relevant measurement contexts. In particular, a Born-rule closure must show that these finite-window basin weights reproduce $|\psi_k|^2$ frequencies without changing the measure between outcome statistics, interference records, and thermodynamic cost. That burden belongs to the quantum recovery chapters, especially [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence).
 
@@ -3492,7 +3492,7 @@ $$
 \mu_c\!\left(\mathcal K_c\setminus\bigcup_k B_k^W(c)\right)\le\varepsilon_{\text{esc}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b685ad66e70ea708)
+[View →](../../../../../equation-mapping.html#corpus-equation-b685ad66e70ea708)
 
 This clean partition is an admissibility target, not an automatic property of delayed feedback. Basin boundaries in state-dependent delay systems can be fractal, riddled, or measure-thick under the preparation measure; in those cases $\mu_c(\partial B_k^W(c))=0$ can fail and the branch weights are not stable observer-level probabilities. A useful separatrix regularity row is therefore the basin analogue of a causal-root transversality floor: on the declared return-section chart, each boundary between neighboring basins should be represented outside a null exceptional set by a signed separator functional $S_{k\ell}$ with
 $$
@@ -3501,7 +3501,7 @@ S_{k\ell}(\phi)=0,
 \|DS_{k\ell}(\phi)\|_\ast \ge \kappa_{\mathrm{sep}} > 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ca01df3e59b9e366)
+[View →](../../../../../equation-mapping.html#corpus-equation-ca01df3e59b9e366)
 If no codimension-one separatrix row, equivalent null-boundary proof, or controlled fractal-boundary measure theorem is supplied, $P_c(k)$ remains a diagnostic basin volume rather than a closed branch-weight law.
 
 Local separator smoothness is not by itself enough in an infinite-dimensional or state-dependent delay system. A valid basin chart should also rule out uncontrolled accumulation of separator sheets on the compact return-section region being measured. One useful formulation is local finiteness: for every compact $K$ in the declared return section,
@@ -3509,7 +3509,7 @@ $$
 \#\{(k,\ell,n):\{S_{k\ell}^{(n)}=0\}\cap K\ne\varnothing\}<\infty
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-77791d0694746ea9)
+[View →](../../../../../equation-mapping.html#corpus-equation-77791d0694746ea9)
 after discarding a $\mu_c$-null exceptional set. Here $n$ indexes distinct separator sheets between the same branch pair when the delayed return map creates multiple folds. This condition prevents a countable pile-up of individually smooth sheets from producing a measure-thick or riddled basin boundary. It is the basin analogue of excluding cusp accumulation in a causal-root chart.
 
 Changing $c$ can shift the inferred branch weights $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
@@ -3526,7 +3526,7 @@ $$
 \mu_{c'}(B_k^W(c'))>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e26dabf6f02bd8bf)
+[View →](../../../../../equation-mapping.html#corpus-equation-e26dabf6f02bd8bf)
 
 The reverse inequality pattern records branch closure, and partial changes in $\mu_c(B_k^W(c))$ record ordinary reshaping of basin weights. In each case, the context change must be tied to a physical transition rather than to a new ontology outside the architrino dynamics.
 
@@ -3536,7 +3536,7 @@ $$
 \mathsf e=(\mathsf Z,I_{\mathsf e},Y_{\mathsf e})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d3df431c5011bc64)
+[View →](../../../../../equation-mapping.html#corpus-equation-d3df431c5011bc64)
 
 where $\mathsf Z$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law. It is a candidate event-ledger closure condition whose wake term must be earned, not presumed.
 
@@ -3547,7 +3547,7 @@ $$
 \mathsf Z_T\in C([-h,0])
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-70098b9d537b12f5)
+[View →](../../../../../equation-mapping.html#corpus-equation-70098b9d537b12f5)
 with boundary and memory-window terms built from the same causal kernel that supplies the acceleration. In simulation, the object to discretize is therefore a path-history functional over the retained memory window, together with its endpoint and boundary increments, rather than a pointwise Hamiltonian density guessed independently of the delayed action.
 
 $$
@@ -3568,7 +3568,7 @@ W_{\partial\Omega}
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f5c52ce08e9ae48d)
+[View →](../../../../../equation-mapping.html#corpus-equation-f5c52ce08e9ae48d)
 
 Here $K_{\mathrm{mech}}$ is the $\mu_{\text{arch}}$-weighted kinetic bookkeeping term from the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md)'s regularized energy diagnostic for the retained architrino degrees of freedom, with assembly-level kinetic entries allowed only as derived ledger summaries after their constituent account is declared. The subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is boundary work, positive for work done on the retained subsystem. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes.
 
@@ -3595,7 +3595,7 @@ $$
 {\Phi_{\mathrm{ext}}^{\mathrm{root}}(A;W)+\varepsilon_{\mathrm{reg}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d1cc7aa3a12e1317)
+[View →](../../../../../equation-mapping.html#corpus-equation-d1cc7aa3a12e1317)
 where $\Phi_{\mathrm{int}}^{\mathrm{root}}$ is the retained internal causal-root flux, $\Phi_{\mathrm{ext}}^{\mathrm{root}}$ is the externally exposed root or wake flux, and $\varepsilon_{\mathrm{reg}}>0$ is a root-flux regulator. A candidate geometric estimator for the external flux ordering is the lowest unquenched polarity-signed moment of the assembly's configuration: arrangements whose low-order moments cancel expose less structure at distance, which is the moment hypothesis developed for the six-architrino [Accessory Configuration](../../../../markdown/aaa/noether-braid/braid-mathematics.md#accessory-configuration). A capture step $A\to A'$ is shielding-improving only if it decreases external reactivity; an increase in $\Sigma_{\mathrm{shield}}$ is a useful witness under the declared convention when the retained internal-flux account is fixed or separately controlled, and the energy and provenance ledger still closes. If this monotonicity fails, the assembly atlas should treat the result as a side branch or metastable over-reactive intermediate rather than forcing it into the main bottom-up ladder.
 
 ### Bottom-Up Structural Ladder
@@ -3659,7 +3659,7 @@ $$
 \mathbf A_{ij}(T_r;T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-856c9b4a5873bdd3)
+[View →](../../../../../equation-mapping.html#corpus-equation-856c9b4a5873bdd3)
 exist under the declared receiver-centered summation prescription, or else use the corresponding continuum condition. More invariantly, one may declare an exhaustion $\Lambda_R\uparrow\mathbb{R}^3$ and take the corresponding limit over transmitter events with $\mathbf X_j(T_t)\in\Lambda_R$. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
 
 For the weak homogeneous Noether sea case, the canonical lemma proves that statistically homogeneous, isotropic, locally neutral, vector-mixing shell contributions have variance $O(n^{-2})$ and hence converge almost surely under the declared mixing bound. This is the convergence foothold consumed by the Noether sea construction; the proof and its hypotheses remain in [Receiver-Centered Exhaustion Lemma](../../../../markdown/aaa/foundations/absolute-timespace.md#receiver-centered-exhaustion-lemma), and coherent, inhomogeneous, strong-field, or poorly screened branches retain a separate burden.
@@ -3677,7 +3677,7 @@ $$
 \varnothing
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-883656d7fdb85db5)
+[View →](../../../../../equation-mapping.html#corpus-equation-883656d7fdb85db5)
 If $\|\mathbf V_i(U)\|\le c_f-\delta_v$ throughout the interval $[T_t,T_r]$ for some speed margin $\delta_v>0$, then no self-hit root can occur on that interval, because
 $$
 \|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|
@@ -3687,7 +3687,7 @@ $$
 c_f(T_r-T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bc9b501879794569)
+[View →](../../../../../equation-mapping.html#corpus-equation-bc9b501879794569)
 Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf V\|>c_f$ alone; onset governs root existence, while an admitted self-hit acceleration contribution additionally carries the same-record transmitter-side acceleration weight.
 
 This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino into a branch chart where same-transmitter roots become admissible, or where the transversality floor fails and a degenerate causal-root regime must be resolved. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.

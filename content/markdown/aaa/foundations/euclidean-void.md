@@ -30,14 +30,14 @@ $$
 \mathbb{R}^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2a1f8accd97364ee)
+[View →](../../../../equation-mapping.html#corpus-equation-2a1f8accd97364ee)
 
 A location is represented by a point
 $$
 \mathbf X=(X,Y,Z)\in\mathbb{R}^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7b33e6104d1b8fa5)
+[View →](../../../../equation-mapping.html#corpus-equation-7b33e6104d1b8fa5)
 or in index notation by $X^i$ where $i\in\{1,2,3\}$.
 
 The metric is fixed:
@@ -45,7 +45,7 @@ $$
 h_{ij}=\delta_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-eb347191b1cc582e)
+[View →](../../../../equation-mapping.html#corpus-equation-eb347191b1cc582e)
 where $\delta_{ij}$ is the Kronecker delta.
 
 The spatial line element is therefore
@@ -53,7 +53,7 @@ $$
 d\ell^2=h_{ij}\,dX^i dX^j=dX^2+dY^2+dZ^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-46e34d3a62d1491e)
+[View →](../../../../equation-mapping.html#corpus-equation-46e34d3a62d1491e)
 
 The distance between two points $\mathbf{p}$ and $\mathbf{q}$ is
 $$
@@ -61,7 +61,7 @@ d(\mathbf{p},\mathbf{q})=
 \sqrt{(X_p-X_q)^2+(Y_p-Y_q)^2+(Z_p-Z_q)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f321b89253b61c9a)
+[View →](../../../../equation-mapping.html#corpus-equation-f321b89253b61c9a)
 
 For fixed void points, this distance does not change with time. Equivalently, with
 $$
@@ -70,7 +70,7 @@ D_h(\mathbf{p},\mathbf{q})
 \sqrt{h_{ij}(p^i-q^i)(p^j-q^j)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-210385bea416c949)
+[View →](../../../../equation-mapping.html#corpus-equation-210385bea416c949)
 the substrate condition is
 $$
 \partial_T h_{ij}=0,
@@ -80,7 +80,7 @@ R^i{}_{jkl}(h)=0,
 \frac{d}{dT}D_h(\mathbf{p},\mathbf{q})=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-850d59a011af5621)
+[View →](../../../../equation-mapping.html#corpus-equation-850d59a011af5621)
 The consequence is immediate: a cosmological scale variable cannot be a time-dependent scale factor multiplying the void metric. It must be an effective summary of medium state, transport history, or observer records.
 
 This gives a clean accounting identity for later effective geometry:
@@ -96,7 +96,7 @@ O,
 +0_{\mathrm{void}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c16f849710508169)
+[View →](../../../../equation-mapping.html#corpus-equation-c16f849710508169)
 The void contribution is exactly zero. Effective curvature, effective expansion, and effective anisotropy may still be recovered from Noether sea state, assembly clock/ruler response, signal transport, and observer reconstruction. They just cannot be charged to the Euclidean container.
 
 The zero term is also a topology-and-bundle statement. Because the void is $\mathbb{R}^3$, it is contractible and parallelizable; its oriented orthonormal frame bundle is globally trivial,
@@ -104,7 +104,7 @@ $$
 F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9c718bbca3ed6ab9)
+[View →](../../../../equation-mapping.html#corpus-equation-9c718bbca3ed6ab9)
 and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$. The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
 
 > **Plain language:** The void is the ordinary three-dimensional space of rulers and straight-line distance. What changes is the content moving through it, not the space itself.
@@ -124,20 +124,20 @@ $$
 \nabla h=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-574414a3aaaead6d)
+[View →](../../../../equation-mapping.html#corpus-equation-574414a3aaaead6d)
 and is torsion-free. In Cartesian coordinates, all Christoffel symbols vanish:
 $$
 \Gamma^i{}_{jk}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-598cf92bc0cace33)
+[View →](../../../../equation-mapping.html#corpus-equation-598cf92bc0cace33)
 
 For the declared flat Levi-Civita connection, the geodesic equation in Cartesian coordinates becomes
 $$
 \frac{d^2X^i}{ds^2}=0,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2af01472cd367095)
+[View →](../../../../equation-mapping.html#corpus-equation-2af01472cd367095)
 with $s$ Euclidean arclength, so its solutions are straight lines.
 
 Topologically, the void stays $\mathbb{R}^3$: contractible, simply connected, and without substrate-level topology change. The interesting topology is not in the container. It is in architrino worldlines and assembly configurations inside the container.
@@ -151,7 +151,7 @@ $$
 \mathcal{C}=\{X,Y,Z\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-05df58e99bd76a4a)
+[View →](../../../../equation-mapping.html#corpus-equation-05df58e99bd76a4a)
 on the Euclidean void.
 
 This differs from General Relativity. In GR, coordinates may function as gauge labels under diffeomorphism invariance. In $\mathbb{A}\mathbb{A}\mathbb{A}$, once a Cartesian chart has been declared, it names fixed spatial locations in the substrate. The chart is still just a representation for components and simulation addresses; it is not an extra ontological ingredient. Coordinate points do not move, curve, or stretch.
@@ -169,13 +169,13 @@ $$
 (j,T_t,\mathbf X_j(T_t),i,T_r,\mathbf X_i(T_r))
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c484874c67d67d6b)
+[View →](../../../../equation-mapping.html#corpus-equation-c484874c67d67d6b)
 The causal-root condition is then
 $$
 \|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|_h=c_f(T_r-T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4b138a54485d4700)
+[View →](../../../../equation-mapping.html#corpus-equation-4b138a54485d4700)
 This condition is invariant under Euclidean translations and rotations of the chosen chart. The chart may be changed for calculation, but relabeling does not move the underlying void point where the emission occurred.
 
 ## Curvilinear Coordinates
@@ -187,7 +187,7 @@ $$
 h=dr^2+r^2d\theta^2+r^2\sin^2\theta\,d\phi^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e44e96583aa67435)
+[View →](../../../../equation-mapping.html#corpus-equation-e44e96583aa67435)
 with components
 $$
 h_{ij}=
@@ -198,7 +198,7 @@ h_{ij}=
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-30c4fd8263c17e84)
+[View →](../../../../equation-mapping.html#corpus-equation-30c4fd8263c17e84)
 
 In cylindrical coordinates $(\rho,\phi,z)$,
 $$
@@ -212,14 +212,14 @@ h_{ij}=
 \end{pmatrix}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-468ca128cc62b125)
+[View →](../../../../equation-mapping.html#corpus-equation-468ca128cc62b125)
 
 The metric components look different in these coordinates, but the geometry has not changed. Curvature is coordinate-invariant, and
 $$
 R^i{}_{jkl}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2eb51da7a56c1da7)
+[View →](../../../../equation-mapping.html#corpus-equation-2eb51da7a56c1da7)
 in every coordinate system.
 
 ## Index Notation and Tensor Operations
@@ -229,7 +229,7 @@ $$
 h_{ij}=\delta_{ij},\qquad h^{ij}=\delta^{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d0b2005a6df8c8df)
+[View →](../../../../equation-mapping.html#corpus-equation-d0b2005a6df8c8df)
 
 Raising and lowering indices then changes notation but not the component value:
 $$
@@ -238,7 +238,7 @@ v_i=h_{ij}v^j=\delta_{ij}v^j=v^i,
 v^i=h^{ij}v_j=\delta^{ij}v_j=v_i
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-71dc410249cdad23)
+[View →](../../../../equation-mapping.html#corpus-equation-71dc410249cdad23)
 
 The dot product and norm are
 $$
@@ -247,20 +247,20 @@ $$
 =u^1v^1+u^2v^2+u^3v^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-abd08a67822fb8bb)
+[View →](../../../../equation-mapping.html#corpus-equation-abd08a67822fb8bb)
 and
 $$
 \|\mathbf{v}\|^2=h_{ij}v^i v^j=(v^1)^2+(v^2)^2+(v^3)^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5e93be160258d5eb)
+[View →](../../../../equation-mapping.html#corpus-equation-5e93be160258d5eb)
 
 The spatial volume element in Cartesian coordinates is
 $$
 dV=\sqrt{\det h}\,d^3X=dX\,dY\,dZ
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5f60583bc4888534)
+[View →](../../../../equation-mapping.html#corpus-equation-5f60583bc4888534)
 
 Surface elements pick up the usual Jacobian factors when parametrized, for example $dA=r^2\sin\theta\,d\theta\,d\phi$ on a constant-$r$ sphere.
 
@@ -279,7 +279,7 @@ $$
 =h^{ij}\partial_i f\,\mathbf{e}_j
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0c325814536b5ba3)
+[View →](../../../../equation-mapping.html#corpus-equation-0c325814536b5ba3)
 
 The divergence of a vector field is given by the invariant formula
 $$
@@ -287,7 +287,7 @@ $$
 =\frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,v^i\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7c557c9deebfbdb2)
+[View →](../../../../equation-mapping.html#corpus-equation-7c557c9deebfbdb2)
 
 In Cartesian coordinates $\sqrt{\det h}=1$, so this reduces to
 $$
@@ -296,7 +296,7 @@ $$
 =\partial_{X^1} v^1+\partial_{X^2} v^2+\partial_{X^3} v^3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4a03ae6e0da85106)
+[View →](../../../../equation-mapping.html#corpus-equation-4a03ae6e0da85106)
 
 The scalar Laplacian in Cartesian coordinates is
 $$
@@ -304,7 +304,7 @@ $$
 =\partial_{X^1}^2f+\partial_{X^2}^2f+\partial_{X^3}^2f
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b7c27fb402defd01)
+[View →](../../../../equation-mapping.html#corpus-equation-b7c27fb402defd01)
 
 In curvilinear coordinates on the same flat geometry, the invariant scalar Laplacian is
 $$
@@ -313,7 +313,7 @@ $$
 \frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,h^{ij}\partial_j f\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a0c3372a6954c172)
+[View →](../../../../equation-mapping.html#corpus-equation-a0c3372a6954c172)
 
 The tensor expressions are the invariant statements. The component formulas change with the chosen chart.
 
@@ -324,7 +324,7 @@ $$
 E(3)=\mathbb{R}^3\rtimes O(3)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9bf150987f7a71fc)
+[View →](../../../../equation-mapping.html#corpus-equation-9bf150987f7a71fc)
 
 This combines:
 
@@ -337,14 +337,14 @@ $$
 g\cdot\mathbf X=R\mathbf X+\mathbf a
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4889d5efc0407266)
+[View →](../../../../equation-mapping.html#corpus-equation-4889d5efc0407266)
 
 The metric is invariant under all such transformations:
 $$
 g^*h=h
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f803c90ed11a7db3)
+[View →](../../../../equation-mapping.html#corpus-equation-f803c90ed11a7db3)
 
 Homogeneity and isotropy give the container-level consequences:
 
@@ -367,7 +367,7 @@ $$
 \mathbf X(T)=\mathbf X_0+\mathbf V_0 T
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2c33b5002c814ba3)
+[View →](../../../../equation-mapping.html#corpus-equation-2c33b5002c814ba3)
 
 Only physical interactions can bend a trajectory. A curved path in the void is not the same thing as curvature of the void:
 
@@ -416,7 +416,7 @@ $$
 a_{\mathrm{eff}}(t_{\mathrm{eff}})=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(T),O(t_{\mathrm{eff}})]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f776a93cc8715c61)
+[View →](../../../../equation-mapping.html#corpus-equation-f776a93cc8715c61)
 Here $\mathcal{N}_{\mathrm{sea}}(T)$ denotes the relevant Noether sea state variables, and $O(t_{\mathrm{eff}})$ denotes observer records and calibration data in the effective chart. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
 
 It yields a scalar global scale factor only when the retained Noether sea record and observer family are statistically homogeneous and isotropic over the declared averaging cell. Without that condition, the honest output is a local or tensorial effective metric summary such as $g^{\mathrm{eff}}_{\mu\nu}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, or an anisotropic scale response $a_{\mathrm{eff},ij}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, not a single FRW-style $a_{\mathrm{eff}}(t_{\mathrm{eff}})$.
@@ -428,7 +428,7 @@ a_0(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})=\frac{1}{3}h^{ij}a_{\mathrm{eff},ij}(x_
 a_{\langle ij\rangle}=a_{\mathrm{eff},ij}-a_0 h_{ij}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9f412c51252b80d8)
+[View →](../../../../equation-mapping.html#corpus-equation-9f412c51252b80d8)
 The scalar scale-factor summary is admissible only in a sector where the trace-free obstruction $a_{\langle ij\rangle}$ is below the declared isotropy tolerance. The same obstruction appears as ruler anisotropy in response tensors such as $B_{ij}$ and in Hughes-Drever-style orientational residuals; it is a medium-and-assembly response question, not a hidden anisotropy of the void.
 
 These effective variables must not be interpreted as
@@ -436,7 +436,7 @@ $$
 h_{ij}(T)=a_{\mathrm{eff}}^2(t_{\mathrm{eff}})\delta_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4bca2a40c7b7f545)
+[View →](../../../../equation-mapping.html#corpus-equation-4bca2a40c7b7f545)
 for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging. Any effective cosmological expansion factor belongs to observer-level metric reconstruction.
 
 The no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record, frequency-independent fractional redshift across declared clean spectral-line families, and photon-channel group-delay dispersion below the admitted time-of-flight tolerance.
@@ -458,7 +458,7 @@ $$
 \{(a,T_t):T_t<T,\ \|\mathbf X-\mathbf X_a(T_t)\|_h=c_f(T-T_t)\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5fcc7c89d3a27577)
+[View →](../../../../equation-mapping.html#corpus-equation-5fcc7c89d3a27577)
 This set records source identities and emission times whose causal isochrons pass through the point. It is a provenance index set, not a field. It has no independent state variables, stress, density, energy, or equation of motion.
 
 Equivalently, $\mathcal{P}(\mathbf X,T)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf X,T)$ must converge after the transmitter-side acceleration weights, inverse-square distance factors, and transmitter-side transversality floors are applied. Convergence of the Noether sea background is not a new property of the void. It is a condition on the population of provenance labels and their wake weights.

@@ -1248,6 +1248,26 @@ void run(
   }
   const std::string output_grade =
       run_grade == "display" ? "display-only" : result.evidence_status;
+  std::size_t retained_warm_root_cell_count = 0U;
+  const auto count_warm_cells = [&](const auto& snapshot) {
+    for (const auto& row : snapshot.root_certificates) {
+      retained_warm_root_cell_count += row.certificate.root_free_cells.size();
+    }
+  };
+  for (const auto& step : result.steps) {
+    for (const auto& substep : step.substeps) {
+      count_warm_cells(substep.start_snapshot);
+      if (substep.endpoint_snapshot.has_value()) {
+        count_warm_cells(*substep.endpoint_snapshot);
+      }
+    }
+    if (step.accepted_snapshot.has_value()) {
+      count_warm_cells(*step.accepted_snapshot);
+    }
+    if (step.recertification_snapshot.has_value()) {
+      count_warm_cells(*step.recertification_snapshot);
+    }
+  }
   std::cout << "{\"schema\":\"eom_borg_native_response/v1\","
                "\"deterministicPayloadScope\":"
                "\"claim-fields-and-published-extensions/v1\","
@@ -1273,6 +1293,8 @@ void run(
             << ",\"haltCode\":\"" << json_escape(result.halt_code)
             << "\",\"memoryBudgetBytes\":" << result.memory_budget_bytes
             << ",\"memoryEstimateBytes\":" << result.memory_estimate_bytes
+            << ",\"retainedWarmRootCellCount\":"
+            << retained_warm_root_cell_count
             << ",\"causalHistoryRetention\":";
   if (causal_retention_certificate.has_value()) {
     std::cout

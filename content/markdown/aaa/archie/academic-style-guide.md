@@ -183,11 +183,11 @@ Use one fixed label in evidence blocks: `Claim grade:`. The allowed values are:
 - `inferred`: a stated conclusion drawn from derived or measured premises, with the extra inference identified
 - `guessed`: a candidate interpretation or hypothesis that is not yet derived, measured, or securely inferred
 
-Every claim block must state an operator-checkable falsifier: the observation that would overturn the claim and the file, instrument, command, or artifact where that observation can be checked. A measured claim also names its instrument, the instrument’s evidence grade, and the boundary of what it can establish. Agreement with a replay, golden output, or same-implementation control is determinism evidence unless an independent reference is named.
+Every claim block must state a checkable falsifier: the observation or counterexample that would overturn the claim, together with enough information for a reader to evaluate it. A measured claim also names its instrument, the kind of evidence it provides, and the boundary of what it can establish. Repeating the same computation establishes repeatability; correctness requires comparison with an independent derivation, measurement, or reference.
 
 Example:
 
-> Claim grade: measured. The independent closed-form root oracle found one simple root on the declared interval. Falsifier: rerun the named oracle artifact and find zero, multiple, or non-simple roots on that same interval.
+> Claim grade: derived. The function $f(x)=x-1$ has exactly one simple root on $[0,2]$: $f(1)=0$, and its derivative is $1$ throughout the interval. Falsifier: a second zero of this function, or a zero derivative at $x=1$, would contradict the claim.
 
 Use these tags for explicit claim or evidence blocks, not as status flags scattered through ordinary explanatory prose.
 
@@ -211,10 +211,10 @@ Reader-facing prose should state the architecture, claim, rule, or curriculum di
 
 Use present-tense, source-of-truth wording:
 
-- "The series uses age-numbered books."
-- "A source illustration is..."
-- "The production target is..."
-- "The active proof obligation is..."
+- "The chapter distinguishes two cases."
+- "The diagram shows the causal geometry."
+- "The derivation assumes a smooth trajectory."
+- "The remaining proof obligation is..."
 
 Avoid process-history wording:
 
@@ -223,7 +223,7 @@ Avoid process-history wording:
 - "This is now obsolete..."
 - "The old version used to..."
 
-Historical or process context belongs only where it serves a specific purpose: historical analysis, an Architecture Decision Record, a priority ledger, a release note, an audit trail, or a source comparison where the earlier state is evidence. In ordinary textbook, outreach, style-guide, and reference prose, Git history and GitHub records are enough to preserve the past. The document itself should move forward.
+Historical context belongs where it helps explain the subject, such as a history of an idea or a comparison in which an earlier formulation is relevant evidence. Ordinary textbook and reference prose should present the current explanation without narrating its drafting or revision history.
 
 ## Project-Specific Rules
 
@@ -258,8 +258,8 @@ KaTeX authoring rules:
 ### Links
 
 - Use relative link targets resolved from the current document.
-- Do not use root-absolute deployment paths such as `/content/...` or machine-local paths such as `/Users/...`.
-- Documents under `content/markdown/aaa` must not link into `reference/priorities`; promote or restate the required material inside the reader-facing corpus.
+- Link to published chapters, references, or data sources rather than locations on an author's machine.
+- Keep the explanation self-contained. State the necessary definitions, assumptions, and reasoning in the text; links provide supporting detail rather than access to unpublished working notes.
 
 ### Causal-delay terminology
 
@@ -320,7 +320,7 @@ If a sentence could refer either to the background, the contents, or the emergen
 
 ### Reader-facing posture
 
-Documents in `content/markdown/aaa` should be reader-ready.
+Chapters and explanatory references should be complete enough to read without access to private working notes.
 
 Avoid:
 
@@ -328,6 +328,12 @@ Avoid:
 - planning checklists inside textbook prose
 - status flags embedded in the body
 - references to private collaboration context
+
+### Self-contained exposition
+
+Organize each explanation in the order a reader needs to understand it: definitions and assumptions, reasoning and evidence, then conclusions and remaining mathematical questions. Preserve the substance of an argument without reproducing the sequence in which it was discovered or drafted.
+
+Identify published computational evidence by a comprehensible title and stable public identifier, and explain what it establishes. Technical reproduction details belong in the accompanying methods or data-availability record. Raw content hashes do not belong in explanatory prose or visible link labels; hashes within URLs and functional link anchors may be retained.
 
 ## Section-Length Standard
 
@@ -377,7 +383,7 @@ Factual, legal, and scientific assertions require support appropriate to their k
 
 When AI systems, including generative-AI tools or local AI agents, materially assist a publication, they may be acknowledged by a documented, reader-comprehensible contribution role such as research synthesis, analysis, drafting, critique, software implementation, or review support. Do not claim that every AI use is individually recorded or that attribution is exhaustive unless such a record actually exists. Named human contributors retain editorial and publication accountability; do not present an AI system as an independent legal person or academically accountable author.
 
-Repository history, review records, and source notes support transparency and reconstruction, but they do not prove that every claim has been independently verified. Do not imply passage-level AI provenance unless the project actually retains that record.
+Published source notes and contribution statements support transparency, but they do not prove that every claim has been independently verified. Do not attribute individual passages to particular AI systems unless that attribution is documented.
 
 ## Editorial Checklist
 

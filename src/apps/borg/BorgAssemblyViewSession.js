@@ -2,6 +2,7 @@ import {
   ASSEMBLY_VIEW_RECORD_SCHEMA,
   createEomHistoryDataset,
 } from "../shared/EomHistoryDataset.mjs";
+import { borgBraidRecordLabel } from "./BorgBraidRecordCatalog.js";
 
 export const BORG_ASSEMBLY_VIEW_SESSION_SCHEMA = "borg-assembly-view-session.v1";
 export const BORG_ASSEMBLY_VIEW_MODE = "assembly-view-replay";
@@ -221,6 +222,7 @@ export function createBorgAssemblyViewPresentation(entry, { time } = {}) {
   const sourceStatuses = readSourceStatuses(entry.rawRecord);
   return Object.freeze({
     runtimeMode: BORG_ASSEMBLY_VIEW_MODE,
+    catalogLabel: borgBraidRecordLabel(entry.sourceId),
     claimLabel: dataset.provenance.claimGrade === "chart-hypothesis"
       ? "Prescribed Geometry"
       : "Evolved record",

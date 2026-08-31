@@ -36,7 +36,7 @@ W_{ij}^{\mathrm{acc}}(T;T_t)
 \hat{\mathbf r}_{ij}(T;T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7be58ac89a315adf)
+[View →](../../../../../equation-mapping.html#corpus-equation-7be58ac89a315adf)
 
 The only vector direction inside one hit is the delayed radial line of action $\hat{\mathbf{r}}_{ij}$. There is no primitive cross-product force, no intrinsic magnetic right-hand-rule term, and no point-particle spin axis. Any angular, magnetic-like, spin-like, or helicity-like behavior must be reconstructed from delayed geometry, superposition, assembly circulation, and measurement coupling.
 
@@ -45,7 +45,7 @@ $$
 S=I\omega,\qquad I=\alpha m_e R^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3e5a77a3da1ab2dc)
+[View →](../../../../../equation-mapping.html#corpus-equation-3e5a77a3da1ab2dc)
 then its equatorial surface speed would be
 $$
 v_{\mathrm{surf}}
@@ -55,7 +55,7 @@ R\omega
 \frac{S}{\alpha m_e R}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3c05c41ec6403f8b)
+[View →](../../../../../equation-mapping.html#corpus-equation-3c05c41ec6403f8b)
 For the classical electron radius $r_e=e^2/(4\pi\epsilon_0 m_e c^2)$ and $S\sim\hbar$, this is of order hundreds of times $c$. If $R$ is enlarged enough to keep $v_{\mathrm{surf}}<c$, the electron is no longer a small localized charged constituent on atomic scales; if $R\to0$, the rigid-body angular momentum vanishes. The experimental lesson is therefore not that electron spin is unreal. It is that the magnetic moment, Stern-Gerlach response, anomalous Zeeman structure, and spin-$\tfrac{1}{2}$ label must be recovered from an internal transformation and response ledger, not from a literal rotating point or sphere.
 
 The important qualification is that angular momentum still becomes mandatory once the dynamics are studied as an isolated rotationally symmetric system. The Euclidean void is invariant under spatial rotations. For the action-derived delayed model, rotational symmetry gives a conserved angular-momentum functional. That functional is not a new substance; it is the Noether ledger associated with organized motion and in-flight causal-wake history.
@@ -74,7 +74,7 @@ $$
 \sum_i \mathbf X_i(T)\times\mu_{\text{arch}}\mathbf V_i(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b7fe12aea3b2a0c)
+[View →](../../../../../equation-mapping.html#corpus-equation-6b7fe12aea3b2a0c)
 
 The wake part is a history functional. In the master-equation conservation scaffold it is written as
 
@@ -88,7 +88,7 @@ $$
 \mathbf X_i(T')\times\mathbf F_i(T')\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e19adadccdc5ea4e)
+[View →](../../../../../equation-mapping.html#corpus-equation-e19adadccdc5ea4e)
 
 where $\mathbf{F}_i=\mu_{\text{arch}}\mathbf{a}_i$ is only a bookkeeping force corresponding to the acceleration-first law. The conserved total ledger is
 
@@ -98,7 +98,7 @@ $$
 \mathbf{L}_{\text{mech}}(T)+\mathbf{L}_{\text{wake}}(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8b3fff18c6143341)
+[View →](../../../../../equation-mapping.html#corpus-equation-8b3fff18c6143341)
 
 For exact isolated solutions of the symmetry-preserving delayed action, $\mathbf{L}_{\text{tot}}$ is conserved. In regularized numerical models, conservation of $\mathbf{L}_{\text{tot}}$ is a validation condition: the chosen regularization must preserve the same rotation symmetry before exact conservation can be claimed.
 
@@ -131,7 +131,7 @@ c_f(T-T_t),
 T_t < T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6feed0261c6f57e1)
+[View →](../../../../../equation-mapping.html#corpus-equation-6feed0261c6f57e1)
 
 The sign of $q_1q_2$ determines attraction or repulsion:
 
@@ -146,7 +146,7 @@ $$
 \end{cases}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cffb2d7a2ea81ce5)
+[View →](../../../../../equation-mapping.html#corpus-equation-cffb2d7a2ea81ce5)
 
 The instantaneous hit is radial along the delayed line of action. If the receiver velocity is decomposed as
 
@@ -156,7 +156,7 @@ $$
 V_r\hat{\mathbf r}_{12}+\mathbf V_{\perp}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a4b380bdb7c9729)
+[View →](../../../../../equation-mapping.html#corpus-equation-3a4b380bdb7c9729)
 
 then the hit changes the along-the-line component directly, while the transverse component changes only through the later rotation of the line of action. The instantaneous power is proportional to $V_r$:
 
@@ -170,7 +170,7 @@ P_{12}(T;T_t)
 V_r
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c897089d83dd889e)
+[View →](../../../../../equation-mapping.html#corpus-equation-c897089d83dd889e)
 
 An opposite-polarity flyby can therefore convert transverse motion into a capture or spiral if the delay geometry and impact parameter place the pair inside the relevant basin. A same-polarity flyby normally does the opposite: it pushes the paths apart. In both cases the spin statement remains the same. A flyby pair has no intrinsic spin variable. It has only motion, causal wakes, and the total angular-momentum ledger of that motion-plus-wake history.
 
@@ -188,7 +188,7 @@ A_{\text{cycle}}
 2\pi I
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5451bcb40deb226c)
+[View →](../../../../../equation-mapping.html#corpus-equation-5451bcb40deb226c)
 
 Here $I$ is the radian-normalized rotational-action variable. In a reduced circular effective chart it plays the role that angular momentum plays in ordinary mechanics. But in the exact delayed theory, $I$ is only the local assembly-side projection of a larger history functional. Partner hits, self-hit roots, and in-flight wake terms must all be included before the conservation statement is complete.
 
@@ -212,7 +212,7 @@ c_f(T-T_t),
 T_t < T
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f3438c9fa28d1b6b)
+[View →](../../../../../equation-mapping.html#corpus-equation-f3438c9fa28d1b6b)
 
 For uniform circular motion, the self-delay equation in units with $c_f=1$ is
 
@@ -224,7 +224,7 @@ $$
 s=R\omega
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-32cf291b3105f5f4)
+[View →](../../../../../equation-mapping.html#corpus-equation-32cf291b3105f5f4)
 
 The principal self branch turns on only for $s > 1$. Its Jacobian is
 
@@ -236,7 +236,7 @@ J_s
 1-\frac{\delta_s}{2}\cot(\delta_s/2)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-13ca365375bed543)
+[View →](../../../../../equation-mapping.html#corpus-equation-13ca365375bed543)
 
 Near the self-hit onset, $J_s\to0^+$ and the unregularized response develops a strong Jacobian wall. This is why the maximum-curvature binary is not merely "a tighter orbit." It is a regime in which active self-wake branches, root multiplicity, and branch Jacobians become the dominant accounting.
 
@@ -258,7 +258,7 @@ $$
 J_a=2\mu_{\text{arch}}\rho_a^2\,\omega
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-94ce20f3e0e34977)
+[View →](../../../../../equation-mapping.html#corpus-equation-94ce20f3e0e34977)
 
 Every binary normal coincides with the spin axis, $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf z}$: the ledger is a **rank-one spine** carrying the indexed spin magnitudes $J_a$. The kinematic linear momentum vanishes exactly at rest because each binary is antipodal and is exactly axial under axial group velocity. The B1 transport state therefore reduces to the two scalars $P_\parallel$ and $J_\parallel$, with the origin-independent helicity $\mathbf J\cdot\mathbf P$ as the combined label. Claim level: derived from the prescribed B1 kinematics.
 
@@ -268,7 +268,7 @@ $$
 m_a=\mu_{\text{arch}}\left(\rho_a^2+2h_a^2\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-69031b23d7d36eec)
+[View →](../../../../../equation-mapping.html#corpus-equation-69031b23d7d36eec)
 
 so a binary with small $\rho_a$ can still carry full-scale tilt inertia through $h_a$ while carrying little spin. The two coordinate types therefore separate the spin ledger from the tilt-inertia ledger, which makes the axis sector a gyroscopic problem rather than a quasi-static one. Claim level: exact kinematics of prescribed fixed-coordinate B1 (the tilt inertia is the cycle-averaged fixed-coordinate binary reduction); $\mu_{\text{arch}}$ is the numerical site weight of the working models, not a primitive mass.
 
@@ -302,7 +302,7 @@ $$
 \Delta\mathbf L_{\text{wake},\perp}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-506aca2e5ea80e8b)
+[View →](../../../../../equation-mapping.html#corpus-equation-506aca2e5ea80e8b)
 
 with the axial cost of a binary inclination only second order — tilting stores transverse angular momentum at zero first-order axial price. Three structural constraints then reshape the A1 allocation problem:
 
@@ -324,7 +324,7 @@ $$
 \sum_{a=1}^{3}s_a\rho_a e^{i\phi_a}=0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-76a653275e26c9e7)
+[View →](../../../../../equation-mapping.html#corpus-equation-76a653275e26c9e7)
 
 On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated B1 subset; the $2\pi/4\pi$ transport response and any group-velocity orientation preference remain open.
 
@@ -338,7 +338,7 @@ m_a\ddot\eta_a^{x}+J_a\dot\eta_a^{y}+\tau_a\eta_a^{y}=T_a^{x}(q),
 m_a\ddot\eta_a^{y}-J_a\dot\eta_a^{x}-\tau_a\eta_a^{x}=T_a^{y}(q)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5bbd843a5325bed4)
+[View →](../../../../../equation-mapping.html#corpus-equation-5bbd843a5325bed4)
 
 assemble into the pencil
 
@@ -346,7 +346,7 @@ $$
 \det\!\left(\lambda^2M+\lambda G+\Gamma-K\right)=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-794d0d1c004b093f)
+[View →](../../../../../equation-mapping.html#corpus-equation-794d0d1c004b093f)
 
 with $M$ the diagonal tilt-inertia matrix, $G$ the gyroscopic (spin) block, and $\Gamma$ the spin-transport block of the baseline axial torques, required for the exact global null of $K-\Gamma$ and hence for the quotient discipline. The eigenvector components pair into complex tilt amplitudes $\zeta_a=\eta_a^x+i\eta_a^y$, so each quotient eigenvalue is a whirl mode: a rotating precession pattern with growth rate $\operatorname{Re}\lambda$ and whirl frequency $\operatorname{Im}\lambda$.
 
@@ -368,7 +368,7 @@ I_a
 I_a\hat{\mathbf{n}}_a.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ba2ff6c0d643f6ba)
+[View →](../../../../../equation-mapping.html#corpus-equation-ba2ff6c0d643f6ba)
 
 This is not yet the exact Noether charge; it is the indexed-binary projection of the rotational ledger. The braid-level accounting target is
 
@@ -378,7 +378,7 @@ $$
 \sum_{a=1}^{3}\mathbf{I}_a+\mathbf{L}_{\text{wake}},
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-695bfd5ae31b6c3b)
+[View →](../../../../../equation-mapping.html#corpus-equation-695bfd5ae31b6c3b)
 
 with the understanding that the exact expression must be evaluated from architrino worldlines, active root branches, and causal-wake history.
 
@@ -392,7 +392,7 @@ $$
 \Delta \mathbf{J}_{\text{ext}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-12ac687980400525)
+[View →](../../../../../equation-mapping.html#corpus-equation-12ac687980400525)
 
 The companion energy ledger is
 
@@ -404,7 +404,7 @@ $$
 \Delta E_{\text{wake}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d040272ac67b9f8e)
+[View →](../../../../../equation-mapping.html#corpus-equation-d040272ac67b9f8e)
 
 The actual partition is a dynamics problem determined by conservation, causal-root admissibility, phase-lock constraints, branch stability, and coupling geometry. Assigning the entire $\hbar$ increment to one binary by fiat would erase the main mechanism.
 
@@ -420,7 +420,7 @@ $$
 \theta_{\ell,0}+\int_{T_0}^{T}\omega_\ell(T')\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1515b04ce6a32de6)
+[View →](../../../../../equation-mapping.html#corpus-equation-1515b04ce6a32de6)
 
 its phase. Choose in-plane basis vectors with
 
@@ -428,7 +428,7 @@ $$
 \mathbf u_\ell(T)\times\mathbf v_\ell(T)=\hat{\mathbf n}_\ell(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1aeb9b02648e62a5)
+[View →](../../../../../equation-mapping.html#corpus-equation-1aeb9b02648e62a5)
 
 and define
 
@@ -440,7 +440,7 @@ $$
 \sin\!\big(\theta+\phi_\ell\big)\mathbf v_\ell
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b20ba3b511dafabe)
+[View →](../../../../../equation-mapping.html#corpus-equation-b20ba3b511dafabe)
 
 where $\phi_\ell$ is the binary phase offset in the selected chart. For member $\alpha\in\{+1,-1\}$, use the local position model
 
@@ -450,7 +450,7 @@ $$
 \mathbf X(T)+\mathbf c_\ell(T)+\alpha R_\ell(T)\mathbf e_\ell(\theta_\ell(T))
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-323d48004e388466)
+[View →](../../../../../equation-mapping.html#corpus-equation-323d48004e388466)
 
 Here $\mathbf X(T)$ is the core center and $\mathbf c_\ell(T)$ records layer-center offset. A separated-scale internal gauge may set these terms aside, but only as an approximation.
 
@@ -464,7 +464,7 @@ $$
 \mu_{\text{arch}}\frac{d\mathbf X_{\ell,\alpha}}{dT}(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bdd524258dea545d)
+[View →](../../../../../equation-mapping.html#corpus-equation-bdd524258dea545d)
 
 For nearly circular separated layers, this becomes
 
@@ -477,7 +477,7 @@ $$
 \mathbf L_{\text{tr}}(t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-75738c61c1493497)
+[View →](../../../../../equation-mapping.html#corpus-equation-75738c61c1493497)
 
 where $\mathbf L_{\text{tr}}$ collects center motion, layer-center offsets, changing plane frames, and non-circular corrections.
 
@@ -494,7 +494,7 @@ c_f(T-T_t)
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d2132fc0f5daf8e1)
+[View →](../../../../../equation-mapping.html#corpus-equation-d2132fc0f5daf8e1)
 
 and let
 
@@ -507,7 +507,7 @@ T_t^{(b)}\in\mathcal C_{\ell\alpha,m\beta}(T)
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8e3ca2ac9655dcbd)
+[View →](../../../../../equation-mapping.html#corpus-equation-8e3ca2ac9655dcbd)
 
 record the active transmitter-receiver branches. For member phases, use
 
@@ -517,7 +517,7 @@ $$
 \theta_\ell(T)+\frac{1-\alpha}{2}\pi
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f039b1d02185f8e9)
+[View →](../../../../../equation-mapping.html#corpus-equation-f039b1d02185f8e9)
 
 The phase-closure residual of a branch is
 
@@ -533,7 +533,7 @@ $$
 2\pi k_{\ell m}^{(b)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-af44ecf68c4a2f38)
+[View →](../../../../../equation-mapping.html#corpus-equation-af44ecf68c4a2f38)
 
 An active branch must satisfy the causal-root equation and the relevant phase window,
 
@@ -542,7 +542,7 @@ $$
 \equiv0\pmod{2\pi}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eec10bbb7ad502d4)
+[View →](../../../../../equation-mapping.html#corpus-equation-eec10bbb7ad502d4)
 
 inside the tolerance of the regularized chart.
 
@@ -557,7 +557,7 @@ T_t < T,\ H(T-T_t)=1
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-17627d832194ab72)
+[View →](../../../../../equation-mapping.html#corpus-equation-17627d832194ab72)
 
 with the trivial instantaneous branch excluded. This history is path-history data; it is not determined by the current position and velocity alone.
 
@@ -574,7 +574,7 @@ $$
 {\left\|\mathbf r_{\ell\alpha,m\beta}^{(b)}\right\|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cff4f85bdb4cfa69)
+[View →](../../../../../equation-mapping.html#corpus-equation-cff4f85bdb4cfa69)
 
 and
 
@@ -590,7 +590,7 @@ c_f-\mathbf V_{\ell,\alpha}(T)\cdot
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6646898e17b66c59)
+[View →](../../../../../equation-mapping.html#corpus-equation-6646898e17b66c59)
 and
 $$
 W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
@@ -598,7 +598,7 @@ W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
 \frac{c_f}{|D_{t,\ell\alpha,m\beta}^{(b)}|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7397853f63a4b4de)
+[View →](../../../../../equation-mapping.html#corpus-equation-7397853f63a4b4de)
 
 The branch force-like bookkeeping term is
 
@@ -612,7 +612,7 @@ W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5fb839f81ac05a7f)
+[View →](../../../../../equation-mapping.html#corpus-equation-5fb839f81ac05a7f)
 
 The corresponding branch torque is
 
@@ -623,7 +623,7 @@ $$
 \mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9d8e1da887188003)
+[View →](../../../../../equation-mapping.html#corpus-equation-9d8e1da887188003)
 
 The delayed wake contribution is therefore
 
@@ -637,7 +637,7 @@ $$
 \boldsymbol{\tau}_{\ell\alpha\leftarrow m\beta}^{(b)}(T')\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-65ebf6b061a58229)
+[View →](../../../../../equation-mapping.html#corpus-equation-65ebf6b061a58229)
 
 The working three-layer total is
 
@@ -654,7 +654,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-52afb9048abb309e)
+[View →](../../../../../equation-mapping.html#corpus-equation-52afb9048abb309e)
 
 For isolated solutions of a symmetry-preserving delayed action, this total is the conserved rotational ledger. In regularized working models, conservation of this quantity is a validation target.
 
@@ -673,7 +673,7 @@ R_\ell^2\Delta\omega_\ell
 2\mu_{\text{arch}}R_\ell^2\omega_\ell\,\Delta\hat{\mathbf n}_\ell
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d121faad3162d8cb)
+[View →](../../../../../equation-mapping.html#corpus-equation-d121faad3162d8cb)
 
 while the wake increment is
 
@@ -686,7 +686,7 @@ $$
 \boldsymbol{\tau}^{(b)}(T')\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9c5da7410aec9071)
+[View →](../../../../../equation-mapping.html#corpus-equation-9c5da7410aec9071)
 
 Projecting onto a transaction axis $\hat{\mathbf a}$ gives the scalar bridge convention
 
@@ -703,7 +703,7 @@ $$
 \Delta I_{\text{accepted}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f9a73c1d3a87aa96)
+[View →](../../../../../equation-mapping.html#corpus-equation-f9a73c1d3a87aa96)
 
 For a positive one-cycle accepted transaction, $\Delta I_{\text{accepted}}=+\hbar$. The partition among binary 1, binary 2, binary 3, and wake channels must therefore be solved from causal-root admissibility, phase lock, branch stability, and coupling geometry.
 
@@ -720,7 +720,7 @@ $$
 \mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cd2ee64596ac8048)
+[View →](../../../../../equation-mapping.html#corpus-equation-cd2ee64596ac8048)
 
 Since $\frac{d}{dT}\big(\mathbf X\times\mu_{\text{arch}}\mathbf V\big)=\mathbf X\times\mathbf F$ for each architrino worldline, the exact layer mechanical increment is
 
@@ -730,7 +730,7 @@ $$
 \int_{T_i}^{T_f}\mathbf T_\ell(T')\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d3cef102be0e324d)
+[View →](../../../../../equation-mapping.html#corpus-equation-d3cef102be0e324d)
 
 The master-equation scaffold therefore gives the core mechanical change
 
@@ -744,7 +744,7 @@ $$
 \sum_{\ell\in\{1,2,3\}}\mathbf T_\ell(T')\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b022f0146df43615)
+[View →](../../../../../equation-mapping.html#corpus-equation-b022f0146df43615)
 
 The wake functional supplies the complementary in-flight ledger:
 
@@ -758,7 +758,7 @@ $$
 \Delta\mathbf L_{\text{wake},\partial}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2a6083ebefc84bad)
+[View →](../../../../../equation-mapping.html#corpus-equation-2a6083ebefc84bad)
 
 Here $\Delta\mathbf L_{\text{wake},\partial}$ denotes angular momentum still carried across the boundary of the chosen core subsystem at the end of the transition window. For a completely isolated core-plus-source system this boundary term is balanced by source-channel recoil. For a reduced core-only ledger it is the retained wake channel that appears as $\Delta\mathbf L_{\text{wake}}$ in the bridge equations.
 
@@ -770,7 +770,7 @@ $$
 -\Delta I_{\text{accepted}}\hat{\mathbf a}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e432291fe2d7c1dd)
+[View →](../../../../../equation-mapping.html#corpus-equation-e432291fe2d7c1dd)
 
 Then conservation over the combined source, core, and wake ledger gives the vector partition equation
 
@@ -786,7 +786,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a9356662acf775b6)
+[View →](../../../../../equation-mapping.html#corpus-equation-a9356662acf775b6)
 
 This vector equation is the projected form of
 
@@ -798,7 +798,7 @@ $$
 \mathbf L_{\text{wake}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ee98401d06fb6665)
+[View →](../../../../../equation-mapping.html#corpus-equation-ee98401d06fb6665)
 
 It is stronger than the scalar $\hbar$ bookkeeping equation because it keeps the transaction axis, binary normals, wake recoil, and source recoil in the same vector ledger.
 
@@ -814,7 +814,7 @@ $$
 \hat{\mathbf a}\cdot\Delta\mathbf L_{\text{wake},\partial}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bc395d415224ea2c)
+[View →](../../../../../equation-mapping.html#corpus-equation-bc395d415224ea2c)
 
 Then the projected accepted transaction satisfies
 
@@ -826,7 +826,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-be51e5baebeaa099)
+[View →](../../../../../equation-mapping.html#corpus-equation-be51e5baebeaa099)
 
 For one positive closed-cycle action transaction,
 
@@ -836,7 +836,7 @@ $$
 \Delta I_{\text{accepted}}=\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1032a96bf245d258)
+[View →](../../../../../equation-mapping.html#corpus-equation-1032a96bf245d258)
 
 The dimensionless partition fractions are therefore
 
@@ -850,7 +850,7 @@ $$
 \frac{\Delta I_{\text{wake}}}{\hbar}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aa3cf3b478b2ca54)
+[View →](../../../../../equation-mapping.html#corpus-equation-aa3cf3b478b2ca54)
 
 with
 
@@ -860,7 +860,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d172b824914506a9)
+[View →](../../../../../equation-mapping.html#corpus-equation-d172b824914506a9)
 
 These fractions are not free interpretive weights. They must be computed from the same branch data that appears in $\mathbf T_\ell$: causal roots, Jacobians, phase windows, binary normals, branch multiplicities, and the source-channel coupling geometry.
 
@@ -876,7 +876,7 @@ $$
 \eta_2=1-a-n_1b-w
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8b5b99c07f4247ca)
+[View →](../../../../../equation-mapping.html#corpus-equation-8b5b99c07f4247ca)
 
 where $n_1$ is the number of self-hit-selected role substeps retained by the branch. The four-substep certificate sets $n_1=2$ and then imposes the additional symmetry choice $a=b=\eta_2$ with $w=0$. More general branches must solve for $a$, $b$, $w$, and any transverse recoil terms from the torque integrals rather than assigning them by symmetry.
 
@@ -892,7 +892,7 @@ $$
 \hat{\mathbf a}\cdot\Delta\mathbf L_{\ell,\perp}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7e74e23dee33665e)
+[View →](../../../../../equation-mapping.html#corpus-equation-7e74e23dee33665e)
 
 The scalar equation controls only the components along $\hat{\mathbf a}$. The transverse balance condition is
 
@@ -910,7 +910,7 @@ $$
 \mathbf 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1d1d77d0e9e02b77)
+[View →](../../../../../equation-mapping.html#corpus-equation-1d1d77d0e9e02b77)
 
 Thus a spin-like response cannot be reduced to "which layer received the $\hbar$." The core must also transport or cancel the transverse normal changes caused by plane precession, wake recoil, and apparatus coupling. This is where the angular-momentum partition becomes a spin-transport problem rather than a scalar energy table.
 
@@ -927,7 +927,7 @@ R_\ell^2\Delta\omega_\ell
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-17ee4a1dd400542a)
+[View →](../../../../../equation-mapping.html#corpus-equation-17ee4a1dd400542a)
 
 when $\hat{\mathbf n}_\ell$ is fixed during the projected step. Each binary then contributes one mechanical retune equation. For the worked branch below only, declare binary $1$ to be self-hit-selected, binary $2$ to be fold-selected, and binary $3$ to be externally exposed. These are measured branch roles, not A1 identities. The branch-specific side conditions are:
 
@@ -939,7 +939,7 @@ R_2^+\omega_2^+\approx c_f,
 R_1^+\omega_1^+ > c_f
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b621852334888ca7)
+[View →](../../../../../equation-mapping.html#corpus-equation-b621852334888ca7)
 
 with the self-hit-selected role branch additionally constrained by
 
@@ -951,7 +951,7 @@ $$
 s_1^+ = \frac{R_1^+\omega_1^+}{c_f}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-44512e61db12779e)
+[View →](../../../../../equation-mapping.html#corpus-equation-44512e61db12779e)
 
 Finally, the same branch must close energy:
 
@@ -961,7 +961,7 @@ $$
 \omega_{\text{tx}}\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b564c4f7fd93f8c0)
+[View →](../../../../../equation-mapping.html#corpus-equation-b564c4f7fd93f8c0)
 
 with
 
@@ -975,7 +975,7 @@ $$
 \Delta E_{\ell,\text{root}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b03884c6e268a4c1)
+[View →](../../../../../equation-mapping.html#corpus-equation-b03884c6e268a4c1)
 
 Together, these equations are the A1 total-angular-momentum partition system. The four-substep branch below is a solved certificate inside this system, not the general solution of the branch-selection problem.
 
@@ -991,7 +991,7 @@ R_1\ll R_2\ll R_3,
 \omega_1\gg\omega_2\gg\omega_3
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-76bd80d14e15ac9e)
+[View →](../../../../../equation-mapping.html#corpus-equation-76bd80d14e15ac9e)
 
 and speed regimes
 
@@ -1003,7 +1003,7 @@ R_2\omega_2\approx c_f,
 R_3\omega_3 < c_f
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ae454ec29e7bb87e)
+[View →](../../../../../equation-mapping.html#corpus-equation-ae454ec29e7bb87e)
 
 Let $-$ and $+$ denote the pre-transaction and post-transaction states. If the source channel carries one accepted positive cycle into the core, then the source side loses
 
@@ -1015,7 +1015,7 @@ $$
 \Delta E_{\text{tx}}=-\omega_{\text{tx}}\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6a20483dc871c819)
+[View →](../../../../../equation-mapping.html#corpus-equation-6a20483dc871c819)
 
 where $\hat{\mathbf a}$ is the transaction axis and $\omega_{\text{tx}}$ is the accepted channel frequency. The core-side scalar convention is therefore
 
@@ -1023,7 +1023,7 @@ $$
 \Delta I_{\text{accepted}}=+\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0ae28244663cacbd)
+[View →](../../../../../equation-mapping.html#corpus-equation-0ae28244663cacbd)
 
 For a general positive branch with $n_1=2$, introduce nonnegative coefficients
 
@@ -1031,7 +1031,7 @@ $$
 a\ge0,\qquad b\ge0,\qquad w\ge0,\qquad a+2b+w\le1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a678790b0b80e920)
+[View →](../../../../../equation-mapping.html#corpus-equation-a678790b0b80e920)
 
 The externally exposed, self-hit-selected, and wake increments are
 
@@ -1043,7 +1043,7 @@ $$
 \Delta I_{\text{wake}}=w\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-24a8d7b060ecb2d0)
+[View →](../../../../../equation-mapping.html#corpus-equation-24a8d7b060ecb2d0)
 
 and the fold-selected role receives the remainder:
 
@@ -1053,7 +1053,7 @@ $$
 \big(1-a-2b-w\big)\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-df53ff9a55d50174)
+[View →](../../../../../equation-mapping.html#corpus-equation-df53ff9a55d50174)
 
 The factor $2b$ records the self-hit-selected role response as a two-substep branch update. It is not a claim that a one-$h$ accepted transaction creates two extra units of angular momentum. The two self-hit-selected substeps belong to the internal partition, so the scalar ledger closes:
 
@@ -1063,7 +1063,7 @@ $$
 \hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-276a8da88a64bb4a)
+[View →](../../../../../equation-mapping.html#corpus-equation-276a8da88a64bb4a)
 
 The full vector conservation law is stricter:
 
@@ -1080,7 +1080,7 @@ $$
 \mathbf 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4deac81efe445df2)
+[View →](../../../../../equation-mapping.html#corpus-equation-4deac81efe445df2)
 
 The scalar partition above is the fixed-normal, negligible-transport projection of this vector equation. If the binary normals precess during the transition, the transverse components must be balanced by wake recoil, source-channel recoil, apparatus recoil, or transport terms.
 
@@ -1097,7 +1097,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-089afc27adaee526)
+[View →](../../../../../equation-mapping.html#corpus-equation-089afc27adaee526)
 
 Thus
 
@@ -1110,7 +1110,7 @@ $$
 2\omega_\ell^-\frac{\Delta R_\ell}{R_\ell^-}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c90881c2113845da)
+[View →](../../../../../equation-mapping.html#corpus-equation-c90881c2113845da)
 
 For the externally exposed binary, the branch must remain sub-field-speed:
 
@@ -1118,7 +1118,7 @@ $$
 R_3^+\omega_3^+ < c_f
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7cae423cafb753bb)
+[View →](../../../../../equation-mapping.html#corpus-equation-7cae423cafb753bb)
 
 The external-exposure phase-lock and coupling geometry determine $a$ and the allowed pair $(\Delta R_3,\Delta\omega_3)$. In the general ledger, those are open branch equations rather than assigned values.
 
@@ -1128,7 +1128,7 @@ $$
 R_2^+\omega_2^+=c_f
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2f484c4881996cc0)
+[View →](../../../../../equation-mapping.html#corpus-equation-2f484c4881996cc0)
 
 Linearizing gives
 
@@ -1139,7 +1139,7 @@ $$
 \frac{\Delta R_2}{R_2^-}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-931a81b04497fb70)
+[View →](../../../../../equation-mapping.html#corpus-equation-931a81b04497fb70)
 
 Combining this with the mechanical increment yields the explicit fold-selected retune:
 
@@ -1156,7 +1156,7 @@ $$
 {2\mu_{\text{arch}}\left(R_2^-\right)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cc8817f57f638da3)
+[View →](../../../../../equation-mapping.html#corpus-equation-cc8817f57f638da3)
 
 In this reduced branch, a positive retained fold-selected increment expands $R_2$ and lowers $\omega_2$ just enough to keep $R_2\omega_2$ at $c_f$. A more general transition may let binary $2$ cross the separator and return after wake exchange; that case requires the full causal-root fold map.
 
@@ -1166,7 +1166,7 @@ $$
 \frac{R_1^+\omega_1^+}{c_f}>1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7f987fd831ffc314)
+[View →](../../../../../equation-mapping.html#corpus-equation-7f987fd831ffc314)
 
 In the symmetric circular chart, the self-hit delay angle must satisfy
 
@@ -1178,7 +1178,7 @@ $$
 s_1^+ = \frac{R_1^+\omega_1^+}{c_f}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-44512e61db12779e-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-44512e61db12779e-2)
 
 On raw simple-root charts, a separator crossing must also respect
 
@@ -1188,7 +1188,7 @@ $$
 \Delta D=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4d148c6dff9a23f5)
+[View →](../../../../../equation-mapping.html#corpus-equation-4d148c6dff9a23f5)
 
 These self-hit equations decide which two-substep branch update is admissible and how much of the accepted increment can remain in the self-hit-selected binary as $2b\hbar$ instead of being returned through the wake ledger.
 
@@ -1207,7 +1207,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0b84b9c48a3fbce1)
+[View →](../../../../../equation-mapping.html#corpus-equation-0b84b9c48a3fbce1)
 
 or
 
@@ -1217,7 +1217,7 @@ $$
 \omega_{\text{tx}}\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b564c4f7fd93f8c0-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-b564c4f7fd93f8c0-2)
 
 Each layer energy is still a branch functional:
 
@@ -1229,7 +1229,7 @@ E_\ell(I_\ell^+,\omega_\ell^+,R_\ell^+,\mathcal R_\ell^+)
 E_\ell(I_\ell^-,\omega_\ell^-,R_\ell^-,\mathcal R_\ell^-)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-178844c47e3d5f6c)
+[View →](../../../../../equation-mapping.html#corpus-equation-178844c47e3d5f6c)
 
 The first action-angle approximation is
 
@@ -1243,7 +1243,7 @@ $$
 \Delta E_{\ell,\text{root}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b03884c6e268a4c1-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-b03884c6e268a4c1-2)
 
 where $\Delta E_{\ell,\text{root}}$ records the causal-root and self-hit branch change not captured by the smooth action-angle part. The fold-selected channel closes the energy balance:
 
@@ -1259,7 +1259,7 @@ $$
 \Delta E_{\text{wake}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5787700f1c2fca5d)
+[View →](../../../../../equation-mapping.html#corpus-equation-5787700f1c2fca5d)
 
 ### Solved Minimal Four-Substep Branch
 
@@ -1282,7 +1282,7 @@ $$
 \Delta I_{\text{wake}}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-79cd48cd71879aa4)
+[View →](../../../../../equation-mapping.html#corpus-equation-79cd48cd71879aa4)
 
 The scalar ledger fixes $\iota$:
 
@@ -1292,7 +1292,7 @@ $$
 \iota=\frac{\hbar}{4}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d0447a24bfd2a00f)
+[View →](../../../../../equation-mapping.html#corpus-equation-d0447a24bfd2a00f)
 
 Thus this branch has the explicit partition
 
@@ -1308,7 +1308,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-12ae30e0a94ae7f2)
+[View →](../../../../../equation-mapping.html#corpus-equation-12ae30e0a94ae7f2)
 
 In the fixed-normal projection this closes the angular-momentum ledger:
 
@@ -1318,7 +1318,7 @@ $$
 \hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cd0816d6278c00b1)
+[View →](../../../../../equation-mapping.html#corpus-equation-cd0816d6278c00b1)
 
 The corresponding retunes follow from the mechanical scaffold. For the externally exposed binary, take the impulsive retune at fixed radius:
 
@@ -1330,7 +1330,7 @@ $$
 \frac{\hbar}{8\mu_{\text{arch}}\left(R_3^-\right)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-028422bbf1142b22)
+[View →](../../../../../equation-mapping.html#corpus-equation-028422bbf1142b22)
 
 The external-exposure branch remains admissible only if
 
@@ -1343,7 +1343,7 @@ R_3^-\left(
 < c_f
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7530f7cc7ee10769)
+[View →](../../../../../equation-mapping.html#corpus-equation-7530f7cc7ee10769)
 
 For binary $2$, preserve the fold condition $R_2\omega_2=c_f$ through the linearized retune. Since $\Delta I_2=\hbar/4$,
 
@@ -1360,7 +1360,7 @@ $$
 {8\mu_{\text{arch}}\left(R_2^-\right)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4cb92487f9ef6e19)
+[View →](../../../../../equation-mapping.html#corpus-equation-4cb92487f9ef6e19)
 
 This gives
 
@@ -1368,7 +1368,7 @@ $$
 R_2^-\Delta\omega_2+\omega_2^-\Delta R_2=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d01fc5fa1ce77a95)
+[View →](../../../../../equation-mapping.html#corpus-equation-d01fc5fa1ce77a95)
 
 so binary $2$ stays on the $v=c_f$ fold condition to first order.
 
@@ -1383,7 +1383,7 @@ $$
 {4\mu_{\text{arch}}\left(R_1^-\right)^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ffdbf59b035eb118)
+[View →](../../../../../equation-mapping.html#corpus-equation-ffdbf59b035eb118)
 
 The self-hit branch remains admissible only if
 
@@ -1399,7 +1399,7 @@ s_1^+
 >1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-17dabf60a9eaa273)
+[View →](../../../../../equation-mapping.html#corpus-equation-17dabf60a9eaa273)
 
 and its self-delay angle satisfies
 
@@ -1409,7 +1409,7 @@ $$
 2s_1^+\sin\!\left(\frac{\delta_{\text{self}}^+}{2}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cde7171831fb8235)
+[View →](../../../../../equation-mapping.html#corpus-equation-cde7171831fb8235)
 
 On a raw simple-root separator chart, the two self-hit-selected substeps correspond to the minimal admissible even jump
 
@@ -1419,7 +1419,7 @@ $$
 \Delta D=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-39f52c68e13d1941)
+[View →](../../../../../equation-mapping.html#corpus-equation-39f52c68e13d1941)
 
 provided the active roots stay simple through the regularized transition.
 
@@ -1433,7 +1433,7 @@ $$
 \frac{\omega_3^{\ast}+\omega_2^{\ast}+2\omega_1^{\ast}}{4}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c49c2798124f3929)
+[View →](../../../../../equation-mapping.html#corpus-equation-c49c2798124f3929)
 
 where $\omega_\ell^{\ast}$ is the branch-local effective angular frequency over the substep. If the actual source frequency differs, the mismatch is
 
@@ -1443,7 +1443,7 @@ $$
 \left(\omega_{\text{tx}}-\omega_{\ast}\right)\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3454993fd63de678)
+[View →](../../../../../equation-mapping.html#corpus-equation-3454993fd63de678)
 
 The clean four-substep branch is energy-closed only when $\Delta E_{\text{mismatch}}=0$. If $\omega_{\text{tx}}<\omega_{\ast}$, the branch cannot retain positive binary 3, binary 2, and binary 1 increments without drawing energy from a root reconfiguration or the wake/internal ledger. If $\omega_{\text{tx}}>\omega_{\ast}$, the surplus must be routed into wake recoil, transport, or another admissible branch. This is a useful failure condition, not a defect of the scaffold: a low-frequency external-exposure hit cannot be promoted into a positive self-hit-selected role retune for free.
 
@@ -1457,7 +1457,7 @@ $$
 \right)\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2aeff02546e34d7e)
+[View →](../../../../../equation-mapping.html#corpus-equation-2aeff02546e34d7e)
 
 The minimal four-substep branch is therefore a conditional certificate, not a branch-selection theorem. In the fixed-normal, no-retained-wake chart, the scalar and vector rows close by the declared assumptions. The root replay, phase lock, torque consistency, tail-wake pullback, section stability, and nonzero energy mismatch rows still have to be populated from a retained branch chart before the branch can be treated as a physical selected outcome.
 
@@ -1475,7 +1475,7 @@ $$
 \mathcal R_B^{\mathrm{act}}\big|_W
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8feffed7db9e8132)
+[View →](../../../../../equation-mapping.html#corpus-equation-8feffed7db9e8132)
 
 The same row set must also use the same regularization $\eta$, coupling tolerance $\epsilon_c$, endpoint convention, branch identity, and accepted motion-plus-wake update. Only then may the angular-momentum residual be evaluated as
 
@@ -1497,7 +1497,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-abab1e026e44f08a)
+[View →](../../../../../equation-mapping.html#corpus-equation-abab1e026e44f08a)
 
 The first proof step is to differentiate $\mathbf J_{\mathrm{mech}}^B+\mathbf J_{\mathrm{wake}}^B$ on $W$ and match the torque sum to the wake-history boundary increment derived from the same accepted motion-plus-wake update. If any term is evaluated on a different retained row set, endpoint convention, or update, the scalar $\hbar$ partition is only a diagnostic partition, not a conserved angular-momentum certificate.
 
@@ -1515,7 +1515,7 @@ $$
 \mathbf 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e3d2f1abf215513b)
+[View →](../../../../../equation-mapping.html#corpus-equation-e3d2f1abf215513b)
 
 in the fixed-normal source, core, and wake ledger, and
 
@@ -1531,7 +1531,7 @@ $$
 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-68a938a2ef1f33e7)
+[View →](../../../../../equation-mapping.html#corpus-equation-68a938a2ef1f33e7)
 
 when $\omega_{\text{tx}}=\omega_{\ast}$ and root-energy residuals vanish in the branch approximation.
 
@@ -1560,7 +1560,7 @@ W_{\min},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bdd53819ea9a0df3)
+[View →](../../../../../equation-mapping.html#corpus-equation-bdd53819ea9a0df3)
 
 Here $\mathfrak a_{\mathrm{wr}}$ is not assumed to exist. It must be emitted by the finite branch machinery as a retained wake or recoil candidate with row lineage, quotient, energy, phase, stability, and route data. Until both sides of $\mathfrak K_{\min,\mathrm{wr}}$ carry populated residuals, any claim of $\operatorname{Sel}_{B,N}=\mathfrak a_{\min}$ remains deferred.
 
@@ -1578,7 +1578,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7fdcb9b203f7f6ba)
+[View →](../../../../../equation-mapping.html#corpus-equation-7fdcb9b203f7f6ba)
 
 be the finite candidate set after quotienting evaluable candidates by branch-chart isomorphism. The blocked set contains candidates whose row data are missing; the excluded set contains candidates that fail a hard local condition with the required rows present. For each evaluable candidate $\mathfrak a_N$, define the selection residual vector
 
@@ -1596,7 +1596,7 @@ r_{\mathrm{route}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7b43f2c1376ab3e8)
+[View →](../../../../../equation-mapping.html#corpus-equation-7b43f2c1376ab3e8)
 
 For a route class $\kappa\in\{\mathrm{core},\mathrm{wake},\mathrm{refl}\}$,
 
@@ -1609,7 +1609,7 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-82c2d69fe81282c2)
+[View →](../../../../../equation-mapping.html#corpus-equation-82c2d69fe81282c2)
 
 The route priority is a theorem target, not a label convention:
 
@@ -1621,7 +1621,7 @@ $$
 \mathcal A_{\mathrm{refl}}^{\mathrm{pass}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4fc5c53edfb9c847)
+[View →](../../../../../equation-mapping.html#corpus-equation-4fc5c53edfb9c847)
 
 Let $\kappa_\star$ be the first nonempty passing class in this priority order. The finite-branch selection functional is
 
@@ -1636,7 +1636,7 @@ $$
 \mathcal J_{\mathrm{sel}}(\mathfrak a_N)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a422ed918e04dad5)
+[View →](../../../../../equation-mapping.html#corpus-equation-a422ed918e04dad5)
 
 where $\mathcal J_{\mathrm{sel}}$ may use only quotient-invariant residual intervals, route data, retained row lineage, and physical microstate order $\tau_{\mathfrak m}$. The first proof obligation is chart invariance: $\mathcal R_{\mathrm{sel}}$ and $\mathcal J_{\mathrm{sel}}$ must be unchanged under $\cong_B$. That makes the selected branch depend on retained physics rather than generator order, file order, or chart labels.
 
@@ -1653,7 +1653,7 @@ $$
 \mathcal A_{N'}^{\mathrm{eval}}/\!\cong_B
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-071459b012e1c235)
+[View →](../../../../../equation-mapping.html#corpus-equation-071459b012e1c235)
 
 is admissible only when it preserves row lineage, route class, endpoint convention, and quotient-canonical branch record. Write $\operatorname{Can}_N(\mathfrak a_N)$ for the quotient-canonical representative of a candidate at budget $N$.
 
@@ -1672,7 +1672,7 @@ $$
 \operatorname{Sel}_{B,N}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7b6605884b8d2d87)
+[View →](../../../../../equation-mapping.html#corpus-equation-7b6605884b8d2d87)
 
 where $\mathfrak a_N^\star=\operatorname{Sel}_{B,N}$. This conclusion is licensed only when the selected candidate remains evaluable, its residual intervals contract under refinement, its route class is preserved, and every newly resolved candidate in the same or higher-priority route class is blocked, locally excluded, or lexicographically no smaller than the persistent selected candidate.
 
@@ -1692,7 +1692,7 @@ $$
 \bigr)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6ba02e8f658d9b4a)
+[View →](../../../../../equation-mapping.html#corpus-equation-6ba02e8f658d9b4a)
 
 where $\phi_\ell$ are binary phases and $\mathcal{R}$ records the active causal-root and self-hit branch data. A spatial rotation acts on the normals, but it need not return the full ordered phase-and-root history to itself after the same rotation that returns an ordinary rigid body.
 
@@ -1711,7 +1711,7 @@ $$
 \bigr)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-881d7438511a111d)
+[View →](../../../../../equation-mapping.html#corpus-equation-881d7438511a111d)
 
 where $\hat{\boldsymbol\jmath}$ is the exact spin axis from the rank-one kinematic spine, $\hat{\mathbf d}$ is the polarity-dipole direction on the transverse-canceling B1 subset defined above, $\theta_3$ is a declared azimuthal reference, and $\mathcal R$ is the causal-root and self-hit ledger. On that subset the handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$. The prescribed B1 coordinate lock keeps the triple's relative orientation fixed around the entire cycle. Claim level: derived for the stated transverse-canceling subset; no axial dipole is asserted for general B1.
 
@@ -1729,7 +1729,7 @@ $$
 \{R_a,\omega_a,\phi_a,\hat{\mathbf n}_a,I_a,\mathcal R_a,\mathcal R_{ab},\mathbf V_{\text{cm}}\}_{a\in\{1,2,3\}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aa95181fdfc586e6)
+[View →](../../../../../equation-mapping.html#corpus-equation-aa95181fdfc586e6)
 
 This is a branch-chart reduction of the full six-architrino history. It keeps binary radii, frequencies, phases, binary-plane normals, radian-normalized rotational actions, binary and cross-binary causal-root ledgers, and the group velocity through the Noether sea. A theorem-target configuration space for this reduction is
 
@@ -1747,7 +1747,7 @@ B_{c_\star}
 \right)/G_{\text{gauge}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-60737e4c06beca8b)
+[View →](../../../../../equation-mapping.html#corpus-equation-60737e4c06beca8b)
 
 where
 
@@ -1760,7 +1760,7 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bddc7e2667e802c8)
+[View →](../../../../../equation-mapping.html#corpus-equation-bddc7e2667e802c8)
 
 Here $\mathfrak R$ is the causal-root ledger class and $B_{c_\star}$ records admissible $\mathbf V_{\text{cm}}$ values for the declared branch speed $c_\star$. The quotient $G_{\text{gauge}}$ removes only genuine gauge redundancy such as center translation and time-origin choice. It does not remove persistent binary identity, oriented-normal reversal, causal-root bifurcation, or chirality-branch change.
 
@@ -1775,7 +1775,7 @@ $$
 \mathbf u_a(T)\times\mathbf v_a(T)=\hat{\mathbf n}_a(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3d9fe4d7e613d559)
+[View →](../../../../../equation-mapping.html#corpus-equation-3d9fe4d7e613d559)
 
 The reduced closure-label version of the same target keeps only the data needed to compare closed A1 branches. The dynamics and ordered-frame sections use the same persistent indices $a\in\{1,2,3\}$. Radius order and branch-derived roles are recorded separately and do not rename the binaries.
 
@@ -1792,7 +1792,7 @@ k_1,k_2,k_3;\
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9980e27d866b0814)
+[View →](../../../../../equation-mapping.html#corpus-equation-9980e27d866b0814)
 
 The integers $k_1,k_2,k_3$ are binary winding counts over the chosen return period. The binary ledgers $\mathcal{G}_a$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The cross-binary ledgers $\mathcal{G}_{ab}$ record delayed exchange roots and phase-lock constraints. The branch label $\chi_c$ records ordered-frame chirality, currently the orientation-parity datum, with $Wr_c$ or a multi-component causal-writhe parity as the leading formal candidate.
 
@@ -1808,7 +1808,7 @@ F_{\text{NC}}(t)=
 \big)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-150ece4930ca51aa)
+[View →](../../../../../equation-mapping.html#corpus-equation-150ece4930ca51aa)
 
 This is a theorem target, not a completed derivation. The quotient is allowed to remove center-of-mass translation, time-origin choice, smooth phase reparameterization inside one closed root-ledger cell, and small deformations that preserve the persistent binary indices, root ledgers, and chirality branch. It must not quotient away permutations of the persistent indices, reversal of the oriented normals, or branch-changing causal-root relabelings.
 
@@ -1818,7 +1818,7 @@ $$
 \widetilde{R}:SU(2)\simeq\mathrm{Spin}(3)\to SO(3)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b5d976cb90a9aed7)
+[View →](../../../../../equation-mapping.html#corpus-equation-b5d976cb90a9aed7)
 
 with the physical requirement:
 
@@ -1841,7 +1841,7 @@ $$
 \right]_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8f6cee63afb53cc8)
+[View →](../../../../../equation-mapping.html#corpus-equation-8f6cee63afb53cc8)
 
 where the entries record, respectively, phase-branch parity, emission-order parity, component-resolved causal-writhe parity, and row-sourced chirality parity. A nontrivial spinor-support candidate must exhibit at least one non-gauge retained row with $\epsilon_{r}^{2\pi}=1$ while the doubled path restores the lifted history, $\epsilon_{r}^{4\pi}=0$, and the angular-momentum residual remains below tolerance. A visible ordered-frame loop by itself gives only ordinary $SO(3)$ closure. A nonzero angular-momentum residual is a conservation failure, not evidence for a spinor sheet.
 
@@ -1867,7 +1867,7 @@ k_r(s),
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-494620753151162b)
+[View →](../../../../../equation-mapping.html#corpus-equation-494620753151162b)
 
 where $s\in[0,2]$ traces one visible $2\pi$ loop followed by its doubled path. The row-local parity extractor is
 
@@ -1883,7 +1883,7 @@ W_r(2)-W_r(0)
 \pmod 2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bc811a19e4eb3b2f)
+[View →](../../../../../equation-mapping.html#corpus-equation-bc811a19e4eb3b2f)
 
 A retained row $r_\star$ can support the spinor lift only if
 
@@ -1895,7 +1895,7 @@ $$
 \Delta_{\Pi_W}(r_\star)\le\varepsilon_{\Pi_W}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-81caa4e3fcba10ba)
+[View →](../../../../../equation-mapping.html#corpus-equation-81caa4e3fcba10ba)
 
 This is still a proof obligation. The present corpus has the extractor and control conditions, but it does not yet contain a populated retained row that passes them.
 
@@ -1917,7 +1917,7 @@ $$
 \Delta_{\mathbf J}(r)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-95dc1432d6b64430)
+[View →](../../../../../equation-mapping.html#corpus-equation-95dc1432d6b64430)
 
 The return-identical control row must show ordinary closure,
 
@@ -1927,7 +1927,7 @@ $$
 \Pi_{W,r,\mathrm{id}}^{4\pi}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-859191fe954c4a0c)
+[View →](../../../../../equation-mapping.html#corpus-equation-859191fe954c4a0c)
 
 If an allowed branch-preserving gauge probe $g\in G_{\mathrm{gauge}}$ changes the proposed parity,
 
@@ -1935,7 +1935,7 @@ $$
 \delta_g\Pi_{W,r}^{2\pi}=1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b22aed8196702e82)
+[View →](../../../../../equation-mapping.html#corpus-equation-b22aed8196702e82)
 
 then the parity is a gauge artifact, not spinor support. A passed spinor row must keep $\Delta_{\mathrm{gc}}(r)\le\varepsilon_{\mathrm{gc}}$ and must also keep the $2\pi$ and $4\pi$ angular-momentum residuals below tolerance.
 
@@ -1958,7 +1958,7 @@ q_r^{s}
 \right]_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c86917a46dad51b3)
+[View →](../../../../../equation-mapping.html#corpus-equation-c86917a46dad51b3)
 
 Here $q_r^s\in\{0,1\}$ records whether the apparent row difference survives the quotient as physical data, $\Delta k_r^s$ is the root or winding-cell change, $\Delta e_r^s$ is the emission-order change, $\Delta w_r^s$ is the component causal-writhe change, and $\operatorname{Prov}_\chi^s(r)$ is the row-local contribution to the chirality branch. Aggregate chirality or causal-writhe signs are not usable by downstream consumers until they decompose into these row-sourced terms.
 
@@ -1973,7 +1973,7 @@ $$
 \right]_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d19824ecb64b9537)
+[View →](../../../../../equation-mapping.html#corpus-equation-d19824ecb64b9537)
 
 This is a $\mathbb Z_2$ additivity lemma, not a spinor-support pass. Gauge-erased rows contribute zero, even physical row flips cancel, and termwise gauge invariance of $\bar\epsilon_r^s$ gives gauge invariance of $\eta_B^{\mathrm{table}}$. The remaining burden is still to populate a retained non-coplanar row, compute its row-local causal writhe, supply $\operatorname{Prov}_\chi$, exhibit quotient witnesses, prove doubled-path restoration, and keep the angular-momentum residual below tolerance.
 
@@ -1989,7 +1989,7 @@ $$
 \text{for every }r\in\mathscr K_B
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d5e1b89ea2ca75ba)
+[View →](../../../../../equation-mapping.html#corpus-equation-d5e1b89ea2ca75ba)
 
 then
 
@@ -1997,7 +1997,7 @@ $$
 \eta_B^{\mathrm{table}}(\gamma_{2\pi}^{\mathrm{id}})=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-29f70a22a046426b)
+[View →](../../../../../equation-mapping.html#corpus-equation-29f70a22a046426b)
 
 This is ordinary $SO(3)$ closure, not spinor support. The proof is just the parity sum: when every retained non-gauge row returns identically, the visible normal-triad loop has no history-sheet change to pull back into the ordered frame. Therefore a proposed spinor proof that assigns nontrivial $2\pi$ lift to this return-identical table has imported the $SU(2)\to SO(3)$ comparison rather than deriving the lift from delayed causal-root transport.
 
@@ -2017,7 +2017,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6999cfcd3300a830)
+[View →](../../../../../equation-mapping.html#corpus-equation-6999cfcd3300a830)
 
 with branch stability, gauge control, and angular-momentum residuals still below tolerance. In the minimal support case this reduces to one retained non-gauge row $r_\star$ with $\bar\epsilon_{r_\star}^{2\pi}=1$ and $\bar\epsilon_{r_\star}^{4\pi}=0$. A failed $4\pi$ restoration signals a branch reconfiguration or broken return map, not a fermion spinor closure.
 
@@ -2027,7 +2027,7 @@ $$
 \det[\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3]=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e569bde3436e8c0e)
+[View →](../../../../../equation-mapping.html#corpus-equation-e569bde3436e8c0e)
 
 and its raw self-root count $\Delta N_{\text{self}}=+2$ is even modulo two. Those rows remain useful for angular-momentum partitioning, but they do not supply a transported odd sheet parity for one retained $r_\star$.
 
@@ -2048,7 +2048,7 @@ r_\star,
 \qquad s\in[0,2]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dc3b9918474cfe15)
+[View →](../../../../../equation-mapping.html#corpus-equation-dc3b9918474cfe15)
 
 where $\widetilde r_\star(s)$ is the lifted row path, $\Gamma_{\mathrm{coupl}}$ is the coupling record, and $\mathcal C_{\mathbf J}$ is the angular-momentum certificate data. The row is downstream-admissible only if
 
@@ -2058,7 +2058,7 @@ $$
 \Pi_{W,r_\star}^{4\pi}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-47b7b127f0e43784)
+[View →](../../../../../equation-mapping.html#corpus-equation-47b7b127f0e43784)
 
 $$
 \Delta_{\Pi_W}(r_\star)\le\varepsilon_{\Pi_W},
@@ -2069,7 +2069,7 @@ $$
 \Delta_{\mathbf J}^{4\pi}\le\varepsilon_{\mathbf J}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-52efb448b7799964)
+[View →](../../../../../equation-mapping.html#corpus-equation-52efb448b7799964)
 
 All spinor, weak, exchange, and fermion-metric labels must then be pulled back from the same gauge-quotient class:
 
@@ -2083,7 +2083,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-32706291452ade22)
+[View →](../../../../../equation-mapping.html#corpus-equation-32706291452ade22)
 
 with consumer projections
 
@@ -2100,7 +2100,7 @@ h_{\mathrm{eff}},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8d75129a61db1fb5)
+[View →](../../../../../equation-mapping.html#corpus-equation-8d75129a61db1fb5)
 
 The fermionic exchange sign is therefore not an independent assignment:
 
@@ -2118,7 +2118,7 @@ $$
 +1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b79d3c4f993ff00)
+[View →](../../../../../equation-mapping.html#corpus-equation-6b79d3c4f993ff00)
 
 The same-record admissibility residual is
 
@@ -2140,7 +2140,7 @@ d_c\!\left(
 \mathcal S_{\mathrm{retune}}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b3fdcdf5f335bca0)
+[View →](../../../../../equation-mapping.html#corpus-equation-b3fdcdf5f335bca0)
 
 The pass condition is
 
@@ -2150,7 +2150,7 @@ $$
 \mathcal S_{\mathrm{retune}}(\theta)=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d9b9b1f894d3598e)
+[View →](../../../../../equation-mapping.html#corpus-equation-d9b9b1f894d3598e)
 
 The first proof step is gauge-quotient factorization. For every allowed gauge probe $g$ and every consumer projection $\Pi_c$,
 
@@ -2160,7 +2160,7 @@ $$
 \Pi_c\mathsf P(\widetilde r_\star,\theta_W)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7e62a24699389af8)
+[View →](../../../../../equation-mapping.html#corpus-equation-7e62a24699389af8)
 
 If this identity fails, the consumer label is chart-dependent and cannot be promoted as spinor, weak, exchange, or metric evidence. This proposition remains a theorem target until a non-coplanar retained row with quotient witness, doubled-path restoration, and angular-momentum residuals is populated.
 
@@ -2173,7 +2173,7 @@ SL(2,\mathbb C)\simeq\mathrm{Spin}^+(1,3)
 SO^+(1,3)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ce27de844e0c85c7)
+[View →](../../../../../equation-mapping.html#corpus-equation-ce27de844e0c85c7)
 
 whose spatial-rotation subgroup restricts to the $SU(2)$ lift above. This does not make $SL(2,\mathbb C)$ a primitive substrate symmetry of the Euclidean void. It states the recovery burden: boosts, rotations, spinor phase, helicity comparison, and fermion matter records in the effective relativistic observer sector must be describable by one lifted ordered-frame response after clock, ruler, and Noether sea metric closure are already in place.
 
@@ -2187,7 +2187,7 @@ $$
 m\in\mathbb{Z}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5ee4bd57756cca39)
+[View →](../../../../../equation-mapping.html#corpus-equation-5ee4bd57756cca39)
 
 That is a $2\pi$ single-valuedness rule on an observer-level orbital envelope. A fermion spinor target cannot reuse that ordinary closure rule. It must explain why the visible $SO(3)$ orientation closes after $2\pi$ while the history-lifted A1 state changes sheet and only restores after $4\pi$.
 
@@ -2207,7 +2207,7 @@ L_z\Psi_{\mathrm{env}}
 m\hbar\Psi_{\mathrm{env}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ced3274e23db4cb5)
+[View →](../../../../../equation-mapping.html#corpus-equation-ced3274e23db4cb5)
 
 This is a recovery target for $\Psi_{\mathrm{env}}$, the external envelope of an assembly in a declared potential chart. It is not a substitute for the ordered-frame $2\pi/4\pi$ support-row test above.
 
@@ -2238,7 +2238,7 @@ h_{\mathrm{eff}},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a41fdad1445dc7e1)
+[View →](../../../../../equation-mapping.html#corpus-equation-a41fdad1445dc7e1)
 where $\Lambda_{\text{A1}}$ is the reduced A1 closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
 $$
 C_{\mathrm{eff}}^2
@@ -2254,7 +2254,7 @@ T_{\mathrm{eff}}^2
 \mathfrak{F}_{\mathrm{fermion}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e9f853584a11995f)
+[View →](../../../../../equation-mapping.html#corpus-equation-e9f853584a11995f)
 They must then satisfy the observer-record residual
 $$
 \mathcal{R}_{\mathrm{CPT}}(A;\theta)
@@ -2272,7 +2272,7 @@ d_{\mathrm{inv}}\!\left(
 \mathcal{R}_{\mathrm{weak/flavor}}(A;\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ff588bbe21063448)
+[View →](../../../../../equation-mapping.html#corpus-equation-ff588bbe21063448)
 with $\mathfrak{f}_{\bar A}$ the effective antiparticle record and $\mathcal{R}_{\mathrm{weak/flavor}}$ carrying the observed C, P, T, CP, and flavor-sector violations that are allowed before the combined benchmark is tested. The residual passes only if the combined operation is admissible without erasing the weak chirality and generation/mixing ledgers.
 
 The component action table makes the proof obligation explicit:
@@ -2304,7 +2304,7 @@ w_{4\pi}\Delta_{4\pi}(\theta;W)
 +w_{\mathrm{ctx}}\Delta_{\mathrm{ctx}}(\theta;W)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-71471d8881ac438b)
+[View →](../../../../../equation-mapping.html#corpus-equation-71471d8881ac438b)
 
 Here $\Delta_{4\pi}$ measures failure of the $2\pi/4\pi$ ordered-frame lift, $\Delta_{\mathrm{spin\,op}}$ measures failure to recover the spin-operator and Stern-Gerlach record algebra on the declared apparatus contexts, $\Delta_{\mathrm{WCT}}$ measures mismatch between the spinor/helicity ledger and the weak-coupling-triad exposure record, $\mathcal{R}_{\mathrm{matter}}$ measures failure of the fermion matter channel to project into the same Noether sea metric record, and $\Delta_{\mathrm{ctx}}$ is the apparatus-context residual from [Quantum Operator Mapping](quantum-operator-mapping.md#apparatus-context-guardrail). The residual passes only when all terms use the same $\theta$; otherwise the spin proof, weak handedness, and metric matter channel have been fitted by separate records rather than recovered as one closure.
 
@@ -2320,7 +2320,7 @@ $$
 \Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-829a7668d410b76b)
+[View →](../../../../../equation-mapping.html#corpus-equation-829a7668d410b76b)
 
 with the associated angular-momentum residuals below tolerance on the same branch record. This is a reuse rule, not a new ontology: weak exposure, exchange statistics, and fermion metric compatibility may consume spin/helicity only from the retained row that also carries the causal-writhe parity, quotient, doubled-path, gauge-control, and angular-momentum data.
 
@@ -2333,7 +2333,7 @@ Wr_c[\gamma]
 \mathrm{sign}\!\big(\mathbf V(T)\times\mathbf V(T')\cdot\mathbf r\big)\,dT\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cf097a84a6b8c913)
+[View →](../../../../../equation-mapping.html#corpus-equation-cf097a84a6b8c913)
 
 which measures handedness of the self-interaction pattern. The open problem is to lift that kind of causal-locus invariant from one worldline or branch family to the full ordered A1 frame and then prove the $4\pi$ return behavior.
 
@@ -2354,7 +2354,7 @@ A_{\text{cycle}}
 2\pi I
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5451bcb40deb226c-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-5451bcb40deb226c-2)
 
 The Bohr-Sommerfeld form
 
@@ -2362,7 +2362,7 @@ $$
 \oint p\,dq=nh
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#planck-debroglie-action)
+[View →](../../../../../equation-mapping.html#planck-debroglie-action)
 
 is equivalent to
 
@@ -2370,7 +2370,7 @@ $$
 I=n\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-04bf843d02c4fd8c)
+[View →](../../../../../equation-mapping.html#corpus-equation-04bf843d02c4fd8c)
 
 The energy relation follows the same distinction. If $f$ is ordinary frequency in cycles per unit time and $\omega=2\pi f$ is angular frequency, then
 
@@ -2378,7 +2378,7 @@ $$
 E=hf=\hbar\omega
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f2aef69419a8eb36)
+[View →](../../../../../equation-mapping.html#corpus-equation-f2aef69419a8eb36)
 
 Thus a full causal phase-cycle transaction is naturally counted in units of $h$, while the angular-momentum generator conjugate to a phase angle is naturally counted in units of $\hbar$.
 
@@ -2397,7 +2397,7 @@ $$
 h^n
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7f9a0a878cbc7a74)
+[View →](../../../../../equation-mapping.html#corpus-equation-7f9a0a878cbc7a74)
 This is not yet a derivation of quantum discreteness. It is the theorem target that would let a finite recordable basin measure reduce to $\mu_0(\mathcal{Q},W)\to C_{\mathcal{Q},W}h^n$, with $C_{\mathcal{Q},W}$ fixed by quotienting, apparatus coupling, inaccessible root-ledger variables, and the declared coarse-graining rather than chosen after the fact.
 
 To make the chart test explicit, the reduced action-angle variables should report a local canonical-chart residual before any action-cell count is accepted:
@@ -2412,7 +2412,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-063b21052327fd8b)
+[View →](../../../../../equation-mapping.html#corpus-equation-063b21052327fd8b)
 Here $\{\cdot,\cdot\}_{\mathcal{Q},W,T_W}$ is the effective bracket induced by the retained coarse-graining on the same record window used for the basin-measure claim. The chart is admissible for action-cell comparison only when $\epsilon_{\mathrm{can}}\le\varepsilon_{\mathrm{can}}$ and the variables are fixed by Master-Equation closure, root-ledger admissibility, and apparatus recordability rather than by a representation chosen to produce a desired count.
 
 The corresponding state-count residual should compare physical basin records with action cells in a declared record domain $D$:
@@ -2426,7 +2426,7 @@ N_{\mathrm{cell}}(D)+1
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-38301fcabf165a95)
+[View →](../../../../../equation-mapping.html#corpus-equation-38301fcabf165a95)
 Here $N_{\mathrm{basin}}(D)$ counts independently recordable basin alternatives derived from the delayed dynamics, while $N_{\mathrm{cell}}(D)$ counts the $h^n$ action cells that remain after quotienting inaccessible root-ledger and apparatus-equivalent variables. A small $\Delta_{\mathrm{cell}}$ supports an effective action-cell comparison; it does not by itself promote the chart to substrate ontology.
 
 The action-angle chart should therefore be treated as a comparison chart selected after the recordable basin family has been fixed, not as a free quantization rule. In ordinary Bohr-Sommerfeld language one counts integral action leaves. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure route, the corresponding count is accepted only when the same Master-Equation branch record, root-ledger admissibility, and apparatus channel already identify the leaves as independently recordable alternatives. A singular or representation-dependent action-angle chart that changes the count without changing those physical records is a failed effective chart, not a new state sector.
@@ -2439,7 +2439,7 @@ $$
 \Delta I_{\text{tot}}=\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ae5f4498a3466fc5)
+[View →](../../../../../equation-mapping.html#corpus-equation-ae5f4498a3466fc5)
 
 with, in the A1 per-frequency chart,
 
@@ -2449,7 +2449,7 @@ $$
 \hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-276a8da88a64bb4a-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-276a8da88a64bb4a-2)
 
 and, in the primary iso-frequency chart, the same total allocated through the B1 scaffold's partition map (radii, tilts, shared cadence, wake) at the single energy price $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ — in either chart only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
 
@@ -2477,7 +2477,7 @@ k_a\in\mathbb{Z},
 a\in\{1,2,3\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-463d6f4b60b93432)
+[View →](../../../../../equation-mapping.html#corpus-equation-463d6f4b60b93432)
 
 Here $a$ labels the self-hit-selected, fold-selected, and externally exposed binary layers, $\Phi_a^{\text{root}}(P_{\mathrm{cyc}})$ records the phase contribution of the active self-hit, partner-hit, and cross-binary causal-root branches during the closure period, and $\Phi_a^{\text{frame}}(P_{\mathrm{cyc}})$ records phase accumulated by transport of the binary-plane frame. The important claim is integer phase winding over a stable closed cycle, not that each instantaneous frequency must be an integer by itself.
 
@@ -2491,7 +2491,7 @@ p_b\Theta_a(P_{\mathrm{cyc}})-p_a\Theta_b(P_{\mathrm{cyc}})+\Phi_{ab}^{\text{roo
 2\pi k_{ab}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-682ff892ea140876)
+[View →](../../../../../equation-mapping.html#corpus-equation-682ff892ea140876)
 
 The special doubling-frequency candidate is therefore a possible selected lock, not an axiom: $k_3:k_2:k_1=1:m:n$, with $1:2:4$ only after the cancellation functional selects it.
 
@@ -2507,7 +2507,7 @@ $$
 \bigl(\Delta k_1,\Delta k_2,\Delta k_3,\Delta\mathcal R\bigr)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-70cacf91f57e0ab8)
+[View →](../../../../../equation-mapping.html#corpus-equation-70cacf91f57e0ab8)
 
 subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed A1 geometry.
 
@@ -2526,7 +2526,7 @@ H_{\text{core}}(P_{\mathrm{cyc}})
 \mathcal P\exp\!\int_0^{P_{\mathrm{cyc}}}\widehat{\boldsymbol\Omega}_{\text{prec}}(T')\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1bd2519b922c4819)
+[View →](../../../../../equation-mapping.html#corpus-equation-1bd2519b922c4819)
 
 This return is $SO(3)$-like if the full lifted state returns after $2\pi$, and spinor-like only if the visible normal triad returns after $2\pi$ while the history-lifted ledger restores after $4\pi$.
 
@@ -2539,7 +2539,7 @@ $$
 \|\mathbf d+\mathbf V_{\text{cm}}\Delta\|=c_\star\Delta
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b65fcd570f7f6b55)
+[View →](../../../../../equation-mapping.html#corpus-equation-b65fcd570f7f6b55)
 
 gives the positive branch
 
@@ -2558,7 +2558,7 @@ $$
 {c_\star^2-\|\mathbf V_{\text{cm}}\|^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-64705f54204d01c0)
+[View →](../../../../../equation-mapping.html#corpus-equation-64705f54204d01c0)
 
 Forward and rear sectors therefore accumulate different phase delays, transmitter-side factors, and transmitter-side acceleration weights. Combined with the transverse causal budget
 
@@ -2568,7 +2568,7 @@ c_{\perp}
 c_\star\sqrt{1-\frac{\|\mathbf V_{\text{cm}}\|^2}{c_\star^2}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-54a2a3fe1699f66d)
+[View →](../../../../../equation-mapping.html#corpus-equation-54a2a3fe1699f66d)
 
 this makes some rest-branch closures inadmissible at high velocity, drives oblate causal-wake envelopes, changes shielding exposure, and can force precession or planar alignment. The primitive wake speed remains $c_f$ in the branch equation; $c_\star$ must be declared before using the result, because primitive wake-intersection, Noether sea dressed clock/ruler comparison, and photon-channel synchronization are different closure tests.
 
@@ -2583,7 +2583,7 @@ Y_L^M(\hat{\mathbf r})\,
 e^{-i\Omega_p(t-r/c_f)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-490b966aee396d1b)
+[View →](../../../../../equation-mapping.html#corpus-equation-490b966aee396d1b)
 
 where $\lambda_C$ abbreviates the selected A1 closure label, and $\mathbf k=(k_1,k_2,k_3,\mathcal R)$ is its energy-level reduction. This is not a new substrate field; it is an effective description of the superposed causal wakes after coarse-graining. The atomic-orbital program is then to show that an electron assembly in the nuclear and Noether sea environment locks to stable resonance basins whose angular part recovers $Y_\ell^m$.
 
@@ -2599,7 +2599,7 @@ $$
 \text{observer-level labels }(n,\ell,m)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ba5a40edd2c3ae20)
+[View →](../../../../../equation-mapping.html#corpus-equation-ba5a40edd2c3ae20)
 
 This route strengthens the distinction rather than weakening it. The internal A1 spinor closure still targets $4\pi$ fermion behavior, while the atomic orbital envelope still targets $2\pi$ observer-level angular closure. The possible unification is that both are selected by geometry, phase closure, and causal-root admissibility at different levels of description.
 
@@ -2626,7 +2626,7 @@ $$
 i\hbar\,\epsilon_{ijk}\hat{J}_k
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c82de12115a0d281)
+[View →](../../../../../equation-mapping.html#corpus-equation-c82de12115a0d281)
 
 with eigenvalue relations
 
@@ -2640,7 +2640,7 @@ j(j+1)\hbar^2|j,m\rangle,
 m\hbar|j,m\rangle
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e607f0d8ce7a161d)
+[View →](../../../../../equation-mapping.html#corpus-equation-e607f0d8ce7a161d)
 
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, these are not primitive postulates about point entities. They are the observer-level representation algebra that must emerge when stable assemblies are probed by rotation-sensitive apparatuses. The algebra becomes credible only after the internal ordered-frame dynamics and measurement coupling recover the same projection statistics.
 
@@ -2658,7 +2658,7 @@ $$
 m\hbar Y_\ell^m
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e76f15e1b03b32a7)
+[View →](../../../../../equation-mapping.html#corpus-equation-e76f15e1b03b32a7)
 
 with
 
@@ -2668,7 +2668,7 @@ $$
 m\in\{-\ell,-\ell+1,\ldots,\ell\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-96626edec3bd02af)
+[View →](../../../../../equation-mapping.html#corpus-equation-96626edec3bd02af)
 
 The $m$ quantization is the same $2\pi$ azimuthal closure rule written above, while the allowed $\ell$ spectrum is the regularity / finite-solution condition for the angular envelope. Both belong to observer-level orbital quantum numbers.
 
@@ -2686,7 +2686,7 @@ s=\frac{1}{2},
 m_s=\pm\frac{1}{2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-83364f4bcd9ee397)
+[View →](../../../../../equation-mapping.html#corpus-equation-83364f4bcd9ee397)
 
 The Noether braid burden is to supply the effective spinor coordinate whose apparatus projection gives the two Stern-Gerlach records $+\hbar/2$ and $-\hbar/2$. Those records should be basin outcomes of the full angular-momentum ledger, not evidence for a tiny pre-existing arrow inside the target.
 
@@ -2721,7 +2721,7 @@ W
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1a5dbd93da81f2ad)
+[View →](../../../../../equation-mapping.html#corpus-equation-1a5dbd93da81f2ad)
 
 whose envelope residual and internal-ledger separation rows pass in the declared chart. If the angular part separates as $\Psi_{\mathrm{env}}(r,\theta,\phi)=R(r)Y(\theta,\phi)$, and $Y$ is a regular single-valued function on $S^2$ in the domain of the self-adjoint angular operator, then
 
@@ -2737,7 +2737,7 @@ Y(\theta,\phi+2\pi)=Y(\theta,\phi)
 m\in\{-\ell,\ldots,\ell\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4c0158b2daccccda)
+[View →](../../../../../equation-mapping.html#corpus-equation-4c0158b2daccccda)
 
 Consequently the observer-level orbital readouts recover
 
@@ -2751,7 +2751,7 @@ L_z\Psi_{\mathrm{env}}
 m\hbar\Psi_{\mathrm{env}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c66e95907a81f43e)
+[View →](../../../../../equation-mapping.html#corpus-equation-c66e95907a81f43e)
 
 The theorem-grade part here is the level separation. Once $\mathcal E_{\mathrm{orb}}$ has supplied a valid central envelope, the angular spectrum is ordinary $S^2$ mathematics; the remaining $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is deriving $\mathcal E_{\mathrm{orb}}$ from the electron assembly branch, nuclear causal-wake envelope, and local Noether sea record without importing the orbital postulate or using internal spinor data to force the label.
 
@@ -2790,7 +2790,7 @@ $$
 \frac{\mathbf{S}\cdot\hat{\mathbf{p}}}{\hbar}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b8970d7c02c1020c)
+[View →](../../../../../equation-mapping.html#corpus-equation-b8970d7c02c1020c)
 
 For photons, the target is strict. A free photon has no rest frame and no physical longitudinal polarization in the validated free-space regime. Its observer-level spin information appears as helicity $\pm1$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ photon model must therefore show how the coaxial contra-rotating polarity-conjugate planar pair carries exactly two transverse modes, helicity $\pm1$, Malus' law, and no unacceptable longitudinal free mode.
 
@@ -2804,7 +2804,7 @@ a_u\hat{\mathbf{u}}+a_v\hat{\mathbf{v}},
 |a_u|^2+|a_v|^2=1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-597dffb738223c08)
+[View →](../../../../../equation-mapping.html#corpus-equation-597dffb738223c08)
 
 This notation is only a bridge scaffold until the planar-pair capture variables are derived from the architrino ledger. The circular basis
 
@@ -2815,7 +2815,7 @@ $$
 \left(\hat{\mathbf{u}}\pm i\hat{\mathbf{v}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b333bf97f63f1454)
+[View →](../../../../../equation-mapping.html#corpus-equation-b333bf97f63f1454)
 
 is the target bridge to helicity. A helicity eigenmode must first be stated as a substrate angular-momentum ledger. Let
 
@@ -2829,7 +2829,7 @@ $$
 \mathbf J_{\gamma,\mathrm{wake}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b9afd172690f4de5)
+[View →](../../../../../equation-mapping.html#corpus-equation-b9afd172690f4de5)
 
 where the terms are the photon-side polarity-conjugate planar-pair and photon-carried wake contributions. Source remnant, recoil, material handoff, and unrelated medium rows belong to the event ledger, not inside the photon-only helicity vector. The helicity residual is
 
@@ -2855,7 +2855,7 @@ P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
 \lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-04b3bf11ca9ea3be)
+[View →](../../../../../equation-mapping.html#corpus-equation-04b3bf11ca9ea3be)
 
 where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The generic coherent case is elliptical polarization: both transverse components are retained with a stable relative phase, with linear and circular polarization as limiting cases. Unpolarized and partially polarized light are ensemble or source-window summaries over retained transverse ledgers, not separate single-photon substrate objects. The scalar summary $\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating polarity-conjugate planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
 
@@ -2877,7 +2877,7 @@ $$
 \mathbf J_{\mathrm{rem}}^{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-28a36a85426d71af)
+[View →](../../../../../equation-mapping.html#corpus-equation-28a36a85426d71af)
 
 Define the balance defect
 
@@ -2899,7 +2899,7 @@ $$
 \mathbf J_{\mathrm{rem}}^{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-025fb36040a2f615)
+[View →](../../../../../equation-mapping.html#corpus-equation-025fb36040a2f615)
 
 and suppose the substrate row has no transverse spin leakage. If $\mathbf B_{\gamma}^{0}=\mathbf 0$, projecting along $\hat{\mathbf k}$ gives
 
@@ -2928,7 +2928,7 @@ $$
 \lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d7370d6eca45b1ff)
+[View →](../../../../../equation-mapping.html#corpus-equation-d7370d6eca45b1ff)
 
 With a nonzero but small balance defect, the projection error is bounded by
 
@@ -2957,7 +2957,7 @@ $$
 \frac{\|\mathbf B_{\gamma}^{0}\|}{\hbar}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d2409b5e5b6a54c2)
+[View →](../../../../../equation-mapping.html#corpus-equation-d2409b5e5b6a54c2)
 
 Thus photon helicity is not an isolated scalar assertion: it is the propagation-axis projection of the same source-depletion, recoil, wake, handoff, remnant, and photon substrate ledger, with its error controlled by the event-window balance defect.
 
@@ -2969,7 +2969,7 @@ P_{\perp}^{ab}
 h^{ab}-\hat{e}^a\hat{e}^b
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cee5365567b68335)
+[View →](../../../../../equation-mapping.html#corpus-equation-cee5365567b68335)
 
 An analyzer axis $\hat{\mathbf{a}}$ must satisfy $P_{\perp}\hat{\mathbf{a}}=\hat{\mathbf{a}}$. For a linearly polarized photon axis $\hat{\mathbf{k}}_\gamma$ and analyzer offset $\theta$, the target capture rule is
 
@@ -2987,7 +2987,7 @@ P_{\text{pass}}
 \cos^2\theta
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-caad2c87b0b9c700)
+[View →](../../../../../equation-mapping.html#corpus-equation-caad2c87b0b9c700)
 
 This is the Malus-law boundary condition on the native derivation. The squared-amplitude step comes from treating the analyzer as a projector onto an accepted transverse capture channel and then measuring positive accepted action, not the signed transverse component itself.
 
@@ -2999,7 +2999,7 @@ $$
 h_{ab}\,\overline{a_\perp^a}a_\perp^b
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-75af3382023cee5a)
+[View →](../../../../../equation-mapping.html#corpus-equation-75af3382023cee5a)
 
 The analyzer axis defines a rank-one accepted-channel projector inside the transverse plane:
 
@@ -3011,7 +3011,7 @@ A^a{}_{b}
 A^a{}_{b}P_{\perp}^{b}{}_{c}=A^a{}_{c}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-15fa969d78370705)
+[View →](../../../../../equation-mapping.html#corpus-equation-15fa969d78370705)
 
 The signed coherent capture amplitude is linear,
 
@@ -3021,7 +3021,7 @@ $$
 \hat a_a a_\perp^a
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e543b60fe85435f7)
+[View →](../../../../../equation-mapping.html#corpus-equation-e543b60fe85435f7)
 
 because the analyzer channel adds the phase-matched transverse ledger component before a material record forms. The positive action available to the accepted channel is the quadratic ledger norm
 
@@ -3033,7 +3033,7 @@ $$
 \left|\hat a_a a_\perp^a\right|^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6112f3cf8278b6df)
+[View →](../../../../../equation-mapping.html#corpus-equation-6112f3cf8278b6df)
 
 The native capture measure is therefore the normalized positive action fraction
 
@@ -3046,7 +3046,7 @@ $$
 {h_{ab}\,\overline{a_\perp^a}a_\perp^b}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2711088ba36c64d0)
+[View →](../../../../../equation-mapping.html#corpus-equation-2711088ba36c64d0)
 
 The rejected material channel is the orthogonal transverse complement
 
@@ -3060,7 +3060,7 @@ R^a{}_{b}=P_{\perp}^{a}{}_{b}-A^a{}_{b},
 \mu_{\text{pass}}+\mu_{\text{rej}}=1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e47942af867a8bdf)
+[View →](../../../../../equation-mapping.html#corpus-equation-e47942af867a8bdf)
 
 At the material level, $\hat{\mathbf a}$ is not a free observer label. It is supplied by an analyzer assembly $M_{\hat{\mathbf a}}$ whose oriented lattice, stress state, and phase-locked capture geometry leave exactly one stable transverse relocking family for the incoming planar-pair ledger:
 
@@ -3071,7 +3071,7 @@ $$
 \subset\operatorname{im}P_{\perp}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3184456e6ad3acd7)
+[View →](../../../../../equation-mapping.html#corpus-equation-3184456e6ad3acd7)
 
 The corresponding material analyzer projector is the orthogonal projector onto that accepted family:
 
@@ -3085,7 +3085,7 @@ A^{\dagger}=A,
 A^a{}_{b}=\hat a^a\hat a_b
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e2e80c8a7c582fa0)
+[View →](../../../../../equation-mapping.html#corpus-equation-e2e80c8a7c582fa0)
 
 This is why the accepted channel is rank one inside $P_{\perp}$. A rank-two accepted channel would pass the whole transverse ledger and would not be a linear analyzer; a rank-zero channel would be an opaque absorber. The nontrivial ideal linear analyzer has one accepted transverse material relocking direction and one rejected transverse complement.
 
@@ -3099,7 +3099,7 @@ R^a{}_{b}a_\perp^b,
 \hat e_a a_{\text{rej}}^a=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0daca539ca75d5b5)
+[View →](../../../../../equation-mapping.html#corpus-equation-0daca539ca75d5b5)
 
 It therefore cannot be reclassified as a longitudinal free photon mode. In a rejected event, its action routes locally into reflection, absorption, scattering, heat, or another allowed material update, with the local ledger closing as
 
@@ -3111,7 +3111,7 @@ $$
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-75fbe577f8b41e14)
+[View →](../../../../../equation-mapping.html#corpus-equation-75fbe577f8b41e14)
 
 $$
 \Delta\mathbf{p}_{\gamma}
@@ -3121,7 +3121,7 @@ $$
 =\mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-26ea36f28e11a14a)
+[View →](../../../../../equation-mapping.html#corpus-equation-26ea36f28e11a14a)
 
 and
 
@@ -3133,7 +3133,7 @@ $$
 =\mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-49ae76258ebca3ec)
+[View →](../../../../../equation-mapping.html#corpus-equation-49ae76258ebca3ec)
 
 For a linearly polarized photon with $a_\perp^a=\hat e_\gamma^a$ and $\|\hat{\mathbf e}_\gamma\|=1$, this gives
 
@@ -3147,7 +3147,7 @@ $$
 \mu_{\text{rej}}=\sin^2\theta
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8bc19e2aed35ac17)
+[View →](../../../../../equation-mapping.html#corpus-equation-8bc19e2aed35ac17)
 
 For circular helicity states, the same measure gives
 
@@ -3157,7 +3157,7 @@ $$
 \frac{1}{2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cfbfb2f0f2061235)
+[View →](../../../../../equation-mapping.html#corpus-equation-cfbfb2f0f2061235)
 
 for every linear analyzer axis $\hat{\mathbf a}$. This is the expected equal split for circular polarization through a linear analyzer.
 
@@ -3171,7 +3171,7 @@ T_{s*}d\nu_{\hat{\mathbf a}}=d\nu_{\hat{\mathbf a}},
 (\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bad50edf168eebcc)
+[View →](../../../../../equation-mapping.html#corpus-equation-bad50edf168eebcc)
 
 where $T_s$ is the analyzer's local material flow through the successful record window. The deterministic single-event kernels are then
 
@@ -3185,7 +3185,7 @@ H\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-76e26b3d49553b11)
+[View →](../../../../../equation-mapping.html#corpus-equation-76e26b3d49553b11)
 
 and
 
@@ -3199,7 +3199,7 @@ H\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-12d15ed6cdc75a5c)
+[View →](../../../../../equation-mapping.html#corpus-equation-12d15ed6cdc75a5c)
 
 with $H(0)=0$. Conditioned on a successful material record, $G_{\text{mat}}=1$, the unresolved analyzer variables give
 
@@ -3214,7 +3214,7 @@ H\!\left(\mu_{\text{pass}}-\eta\right)d\eta
 \mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-db495024f60dbab8)
+[View →](../../../../../equation-mapping.html#corpus-equation-db495024f60dbab8)
 
 This is the reusable threshold-pullback theorem target for one-wing record channels. If a record window has an event-ledger residual below tolerance, an invariant unresolved-material measure $d\nu$, and a threshold coordinate $\eta:\Theta\to[0,1]$ with $\eta_*d\nu=d\eta$, then the deterministic kernel
 
@@ -3222,7 +3222,7 @@ $$
 K_o(\rho,\zeta)=H\!\left(\rho-\eta(\zeta)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1654ce9189fababe)
+[View →](../../../../../equation-mapping.html#corpus-equation-1654ce9189fababe)
 
 has the pushed-forward weight
 
@@ -3236,7 +3236,7 @@ $$
 \rho
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-89b9f8d22d7b4821)
+[View →](../../../../../equation-mapping.html#corpus-equation-89b9f8d22d7b4821)
 
 Photon Gate B uses $\rho=\mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)$. The Stern-Gerlach-like chart below uses the same structure with $\rho=p_{+}(\hat{\mathbf a},\hat{\mathbf m})$. Bell-pair work may consume this theorem target only after both one-wing kernels are tied to the same pair-provenance record and the resulting joint law avoids product screening while preserving measurement independence and no-signaling.
 
@@ -3248,7 +3248,7 @@ P(a,b|x,y)
 \int p_A(a|x,\Pi)p_B(b|y,\Pi)\,d\rho_{\mathrm{src}}(\Pi)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-49036ec24fcb628d)
+[View →](../../../../../equation-mapping.html#corpus-equation-49036ec24fcb628d)
 
 obeys the CHSH bound. If a product-screened approximation differs from the completed table by at most $\Delta_{\mathrm{prod}}$ per outcome-setting cell, then
 
@@ -3256,7 +3256,7 @@ $$
 |S|\le 2+16\Delta_{\mathrm{prod}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-82258466aec5746b)
+[View →](../../../../../equation-mapping.html#corpus-equation-82258466aec5746b)
 
 If the same table is within $\Delta_{\mathrm{joint}}^{\mathrm{sing}}$ of the singlet joint law at the CHSH-optimal settings, then
 
@@ -3270,7 +3270,7 @@ $$
 \frac{\sqrt2-1}{8}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8373d6d3ba93fea6)
+[View →](../../../../../equation-mapping.html#corpus-equation-8373d6d3ba93fea6)
 
 Thus exact singlet recovery requires the product-screening residual to stay bounded away from zero; in this normalization $\Delta_{\mathrm{prod}}\ge(\sqrt2-1)/8\approx0.0518$. The one-wing threshold theorem can supply local probabilities, but it cannot be duplicated independently to make Bell correlations.
 
@@ -3282,7 +3282,7 @@ $$
 \mathcal{P}_{\hat{\mathbf a}}/\!\sim_{\hat{\mathbf a}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-54f87d3e59463328)
+[View →](../../../../../equation-mapping.html#corpus-equation-54f87d3e59463328)
 
 The map $T_s:\Theta_{\hat{\mathbf a}}\to\Theta_{\hat{\mathbf a}}$ is the return map induced by the architrino-level Master Equation through one record-window step, after projecting the fully resolved analyzer state back to the quotient. The invariant analyzer measure is the long-run occupation measure of this return map:
 
@@ -3293,7 +3293,7 @@ $$
 f(T_s\zeta)\,d\nu_{\hat{\mathbf a}}(\zeta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-49d7befc617ee677)
+[View →](../../../../../equation-mapping.html#corpus-equation-49d7befc617ee677)
 
 or, equivalently for typical calibrated analyzer histories,
 
@@ -3306,7 +3306,7 @@ $$
 f(T_s^n\zeta_0)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad85475d319fcbdd)
+[View →](../../../../../equation-mapping.html#corpus-equation-ad85475d319fcbdd)
 
 Thus $d\nu_{\hat{\mathbf a}}$ is not a quantum postulate. It is the reduced invariant measure of a stable material assembly under repeated local capture attempts.
 
@@ -3318,7 +3318,7 @@ $$
 \Theta_{\hat{\mathbf a}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1b457e0fda5f0a72)
+[View →](../../../../../equation-mapping.html#corpus-equation-1b457e0fda5f0a72)
 
 be the set of analyzer microstates that route to the accepted material record when the incoming planar-pair ledger supplies $\mu_{\text{pass}}=\rho$. The ideal linear analyzer requires the monotonicity condition
 
@@ -3330,7 +3330,7 @@ $$
 \mathcal{B}_{\text{pass}}(\rho_2;\hat{\mathbf a})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-23089166efbf8565)
+[View →](../../../../../equation-mapping.html#corpus-equation-23089166efbf8565)
 
 with $\mathcal{B}_{\text{pass}}(0;\hat{\mathbf a})$ measure zero and $\mathcal{B}_{\text{pass}}(1;\hat{\mathbf a})$ full measure after conditioning on a successful material record. The threshold coordinate is
 
@@ -3343,7 +3343,7 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2274079648ad7d31)
+[View →](../../../../../equation-mapping.html#corpus-equation-2274079648ad7d31)
 
 This gives the deterministic rule
 
@@ -3353,7 +3353,7 @@ $$
 \eta_{\hat{\mathbf a}}(\zeta)<\rho
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-04a4bc707e8dbafd)
+[View →](../../../../../equation-mapping.html#corpus-equation-04a4bc707e8dbafd)
 
 outside measure-zero separatrix cases. The uniform pushforward
 
@@ -3361,7 +3361,7 @@ $$
 (\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f6cb4bc4718704cf)
+[View →](../../../../../equation-mapping.html#corpus-equation-f6cb4bc4718704cf)
 
 is the unbiased-ideal-analyzer theorem target. In physical terms, it says that ordinary calibrated polarizer preparation samples the material capture threshold evenly in the invariant-measure coordinate. If the pushforward is not uniform, the measured pass curve becomes
 
@@ -3374,7 +3374,7 @@ P_{\text{pass}}(\rho)
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-824024b020ea57f3)
+[View →](../../../../../equation-mapping.html#corpus-equation-824024b020ea57f3)
 
 and the deviation
 
@@ -3384,7 +3384,7 @@ $$
 P_{\text{pass}}(\rho)-\rho
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-35adb4cf54286d14)
+[View →](../../../../../equation-mapping.html#corpus-equation-35adb4cf54286d14)
 
 is a detector-bias or failed-calibration diagnostic, not a new photon law.
 
@@ -3400,7 +3400,7 @@ A_k=\hat a_k\hat a_k^{\flat},
 R_k=P_{\perp}-A_k
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fb958c2ac3a009a3)
+[View →](../../../../../equation-mapping.html#corpus-equation-fb958c2ac3a009a3)
 
 inside the free transverse plane. Conditioned on a successful pass record and a zero handoff residual, the outgoing ledger is
 
@@ -3418,7 +3418,7 @@ A_k{}^{a}{}_{b}a_{k-1}^{b}
 e^{i\chi_k}\hat a_k^{a}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d87502fc195e72a5)
+[View →](../../../../../equation-mapping.html#corpus-equation-d87502fc195e72a5)
 
 If the rejected channel emits a free outgoing transverse branch rather than absorbing or scattering locally, the rejected ledger is
 
@@ -3434,7 +3434,7 @@ R_k{}^{a}{}_{b}a_{k-1}^{b}
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-871d6c793b432066)
+[View →](../../../../../equation-mapping.html#corpus-equation-871d6c793b432066)
 
 For a pass-only cascade through analyzer axes $\hat{\mathbf a}_1,\ldots,\hat{\mathbf a}_N$, induction over the local threshold-pullback events gives
 
@@ -3450,7 +3450,7 @@ P(+_1,\ldots,+_N\mid a_0)
 \right|^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-63454d0a70e9ff45)
+[View →](../../../../../equation-mapping.html#corpus-equation-63454d0a70e9ff45)
 
 This is an effective response lemma, not a collapse postulate. Each analyzer still has its own material, wake, recoil, and Noether sea event ledger; the lemma states how the already-accepted transverse ledger is normalized and handed to the next local analyzer when the handoff residual is zero.
 
@@ -3462,7 +3462,7 @@ $$
 \sum_{a=\pm}P(a,b\,|\,\alpha,\beta)=P(b\,|\,\beta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3c3ee2a97ebd02d9)
+[View →](../../../../../equation-mapping.html#corpus-equation-3c3ee2a97ebd02d9)
 
 while recovering the standard polarization-correlation angle law for the prepared entangled state. Pair provenance and contextual analyzer coupling may be non-factorized in the completed model, but a distant analyzer setting must not change the local marginal statistics.
 
@@ -3480,7 +3480,7 @@ $$
 U_{\text{app}}(\mathbf X,T;\hat{\mathbf{m}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-53bf4d1fdd9d5a21)
+[View →](../../../../../equation-mapping.html#corpus-equation-53bf4d1fdd9d5a21)
 
 but this is only a mollified bookkeeping object for the coherent envelope of many causal-wake hits. The fundamental interaction remains the architrino-wise Master Equation sum over radial causal-wake intersections.
 
@@ -3492,7 +3492,7 @@ T_{\text{in}}\le T\le T_{\text{out}},
 T_{\text{int}}=T_{\text{out}}-T_{\text{in}}>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8e77db2a78d67474)
+[View →](../../../../../equation-mapping.html#corpus-equation-8e77db2a78d67474)
 
 The gradient must be strong enough and persistent enough to drive the coupled target-apparatus state toward a branch boundary, but not so violent that it dissociates the target instead of measuring it. A zero-duration projection is therefore not the substrate model. The observer-level abruptness is the coarse appearance of a finite threshold crossing and record lock.
 
@@ -3508,7 +3508,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-602c437d7c7722d8)
+[View →](../../../../../equation-mapping.html#corpus-equation-602c437d7c7722d8)
 
 where $\mathbf{n}_{\ell}$ denotes the layer plane normal, $\phi_{\ell}$ the phase, $\omega_{\ell}$ the binary frequency, $I_{\ell}$ the radian-normalized rotational-action variable, $\mathcal{R}_{\ell}$ the active causal-root ledger, $\mathbf{L}_{\text{wake},\text{braid}}$ the in-flight causal-wake contribution associated with the target braid, and $\mathcal{H}_{\text{self}}$ the relevant self-hit history. This package is still a reduction of the full architrino state. It is nevertheless the minimum kind of ledger a spin apparatus can couple to, because a single classical axis would erase the phase, root, and wake-history information that the measurement interaction is supposed to test.
 
@@ -3523,7 +3523,7 @@ $$
 \mathbf F^{\text{app}}_i(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9f02a7aaa13c94e0)
+[View →](../../../../../equation-mapping.html#corpus-equation-9f02a7aaa13c94e0)
 
 where $\mathbf{F}^{\text{app}}_i$ is the apparatus-induced force bookkeeping term reconstructed from the local causal-wake hits, and $\mathbf{X}_{\text{braid}}$ is the target braid center used for the reduced ledger. The torque deforms the external-exposure response channel, retunes the fold-selected role, and can alter the admissible self-hit branch history of the self-hit-selected binary. The measured response is therefore a coupled redistribution of $\Delta I_3$, $\Delta I_2$, $\Delta I_1$, and $\Delta I_{\text{wake}}$, not a direct lookup of an already chosen sign.
 
@@ -3541,7 +3541,7 @@ $$
 \mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-55c886877e387dd4)
+[View →](../../../../../equation-mapping.html#corpus-equation-55c886877e387dd4)
 
 This is the Stern-Gerlach analogue of recoil accounting. The apparatus receives the opposite angular-momentum impulse needed to make a durable record, while in-flight causal wakes and the local Noether sea carry the part of the exchange that is not present in the instantaneous mechanical variables. If this ledger is omitted, the two detector channels become unexplained labels rather than physical outcomes.
 
@@ -3553,7 +3553,7 @@ Z_{\hat{\mathbf{m}}}(T)
 \left(\mathcal{J}_{\text{core}}(T),A_{\hat{\mathbf{m}}}(T),\mathcal{W}_{\text{loc}}(T)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-93fa120bcbdfad1f)
+[View →](../../../../../equation-mapping.html#corpus-equation-93fa120bcbdfad1f)
 
 denote the reduced state containing the core spin ledger, the apparatus channel state, and the local causal-wake background. A Stern-Gerlach-like measurement is successful only when the coupled flow crosses an axis-indexed separatrix
 
@@ -3561,7 +3561,7 @@ $$
 \Sigma_{\hat{\mathbf{m}}}\!\left(Z_{\hat{\mathbf{m}}}(T)\right)=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0db182641eb856a9)
+[View →](../../../../../equation-mapping.html#corpus-equation-0db182641eb856a9)
 
 and then settles into one of two record-forming basins
 
@@ -3571,7 +3571,7 @@ B_{+}(\hat{\mathbf{m}}),
 B_{-}(\hat{\mathbf{m}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-da6704c1f9f96668)
+[View →](../../../../../equation-mapping.html#corpus-equation-da6704c1f9f96668)
 
 The measured value is therefore
 
@@ -3584,7 +3584,7 @@ o_{\hat{\mathbf{m}}}
 \end{cases}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e880433a8f5f7a4a)
+[View →](../../../../../equation-mapping.html#corpus-equation-e880433a8f5f7a4a)
 
 where $T_{\text{rec}}>T_{\text{in}}$ is the time at which the branch has crossed the separatrix and locked into a persistent apparatus record. Failed capture, dissociation, or insufficient amplification are apparatus failures, not additional spin outcomes.
 
@@ -3600,7 +3600,7 @@ K_{\pm}(\hat{\mathbf{m}};Z_{\hat{\mathbf{m}}}(T_{\text{in}}))
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4426b92f8b55085f)
+[View →](../../../../../equation-mapping.html#corpus-equation-4426b92f8b55085f)
 
 where $\Phi^{\hat{\mathbf{m}}}_{T_{\text{int}}}$ is the finite-time flow generated by the target, apparatus, and local Noether sea state. This is already a derived deterministic kernel at the reduced-flow level: it is the pullback of the record-forming basins through the actual apparatus-coupled dynamics.
 
@@ -3612,7 +3612,7 @@ q_{\hat{\mathbf{m}}}(Z)
 \Sigma_{\hat{\mathbf{m}}}(Z)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a716e0dc9d614204)
+[View →](../../../../../equation-mapping.html#corpus-equation-a716e0dc9d614204)
 
 with $q_{\hat{\mathbf{m}}}>0$ on the $+$ side and $q_{\hat{\mathbf{m}}}<0$ on the $-$ side. Along the apparatus-driven flow, linearize the separatrix-normal dynamics:
 
@@ -3627,7 +3627,7 @@ $$
 O(q_{\hat{\mathbf{m}}}^{2},\|\delta Z_{\perp}\|^{2})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-94a2ee30cd15ee66)
+[View →](../../../../../equation-mapping.html#corpus-equation-94a2ee30cd15ee66)
 
 Here $\mathcal{N}_{\hat{\mathbf{m}}}$ is the separatrix normal covector in the reduced angular-momentum ledger coordinates, $\lambda_{\hat{\mathbf{m}}}$ is the local normal expansion / contraction rate, and $\delta Z_{\perp}$ denotes tangent-to-separatrix perturbations. The apparatus-driven core update is
 
@@ -3639,7 +3639,7 @@ $$
 \frac{d\mathbf L_{\text{wake},C\leftrightarrow A}}{dT}(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9de53581541c2458)
+[View →](../../../../../equation-mapping.html#corpus-equation-9de53581541c2458)
 
 where
 
@@ -3656,7 +3656,7 @@ $$
 -\nabla_{\mathbf X_i}U_{\text{app}}(\mathbf X_i,T;\hat{\mathbf{m}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b2d49d277c9c012c)
+[View →](../../../../../equation-mapping.html#corpus-equation-b2d49d277c9c012c)
 
 in the mollified apparatus-potential chart.
 
@@ -3673,7 +3673,7 @@ c_f(T-T_t)
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-516c35b4247e47ca)
+[View →](../../../../../equation-mapping.html#corpus-equation-516c35b4247e47ca)
 
 For each root $T_t\in\mathcal C_{ia}^{A}(T)$, write
 
@@ -3689,7 +3689,7 @@ r_{ia}(T;T_t)=\|\mathbf r_{ia}(T;T_t)\|,
 \frac{\mathbf r_{ia}(T;T_t)}{r_{ia}(T;T_t)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dbdd7de8ca533670)
+[View →](../../../../../equation-mapping.html#corpus-equation-dbdd7de8ca533670)
 
 and
 
@@ -3699,7 +3699,7 @@ J_{ia}(t;s)
 1-\frac{\mathbf v_a(s)\cdot\hat{\mathbf r}_{ia}(t;s)}{c_f}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-23878a81d8cadc3a)
+[View →](../../../../../equation-mapping.html#corpus-equation-23878a81d8cadc3a)
 
 The apparatus contribution to the target constituent's acceleration is therefore
 
@@ -3716,7 +3716,7 @@ $$
 \hat{\mathbf r}_{ia}(t;s)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-59864ff4268d2324)
+[View →](../../../../../equation-mapping.html#corpus-equation-59864ff4268d2324)
 
 where $W_{ia}^{\mathrm{acc}}(t;s)=c_f/\lvert D_{t,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
 
@@ -3728,7 +3728,7 @@ $$
 \mu_{\text{arch}}\mathbf a_i^{\text{app}}(t;\hat{\mathbf{m}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e9a1883e8f5ee1cb)
+[View →](../../../../../equation-mapping.html#corpus-equation-e9a1883e8f5ee1cb)
 
 Equivalently, in the finite-memory dual-mollified chart,
 
@@ -3744,7 +3744,7 @@ $$
 \delta_{\eta}\!\left(r_{ia}(T,T')-c_f(T-T')\right)\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b1f9e7b0712f8563)
+[View →](../../../../../equation-mapping.html#corpus-equation-b1f9e7b0712f8563)
 
 The apparatus angular impulse entering the reduced response is therefore not an imported spin torque. It is the braid-centered torque of these delayed radial hits, plus the wake part required by the delayed Noether ledger:
 
@@ -3762,7 +3762,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8698bacf2284b3e3)
+[View →](../../../../../equation-mapping.html#corpus-equation-8698bacf2284b3e3)
 
 and over the interaction window,
 
@@ -3773,7 +3773,7 @@ $$
 \frac{d\mathbf J_{C}^{\text{app}}}{dT}(T;\hat{\mathbf{m}})\,dT
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-639829642803e232)
+[View →](../../../../../equation-mapping.html#corpus-equation-639829642803e232)
 
 The missing recoil is not discarded; it is fixed by
 
@@ -3789,7 +3789,7 @@ $$
 \mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-55c886877e387dd4-2)
+[View →](../../../../../equation-mapping.html#corpus-equation-55c886877e387dd4-2)
 
 Let
 
@@ -3799,7 +3799,7 @@ $$
 \int_{U}^{V}\lambda_{\hat{\mathbf{m}}}(T)\,dT
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-16cbe8c58a92f99c)
+[View →](../../../../../equation-mapping.html#corpus-equation-16cbe8c58a92f99c)
 
 The first-order signed response functional at the end of the interaction window is
 
@@ -3815,7 +3815,7 @@ e^{\Lambda_{\hat{\mathbf{m}}}(T',T_{\text{out}})}
 \frac{d\mathbf J_{C}^{\text{app}}}{dT}(T')\,dT'
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8b226fa7d9a1c37a)
+[View →](../../../../../equation-mapping.html#corpus-equation-8b226fa7d9a1c37a)
 
 The record gate is
 
@@ -3828,7 +3828,7 @@ H\!\left(
 H\!\left(\tau_{\text{persist}}-T_{\text{rec}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aae9aa0f712473a6)
+[View →](../../../../../equation-mapping.html#corpus-equation-aae9aa0f712473a6)
 
 with the project convention $H(0)=0$. The derived first-order Stern-Gerlach kernels are therefore
 
@@ -3841,7 +3841,7 @@ H\!\left(\mathcal{Q}_{\hat{\mathbf{m}}}(Z_{\text{in}})\right)
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c33650d46b2cbe8f)
+[View →](../../../../../equation-mapping.html#corpus-equation-c33650d46b2cbe8f)
 
 and
 
@@ -3854,7 +3854,7 @@ H\!\left(-\mathcal{Q}_{\hat{\mathbf{m}}}(Z_{\text{in}})\right)
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-345cc079c2c1690b)
+[View →](../../../../../equation-mapping.html#corpus-equation-345cc079c2c1690b)
 
 For a successful two-channel apparatus with $G_{\text{rec}}=1$ and $\mathcal{Q}_{\hat{\mathbf{m}}}\ne0$, the kernels satisfy
 
@@ -3862,7 +3862,7 @@ $$
 K_{+}^{\text{SG}}+K_{-}^{\text{SG}}=1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4ab30c664464539c)
+[View →](../../../../../equation-mapping.html#corpus-equation-4ab30c664464539c)
 
 If $G_{\text{rec}}=0$, the event is a failed record formation. If $\mathcal{Q}_{\hat{\mathbf{m}}}=0$ exactly, the state remains on the reduced separatrix in this first-order chart; that measure-zero case is not a third spin value and must be resolved by higher-order terms, environmental perturbation, or apparatus redesign.
 
@@ -3874,7 +3874,7 @@ P_{\pm}(\hat{\mathbf{m}})
 \int K_{\pm}^{\text{SG}}(\hat{\mathbf{m}};Z)\,d\mu_*(Z)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5029eb6a782eb071)
+[View →](../../../../../equation-mapping.html#corpus-equation-5029eb6a782eb071)
 
 This derivation does not reduce the measurement to a preassigned local axis. $\mathcal{Q}_{\hat{\mathbf{m}}}$ depends on the full trajectory through the interaction window: layer phases and frequencies, causal-root history, self-hit memory, apparatus microstate, local causal-wake background, and the separatrix geometry. At the reduced statistical level, the quantitative target is the basin measure. For a spin-$\tfrac{1}{2}$ preparation with effective angle $\alpha$ relative to $\hat{\mathbf{m}}$, the required recovery is
 
@@ -3892,7 +3892,7 @@ P_{-}(\alpha)
 \sin^2\!\left(\frac{\alpha}{2}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2fcceae67675cd6a)
+[View →](../../../../../equation-mapping.html#corpus-equation-2fcceae67675cd6a)
 
 A concrete reduced basin calculation can be given once the ordered-frame spinor target has supplied an effective two-channel coordinate for the measurement-axis chart. Write the coordinate in the $\hat{\mathbf{m}}$ channel basis as
 
@@ -3907,7 +3907,7 @@ c_{-}(Z;\hat{\mathbf{m}})
 |c_{+}|^2+|c_{-}|^2=1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5eada78fbbf7b682)
+[View →](../../../../../equation-mapping.html#corpus-equation-5eada78fbbf7b682)
 
 Then
 
@@ -3919,7 +3919,7 @@ p_{+}(Z;\hat{\mathbf{m}})
 p_{-}=1-p_{+}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7b24abf08dc0554e)
+[View →](../../../../../equation-mapping.html#corpus-equation-7b24abf08dc0554e)
 
 or, equivalently, for the same normalized state in a fixed effective spinor chart,
 
@@ -3931,7 +3931,7 @@ p_{+}(Z;\hat{\mathbf{m}})
 \psi(Z)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-09208531943356bb)
+[View →](../../../../../equation-mapping.html#corpus-equation-09208531943356bb)
 
 with
 
@@ -3944,7 +3944,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e700bd2b291ee83d)
+[View →](../../../../../equation-mapping.html#corpus-equation-e700bd2b291ee83d)
 
 The unresolved material degrees of freedom in the record amplifier reduce to a fast apparatus-record phase
 
@@ -3952,7 +3952,7 @@ $$
 \theta_{\text{rec}}\in[0,2\pi)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8a50838097c49fd7)
+[View →](../../../../../equation-mapping.html#corpus-equation-8a50838097c49fd7)
 
 In the ideal reduced chart, the successful record gate samples this phase with
 
@@ -3960,7 +3960,7 @@ $$
 d\nu_{\text{rec}}=\frac{d\theta_{\text{rec}}}{2\pi}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4875d96896017ffe)
+[View →](../../../../../equation-mapping.html#corpus-equation-4875d96896017ffe)
 
 This phase is not an additional spin value. It is the unresolved position of the coupled target-apparatus trajectory along the record-forming cycle.
 
@@ -3970,7 +3970,7 @@ $$
 \Theta_{\text{rec}}:\Gamma_{\text{rec}}^{\pm}\to S^1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-adc48df6e51244fc)
+[View →](../../../../../equation-mapping.html#corpus-equation-adc48df6e51244fc)
 
 be a phase coordinate on that cycle, and let $F_{\text{ME}}^{A}$ denote the apparatus part of the Master-Equation vector field, including the same delayed cross-root terms used in the impulse calculation. Along the locked record cycle,
 
@@ -3982,7 +3982,7 @@ $$
 d\Theta_{\text{rec}}\!\left(F_{\text{ME}}^{A}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b0b2862fe35350d7)
+[View →](../../../../../equation-mapping.html#corpus-equation-b0b2862fe35350d7)
 
 The invariant density $\rho_{\text{rec}}$ for this one-dimensional phase flow satisfies the stationary continuity equation
 
@@ -3998,7 +3998,7 @@ $$
 \int_{0}^{2\pi}\rho_{\text{rec}}(\theta_{\text{rec}})\,d\theta_{\text{rec}}=1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0cf34344fbcfe9a5)
+[View →](../../../../../equation-mapping.html#corpus-equation-0cf34344fbcfe9a5)
 
 Hence
 
@@ -4017,7 +4017,7 @@ P_{\mathrm{rec}}
 {\Omega_{\text{rec}}(\theta_{\text{rec}})}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-180eeb923714e4b2)
+[View →](../../../../../equation-mapping.html#corpus-equation-180eeb923714e4b2)
 
 Here $P_{\mathrm{rec}}$ is the apparatus record-cycle period, distinct from the record-formation time and the persistence duration used by the capture gate. The uniform measure $d\theta_{\text{rec}}/(2\pi)$ is the calibrated limit in which the successful record cycle has constant phase speed, or in which $\theta_{\text{rec}}$ is chosen as the normalized time-of-flight phase on the cycle. If the Master-Equation record cycle has nonconstant phase speed or channel-dependent efficiency, the basin integral must use $d\nu_{\text{rec}}$ above rather than the uniform idealization.
 
@@ -4032,7 +4032,7 @@ u_{\hat{\mathbf m}}(\theta)
 \rho_{\hat{\mathbf m}}^{\mathrm{rec}}(s)\,ds
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5bf70e35ab5c26f7)
+[View →](../../../../../equation-mapping.html#corpus-equation-5bf70e35ab5c26f7)
 
 When the conditional record measure is non-atomic, this coordinate pushes the record measure to Lebesgue measure on $[0,1]$:
 
@@ -4040,7 +4040,7 @@ $$
 (u_{\hat{\mathbf m}})_*d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}=du
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a80e54009747ddfe)
+[View →](../../../../../equation-mapping.html#corpus-equation-a80e54009747ddfe)
 
 This is the probability-integral transform applied to the locked apparatus record cycle. It means the ideal threshold rule should be written in the invariant-measure coordinate; the raw phase formula is only the special case $u_{\hat{\mathbf m}}(\theta_{\text{rec}})=\theta_{\text{rec}}/(2\pi)$.
 
@@ -4056,7 +4056,7 @@ u_{\hat{\mathbf m}}(\theta_{\text{rec}})
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c11eb8b259e6d22c)
+[View →](../../../../../equation-mapping.html#corpus-equation-c11eb8b259e6d22c)
 
 with separatrix normal
 
@@ -4068,7 +4068,7 @@ d p_{+}
 \rho_{\hat{\mathbf m}}^{\mathrm{rec}}(\theta_{\text{rec}})\,d\theta_{\text{rec}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c588687f33ff7e87)
+[View →](../../../../../equation-mapping.html#corpus-equation-c588687f33ff7e87)
 
 The reduced record basins are therefore
 
@@ -4081,7 +4081,7 @@ u_{\hat{\mathbf m}}(\theta_{\text{rec}})<p_{+}(Z;\hat{\mathbf{m}})
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-df67e20ef9a4a313)
+[View →](../../../../../equation-mapping.html#corpus-equation-df67e20ef9a4a313)
 
 and
 
@@ -4094,7 +4094,7 @@ u_{\hat{\mathbf m}}(\theta_{\text{rec}})>p_{+}(Z;\hat{\mathbf{m}})
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7d4fc45549afab5a)
+[View →](../../../../../equation-mapping.html#corpus-equation-7d4fc45549afab5a)
 
 with the boundary assigned measure zero by $H(0)=0$. The corresponding ideal reduced kernels are
 
@@ -4109,7 +4109,7 @@ u_{\hat{\mathbf m}}(\theta_{\text{rec}})
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-69bce48421b908b0)
+[View →](../../../../../equation-mapping.html#corpus-equation-69bce48421b908b0)
 
 and
 
@@ -4124,7 +4124,7 @@ p_{+}(Z;\hat{\mathbf{m}})
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-902f429ed4695e9a)
+[View →](../../../../../equation-mapping.html#corpus-equation-902f429ed4695e9a)
 
 For a prepared spin-$\tfrac{1}{2}$ core whose effective preparation axis is $\hat{\mathbf{a}}$, let
 
@@ -4132,7 +4132,7 @@ $$
 \hat{\mathbf{a}}\cdot\hat{\mathbf{m}}=\cos\alpha
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aac0b2b20daba178)
+[View →](../../../../../equation-mapping.html#corpus-equation-aac0b2b20daba178)
 
 The spinor projection gives
 
@@ -4148,7 +4148,7 @@ p_{-}
 \sin^2\!\left(\frac{\alpha}{2}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-756b18930c657eba)
+[View →](../../../../../equation-mapping.html#corpus-equation-756b18930c657eba)
 
 Conditioned on a successful record gate whose measure is included in $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$,
 
@@ -4172,7 +4172,7 @@ H\!\left(
 \cos^2\!\left(\frac{\alpha}{2}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8a01d4d69110541b)
+[View →](../../../../../equation-mapping.html#corpus-equation-8a01d4d69110541b)
 
 and
 
@@ -4182,7 +4182,7 @@ P_{-}(\alpha\,|\,\text{rec})
 \sin^2\!\left(\frac{\alpha}{2}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-64a1b496b2d6c6e4)
+[View →](../../../../../equation-mapping.html#corpus-equation-64a1b496b2d6c6e4)
 
 This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $d\mathbf J_{C}^{\text{app}}/dT$ is the angular impulse rate generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete Noether braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
 
@@ -4205,7 +4205,7 @@ $$
 \bigr)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bff39db8b9c1f9cb)
+[View →](../../../../../equation-mapping.html#corpus-equation-bff39db8b9c1f9cb)
 
 with correlation
 
@@ -4218,7 +4218,7 @@ E_{\text{QM}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
 -\cos\theta_{AB}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-409c0b9a4b11914e)
+[View →](../../../../../equation-mapping.html#corpus-equation-409c0b9a4b11914e)
 
 The architrino-level starting point is not this ket. It is a pair provenance ledger. At a creation or fragmentation event,
 
@@ -4228,7 +4228,7 @@ $$
 \Gamma_A(T_0^+),\Gamma_B(T_0^+)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7760c6ccdb0f10c3)
+[View →](../../../../../equation-mapping.html#corpus-equation-7760c6ccdb0f10c3)
 
 with conservation of total energy, momentum, angular momentum, polarity inventory, and relevant causal-wake history. For a singlet-like pair, the observer-level summary is
 
@@ -4236,7 +4236,7 @@ $$
 \mathbf{J}_A+\mathbf{J}_B=\mathbf{0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-95c1b6046f13ca03)
+[View →](../../../../../equation-mapping.html#corpus-equation-95c1b6046f13ca03)
 
 That summary is necessary but not sufficient. A pair of opposite preassigned classical axes gives the wrong correlation. If an unresolved unit vector $\hat{\mathbf{n}}$ is uniformly distributed and detectors return signs by hemisphere,
 
@@ -4246,7 +4246,7 @@ E_{\text{axis}}(\theta_{AB})
 -1+\frac{2\theta_{AB}}{\pi}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fd44ee8e4bd0f671)
+[View →](../../../../../equation-mapping.html#corpus-equation-fd44ee8e4bd0f671)
 
 which is linear in $\theta_{AB}$ and obeys the CHSH bound. Therefore angular-momentum conservation at creation is not enough. The response kernel must involve the full Noether braid ledger and finite-time detector coupling, not merely an opposite spin arrow carried by each daughter.
 
@@ -4259,7 +4259,7 @@ P(a\,|\,\hat{\mathbf{m}}_A,\lambda)
 P(b\,|\,\hat{\mathbf{m}}_B,\lambda)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-67eb29f5f5ea406b)
+[View →](../../../../../equation-mapping.html#corpus-equation-67eb29f5f5ea406b)
 
 Any completed $\mathbb{A}\mathbb{A}\mathbb{A}$ account that reproduces experiments must fail this factorized Bell-local form while preserving no-signaling and measurement independence. The failure cannot be asserted by slogan. It must be shown by deriving the pair-provenance ledger and the two local apparatus-response maps, then proving that their observer-level compression does not fit Bell's factorized model.
 
@@ -4271,7 +4271,7 @@ $$
 P(a\,|\,\hat{\mathbf{m}}_A)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-522dd780086ba55b)
+[View →](../../../../../equation-mapping.html#corpus-equation-522dd780086ba55b)
 
 independent of $\hat{\mathbf{m}}_B$, and similarly on the other side. No usable signal, energy transfer, or causal wake may pass between spacelike-separated detectors during the measurement. The Bell burden is therefore not solved by adding a faster-than-$c_f$ influence.
 
@@ -4287,7 +4287,7 @@ D_{\mathrm{TV}}\!\left(
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9aa4e57c0b7e2341)
+[View →](../../../../../equation-mapping.html#corpus-equation-9aa4e57c0b7e2341)
 
 $$
 \Delta_{\mathrm{NS}}^{A}
@@ -4301,7 +4301,7 @@ P(a\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}'_B)
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-28713e117378c125)
+[View →](../../../../../equation-mapping.html#corpus-equation-28713e117378c125)
 
 with the analogous $\Delta_{\mathrm{NS}}^{B}$, and
 
@@ -4314,7 +4314,7 @@ E_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)+\cos\theta
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-61d5c578c8e6808b)
+[View →](../../../../../equation-mapping.html#corpus-equation-61d5c578c8e6808b)
 
 The required outcome is small $\Delta_{\mathrm{Bell}}$ and vanishing no-signaling residuals while $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ remains zero within tolerance. If fitting the Bell curve requires setting-dependent provenance preparation, the angular-momentum ledger has not supplied the intended $\mathbb{A}\mathbb{A}\mathbb{A}$ closure.
 

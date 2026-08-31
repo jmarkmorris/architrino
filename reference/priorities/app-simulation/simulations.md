@@ -970,3 +970,251 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 - [synthetic-observables](../../../content/markdown/aaa/validation/simulations/synthetic-observables.md)
 - [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md)
 - [planck-scale-nested-shell-braid-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md)
+
+## Preserved Implementation Contracts
+
+These unimplemented interface details were separated from reader-facing exposition on 2026-08-30. This archival placement does not reactivate the retired app-simulation workstream or authorize implementation. Scientific conditions remain in the linked corpus chapters; future execution follows current solver and theory ownership.
+
+### Reduced A0 result interface
+
+Source: [a0-tier0-result-interpretation.md](../../../content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md). This is an unimplemented interface specification, not computed evidence or authorization to run a campaign.
+
+**Implementation status:** not implemented. The specified path `scripts/mass-map/a0-tier0-branch-search.mjs` does not currently exist in the repository. The tables below define the required output contract; they do not report an executed artifact or measured branch result.
+
+## Output Status
+
+The planned runtime must emit rows with six separate layers of interpretation:
+
+| Output layer | Meaning | Promotion role |
+| --- | --- | --- |
+| `z_lambda` | Quotient-coordinate row $z_\Lambda$ after removing global rotations, the common closed-cycle phase gauge, and allowed branch-preserving chart relabelings | Decides whether the row can be read as a reduced moduli coordinate rather than a raw carrier representative |
+| `root_ledger` | Active and raw causal-root counts by source relation, with excluded instantaneous self-root counts separated from active roots | Decides whether the carrier chart has a finite active partner, self, and inter-layer ledger |
+| `residuals` and `residual_values` | The complete $\mathcal{R}_{A_0}$ row surface, plus a numeric mirror where Tier 0 omissions remain null | Prevents a numerical value, a diagnostic placeholder, and a later-tier obligation from being confused |
+| `Delta_k` | $\Delta_{\mathbf{k}}$ handoff object with null value and `not_computed_in_tier0` status until Tier 1 builds the return map | Keeps Floquet stability from being silently omitted or treated as a Tier 0 result |
+| `certificate_gates` | Pass/fail/not-computed status for the Tier 0 promotion checks | Decides whether the row may seed Tier 1 continuation |
+| `failure_code` | One machine-readable row code, or `candidate` when the row survives Tier 0 | Gives scripts and readers the same rejection reason |
+
+A record with `failure_code: "candidate"` may seed Tier 1. Any other `failure_code` rejects Tier 0 continuation until the named gate is resolved. This is the sole row-level status vocabulary; `certificate_gates.tier0_continuation` is its gate-level mirror. Neither outcome accepts an attractor, computes $\zeta(A_0)$, validates $E_{\text{internal}}(A_0)$, or derives $\mathcal{M}_{\text{sea}}^{ab}$.
+
+The same boundary applies when a compact finite-coordinate chart or coarse branch split fails. Such a failure means the proposed reduced coordinate did not earn a continuation run; it does not by itself falsify the broader $A_0$ branch program. A branch-chart checker can authorize only a new Tier 1 rerun path after the coordinate source, equality map, fit degrees of freedom, held-out residuals, phase-origin handling when relevant, and benchmark exclusions are declared before fitting. It does not create accepted history, and it does not convert Tier 0 readiness into an attractor claim.
+
+| `z_lambda` entry | Row semantics |
+| --- | --- |
+| `schema` | version marker for the quotient-coordinate row |
+| `radius_ratios` | $\varepsilon_{12}=R_1/R_2$ and $\varepsilon_{23}=R_2/R_3$; the aliases $\varepsilon_{IM}$ and $\varepsilon_{MO}$ are explanatory only under the declared map above |
+| `period_ratios` | $P_I/P_M$ and $P_M/P_O$, where $P_I,P_M,P_O$ are the cycle periods for the declared layer aliases, so time-scale separation is checked alongside radius separation |
+| `delta_2` | source-record binary-2 speed offset $(s_2-c_f)/c_f$; `delta_M` may appear only as a documented input alias and must normalize to `delta_2` before validation |
+| `ellipticity` and `ellipticity_status` | layer ellipticity data and whether Tier 0 used a shared scalar chart |
+| `plane_gram` | $G_{\ell m}$ values for the quotient-reduced binary-plane normals |
+| `orientation_class` | $\chi_N$, the triple product, and a nondegenerate or degenerate status |
+| `handedness` | $H_1,H_2,H_3$ persistent-index handedness labels, with $H_I,H_M,H_O$ explanatory aliases only on this chart |
+| `phase_offset_quotient` | $\Phi_{\text{rel}}$ status after removing the common $S^1_{\mathbf{k}}$ phase origin; the planned Tier 0 schema uses a gauge-fixed zero-offset representative and marks the quotient basis `not_computed_in_tier0` |
+| `branch_class` and `branch_class_status` | $[\Lambda]$ data from winding integers, inter-layer closure, active and raw root classes, and excluded roots; Tier 0 marks the representative as not yet a canonical discrete quotient |
+| `removed_gauges` | declared gauge removals: $SO(3)$, $S^1_{\mathbf{k}}$, and $\Gamma_\Lambda$ |
+| `quotient_degenerate` | Boolean failure surface for `quotient-degenerate` |
+
+The `Delta_k` object is the Tier 0 handoff for $\Delta_{\mathbf{k}}$. Tier 0 does not construct the monodromy operator, so a conforming packet must use a null value, status `not_computed_in_tier0`, and role `tier1_required`. The reserved failure code is `nonpositive-floquet-gap`, which applies only after Tier 1 computes $\Delta_{\mathbf{k}}\le0$.
+
+The same handoff appears in `certificate_gates.floquet_gap` with status `not_computed_in_tier0`. This is a positive omission rule: Tier 0 must show that Floquet stability remains open, not leave the field absent.
+
+## Certificate Gates and Failure Codes
+
+The Tier 0 `certificate_gates` object names the promotion checks directly:
+
+| Gate | Meaning |
+| --- | --- |
+| `quotient_coordinates` | $z_\Lambda$ must be nondegenerate after global rotations are removed |
+| `scale_separation` | radius and period ratios must remain inside the declared separated-scale regime |
+| `speed_ordering` | $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$ must hold within tolerance |
+| `phase_closure` | layer winding closure over $P_{\mathbf{k}}$ must hold |
+| `carrier_residuals` | state return and center drift residuals must remain bounded |
+| `root_residual` | active causal-root defects must remain within tolerance |
+| `active_root_ledger` | partner, self, and inter-layer active root classes must all be present |
+| `active_separator_roots` | active near-separator roots must have an explicit continuation rule or remain below allowance |
+| `near_zero_self_roots` | near-zero self roots remain excluded under $H(0)=0$ and may not count as active self hits |
+| `residual_vector_semantics` | every residual component must carry value, tolerance, status, role, and note fields |
+| `floquet_gap` | $\Delta_{\mathbf{k}}$ is not computed at Tier 0 and must be computed in Tier 1 |
+| `tier0_continuation` | only rows whose row-level code is `candidate` may seed Tier 1 |
+
+The row-level `failure_code` enum preserves the existing Tier 0 codes and reserves the new quotient and Floquet codes:
+
+| Code | Meaning |
+| --- | --- |
+| `candidate` | the row survives Tier 0 and may seed Tier 1 only |
+| `quotient-degenerate` | the quotient-coordinate row is degenerate after gauge removal |
+| `scale-separation-collapse` | radius or period ratios collapse the declared separated-scale regime |
+| `speed-order-collapse` | sign-aware speed ordering fails |
+| `phase-closure-open` | integer layer-winding closure fails |
+| `carrier-residual-open` | carrier return or drift residuals fail |
+| `root-residual-open` | active causal-root residuals fail |
+| `averaging-residual-open` | terms claimed to average out exceed their declared tolerance |
+| `locking-residual-open` | selected locking terms exceed their declared tolerance |
+| `separator-singularity-unresolved` | active near-separator roots lack an accepted handling rule |
+| `near-zero-self-root-excluded` | excluded instantaneous self roots block Tier 0 promotion |
+| `root-ledger-instability` | the active root ledger is empty or lacks partner, self, or inter-layer classes |
+| `nonpositive-floquet-gap` | Tier 1 computes $\Delta_{\mathbf{k}}\le0$ |
+
+
+
+### A0 certificate interface
+
+Source: [A0 Branch Certificate Protocol](../../../content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md). These schemas and paths are preserved specifications, not completed implementation or branch evidence.
+
+## Certificate Packet Schema
+
+An auditable $A_0$ branch certificate should preserve one top-level packet shape across all tiers. Fields that are not computed at a given tier must remain present with an explicit status, role, and note rather than disappearing from the packet.
+
+| Field | Required content | Promotion role |
+| --- | --- | --- |
+| `metadata` | run identifier, code or derivation version, source commit, integrator, tolerances, $\eta$, sampling schedule, and history-window rule | makes the packet reproducible |
+| `sea_cell` | $u^i_{\text{sea}}$, $G_{\text{grad}}$, $n$, $\chi_{\text{sea}}$, declared $c_\star$, and boundary conditions | fixes the homogeneous Noether sea cell and prevents mixing $c_f$ with $c_{\text{eff}}$ |
+| `branch_label` | layer windings, inter-layer closure integers, handedness, carrier ellipticity, and active root-branch summary | identifies the branch being certified |
+| `z_lambda` | quotient-coordinate row $z_\Lambda$: $\varepsilon_{12}$, $\varepsilon_{23}$, $T_1/T_2$, $T_2/T_3$, $\delta_2$, binary ellipticities, $G_{\ell m}$, $\chi_N$, $H_1,H_2,H_3$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
+| `branch_chart_revision` | conditional pre-rerun record for any revised reduced branch coordinate, including source fields, equality map, equation and coefficient counts, held-out residual rule, phase-origin rule when a phase split is used, symmetry or quotient behavior, locked-key exclusion, benchmark exclusion, and `accepted_history_boundary: false` | prevents residual-selected coordinates or post-fit added columns from masquerading as branch geometry |
+| `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether braid state vector |
+| `closure_system` | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
+| `root_ledger` | active and raw partner, self, and inter-layer root classes with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated | verifies finite causal-root bookkeeping |
+| `term_classification` | terms assigned to averaging, locking, and leakage channels, with measured or derived residual size | prevents internal corrections from being hidden before promotion |
+| `residuals` | complete branch-row residual surface $\mathcal{R}_{A_0}$, with $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$, $\mathcal{R}_{\text{speed}}$, $\mathcal{R}_{\text{avg}}$, $\mathcal{R}_{\text{lock}}$, $\mathcal{R}_{\text{leak}}$, and $\mathcal{R}_{\text{Floquet}}$, each with value, tolerance, status, role, and note fields | gives a machine-checkable promotion surface with later-tier omissions explicit |
+| `residual_values` | numeric mirror of $\mathcal{R}_{A_0}$ values, with Tier 0 omissions recorded as null rather than hidden | gives scripts a stable audit surface without erasing row semantics |
+| `Delta_k` | $\Delta_{\mathbf{k}}$ value, status, role, nonpositive-gap failure code, and note; Tier 0 emits null with `not_computed_in_tier0` | keeps the Floquet handoff visible before Tier 1 computes the return map |
+| `stability` | monodromy or finite-difference return map, excluded symmetry modes, non-symmetry Floquet multipliers, and the computed $\Delta_{\mathbf{k}}$ once Tier 1 exists | separates integer closure from attractor stability |
+| `group_velocity_anisotropy` | $\mathbf{V}_{\text{cm}}$, declared $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$, refinement status, and whether the entry is rest residue, small-velocity response, or probe-induced drift | keeps motion-induced deformation separate from shielding leakage |
+| `energy_ledger` | sign-resolved kinetic content, interaction terms, wake/history terms, binary totals $E_1,E_2,E_3$, $E_{\text{internal}}(A_0)$, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), the running retained-history energy-like functional across active self-hit crossings, and action per closed cycle after bounded-energy status | supplies the unshielded energy reservoir after Tier 1 passes |
+| `far_field_shielding` | extraction radii, angular grid, selected wake channel, $\mathcal{L}(\hat{\mathbf{R}})$, naive constituent sum, leading isotropic projection, $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, and convergence status | turns shielding into an extracted far-field quantity after Tier 1 passes |
+| `medium_response` | acceleration probes, gradient probes, extracted $\mathcal{M}_{\text{sea}}^{ab}$ baseline, symmetric tensor part, antisymmetric residue, and response anisotropy | compatibility field for testing Noether sea inertial and gravitational response after shielding passes |
+| `mass_summary` | $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$, unresolved constants, response-map assumptions, and explicitly excluded particle benchmarks | records only calibration-free mass-facing output |
+| `certificate_gates` | pass/fail/not-computed gates for quotient nondegeneracy, scale separation, speed ordering, phase closure, carrier residuals, root residual, active root-ledger stability, active separator-root handling, near-zero self-root handling, residual semantics, Floquet handoff, and Tier 0 continuation | controls promotion between branch search, attractor, shielding, and response claims |
+| `failure_code` | reason the row or packet failed, or the next allowed promotion status | prevents failed packets from being read as mass-map results |
+
+Required outputs:
+
+| Output | Meaning |
+| --- | --- |
+| `branch_label` | indexed-binary windings, inter-binary closure integers, handedness, and active root-branch summary |
+| `closure_labels` | declared $P_{\mathbf{k}}$, winding integers, inter-binary closure integers, and active root classes |
+| `z_lambda` | reduced quotient-coordinate row $z_\Lambda$, including radius ratios, period ratios, $\delta_2$, binary ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, handedness labels, phase-offset quotient status, removed gauges, branch class $[\Lambda]$, and `quotient_degenerate` |
+| `state_vector` | reduced geometry, frequencies, phase offsets, carrier chart, and center gauge |
+| `closure_system` | active causal-root, phase-closure, inter-binary closure, center-gauge, and speed-ordering equations used by the row |
+| `root_ledger` | active and raw partner, self, and inter-binary root counts with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated |
+| `term_classification` | terms assigned to averaging, locking, and leakage channels |
+| `residuals` | every component of $\mathcal{R}_{A_0}$, each with value, tolerance, status, role, and note fields; $\mathcal{R}_{E}$ and $\mathcal{R}_{\text{Floquet}}$ are explicit Tier 0 omissions unless supplied by a later diagnostic |
+| `residual_values` | numeric value mirror for the same $\mathcal{R}_{A_0}$ components, with omitted components recorded as null |
+| `Delta_k` | $\Delta_{\mathbf{k}}$ status object; Tier 0 sets value to null and status to `not_computed_in_tier0` until Tier 1 constructs the monodromy or finite-difference return map |
+| `group_velocity_anisotropy` | rest-branch residue if computed, or an explicit not-computed Tier 0 status; no Tier 0 row may use this as shielding evidence |
+| `certificate_gates` | pass/fail/not-computed gates for quotient coordinates, scale separation, speed ordering, phase closure, carrier residuals, root residual, active root ledger, active separator roots, near-zero self roots, residual vector semantics, $\Delta_{\mathbf{k}}$, and Tier 0 continuation |
+| `failure_code` | reason the row failed, or `candidate` if it survives Tier 0 |
+
+Tier 0 passes only if at least one row has a finite causal-root ledger, nondegenerate quotient coordinates, retained scale separation, correct speed ordering, bounded carrier residuals, no unclassified separator term, and a complete residual surface. Passing Tier 0 only authorizes Tier 1 continuation.
+
+### Tier 0 Failure-Code Enum
+
+The row-level `failure_code` field is a machine-readable enum. The accepted values are:
+
+| Code | Trigger | Promotion consequence |
+| --- | --- | --- |
+| `candidate` | all Tier 0 promotion gates pass | row may seed Tier 1 continuation only |
+| `quotient-degenerate` | $z_\Lambda$ has degenerate plane-normal Gram or orientation data after quotienting global rotations | reject the row as a reduced moduli coordinate |
+| `scale-separation-collapse` | radius or period ratios violate the declared separated-scale Tier 0 regime | reject the row or widen the scan only as a controlled scale-separation test |
+| `speed-order-collapse` | $\mathcal{R}_{\text{speed}}$ fails the declared $s_1 > c_f$, $s_2 \approx c_f$, $s_3 < c_f$ constraint | reject the row before attractor continuation |
+| `phase-closure-open` | $\mathcal{R}_{\text{phase}}$ fails layer winding closure over $P_{\mathbf{k}}$ | reject the row until integer closure is restored |
+| `carrier-residual-open` | $\mathcal{R}_{\text{state}}$ or $\mathcal{R}_{\text{drift}}$ fails the Tier 0 carrier chart tolerance | reject the row as an unclosed diagnostic carrier |
+| `root-residual-open` | $\mathcal{R}_{\text{root}}$ fails on candidate active causal-root branches | reject the row until active roots solve within tolerance |
+| `averaging-residual-open` | $\mathcal{R}_{\text{avg}}$ fails its declared averaging tolerance | keep the term in the branch equations or reject the row |
+| `locking-residual-open` | $\mathcal{R}_{\text{lock}}$ fails its declared locking tolerance | keep the near-separator or resonance term in Tier 1 or reject the row |
+| `separator-singularity-unresolved` | active near-separator roots exceed the configured allowance without a locking continuation rule | reject the row until separator handling is explicit |
+| `near-zero-self-root-excluded` | excluded near-zero self roots exceed the configured allowance under $H(0)=0$ | reject the row until a positive-delay self branch or regularized fold-layer rule exists |
+| `root-ledger-instability` | the active causal-root ledger is empty or lacks partner, self, or inter-layer classes | reject the row as a finite-ledger failure |
+| `nonpositive-floquet-gap` | Tier 1 computes $\Delta_{\mathbf{k}}\le0$ | reject the branch as a non-attractor even if integer closure holds |
+
+At Tier 0, `nonpositive-floquet-gap` appears only as the reserved `Delta_k.failure_code_if_nonpositive` and `certificate_gates.floquet_gap.failure_code`, because Tier 0 does not compute $\Delta_{\mathbf{k}}$.
+
+## Planned Runtime Artifacts
+
+**Implementation status:** not implemented. The following paths are reserved by this specification but do not currently exist:
+
+- `scripts/mass-map/a0-tier0-branch-search.mjs`
+- `scripts/mass-map/a0-tier0-default-grid.json`
+- `scripts/mass-map/a0-tier1-continuation-scaffold.mjs`
+- `scripts/audit-a0-mass-map-promotion.mjs`
+
+The Tier 0 implementation must be an algebraic branch-search scaffold, not a production simulator. It must emit candidate records with parameter choices, quotient coordinates, carrier diagnostics, root ledgers, term classifications, residual surfaces, $\Delta_{\mathbf{k}}$ handoff status, leakage placeholders, certificate gates, and failure codes matching this protocol. The Tier 1 scaffold must consume those records and emit the $\eta>0$ continuation contract and required artifact list; it cannot certify the branch without a later delayed-dynamics run. The planned audit must reject prose that promotes $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ before the tier gates pass.
+
+
+
+### Retuning arithmetic interface and controls
+
+Source: [Retuning-Map Toy Model](../../../content/markdown/aaa/validation/simulations/retuning-map-toy-model.md). The following targets were specified before implementation and have not been computed by the reserved runtime.
+
+## Runtime Artifact
+
+**Implementation status:** not implemented. The reserved script and fixture paths below do not currently exist. They specify the intended interface and must not be cited as executed evidence:
+
+```text
+node scripts/nested-shell-braid/retuning-map-toy-model.mjs --pretty
+```
+
+The script consumes:
+
+```text
+scripts/nested-shell-braid/retuning-map-mock.json
+```
+
+The planned runtime must emit one result entry per scenario. The packet is dimensionless: action increments are in units of $h$, speeds are compared to the declared $c_f$, and radius/cadence changes are reported as logarithmic increments plus reconstructed component changes.
+
+## Input Packet
+
+Each scenario supplies:
+
+| Field | Meaning |
+| --- | --- |
+| `reference_state` | baseline $R_1,R_2,R_3,\lambda,\xi,\nu_N,s_1,s_2,s_3,c_f,\epsilon_2$ |
+| `representative_cadence_weights` | weights $w_1,w_2,w_3$ used to extract $\Delta\nu_N$ |
+| `compliance_diagonal` | diagonal version of $\mathbf{K}^{\mathrm{ret}}_q$ |
+| `action_gradient_h_per_log` | linearized $D A_{\mathrm{cyc},q}$ row in $h$ units per log variable |
+| `constraints` | linearized branch constraints, each with coefficients and target |
+| `f_N` | local Noether braid cadence-state distribution value |
+| `partial_nu_f_N` | local slope used only to estimate the higher-order current remainder |
+| `transactions` | accepted or control $\sigma$ transactions with wake action increment and local rate density |
+
+This fixture intentionally starts with a diagonal compliance matrix. A later branch packet can replace it with a full matrix once the linearized return map supplies off-diagonal coupling.
+
+## Output Diagnostics
+
+The planned fixture must report:
+
+| Output field | Meaning |
+| --- | --- |
+| `status` | `candidate` only when constraints and speed gates pass |
+| `delta_y` | solved logarithmic retuning vector |
+| `retuning_components` | $(\Delta\nu_N,\Delta R_1,\Delta R_2,\Delta R_3,\Delta\lambda,\Delta\xi)$ |
+| `constraint_residual_max` | largest absolute residual in the declared linear constraints |
+| `speed_gates` | post-retuning checks for the declared binary 1, 2, and 3 speed regimes |
+| `J_nu.contribution` | $f_N r_\sigma\Delta\nu_N^{(q,\sigma)}$ for the transaction |
+| `net_J_nu.value` | sum of transaction contributions in the scenario |
+| `net_J_nu.higher_order_estimate` | magnitude estimate for the omitted $O((\Delta\nu_N)^2\partial_\nu f_N)$ term |
+
+## Required Mock Behavior
+
+The reserved mock packet must contain two hand-checkable scenarios. The values below are specification targets, not current runtime outputs.
+
+| Scenario | Expected behavior |
+| --- | --- |
+| `same_branch_plus_minus_balance` | Plus and minus one-$h$ retunings both pass the speed gates. The planned arithmetic fixture must use its declared unequal local rates to produce the specified small signed current, with target `net_J_nu.value` near `0.0017019`. |
+| `middle_hinge_violation_control` | The linear action constraint solves, but source-record binary 2 leaves the declared hinge tolerance. The compatibility ID remains unchanged; the row fails with `middle-hinge-violation`. |
+
+These numbers are fixture expectations only. They validate arithmetic, packet shape, branch-gate reporting, and the current estimate. They do not validate a physical Noether braid branch.
+
+## Failure Reading
+
+The first failure modes are concrete:
+
+| Diagnostic pattern | Meaning |
+| --- | --- |
+| nonzero `constraint_residual_max` above tolerance | the declared linearized branch constraints are not actually solved |
+| `middle-hinge-violation` | compatibility diagnostic: binary 2 leaves the source-record field-speed tolerance |
+| `inner-speed-regime-crossing` or `outer-speed-regime-crossing` | the transaction crosses a speed-regime boundary |
+| large higher-order current estimate | the continuum current requires smaller steps, narrower bins, or a higher-order transport model |
+| candidate branch with missing physical return-map source | the fixture is arithmetic only and must be replaced by a delayed-dynamics branch packet before promotion |
+
+A promotable retuning packet must eventually replace the mock compliance matrix with a return-map-derived $\mathbf{K}^{\mathrm{ret}}_q$, preserve the same causal-root ledger, and keep the speed gates attached to the same branch state that supplies $\Delta\nu_N$.

@@ -16,7 +16,7 @@ $$
 q\in\{+1,-1\},
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-54d313539812c1d4)
+[View →](../../../../equation-mapping.html#corpus-equation-54d313539812c1d4)
 
 where $f$ is the common frequency, $\phi_a$ is the binary phase relative to the braid-level zero point, and $q$ is the common circulation sense. The binary half-separation vector is
 
@@ -33,7 +33,7 @@ h_a\hat{\mathbf n}_B
 \right].
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-04282641cf34ccfa)
+[View →](../../../../equation-mapping.html#corpus-equation-04282641cf34ccfa)
 
 The two endpoint paths are
 
@@ -43,7 +43,7 @@ $$
 \mathbf X_{a2}(T)=\mathbf C(T)-\mathbf d_a(T).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-be542cb4c4f261ed)
+[View →](../../../../equation-mapping.html#corpus-equation-be542cb4c4f261ed)
 
 These equations make the B1 restrictions explicit: the endpoints of each neutral binary remain antipodal about the common braid center; all three binaries use the same axis, frequency, and circulation sense; and the radii, axial half-separations, transverse orbit radii, and phases may differ by binary.
 
@@ -53,7 +53,7 @@ $$
 s_a=2\pi f\rho_a.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9436c6e91de8ff69)
+[View →](../../../../equation-mapping.html#corpus-equation-9436c6e91de8ff69)
 
 Thus internal speed is controlled by transverse orbit radius rather than by total binary radius alone. If a display derives the optional angle $\alpha_a=\operatorname{atan2}(h_a,\rho_a)$, the same relation is $s_a=2\pi fR_a\cos\alpha_a$. The angle is not a primary taxonomy coordinate.
 
@@ -97,7 +97,7 @@ $$
 (2\pi f)^2\sum_{a=1}^{3}\rho_a^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-203e10f143bbff54)
+[View →](../../../../equation-mapping.html#corpus-equation-203e10f143bbff54)
 
 for the declared common frequency $f>0$. Active-candidate eligibility requires
 
@@ -105,7 +105,7 @@ $$
 \mathcal K_{\perp}>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b841a65a4eff2317)
+[View →](../../../../equation-mapping.html#corpus-equation-b841a65a4eff2317)
 
 or, equivalently, $\sum_a\rho_a^2>0$. This is a taxonomy nondegeneracy condition: it requires at least one binary to have internal transverse motion. It is not a retention, stability, binding, energy, or physical-realization result.
 
@@ -123,9 +123,31 @@ The B1.3 all-equatorial display sets $h_a=0$ for all three binaries. Mixed bound
 
 At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but no longer change that binary's endpoint positions because its transverse orbit radius is zero. Two axial records that differ only in those labels therefore depict the same path geometry unless another retained record gives the labels an independent dynamical role.
 
-### Deprecated Axial-Limit Control
+### Equal-Radius Phase-Symmetric Acceleration-Balance Locus
 
-The former catalog identifier `B1.4` selected the all-axial limit
+One exact B1.3 sublocus sets $R_1=R_2=R_3=R$ and assigns the three binary phases $0$, $2\pi/3$, and $4\pi/3$. Each binary has antipodal opposite-polarity endpoints. The six endpoints therefore form a regular hexagon with alternating polarities while sharing one center, one axis, one angular rate, and one circulation sense. In the broader Dynamics taxonomy this is the exact $N=3$ overlap with the [Shared-Circle Assemblies](../dynamics/shared-circle-assemblies.md#exact-taxonomy-intersections) chart; the overlap does not enlarge B1.3 to other inventory sizes.
+
+For the default uncapped Master Equation with $c_f=1$, this equal-radius phase-symmetric chart contains the acceleration-balance ladder derived in [Shared-Circle Assemblies](../dynamics/shared-circle-assemblies.md#equal-radius-b13-velocity-search). Its representative T04 row has dimensionless speed $\beta_f=2.974307176117306$ and compatible scale $R/R_*=0.5617317000713459$, where $R_*=\kappa\epsilon^2/c_f^2$. The full accepted ladder currently runs from T02 through T200; bounded uniqueness is certified only through T36.
+
+The measured 72-root directed ledger includes every nontrivial same-transmitter root and excludes only the coincident self root. Its maximum radial, tangential, axial, and full-vector prescribed-acceleration residuals are respectively $3.2862601528904634\times10^{-14}$, $6.88338275267597\times10^{-14}$, $0$, and $7.62510728881475\times10^{-14}$. Tightening the root tolerance preserves the root topology and gives maximum full-vector residual $4.500069559058899\times10^{-12}$; the minimum Jacobian floor is $0.11680602873827528$. An independently authored generic prescribed-history evaluator checks the cross-transmitter roots and acceleration contributions, while an independently authored circular-binary evaluator checks the nontrivial same-transmitter roots. Rotational covariance is checked both algebraically and over a full cycle.
+
+> Claim grade: measured. `PlanarCoRotatingRingBalance` measures the complete prescribed-path ledger; `AnalyticalBraidEvaluator` independently checks the cross-transmitter roots and acceleration contributions, and `CircularSelfHitBinaryAnalysis` independently checks the nontrivial same-transmitter roots. Falsifier: either independent comparison finds a missing or displaced causal root, a mismatched acceleration contribution, an incompatible radial scale, or a full-vector residual that does not remain within the declared refinement envelope.
+
+Plainly: T04 is one rung of a longer family of tuned speed-radius combinations, not a property of every radius or velocity. At this representative row, every architrino receives the inward acceleration required by its prescribed circle, with no measurable tangential or out-of-plane remainder. The equal-radius chart with unequal binary phases remains unresolved, as does the broader B1.3 chart with unequal radii. This is prescribed acceleration balance, not retention, binding, stability, release survival, physical identity, or scientific acceptance.
+
+### A Balanced Ring Outside The B1.3 Inventory
+
+The same complete-root calculation has an independently checked result for one larger comparison geometry: the regular alternating $12{:}12$ ring, which has 24 architrinos on one common circle. On the bounded interval $0.05\leq\beta_f\leq20$, its best candidate occurs at $\beta_f=1.290840841384326$ with compatible scale $R/R_*=13.982496760466805$. The 624-root directed ledger has maximum full prescribed-acceleration residual $5.858187577303801\times10^{-10}$, which becomes $1.4986768330120922\times10^{-10}$ after root-tolerance tightening without a topology change.
+
+Because 12 is even, antipodal members of this alternating ring have like polarity. More decisively, the record has 24 members, whereas B1.3 has exactly six members in three neutral antipodal binaries. The $12{:}12$ ring is therefore not a B1.3 locus. Nor is it a C5 or C6 decomposition: all 24 paths share one center, there is no positive separation between component centers, and the like-polarity antipodes do not define B1.3 components.
+
+> Claim grade: bounded measured acceleration balance plus derived taxonomy exclusion. `PlanarCoRotatingRingBalance` measures this one regular alternating class; `AnalyticalBraidEvaluator` independently checks all cross-transmitter roots and acceleration contributions, and `CircularSelfHitBinaryAnalysis` independently checks all nontrivial same-transmitter roots. Falsifier: a missed causal root, failed independent comparison, receiver-incompatible scale, topology change under refinement, or residual above the declared tolerance overturns the balance result; only a canonical inventory change could alter the taxonomy exclusion.
+
+Plainly: the larger ring is included here to mark the exact B1.3 boundary, not to enlarge B1.3. Its acceleration balance says nothing about retention, binding, stability, release survival, physical identity, or scientific acceptance, and it does not cover other $12{:}12$ polarity words or nonuniform phase gaps.
+
+### All-Axial Boundary
+
+The all-axial boundary is defined by
 
 $$
 \rho_a=0,
@@ -135,7 +157,7 @@ h_a=R_a
 \text{for every }a\in\{1,2,3\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fdb492c8ebf10b7a)
+[View →](../../../../equation-mapping.html#corpus-equation-fdb492c8ebf10b7a)
 
 Its endpoint paths remain the exact B1 coordinate-boundary equations
 
@@ -149,9 +171,9 @@ $$
 \mathbf C(T)-R_a\hat{\mathbf n}_B.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ebaf153c4e2667f7)
+[View →](../../../../equation-mapping.html#corpus-equation-ebaf153c4e2667f7)
 
-This limit has $\mathcal K_{\perp}=0$: frequency, phase, and circulation labels do not create internal motion, and translation of $\mathbf C(T)$ only transports the static axial arrangement. The stable `B1.4` identifier and its prescribed source and record remain a deprecated axial-limit null control for historical reproducibility. It is not an active taxonomy member, a Borg catalog selection, a future sweep candidate, or a comparative-ranking participant.
+This limit has $\mathcal K_{\perp}=0$: frequency, phase, and circulation labels do not create internal motion, and translation of $\mathbf C(T)$ only transports the static axial arrangement. It is therefore a static coordinate boundary, not a distinct internally moving B1 member.
 
 ## Axial Translation
 
@@ -163,11 +185,39 @@ $$
 \mathbf C(0)+s_{\mathrm{grp}}T\hat{\mathbf n}_B,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b1c5b16e8a9576b1)
+[View →](../../../../equation-mapping.html#corpus-equation-b1c5b16e8a9576b1)
 
 each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-lemma). A mechanism that fixes the total speed budget remains an open branch hypothesis.
 
 Axial translation is a B1 specialization, not a Family-B requirement. A record whose group velocity is not parallel to $\hat{\mathbf n}_B$ retains the same internal B1 geometry but is not an axial screw path.
+
+Plainly: axial translation carries the center along the common axis while every non-axial endpoint continues circling it. The resulting helix is not obtained by simply adding a harmless velocity label: delayed separations and arrival directions change along the entire history.
+
+### Fixed Axial-Translation Control
+
+A prescribed-path diagnostic applied the common axial speed $s_{\mathrm{grp}}=0.1c_f$ to the equal-radius phase-symmetric B1.3 row while holding its transverse speed at $\beta_f=2.974307176117306$. Define $(\mathcal R_r,\mathcal R_t,\mathcal R_z)$ as the radial, tangential, and common-axis acceleration residuals. The ordinary directed-root count remained 72 with no fold event, but the original radius $R/R_*=0.5617317000713459$ produced
+
+$$
+(\mathcal R_r,\mathcal R_t,\mathcal R_z)
+=
+(2.7828807183,\ 0.9764357759,\ -0.6131383055)
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-645829ac93cac25b)
+
+Plainly: the translated history still has the same number of delayed intersections, yet their acceleration contributions no longer point in the combination required by the original circle. The positive radial entry means the old radius misses the required inward circular acceleration, while the nonzero tangential and axial entries show independent sideways and common-axis errors.
+
+Choosing the radius only to cancel the radial component gives $R/R_*=0.2471576065$, but leaves the tangential and axial residuals unchanged to the displayed precision.
+
+Plainly: shrinking the radius can repair the inward amount only; it cannot remove the sideways or axial acceleration, so neither the old nor the radial-only radius is a full balance.
+
+A nearby continuation over $2.3743071761\leq\beta_f\leq3.5743071761$ evaluated 1,201 base samples together with fold-boundary probes and refined the detected component zeros. Its tangential zero retained a nonzero axial residual, and its axial zeros retained nonzero tangential residuals; no sampled or refined point achieved full balance. This is a bounded measured diagnostic; the subsequent [fixed axial-translation study](../dynamics/shared-circle-assemblies.md#fixed-axial-translation-study) supplies the interval-certified exclusion on this fixed-speed domain.
+
+Plainly: changing transverse speed moved the two residuals through zero at different places. The finite probe set could not rule out an unsampled coincidence, so the later interval proof covers the entire declared speed interval, including its causal-root folds.
+
+> Claim grade: measured prescribed-path control. The fixed-translation instrument retained the declared phases, polarities, transverse speed, and normalized $c_f=1$ scale; root-tolerance refinement preserved the topology and compatible radial scale, and the unchanged generic prescribed-history evaluator reproduced the root and acceleration contributions. A changed root count under valid refinement, a generic-evaluator mismatch, simultaneous vanishing of all three residual components at the declared point, or a certified nearby full balance overturns the corresponding conclusion.
+
+Plainly: this control rejects the idea that the stationary T04 radius remains balanced after adding $0.1c_f$ axial translation. The linked certificate rejects every equal-radius regular-phase screw-path balance in the declared transverse-speed interval at that fixed axial speed, but neither result rejects other axial speeds or broader B1.3 geometries.
 
 ## Boundary with Family A
 
@@ -177,4 +227,4 @@ The A2 face-opposite seed supplies a second exact overlap: common-frequency co-r
 
 ## Claim Boundary
 
-The B1 equations define prescribed paths exactly. They would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or fixed-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. Until such evidence exists, B1 supplies an exact display geometry and explicit closure targets, not a retained physical braid.
+The B1 equations define prescribed paths exactly. The equal-radius phase-symmetric B1.3 locus above also carries an accepted prescribed acceleration-balance ladder under the stated complete-root calculations. These statements would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or fixed-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. B1 therefore supplies exact display geometry, an acceleration-balanced prescribed ladder on one sublocus, and explicit closure targets, not a retained physical braid.

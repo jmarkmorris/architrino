@@ -61,12 +61,6 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 - Moved the requirements sketch to `reference/priorities/app-borg/assembly-viewer-requirements.md`, where Borg design, requirements, and build handoffs are owned. The Braid Program retains the adopted `assembly-view-record.v0` schema, emitter acceptance, and per-run booking duty in `campaigns/instrument-gate.md`.
 - The ownership move changes no campaign schema or evidence grade. Instrument gate §4 now links to the Borg-owned requirements packet; prior dated log entries retain their historical path text.
 
-## 2026-07-16 — Undirected ensemble campaign ownership consolidated
-
-- Braid Program is the sole scientific owner for the undirected ensemble campaign: declared seed coordinates, persistence criterion, fate classification, collapse adjudication, and promotion routing.
-- EOM owns the reusable checkpointed harness, campaign-driver behavior, deterministic replay, convergence/provenance capability, and cost instrument. The former `eom-attractor-search` directory remains a focused evidence index.
-- This consolidation changes no harness measurement, campaign criterion, or booked physical fate.
-
 ## 2026-07-20 — Illustrative spindle chart display pipeline
 
 - Added the focused `spindle-braid-chart-spec.v0` source with the operator-approved illustrative dimensionless member: zero drift; common angular frequency $\pi/2$; radii $0.22$, $0.32$, $0.44$; cap angles $20^\circ$, $40^\circ$, $65^\circ$; phases $0^\circ$, $120^\circ$, $240^\circ$; and polarity-assignment signs $+1,-1,+1$. These values are explicitly refinable chart choices, not physically selected parameters. Claim grade: declared input. Falsifier: the source JSON differs from any listed value.
@@ -265,11 +259,10 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 - No crossing, rebound, outer turn, recapture, or minimum-maximum-minimum excursion is certified; the return-map trend is unresolved. R0 histories with stationary horizons $H=10$, $20$, and $40$ produce byte-identical frame and release-acceleration streams.
 - G3 remains unaccepted and no campaign fate, energy account, retention, stability, binding, or physical-realization claim is booked. See the [predeclared protocol](campaigns/stationary-binary-breather-diagnostic.md) and [diagnostic packet](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md).
 
-## 2026-07-26 — Attractor-search packet distributed
+## 2026-07-26 — Attractor-search execution packet distributed
 
-- Moved the undirected ensemble rationale, seed and campaign design, observables, persistence criteria, and promotion rules into [undirected-ensemble-search.md](undirected-ensemble-search.md).
 - EOM now retains the reusable profiler and checkpoint-chunked harness state in its [attractor-search instrument packet](../app-solver/campaigns/attractor-search-instrument.md) and [work log](../app-solver/campaigns/attractor-search-work-log.md).
-- Deleted the redundant `eom-attractor-search` directory. No gate, evidence status, campaign rank, or physical claim changed.
+- Deleted the redundant `eom-attractor-search` directory. No gate, evidence status, or physical claim changed.
 
 ## 2026-07-27 — Sealed B1/Family-C diagnostic landed in the live record
 
@@ -348,3 +341,58 @@ Plainly: this is an ownership and navigation change. It adds no evidence that a 
 - Falsifier and remaining boundary: a canonical owner adopting a capped model would require an explicit model-scoped revision; a missing required root, invalid causal continuation, or violation of a method's declared hypotheses still prevents the corresponding certificate. No candidate gained H3, H4, H5, stability, or retention authority from this correction.
 
 Plainly: an instrument may still stop at field speed because its proof stops there. That stop does not impose a speed limit on nature or erase what the instrument validly established before it stopped.
+
+## 2026-08-29 — Orthogonal-plane A1.2/A2-compatible weave found no bounded balance candidate
+
+- Froze the zero-offset, equal-radius, equal-frequency, common-circulation orthogonal-plane $3{:}3$ history through the live A1.2 relations and A2 phase-compensated cyclic frames, with polarity-conjugate endpoints and $c_f=1$. Exact coordinate checks establish antipodality, constant radius, prescribed velocity and acceleration, cyclic path equivalence, and a same-time separation floor of $1$.
+- Added a focused uncapped-Master-Equation evaluator that retains nontrivial same-transmitter roots, enumerates all $36$ directed rows at every reception phase, records root identities and Jacobian data, sums all six receiver accelerations, and resolves radial plus two transverse components. The detailed machine ledgers contain $24$ phases at the binary seed and the least-bad initial scan point; refinements extend the residual summaries through $96$ phases.
+- The binary seed $\beta_f=3.070356625390253$ fails at ordinary sampled phases. At phase zero, `a1+` has projections $(-1.4935331664,0.2558648703,-1.3301832101)$, so no radius can remove its two transverse components. The coarse $0.25\leq\beta_f\leq12$ scan, the first three binary tangential zeros, and the $6.45\leq\beta_f\leq6.60$ refinement contain no sampled balance candidate. The least-bad $12$-phase row at $\beta_f=6.53$ worsens from maximum transverse residual $1.0201785959$ to $16.3389680481$ on the $96$-phase grid.
+- Disposition: unresolved because continuous phase and parameter intervals, including intervening fold neighborhoods, are not certified; sampled root completeness itself passed. The result rejects the binary seed and records no bounded candidate, but does not reject every point on this exact locus, any other three-dimensional $3{:}3$ history, or any untested speed range. It establishes no retention, stability, binding, or taxonomy change. See the [evidence summary](evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.md) and [machine receipt](evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json).
+- Next mathematical artifact: an independently authored six-worldline acceleration oracle coupled to a two-parameter interval partition of $\beta_f$ and reception phase, with ordinary-root charts and fold sets certified separately. No perturbation or $N>3$ work is eligible before acceleration balance is established.
+
+Plainly: the proposed weave does not balance at the binary cadence, and the bounded scan found no rescue. A global negative verdict awaits interval coverage and an independent acceleration sum.
+
+## 2026-08-29 — Shared-circle winding and two-ring axial theorems independently reviewed
+
+- Independently derived the collision-free shared-circle winding lemma from continuous angular lifts. A common labelwise period on one fixed nondegenerate circle, with no pairwise coincidence, forces equal signed winding numbers but permits unequal instantaneous velocities and temporary reversals.
+- Independently projected the canonical Master Equation onto the axis of a polarity-segregated fixed-parallel-plane two-ring history. Every ordinary simple-root cross-plane contribution points toward the midplane, while same-plane and same-transmitter contributions are axial-zero. The result has no member-speed ceiling and therefore includes super-field-speed motion on the declared ordinary-root chart.
+- Preserved exclusions for collisions, caustics, non-simple-root event contributions, incomplete or unbounded history, variable height, precession, axial translation, mixed plane polarities, and added external, constraint, or Noether-sea acceleration. No retention, stability, formation, post-release fate, or orthogonal-plane-weave conclusion was booked.
+- Propagated the independently established scope into Binary Dynamics, B1 symmetry, Braid Mathematics, and the owning A2 rotating-chart evidence. See the [theorem-review packet](evidence/2026-08-29-shared-circle-winding-and-two-ring-axial-no-balance-theorem-review.md).
+
+Plainly: one result constrains collision-free labeled motion on a shared circle; the other rejects acceleration balance only for the stated fixed-parallel-plane polarity chart. Neither result decides whether a three-dimensional orthogonal weave persists.
+
+## 2026-08-29 — B1.3 shared-circle balance ladder durably synthesized
+
+- Added the tracked [B1.3 shared-circle balance-ladder evidence packet](evidence/2026-08-29-b13-shared-circle-balance-ladder.md), consolidating the accepted derived ledger identities, computer-assisted bounded zero count through T36, independently measured T02 through T200 balance witnesses, derived asymptotic laws, exact circular-solution theorem, inferred scalability and quantum-like comparisons, finite T04 release prefix, artifact hashes, claim boundaries, and falsifiers.
+- Preserved the grades exactly. Derived mathematics, measured prescribed balances, measured finite-prefix release evidence, inferred comparisons, and explicitly unresolved dynamics remain separate. No retention, stability, binding, physical quantization, transition, quantum-recovery, score, identity, or scientific-acceptance claim was added.
+- Updated the B1.3 queue row to acknowledge that a past-only T04 attempt already ran but halted after a short accepted prefix on `root_completeness_not_certified`; the medium rung supplied resource telemetry only, the fine rung did not run, and no full-cycle return exists.
+
+Plainly: the B1.3 evidence is now tracked in one reviewable packet. The documentation advance does not make the short release attempt a successful orbit or a physical result.
+
+## 2026-08-30 — Publication separation of notebook development records
+
+The following development details were relocated from the public [Research Notebook](../../../content/markdown/aaa/archie/research-notebook.md). They preserve the notebook's historical account; this relocation is not a new measurement or independent verification.
+
+### Historical July 22 performance account
+
+The measured current-binary result was stark. In the six-path endurance matrix that motivated this entry, with no modeled Noether-sea response, most runs halted within roughly ten wall-clock seconds; the two longer difficult routes lasted about thirty and forty-five seconds. The accepted solver histories reached only about $T=5$ to $T=11.5$, and no preset survived one wall-clock minute on all four declared seeds. That is woefully inadequate for discovering a braid by long-horizon evolution. This is a campaign-specific performance result, not a theorem that every braid evolution must fail. It would be overturned by a same-binary, same-budget run that retains complete roots and bounded numerical error across a useful long horizon.
+
+### Analytical storage account
+
+where $\Theta_M$ is the admissible configuration space of family member $M$, $S$ is the exact prescribed source record, $P$ is the fixed analysis protocol, and $\mathbf G$ is the resulting analytical measure vector. Result packets, raw ledgers, source and protocol hashes, acceptance state, and indexed measures are stored in a versioned SQLite analytical database so that large campaigns can be queried without separating a result from the exact record that produced it.
+
+The live storage specification is [Analytical Campaign Database Requirements](analytical-campaign-database-requirements.md). Historical naming and catalog dispositions remain in [Taxonomy Migration](taxonomy-migration.md) and [Terminology Audit](terminology-audit-2026-07-22.md). The shared-circle resource limit and unexecuted refinement rung remain in the [B1.3 evidence record](evidence/2026-08-29-b13-shared-circle-balance-ladder.md#t04-past-only-release-prefix).
+
+### Historical March 12 editorial requirements
+
+Corpus requirements:
+
+- include the transmitter-side acceleration weight wherever the canonical per-hit law is stated,
+- avoid splitting the theory into a permanent "reduced model" and a separate "candidate action" unless the local document is explicitly discussing an approximation,
+- replace over-broad conservation claims with assumption-scoped theorem language,
+- keep constant emission cadence distinct from received causal-flux modulation,
+- and retain receiver velocity only in root playback, future geometry, and derived energy-rate accounts where it is actually used.
+
+
+
+These requirements record the editorial work described by the historical notebook entry. Current equations and policy remain controlled by their live owners.
