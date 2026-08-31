@@ -3,18 +3,18 @@ name: Build and deploy Pages
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: pages
+  group: pages-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: false
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,6 +25,10 @@ jobs:
           node-version: "22"
       - name: Validate source and generated assets
         run: node scripts/check-content-integrity.mjs
+      - name: Verify deployment image selection
+        run: node --test tests/pages-image-assets.test.js
+      - name: Prove reconstruction without retained runtime files
+        run: node --test tests/runtime-asset-fresh-checkout.test.js
       - name: Build static payload from source
         run: node scripts/build-static-site.mjs --out .tmp/site
       - uses: actions/upload-pages-artifact@v4
@@ -33,6 +37,7 @@ jobs:
           retention-days: 1
   deploy:
     needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       pages: write

@@ -26,6 +26,7 @@ function repository(t, { limit = 100 } = {}) {
   git(cwd, "config", "user.email", "storage@example.invalid");
   git(cwd, "config", "core.hooksPath", "/dev/null");
   const policy = structuredClone(registry);
+  delete policy.runtimeTransition;
   policy.collections = [];
   policy.thresholds = { lineCount: limit, byteCount: 100000, evidenceLineCount: limit, evidenceByteCount: 100000 };
   policy.collectionThresholds = { lineCount: limit, byteCount: 100000 };
@@ -95,4 +96,20 @@ test("ignored runtime files stay outside the audit unless force-added", (t) => {
   assert.deepEqual(fixture.validate().errors, []);
   git(fixture.cwd, "add", "-f", "content/assets/borg/records/tiny.json");
   assert.ok(fixture.validate().errors.some((error) => error.includes("must not be tracked")));
+});
+
+test("Pages proof phase retains a bounded explicit set; removal and extra outputs fail", () => {
+  const name = "content/assets/borg/records/retained.json";
+  const policy = { ...registry, runtimeTransition: {
+    phase: "prove-pages-build", paths: [name], budget: { lineCount: 10, byteCount: 100 },
+  } };
+  const files = new Map([[name, { lineCount: 1, byteCount: 2 }]]);
+  assert.deepEqual(auditMachineFiles(files, { registry: policy, families }).errors, []);
+  assert.ok(auditMachineFiles(new Map(), { registry: policy, families }).errors.some((error) => error.includes("requires retained runtime file")));
+  files.set("content/assets/borg/records/unapproved.json", { lineCount: 1, byteCount: 2 });
+  assert.ok(auditMachineFiles(files, { registry: policy, families }).errors.some((error) => error.includes("must not be tracked")));
+  files.set(name, { lineCount: 10, byteCount: 2 });
+  assert.ok(auditMachineFiles(files, { registry: policy, families }).errors.some((error) => error.includes("temporary Pages runtime budget exceeded")));
+  delete policy.runtimeTransition;
+  assert.ok(auditMachineFiles(files, { registry: policy, families }).errors.some((error) => error.includes("must not be tracked")));
 });

@@ -26,7 +26,7 @@ PORT=5174 node scripts/dev/start-local-dev.mjs
 
 There is no `npm install` step for ordinary local serving. The root app is served from `index.html`, `app.js`, `style.css`, `vendor/`, `content/`, `src/`, and the standalone HTML entrypoints in the repo root.
 
-The local server prepares ignored Borg playback records, the equation registry, and the full-corpus source index before listening. These outputs are built from tracked sources; a fresh clone does not contain them. For a separate static server or direct focused tests, run `node scripts/prepare-runtime-assets.mjs --write` once first. `npm test` includes this setup automatically. Repeating setup leaves unchanged output files untouched.
+The local server prepares Borg playback records, the equation registry, and the full-corpus source index before listening. These outputs are built from tracked sources. During the Pages proof phase their tracked copies remain available for the old publisher; only the second migration PR removes them after live Actions verification. For a separate static server or direct focused tests without saved outputs, run `node scripts/prepare-runtime-assets.mjs --write` once first. `npm test` includes this setup automatically. Repeating setup leaves unchanged output files untouched.
 
 ## Web App
 
@@ -189,11 +189,11 @@ VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" <script>
 
 ## Deployment
 
-The public site uses the GitHub Pages workflow in `.github/workflows/pages.yml`, with `CNAME` retaining the custom domain. Pages must use **GitHub Actions** as its publishing source, not direct deployment from the `main` branch. Before merging the runtime-storage migration, switch that repository setting; the previously published site remains available while the new workflow waits to reach `main`.
+The public site is transitioning from branch publishing to the GitHub Pages workflow in `.github/workflows/pages.yml`. Keep the current custom-domain and HTTPS settings. First merge the workflow while retaining the old publisher's generated files; only then switch Pages to **GitHub Actions**, run the workflow on `main`, and verify the deployed apps and generated data. Remove tracked runtime files only in a second PR after that live acceptance. See the [two-stage cutover and rollback procedure](reference/op/machine-artifact-retention.md#two-stage-pages-cutover).
 
-The workflow validates source, prepares ignored runtime assets, builds an isolated site directory, and publishes that directory without committing generated payloads. Deployment runs only on `main`; PRs validate but do not publish. The transient Pages upload is retained for one day. Local equivalent: `node scripts/build-static-site.mjs --out .tmp/site` (the destination must be empty). The builder copies only tracked non-hidden files and declared generated runtime outputs; it never copies `.git`, ignored local runs, or unrelated files from the checkout.
+The workflow validates source, proves reconstruction in a source-only temporary checkout, builds an isolated site directory, and publishes that directory without committing its build output. Deployment runs only on `main`; PRs validate and build but do not publish. The transient Pages upload is retained for one day. Local equivalent: `node scripts/build-static-site.mjs --out .tmp/site` (the destination must be empty). The builder copies only tracked non-hidden files and declared generated runtime outputs; it never copies `.git`, ignored local runs, or unrelated files from the checkout.
 
-Source history remains in Git. Easily regenerated runtime payloads do not. See [Machine Artifact Retention](reference/op/machine-artifact-retention.md) for the storage budget, setup contract, retained exceptions, and historical-cleanup boundary.
+Source history remains in Git. Easily regenerated runtime payloads leave Git tracking after the publishing path is proven. See [Machine Artifact Retention](reference/op/machine-artifact-retention.md) for the storage budget, setup contract, temporary retained set, and historical-cleanup boundary.
 
 ## Commit And Push Checks
 

@@ -7,7 +7,8 @@ tmp/
 .codex/
 node_modules/
 
-# Reproducible runtime payloads: prepared at local startup and in Pages builds.
+# Reproducible runtime payloads: no new tracking. Existing copies remain tracked
+# during the bounded Pages proof phase and are removed only after live acceptance.
 /content/assets/borg/records/
 /content/generated/equation-mapping/corpus-equations.json
 /content/generated/source-index/local-full-corpus-snapshot.v1.json

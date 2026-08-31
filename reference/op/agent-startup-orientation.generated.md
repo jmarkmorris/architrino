@@ -77,11 +77,11 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 147 | `e9b4d05221ad303b` |
-| [README.md](../../README.md) | 205 | `93935794213af401` |
+| [AGENTS.md](../../AGENTS.md) | 148 | `8fc999bfaf6d859e` |
+| [README.md](../../README.md) | 211 | `0c8d4132fdb0a462` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 123 | `d9f76bb43c58000b` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 131 | `f3bc036948d74e52` |
 | [reference/op/README.md](README.md) | 35 | `103118f984d95c66` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 216 | `a6b6ad0c387cdbba` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `a12ec1f00ca37b55` |

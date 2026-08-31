@@ -6,28 +6,102 @@
     "evidenceLineCount": 25000,
     "evidenceByteCount": 1048576
   },
-  "collectionThresholds": { "lineCount": 100000, "byteCount": 10485760 },
-  "branchThresholds": { "lineCount": 100000, "byteCount": 10485760 },
+  "collectionThresholds": {
+    "lineCount": 100000,
+    "byteCount": 10485760
+  },
+  "branchThresholds": {
+    "lineCount": 100000,
+    "byteCount": 10485760
+  },
   "records": [],
   "collections": [
     {
       "path": "content/scenes/elements",
       "sourceKind": "authored",
       "owner": "Element scene source hierarchy",
-      "consumers": ["src/apps/architrino/", "scripts/build-scene-graph.mjs"],
+      "consumers": [
+        "src/apps/architrino/",
+        "scripts/build-scene-graph.mjs"
+      ],
       "retentionReason": "These authored scene layouts are canonical source, not generated playback ledgers; no complete generator replaces them.",
       "compactAlternativeInsufficient": "A receipt cannot reconstruct the authored per-element scene geometry and navigation.",
-      "budget": { "lineCount": 600000, "byteCount": 11500000 }
+      "budget": {
+        "lineCount": 600000,
+        "byteCount": 11500000
+      }
     },
     {
       "path": "apps/ios/ArchitrinoReader/GeneratedTextbookPackage",
       "sourceKind": "on-demand-development-snapshot",
       "owner": "iOS Reader on-demand package workflow",
-      "consumers": ["apps/ios/ArchitrinoReader/README.md"],
+      "consumers": [
+        "apps/ios/ArchitrinoReader/README.md"
+      ],
       "regenerationCommand": "node scripts/export-ios-textbook-package.mjs --write --strict",
       "retentionReason": "The explicitly separate iOS packaging workflow retains its current development snapshot; this web-runtime migration does not regenerate or alter that package.",
       "compactAlternativeInsufficient": "An iOS source/package migration requires its own strict package and device checks; routine web setup must not silently build it.",
-      "budget": { "lineCount": 125000, "byteCount": 14000000 }
+      "budget": {
+        "lineCount": 125000,
+        "byteCount": 14000000
+      }
     }
-  ]
+  ],
+  "runtimeTransition": {
+    "phase": "prove-pages-build",
+    "baselineCommit": "bfbb3ea3e",
+    "exitCondition": "Remove this allowance and its tracked payloads only in a second PR after a successful Actions deployment on main and live verification of all runtime files and app entrypoints.",
+    "budget": {
+      "lineCount": 2700000,
+      "byteCount": 120000000
+    },
+    "paths": [
+      "content/assets/borg/records/family-a-a1-general.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a1-1-equal-frequency.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a1-2-equal-frequency-equal-radius.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a1-3-4-2-1-frequency.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a1-4-3-2-1-frequency.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a2-fully-symmetric.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a3-general.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a3-1-equal-frequency.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a3-2-equal-frequency-equal-radius.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a3-3-4-2-1-frequency.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-a-a3-4-3-2-1-frequency.assembly-view-record.v0.json",
+      "content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json",
+      "content/assets/borg/records/illustrative-extreme-cap-tilt-spindle-variant.assembly-view-record.v0.json",
+      "content/assets/borg/records/illustrative-planar-tri-binary-spindle-boundary.assembly-view-record.v0.json",
+      "content/assets/borg/records/illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-c-c1-co-rotating-general.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-c-c2-counter-rotating-general.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-c-c1-co-rotating-b1-pair.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-c-c2-counter-rotating-b1-pair.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-c-c1-1-co-rotating-b1-3-pair.assembly-view-record.v0.json",
+      "content/assets/borg/records/family-c-c2-1-counter-rotating-b1-3-pair.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-01-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-02-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-03-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-04-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-05-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-06-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-07-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-08-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-09-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-10-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-11-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-circle-12-alternating.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-sphere-c5-two-rings.assembly-view-record.v0.json",
+      "content/assets/borg/records/shared-sphere-c6-two-rings.assembly-view-record.v0.json",
+      "content/assets/borg/records/platonic-vertices-04-tetrahedron.assembly-view-record.v0.json",
+      "content/assets/borg/records/platonic-vertices-06-octahedron.assembly-view-record.v0.json",
+      "content/assets/borg/records/platonic-vertices-08-cube.assembly-view-record.v0.json",
+      "content/assets/borg/records/platonic-vertices-12-icosahedron.assembly-view-record.v0.json",
+      "content/assets/borg/records/platonic-vertices-20-dodecahedron.assembly-view-record.v0.json",
+      "content/assets/borg/records/sd3-centered-five-coordinate.assembly-view-record.v0.json",
+      "content/assets/borg/records/f5-phase-varying-campaign.assembly-view-record.v0.json",
+      "content/assets/borg/records/f6c-polarity-resolved-harmonic.assembly-view-record.v0.json",
+      "content/assets/borg/records/f6b-scoped-negative-circular.assembly-view-record.v0.json",
+      "content/generated/equation-mapping/corpus-equations.json",
+      "content/generated/source-index/local-full-corpus-snapshot.v1.json"
+    ]
+  }
 }

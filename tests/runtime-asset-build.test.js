@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import { buildStaticSite } from "../scripts/build-static-site.mjs";
+import { buildStaticSite, WEB_KATEX_DIRECTORY } from "../scripts/build-static-site.mjs";
 import { runtimeAssetPaths, readRuntimeAssetFamilies } from "../scripts/prepare-runtime-assets.mjs";
 import { buildEquationMappingCorpus } from "../scripts/build-equation-mapping-corpus.mjs";
 
@@ -58,6 +58,57 @@ test("site build refuses destructive or nonempty output targets", (t) => {
   assert.equal(fs.readFileSync(path.join(f.output, "existing.txt"), "utf8"), "preserve");
 });
 
+test("Pages excludes PowerPoint originals, preserves PDFs, and leaves repository files intact", (t) => {
+  const f = fixture(t);
+  const originals = ["slides/deck.pptx", "slides/legacy.ppt", "slides/macro.PPTM", "slides/template.potx", "slides/show.ppsx"];
+  for (const name of originals) f.write(name, "authoring source");
+  f.write("slides/deck.pdf", "published PDF");
+  buildStaticSite({ rootDir: f.source, outputDir: f.output,
+    trackedPaths: ["index.html", ...originals, "slides/deck.pdf"],
+    prepare: () => { for (const name of runtimeAssetPaths(f.source)) f.write(name, "{}"); },
+  });
+  for (const name of originals) {
+    assert.equal(fs.existsSync(path.join(f.output, name)), false);
+    assert.equal(fs.readFileSync(path.join(f.source, name), "utf8"), "authoring source");
+  }
+  assert.equal(fs.readFileSync(path.join(f.output, "slides/deck.pdf"), "utf8"), "published PDF");
+});
+
+test("Pages excludes iOS and design sources but preserves all shared KaTeX assets and public artwork", (t) => {
+  const f = fixture(t);
+  const excluded = [
+    "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/reading-copies/dynamics.html",
+    "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/ReaderShell.js",
+    "apps/ios/ArchitrinoReader/ArchitrinoReader/Reader.swift",
+    "reference/design/banners/working/master.png",
+    "reference/design/logo-exports/icon.png",
+  ];
+  const retained = [
+    `${WEB_KATEX_DIRECTORY}katex.min.js`, `${WEB_KATEX_DIRECTORY}katex.min.css`,
+    `${WEB_KATEX_DIRECTORY}fonts/KaTeX_Main-Regular.woff2`, `${WEB_KATEX_DIRECTORY}LICENSE.txt`,
+    "content/assets/images/brand/banners/public.png", "reference/design-notes.md",
+  ];
+  for (const name of [...excluded, ...retained]) f.write(name, `original ${name}`);
+  f.write("index.html", '<img src="content/assets/images/brand/banners/public.png">');
+  buildStaticSite({ rootDir: f.source, outputDir: f.output,
+    trackedPaths: ["index.html", ...excluded, ...retained],
+    prepare: () => { for (const name of runtimeAssetPaths(f.source)) f.write(name, "{}"); },
+  });
+  for (const name of excluded) assert.equal(fs.existsSync(path.join(f.output, name)), false, name);
+  for (const name of retained) assert.equal(fs.readFileSync(path.join(f.output, name), "utf8"), `original ${name}`);
+  for (const name of [...excluded, ...retained]) assert.equal(fs.readFileSync(path.join(f.source, name), "utf8"), `original ${name}`);
+});
+
+test("site build rejects oversized payloads before copying any publication files", (t) => {
+  const f = fixture(t);
+  assert.throws(() => buildStaticSite({ rootDir: f.source, outputDir: f.output,
+    trackedPaths: ["index.html", "CNAME"], maxBytes: 10,
+    prepare: () => { for (const name of runtimeAssetPaths(f.source)) f.write(name, "{}"); },
+  }), /Pages payload exceeds supported size budget/);
+  assert.equal(fs.existsSync(f.output), false);
+  assert.throws(() => buildStaticSite({ maxBytes: 1_000_000_001 }), /invalid Pages size budget/);
+});
+
 test("artifact-only equation build rejects missing source links without editing the source", (t) => {
   const f = fixture(t);
   const name = "content/markdown/aaa/example.md";
@@ -75,7 +126,10 @@ test("local, CI, service, and Pages entrypoints explicitly prepare runtime outpu
   assert.match(read("scripts/pr-validation-receipt.mjs"), /prepare-runtime-assets\.mjs/);
   assert.match(read("scripts/archie-service/run-full-corpus-mcp-server.mjs"), /familyId: "full-corpus-index"/);
   const workflow = read(".github/workflows/pages.yml");
+  assert.match(workflow, /pull_request:/);
   assert.match(workflow, /github.ref == 'refs\/heads\/main'/);
+  assert.match(workflow, /github.event_name != 'pull_request'/);
+  assert.match(workflow, /node --test tests\/runtime-asset-fresh-checkout.test.js/);
   assert.match(workflow, /build-static-site\.mjs --out \.tmp\/site/);
   assert.match(workflow, /retention-days: 1/);
   assert.match(workflow, /needs: build/);

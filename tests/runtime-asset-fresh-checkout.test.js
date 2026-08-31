@@ -5,7 +5,7 @@ import path from "node:path";
 import os from "node:os";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { buildStaticSite } from "../scripts/build-static-site.mjs";
+import { buildStaticSite, isPagesDeploymentExcluded, WEB_KATEX_DIRECTORY, PAGES_MAX_BYTES } from "../scripts/build-static-site.mjs";
 import { runtimeAssetPaths, isGeneratedRuntimeAsset, readRuntimeAssetFamilies } from "../scripts/prepare-runtime-assets.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
@@ -43,5 +43,45 @@ test("source-only checkout reconstructs all runtime outputs and a complete Pages
   assert.ok(fs.existsSync(path.join(result.outputDir, "equation-mapping.html")));
   assert.equal(fs.existsSync(path.join(result.outputDir, ".git")), false);
   assert.equal(fs.existsSync(path.join(result.outputDir, ".local-data")), false);
-  console.log(`[fresh-runtime] verified ${result.runtimeAssetCount} outputs and ${result.fileCount} deployment files; scratch copies will be removed`);
+  for (const name of paths.filter(isPagesDeploymentExcluded)) assert.equal(fs.existsSync(path.join(result.outputDir, name)), false, `excluded source published: ${name}`);
+  const katexPaths = paths.filter((name) => name.startsWith(WEB_KATEX_DIRECTORY));
+  assert.ok(katexPaths.some((name) => name.endsWith("katex.min.js")));
+  assert.ok(katexPaths.some((name) => name.includes("/fonts/")));
+  assert.ok(katexPaths.some((name) => name.endsWith("LICENSE.txt")));
+  for (const name of katexPaths) assert.equal(hash(path.join(result.outputDir, name)), sourceHashes.get(name), `shared KaTeX changed: ${name}`);
+  const imagePaths = paths.filter((name) => name.startsWith("content/assets/images/") && /\.(png|jpe?g|svg|gif|webp|avif|ico|bmp|tiff?)$/i.test(name));
+  const publishedImages = imagePaths.filter((name) => fs.existsSync(path.join(result.outputDir, name)));
+  // Independent checks against the actual authored links and gallery fields,
+  // without calling the build's selector to decide what should be present.
+  const linkedImages = new Set(["content/assets/images/nuclear/hyde-periodic-table-rsvg-friendly.svg"]);
+  for (const name of paths.filter((name) => name.startsWith("content/markdown/") && name.endsWith(".md"))) {
+    const text = fs.readFileSync(path.join(sourceRoot, name), "utf8");
+    for (const match of text.matchAll(/\]\(([^\s)]+)\)/g)) {
+      const target = new URL(match[1], `https://build.test/${name}`);
+      const image = decodeURIComponent(target.pathname).slice(1);
+      if (target.hostname === "build.test" && imagePaths.includes(image)) linkedImages.add(image);
+    }
+  }
+  const gallery = JSON.parse(fs.readFileSync(path.join(sourceRoot, "content/scenes/archie/comics.json"), "utf8"));
+  const checkGallery = (value) => {
+    if (!value || typeof value !== "object") return;
+    for (const [key, child] of Object.entries(value)) {
+      if (["galleryImage", "galleryThumbnail", "labelBadgeImage"].includes(key) && typeof child === "string") linkedImages.add(child);
+      else checkGallery(child);
+    }
+  };
+  checkGallery(gallery);
+  for (const name of linkedImages) assert.equal(hash(path.join(result.outputDir, name)), sourceHashes.get(name), `linked image missing or changed: ${name}`);
+  for (const name of publishedImages) assert.equal(hash(path.join(result.outputDir, name)), sourceHashes.get(name), `published image changed: ${name}`);
+  for (const name of imagePaths) assert.equal(hash(path.join(sourceRoot, name)), sourceHashes.get(name), `repository original changed: ${name}`);
+  assert.ok(imagePaths.length > publishedImages.length);
+  assert.equal(result.images.retained, publishedImages.length);
+  assert.equal(result.images.excluded, imagePaths.length - publishedImages.length);
+  const catalogPath = "content/assets/images/images.json";
+  assert.equal(hash(path.join(sourceRoot, catalogPath)), sourceHashes.get(catalogPath));
+  const sourceCatalog = JSON.parse(fs.readFileSync(path.join(sourceRoot, catalogPath), "utf8"));
+  const deploymentCatalog = JSON.parse(fs.readFileSync(path.join(result.outputDir, catalogPath), "utf8"));
+  assert.deepEqual(deploymentCatalog.images, sourceCatalog.images.filter((entry) => publishedImages.includes(entry.path)));
+  assert.ok(result.byteCount <= PAGES_MAX_BYTES);
+  console.log(`[fresh-runtime] verified ${result.runtimeAssetCount} outputs, ${result.fileCount} deployment files, ${result.byteCount} bytes, ${katexPaths.length} unchanged KaTeX files, ${linkedImages.size} independently enumerated image links, and all ${imagePaths.length} unchanged repository images; ${result.images.excluded} images (${result.images.excludedBytes} bytes) excluded; scratch copies will be removed`);
 });

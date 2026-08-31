@@ -28,7 +28,8 @@ export function runtimeAssetPaths(rootDir = ROOT) {
   });
 }
 
-// Only ignored runtime outputs are built here. Authored-source repair and
+// Only declared runtime outputs are built here (temporarily tracked during the
+// Pages proof phase, then ignored). Authored-source repair and
 // tracked textbook/scene regeneration remain separate, explicitly requested work.
 export function prepareRuntimeAssets({ rootDir = ROOT, mode = "write", familyId = null, log = console.log } = {}) {
   if (!["write", "check"].includes(mode)) throw new Error("choose write or check");
