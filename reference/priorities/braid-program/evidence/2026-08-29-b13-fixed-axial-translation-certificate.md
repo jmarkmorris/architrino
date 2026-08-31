@@ -1,9 +1,9 @@
 # B1.3 Fixed Axial-Translation Certificate
 
-Date: 2026-08-29  
-Compatibility identifier: `aaa-corpus-advancement`  
-Status: accepted bounded-nonexistence certificate for B13-003  
-Reader-facing owner: [Shared-Circle Assemblies](../../../../content/markdown/aaa/dynamics/shared-circle-assemblies.md#fixed-axial-translation-study)  
+Date: 2026-08-29
+Compatibility identifier: `aaa-corpus-advancement`
+Status: accepted bounded-nonexistence certificate for B13-003
+Reader-facing owner: [Shared-Circle Assemblies](../../../../content/markdown/aaa/dynamics/shared-circle-assemblies.md#fixed-axial-translation-study)
 General B1 geometry owner: [Family B axial translation](../../../../content/markdown/aaa/noether-braid/braid-family-b.md#axial-translation)
 
 ## Decision

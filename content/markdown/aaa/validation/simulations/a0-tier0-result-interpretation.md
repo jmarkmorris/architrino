@@ -1,4 +1,4 @@
-# $A_0$ Reduced Branch-Search Interpretation
+# $A_0$ Tier 0 Result Interpretation: Reduced Branch Search
 
 This note explains the mathematical information supplied by a reduced $A_0$ branch search. It is a companion to the [$A_0$ Branch Certificate Protocol](a0-branch-certificate-protocol.md), the general [Simulation Run Protocols](run-protocols.md), and the convergence standards in [Convergence Tests](convergence-tests.md).
 

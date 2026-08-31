@@ -1,7 +1,7 @@
 # Planar Co-Rotating $N{:}N$ Circular Acceleration-Balance Evidence
 
-Date: 2026-08-29  
-Compatibility identifier: `aaa-corpus-advancement`  
+Date: 2026-08-29
+Compatibility identifier: `aaa-corpus-advancement`
 Current compact receipt: [`2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json`](2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json)
 Instrument: [`PlanarCoRotatingRingBalance.mjs`](../../../../src/prescribed-path-analysis/PlanarCoRotatingRingBalance.mjs) and [`PlanarCoRotatingRingSearch.mjs`](../../../../src/prescribed-path-analysis/PlanarCoRotatingRingSearch.mjs), driven by [`analyze-planar-co-rotating-rings.mjs`](../../../../scripts/equation-mapping/analyze-planar-co-rotating-rings.mjs)
 

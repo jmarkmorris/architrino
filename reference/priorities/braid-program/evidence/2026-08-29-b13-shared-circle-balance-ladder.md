@@ -1,9 +1,9 @@
 # B1.3 Shared-Circle Balance-Ladder Evidence
 
-Date: 2026-08-29  
-Compatibility identifier: `aaa-corpus-advancement`  
-Status: tracked synthesis of already accepted evidence; no scientific claim-grade change  
-Reader-facing owner: [Shared-Circle Assemblies](../../../../content/markdown/aaa/dynamics/shared-circle-assemblies.md)  
+Date: 2026-08-29
+Compatibility identifier: `aaa-corpus-advancement`
+Status: tracked synthesis of already accepted evidence; no scientific claim-grade change
+Reader-facing owner: [Shared-Circle Assemblies](../../../../content/markdown/aaa/dynamics/shared-circle-assemblies.md)
 Earlier bounded regular-ring owner: [Planar Co-Rotating $N{:}N$ Circular Acceleration-Balance Evidence](2026-08-29-planar-co-rotating-n-n-circular-balance.md)
 
 ## Decision

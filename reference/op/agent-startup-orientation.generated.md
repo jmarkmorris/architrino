@@ -82,7 +82,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 123 | `d9f76bb43c58000b` |
-| [reference/op/README.md](README.md) | 34 | `d06b923160559aa7` |
+| [reference/op/README.md](README.md) | 35 | `103118f984d95c66` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 216 | `a6b6ad0c387cdbba` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `a12ec1f00ca37b55` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `164aef30b22413d7` |
@@ -90,7 +90,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 502 | `b5ed89182fb9ef20` |
 | [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 841 | `9a420e39526ab8e2` |
 | [reference/priorities/README.md](../priorities/README.md) | 60 | `5d73318c73166424` |
-| [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 47 | `2cdbe9dfd36375c8` |
+| [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 47 | `c9074b9602a3bdd2` |
 | [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 76 | `40ee7728d1d26857` |
 | [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 135 | `7297c811d8a68462` |
 | [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 643 | `ccfe5149f551f33a` |

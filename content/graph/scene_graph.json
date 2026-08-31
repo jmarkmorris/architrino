@@ -3522,7 +3522,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-      "name": "$A_0$ Tier 0 Result-Schema Interpretation",
+      "name": "$A_0$ Tier 0 Result Interpretation: Reduced Branch Search",
       "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "nodeType": "markdown_doc"
     },
@@ -8785,7 +8785,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-      "name": "$A_0$ Tier 0 Result-Schema Interpretation",
+      "name": "$A_0$ Tier 0 Result Interpretation: Reduced Branch Search",
       "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "implicit": false

@@ -15826,6 +15826,10 @@ Plainly: every member must receive exactly the inward acceleration required by i
 
 The $N=1$ regular alternating record is the neutral antipodal two-body circular benchmark. It is a binary dynamics chart, not a six-worldline Noether braid.
 
+For the isolated antipodal binary with strictly sub-field-speed circular prehistory, the complete causal-root ledger contains one partner root per receiver and no nontrivial self roots, as derived in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#sub-field-speed-simplification). The forward tangential acceleration excludes uniform circular balance; a radially balanced release departs outward locally. This result excludes the prescribed circle, not subsequent radial reversal, sustained breathing, or other retained two-body motion. Super-field-speed, multi-root circular balances belong to a separate regime.
+
+Plainly: this pair cannot keep its prescribed uniform circular orbit after release. That does not establish that it will expand forever or cannot remain together in a different motion.
+
 The shared-circle chart intersects B1.3 exactly when $N=3$ and the six members can be partitioned into three opposite-polarity antipodal pairs with one common center, one common axis, one common frequency, one common circulation sense, and $h_a=0$, $\rho_a=R_a$ for every binary. Within that intersection, equal radii are already supplied by the shared circle. The regular alternating hexagon is the further phase-symmetric point whose three positive-endpoint phases may be chosen as $0$, $2\pi/3$, and $4\pi/3$.
 
 B1.3 and the shared-circle chart are not interchangeable. General B1.3 permits three independent radii, and a B1.3 record with unequal radii does not lie on one common circle. General shared-circle assemblies may have any balanced inventory size and need not possess three neutral antipodal binaries, so most shared-circle records are not B1.3.
@@ -16631,19 +16635,19 @@ Plainly: an exact circle exists and repeats. What remains unproved is that every
 
 #### Release Attempt and Dynamical Boundary
 
-Acceleration balance makes a prescribed ring a legitimate initial-history candidate for further testing. The bounded past-only EOM-solver release attempt for T04 used declared circular period $P=1.1866509259049338$. Its supplied prehistory had one full-period temporal depth, $1.1866509259048214$, exceeding the declared maximum chord delay $1.1234634001425804$ by $0.0631875257622409$. The input used enclosed cubic approximations to the circular history, not an exact symbolic history, but the halt was not caused by omission of the diameter-bound temporal interval. The coarse rung generated an accepted prefix only through $T=0.0029296875$, about $0.25\%$ of one period, before halting with `root_completeness_not_certified`. All accepted snapshots retained the expected 72-root ownership topology, meaning the same roots remained assigned to the same receiver-transmitter channels with no observed root birth, root death, or fold. Over that short prefix, the normalized RMS position departure from the declared circle was at most $2.9544\times10^{-10}$, the RMS rate departure was at most $9.3288\times10^{-8}$, and the final dimensionless acceleration residual was at most $2.3923\times10^{-6}$.
+Acceleration balance makes a prescribed ring a legitimate initial-history candidate for further testing. The bounded past-only EOM-solver release attempt for T04 used declared circular period $P=1.1866509259049338$. Its supplied prehistory had one full-period temporal depth, $1.1866509259048214$, exceeding the declared maximum chord delay $1.1234634001425804$ by $0.0631875257622409$. The input used enclosed cubic approximations to the circular history, not an exact symbolic history, but the halt was not caused by omission of the diameter-bound temporal interval. The coarse rung generated an accepted prefix only through $T=0.0029296875$, about $0.25\%$ of one period, before the solver could no longer certify that the next step contained every causal root. All accepted snapshots retained the expected 72-root ownership topology, meaning the same roots remained assigned to the same receiver-transmitter channels with no observed root birth, root death, or fold. Over that short prefix, the normalized RMS position departure from the declared circle was at most $2.9544\times10^{-10}$, the RMS rate departure was at most $9.3288\times10^{-8}$, and the final dimensionless acceleration residual was at most $2.3923\times10^{-6}$.
 
 Plainly: the release supplied enough past time to contain every circular causal root under the chord bound. When the prescribed future was removed, the generated motion initially stayed extremely close to the circle and kept the expected roots, but the certified calculation then became unable to prove the next tiny step's complete root inventory. A quarter of one percent of a cycle is far too short to call the circle retained, rejected, or stable.
 
-The medium calculation exceeded its declared 2 GiB memory limit before producing an accepted result, so that computational failure is not dynamical evidence. The fine calculation did not run, and no calculation reached one full period. Consequently no position return, rate return, retained-history return, root-timing return, or adjacent-resolution convergence measurement exists.
+No calculation established a full-period continuation or a comparison between adjacent numerical resolutions. Consequently no position return, rate return, retained-history return, root-timing return, or adjacent-resolution convergence measurement exists.
 
-Plainly: there is no one-cycle endpoint to compare with the starting circle. Resource exhaustion and a fail-closed root-continuation halt are unresolved instrumentation boundaries, not evidence that the ring physically flies apart.
+Plainly: there is no one-cycle endpoint to compare with the starting circle. The inability to certify a longer numerical trajectory is a limitation of the calculation, not evidence that the ring physically flies apart.
 
-> Claim grade: measured finite-prefix release evidence plus unresolved continuation. The accepted coarse snapshots are the measuring instrument; the medium calculation produced no scientific result. A faithful independent evaluation outside the reported prefix enclosures, a changed bound input, a missing root owner in an accepted snapshot, or certified continuation through the refused interval falsifies the corresponding finite-prefix or blocker statement.
+> Claim grade: measured. The past-only EOM-solver calculation supplies the reported finite-prefix enclosures; continuation beyond that prefix remains unresolved. A faithful independent evaluation outside those enclosures or a missing causal root in the accepted prefix would overturn the corresponding measured claim. A certified longer continuation would extend the numerical evidence, not establish perturbation stability by itself.
 
 Plainly: the calculation supports only the short accepted prefix and the reported numerical blockers. It supplies no full-cycle, retention, stability, escape, or physical-fate result.
 
-The B1.3 circular result is a mathematically structured prescribed-balance ladder with one hundred independently accepted consecutive even-class balances. The bounded T00 through T36 zero count is certified, the map $n\mapsto\mathrm{T}_{2n}$ fixes their complete directed-root counts, local polarity controls the fold-born crossing mechanism, and the high-speed spacing and radius laws are derived. Above speed 20, interval completeness remains open. The exact circular-solution theorem supplies an invariant mathematical reference orbit for every exact complete-simple-ledger balance member. The EOM-solver continuation and memory problems remain instrumentation barriers to an independent past-only numerical reproduction, while perturbation stability still requires a well-posed nearby-history flow and a separate return-map analysis.
+The B1.3 circular result is a mathematically structured prescribed-balance ladder with one hundred independently accepted consecutive even-class balances. The bounded T00 through T36 zero count is certified, the map $n\mapsto\mathrm{T}_{2n}$ fixes their complete directed-root counts, local polarity controls the fold-born crossing mechanism, and the high-speed spacing and radius laws are derived. Above speed 20, interval completeness remains open. The exact circular-solution theorem supplies an invariant mathematical reference orbit for every exact complete-simple-ledger balance member. The unresolved numerical continuation limits the independent past-only reproduction, while perturbation stability still requires a well-posed nearby-history flow and a separate return-map analysis.
 
 Plainly: the exact-root mathematics establishes continuing circular solutions, while the release experiment reached only a very short approximation to one of them. Exact continuation, numerical reproduction, and stability are three different evidence levels; none yet establishes a bound or perturbatively stable physical assembly.
 
@@ -18001,7 +18005,7 @@ These definitions name prescribed coordinate classes, not retained-branch existe
 
 The word **braid** names the family-declared retained worldline strands together with their shared causal-return ledger: six strands in the base and Family-A/B cases, and twelve in Family C. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) program.
 
-Canonical reader-facing prose uses **Noether braid** for the assembly class, **neutral braid** for the base case, and the family/member identifiers for prescribed geometry. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+**Noether braid** denotes the assembly class, **neutral braid** its base case, and the family/member identifiers its prescribed geometries. The braid's dynamic envelope geometry is developed separately in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 #### Simple Picture
 
@@ -18308,7 +18312,9 @@ Reading discipline for future diagnostics on this chart, retained from earlier w
 
 This chapter describes prescribed Noether braid geometries through explicit coordinates. The taxonomy has three levels: assembly composition, individual braid, and individual binary.
 
-Each taxonomy member receives a neutral identifier consisting of a family letter and a member number, such as `A1`, `A2`, `A3`, or `B1`. A decimal suffix identifies a constrained variant of a member, such as `A1.1` or `B1.1`. The identifier carries no geometric meaning. The first three master tables together with the source record define the geometry; the Borg depiction renders that declared record. Family and member names are optional aliases.
+Assembly catalog entries are peers, identified by their exact records and optional human-readable aliases such as `A1.0`, `A2.0`, `A3.0`, and `B1.1`. Letters and decimal suffixes do not impose family membership or parent-child navigation. A1, A2, A3, and the other constraint definitions below describe mathematical sets of coordinates; a concrete example selects one complete geometry and motion from such a set. The first three master tables together with the source record define the geometry, and Borg renders that declared record.
+
+Family terminology in the mathematical sections groups shared equations for exposition only. It is not an assembly-identity relation, a required record classification, or a browser hierarchy. Discovery uses independently assigned properties and exact record targets. Actual composition into braids and binaries remains a physical coordinate relationship, separate from how the catalog is organized.
 
 This is a geometry-and-motion taxonomy. It does not establish that a prescribed configuration is generated, retained, or stable under the EOM solver.
 
@@ -18570,7 +18576,7 @@ $$
 
 `B1` is the fixed-coordinate common-frequency co-rotating member. Its binaries may have different radii, axial half-separations, transverse orbit radii, and phases, but share one midpoint, one axis, one frequency, and one circulation sense. The coincident-axis relation distinguishes Family B from Family A; the family identifier does not assert that either geometry is dynamically retained.
 
-The three current Borg selections are `B1.1`, the interior reference with $h_a>0$ and $\rho_a>0$; `B1.2`, the high-axial interior selection with $h_a>\rho_a>0$; and `B1.3`, the all-equatorial boundary with $h_a=0$ and $\rho_a=R_a$. Each inherits every other B1 relation. Active B1 candidates additionally satisfy $\sum_a\rho_a^2>0$, equivalently nonzero total squared internal speed for the declared common frequency. The all-axial locus $\rho_a=0$, $h_a=R_a$ remains part of the B1 coordinate boundary, but the former identifier `B1.4` is retained only as a deprecated historical null control.
+The three B1 variants are `B1.1`, the interior reference with $h_a>0$ and $\rho_a>0$; `B1.2`, the high-axial interior selection with $h_a>\rho_a>0$; and `B1.3`, the all-equatorial boundary with $h_a=0$ and $\rho_a=R_a$. Each inherits every other B1 relation. Active B1 candidates additionally satisfy $\sum_a\rho_a^2>0$, equivalently nonzero total squared internal speed for the declared common frequency. The all-axial locus $\rho_a=0$, $h_a=R_a$ remains part of the B1 coordinate boundary, but has no internal motion and does not define an additional internally moving B1 member.
 
 Family A and Family B meet on a boundary. Every Family-A member reaches the coincident-axis relation at $\lambda_A=1$; a common-frequency Family-A variant with one common circulation sense and coincident binary midpoints also occupies the B1 coordinate locus at that endpoint. The A2 face-opposite seed also admits a distinct body-diagonal rotating-channel chart on the cyclic-symmetric B1 sublocus described in [B1 Hypotheses and Discrete Symmetry](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#cyclic-symmetric-a2b1-overlap). This geometric coincidence does not identify the two families away from either overlap.
 
@@ -18686,36 +18692,40 @@ Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates
 | `B1.3` | 1 | 2 | $R_2$ | $0$ | $R_2$ | $f$ | $\phi_2$ |
 | `B1.3` | 1 | 3 | $R_3$ | $0$ | $R_3$ | $f$ | $\phi_3$ |
 
-The deprecated `B1.4` control is not an active master-table row. Its preserved boundary coordinates are $\rho_a=0$ and $h_a=R_a$ for every binary, so its endpoint paths are the all-axial B1 limit and its internal speeds vanish.
+The all-axial boundary is not a distinct internally moving member. Its coordinates are $\rho_a=0$ and $h_a=R_a$ for every binary, so its endpoint paths are the all-axial B1 limit and its internal speeds vanish.
 
 ##### Naming and Navigation Master Table
 
-Family and member names are optional aliases. The Description column may aid navigation, but it does not define the geometry and must not introduce a characteristic absent from the first three master tables.
+Example names are optional aliases in a flat catalog. The Description column may aid navigation, but it does not define the geometry and must not introduce a characteristic absent from the first three master tables. No family assignment is required to list or select an example.
+
+This navigation table lists concrete record examples. A1.0, A2.0, and A3.0 are examples of the A1, A2, and A3 geometry classes defined above; `.0` does not denote a parent or a new parameterized class. A1.0 and A3.0 select indexed frequencies $(0.25,0.5,0.75)$, a $1:2:3$ ratio, while their `.1` examples use equal frequencies. A2.0 selects one fully symmetric geometry. Each name resolves to the complete recorded coordinates and motion, not to every configuration admitted by its class.
+
+Plainly: the examples are peers for browsing. The reusable mathematical definitions remain available without requiring family-tree navigation.
 
 Every Family-A Borg depiction in this table selects the near-rest endpoint $\lambda_A=0$. Its three source-defined binary axes are the mutually orthogonal $x$, $y$, and $z$ axes, so the corresponding binary orbit planes are yz, xz, and xy. The wider taxonomy retains the prescribed interpolation through $0 < \lambda_A < 1$ and the coincident-axis endpoint at $\lambda_A=1$.
 
-| Member ID | Family name | Member name | Geometry record | Borg depiction | Description |
-| --- | --- | --- | --- | --- | --- |
-| `A1` | Noether core | Coincident endpoint orbits | `family-a-a1-general-v1` | `A1 — coincident endpoint orbits` | Zero-axial-offset Family-A member whose two endpoint paths share one geometric circle within each binary. |
-| `A1.1` | Noether core | Equal-frequency | `family-a-a1-1-equal-frequency-v1` | `A1.1 — equal frequency` | A1 constrained to one common binary frequency while retaining independently assignable radii. |
-| `A1.2` | Noether core | Equal-frequency equal-radius | `family-a-a1-2-equal-frequency-equal-radius-v1` | `A1.2 — equal frequency, equal radius` | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
-| `A1.3` | Noether core | 4:2:1-frequency | `family-a-a1-3-4-2-1-frequency-v1` | `A1.3 — 4:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
-| `A1.4` | Noether core | 3:2:1-frequency | `family-a-a1-4-3-2-1-frequency-v1` | `A1.4 — 3:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `A2` | Noether core | Fully symmetric | `family-a-a2-fully-symmetric-v1` | `A2 — fully symmetric` | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
-| `A3` | Noether core | General axial decomposition | `family-a-a3-general-v1` | `A3 — general` | General Family-A member with independently assignable positive radii, frequencies, phases, and axial/transverse decompositions. |
-| `A3.1` | Noether core | Equal-frequency axial decomposition | `family-a-a3-1-equal-frequency-v1` | `A3.1 — equal frequency` | A3 constrained to one common binary frequency while retaining independently assignable radii and decompositions. |
-| `A3.2` | Noether core | Equal-frequency equal-radius axial decomposition | `family-a-a3-2-equal-frequency-equal-radius-v1` | `A3.2 — equal frequency, equal radius` | A3 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
-| `A3.3` | Noether core | 4:2:1-frequency axial decomposition | `family-a-a3-3-4-2-1-frequency-v1` | `A3.3 — 4:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
-| `A3.4` | Noether core | 3:2:1-frequency axial decomposition | `family-a-a3-4-3-2-1-frequency-v1` | `A3.4 — 3:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `B1.1` | Coincident binary axes | Interior reference | `illustrative-spindle-chart-hypothesis-v0` | `B1.1 — interior reference` | B1 with $h_a>0$ and $\rho_a>0$ for all three binaries. |
-| `B1.2` | Coincident binary axes | High-axial interior | `illustrative-extreme-cap-tilt-spindle-variant-v0` | `B1.2 — high-axial interior` | B1 with $h_a>\rho_a>0$ for all three binaries. |
-| `B1.3` | Coincident binary axes | All-equatorial boundary | `illustrative-planar-tri-binary-spindle-boundary-v0` | `B1.3 — all-equatorial boundary` | B1 with $h_a=0$ and $\rho_a=R_a$ for all three binaries. |
-| `C1` | Coaxial twelve-architrino geometry | Co-rotating | `family-c-c1-co-rotating-general-v1` | `C1 — co-rotating` | Twelve ordered coaxial architrino worldlines with one common circulation sense and an explicit neutral-binary counterpart map. |
-| `C2` | Coaxial twelve-architrino geometry | Counter-rotating | `family-c-c2-counter-rotating-general-v1` | `C2 — counter-rotating` | Twelve ordered coaxial architrino worldlines with opposite circulation senses on the two declared index subsets and an explicit neutral-binary counterpart map. |
-| `C3` | Coaxial twelve-architrino geometry | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C3 — co-rotating B1 pair` | C1 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
-| `C4` | Coaxial twelve-architrino geometry | Counter-rotating B1 pair | `family-c-c2-counter-rotating-b1-pair-v1` | `C4 — counter-rotating B1 pair` | C2 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
-| `C5` | Coaxial twelve-architrino geometry | Co-rotating B1.3 pair | `family-c-c1-1-co-rotating-b1-3-pair-v1` | `C5 — co-rotating B1.3 pair` | C3 constrained to two all-equatorial B1.3 components. |
-| `C6` | Coaxial twelve-architrino geometry | Counter-rotating B1.3 pair | `family-c-c2-1-counter-rotating-b1-3-pair-v1` | `C6 — counter-rotating B1.3 pair` | C4 constrained to two all-equatorial B1.3 components. |
+| Example ID | Geometry record | Borg depiction | Description |
+| --- | --- | --- | --- |
+| `A1.0` | `family-a-a1-general-v1` | `A1.0 — coincident endpoint orbits` | Zero-axial-offset A1 example with indexed frequency ratio $1:2:3$; the two endpoint paths share one geometric circle within each binary. |
+| `A1.1` | `family-a-a1-1-equal-frequency-v1` | `A1.1 — equal frequency` | A1 constrained to one common binary frequency while retaining independently assignable radii. |
+| `A1.2` | `family-a-a1-2-equal-frequency-equal-radius-v1` | `A1.2 — equal frequency, equal radius` | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
+| `A1.3` | `family-a-a1-3-4-2-1-frequency-v1` | `A1.3 — 4:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
+| `A1.4` | `family-a-a1-4-3-2-1-frequency-v1` | `A1.4 — 3:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
+| `A2.0` | `family-a-a2-fully-symmetric-v1` | `A2.0 — fully symmetric` | A2 example with three equivalent binaries, equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
+| `A3.0` | `family-a-a3-general-v1` | `A3.0 — general` | A3 example with positive axial offsets and indexed frequency ratio $1:2:3$; its remaining coordinates are fixed by the record. |
+| `A3.1` | `family-a-a3-1-equal-frequency-v1` | `A3.1 — equal frequency` | A3 constrained to one common binary frequency while retaining independently assignable radii and decompositions. |
+| `A3.2` | `family-a-a3-2-equal-frequency-equal-radius-v1` | `A3.2 — equal frequency, equal radius` | A3 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
+| `A3.3` | `family-a-a3-3-4-2-1-frequency-v1` | `A3.3 — 4:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
+| `A3.4` | `family-a-a3-4-3-2-1-frequency-v1` | `A3.4 — 3:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
+| `B1.1` | `illustrative-spindle-chart-hypothesis-v0` | `B1.1 — interior reference` | B1 with $h_a>0$ and $\rho_a>0$ for all three binaries. |
+| `B1.2` | `illustrative-extreme-cap-tilt-spindle-variant-v0` | `B1.2 — high-axial interior` | B1 with $h_a>\rho_a>0$ for all three binaries. |
+| `B1.3` | `illustrative-planar-tri-binary-spindle-boundary-v0` | `B1.3 — all-equatorial boundary` | B1 with $h_a=0$ and $\rho_a=R_a$ for all three binaries. |
+| `C1` | `family-c-c1-co-rotating-general-v1` | `C1 — co-rotating` | Twelve ordered coaxial architrino worldlines with one common circulation sense and an explicit neutral-binary counterpart map. |
+| `C2` | `family-c-c2-counter-rotating-general-v1` | `C2 — counter-rotating` | Twelve ordered coaxial architrino worldlines with opposite circulation senses on the two declared index subsets and an explicit neutral-binary counterpart map. |
+| `C3` | `family-c-c1-co-rotating-b1-pair-v1` | `C3 — co-rotating B1 pair` | C1 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C4` | `family-c-c2-counter-rotating-b1-pair-v1` | `C4 — counter-rotating B1 pair` | C2 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C5` | `family-c-c1-1-co-rotating-b1-3-pair-v1` | `C5 — co-rotating B1.3 pair` | C3 constrained to two all-equatorial B1.3 components. |
+| `C6` | `family-c-c2-1-counter-rotating-b1-3-pair-v1` | `C6 — counter-rotating B1.3 pair` | C4 constrained to two all-equatorial B1.3 components. |
 
 ### Braid Family A
 
@@ -18724,6 +18734,8 @@ Every Family-A Borg depiction in this table selects the near-rest endpoint $\lam
 Family A contains prescribed one-braid geometries whose three binary axes are mutually orthogonal at the near-rest endpoint and converge toward the group-translation direction as the prescribed flattening coordinate increases. The canonical coordinates, response endpoints, and master-table rows are defined in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-a-noether-core). This chapter explains how those coordinates distinguish A1, A2, A3, and their constrained loci.
 
 Family A is a geometry-and-motion definition. It does not establish that an A1, A2, or A3 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
+
+The concrete catalog examples A1.0, A2.0, and A3.0 instantiate the A1, A2, and A3 definitions respectively. The `.0` suffix identifies an example, not a parent class or an additional defining constraint. Their record identities and prescribed paths are listed in the [naming and navigation table](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#naming-and-navigation-master-table); statements about the full A1, A2, or A3 class do not follow from one example's assigned properties.
 
 ##### Shared Family-A Geometry
 
@@ -20400,9 +20412,9 @@ Because 12 is even, antipodal members of this alternating ring have like polarit
 
 Plainly: the larger ring is included here to mark the exact B1.3 boundary, not to enlarge B1.3. Its acceleration balance says nothing about retention, binding, stability, release survival, physical identity, or scientific acceptance, and it does not cover other $12{:}12$ polarity words or nonuniform phase gaps.
 
-##### Deprecated Axial-Limit Control
+##### All-Axial Boundary
 
-The former catalog identifier `B1.4` selected the all-axial limit
+The all-axial boundary is defined by
 
 $$
 \rho_a=0,
@@ -20428,7 +20440,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ebaf153c4e2667f7)
 
-This limit has $\mathcal K_{\perp}=0$: frequency, phase, and circulation labels do not create internal motion, and translation of $\mathbf C(T)$ only transports the static axial arrangement. The stable `B1.4` identifier and its prescribed source and record remain a deprecated axial-limit null control for historical reproducibility. It is not an active taxonomy member, a Borg catalog selection, a future sweep candidate, or a comparative-ranking participant.
+This limit has $\mathcal K_{\perp}=0$: frequency, phase, and circulation labels do not create internal motion, and translation of $\mathbf C(T)$ only transports the static axial arrangement. It is therefore a static coordinate boundary, not a distinct internally moving B1 member.
 
 #### Axial Translation
 
@@ -20470,7 +20482,7 @@ A nearby continuation over $2.3743071761\leq\beta_f\leq3.5743071761$ evaluated 1
 
 Plainly: changing transverse speed moved the two residuals through zero at different places. The finite probe set could not rule out an unsampled coincidence, so the later interval proof covers the entire declared speed interval, including its causal-root folds.
 
-> Claim grade: measured prescribed-path control. The fixed-translation instrument retained the declared phases, polarities, transverse speed, and normalized $c_f=1$ scale; root-tolerance refinement preserved the topology and compatible radial scale, and the unchanged generic prescribed-history evaluator reproduced the root and acceleration rows. A changed root count under valid refinement, a generic-evaluator mismatch, simultaneous vanishing of all three residual components at the declared point, or a certified nearby full balance overturns the corresponding conclusion.
+> Claim grade: measured prescribed-path control. The fixed-translation instrument retained the declared phases, polarities, transverse speed, and normalized $c_f=1$ scale; root-tolerance refinement preserved the topology and compatible radial scale, and the unchanged generic prescribed-history evaluator reproduced the root and acceleration contributions. A changed root count under valid refinement, a generic-evaluator mismatch, simultaneous vanishing of all three residual components at the declared point, or a certified nearby full balance overturns the corresponding conclusion.
 
 Plainly: this control rejects the idea that the stationary T04 radius remains balanced after adding $0.1c_f$ axial translation. The linked certificate rejects every equal-radius regular-phase screw-path balance in the declared transverse-speed interval at that fixed axial speed, but neither result rejects other axial speeds or broader B1.3 geometries.
 
@@ -20836,7 +20848,7 @@ These entries are diagnostics that may be computed from a taxonomy member's reco
 
 #### Family-B Example: B1
 
-A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member. Active B1 candidate records require $\sum_a\rho_a^2>0$; the all-axial endpoint remains a coordinate boundary and deprecated null control rather than an active candidate.
+A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member. Active B1 candidate records require $\sum_a\rho_a^2>0$; the all-axial endpoint is a static coordinate boundary rather than an internally moving candidate.
 
 The status discipline binds. B1 is a prescribed member, not a retained branch, and no family ranking is asserted. Its exact geometry does not establish physical formation, retention, or preference over another taxonomy member.
 
@@ -62645,7 +62657,7 @@ A vacuum one- or two-architrino benchmark therefore uses the same coordinate and
 
 #### A0 Branch Certificate Protocol
 
-This protocol defines the simulation-facing handoff for the $A_0$ reference attractor described in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Energy](../../../../markdown/aaa/dynamics/energy.md). It specializes the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) to the first neutral rest-branch mass-map candidate constrained to A1 coordinates: persistent indices, independently assignable positive radii and frequencies, mutually orthogonal near-rest axes, the declared Family-A response direction, and explicit remaining binary coordinates. The target is not called retained or stable until the same-record certificate rows pass.
+This protocol defines the mathematical and numerical evidence for the $A_0$ reference attractor described in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Energy](../../../../markdown/aaa/dynamics/energy.md). It specializes the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) to the first neutral rest-branch mass-map candidate constrained to A1 coordinates: persistent indices, independently assignable positive radii and frequencies, mutually orthogonal near-rest axes, the declared Family-A response direction, and explicit remaining binary coordinates. No computed $A_0$ branch is reported here. Retention and stability require the stated conditions to hold on the same evolved history.
 
 The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale causal-root ledger before energy, shielding, Noether sea response, or mass comparisons enter.
 
@@ -62653,36 +62665,35 @@ The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a cali
 
 If a run consumes a master-equation branch-chart object $\mathfrak{B}(\Gamma,\mathcal{S};H_{\mathrm{hist}},\eta,\epsilon_c)$, the consumed data must remain branch-certificate data: active roots, inactive gaps, transmitter-side Jacobian floors, same-record transmitter-side acceleration-weight intervals $W^{\mathrm{acc}}$, receiver-side factors $D_r$, signed root-playback intervals $D_r/D_t$, memory depth, returned-section residual, section stability, and the refinement schedule that preserves the same branch identity. Here $H_{\mathrm{hist}}$ is the finite retained-history horizon, not the observer-level Planck benchmark $h$. These fields may support Tier 0 and Tier 1 certification only.
 
-The same packet must keep downstream extraction fields separate. `energy_ledger`, `far_field_shielding`, `medium_response`, and `mass_summary` remain not-computed until their tiers pass. A run fails the handoff if $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, or $\mathcal{M}_{\text{sea}}^{ab}$ changes under root-ledger refinement, inactive-gap refinement, history-window extension, or controlled $\eta$ refinement while the branch label and quotient row are claimed to be unchanged.
+The analysis must distinguish branch geometry from downstream physical quantities. Energy, far-field shielding, Noether sea response, and mass extraction remain uncomputed until the required analyses are performed. An extraction fails the stated consistency test if $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, or $\mathcal{M}_{\text{sea}}^{ab}$ changes under root-ledger refinement, inactive-gap refinement, history-window extension, or controlled $\eta$ refinement while the branch label and quotient row are claimed to be unchanged.
 
-##### Certificate Packet Schema
+##### Evidence Required for a Branch
 
-An auditable $A_0$ branch certificate should preserve one top-level packet shape across all tiers. Fields that are not computed at a given tier must remain present with an explicit status, role, and note rather than disappearing from the packet.
+An auditable $A_0$ analysis distinguishes the following information across all tiers. Quantities not computed at a given tier remain explicitly uncomputed, with their scientific role stated.
 
-| Field | Required content | Promotion role |
+| Evidence | Required content | Interpretation |
 | --- | --- | --- |
-| `metadata` | run identifier, code or derivation version, source commit, integrator, tolerances, $\eta$, sampling schedule, and history-window rule | makes the packet reproducible |
-| `sea_cell` | $u^i_{\text{sea}}$, $G_{\text{grad}}$, $n$, $\chi_{\text{sea}}$, declared $c_\star$, and boundary conditions | fixes the homogeneous Noether sea cell and prevents mixing $c_f$ with $c_{\text{eff}}$ |
-| `branch_label` | layer windings, inter-layer closure integers, handedness, carrier ellipticity, and active root-branch summary | identifies the branch being certified |
-| `z_lambda` | quotient-coordinate row $z_\Lambda$: $\varepsilon_{12}$, $\varepsilon_{23}$, $T_1/T_2$, $T_2/T_3$, $\delta_2$, binary ellipticities, $G_{\ell m}$, $\chi_N$, $H_1,H_2,H_3$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
-| `branch_chart_revision` | conditional pre-rerun record for any revised reduced branch coordinate, including source fields, equality map, equation and coefficient counts, held-out residual rule, phase-origin rule when a phase split is used, symmetry or quotient behavior, locked-key exclusion, benchmark exclusion, and `accepted_history_boundary: false` | prevents residual-selected coordinates or post-fit added columns from masquerading as branch geometry |
-| `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether braid state vector |
-| `closure_system` | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
-| `root_ledger` | active and raw partner, self, and inter-layer root classes with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated | verifies finite causal-root bookkeeping |
-| `term_classification` | terms assigned to averaging, locking, and leakage channels, with measured or derived residual size | prevents internal corrections from being hidden before promotion |
-| `residuals` | complete branch-row residual surface $\mathcal{R}_{A_0}$, with $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$, $\mathcal{R}_{\text{speed}}$, $\mathcal{R}_{\text{avg}}$, $\mathcal{R}_{\text{lock}}$, $\mathcal{R}_{\text{leak}}$, and $\mathcal{R}_{\text{Floquet}}$, each with value, tolerance, status, role, and note fields | gives a machine-checkable promotion surface with later-tier omissions explicit |
-| `residual_values` | numeric mirror of $\mathcal{R}_{A_0}$ values, with Tier 0 omissions recorded as null rather than hidden | gives scripts a stable audit surface without erasing row semantics |
-| `Delta_k` | $\Delta_{\mathbf{k}}$ value, status, role, nonpositive-gap failure code, and note; Tier 0 emits null with `not_computed_in_tier0` | keeps the Floquet handoff visible before Tier 1 computes the return map |
-| `stability` | monodromy or finite-difference return map, excluded symmetry modes, non-symmetry Floquet multipliers, and the computed $\Delta_{\mathbf{k}}$ once Tier 1 exists | separates integer closure from attractor stability |
-| `group_velocity_anisotropy` | $\mathbf{V}_{\text{cm}}$, declared $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$, refinement status, and whether the entry is rest residue, small-velocity response, or probe-induced drift | keeps motion-induced deformation separate from shielding leakage |
-| `energy_ledger` | sign-resolved kinetic content, interaction terms, wake/history terms, binary totals $E_1,E_2,E_3$, $E_{\text{internal}}(A_0)$, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), the running retained-history energy-like functional across active self-hit crossings, and action per closed cycle after bounded-energy status | supplies the unshielded energy reservoir after Tier 1 passes |
-| `far_field_shielding` | extraction radii, angular grid, selected wake channel, $\mathcal{L}(\hat{\mathbf{R}})$, naive constituent sum, leading isotropic projection, $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, and convergence status | turns shielding into an extracted far-field quantity after Tier 1 passes |
-| `medium_response` | acceleration probes, gradient probes, extracted $\mathcal{M}_{\text{sea}}^{ab}$ baseline, symmetric tensor part, antisymmetric residue, and response anisotropy | compatibility field for testing Noether sea inertial and gravitational response after shielding passes |
-| `mass_summary` | $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$, unresolved constants, response-map assumptions, and explicitly excluded particle benchmarks | records only calibration-free mass-facing output |
-| `certificate_gates` | pass/fail/not-computed gates for quotient nondegeneracy, scale separation, speed ordering, phase closure, carrier residuals, root residual, active root-ledger stability, active separator-root handling, near-zero self-root handling, residual semantics, Floquet handoff, and Tier 0 continuation | controls promotion between branch search, attractor, shielding, and response claims |
-| `failure_code` | reason the row or packet failed, or the next allowed promotion status | prevents failed packets from being read as mass-map results |
+| Reproducibility | publicly identifiable method and data versions, integrator, tolerances, $\eta$, sampling schedule, and history-window rule | makes the calculation reproducible |
+| Noether sea environment | $u^i_{\text{sea}}$, $G_{\text{grad}}$, $n$, $\chi_{\text{sea}}$, declared $c_\star$, and boundary conditions | fixes the homogeneous Noether sea cell and prevents mixing $c_f$ with $c_{\text{eff}}$ |
+| Branch identity | layer windings, inter-layer closure integers, handedness, carrier ellipticity, and active root-branch summary | identifies the branch being certified |
+| Reduced coordinates | quotient-coordinate row $z_\Lambda$: $\varepsilon_{12}$, $\varepsilon_{23}$, $T_1/T_2$, $T_2/T_3$, $\delta_2$, binary ellipticities, $G_{\ell m}$, $\chi_N$, $H_1,H_2,H_3$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
+| Coordinate revision | revised reduced branch coordinates declared before fitting, including source coordinates, equality relations, equation and coefficient counts, held-out residual tests, phase-origin convention, symmetry quotients, excluded locked-root contributions and benchmarks, and an explicit distinction from evolved-history evidence | prevents residual-selected coordinates or post-fit added columns from masquerading as branch geometry |
+| State | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether braid state vector |
+| Closure equations | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
+| Causal roots | active and raw partner, self, and inter-layer root classes with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated | verifies finite causal-root bookkeeping |
+| Interaction terms | terms assigned to averaging, locking, and leakage channels, with measured or derived residual size | makes the size and role of each correction explicit |
+| Residual vector | complete branch-row residual surface $\mathcal{R}_{A_0}$, with $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$, $\mathcal{R}_{\text{speed}}$, $\mathcal{R}_{\text{avg}}$, $\mathcal{R}_{\text{lock}}$, $\mathcal{R}_{\text{leak}}$, and $\mathcal{R}_{\text{Floquet}}$, each with value, tolerance, status, role, and note fields | states the errors and leaves later-tier omissions explicit |
+| Floquet gap | $\Delta_{\mathbf{k}}$ and its interpretation under the stated stability criterion; uncomputed at Tier 0 | distinguishes an unevaluated stability condition from a positive or nonpositive computed gap |
+| Stability | monodromy or finite-difference return map, excluded symmetry modes, non-symmetry Floquet multipliers, and the computed $\Delta_{\mathbf{k}}$ once Tier 1 exists | separates integer closure from attractor stability |
+| Motion-induced anisotropy | $\mathbf{V}_{\text{cm}}$, declared $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$, refinement status, and whether the entry is rest residue, small-velocity response, or probe-induced drift | keeps motion-induced deformation separate from shielding leakage |
+| Energy | sign-resolved kinetic content, interaction terms, wake/history terms, binary totals $E_1,E_2,E_3$, $E_{\text{internal}}(A_0)$, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), the running retained-history energy-like functional across active self-hit crossings, and action per closed cycle after bounded-energy status | supplies the unshielded energy reservoir after Tier 1 passes |
+| Far-field shielding | extraction radii, angular grid, selected wake channel, $\mathcal{L}(\hat{\mathbf{R}})$, naive constituent sum, leading isotropic projection, $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, and convergence status | turns shielding into an extracted far-field quantity after Tier 1 passes |
+| Noether sea response | acceleration probes, gradient probes, extracted $\mathcal{M}_{\text{sea}}^{ab}$ baseline, symmetric tensor part, antisymmetric residue, and response anisotropy | tests Noether sea inertial and gravitational response after shielding passes |
+| Mass comparison | $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$, unresolved constants, response-map assumptions, and explicitly excluded particle benchmarks | records only calibration-free mass-facing output |
+| Consistency conditions | satisfied, failed, or uncomputed conditions for quotient nondegeneracy, scale separation, speed ordering, phase closure, carrier residuals, root residual, active root-ledger stability, active separator-root handling, near-zero self-root handling, residual interpretation, Floquet stability, and continuation into direct dynamics | distinguishes branch-search, attractor, shielding, and response evidence |
+| Unresolved or failed conditions | conditions not satisfied or not evaluated, and their consequences for the conclusion | prevents incomplete or failed calculations from being read as mass-map results |
 
-The `residuals` field is the complete branch-row surface
+The complete residual vector is
 $$
 \mathcal{R}_{A_0}
 =
@@ -62701,7 +62712,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4b5f8d0c47ae2134)
-Tier 0 may compute only part of this surface. The row must still emit every component. Missing later-tier components use explicit `not_computed_in_tier0` status, null value, null tolerance when no tolerance exists yet, a promotion role, and a note that names the tier responsible for computing the entry.
+Tier 0 may evaluate only part of this vector. Every omitted component remains explicitly uncomputed, together with the later analysis needed to determine it. A missing tolerance is not evidence that a residual is small.
 
 ###### Self-Hit Energy And Action-Spacing Order
 
@@ -62724,7 +62735,7 @@ Third, it reports a running retained-history energy-like functional and its vari
 
 The same row must state whether the energy object is action-derived, quasi-Noether, or diagnostic-only. A diagnostic-only energy row may reject a branch by showing runaway, regulator dependence, or nonconvergent drift, but it cannot promote closed-cycle action spacing or no-runaway conservation as theorem-level output.
 
-Only after those well-posedness rows pass may the packet promote closed-cycle action spacing. The closed-cycle action entry records $\mathcal{A}_{\text{cycle}}(A_0)$, its branch label $\Lambda$, period $P_{\mathbf{k}}$, and spacing relative to neighboring accepted branches. This ordering prevents a numerically periodic carrier with an unbounded self-hit energy ledger from being read as evidence for a derived $h$.
+Closed-cycle action spacing requires those well-posedness conditions. The analysis records $\mathcal{A}_{\text{cycle}}(A_0)$, its branch label $\Lambda$, period $P_{\mathbf{k}}$, and spacing relative to neighboring accepted branches. This ordering prevents a numerically periodic carrier with an unbounded self-hit energy ledger from being read as evidence for a derived $h$.
 
 The group-velocity anisotropy entry uses the reduced centered covariance of the six-worldline state. With
 $$
@@ -62776,43 +62787,24 @@ Required outputs:
 
 | Output | Meaning |
 | --- | --- |
-| `branch_label` | indexed-binary windings, inter-binary closure integers, handedness, and active root-branch summary |
-| `closure_labels` | declared $P_{\mathbf{k}}$, winding integers, inter-binary closure integers, and active root classes |
-| `z_lambda` | reduced quotient-coordinate row $z_\Lambda$, including radius ratios, period ratios, $\delta_2$, binary ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, handedness labels, phase-offset quotient status, removed gauges, branch class $[\Lambda]$, and `quotient_degenerate` |
-| `state_vector` | reduced geometry, frequencies, phase offsets, carrier chart, and center gauge |
-| `closure_system` | active causal-root, phase-closure, inter-binary closure, center-gauge, and speed-ordering equations used by the row |
-| `root_ledger` | active and raw partner, self, and inter-binary root counts with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated |
-| `term_classification` | terms assigned to averaging, locking, and leakage channels |
-| `residuals` | every component of $\mathcal{R}_{A_0}$, each with value, tolerance, status, role, and note fields; $\mathcal{R}_{E}$ and $\mathcal{R}_{\text{Floquet}}$ are explicit Tier 0 omissions unless supplied by a later diagnostic |
-| `residual_values` | numeric value mirror for the same $\mathcal{R}_{A_0}$ components, with omitted components recorded as null |
-| `Delta_k` | $\Delta_{\mathbf{k}}$ status object; Tier 0 sets value to null and status to `not_computed_in_tier0` until Tier 1 constructs the monodromy or finite-difference return map |
-| `group_velocity_anisotropy` | rest-branch residue if computed, or an explicit not-computed Tier 0 status; no Tier 0 row may use this as shielding evidence |
-| `certificate_gates` | pass/fail/not-computed gates for quotient coordinates, scale separation, speed ordering, phase closure, carrier residuals, root residual, active root ledger, active separator roots, near-zero self roots, residual vector semantics, $\Delta_{\mathbf{k}}$, and Tier 0 continuation |
-| `failure_code` | reason the row failed, or `candidate` if it survives Tier 0 |
+| Branch identity | indexed-binary windings, inter-binary closure integers, handedness, and active root-branch summary |
+| Periodic closure | declared $P_{\mathbf{k}}$, winding integers, inter-binary closure integers, and active root classes |
+| Reduced coordinates | reduced quotient-coordinate row $z_\Lambda$, including radius ratios, period ratios, $\delta_2$, binary ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, handedness labels, phase-offset quotient status, removed gauges, branch class $[\Lambda]$, and coordinate-degeneracy status |
+| State | reduced geometry, frequencies, phase offsets, carrier chart, and center gauge |
+| Closure equations | active causal-root, phase-closure, inter-binary closure, center-gauge, and speed-ordering equations used by the row |
+| Causal roots | active and raw partner, self, and inter-binary root counts with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated |
+| Interaction terms | terms assigned to averaging, locking, and leakage channels |
+| Residual vector | every component of $\mathcal{R}_{A_0}$, each with value, tolerance, status, role, and note fields; $\mathcal{R}_{E}$ and $\mathcal{R}_{\text{Floquet}}$ are explicit Tier 0 omissions unless supplied by a later diagnostic |
+| Floquet gap | $\Delta_{\mathbf{k}}$ status object; uncomputed until Tier 1 constructs the monodromy or finite-difference return map |
+| Motion-induced anisotropy | rest-branch residue if computed, or an explicit not-computed Tier 0 status; no Tier 0 row may use this as shielding evidence |
+| Consistency conditions | satisfied, failed, or uncomputed conditions for quotient coordinates, scale separation, speed ordering, phase closure, carrier residuals, root residual, active root ledger, active separator roots, near-zero self roots, residual interpretation, $\Delta_{\mathbf{k}}$, and continuation into direct dynamics |
+| Unresolved or failed conditions | reason a candidate fails or remains eligible for Tier 1 |
 
 Tier 0 passes only if at least one row has a finite causal-root ledger, nondegenerate quotient coordinates, retained scale separation, correct speed ordering, bounded carrier residuals, no unclassified separator term, and a complete residual surface. Passing Tier 0 only authorizes Tier 1 continuation.
 
-###### Tier 0 Failure-Code Enum
+###### Interpreting Failure
 
-The row-level `failure_code` field is a machine-readable enum. The accepted values are:
-
-| Code | Trigger | Promotion consequence |
-| --- | --- | --- |
-| `candidate` | all Tier 0 promotion gates pass | row may seed Tier 1 continuation only |
-| `quotient-degenerate` | $z_\Lambda$ has degenerate plane-normal Gram or orientation data after quotienting global rotations | reject the row as a reduced moduli coordinate |
-| `scale-separation-collapse` | radius or period ratios violate the declared separated-scale Tier 0 regime | reject the row or widen the scan only as a controlled scale-separation test |
-| `speed-order-collapse` | $\mathcal{R}_{\text{speed}}$ fails the declared $s_1 > c_f$, $s_2 \approx c_f$, $s_3 < c_f$ constraint | reject the row before attractor continuation |
-| `phase-closure-open` | $\mathcal{R}_{\text{phase}}$ fails layer winding closure over $P_{\mathbf{k}}$ | reject the row until integer closure is restored |
-| `carrier-residual-open` | $\mathcal{R}_{\text{state}}$ or $\mathcal{R}_{\text{drift}}$ fails the Tier 0 carrier chart tolerance | reject the row as an unclosed diagnostic carrier |
-| `root-residual-open` | $\mathcal{R}_{\text{root}}$ fails on candidate active causal-root branches | reject the row until active roots solve within tolerance |
-| `averaging-residual-open` | $\mathcal{R}_{\text{avg}}$ fails its declared averaging tolerance | keep the term in the branch equations or reject the row |
-| `locking-residual-open` | $\mathcal{R}_{\text{lock}}$ fails its declared locking tolerance | keep the near-separator or resonance term in Tier 1 or reject the row |
-| `separator-singularity-unresolved` | active near-separator roots exceed the configured allowance without a locking continuation rule | reject the row until separator handling is explicit |
-| `near-zero-self-root-excluded` | excluded near-zero self roots exceed the configured allowance under $H(0)=0$ | reject the row until a positive-delay self branch or regularized fold-layer rule exists |
-| `root-ledger-instability` | the active causal-root ledger is empty or lacks partner, self, or inter-layer classes | reject the row as a finite-ledger failure |
-| `nonpositive-floquet-gap` | Tier 1 computes $\Delta_{\mathbf{k}}\le0$ | reject the branch as a non-attractor even if integer closure holds |
-
-At Tier 0, `nonpositive-floquet-gap` appears only as the reserved `Delta_k.failure_code_if_nonpositive` and `certificate_gates.floquet_gap.failure_code`, because Tier 0 does not compute $\Delta_{\mathbf{k}}$.
+A failure identifies the condition that remains unsatisfied: coordinate nondegeneracy, scale separation, speed ordering, phase closure, carrier or causal-root residuals, averaging or locking accuracy, separator treatment, or the active-root inventory. None of these preliminary tests computes a Floquet gap. A nonpositive gap can reject the stated attractor criterion only after a return-map calculation supplies it.
 
 ###### Near-Zero Self Roots
 
@@ -62824,7 +62816,7 @@ The reader-facing interpretation of these rows is in [$A_0$ Tier 0 Result Interp
 
 ##### Tier 1: $\eta > 0$ Continuation
 
-Tier 1 promotes a surviving Tier 0 row into direct delayed dynamics with the regularized wake kernel still active. It must preserve the absolute-frame logging standard.
+Tier 1 examines a geometry satisfying the Tier 0 conditions under direct delayed dynamics, with the regularized wake kernel still active. All quantities retain their declared absolute-frame interpretation.
 
 Required checks:
 
@@ -62836,21 +62828,21 @@ Required checks:
 6. positive non-symmetry Floquet gap $\Delta_{\mathbf{k}}>0$;
 7. convergence under the standards in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md);
 8. a Floquet or monodromy report stating whether the state-dependent delay derivative term was included in the variational operator;
-9. `transition_records.json` whenever the run crosses a fold-layer, separator, or active-root status transition.
+9. resolved transition data whenever the run crosses a fold-layer, separator, or active-root status transition.
 
 ###### Branch-Chart Revision Checkpoint
 
-If a Tier 1 diagnostic or corrected carrier attempt reaches a finite-coordinate no-go and proposes a revised branch chart, the revision is admissible only as a pre-rerun record. The proposed reduced coordinate $z_\Lambda^\star$ or finer branch partition $\mu^\star$ must be declared from branch geometry, causal-root data, quotient-row data, or corrected carrier state before residual fitting. It may not be selected from residual-sign binning, particle benchmarks, fitted weights, or post-fit cancellation.
+If a Tier 1 diagnostic or corrected carrier calculation establishes a no-go result within a finite coordinate family, a proposed revision must be specified before a new numerical evaluation. The proposed reduced coordinate $z_\Lambda^\star$ or finer branch partition $\mu^\star$ must be declared from branch geometry, causal-root data, quotient-row data, or corrected carrier state before residual fitting. It may not be selected from residual-sign binning, particle benchmarks, fitted weights, or post-fit cancellation.
 
-The pre-rerun record must report `coordinate_source_fields`, `equality_map`, `equation_count`, `coefficient_count`, held-out residual checks, phase-origin checks when a phase split is used, locked-key exclusions, symmetry quotients, benchmark exclusions, and `accepted_history_boundary: false`. The design must remain overdetermined after quotienting, for example by satisfying $N_{\mathrm{eq}}>N_{\mathrm{coef}}$ or $R_{\mathrm{df}}>0$, and the same branch identity must survive the refinement checks in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md).
+The revised chart must state its source coordinates, equality relations, equation and coefficient counts, held-out residual checks, phase-origin checks when a phase split is used, excluded locked-root contributions, symmetry quotients, and excluded benchmarks. A proposed coordinate change is not an evolved history. The design must remain overdetermined after quotienting, for example by satisfying $N_{\mathrm{eq}}>N_{\mathrm{coef}}$ or $R_{\mathrm{df}}>0$, and the same branch identity must survive the refinement checks in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md).
 
-Such a row is a revision candidate only. A branch-chart checker may authorize only a new Tier 1 rerun path; it does not accept history. If the checker rejects the packet for a hidden fit split, inadequate degrees of freedom, or held-out residual failure, then the compact-coordinate no-go remains a controlled chart failure. If the checker passes, the branch still requires corrected one-period residuals, quotient-row identity, monodromy or $\Delta_{\mathbf{k}}$, and $\eta$-ladder persistence with the same branch identity.
+Such a revision is a candidate coordinate description, not an evolved history. A hidden fit split, inadequate degrees of freedom, or failure on held-out residuals leaves the compact-coordinate no-go unresolved. Even a revision satisfying these checks still requires corrected one-period residuals, quotient-row identity, monodromy or $\Delta_{\mathbf{k}}$, and $\eta$-ladder persistence with the same branch identity.
 
 Tier 1 passes only if the same branch remains stable before any $\eta\to0^+$ extrapolation.
 
 ###### Corrected One-Period Branch-Equation Boundary
 
-The fold-layer-locked compact fixture specified here is a controlled negative-control target, not an accepted attractor and not a broad falsification of the $A_0$ program. A conforming direct one-period runner must show that preserving locked self-root keys in $\mathcal{R}_{\text{lock}}$ is insufficient when state return, root closure, phase closure, speed ordering, center drift, or energy closure fails. No current runtime artifact supports a numerical residual claim for this fixture. Any future rerun must predeclare either a non-circular carrier correction $\mathbf d_\ell(T)$ or a richer branch-native interaction basis before residual fitting.
+The proposed compact fold-layer-locked configuration is a negative control, not an established attractor or a broad falsification of possible $A_0$ branches. Preserving locked self-root contributions in $\mathcal{R}_{\text{lock}}$ is insufficient if state return, root closure, phase closure, speed ordering, center drift, or energy closure fails. No numerical residual result is reported for this control. A corrected calculation must declare either a non-circular carrier correction $\mathbf d_\ell(T)$ or a richer branch-native interaction basis before residual fitting.
 
 For a declared period window $W=[T_0,T_0+P_{\mathbf{k}}]$, the corrected carrier has the form
 $$
@@ -62918,17 +62910,6 @@ Tier 2 fails if particle masses, charged-lepton ratios, electron radius, or meas
 ##### Tier 3: Medium-Response Probe
 
 Tier 3 begins only after Tier 2 passes. It applies small acceleration and gradient probes to the accepted branch and extracts the homogeneous baseline for $\mathcal{M}_{\text{sea}}^{ab}$. The probe must report whether the acceleration and gradient channels share the same shielded-energy coefficient to first order, and it must report response anisotropy separately from both $\mathcal{A}_{\mathrm{gv}}^{ij}$ and $\mathcal{L}_{\text{aniso}}$.
-
-##### Planned Runtime Artifacts
-
-**Implementation status:** not implemented. The following paths are reserved by this specification but do not currently exist:
-
-- `scripts/mass-map/a0-tier0-branch-search.mjs`
-- `scripts/mass-map/a0-tier0-default-grid.json`
-- `scripts/mass-map/a0-tier1-continuation-scaffold.mjs`
-- `scripts/audit-a0-mass-map-promotion.mjs`
-
-The Tier 0 implementation must be an algebraic branch-search scaffold, not a production simulator. It must emit candidate records with parameter choices, quotient coordinates, carrier diagnostics, root ledgers, term classifications, residual surfaces, $\Delta_{\mathbf{k}}$ handoff status, leakage placeholders, certificate gates, and failure codes matching this protocol. The Tier 1 scaffold must consume those records and emit the $\eta>0$ continuation contract and required artifact list; it cannot certify the branch without a later delayed-dynamics run. The planned audit must reject prose that promotes $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ before the tier gates pass.
 
 ##### Acceptance Boundary
 
@@ -63218,36 +63199,27 @@ If any of the quantitative checks above fail (or if the null test does not fail)
 
 ##### A0 Tier 0 Result Interpretation
 
-This note explains how to read the first reduced $A_0$ branch-search artifact. It is a companion to the [$A_0$ Branch Certificate Protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), and the convergence standards in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md).
+This note explains the mathematical information supplied by a reduced $A_0$ branch search. It is a companion to the [$A_0$ Branch Certificate Protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), and the convergence standards in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md).
 
-Tier 0 asks one deliberately small question: is this reduced branch chart organized enough to deserve a more expensive continuation run? It is not asking whether the branch is physically real, stable under the full delayed dynamics, or ready to support a mass-map claim.
+Tier 0 tests whether a reduced branch chart satisfies the geometric and numerical conditions for continuation. It does not establish that the branch is physically realized, stable under the full delayed dynamics, or sufficient to support a mass-map claim.
 
-That boundary is the point of the document. A candidate row can be useful without being promoted. The artifact must make that difference machine-readable so a diagnostic success does not turn into an accidental theory claim.
+A candidate geometry can satisfy preliminary consistency conditions without being a physical attractor. The distinction separates a useful search result from evidence for a stable assembly.
 
-The Tier 0 schema is not an attractor proof. It specifies a certificate-facing filter that would decide whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Any future output must be read together with the mass thesis in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../../../markdown/aaa/dynamics/energy.md), the dynamics baseline in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and the closure bookkeeping in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
+Tier 0 is not an attractor proof. It specifies consistency conditions for a reduced carrier chart before Tier 1 $\eta > 0$ continuation. Any future output must be read together with the mass thesis in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../../../markdown/aaa/dynamics/energy.md), the dynamics baseline in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and the closure bookkeeping in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
-**Implementation status:** not implemented. The specified path `scripts/mass-map/a0-tier0-branch-search.mjs` does not currently exist in the repository. The tables below define the required output contract; they do not report an executed artifact or measured branch result.
+No computed branch-search result is reported here. The conditions below define a proposed analysis and the limits of any result obtained from it.
 
-###### Output Status
+###### Interpretation of a Candidate
 
-The planned runtime must emit rows with six separate layers of interpretation:
+A preliminary analysis distinguishes reduced coordinates, active causal roots, residual errors, and uncomputed dynamical quantities. Global rotations, the common closed-cycle phase, and permitted discrete relabelings must not be counted as distinct physical configurations. Excluded instantaneous self roots must not count as active interactions. Each residual requires a value or an explicit statement that it has not been evaluated.
 
-| Output layer | Meaning | Promotion role |
-| --- | --- | --- |
-| `z_lambda` | Quotient-coordinate row $z_\Lambda$ after removing global rotations, the common closed-cycle phase gauge, and allowed branch-preserving chart relabelings | Decides whether the row can be read as a reduced moduli coordinate rather than a raw carrier representative |
-| `root_ledger` | Active and raw causal-root counts by source relation, with excluded instantaneous self-root counts separated from active roots | Decides whether the carrier chart has a finite active partner, self, and inter-layer ledger |
-| `residuals` and `residual_values` | The complete $\mathcal{R}_{A_0}$ row surface, plus a numeric mirror where Tier 0 omissions remain null | Prevents a numerical value, a diagnostic placeholder, and a later-tier obligation from being confused |
-| `Delta_k` | $\Delta_{\mathbf{k}}$ handoff object with null value and `not_computed_in_tier0` status until Tier 1 builds the return map | Keeps Floquet stability from being silently omitted or treated as a Tier 0 result |
-| `certificate_gates` | Pass/fail/not-computed status for the Tier 0 promotion checks | Decides whether the row may seed Tier 1 continuation |
-| `failure_code` | One machine-readable row code, or `candidate` when the row survives Tier 0 | Gives scripts and readers the same rejection reason |
+Satisfying the preliminary conditions makes a geometry eligible for direct delayed-dynamics analysis. It does not establish an attractor, compute $\zeta(A_0)$, validate $E_{\text{internal}}(A_0)$, or derive $\mathcal{M}_{\text{sea}}^{ab}$.
 
-A record with `failure_code: "candidate"` may seed Tier 1. Any other `failure_code` rejects Tier 0 continuation until the named gate is resolved. This is the sole row-level status vocabulary; `certificate_gates.tier0_continuation` is its gate-level mirror. Neither outcome accepts an attractor, computes $\zeta(A_0)$, validates $E_{\text{internal}}(A_0)$, or derives $\mathcal{M}_{\text{sea}}^{ab}$.
-
-The same boundary applies when a compact finite-coordinate chart or coarse branch split fails. Such a failure means the proposed reduced coordinate did not earn a continuation run; it does not by itself falsify the broader $A_0$ branch program. A branch-chart checker can authorize only a new Tier 1 rerun path after the coordinate source, equality map, fit degrees of freedom, held-out residuals, phase-origin handling when relevant, and benchmark exclusions are declared before fitting. It does not create accepted history, and it does not convert Tier 0 readiness into an attractor claim.
+Failure of a compact coordinate chart does not falsify every possible $A_0$ branch. A revised chart must specify its geometry, equality relations, adjustable parameters, held-out residual tests, phase convention, and excluded benchmarks before fitting. A successful coordinate test still supplies no evolved history.
 
 ###### Quotient-Coordinate Row
 
-The specified `z_lambda` object is the row-level representation of $z_\Lambda$. It records the reduced coordinate after quotienting away global rotations, the common $S^1_{\mathbf{k}}$ phase gauge, and allowed discrete relabelings $\Gamma_\Lambda$ that preserve polarity assignment, layer roles, speed ordering, and causal-root branch class.
+The reduced coordinate $z_\Lambda$ describes the geometry after quotienting away global rotations, the common $S^1_{\mathbf{k}}$ phase gauge, and allowed discrete relabelings $\Gamma_\Lambda$ that preserve polarity assignment, layer roles, speed ordering, and causal-root branch class.
 
 For this protocol only, the source-record layer aliases map to persistent indices by
 $$
@@ -63255,36 +63227,35 @@ I\leftrightarrow1,\qquad M\leftrightarrow2,\qquad O\leftrightarrow3.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cf884bbe20f012b6)
-The machine-readable fields use persistent indices. The aliases describe the declared radial role on this one chart and do not relabel the taxonomy.
+Persistent indices identify the binaries. The aliases describe the declared radial role on this one chart and do not relabel the taxonomy.
 
-| `z_lambda` entry | Row semantics |
+| Geometric information | Meaning |
 | --- | --- |
-| `schema` | version marker for the quotient-coordinate row |
-| `radius_ratios` | $\varepsilon_{12}=R_1/R_2$ and $\varepsilon_{23}=R_2/R_3$; the aliases $\varepsilon_{IM}$ and $\varepsilon_{MO}$ are explanatory only under the declared map above |
-| `period_ratios` | $P_I/P_M$ and $P_M/P_O$, where $P_I,P_M,P_O$ are the cycle periods for the declared layer aliases, so time-scale separation is checked alongside radius separation |
-| `delta_2` | source-record binary-2 speed offset $(s_2-c_f)/c_f$; `delta_M` may appear only as a documented input alias and must normalize to `delta_2` before validation |
-| `ellipticity` and `ellipticity_status` | layer ellipticity data and whether Tier 0 used a shared scalar chart |
-| `plane_gram` | $G_{\ell m}$ values for the quotient-reduced binary-plane normals |
-| `orientation_class` | $\chi_N$, the triple product, and a nondegenerate or degenerate status |
-| `handedness` | $H_1,H_2,H_3$ persistent-index handedness labels, with $H_I,H_M,H_O$ explanatory aliases only on this chart |
-| `phase_offset_quotient` | $\Phi_{\text{rel}}$ status after removing the common $S^1_{\mathbf{k}}$ phase origin; the planned Tier 0 schema uses a gauge-fixed zero-offset representative and marks the quotient basis `not_computed_in_tier0` |
-| `branch_class` and `branch_class_status` | $[\Lambda]$ data from winding integers, inter-layer closure, active and raw root classes, and excluded roots; Tier 0 marks the representative as not yet a canonical discrete quotient |
-| `removed_gauges` | declared gauge removals: $SO(3)$, $S^1_{\mathbf{k}}$, and $\Gamma_\Lambda$ |
-| `quotient_degenerate` | Boolean failure surface for `quotient-degenerate` |
+| Radius ratios | $\varepsilon_{12}=R_1/R_2$ and $\varepsilon_{23}=R_2/R_3$; the aliases $\varepsilon_{IM}$ and $\varepsilon_{MO}$ are explanatory only under the declared map above |
+| Period ratios | $P_I/P_M$ and $P_M/P_O$, where $P_I,P_M,P_O$ are the cycle periods for the declared layer aliases, so time-scale separation is checked alongside radius separation |
+| Binary-2 speed offset | $(s_2-c_f)/c_f$ in the declared chart |
+| Ellipticity | layer ellipticity data and whether Tier 0 used a shared scalar chart |
+| Plane-normal Gram matrix | $G_{\ell m}$ values for the quotient-reduced binary-plane normals |
+| Orientation | $\chi_N$, the triple product, and a nondegenerate or degenerate status |
+| Circulation orientation | $H_1,H_2,H_3$ persistent-index handedness labels, with $H_I,H_M,H_O$ explanatory aliases only on this chart |
+| Relative phase | $\Phi_{\text{rel}}$ status after removing the common $S^1_{\mathbf{k}}$ phase origin; a gauge-fixed zero-offset representative alone does not establish the full phase quotient |
+| Branch class | $[\Lambda]$ data from winding integers, inter-layer closure, active and raw root classes, and excluded roots; the representative is not yet a certified discrete quotient |
+| Removed symmetries | declared gauge removals: $SO(3)$, $S^1_{\mathbf{k}}$, and $\Gamma_\Lambda$ |
+| Coordinate degeneracy | Failure of the proposed coordinate to distinguish the relevant geometric configurations after symmetry reduction |
 
 The quotient row is not a new dynamical assumption. It is the coordinate audit that prevents a raw carrier chart, a gauge choice, and a branch class from being mistaken for three independent pieces of physics.
 
 ###### Near-Zero Self-Root Policy
 
-The Tier 0 scanner distinguishes raw self-root sightings from active self-hit branches. A raw self root whose delay lies at the configured near-zero threshold is recorded but excluded from the active ledger as `excluded_instantaneous_self_kick`.
+The preliminary analysis distinguishes raw self-root sightings from active self-hit branches. A raw self root whose delay lies at the configured near-zero threshold is recorded but excluded from the active ledger as an instantaneous self-kick.
 
 This policy follows the canonical convention $H(0)=0$: an instantaneous self-kick is not an active causal hit. The exclusion is conservative. It does not prove that no nearby regularized fold-layer branch exists; it says only that the diagnostic carrier has not yet supplied a positive-delay self-root branch that can be promoted.
 
-The specified fold-layer diagnostic may preserve locked self-root keys as a transition candidate, but it does not by itself accept self-hit closure. A fold-layer entry promotes only after a corrected one-period branch-equation attempt passes the declared residual surface; until then, $\Delta_{\mathbf{k}}$ and $\eta$-ladder persistence remain downstream obligations.
+The specified fold-layer diagnostic may preserve locked self-root contributions as a candidate transition, but it does not by itself establish self-hit closure. A fold-layer candidate must satisfy the declared residual conditions in a corrected one-period branch-equation calculation; $\Delta_{\mathbf{k}}$ and persistence under $\eta$ refinement require additional analysis.
 
 ###### Residual Semantics
 
-The specified `residuals` object is the complete branch-record residual surface
+The complete residual vector is
 $$
 \mathcal{R}_{A_0}
 =
@@ -63303,69 +63274,36 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ae45d430bea6eace)
-Each entry carries value, tolerance, status, role, and note fields. The companion `residual_values` object mirrors only the values; omitted Tier 0 components remain null rather than disappearing.
+Each component has a stated tolerance and interpretation. An uncomputed component is explicitly identified as uncomputed, not assigned zero.
 
 The Tier 0 residual surface deliberately includes entries that are not computed at Tier 0:
 
-| Residual | Emitter key | Tier 0 interpretation |
-| --- | --- | --- |
-| $\mathcal{R}_{\text{state}}$ | `state` | Carrier-chart return mismatch over one declared period |
-| $\mathcal{R}_{\text{root}}$ | `root` | Active root defect on candidate causal-root branches |
-| $\mathcal{R}_{\text{phase}}$ | `phase` | Integer layer-winding mismatch |
-| $\mathcal{R}_{E}$ | `energy` | Not computed at Tier 0; Tier 1 or Tier 2 must supply a regularized energy/history functional |
-| $\mathcal{R}_{\text{drift}}$ | `drift` | Centering check for the diagnostic chart; Tier 1 must retest under direct delayed dynamics |
-| $\mathcal{R}_{\text{speed}}$ | `speed` | Sign-aware violation of the intended $s_I > c_f$, $s_M \approx c_f$, $s_O < c_f$ ordering |
-| $\mathcal{R}_{\text{avg}}$ | `avg` | Diagnostic size of terms claimed to average out |
-| $\mathcal{R}_{\text{lock}}$ | `lock` | Diagnostic fraction or defect of selected locking terms |
-| $\mathcal{R}_{\text{leak}}$ | `leak` | Far-field leakage placeholder, not a shielding extraction |
-| $\mathcal{R}_{\text{Floquet}}$ | `Floquet` | Not computed at Tier 0; Tier 1 must construct the monodromy diagnostic |
+| Residual | Tier 0 interpretation |
+| --- | --- |
+| $\mathcal{R}_{\text{state}}$ | Carrier-chart return mismatch over one declared period |
+| $\mathcal{R}_{\text{root}}$ | Active root defect on candidate causal-root branches |
+| $\mathcal{R}_{\text{phase}}$ | Integer layer-winding mismatch |
+| $\mathcal{R}_{E}$ | Not computed at Tier 0; Tier 1 or Tier 2 must supply a regularized energy/history functional |
+| $\mathcal{R}_{\text{drift}}$ | Centering check for the diagnostic chart; Tier 1 must retest under direct delayed dynamics |
+| $\mathcal{R}_{\text{speed}}$ | Sign-aware violation of the intended $s_I > c_f$, $s_M \approx c_f$, $s_O < c_f$ ordering |
+| $\mathcal{R}_{\text{avg}}$ | Diagnostic size of terms claimed to average out |
+| $\mathcal{R}_{\text{lock}}$ | Diagnostic fraction or defect of selected locking terms |
+| $\mathcal{R}_{\text{leak}}$ | Far-field leakage placeholder, not a shielding extraction |
+| $\mathcal{R}_{\text{Floquet}}$ | Not computed at Tier 0; Tier 1 must construct the monodromy diagnostic |
 
 This makes the residual vector complete as an audit surface without pretending that Tier 0 has done Tier 1 or Tier 2 work.
 
-###### Floquet Handoff
+###### Floquet Stability
 
-The `Delta_k` object is the Tier 0 handoff for $\Delta_{\mathbf{k}}$. Tier 0 does not construct the monodromy operator, so a conforming packet must use a null value, status `not_computed_in_tier0`, and role `tier1_required`. The reserved failure code is `nonpositive-floquet-gap`, which applies only after Tier 1 computes $\Delta_{\mathbf{k}}\le0$.
+Tier 0 does not construct the monodromy operator, which describes perturbation evolution over one period. The non-symmetry Floquet gap $\Delta_{\mathbf{k}}$ is therefore uncomputed, not zero and not positive. A stability conclusion requires Tier 1 to construct the return map and evaluate the gap after excluding symmetry modes. A computed $\Delta_{\mathbf{k}}\le0$ fails the stated attractor criterion.
 
-The same handoff appears in `certificate_gates.floquet_gap` with status `not_computed_in_tier0`. This is a positive omission rule: Tier 0 must show that Floquet stability remains open, not leave the field absent.
+###### Preliminary Consistency Conditions
 
-###### Certificate Gates and Failure Codes
+The reduced geometry must have nondegenerate quotient coordinates, retain its declared radius and period separation, satisfy $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$ within tolerance, and close its layer windings over $P_{\mathbf{k}}$. State-return, center-drift, and active-root residuals must be bounded. Partner, self, and inter-layer active root classes must be accounted for, and active separator roots require an explicit continuation rule.
 
-The Tier 0 `certificate_gates` object names the promotion checks directly:
+A candidate fails the corresponding test if coordinate degeneracy, scale collapse, incorrect speed ordering, open phase closure, excessive carrier or root residuals, uncontrolled averaging or locking errors, unresolved separator singularities, or an incomplete active-root inventory remains. Excluded instantaneous roots cannot establish self-hit closure. Missing energy or stability calculations remain explicit limitations.
 
-| Gate | Meaning |
-| --- | --- |
-| `quotient_coordinates` | $z_\Lambda$ must be nondegenerate after global rotations are removed |
-| `scale_separation` | radius and period ratios must remain inside the declared separated-scale regime |
-| `speed_ordering` | $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$ must hold within tolerance |
-| `phase_closure` | layer winding closure over $P_{\mathbf{k}}$ must hold |
-| `carrier_residuals` | state return and center drift residuals must remain bounded |
-| `root_residual` | active causal-root defects must remain within tolerance |
-| `active_root_ledger` | partner, self, and inter-layer active root classes must all be present |
-| `active_separator_roots` | active near-separator roots must have an explicit continuation rule or remain below allowance |
-| `near_zero_self_roots` | near-zero self roots remain excluded under $H(0)=0$ and may not count as active self hits |
-| `residual_vector_semantics` | every residual component must carry value, tolerance, status, role, and note fields |
-| `floquet_gap` | $\Delta_{\mathbf{k}}$ is not computed at Tier 0 and must be computed in Tier 1 |
-| `tier0_continuation` | only rows whose row-level code is `candidate` may seed Tier 1 |
-
-The row-level `failure_code` enum preserves the existing Tier 0 codes and reserves the new quotient and Floquet codes:
-
-| Code | Meaning |
-| --- | --- |
-| `candidate` | the row survives Tier 0 and may seed Tier 1 only |
-| `quotient-degenerate` | the quotient-coordinate row is degenerate after gauge removal |
-| `scale-separation-collapse` | radius or period ratios collapse the declared separated-scale regime |
-| `speed-order-collapse` | sign-aware speed ordering fails |
-| `phase-closure-open` | integer layer-winding closure fails |
-| `carrier-residual-open` | carrier return or drift residuals fail |
-| `root-residual-open` | active causal-root residuals fail |
-| `averaging-residual-open` | terms claimed to average out exceed their declared tolerance |
-| `locking-residual-open` | selected locking terms exceed their declared tolerance |
-| `separator-singularity-unresolved` | active near-separator roots lack an accepted handling rule |
-| `near-zero-self-root-excluded` | excluded instantaneous self roots block Tier 0 promotion |
-| `root-ledger-instability` | the active root ledger is empty or lacks partner, self, or inter-layer classes |
-| `nonpositive-floquet-gap` | Tier 1 computes $\Delta_{\mathbf{k}}\le0$ |
-
-###### Promotion Boundary
+###### Scope of the Preliminary Result
 
 Tier 0 can only answer a finite branch-search question: does this reduced carrier chart have an active root ledger, controlled chart residuals, and no unresolved near-zero self-root obstruction?
 
@@ -63391,7 +63329,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-04837b449761ec48)
 
-This boundary is the main protection against premature mass-map promotion.
+These implications distinguish preliminary geometric consistency from dynamical and mass-map results.
 
 ##### Bell-Family Record-Measure Harness
 
@@ -63942,27 +63880,15 @@ This protocol preserves the level distinction. A passing action-increment packet
 
 ##### Retuning-Map Toy Model
 
-This protocol documents the first arithmetic fixture for the cadence-scale retuning map introduced in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis). The fixture is not a delayed-dynamics proof. It replays the constrained branch bookkeeping for an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and reports whether the resulting increment can be treated as a same-branch retuning.
+This chapter defines a proposed arithmetic model for the cadence-scale retuning map introduced in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis). The model is not a delayed-dynamics proof. It describes constrained branch bookkeeping conditional on an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and tests whether the resulting increment is consistent with same-branch retuning.
 
 The toy model answers an accounting question before it answers a physics question. If a branch accepts one action-sized transaction, can the cadence, radius, scale, and speed rows be retuned without leaving the declared branch regime? Only after that arithmetic is clean does the harder delayed-dynamics proof become worth asking.
 
-The purpose is narrow: turn the retuning scaffold into a machine-readable packet that outputs $(\Delta\nu_N,\Delta R_1,\Delta R_2,\Delta R_3,\Delta\lambda,\Delta\xi)$ and the corresponding first estimate for the cadence-space current $J_\nu$.
+The quantities of interest are $(\Delta\nu_N,\Delta R_1,\Delta R_2,\Delta R_3,\Delta\lambda,\Delta\xi)$ and the corresponding first estimate for the cadence-space current $J_\nu$.
 
-###### Runtime Artifact
+###### Scope and Evidence
 
-**Implementation status:** not implemented. The reserved script and fixture paths below do not currently exist. They specify the intended interface and must not be cited as executed evidence:
-
-```text
-node scripts/nested-shell-braid/retuning-map-toy-model.mjs --pretty
-```
-
-The script consumes:
-
-```text
-scripts/nested-shell-braid/retuning-map-mock.json
-```
-
-The planned runtime must emit one result entry per scenario. The packet is dimensionless: action increments are in units of $h$, speeds are compared to the declared $c_f$, and radius/cadence changes are reported as logarithmic increments plus reconstructed component changes.
+No numerical evaluation is reported here. The model specifies a conditional calculation, not an observed action transaction or a demonstrated stable braid. Action increments are expressed in units of $h$, speeds relative to $c_f$, and radius and cadence changes as logarithmic increments. Numerical instantiations use $c_f=1$.
 
 ###### Replay Equation
 
@@ -63980,7 +63906,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6016bd6fa4dec409)
 
-Given a positive semidefinite retuning-cost matrix $\mathbf{K}^{\mathrm{ret}}_q$, the fixture solves
+Given a positive semidefinite retuning-cost matrix $\mathbf{K}^{\mathrm{ret}}_q$, the proposed increment is defined by the constrained minimization
 
 $$
 \Delta\mathbf{y}_{q,\sigma}
@@ -64019,7 +63945,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-161a0863a2c781cf)
 
-The specified algorithm applies the candidate source-record speed gates below. These branch roles do not assign an A1 or other taxonomy member:
+The proposed increment must satisfy the candidate source-record speed conditions below. These branch roles do not assign an A1 or other taxonomy member:
 
 $$
 s_1'>c_f,
@@ -64060,62 +63986,32 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f914069606810168)
 
-###### Input Packet
+###### Model Inputs
 
 Each scenario supplies:
 
-| Field | Meaning |
+| Input | Meaning |
 | --- | --- |
-| `reference_state` | baseline $R_1,R_2,R_3,\lambda,\xi,\nu_N,s_1,s_2,s_3,c_f,\epsilon_2$ |
-| `representative_cadence_weights` | weights $w_1,w_2,w_3$ used to extract $\Delta\nu_N$ |
-| `compliance_diagonal` | diagonal version of $\mathbf{K}^{\mathrm{ret}}_q$ |
-| `action_gradient_h_per_log` | linearized $D A_{\mathrm{cyc},q}$ row in $h$ units per log variable |
-| `constraints` | linearized branch constraints, each with coefficients and target |
-| `f_N` | local Noether braid cadence-state distribution value |
-| `partial_nu_f_N` | local slope used only to estimate the higher-order current remainder |
-| `transactions` | accepted or control $\sigma$ transactions with wake action increment and local rate density |
+| Reference state | baseline $R_1,R_2,R_3,\lambda,\xi,\nu_N,s_1,s_2,s_3,c_f,\epsilon_2$ |
+| Cadence weights | weights $w_1,w_2,w_3$ used to extract $\Delta\nu_N$ |
+| Retuning-cost matrix | diagonal version of $\mathbf{K}^{\mathrm{ret}}_q$ |
+| Action gradient | linearized $D A_{\mathrm{cyc},q}$ row in $h$ units per log variable |
+| Branch constraints | linearized branch constraints, each with coefficients and target |
+| Cadence distribution | local Noether braid cadence-state distribution value |
+| Cadence-distribution slope | local slope used only to estimate the higher-order current remainder |
+| Transactions | accepted or control $\sigma$ transactions with wake action increment and local rate density |
 
-This fixture intentionally starts with a diagonal compliance matrix. A later branch packet can replace it with a full matrix once the linearized return map supplies off-diagonal coupling.
+A diagonal matrix is a simplifying model choice. A physical application requires the linearized return map to determine the full matrix, including any off-diagonal coupling.
 
-###### Output Diagnostics
+###### Consistency Tests
 
-The planned fixture must report:
+A calculated increment is admissible only if the declared linear constraints and speed conditions hold within tolerance. The relevant diagnostics are the solved logarithmic retuning vector, the reconstructed component changes, the largest constraint residual, and the post-retuning speed in each binary. The cadence-current calculation also needs each transaction's contribution $f_N r_\sigma\Delta\nu_N^{(q,\sigma)}$, their sum, and an estimate of the omitted $O((\Delta\nu_N)^2\partial_\nu f_N)$ term.
 
-| Output field | Meaning |
-| --- | --- |
-| `status` | `candidate` only when constraints and speed gates pass |
-| `delta_y` | solved logarithmic retuning vector |
-| `retuning_components` | $(\Delta\nu_N,\Delta R_1,\Delta R_2,\Delta R_3,\Delta\lambda,\Delta\xi)$ |
-| `constraint_residual_max` | largest absolute residual in the declared linear constraints |
-| `speed_gates` | post-retuning checks for the declared binary 1, 2, and 3 speed regimes |
-| `J_nu.contribution` | $f_N r_\sigma\Delta\nu_N^{(q,\sigma)}$ for the transaction |
-| `net_J_nu.value` | sum of transaction contributions in the scenario |
-| `net_J_nu.higher_order_estimate` | magnitude estimate for the omitted $O((\Delta\nu_N)^2\partial_\nu f_N)$ term |
+Two controls distinguish arithmetic consistency from physical evidence. Opposite one-$h$ increments may both satisfy the constraints while unequal local transaction rates produce a nonzero net current. Conversely, a solution of the linear action constraint is inadmissible if binary 2 leaves its declared field-speed tolerance. Neither control establishes that an actual braid realizes the assumed transaction.
 
-###### Required Mock Behavior
+A residual above tolerance means that the linearized constraints are unsatisfied. A speed-regime crossing means that the proposed increment leaves the declared branch domain. A large higher-order current remainder calls for smaller increments or a higher-order transport approximation.
 
-The reserved mock packet must contain two hand-checkable scenarios. The values below are specification targets, not current runtime outputs.
-
-| Scenario | Expected behavior |
-| --- | --- |
-| `same_branch_plus_minus_balance` | Plus and minus one-$h$ retunings both pass the speed gates. The planned arithmetic fixture must use its declared unequal local rates to produce the specified small signed current, with target `net_J_nu.value` near `0.0017019`. |
-| `middle_hinge_violation_control` | The linear action constraint solves, but source-record binary 2 leaves the declared hinge tolerance. The compatibility ID remains unchanged; the row fails with `middle-hinge-violation`. |
-
-These numbers are fixture expectations only. They validate arithmetic, packet shape, branch-gate reporting, and the current estimate. They do not validate a physical Noether braid branch.
-
-###### Failure Reading
-
-The first failure modes are concrete:
-
-| Diagnostic pattern | Meaning |
-| --- | --- |
-| nonzero `constraint_residual_max` above tolerance | the declared linearized branch constraints are not actually solved |
-| `middle-hinge-violation` | compatibility diagnostic: binary 2 leaves the source-record field-speed tolerance |
-| `inner-speed-regime-crossing` or `outer-speed-regime-crossing` | the transaction crosses a speed-regime boundary |
-| large higher-order current estimate | the continuum current requires smaller steps, narrower bins, or a higher-order transport model |
-| candidate branch with missing physical return-map source | the fixture is arithmetic only and must be replaced by a delayed-dynamics branch packet before promotion |
-
-A promotable retuning packet must eventually replace the mock compliance matrix with a return-map-derived $\mathbf{K}^{\mathrm{ret}}_q$, preserve the same causal-root ledger, and keep the speed gates attached to the same branch state that supplies $\Delta\nu_N$.
+The physical derivation remains open. It requires a return-map-derived $\mathbf{K}^{\mathrm{ret}}_q$, preservation of the same causal-root ledger, and speed conditions evaluated on the same branch state that supplies $\Delta\nu_N$. An arithmetic solution without that dynamical input is only a conditional retuning model.
 
 #### Metric / Observer
 
@@ -66335,24 +66231,11 @@ This chapter is the reusable assessment surface for closure progress across the 
 
 It is meant to be used with [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md), [Validation Protocols](../../../../markdown/aaa/validation/validation-protocols.md), [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md), and [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
-#### Reusable Assessment Prompt
+#### Assessment Method
 
-Use this prompt for each new assessment cycle:
+Each assessment considers the complete corpus against the categories below. The criteria are certified equations, derivation depth, coefficient recovery, parameter determination, empirical precision, consistency between geometry and dynamics, unresolved assumptions, and falsifiable predictions. Architectural coherence and explanatory reach do not compensate for missing coefficients or unvalidated benchmark recovery.
 
-```text
-Perform a full validated-closure assessment of theory, mathematics, and geometry of modern physics vs. architrino theory.
-Requirements:
-1) Do a full read of all markdown documents in content/markdown/aaa (including subdirectories).
-2) Evaluate each existing scorecard category in closure-scorecard.md on a 0-100 scale.
-3) Use the validated-closure lens: certified equations, derivation depth, coefficient recovery, parameter determination, empirical precision, geometry/dynamics consistency, unresolved placeholders, and falsification-readiness.
-4) Do not let architectural coherence, explanatory logic, or ontology compensate for missing equations, missing coefficients, unfixed parameters, or unvalidated benchmark recovery.
-5) Apply anti-ratchet scoring discipline: begin from null movement, require category-specific accepted evidence before increasing a score, and lower a score when new evidence shows that an earlier assessment counted scaffolding, plans, local fits, or provisional diagnostics as accepted closure.
-6) Add or populate the next dated assessment column in closure-scorecard.md with raw numeric scores, placing it after existing dated $\mathbb{A}\mathbb{A}\mathbb{A}$ columns and before $\Delta$; preserve previous assessment columns unless explicitly told to replace or remove them.
-7) Recompute each $\Delta$ value as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$.
-8) Recompute the TOTAL row as the weighted arithmetic mean using the Weight column; round the displayed TOTAL only after computing the weighted mean from the raw row scores.
-9) Add a dated assessment-notes section for the new column, naming concrete gains, regressions, and remaining blockers. If an assessment column or note is removed, remove or rewrite stale date references that pointed to it.
-10) Keep all TeX intact and preserve category definitions unless explicitly asked to revise them.
-```
+The scores are structured assessments under the declared rubric, not measurements of the probability that a theory is correct. Dated results describe the evidence available at that assessment; later exposition or additional documents do not automatically increase a score.
 
 Scale: `0-100` (standard numeric grading scale).
 Total score rule: weighted arithmetic mean using the Weight column.
@@ -66369,7 +66252,7 @@ Shared-record discipline is part of the score. A result that works only after ch
 
 ##### Anti-Ratchet Scoring Discipline
 
-Score changes are symmetric. A new assessment may increase, decrease, or leave unchanged any row, and the default posture is null movement unless category-specific evidence crosses the score boundary. Do not award points merely because a new assessment was requested, more documents exist, more ledgers, gates, or protocols were added, or a workstream feels closer than before.
+Score changes are symmetric. A new assessment may increase, decrease, or leave unchanged any row, and the default posture is null movement unless category-specific evidence crosses the score boundary. Do not award points merely because a new assessment was requested, more documents exist, more ledgers, gates, or protocols were added, or a research direction appears more promising.
 
 The burden of proof is highest for upward movement. A score can rise only when the new evidence satisfies the category being scored: accepted coefficients for Formula+Coefficient Recovery, fixed constants for Parameter+Scale Closure, benchmark passes for Empirical Precision+Benchmark Validation, certified dynamics for Master EOM+Local Dynamics, and so on. If new work clarifies that an earlier assessment counted scaffolding, provisional diagnostics, local fits, or bookkeeping as accepted closure, the score must go down.
 
@@ -66434,7 +66317,7 @@ The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ column is also replaced with the 202
 
 #### 2026-06-26 Assessment Notes
 
-*Lineage note: the corresponding dated table column has been retired; this assessment note is retained under rule 9.*
+*Historical assessment: the corresponding dated column is not included in the summary table.*
 
 The 2026-06-26 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `68` after assessing the current `167` markdown files under `content/markdown/aaa` through the validated-closure lens. The gain over the prior retained assessment is real but intentionally bounded. The corpus now has a sharper proof and validation spine: shared closure is expressed as an intersection of sector acceptance sets, null-result residuals now include same-record split penalties, simulation campaigns require artifact-bearing proof handoffs, and equation-mapping checkers more aggressively reject priority prose, generated shells, probes, mocks, and source-evidence fixtures as accepted retained evidence.
 
@@ -66448,7 +66331,7 @@ The score is still held below modern operational closure by the same central blo
 
 #### 2026-06-20 Assessment Notes
 
-*Lineage note: the corresponding dated table column has been retired; this assessment note is retained under rule 9.*
+*Historical assessment: the corresponding dated column is not included in the summary table.*
 
 The 2026-06-20 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The score is concentrated in mathematical scaffolding, validation discipline, and interface coverage rather than in final recovery of observed coefficients. The corpus now has a much stronger causal-action and energy/conservation spine: the scalar causal-hit functional has a regularized theorem spine and finite-memory bounds, the energy chapter separates finite-window wake-history balances from particle-only conservation, and Noether braid dynamics states a shared causal-closure certificate target that ties causal-root ledgers, Jacobian floors, transmitter-side acceleration weights, mass response, observer exports, event ledgers, and stability rows to the same retained branch.
 
@@ -66460,7 +66343,7 @@ Falsification and coverage now score near modern-operational levels because the 
 
 #### 2026-05-22 Assessment Notes
 
-*Lineage note: the corresponding dated table column has been retired; the predecessor `59` score was an intermediate assessment column that is no longer displayed, and this note is retained under rule 9.*
+*Historical assessment: this note compares the May 22 result with an intermediate score of `59`; neither intermediate column is included in the summary table.*
 
 The 2026-05-22 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `59` to `61`. The increase is concentrated in notation, internal constituent dynamics, cross-regime bridge quality, and falsification discipline. It is not a coefficient-recovery jump: the central benchmark rows still lack a retained branch that recovers masses, Lorentz / PPN coefficients, photon-channel coefficients, Born/Bell measures, weak mixing, Standard Model masses, or cosmological residuals from one accepted native record.
 
@@ -66517,7 +66400,7 @@ The total remains far below modern operational closure for the same reason as th
 
 #### 2026-05-19 Assessment Notes
 
-*Lineage note: the corresponding dated table column has been retired; this assessment note is retained under rule 9.*
+*Historical assessment: the corresponding dated column is not included in the summary table.*
 
 The 2026-05-19 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `55`. The gain is broad but still pre-closure: the corpus now carries more explicit proof scaffolds, branch-certificate packet schemas, CODATA benchmark discipline, Standard Model mapping targets, quantum record-measure residuals, and shared cosmology residual gates. These changes improve mathematical auditability and executable validation readiness, but they do not yet close the first accepted branch, derive the central constants, or pass precision benchmark rows.
 
