@@ -2,7 +2,7 @@ export const LIBRARY_FACETS = Object.freeze({
   count: { label: "Architrinos", options: [] },
   braidCount: { label: "Braids in assembly", options: [["1", "1"], ["2", "2"], ["3", "3"]] },
   breathing: { label: "Breathing", options: [["yes", "Breather"], ["no", "Non-breather"]] },
-  nested: { label: "Nesting", options: [["yes", "Nested"], ["no", "Not nested"]] },
+  radii: { label: "Assembly radii", options: [["iso", "Iso-radii"], ["hetero", "Hetero-radii"]] },
   dimension: { label: "Dimensions", options: [["boundary", "1D"], ["2d", "2D · planar"], ["3d", "3D · spatial"]] },
   shape: { label: "Shape", options: [["circles", "Circular paths"], ["sphere", "Spherical distribution"], ["spindle", "Spindle envelope"], ["unavailable", "Unclassified"]] },
   speedPolicy: { label: "Speed policy", options: [["uncapped", "Uncapped"], ["capped-cf", "Capped at c_f"]] },
@@ -17,6 +17,7 @@ export function isLibrarySelectorValue(key, value) {
 export function normalizeLibraryBrowseParams(params) {
   const normalized = new URLSearchParams(params);
   let changed = false;
+  if (normalized.has("nested")) { normalized.delete("nested"); changed = true; }
   for (const key of Object.keys(LIBRARY_FACETS)) {
     for (const value of normalized.getAll(key)) {
       if (!isLibrarySelectorValue(key, value)) { normalized.delete(key, value); changed = true; }
@@ -39,6 +40,7 @@ export function matchesLibraryFilters(row, params, omitFacet = null) {
 }
 
 export function queryLibraryRows(rows, params) {
+  if (params.has("nested")) throw new RangeError("The nesting filter is retired. Choose assembly radii; old nesting values cannot be translated into radius equality.");
   const matches = rows.filter((row) => matchesLibraryFilters(row, params));
   const counts = Object.fromEntries(Object.keys(LIBRARY_FACETS).map((key) => {
     const values = {};

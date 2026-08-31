@@ -6,6 +6,66 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-30 - Polarity-Owned Shared and Dedicated Orbit Trails
+
+- Implemented the operator's clarified orbit presentation: a source-confirmed opposite-polarity antipodal pair sharing one circle has one red half-turn tail and one blue half-turn tail; dedicated circles have a full preceding turn in their owning architrino's solid color. Retained the accepted linear fade only for shared half-turn tails. Standard colors are exactly positrino red `#ff0000` and electrino blue `#0000ff`. No source geometry, recorded history, polarity assignment, record hash, solver, or scientific result changed.
+- Added one [source-based trail policy](../../../src/apps/borg/BorgOrbitTrails.mjs) shared by workbench and library. Shared-circle identification compares source centers, translation, radius, plane, angular rate, declared neutral-pair membership, and antipodal phase. Binary membership alone is insufficient: A2/A3 and interior B1 partners have distinct circles. Supported F6c paths use one full source phase turn; F5 uses one full reconstruction cycle without pretending that its local angular speed is constant. Unsupported/ambiguous source carriers remain unavailable. The library descriptor advances to v6 to invalidate older preview/cache semantics.
+
+Plainly: the orbit's owner determines its color and how much of the recorded past is shown. Separate circles stay separate even when their architrinos belong to one binary.
+
+| Surface | Disposition |
+| --- | --- |
+| Library cards and inspector | Shared policy, exact polarity colors, half-turn fade only for shared antipodal circles; dedicated turns/cycles solid. |
+| Prescribed replay and chart pose | Same policy and color constants, clipped source-history segments; removed unowned colored ansatz orbit overlays. |
+| Live retained and compacted history | Exact owning-particle color; alternate path/velocity palettes ignored, unknown colors rejected. No new orbital period inferred from EOM rows. |
+| Selected history tube | Same owner color and bounded history window; remains an optional diagnostic. |
+| Image export | Existing PNG action snapshots the corrected current scene; no independent export palette. Export download was not exercised in this pass. |
+| Comparison | Source-transform contract remains blocked; there is no separate comparison path renderer to migrate. |
+| Axes and envelope diagnostics | Separate guides, not architrino orbits; their existing diagnostic styling is unchanged. |
+
+Plainly: purple and per-binary orbit palettes are gone. This does not recolor unrelated interface elements or diagnostic axes.
+
+- Verification: 86 focused orbit-trail, scene, runtime, history, catalog, library, and radius tests pass. Independent hand-authored controls cover shared/separate circles, reverse circulation, missing/non-antipodal ownership, fractional clipping, no-future wrap, rewind, and exact endpoint colors. Every worldline in all 24 catalog records is checked in both scene and library: A1.0–A1.4, B1.3, C5/C6 use shared half-turns; SD3 uses its recorded non-orbital window; F5 uses a full source cycle; all other representatives use dedicated full turns. Material and canvas-command tests check exact color values. The shared source evaluator and sealed records were not edited.
+- Browser verification with the Browser skill: A1.0 shows complementary red/blue half-turn trails in the library inspector and Borg; A2.0 shows six complete single-color dedicated circles in both views after sufficient recorded history. The inspector pauses correctly and exact-record navigation remains intact. Screenshot inspection checks appearance; exact hexadecimal color claims come from material/canvas-command tests, not screenshot color estimation. The existing local no-solver preview service was refreshed.
+- Updated the requirements, BORG-014-linked library guidance, BORG-016 acceptance/status, and visible library explanation. Priority-ranking validation and `git diff --check` pass. BORG-016 remains open for future live rotational-phase/ownership carriers and remaining applicable comparison/export acceptance. Early recorded coverage has growing trails: no source extrapolation, future samples, or fabricated preceding cycles fill missing history.
+- Claim grade: implemented display policy and measured software behavior, not physical acceptance. Falsifier: a base trail uses another color, a dedicated orbit is capped at half a turn, a shared antipodal pair draws two full overlapping circles, or a visible segment lies outside the recorded past. Superseded presentation code is recoverable through repository history; source records remain untouched.
+
+### 2026-08-30 - Assembly-Centered Iso-Radii and Hetero-Radii
+
+- Applied the operator's clarified center definition across the Assembly Library: compare every architrino's distance from the source-declared center of the whole assembly at equal times throughout the recorded window. B1.1/B1.2 are Hetero-radii. This supersedes earlier nesting labels, including the C1–C4 negatives below, without altering prescribed motion. [The contract](requirements-and-design.md#catalog-composition-classifications) derives the squared-radius formulas and states the numerical screening boundary.
+- Facet revision `borg-record-facets.v5` derives radii from supported circular, linear, F5, and F6c source formulas. Four current records are Iso-radii: A1.2, A2.0, A3.2, F6b. The other twenty are Hetero-radii, including all C records, SD3, F5, and F6c. F5 repeats two different centered radii; F6c's initially equal polarity sectors develop different radii during breathing. Common breathing and radius equality remain independent.
+
+Plainly: the reference center matters. Equal orbit sizes or matching repeated modules need not put every architrino the same distance from the assembly center.
+
+- Replaced the obsolete nesting assignment data with [spindle-only classification v3](library-classifications.v3.json), retaining all six exact spindle pins. Radius assignments cannot be manually overridden through this file. Old nesting URLs clear that filter and stale cursor with a visible notice; exact selected identity/hash remain unchanged. The API rejects obsolete nesting queries. Updated the six-dimension audit, BORG-014/BORG-015, requirements, and library guidance. Prior log entries retain their historical meaning.
+- Verification: 41 focused library, radius, preview, catalog, assembly-view, and history-evaluation tests pass. Independent expected controls use Euclidean/trigonometric identities, translated centers, different epochs, common breathing, unequal later slices, and a sampling-alias counterexample that must remain unassigned. The shared worldline evaluator and source records were not modified. A read-only comparison matches every cell in all 24 audit rows to current provider output; edited document links resolve. Priority-ranking validation and `git diff --check` pass.
+- Browser verification: Iso-radii returns exactly the four named examples; B1.1's inspector reports Hetero-radii; two braids plus Hetero-radii returns C1–C6. Opening B1.1's exact selection with an obsolete negative-nesting filter displays the migration notice and restores the identical selected identity, record hash, and URL after clearing that filter/cursor. The existing no-solver preview service was refreshed. Layout and source playback behavior were not redesigned.
+- Claim grade: derived source-formula geometry with floating-point browse thresholds, plus measured software behavior; not scientific acceptance, independently regenerated trajectories, or certified interval arithmetic. Falsifier: an Iso-radii source violates its common-radius identity, a Hetero-radii witness has equal centered radii, an orbit/component center replaces the declared assembly center, or an old link changes its record pin. No source geometry, sealed record, solver, generated corpus output, or priority score changed. Full identity migration and million-entry indexing remain open.
+
+### 2026-08-30 - C1 through C4 Not Nested
+
+- Applied the operator's C1–C4 negative nesting assignments to exact record pins in classification revision `2026-08-30.operator-4`. Updated the audit, composition contract, library guidance, and BORG-014/BORG-015 status. All twenty A/B/C representatives now have nesting assignments: eleven nested and nine not nested. Only SD3, F5, F6c, and F6b remain unassigned. Braid counts, shapes, source geometry, and sealed records are unchanged.
+- Verification: twenty-one focused library, preview, and catalog tests pass, including the exact two-braid/not-nested result C1–C4. The live provider and audit agree on those four records and the new classification revision. Priority-ranking validation and `git diff --check` pass. Claim grade: operator-assigned browse metadata; falsifier: a named record is missing from Not nested or an unrelated property changes.
+
+### 2026-08-30 - A2/A3 and Spindle Nesting Review
+
+- Applied five operator assignments in classification revision `2026-08-30.operator-3`: A3.0 is nested; A2.0, A3.2, B1.1, and B1.2 are not nested. The audit, composition contract, library explanation, and BORG-014/BORG-015 status agree. Totals are eleven nested, five not nested, and eight unassigned. C1–C4 and SD3/F5/F6c/F6b remain unassigned; spindle classifications are unchanged.
+- B1.1/B1.2 establish that different source binary layer radii alone are not a sufficient general nesting predicate. The additional geometric condition remains open; explicit operator assignments take precedence over informal radius-based inference. No source geometry or sealed-record bytes changed.
+- Rechecked A2.0's six source circular operators: each has a stationary center, equal orthogonal radius vectors, an offset orthogonal to those vectors, and combined distance 0.32 from the braid origin. The existing spherical-surface derivation therefore applies. Proposed overlapping `Circular paths` and `Spherical surface` tags, not full-sphere coverage, precession, or a filled ball. Shape wording and automatic spherical assignment remain discussion-scoped; no shape tags changed.
+
+Plainly: A2.0 can have circular paths on one sphere without nested layers. Naming that spherical property is separate from changing its motion.
+
+- Verification: twenty-one focused library, preview, and catalog tests pass, including the complete operator-authored positive and negative sets, record pins, and cache refresh. Priority-ranking validation and `git diff --check` pass. Claim grade: operator-assigned browse properties and source-coordinate checks, not physical acceptance. Falsifier: a named assignment differs in the audit or filtered results, an unreviewed record gains a nesting assignment, or A2.0's declared vectors violate the spherical-surface conditions.
+
+### 2026-08-30 - A1.0 Nested and A1.2 Not Nested
+
+- Applied the operator's exact-record assignments: A1.0 is nested; A1.2 is not nested. Updated the selector audit, composition contract, library guidance, and BORG-014/BORG-015 status. Ten records are now nested, one is explicitly not nested, and thirteen remain unassigned. Other examples are not reclassified by analogy.
+- Replaced the positive-only assignment format with classification v2 (now superseded by [spindle-only v3](library-classifications.v3.json)), carrying an explicit boolean per exact record pin. The shared lookup distinguishes true, false, and absent; validators reject missing/nonboolean values and conflicting duplicate pins. The descriptor revision advances to v4, retaining classification-change cache invalidation and unchanged sealed records.
+
+Plainly: “not nested” now means an explicit answer, not a missing answer.
+
+- Verification: twenty-one focused library, preview, and catalog tests pass, including the exact positive/negative result sets, missing-versus-false distinction, pin preservation, malformed assignments, and cache refresh. A read-only comparison matches all eleven explicit nesting assignments to the audit. Priority-ranking validation and `git diff --check` pass. The local preview service was refreshed to consume the new classification format. Claim grade: operator-assigned browse metadata and software checks, not scientific acceptance; falsifier: A1.0 is absent from Nested, A1.2 is absent from Not nested, or an unassigned example is silently classified negative.
+
 ### 2026-08-30 - Second 50-Percent Borg Panel Increase
 
 - Increased the desktop left-panel target from 930 to 1395 pixels, another 50 percent, and updated the layout contract test and requirements. The 620-pixel minimum, 360-pixel reserved assembly viewport, and 980-pixel stacked-layout breakpoint remain unchanged. Full target width is available at window widths of 1755 pixels or greater.
@@ -63,7 +123,7 @@ Plainly: removing an unknown menu choice does not remove the underlying uncertai
 
 ### 2026-08-30 - Nested, Spindle, and Braid-Count Filters
 
-- Added the operator's nine positive nesting classifications and six positive spindle classifications to the Assembly Library. [The composition contract](requirements-and-design.md#catalog-composition-classifications) defines the scope; [the authored assignment file](library-classifications.v1.json) pins exact records, not mutable aliases. No geometry, sealed record, EOM solver, or generated artifact changed. Claim grade: operator-assigned browse properties, not scientific acceptance or a derived general shape test.
+- Added the operator's nine positive nesting classifications and six positive spindle classifications to the Assembly Library. [The composition contract](requirements-and-design.md#catalog-composition-classifications) defines the scope; [the authored assignment file](library-classifications.v3.json) pins exact records, not mutable aliases. No geometry, sealed record, EOM solver, or generated artifact changed. Claim grade: operator-assigned browse properties, not scientific acceptance or a derived general shape test.
 - Added `Braids in assembly` with 1, 2, and 3 always offered, plus unavailable. Complete source component memberships yield eighteen one-braid records and six two-braid records (all Family C); three has no current seed representative. The descriptor rejects missing, duplicate, overlapping, and incomplete membership. C1/C2's source component index subsets count as two for this browse selector without asserting separately bound braids or changing scientific top-level taxonomy. F5 remains one declared group despite having twelve architrinos.
 
 Plainly: a group count is not particle arithmetic, and a classification change does not mean that the assembly's recorded motion changed.

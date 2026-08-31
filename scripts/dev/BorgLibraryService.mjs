@@ -11,7 +11,7 @@ const send = (res, status, data) => { res.writeHead(status, { "Content-Type": "a
 
 // Read-only seed-catalog provider. No new record, geometry, or migration output
 // is written. Replace this provider with the indexed registry for full BORG-014.
-export function createBorgLibraryService({ repoRoot, catalog = BORG_BRAID_RECORD_CATALOG.entries, classificationFile = "reference/priorities/app-borg/library-classifications.v1.json" } = {}) {
+export function createBorgLibraryService({ repoRoot, catalog = BORG_BRAID_RECORD_CATALOG.entries, classificationFile = "reference/priorities/app-borg/library-classifications.v3.json" } = {}) {
   const cache = new Map();
   let pending = Promise.resolve();
   async function load(entry, classification) {

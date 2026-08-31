@@ -1,4 +1,5 @@
 import * as THREE from "../../../vendor/three/three.module.js";
+import { BORG_ELECTRINO_COLOR, BORG_POSITRINO_COLOR } from "./BorgOrbitTrails.mjs";
 
 const INITIAL_POINT_CAPACITY = 512;
 const TRAIL_OPACITY = 1;
@@ -218,7 +219,8 @@ export function createBorgPathTrails({
   function trailColor(pathKey) {
     const numericPathKey = Number(pathKey);
     const style = getStyle(Number.isFinite(numericPathKey) ? numericPathKey : pathKey);
-    return style.pathColor ?? style.velocityColor ?? style.color;
+    if (![BORG_POSITRINO_COLOR, BORG_ELECTRINO_COLOR].includes(style.color)) throw new TypeError("Borg path has no valid polarity color.");
+    return style.color;
   }
 
   function ensureTrail(trails, pathKey, { opacity, order }) {

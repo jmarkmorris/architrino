@@ -15,7 +15,6 @@ import {
   mergeBorgFrameRows,
 } from "../src/apps/borg/BorgFrameRows.js";
 import {
-  BORG_PRESCRIBED_PATH_TRAIL_COLOR,
   calculateBorgOrthographicFrustum,
   createBorgParticleStyles,
   createDefaultEomShadowRunnerOptions,
@@ -83,18 +82,19 @@ test("Borg path history is on and visible by default", () => {
   );
 });
 
-test("prescribed orbital trails are neutral purple while endpoint colors retain polarity", () => {
+test("all Borg trails use exact endpoint polarity colors", () => {
   const frames = [
     { pathKey: 1, stateFlags: 1 },
     { pathKey: 2, stateFlags: 2 },
   ];
-  const prescribed = createBorgParticleStyles(frames, { prescribedGeometry: true });
-  assert.equal(prescribed.get(1).pathColor, BORG_PRESCRIBED_PATH_TRAIL_COLOR);
-  assert.equal(prescribed.get(2).pathColor, BORG_PRESCRIBED_PATH_TRAIL_COLOR);
+  const prescribed = createBorgParticleStyles(frames);
+  assert.equal(prescribed.get(1).pathColor, 0xff0000);
+  assert.equal(prescribed.get(2).pathColor, 0x0000ff);
   assert.notEqual(prescribed.get(1).color, prescribed.get(2).color);
 
   const evolved = createBorgParticleStyles(frames);
-  assert.notEqual(evolved.get(1).pathColor, evolved.get(2).pathColor);
+  assert.equal(evolved.get(1).pathColor, evolved.get(1).color);
+  assert.equal(evolved.get(2).pathColor, evolved.get(2).color);
 });
 
 test("Borg timeline uses a fixed-width hours-minutes-seconds clock", () => {

@@ -2,6 +2,7 @@ import {
   createBorgAssemblyViewPresentation,
   resolveBorgAssemblyViewTrail,
 } from "./BorgAssemblyViewSession.js";
+import { describeBorgOrbitTrails } from "./BorgOrbitTrails.mjs";
 import {
   BORG_PRESCRIBED_DISPLAY_FRAME_FIXED,
   borgPrescribedDisplayFrameReadout,
@@ -79,9 +80,8 @@ export function createBorgAssemblyViewControls({
 
     dom.cameraMode.value = "free";
     const trail = resolveBorgAssemblyViewTrail(entry);
-    dom.trailSummary.textContent = trail.periodCount == null
-      ? `Trail depth: ${format(trail.duration)} recorded time units.`
-      : `Trail: ${trail.periodCount} complete prescribed return cycle${trail.periodCount === 1 ? "" : "s"} (${format(trail.duration)} recorded time units).`;
+    const missingTrails = [...describeBorgOrbitTrails(entry.dataset).values()].filter(row => row.mode === "unavailable").length;
+    dom.trailSummary.textContent = `Red/blue trails: shared binary orbit = half-turn each; dedicated orbit = full turn or source cycle. Retained history limit: ${format(trail.duration)} T.${missingTrails ? ` ${missingTrails} trails unavailable: missing orbit ownership or phase information.` : ""}`;
     dom.cameraMode.querySelector?.('option[value="co-rotating"]')?.toggleAttribute?.(
       "disabled",
       !borgCoRotatingCameraAvailable(hasCoRotatingCarrier),

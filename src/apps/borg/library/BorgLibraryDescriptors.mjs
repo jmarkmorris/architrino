@@ -1,7 +1,9 @@
 import { createEomHistoryDataset } from "../../shared/EomHistoryDataset.mjs";
 import { describeBraidComposition, recordClassification } from "./BorgLibraryComposition.mjs";
+import { describeAssemblyRadii } from "./BorgLibraryRadii.mjs";
+import { describeBorgOrbitTrails } from "../BorgOrbitTrails.mjs";
 
-export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v3";
+export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v6";
 const norm = (v) => Math.hypot(...v);
 const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);
 const subtract = (a, b) => a.map((v, i) => v - b[i]);
@@ -66,13 +68,12 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
   const sourcePolicy = coordinates?.speedPolicy;
   const speedPolicy = sourcePolicy?.owner && sourcePolicy?.version && sourcePolicy?.quantity && sourcePolicy?.frame && sourcePolicy?.unitConvention &&
     ["uncapped", "capped-cf"].includes(sourcePolicy.mode) ? sourcePolicy.mode : "unavailable";
-  const nesting = coordinates?.relationships?.nesting;
-  const confirmedNested = recordClassification(classifications, recordSha256, "nested");
+  const radii = completeOperators ? describeAssemblyRadii(coordinates, dataset.window)
+    : { value: "unavailable", reason: "The source must describe every recorded architrino before comparing assembly-centered radii." };
   const confirmedSpindle = recordClassification(classifications, recordSha256, "spindle");
-  const nested = confirmedNested ? "yes" : nesting?.owner && typeof nesting?.nested === "boolean" ? (nesting.nested ? "yes" : "no") : "unavailable";
   const shapes = allCircular ? ["circles"] : ["unavailable"];
   if (confirmedSpindle) { if (shapes[0] === "unavailable") shapes.length = 0; shapes.push("spindle"); }
-  const facets = { count: String(dataset.worldlines.length), braidCount: composition.braidCount, breathing: completeOperators ? breathingState(operators) : "unavailable", nested,
+  const facets = { count: String(dataset.worldlines.length), braidCount: composition.braidCount, breathing: completeOperators ? breathingState(operators) : "unavailable", radii: radii.value,
     dimension: bounds.dimension, shape: shapes, speedPolicy };
   const label = catalogEntry.label.replace(/^[^—]+—\s*/, "");
   const summary = {
@@ -90,7 +91,7 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
       count: "Number of persistent worldlines in the sealed record.",
       braidCount: composition.reason,
       breathing: "Moving-circular operators with fixed centers have fixed radii. Nonzero F6c radial or axial harmonics mark breathing. Other operators remain unclassified.",
-      nested: confirmedNested ? `Operator-confirmed different binary layer radii within each braid (${composition.braidCount} braid groups), classification ${classifications.revision}. This means binary-radius nesting, not one braid inside another.` : "Not classified by the operator-confirmed nesting set. Unlisted records remain unavailable unless the source explicitly declares nesting; differing radii alone are pending the broader classification decision.",
+      radii: radii.reason,
       dimension: `Affine rank of all retained cubic control points over the complete record window, tolerance ${bounds.tolerance}. This describes recorded paths, not dynamical stability.`,
       shape: `Circular paths require every source worldline to declare moving-circular.v1 with a fixed center. ${confirmedSpindle ? `Spindle envelope is operator-confirmed for this exact record under ${classifications.revision}.` : "No spindle classification is assigned to this record."} Spherical distribution remains unclassified.`,
       speedPolicy: "Requires an explicit source policy with owner, version, speed quantity, frame and unit convention. Recorded speed alone does not establish a cap.",
@@ -100,21 +101,17 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
 }
 
 export function createLibraryPreview(described, sampleCount = 321) {
-  const { dataset, summary, sourceLines } = described;
+  const { dataset, summary } = described;
   const { start, end } = dataset.window;
   const frames = dataset.createFrameSamples({ start, end, frameCount: sampleCount });
+  const trails = describeBorgOrbitTrails(dataset);
   return {
     id: summary.id, recordSha256: summary.recordSha256, bounds: summary.bounds, start, end,
     sampleCount, interpolation: "retained-cubic samples; no forward evolution",
     paths: dataset.worldlines.map((line, index) => {
-      const op = sourceLines.find((source) => source.id === line.id)?.operator;
-      let omega = null;
-      if (op?.kind === "moving-circular.v1" && op.angularAcceleration === 0) omega = Math.abs(op.angularVelocity);
-      if (op?.kind === "f6c-harmonic-member.v1" && op.phase?.modulationAmplitude === 0) omega = Math.abs(op.phase.rate);
-      const linear = op?.kind === "sd3-centered-linear-member.v1";
+      const trail = trails.get(line.id);
       return { id: line.id, polarity: line.polarity,
-        trailMode: omega > 0 ? "half-turn" : linear ? "record-window" : "unavailable",
-        trailDuration: omega > 0 ? Math.PI / omega : linear ? end - start : 0,
+        trailMode: trail.mode, trailDuration: trail.duration, trailFade: trail.fade, trailReason: trail.reason,
         points: frames.map((frame) => { const p = frame.states[index].position; return [p.x, p.y, p.z]; }),
       };
     }),

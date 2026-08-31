@@ -1,4 +1,5 @@
 import { Quaternion, Euler, Vector3 } from "../../../../vendor/three/three.module.js";
+import { borgPolarityCss, borgTrailSegments } from "../BorgOrbitTrails.mjs";
 
 // Fixed orthographic display of samples evaluated from sealed cubic histories.
 // No camera zoom, generated orbit, future trail, or solver is present here.
@@ -11,6 +12,7 @@ export function createSpherePreview(canvas, preview, onSelect = () => {}) {
   let pointer = null;
   let fraction = .5;
   const { center, radius } = preview.bounds;
+  const times = Array.from({ length: preview.sampleCount }, (_, i) => preview.start + i * (preview.end-preview.start)/(preview.sampleCount-1));
   function publishRotation() { canvas.dataset.orientation = rotation.toArray().map((v) => v.toFixed(6)).join(","); }
   function reset() { rotation.setFromEuler(new Euler(.32, .5, .03)); publishRotation(); draw(fraction); }
   function turn(x, y) { rotation.premultiply(new Quaternion().setFromEuler(new Euler(y, x, 0))).normalize(); publishRotation(); draw(fraction); }
@@ -53,7 +55,6 @@ export function createSpherePreview(canvas, preview, onSelect = () => {}) {
     context.setTransform(scale, 0, 0, scale, 0, 0);
     context.clearRect(0, 0, width, width);
     const frame = Math.round(fraction * (preview.sampleCount - 1));
-    const dt = (preview.end - preview.start) / (preview.sampleCount - 1);
     canvas.dataset.frame = String(frame);
     canvas.dataset.recordSha256 = preview.recordSha256;
     const project = (p) => {
@@ -63,16 +64,11 @@ export function createSpherePreview(canvas, preview, onSelect = () => {}) {
     };
     const elements = [];
     for (const path of preview.paths) {
-      const color = path.polarity > 0 ? "#ff0000" : "#0000ff";
-      const steps = path.trailDuration > 0 ? Math.ceil(path.trailDuration / dt) : 0;
-      for (let j = Math.max(1, frame - steps + 1); j <= frame; j++) {
-        const lagStart = (frame - j + 1) * dt, lagEnd = (frame - j) * dt;
-        if (lagEnd >= path.trailDuration) continue;
-        const cut = Math.max(0, (lagStart - path.trailDuration) / dt);
-        const clipped = path.points[j - 1].map((v, i) => v + cut * (path.points[j][i] - v));
-        const a = project(clipped), b = project(path.points[j]);
+      const color = borgPolarityCss(path.polarity);
+      for (const segment of borgTrailSegments(path.points, times, times[frame], path.trailDuration, path.trailFade)) {
+        const a = project(segment.a), b = project(segment.b);
         elements.push({ a, b, z: (a[2] + b[2]) / 2, color,
-          startAlpha: Math.max(0, 1 - lagStart / path.trailDuration), endAlpha: 1 - lagEnd / path.trailDuration });
+          startAlpha: segment.startAlpha, endAlpha: segment.endAlpha });
       }
       const p = project(path.points[frame]);
       elements.push({ p, z: p[2], color, alpha: 1 });

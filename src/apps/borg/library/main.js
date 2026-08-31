@@ -41,6 +41,7 @@ for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
 }
 
 function restoreControls() {
+  if (state.params.has("nested")) $("filter-migration-note").hidden = false;
   const normalized = normalizeLibraryBrowseParams(state.params);
   if (normalized.toString() !== state.params.toString()) { state.params = normalized; saveUrl(true); }
   $("search").value = state.params.get("q") ?? "";

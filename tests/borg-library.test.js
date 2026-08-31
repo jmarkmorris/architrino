@@ -45,7 +45,7 @@ test("linear preview follows the analytic history; observed speed does not decla
   assert.deepEqual(described.summary.bounds.center, [1, 0, 0]);
   assert.equal(described.summary.bounds.radius, 1);
   assert.equal(described.summary.facets.speedPolicy, "unavailable");
-  assert.equal(described.summary.facets.nested, "unavailable");
+  assert.equal(described.summary.facets.radii, "unavailable");
   assert.equal(described.summary.facets.breathing, "unavailable");
   assert.deepEqual(createLibraryPreview(described, 5).paths[0].points, [[0, 0, 0], [.5, 0, 0], [1, 0, 0], [1.5, 0, 0], [2, 0, 0]]);
   record.provenance.prescribedGeometry.coordinates = { speedPolicy: { mode: "capped-cf" } };
@@ -56,27 +56,27 @@ test("linear preview follows the analytic history; observed speed does not decla
   assert.equal(createLibraryPreview(describeLibraryRecord(record, entry, "hash"), 5).paths[0].points.at(-1)[0], 2);
 });
 
-test("harmonic breathing requires complete source metadata and nesting is never inferred from inventory", () => {
+test("harmonic breathing needs complete metadata; retired nesting cannot assign assembly radii", () => {
   const record = linearRecord();
   const coordinates = { worldlines: [{ id: "line", operator: { kind: "f6c-harmonic-member.v1" } }], relationships: { componentBraids: [{ id: "a" }, { id: "b" }] } };
   record.provenance.prescribedGeometry.coordinates = coordinates;
   assert.equal(describeLibraryRecord(record, entry, "hash").summary.facets.breathing, "unavailable");
-  assert.equal(describeLibraryRecord(record, entry, "hash").summary.facets.nested, "unavailable");
+  assert.equal(describeLibraryRecord(record, entry, "hash").summary.facets.radii, "unavailable");
   Object.assign(coordinates.worldlines[0].operator, { radial: { amplitude: 1, angularFrequency: 2 }, axial: { amplitude: 0, angularFrequency: 0 } });
   assert.equal(describeLibraryRecord(record, entry, "hash").summary.facets.breathing, "yes");
   coordinates.relationships.nesting = { owner: "test", nested: false };
-  assert.equal(describeLibraryRecord(record, entry, "hash").summary.facets.nested, "no");
+  assert.equal(describeLibraryRecord(record, entry, "hash").summary.facets.radii, "unavailable");
 });
 
 const rows = [
-  { id: "one", label: "Two circles", facets: { count: "4", breathing: "no", nested: "no", dimension: "2d", shape: ["circles", "spindle"], speedPolicy: "uncapped" } },
-  { id: "two", label: "Spatial circle", facets: { count: "6", breathing: "yes", nested: "yes", dimension: "3d", shape: ["circles"], speedPolicy: "capped-cf" } },
-  { id: "three", label: "Unknown form", facets: { count: "6", breathing: "unavailable", nested: "unavailable", dimension: "3d", shape: ["unavailable"], speedPolicy: "unavailable" } },
+  { id: "one", label: "Two circles", facets: { count: "4", breathing: "no", radii: "iso", dimension: "2d", shape: ["circles", "spindle"], speedPolicy: "uncapped" } },
+  { id: "two", label: "Spatial circle", facets: { count: "6", breathing: "yes", radii: "hetero", dimension: "3d", shape: ["circles"], speedPolicy: "capped-cf" } },
+  { id: "three", label: "Unknown form", facets: { count: "6", breathing: "unavailable", radii: "unavailable", dimension: "3d", shape: ["unavailable"], speedPolicy: "unavailable" } },
 ];
 test("filters intersect across facets, union within a facet, and preserve unknown versus false", () => {
   assert.equal(queryLibraryRows(rows, new URLSearchParams("count=6&breathing=yes")).total, 1);
   assert.equal(queryLibraryRows(rows, new URLSearchParams("shape=circles&shape=unavailable")).total, 3);
-  assert.deepEqual(queryLibraryRows(rows, new URLSearchParams("nested=no")).results.map((r) => r.id), ["one"]);
+  assert.deepEqual(queryLibraryRows(rows, new URLSearchParams("radii=iso")).results.map((r) => r.id), ["one"]);
   assert.deepEqual(queryLibraryRows(rows, new URLSearchParams("speedPolicy=unavailable")).results.map((r) => r.id), ["three"]);
   assert.equal(queryLibraryRows(rows, new URLSearchParams("q=TWO CIRCLES")).total, 1);
   assert.equal(queryLibraryRows(rows, new URLSearchParams()).total, 3);
@@ -110,8 +110,8 @@ test("seed provider covers all 24 records, paginates deterministically, and veri
   assert.deepEqual(first.body.failures, []);
   assert.equal(first.body.results.length, 12);
   assert.equal(first.body.counts.speedPolicy.unavailable, 24);
-  assert.equal(first.body.counts.nested.unavailable, 15);
-  assert.equal(first.body.counts.nested.yes, 9);
+  assert.deepEqual(first.body.counts.radii, { hetero: 20, iso: 4 });
+  assert.equal(first.body.counts.nested, undefined);
   assert.deepEqual(first.body.counts.braidCount, { 1: 18, 2: 6 });
   const second = await request(service, `/api/borg/library?cursor=${first.body.nextCursor}`);
   assert.equal(second.body.offset, 12);
@@ -184,22 +184,42 @@ test("dot-zero aliases preserve sealed records, source classes, old-label search
   assert.equal(createBorgAssemblyViewPresentation(unrelated.selected).catalogLabel, null);
 });
 
-test("operator-confirmed nesting and spindle sets match the requested configurations exactly", async () => {
+test("source-derived assembly radii and operator spindle sets cover the exact catalog", async () => {
   const service = createBorgLibraryService({ repoRoot });
-  const aliases = async (query) => (await request(service, `/api/borg/library?${query}`)).body.results.map((r) => r.alias.split(" —")[0]);
-  assert.deepEqual(await aliases("nested=yes"), ["A1.1", "A1.3", "A1.4", "A3.1", "A3.3", "A3.4", "B1.3", "C5", "C6"]);
+  const aliases = async (query) => {
+    const all = [];
+    let cursor;
+    do {
+      const response = await request(service, "/api/borg/library?" + query + (cursor ? "&cursor=" + cursor : ""));
+      assert.equal(response.status, 200);
+      all.push(...response.body.results.map((r) => r.alias.split(" —")[0]));
+      cursor = response.body.nextCursor;
+    } while (cursor);
+    return all;
+  };
+  // Expectations follow the independently derived centered norms in the audit:
+  // orthogonal circle offsets give h²+rho², F5 has two such radii, and F6c
+  // has unequal positive/negative breathing sectors away from T=0.
+  assert.deepEqual(await aliases("radii=iso"), ["A1.2", "A2.0", "A3.2", "F6b"]);
+  assert.deepEqual(await aliases("radii=hetero"), ["A1.0", "A1.1", "A1.3", "A1.4", "A3.0", "A3.1", "A3.3", "A3.4", "B1.1", "B1.2", "B1.3", "C1", "C2", "C3", "C4", "C5", "C6", "SD3", "F5", "F6c"]);
+  assert.deepEqual(await aliases("braidCount=2&radii=hetero"), ["C1", "C2", "C3", "C4", "C5", "C6"]);
+  assert.deepEqual(await aliases("braidCount=2&radii=iso"), []);
   assert.deepEqual(await aliases("shape=spindle"), ["B1.1", "B1.2", "C1", "C2", "C3", "C4"]);
   assert.deepEqual(await aliases("braidCount=2"), ["C1", "C2", "C3", "C4", "C5", "C6"]);
-  assert.deepEqual(await aliases("braidCount=2&nested=yes"), ["C5", "C6"]);
   assert.deepEqual(await aliases("braidCount=2&shape=spindle"), ["C1", "C2", "C3", "C4"]);
   assert.deepEqual(await aliases("braidCount=3"), []);
   const groups = (await request(service, "/api/borg/library?groupBy=braidCount")).body.results;
   assert.deepEqual(groups.map((g) => [g.id, g.memberCount]), [["group:braidCount:1", 18], ["group:braidCount:2", 6]]);
   const spindle = (await request(service, "/api/borg/library?shape=spindle")).body.results[0];
   assert.deepEqual(spindle.facets.shape, ["circles", "spindle"]);
-  assert.equal(spindle.classificationRevision, "2026-08-30.operator-1");
+  assert.equal(spindle.facets.radii, "hetero");
+  assert.match(spindle.reasons.radii, /declared assembly center/);
+  assert.equal(spindle.classificationRevision, "2026-08-30.operator-spindle-1");
   assert.match(spindle.classificationSha256, /^[a-f0-9]{64}$/);
+  assert.equal((await request(service, "/api/borg/library?nested=no")).status, 400);
+  assert.equal((await request(service, "/api/borg/library?nested=yes")).status, 400);
 });
+
 
 test("braid count follows complete source memberships, including three braids, not particle arithmetic", () => {
   assert.deepEqual(LIBRARY_FACETS.braidCount.options.map(([value]) => value), ["1", "2", "3"]);
@@ -231,20 +251,35 @@ test("selector menus hide unavailable values, keep unclassified shape, and label
   const normalized = normalizeLibraryBrowseParams(saved);
   assert.equal(normalized.toString(), "braidCount=2&shape=unavailable&selected=exact-record&sha256=exact-pin");
   assert.equal(saved.get("nested"), "unavailable");
-  const supported = new URLSearchParams("dimension=boundary&count=99&nested=no&cursor=current");
+  for (const retired of ["yes", "no"]) {
+    const oldLink = new URLSearchParams(`nested=${retired}&radii=iso&selected=exact-record&sha256=exact-pin&cursor=old`);
+    assert.equal(normalizeLibraryBrowseParams(oldLink).toString(), "radii=iso&selected=exact-record&sha256=exact-pin");
+  }
+  const supported = new URLSearchParams("dimension=boundary&count=99&radii=iso&cursor=current");
   assert.equal(normalizeLibraryBrowseParams(supported).toString(), supported.toString());
 });
 
-test("classification pins survive renaming but never transfer to changed record bytes", () => {
+test("spindle pins survive renaming but never transfer to changed bytes or override radii", () => {
   const pin = "a".repeat(64);
-  const policy = { schema: "borg-library-classifications.v1", authority: "operator", revision: "test", source: "test", nested: [{ alias: "renamable", recordSha256: pin }], spindle: [] };
+  const policy = { schema: "borg-library-classifications.v3", authority: "operator", revision: "test", source: "test", spindle: [{ alias: "renamable", value: true, recordSha256: pin }] };
   validateLibraryClassifications(policy);
-  assert.equal(recordClassification(policy, pin, "nested"), true);
-  policy.nested[0].alias = "a new name";
-  assert.equal(recordClassification(policy, pin, "nested"), true);
-  assert.equal(recordClassification(policy, "b".repeat(64), "nested"), false);
+  assert.equal(recordClassification(policy, pin, "spindle"), true);
+  policy.spindle[0].alias = "a new name";
+  assert.equal(recordClassification(policy, pin, "spindle"), true);
+  assert.equal(recordClassification(policy, "b".repeat(64), "spindle"), null);
+  for (const forbidden of ["nested", "radii"]) {
+    assert.throws(() => validateLibraryClassifications({ ...policy, [forbidden]: [] }), /source-derived/);
+  }
+  assert.throws(() => validateLibraryClassifications({ ...policy, schema: "borg-library-classifications.v2" }), /authority or revision/);
+  policy.spindle[0].value = false;
+  validateLibraryClassifications(policy);
   assert.equal(recordClassification(policy, pin, "spindle"), false);
-  policy.nested.push({ recordSha256: pin });
+  policy.spindle[0].value = "false";
+  assert.throws(() => validateLibraryClassifications(policy), /boolean/);
+  delete policy.spindle[0].value;
+  assert.throws(() => validateLibraryClassifications(policy), /boolean/);
+  policy.spindle[0].value = false;
+  policy.spindle.push({ recordSha256: pin, value: true });
   assert.throws(() => validateLibraryClassifications(policy), /duplicate/);
 });
 
@@ -252,18 +287,19 @@ test("editing classification data refreshes cached facets and invalidates old pa
   const directory = await mkdtemp(join(tmpdir(), "borg-classifications-test-"));
   try {
     const classificationFile = join(directory, "classifications.json");
-    const source = await readFile(new URL("../reference/priorities/app-borg/library-classifications.v1.json", import.meta.url), "utf8");
+    const source = await readFile(new URL("../reference/priorities/app-borg/library-classifications.v3.json", import.meta.url), "utf8");
     await writeFile(classificationFile, source);
     const service = createBorgLibraryService({ repoRoot, classificationFile });
     const first = (await request(service, "/api/borg/library")).body;
     const policy = JSON.parse(source);
     policy.revision = "independent-test-reclassification";
-    policy.nested = [];
+    policy.spindle = [];
     await writeFile(classificationFile, JSON.stringify(policy));
     assert.equal((await request(service, `/api/borg/library?cursor=${first.nextCursor}`)).status, 400);
     const refreshed = (await request(service, "/api/borg/library")).body;
-    assert.equal(refreshed.counts.nested.unavailable, 24);
-    assert.equal((await request(service, "/api/borg/library?nested=yes")).body.total, 0);
+    assert.equal(refreshed.counts.shape.spindle, undefined);
+    assert.deepEqual(refreshed.counts.radii, first.counts.radii);
+    assert.equal((await request(service, "/api/borg/library?shape=spindle")).body.total, 0);
     assert.deepEqual(refreshed.results.map((r) => r.recordSha256), first.results.map((r) => r.recordSha256));
     assert.notEqual(refreshed.results[0].classificationSha256, first.results[0].classificationSha256);
     assert.equal(refreshed.results[0].classificationRevision, policy.revision);

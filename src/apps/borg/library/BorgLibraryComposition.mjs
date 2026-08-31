@@ -21,12 +21,14 @@ export function describeBraidComposition(coordinates) {
 }
 
 export function validateLibraryClassifications(value) {
-  if (value?.schema !== "borg-library-classifications.v1" || value.authority !== "operator" || typeof value.revision !== "string" || !value.revision || typeof value.source !== "string" || !value.source) throw new TypeError("Invalid library classification authority or revision.");
-  for (const facet of ["nested", "spindle"]) {
+  if (value?.schema !== "borg-library-classifications.v3" || value.authority !== "operator" || typeof value.revision !== "string" || !value.revision || typeof value.source !== "string" || !value.source) throw new TypeError("Invalid library classification authority or revision.");
+  if ("nested" in value || "radii" in value) throw new TypeError("Radius equality is source-derived; retired nesting assignments cannot override it.");
+  for (const facet of ["spindle"]) {
     if (!Array.isArray(value[facet])) throw new TypeError(`Missing ${facet} classification rows.`);
     const hashes = new Set();
     for (const row of value[facet]) {
-      if (!/^[a-f0-9]{64}$/.test(row.recordSha256) || hashes.has(row.recordSha256)) throw new TypeError(`Invalid or duplicate ${facet} record pin.`);
+      if (!/^[a-f0-9]{64}$/.test(row?.recordSha256) || hashes.has(row.recordSha256)) throw new TypeError(`Invalid or duplicate ${facet} record pin.`);
+      if (typeof row.value !== "boolean") throw new TypeError(`Missing boolean ${facet} classification value.`);
       hashes.add(row.recordSha256);
     }
   }
@@ -34,5 +36,5 @@ export function validateLibraryClassifications(value) {
 }
 
 export function recordClassification(classifications, recordSha256, facet) {
-  return classifications?.[facet]?.some((row) => row.recordSha256 === recordSha256) ?? false;
+  return classifications?.[facet]?.find((row) => row.recordSha256 === recordSha256)?.value ?? null;
 }

@@ -23,7 +23,7 @@ function canvasFixture() {
 
 const preview = { bounds: { center: [0, 0, 0], radius: 1 }, recordSha256: "test-only", start: 0, end: 1, sampleCount: 5,
   paths: [
-    { polarity: 1, trailDuration: .375, points: [[-1, 0, 0], [-.5, 0, 0], [0, 0, 0], [.5, 0, 0], [1, 0, 0]] },
+    { polarity: 1, trailFade: true, trailDuration: .375, points: [[-1, 0, 0], [-.5, 0, 0], [0, 0, 0], [.5, 0, 0], [1, 0, 0]] },
     { polarity: -1, trailDuration: 0, points: [[0, -1, 0], [0, -.5, 0], [0, 0, 0], [0, .5, 0], [0, 1, 0]] },
   ] };
 
