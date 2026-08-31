@@ -26,6 +26,8 @@ PORT=5174 node scripts/dev/start-local-dev.mjs
 
 There is no `npm install` step for ordinary local serving. The root app is served from `index.html`, `app.js`, `style.css`, `vendor/`, `content/`, `src/`, and the standalone HTML entrypoints in the repo root.
 
+The local server prepares ignored Borg playback records, the equation registry, and the full-corpus source index before listening. These outputs are built from tracked sources; a fresh clone does not contain them. For a separate static server or direct focused tests, run `node scripts/prepare-runtime-assets.mjs --write` once first. `npm test` includes this setup automatically. Repeating setup leaves unchanged output files untouched.
+
 ## Web App
 
 The default web app is the Architrino Assembly Architecture scene navigator. Its root scene is:
@@ -187,7 +189,11 @@ VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" <script>
 
 ## Deployment
 
-The public site is deployed through GitHub Pages with `CNAME` set for `architrino.com`. The deployed site should be treated as a generated-content consumer: update authored markdown and scenes first, refresh generated outputs when required, then verify the manifest and integrity checks before publishing.
+The public site uses the GitHub Pages workflow in `.github/workflows/pages.yml`, with `CNAME` retaining the custom domain. Pages must use **GitHub Actions** as its publishing source, not direct deployment from the `main` branch. Before merging the runtime-storage migration, switch that repository setting; the previously published site remains available while the new workflow waits to reach `main`.
+
+The workflow validates source, prepares ignored runtime assets, builds an isolated site directory, and publishes that directory without committing generated payloads. Deployment runs only on `main`; PRs validate but do not publish. The transient Pages upload is retained for one day. Local equivalent: `node scripts/build-static-site.mjs --out .tmp/site` (the destination must be empty). The builder copies only tracked non-hidden files and declared generated runtime outputs; it never copies `.git`, ignored local runs, or unrelated files from the checkout.
+
+Source history remains in Git. Easily regenerated runtime payloads do not. See [Machine Artifact Retention](reference/op/machine-artifact-retention.md) for the storage budget, setup contract, retained exceptions, and historical-cleanup boundary.
 
 ## Commit And Push Checks
 

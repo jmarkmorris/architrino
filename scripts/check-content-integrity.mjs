@@ -9,6 +9,10 @@ const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 
 const CHECKS = [
   {
+    name: "Prepare ignored runtime assets from canonical sources",
+    args: ["scripts/prepare-runtime-assets.mjs", "--write"],
+  },
+  {
     name: "Validate content indexes and references",
     args: ["scripts/validate-content.mjs", "--check", "--strict"],
   },
@@ -39,6 +43,10 @@ const CHECKS = [
   {
     name: "Validate large machine-artifact retention",
     args: ["scripts/validate-machine-artifact-retention.mjs"],
+  },
+  {
+    name: "Test generated runtime storage and deployment contracts",
+    args: ["--test", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js"],
   },
   {
     name: "Check current Master Equation terminology",

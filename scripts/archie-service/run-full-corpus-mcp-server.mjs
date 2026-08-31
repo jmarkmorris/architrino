@@ -3,6 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
+import { prepareRuntimeAssets } from "../prepare-runtime-assets.mjs";
 import { fileURLToPath } from "node:url";
 import {
   createMcpSession,
@@ -20,6 +21,7 @@ const snapshotPath = path.join(rootDir, FULL_CORPUS_SNAPSHOT_PATH);
 
 let snapshot;
 try {
+  prepareRuntimeAssets({ rootDir, familyId: "full-corpus-index", log: () => {} });
   snapshot = JSON.parse(fs.readFileSync(snapshotPath, "utf8"));
 } catch (error) {
   process.stderr.write(`Architrino full-corpus MCP startup failed: ${error.message}\n`);

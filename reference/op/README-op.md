@@ -34,6 +34,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Keep iOS textbook packaging on demand rather than requiring it for each PR; preserve the app/exporter and defer App Store release until theory closure and an explicit operator release decision.
 - [ ] Keep the children's-book pilot as preserved sources plus verified on-demand local exports, without adding generated books to routine PRs or the website.
 - [ ] Keep the local push gate and GitHub Content Integrity gate aligned before treating a push as clean.
+- [ ] Keep easily regenerated runtime payloads out of Git; verify fresh-clone setup and Pages builds, and audit aggregate machine-output growth before merging.
 - [ ] Keep GitHub PR validation deduplicated and timed so slow Content Integrity subchecks identify their bottleneck.
 - [ ] For broad advancement prompts, let the agent continue into the next safe scoped action rather than stopping at a menu.
 - [x] Treat "continue..." as approval to execute the last safe scoped recommendation or closure goal unless it requires a theory/canon decision, destructive action, or broad scope expansion.

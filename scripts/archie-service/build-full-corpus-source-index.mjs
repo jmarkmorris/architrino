@@ -107,10 +107,12 @@ function validateIndependentBuildInvariants({ input, snapshot }) {
 }
 
 function atomicWriteJson(targetPath, value) {
+  const serialized = `${JSON.stringify(value, null, 2)}\n`;
+  if (fs.existsSync(targetPath) && fs.readFileSync(targetPath, "utf8") === serialized) return;
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   const temporaryPath = `${targetPath}.tmp-${process.pid}`;
   try {
-    fs.writeFileSync(temporaryPath, `${JSON.stringify(value, null, 2)}\n`, { flag: "wx" });
+    fs.writeFileSync(temporaryPath, serialized, { flag: "wx" });
     fs.renameSync(temporaryPath, targetPath);
   } finally {
     if (fs.existsSync(temporaryPath)) fs.unlinkSync(temporaryPath);

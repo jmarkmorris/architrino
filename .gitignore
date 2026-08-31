@@ -7,6 +7,11 @@ tmp/
 .codex/
 node_modules/
 
+# Reproducible runtime payloads: prepared at local startup and in Pages builds.
+/content/assets/borg/records/
+/content/generated/equation-mapping/corpus-equations.json
+/content/generated/source-index/local-full-corpus-snapshot.v1.json
+
 # Children's-book pilot: reproducible local exports and retained migration copies
 /.local-data/childrens-books/
 

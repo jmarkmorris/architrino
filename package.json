@@ -2,6 +2,13 @@
   "name": "architrino",
   "private": true,
   "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev/start-local-dev.mjs",
+    "prepare:runtime": "node scripts/prepare-runtime-assets.mjs --write",
+    "pretest": "node scripts/prepare-runtime-assets.mjs --write",
+    "test": "node --test",
+    "build:site": "node scripts/build-static-site.mjs"
+  },
   "dependencies": {
     "mermaid": "11.16.0"
   }
