@@ -3,6 +3,7 @@ export const LIBRARY_FACETS = Object.freeze({
   braidCount: { label: "Braids in assembly", options: [["1", "1"], ["2", "2"], ["3", "3"]] },
   breathing: { label: "Breathing", options: [["yes", "Breather"], ["no", "Non-breather"]] },
   radii: { label: "Assembly radii", options: [["iso", "Iso-radii"], ["hetero", "Hetero-radii"]] },
+  orbitSharing: { label: "Orbit sharing", options: [["shared", "Shared"], ["dedicated", "Dedicated"], ["mixed", "Mixed"]] },
   dimension: { label: "Dimensions", options: [["boundary", "1D"], ["2d", "2D · planar"], ["3d", "3D · spatial"]] },
   shape: { label: "Shape", options: [["circles", "Circular paths"], ["sphere", "Spherical distribution"], ["spindle", "Spindle envelope"], ["unavailable", "Unclassified"]] },
   speedPolicy: { label: "Speed policy", options: [["uncapped", "Uncapped"], ["capped-cf", "Capped at c_f"]] },

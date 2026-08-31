@@ -72,7 +72,7 @@ test("all catalog scenes and library previews share expected per-worldline spans
   const shared=new Set(["A1.0","A1.1","A1.2","A1.3","A1.4","B1.3","C5","C6"]);
   for(const entry of BORG_BRAID_RECORD_CATALOG.entries) {
     const raw=JSON.parse(readFileSync(entry.recordUrl)),dataset=createEomHistoryDataset(raw),alias=entry.label.split(" —")[0];
-    const expected=shared.has(alias)?"half-turn":alias==="SD3"?"record-window":alias==="F5"?"full-cycle":"full-turn";
+    const expected=alias==="SC-01"?"half-turn":/^(SC-|SS-)/.test(alias)?"shared-arc":shared.has(alias)?"half-turn":alias==="SD3"?"record-window":alias==="F5"?"full-cycle":"full-turn";
     const root=new THREE.Group(),scene=createBorgAssemblyViewScene({group:root,toWorld:(p,v)=>v.set(p.x,p.y,p.z),render(){}});
     scene.setRecord({dataset});scene.setDisplayMode("chart-pose");scene.updateTime(dataset.window.end);
     const group=root.children.find(g=>g.userData.kind==="prescribed-path-history-strands");
@@ -86,7 +86,7 @@ test("all catalog scenes and library previews share expected per-worldline spans
       assert.ok(segments.length>0,alias);assert.equal(segments.at(-1).end,dataset.window.end);
       assert.ok(Math.abs(segments[0].start-Math.max(dataset.window.start,dataset.window.end-trail.duration))<1e-10);
       assert.equal(segments.at(-1).endAlpha,1);
-      if(expected!=="half-turn")assert.ok(segments.every(s=>s.startAlpha===1&&s.endAlpha===1));
+      if(!["half-turn","shared-arc"].includes(expected))assert.ok(segments.every(s=>s.startAlpha===1&&s.endAlpha===1));
     });
     scene.updateTime(dataset.window.start);
     assert.ok(group.children.every(line=>line.geometry.drawRange.count===0));

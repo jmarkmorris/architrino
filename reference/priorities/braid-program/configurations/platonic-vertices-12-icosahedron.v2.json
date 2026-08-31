@@ -1,0 +1,576 @@
+{
+  "schema": "prescribed-assembly-spec.v2",
+  "specId": "platonic-vertices-12-icosahedron-v1",
+  "label": "PV-12 — icosahedron",
+  "provenanceDescription": "PV-12: source-declared prescribed display representative. No EOM evolution, balance evaluation, retention, or stability calculation is performed by this record.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-08-30",
+  "identity": {
+    "candidateId": "PV-12",
+    "displayLabel": "PV-12 — icosahedron",
+    "status": "operator-approved-prescribed-display",
+    "geometryOwner": "reference/priorities/braid-program/shared-sphere-assemblies.md"
+  },
+  "illustrativeCoordinates": {
+    "status": "prescribed-display-coordinates",
+    "choices": [
+      "Algebraic vertex coordinates follow the shared-sphere chapter and its balanced-word enumeration instrument, normalized to circumradius 0.5. One representative coloring assigns the sign of the first nonzero Cartesian coordinate; it is balanced and, except for the tetrahedron, opposite at antipodes.",
+      "All vertices rotate rigidly about (1,2,4)/sqrt(21) at angular rate pi/2. This generic axis is a display choice; the initial vertex set and every pair distance are preserved. This is one colored moving example, not an exhaustive coloring collection or a balanced motion result. No braid component or neutral binary is assigned from polyhedral appearance.",
+      "History spans two source periods with 64 cubic intervals per period. Delay horizon zero denotes display-only coverage, not a supplied causal ledger. The common center is fixed; c_f=1. The schema braid role marks primary assembly members, not an assigned braid identity. Only explicit componentBraids assign composition."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "pv-12-1",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "pv-12-1-path"
+    },
+    {
+      "id": "pv-12-2",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "pv-12-2-path"
+    },
+    {
+      "id": "pv-12-3",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "pv-12-3-path"
+    },
+    {
+      "id": "pv-12-4",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "pv-12-4-path"
+    },
+    {
+      "id": "pv-12-5",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "pv-12-5-path"
+    },
+    {
+      "id": "pv-12-6",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "pv-12-6-path"
+    },
+    {
+      "id": "pv-12-7",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "pv-12-7-path"
+    },
+    {
+      "id": "pv-12-8",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "pv-12-8-path"
+    },
+    {
+      "id": "pv-12-9",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "pv-12-9-path"
+    },
+    {
+      "id": "pv-12-10",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "pv-12-10-path"
+    },
+    {
+      "id": "pv-12-11",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "pv-12-11-path"
+    },
+    {
+      "id": "pv-12-12",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "pv-12-12-path"
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "pv-12-1-path",
+      "constituentId": "pv-12-1",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.10604917756301019,
+          0.21209835512602038,
+          0.42419671025204075
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.10604917756301019,
+          0.05076720093354642,
+          0.0011286939239792404
+        ],
+        "radiusV": [
+          -0.04382064350999495,
+          -0.09281361236306183,
+          0.057361967059029656
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-2-path",
+      "constituentId": "pv-12-2",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.053024588781505094,
+          0.10604917756301019,
+          0.21209835512602038
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.2098409672780617,
+          0.3192762266130098,
+          -0.21209835512602038
+        ],
+        "radiusV": [
+          -0.37125444945224734,
+          0.2294478682361186,
+          -0.021910321754997464
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-3-path",
+      "constituentId": "pv-12-3",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.07032322040068034,
+          0.14064644080136068,
+          0.28129288160272137
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.35500218377533965,
+          -0.14064644080136068,
+          -0.01842732554315457
+        ],
+        "radiusV": [
+          0.1147239341180593,
+          0.3138924823932177,
+          -0.18562722472612367
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-4-path",
+      "constituentId": "pv-12-4",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.05597954783737841,
+          -0.11195909567475681,
+          -0.22391819134951363
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.05597954783737841,
+          0.3748246517343236,
+          -0.20140721282650637
+        ],
+        "radiusV": [
+          -0.4150750929622422,
+          0.09281361236306182,
+          0.05736196705902964
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-5-path",
+      "constituentId": "pv-12-5",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.027989773918689204,
+          -0.05597954783737841,
+          -0.11195909567475681
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.290855329978256,
+          -0.3693458563386416,
+          0.11195909567475681
+        ],
+        "radiusV": [
+          0.37125444945224734,
+          0.22944786823611862,
+          -0.20753754648112116
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-6-path",
+      "constituentId": "pv-12-6",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.029816039050583203,
+          0.05963207810116641,
+          0.11926415620233281
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.4551414432266032,
+          -0.05963207810116641,
+          0.14360139985723397
+        ],
+        "radiusV": [
+          0.11472393411805928,
+          -0.42861641651127697,
+          0.18562722472612367
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-7-path",
+      "constituentId": "pv-12-7",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.05597954783737841,
+          0.11195909567475681,
+          0.22391819134951363
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.05597954783737841,
+          -0.3748246517343236,
+          0.20140721282650637
+        ],
+        "radiusV": [
+          0.4150750929622422,
+          -0.09281361236306182,
+          -0.05736196705902964
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-8-path",
+      "constituentId": "pv-12-8",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.027989773918689204,
+          0.05597954783737841,
+          0.11195909567475681
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.290855329978256,
+          0.3693458563386416,
+          -0.11195909567475681
+        ],
+        "radiusV": [
+          -0.37125444945224734,
+          -0.22944786823611862,
+          0.20753754648112116
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-9-path",
+      "constituentId": "pv-12-9",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.029816039050583203,
+          -0.05963207810116641,
+          -0.11926415620233281
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.4551414432266032,
+          0.05963207810116641,
+          -0.14360139985723397
+        ],
+        "radiusV": [
+          -0.11472393411805928,
+          0.42861641651127697,
+          -0.18562722472612367
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-10-path",
+      "constituentId": "pv-12-10",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.10604917756301019,
+          -0.21209835512602038,
+          -0.42419671025204075
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.10604917756301019,
+          -0.05076720093354642,
+          -0.0011286939239792404
+        ],
+        "radiusV": [
+          0.04382064350999495,
+          0.09281361236306183,
+          -0.057361967059029656
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-11-path",
+      "constituentId": "pv-12-11",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.053024588781505094,
+          -0.10604917756301019,
+          -0.21209835512602038
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.2098409672780617,
+          -0.3192762266130098,
+          0.21209835512602038
+        ],
+        "radiusV": [
+          0.37125444945224734,
+          -0.2294478682361186,
+          0.021910321754997464
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "pv-12-12-path",
+      "constituentId": "pv-12-12",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.07032322040068034,
+          -0.14064644080136068,
+          -0.28129288160272137
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.35500218377533965,
+          0.14064644080136068,
+          0.01842732554315457
+        ],
+        "radiusV": [
+          -0.1147239341180593,
+          -0.3138924823932177,
+          0.18562722472612367
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [],
+    "platonicVertices": {
+      "solid": "icosahedron",
+      "circumradius": 0.5,
+      "rotationAxis": [
+        0.2182178902359924,
+        0.4364357804719848,
+        0.8728715609439696
+      ],
+      "angularRate": 1.5707963267948966,
+      "polarityRule": "sign of first nonzero Cartesian vertex coordinate"
+    }
+  },
+  "relationships": {
+    "sourceOrder": [
+      "pv-12-1",
+      "pv-12-2",
+      "pv-12-3",
+      "pv-12-4",
+      "pv-12-5",
+      "pv-12-6",
+      "pv-12-7",
+      "pv-12-8",
+      "pv-12-9",
+      "pv-12-10",
+      "pv-12-11",
+      "pv-12-12"
+    ],
+    "neutralPairs": [],
+    "componentBraids": [],
+    "polaritySectors": [
+      {
+        "id": "pv-12-positive",
+        "polarity": 1,
+        "members": [
+          "pv-12-1",
+          "pv-12-2",
+          "pv-12-3",
+          "pv-12-4",
+          "pv-12-5",
+          "pv-12-9"
+        ]
+      },
+      {
+        "id": "pv-12-negative",
+        "polarity": -1,
+        "members": [
+          "pv-12-6",
+          "pv-12-7",
+          "pv-12-8",
+          "pv-12-10",
+          "pv-12-11",
+          "pv-12-12"
+        ]
+      }
+    ]
+  },
+  "history": {
+    "start": 0,
+    "end": 8,
+    "delayHorizon": 0,
+    "periodic": true,
+    "returnPeriod": 4
+  },
+  "constraints": {
+    "validators": [],
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "report-only",
+      "observedBound": 0.7591157030279319
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 0.575,
+    "trailPeriods": 1,
+    "ansatzSampleCount": 128
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.0625,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  }
+}

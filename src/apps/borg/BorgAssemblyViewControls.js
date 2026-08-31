@@ -81,7 +81,7 @@ export function createBorgAssemblyViewControls({
     dom.cameraMode.value = "free";
     const trail = resolveBorgAssemblyViewTrail(entry);
     const missingTrails = [...describeBorgOrbitTrails(entry.dataset).values()].filter(row => row.mode === "unavailable").length;
-    dom.trailSummary.textContent = `Red/blue trails: shared binary orbit = half-turn each; dedicated orbit = full turn or source cycle. Retained history limit: ${format(trail.duration)} T.${missingTrails ? ` ${missingTrails} trails unavailable: missing orbit ownership or phase information.` : ""}`;
+    dom.trailSummary.textContent = `Red/blue trails: shared binary orbit = half-turn each; co-rotating ring = arc to preceding member; dedicated orbit = full turn or source cycle. Retained history limit: ${format(trail.duration)} T.${missingTrails ? ` ${missingTrails} trails unavailable: missing orbit ownership or phase information.` : ""}`;
     dom.cameraMode.querySelector?.('option[value="co-rotating"]')?.toggleAttribute?.(
       "disabled",
       !borgCoRotatingCameraAvailable(hasCoRotatingCarrier),

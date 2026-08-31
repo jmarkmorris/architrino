@@ -46,6 +46,7 @@ test("linear preview follows the analytic history; observed speed does not decla
   assert.equal(described.summary.bounds.radius, 1);
   assert.equal(described.summary.facets.speedPolicy, "unavailable");
   assert.equal(described.summary.facets.radii, "unavailable");
+  assert.equal(described.summary.facets.orbitSharing, "unavailable");
   assert.equal(described.summary.facets.breathing, "unavailable");
   assert.deepEqual(createLibraryPreview(described, 5).paths[0].points, [[0, 0, 0], [.5, 0, 0], [1, 0, 0], [1.5, 0, 0], [2, 0, 0]]);
   record.provenance.prescribedGeometry.coordinates = { speedPolicy: { mode: "capped-cf" } };
@@ -96,26 +97,54 @@ test("record facets are filtered before grouping; group identity is not represen
   assert.throws(() => queryLibraryRows(rows, new URLSearchParams("groupBy=bogus")), /Unsupported/);
 });
 
+test("orbit-sharing queries preserve mixed, missing, counts, grouping and saved record pins", () => {
+  const fixture = ["shared", "dedicated", "mixed", "unavailable"].map((orbitSharing, i) => ({
+    id: String(i), facets: { orbitSharing, radii: "iso", count: "6" },
+  }));
+  assert.deepEqual(queryLibraryRows(fixture, new URLSearchParams("orbitSharing=mixed")).results.map((r) => r.id), ["2"]);
+  const query = new URLSearchParams("orbitSharing=shared&orbitSharing=mixed&radii=iso");
+  assert.deepEqual(queryLibraryRows(fixture, query).results.map((r) => r.id), ["0", "2"]);
+  assert.deepEqual(queryLibraryRows(fixture, query).counts.orbitSharing, { shared: 1, dedicated: 1, mixed: 1, unavailable: 1 });
+  query.set("groupBy", "count");
+  assert.equal(queryLibraryRows(fixture, query).results[0].memberCount, 2);
+  query.set("selected", "exact-record"); query.set("sha256", "exact-pin"); query.set("cursor", "current");
+  assert.equal(normalizeLibraryBrowseParams(query).toString(), query.toString());
+  query.set("orbitSharing", "unavailable");
+  const normalized = normalizeLibraryBrowseParams(query);
+  assert.equal(normalized.has("orbitSharing"), false);
+  assert.equal(normalized.has("cursor"), false);
+  assert.equal(normalized.get("selected"), "exact-record");
+  assert.equal(normalized.get("sha256"), "exact-pin");
+});
+
 async function request(service, path, method = "GET") {
   let status, body;
   const handled = await service({ url: path, method }, { writeHead(value) { status = value; }, end(value) { body = JSON.parse(value); } });
   return { handled, status, body };
 }
 
-test("seed provider covers all 24 records, paginates deterministically, and verifies exact bytes", async () => {
+test("seed provider covers all 43 records, paginates deterministically, and verifies exact bytes", async () => {
   const service = createBorgLibraryService({ repoRoot });
   const first = await request(service, "/api/borg/library");
   assert.equal(first.status, 200);
-  assert.equal(first.body.total, 24);
+  assert.equal(first.body.total, 43);
   assert.deepEqual(first.body.failures, []);
   assert.equal(first.body.results.length, 12);
-  assert.equal(first.body.counts.speedPolicy.unavailable, 24);
-  assert.deepEqual(first.body.counts.radii, { hetero: 20, iso: 4 });
+  assert.equal(first.body.counts.speedPolicy.unavailable, 43);
+  assert.deepEqual(first.body.counts.radii, { hetero: 20, iso: 23 });
+  assert.deepEqual(first.body.counts.orbitSharing, { shared: 22, dedicated: 20, unavailable: 1 });
   assert.equal(first.body.counts.nested, undefined);
-  assert.deepEqual(first.body.counts.braidCount, { 1: 18, 2: 6 });
+  assert.deepEqual(first.body.counts.braidCount, { 1: 19, 2: 8, unavailable: 16 });
   const second = await request(service, `/api/borg/library?cursor=${first.body.nextCursor}`);
   assert.equal(second.body.offset, 12);
   const all = [...first.body.results, ...second.body.results];
+  let cursor = second.body.nextCursor;
+  while (cursor) {
+    const page = await request(service, `/api/borg/library?cursor=${cursor}`);
+    assert.equal(page.status, 200);
+    all.push(...page.body.results);
+    cursor = page.body.nextCursor;
+  }
   assert.deepEqual(all.map((r) => r.id), BORG_BRAID_RECORD_CATALOG.entries.map((e) => e.id));
   const previous = await request(service, `/api/borg/library?cursor=${second.body.previousCursor}`);
   assert.deepEqual(previous.body.results, first.body.results);
@@ -135,7 +164,7 @@ test("seed provider covers all 24 records, paginates deterministically, and veri
     }
   }
   assert.equal((await request(service, "/api/borg/library?speedPolicy=capped-cf")).body.total, 0);
-  assert.equal((await request(service, "/api/borg/library?dimension=2d")).body.total, 1);
+  assert.equal((await request(service, "/api/borg/library?dimension=2d")).body.total, 13);
   assert.equal((await request(service, "/api/borg/library?breathing=yes")).body.total, 1);
   assert.equal((await request(service, "/api/borg/library/preview?id=missing")).status, 404);
   assert.equal((await request(service, `/api/borg/library/preview?id=${all[0].id}&sha256=wrong`)).status, 409);
@@ -200,16 +229,23 @@ test("source-derived assembly radii and operator spindle sets cover the exact ca
   // Expectations follow the independently derived centered norms in the audit:
   // orthogonal circle offsets give h²+rho², F5 has two such radii, and F6c
   // has unequal positive/negative breathing sectors away from T=0.
-  assert.deepEqual(await aliases("radii=iso"), ["A1.2", "A2.0", "A3.2", "F6b"]);
+  assert.deepEqual(await aliases("radii=iso"), ["A1.2","A2.0","A3.2","F6b","SC-01","SC-02","SC-03","SC-04","SC-05","SC-06","SC-07","SC-08","SC-09","SC-10","SC-11","SC-12","SS-C5","SS-C6","PV-04","PV-06","PV-08","PV-12","PV-20"]);
+  assert.deepEqual(await aliases("orbitSharing=shared"), ["A1.0","A1.1","A1.2","A1.3","A1.4","B1.3","C5","C6","SC-01","SC-02","SC-03","SC-04","SC-05","SC-06","SC-07","SC-08","SC-09","SC-10","SC-11","SC-12","SS-C5","SS-C6"]);
+  assert.deepEqual(await aliases("orbitSharing=dedicated"), ["A2.0","A3.0","A3.1","A3.2","A3.3","A3.4","B1.1","B1.2","C1","C2","C3","C4","F5","F6c","F6b","PV-04","PV-06","PV-08","PV-12","PV-20"]);
+  assert.deepEqual(await aliases("orbitSharing=mixed"), []);
+  assert.deepEqual(await aliases("orbitSharing=unavailable"), ["SD3"]);
+  assert.deepEqual(await aliases("radii=iso&orbitSharing=shared"), ["A1.2","SC-01","SC-02","SC-03","SC-04","SC-05","SC-06","SC-07","SC-08","SC-09","SC-10","SC-11","SC-12","SS-C5","SS-C6"]);
+  assert.deepEqual(await aliases("radii=iso&orbitSharing=dedicated"), ["A2.0","A3.2","F6b","PV-04","PV-06","PV-08","PV-12","PV-20"]);
+  assert.deepEqual(await aliases("braidCount=2&orbitSharing=shared"), ["C5","C6","SS-C5","SS-C6"]);
   assert.deepEqual(await aliases("radii=hetero"), ["A1.0", "A1.1", "A1.3", "A1.4", "A3.0", "A3.1", "A3.3", "A3.4", "B1.1", "B1.2", "B1.3", "C1", "C2", "C3", "C4", "C5", "C6", "SD3", "F5", "F6c"]);
   assert.deepEqual(await aliases("braidCount=2&radii=hetero"), ["C1", "C2", "C3", "C4", "C5", "C6"]);
-  assert.deepEqual(await aliases("braidCount=2&radii=iso"), []);
+  assert.deepEqual(await aliases("braidCount=2&radii=iso"), ["SS-C5","SS-C6"]);
   assert.deepEqual(await aliases("shape=spindle"), ["B1.1", "B1.2", "C1", "C2", "C3", "C4"]);
-  assert.deepEqual(await aliases("braidCount=2"), ["C1", "C2", "C3", "C4", "C5", "C6"]);
+  assert.deepEqual(await aliases("braidCount=2"), ["C1","C2","C3","C4","C5","C6","SS-C5","SS-C6"]);
   assert.deepEqual(await aliases("braidCount=2&shape=spindle"), ["C1", "C2", "C3", "C4"]);
   assert.deepEqual(await aliases("braidCount=3"), []);
   const groups = (await request(service, "/api/borg/library?groupBy=braidCount")).body.results;
-  assert.deepEqual(groups.map((g) => [g.id, g.memberCount]), [["group:braidCount:1", 18], ["group:braidCount:2", 6]]);
+  assert.deepEqual(groups.map((g) => [g.id, g.memberCount]), [["group:braidCount:1", 19], ["group:braidCount:2", 8], ["group:braidCount:unavailable", 16]]);
   const spindle = (await request(service, "/api/borg/library?shape=spindle")).body.results[0];
   assert.deepEqual(spindle.facets.shape, ["circles", "spindle"]);
   assert.equal(spindle.facets.radii, "hetero");
@@ -238,6 +274,7 @@ test("braid count follows complete source memberships, including three braids, n
 });
 
 test("selector menus hide unavailable values, keep unclassified shape, and label the low-dimensional bucket 1D", () => {
+  assert.deepEqual(LIBRARY_FACETS.orbitSharing.options, [["shared", "Shared"], ["dedicated", "Dedicated"], ["mixed", "Mixed"]]);
   for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
     assert.equal(definition.options.some(([value]) => value === "unavailable"), key === "shape");
   }

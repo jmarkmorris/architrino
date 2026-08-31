@@ -1,41 +1,61 @@
 # Borg Selector Assignment Audit
 
-Snapshot: 2026-08-30. Scope: all twenty-four prescribed representatives currently in [the Borg catalog](../../../src/apps/borg/BorgBraidRecordCatalog.js): twenty A/B/C records plus SD3, F5, F6c, and F6b. These are concrete records, not family headings or every parameter value admitted by the taxonomy. A1.0, A2.0, and A3.0 identify concrete examples, not their parameterized geometry classes; B1 has no additional standalone record beyond B1.1–B1.3. Catalog coverage does not imply that every assembly discussed elsewhere has a display record.
+Snapshot: 2026-08-30. Scope: all forty-three prescribed representatives currently in [the Borg catalog](../../../src/apps/borg/BorgBraidRecordCatalog.js): twenty A/B/C records plus SD3, F5, F6c, F6b, twelve SC rings, two SS two-ring examples, and five PV solids. These are concrete records, not family headings or every parameter value admitted by the taxonomy. A1.0, A2.0, and A3.0 identify concrete examples, not their parameterized geometry classes; B1 has no additional standalone record beyond B1.1–B1.3. Catalog coverage does not imply that every assembly discussed elsewhere has a display record.
 
-The table covers six geometry and composition dimensions. Speed policy is excluded because it is a constraint that can be applied to any geometry, not an intrinsic geometry classification. This audit change does not alter the live speed-policy selector or source records.
+The table covers seven geometry and composition dimensions. Speed policy is excluded because it is a constraint that can be applied to any geometry, not an intrinsic geometry classification. This audit change does not alter the live speed-policy selector or source records.
 
-The table reports actual assignments from [the descriptor](../../../src/apps/borg/library/BorgLibraryDescriptors.mjs), [source-radius comparison](../../../src/apps/borg/library/BorgLibraryRadii.mjs), and [operator spindle classifications](library-classifications.v3.json). `—` means no assignment, not false; shape uses `Unclassified` for the same missing state. Radius equality is derived about the declared center of the whole assembly, not assigned by alias or inherited from retired nesting labels.
+The table reports actual assignments from [the descriptor](../../../src/apps/borg/library/BorgLibraryDescriptors.mjs), [source-orbit comparison](../../../src/apps/borg/BorgOrbitGeometry.mjs), [source-radius comparison](../../../src/apps/borg/library/BorgLibraryRadii.mjs), and [operator spindle classifications](library-classifications.v3.json). `—` means no assignment, not false; shape uses `Unclassified` for the same missing state. Radius equality is derived about the declared center of the whole assembly, not assigned by alias or inherited from retired nesting labels.
 
 ## Current Assignments
 
-| Geometry | Architrinos | Braids | Breathing | Assembly radii | Dimensions | Shape |
-| --- | ---: | ---: | --- | --- | --- | --- |
-| A1.0 — coincident endpoint orbits | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths |
-| A1.1 — equal frequency | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths |
-| A1.2 — equal frequency, equal radius | 6 | 1 | Non-breather | Iso-radii | 3D | Circular paths |
-| A1.3 — 4:2:1 frequency | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths |
-| A1.4 — 3:2:1 frequency | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths |
-| A2.0 — fully symmetric | 6 | 1 | Non-breather | Iso-radii | 3D | Circular paths |
-| A3.0 — general | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths |
-| A3.1 — equal frequency | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths |
-| A3.2 — equal frequency, equal radius | 6 | 1 | Non-breather | Iso-radii | 3D | Circular paths |
-| A3.3 — 4:2:1 frequency | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths |
-| A3.4 — 3:2:1 frequency | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths |
-| B1.1 — interior reference | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths; spindle |
-| B1.2 — high-axial interior | 6 | 1 | Non-breather | Hetero-radii | 3D | Circular paths; spindle |
-| B1.3 — all-equatorial boundary | 6 | 1 | Non-breather | Hetero-radii | 2D | Circular paths |
-| C1 — co-rotating | 12 | 2 | Non-breather | Hetero-radii | 3D | Circular paths; spindle |
-| C2 — counter-rotating | 12 | 2 | Non-breather | Hetero-radii | 3D | Circular paths; spindle |
-| C3 — co-rotating B1 pair | 12 | 2 | Non-breather | Hetero-radii | 3D | Circular paths; spindle |
-| C4 — counter-rotating B1 pair | 12 | 2 | Non-breather | Hetero-radii | 3D | Circular paths; spindle |
-| C5 — co-rotating B1.3 pair | 12 | 2 | Non-breather | Hetero-radii | 3D | Circular paths |
-| C6 — counter-rotating B1.3 pair | 12 | 2 | Non-breather | Hetero-radii | 3D | Circular paths |
-| SD3 — centered five-coordinate representative | 6 | 1 | — | Hetero-radii | 3D | Unclassified |
-| F5 — phase-varying prescribed display representative | 12 | 1 | — | Hetero-radii | 3D | Unclassified |
-| F6c — small asymmetric counter-breathing representative | 8 | 1 | Breather | Hetero-radii | 3D | Unclassified |
-| F6b — scoped-negative circular realization | 8 | 1 | Non-breather | Iso-radii | 3D | Circular paths |
+| Geometry | Architrinos | Braids | Breathing | Assembly radii | Orbit sharing | Dimensions | Shape |
+| --- | ---: | ---: | --- | --- | --- | --- | --- |
+| A1.0 — coincident endpoint orbits | 6 | 1 | Non-breather | Hetero-radii | Shared | 3D | Circular paths |
+| A1.1 — equal frequency | 6 | 1 | Non-breather | Hetero-radii | Shared | 3D | Circular paths |
+| A1.2 — equal frequency, equal radius | 6 | 1 | Non-breather | Iso-radii | Shared | 3D | Circular paths |
+| A1.3 — 4:2:1 frequency | 6 | 1 | Non-breather | Hetero-radii | Shared | 3D | Circular paths |
+| A1.4 — 3:2:1 frequency | 6 | 1 | Non-breather | Hetero-radii | Shared | 3D | Circular paths |
+| A2.0 — fully symmetric | 6 | 1 | Non-breather | Iso-radii | Dedicated | 3D | Circular paths |
+| A3.0 — general | 6 | 1 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths |
+| A3.1 — equal frequency | 6 | 1 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths |
+| A3.2 — equal frequency, equal radius | 6 | 1 | Non-breather | Iso-radii | Dedicated | 3D | Circular paths |
+| A3.3 — 4:2:1 frequency | 6 | 1 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths |
+| A3.4 — 3:2:1 frequency | 6 | 1 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths |
+| B1.1 — interior reference | 6 | 1 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths; spindle |
+| B1.2 — high-axial interior | 6 | 1 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths; spindle |
+| B1.3 — all-equatorial boundary | 6 | 1 | Non-breather | Hetero-radii | Shared | 2D | Circular paths |
+| C1 — co-rotating | 12 | 2 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths; spindle |
+| C2 — counter-rotating | 12 | 2 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths; spindle |
+| C3 — co-rotating B1 pair | 12 | 2 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths; spindle |
+| C4 — counter-rotating B1 pair | 12 | 2 | Non-breather | Hetero-radii | Dedicated | 3D | Circular paths; spindle |
+| C5 — co-rotating B1.3 pair | 12 | 2 | Non-breather | Hetero-radii | Shared | 3D | Circular paths |
+| C6 — counter-rotating B1.3 pair | 12 | 2 | Non-breather | Hetero-radii | Shared | 3D | Circular paths |
+| SD3 — centered five-coordinate representative | 6 | 1 | — | Hetero-radii | — | 3D | Unclassified |
+| F5 — phase-varying prescribed display representative | 12 | 1 | — | Hetero-radii | Dedicated | 3D | Unclassified |
+| F6c — small asymmetric counter-breathing representative | 8 | 1 | Breather | Hetero-radii | Dedicated | 3D | Unclassified |
+| F6b — scoped-negative circular realization | 8 | 1 | Non-breather | Iso-radii | Dedicated | 3D | Circular paths |
 
-Plainly: all twenty-four representatives have assigned inventory, braid count, and dimensions. All twenty-four also have an assembly-radius assignment. Two breathing cells and three shape cells are unassigned. A circular-path tag does not rule out an additional spherical or spindle tag.
+| SC-01 — 1:1 alternating ring | 2 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-02 — 2:2 alternating ring | 4 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-03 — 3:3 alternating ring | 6 | 1 | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-04 — 4:4 alternating ring | 8 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-05 — 5:5 alternating ring | 10 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-06 — 6:6 alternating ring | 12 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-07 — 7:7 alternating ring | 14 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-08 — 8:8 alternating ring | 16 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-09 — 9:9 alternating ring | 18 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-10 — 10:10 alternating ring | 20 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-11 — 11:11 alternating ring | 22 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SC-12 — 12:12 alternating ring | 24 | — | Non-breather | Iso-radii | Shared | 2D | Circular paths |
+| SS-C5 — two rings, co-rotating | 12 | 2 | Non-breather | Iso-radii | Shared | 3D | Circular paths |
+| SS-C6 — two rings, counter-rotating | 12 | 2 | Non-breather | Iso-radii | Shared | 3D | Circular paths |
+| PV-04 — tetrahedron | 4 | — | Non-breather | Iso-radii | Dedicated | 3D | Circular paths |
+| PV-06 — octahedron | 6 | — | Non-breather | Iso-radii | Dedicated | 3D | Circular paths |
+| PV-08 — cube | 8 | — | Non-breather | Iso-radii | Dedicated | 3D | Circular paths |
+| PV-12 — icosahedron | 12 | — | Non-breather | Iso-radii | Dedicated | 3D | Circular paths |
+| PV-20 — dodecahedron | 20 | — | Non-breather | Iso-radii | Dedicated | 3D | Circular paths |
+
+Plainly: all forty-three representatives have assigned inventory and dimensions. Nineteen have one declared braid group, eight have two, and sixteen have no assigned braid count. All forty-three also have an assembly-radius assignment. Orbit sharing assigns twenty-two Shared and twenty Dedicated records; SD3 is non-orbital and has no applicable assignment. Mixed is offered but has no current match. Two breathing cells and three shape cells remain unassigned. A circular-path tag does not rule out an additional spherical or spindle tag.
 
 Counts are read from source inventory and component memberships. The accepted browse count is two for all C records, including C1/C2's source index subsets; it does not assert two independently bound top-level braids. Dimensionality is the affine span of complete recorded paths, not the dimension of a single instantaneous snapshot. C5/C6 are spatial assemblies of separated planar components, so they are 3D even though each B1.3 component is planar. Breathing and circular-path assignments consume the declared fixed-center circular prescriptions. Radius assignments are derived source-formula browse properties; spindle positives are operator assignments. Neither is a physical acceptance result.
 
@@ -43,10 +63,12 @@ The added records use the same descriptor, with no name-based exceptions. F6c's 
 
 Plainly: the table describes each exact recorded example. Particle count alone does not determine braid count, and inclusion in the catalog does not establish that an assembly works physically.
 
+The [SC/SS/PV source inventory](../braid-program/shared-geometry-display-catalog.md) declares each new example. SC-03 has the B1.3 geometry; the other rings and Platonic shapes do not acquire braid membership from their member counts. SS-C5 and SS-C6 have two explicit six-member components. Each PV record is one chosen coloring and rigid rotation, not an exhaustive class inventory.
+
 ## Which Gaps Are Derivable?
 
-- **Assembly radii resolved:** Iso-radii applies to A1.2, A2.0, A3.2, and F6b; all twenty other current records are Hetero-radii. Compare every architrino about the whole-assembly center at equal times, including all components of a two-braid assembly. B1.1/B1.2 are Hetero-radii under the clarified definition. Prior not-nested assignments do not imply equal assembly-centered radii.
-- **Missing spherical tag despite common-radius geometry:** A1.2, A2.0, A3.2 and F6b have common-surface source geometry. The spherical shape assignment remains absent because its meaning has not yet been frozen; this radius migration does not add shape tags.
+- **Assembly radii resolved:** Iso-radii applies to A1.2, A2.0, A3.2, F6b, and all nineteen SC/SS/PV examples; the twenty remaining records are Hetero-radii. Compare every architrino about the whole-assembly center at equal times, including all components of a two-braid assembly. B1.1/B1.2 are Hetero-radii under the clarified definition. Prior not-nested assignments do not imply equal assembly-centered radii.
+- **Missing spherical tag despite common-radius geometry:** A1.2, A2.0, A3.2, F6b, and the new SS/PV records have nonplanar common-surface source geometry. The SC records are planar shared circles. The spherical shape assignment remains absent because its meaning has not yet been frozen; this radius migration does not add shape tags.
 - **Additional unassigned properties:** SD3 and F5 have no breathing assignment because the current descriptor does not classify their linear and phase-varying prescriptions. SD3, F5, and F6c have no shape assignment. These are classification gaps, not negative results.
 
 Plainly: missing assignment does not always mean missing knowledge. Some gaps need a definition, and some need an implementation.
@@ -86,6 +108,16 @@ The [F6c source](../braid-program/configurations/f6c-polarity-resolved-harmonic.
 Plainly: F5 repeats a pair of different radii, and F6c's polarity sectors breathe differently. Neither has one common radius for all its architrinos throughout the record.
 
 The [radius contract](requirements-and-design.md#catalog-composition-classifications) derives circular, linear, F5, and F6c squared-radius formulas. The descriptor compares complete coefficient bounds for Iso-radii and supplies a time/radius witness for Hetero-radii. Its $10^{-12}$ scaled squared-radius tolerance is a numerical browse threshold, not a rigorous floating-point enclosure or physical precision claim. Unsupported paths or inconclusive comparisons remain unassigned; finite sampled agreement alone never establishes Iso-radii. Falsifier: a listed Iso-radii source violates its common-radius identity, a Hetero-radii witness has equal centered radii, or an assignment uses the wrong declared center.
+
+### Orbit Sharing
+
+The accepted column is `Orbit sharing = {Shared, Dedicated, Mixed}`. Shared means every orbit has multiple architrino occupants; Dedicated means every orbit has one; Mixed means both occur in the assembly. A Shared assembly may contain several distinct shared orbits. Equal radius, identical shape after separately moving tracks, phase agreement, or an instantaneous crossing cannot establish sharing.
+
+Plainly: radii asks how far everyone is from the assembly center; sharing asks who uses the same track. A1.2 is Iso-radii/Shared, A2.0 is Iso-radii/Dedicated, A1.0 is Hetero-radii/Shared, and B1.1 is Hetero-radii/Dedicated.
+
+[The source-track contract](requirements-and-design.md#orbit-sharing) compares complete circular carriers in one common translation frame and counts each coincidence group's occupants. F5's regular phase-varying reconstruction has dedicated circles. F6c's breathing paths have source-point witnesses outside the other paths' full axial ranges, establishing distinct tracks without assuming they are fixed circles. The classifier does not use trail duration, polarity pairing, or pixel appearance. Non-orbital SD3 remains `—`; incomplete or unsupported source geometry also stays unassigned, with a different explanatory reason in the inspector. No Unavailable menu option is added.
+
+Plainly: a geometrically shared track need not qualify for two half-turn tails. That rendering rule additionally requires confirmed antipodal, co-rotating, opposite-polarity partners.
 
 ### Current Menus
 

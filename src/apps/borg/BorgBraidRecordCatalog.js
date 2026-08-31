@@ -136,6 +136,101 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
     recordUrl:
       "content/assets/borg/records/f6b-scoped-negative-circular.assembly-view-record.v0.json",
   },
+  {
+    "id": "shared-circle-01-alternating-v1",
+    "label": "SC-01 — 1:1 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-01-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-02-alternating-v1",
+    "label": "SC-02 — 2:2 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-02-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-03-alternating-v1",
+    "label": "SC-03 — 3:3 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-03-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-04-alternating-v1",
+    "label": "SC-04 — 4:4 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-04-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-05-alternating-v1",
+    "label": "SC-05 — 5:5 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-05-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-06-alternating-v1",
+    "label": "SC-06 — 6:6 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-06-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-07-alternating-v1",
+    "label": "SC-07 — 7:7 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-07-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-08-alternating-v1",
+    "label": "SC-08 — 8:8 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-08-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-09-alternating-v1",
+    "label": "SC-09 — 9:9 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-09-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-10-alternating-v1",
+    "label": "SC-10 — 10:10 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-10-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-11-alternating-v1",
+    "label": "SC-11 — 11:11 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-11-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-circle-12-alternating-v1",
+    "label": "SC-12 — 12:12 alternating ring",
+    "recordUrl": "content/assets/borg/records/shared-circle-12-alternating.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-sphere-c5-two-rings-v1",
+    "label": "SS-C5 — two rings, co-rotating",
+    "recordUrl": "content/assets/borg/records/shared-sphere-c5-two-rings.assembly-view-record.v0.json"
+  },
+  {
+    "id": "shared-sphere-c6-two-rings-v1",
+    "label": "SS-C6 — two rings, counter-rotating",
+    "recordUrl": "content/assets/borg/records/shared-sphere-c6-two-rings.assembly-view-record.v0.json"
+  },
+  {
+    "id": "platonic-vertices-04-tetrahedron-v1",
+    "label": "PV-04 — tetrahedron",
+    "recordUrl": "content/assets/borg/records/platonic-vertices-04-tetrahedron.assembly-view-record.v0.json"
+  },
+  {
+    "id": "platonic-vertices-06-octahedron-v1",
+    "label": "PV-06 — octahedron",
+    "recordUrl": "content/assets/borg/records/platonic-vertices-06-octahedron.assembly-view-record.v0.json"
+  },
+  {
+    "id": "platonic-vertices-08-cube-v1",
+    "label": "PV-08 — cube",
+    "recordUrl": "content/assets/borg/records/platonic-vertices-08-cube.assembly-view-record.v0.json"
+  },
+  {
+    "id": "platonic-vertices-12-icosahedron-v1",
+    "label": "PV-12 — icosahedron",
+    "recordUrl": "content/assets/borg/records/platonic-vertices-12-icosahedron.assembly-view-record.v0.json"
+  },
+  {
+    "id": "platonic-vertices-20-dodecahedron-v1",
+    "label": "PV-20 — dodecahedron",
+    "recordUrl": "content/assets/borg/records/platonic-vertices-20-dodecahedron.assembly-view-record.v0.json"
+  },
 ]);
 
 // Labels are navigation aliases, not sealed-record or geometry-class identity.
