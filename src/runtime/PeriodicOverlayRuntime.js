@@ -549,6 +549,7 @@ export function createPeriodicOverlayRuntime(deps) {
     }
     const ring = document.createElementNS(svgNamespace, "circle");
     ring.classList.add("hyde-hotspot-hover-ring");
+    ring.classList.toggle("hyde-flower-ring", node.classList.contains("hyde-flower-hotspot"));
     ring.setAttribute("cx", node.getAttribute("cx") || "0");
     ring.setAttribute("cy", node.getAttribute("cy") || "0");
     ring.setAttribute("r", node.getAttribute("r") || "0");
@@ -586,8 +587,10 @@ export function createPeriodicOverlayRuntime(deps) {
     const cx = node.getAttribute("cx") || "0";
     const cy = node.getAttribute("cy") || "0";
     const radius = Number.parseFloat(node.getAttribute("r") || "0");
+    const isFlower = node.classList.contains("hyde-flower-hotspot");
     const ringGroup = document.createElementNS(svgNamespace, "g");
     ringGroup.classList.add("hyde-hotspot-active-ring-group");
+    ringGroup.classList.toggle("hyde-flower-ring", isFlower);
     if (transform) {
       ringGroup.setAttribute("transform", transform);
     }
@@ -600,7 +603,7 @@ export function createPeriodicOverlayRuntime(deps) {
     innerRing.classList.add("hyde-hotspot-active-ring-inner");
     innerRing.setAttribute("cx", cx);
     innerRing.setAttribute("cy", cy);
-    innerRing.setAttribute("r", `${Math.max(0, radius - 4.5)}`);
+    innerRing.setAttribute("r", `${Math.max(0, radius - (isFlower ? 1.5 : 4.5))}`);
     ringGroup.appendChild(outerRing);
     ringGroup.appendChild(innerRing);
     hydePeriodicGrid.appendChild(ringGroup);
@@ -808,8 +811,8 @@ export function createPeriodicOverlayRuntime(deps) {
   function buildHydeSupplementalTilePlacement({
     hotspotAnchor,
     hotspotReference,
-    tileWidth = 118.4,
-    tileHeight = 118.4,
+    tileWidth = 118.4 * 1.2,
+    tileHeight = 118.4 * 1.2,
     offsetX = 0,
     offsetY = 0,
   }) {
@@ -1544,11 +1547,13 @@ export function createPeriodicOverlayRuntime(deps) {
           return null;
         }
         const centerBounds = anchorBoundsWithTransform || bounds;
-        const radius = Math.max(16, Math.min(28, Math.max(centerBounds.width, centerBounds.height) * 0.36));
+        // Follow the flower's diameter; a diagonal enclosure crosses the narrow lanes.
+        const radius = Math.max(centerBounds.width, centerBounds.height) / 2 + 3;
         return {
           cx: centerBounds.center.x,
           cy: centerBounds.center.y,
           r: radius,
+          flower: true,
           transform: null,
           dashed: false,
           center: {
@@ -1780,6 +1785,7 @@ export function createPeriodicOverlayRuntime(deps) {
       }
       circle.setAttribute("vector-effect", "non-scaling-stroke");
       circle.classList.add("hyde-hotspot");
+      circle.classList.toggle("hyde-flower-hotspot", hotspot.flower === true);
       if (!element) {
         circle.classList.add("is-unassigned");
       }
