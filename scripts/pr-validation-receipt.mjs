@@ -12,6 +12,10 @@ export const DEFAULT_RECEIPT_PATH =
 
 export const VALIDATION_COMMANDS = [
   {
+    name: "Prepare ignored runtime assets",
+    args: ["scripts/prepare-runtime-assets.mjs", "--write"],
+  },
+  {
     name: "Foundational impact",
     args: [
       "scripts/check-foundational-impact.mjs",

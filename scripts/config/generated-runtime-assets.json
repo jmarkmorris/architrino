@@ -1,0 +1,20 @@
+{
+  "schema": "architrino/generated-runtime-assets.v1",
+  "families": [
+    {
+      "id": "borg-records",
+      "directory": "content/assets/borg/records",
+      "command": ["scripts/eom/generate-prescribed-braid-record.mjs", "--all", "--write"]
+    },
+    {
+      "id": "equation-corpus",
+      "path": "content/generated/equation-mapping/corpus-equations.json",
+      "command": ["scripts/build-equation-mapping-corpus.mjs", "--build"]
+    },
+    {
+      "id": "full-corpus-index",
+      "path": "content/generated/source-index/local-full-corpus-snapshot.v1.json",
+      "command": ["scripts/archie-service/build-full-corpus-source-index.mjs", "--write"]
+    }
+  ]
+}

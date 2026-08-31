@@ -691,6 +691,7 @@ function readGeneratedRegistry(rootDir) {
 }
 
 export function buildEquationMappingCorpus({ rootDir = process.cwd(), mode = "check" } = {}) {
+  if (!["check", "write", "build"].includes(mode)) throw new Error(`unknown corpus build mode: ${mode}`);
   const corpusDirectory = path.join(rootDir, CORPUS_ROOT);
   const files = listMarkdownFiles(corpusDirectory).map((file) => normalizePath(path.relative(rootDir, file))).sort();
   const promotedPages = createEquationMappingRegistryApi().list();
@@ -721,9 +722,13 @@ export function buildEquationMappingCorpus({ rootDir = process.cwd(), mode = "ch
   const payload = registryPayload(records);
   const serialized = `${JSON.stringify(payload, null, 2)}\n`;
   const generatedPath = path.join(rootDir, GENERATED_REGISTRY_PATH);
-  if (mode === "write" && errors.length === 0) {
+  if ((mode === "write" || mode === "build") && errors.length === 0) {
     fs.mkdirSync(path.dirname(generatedPath), { recursive: true });
-    fs.writeFileSync(generatedPath, serialized);
+    if (readGeneratedRegistry(rootDir) !== serialized) {
+      const temporaryPath = `${generatedPath}.${process.pid}.tmp`;
+      fs.writeFileSync(temporaryPath, serialized);
+      fs.renameSync(temporaryPath, generatedPath);
+    }
   } else if (mode === "check" && readGeneratedRegistry(rootDir) !== serialized) {
     errors.push(`generated registry is stale: ${GENERATED_REGISTRY_PATH}`);
   }
@@ -740,7 +745,7 @@ export function buildEquationMappingCorpus({ rootDir = process.cwd(), mode = "ch
 
 const isDirectRun = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
 if (isDirectRun) {
-  const mode = process.argv.includes("--write") ? "write" : "check";
+  const mode = process.argv.includes("--write") ? "write" : process.argv.includes("--build") ? "build" : "check";
   const result = buildEquationMappingCorpus({ mode });
   console.log(`build-equation-mapping-corpus mode: ${mode}`);
   console.log(`- Markdown files: ${result.files}`);

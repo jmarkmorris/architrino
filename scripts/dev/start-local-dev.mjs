@@ -10,6 +10,7 @@ import {
 } from "./DevServerHttpCache.mjs";
 import { createPdgLiveArtifactRuntime } from "./PdgLiveArtifactRuntime.mjs";
 import { createBorgLibraryService } from "./BorgLibraryService.mjs";
+import { prepareRuntimeAssets } from "../prepare-runtime-assets.mjs";
 import { createBorgNativeEomProcessClient } from "../eom/BorgNativeEomProcessClient.mjs";
 import {
   createBorgDisplayHostMemoryEnvelope,
@@ -21,6 +22,8 @@ const PORT = Number.parseInt(process.env.PORT ?? "5173", 10);
 const HOST = process.env.HOST ?? "127.0.0.1";
 const EOM_BORG_SHADOW_ENABLED = !isDisabledEnvironmentFlag(process.env.EOM_BORG_SHADOW);
 const EOM_BUILD_DIR = resolve(REPO_ROOT, ".tmp/eom-native-dev");
+
+prepareRuntimeAssets({ rootDir: REPO_ROOT });
 
 function isEnabledEnvironmentFlag(value = "") {
   return /^(1|true|yes|on)$/iu.test(String(value || "").trim());

@@ -308,7 +308,11 @@ function processTarget({ specPath, outPath }, mode) {
   const serialized = serializePrescribedBraidRecord(record);
   if (mode === "write") {
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
-    fs.writeFileSync(outPath, serialized);
+    if (!fs.existsSync(outPath) || fs.readFileSync(outPath, "utf8") !== serialized) {
+      const temporaryPath = `${outPath}.${process.pid}.tmp`;
+      fs.writeFileSync(temporaryPath, serialized);
+      fs.renameSync(temporaryPath, outPath);
+    }
     process.stdout.write(`prescribed assembly record written: ${outPath}\n`);
     return;
   }

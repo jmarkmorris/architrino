@@ -26,6 +26,8 @@ PORT=5174 node scripts/dev/start-local-dev.mjs
 
 There is no `npm install` step for ordinary local serving. The root app is served from `index.html`, `app.js`, `style.css`, `vendor/`, `content/`, `src/`, and the standalone HTML entrypoints in the repo root.
 
+The local server prepares Borg playback records, the equation registry, and the full-corpus source index before listening. These outputs are built from tracked sources. During the Pages proof phase their tracked copies remain available for the old publisher; only the second migration PR removes them after live Actions verification. For a separate static server or direct focused tests without saved outputs, run `node scripts/prepare-runtime-assets.mjs --write` once first. `npm test` includes this setup automatically. Repeating setup leaves unchanged output files untouched.
+
 ## Web App
 
 The default web app is the Architrino Assembly Architecture scene navigator. Its root scene is:
@@ -187,7 +189,11 @@ VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" <script>
 
 ## Deployment
 
-The public site is deployed through GitHub Pages with `CNAME` set for `architrino.com`. The deployed site should be treated as a generated-content consumer: update authored markdown and scenes first, refresh generated outputs when required, then verify the manifest and integrity checks before publishing.
+The public site is transitioning from branch publishing to the GitHub Pages workflow in `.github/workflows/pages.yml`. Keep the current custom-domain and HTTPS settings. Leave the repository Actions variable `ARCHITRINO_PAGES_DEPLOY_ENABLED` unset or `false` for the first merge, which retains the old publisher's generated files and still triggers the existing branch deployment. The new workflow only builds and tests until explicitly enabled. After merge verification, follow the [two-stage cutover and rollback procedure](reference/op/machine-artifact-retention.md#two-stage-pages-cutover) to switch Pages to **GitHub Actions**, enable deployment, and verify the live apps and generated data. Remove tracked runtime files only in a second PR after that live acceptance.
+
+The workflow validates source, proves reconstruction in a source-only temporary checkout, builds an isolated site directory, and publishes that directory without committing its build output. Deployment requires `ARCHITRINO_PAGES_DEPLOY_ENABLED=true`, a push or manual run on `main`, a successful build, and a Pages publishing source of GitHub Actions. PRs validate and build but cannot publish. The transient Pages upload is retained for one day. Local equivalent: `node scripts/build-static-site.mjs --out .tmp/site` (the destination must be empty). The builder copies only tracked non-hidden files and declared generated runtime outputs; it never copies `.git`, ignored local runs, or unrelated files from the checkout.
+
+Source history remains in Git. Easily regenerated runtime payloads leave Git tracking after the publishing path is proven. See [Machine Artifact Retention](reference/op/machine-artifact-retention.md) for the storage budget, setup contract, temporary retained set, and historical-cleanup boundary.
 
 ## Commit And Push Checks
 
