@@ -30,7 +30,7 @@ VERTICES = (
 )
 
 WORDS = {
-    "pair-split": (1, 1, 1, -1, -1, -1),
+    "non-antipodal-alternating": (1, 1, 1, -1, -1, -1),
     "face-opposite": (1, -1, 1, -1, 1, -1),
 }
 

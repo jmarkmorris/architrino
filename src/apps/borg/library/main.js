@@ -1,4 +1,4 @@
-import { LIBRARY_FACETS, isLibrarySelectorValue, normalizeLibraryBrowseParams } from "./BorgLibraryQuery.mjs";
+import { LIBRARY_FACETS, isLibrarySelectorValue, validateLibraryBrowseParams } from "./BorgLibraryQuery.mjs";
 import { createSpherePreview } from "./BorgSpherePreview.js";
 
 const $ = (id) => document.getElementById(id);
@@ -41,9 +41,7 @@ for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
 }
 
 function restoreControls() {
-  if (state.params.has("nested")) $("filter-migration-note").hidden = false;
-  const normalized = normalizeLibraryBrowseParams(state.params);
-  if (normalized.toString() !== state.params.toString()) { state.params = normalized; saveUrl(true); }
+  validateLibraryBrowseParams(state.params);
   $("search").value = state.params.get("q") ?? "";
   $("group-by").value = state.params.get("groupBy") ?? "none";
   for (const key of Object.keys(LIBRARY_FACETS)) {
@@ -61,7 +59,7 @@ function saveUrl(replace = false) {
   history[replace ? "replaceState" : "pushState"]({}, "", `${location.pathname}${query ? `?${query}` : ""}`);
 }
 function changeQuery() {
-  state.params.delete("cursor"); state.params.delete("selected"); state.params.delete("sha256");
+  state.params.delete("cursor"); state.params.delete("selected"); state.params.delete("modelRevisionSha256"); state.params.delete("recordSha256");
   saveUrl(); restoreControls(); loadResults();
 }
 function clearFilters() { state.params = new URLSearchParams(); changeQuery(); }
@@ -175,7 +173,7 @@ async function loadResults() {
   $("results").replaceChildren(); $("results").setAttribute("aria-busy", "true"); $("errors").hidden = true; $("empty-state").hidden = true;
   $("result-count").textContent = "Loading catalog…";
   activeFilters();
-  const params = new URLSearchParams(state.params); params.delete("selected"); params.delete("sha256");
+  const params = new URLSearchParams(state.params); params.delete("selected"); params.delete("modelRevisionSha256"); params.delete("recordSha256");
   try {
     const data = await readJson(`${api}?${params}`); if (version !== state.version) return;
     state.response = data; renderCounts(data);
@@ -201,7 +199,7 @@ async function loadResults() {
         .map(([key]) => [key, row.reasons[key]])));
       card.dataset.selected = String(state.params.get("selected") === row.id && !group);
       const title = group ? `${facetLabel(result.groupBy, result.value)}${result.groupBy === "count" ? " architrinos" : result.groupBy === "braidCount" ? ` braid${result.value === "1" ? "" : "s"}` : ""}` : row.label;
-      const top = element("div", null, "card-top"); top.append(element("span", group ? `${result.memberCount} members` : `${row.facets.count} architrinos`), element("span", group ? "GROUP" : facetLabel("dimension", row.facets.dimension)));
+      const top = element("div", null, "card-top"); top.append(element("span", group ? `${result.memberCount} members` : `${row.facets.count} architrinos`), element("span", group ? "GROUP" : facetLabel("assemblySpan", row.facets.assemblySpan)));
       const canvas = element("canvas", null, "sphere"); canvas.tabIndex = 0; canvas.setAttribute("role", "button"); canvas.setAttribute("aria-label", `${group ? "Explore group" : "Inspect"}: ${title}`);
       if (!canExplore) { canvas.setAttribute("aria-disabled", "true"); canvas.setAttribute("aria-label", `Unassigned group: ${title}. Preview only.`); }
       const action = () => {
@@ -228,8 +226,10 @@ async function loadResults() {
     $("page-label").textContent = data.resultCount ? `${data.offset + 1}–${Math.min(data.offset + data.pageSize, data.resultCount)} of ${data.resultCount} ${state.params.get("groupBy") && state.params.get("groupBy") !== "none" ? "groups" : "records"}` : "0 results";
     $("previous-page").disabled = !data.previousCursor; $("next-page").disabled = !data.nextCursor;
     if (state.params.has("selected")) {
-      const id = state.params.get("selected"), hash = state.params.get("sha256");
-      const selected = await readJson(`${api}/preview?${new URLSearchParams({ id, ...(hash ? { sha256: hash } : {}) })}`);
+      const assemblyId = state.params.get("selected");
+      const modelRevisionSha256 = state.params.get("modelRevisionSha256");
+      const recordSha256 = state.params.get("recordSha256");
+      const selected = await readJson(`${api}/preview?${new URLSearchParams({ assemblyId, modelRevisionSha256, recordSha256 })}`);
       if (version === state.version) await openInspector(selected.summary, false);
     } else if ($("inspector").open) $("inspector").close();
   } catch (error) {
@@ -270,7 +270,7 @@ async function openInspector(row, persist = true) {
 $("close-inspector").addEventListener("click", () => $("inspector").close());
 $("inspector").addEventListener("close", () => {
   inspectorVersion++; state.detail?.dispose(); state.detail = null; state.selected = null;
-  if (state.params.has("selected")) { state.params.delete("selected"); state.params.delete("sha256"); saveUrl(); }
+  if (state.params.has("selected")) { state.params.delete("selected"); state.params.delete("modelRevisionSha256"); state.params.delete("recordSha256"); saveUrl(); }
 });
 $("copy-selection").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(location.href); $("copy-status").textContent = "Exact selection link copied."; }

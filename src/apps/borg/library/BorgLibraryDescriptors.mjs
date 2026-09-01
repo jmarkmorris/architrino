@@ -2,9 +2,9 @@ import { createEomHistoryDataset } from "../../shared/EomHistoryDataset.mjs";
 import { describeBraidComposition, recordClassification } from "./BorgLibraryComposition.mjs";
 import { describeAssemblyRadii } from "./BorgLibraryRadii.mjs";
 import { describeBorgOrbitTrails } from "../BorgOrbitTrails.mjs";
-import { describeBorgOrbitSharing } from "../BorgOrbitGeometry.mjs";
+import { describeBorgCircleOccupancy } from "../BorgOrbitGeometry.mjs";
 
-export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v8";
+export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v9";
 const norm = (v) => Math.hypot(...v);
 const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);
 const subtract = (a, b) => a.map((v, i) => v - b[i]);
@@ -42,6 +42,35 @@ export function describeBounds(points) {
   return { center, radius, dimension: basis.length === 3 ? "3d" : basis.length === 2 ? "2d" : "boundary", tolerance };
 }
 
+function describeBraidDimensionality(composition, coordinates, dataset) {
+  if (!composition.braids.length) {
+    return { value: "unavailable", reason: "Requires complete, disjoint source-declared component-braid membership." };
+  }
+  const sourceLines = coordinates?.worldlines ?? [];
+  const recordedById = new Map(dataset.worldlines.map((line) => [line.id, line]));
+  const dimensions = [];
+  for (const braid of composition.braids) {
+    const recorded = braid.members.map((constituentId) => {
+      const source = sourceLines.find((line) => line.constituentId === constituentId);
+      return source ? recordedById.get(source.id) : null;
+    });
+    if (recorded.some((line) => !line)) {
+      return { value: "unavailable", reason: "A declared component braid lacks a complete recorded path for one or more members." };
+    }
+    const dimension = describeBounds(recorded.flatMap((line) => recordControlPoints({ worldlines: [line] }))).dimension;
+    if (dimension !== "2d" && dimension !== "3d") {
+      return { value: "unavailable", reason: "A declared component braid is degenerate or lacks a complete planar/spatial rank assignment." };
+    }
+    dimensions.push(dimension);
+  }
+  const unique = new Set(dimensions);
+  const value = unique.size === 1 ? dimensions[0] : "mixed";
+  return {
+    value,
+    reason: `${composition.braids.length} complete source-declared component braid${composition.braids.length === 1 ? "" : "s"} have affine dimensions ${dimensions.join(", ")} over their complete retained paths. Whole-assembly span is reported separately.`,
+  };
+}
+
 function breathingState(operators) {
   if (!operators.length) return "unavailable";
   const states = operators.map((op) => {
@@ -71,13 +100,14 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
     ["uncapped", "capped-cf"].includes(sourcePolicy.mode) ? sourcePolicy.mode : "unavailable";
   const radii = completeOperators ? describeAssemblyRadii(coordinates, dataset.window)
     : { value: "unavailable", reason: "The source must describe every recorded architrino before comparing assembly-centered radii." };
-  const orbitSharing = describeBorgOrbitSharing(dataset);
+  const circleOccupancy = describeBorgCircleOccupancy(dataset);
+  const braidDimension = describeBraidDimensionality(composition, coordinates, dataset);
   const confirmedSpindle = recordClassification(classifications, recordSha256, "spindle");
   const shapes = allCircular ? ["circles"] : ["unavailable"];
   if (confirmedSpindle) { if (shapes[0] === "unavailable") shapes.length = 0; shapes.push("spindle"); }
   const facets = { count: String(dataset.worldlines.length), braidCount: composition.braidCount, breathing: completeOperators ? breathingState(operators) : "unavailable", radii: radii.value,
-    orbitSharing: orbitSharing.value, dimension: bounds.dimension, shape: shapes, speedPolicy };
-  const label = catalogEntry.label.replace(/^[^—]+—\s*/, "");
+    circleOccupancy: circleOccupancy.value, assemblySpan: bounds.dimension, braidDimension: braidDimension.value, shape: shapes, speedPolicy };
+  const label = catalogEntry.label;
   const summary = {
     id: catalogEntry.id, sourceId: record.sourceId, label, alias: catalogEntry.label,
     aliases: [...new Set([record.title, prescribed?.taxonomy?.displayLabel, coordinates?.identity?.displayLabel]
@@ -94,8 +124,9 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
       braidCount: composition.reason,
       breathing: "Moving-circular operators with fixed centers have fixed radii. Nonzero F6c radial or axial harmonics mark breathing. Other operators remain unclassified.",
       radii: radii.reason,
-      orbitSharing: orbitSharing.reason,
-      dimension: `Affine rank of all retained cubic control points over the complete record window, tolerance ${bounds.tolerance}. This describes recorded paths, not dynamical stability.`,
+      circleOccupancy: circleOccupancy.reason,
+      assemblySpan: `Affine rank of all retained cubic control points over the complete record window, tolerance ${bounds.tolerance}. This describes recorded paths, not dynamical stability.`,
+      braidDimension: braidDimension.reason,
       shape: `Circular paths require every source worldline to declare moving-circular.v1 with a fixed center. ${confirmedSpindle ? `Spindle envelope is operator-confirmed for this exact record under ${classifications.revision}.` : "No spindle classification is assigned to this record."} Spherical distribution remains unclassified.`,
       speedPolicy: "Requires an explicit source policy with owner, version, speed quantity, frame and unit convention. Recorded speed alone does not establish a cap.",
     },

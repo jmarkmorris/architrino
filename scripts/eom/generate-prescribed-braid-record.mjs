@@ -20,6 +20,9 @@ import {
   materializePrescribedAssemblySpec,
   validatePrescribedAssemblySpec,
 } from "../../src/prescribed-geometry/PrescribedAssemblySpec.mjs";
+import {
+  deriveAssemblyScientificIdentity,
+} from "../../src/prescribed-geometry/AssemblyScientificIdentity.mjs";
 
 export const PRESCRIBED_BRAID_SPEC_SCHEMA = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
 export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA_ID = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
@@ -170,6 +173,7 @@ function createParameterVector(materialized) {
 export function generatePrescribedBraidRecord(rawSpec, options = {}) {
   const materialized = materializePrescribedAssemblySpec(rawSpec);
   const { spec } = materialized;
+  const scientificIdentity = deriveAssemblyScientificIdentity(spec);
   const { start, end, delayHorizon } = spec.history;
   const segmentCount = Math.ceil((end - start) / spec.interpolation.interval);
   const actualStep = (end - start) / segmentCount;
@@ -206,6 +210,8 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
   }));
   return {
     schema: ASSEMBLY_VIEW_RECORD_SCHEMA,
+    assemblyId: scientificIdentity.assemblyId,
+    modelRevisionSha256: scientificIdentity.modelRevisionSha256,
     sourceId: spec.specId,
     title: spec.identity.displayLabel,
     provenance: {

@@ -62,7 +62,7 @@ function outsideSlab(points, track) {
   });
 }
 
-export function describeBorgOrbitSharing(dataset) {
+export function describeBorgSourceTrackGroups(dataset) {
   const unavailable = (reason) => ({ value: "unavailable", groups: [], reason });
   const sources = dataset.provenance?.prescribedGeometry?.coordinates?.worldlines;
   const lines = dataset.worldlines, window = dataset.window;
@@ -70,14 +70,14 @@ export function describeBorgOrbitSharing(dataset) {
       || ![...sources, ...lines].every((line) => typeof line?.id === "string" && line.id.length > 0)
       || new Set(lines.map((l) => l.id)).size !== lines.length || new Set(sources.map((l) => l.id)).size !== sources.length
       || !lines.every((l) => sources.some((s) => s.id === l.id))) {
-    return unavailable("Orbit sharing requires exactly one source path for every recorded architrino.");
+    return unavailable("Source-track grouping requires exactly one source path for every recorded architrino.");
   }
   if (!Number.isFinite(window?.start) || !Number.isFinite(window?.end) || window.end <= window.start) {
-    return unavailable("Orbit sharing requires a finite nonempty source window.");
+    return unavailable("Source-track grouping requires a finite nonempty source window.");
   }
   let operators;
   try { operators = lines.map((line) => validatePrescribedWorldlineOperator(sources.find((s) => s.id === line.id).operator)); }
-  catch { return unavailable("Orbit sharing requires complete supported source operators."); }
+  catch { return unavailable("Source-track grouping requires complete supported source operators."); }
   const linear = new Set(["stationary.v1", "inertial.v1", "sd3-centered-linear-member.v1"]);
   if (operators.every((op) => linear.has(op.kind))) return unavailable("Not applicable: the declared source paths are non-orbital.");
   const tracks = operators.map((op) => sourceTrack(op, window.start));
@@ -108,7 +108,7 @@ export function describeBorgOrbitSharing(dataset) {
         const a = tracks[i], b = tracks[j];
         if (a.kind === "circle" && b.kind === "circle") equal[i][j] = equal[j][i] = sameBorgCircularOrbit(a, b);
         else if (!outsideSlab(points(a), b) && !outsideSlab(points(b), a)) {
-          return unavailable("Source-track coincidence is unresolved; sampled agreement cannot establish orbit sharing.");
+          return unavailable("Source-track coincidence is unresolved; sampled agreement cannot establish equality.");
         }
       }
     }
@@ -125,5 +125,60 @@ export function describeBorgOrbitSharing(dataset) {
   }
   const shared = groups.filter((group) => group.length > 1).length, dedicated = groups.length - shared;
   const value = shared && dedicated ? "mixed" : shared ? "shared" : "dedicated";
-  return { value, groups, reason: `Source geometry identifies ${shared} multiply occupied and ${dedicated} singly occupied tracks (geometric tolerance ${EPS}). Sharing is independent of radius equality, phase, polarity pairing, and trail length; this is a source-geometry browse classification, not physical acceptance.` };
+  return { value, groups, reason: `Source geometry identifies ${shared} multiply occupied and ${dedicated} singly occupied tracks (geometric tolerance ${EPS}). Track grouping is independent of radius equality, phase, polarity pairing, and trail length; it is an internal presentation input, not a browse classification or physical acceptance.` };
+}
+
+export function describeBorgCircleOccupancy(dataset) {
+  const unavailable = (reason) => ({ value: "unavailable", groups: [], reason });
+  const sources = dataset.provenance?.prescribedGeometry?.coordinates?.worldlines;
+  const lines = dataset.worldlines;
+  const window = dataset.window;
+  if (!Array.isArray(sources) || !Array.isArray(lines) || !lines.length || sources.length !== lines.length
+      || ![...sources, ...lines].every((line) => typeof line?.id === "string" && line.id.length > 0)
+      || new Set(lines.map((line) => line.id)).size !== lines.length
+      || new Set(sources.map((line) => line.id)).size !== sources.length
+      || !lines.every((line) => sources.some((source) => source.id === line.id))) {
+    return unavailable("Circle occupancy requires exactly one source path for every recorded architrino.");
+  }
+  if (!Number.isFinite(window?.start) || !Number.isFinite(window?.end) || window.end <= window.start) {
+    return unavailable("Circle occupancy requires a finite nonempty source window.");
+  }
+  let operators;
+  try {
+    operators = lines.map((line) =>
+      validatePrescribedWorldlineOperator(sources.find((source) => source.id === line.id).operator));
+  } catch {
+    return unavailable("Circle occupancy requires complete supported source operators.");
+  }
+  if (!operators.every((operator) => operator.kind === "moving-circular.v1")) {
+    return unavailable("Circle occupancy is not assigned because at least one complete source path is noncircular or unsupported.");
+  }
+  const circles = operators.map((operator) => borgCircularOrbit(operator, window.start));
+  if (circles.some((circle) => !circle)) {
+    return unavailable("Circle occupancy is not assigned because at least one circular carrier is incomplete.");
+  }
+  if (!circles.every((circle) => circle.velocity.every((value, axis) => value === circles[0].velocity[axis]))) {
+    return unavailable("Circle occupancy requires one supported common translation frame.");
+  }
+
+  const groups = [];
+  const assigned = new Set();
+  for (let left = 0; left < circles.length; left += 1) {
+    if (assigned.has(left)) continue;
+    const indices = circles.flatMap((circle, right) => sameBorgCircularOrbit(circles[left], circle) ? [right] : []);
+    if (indices.some((right) => assigned.has(right)
+        || indices.some((candidate) => !sameBorgCircularOrbit(circles[right], circles[candidate])))) {
+      return unavailable("Circle-equality tolerance is ambiguous across one proposed occupancy class.");
+    }
+    indices.forEach((index) => assigned.add(index));
+    groups.push(indices.map((index) => lines[index].id));
+  }
+  const multiple = groups.filter((group) => group.length > 1).length;
+  const single = groups.length - multiple;
+  const value = multiple && single ? "mixed" : multiple ? "multiple" : "one";
+  return {
+    value,
+    groups,
+    reason: `Complete source geometry identifies ${multiple} multiply occupied and ${single} singly occupied circles in one common frame (geometric tolerance ${EPS}). Circle equality is independent of radius equality across different circles, phase, cadence, circulation, polarity, and trail length. This is a source-geometry browse characteristic, not physical acceptance.`,
+  };
 }

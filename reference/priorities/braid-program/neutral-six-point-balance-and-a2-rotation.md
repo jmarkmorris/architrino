@@ -59,6 +59,16 @@ $$
 
 Plainly: the symmetry reduces the calculation, but it does not produce equilibrium. Both exact rows accelerate inward or toward the opposite-polarity ring.
 
+The regular octahedron has only one other balanced $3{:}3$ polarity class up to its full point group and global polarity conjugation. In the vertex order $(+\mathbf e_x,-\mathbf e_x,+\mathbf e_y,-\mathbf e_y,+\mathbf e_z,-\mathbf e_z)$, represent it by `+++---`. Direct substitution gives
+
+$$
+\mathbf A_{+y}=-\frac{\kappa}{4}\mathbf e_y\ne\mathbf0.
+$$
+
+The two representatives therefore exclude every balanced polarity assignment on a stationary regular octahedron under the declared partner row. This is complete only for the regular-octahedral geometry; it does not classify deformed six-point spheres.
+
+Plainly: there are exactly two essentially different ways to place three plus and three minus labels on a regular octahedron. One receiver fails in each case, so no stationary balanced regular octahedron survives.
+
 For the staggered triangular-antiprism family, place the electrinos on one equilateral ring at height $h$ and the positrinos on its mirror ring at $-h$, with $\rho=\sqrt{1-h^2}$. A representative electrino has
 
 $$
@@ -89,7 +99,7 @@ $$
 
 Plainly: same-ring partners supply no axial contribution, while every opposite-ring contribution points toward the other ring. The aligned-ring, staggered-ring, regular-octahedral, and single-ring transitive strata therefore contain no stationary balance under the declared row.
 
-The derivation does not classify every finite colored symmetry action on six points. A merely topological adjacency pattern also cannot determine the inverse-square vector sum without a metric embedding.
+The derivation does not classify every finite colored symmetry action on arbitrary six-point geometries. A merely topological adjacency pattern also cannot determine the inverse-square vector sum without a metric embedding.
 
 ### Historical Bounded Sphere Search
 
@@ -249,7 +259,7 @@ Delayed tangential acceleration may grow, shrink, bias, or destroy the surrogate
 
 The exact stationary and rotating identities are suitable for later textbook use because they teach why symmetry alone does not imply balance and why a constraint changes the dynamical problem. The bounded searches are not promotion-ready until their instruments and reproduction records are recovered or the searches are repeated under a predeclared current protocol. The constrained oscillator remains comparison material unless its normal response is derived from the theory.
 
-The strongest current conclusions are chart-scoped: the named symmetric stationary strata fail, the bare fixed-coordinate nonplanar A2 rotating wave has a one-signed axial obstruction, and a radial curvature adjustment does not remove axial flattening. No global stationary-existence theorem, retained branch, stability result, binding claim, or physical particle identification follows.
+The strongest current conclusions are chart-scoped: every balanced stationary regular octahedron fails, the other named symmetric stationary strata fail, the bare fixed-coordinate nonplanar A2 rotating wave has a one-signed axial obstruction, and a radial curvature adjustment does not remove axial flattening. No global six-point stationary-existence theorem, retained branch, stability result, binding claim, or physical particle identification follows.
 
 ## Unresolved Ideas
 

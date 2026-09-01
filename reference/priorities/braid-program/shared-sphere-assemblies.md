@@ -572,7 +572,7 @@ One of the cube's three antipodal-alternating classes is the tetrahedral pair as
 
 | Solid | Negative on record | Motion class covered | Open |
 |---|---|---|---|
-| Octahedron | The face-opposite A2 octahedron fails the stationary condition with partner contribution $\sqrt{17}/4\ne0$; the rigid co-rotating segregated assignment is excluded for $h>0$ by a one-signed axial sum | cited stationary stratum; rigid co-rotation about the declared face-center axis | mixed-polarity rings, other axis-word combinations, and non-rigid histories |
+| Octahedron | Both balanced word classes fail the stationary condition: the antipodal-alternating class has a receiver magnitude $\sqrt{17}/4$, while the other class has a receiver magnitude $1/4$; the rigid co-rotating segregated assignment is excluded for $h>0$ by a one-signed axial sum | every balanced stationary regular octahedron; rigid co-rotation about the declared face-center axis | moving mixed-polarity rings, other axis-word combinations, and non-rigid histories |
 | Cube | **no** | — | everything |
 | Tetrahedron | **no** | — | everything; the 2:2 transient remains unreproduced |
 | Icosahedron | **no** | — | everything, including whether any Family-C history is icosahedral |
@@ -580,7 +580,7 @@ One of the cube's three antipodal-alternating classes is the tetrahedral pair as
 
 **[derived; exclusion scope]** For the declared face-center rotation axis, the octahedral vertices form two triangular rings at $\pm h$. Assigning one polarity to each ring gives the excluded segregated word. Mixed-polarity assignments on those rings are not covered by that sign argument. The two colouring classes in the enumeration quotient vertex sets by the full point group; classifying moving histories additionally requires the axis and history, so a result for one axis-word pair must not be extended to an entire motion family.
 
-The stationary analysis likewise does not classify every finite coloured symmetry action on six points. Its negative remains attached to the stated stationary strata.
+The stationary analysis now exhausts the two balanced polarity classes on the regular octahedron. It does not classify deformed six-point geometries or transfer to a moving history.
 
 The cited analyses provide no moving-history balance result for the other four solids. The enumeration does not fill that gap.
 
@@ -598,6 +598,10 @@ Plainly: a delayed interaction depends on where a source was when it emitted the
 
 Plainly: symmetry can make several residual components equal. It does not, by itself, prove that their common value is nonzero.
 
+The [Platonic Moving-History Reduction](platonic-moving-history-reduction.md) makes this principle exact for the octahedron. It defines the coloured complete-history stabilizer using the axial-vector action on angular velocity, proves the residual equivariance theorem, enumerates every special rotation-axis stratum for both balanced words, and derives the exact number of independent scalar residual channels. For rigid histories with every member below $c_f=1$, it also proves one and only one partner root per ordered pair, no nontrivial self-hit root, a positive transmitter-side Jacobian floor, collision clearance $\sqrt2R$, and sufficient prehistory depth $2R$.
+
+Plainly: the octahedral moving problem is no longer an unspecified search over six vector equations. Each word and axis now has an exact reduced channel count and a complete root ledger; the remaining task is to determine whether the reduced scalar equations have a zero.
+
 ### Enumeration Method
 
 The exact balanced-word enumeration instrument constructs each solid at unit circumradius in algebraic coordinates, derives the orthogonal maps preserving its vertex set, and groups balanced colourings under those maps together with global polarity conjugation. It reports one representative per class and identifies the antipodal-alternating classes. This establishes a discrete classification only; it evaluates no delayed acceleration or motion.
@@ -610,7 +614,7 @@ A balanced polarity word assigns equal numbers of the two polarities to the memb
 
 ### Complete balance on moving histories
 
-The full residual must include every cross-transmitter causal root and every nontrivial same-transmitter root in the declared history domain. Latitude-dependent speeds can give different root and fold structures for different members. The shared-circle scalar reduction and the frozen-point-cloud criterion cannot be assumed to apply. The two-ring sign exclusion remains valid within its stated simple-root assumptions without a complete numerical balance calculation.
+The full residual must include every cross-transmitter causal root and every nontrivial same-transmitter root in the declared history domain. The rigid sub-field-speed octahedral chart now has a complete thirty-partner-root ledger and no nontrivial self roots, as derived in the moving-history reduction packet. Latitude-dependent speeds can give different root and fold structures for non-rigid members. The shared-circle scalar reduction and the frozen-point-cloud criterion cannot be assumed to apply. The two-ring sign exclusion remains valid within its stated simple-root assumptions without a complete numerical balance calculation.
 
 ### Collision clearance and latitude structure
 
@@ -620,7 +624,7 @@ The two-latitude `C5`/`C6` geometry requires explicit coordinates, admissible mi
 
 ### Polyhedral motion and symmetry
 
-The cited octahedral exclusions concern particular stationary strata and a particular rigidly co-rotating polarity assignment. Mixed-polarity rings, other axis-word combinations, and non-rigid histories remain separate questions. The tetrahedral, cubic, icosahedral, and dodecahedral word classes have no moving-history result in the cited inventory. Any complete claim must cover both the finite colouring classes and the declared continuous motion parameters.
+The stationary octahedral exclusion now covers both balanced word classes. The rigid-axis census also closes every special symmetry stratum and the continuous generic stratum at the level of equation reduction, but only the monochromatic-face rigid history has a dynamical sign exclusion. The remaining mixed-polarity and generic-axis scalar systems, together with non-rigid histories, remain separate questions. The tetrahedral, cubic, icosahedral, and dodecahedral word classes have no moving-history result in the cited inventory. Any complete moving claim must cover both the finite colouring classes and the declared continuous motion parameters.
 
 ### Nonplanar co-sphericity
 

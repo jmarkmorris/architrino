@@ -16,8 +16,8 @@ export function describeBraidComposition(coordinates) {
     }
   }
   if (covered.size !== ids.size) return unavailable;
-  return { braidCount: String(groups.length), braids: groups.map((group) => ({ id: group.id, memberCount: group.members.length })),
-    reason: `${groups.length} source-declared braid group${groups.length === 1 ? "" : "s"} cover the assembly without overlap. This selector counts component groups, including both Family-C subsets; it does not assert independent binding.` };
+  return { braidCount: String(groups.length), braids: groups.map((group) => ({ id: group.id, members: [...group.members], memberCount: group.members.length })),
+    reason: `${groups.length} source-declared component braid${groups.length === 1 ? "" : "s"} cover the assembly without overlap. This characteristic reports explicit source membership; it does not assert independent binding.` };
 }
 
 export function validateLibraryClassifications(value) {
