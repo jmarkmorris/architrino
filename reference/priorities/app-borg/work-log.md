@@ -6,6 +6,24 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-01 - Geometry-First Library Filter Order
+
+- Reordered the Assembly Library filters to lead with `Assembly span`, `Braids in assembly`, `Braid dimensionality`, and `Architrinos`, followed by `Assembly radii`, `Circle occupancy`, `Breathing`, and `Speed policy`. The shared facet definition owns this order across the left rail, counts, and exact-record inspector.
+- Claim grade: implemented software behavior. No facet meaning, record classification, query value, or scientific claim changed. Falsifier: the rendered left rail or inspector presents a different order, or an existing nonretired filter no longer returns its prior results.
+
+Plainly: the Library now asks about the assembly's overall geometry and braid structure before population and secondary properties.
+
+Closure goal: Keep the Library's discovery path ordered from overall structure to finer properties.
+
+### 2026-09-01 - Retired Shape Selector
+
+- Removed the complete Shape selector from the Assembly Library because its circular-path, spherical-distribution, spindle-envelope, and unclassified choices duplicated stronger factual selectors or lacked a distinct necessary browse role. All `shape=...` URLs now fail closed as retired query keys, and the Shape-specific checkbox rendering and styling were removed. Source-carried geometry metadata remains unchanged.
+- Claim grade: implemented software behavior. This changes Library discovery only; it does not reclassify a record or establish a new geometry, balance, retention, stability, binding, or physical-identity claim. Falsifier: the left rail or inspector still renders a Shape facet, the API accepts any `shape` query, or removing the selector changes a record's stored geometry metadata.
+
+Plainly: the unnecessary Shape block is gone. Equal-radius three-dimensional configurations remain discoverable by combining `Iso-radii` with `Assembly span: 3D`.
+
+Closure goal: Keep Library selectors limited to independent facts that materially improve discovery.
+
 ### 2026-09-01 - BORG-018 Identity-Bound Scientific-Status Inspector
 
 - Added the Braid-owned `borg-scientific-status-projection.v1` and its checker. The projection carries 26 adjudication rows plus five migrated finding-context relations; browser code consumes the JSON and does not parse the Markdown authority. The checker verifies the owner digest and source rows, evidence-link targets, state tokens, exact identities, and the current census of three `H4 P[M]` rows and zero `H5` passes.

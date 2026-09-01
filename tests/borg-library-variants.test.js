@@ -17,7 +17,7 @@ const variant = (betaDecimal, radiusDecimal) => describeLibraryVariantSet({ geom
 } } });
 const row = (id, betaDecimal, count = "6", activeFindingConfiguration = false) => ({
   id, assemblyId: id, modelRevisionSha256: id.at(-1).repeat(64), recordSha256: id.at(-1).repeat(64),
-  label: `Balance β_f=${betaDecimal}`, description: "Exact balance row", facets: { count, shape: ["circles"], braidDimension: "2d" },
+  label: `Balance β_f=${betaDecimal}`, description: "Exact balance row", facets: { count, braidDimension: "2d" },
   variantSet: variant(betaDecimal, betaDecimal === "2" ? "0.5" : "0.25"),
   activeFindingConfiguration,
 });
@@ -49,7 +49,6 @@ test("default browse collapses matching variants after exact-row filtering and d
   assert.equal(broad.results[0].activeFindingConfigurationCount, 1);
   assert.equal(broad.results[0].representative.variantSet.parameters.betaF, "2");
   assert.deepEqual(broad.counts.count, { "6": 1, "8": 1 });
-  assert.deepEqual(broad.counts.shape, { circles: 1, unavailable: 1 });
   assert.deepEqual(broad.counts.braidDimension, { "2d": 1, unavailable: 1 });
 
   const narrowed = queryLibraryRows(rows, new URLSearchParams("count=8"));
@@ -62,7 +61,6 @@ test("default browse collapses matching variants after exact-row filtering and d
   assert.equal(drilled.total, 2);
   assert.deepEqual(drilled.results.map((result) => result.kind), ["leaf", "leaf"]);
   assert.deepEqual(drilled.counts.count, { "6": 2 });
-  assert.deepEqual(drilled.counts.shape, { circles: 2 });
   assert.equal(validateLibraryBrowseParams(new URLSearchParams({ variantSet: variantSetId })).get("variantSet"), variantSetId);
   assert.throws(() => validateLibraryBrowseParams(new URLSearchParams("variantSet=variant-set%3Abad")), /Unsupported/);
 });

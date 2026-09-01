@@ -24,8 +24,8 @@ async function request(service, path, method = "GET") {
 
 test("Library query contract exposes independent facts-first facets", () => {
   assert.deepEqual(Object.keys(LIBRARY_FACETS), [
-    "count", "braidCount", "breathing", "radii", "circleOccupancy",
-    "assemblySpan", "braidDimension", "shape", "speedPolicy",
+    "assemblySpan", "braidCount", "braidDimension", "count",
+    "radii", "circleOccupancy", "breathing", "speedPolicy",
   ]);
   const rows = [
     { assemblyId: "asm-a", modelRevisionSha256: "a".repeat(64), recordSha256: "1".repeat(64), label: "Planar pair", description: "Two paths", facets: { count: "2", circleOccupancy: "multiple", braidDimension: "2d" } },
@@ -37,7 +37,7 @@ test("Library query contract exposes independent facts-first facets", () => {
 });
 
 test("retired query fields and selector values fail closed", () => {
-  for (const query of ["eomRecord=x", "selected=x", "sha256=x", "id=x", "orbitSharing=shared", "circleOccupancy=shared"]) {
+  for (const query of ["eomRecord=x", "selected=x", "sha256=x", "id=x", "orbitSharing=shared", "circleOccupancy=shared", "shape=circles", "shape=sphere", "shape=spindle", "shape=unavailable"]) {
     assert.throws(() => validateLibraryBrowseParams(new URLSearchParams(query)), /Unsupported/);
   }
   const exact = BORG_ASSEMBLY_RECORD_CATALOG.entries[0];
@@ -98,7 +98,6 @@ test("seed provider covers all current records and exact preview pins", async ()
   assert.equal(first.body.activeFindingConfigurationCount, 136);
   assert.equal(first.body.registeredCount, 144);
   assert.equal(first.body.resultCount, first.body.total);
-  assert.deepEqual(first.body.counts.shape, { circles: 42, spindle: 6, unavailable: 3 });
   assert.deepEqual(first.body.counts.braidDimension, { unavailable: 18, "3d": 21, "2d": 6 });
   assert.deepEqual(first.body.failures, []);
   const row = first.body.results.find((result) => result.kind === "leaf");
@@ -116,9 +115,7 @@ test("seed provider covers all current records and exact preview pins", async ()
   assert.equal((await request(service, "/api/borg/library?selected=retired")).status, 400);
   assert.equal((await request(service, "/api/borg/library", "POST")).status, 405);
 
-  const circular = await request(service, "/api/borg/library?shape=circles");
-  assert.equal(circular.body.total, 42);
-  assert.equal(circular.body.exactRecordCount, 141);
+  assert.equal((await request(service, "/api/borg/library?shape=circles")).status, 400);
 });
 
 test("seed provider exposes one 100-variant balance card and exact variant drill-down", async () => {

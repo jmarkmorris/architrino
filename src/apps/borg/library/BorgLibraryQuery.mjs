@@ -2,14 +2,13 @@ import { isLibraryVariantSetId } from "./BorgLibraryVariants.mjs";
 import { aggregateBorgScientificStatus } from "../BorgScientificStatus.mjs";
 
 export const LIBRARY_FACETS = Object.freeze({
-  count: { label: "Architrinos", options: [] },
+  assemblySpan: { label: "Assembly span", options: [["boundary", "1D"], ["2d", "2D · planar"], ["3d", "3D · spatial"]] },
   braidCount: { label: "Braids in assembly", options: [["1", "1"], ["2", "2"], ["3", "3"]] },
-  breathing: { label: "Breathing", options: [["yes", "Breather"], ["no", "Non-breather"]] },
+  braidDimension: { label: "Braid dimensionality", options: [["2d", "2D · planar"], ["3d", "3D · spatial"], ["mixed", "Mixed"]] },
+  count: { label: "Architrinos", options: [] },
   radii: { label: "Assembly radii", options: [["iso", "Iso-radii"], ["hetero", "Hetero-radii"]] },
   circleOccupancy: { label: "Circle occupancy", options: [["one", "One per circle"], ["multiple", "Multiple per circle"], ["mixed", "Mixed"]] },
-  assemblySpan: { label: "Assembly span", options: [["boundary", "1D"], ["2d", "2D · planar"], ["3d", "3D · spatial"]] },
-  braidDimension: { label: "Braid dimensionality", options: [["2d", "2D · planar"], ["3d", "3D · spatial"], ["mixed", "Mixed"]] },
-  shape: { label: "Shape", options: [["circles", "Circular paths"], ["sphere", "Spherical distribution"], ["spindle", "Spindle envelope"], ["unavailable", "Unclassified"]] },
+  breathing: { label: "Breathing", options: [["yes", "Breather"], ["no", "Non-breather"]] },
   speedPolicy: { label: "Speed policy", options: [["uncapped", "Uncapped"], ["capped-cf", "Capped at c_f"]] },
 });
 

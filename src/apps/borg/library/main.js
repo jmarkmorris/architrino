@@ -21,29 +21,13 @@ function facetOptionLabel(key, value, label) {
 }
 
 for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
-  const field = element(key === "shape" ? "fieldset" : "div", null, "filter-field");
-  if (key === "shape") {
-    field.append(element("legend", definition.label));
-    for (const [value, name] of definition.options) {
-      const label = element("label", null, "shape-choice"); const input = element("input");
-      input.type = "checkbox"; input.name = key; input.value = value;
-      input.setAttribute("aria-label", name);
-      input.addEventListener("change", () => {
-        state.params.delete(key);
-        document.querySelectorAll('input[name="shape"]:checked').forEach((node) => state.params.append(key, node.value));
-        changeQuery();
-      });
-      const count = element("span", "0"); count.dataset.facetCount = value;
-      label.append(input, element("span", name), count); field.append(label);
-    }
-  } else {
-    const label = element("label", definition.label); label.htmlFor = `filter-${key}`;
-    const select = element("select"); select.id = `filter-${key}`; select.dataset.facet = key;
-    select.append(new Option("Any", ""));
-    for (const [value, name] of definition.options) select.append(new Option(facetOptionLabel(key, value, name), value));
-    select.addEventListener("change", () => { state.params.delete(key); if (select.value) state.params.set(key, select.value); changeQuery(); });
-    field.append(label, select);
-  }
+  const field = element("div", null, "filter-field");
+  const label = element("label", definition.label); label.htmlFor = `filter-${key}`;
+  const select = element("select"); select.id = `filter-${key}`; select.dataset.facet = key;
+  select.append(new Option("Any", ""));
+  for (const [value, name] of definition.options) select.append(new Option(facetOptionLabel(key, value, name), value));
+  select.addEventListener("change", () => { state.params.delete(key); if (select.value) state.params.set(key, select.value); changeQuery(); });
+  field.append(label, select);
   $("filter-fields").append(field);
 }
 
@@ -52,12 +36,9 @@ function restoreControls() {
   $("search").value = state.params.get("q") ?? "";
   $("group-by").value = state.params.get("groupBy") ?? "none";
   for (const key of Object.keys(LIBRARY_FACETS)) {
-    if (key === "shape") document.querySelectorAll('input[name="shape"]').forEach((input) => { input.checked = state.params.getAll(key).includes(input.value); });
-    else {
-      const select = $(`filter-${key}`); const value = state.params.get(key) ?? "";
-      if (value && ![...select.options].some((option) => option.value === value)) select.append(new Option(value, value));
-      select.value = value;
-    }
+    const select = $(`filter-${key}`); const value = state.params.get(key) ?? "";
+    if (value && ![...select.options].some((option) => option.value === value)) select.append(new Option(value, value));
+    select.value = value;
   }
 }
 
@@ -163,17 +144,12 @@ function activeFilters() {
 
 function renderCounts(data) {
   for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
-    const counts = data.counts[key];
-    if (key === "shape") {
-      document.querySelectorAll("[data-facet-count]").forEach((node) => { node.textContent = counts[node.dataset.facetCount] ?? 0; });
-    } else {
-      const select = $(`filter-${key}`); const current = state.params.get(key) ?? "";
-      const options = key === "count" ? Object.keys(counts).filter((v) => isLibrarySelectorValue(key, v)).sort((a, b) => Number(a) - Number(b)).map((v) => [v, v]) : definition.options;
-      select.replaceChildren(new Option("Any", ""));
-      for (const [value, label] of options) select.append(new Option(`${facetOptionLabel(key, value, label)} (${counts[value] ?? 0})`, value));
-      if (current && !options.some(([v]) => v === current)) select.append(new Option(`${current} (0)`, current));
-      select.value = current;
-    }
+    const counts = data.counts[key]; const select = $(`filter-${key}`); const current = state.params.get(key) ?? "";
+    const options = key === "count" ? Object.keys(counts).filter((v) => isLibrarySelectorValue(key, v)).sort((a, b) => Number(a) - Number(b)).map((v) => [v, v]) : definition.options;
+    select.replaceChildren(new Option("Any", ""));
+    for (const [value, label] of options) select.append(new Option(`${facetOptionLabel(key, value, label)} (${counts[value] ?? 0})`, value));
+    if (current && !options.some(([v]) => v === current)) select.append(new Option(`${current} (0)`, current));
+    select.value = current;
   }
 }
 

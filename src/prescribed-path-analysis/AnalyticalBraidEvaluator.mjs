@@ -4,6 +4,8 @@ import {
   evaluateValidatedExactPrescribedSourceState,
   validateExactPrescribedSourceRecord,
 } from "./ExactPrescribedSourceWake.mjs";
+import { prescribedWorldlineSpeedBound } from
+  "../prescribed-geometry/PrescribedWorldlineOperators.mjs";
 
 export const PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA =
   "prescribed-path-analysis/analysis-protocol.v1";
@@ -336,13 +338,16 @@ export function validatePrescribedRecordAnalysisProtocol(rawProtocol) {
 }
 
 function maximumTrajectorySpeed(trajectory, startTime, endTime) {
-  const startRate = trajectory.angularVelocity +
-    trajectory.angularAcceleration * (startTime - trajectory.epochTime);
-  const endRate = trajectory.angularVelocity +
-    trajectory.angularAcceleration * (endTime - trajectory.epochTime);
-  const maximumAngularRate = Math.max(Math.abs(startRate), Math.abs(endRate));
-  return magnitude(trajectory.centerVelocity) +
-    maximumAngularRate * magnitude(trajectory.radiusU);
+  if (trajectory.kind === "moving-circular.v1") {
+    const startRate = trajectory.angularVelocity +
+      trajectory.angularAcceleration * (startTime - trajectory.epochTime);
+    const endRate = trajectory.angularVelocity +
+      trajectory.angularAcceleration * (endTime - trajectory.epochTime);
+    const maximumAngularRate = Math.max(Math.abs(startRate), Math.abs(endRate));
+    return magnitude(trajectory.centerVelocity) +
+      maximumAngularRate * magnitude(trajectory.radiusU);
+  }
+  return prescribedWorldlineSpeedBound(trajectory, startTime, endTime);
 }
 
 function residualAt(source, emissionTime, observationTime, probePosition, fieldSpeed) {
@@ -458,6 +463,13 @@ function solveCertifiedSubFieldRoot({
 }
 
 function maximumTrajectoryAcceleration(trajectory, startTime, endTime) {
+  if (trajectory.kind === "stationary.v1" || trajectory.kind === "inertial.v1" ||
+      trajectory.kind === "sd3-centered-linear-member.v1") return 0;
+  if (trajectory.kind !== "moving-circular.v1") {
+    throw new RangeError(
+      `analysis root isolation has no certified acceleration bound for ${trajectory.kind}.`,
+    );
+  }
   const startRate = trajectory.angularVelocity +
     trajectory.angularAcceleration * (startTime - trajectory.epochTime);
   const endRate = trajectory.angularVelocity +
@@ -993,8 +1005,14 @@ function evaluatePeriodClosure(sourceRecord, protocol) {
   const entries = sourceRecord.sources.map((source) => {
     const startState = evaluateValidatedExactPrescribedSourceState(source, start);
     const endState = evaluateValidatedExactPrescribedSourceState(source, end);
+    const translatingVelocity = source.trajectory.kind === "moving-circular.v1"
+      ? source.trajectory.centerVelocity
+      : source.trajectory.kind === "inertial.v1" ||
+          source.trajectory.kind === "sd3-centered-linear-member.v1"
+        ? source.trajectory.velocity
+        : source.trajectory.assemblyVelocity ?? { x: 0, y: 0, z: 0 };
     const translatingCenterDisplacement = scale(
-      source.trajectory.centerVelocity,
+      translatingVelocity,
       protocol.returnWindow.period,
     );
     const absolutePositionDisplacement =
@@ -1004,10 +1022,12 @@ function evaluatePeriodClosure(sourceRecord, protocol) {
       translatingCenterDisplacement,
     );
     const velocityResidual = subtract(endState.velocity, startState.velocity);
-    const phaseResidual = wrappedPhaseDifference(
-      startState.phase.rawRadians,
-      endState.phase.rawRadians,
-    );
+    const phaseResidual = startState.phase && endState.phase
+      ? wrappedPhaseDifference(
+          startState.phase.rawRadians,
+          endState.phase.rawRadians,
+        )
+      : 0;
     return {
       transmitterId: source.id,
       startTime: start,
