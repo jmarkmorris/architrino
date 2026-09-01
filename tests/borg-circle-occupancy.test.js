@@ -59,7 +59,7 @@ test("missing, duplicate, malformed, non-orbital and ambiguous tracks fail close
   const linear = { kind: "sd3-centered-linear-member.v1", positionAtEpoch: [0, 0, 0], velocity: [1, 0, 0] };
   assert.match(describeBorgCircleOccupancy(dataset(linear)).reason, /noncircular or unsupported/);
   assert.equal(value(circle(), linear), "unavailable");
-  // A~B and B~C but A!~C must not become a three-occupant shared group.
+  // A~B and B~C but A!~C must not become a three-occupant circle group.
   const near = [0, .75e-10, 1.5e-10].map((x) => circle({ centerAtEpoch: [x, 0, 0] }));
   for (const ordering of [near, [near[1], near[0], near[2]]]) assert.equal(value(...ordering), "unavailable");
 });

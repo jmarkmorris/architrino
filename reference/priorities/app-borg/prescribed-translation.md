@@ -1,4 +1,4 @@
-Closure goal: Implement Borg's solver-free prescribed-translation and causal-history-tube feature so a user can inspect Family-A, Family-B, and Family-C prescribed records that carry the required translation and analysis identities, their finite path histories, and certified causal-root arrivals without evolving the paths, duplicating the analytical evaluator, or implying stability, energy, photon identity, or physical realization.
+Closure goal: Implement Borg's solver-free prescribed-translation and causal-history-tube feature so a user can inspect orthogonal-axis three-binary, coincident-axis three-binary, and two-component circular prescribed records that carry the required translation and analysis identities, their finite path histories, and certified causal-root arrivals without evolving the paths, duplicating the analytical evaluator, or implying stability, energy, photon identity, or physical realization.
 
 # Objective
 
@@ -34,7 +34,7 @@ Read these live sources before editing:
 - `src/apps/borg/BorgAppRuntime.js`
 - `src/apps/borg/BorgAssemblyViewSession.js`
 - `src/apps/borg/BorgEomRecordReplayRunner.js`
-- `src/apps/borg/BorgBraidRecordCatalog.js`
+- `src/apps/borg/BorgAssemblyRecordCatalog.js`
 - `src/apps/shared/EomHistoryDataset.mjs`
 - `src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs`
 - `src/prescribed-path-analysis/CompactMonteCarloCampaign.mjs`
@@ -251,20 +251,20 @@ Do not recompute an entire complete-cycle campaign on every animation frame. Req
 
 The first acceptance fixtures should use B-family records because prescribed translation and binary-train intuition are the feature's initial purpose.
 
-Do not hardcode the implementation to catalog labels such as `B1` or `B1.3`. Build against sealed worldline identities, declared group translation, and canonical analytical packets so the same display layer accepts Family-A, Family-B, and Family-C records whenever their source carriers satisfy the same contract.
+Do not hardcode the implementation to a catalog label. Build against sealed worldline identities, declared group translation, and canonical analytical packets so the same display layer accepts orthogonal-axis three-binary, coincident-axis three-binary, and two-component circular records whenever their source carriers satisfy the same contract.
 
 If a B-family record lacks a field required by the design, show the missing carrier and remain not advanced. Do not add per-candidate browser constants.
 
-The current Borg catalog is a flat list of twenty-four sealed prescribed records, including SD3, F5, F6c, and F6b, with no required family metadata. The C1 through C6 source specifications, generated records, catalog labels, and analytical routing retain their exact identities. Account explicitly for those identities:
+The current Borg catalog is a flat list of sealed prescribed records, including centered five-coordinate, phase-varying, asymmetric counter-breathing, and scoped-negative circular representatives, with no required hierarchy metadata. Account explicitly for the six two-component circular configurations:
 
-- C1 and C2 are the general co-rotating and counter-rotating coaxial twelve-worldline records and are not required to decompose into B1 components;
-- C3 and C4 are the constrained coaxial two-B1 loci;
-- C5 and C6 are the constrained coaxial two-B1.3 loci; and
-- C1 through C6 retain their sealed record identities and source order.
+- the general co-rotating and counter-rotating coaxial twelve-worldline records are not required to decompose into coincident-axis three-binary components;
+- two constrained records contain coaxial coincident-axis three-binary components;
+- two constrained records contain coaxial planar common-center three-binary components; and
+- every record retains its sealed identity and source order.
 
-Use C1 and C2 as cross-family contract checks after the first B-family translation fixture. Keep their broader visual QA outside BORG-006 unless the live Borg queue and current source state show that it is required for this packet's acceptance.
+Use the co-rotating and counter-rotating two-component circular configurations as contract checks after the first coincident-axis three-binary translation fixture. Keep their broader visual QA outside BORG-006 unless the live Borg queue and current source state show that it is required for this packet's acceptance.
 
-B1 midpoint-dimension or train exploration and further coaxial Family-C extensions are source-producing research lanes. Borg may replay sealed records they later emit, but it must not author those geometries, add browser-side candidate coordinates, or treat background analyzer output as app authority.
+Coincident-axis midpoint-dimension or train exploration and further coaxial two-component circular extensions are source-producing research lanes. Borg may replay sealed records they later emit, but it must not author those geometries, add browser-side candidate coordinates, or treat background analyzer output as app authority.
 
 # Capability Staging
 
@@ -272,7 +272,7 @@ Prescribed Translation and Causal-History Tubes is the first Borg enhancement sl
 
 1. [BORG-007 — Taxonomy Morph Lab](work-queue.md#borg-007--taxonomy-morph-lab);
 2. [BORG-008 — Braid Harmonics Studio](work-queue.md#borg-008--braid-harmonics-studio); and
-3. [BORG-009 — Family-A Exclusion Geometry](work-queue.md#borg-009--family-a-exclusion-geometry).
+3. [BORG-009 — orthogonal-axis three-binary Exclusion Geometry](work-queue.md#borg-009--orthogonal-axis-three-binary-exclusion-geometry).
 
 If any later-stage display is included, it must reuse the same sealed-record, stable-worldline, display-transform, and claim-boundary architecture. Do not create a separate geometry producer or candidate-specific branch.
 
@@ -295,8 +295,8 @@ Do not edit `BorgEomRecordReplayRunner.js`, `EomHistoryDataset.mjs`, `Analytical
 
 # Coordination
 
-- Before any C1/C2 browser pass, inspect the live Borg work queue and current browser evidence so the packet does not duplicate an already owned visual acceptance pass.
-- Other workstreams may produce analyzer tooling, A1.3/C5 calibration, or Family-B/Family-C train findings. Their outputs are not app authority unless the completed artifacts are inspected and their evidence boundaries remain explicit.
+- Before any general co-/counter-rotating two-component circular browser pass, inspect the live Borg work queue and current browser evidence so the packet does not duplicate an already owned visual acceptance pass.
+- Other workstreams may produce analyzer tooling, orthogonal-axis calibration, or coincident-axis three-binary/two-component circular train findings. Their outputs are not app authority unless the completed artifacts are inspected and their evidence boundaries remain explicit.
 
 # Implementation Sequence
 
@@ -394,7 +394,7 @@ Determine the exact live commands from package scripts, tests, and repository pr
 - focused prescribed-path evaluator and compact-campaign tests;
 - focused Borg replay, runtime-contract, frame/trail, selection, and rendering tests;
 - new projection/provider/root-overlay tests;
-- browser interaction on at least one ordinary B-family case and one super-wake-speed multiple-root fixture;
+- browser interaction on at least one ordinary coincident-axis three-binary case and one super-wake-speed multiple-root fixture;
 - accessibility checks for every added control and table;
 - `git diff --check`;
 - strict content validation;

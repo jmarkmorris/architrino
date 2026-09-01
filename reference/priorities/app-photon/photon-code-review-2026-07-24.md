@@ -2,7 +2,7 @@
 
 Review scope: all ten modules under `src/apps/photon/` (`PhotonRuntime.js` 1126, `PhotonFormulaRuntime.js` 2670, `PhotonControlsRuntime.js` 1254, `PhotonBraidVisualRuntime.js` 987, `PhotonSearchRuntime.js` 977, `PhotonStateRuntime.js` 595, `PhotonDiagnosticsRuntime.js` 448, `PhotonSelfHitSweepRuntime.js` 296, `PhotonPresetRuntime.js` 191, `PhotonTransmitterHistoryRuntime.js` 105, `main.js`), `photon.html` (1313), `tests/photon-runtime.test.js` (51 tests, all green), plus a skim of `PrescribedPathAnalysis.mjs` for usage correctness. Comments only — no code changes. Key math claims verified numerically under Node 22.
 
-Same-day context: the node:crypto barrel-import regression (blank canvas, shared with the A1 Lorentz Geometry app) was fixed separately today; `PhotonRuntime.js`/`PhotonFormulaRuntime.js` now import `PrescribedPathAnalysis.mjs` directly and the browser-import-graph guard test covers `src/apps/photon/main.js`. Not re-flagged here.
+Same-day context: the node:crypto barrel-import regression (blank canvas, shared with the Coincident-Midpoint Three-Axis Circular Lorentz Geometry app) was fixed separately today; `PhotonRuntime.js`/`PhotonFormulaRuntime.js` now import `PrescribedPathAnalysis.mjs` directly and the browser-import-graph guard test covers `src/apps/photon/main.js`. Not re-flagged here.
 
 ## Architecture Summary
 

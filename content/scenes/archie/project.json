@@ -23,6 +23,10 @@
         "scenePath": "content/scenes/archie/presentations.json"
       },
       {
+        "nodeId": "branding_and_marketing",
+        "scenePath": "content/scenes/archie/branding_and_marketing.json"
+      },
+      {
         "nodeId": "people",
         "scenePath": "content/scenes/archie/people.json"
       },
@@ -72,6 +76,14 @@
       "color": "#6a3c8f",
       "labelTitle": "Presentations",
       "labelBadge": "pdf"
+    },
+    {
+      "id": "branding_and_marketing",
+      "title": "Branding & Marketing",
+      "radius": 2.2,
+      "color": "#6A0DAD",
+      "labelTitle": "Branding & Marketing",
+      "labelBadge": "doc"
     },
     {
       "id": "people",

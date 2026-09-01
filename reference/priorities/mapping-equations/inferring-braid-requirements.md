@@ -1555,7 +1555,7 @@ Claim grade: the need for distinct complete-history angular and exchange rows is
 
 ### Conjugation, Orientation, And Spinor History Must Be Separate
 
-The declared polarity-product radial kernel supplies an exact separation that rules out a large class of one-sign braid pictures. Let $C$ globally conjugate polarity at fixed worldlines and let $P$ mirror the worldlines at fixed polarity labels. On the declared B1 sign chart, let $c_{\mathrm{pol}}$ be the polarity-assignment sign, $o_{\mathrm{PA}}$ the ordered geometric orientation, and $\chi$ the polarity-weighted handedness. Then
+The declared polarity-product radial kernel supplies an exact separation that rules out a large class of one-sign braid pictures. Let $C$ globally conjugate polarity at fixed worldlines and let $P$ mirror the worldlines at fixed polarity labels. On the declared coincident-axis three-binary configuration sign chart, let $c_{\mathrm{pol}}$ be the polarity-assignment sign, $o_{\mathrm{PA}}$ the ordered geometric orientation, and $\chi$ the polarity-weighted handedness. Then
 
 $$
 \chi=o_{\mathrm{PA}}c_{\mathrm{pol}},
@@ -2402,7 +2402,7 @@ Several no-go rules follow:
 - a drawn knot or link is not protected unless ordinary dynamics cannot pass through the apparent crossing without meeting a certified collision, exclusion, framing, fold, or branch barrier;
 - point-worldline paths do not acquire tube-like impenetrability merely from being drawn with thickness;
 - writhe, twist, linking, ordered-frame chirality, circulation, and spinor parity are distinct rows;
-- the A/B/C taxonomy specifies search charts, not topological sectors or retained particle identities;
+- the named braid-coordinate charts specify search configurations, not topological sectors or retained particle identities;
 - a frequency ratio does not supply the phase-degree pair until the return map exhibits the corresponding winding; and
 - planarity versus volume is an important morphology coordinate but does not determine Bose/Fermi statistics without an exchange-history calculation.
 
@@ -2446,10 +2446,10 @@ The proposed first comparison asks whether an unlink and a square-knot insertion
 
 Plainly: two histories can look different but have the same present root counts, or look identical while their timing gives different causal intersections. The architecture must preserve both kinds of information.
 
-The A/B/C families require an especially strict component check before spatial link language is used:
+The named braid-coordinate charts require an especially strict component check before spatial link language is used:
 
-- in A1.2, both members of each binary traverse the same support circle, and equal-radius circles in mutually orthogonal planes intersect;
-- in equal-radius equatorial B1 or decomposed C rows, phase-shifted components can occupy coincident unparameterized circles; and
+- in the coincident-midpoint equal-radius orthogonal-axis three-binary configuration, both members of each binary traverse the same support circle, and equal-radius circles in mutually orthogonal planes intersect;
+- in the equal-radius planar common-center coincident-axis three-binary configuration or two-component circular rows decomposed into coincident-axis components, phase-shifted components can occupy coincident unparameterized circles; and
 - a translating helix is open until a closure modulo translation or another declared return symmetry is certified.
 
 Phase separation can prevent simultaneous point collision, but it does not make overlapping traced supports into disjoint link components. Ordinary component-knot and Gauss-linking invariants must abstain on such rows unless a different carrier, closure, or world-tube object is explicitly defined.
@@ -2515,7 +2515,7 @@ Plainly: the mathematics for linking is available, but the theory has not yet pr
 The combined corpus scan supports several hard negative statements:
 
 - no Standard Model particle currently has a certified retained braid topology;
-- prescribed A/B/C paths are configuration charts, not retained solutions;
+- prescribed braid-coordinate paths are configuration charts, not retained solutions;
 - no retained photon lock exists, so near-photon neutrino residuals remain referent-pending;
 - support dimension alone does not determine Bose or Fermi statistics;
 - paired counter-rotation alone does not establish a photon;
@@ -2645,20 +2645,20 @@ The [Braid Program configuration chart](../braid-program/configuration-chart.md)
 
 | Existing chart | Blueprint rows naturally represented | Missing or collapsed rows | Disposition for fermion search |
 | --- | --- | --- | --- |
-| A2 cyclic three-binary chart | three equivalent body-fixed directions, common cadence, $120^\circ$ phase relation, persistent identities, volumetric near-rest frame | independent signed counterflow, history lift, generation exhaustion, event ports, evolved sea, retention | strongest existing seed for the body-frame/three-port part; insufficient alone |
-| general A3 chart | three resolved binary radii, axial offsets, transverse radii, cadences, phases, and directions | exact three-port equivalence unless constrained; circulation rank, history lift, generation selection, retention | strongest existing local deformation chart around an A2-like symmetric locus |
-| B1/B1.1--B1.3 charts | common oriented axis, three persistent binaries, coherent circulation and phase variables | three spatial directions collapse to one axis; no independent counterflow in the base relation; no spinor or generation row | possible axial moment or transaction module, not a complete fermion core |
-| C1/C2 twelve-worldline trains | extended ordered support, pairing map, independent path phases/cadences; C2 adds opposite-circulation subsets | one common spatial axis; no intrinsic three-direction body-port orbit; no history lift or generation exhaustion | strongest existing counterflow clue, but geometrically too axial to serve alone |
-| C3/C4 two-component B1 charts | explicit two-component association; C4 adds opposite component circulation and a relative placement/phase record | both components inherit the common-axis B1 structure; three-port body action remains absent | candidate counterflow/return module inside a larger framed assembly |
+| phase-compensated equal-geometry orthogonal-axis three-binary chart | three equivalent body-fixed directions, common cadence, $120^\circ$ phase relation, persistent identities, volumetric near-rest frame | independent signed counterflow, history lift, generation exhaustion, event ports, evolved sea, retention | strongest existing seed for the body-frame/three-port part; insufficient alone |
+| axially separated orthogonal-axis three-binary chart | three resolved binary radii, axial offsets, transverse radii, cadences, phases, and directions | exact three-port equivalence unless constrained; circulation rank, history lift, generation selection, retention | strongest existing local deformation chart around the symmetric locus of the phase-compensated equal-geometry orthogonal-axis configuration |
+| coincident-axis three-binary charts, including the axial-transverse, high-axial, and planar common-center loci | common oriented axis, three persistent binaries, coherent circulation and phase variables | three spatial directions collapse to one axis; no independent counterflow in the base relation; no spinor or generation row | possible axial moment or transaction module, not a complete fermion core |
+| co-rotating and counter-rotating coincident-center two-component circular configurations | extended ordered support, pairing map, independent path phases/cadences; counter-rotating coincident-center two-component circular configuration adds opposite-circulation subsets | one common spatial axis; no intrinsic three-direction body-port orbit; no history lift or generation exhaustion | strongest existing counterflow clue, but geometrically too axial to serve alone |
+| co-rotating and counter-rotating coaxial two-component circular configurations | explicit two-component association; counter-rotating coaxial two-component circular configuration adds opposite component circulation and a relative placement/phase record | both components inherit the coincident-axis three-binary structure; three-port body action remains absent | candidate counterflow/return module inside a larger framed assembly |
 | multi-braid assembly composition axes | relative position, orientation, phase, circulation, and polarity conjugation between top-level braid records | no selected component family, binding law, retained basin, or no-overgeneration proof | lawful place to test a framed core plus counterflow module without declaring a new primitive family |
 
-Plainly: A2/A3 contain the best present three-direction frame, while C2/C4 contain the clearest present counter-rotation. The desired fermion candidate is not already hiding under one existing name. It needs either an extension that lets a volumetric triad carry independent signed motion or a composite that binds the two functions without erasing their independence.
+Plainly: The phase-compensated equal-geometry and axially separated orthogonal-axis configurations contain the best present three-direction frame, while the counter-rotating coincident-center and counter-rotating coaxial two-component circular configurations contain the clearest present counter-rotation. The desired fermion candidate is not already hiding under one existing name. It needs either an extension that lets a volumetric triad carry independent signed motion or a composite that binds the two functions without erasing their independence.
 
 This intersection and the later collision/dipole-null analysis yield six bounded seed charts for future ordinary evolution. The labels below are local to this inference packet and do not add members to the Braid Program taxonomy.
 
-##### Seed F1 — Near-A2 Framed Triad With Independent Circulation
+##### Seed F1 — Near-Phase-Compensated Equal-Geometry Orthogonal-Axis Framed Triad With Independent Circulation
 
-Begin on the A2 cyclic-symmetry locus, retain three persistent binary identities and the derived body frame, but promote the circulation and small phase/deformation rows from one common sign to a constrained vector:
+Begin on the cyclic-symmetry locus of the phase-compensated equal-geometry orthogonal-axis configuration, retain three persistent binary identities and the derived body frame, but promote the circulation and small phase/deformation rows from one common sign to a constrained vector:
 
 $$
 \mathbf q=(q_1,q_2,q_3),
@@ -2668,7 +2668,7 @@ $$
 \sum_a\delta\phi_a=0.
 $$
 
-The `Coordinates` field is closed symbolically without selecting a circulation class or numerical representative. Let $N=(\hat{\mathbf n}_1\ \hat{\mathbf n}_2\ \hat{\mathbf n}_3)$ be the ordered matrix of source-declared unit binary axes. Let $\mathcal C_{A2}^{\mathrm{geom,reg}}$ denote the existing A2 coordinate chart with its common-circulation and fixed-phase rows removed, while retaining its common $R,h,\rho,f$, prescribed $\lambda_A$, group-translation row, common center, persistent ports, and source-declared local orbit frames, restricted to the phase-resolving rank-three domain $\rho>0$ and $\det N>0$. For any declared local-chart radius $0<\varepsilon<\pi/3$, define
+The `Coordinates` field is closed symbolically without selecting a circulation class or numerical representative. Let $N=(\hat{\mathbf n}_1\ \hat{\mathbf n}_2\ \hat{\mathbf n}_3)$ be the ordered matrix of source-declared unit binary axes. Let $\mathcal C_{\text{phase-compensated}}^{\mathrm{geom,reg}}$ denote the existing phase-compensated equal-geometry orthogonal-axis configuration coordinate chart with its common-circulation and fixed-phase rows removed, while retaining its common $R,h,\rho,f$, prescribed $\lambda_A$, group-translation row, common center, persistent ports, and source-declared local orbit frames, restricted to the phase-resolving rank-three domain $\rho>0$ and $\det N>0$. For any declared local-chart radius $0<\varepsilon<\pi/3$, define
 
 $$
 \begin{aligned}
@@ -2681,7 +2681,7 @@ B_\varepsilon&=\left\{(\eta_1,\eta_2)\in\mathbb R^2:\eta_1^2+\eta_2^2<\varepsilo
 I_\varepsilon&=(-\pi+\varepsilon,\pi-\varepsilon),
 &
 \mathcal C_{F1}(\varepsilon)
-&=\mathcal C_{A2}^{\mathrm{geom,reg}}\times\mathcal Q_{F1}\times I_\varepsilon\times B_\varepsilon,
+&=\mathcal C_{\text{phase-compensated}}^{\mathrm{geom,reg}}\times\mathcal Q_{F1}\times I_\varepsilon\times B_\varepsilon,
 &
 \boldsymbol\delta\phi&=\eta_1\mathbf b_1+\eta_2\mathbf b_2,\\
 \boldsymbol\phi
@@ -2690,11 +2690,11 @@ I_\varepsilon&=(-\pi+\varepsilon,\pi-\varepsilon),
 \end{aligned}
 $$
 
-This is an eight-sheet local configuration chart: $\mathbf q\in\mathcal Q_{F1}$ is the seed's circulation-sign vector, not an architrino-polarity vector; $\vartheta$ is the inherited A2 common phase; and $(\eta_1,\eta_2)$ are the two continuous relative-phase coordinates. The currently named common and one-reversed search classes are the cyclic-port orbits of $(+,+,+)$ and $(+,+,-)$; their globally reversed partners remain present and are not silently identified. Because $\mathbf b_1$ and $\mathbf b_2$ are an orthonormal basis of $\{\mathbf x\in\mathbb R^3:\sum_a x_a=0\}$, every allowed $\boldsymbol\delta\phi$ has the unique inverse $\eta_i=\mathbf b_i\mathbin\cdot\boldsymbol\delta\phi$. The domains $I_\varepsilon$ and $B_\varepsilon$ imply $|\vartheta|+|\delta\phi_a|<\pi$, which keeps all three phases on their base-centered angular branches; $\varepsilon<\pi/3$ also prevents neighboring base phases from becoming equal. At $(\eta_1,\eta_2)=(0,0)$ with $\mathbf q=(+,+,+)$, varying $\vartheta$ gives the declared A2 common-circulation orbit, and $\vartheta=0$ is its stated phase epoch. The loci $\rho=0$ and $\det N=0$ are coordinate boundaries where phase or ordered-frame recovery fails; excluding them from F1 is not a dynamical or physical rejection of the corresponding Family-A boundaries.
+This is an eight-sheet local configuration chart: $\mathbf q\in\mathcal Q_{F1}$ is the seed's circulation-sign vector, not an architrino-polarity vector; $\vartheta$ is the inherited phase-compensated equal-geometry orthogonal-axis configuration's common phase; and $(\eta_1,\eta_2)$ are the two continuous relative-phase coordinates. The currently named common and one-reversed search classes are the cyclic-port orbits of $(+,+,+)$ and $(+,+,-)$; their globally reversed partners remain present and are not silently identified. Because $\mathbf b_1$ and $\mathbf b_2$ are an orthonormal basis of $\{\mathbf x\in\mathbb R^3:\sum_a x_a=0\}$, every allowed $\boldsymbol\delta\phi$ has the unique inverse $\eta_i=\mathbf b_i\mathbin\cdot\boldsymbol\delta\phi$. The domains $I_\varepsilon$ and $B_\varepsilon$ imply $|\vartheta|+|\delta\phi_a|<\pi$, which keeps all three phases on their base-centered angular branches; $\varepsilon<\pi/3$ also prevents neighboring base phases from becoming equal. At $(\eta_1,\eta_2)=(0,0)$ with $\mathbf q=(+,+,+)$, varying $\vartheta$ gives the declared phase-compensated equal-geometry orthogonal-axis configuration's common-circulation orbit, and $\vartheta=0$ is its stated phase epoch. The loci $\rho=0$ and $\det N=0$ are coordinate boundaries where phase or ordered-frame recovery fails; excluding them from F1 is not a dynamical or physical rejection of the corresponding orthogonal-axis three-binary boundaries.
 
 Plainly: F1 has an exact list of independent configuration coordinates. It does not choose a sign sheet, numerical scale, complete history, or physical realization.
 
-Claim grade: the chart and its inverse are derived from the declared A2 chart and F1 zero-sum constraint. The F1 seed itself remains guessed. This field closure is falsified if the displayed basis is not orthonormal, does not span the zero-sum plane, admits two coordinate pairs for one phase vector inside $B_\varepsilon$, fails to recover the A2 row at the stated locus, or is not closed under cyclic port permutation.
+Claim grade: the chart and its inverse are derived from the declared phase-compensated equal-geometry orthogonal-axis configuration chart and F1 zero-sum constraint. The F1 seed itself remains guessed. This field closure is falsified if the displayed basis is not orthonormal, does not span the zero-sum plane, admits two coordinate pairs for one phase vector inside $B_\varepsilon$, fails to recover the phase-compensated equal-geometry orthogonal-axis configuration row at the stated locus, or is not closed under cyclic port permutation.
 
 The `Gauge` field is also closed at representation grade. Let $\mathbf C\in\mathbb R^3$ be the declared common-center coordinate. On the regular domain, the ordered axes define the rotation-equivariant body frame
 
@@ -2713,11 +2713,11 @@ Temporarily write the lifted phase row redundantly as
 $$
 \boldsymbol\phi
 =
-\boldsymbol\phi^{A2}
+\boldsymbol\phi^{\text{phase-compensated}}
 +\vartheta\mathbf 1
 +\boldsymbol\xi,
 \qquad
-\boldsymbol\phi^{A2}
+\boldsymbol\phi^{\text{phase-compensated}}
 =
 \left(0,\frac{2\pi}{3},\frac{4\pi}{3}\right).
 $$
@@ -2788,24 +2788,24 @@ h
 \sqrt{(\hat{\mathbf u}_a\mathbin\cdot\mathbf d_a)^2+(\hat{\mathbf v}_a\mathbin\cdot\mathbf d_a)^2},\\
 \phi_a
 &=
-\operatorname{atan2}_{\phi_a^{A2}}\!\left(\hat{\mathbf v}_a\mathbin\cdot\mathbf d_a,\hat{\mathbf u}_a\mathbin\cdot\mathbf d_a\right),
+\operatorname{atan2}_{\phi_a^{\text{phase-compensated}}}\!\left(\hat{\mathbf v}_a\mathbin\cdot\mathbf d_a,\hat{\mathbf u}_a\mathbin\cdot\mathbf d_a\right),
 &
 \vartheta
 &=
-\frac13\mathbf1^{\mathsf T}\left(\boldsymbol\phi-\boldsymbol\phi^{A2}\right),\\
+\frac13\mathbf1^{\mathsf T}\left(\boldsymbol\phi-\boldsymbol\phi^{\text{phase-compensated}}\right),\\
 \eta_i
 &=
-\mathbf b_i\mathbin\cdot\left(\boldsymbol\phi-\boldsymbol\phi^{A2}-\vartheta\mathbf1\right)
+\mathbf b_i\mathbin\cdot\left(\boldsymbol\phi-\boldsymbol\phi^{\text{phase-compensated}}-\vartheta\mathbf1\right)
 =
-\mathbf b_i\mathbin\cdot\left(\boldsymbol\phi-\boldsymbol\phi^{A2}\right).
+\mathbf b_i\mathbin\cdot\left(\boldsymbol\phi-\boldsymbol\phi^{\text{phase-compensated}}\right).
 \end{aligned}
 $$
 
-Here $\operatorname{atan2}_{\phi_a^{A2}}$ means the unique lift of the ordinary two-argument angle into $(\phi_a^{A2}-\pi,\phi_a^{A2}+\pi)$. The equal values of $h$ and $\rho$ recovered from the three ports are the exact F1 consistency conditions, and $R=\sqrt{h^2+\rho^2}$. The $I_\varepsilon\times B_\varepsilon$ domain keeps every $\phi_a$ inside that base-centered branch, making $\vartheta$, each $\phi_a$, and hence each $\eta_i$ unique. Positions alone cannot recover $\mathbf q$; that discrete row belongs to the velocity/history map, so the eight sheets share one instantaneous reconstruction formula rather than being silently identified.
+Here $\operatorname{atan2}_{\phi_a^{\text{phase-compensated}}}$ means the unique lift of the ordinary two-argument angle into $(\phi_a^{\text{phase-compensated}}-\pi,\phi_a^{\text{phase-compensated}}+\pi)$. The equal values of $h$ and $\rho$ recovered from the three ports are the exact F1 consistency conditions, and $R=\sqrt{h^2+\rho^2}$. The $I_\varepsilon\times B_\varepsilon$ domain keeps every $\phi_a$ inside that base-centered branch, making $\vartheta$, each $\phi_a$, and hence each $\eta_i$ unique. Positions alone cannot recover $\mathbf q$; that discrete row belongs to the velocity/history map, so the eight sheets share one instantaneous reconstruction formula rather than being silently identified.
 
 Plainly: every allowed F1 coordinate point places all six pair ends exactly, and the position data recover every continuous shape coordinate on a chosen circulation sheet. This does not choose machine IDs, source order, a circulation sheet, a numerical representative, or a prescribed history.
 
-Claim grade: the member map, pair conjugacy, and fixed-sheet position-bearing inverse are derived from the Family-A geometry. The F1 seed remains guessed. This field closure is falsified if any reconstructed pair is not antipodal about $\mathbf C$, if the inverse fails on the declared regular domain, if two distinct position-bearing coordinate rows on one sheet produce the same six labeled positions, or if an admitted Family-A frame violates the stated orthonormal relations.
+Claim grade: the member map, pair conjugacy, and fixed-sheet position-bearing inverse are derived from the orthogonal-axis three-binary geometry. The F1 seed remains guessed. This field closure is falsified if any reconstructed pair is not antipodal about $\mathbf C$, if the inverse fails on the declared regular domain, if two distinct position-bearing coordinate rows on one sheet produce the same six labeled positions, or if an admitted orthogonal-axis three-binary frame violates the stated orthonormal relations.
 
 The `Velocity` field is the exact differential of that member map. Write
 
@@ -2842,7 +2842,7 @@ q_a\dot\phi_a
 \right\}.
 $$
 
-Thus $\mathbf q$ is constant on each differentiable interval and is exactly the sign vector of the three phase rates. A sign-sheet change is an event boundary, not a finite tangent. At the common A2 locus $\mathbf q=(+,+,+)$ and $\boldsymbol\zeta=\mathbf0$, the formulas give $\dot\vartheta=\omega$, $\dot\eta_1=\dot\eta_2=0$, and the ordinary common phase advance. On a mixed-sign sheet, the term $\omega(\mathbf q-\overline q\mathbf1)$ is the required zero-sum relative-phase drift; $\boldsymbol\zeta$ is the remaining two-coordinate deformation rate.
+Thus $\mathbf q$ is constant on each differentiable interval and is exactly the sign vector of the three phase rates. A sign-sheet change is an event boundary, not a finite tangent. At the common phase-compensated equal-geometry orthogonal-axis configuration locus $\mathbf q=(+,+,+)$ and $\boldsymbol\zeta=\mathbf0$, the formulas give $\dot\vartheta=\omega$, $\dot\eta_1=\dot\eta_2=0$, and the ordinary common phase advance. On a mixed-sign sheet, the term $\omega(\mathbf q-\overline q\mathbf1)$ is the required zero-sum relative-phase drift; $\boldsymbol\zeta$ is the remaining two-coordinate deformation rate.
 
 For a complete moving-frame differential, let $F_a=(\hat{\mathbf n}_a\ \hat{\mathbf u}_a\ \hat{\mathbf v}_a)\in SO(3)$ be the source-declared local orbit frame. Its differentiable rate has the unique form
 
@@ -2889,11 +2889,11 @@ $$
 R=\sqrt{h^2+\rho^2},
 $$
 
-so $\dot R$ is not an additional rate. In a fixed frame with $\Omega_a=0$, the differential reduces to the existing pair-conjugate Family-A tangent; the new terms retain exactness when the common center, geometry, relative phases, or declared frames move.
+so $\dot R$ is not an additional rate. In a fixed frame with $\Omega_a=0$, the differential reduces to the existing pair-conjugate orthogonal-axis three-binary tangent; the new terms retain exactness when the common center, geometry, relative phases, or declared frames move.
 
 Plainly: every allowed F1 position now has one explicit velocity for every allowed rate row. The sign vector controls which way each binary advances, while the zero-sum rate pair permits small relative deformations. This is a local tangent family, not a selected worldline history, speed certificate, return, or retained solution.
 
-Claim grade: the phase-rate decomposition and six-member velocity map are derived by differentiating the F1 coordinate section and reconstruction formula. Existing Family-A code checks only the fixed-frame common-circulation specialization; it is not the proof of the general rule. The result is falsified if a differentiable admitted coordinate history has a difference quotient that disagrees with $\mathbf V_{a,\sigma}$, if $\sum_a\dot{\delta\phi}_a\ne0$, if an admitted rate violates $\operatorname{sgn}(\dot\phi_a)=q_a$, if the common A2 specialization fails, or if pair conjugacy $\mathbf V_{a,+}+\mathbf V_{a,-}=2\dot{\mathbf C}$ fails.
+Claim grade: the phase-rate decomposition and six-member velocity map are derived by differentiating the F1 coordinate section and reconstruction formula. Existing orthogonal-axis three-binary code checks only the fixed-frame common-circulation specialization; it is not the proof of the general rule. The result is falsified if a differentiable admitted coordinate history has a difference quotient that disagrees with $\mathbf V_{a,\sigma}$, if $\sum_a\dot{\delta\phi}_a\ne0$, if an admitted rate violates $\operatorname{sgn}(\dot\phi_a)=q_a$, if the common phase-compensated equal-geometry orthogonal-axis configuration specialization fails, or if pair conjugacy $\mathbf V_{a,+}+\mathbf V_{a,-}=2\dot{\mathbf C}$ fails.
 
 The `Centering` field follows exactly from pair conjugacy. For every port and every admitted coordinate and rate row,
 
@@ -3009,16 +3009,16 @@ The smallest useful sign classes are the common class $(+,+,+)$ and the one-reve
 
 Fast rejection: the independent circulation extension destroys root validity or retention; the one-reversed orbit leaks a permanent laboratory anisotropy into a lepton-like scalar row; or all sign classes are equivalent after the declared quotient and supply no independent current coordinate.
 
-##### Seed F2 — Dual-A2 Conjugate Counterflow Cage
+##### Seed F2 — Dual Phase-Compensated Equal-Geometry Orthogonal-Axis Conjugate Counterflow Cage
 
-Compose two A2-like triads in one assembly presentation while varying whole-braid polarity conjugation, relative circulation, relative phase, relative placement, and a nontrivial port permutation:
+Compose two triads near the phase-compensated equal-geometry orthogonal-axis configuration in one assembly presentation while varying whole-braid polarity conjugation, relative circulation, relative phase, relative placement, and a nontrivial port permutation:
 
 $$
 \Theta_{F2}
 =
 \left(
-\Theta_{A2}^{(1)},
-\mathcal C\Theta_{A2}^{(2)},
+\Theta_{\text{phase-compensated}}^{(1)},
+\mathcal C\Theta_{\text{phase-compensated}}^{(2)},
 q_{12},
 \Delta\phi_{12},
 \pi_{12},
@@ -3079,7 +3079,7 @@ Plainly: the gauge section removes only where and how the complete dual-triad re
 
 Claim grade: the diagonal rigid-presentation section, invariant relative-pose rows, phase reparameterization, and trivial stabilizer are derived for the labeled two-component seed. F2 itself remains guessed, and no association or member map is inferred. The result is falsified if the diagonal action changes a displayed relative row, if two distinct rigid transformations put one labeled record in the section, or if reconstruction later requires quotienting a relative coordinate or persistent label removed here.
 
-The `Coordinates` field is an exact local product without a representative choice. Let $\mathcal C_{A2}^{\mathrm{int,reg}}$ be the regular A2 internal chart with its component center, rigid presentation frame, common phase, and common circulation sign removed, while retaining its common $R,h,\rho,f$, prescribed $\lambda_A$, persistent ports, and body-frame orbit data. For locally chosen phase bases $\vartheta_b^\star$, define
+The `Coordinates` field is an exact local product without a representative choice. Let $\mathcal C_{\text{phase-compensated}}^{\mathrm{int,reg}}$ be the regular phase-compensated equal-geometry orthogonal-axis configuration internal chart with its component center, rigid presentation frame, common phase, and common circulation sign removed, while retaining its common $R,h,\rho,f$, prescribed $\lambda_A$, persistent ports, and body-frame orbit data. For locally chosen phase bases $\vartheta_b^\star$, define
 
 $$
 \begin{aligned}
@@ -3102,7 +3102,7 @@ $$
 =
 (\mathbb R^3\times SO(3))
 \times
-(\mathcal C_{A2}^{\mathrm{int,reg}})^2
+(\mathcal C_{\text{phase-compensated}}^{\mathrm{int,reg}})^2
 \times
 \mathcal S_{F2}
 \times
@@ -3115,12 +3115,12 @@ I_1\times I_2
 B_\pi^3.
 $$
 
-The first factor is the shared presentation $(\mathbf C,E)$; the remaining factors are the two labeled internal A2 rows, component circulation signs $(s_1,s_2)$, nonidentity persistent-port relation $\pi_{12}$, lifted component phases $(\vartheta_1,\vartheta_2)$, body-frame displacement $\mathbf d_{12}$, and local relative-orientation vector $\boldsymbol\omega$. The F2 polarity-conjugation relation is fixed by assigning the second component the whole-braid conjugate of its A2 polarity row; it is not a continuous coordinate. The gauge-fixed chart is therefore
+The first factor is the shared presentation $(\mathbf C,E)$; the remaining factors are the two labeled internal phase-compensated equal-geometry orthogonal-axis configuration rows, component circulation signs $(s_1,s_2)$, nonidentity persistent-port relation $\pi_{12}$, lifted component phases $(\vartheta_1,\vartheta_2)$, body-frame displacement $\mathbf d_{12}$, and local relative-orientation vector $\boldsymbol\omega$. The F2 polarity-conjugation relation is fixed by assigning the second component the whole-braid conjugate of its phase-compensated equal-geometry orthogonal-axis configuration polarity row; it is not a continuous coordinate. The gauge-fixed chart is therefore
 
 $$
 \mathcal C_{F2}
 =
-(\mathcal C_{A2}^{\mathrm{int,reg}})^2
+(\mathcal C_{\text{phase-compensated}}^{\mathrm{int,reg}})^2
 \times
 \mathcal S_{F2}
 \times
@@ -3133,7 +3133,7 @@ I_1\times I_2
 B_\pi^3.
 $$
 
-The analytical local inverse uses each component's A2 inverse for its internal row, reads $(s_1,s_2)$ and $\pi_{12}$ from the persistent discrete record, recovers $\mathbf d_{12}$ and $Q_{12}$ by the gauge formulas, and uses
+The analytical local inverse uses each component's phase-compensated equal-geometry orthogonal-axis configuration inverse for its internal row, reads $(s_1,s_2)$ and $\pi_{12}$ from the persistent discrete record, recovers $\mathbf d_{12}$ and $Q_{12}$ by the gauge formulas, and uses
 
 $$
 \boldsymbol\omega
@@ -3141,13 +3141,13 @@ $$
 \operatorname{vee}(\log Q_{12})
 $$
 
-on $\|\boldsymbol\omega\|<\pi$. The two component phase lifts recover $\vartheta_1$ and $\vartheta_2$ uniquely and hence recover $\overline\vartheta$ and $\Delta\vartheta_{12}$. A relative phase alone is insufficient for instantaneous reconstruction because the common component phase remains physical. The boundary $\|\boldsymbol\omega\|=\pi$ requires a neighboring orientation chart; excluding it from this local chart is not a physical or dynamical rejection. Likewise, excluding the identity permutation implements the stated nontrivial-permutation F2 seed and does not reject its identity-permutation control as an A2-composition geometry.
+on $\|\boldsymbol\omega\|<\pi$. The two component phase lifts recover $\vartheta_1$ and $\vartheta_2$ uniquely and hence recover $\overline\vartheta$ and $\Delta\vartheta_{12}$. A relative phase alone is insufficient for instantaneous reconstruction because the common component phase remains physical. The boundary $\|\boldsymbol\omega\|=\pi$ requires a neighboring orientation chart; excluding it from this local chart is not a physical or dynamical rejection. Likewise, excluding the identity permutation implements the stated nontrivial-permutation F2 seed and does not reject its identity-permutation control as a phase-compensated equal-geometry orthogonal-axis composition geometry.
 
-Plainly: F2 now has a complete list of independent local coordinates for two labeled A2-like components. It keeps the overall phase, both circulation signs, the full separation direction, relative orientation, and port relation, but selects none of them and supplies no twelve-member position map yet.
+Plainly: F2 now has a complete list of independent local coordinates for two labeled components near the phase-compensated equal-geometry orthogonal-axis configuration. It keeps the overall phase, both circulation signs, the full separation direction, relative orientation, and port relation, but selects none of them and supplies no twelve-member position map yet.
 
-Claim grade: the product chart, domains, discrete relations, and local inverse are derived from two regular A2 component charts and the completed F2 gauge section. The F2 seed and its association remain guessed. The coordinate closure is falsified if two admitted coordinate rows yield the same labeled component data in the section, if an admitted labeled component record cannot be inverted locally, if global circulation reversal is silently lost, or if later reconstruction needs an undeclared continuous coordinate.
+Claim grade: the product chart, domains, discrete relations, and local inverse are derived from two regular component charts of the phase-compensated equal-geometry orthogonal-axis configuration and the completed F2 gauge section. The F2 seed and its association remain guessed. The coordinate closure is falsified if two admitted coordinate rows yield the same labeled component data in the section, if an admitted labeled component record cannot be inverted locally, if global circulation reversal is silently lost, or if later reconstruction needs an undeclared continuous coordinate.
 
-The `Reconstruction` field composes the two exact A2 member maps. Let
+The `Reconstruction` field composes the two exact phase-compensated equal-geometry orthogonal-axis configuration member maps. Let
 
 $$
 \epsilon_1=-1,
@@ -3168,7 +3168,7 @@ $$
 \mathbf C+\frac{\epsilon_b}{2}E\mathbf d_{12},\\
 \phi_{b,a}
 &=
-\phi_a^{A2}+\vartheta_b,\\
+\phi_a^{\text{phase-compensated}}+\vartheta_b,\\
 \mathbf r_{b,a}
 &=
 \hat{\mathbf u}_{b,a}\cos\phi_{b,a}
@@ -3184,7 +3184,7 @@ b\in\{1,2\},\ a\in\{1,2,3\},\ \sigma\in\{+1,-1\}.
 \end{aligned}
 $$
 
-This places exactly twelve labeled members. The pair-end sign $\sigma$ is not architrino polarity. Whole-braid conjugation reverses the second component's declared A2 polarity row, while $\pi_{12}$ records the persistent cross-component port relation; neither operation changes the instantaneous position formula at fixed continuous coordinates.
+This places exactly twelve labeled members. The pair-end sign $\sigma$ is not architrino polarity. Whole-braid conjugation reverses the second component's declared phase-compensated equal-geometry orthogonal-axis configuration polarity row, while $\pi_{12}$ records the persistent cross-component port relation; neither operation changes the instantaneous position formula at fixed continuous coordinates.
 
 Within a fixed discrete and declared-frame sheet, the position-bearing rows have the analytical recovery
 
@@ -3206,11 +3206,11 @@ Q_b^{\mathsf T}E^{\mathsf T}
 \end{aligned}
 $$
 
-Each recovered $\mathbf D_{b,a}$ then enters the regular A2 inverse for $(h_b,\rho_b,\vartheta_b)$ and the remaining internal component row. The ordered component frames recover $Q_{12}=E_1^{\mathsf T}E_2$ and hence $\boldsymbol\omega=\operatorname{vee}(\log Q_{12})$ on the declared orientation chart. Positions alone do not recover $(s_1,s_2)$, $\pi_{12}$, or the polarity-conjugation relation; those discrete sheets belong to the labeled configuration record rather than being silently identified.
+Each recovered $\mathbf D_{b,a}$ then enters the regular phase-compensated equal-geometry orthogonal-axis configuration inverse for $(h_b,\rho_b,\vartheta_b)$ and the remaining internal component row. The ordered component frames recover $Q_{12}=E_1^{\mathsf T}E_2$ and hence $\boldsymbol\omega=\operatorname{vee}(\log Q_{12})$ on the declared orientation chart. Positions alone do not recover $(s_1,s_2)$, $\pi_{12}$, or the polarity-conjugation relation; those discrete sheets belong to the labeled configuration record rather than being silently identified.
 
-Plainly: every allowed F2 coordinate row now places all twelve members in one assembly frame, and the labeled record recovers the component centers, separation, orientation, phases, and internal A2 geometry. This still chooses no relation sheet, numerical composition, tangent, or history.
+Plainly: every allowed F2 coordinate row now places all twelve members in one assembly frame, and the labeled record recovers the component centers, separation, orientation, phases, and internal phase-compensated equal-geometry orthogonal-axis geometry. This still chooses no relation sheet, numerical composition, tangent, or history.
 
-Claim grade: the twelve-member map, component pair conjugacy, and fixed-sheet recovery are derived from the two A2 reconstruction maps and the F2 gauge/coordinate chart. The F2 association remains guessed. The field closure is falsified if either component does not contain three antipodal pairs about $\mathbf C_b$, if the two component centroids fail to recover the declared relative placement, if a regular fixed-sheet record fails the displayed recovery, or if the map changes a persistent label or polarity relation.
+Claim grade: the twelve-member map, component pair conjugacy, and fixed-sheet recovery are derived from the two phase-compensated equal-geometry orthogonal-axis configuration reconstruction maps and the F2 gauge/coordinate chart. The F2 association remains guessed. The field closure is falsified if either component does not contain three antipodal pairs about $\mathbf C_b$, if the two component centroids fail to recover the declared relative placement, if a regular fixed-sheet record fails the displayed recovery, or if the map changes a persistent label or polarity relation.
 
 The `Velocity` field is the exact differential of the composite map. Write the assembly and relative-orientation frame rates as
 
@@ -3296,7 +3296,7 @@ $$
 \end{aligned}
 $$
 
-The rate domain consists of continuously differentiable $\mathbf C,E,\mathbf d_{12},\boldsymbol\omega,h_b,\rho_b,\vartheta_b$, and source-declared component frames while both internal A2 rows remain regular, $\|\boldsymbol\omega\|<\pi$, and $f_b>0$. The signs $(s_1,s_2)$, nontrivial permutation $\pi_{12}$, conjugation relation, and persistent labels are constant on each differentiable interval. Their changes are event boundaries, not tangent rows. The dependent component-radius rates are
+The rate domain consists of continuously differentiable $\mathbf C,E,\mathbf d_{12},\boldsymbol\omega,h_b,\rho_b,\vartheta_b$, and source-declared component frames while both internal phase-compensated equal-geometry orthogonal-axis configuration rows remain regular, $\|\boldsymbol\omega\|<\pi$, and $f_b>0$. The signs $(s_1,s_2)$, nontrivial permutation $\pi_{12}$, conjugation relation, and persistent labels are constant on each differentiable interval. Their changes are event boundaries, not tangent rows. The dependent component-radius rates are
 
 $$
 \dot R_b
@@ -3318,7 +3318,7 @@ $$
 s_2\omega_2-s_1\omega_1.
 $$
 
-When $\Omega=\Xi_{12}=0$, $\dot{\mathbf d}_{12}=\mathbf0$, and the component-local frames are fixed, the formula reduces exactly to two translated and relatively rotated A2 tangents. No extra composite velocity path is introduced.
+When $\Omega=\Xi_{12}=0$, $\dot{\mathbf d}_{12}=\mathbf0$, and the component-local frames are fixed, the formula reduces exactly to two translated and relatively rotated phase-compensated equal-geometry orthogonal-axis configuration tangents. No extra composite velocity path is introduced.
 
 Plainly: every allowed F2 coordinate rate now gives all twelve member velocities. The formula distinguishes whole-assembly motion, changing component separation, changing relative orientation, internal shape change, and signed circulation, while selecting no history.
 
@@ -3426,7 +3426,7 @@ D_b^{\mathrm{int}}(T)
 \right\}.
 $$
 
-This is the exact fifteen-pair A2 reduction inside component $b$. Since $\mathbf C_2-\mathbf C_1=E\mathbf d_{12}$, orthogonality of $E$ reduces the 36 cross-component distances to
+This is the exact fifteen-pair phase-compensated equal-geometry orthogonal-axis configuration reduction inside component $b$. Since $\mathbf C_2-\mathbf C_1=E\mathbf d_{12}$, orthogonality of $E$ reduces the 36 cross-component distances to
 
 $$
 D_{12}^{\mathrm{cross}}(T)
@@ -3465,11 +3465,11 @@ This is the cleanest present route to a volumetric counterflow cage and a visibl
 
 Fast rejection: the two triads do not bind; exact symmetry cancels every axial and weak row; a required asymmetry also creates forbidden net polarity or scalar anisotropy; or the permutation is only a relabeling after quotient.
 
-##### Seed F3 — Near-A2 Mode And Permutation Family
+##### Seed F3 — Near-Phase-Compensated Equal-Geometry Orthogonal-Axis Mode And Permutation Chart
 
-Keep the A2 gross support and circulation class fixed, then search its admissible relative-phase, axial-offset, and identity-return modes inside the A3 chart. Generation is not assigned to three chosen deformations. It is accepted only if ordinary evolution produces exactly three isolated modes, basins, or return characters with a common charge and representation projection:
+Keep the phase-compensated equal-geometry orthogonal-axis configuration gross support and circulation class fixed, then search its admissible relative-phase, axial-offset, and identity-return modes inside the axially separated orthogonal-axis configuration chart. Generation is not assigned to three chosen deformations. It is accepted only if ordinary evolution produces exactly three isolated modes, basins, or return characters with a common charge and representation projection:
 
-The earlier shorthand division by an undefined $Q_{\mathrm{A2}}$ is replaced by an explicit representation section and two different finite-quotient uses. Let $\mathbf1=(1,1,1)^{\mathsf T}$ and, on one local lifted phase branch of the regular A3 chart, define
+The earlier shorthand division by an undefined $Q_{\text{phase-compensated}}$ is replaced by an explicit representation section and two different finite-quotient uses. Let $\mathbf1=(1,1,1)^{\mathsf T}$ and, on one local lifted phase branch of the regular axially separated orthogonal-axis configuration chart, define
 
 $$
 \begin{aligned}
@@ -3479,9 +3479,9 @@ $$
 \overline\rho&=\frac13\mathbf1^{\mathsf T}\boldsymbol\rho,
 &
 \boldsymbol\delta\rho&=\boldsymbol\rho-\overline\rho\mathbf1,\\
-\overline\phi&=\frac13\mathbf1^{\mathsf T}(\boldsymbol\phi-\boldsymbol\phi^{A2}),
+\overline\phi&=\frac13\mathbf1^{\mathsf T}(\boldsymbol\phi-\boldsymbol\phi^{\text{phase-compensated}}),
 &
-\boldsymbol\delta\phi&=\boldsymbol\phi-\boldsymbol\phi^{A2}-\overline\phi\mathbf1,
+\boldsymbol\delta\phi&=\boldsymbol\phi-\boldsymbol\phi^{\text{phase-compensated}}-\overline\phi\mathbf1,
 \end{aligned}
 $$
 
@@ -3496,7 +3496,7 @@ $$
 =0.
 $$
 
-The barred rows are the A2 gross-support directions and the three zero-sum rows are the six local A3-relative deformation coordinates. F3 holds the gross-support and circulation-class rows fixed while testing the relative coordinates and a declared $\pi_{\mathrm{return}}\in S_3$; this does not select a mode or return character.
+The barred rows are the phase-compensated equal-geometry orthogonal-axis configuration gross-support directions and the three zero-sum rows are the six local axially separated orthogonal-axis relative deformation coordinates. F3 holds the gross-support and circulation-class rows fixed while testing the relative coordinates and a declared $\pi_{\mathrm{return}}\in S_3$; this does not select a mode or return character.
 
 The `Gauge` field removes only continuous presentation and split redundancy. Let $\mathbf C$ be the common center and let $E\in SO(3)$ be the ordered body frame obtained from the source-declared rank-three axes by the F1 Gram--Schmidt construction. A redundant split record transforms as
 
@@ -3553,7 +3553,7 @@ For shape-only comparison, $Q_{\mathrm{shape}}$ may identify this finite orbit; 
 
 Plainly: F3 now has one exact rule for removing duplicate coordinates and two clearly different ways to compare the result. A shape-only view may rotate the three equal ports into one another, but the identity/history view keeps track of which persistent member went where. No mode or doubled return is created by the bookkeeping.
 
-Claim grade: the continuous representation/split section, its trivial stabilizer, the six-dimensional zero-sum deformation complement, and the two quotient semantics are derived from the regular A3 chart, the A2 diagonal locus, and the existing persistent-index policy. The F3 seed, isolated modes, and return characters remain guessed. The gauge closure is falsified if two distinct continuous transformations place one admitted record in the section, if reconstruction of $\mathbf h$, $\boldsymbol\rho$, or $\boldsymbol\phi$ changes, if the cyclic action leaves the declared finite orbit, or if the identity/history quotient identifies two records with different persistent provenance.
+Claim grade: the continuous representation/split section, its trivial stabilizer, the six-dimensional zero-sum deformation complement, and the two quotient semantics are derived from the regular axially separated orthogonal-axis configuration chart, the phase-compensated equal-geometry orthogonal-axis configuration diagonal locus, and the existing persistent-index policy. The F3 seed, isolated modes, and return characters remain guessed. The gauge closure is falsified if two distinct continuous transformations place one admitted record in the section, if reconstruction of $\mathbf h$, $\boldsymbol\rho$, or $\boldsymbol\phi$ changes, if the cyclic action leaves the declared finite orbit, or if the identity/history quotient identifies two records with different persistent provenance.
 
 The `Coordinates` field uses an explicit basis of the zero-sum complement. Define
 
@@ -3584,7 +3584,7 @@ $$
 \in\mathbb R^6.
 $$
 
-Let $\mathcal C_{A2}^{\mathrm{gross,reg}}$ be the gauge-fixed regular A2 gross-support chart retaining the common $\overline h$, $\overline\rho$, radius relation, positive cadence, common lifted phase, prescribed $\lambda_A$, circulation class, and source-declared ordered orbit frames, with $\overline\rho>0$ and a rank-three frame. For any $0<\varepsilon<\pi/3$ and gross-support row $g$, define the cyclic-invariant local relative domain
+Let $\mathcal C_{\text{phase-compensated}}^{\mathrm{gross,reg}}$ be the gauge-fixed regular phase-compensated equal-geometry orthogonal-axis configuration gross-support chart retaining the common $\overline h$, $\overline\rho$, radius relation, positive cadence, common lifted phase, prescribed $\lambda_A$, circulation class, and source-declared ordered orbit frames, with $\overline\rho>0$ and a rank-three frame. For any $0<\varepsilon<\pi/3$ and gross-support row $g$, define the cyclic-invariant local relative domain
 
 $$
 \mathcal U_{F3}(g,\varepsilon)
@@ -3608,13 +3608,13 @@ $$
 =
 \left\{
 (g,\boldsymbol\eta,\pi_{\mathrm{return}}):
-g\in\mathcal C_{A2}^{\mathrm{gross,reg}},
+g\in\mathcal C_{\text{phase-compensated}}^{\mathrm{gross,reg}},
 \ \boldsymbol\eta\in\mathcal U_{F3}(g,\varepsilon),
 \ \pi_{\mathrm{return}}\in S_3
 \right\}.
 $$
 
-It has six continuous A3-relative coordinates over each A2 gross-support row and six labeled return-permutation sheets. The circulation class remains a separately declared gross-support sheet and is not inferred from $\pi_{\mathrm{return}}$. The instantaneous A3 rows are
+It has six continuous axially separated orthogonal-axis relative coordinates over each phase-compensated equal-geometry orthogonal-axis configuration gross-support row and six labeled return-permutation sheets. The circulation class remains a separately declared gross-support sheet and is not inferred from $\pi_{\mathrm{return}}$. The instantaneous axially separated orthogonal-axis configuration rows are
 
 $$
 \mathbf h=\overline h\mathbf1+\boldsymbol\delta h,
@@ -3623,7 +3623,7 @@ $$
 \qquad
 \boldsymbol\phi
 =
-\boldsymbol\phi^{A2}
+\boldsymbol\phi^{\text{phase-compensated}}
 +\overline\phi\mathbf1
 +\boldsymbol\delta\phi,
 \qquad
@@ -3640,20 +3640,20 @@ $$
 \overline\rho&=\frac13\mathbf1^{\mathsf T}\boldsymbol\rho,
 &
 \eta_{\rho,i}&=\mathbf b_i\mathbin\cdot\boldsymbol\rho,\\
-\overline\phi&=\frac13\mathbf1^{\mathsf T}(\boldsymbol\phi-\boldsymbol\phi^{A2}),
+\overline\phi&=\frac13\mathbf1^{\mathsf T}(\boldsymbol\phi-\boldsymbol\phi^{\text{phase-compensated}}),
 &
-\eta_{\phi,i}&=\mathbf b_i\mathbin\cdot(\boldsymbol\phi-\boldsymbol\phi^{A2}),
+\eta_{\phi,i}&=\mathbf b_i\mathbin\cdot(\boldsymbol\phi-\boldsymbol\phi^{\text{phase-compensated}}),
 \qquad i\in\{1,2\}.
 \end{aligned}
 $$
 
 The discrete return sheet is read from the persistent labeled record rather than reconstructed from instantaneous positions. The $C_3$ action preserves the domain and produces the separate shape orbit described above; it is not applied to $\mathcal C_{F3}^{\mathrm{lab}}$ when identity or history matters. The $h_a=0$, $\rho_a=0$, phase-branch, and frame-rank boundaries require neighboring or lower-dimensional charts and are not rejected as physical configurations.
 
-Plainly: F3 now has six explicit numbers for how the three binaries differ from their common A2-like support, plus a separately recorded return permutation. The formulas recover those numbers uniquely, but they do not choose a special mode or say that any proposed return occurs dynamically.
+Plainly: F3 now has six explicit numbers for how the three binaries differ from their common support on the phase-compensated equal-geometry orthogonal-axis configuration, plus a separately recorded return permutation. The formulas recover those numbers uniquely, but they do not choose a special mode or say that any proposed return occurs dynamically.
 
-Claim grade: the labeled local product, domain, six relative coordinates, and inverse are derived from the regular A3 chart and the completed F3 gauge. The F3 seed, isolated modes, and return characters remain guessed. The coordinate closure is falsified if the basis fails to span $\mathsf H_0$, if two admitted coordinate rows yield the same labeled A3 record, if an admitted regular record cannot be inverted, if the cyclic action leaves the domain, or if the chart silently identifies persistent return sheets.
+Claim grade: the labeled local product, domain, six relative coordinates, and inverse are derived from the regular axially separated orthogonal-axis configuration chart and the completed F3 gauge. The F3 seed, isolated modes, and return characters remain guessed. The coordinate closure is falsified if the basis fails to span $\mathsf H_0$, if two admitted coordinate rows yield the same labeled axially separated orthogonal-axis configuration record, if an admitted regular record cannot be inverted, if the cyclic action leaves the domain, or if the chart silently identifies persistent return sheets.
 
-The `Reconstruction` field is the pair-conjugate A3 map restricted to the labeled F3 chart. For each persistent port $a\in\{1,2,3\}$, let $(\hat{\mathbf n}_a,\hat{\mathbf u}_a,\hat{\mathbf v}_a)$ be its source-declared right-handed orthonormal orbit frame in body coordinates, and define
+The `Reconstruction` field is the pair-conjugate axially separated orthogonal-axis configuration map restricted to the labeled F3 chart. For each persistent port $a\in\{1,2,3\}$, let $(\hat{\mathbf n}_a,\hat{\mathbf u}_a,\hat{\mathbf v}_a)$ be its source-declared right-handed orthonormal orbit frame in body coordinates, and define
 
 $$
 \begin{aligned}
@@ -3673,7 +3673,7 @@ h_a\hat{\mathbf n}_a
 \end{aligned}
 $$
 
-This places exactly six labeled members. The pair-end sign $\sigma$ is not architrino polarity. The inherited A3 polarity and circulation sheets and the proposed $\pi_{\mathrm{return}}$ remain persistent record data; at fixed continuous coordinates none changes the instantaneous position formula.
+This places exactly six labeled members. The pair-end sign $\sigma$ is not architrino polarity. The inherited axially separated orthogonal-axis configuration polarity and circulation sheets and the proposed $\pi_{\mathrm{return}}$ remain persistent record data; at fixed continuous coordinates none changes the instantaneous position formula.
 
 Within a fixed source-frame, polarity, circulation, and return-permutation sheet, the position-bearing rows have the analytical recovery
 
@@ -3698,7 +3698,7 @@ h_a
 },\\
 \phi_a
 &=
-\operatorname{atan2}_{\phi_a^{A2}}
+\operatorname{atan2}_{\phi_a^{\text{phase-compensated}}}
 \left(
 \hat{\mathbf v}_a\mathbin\cdot\mathbf D_a,
 \hat{\mathbf u}_a\mathbin\cdot\mathbf D_a
@@ -3710,7 +3710,7 @@ The recovered $\mathbf h$, $\boldsymbol\rho$, and $\boldsymbol\phi$ then enter t
 
 Plainly: every allowed F3 coordinate row now places all six pair ends and recovers its continuous geometry from the labeled positions. This supplies a family map, not a chosen mode, a return, or a history.
 
-Claim grade: the six-member map, pair conjugacy, and fixed-sheet inverse are derived from the A3 reconstruction formula and the completed F3 gauge/coordinate chart. The F3 seed, isolated modes, and return characters remain guessed. The reconstruction closure is falsified if a pair is not antipodal about $\mathbf C$, if a regular fixed-sheet record fails the displayed inverse, if two position-bearing coordinate rows yield the same labeled positions, or if the map changes a persistent polarity, circulation, or return sheet.
+Claim grade: the six-member map, pair conjugacy, and fixed-sheet inverse are derived from the axially separated orthogonal-axis configuration reconstruction formula and the completed F3 gauge/coordinate chart. The F3 seed, isolated modes, and return characters remain guessed. The reconstruction closure is falsified if a pair is not antipodal about $\mathbf C$, if a regular fixed-sheet record fails the displayed inverse, if two position-bearing coordinate rows yield the same labeled positions, or if the map changes a persistent polarity, circulation, or return sheet.
 
 The `Velocity` field is the exact differential of the F3 reconstruction map. For $u\in\{h,\rho,\phi\}$, let
 
@@ -3780,11 +3780,11 @@ $$
 \frac{h_a\dot h_a+\rho_a\dot\rho_a}{R_a}.
 $$
 
-When $\Omega=0$ and every $\Lambda_a=0$, the formula reduces to three independent pair-conjugate A3 tangents. At the zero-relative-coordinate and zero-relative-rate locus it reduces further to the common A2 tangent on the declared circulation sheet. No mode-specialized velocity path is inserted.
+When $\Omega=0$ and every $\Lambda_a=0$, the formula reduces to three independent pair-conjugate axially separated orthogonal-axis configuration tangents. At the zero-relative-coordinate and zero-relative-rate locus it reduces further to the common phase-compensated equal-geometry orthogonal-axis configuration tangent on the declared circulation sheet. No mode-specialized velocity path is inserted.
 
-Plainly: every allowed F3 coordinate rate now produces all six member velocities. The tangent keeps common A2-like motion separate from the six ways the three binaries can deform relative to one another, but it does not choose a mode or history.
+Plainly: every allowed F3 coordinate rate now produces all six member velocities. The tangent keeps motion on the phase-compensated equal-geometry orthogonal-axis configuration separate from the six ways the three binaries can deform relative to one another, but it does not choose a mode or history.
 
-Claim grade: the six-member tangent and rate domain are derived by differentiating the completed F3 reconstruction map. The F3 seed, isolated modes, and return characters remain guessed. The result is falsified if an admitted differentiable coordinate history has a member difference quotient that disagrees with $\mathbf V_{a,\sigma}$, if any zero-sum rate leaves the six-coordinate tangent complement, if the A2 specialization fails, or if a discrete sheet changes inside a differentiable interval.
+Claim grade: the six-member tangent and rate domain are derived by differentiating the completed F3 reconstruction map. The F3 seed, isolated modes, and return characters remain guessed. The result is falsified if an admitted differentiable coordinate history has a member difference quotient that disagrees with $\mathbf V_{a,\sigma}$, if any zero-sum rate leaves the six-coordinate tangent complement, if the phase-compensated equal-geometry orthogonal-axis configuration specialization fails, or if a discrete sheet changes inside a differentiable interval.
 
 The `Centering` field follows exactly from the pair-end signs. For every port and every admitted coordinate and rate row,
 
@@ -3806,7 +3806,7 @@ $$
 \dot{\mathbf C}.
 $$
 
-The identities are independent of all six relative coordinates and rates, the A2 gross-support row, the circulation class, and $\pi_{\mathrm{return}}$. They are equal-member geometric centroids and do not assert that any later polarity-weighted, exposure-weighted, or effective observer-level center equals $\mathbf C$.
+The identities are independent of all six relative coordinates and rates, the phase-compensated equal-geometry orthogonal-axis configuration gross-support row, the circulation class, and $\pi_{\mathrm{return}}$. They are equal-member geometric centroids and do not assert that any later polarity-weighted, exposure-weighted, or effective observer-level center equals $\mathbf C$.
 
 Plainly: relative F3 deformations can move each binary differently, but each binary still contributes one displacement and its opposite. The full six-member position and velocity averages therefore remain exactly at the declared center and group velocity; this is not a binding or stability result.
 
@@ -3862,7 +3862,7 @@ Plainly: F3 now has a precise speed test for every one of its six members and a 
 
 Claim grade: the exact speed functional and conservative bound are derived from the F3 tangent and Euclidean norm inequalities. Passing the guard for a concrete history would be measured by evaluating or enclosing that selected history; no pass is claimed here. The formulas are falsified if an admitted member speed exceeds $B_a$, if an orthogonal presentation change alters the exact functional, or if the strict guard accepts a row with speed at or above $c_f=1$.
 
-The `Collision` field reduces all fifteen labeled pair distances exactly even when the three A3 radii differ. The three same-port partner distances are $2R_a$. For distinct ports $a<c$ and pair-end signs $\sigma,\tau$,
+The `Collision` field reduces all fifteen labeled pair distances exactly even when the three radii in the axially separated orthogonal-axis configuration differ. The three same-port partner distances are $2R_a$. For distinct ports $a<c$ and pair-end signs $\sigma,\tau$,
 
 $$
 \left\|\mathbf X_{a,\sigma}-\mathbf X_{c,\tau}\right\|^2
@@ -3905,33 +3905,33 @@ This seed uses the existing continuous deformation chart but adds a discrete sel
 
 Fast rejection: the admissible spectrum is continuous, carries fewer or more than three isolated classes, closes fully at $2\pi$, or changes charge/color/ weak representation when the proposed generation mode changes.
 
-##### Seed F4 — Framed Triad Plus C4 Counterflow Module
+##### Seed F4 — Framed Triad Plus Counter-Rotating Coaxial Two-Component Circular Module
 
-Associate one A2/A3 framed triad with one C4-like opposite-circulation module. The framed triad attempts the body-port and multiplet rows; the C4 component attempts the axial current, relative phase, and transaction-corridor rows. The composition is viable only if both are parts of one retained assembly and one angular/action ledger rather than two independently named objects.
+Associate one framed triad from either the phase-compensated equal-geometry orthogonal-axis configuration or the axially separated orthogonal-axis configuration with one opposite-circulation module near the counter-rotating coaxial two-component circular configuration. The framed triad attempts the body-port and multiplet rows; the counter-rotating coaxial module attempts the axial current, relative phase, and transaction-corridor rows. The composition is viable only if both are parts of one retained assembly and one angular/action ledger rather than two independently named objects.
 
 The `Inventory` field closes as a tagged disjoint union without choosing the framed variant. Let
 
 $$
-\mathcal V_F=\{A2,A3\},
+\mathcal V_F=\{\text{phase-compensated},\text{axially separated}\},
 $$
 
-and for $v\in\mathcal V_F$ define the framed-component pair ends and the canonical C4 pair ends by
+and for $v\in\mathcal V_F$ define the framed-component pair ends and the canonical counter-rotating coaxial two-component circular configuration pair ends by
 
 $$
 \begin{aligned}
 \mathcal I_{\mathrm{frame}}(v)
 &=
 \{(\mathrm{frame},v,a,\sigma):a\in\{1,2,3\},\ \sigma\in\{+1,-1\}\},\\
-\mathcal I_{C4}
+\mathcal I_{\text{counter-rotating coaxial}}
 &=
-\{(C4,b,a,\sigma):b\in\{1,2\},\ a\in\{1,2,3\},\ \sigma\in\{+1,-1\}\},\\
+\{(\text{counter-rotating coaxial},b,a,\sigma):b\in\{1,2\},\ a\in\{1,2,3\},\ \sigma\in\{+1,-1\}\},\\
 \mathcal I_{F4}(v)
 &=
-\mathcal I_{\mathrm{frame}}(v)\mathbin\sqcup\mathcal I_{C4}.
+\mathcal I_{\mathrm{frame}}(v)\mathbin\sqcup\mathcal I_{\text{counter-rotating coaxial}}.
 \end{aligned}
 $$
 
-Both A2 and A3 contain three persistent neutral binaries and therefore six pair ends. Canonical C4 contains two complete B1 components, each with three persistent neutral binaries, and therefore twelve pair ends. Hence
+Both phase-compensated equal-geometry orthogonal-axis configuration and axially separated orthogonal-axis configuration contain three persistent neutral binaries and therefore six pair ends. Canonical counter-rotating coaxial two-component circular configuration contains two complete coincident-axis three-binary configuration components, each with three persistent neutral binaries, and therefore twelve pair ends. Hence
 
 $$
 \left|\mathcal I_{F4}(v)\right|
@@ -3939,25 +3939,25 @@ $$
 6+12
 =18
 \qquad
-\text{for both }v=A2\text{ and }v=A3.
+\text{for }v\in\{\text{phase-compensated},\text{axially separated}\}.
 $$
 
-The component, variant, B1-component, binary, and pair-end tags are structural labels. The pair-end sign $\sigma$ is not architrino polarity, and this inventory does not choose machine IDs, worldline IDs, source order, or the cross-component association relation. In F4, `C4` means the canonical two-B1 opposite-component-circulation chart. A merely C4-like alternative with a different constituent set is outside this tagged inventory and requires a new explicitly named variant rather than silent substitution.
+The component, variant, coincident-axis three-binary component, binary, and pair-end tags are structural labels. The pair-end sign $\sigma$ is not architrino polarity, and this inventory does not choose machine IDs, worldline IDs, source order, or the cross-component association relation. In F4, `counter-rotating coaxial two-component circular configuration` means the canonical counter-rotating chart with two coincident-axis three-binary components. A merely counter-rotating coaxial two-component circular-like alternative with a different constituent set is outside this tagged inventory and requires a new explicitly named variant rather than silent substitution.
 
-Plainly: whichever framed triad is eventually chosen, F4 contains six framed members plus the canonical C4 module's twelve members, for eighteen total. This fixes what must be counted without deciding how the members are named, ordered, placed, or bound.
+Plainly: whichever framed triad is eventually chosen, F4 contains six framed members plus the canonical counter-rotating coaxial two-component circular module's twelve members, for eighteen total. This fixes what must be counted without deciding how the members are named, ordered, placed, or bound.
 
-Claim grade: the tagged inventory and its cardinality are derived from the admitted A2, A3, and C4 taxonomy rows. The F4 association remains guessed. The inventory closure is falsified if an admitted A2 or A3 row does not contain six pair ends, if canonical C4 does not contain twelve, if the union aliases a framed and C4 member, or if a later F4 construction silently replaces canonical C4 with a different inventory.
+Claim grade: the tagged inventory and its cardinality are derived from the admitted phase-compensated equal-geometry orthogonal-axis configuration, axially separated orthogonal-axis configuration, and counter-rotating coaxial two-component circular configuration taxonomy rows. The F4 association remains guessed. The inventory closure is falsified if an admitted phase-compensated equal-geometry orthogonal-axis configuration or axially separated orthogonal-axis configuration row does not contain six pair ends, if canonical counter-rotating coaxial two-component circular configuration does not contain twelve, if the union aliases a framed and counter-rotating coaxial two-component circular configuration member, or if a later F4 construction silently replaces canonical counter-rotating coaxial two-component circular configuration with a different inventory.
 
-The `Polarity` field is inherited pair by pair. Let $q_{\mathrm{frame}}^{v}(a,\sigma)\in\{+1,-1\}$ and $q_{C4}(b,a,\sigma)\in\{+1,-1\}$ be the source-declared polarity maps for the tagged framed chart $v$ and canonical C4. Their neutral-pair relations are
+The `Polarity` field is inherited pair by pair. Let $q_{\mathrm{frame}}^{v}(a,\sigma)\in\{+1,-1\}$ and $q_{\text{counter-rotating coaxial}}(b,a,\sigma)\in\{+1,-1\}$ be the source-declared polarity maps for the tagged framed chart $v$ and canonical counter-rotating coaxial two-component circular configuration. Their neutral-pair relations are
 
 $$
 q_{\mathrm{frame}}^{v}(a,-\sigma)
 =
 -q_{\mathrm{frame}}^{v}(a,\sigma),
 \qquad
-q_{C4}(b,a,-\sigma)
+q_{\text{counter-rotating coaxial}}(b,a,-\sigma)
 =
--q_{C4}(b,a,\sigma).
+-q_{\text{counter-rotating coaxial}}(b,a,\sigma).
 $$
 
 Define the integrated assignment on the disjoint inventory by
@@ -3968,12 +3968,12 @@ q_{F4}^{v}(i)
 \begin{cases}
 q_{\mathrm{frame}}^{v}(a,\sigma),
 &i=(\mathrm{frame},v,a,\sigma),\\
-q_{C4}(b,a,\sigma),
-&i=(C4,b,a,\sigma).
+q_{\text{counter-rotating coaxial}}(b,a,\sigma),
+&i=(\text{counter-rotating coaxial},b,a,\sigma).
 \end{cases}
 $$
 
-There are three neutral pairs in the framed component and six in canonical C4. Consequently, for either variant tag,
+There are three neutral pairs in the framed component and six in canonical counter-rotating coaxial two-component circular configuration. Consequently, for either variant tag,
 
 $$
 \#\{i:q_{F4}^{v}(i)=+1\}
@@ -3988,9 +3988,9 @@ This assignment inherits the exact endpoint-to-polarity rows from the selected s
 
 Plainly: F4 contains nine positive and nine negative architrinos for either framed-component variant. Their individual signs come from the component charts that already own them, not from the plus/minus symbols used to write antipodal positions.
 
-Claim grade: the integrated polarity assignment and nine-to-nine balance are derived from the admitted A2/A3 and C4 neutral-pair relations plus the completed disjoint inventory. The F4 association remains guessed. The result is falsified if a source component lacks pairwise opposite polarities, if the integrated map changes a source-declared sign, if its positive/negative counts differ, or if circulation reversal is used as a polarity reassignment.
+Claim grade: the integrated polarity assignment and nine-to-nine balance are derived from the admitted phase-compensated equal-geometry or axially separated orthogonal-axis and counter-rotating coaxial two-component circular neutral-pair relations plus the completed disjoint inventory. The F4 association remains guessed. The result is falsified if a source component lacks pairwise opposite polarities, if the integrated map changes a source-declared sign, if its positive/negative counts differ, or if circulation reversal is used as a polarity reassignment.
 
-The `Gauge` field uses the exact six-plus-twelve member weighting. Let $(\mathbf C_F,E_F)$ be the center and ordered body frame of the tagged A2/A3 component and let $(\mathbf C_C,E_C)$ be the center and source-declared oriented frame of canonical C4 on its regular transverse-radius domain. Define
+The `Gauge` field uses the exact six-plus-twelve member weighting. Let $(\mathbf C_F,E_F)$ be the center and ordered body frame of the tagged phase-compensated equal-geometry or axially separated orthogonal-axis component and let $(\mathbf C_C,E_C)$ be the center and source-declared oriented frame of canonical counter-rotating coaxial two-component circular configuration on its regular transverse-radius domain. Define
 
 $$
 \begin{aligned}
@@ -4049,7 +4049,7 @@ Plainly: F4 now has one exact way to remove duplicate whole-assembly placement. 
 
 Claim grade: the weighted assembly center, relative-pose invariants, inverse, and diagonal rigid-presentation section are derived from the completed F4 inventory and the source component frames. The F4 association remains guessed. The gauge closure is falsified if a diagonal rigid change alters either relative row, if the inverse fails to recover the component centers/frames, if two rigid transformations place one labeled record in the section, or if the section quotients an internal or persistent coordinate.
 
-The `Coordinates` field is a tagged stratified product of already admitted component charts and the full relative pose. Let $\mathcal C_{A2}^{\mathrm{reg}}$, $\mathcal C_{A3}^{\mathrm{reg}}$, and $\mathcal C_{C4}^{\mathrm{reg}}$ denote the gauge-fixed regular source charts with their internal phase, cadence, circulation, polarity, binary, and persistent-label rows retained. Define
+The `Coordinates` field is a tagged stratified product of already admitted component charts and the full relative pose. Let $\mathcal C_{\text{phase-compensated}}^{\mathrm{reg}}$, $\mathcal C_{\text{axially separated}}^{\mathrm{reg}}$, and $\mathcal C_{\text{counter-rotating coaxial}}^{\mathrm{reg}}$ denote the gauge-fixed regular source charts with their internal phase, cadence, circulation, polarity, binary, and persistent-label rows retained. Define
 
 $$
 \mathbb B_\pi^3
@@ -4066,17 +4066,17 @@ The gauge-fixed labeled F4 chart is
 $$
 \mathcal C_{F4}^{\mathrm{lab}}
 =
-\bigsqcup_{v\in\{A2,A3\}}
+\bigsqcup_{v\in\{\text{phase-compensated},\text{axially separated}\}}
 \left(
 \{v\}
 \times\mathcal C_v^{\mathrm{reg}}
-\times\mathcal C_{C4}^{\mathrm{reg}}
+\times\mathcal C_{\text{counter-rotating coaxial}}^{\mathrm{reg}}
 \times\mathbb R^3_{\mathbf d_{FC}}
 \times\mathbb B_\pi^3
 \right).
 $$
 
-The disjoint-union tag allows the A2 and A3 strata to retain their different internal dimensions without pretending that one is the other. The two source charts keep all internal component coordinates. In particular, their declared reference phases determine every relative phase between the framed and C4 components; no phase is removed or duplicated by the composition chart. The relative displacement is the complete body-frame vector $\mathbf d_{FC}$, not merely an axial separation.
+The disjoint-union tag allows the phase-compensated equal-geometry orthogonal-axis configuration and axially separated orthogonal-axis configuration strata to retain their different internal dimensions without pretending that one is the other. The two source charts keep all internal component coordinates. In particular, their declared reference phases determine every relative phase between the framed and counter-rotating coaxial two-component circular configuration components; no phase is removed or duplicated by the composition chart. The relative displacement is the complete body-frame vector $\mathbf d_{FC}$, not merely an axial separation.
 
 The relative-pose inverse is
 
@@ -4092,9 +4092,9 @@ $$
 
 on $\|\boldsymbol\omega\|<\pi$. Each component's coordinates are recovered by its existing source-chart inverse after applying the F4 gauge section. The orientation boundary $\|\boldsymbol\omega\|=\pi$, zero-transverse-radius component boundaries, and singular frame strata require neighboring or lower-dimensional charts; excluding them from this local product is not a physical rejection.
 
-The variant tag, all internal circulation and polarity rows, component membership, binary and pair-end labels, and every C4 two-B1 relation remain explicit. No cross-component binding or association relation is inferred from the Cartesian product.
+The variant tag, all internal circulation and polarity rows, component membership, binary and pair-end labels, and every relation between the counter-rotating coaxial configuration's two coincident-axis three-binary components remain explicit. No cross-component binding or association relation is inferred from the Cartesian product.
 
-Plainly: F4 now has a complete local list of coordinates for either possible framed component: all coordinates already owned by that component, all coordinates already owned by C4, and the full three-dimensional separation and orientation between them. The chart selects neither variant nor a numerical composition.
+Plainly: F4 now has a complete local list of coordinates for either possible framed component: all coordinates already owned by that component, all coordinates already owned by counter-rotating coaxial two-component circular configuration, and the full three-dimensional separation and orientation between them. The chart selects neither variant nor a numerical composition.
 
 Claim grade: the tagged product, relative-pose domain, and inverse are derived from the admitted component charts and completed F4 gauge. The F4 association remains guessed. The coordinate closure is falsified if an admitted regular component record cannot enter its tagged stratum, if two rows give the same labeled component-and-relative-pose record, if the logarithm fails inside the declared orientation ball, or if the product silently identifies an internal or persistent sheet.
 
@@ -4111,7 +4111,7 @@ h_a^v\hat{\mathbf n}_a^v
 \right),
 $$
 
-with the A2 equal-row restrictions imposed when $v=A2$ and the regular A3 rows retained when $v=A3$. For canonical C4, let $\epsilon_1=-1$, $\epsilon_2=+1$ and define in the C4 module frame
+with the phase-compensated equal-geometry orthogonal-axis configuration equal-row restrictions imposed when $v=\text{phase-compensated}$ and the regular axially separated orthogonal-axis configuration rows retained when $v=\text{axially separated}$. For canonical counter-rotating coaxial two-component circular configuration, let $\epsilon_1=-1$, $\epsilon_2=+1$ and define in the counter-rotating coaxial two-component circular configuration module frame
 
 $$
 \mathbf S_{b,a}
@@ -4133,7 +4133,7 @@ $$
 \mathbf C
 -\frac23E\mathbf d_{FC}
 +\sigma E\mathbf D_a^v,\\
-\mathbf X_{C4,b,a,\sigma}
+\mathbf X_{\text{counter-rotating coaxial},b,a,\sigma}
 &=
 \mathbf C
 +\frac13E\mathbf d_{FC}
@@ -4145,7 +4145,7 @@ $$
 \end{aligned}
 $$
 
-where $a\in\{1,2,3\}$, $b\in\{1,2\}$, and $\sigma\in\{+1,-1\}$. The first row places six framed members and the second places twelve C4 members. Pair-end sign is not polarity. The inherited polarity, circulation, component, binary, and pair-end sheets change no instantaneous position at fixed continuous coordinates.
+where $a\in\{1,2,3\}$, $b\in\{1,2\}$, and $\sigma\in\{+1,-1\}$. The first row places six framed members and the second places the twelve members of the counter-rotating coaxial two-component circular configuration. Pair-end sign is not polarity. The inherited polarity, circulation, component, binary, and pair-end sheets change no instantaneous position at fixed continuous coordinates.
 
 On a fixed variant, source-frame, polarity, circulation, and label sheet, the component centers are recovered by
 
@@ -4156,27 +4156,27 @@ $$
 \qquad
 \mathbf C_C
 =
-\frac1{12}\sum_{b,a,\sigma}\mathbf X_{C4,b,a,\sigma}.
+\frac1{12}\sum_{b,a,\sigma}\mathbf X_{\text{counter-rotating coaxial},b,a,\sigma}.
 $$
 
-The completed F4 gauge inverse then recovers $\mathbf C$, $\mathbf d_{FC}$, and $Q_{FC}$. Inside C4, the two B1 component centers and pair displacements are
+The completed F4 gauge inverse then recovers $\mathbf C$, $\mathbf d_{FC}$, and $Q_{FC}$. Inside counter-rotating coaxial two-component circular configuration, the two coincident-axis three-binary configuration component centers and pair displacements are
 
 $$
 \mathbf C_{C,b}
 =
-\frac16\sum_{a,\sigma}\mathbf X_{C4,b,a,\sigma},
+\frac16\sum_{a,\sigma}\mathbf X_{\text{counter-rotating coaxial},b,a,\sigma},
 \qquad
 \mathbf S_{b,a}
 =
 Q_{FC}^{\mathsf T}E^{\mathsf T}
-\frac{\mathbf X_{C4,b,a,+}-\mathbf X_{C4,b,a,-}}2,
+\frac{\mathbf X_{\text{counter-rotating coaxial},b,a,+}-\mathbf X_{\text{counter-rotating coaxial},b,a,-}}2,
 $$
 
-and $d_C$ follows from the declared C4 axis projection of $\mathbf C_{C,2}-\mathbf C_{C,1}$. The framed pair differences similarly recover every $\mathbf D_a^v$. Those rows enter the existing A2/A3 and C4 source-chart inverses. Positions alone do not select $v$ or recover persistent polarity/circulation labels; the tagged labeled record owns those sheets.
+and $d_C$ follows from the declared counter-rotating coaxial two-component circular configuration axis projection of $\mathbf C_{C,2}-\mathbf C_{C,1}$. The framed pair differences similarly recover every $\mathbf D_a^v$. Those rows enter the existing phase-compensated equal-geometry or axially separated orthogonal-axis and counter-rotating coaxial two-component circular source-chart inverses. Positions alone do not select $v$ or recover persistent polarity/circulation labels; the tagged labeled record owns those sheets.
 
 Plainly: every allowed F4 coordinate row now places all eighteen members in one assembly frame, and the labeled positions recover both component geometries and their relative pose. This still chooses no framed variant, numerical row, association mechanism, or history.
 
-Claim grade: the eighteen-member composite map and fixed-tag/sheet inverse are derived from the admitted A2/A3 and C4 member maps plus the completed F4 gauge/coordinate chart. The F4 association remains guessed. The reconstruction closure is falsified if the member counts differ from 6 and 12, if either component centroid fails, if a regular fixed-sheet record fails the displayed inverse, or if the map changes a persistent component or polarity/circulation relation.
+Claim grade: the eighteen-member composite map and fixed-tag/sheet inverse are derived from the admitted phase-compensated equal-geometry or axially separated orthogonal-axis and counter-rotating coaxial two-component circular member maps plus the completed F4 gauge/coordinate chart. The F4 association remains guessed. The reconstruction closure is falsified if the member counts differ from 6 and 12, if either component centroid fails, if a regular fixed-sheet record fails the displayed inverse, or if the map changes a persistent component or polarity/circulation relation.
 
 The `Velocity` field is the exact differential of the composite map. Write
 
@@ -4219,7 +4219,7 @@ $$
 \end{aligned}
 $$
 
-Let $\dot{\mathbf D}_a^v$ be the exact A2 or A3 source-chart differential on the tagged framed stratum. For C4, write $F_C=(\hat{\mathbf n}_C\ \hat{\mathbf e}_1\ \hat{\mathbf e}_2)$ and
+Let $\dot{\mathbf D}_a^v$ be the exact phase-compensated equal-geometry orthogonal-axis configuration or axially separated orthogonal-axis configuration source-chart differential on the tagged framed stratum. For counter-rotating coaxial two-component circular configuration, write $F_C=(\hat{\mathbf n}_C\ \hat{\mathbf e}_1\ \hat{\mathbf e}_2)$ and
 
 $$
 \dot F_C=\Lambda_CF_C,
@@ -4272,7 +4272,7 @@ $$
 \Omega E\mathbf D_a^v
 +E\dot{\mathbf D}_a^v
 \right],\\
-\mathbf V_{C4,b,a,\sigma}
+\mathbf V_{\text{counter-rotating coaxial},b,a,\sigma}
 &=
 \dot{\mathbf C}_C
 +\Omega EQ_{FC}\mathbf Z_{b,a,\sigma}
@@ -4281,9 +4281,9 @@ $$
 \end{aligned}
 $$
 
-The rate domain consists of continuously differentiable tagged source-chart coordinates, $\mathbf C$, $E$, $\mathbf d_{FC}$, and $\boldsymbol\omega$ while both component charts remain regular and $\|\boldsymbol\omega\|<\pi$. The variant, component, polarity, circulation, binary, pair-end, and persistent-label sheets are constant on each differentiable interval. Their changes are chart or event boundaries, not tangent coordinates. When $\Omega=\Xi_{FC}=0$ and $\dot{\mathbf d}_{FC}=0$, the map reduces exactly to one translated framed-component tangent and one translated/rotated C4 tangent.
+The rate domain consists of continuously differentiable tagged source-chart coordinates, $\mathbf C$, $E$, $\mathbf d_{FC}$, and $\boldsymbol\omega$ while both component charts remain regular and $\|\boldsymbol\omega\|<\pi$. The variant, component, polarity, circulation, binary, pair-end, and persistent-label sheets are constant on each differentiable interval. Their changes are chart or event boundaries, not tangent coordinates. When $\Omega=\Xi_{FC}=0$ and $\dot{\mathbf d}_{FC}=0$, the map reduces exactly to one translated framed-component tangent and one translated/rotated counter-rotating coaxial two-component circular configuration tangent.
 
-Plainly: every allowed F4 coordinate rate now gives all eighteen member velocities. The formula separates whole-assembly motion, changing relative placement/orientation, framed-triad motion, and C4 counterflow motion without selecting a variant or history.
+Plainly: every allowed F4 coordinate rate now gives all eighteen member velocities. The formula separates whole-assembly motion, changing relative placement/orientation, framed-triad motion, and counter-rotating coaxial counterflow motion without selecting a variant or history.
 
 Claim grade: the eighteen-member tangent and rate domain are derived by differentiating the completed F4 reconstruction map and the admitted source-component tangents. The F4 association remains guessed. The result is falsified if an admitted differentiable coordinate history has a member difference quotient that disagrees with the displayed velocity, if either fixed-pose source specialization fails, if the weighted component-center rates disagree with direct differentiation, or if a discrete sheet changes inside a differentiable interval.
 
@@ -4294,7 +4294,7 @@ $$
 =
 \mathbf C_F,
 \qquad
-\frac1{12}\sum_{b,a,\sigma}\mathbf X_{C4,b,a,\sigma}
+\frac1{12}\sum_{b,a,\sigma}\mathbf X_{\text{counter-rotating coaxial},b,a,\sigma}
 =
 \mathbf C_C,
 $$
@@ -4306,7 +4306,7 @@ $$
 \left(
 \sum_{a,\sigma}\mathbf X_{\mathrm{frame},a,\sigma}
 +
-\sum_{b,a,\sigma}\mathbf X_{C4,b,a,\sigma}
+\sum_{b,a,\sigma}\mathbf X_{\text{counter-rotating coaxial},b,a,\sigma}
 \right)
 =
 \frac{6\mathbf C_F+12\mathbf C_C}{18}
@@ -4321,7 +4321,7 @@ $$
 =
 \dot{\mathbf C}_F,
 \qquad
-\frac1{12}\sum_{b,a,\sigma}\mathbf V_{C4,b,a,\sigma}
+\frac1{12}\sum_{b,a,\sigma}\mathbf V_{\text{counter-rotating coaxial},b,a,\sigma}
 =
 \dot{\mathbf C}_C,
 $$
@@ -4333,7 +4333,7 @@ $$
 \left(
 \sum_{a,\sigma}\mathbf V_{\mathrm{frame},a,\sigma}
 +
-\sum_{b,a,\sigma}\mathbf V_{C4,b,a,\sigma}
+\sum_{b,a,\sigma}\mathbf V_{\text{counter-rotating coaxial},b,a,\sigma}
 \right)
 =
 \frac{6\dot{\mathbf C}_F+12\dot{\mathbf C}_C}{18}
@@ -4354,7 +4354,7 @@ S_{F4}(I)
 =
 \max\left\{
 \max_{a,\sigma}\sup_{T\in I}\|\mathbf V_{\mathrm{frame},a,\sigma}(T)\|,
-\max_{b,a,\sigma}\sup_{T\in I}\|\mathbf V_{C4,b,a,\sigma}(T)\|
+\max_{b,a,\sigma}\sup_{T\in I}\|\mathbf V_{\text{counter-rotating coaxial},b,a,\sigma}(T)\|
 \right\}.
 $$
 
@@ -4372,7 +4372,7 @@ B_{\mathrm{frame},a}
 \right)
 +\|\Omega\|_2\|\mathbf D_a^v\|
 +\|\dot{\mathbf D}_a^v\|,\\
-B_{C4,b,a,\sigma}
+B_{\text{counter-rotating coaxial},b,a,\sigma}
 &=
 \|\dot{\mathbf C}\|
 +\frac13
@@ -4394,8 +4394,8 @@ $$
 \|\mathbf V_{\mathrm{frame},a,\sigma}\|
 \le B_{\mathrm{frame},a},
 \qquad
-\|\mathbf V_{C4,b,a,\sigma}\|
-\le B_{C4,b,a,\sigma}.
+\|\mathbf V_{\text{counter-rotating coaxial},b,a,\sigma}\|
+\le B_{\text{counter-rotating coaxial},b,a,\sigma}.
 $$
 
 Therefore a certified interval enclosure with $\sup_{T\in I}B<1$ is sufficient for the exact guard. It is not necessary: a row may satisfy the exact functional even when the conservative bound exceeds one. A complete prescribed history must still supply the interval and certified suprema.
@@ -4434,7 +4434,7 @@ $$
 \end{aligned}
 $$
 
-The first minimum has $\binom62=15$ framed-internal rows, the second has $\binom{12}2=66$ C4-internal rows, and the third has $6\cdot12=72$ cross-component rows. Their total is $153=\binom{18}2$, so the reduction omits no labeled pair. Orthogonality of $E$ and $Q_{FC}$ removes the common world-frame presentation from the two internal families, while the cross-family formula retains the full relative displacement and orientation.
+The first minimum has $\binom62=15$ framed-internal rows, the second has $\binom{12}2=66$ internal rows of the counter-rotating coaxial two-component circular configuration, and the third has $6\cdot12=72$ cross-component rows. Their total is $153=\binom{18}2$, so the reduction omits no labeled pair. Orthogonality of $E$ and $Q_{FC}$ removes the common world-frame presentation from the two internal families, while the cross-family formula retains the full relative displacement and orientation.
 
 For a declared interval $I$, the exact point-collision guard is
 
@@ -4444,21 +4444,21 @@ $$
 
 If member radii $r_i(T)$ are declared, replace each pair distance by $\|\mathbf X_i-\mathbf X_j\|-r_i-r_j$ and require its interval infimum to be positive. The owner supplies the exact functional, but an unselected F4 parameter/history family supplies no interval certificate or pass.
 
-Plainly: every possible collision among the eighteen members is now accounted for—inside the framed component, inside C4, or between the two. The formulas define what a selected history must clear; they do not say that any current F4 history clears it.
+Plainly: every possible collision among the eighteen members is now accounted for—inside the framed component, inside counter-rotating coaxial two-component circular configuration, or between the two. The formulas define what a selected history must clear; they do not say that any current F4 history clears it.
 
 Claim grade: the 153-pair decomposition and interval guard are derived from the completed labeled F4 reconstruction and Euclidean distance invariance. A concrete interval pass would be measured by certified evaluation or enclosure of the selected history; none is claimed here. The reduction is falsified if direct enumeration produces other pair rows, if any displayed local distance disagrees with its world-frame counterpart, or if the guard accepts a zero or negative point or hard-core separation.
 
-Fast rejection: the C4 module remains a detachable unconfined inventory, the two components need separate law coefficients, angular and recoil ledgers do not close, or the module adds stable partner states with no observer role.
+Fast rejection: the counter-rotating coaxial two-component circular configuration module remains a detachable unconfined inventory, the two components need separate law coefficients, angular and recoil ledgers do not close, or the module adds stable partner states with no observer role.
 
-##### Seed F5 — Balanced Double-Dyad Triad
+##### Seed phase-varying display representative — Balanced Double-Dyad Triad
 
-Interlace two A3-like three-axis records so each body axis carries two axially reversed, radially separated, polarity-conjugate counterrotating dyads. The full construction and its exact geometric identities are derived in [Collision And Dipole Nulls Generate A Balanced Double-Dyad Seed](#collision-and-dipole-nulls-generate-a-balanced-double-dyad-seed). It is the first seed here that simultaneously attempts cycle-averaged electric dipole cancellation, a nonzero signed current moment, three equivalent body ports, and scalar second-moment isotropy.
+Interlace two axially separated orthogonal-axis-like three-axis records so each body axis carries two axially reversed, radially separated, polarity-conjugate counterrotating dyads. The full construction and its exact geometric identities are derived in [Collision And Dipole Nulls Generate A Balanced Double-Dyad Seed](#collision-and-dipole-nulls-generate-a-balanced-double-dyad-seed). It is the first seed here that simultaneously attempts cycle-averaged electric dipole cancellation, a nonzero signed current moment, three equivalent body ports, and scalar second-moment isotropy.
 
 Fast rejection: cross-axis or causal-root clearance fails, the interlaced records do not bind, polar or radiative leakage survives the average, or the 12-identity core overgenerates stable modes and partners.
 
 ##### Seed F6 — Tetrahedral Counterflow Core
 
-Place one separated-plane counterrotating polarity dyad on each of four tetrahedral body axes. The tetrahedral axis sum cancels the leading axial dipoles and its second-moment sum is isotropic. A one-versus-three circulation character produces a nonzero moment along the exceptional axis while the other three modules remain an equivalent port orbit. The full construction is derived in [Seed F6 — Tetrahedral Counterflow Core](#seed-f6--tetrahedral-counterflow-core). The F6b edge partition removes instantaneous centroid and dipole leakage, and F6c enlarges it to separate polarity-sector breathing and cadence histories.
+Place one separated-plane counterrotating polarity dyad on each of four tetrahedral body axes. The tetrahedral axis sum cancels the leading axial dipoles and its second-moment sum is isotropic. A one-versus-three circulation character produces a nonzero moment along the exceptional axis while the other three modules remain an equivalent port orbit. The full construction is derived in [Seed F6 — Tetrahedral Counterflow Core](#seed-f6--tetrahedral-counterflow-core). The scoped-negative circular control edge partition removes instantaneous centroid and dipole leakage, and asymmetric counter-breathing representative enlarges it to separate polarity-sector breathing and cadence histories.
 
 Fast rejection: the polarity-resolved six-coordinate surface is not preserved under ordinary evolution, does not return, loses root clearance, or the circulation partition aliases spin, color, chirality, and generation.
 
@@ -4466,19 +4466,19 @@ Fast rejection: the polarity-resolved six-coordinate surface is not preserved un
 
 The six seeds should be compared by pass/fail/abstain rows rather than a weighted recommendation score:
 
-| Required row | F1 | F2 | F3 | F4 | F5 | F6 |
+| Required row | F1 | F2 | F3 | F4 | phase-varying display representative | F6 |
 | --- | --- | --- | --- | --- | --- | --- |
-| volumetric body frame | native A2 row | native paired A2 row | native A2 base | A2/A3 component | orthogonal interlaced A3-like triad | tetrahedral frame with exceptional moment axis |
-| independent counterflow | explicit sign-vector extension | native relative circulation | not guaranteed; mode-dependent | C4 component | polarity-correlated counterrotation on separated tracks | one counterrotating dyad per tetrahedral axis |
+| volumetric body frame | native phase-compensated equal-geometry orthogonal-axis configuration row | native paired phase-compensated equal-geometry orthogonal-axis configuration row | native phase-compensated equal-geometry orthogonal-axis configuration base | phase-compensated equal-geometry or axially separated orthogonal-axis component | orthogonal interlaced axially separated orthogonal-axis-like triad | tetrahedral frame with exceptional moment axis |
+| independent counterflow | explicit sign-vector extension | native relative circulation | not guaranteed; mode-dependent | counter-rotating coaxial two-component circular configuration component | polarity-correlated counterrotation on separated tracks | one counterrotating dyad per tetrahedral axis |
 | possible identity/history lift | not yet supplied | relative permutation candidate | return-mode candidate | component association candidate | cyclic module and interlaced-identity return candidate | nondegenerate tetrahedral frame plus three-port orbit |
 | exactly-three generation route | unsupported unless sign/mode basins emerge | unsupported unless relative locks exhaust to three | primary isolated-mode/basin test | unsupported unless association modes exhaust to three | unsupported unless module/return modes exhaust to three | cyclic modes of the three nonexceptional modules |
 | charge/moment separation | needs charge projection or decoration | needs incomplete sector cancellation or decoration | needs independent charge/current rows | naturally factorized but risks detachable inventory | neutral moment-bearing core still needs a charge projection or decoration | neutral moment-bearing core still needs a charge projection or decoration |
-| smallest inventory | six identities before decoration | twelve before decoration | six before decoration | at least framed plus C4 inventories | twelve identities before charge-facing realization | eight identities before charge-facing realization |
+| smallest inventory | six identities before decoration | twelve before decoration | six before decoration | at least framed plus counter-rotating coaxial two-component circular configuration inventories | twelve identities before charge-facing realization | eight identities before charge-facing realization |
 | main immediate risk | broken port equivalence | excessive cancellation and inventory | continuum or ordinary $2\pi$ return | nonbinding modular assembly | clearance, binding, polar leakage, and mode overgeneration | six-coordinate nonreturn, binding failure, and sign-pattern overgeneration |
 
-The table deliberately does not choose a winner. F1 and F3 are the smallest extensions of the existing three-binary matter scaffold; F2 is the cleanest symmetry/permutation construction; F4 most clearly separates frame and counterflow functions but pays a large binding burden; F5 is the first constraint-generated 12-identity core with joint scalar/dipole/moment identities, but it pays new clearance, leakage, and mode-count burdens. F6 reduces the neutral core to eight identities, separates a moment axis from three equivalent ports, and now has an exact polarity-resolved breathing surface; ordinary return and retention remain open.
+The table deliberately does not choose a winner. F1 and F3 are the smallest extensions of the existing three-binary matter scaffold; F2 is the cleanest symmetry/permutation construction; F4 most clearly separates frame and counterflow functions but pays a large binding burden; phase-varying display representative is the first constraint-generated 12-identity core with joint scalar/dipole/moment identities, but it pays new clearance, leakage, and mode-count burdens. F6 reduces the neutral core to eight identities, separates a moment axis from three equivalent ports, and now has an exact polarity-resolved breathing surface; ordinary return and retention remain open.
 
-Claim grade: the coverage of A2, A3, B1, and C1--C4 is derived from their declared configuration charts. Their intersection with the fermion blueprint is inferred. F1--F6 are guessed bounded seed charts. Falsifier: the cited charts do not expose the stated coordinates, or a simpler admitted chart already realizes every blueprint row without one of the proposed extensions or compositions.
+Claim grade: the coverage of the phase-compensated equal-geometry orthogonal-axis, axially separated orthogonal-axis, coincident-axis three-binary, co-rotating coincident-center two-component circular, counter-rotating coincident-center two-component circular, co-rotating coaxial two-component circular, and counter-rotating coaxial two-component circular configurations is derived from their declared configuration charts. Their intersection with the fermion blueprint is inferred. F1--F6 are guessed bounded seed charts. Falsifier: the cited charts do not expose the stated coordinates, or a simpler admitted chart already realizes every blueprint row without one of the proposed extensions or compositions.
 
 #### Minimal Topological Carrier For A Doubled Rotation Return
 
@@ -4516,7 +4516,7 @@ Three failures must be kept distinct:
 | the loop is noncontractible but every native and apparatus readout is identical | topology exists but is dynamically silent | no spinor-support advancement follows |
 | the readout changes at $2\pi$ but does not restore after the doubled loop | branch drift, hysteresis, or a higher-order return is present | it is not the required $\mathbb Z_2$ lift |
 
-The quotient is especially important for the A2 and F1--F3 seeds. Their three ports have a cyclic symmetry. If persistent identities are quotiented as mere names, a visible port permutation may disappear; if they are retained when their causal and event provenance matters, the same path may remain nontrivial. The owner must therefore compute the stabilizer and loop class under two declared quotients:
+The quotient is especially important for the phase-compensated equal-geometry orthogonal-axis configuration and F1--F3 seeds. Their three ports have a cyclic symmetry. If persistent identities are quotiented as mere names, a visible port permutation may disappear; if they are retained when their causal and event provenance matters, the same path may remain nontrivial. The owner must therefore compute the stabilizer and loop class under two declared quotients:
 
 $$
 Q_{\mathrm{shape}}
@@ -5489,11 +5489,11 @@ The six fermion seeds make different weak-field predictions:
 
 | Seed | Expected leading internal electric clue | Immediate failure |
 | --- | --- | --- |
-| F1 near-A2 independent-circulation triad | polarity stretch on three frame directions, with circulation reversal changing axial but not leading polar response | electric drive aliases circulation sign or permanently selects a lepton port |
-| F2 dual-A2 counterflow cage | common conjugate stretch plus relative-triad phase or separation mode | exact symmetry makes every charge-facing projection vanish or the field tears the two triads apart |
-| F3 A2/A3 mode family | electric drive projects differently onto the proposed generation modes while the charge index remains common | generation mode changes electric charge or no mode-selective deformation exists |
-| F4 framed triad plus C4 module | polar deformation localizes differently on frame and counterflow components | response shows two detachable assemblies or requires private field records |
-| F5 balanced double-dyad triad | leading axial dipoles cancel while field-resolved polar sidebands and module deformation remain measurable | static dipole leakage survives, or the field destroys the interlaced clearance/binding |
+| F1 near-phase-compensated equal-geometry orthogonal-axis independent-circulation triad | polarity stretch on three frame directions, with circulation reversal changing axial but not leading polar response | electric drive aliases circulation sign or permanently selects a lepton port |
+| F2 dual phase-compensated equal-geometry orthogonal-axis counterflow cage | common conjugate stretch plus relative-triad phase or separation mode | exact symmetry makes every charge-facing projection vanish or the field tears the two triads apart |
+| F3 phase-compensated/axially separated orthogonal-axis mode chart | electric drive projects differently onto the proposed generation modes while the charge index remains common | generation mode changes electric charge or no mode-selective deformation exists |
+| F4 framed triad plus counter-rotating coaxial two-component circular module | polar deformation localizes differently on frame and counterflow components | response shows two detachable assemblies or requires private field records |
+| phase-varying display representative balanced double-dyad triad | leading axial dipoles cancel while field-resolved polar sidebands and module deformation remain measurable | static dipole leakage survives, or the field destroys the interlaced clearance/binding |
 | F6 tetrahedral counterflow core | polarity-resolved axial, radial, and phase deformation preserves exact centroid/dipole null while the current axis remains separately measurable | the electric drive leaves the six-coordinate surface, erases the current axis, or requires sector-private laws |
 
 Claim grades: the centroid/internal decomposition and matched-pair algebra are derived identities. Pair cancellation in the weak uniform electric-isolation limit and noncancelling charge-facing translation are inferred native mechanisms. The seed responses are guessed discriminators. Falsifier: the root-resolved same-update record violates the algebra, or a retained candidate recovers group translation and internal deformation with a simpler exposure structure that invalidates the proposed seed distinction.
@@ -5596,9 +5596,9 @@ Plainly: six sites at left/right, up/down, and front/back spread same-sign acces
 
 A very remote shell is not automatically preferred. If the retained braid has zero leading polarity moment, the first nonzero braid-to-accessory binding contribution can decay faster or cancel more strongly than the individual $1/r^2$ hits. The likely exterior target is therefore a finite annulus just beyond the high-activity strand-swept region: far enough to reduce destructive close-history contributions, but close enough to retain a coherent restoring and phase-locking pattern. This sweet-annulus inference fails if the complete delayed braid history supplies an unsuppressed retaining channel at large radius or no retaining exterior channel at any radius.
 
-#### F6c Accessory Continuation
+#### asymmetric counter-breathing representative Accessory Continuation
 
-F6c is the eight-architrino, four-tetrahedral-axis, six-coordinate candidate geometry. Its decorated symmetry supplies a two-site axial orbit plus a four-site transverse orbit,
+asymmetric counter-breathing representative is the eight-architrino, four-tetrahedral-axis, six-coordinate candidate geometry. Its decorated symmetry supplies a two-site axial orbit plus a four-site transverse orbit,
 
 $$
 \mathcal S_{2+4}(a_{\parallel},a_{\perp})
@@ -5610,9 +5610,9 @@ $$
 \right\}.
 $$
 
-The equal-scale central octahedral reference at $a_{\parallel}=a_{\perp}=h/\sqrt3$ lies inside both F6c polarity-sector envelopes. That is derived reference geometry, not evidence of capture and not a reason to privilege interior placement. The same $2+4$ angular seed should be continued independently through interior, boundary, just-exterior, and remote-exterior radii. Because an accessory polarity decoration can reduce the undecorated $D_{2d}$ symmetry, distinct axial-dyad assignments remain separate histories. The interior continuation is a legitimate high-symmetry candidate rather than only a dangerous control; its viability depends on transverse braid response and full fourteen-member evolution.
+The equal-scale central octahedral reference at $a_{\parallel}=a_{\perp}=h/\sqrt3$ lies inside both asymmetric counter-breathing representative polarity-sector envelopes. That is derived reference geometry, not evidence of capture and not a reason to privilege interior placement. The same $2+4$ angular seed should be continued independently through interior, boundary, just-exterior, and remote-exterior radii. Because an accessory polarity decoration can reduce the undecorated $D_{2d}$ symmetry, distinct axial-dyad assignments remain separate histories. The interior continuation is a legitimate high-symmetry candidate rather than only a dangerous control; its viability depends on transverse braid response and full fourteen-member evolution.
 
-Plainly: F6c already gives the six search directions. The open variables are how far along the axial pair and transverse quartet the accessories dwell, how they move, and which polarities occupy those paths.
+Plainly: asymmetric counter-breathing representative already gives the six search directions. The open variables are how far along the axial pair and transverse quartet the accessories dwell, how they move, and which polarities occupy those paths.
 
 #### Required Calculation Order
 
@@ -5953,7 +5953,7 @@ The first row is same-sense geometric circulation of the opposite polarities; th
 
 Plainly: two constituents can both be moving rapidly and still have zero magnetic moment. What matters is the correlation between charge sign, path orientation, position, and exposure. For an ideal symmetric neutral pair, opposite polarities moving around the loop in the same geometric sense cancel; opposite senses can add.
 
-This produces a strong conditional result for the admitted three-binary charts. If an A2-like neutral binary consists of exact equal-exposure, same-sense, centered circular polarity partners, the bare binary contributes no cycle-averaged signed current first moment. Three such binaries do not acquire a moment merely by being mutually orthogonal. A nonzero fermion moment then requires at least one additional row:
+This produces a strong conditional result for the admitted three-binary charts. If a neutral binary near the phase-compensated equal-geometry orthogonal-axis configuration consists of exact equal-exposure, same-sense, centered circular polarity partners, the bare binary contributes no cycle-averaged signed current first moment. Three such binaries do not acquire a moment merely by being mutually orthogonal. A nonzero fermion moment then requires at least one additional row:
 
 - polarity-correlated countercirculation within or among resolved components;
 - unequal but branch-derived exposure, radius, cadence, phase support, or center placement;
@@ -6000,8 +6000,8 @@ The six seeds now separate more sharply:
 | F1 | independent circulation signs can test polarity--circulation correlation directly | changing only whole-binary circulation leaves exact within-pair cancellation intact |
 | F2 | relative conjugate-triad circulation and permutation can produce an ordered counterflow history | exact conjugation cancels both current moment and its observable exposure |
 | F3 | one isolated mode may carry a current moment while another preserves the common scalar/charge rows | the proposed generation modes differ only in shape and carry identical zero moment |
-| F4 | the C4-like component explicitly supplies opposite-circulation structure | the moment belongs to a detachable module rather than one retained fermion assembly |
-| F5 | separated-track counterrotation makes the polarity--circulation correlation explicit while paired axial reversal cancels the leading dipole | cross-axis clearance, binding, polar leakage, or moment-to-angular mapping fails |
+| F4 | the counter-rotating coaxial two-component circular-like component explicitly supplies opposite-circulation structure | the moment belongs to a detachable module rather than one retained fermion assembly |
+| phase-varying display representative | separated-track counterrotation makes the polarity--circulation correlation explicit while paired axial reversal cancels the leading dipole | cross-axis clearance, binding, polar leakage, or moment-to-angular mapping fails |
 | F6 | the balanced edge partition yields an exact moment axis while separate polarity-sector breathing and cadence preserve centroid/dipole null | six-coordinate nonreturn, loss of current-axis alignment, nonbinding modules, or sign-pattern overgeneration |
 
 Claim grade: the signed first-moment cancellation/addition result is derived for the declared equal-radius, equal-exposure circular pair. The need for a polarity--circulation correlation or another listed noncancelling row is an inference for loop-based moment realizations. The $K_B$ pair decomposition is derived from the declared effective leading comparison kernel, not from a primitive magnetic law. Falsifier: a same-sense, exactly symmetric pair yields a nonzero cycle-averaged signed current first moment under the stated definition, or an accepted candidate recovers the full moment bundle through a different measured row that makes the proposed correlation unnecessary.
@@ -6126,7 +6126,7 @@ $$
 For any interval $I$ in this fixed-parameter chart, the exact normalized speed functional is therefore
 
 $$
-S_{F5}(I)
+S_{phase-varying display representative}(I)
 =
 \max_{a,k,\sigma}\sup_{T\in I}
 \|\mathbf V_{a k\sigma}(T)\|
@@ -6134,9 +6134,9 @@ S_{F5}(I)
 \max\!\left(\rho_1|\omega_1|,\rho_2|\omega_2|\right),
 $$
 
-and the strict wake-speed guard is $S_{F5}(I)<1$ in normalized units $c_f=1$. If a revised architecture introduces moving frames, time-dependent radii, or noncircular paths, it requires the differential of that revised chart rather than this fixed-chart formula. The frozen diagnostic row has $S_{F5}=0.40$, but that is only a speed pass for its prescribed circular tracks; it does not repair the gauge obstruction, certify causal roots, or change the realization's demoted status.
+and the strict wake-speed guard is $S_{phase-varying display representative}(I)<1$ in normalized units $c_f=1$. If a revised architecture introduces moving frames, time-dependent radii, or noncircular paths, it requires the differential of that revised chart rather than this fixed-chart formula. The frozen diagnostic row has $S_{phase-varying display representative}=0.40$, but that is only a speed pass for its prescribed circular tracks; it does not repair the gauge obstruction, certify causal roots, or change the realization's demoted status.
 
-Plainly: each F5 member moves around a circle, so its speed is exactly radius times angular rate. The larger of the two ring speeds is the whole twelve-member speed test. That test is exact for the existing circular chart even though the chart still fails a separate centering-and-dipole requirement.
+Plainly: each phase-varying display representative member moves around a circle, so its speed is exactly radius times angular rate. The larger of the two ring speeds is the whole twelve-member speed test. That test is exact for the existing circular chart even though the chart still fails a separate centering-and-dipole requirement.
 
 Claim grade: the twelve velocities and exact normalized speed functional are derived by differentiating the declared fixed-frame circular tracks. The value $0.40$ is an exact specialization to the frozen diagnostic parameters, not evidence for a viable assembly. The result is falsified if a declared fixed-chart difference quotient disagrees with the displayed velocity, if a member speed differs from $\rho_k|\omega_k|$, or if the strict guard accepts a speed at or above $c_f=1$.
 
@@ -6160,7 +6160,7 @@ $$
 &=
 \min_{a<b\atop k,\ell,\sigma,\tau}
 \|\mathbf y_{a k\sigma}(T)-\mathbf y_{b\ell\tau}(T)\|,\\
-\delta_{F5}(T)
+\delta_{phase-varying display representative}(T)
 &=
 \min\{\delta_{\mathrm{same}}(T),\delta_{\mathrm{cross}}(T)\}.
 \end{aligned}
@@ -6179,16 +6179,16 @@ at every time: same-ring counterrotators occupy planes separated by $2h$, while 
 For a declared interval $I$, the exact point-collision guard is
 
 $$
-\Delta_{F5}(I)
+\Delta_{phase-varying display representative}(I)
 =
-\inf_{T\in I}\delta_{F5}(T)>0.
+\inf_{T\in I}\delta_{phase-varying display representative}(T)>0.
 $$
 
 If member radii are declared, subtract the two applicable radii from every pair distance before taking the minima. The prior frozen-row sweep measured positive sampled clearance, but it did not certify this interval infimum. The exact functional closes the field definition while leaving the continuous certificate, viable gauge, and revised architecture open.
 
 Plainly: all 66 possible member pairs are now in one exact collision test. Eighteen pairs lie within one body-axis module and have a simple analytic floor; the other 48 connect different axes and must be minimized continuously for whichever history is eventually selected.
 
-Claim grade: the 18/48 pair partition, same-axis lower bound, and interval collision functional are derived from the declared labeled F5 tracks and Euclidean distance. Any selected-history clearance pass would be measured by certified minimization or enclosure; none is claimed here. The result is falsified if direct twelve-member enumeration produces another pair class, if a same-axis distance falls below the displayed bound, if the partitioned minimum differs from the full 66-pair minimum, or if the guard accepts zero or negative separation.
+Claim grade: the 18/48 pair partition, same-axis lower bound, and interval collision functional are derived from the declared labeled phase-varying display representative tracks and Euclidean distance. Any selected-history clearance pass would be measured by certified minimization or enclosure; none is claimed here. The result is falsified if direct twelve-member enumeration produces another pair class, if a same-axis distance falls below the displayed bound, if the partitioned minimum differs from the full 66-pair minimum, or if the guard accepts zero or negative separation.
 
 The two dyads have opposite axial electric first moments, so their cycle-averaged polar rows cancel under equal exposure:
 
@@ -6216,7 +6216,7 @@ $$
 
 The cancellation is only cycle-averaged unless phases and the sector projection provide a stronger instantaneous null. Any residual polar oscillation, radiation, sideband, or sea response is therefore an explicit falsifier row rather than something hidden by the average.
 
-Now place identical modules on an orthonormal body triad $\{\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3\}$. This gives a twelve-architrino neutral core, locally called **F5 — balanced double-dyad triad**. It may be represented as two interlaced A3-like six-worldline braid records with reversed axial assignments and distinct radii; it is not a Family-C chart, because Family C has one common axis.
+Now place identical modules on an orthonormal body triad $\{\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3\}$. This gives a twelve-architrino neutral core, locally called **phase-varying display representative — balanced double-dyad triad**. It may be represented as two interlaced axially separated orthogonal-axis-like six-worldline braid records with reversed axial assignments and distinct radii; it is not a two-component circular configuration, because the two-component circular chart has one common axis.
 
 For equal module parameters, the cycle-averaged second-moment contribution of each axis has the form
 
@@ -6264,10 +6264,10 @@ This is the first current campaign seed that naturally attempts the difficult in
 
 Plainly: two nested counterrotating pairs cancel charge separation but keep their magnetic circulation. Three identical copies on perpendicular axes can look isotropic to a scalar probe while their current moments add along the diagonal. This is a concrete reason a 12-member interlaced geometry is worth testing.
 
-F5 still leaves major burdens open:
+phase-varying display representative still leaves major burdens open:
 
 1. cross-axis worldline and causal-root clearance may fail even when each one-axis module has positive geometric clearance;
-2. two interlaced A3-like records may not bind into one retained assembly;
+2. two interlaced axially separated orthogonal-axis-like records may not bind into one retained assembly;
 3. cycle-averaged dipole cancellation may leak forbidden sidebands, radiation, or a static dipole through unequal exposure or sea dressing;
 4. the three axial moment contributions may not map to the required fermion angular history or leading moment ratio;
 5. the visible cyclic symmetry may have only an ordinary $2\pi$ return and no non-gauge order-two history lift;
@@ -6277,7 +6277,7 @@ F5 still leaves major burdens open:
 
 The fastest evaluation order is geometric clearance, root validity, ordinary retention, electric-dipole and scalar-isotropy rows, signed current moment, history lift, mode count, and only then charge/weak/event projections. A failure at any earlier stage is more informative than a later fitted particle comparison.
 
-#### First Bounded F5 Prescribed-Path Diagnostic
+#### First Bounded phase-varying display representative Prescribed-Path Diagnostic
 
 An exploratory prescribed-path scan tested whether the three orthogonal modules necessarily collide before any dynamical question is asked. The frozen normalized row was
 
@@ -6324,13 +6324,13 @@ A 27-row phase stencil changing each $\delta_i$ by $-0.01$, $0$, or $+0.01$ meas
 | minimum dense sampled clearance | $0.0706633508$ | geometric positions only |
 | worst stencil sampled clearance | $0.0706300083$ | no causal-root or evolution claim |
 
-Plainly: one normalized 12-path F5 arrangement can be drawn through a complete sampled cycle without any sampled pair approaching closer than about $0.071$. Small sampled phase changes preserve nearly the same gap. This removes the immediate visual objection that the three perpendicular modules must collide, but it says nothing yet about whether delayed interactions permit or retain the motion.
+Plainly: one normalized 12-path phase-varying display representative arrangement can be drawn through a complete sampled cycle without any sampled pair approaching closer than about $0.071$. Small sampled phase changes preserve nearly the same gap. This removes the immediate visual objection that the three perpendicular modules must collide, but it says nothing yet about whether delayed interactions permit or retain the motion.
 
 Claim grade: measured bounded prescribed-geometry diagnostic. The instruments were the coarse phase scan, a separately written local phase/time evaluator, the dense frozen-row time sweep, and the discrete phase stencil. They establish only the reported sampled positions. They are not an independent analytic oracle, continuous-time clearance certificate, phase-basin proof, causal-root certificate, EOM evolution, binding result, stability result, or particle claim. Falsifier: a reproducible evaluation of the same frozen formulas and parameters finds a collision or a smaller separation inconsistent with the reported sampled resolution; a continuous minimizer may narrow the clearance without contradicting the sampled claim.
 
 #### Three-Port Modes Offer An Exactly-Three Route With Two No-Gos
 
-F5's cyclic module orbit supplies a concrete candidate for the generation coordinate. Let one derived mode coordinate be associated with each body-axis module and let $\omega_3=e^{2\pi i/3}$. The most general Hermitian circulant three-port comparison operator has the form
+phase-varying display representative's cyclic module orbit supplies a concrete candidate for the generation coordinate. Let one derived mode coordinate be associated with each body-axis module and let $\omega_3=e^{2\pi i/3}$. The most general Hermitian circulant three-port comparison operator has the form
 
 $$
 H_{C_3}
@@ -6382,7 +6382,7 @@ $$
 \operatorname{Im}z\ne0.
 $$
 
-In native terms, that contribution could descend from circulation, ordered causal history, return permutation, frame holonomy, or another reflection-odd but rotation-covariant row. F5 already contains polarity-correlated counterrotation and a body-diagonal axial moment, so it has a candidate carrier for this orientation. Whether ordinary evolution produces the required port coupling is open.
+In native terms, that contribution could descend from circulation, ordered causal history, return permutation, frame holonomy, or another reflection-odd but rotation-covariant row. phase-varying display representative already contains polarity-correlated counterrotation and a body-diagonal axial moment, so it has a candidate carrier for this orientation. Whether ordinary evolution produces the required port coupling is open.
 
 Plainly: three equivalent modules naturally have three collective patterns. If the coupling cannot tell clockwise from counterclockwise around the three-module cycle, two patterns are identical in frequency or response. A lawful handed history can separate them without choosing a laboratory axis.
 
@@ -6425,11 +6425,11 @@ The three-port candidate now has four staged tests:
 3. reverse circulation/history orientation and test the predicted interchange or conjugation of the two oriented modes; and
 4. derive one weak endpoint projection whose noncommuting posture produces the required unequal overlaps without changing charge, body-frame, or port inventory.
 
-Claim grade: the circulant eigenvectors, eigenvalues, reflection-even degeneracy, and common-circulant commutation are mathematical derivations. The identification of F5's three port modes with generations and of its counterflow/history with $\operatorname{Im}z$ is inferred. A noncommuting weak-posture projection is a deduced requirement for nontrivial mixing within this candidate mechanism. Falsifier: a reflection-even real circulant produces three distinct eigenvalues, two same-domain circulant operators produce nontrivial basis mixing without a hidden degeneracy choice, or the accepted F5 branch supplies a different exactly-three mechanism that makes the port mode proposal unnecessary.
+Claim grade: the circulant eigenvectors, eigenvalues, reflection-even degeneracy, and common-circulant commutation are mathematical derivations. The identification of phase-varying display representative's three port modes with generations and of its counterflow/history with $\operatorname{Im}z$ is inferred. A noncommuting weak-posture projection is a deduced requirement for nontrivial mixing within this candidate mechanism. Falsifier: a reflection-even real circulant produces three distinct eigenvalues, two same-domain circulant operators produce nontrivial basis mixing without a hidden degeneracy choice, or the accepted phase-varying display representative branch supplies a different exactly-three mechanism that makes the port mode proposal unnecessary.
 
 #### Joint Projection Audit And A Two-Ring No-Go
 
-The clearance-optimized F5 row does not pass the joint electric/scalar projection test. On the same frozen $100{,}000$-sample history used for the dense projection audit, it measured:
+The clearance-optimized phase-varying display representative row does not pass the joint electric/scalar projection test. On the same frozen $100{,}000$-sample history used for the dense projection audit, it measured:
 
 | Same-record row | Measured sampled value |
 | --- | ---: |
@@ -6520,7 +6520,7 @@ $$
 
 and their phases differ by $\pi$. But $\rho_1=\rho_2$ puts the opposite-polarity counterrotators sharing each axial plane back on the same circle, where the earlier crossing proof forces collisions.
 
-Under the declared two-ring, common-cadence, circular, equal-exposure F5 assumptions, exact collision freedom, exact stationary centroid, and exact instantaneous electric-dipole cancellation cannot all hold. The live repairs are unequal derived exposure weights, three or more radial tracks, noncircular or phase-varying paths, an additional compensating module, or accepting a bounded oscillatory projection whose radiation and observer leakage are derived below the required limits.
+Under the declared two-ring, common-cadence, circular, equal-exposure phase-varying display representative assumptions, exact collision freedom, exact stationary centroid, and exact instantaneous electric-dipole cancellation cannot all hold. The live repairs are unequal derived exposure weights, three or more radial tracks, noncircular or phase-varying paths, an additional compensating module, or accepting a bounded oscillatory projection whose radiation and observer leakage are derived below the required limits.
 
 Claim grade: the same-record values are measured sampled diagnostics; the two-ring obstruction is a conditional mathematical derivation. Falsifier: a two-ring configuration satisfying all declared assumptions has unequal radii, positive clearance, and identically vanishing centroid and dipole, or the complex circular-basis matrix on the declared orthogonal frame is singular.
 
@@ -6666,12 +6666,12 @@ This construction escapes the old theorem by dropping common cadence: along a di
 
 Claim grade: the sector-null parameterization, unequal-radius decomposition, exact polarity-sector centering, and unique diagonal rigid-motion section are derived. They establish a viable representation gauge only, not a selected coordinate row, complete reconstruction/tangent contract, speed or collision pass, causal-root validity, binding, return, retention, stability, particle identity, or physical realization. The gauge closure is falsified if a regular row fails either fixed-radius identity, either polarity-sector centroid differs from $\mathbf C$, a rigid orbit meets the section more than once, or the construction secretly requires the barred equal-radius common-cadence limit.
 
-#### The Revised F5 Coordinates Are Exact On Each Branch
+#### The Revised phase-varying display representative Coordinates Are Exact On Each Branch
 
 On the representation section, the revised chart has nine continuous internal coordinates,
 
 $$
-q_{F5}
+q_{phase-varying display representative}
 =
 \left(
 h,
@@ -6716,7 +6716,7 @@ $$
 
 for all six axis-sector rows. Assembly translation and orientation are carried separately by $(\mathbf C,E)$. The axis, ring, polarity, and branch labels are persistent sheets; none is quotiented by the coordinate chart.
 
-Plainly: after removing whole-assembly placement, F5 needs three scale coordinates and three transverse-resultant coordinates for each polarity. Six binary branch labels record the two possible unequal-radius triangle decompositions on the three axes in each sector.
+Plainly: after removing whole-assembly placement, phase-varying display representative needs three scale coordinates and three transverse-resultant coordinates for each polarity. Six binary branch labels record the two possible unequal-radius triangle decompositions on the three axes in each sector.
 
 The inverse is exact on every fixed ordered-frame and branch sheet. From labeled positions, first recover
 
@@ -6816,12 +6816,12 @@ The forward and inverse maps are smooth on each fixed branch sheet. Their analyt
 
 Claim grade: the nine-coordinate regular domain, six branch sheets, and fixed-sheet inverse are derived from the completed revised gauge. They establish an exact local coordinate chart only, not a selected parameter row, revised velocity map, complete history, path operator, guard pass, dynamics, binding, return, retention, stability, particle identity, or physical realization. The chart is falsified if a regular labeled row fails the displayed inverse, if two coordinate rows on one fixed sheet reconstruct the same labeled record, if the local rank falls below nine, or if a persistent label is silently identified.
 
-#### The Revised F5 Reconstruction Places All Twelve Members
+#### The Revised phase-varying display representative Reconstruction Places All Twelve Members
 
 Let
 
 $$
-\mathcal I_{F5}
+\mathcal I_{phase-varying display representative}
 =
 \{(a,k,\sigma):a\in\{1,2,3\},\ k\in\{1,2\},\ \sigma\in\{+1,-1\}\}.
 $$
@@ -6829,7 +6829,7 @@ $$
 For each regular coordinate and branch row, construct $\mathbf c_{a\sigma}$, $\alpha_{a\sigma}$, $\beta_{a\sigma}$, and $\mathbf r_{a k\sigma}$ by the completed gauge formulas. The exact world-frame reconstruction is
 
 $$
-\mathcal R_{F5}(\mathbf C,E,q_{F5},\boldsymbol\eta)_{a k\sigma}
+\mathcal R_{phase-varying display representative}(\mathbf C,E,q_{phase-varying display representative},\boldsymbol\eta)_{a k\sigma}
 =
 \mathbf C
 +E\left(
@@ -6857,13 +6857,13 @@ $$
 
 Plainly: every polarity sector has two labeled unequal-radius members on each of three labeled body axes. Their axial sides, transverse radii, and triangle branches are fixed by the coordinate row; the reconstruction neither creates a member nor infers polarity from an endpoint index.
 
-The completed coordinate inverse recovers $(\mathbf C,q_{F5},\boldsymbol\eta)$ exactly on every fixed ordered-frame sheet, and reapplying $\mathcal R_{F5}$ returns the same labeled positions. The ordered frame $E$, axis labels, ring labels, polarity labels, and branch labels are part of the labeled record. Positions alone are not allowed to quotient or regenerate those persistent sheets. A geometric coincidence is a collision-boundary event, not an identity merge.
+The completed coordinate inverse recovers $(\mathbf C,q_{phase-varying display representative},\boldsymbol\eta)$ exactly on every fixed ordered-frame sheet, and reapplying $\mathcal R_{phase-varying display representative}$ returns the same labeled positions. The ordered frame $E$, axis labels, ring labels, polarity labels, and branch labels are part of the labeled record. Positions alone are not allowed to quotient or regenerate those persistent sheets. A geometric coincidence is a collision-boundary event, not an identity merge.
 
 The map is instantaneous. It defines no worldline IDs, source order, time interval, differentiable history, return action, or display row. Those remain independently owned obligations.
 
 Claim grade: the twelve-member revised reconstruction and its fixed-sheet compatibility with the completed inverse are derived. They establish a position map only, not a selected row, revised velocity, history, operator, guard pass, dynamics, binding, return, retention, stability, particle identity, or physical realization. The reconstruction is falsified if it produces other than twelve labeled rows, violates an axial/radius/resultant identity, changes a persistent label, or fails the completed fixed-sheet inverse.
 
-#### The Revised F5 Tangent Is Exact
+#### The Revised phase-varying display representative Tangent Is Exact
 
 Let every continuous coordinate be differentiable on one fixed branch sheet. The sector-resultant rates are
 
@@ -7000,16 +7000,16 @@ $$
 
 and $\sum_a\dot{\mathbf c}_{a\sigma}=\mathbf0$, both polarity-sector velocity centroids and the full twelve-member velocity centroid equal $\dot{\mathbf C}$ exactly.
 
-The tangent domain requires differentiable $(\mathbf C,E,q_{F5})$ inside the strict triangle inequalities with every $\eta_{a\sigma}$ and persistent axis/ring/polarity label constant. A branch change or $\beta_{a\sigma}=0$ is a chart boundary, not a continuous rate coordinate.
+The tangent domain requires differentiable $(\mathbf C,E,q_{phase-varying display representative})$ inside the strict triangle inequalities with every $\eta_{a\sigma}$ and persistent axis/ring/polarity label constant. A branch change or $\beta_{a\sigma}=0$ is a chart boundary, not a continuous rate coordinate.
 
 Claim grade: the revised twelve-member tangent and both polarity-sector velocity-centering identities are derived by differentiating the completed reconstruction on its regular domain. They establish kinematics only, not a selected history, path operator, guard pass, dynamics, binding, return, retention, stability, particle identity, or physical realization. The tangent is falsified if a differentiable admitted coordinate history has a member difference quotient that disagrees with $\mathbf V_{a k\sigma}$, if either sector velocity centroid differs from $\dot{\mathbf C}$, or if a discrete branch changes inside a differentiable interval.
 
-#### The Revised F5 Speed Guard Uses The New Tangent
+#### The Revised phase-varying display representative Speed Guard Uses The New Tangent
 
 For a declared differentiable interval $I$ inside one regular branch sheet, define the exact normalized speed functional
 
 $$
-S_{F5}^{\mathrm{rev}}(I)
+S_{phase-varying display representative}^{\mathrm{rev}}(I)
 =
 \max_{a,k,\sigma}
 \sup_{T\in I}
@@ -7019,7 +7019,7 @@ $$
 The strict wake-speed guard is
 
 $$
-S_{F5}^{\mathrm{rev}}(I)<1
+S_{phase-varying display representative}^{\mathrm{rev}}(I)<1
 $$
 
 in normalized units $c_f=1$. With $\|\cdot\|_2$ denoting the operator norm, the completed tangent gives the conservative pointwise enclosure
@@ -7051,7 +7051,7 @@ The fixed circular diagnostic's exact value $0.40$ belongs only to its constant-
 
 Claim grade: the revised exact speed functional and conservative enclosure are derived from the completed revised tangent, orthogonality, and Euclidean norm inequalities. Passing the guard for a concrete revised history would be measured by evaluating or enclosing that history; no pass is claimed here. The speed closure is falsified if an admitted member speed exceeds its displayed bound or if the strict guard accepts any speed at or above $c_f=1$.
 
-#### The Revised F5 Collision Guard Uses All Sixty-Six Pairs
+#### The Revised phase-varying display representative Collision Guard Uses All Sixty-Six Pairs
 
 Write the body-frame member displacement as
 
@@ -7082,7 +7082,7 @@ $$
 &=
 \min_{a<b\atop k,\ell,\sigma,\tau}
 \|\mathbf z_{a k\sigma}-\mathbf z_{b\ell\tau}\|,\\
-\delta_{F5}^{\mathrm{rev}}
+\delta_{phase-varying display representative}^{\mathrm{rev}}
 &=
 \min\left\{
 \delta_{\mathrm{same}}^{\mathrm{rev}},
@@ -7111,10 +7111,10 @@ Every same-axis pair either lies in planes separated by $2h$ or shares a plane w
 For a declared interval $I$, the exact revised point-collision guard is
 
 $$
-\Delta_{F5}^{\mathrm{rev}}(I)
+\Delta_{phase-varying display representative}^{\mathrm{rev}}(I)
 =
 \inf_{T\in I}
-\delta_{F5}^{\mathrm{rev}}(T)
+\delta_{phase-varying display representative}^{\mathrm{rev}}(T)
 >0.
 $$
 
@@ -7124,7 +7124,7 @@ Plainly: the new chart retains a simple guaranteed floor for pairs on one axis, 
 
 Claim grade: the revised 18/48 pair partition, same-axis lower bound, world/body distance equality, and interval guard are derived from the completed revised reconstruction and Euclidean distance. A concrete revised-history pass would be measured by certified minimization or enclosure; none is claimed here. The collision closure is falsified if direct enumeration produces another pair class, a same-axis distance falls below the displayed bound, the partitioned minimum differs from the full 66-pair minimum, or the guard accepts zero or negative separation.
 
-#### A Complete Phase-Varying F5 History Family
+#### A Complete Phase-Varying phase-varying display representative History Family
 
 The revised chart admits a nonconstant analytic history without selecting one executable numerical row. Fix one branch sheet $\boldsymbol\eta$, constant $\mathbf C_0$, constant $E_0\in SO(3)$, $h>0$, unequal positive radii $\rho_1$ and $\rho_2$, an epoch $T_0$, and a common positive resultant frequency $\omega$. For each polarity sector choose an amplitude $A_\sigma>0$ and phase $\varphi_\sigma$. Require
 
@@ -7203,11 +7203,11 @@ uniformly in time. Substitution into the completed unequal-radius decomposition 
 $$
 \mathbf X_{a k\sigma}(T)
 =
-\mathcal R_{F5}
+\mathcal R_{phase-varying display representative}
 \!\left(
 \mathbf C_0,
 E_0,
-q_{F5}(T),
+q_{phase-varying display representative}(T),
 \boldsymbol\eta
 \right)_{a k\sigma}
 $$
@@ -7222,7 +7222,7 @@ $$
 P=\frac{2\pi}{\omega}.
 $$
 
-Then $q_{F5}(T+P)=q_{F5}(T)$ and $\dot q_{F5}(T+P)=\dot q_{F5}(T)$, hence every labeled position and velocity returns exactly after $P$. For any declared retained-history depth $H>0$, restricting the all-real formula to
+Then $q_{phase-varying display representative}(T+P)=q_{phase-varying display representative}(T)$ and $\dot q_{phase-varying display representative}(T+P)=\dot q_{phase-varying display representative}(T)$, hence every labeled position and velocity returns exactly after $P$. For any declared retained-history depth $H>0$, restricting the all-real formula to
 
 $$
 J_H=[T_0-H,T_0+P]
@@ -7236,7 +7236,7 @@ The common frequency $\omega$ belongs to the six resultant coordinates. The indi
 
 Claim grade: the all-real analytic history, uniform strict-triangle enclosure, exact position-and-velocity return, and finite-window prehistory restriction are derived. They establish a complete parameterized prescribed-history family only, not a canonical row, executable operator, selected return contract, causal-root certificate, guard pass, EOM-solver evolution, binding, retention, stability, particle identity, or physical realization. The history closure is falsified if the displayed three-phase identity or resultant enclosure fails, an admitted row reaches a triangle boundary, the revised tangent disagrees with the worldline derivative, any persistent branch changes, or any labeled position or velocity fails its $P$ return.
 
-#### The F5 Harmonic Family Has An Exact Labeled Return
+#### The phase-varying display representative Harmonic Family Has An Exact Labeled Return
 
 For the completed history family, define
 
@@ -7270,7 +7270,7 @@ This is prescribed-history periodicity only. It is not recurrence under the Mast
 
 Claim grade: the exact identity return action on positions, velocities, member labels, polarity labels, ring labels, axis labels, and branch signs is derived from the completed harmonic history. It closes the parameterized Periodicity field without selecting a numerical period or executable row. The periodicity closure is falsified if any admitted regular history fails coordinate or rate return after $2\pi/\omega$, if reconstruction changes a persistent label or branch, or if the field is used as evidence of EOM-solver recurrence.
 
-#### The Revised F5 History Has One Registered Member Operator
+#### The Revised phase-varying display representative History Has One Registered Member Operator
 
 The shared prescribed-worldline registry owns the generic operator
 
@@ -7280,7 +7280,7 @@ f5-phase-varying-member.v1
 
 for the completed harmonic history. One operator row declares the constant assembly center; ordered right-handed body axes; axis index $a$; ring index $k$; polarity $\sigma$; branch sign $\eta_{a\sigma}$; $h$, $\rho_1$, and $\rho_2$; sector amplitude $A_\sigma$ and phase $\varphi_\sigma$; common positive frequency $\omega$; and the reconstruction-owner token. The evaluator constructs $(u_\sigma,v_\sigma,w_\sigma)$, the applicable $\mathbf c_{a\sigma}$ and its derivative, the unequal-radius triangle, and the exact position and velocity from the completed reconstruction and tangent.
 
-Plainly: each declared worldline carries enough information to evaluate its own labeled F5 member directly. The operator does not look up another candidate, infer a partner, or recover a missing identity from geometry.
+Plainly: each declared worldline carries enough information to evaluate its own labeled phase-varying display representative member directly. The operator does not look up another candidate, infer a partner, or recover a missing identity from geometry.
 
 Validation fails closed unless the body axes are orthonormal and right-handed; $a\in\{1,2,3\}$; $k\in\{1,2\}$; $\sigma,\eta_{a\sigma}\in\{-1,+1\}$; $h$, $A_\sigma$, and $\omega$ are positive; the radii are positive and unequal; and
 
@@ -7350,9 +7350,9 @@ $$
 
 Plainly: the runtime can reject a selected row whose conservative bound reaches field speed before sampling it. Passing this bound is sufficient, not necessary; the operator-approved phase-varying prescribed display row passes through its separately recorded `0.5` enclosure in normalized $c_f=1$ units.
 
-The operator is canonical for this mathematical responsibility; no second F5 implementation path or compatibility alias is introduced. Existing SD3, F6b, F6c, and migrated circular operators are unchanged. The operator-approved `f5-phase-varying-campaign.v2.json` specification consumes this operator with stable identities, source order, one numerical row, retained-history depth, and prescribed display choice.
+The operator is canonical for this mathematical responsibility; no second phase-varying display representative implementation path or compatibility alias is introduced. Existing centered five-coordinate representative, scoped-negative circular control, asymmetric counter-breathing representative, and migrated circular operators are unchanged. The operator-approved `phase-varying-prescribed-display-history.v3.json` specification consumes this operator with stable identities, source order, one numerical row, retained-history depth, and prescribed display choice.
 
-Claim grade: the operator formula, strict validation domain, and conservative speed enclosure are derived from the completed F5 history and tangent. Registration and independent expected-position/finite-difference tests are measured implementation evidence. The later approved specification and guard certificate separately close identity, source order, parameters, prescribed display choice, and one realization-scoped speed/collision pass; they do not establish EOM-solver evolution, binding, retention, stability, particle identity, or physical realization. The operator closure is falsified if a regular declared row is rejected, an irregular row advances, its evaluated position or velocity disagrees with the owner formulas, its speed exceeds the registered bound, or any existing prescribed record changes.
+Claim grade: the operator formula, strict validation domain, and conservative speed enclosure are derived from the completed phase-varying display representative history and tangent. Registration and independent expected-position/finite-difference tests are measured implementation evidence. The later approved specification and guard certificate separately close identity, source order, parameters, prescribed display choice, and one realization-scoped speed/collision pass; they do not establish EOM-solver evolution, binding, retention, stability, particle identity, or physical realization. The operator closure is falsified if a regular declared row is rejected, an irregular row advances, its evaluated position or velocity disagrees with the owner formulas, its speed exceeds the registered bound, or any existing prescribed record changes.
 
 ### Seed F6 — Tetrahedral Counterflow Core
 
@@ -7434,7 +7434,7 @@ so the assembly has a nonzero axial current moment along the exceptional tetrahe
 
 Plainly: four equally spaced directions cancel their electric separation and their shape anisotropy. Reversing the circulation of one module leaves the positions unchanged but makes the magnetic contributions add along that one direction. The other three modules remain an equivalent body-fixed triplet.
 
-F6 has only eight architrinos before any charge-facing realization. It therefore offers a smaller conjunction than F5:
+F6 has only eight architrinos before any charge-facing realization. It therefore offers a smaller conjunction tha phase-varying display representative:
 
 - tetrahedral support attempts scalar second-moment isotropy;
 - four axial dyad dipoles cancel by $\sum_i\hat{\mathbf n}_i=0$;
@@ -7445,9 +7445,9 @@ F6 has only eight architrinos before any charge-facing realization. It therefore
 
 The construction remains incomplete. Transverse electric-dipole oscillations need phase cancellation or a bounded leakage derivation. Paths belonging to different tetrahedral axes need cross-axis and causal-root clearance. The four dyads must bind as one retained assembly. The circulation exception must not become a laboratory axis or force an unwanted color label. The three-port subspace still needs an oriented split and an independent weak-posture operator. A charged fermion still needs a locally constant noncancelling charge-facing projection.
 
-The key comparison between F5 and F6 is now structural:
+The key comparison between phase-varying display representative and F6 is now structural:
 
-| Requirement | F5 balanced double dyad | F6 tetrahedral dyad |
+| Requirement | phase-varying display representative balanced double dyad | F6 tetrahedral dyad |
 | --- | --- | --- |
 | identities before charge realization | $12$ | $8$ |
 | axial dipole cancellation | two reversed dyads per axis | tetrahedral vector sum |
@@ -7457,9 +7457,9 @@ The key comparison between F5 and F6 is now structural:
 | immediate no-go | two-ring exact-null/collision obstruction | transverse dipole and cross-axis clearance unresolved |
 | principal overgeneration risk | many interlaced full-system modes | exceptional-sign patterns and tetrahedral mode families |
 
-#### F6b — Balanced Tetrahedral Edge Partition
+#### scoped-negative circular control — Balanced Tetrahedral Edge Partition
 
-Registry disposition: **scoped negative / demoted realization**. The exact circular F6b chart remains here because its clearance and root results are useful, but the measured member-acceleration residual rejects that realization from active search. Re-entry requires a materially different direction-bearing path or member inventory and a new exact admission audit; rescaling the rejected path is insufficient.
+Registry disposition: **scoped negative / demoted realization**. The exact circular scoped-negative circular control chart remains here because its clearance and root results are useful, but the measured member-acceleration residual rejects that realization from active search. Re-entry requires a materially different direction-bearing path or member inventory and a new exact admission audit; rescaling the rejected path is insufficient.
 
 The one-versus-three circulation character preserves a three-module stabilizer but does not automatically control transverse centroid and dipole oscillation. A stronger eight-identity variant uses a two-versus-two circulation partition. Choose the ordered tetrahedral axes
 
@@ -7535,7 +7535,7 @@ Plainly: the four modules can be divided into two circulation pairs in exactly t
 
 The three partitions are not automatically three generations or three colors. A proper rotation of the tetrahedral frame may relate them as ordinary orientation states. If an internal operation changes the partition while the observer spin/moment axis is required to stay fixed, the candidate needs an additional frame compensation. Otherwise the proposal aliases an internal label with physical orientation. This is a new non-aliasing test, not an assignment.
 
-##### Bounded F6b Geometry Audit
+##### Bounded scoped-negative circular control Geometry Audit
 
 At
 
@@ -7582,7 +7582,7 @@ retains exact centroid, dipole, moment-axis, and second-moment identities while 
 
 ##### Exact Continuous Clearance at $h=\rho$
 
-The representative clearance can be promoted beyond sampling. Every F6b path has the form
+The representative clearance can be promoted beyond sampling. Every scoped-negative circular control path has the form
 
 $$
 \mathbf X_a(T)
@@ -7636,7 +7636,7 @@ $$
 
 Plainly: the dense time sweep did not slip between samples. There are only four algebraically distinct closest-approach values among all 28 pairs, and the smallest remains strictly positive over the whole cycle.
 
-The exact F6b row therefore survives the full prescribed-geometry bundle:
+The exact scoped-negative circular control row therefore survives the full prescribed-geometry bundle:
 
 $$
 \left(
@@ -7651,11 +7651,11 @@ $$
 
 This is not a physical pass. The member-level causal-root screen below must be passed before ordinary Master Equation release/evolution, positive-width binding and retention, doubled rotation history, charge-facing projection, weak posture, or full-mode disposition can be considered.
 
-Claim grade: the centroid, dipole, tetrahedral second-moment, and current-axis rows and the representative $h=\rho$ continuous clearance are derived for the prescribed F6b formulas. The other reported axial-offset clearances remain bounded sampled diagnostics. F6b as a retained fermion core is guessed. Falsifier: direct symbolic substitution violates an exact identity, the stationary-point enumeration omits a real extremum of any of the 28 pair polynomials, or the first root-complete ordinary evolution cannot preserve a separated bound neighborhood.
+Claim grade: the centroid, dipole, tetrahedral second-moment, and current-axis rows and the representative $h=\rho$ continuous clearance are derived for the prescribed scoped-negative circular control formulas. The other reported axial-offset clearances remain bounded sampled diagnostics. scoped-negative circular control as a retained fermion core is guessed. Falsifier: direct symbolic substitution violates an exact identity, the stationary-point enumeration omits a real extremum of any of the 28 pair polynomials, or the first root-complete ordinary evolution cannot preserve a separated bound neighborhood.
 
-#### F6b Causal-Root Readiness
+#### scoped-negative circular control Causal-Root Readiness
 
-The F6b representative at $h=\rho=0.30$ and $\omega=1$ is globally strictly sub-field-speed:
+The scoped-negative circular control representative at $h=\rho=0.30$ and $\omega=1$ is globally strictly sub-field-speed:
 
 $$
 \sup_{i,\sigma,T}
@@ -7778,11 +7778,11 @@ The next task is therefore to materialize the 56 simple partner roots and their 
 
 Plainly: all delayed partner intersections are mathematically well behaved: one per ordered pair, none with self, none at zero distance, and none near a Jacobian fold. The hard next question is whether the sum of those lawful delayed accelerations sustains the proposed motion or immediately drives it away.
 
-Claim grade: strict sub-field speed, the no-self-root result, partner-root existence/uniqueness, Jacobian bounds, delay bound, and root-separation inequality are derived for the complete prescribed F6b history. The exact continuous clearance makes the displayed numerical root-separation floor unconditional for that history. The evaluated ledger and acceleration residual appear below; no ordinary evolution, binding, or retention result is claimed. Falsifier: a complete-history channel violates monotonicity or the declared bounds while all stated speed and separation hypotheses remain true.
+Claim grade: strict sub-field speed, the no-self-root result, partner-root existence/uniqueness, Jacobian bounds, delay bound, and root-separation inequality are derived for the complete prescribed scoped-negative circular control history. The exact continuous clearance makes the displayed numerical root-separation floor unconditional for that history. The evaluated ledger and acceleration residual appear below; no ordinary evolution, binding, or retention result is claimed. Falsifier: a complete-history channel violates monotonicity or the declared bounds while all stated speed and separation hypotheses remain true.
 
-#### F6b Root Ledger and Member-Acceleration Screen
+#### scoped-negative circular control Root Ledger and Member-Acceleration Screen
 
-The report-grade [F6b prescribed-kernel diagnostic](../../../scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs) materializes the complete partner ledger with the established prescribed-path analyzer. Its fixed row uses $c_f=1$, $h=\rho=0.30$, $\omega=1$, 128 reception times per member, the complete periodic prehistory, primary and refined root tolerances $10^{-12}$ and $10^{-14}$, and one common coupling coefficient. Source and receiver polarity magnitudes are normalized to one; a common polarity-magnitude conversion rescales the acceleration rows but not root geometry, direction cosines, or tangent-space fractions. The diagnostic invokes neither path evolution nor the EOM solver.
+The report-grade [scoped-negative circular control prescribed-kernel diagnostic](../../../scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs) materializes the complete partner ledger with the established prescribed-path analyzer. Its fixed row uses $c_f=1$, $h=\rho=0.30$, $\omega=1$, 128 reception times per member, the complete periodic prehistory, primary and refined root tolerances $10^{-12}$ and $10^{-14}$, and one common coupling coefficient. Source and receiver polarity magnitudes are normalized to one; a common polarity-magnitude conversion rescales the acceleration rows but not root geometry, direction cosines, or tangent-space fractions. The diagnostic invokes neither path evolution nor the EOM solver.
 
 The 1,024 receiver events produced 7,168 root rows:
 
@@ -7840,25 +7840,25 @@ $$
 
 Thus some member rows point broadly inward, while others point more than $90^\circ$ away from the acceleration required by the circular path. The 64-time and 128-time screens agree in the displayed significant digits.
 
-Plainly: F6b balances perfectly as a whole, so a group-only test almost reports success. The individual architrinos do not receive the accelerations needed to stay on the proposed circles. Rescaling one universal coefficient cannot fix directions. The exact symmetry kernel remains useful, but its local paths or its surrounding inventory must change before release is justified.
+Plainly: scoped-negative circular control balances perfectly as a whole, so a group-only test almost reports success. The individual architrinos do not receive the accelerations needed to stay on the proposed circles. Rescaling one universal coefficient cannot fix directions. The exact symmetry kernel remains useful, but its local paths or its surrounding inventory must change before release is justified.
 
-This negative result rejects the exact isolated F6b circular history, not the tetrahedral edge-partition idea. Repairs must change a direction-bearing row: noncircular paths, phase-varying cadence, unequal but symmetry-compensated tracks, added internal or sea members, or a different polarity-to-path assignment. Merely changing one common magnitude cannot repair the observed angular residual.
+This negative result rejects the exact isolated scoped-negative circular control circular history, not the tetrahedral edge-partition idea. Repairs must change a direction-bearing row: noncircular paths, phase-varying cadence, unequal but symmetry-compensated tracks, added internal or sea members, or a different polarity-to-path assignment. Merely changing one common magnitude cannot repair the observed angular residual.
 
-Claim grade: root counts, ranges, summed cancellation, and member residuals are measured by the named prescribed-path instrument on the hashed diagnostic record; the exact continuous clearance and root uniqueness are derived above. The 64/128 agreement is numerical refinement, not independent evidence. F6b retention remains rejected for this exact isolated prescribed history and open for repaired histories. Falsifier: a faithful recomputation of the hashed record changes the root inventory or residuals beyond the declared numerical tolerances, or an independently authored evaluation shows that the stated per-hit sum was formed incorrectly.
+Claim grade: root counts, ranges, summed cancellation, and member residuals are measured by the named prescribed-path instrument on the hashed diagnostic record; the exact continuous clearance and root uniqueness are derived above. The 64/128 agreement is numerical refinement, not independent evidence. scoped-negative circular control retention remains rejected for this exact isolated prescribed history and open for repaired histories. Falsifier: a faithful recomputation of the hashed record changes the root inventory or residuals beyond the declared numerical tolerances, or an independently authored evaluation shows that the stated per-hit sum was formed incorrectly.
 
-#### F6b Repair Triage
+#### scoped-negative circular control Repair Triage
 
 Several low-complexity repairs fail before a new seed is warranted:
 
 - Exact symbolic enumeration of all $\binom84=70$ neutral four-positive, four-negative assignments on the fixed eight paths found only the declared assignment and its global polarity conjugate with identically zero electric dipole. Polarity reassignment alone therefore has no unused exact-null row.
 - On a phase lattice with spacing $\pi/12$, fixing the irrelevant common phase left $24^3=13{,}824$ rows. Only $(0,\pi,4\pi/3,\pi/3)$ preserved both polarity-sector position sums. This is a bounded phase-grid result, not a continuous uniqueness proof.
 - An 80-row broad scan over $2/3\le h/\rho\le5$ and $0.05\le\rho\omega<1$, followed by a 441-row refinement over $1.5\le h/\rho\le2.5$ and $0.10\le\rho\omega\le0.60$, found its best row near $h/\rho=1.95$ and $\rho\omega=0.375$. A 128-time rerun left normalized member RMS residual $0.956430005$ and minimum direction cosine $-0.686992800$.
-- A 384-row nested second-F6b-shell scan over scale, relative phase, and circulation sense did not improve the single-shell result. Its best 128-time rerun had normalized RMS residual $0.960393741$. Repeating the bounded scan with a globally polarity-conjugated outer shell was worse; its best coarse normalized RMS residual was $0.983193793$.
+- A 384-row nested second-scoped-negative circular control-shell scan over scale, relative phase, and circulation sense did not improve the single-shell result. Its best 128-time rerun had normalized RMS residual $0.960393741$. Repeating the bounded scan with a globally polarity-conjugated outer shell was worse; its best coarse normalized RMS residual was $0.983193793$.
 - Adding one stationary opposite-polarity architrino at each of the eight orbit centers preserved neutrality and balance but left ring-only normalized RMS residual $0.968930443$; the anchors themselves acquired nonzero acceleration.
 
 Plainly: changing only the circle size, speed, phase, polarity labels, or the number of similar shells does not cure the local dynamics. The failed rows all retain too little freedom in the direction in which each member can accelerate.
 
-At the best common scale on the original F6b row, the residual decomposition is
+At the best common scale on the original scoped-negative circular control row, the residual decomposition is
 
 | Local residual component | RMS | Peak absolute value |
 | --- | ---: | ---: |
@@ -7870,7 +7870,7 @@ The four largest channel classes are the closest opposite-polarity cross- module
 
 Claim grade: the assignment enumeration is an exact symbolic result for the fixed paths. Phase, aspect/cadence, shell, anchor, residual-component, and channel rows are bounded measured diagnostics. Falsifier: an omitted neutral polarity assignment has exact dipole null, a rerun changes a stated optimum beyond refinement uncertainty, or a low-complexity row inside a declared domain closes the member residual under one common coefficient.
 
-### Seed F6c — Polarity-Resolved Breathing Tetrahedron
+### Seed asymmetric counter-breathing representative — Polarity-Resolved Breathing Tetrahedron
 
 The radial residual does not require abandoning the exact tetrahedral null. It requires removing an unnecessary equality between the two polarity sectors. Let each sector have its own axial scale, transverse scale, and phase history:
 
@@ -7887,7 +7887,7 @@ $$
 \sigma\in\{+1,-1\}.
 $$
 
-The F6b phase identities hold for every phase argument. Therefore, separately for each polarity,
+The scoped-negative circular control phase identities hold for every phase argument. Therefore, separately for each polarity,
 
 $$
 \sum_i\mathbf X_{i\sigma}(T)=\mathbf0
@@ -7990,7 +7990,7 @@ $$
 
 Plainly: axial breathing, transverse breathing, and cadence are not analogies here. They are the exact three acceleration directions available to each polarity tetrahedron. The Master Equation can be tested directly for whether it respects that six-coordinate surface.
 
-The 128-time F6b root ledger supplies a striking local result. If the two polarity sectors are forced to share three coordinates, $68.408\%$ of the evaluated acceleration norm lies outside that common tangent space. If the sectors receive separate coordinates, the within-sector projection spreads are at most $9.53\times10^{-13}$ and the vector-field normal fraction falls to
+The 128-time scoped-negative circular control root ledger supplies a striking local result. If the two polarity sectors are forced to share three coordinates, $68.408\%$ of the evaluated acceleration norm lies outside that common tangent space. If the sectors receive separate coordinates, the within-sector projection spreads are at most $9.53\times10^{-13}$ and the vector-field normal fraction falls to
 
 $$
 2.31\times10^{-15}.
@@ -7998,7 +7998,7 @@ $$
 
 Within numerical precision, the evaluated circular-history vector field is exactly tangent to the polarity-resolved six-coordinate manifold even though it is not tangent to the constant-circle submanifold.
 
-#### F6c Symmetry-Closure Theorem
+#### asymmetric counter-breathing representative Symmetry-Closure Theorem
 
 The tangent result is not only a numerical coincidence of the sampled circular history. Define the orthogonal transformation
 
@@ -8021,7 +8021,7 @@ $$
 \pi=(0\;3\;1\;2).
 $$
 
-Direct substitution of the F6b axes, circulation signs, phases, and local ring frames gives, for either polarity and every phase value,
+Direct substitution of the scoped-negative circular control axes, circulation signs, phases, and local ring frames gives, for either polarity and every phase value,
 
 $$
 S\hat{\mathbf n}_i=\hat{\mathbf n}_{\pi(i)},
@@ -8037,7 +8037,7 @@ S\mathbf r_i
 \right).
 $$
 
-Therefore every F6c history obeys
+Therefore every asymmetric counter-breathing representative history obeys
 
 $$
 S\mathbf X_{i\sigma}(T)
@@ -8053,9 +8053,9 @@ S\mathbf A^{\mathrm{ME}}_{i\sigma}(T)
 \mathbf A^{\mathrm{ME}}_{\pi(i)\sigma}(T).
 $$
 
-Differentiating the ring identity with respect to $\theta$ shows that the axial, radial, and phase basis directions transform into their corresponding directions at $\pi(i)$. Hence $H_{i\sigma}$, $R_{i\sigma}$, and $Q_{i\sigma}$ are independent of $i$ within each polarity sector. The six-coordinate F6c history surface is an invariant symmetry surface of the ordinary Master Equation wherever its causal-root record remains complete and nondegenerate.
+Differentiating the ring identity with respect to $\theta$ shows that the axial, radial, and phase basis directions transform into their corresponding directions at $\pi(i)$. Hence $H_{i\sigma}$, $R_{i\sigma}$, and $Q_{i\sigma}$ are independent of $i$ within each polarity sector. The six-coordinate asymmetric counter-breathing representative history surface is an invariant symmetry surface of the ordinary Master Equation wherever its causal-root record remains complete and nondegenerate.
 
-Plainly: the six-coordinate reduction is protected by an exact geometric symmetry, not fitted separately at each member. If an ideal evolution begins with the complete F6c symmetric history, the law cannot select one of the four modules and push it off that surface. Numerical evolution can still leak from roundoff, root loss, or an implementation defect, so the release experiment must measure leakage rather than assume it away.
+Plainly: the six-coordinate reduction is protected by an exact geometric symmetry, not fitted separately at each member. If an ideal evolution begins with the complete asymmetric counter-breathing representative symmetric history, the law cannot select one of the four modules and push it off that surface. Numerical evolution can still leak from roundoff, root loss, or an implementation defect, so the release experiment must measure leakage rather than assume it away.
 
 The order-four generator also sharpens the electric/magnetic deformation chart. On polar spatial vectors, $S$ has one real eigen-direction along the body $x$ axis with eigenvalue $-1$ and one transverse conjugate pair with eigenvalues $+i$ and $-i$. On axial vectors, reflection contributes the factor $\det S=-1$, so the body $x$ axis has eigenvalue $+1$ while the transverse pair remains oriented. Thus the same geometry supplies:
 
@@ -8064,7 +8064,7 @@ The order-four generator also sharpens the electric/magnetic deformation chart. 
 3. one symmetry-invariant axial current channel; and
 4. two transverse axial tilt channels.
 
-These are representation channels of the F6c geometry, not yet particle states, generations, spin eigenstates, or gauge bosons. Their falsifier is an algebraic failure of either displayed transformation identity, a complete-root Master Equation record that violates acceleration equivariance, or an ordinary evolution whose off-surface component converges to a nonzero value under numerical refinement.
+These are representation channels of the asymmetric counter-breathing representative geometry, not yet particle states, generations, spin eigenstates, or gauge bosons. Their falsifier is an algebraic failure of either displayed transformation identity, a complete-root Master Equation record that violates acceleration equivariance, or an ordinary evolution whose off-surface component converges to a nonzero value under numerical refinement.
 
 The unit-coupling coordinate projections are not single sinusoids. Their cycle means and RMS values on the prescribed circular history are:
 
@@ -8142,7 +8142,7 @@ Plainly: regular circulation is one way to maintain the current axis, but it is 
 
 Its magnitude may breathe and even pass through zero; axis alignment alone does not establish a retained spin or magnetic moment.
 
-The decisive experiment is not another prescribed circle. Release the eight-member F6c history under ordinary EOM evolution, reconstruct the six collective coordinates and their velocities from every accepted frame, and record:
+The decisive experiment is not another prescribed circle. Release the eight-member asymmetric counter-breathing representative history under ordinary EOM evolution, reconstruct the six collective coordinates and their velocities from every accepted frame, and record:
 
 1. the off-manifold residual relative to the polarity-resolved tetrahedral surface;
 2. exact or bounded centroid and dipole leakage;
@@ -8173,9 +8173,9 @@ $$
 
 together with coordinate and rate return. These are necessary return conditions, not sufficient stability or retention proofs.
 
-Plainly: F6c turns “frequency” into a concrete geometry program. A candidate frequency may be the return cadence of two coupled breathing tetrahedra, with circulation riding on top of axial and radial oscillation. The key clue is the polarity differential: tying the two sectors together destroys the natural Master Equation direction, while allowing them to breathe separately preserves the exact electric null and the body-fixed current axis.
+Plainly: asymmetric counter-breathing representative turns “frequency” into a concrete geometry program. A candidate frequency may be the return cadence of two coupled breathing tetrahedra, with circulation riding on top of axial and radial oscillation. The key clue is the polarity differential: tying the two sectors together destroys the natural Master Equation direction, while allowing them to breathe separately preserves the exact electric null and the body-fixed current axis.
 
-#### F6c Uniform-Cadence Screen and First Ordinary Release
+#### asymmetric counter-breathing representative Uniform-Cadence Screen and First Ordinary Release
 
 Before release, a bounded prescribed-path search tested whether unequal polarity-sector geometry could rescue a simpler uniform-cadence orbit. The search varied $\rho_+$ over $[0.18,0.48]$, both axial aspect ratios over $[0.5,2.5]$, $\rho_-/\rho_+$ over $[0.6,1.6]$, maximum member speed over $[0.15,0.75]$, and the complete negative-sector phase offset. Each candidate used one common positive acceleration coefficient across all members and all 12 cycle times. A deterministic 512-row Halton screen, followed by local coordinate refinement of the five best survivors, found no near-relative equilibrium. The best row retained normalized acceleration RMS residual $0.836251846$.
 
@@ -8187,7 +8187,7 @@ The frozen best row was reevaluated at 128 cycle times with tighter causal-root 
 | radial | $0.726873467$ |
 | phase | $0.255576344$ |
 
-This is a bounded negative result for the declared common-uniform-cadence domain, not a no-go theorem for every F6c history. The executable record is [`f6c-relative-equilibrium-search.mjs`](../../../scripts/mapping-electromagnetism/f6c-relative-equilibrium-search.mjs).
+This is a bounded negative result for the declared common-uniform-cadence domain, not a no-go theorem for every asymmetric counter-breathing representative history. The executable record is [`f6c-relative-equilibrium-search.mjs`](../../../scripts/mapping-electromagnetism/f6c-relative-equilibrium-search.mjs).
 
 Plainly: changing the two tetrahedra's sizes, heights, and relative phase does not make fixed circles follow the Master Equation in the searched domain. The remaining mismatch points in all three allowed collective directions, with radial response largest. Axial breathing and cadence change are therefore dynamically required in this seed family, not optional embellishments.
 
@@ -8204,7 +8204,7 @@ Plainly: the ordinary solver sees exactly the same six collective directions as 
 
 The first checkpointed release reached $T=0.374$. It accumulated 321 accepted steps and zero rejected steps before a deliberate operator stop at a clean checkpoint. The solver reduced its accepted step from $0.002$ to $0.0005$ as the history became harder. Across the accepted record:
 
-1. normalized position leakage from the F6c surface stayed below $4.84\times10^{-16}$ and velocity leakage below $1.75\times10^{-15}$;
+1. normalized position leakage from the asymmetric counter-breathing representative surface stayed below $4.84\times10^{-16}$ and velocity leakage below $1.75\times10^{-15}$;
 2. centroid norm stayed below $8.81\times10^{-17}$ and electric-dipole norm below $2.24\times10^{-16}$;
 3. the current-axis off-$x$ fraction stayed below $5.17\times10^{-15}$;
 4. accepted-chunk pair separation reached a minimum $0.3132131932$ near $T=0.146$ and then increased before decreasing again;
@@ -8269,7 +8269,7 @@ produced a larger polarity-resolved breathing segment. Through the clean $T=0.15
 
 The tightening corridor is not a conjugate-polarity approach. Direct frame reconstruction identifies the symmetry-equivalent negative-sector pair orbit $(0^-,1^-)$ and $(2^-,3^-)$ as the minimum-separation class in the unit-cadence, near-balanced, and outward launches. In the near-balanced record, for example, this same-polarity distance reached $0.2151674$ at $T=0.2$ even though the sector envelope radius remained $0.2947164$. The exact order-four symmetry makes the two listed pairs equivalent; neither is a unique local defect.
 
-The negative-sector six-edge set splits into a two-edge orbit and a four-edge orbit. For the observed two-edge minimum, define $d_{-,2}$ as the common distance of $(0^-,1^-)$ and $(2^-,3^-)$. Direct substitution of the F6c coordinates gives the exact identity
+The negative-sector six-edge set splits into a two-edge orbit and a four-edge orbit. For the observed two-edge minimum, define $d_{-,2}$ as the common distance of $(0^-,1^-)$ and $(2^-,3^-)$. Direct substitution of the asymmetric counter-breathing representative coordinates gives the exact identity
 
 $$
 d_{-,2}^2
@@ -8304,9 +8304,9 @@ $$
 
 The coordinate analyzer reevaluates both formulas at every emitted frame. On the near-balanced $T=0.2$ record, the maximum formula-to-member distance residual across both edge orbits was $4.45\times10^{-16}$.
 
-Plainly: the dangerous same-polarity approach is not hidden in the full 24-dimensional member state. Within exact F6c it is an explicit function of negative-sector height, radius, and phase. A search can reject a candidate as soon as its reduced trajectory approaches the two simultaneous coincidence conditions, while still confirming the full root-resolved clearance ledger.
+Plainly: the dangerous same-polarity approach is not hidden in the full 24-dimensional member state. Within exact asymmetric counter-breathing representative it is an explicit function of negative-sector height, radius, and phase. A search can reject a candidate as soon as its reduced trajectory approaches the two simultaneous coincidence conditions, while still confirming the full root-resolved clearance ledger.
 
-Relative polarity-sector phase is a physical F6c shape coordinate, not a choice of time origin. The EOM harness therefore exposes `f6c-negative-theta`, which changes $\theta_-(0)$ while holding $\theta_+(0)=0$, both cadences, every scale, the coefficient, and all solver controls fixed. A seven-row certified release screen at $(\dot\theta_+,\dot\theta_-)=(3.0,2.5)$ gave:
+Relative polarity-sector phase is a physical asymmetric counter-breathing representative shape coordinate, not a choice of time origin. The EOM harness therefore exposes `f6c-negative-theta`, which changes $\theta_-(0)$ while holding $\theta_+(0)=0$, both cadences, every scale, the coefficient, and all solver controls fixed. A seven-row certified release screen at $(\dot\theta_+,\dot\theta_-)=(3.0,2.5)$ gave:
 
 | $\theta_-(0)$ | Initial clearance | Closest-pair class | $\ddot\rho_+(0)$ | $\ddot\rho_-(0)$ |
 | ---: | ---: | --- | ---: | ---: |
@@ -8344,7 +8344,7 @@ The framewise formula residual remained below $5.00\times10^{-16}$. Maximum memb
 
 Plainly: phase can redirect the dangerous corridor from same-polarity to opposite-polarity pairs, but the tested high-cadence row does not solve the return problem. It converts radial collapse into rapid radial expansion and approach to this method's speed guard. Certifying a return within this sub-field method requires both envelope and corridor motion to turn before its coincidence or speed guards are reached. A faster continuation requires a root method valid in that regime; this stopped record neither certifies nor rules out one.
 
-Plainly: cadence controls whether a sector initially contracts or expands and how large its first radial excursion becomes. More importantly, the two polarity sectors turn at different times. F6c therefore carries at least two coupled radial clocks: a common breathing coordinate and a polarity-differential breathing coordinate. Any retained version must phase-lock both clocks while also controlling a same-polarity edge-pinch coordinate that the sector radius does not determine by itself. Within F6c that pinch remains a derived function of the six coordinates, especially relative sector phase; it is not a seventh independent coordinate. One shared orbital frequency and two envelope radii are not enough.
+Plainly: cadence controls whether a sector initially contracts or expands and how large its first radial excursion becomes. More importantly, the two polarity sectors turn at different times. asymmetric counter-breathing representative therefore carries at least two coupled radial clocks: a common breathing coordinate and a polarity-differential breathing coordinate. Any retained version must phase-lock both clocks while also controlling a same-polarity edge-pinch coordinate that the sector radius does not determine by itself. Within asymmetric counter-breathing representative that pinch remains a derived function of the six coordinates, especially relative sector phase; it is not a seventh independent coordinate. One shared orbital frequency and two envelope radii are not enough.
 
 A $4\times4$ certified release screen at $\theta_-(0)=\pi/2$ varied both cadences over $\{1.5,2.0,2.5,3.0\}$. The lower-speed compromise $(\dot\theta_+,\dot\theta_-)=(2.0,2.0)$ began at maximum member speed $0.6c_f$ with
 
@@ -8413,7 +8413,7 @@ The first bounded screens set $\Omega=\omega_+=\omega_-$ so each prescribed coor
 
 Plainly: this is the smallest periodic breathing history that reaches the same $h_\sigma=\rho_\sigma=0.3$ release geometry with nonzero axial and radial rates. It tests whether the delayed past, not only the instantaneous positions, changes the Master Equation response.
 
-The acceleration analyzer now separates physical projections from coordinate second derivatives. With $H_\sigma$, $R_\sigma$, and $Q_\sigma$ denoting the axial, radial, and signed tangential projections on the F6c moving frame,
+The acceleration analyzer now separates physical projections from coordinate second derivatives. With $H_\sigma$, $R_\sigma$, and $Q_\sigma$ denoting the axial, radial, and signed tangential projections on the asymmetric counter-breathing representative moving frame,
 
 $$
 \ddot h_\sigma=H_\sigma,
@@ -8439,7 +8439,7 @@ T_{\rho_+,\max}\approx0.0476328,
 T_{\rho_-,\max}\approx0.0626490.
 $$
 
-No axial turn occurred in that window. Maximum member speed was $0.773405c_f$, minimum accepted-chunk pair distance was $0.265661$, and the maximum normalized position and velocity leakage from F6c was respectively $4.91\times10^{-16}$ and $9.31\times10^{-16}$.
+No axial turn occurred in that window. Maximum member speed was $0.773405c_f$, minimum accepted-chunk pair distance was $0.265661$, and the maximum normalized position and velocity leakage from asymmetric counter-breathing representative was respectively $4.91\times10^{-16}$ and $9.31\times10^{-16}$.
 
 A second fixed row was the only sampled release that combined two outward radial rates, two negative radial second derivatives, and axial acceleration opposite to axial velocity in both sectors. Through its durable $T=0.09$ checkpoint, it certified 252 accepted steps with no rejected step and resolved
 
@@ -8515,7 +8515,7 @@ This was a section return, not a state return. At the crossing, the RMS of the o
 
 Plainly: one geometric coordinate came back to its starting value, but the assembly did not come back to its starting motion. The delayed interaction transferred cadence strongly between the two polarity sectors during the excursion.
 
-Continuation remained exactly on the F6c surface to normalized position and velocity residuals $4.72\times10^{-16}$ and $8.30\times10^{-16}$. The centroid and dipole stayed null to numerical precision, the body-fixed current axis stayed aligned to $1.36\times10^{-15}$, and minimum pair distance remained $0.296293$. Nevertheless, the negative-sector cadence rose to $\dot\theta_-=3.616172$ and its member speed reached $0.999765c_f$ at the last accepted state, $T=0.28625$.
+Continuation remained exactly on the asymmetric counter-breathing representative surface to normalized position and velocity residuals $4.72\times10^{-16}$ and $8.30\times10^{-16}$. The centroid and dipole stayed null to numerical precision, the body-fixed current axis stayed aligned to $1.36\times10^{-15}$, and minimum pair distance remained $0.296293$. Nevertheless, the negative-sector cadence rose to $\dot\theta_-=3.616172$ and its member speed reached $0.999765c_f$ at the last accepted state, $T=0.28625$.
 
 The attempted next step was rejected with `root_completeness_not_certified`: the four symmetry-equivalent negative-sector self-history rows all reported `numeric_transmitter_factor_sign_uncertified` on a required caustic route. This is not evidence of collision, off-surface breakup, or a certified caustic. At measured grade, it is a sector-local approach to the causal-root margin coincident with the field-speed boundary; the uncertified transmitter-factor sign is consistent with a nearby fold but does not classify one.
 
@@ -8537,7 +8537,7 @@ This exposes a degeneracy in an unconstrained first-section objective. Near a ta
 
 Plainly: the small number came from a tiny out-and-back arc, not from the assembly completing a meaningful cycle. A scalar section crossing cannot by itself define the frequency of a braid.
 
-The analyzer therefore records flight time, maximum section excursion, and both lifted phase advances for every initial-level crossing. A nontrivial return search must arm its Poincare map with at least one topology- or identity-aware cycle marker, such as a declared lifted winding, an ordered frame or member-permutation return, a required sequence of axial/radial turns, or a scale-aware excursion floor. The correct marker remains to be selected from the exact F6c identity and symmetry action; an arbitrary minimum time is only a numerical guard.
+The analyzer therefore records flight time, maximum section excursion, and both lifted phase advances for every initial-level crossing. A nontrivial return search must arm its Poincare map with at least one topology- or identity-aware cycle marker, such as a declared lifted winding, an ordered frame or member-permutation return, a required sequence of axial/radial turns, or a scale-aware excursion floor. The correct marker remains to be selected from the exact asymmetric counter-breathing representative identity and symmetry action; an arbitrary minimum time is only a numerical guard.
 
 Continuation of the zero-radial-history row beyond the short recrossing found no larger return through the durable $T=0.36$ checkpoint. The negative circulation reversed near $T=0.21542$, while $\rho_+$ expanded and $\rho_-$ contracted. The lifted phase advances at $T=0.36$ were only $0.33263$ and $0.01001$ radians. Maximum member speed reached $0.91983c_f$, and the limiting opposite-polarity edge orbit narrowed to $0.21782$. Root work rose to 1,396 MPFR pairs in the final accepted chunk, so the run was stopped recoverably without claiming a physical halt.
 
@@ -8545,9 +8545,9 @@ Plainly: after its tiny local recrossing, this row separates into opposite radia
 
 Claim grade: measured EOM-solver diagnostics on a bounded release-phase and radial-amplitude neighborhood, with one half-step crossing refinement; not an independent oracle, complete local optimization, periodic orbit, stability result, retained braid, or particle identity. Falsifier: failure to reproduce the declared crossings, nonconvergence of the refined crossing, discovery of a nontrivial identity/winding return before the reported obstruction, or a properly armed return map for which the near-tangent rows remain genuine low-residual full cycles.
 
-#### Exact F6c Return Actions
+#### Exact asymmetric counter-breathing representative Return Actions
 
-The return marker can be derived from the declared F6c member map rather than chosen numerically. Enumerating the 24 signed-coordinate orthogonal maps that preserve the tetrahedral module axes gives eight maps that preserve the F6c common-phase chart. Four are proper rotations. On the two polarity-sector phases, those four rotations reduce to only two distinct actions:
+The return marker can be derived from the declared asymmetric counter-breathing representative member map rather than chosen numerically. Enumerating the 24 signed-coordinate orthogonal maps that preserve the tetrahedral module axes gives eight maps that preserve the asymmetric counter-breathing representative common-phase chart. Four are proper rotations. On the two polarity-sector phases, those four rotations reduce to only two distinct actions:
 
 $$
 \mathcal R_{\mathrm{direct}}:
@@ -8586,17 +8586,17 @@ $$
 
 with the same axial, radial, and rate returns. Each reflected action combines a proper spatial rotation with a nontrivial permutation of same-polarity modules. It is therefore a valid orientation-quotiented shape test, but it is not automatically an ordered path-history return. Treating the module permutation as physical identity requires a separate exchange-history argument.
 
-Plainly: F6c supplies two exact ways for the visible geometry to look the same again. One brings every labeled motion back directly. The other brings the shape back only after a rotation, a module exchange, and reversal of both sector circulations. Those are not the same claim about a braid.
+Plainly: asymmetric counter-breathing representative supplies two exact ways for the visible geometry to look the same again. One brings every labeled motion back directly. The other brings the shape back only after a rotation, a module exchange, and reversal of both sector circulations. Those are not the same claim about a braid.
 
 The zero-radial release through $T=0.36$ populated only the direct zero-winding cell. Its smallest direct residual was the first stored frame at $T=0.002$, another near-release degeneracy. Its closest reflected residual occurred at $T=0.297$ with RMS $0.844798$ and maximum component $1.752080$. At the final checkpoint the direct and reflected RMS values were respectively $0.754922$ and $0.891503$. Thus the record reaches neither a nonzero direct winding nor even an approximate reflected return.
 
 Plainly: the exact symmetry calculation rejects the attractive short-return number and supplies a discrete target for subsequent shooting. A candidate period must land in a declared winding cell and state whether module exchange counts; minimizing elapsed time or one wrapped angle is no longer admissible.
 
-Claim grade: derived finite-group geometry for the exact F6c chart, plus measured EOM-solver residuals on one declared trajectory. The enumeration script is an executable check of the algebra, not an independent physical oracle. Falsifier: direct substitution showing an omitted proper rotation or a different phase action, failure of a listed action to reproduce all eight member positions and velocities, or a trajectory record whose independently reconstructed ordered state contradicts the reported residual.
+Claim grade: derived finite-group geometry for the exact asymmetric counter-breathing representative chart, plus measured EOM-solver residuals on one declared trajectory. The enumeration script is an executable check of the algebra, not an independent physical oracle. Falsifier: direct substitution showing an omitted proper rotation or a different phase action, failure of a listed action to reproduce all eight member positions and velocities, or a trajectory record whose independently reconstructed ordered state contradicts the reported residual.
 
 #### Existing-Record Return Census And Reflected Boundary
 
-The exact action test was applied to all 2,451 stored F6c manifests. Only 15 were evolved records with positive accepted time and usable frame streams. None entered a nonzero direct winding cell. The closest reflected-action row was the cycle-phase-$5.5$ release. Its minimum reflected residual occurred at the record endpoint, so that same immutable history was continued rather than starting a newly tuned row.
+The exact action test was applied to all 2,451 stored asymmetric counter-breathing representative manifests. Only 15 were evolved records with positive accepted time and usable frame streams. None entered a nonzero direct winding cell. The closest reflected-action row was the cycle-phase-$5.5$ release. Its minimum reflected residual occurred at the record endpoint, so that same immutable history was continued rather than starting a newly tuned row.
 
 The reflected RMS changed from $0.545956$ at $T=0.20$ to $0.536961$ at $T=0.24$, $0.535204$ at $T=0.25$, and $0.535034$ at the last accepted state, $T=0.251$. This small scalar improvement did not represent convergence of the complete state. The last reflected residual still contained
 
@@ -8612,13 +8612,13 @@ Meanwhile the negative radius fell to $0.210056$, its radial rate reached $-0.99
 
 Plainly: one wrapped view of the shape was becoming modestly more similar to a rotated start, but its motion was not. The negative tetrahedral sector was collapsing radially at nearly the wake speed. A useful reflected return needs the radial and cadence reversals to be coordinated; allowing one sector to reach the causal boundary can make a shape-only residual look better without making a braid cycle.
 
-This result adds a sharper geometry requirement. A recurrent F6c branch must include a native exchange among axial breathing, radial breathing, and circulation that turns the sector-local speed before the relevant self-history transmitter factor becomes uncertifiable. The action residual must therefore remain component-resolved and be constrained by a causal-margin guard; its RMS cannot be optimized alone.
+This result adds a sharper geometry requirement. A recurrent asymmetric counter-breathing representative branch must include a native exchange among axial breathing, radial breathing, and circulation that turns the sector-local speed before the relevant self-history transmitter factor becomes uncertifiable. The action residual must therefore remain component-resolved and be constrained by a causal-margin guard; its RMS cannot be optimized alone.
 
 Claim grade: measured census of existing EOM-solver records and continuation of one fixed, root-certified history; not an independent oracle, exhaustive parameter search, periodic orbit, retained braid, or particle identity. Falsifier: an eligible stored record omitted by the census, failure to reproduce the ranked residuals, refined continuation that passes the reported event with complete roots and substantial speed margin, or a nearby fixed-law row that reaches the exact action with all component residuals converging before its guards close.
 
-#### F6c Sector Speed Budget
+#### asymmetric counter-breathing representative Sector Speed Budget
 
-The F6c moving frame is orthonormal. Every member of polarity sector $\sigma$ therefore has the same exact squared speed,
+The asymmetric counter-breathing representative moving frame is orthonormal. Every member of polarity sector $\sigma$ therefore has the same exact squared speed,
 
 $$
 v_\sigma^2
@@ -8654,7 +8654,7 @@ Plainly: the wake-speed boundary does not merely prohibit an architrino from orb
 
 This suggests a useful representation for future searches: track each sector through the nonnegative speed-fraction triangle together with the remaining margin $1-v_\sigma^2$. A recurrent braid must form a closed, guarded history in full geometry; its projection in this triangle can expose whether it has a genuine mode-exchange cycle or simply runs toward one boundary vertex. The triangle is a diagnostic projection, not a binding potential or conservation law.
 
-Claim grade: exactly derived kinematics on the F6c surface and measured channel fractions on two EOM-solver records. Falsifier: direct reconstruction of an F6c member velocity that violates the orthogonal sum, a member-speed spread in an exact F6c frame above numerical enclosure, or an independent coordinate extraction that contradicts the reported fractions.
+Claim grade: exactly derived kinematics on the asymmetric counter-breathing representative surface and measured channel fractions on two EOM-solver records. Falsifier: direct reconstruction of an asymmetric counter-breathing representative member velocity that violates the orthogonal sum, a member-speed spread in an exact asymmetric counter-breathing representative frame above numerical enclosure, or an independent coordinate extraction that contradicts the reported fractions.
 
 #### Shape-Dependent Current Capacity
 
@@ -8707,7 +8707,7 @@ $$
 \frac43\|\mathbf a_\sigma\|.
 $$
 
-The final quantity is the instantaneous unit-speed current capacity of that sector geometry. Equality at a fixed speed requires the rate vector to align or anti-align with $\mathbf a_\sigma$. The two-dimensional plane perpendicular to $\mathbf a_\sigma$ carries internal F6c motion but contributes zero to that sector's axial current moment at the same instant.
+The final quantity is the instantaneous unit-speed current capacity of that sector geometry. Equality at a fixed speed requires the rate vector to align or anti-align with $\mathbf a_\sigma$. The two-dimensional plane perpendicular to $\mathbf a_\sigma$ carries internal asymmetric counter-breathing representative motion but contributes zero to that sector's axial current moment at the same instant.
 
 Plainly: a shape does not acquire a large magnetic-like moment merely because its architrinos move quickly. For each shape there is one most efficient blend of axial breathing, radial breathing, and circulation. Two other blends can consume speed while remaining invisible to this current projection.
 
@@ -8715,11 +8715,11 @@ The two causal-boundary records illustrate the distinction. In the cadence-domin
 
 This supplies a magnetic-geometry discriminator that speed and frequency do not. A candidate intended to support a persistent current moment should be ranked by its complete-cycle current output per causal speed margin, while a neutral mode may deliberately lie near a current-null plane. Neither criterion establishes binding or identifies a Standard Model particle, but both reject the inference that rapid circulation or breathing is sufficient by itself.
 
-Claim grade: exact F6c kinematic derivation, independently checked by summing all eight member cross products, plus measured values on two EOM-solver records. Falsifier: a direct member sum that disagrees with either dot-product formula, violation of the Cauchy--Schwarz bound on a root-valid F6c frame, or an independently reconstructed record that contradicts the stated capacities or alignment fractions.
+Claim grade: exact asymmetric counter-breathing representative kinematic derivation, independently checked by summing all eight member cross products, plus measured values on two EOM-solver records. Falsifier: a direct member sum that disagrees with either dot-product formula, violation of the Cauchy--Schwarz bound on a root-valid asymmetric counter-breathing representative frame, or an independently reconstructed record that contradicts the stated capacities or alignment fractions.
 
 #### Shape Period Versus Current Period
 
-The two reflected proper-rotation actions are order two. Each is a half-turn about a body axis transverse to the F6c current axis, and therefore
+The two reflected proper-rotation actions are order two. Each is a half-turn about a body axis transverse to the asymmetric counter-breathing representative current axis, and therefore
 
 $$
 \mathcal R_{\mathrm{reflected}}\hat{\mathbf x}
@@ -8729,7 +8729,7 @@ $$
 \mathcal R_{\mathrm{reflected}}^2=\mathcal I.
 $$
 
-Because the exact F6c current moment lies on $\hat{\mathbf x}$, an exact relative return with reduced shape period $P_{\mathrm{rel}}$ under either reflected action obeys
+Because the exact asymmetric counter-breathing representative current moment lies on $\hat{\mathbf x}$, an exact relative return with reduced shape period $P_{\mathrm{rel}}$ under either reflected action obeys
 
 $$
 \mathbf m_{\mathrm{cur}}(T+P_{\mathrm{rel}})
@@ -8745,15 +8745,15 @@ The same action reverses both cadences and exchanges same-polarity modules. Thus
 
 Plainly: a braid can repeat its shape before it repeats its magnetic posture. After one reflected half-cycle the tetrahedron is the same up to rotation and module exchange, but its current points the other way. Two such steps are needed to restore the current.
 
-The direct action has order one in the F6c phase chart and preserves the current axis. It is therefore the relevant action for a fixed-frame persistent current posture. A reflected relative periodic orbit could still describe an alternating internal mode, but it cannot by itself supply a nonzero persistent fixed-frame current unless another geometric feature breaks the half-cycle cancellation or the recovered observable follows a separately justified body frame.
+The direct action has order one in the asymmetric counter-breathing representative phase chart and preserves the current axis. It is therefore the relevant action for a fixed-frame persistent current posture. A reflected relative periodic orbit could still describe an alternating internal mode, but it cannot by itself supply a nonzero persistent fixed-frame current unless another geometric feature breaks the half-cycle cancellation or the recovered observable follows a separately justified body frame.
 
-This distinction matters whenever a recovered frequency is inferred from a geometric recurrence. A shape-sensitive observable can respond at twice the frequency of a current-sensitive observable on an exact reflected orbit. The factor of two is a derived symmetry consequence in F6c, not a general claim about spin, a quantum postulate, or evidence for a particular particle.
+This distinction matters whenever a recovered frequency is inferred from a geometric recurrence. A shape-sensitive observable can respond at twice the frequency of a current-sensitive observable on an exact reflected orbit. The factor of two is a derived symmetry consequence in asymmetric counter-breathing representative, not a general claim about spin, a quantum postulate, or evidence for a particular particle.
 
-Claim grade: derived proper-rotation and current-vector geometry on the exact F6c chart. Falsifier: a listed reflected action that does not square to the identity, does not send $\hat{\mathbf x}$ to $-\hat{\mathbf x}$, or fails to reverse the directly summed current moment of a transformed F6c state.
+Claim grade: derived proper-rotation and current-vector geometry on the exact asymmetric counter-breathing representative chart. Falsifier: a listed reflected action that does not square to the identity, does not send $\hat{\mathbf x}$ to $-\hat{\mathbf x}$, or fails to reverse the directly summed current moment of a transformed asymmetric counter-breathing representative state.
 
 #### Observable-Specific Return Order
 
-The F6c factor of two is an instance of a general relative-return rule. Let a complete delayed geometry $Z(T)$ obey
+The asymmetric counter-breathing representative factor of two is an instance of a general relative-return rule. Let a complete delayed geometry $Z(T)$ obey
 
 $$
 Z(T+P_{\mathrm{rel}})=gZ(T)
@@ -8767,7 +8767,7 @@ $$
 
 then its first symmetry-forced return occurs after $k_{\mathcal O}P_{\mathrm{rel}}$, where $k_{\mathcal O}$ is the least positive integer for which $D_{\mathcal O}(g)^{k_{\mathcal O}}$ acts as the identity on that observable. A special observable state can return sooner, so this is a symmetry order, not an assertion that every Fourier component has that fundamental period.
 
-For the reflected F6c action the executable return ledger is
+For the reflected asymmetric counter-breathing representative action the executable return ledger is
 
 | Projection | Action after $P_{\mathrm{rel}}$ | Return order |
 | --- | --- | ---: |
@@ -8779,7 +8779,7 @@ Plainly: several measured frequencies can come from one geometric clock. The ass
 
 This supplies a disciplined inference rule for Standard Model geometry. Integer frequency ratios should first be tested against observable return orders, member permutations, and harmonics of one complete delayed cycle before adding independent internal clocks. Conversely, incommensurate or history-incompatible frequencies remain evidence that one return coordinate is insufficient.
 
-F6c does not yet recover spinor return behavior. Its reflected action is an ordinary order-two spatial rotation on vectors. A $4\pi$ spinor recovery target would require a separately derived nontrivial lift of the ordered history action whose relevant representation has the required higher return order. The present factor of two is therefore a clue about return bookkeeping, not evidence that F6c is a fermion or that classical vector reversal is a spinor sign.
+asymmetric counter-breathing representative does not yet recover spinor return behavior. Its reflected action is an ordinary order-two spatial rotation on vectors. A $4\pi$ spinor recovery target would require a separately derived nontrivial lift of the ordered history action whose relevant representation has the required higher return order. The present factor of two is therefore a clue about return bookkeeping, not evidence that asymmetric counter-breathing representative is a fermion or that classical vector reversal is a spinor sign.
 
 Claim grade: derived finite-group return bookkeeping. Falsifier: an observable whose directly transformed value disagrees with its recorded action, an incorrect group order, or an evolved relative periodic record whose independently reconstructed observable sequence contradicts the predicted return order.
 
@@ -8903,9 +8903,9 @@ The same immutable history evolved without rejection to $T=0.28$. Positive caden
 
 Plainly: separate breathing phases are genuine geometric control coordinates, not decorative fit parameters. They can realize the desired current and opening motion without driving either sector near $c_f=1$. What is still missing is a delayed feedback cycle that rotates the four joint-neutral directions as the most dangerous pair changes.
 
-The bounded release census evaluated 2,311 distinct root-certified F6c release records with no analyzer failure. Of these, 1,129 had a nonclosing limiting pair corridor and 394 also had nonincreasing member speed in both sectors. Adding $\|\dot{\mathbf q}_\sigma\|$ exposed many false-safe rows whose speed was decreasing only because a large acceleration was bending the rate vector.
+The bounded release census evaluated 2,311 distinct root-certified asymmetric counter-breathing representative release records with no analyzer failure. Of these, 1,129 had a nonclosing limiting pair corridor and 394 also had nonincreasing member speed in both sectors. Adding $\|\dot{\mathbf q}_\sigma\|$ exposed many false-safe rows whose speed was decreasing only because a large acceleration was bending the rate vector.
 
-The lowest-curvature member of that subset began with minimum pair distance $0.563903$, opening rate $0.276294$, maximum member speed $0.329593$, and maximum $\|\dot{\mathbf q}_\sigma\|=1.04193$. It evolved with no rejected step to $T=0.40$, retained the exact F6c surface below $8\times10^{-16}$ normalized velocity residual, and still had minimum pair distance $0.539185$. Its current, however, fell from $-0.611170$ to $-0.095242$ as one sector moved near a current-null direction. Geometric survival did not preserve current.
+The lowest-curvature member of that subset began with minimum pair distance $0.563903$, opening rate $0.276294$, maximum member speed $0.329593$, and maximum $\|\dot{\mathbf q}_\sigma\|=1.04193$. It evolved with no rejected step to $T=0.40$, retained the exact asymmetric counter-breathing representative surface below $8\times10^{-16}$ normalized velocity residual, and still had minimum pair distance $0.539185$. Its current, however, fell from $-0.611170$ to $-0.095242$ as one sector moved near a current-null direction. Geometric survival did not preserve current.
 
 Plainly: the smoothest safe-looking motion stayed geometrically healthy but lost most of its field-facing current. A viable current braid needs an additional transport condition.
 
@@ -8921,7 +8921,7 @@ $$
 \dot I_{\mathrm{tot}}=-0.00280243.
 $$
 
-Thus its nearly stationary total current came from rapid, opposed transfer between polarity sectors rather than two individually stationary currents. An independent $\Delta T=10^{-4}$ EOM continuation measured sector slopes $-0.437548$ and $+0.434524$. On the full continuation through $T=0.240$, total current changed only from $-0.723067$ to $-0.743349$ while the sector currents changed to $-0.222165$ and $-0.521184$. The F6c surface remained invariant below $8.4\times10^{-16}$ normalized velocity residual.
+Thus its nearly stationary total current came from rapid, opposed transfer between polarity sectors rather than two individually stationary currents. An independent $\Delta T=10^{-4}$ EOM continuation measured sector slopes $-0.437548$ and $+0.434524$. On the full continuation through $T=0.240$, total current changed only from $-0.723067$ to $-0.743349$ while the sector currents changed to $-0.222165$ and $-0.521184$. The asymmetric counter-breathing representative surface remained invariant below $8.4\times10^{-16}$ normalized velocity residual.
 
 Plainly: one promising architecture clue is conjugate current handoff. One sub-braid can take over current support as the other gives it up, keeping the assembly-level current nearly constant without freezing either sub-braid.
 
@@ -8941,7 +8941,7 @@ $$
 \le 0.1.
 $$
 
-Twenty-nine releases met all three conditions. Many nevertheless began with a closing pair corridor. Current handoff is therefore a recurring but selective F6c motion class, not a sufficient survival condition.
+Twenty-nine releases met all three conditions. Many nevertheless began with a closing pair corridor. Current handoff is therefore a recurring but selective asymmetric counter-breathing representative motion class, not a sufficient survival condition.
 
 The class does not reduce to a simple amplitude-sign recipe. Opposite axial- breathing signs occurred in $1{,}664/2{,}299=72.4\%$ of the full archive and $23/29=79.3\%$ of active handoffs. Opposite radial-breathing signs occurred in $1{,}450/2{,}299=63.1\%$ and $20/29=69.0\%$, respectively. The modest enrichment is descriptive only because the archive was not sampled to give every sign pattern equal measure.
 
@@ -9033,7 +9033,7 @@ I_+
 -0.238547.
 $$
 
-The tangential term was only $0.13\%$ of the sector-current magnitude and slightly opposed the breathing terms. This is an exact decomposition of the F6c current functional on the measured frame, not a decomposition of a recovered magnetic field.
+The tangential term was only $0.13\%$ of the sector-current magnitude and slightly opposed the breathing terms. This is an exact decomposition of the asymmetric counter-breathing representative current functional on the measured frame, not a decomposition of a recovered magnetic field.
 
 Plainly: a current-supporting braid need not consist of permanently same-sense circular motion. One sector can stop and reverse its orbital cadence while coordinated breathing and the conjugate sector continue to carry almost the same total current. That is a candidate architecture clue, not yet a retained-cycle result.
 
@@ -9055,7 +9055,7 @@ I_+
 -0.110933.
 $$
 
-The reversed tangential term opposed the two breathing terms. The positive sector therefore preserved a same-sign current through its cadence reversal by transferring the current channel from circulation into breathing shear. The exact F6c surface remained invariant below $1.1\times10^{-15}$ normalized velocity residual.
+The reversed tangential term opposed the two breathing terms. The positive sector therefore preserved a same-sign current through its cadence reversal by transferring the current channel from circulation into breathing shear. The exact asymmetric counter-breathing representative surface remained invariant below $1.1\times10^{-15}$ normalized velocity residual.
 
 At release this history had $\eta_I=0.625900$ and $\|\mathbf Q_\perp\|/\|\mathbf Q\|=0.7799$. At $T=0.290$ the corresponding values were $0.585280$ and $0.8108$. Current persistence therefore coexisted with increasing current-neutral motion rather than convergence toward the minimum-norm carrier.
 
@@ -9095,11 +9095,11 @@ The resulting geometry requirement is joint:
 4. the combined motion must preserve the exact identity action through a complete return and, to remain certified by this sub-field method, preserve its field-speed margin; and
 5. certified root-time enclosure pressure must remain controlled under tolerance and history-enclosure refinement.
 
-Claim grade: the current and current-flow identities are derived on the F6c chart; census counts, threshold classes, and continuations are measured EOM- solver diagnostics on bounded declared records, not an independent retained- braid result. The active-handoff thresholds are declared diagnostic cuts, not natural constants. Falsifier: a direct member-current derivative that disagrees with the formula, a root-certified continuation that fails the recorded sector slopes, or a reproduction in which the stated halt is instead caused by collision or a $c_f=1$ speed crossing. The pressure-precursor inference is falsified if refinement removes or reverses the monotone rise before the same boundary, or if root-complete candidates repeatedly cross $P_{\mathrm{root}}=1$ without a corresponding change in the declared tolerance/enclosure contract. The cadence- reversal inference is falsified if independent tighter histories do not reproduce the turn and current handoff, or if a complete return requires permanently same-sense circulation after all.
+Claim grade: the current and current-flow identities are derived on the asymmetric counter-breathing representative chart; census counts, threshold classes, and continuations are measured EOM- solver diagnostics on bounded declared records, not an independent retained- braid result. The active-handoff thresholds are declared diagnostic cuts, not natural constants. Falsifier: a direct member-current derivative that disagrees with the formula, a root-certified continuation that fails the recorded sector slopes, or a reproduction in which the stated halt is instead caused by collision or a $c_f=1$ speed crossing. The pressure-precursor inference is falsified if refinement removes or reverses the monotone rise before the same boundary, or if root-complete candidates repeatedly cross $P_{\mathrm{root}}=1$ without a corresponding change in the declared tolerance/enclosure contract. The cadence- reversal inference is falsified if independent tighter histories do not reproduce the turn and current handoff, or if a complete return requires permanently same-sense circulation after all.
 
-The strongest geometry inference is now narrower and more useful: F6c carries one exact body-fixed axial current channel, but its magnitude is jointly made by circulation and breathing shear. Its polarity-odd internal coordinates can grow while centroid and dipole remain zero. A standard-model braid search should therefore seek periodic or recurrent histories in this coupled six-coordinate system, not insist on fixed-radius architrino orbits. Frequency becomes a return property of the complete delayed geometry; simple orbital frequency is only one possible component.
+The strongest geometry inference is now narrower and more useful: asymmetric counter-breathing representative carries one exact body-fixed axial current channel, but its magnitude is jointly made by circulation and breathing shear. Its polarity-odd internal coordinates can grow while centroid and dipole remain zero. A standard-model braid search should therefore seek periodic or recurrent histories in this coupled six-coordinate system, not insist on fixed-radius architrino orbits. Frequency becomes a return property of the complete delayed geometry; simple orbital frequency is only one possible component.
 
-#### F6c Charge-Conjugation Coordinates
+#### asymmetric counter-breathing representative Charge-Conjugation Coordinates
 
 Use a continuous lifted phase on one declared root-valid branch rather than averaging wrapped angles. For each collective coordinate $z\in\{h,\rho,\theta\}$, define
 
@@ -9172,7 +9172,7 @@ $$
 (-q_t)(-q_r)=q_tq_r.
 $$
 
-Causal roots depend only on the paths, and both partner and self-hit acceleration contributions retain the same polarity product. Therefore the field-free acceleration history is unchanged. Wherever ordinary evolution is unique on the shared complete-root branch, the conjugated record follows the same unlabeled geometric paths. Relabeling those paths by their new polarity exchanges the two F6c sectors, so
+Causal roots depend only on the paths, and both partner and self-hit acceleration contributions retain the same polarity product. Therefore the field-free acceleration history is unchanged. Wherever ordinary evolution is unique on the shared complete-root branch, the conjugated record follows the same unlabeled geometric paths. Relabeling those paths by their new polarity exchanges the two asymmetric counter-breathing representative sectors, so
 
 $$
 \mathbf z_{\mathrm{even}}^{\mathcal C}(T)
@@ -9192,7 +9192,7 @@ $$
 -\mathbf m_{\mathrm{cur}}(T).
 $$
 
-Plainly: the primitive law supplies an exact way for a particle candidate and its antiparticle candidate to have identical field-free shape and recurrence, opposite polarity-odd internal geometry, and opposite signed current moment. No second interaction law is needed. This theorem still does not say whether F6c is charged, neutral, electron-like, nucleon-like, or retained; that depends on the missing effective charge and mass-facing projections.
+Plainly: the primitive law supplies an exact way for a particle candidate and its antiparticle candidate to have identical field-free shape and recurrence, opposite polarity-odd internal geometry, and opposite signed current moment. No second interaction law is needed. This theorem still does not say whether asymmetric counter-breathing representative is charged, neutral, electron-like, nucleon-like, or retained; that depends on the missing effective charge and mass-facing projections.
 
 An external source is not part of this theorem unless it is conjugated too. Holding a source assembly fixed while conjugating only the receiver changes source--receiver polarity products. Equal-and-opposite effective response in that controlled comparison is therefore a recovery obligation for the $E0$--$E4$ experiment, not something established by the field-free symmetry alone.
 
@@ -9200,7 +9200,7 @@ In the $E0$--$E4$ electric-response experiment, these coordinates give an immedi
 
 #### Tetrahedral Singlet--Triplet Deformation Chart
 
-F6c's six collective coordinates describe only module-common motion. For any one module coordinate $z_{i\sigma}$, write
+asymmetric counter-breathing representative's six collective coordinates describe only module-common motion. For any one module coordinate $z_{i\sigma}$, write
 
 $$
 z_{i\sigma}
@@ -9284,7 +9284,7 @@ $$
 
 This suggests a compact sea-braid response chart:
 
-| Native F6c response coordinate | Effective role to test | Required control |
+| Native asymmetric counter-breathing representative response coordinate | Effective role to test | Required control |
 | --- | --- | --- |
 | common even singlets $\bar h_{\mathrm{even}},\bar\rho_{\mathrm{even}},\bar\theta_{\mathrm{even}}$ | scalar loading, common cadence, isotropic envelope response | source-direction randomization leaves the leading row unchanged |
 | common odd singlets $\bar h_{\mathrm{odd}},\bar\rho_{\mathrm{odd}},\bar\theta_{\mathrm{odd}}$ | charge-facing exposure imbalance or conjugate branch coordinate | complete conjugation reverses the row |
@@ -9301,7 +9301,7 @@ Claim grade: the $1\mathbin{\oplus}3$ decomposition, norm identity, and inverse 
 
 #### Three Charge-Preserving Coordinates, Not Yet Three Modes
 
-Suppose a retained F6c charge branch fixes its conjugation-odd exposure basin. Its instantaneous charge-preserving collective configuration tangent is
+Suppose a retained asymmetric counter-breathing representative charge branch fixes its conjugation-odd exposure basin. Its instantaneous charge-preserving collective configuration tangent is
 
 $$
 \mathcal E_{\mathrm{even}}
@@ -9342,7 +9342,7 @@ $$
 
 Conditional on that closure, axial breathing, transverse breathing, and phase circulation can mix into at most three reduced eigenvectors. Unlike the three tetrahedral partitions, these are internal deformation directions rather than three rotated laboratory axes.
 
-Plainly: F6c supplies three promising shape directions, but position, velocity, and memory can support additional modes. Three generations may correspond to three repeatable charge-preserving oscillations only if the full delayed dynamics collapses onto a genuine three-coordinate return law. Counting three coordinate names is not that proof.
+Plainly: asymmetric counter-breathing representative supplies three promising shape directions, but position, velocity, and memory can support additional modes. Three generations may correspond to three repeatable charge-preserving oscillations only if the full delayed dynamics collapses onto a genuine three-coordinate return law. Counting three coordinate names is not that proof.
 
 Using these modes for the observed generation triplet requires every row below to close on one retained record:
 
@@ -9368,11 +9368,11 @@ Claim grade: the three-dimensional instantaneous configuration tangent is derive
 
 Claim grade: even/odd transformation parity is derived from the declared sector exchange. Using the odd coordinates as the carrier of effective charge is inferred. Neutral-braid, charged-lepton, and neutral-lepton roles are guessed. Falsifier: a retained charge-conjugate pair requires different even geometry, has equal rather than opposite root-resolved exposure, or a neutral branch cannot suppress its complete-cycle charge projection despite the declared conjugation symmetry.
 
-Claim grade: sector-wise centroid/dipole cancellation, the acceleration decomposition, and current-axis alignment are derived for the declared F6c formulas. Tangency, coordinate projections, and harmonics are measured on the hashed F6b prescribed-history diagnostic; they are not an EOM evolution. F6c binding, recurrence, retention, spinor behavior, and particle identity are guessed. Falsifier: exact substitution breaks a stated identity, a faithful root-ledger replay produces a material within-sector normal acceleration, or ordinary evolution immediately leaves the six-coordinate manifold without a bounded return.
+Claim grade: sector-wise centroid/dipole cancellation, the acceleration decomposition, and current-axis alignment are derived for the declared asymmetric counter-breathing representative formulas. Tangency, coordinate projections, and harmonics are measured on the hashed scoped-negative circular control prescribed-history diagnostic; they are not an EOM evolution. asymmetric counter-breathing representative binding, recurrence, retention, spinor behavior, and particle identity are guessed. Falsifier: exact substitution breaks a stated identity, a faithful root-ledger replay produces a material within-sector normal acceleration, or ordinary evolution immediately leaves the six-coordinate manifold without a bounded return.
 
 Claim grade: the tetrahedral vector and second-moment identities, dipole cancellation, and one-versus-three current-moment sum are mathematical derivations for the prescribed geometry. F6 binding, retention, scalar response, spinor visibility, generation, weak projection, and particle role are guessed. Falsifier: the exact vector identities fail, or every root-valid/clearance-valid realization of the tetrahedral paths necessarily loses the required dipole, moment, or three-port separation before ordinary evolution is attempted.
 
-Claim grade: inevitable same-circle counterrotation crossings, the parallel- plane clearance formula, axial dipole cancellation, signed-current addition, and orthogonal-triad second-moment identity are derived for the declared prescribed geometry. F5 as a bound fermion core and its possible history, generation, charge, and weak roles are guessed. Falsifier: its declared geometric identities fail, or ordinary Master Equation evolution cannot maintain a root-valid retained neighborhood before any particle-facing projection is applied.
+Claim grade: inevitable same-circle counterrotation crossings, the parallel- plane clearance formula, axial dipole cancellation, signed-current addition, and orthogonal-triad second-moment identity are derived for the declared prescribed geometry. phase-varying display representative as a bound fermion core and its possible history, generation, charge, and weak roles are guessed. Falsifier: its declared geometric identities fail, or ordinary Master Equation evolution cannot maintain a root-valid retained neighborhood before any particle-facing projection is applied.
 
 ### Nonlocal, Material, And Radiation Controls
 
@@ -9678,22 +9678,22 @@ Plainly: this packet narrows the search and makes the proof obligations explicit
 51. What native coordinate is stiff enough to preserve one neutral group path yet soft enough to carry two small independent phase-rate gaps without changing charge, color, or carrier identity?
 52. Can one source--path--detector record derive both vacuum-like phase composition and material assembly/sea response without inserting an observer-level matter potential or rebuilding the carrier?
 53. Is photon adjacency a derived relation between accepted photon and neutrino branches, or can a non-photon-adjacent neutral carrier satisfy the full coherence, weak-exposure, and detection bundle more economically?
-54. Does an ordinary eight-member F6c release remain close to the exact polarity-resolved six-coordinate surface, and do all six coordinates and rates complete a root-valid return?
-55. Can one root-resolved exposure functional be even in the three common F6c coordinates and odd in the three polarity-differential coordinates, producing equal-and-opposite charge-conjugate branches without inventory change?
-56. Does the charge-preserving F6c history admit an invariant reduction to three collective configuration coordinates, does its reduced return derivative have exactly three admissible modes, and do those modes retain common charge/spin rows while producing data-blind cadence, action, lifetime, and reaction differences?
-57. Does the F6c current axis survive ordinary evolution with the required $2\pi/4\pi$ ordered-frame history, or is its prescribed alignment erased by breathing, root transitions, or off-manifold leakage?
-58. Do symmetric, weakly odd, and strongly odd F6c return basins provide a reusable neutral-sea, neutral-fermion, and charged-conjugate grammar, or do those roles require distinct retained cores?
-59. For a retained three-binary or F6c braid, do any six-accessory interior, boundary, or exterior symmetry orbits produce a positive-width associated basin while keeping the braid's transverse response, causal-root inventory, clearance, and recovery-after-transfer rows inside the original or a separately classified retained branch?
+54. Does an ordinary eight-member asymmetric counter-breathing representative release remain close to the exact polarity-resolved six-coordinate surface, and do all six coordinates and rates complete a root-valid return?
+55. Can one root-resolved exposure functional be even in the three common asymmetric counter-breathing representative coordinates and odd in the three polarity-differential coordinates, producing equal-and-opposite charge-conjugate branches without inventory change?
+56. Does the charge-preserving asymmetric counter-breathing representative history admit an invariant reduction to three collective configuration coordinates, does its reduced return derivative have exactly three admissible modes, and do those modes retain common charge/spin rows while producing data-blind cadence, action, lifetime, and reaction differences?
+57. Does the asymmetric counter-breathing representative current axis survive ordinary evolution with the required $2\pi/4\pi$ ordered-frame history, or is its prescribed alignment erased by breathing, root transitions, or off-manifold leakage?
+58. Do symmetric, weakly odd, and strongly odd asymmetric counter-breathing representative return basins provide a reusable neutral-sea, neutral-fermion, and charged-conjugate grammar, or do those roles require distinct retained cores?
+59. For a retained three-binary or asymmetric counter-breathing representative braid, do any six-accessory interior, boundary, or exterior symmetry orbits produce a positive-width associated basin while keeping the braid's transverse response, causal-root inventory, clearance, and recovery-after-transfer rows inside the original or a separately classified retained branch?
 
 ## 2026-08-26 Braid Evaluation Dispositions
 
-This section preserves the dated campaign's dispositions, not the current hard-gate frontier. The [current candidate-level overlay](../braid-program/braid-candidate-requirement-adjudication.md#candidate-level-outcome) incorporates the separately accepted prescribed H3 evidence for the revised F5 geometry and all sixteen declared sub-field A/B/C rows without advancing H4, H5, retention or physical claims.
+This section preserves the dated campaign's dispositions, not the current hard-gate frontier. The [current candidate-level overlay](../braid-program/braid-candidate-requirement-adjudication.md#candidate-level-outcome) incorporates the separately accepted prescribed H3 evidence for the revised phase-varying display representative geometry and all sixteen declared sub-field braid-coordinate rows without advancing H4, H5, retention or physical claims.
 
-The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) assigns `STASIS` to F1--F4 at their incomplete `H1` charts, `DEMOTED` only to the F5 common-cadence circular realization at its exact `H2` obstruction, `STASIS` to parent-only F6, `DEMOTED` to the F6b circular realization at its measured `H4` member-acceleration failure, and `STASIS` to F6c at `H5`. The distinct revised phase-varying F5 creative geometry is active at `H1/H2 P[D/M]`. Both six-accessory continuations remain in stasis behind `ACC1` because no named base braid passes `H5`.
+The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) assigns `STASIS` to F1--F4 at their incomplete `H1` charts, `DEMOTED` only to the phase-varying display representative common-cadence circular realization at its exact `H2` obstruction, `STASIS` to parent-only F6, `DEMOTED` to the scoped-negative circular control circular realization at its measured `H4` member-acceleration failure, and `STASIS` to asymmetric counter-breathing representative at `H5`. The distinct revised phase-varying display representative creative geometry is active at `H1/H2 P[D/M]`. Both six-accessory continuations remain in stasis behind `ACC1` because no named base braid passes `H5`.
 
-The B1/B1.1--B1.3 and C1--C6 charts also remain in `STASIS` at `H2`. Their exact `R1/R2` capability passes and failures do not adjudicate a universal hard gate. Historical C-family records remain ineligible for the current identities.
+The coincident-axis three-binary charts and six current two-component circular charts also remain in `STASIS` at `H2`. Their exact `R1/R2` capability passes and failures do not adjudicate a universal hard gate. Superseded two-component circular records remain ineligible for the current exact identities.
 
-Plainly: the seed comparisons still narrow what each geometry can attempt, but only the F5 common-cadence circular realization and F6b carry realization-scoped rejection evidence. The revised phase-varying F5 geometry is not demoted. Every other row stops at a missing chart, current-identity hard-gate record, or retained return.
+Plainly: the seed comparisons still narrow what each geometry can attempt, but only the phase-varying display representative common-cadence circular realization and scoped-negative circular control carry realization-scoped rejection evidence. The revised phase-varying display representative geometry is not demoted. Every other row stops at a missing chart, current-identity hard-gate record, or retained return.
 
 ## Current Concrete Pass And Blocker
 
@@ -9709,9 +9709,9 @@ The single highest-value general evidence blocker is one accepted, EOM-evolved, 
 4. continue the same fixed law through the first certified transition; and
 5. attempt pair capture or backreaction only if that same record supplies certified conjugate product basins and exact inventory partition.
 
-Within the present geometry campaign, the completed nonlinear F6c return-map and radial-frequency continuation are seed evidence, not a return. The radial-frequency coordinate improved the best eligible reflected section RMS by only $0.781421\%$, below its predeclared 10% material gate, so that direction is closed without refinement. A later campaign must predeclare a materially different coordinated-turn variable or a matched guarded/full-causal-root comparison. Each candidate must still carry its discrete winding cell and module-permutation provenance, and any return must use one eligible event and exact direct or declared reflected action across position, rate, and retained history. A scalar recrossing remains degenerate, and quotient-history equivalence under a same-polarity permutation is not labeled-history return.
+Within the present geometry campaign, the completed nonlinear asymmetric counter-breathing representative return-map and radial-frequency continuation are seed evidence, not a return. The radial-frequency coordinate improved the best eligible reflected section RMS by only $0.781421\%$, below its predeclared 10% material gate, so that direction is closed without refinement. A later campaign must predeclare a materially different coordinated-turn variable or a matched guarded/full-causal-root comparison. Each candidate must still carry its discrete winding cell and module-permutation provenance, and any return must use one eligible event and exact direct or declared reflected action across position, rate, and retained history. A scalar recrossing remains degenerate, and quotient-history equivalence under a same-polarity permutation is not labeled-history return.
 
-Plainly: searching harder along the same radial-frequency knob is not justified. The next F6c calculation must change the dynamical question, not merely widen or repeat the exhausted search.
+Plainly: searching harder along the same radial-frequency knob is not justified. The next asymmetric counter-breathing representative calculation must change the dynamical question, not merely widen or repeat the exhausted search.
 
 The response-mode matrix, trapped-electron `D1` matrix, dedicated nucleon polarizability comparison, and internal-speed inference remain behind their declared prerequisites. No additional prescribed geometry sweep can remove the retained-branch blocker.
 

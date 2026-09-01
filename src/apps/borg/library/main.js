@@ -10,7 +10,12 @@ const api = "/api/borg/library";
 let searchTimer;
 
 function facetLabel(key, value) {
+  if (key === "circleOccupancy" && value === "mixed") return "Both occupancy types";
   return LIBRARY_FACETS[key].options.find(([v]) => v === value)?.[1] ?? (value === "unavailable" ? "Not assigned" : value);
+}
+
+function facetOptionLabel(key, value, label) {
+  return key === "circleOccupancy" && value === "mixed" ? "Both occupancy types" : label;
 }
 
 for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
@@ -33,7 +38,7 @@ for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
     const label = element("label", definition.label); label.htmlFor = `filter-${key}`;
     const select = element("select"); select.id = `filter-${key}`; select.dataset.facet = key;
     select.append(new Option("Any", ""));
-    for (const [value, name] of definition.options) select.append(new Option(name, value));
+    for (const [value, name] of definition.options) select.append(new Option(facetOptionLabel(key, value, name), value));
     select.addEventListener("change", () => { state.params.delete(key); if (select.value) state.params.set(key, select.value); changeQuery(); });
     field.append(label, select);
   }
@@ -59,7 +64,7 @@ function saveUrl(replace = false) {
   history[replace ? "replaceState" : "pushState"]({}, "", `${location.pathname}${query ? `?${query}` : ""}`);
 }
 function changeQuery() {
-  state.params.delete("cursor"); state.params.delete("selected"); state.params.delete("modelRevisionSha256"); state.params.delete("recordSha256");
+  state.params.delete("cursor"); state.params.delete("assemblyId"); state.params.delete("modelRevisionSha256"); state.params.delete("recordSha256");
   saveUrl(); restoreControls(); loadResults();
 }
 function clearFilters() { state.params = new URLSearchParams(); changeQuery(); }
@@ -128,9 +133,13 @@ async function readJson(url) {
   return data;
 }
 async function previewFor(row) {
-  const key = `${row.id}:${row.recordSha256}`;
+  const key = `${row.assemblyId}:${row.modelRevisionSha256}:${row.recordSha256}`;
   if (!previewCache.has(key)) {
-    const params = new URLSearchParams({ id: row.id, sha256: row.recordSha256 });
+    const params = new URLSearchParams({
+      assemblyId: row.assemblyId,
+      modelRevisionSha256: row.modelRevisionSha256,
+      recordSha256: row.recordSha256,
+    });
     const pending = readJson(`${api}/preview?${params}`).catch((error) => { previewCache.delete(key); throw error; });
     previewCache.set(key, pending);
     if (previewCache.size > 24) previewCache.delete(previewCache.keys().next().value);
@@ -159,7 +168,7 @@ function renderCounts(data) {
       const select = $(`filter-${key}`); const current = state.params.get(key) ?? "";
       const options = key === "count" ? Object.keys(counts).filter((v) => isLibrarySelectorValue(key, v)).sort((a, b) => Number(a) - Number(b)).map((v) => [v, v]) : definition.options;
       select.replaceChildren(new Option("Any", ""));
-      for (const [value, label] of options) select.append(new Option(`${label} (${counts[value] ?? 0})`, value));
+      for (const [value, label] of options) select.append(new Option(`${facetOptionLabel(key, value, label)} (${counts[value] ?? 0})`, value));
       if (current && !options.some(([v]) => v === current)) select.append(new Option(`${current} (0)`, current));
       select.value = current;
     }
@@ -173,13 +182,13 @@ async function loadResults() {
   $("results").replaceChildren(); $("results").setAttribute("aria-busy", "true"); $("errors").hidden = true; $("empty-state").hidden = true;
   $("result-count").textContent = "Loading catalog…";
   activeFilters();
-  const params = new URLSearchParams(state.params); params.delete("selected"); params.delete("modelRevisionSha256"); params.delete("recordSha256");
+  const params = new URLSearchParams(state.params); params.delete("assemblyId"); params.delete("modelRevisionSha256"); params.delete("recordSha256");
   try {
     const data = await readJson(`${api}?${params}`); if (version !== state.version) return;
     state.response = data; renderCounts(data);
     $("result-count").textContent = `${data.total} ${data.total === 1 ? "assembly" : "assemblies"}`;
     $("result-context").textContent = `Of ${data.registeredCount} registered seed records · prescribed, display-only`;
-    if (data.failures.length) { $("errors").hidden = false; $("errors").textContent = `${data.failures.length} unavailable records: ${data.failures.map((r) => `${r.id}: ${r.error}`).join("; ")}`; }
+    if (data.failures.length) { $("errors").hidden = false; $("errors").textContent = `${data.failures.length} unavailable records: ${data.failures.map((r) => `${r.assemblyId}: ${r.error}`).join("; ")}`; }
     const queued = new Map();
     lazyObserver = new IntersectionObserver((entries) => {
       for (const entry of entries) if (entry.isIntersecting && queued.has(entry.target)) {
@@ -191,13 +200,13 @@ async function loadResults() {
       const canExplore = !group || isLibrarySelectorValue(result.groupBy, result.value);
       const card = element("article", null, "assembly-card"); card.dataset.resultId = result.id; card.dataset.resultKind = result.kind;
       card.dataset.recordSha256 = group ? "" : row.recordSha256; card.dataset.facets = JSON.stringify(group ? { [result.groupBy]: result.value } : row.facets); card.dataset.memberCount = String(group ? result.memberCount : 1);
-      card.dataset.targetId = group ? "" : row.id;
-      card.dataset.previewId = row.id; card.dataset.previewRecordSha256 = row.recordSha256;
+      card.dataset.targetId = group ? "" : row.assemblyId;
+      card.dataset.previewId = row.assemblyId; card.dataset.previewRecordSha256 = row.recordSha256;
       card.dataset.descriptorVersion = row.descriptorVersion;
       card.dataset.unavailableReasons = JSON.stringify(Object.fromEntries(Object.entries(row.facets)
         .filter(([key, value]) => (!group || key === result.groupBy) && [].concat(value).includes("unavailable"))
         .map(([key]) => [key, row.reasons[key]])));
-      card.dataset.selected = String(state.params.get("selected") === row.id && !group);
+      card.dataset.selected = String(state.params.get("assemblyId") === row.assemblyId && !group);
       const title = group ? `${facetLabel(result.groupBy, result.value)}${result.groupBy === "count" ? " architrinos" : result.groupBy === "braidCount" ? ` braid${result.value === "1" ? "" : "s"}` : ""}` : row.label;
       const top = element("div", null, "card-top"); top.append(element("span", group ? `${result.memberCount} members` : `${row.facets.count} architrinos`), element("span", group ? "GROUP" : facetLabel("assemblySpan", row.facets.assemblySpan)));
       const canvas = element("canvas", null, "sphere"); canvas.tabIndex = 0; canvas.setAttribute("role", "button"); canvas.setAttribute("aria-label", `${group ? "Explore group" : "Inspect"}: ${title}`);
@@ -210,7 +219,7 @@ async function loadResults() {
       const button = element("button", group ? "Explore group →" : "Inspect assembly →", "card-action"); button.addEventListener("click", action);
       if (!canExplore) { button.disabled = true; button.textContent = "Classification not assigned"; button.title = "These records remain visible with Any selected; unassigned values are not menu choices."; }
       const note = element("p", "Loading sealed preview…", "preview-state");
-      card.append(top, canvas, element("h2", title, "card-title"), element("p", group ? `Example: ${row.alias}` : row.alias, "card-alias"), button, note);
+      card.append(top, canvas, element("h2", title, "card-title"), button, note);
       $("results").append(card);
       queued.set(canvas, async () => {
         try {
@@ -225,8 +234,8 @@ async function loadResults() {
     $("empty-state").hidden = data.total > 0;
     $("page-label").textContent = data.resultCount ? `${data.offset + 1}–${Math.min(data.offset + data.pageSize, data.resultCount)} of ${data.resultCount} ${state.params.get("groupBy") && state.params.get("groupBy") !== "none" ? "groups" : "records"}` : "0 results";
     $("previous-page").disabled = !data.previousCursor; $("next-page").disabled = !data.nextCursor;
-    if (state.params.has("selected")) {
-      const assemblyId = state.params.get("selected");
+    if (state.params.has("assemblyId")) {
+      const assemblyId = state.params.get("assemblyId");
       const modelRevisionSha256 = state.params.get("modelRevisionSha256");
       const recordSha256 = state.params.get("recordSha256");
       const selected = await readJson(`${api}/preview?${new URLSearchParams({ assemblyId, modelRevisionSha256, recordSha256 })}`);
@@ -249,28 +258,33 @@ async function openInspector(row, persist = true) {
   try {
     const { preview } = await previewFor(row); if (version !== inspectorVersion) return;
     state.selected = row;
-    if (persist) { state.params.set("selected", row.id); state.params.set("sha256", row.recordSha256); saveUrl(); }
-    $("inspector-title").textContent = row.label; $("inspector-alias").textContent = row.alias;
+    if (persist) {
+      state.params.set("assemblyId", row.assemblyId);
+      state.params.set("modelRevisionSha256", row.modelRevisionSha256);
+      state.params.set("recordSha256", row.recordSha256);
+      saveUrl();
+    }
+    $("inspector-title").textContent = row.label; $("inspector-identity").textContent = row.assemblyId;
     $("inspector-description").textContent = `Recorded description: ${row.description}`; $("copy-status").textContent = "";
     $("identity").replaceChildren();
-    for (const [key, value] of [["Catalog identity", row.id], ["Source identity", row.sourceId], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
+    for (const [key, value] of [["Assembly identity", row.assemblyId], ["Model revision SHA-256", row.modelRevisionSha256], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
     $("facet-reasons").replaceChildren(); $("inspector-facets").replaceChildren();
     for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
       const value = [].concat(row.facets[key]).map((v) => facetLabel(key, v)).join(", ");
       $("inspector-facets").append(element("span", `${definition.label}: ${value}`));
       addDefinition($("facet-reasons"), `${definition.label}: ${value}`, row.reasons[key]);
     }
-    $("open-record").href = `./borg.html?${new URLSearchParams({ eomRecord: row.recordUrl, recordSha256: row.recordSha256 })}`;
+    $("open-record").href = `./borg.html?${new URLSearchParams({ assemblyId: row.assemblyId, modelRevisionSha256: row.modelRevisionSha256, recordSha256: row.recordSha256 })}`;
     $("raw-record").href = `./${row.recordUrl}`;
     if (!$("inspector").open) $("inspector").showModal();
     state.detail?.dispose(); state.detail = createSpherePreview($("inspector-canvas"), preview); draw();
-    document.querySelectorAll(".assembly-card").forEach((card) => { card.dataset.selected = String(card.dataset.resultId === row.id); });
+    document.querySelectorAll(".assembly-card").forEach((card) => { card.dataset.selected = String(card.dataset.resultId === row.assemblyId); });
   } catch (error) { $("errors").hidden = false; $("errors").textContent = error.message; }
 }
 $("close-inspector").addEventListener("click", () => $("inspector").close());
 $("inspector").addEventListener("close", () => {
   inspectorVersion++; state.detail?.dispose(); state.detail = null; state.selected = null;
-  if (state.params.has("selected")) { state.params.delete("selected"); state.params.delete("modelRevisionSha256"); state.params.delete("recordSha256"); saveUrl(); }
+  if (state.params.has("assemblyId")) { state.params.delete("assemblyId"); state.params.delete("modelRevisionSha256"); state.params.delete("recordSha256"); saveUrl(); }
 });
 $("copy-selection").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(location.href); $("copy-status").textContent = "Exact selection link copied."; }

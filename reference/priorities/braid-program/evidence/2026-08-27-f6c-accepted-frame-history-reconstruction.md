@@ -1,10 +1,10 @@
-# F6c Accepted-Frame History Reconstruction
+# asymmetric counter-breathing representative Accepted-Frame History Reconstruction
 
 Status: conditional mathematical reconstruction, pending independent review, 2026-08-27. This artifact defines a reconstructed history family; it does not identify the historical exact EOM trajectory, discharge the numerical containment premises, authorize execution, or supply a score.
 
 ## Scope And Fixed Sources
 
-**Claim grade: derived, conditional.** The [F6c member-acceleration predeclaration](2026-08-26-f6c-normalized-member-acceleration-predeclaration.md) already defines the history-required acceleration by differentiating the cubic Hermite interpolant between adjacent accepted frames. This document makes that interpolant an explicit future-history object and gives sufficient conditions for attaching an admissible prehistory to it. The result is containment in the original full-history enclosure family, not equality with the historical EOM trajectory.
+**Claim grade: derived, conditional.** The [asymmetric counter-breathing representative member-acceleration predeclaration](2026-08-26-f6c-normalized-member-acceleration-predeclaration.md) already defines the history-required acceleration by differentiating the cubic Hermite interpolant between adjacent accepted frames. This document makes that interpolant an explicit future-history object and gives sufficient conditions for attaching an admissible prehistory to it. The result is containment in the original full-history enclosure family, not equality with the historical EOM trajectory.
 
 Plainly: the saved frames determine one particular smooth fitted future path. The mathematical question here is whether that path can be connected to an allowed saved past without leaving any original error allowance.
 

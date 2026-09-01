@@ -1,4 +1,4 @@
-# F6c One-Cell Root-Cover Resource Plan
+# asymmetric counter-breathing representative One-Cell Root-Cover Resource Plan
 
 Status: technical launch plan awaiting separate consumer and watcher review, 2026-08-27. This document does not authorize a full 160-cell run. The [fixed mathematical predeclaration](2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md) owns the scientific subject, original history allowances and exact root-cover contract. The immediate consumer is its first closed reception cell, followed by the unchanged independent rational comparison. No EOM evolution, acceleration, residual, quadrature, metric, score or physical claim is included.
 
@@ -12,7 +12,7 @@ Plainly: this first attempt checks whether the reviewed continuous-time calculat
 | Prescribed data | The unchanged eight-member, 14,080-piece export and its accepted reconstructed-family and uniform-guard receipts; all original scalar allowances retained |
 | Arithmetic | Frozen 90-digit outward library followed by the separately frozen exact-rational comparison; no tolerance change, root refinement or automatic precision escalation |
 | Emission proposal | The already declared first-cell interval `[-8,-0.05]`; no fitting to a sampled midpoint |
-| Concurrency | One consumer, then one comparison process; no overlapping F5 response pilot or second F6c numerical attempt |
+| Concurrency | One consumer, then one comparison process; no overlapping phase-varying display representative response pilot or second asymmetric counter-breathing representative numerical attempt |
 | Inclusive deadline | 1,800 seconds from external launcher start through capture, consumer closure, independent comparison, final durable publication, cleanup and successful final completion |
 | Heartbeat | External flushed stage, elapsed time and observed completed-row progress every 15 seconds; internal progress is supplemental |
 | Memory monitoring | External aggregate resident-memory samples of the active owned computation group no more than one second apart; stop at 2 GiB or loss of valid monitoring |
@@ -42,4 +42,4 @@ Plainly: success belongs to the complete, checked attempt, not to an intermediat
 
 A complete passing pilot establishes source-bound conditional root coverage for that one closed reception cell only, under the accepted reconstructed-family premises. It does not establish the identity of a historical trajectory or the full 160-cell result. A separate full-run resource plan must bind the actual pilot and comparison hashes and use their measured costs before any wider execution. Failure names the failed mathematical or operational obligation without changing the source geometry, enlarging allowances, replacing histories, or advancing a score.
 
-Plainly: one good cell would remove a practical blocker and provide measured planning evidence. One failed cell would identify the next exact repair or unresolved bound; neither outcome decides whether F6c is a retained braid.
+Plainly: one good cell would remove a practical blocker and provide measured planning evidence. One failed cell would identify the next exact repair or unresolved bound; neither outcome decides whether asymmetric counter-breathing representative is a retained braid.

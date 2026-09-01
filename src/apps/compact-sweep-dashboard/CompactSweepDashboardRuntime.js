@@ -382,30 +382,30 @@ function filteredRows(state) {
   return filterCompactSweepRows(state.data?.rows ?? [], state.filters);
 }
 
-function familyOptions(data) {
+function assemblyOptions(data) {
   return [
-    { value: "all", label: "All families" },
-    ...[...new Set(data.rows.map((row) => row.familyId))]
+    { value: "all", label: "All assemblies" },
+    ...[...new Set(data.rows.map((row) => row.assemblyId))]
       .sort()
-      .map((familyId) => ({
-        value: familyId,
-        label: `Family ${familyId}`,
+      .map((assemblyId) => ({
+        value: assemblyId,
+        label: `Assembly ${assemblyId}`,
       })),
   ];
 }
 
-function memberOptions(data, familyId, candidateDisposition) {
-  const members = [...new Set(data.rows
+function configurationOptions(data, assemblyId, candidateDisposition) {
+  const configurations = [...new Set(data.rows
     .filter((row) =>
-      (familyId === "all" || row.familyId === familyId) &&
+      (assemblyId === "all" || row.assemblyId === assemblyId) &&
       (candidateDisposition === "all" ||
         row.candidateDisposition === candidateDisposition))
-    .map((row) => row.memberId))]
+    .map((row) => row.sourceSlug))]
     .sort((left, right) =>
       left.localeCompare(right, undefined, { numeric: true }));
   return [
-    { value: "all", label: "All members" },
-    ...members.map((memberId) => ({ value: memberId, label: memberId })),
+    { value: "all", label: "All configurations" },
+    ...configurations.map((sourceSlug) => ({ value: sourceSlug, label: sourceSlug })),
   ];
 }
 
@@ -426,21 +426,21 @@ function dispositionOptions() {
 function renderOverview(state) {
   const rows = filteredRows(state);
   const funnel = buildEvaluationFunnel(rows);
-  const retainedMemberCount = state.data.summary.members.length;
-  const drawsPerMember = state.data.summary.memberBalanced
-    ? state.data.summary.members[0]?.drawCount ?? null
+  const retainedConfigurationCount = state.data.summary.configurations.length;
+  const drawsPerConfiguration = state.data.summary.configurationBalanced
+    ? state.data.summary.configurations[0]?.drawCount ?? null
     : null;
-  const retainedArithmetic = drawsPerMember === null
+  const retainedArithmetic = drawsPerConfiguration === null
     ? `${formatInteger(state.data.summary.drawn)} retained draws across ` +
-      `${retainedMemberCount} members`
+      `${retainedConfigurationCount} configurations`
     : `${formatInteger(state.data.summary.drawn)} retained draws = ` +
-      `${retainedMemberCount} members × ${drawsPerMember} draws`;
+      `${retainedConfigurationCount} configurations × ${drawsPerConfiguration} draws`;
   const dispositionArithmetic =
     state.data.summary.deprecatedControls.drawn > 0
       ? `The active comparison cohort is ` +
         `${formatInteger(state.data.summary.activeCohort.drawn)} draws = ` +
-        `${state.data.summary.activeCohort.memberCount} active members × ` +
-        `${drawsPerMember ?? "their retained samples"}; the remaining ` +
+        `${state.data.summary.activeCohort.configurationCount} active configurations × ` +
+        `${drawsPerConfiguration ?? "their retained samples"}; the remaining ` +
         `${state.data.summary.deprecatedControls.drawn} rows are preserved ` +
         "deprecated controls."
       : "This export contains only active candidates; no deprecated-control " +
@@ -471,16 +471,16 @@ function renderOverview(state) {
     description:
       `${retainedArithmetic}. ${dispositionArithmetic}`,
   });
-  const familyGrid = element("div", "compact-dashboard-family-grid");
-  state.data.summary.families.forEach((family) => {
-    familyGrid.appendChild(insight(
-      `Family ${family.familyId}`,
-      `${formatInteger(family.activeDrawCount)} active draws`,
-      `${family.activeMemberCount} active members; ` +
-      `${formatInteger(family.drawCount)} rows retained in the loaded export.`,
+  const assemblyGrid = element("div", "compact-dashboard-assembly-grid");
+  state.data.summary.assemblies.forEach((assembly) => {
+    assemblyGrid.appendChild(insight(
+      `Assembly ${assembly.assemblyId}`,
+      `${formatInteger(assembly.activeDrawCount)} active draws`,
+      `${assembly.activeConfigurationCount} active configurations; ` +
+      `${formatInteger(assembly.drawCount)} rows retained in the loaded export.`,
     ));
   });
-  composition.body.appendChild(familyGrid);
+  composition.body.appendChild(assemblyGrid);
   view.appendChild(composition.wrapper);
 
   const facts = panel({
@@ -490,7 +490,7 @@ function renderOverview(state) {
       "These are descriptive facts from the retained database and terminal receipts. They do not upgrade the evidence grade.",
   });
   const factGrid = element("div", "compact-dashboard-insight-grid");
-  const a13Rows = rows.filter((row) => row.memberId === "A1.3");
+  const a13Rows = rows.filter((row) => row.sourceSlug === "three-axis-circular-coincident-midpoints-4-2-1-frequency");
   const radial = summarizeGate(
     rows,
     "surfaceQuadrature",
@@ -511,27 +511,13 @@ function renderOverview(state) {
     row.metrics.externalExposureFraction,
     row.metrics.wakeFluxFraction,
   ]));
-  const familyWallMedian = Object.fromEntries(["A", "B", "C"].map(
-    (familyId) => [
-      familyId,
-      median(rows.filter((row) => row.familyId === familyId).map(
-        (row) => row.performance.wallSeconds,
-      )),
-    ],
-  ));
-  const cToA = familyWallMedian.A > 0
-    ? familyWallMedian.C / familyWallMedian.A
-    : null;
-  const cToB = familyWallMedian.B > 0
-    ? familyWallMedian.C / familyWallMedian.B
-    : null;
   append(
     factGrid,
     insight(
-      "A1.3 early exits",
+      "three-axis-circular-coincident-midpoints-4-2-1-frequency early exits",
       `${a13Rows.filter((row) =>
         !row.evaluation.evaluated).length} null rows`,
-      "Count within the current candidate-disposition and family/member filters.",
+      "Count within the current candidate-disposition and assembly/configuration filters.",
     ),
     insight(
       "Surface quadrature",
@@ -566,13 +552,6 @@ function renderOverview(state) {
       "Metric correlation",
       `r = ${formatNumber(etaCorrelation, 3)}`,
       "eta_ext and eta_W_flux correlation within the current filter.",
-    ),
-    insight(
-      "Family C cost",
-      cToA === null || cToB === null
-        ? "Insufficient filter coverage"
-        : `${formatNumber(cToA, 2)}× A · ${formatNumber(cToB, 2)}× B`,
-      "Median wall-time ratios within the current filter; measured cost, not a geometry proxy.",
     ),
     insight(
       "Combined score",
@@ -753,7 +732,7 @@ function renderGates(state) {
   const view = element("div", "compact-dashboard-view");
   const heatmap = panel({
     kicker: "Color plus text",
-    title: "Member-by-gate heatmap",
+    title: "Configuration-by-gate heatmap",
     description:
       "Every cell includes a symbol, pass/denominator, pass rate, failure count, and—where a positive numerical threshold exists—the median observed-to-threshold ratio. Hover or focus context is repeated in the cell's accessible label.",
   });
@@ -773,19 +752,19 @@ function renderGates(state) {
     })),
   ];
   const tableNode = table([
-    "Member",
+    "Configuration",
     ...definitions.map((definition) => definition.label),
   ]);
   tableNode.classList.add("compact-dashboard-heatmap-table");
   const body = tableNode.tBodies[0];
-  groupRows(rows, "memberId").forEach(([memberId, memberRows]) => {
+  groupRows(rows, "sourceSlug").forEach(([sourceSlug, configurationRows]) => {
     const row = element("tr");
-    const heading = element("th", "", memberId);
+    const heading = element("th", "", sourceSlug);
     heading.scope = "row";
     row.appendChild(heading);
     definitions.forEach((definition) => {
       row.appendChild(gateCell(
-        summarizeGate(memberRows, definition.kind, definition.id),
+        summarizeGate(configurationRows, definition.kind, definition.id),
         definition,
       ));
     });
@@ -795,7 +774,7 @@ function renderGates(state) {
   wrap.tabIndex = 0;
   wrap.setAttribute(
     "aria-label",
-    "Scrollable member-by-gate heatmap table",
+    "Scrollable configuration-by-gate heatmap table",
   );
   wrap.appendChild(tableNode);
   heatmap.body.appendChild(wrap);
@@ -1029,8 +1008,8 @@ function renderMetrics(state) {
     label: "Group distributions by",
     value: state.metricGroup,
     options: [
-      { value: "memberId", label: "Member" },
-      { value: "familyId", label: "Family" },
+      { value: "sourceSlug", label: "Configuration" },
+      { value: "assemblyId", label: "Assembly" },
     ],
     onChange(value) {
       state.metricGroup = value;
@@ -1115,16 +1094,16 @@ function parameterDefinitions(rows) {
       value: (row) => row.sampledCoordinates.translationSpeed,
     },
     {
-      id: "familyAFlattening",
-      label: "Family-A flattening",
-      disposition: "Family-A-only continuous stratified coordinate",
-      value: (row) => row.sampledCoordinates.familyAFlattening,
+      id: "threeAxisFrameFlattening",
+      label: "Assembly-A flattening",
+      disposition: "Assembly-A-only continuous stratified coordinate",
+      value: (row) => row.sampledCoordinates.threeAxisFrameFlattening,
     },
     {
-      id: "familyCSpacingScale",
-      label: "Family-C spacing scale",
-      disposition: "Family-C-only continuous stratified coordinate",
-      value: (row) => row.sampledCoordinates.familyCSpacingScale,
+      id: "coaxialComponentSpacingScale",
+      label: "Assembly-C spacing scale",
+      disposition: "Assembly-C-only continuous stratified coordinate",
+      value: (row) => row.sampledCoordinates.coaxialComponentSpacingScale,
     },
   ];
   const vectorAxes = [
@@ -1134,8 +1113,8 @@ function parameterDefinitions(rows) {
       "continuously valued, intentionally stratified coordinate"],
     ["axialFractions", "Axial fraction", 6,
       "continuously valued, intentionally stratified coordinate"],
-    ["generalCAxialSpacings", "General-C axial gap", 11,
-      "general Family-C-only continuous stratified coordinate"],
+    ["coincidentCenterAxialSpacings", "General-C axial gap", 11,
+      "general Assembly-C-only continuous stratified coordinate"],
   ];
   vectorAxes.forEach(([key, label, maximum, disposition]) => {
     for (let index = 0; index < maximum; index += 1) {
@@ -1185,7 +1164,7 @@ function parameterDefinitions(rows) {
 
 function openCase(state, row, { preserveQuery = false } = {}) {
   if (!preserveQuery) {
-    state.caseMemberId = row.memberId;
+    state.caseConfigurationId = row.sourceSlug;
     state.caseQuery = "";
     state.caseSampleOrdinal = String(row.sampleOrdinal);
     state.casePage = 0;
@@ -1315,17 +1294,17 @@ function createScatterPlot(points, parameter, metric) {
       cx: xScale(point.rawX),
       cy: yScale(point.y),
       r: 4.5,
-      class: `chart-point family-${point.row.familyId}`,
+      class: `chart-point assembly-${point.row.assemblyId}`,
       tabindex: 0,
       role: "button",
       "aria-label":
-        `${point.row.memberId}, ${parameter.label} ` +
+        `${point.row.sourceSlug}, ${parameter.label} ` +
         `${String(point.rawX)}, ${metric.label} ${formatNumber(point.y, 7)}; ` +
         `open case ${point.row.caseId}`,
     });
     const title = svgElement("title");
     title.textContent =
-      `${point.row.memberId} · ${point.row.caseId}\n` +
+      `${point.row.sourceSlug} · ${point.row.caseId}\n` +
       `${parameter.label}: ${String(point.rawX)}\n` +
       `${metric.label}: ${formatNumber(point.y, 7)}`;
     circle.appendChild(title);
@@ -1386,7 +1365,7 @@ function renderParameters(state) {
     title: `${parameter?.label ?? "Parameter"} vs. ${metric.label}`,
     description:
       `${parameter?.disposition ?? ""}. ${metric.definition} ` +
-      "The metric axis is logarithmic. Points are rows, not inferred continuous family behavior.",
+      "The metric axis is logarithmic. Points are rows, not inferred continuous assembly behavior.",
     actions: controls,
   });
   const points = rows.flatMap((row) => {
@@ -1426,7 +1405,7 @@ function renderParameters(state) {
     const chartWrap = element("div", "compact-dashboard-chart-wrap");
     chartWrap.appendChild(plot.svg);
     const valuesTable = table([
-      "Member",
+      "Configuration",
       "Case",
       parameter.label,
       metric.label,
@@ -1435,7 +1414,7 @@ function renderParameters(state) {
     points.slice(0, 100).forEach((point) => {
       const row = element("tr");
       [
-        point.row.memberId,
+        point.row.sourceSlug,
         point.row.caseId,
         String(point.rawX),
         formatNumber(point.y, 7),
@@ -1497,25 +1476,25 @@ function createPerformanceStrip(rows, valueKey) {
     viewBox: `0 0 ${width} ${height}`,
     role: "img",
     "aria-label":
-      "Per-row measured cost grouped into labeled Family A, B, and C ranges, with null early exits distinct",
+      "Per-row measured cost grouped into labeled Assembly A, B, and C ranges, with null early exits distinct",
   });
   const xForIndex = (index) => left + (retained.length === 1
     ? plotWidth / 2
     : (index / (retained.length - 1)) * plotWidth);
-  const familyRanges = [];
+  const assemblyRanges = [];
   retained.forEach((row, index) => {
-    const previous = familyRanges.at(-1);
-    if (!previous || previous.familyId !== row.familyId) {
-      familyRanges.push({
+    const previous = assemblyRanges.at(-1);
+    if (!previous || previous.assemblyId !== row.assemblyId) {
+      assemblyRanges.push({
         end: index,
-        familyId: row.familyId,
+        assemblyId: row.assemblyId,
         start: index,
       });
     } else {
       previous.end = index;
     }
   });
-  familyRanges.forEach((range, index) => {
+  assemblyRanges.forEach((range, index) => {
     const startX = xForIndex(range.start);
     const endX = xForIndex(range.end);
     if (index > 0) {
@@ -1525,17 +1504,17 @@ function createPerformanceStrip(rows, valueKey) {
         x2: (priorEndX + startX) / 2,
         y1: top - 10,
         y2: height - bottom,
-        class: "chart-family-divider",
+        class: "chart-assembly-divider",
       }));
     }
     const label = svgElement("text", {
       x: (startX + endX) / 2,
       y: 20,
       "text-anchor": "middle",
-      class: "chart-family-label",
+      class: "chart-assembly-label",
     });
     label.textContent =
-      `Family ${range.familyId} · ${range.end - range.start + 1} rows`;
+      `Assembly ${range.assemblyId} · ${range.end - range.start + 1} rows`;
     svg.appendChild(label);
   });
   for (let index = 0; index <= 5; index += 1) {
@@ -1574,12 +1553,12 @@ function createPerformanceStrip(rows, valueKey) {
             cx: x,
             cy: y,
             r: 3.2,
-            class: `chart-point family-${row.familyId}`,
+            class: `chart-point assembly-${row.assemblyId}`,
           },
     );
     const title = svgElement("title");
     title.textContent =
-      `${row.memberId} · ${row.caseId}\n` +
+      `${row.sourceSlug} · ${row.caseId}\n` +
       `${valueKey}: ${formatNumber(row.performance[valueKey], 7)} s\n` +
       `${row.performance.earlyExit ? "null early exit" : "evaluated"}`;
     point.appendChild(title);
@@ -1591,18 +1570,18 @@ function createPerformanceStrip(rows, valueKey) {
     "text-anchor": "middle",
   });
   xLabel.textContent =
-    "Deterministic family/member/sample row order · red diamonds are null early exits";
+    "Deterministic assembly/configuration/sample row order · red diamonds are null early exits";
   svg.appendChild(xLabel);
   return svg;
 }
 
 function groupedPerformanceTable(rows, groupKey, valueKey) {
   const tableNode = table([
-    groupKey === "familyId"
-      ? "Family"
+    groupKey === "assemblyId"
+      ? "Assembly"
       : groupKey === "waveId"
         ? "Wave"
-        : "Member",
+        : "Configuration",
     "Rows",
     "Evaluated",
     "Null early exit",
@@ -1652,7 +1631,7 @@ function renderPerformance(state) {
     kicker: "Measured cost",
     title: "Per-row performance",
     description:
-      "Each point is one retained row. Red diamonds are null-score early exits; evaluated rows are colored by family. These timings are per-row measurements, not coordinator elapsed time.",
+      "Each point is one retained row. Red diamonds are null-score early exits; evaluated rows are colored by assembly. These timings are per-row measurements, not coordinator elapsed time.",
     actions: controls,
   });
   const strip = createPerformanceStrip(rows, state.performanceValue);
@@ -1665,34 +1644,34 @@ function renderPerformance(state) {
   }
   view.appendChild(rowCost.wrapper);
 
-  const families = panel({
+  const assemblies = panel({
     kicker: "Distribution comparison",
-    title: "Family and member cost distributions",
+    title: "Assembly and configuration cost distributions",
     description:
-      "Family C has roughly twice the median row cost: about 1.8× Family A and 2.0× Family B in wall time for the sealed sweep.",
+      "Assembly C has roughly twice the median row cost: about 1.8× Assembly A and 2.0× Assembly B in wall time for the sealed sweep.",
   });
-  const familyWrap = element("div", "compact-dashboard-table-wrap");
-  familyWrap.appendChild(
-    groupedPerformanceTable(rows, "familyId", state.performanceValue),
+  const assemblyWrap = element("div", "compact-dashboard-table-wrap");
+  assemblyWrap.appendChild(
+    groupedPerformanceTable(rows, "assemblyId", state.performanceValue),
   );
-  const memberWrap = element("div", "compact-dashboard-table-wrap");
-  memberWrap.appendChild(
-    groupedPerformanceTable(rows, "memberId", state.performanceValue),
+  const configurationWrap = element("div", "compact-dashboard-table-wrap");
+  configurationWrap.appendChild(
+    groupedPerformanceTable(rows, "sourceSlug", state.performanceValue),
   );
   append(
-    families.body,
-    element("h3", "", "By family"),
-    familyWrap,
-    element("h3", "", "By member"),
-    memberWrap,
+    assemblies.body,
+    element("h3", "", "By assembly"),
+    assemblyWrap,
+    element("h3", "", "By configuration"),
+    configurationWrap,
   );
-  view.appendChild(families.wrapper);
+  view.appendChild(assemblies.wrapper);
 
   const waves = panel({
     kicker: "Scheduling context",
     title: "Wave comparison",
     description:
-      "Wave rows are compared by per-row timing. Static parallel scheduling can leave some workers idle after cheaper rows finish and can also increase contention while expensive Family-C rows overlap. Parallel shard wall times are not summed and relabeled as coordinator elapsed time.",
+      "Wave rows are compared by per-row timing. Static parallel scheduling can leave some workers idle after cheaper rows finish and can also increase contention while expensive Assembly-C rows overlap. Parallel shard wall times are not summed and relabeled as coordinator elapsed time.",
   });
   const waveWrap = element("div", "compact-dashboard-table-wrap");
   waveWrap.appendChild(
@@ -1704,7 +1683,7 @@ function renderPerformance(state) {
     element(
       "p",
       "compact-dashboard-note",
-      "The narrow 2,498/hour worker fixture is intentionally not reused as current full-taxonomy throughput.",
+      "The narrow 2,498/hour worker fixture is intentionally not reused as current full-exact-configuration throughput.",
     ),
   );
   view.appendChild(waves.wrapper);
@@ -1720,7 +1699,7 @@ function renderPerformance(state) {
     earlyPanel.body.appendChild(emptyState("No null rows match the filter."));
   } else {
     const earlyTable = table([
-      "Member",
+      "Configuration",
       "Case",
       "Exit class",
       "Wall seconds",
@@ -1729,7 +1708,7 @@ function renderPerformance(state) {
     early.forEach((item) => {
       const row = element("tr");
       [
-        item.memberId,
+        item.sourceSlug,
         item.caseId,
         item.evaluation.nullClass,
         formatNumber(item.performance.wallSeconds, 6),
@@ -1782,7 +1761,7 @@ function renderCaseDetail(row) {
   const heading = element(
     "h3",
     "",
-    `${row.memberId} · sample ${row.sampleOrdinal}`,
+    `${row.sourceSlug} · sample ${row.sampleOrdinal}`,
   );
   heading.tabIndex = -1;
   append(
@@ -1938,12 +1917,12 @@ function renderCaseDetail(row) {
   const coordinateLabels = {
     geometryScale: "Geometry scale",
     translationSpeed: "Group speed",
-    familyAFlattening: "Family-A flattening",
-    familyCSpacingScale: "Family-C spacing scale",
+    threeAxisFrameFlattening: "Assembly-A flattening",
+    coaxialComponentSpacingScale: "Assembly-C spacing scale",
     frequencies: "Frequencies",
     radii: "Radii",
     axialFractions: "Axial fractions",
-    generalCAxialSpacings: "General-C axial gaps",
+    coincidentCenterAxialSpacings: "General-C axial gaps",
     circulationSenses: "Circulation",
     polarityAssignments: "Polarity",
     orbitOrder: "Orbit order",
@@ -1966,20 +1945,20 @@ function renderCaseDetail(row) {
 
 function renderCases(state) {
   const allRows = filteredRows(state);
-  const memberIds = [...new Set(allRows.map((row) => row.memberId))]
+  const sourceSlugs = [...new Set(allRows.map((row) => row.sourceSlug))]
     .sort((left, right) =>
       left.localeCompare(right, undefined, { numeric: true }));
   if (
-    state.caseMemberId !== "all" &&
-    !memberIds.includes(state.caseMemberId)
+    state.caseConfigurationId !== "all" &&
+    !sourceSlugs.includes(state.caseConfigurationId)
   ) {
-    state.caseMemberId = "all";
+    state.caseConfigurationId = "all";
   }
-  const memberRows = filterCompactSweepCaseRows(allRows, "", {
-    memberId: state.caseMemberId,
+  const configurationRows = filterCompactSweepCaseRows(allRows, "", {
+    sourceSlug: state.caseConfigurationId,
   });
   const sampleOrdinals = [...new Set(
-    memberRows.map((row) => String(row.sampleOrdinal)),
+    configurationRows.map((row) => String(row.sampleOrdinal)),
   )].sort((left, right) => Number(left) - Number(right));
   if (
     state.caseSampleOrdinal !== "all" &&
@@ -1988,7 +1967,7 @@ function renderCases(state) {
     state.caseSampleOrdinal = "all";
   }
   const rows = filterCompactSweepCaseRows(allRows, state.caseQuery, {
-    memberId: state.caseMemberId,
+    sourceSlug: state.caseConfigurationId,
     sampleOrdinal: state.caseSampleOrdinal,
   });
   const pageCount = Math.max(1, Math.ceil(rows.length / CASE_PAGE_SIZE));
@@ -2007,28 +1986,28 @@ function renderCases(state) {
     kicker: "Keyboard-accessible case table",
     title: "Select an exact case",
     description:
-      "Choose a member and sample, then use exact search only when you need a candidate, case, or hash. A sample number can identify rows from more than one campaign.",
+      "Choose a configuration and sample, then use exact search only when you need a candidate, case, or hash. A sample number can identify rows from more than one campaign.",
   });
   const controls = element("div", "compact-dashboard-case-controls");
-  const memberControl = selectControl({
-    id: "compact-dashboard-case-member",
-    label: "Member",
-    value: state.caseMemberId,
+  const configurationControl = selectControl({
+    id: "compact-dashboard-case-configuration",
+    label: "Configuration",
+    value: state.caseConfigurationId,
     options: [
-      { value: "all", label: "All matching members" },
-      ...memberIds.map((memberId) => ({
-        value: memberId,
-        label: memberId,
+      { value: "all", label: "All matching configurations" },
+      ...sourceSlugs.map((sourceSlug) => ({
+        value: sourceSlug,
+        label: sourceSlug,
       })),
     ],
     onChange(value) {
-      state.caseMemberId = value;
+      state.caseConfigurationId = value;
       state.caseSampleOrdinal = "all";
       state.casePage = 0;
       state.selectedCaseKey = null;
       renderView(state);
       state.viewContainer
-        .querySelector("#compact-dashboard-case-member")
+        .querySelector("#compact-dashboard-case-configuration")
         ?.focus();
     },
   });
@@ -2078,7 +2057,7 @@ function renderCases(state) {
   append(searchControl, searchLabel, input);
   append(
     controls,
-    memberControl.wrapper,
+    configurationControl.wrapper,
     sampleControl.wrapper,
     searchControl,
     element(
@@ -2095,7 +2074,7 @@ function renderCases(state) {
     );
   } else {
     const caseTable = table([
-      "Member",
+      "Configuration",
       "Sample",
       "Signed-cycle residual",
       "Signed-emission residual",
@@ -2108,7 +2087,7 @@ function renderCases(state) {
       rowNode.className = "compact-dashboard-case-row";
       rowNode.setAttribute("aria-selected", String(isSelected));
       [
-        item.memberId,
+        item.sourceSlug,
         item.sampleOrdinal,
         formatExactNumber(item.metrics.signedCycleResidual),
         formatExactNumber(item.metrics.signedEmissionResidual),
@@ -2265,14 +2244,14 @@ function mountShell(root, state) {
   append(headerMain, title, actions);
 
   const filters = element("div", "compact-dashboard-filters");
-  const familyControl = selectControl({
-    id: "compact-dashboard-family-filter",
-    label: "Family",
-    value: state.filters.familyId,
-    options: [{ value: "all", label: "All families" }],
+  const assemblyControl = selectControl({
+    id: "compact-dashboard-assembly-filter",
+    label: "Assembly",
+    value: state.filters.assemblyId,
+    options: [{ value: "all", label: "All assemblies" }],
     onChange(value) {
-      state.filters.familyId = value;
-      state.filters.memberId = "all";
+      state.filters.assemblyId = value;
+      state.filters.sourceSlug = "all";
       refreshFilters(state);
       renderView(state);
     },
@@ -2284,26 +2263,26 @@ function mountShell(root, state) {
     options: dispositionOptions(),
     onChange(value) {
       state.filters.candidateDisposition = value;
-      state.filters.memberId = "all";
+      state.filters.sourceSlug = "all";
       refreshFilters(state);
       renderView(state);
     },
   });
-  const memberControl = selectControl({
-    id: "compact-dashboard-member-filter",
-    label: "Member",
-    value: state.filters.memberId,
-    options: [{ value: "all", label: "All members" }],
+  const configurationControl = selectControl({
+    id: "compact-dashboard-configuration-filter",
+    label: "Configuration",
+    value: state.filters.sourceSlug,
+    options: [{ value: "all", label: "All configurations" }],
     onChange(value) {
-      state.filters.memberId = value;
+      state.filters.sourceSlug = value;
       renderView(state);
     },
   });
   append(
     filters,
     dispositionControl.wrapper,
-    familyControl.wrapper,
-    memberControl.wrapper,
+    assemblyControl.wrapper,
+    configurationControl.wrapper,
   );
 
   const tabs = element("nav", "compact-dashboard-tabs");
@@ -2369,10 +2348,10 @@ function mountShell(root, state) {
   append(shell, header, main, footer);
   root.replaceChildren(shell);
   Object.assign(state, {
-    familySelect: familyControl.select,
+    assemblySelect: assemblyControl.select,
     dispositionSelect: dispositionControl.select,
     main,
-    memberSelect: memberControl.select,
+    configurationSelect: configurationControl.select,
     viewContainer: viewHost,
   });
 }
@@ -2395,22 +2374,22 @@ function refreshFilters(state) {
     state.filters.candidateDisposition,
   );
   replaceOptions(
-    state.familySelect,
-    familyOptions(state.data),
-    state.filters.familyId,
+    state.assemblySelect,
+    assemblyOptions(state.data),
+    state.filters.assemblyId,
   );
-  const options = memberOptions(
+  const options = configurationOptions(
     state.data,
-    state.filters.familyId,
+    state.filters.assemblyId,
     state.filters.candidateDisposition,
   );
-  if (!options.some((option) => option.value === state.filters.memberId)) {
-    state.filters.memberId = "all";
+  if (!options.some((option) => option.value === state.filters.sourceSlug)) {
+    state.filters.sourceSlug = "all";
   }
   replaceOptions(
-    state.memberSelect,
+    state.configurationSelect,
     options,
-    state.filters.memberId,
+    state.filters.sourceSlug,
   );
 }
 
@@ -2419,8 +2398,8 @@ function loadData(state, rawData) {
   state.data = data;
   state.filters = {
     candidateDisposition: "all",
-    familyId: "all",
-    memberId: "all",
+    assemblyId: "all",
+    sourceSlug: "all",
   };
   refreshFilters(state);
   state.main.replaceChildren(state.viewContainer, renderBoundary(data));
@@ -2430,7 +2409,7 @@ function loadData(state, rawData) {
 export async function renderCompactSweepDashboardApp({
   root = document.getElementById("compact-sweep-dashboard-app"),
   defaultDataPath =
-    "./.local-data/braid-analysis/compact-monte-carlo/family-sweep-v1/compact-sweep-dashboard.v1.json",
+    "./.local-data/braid-analysis/compact-monte-carlo/configuration-sweep-v2/compact-sweep-dashboard.v2.json",
   fetchImpl = globalThis.fetch,
   documentLike = globalThis.document,
   windowLike = globalThis.window,
@@ -2438,17 +2417,17 @@ export async function renderCompactSweepDashboardApp({
   if (!root) throw new Error("compact sweep dashboard root is required.");
   const state = {
     casePage: 0,
-    caseMemberId: "all",
+    caseConfigurationId: "all",
     caseQuery: "",
     caseSampleOrdinal: "all",
     data: null,
     defaultDataPath,
     filters: {
       candidateDisposition: "all",
-      familyId: "all",
-      memberId: "all",
+      assemblyId: "all",
+      sourceSlug: "all",
     },
-    metricGroup: "memberId",
+    metricGroup: "sourceSlug",
     metricId: "externalExposureFraction",
     parameterId: "geometryScale",
     parameterMetricId: "externalExposureFraction",

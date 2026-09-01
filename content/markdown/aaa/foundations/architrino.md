@@ -314,7 +314,7 @@ The canonical homes are:
 
 - [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, transmitter-side factors, transmitter-side acceleration weights, received acceleration, and branch topology.
 - [Binary Dynamics](../dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
-- [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) for coupled indexed-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
+- [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation) for coupled indexed-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
 - [Noether Braid](../noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.
 
 ## Determinism and Multistability

@@ -1311,12 +1311,12 @@ export function mountBorgApp(options = {}) {
     entries.forEach((catalogEntry) => {
       appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
         name: "borg-starting-geometry",
-        value: catalogEntry.id,
+        value: catalogEntry.assemblyId,
         label: catalogEntry.label,
       });
     });
     if (activeStartingGeometryId !== "random" &&
-        !entries.some((entry) => entry.id === activeStartingGeometryId)) {
+        !entries.some((entry) => entry.assemblyId === activeStartingGeometryId)) {
       appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
         name: "borg-starting-geometry",
         value: activeStartingGeometryId,

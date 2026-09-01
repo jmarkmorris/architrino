@@ -939,7 +939,7 @@ The first executable scaffold keeps the clock proof burden visible. Its accepted
 
 ## Mechanisms for Time Dilation
 
-Two coupled mechanisms change the internal frequency of a Noether braid clock. The prescribed [B1](../noether-braid/braid-family-b.md#b1) candidate — one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense, with independent per-binary radii, axial half-separations, transverse orbit radii, and phases — supplies mechanism intuition for a highly coordinated clock. The executable clock record below instead uses a prescribed A1 chart so orientation and per-binary frequency dependence remain independently falsifiable. The two charts are alternative clock candidates, not one clock ontology silently changing family.
+Two coupled mechanisms change the internal frequency of a Noether braid clock. The prescribed [coincident-axis three-binary braid](../noether-braid/3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart) candidate — one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense, with independent per-binary radii, axial half-separations, transverse orbit radii, and phases — supplies mechanism intuition for a highly coordinated clock. The executable clock record below instead uses a prescribed coincident-midpoint orthogonal-axis braid chart so orientation and per-binary frequency dependence remain independently falsifiable. The two charts are alternative clock candidates, not one clock ontology silently changing family.
 
 ### Kinematic Effect (Velocity Dependence)
 
@@ -949,7 +949,7 @@ When the clock has group velocity (center-of-mass convention) $\mathbf{V}_{\text
 
 2. **Finite causal speed:** Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf X,T)$ for a Noether sea dressed clock comparison.
 
-3. **Shape deformation (Lorentz-link hypothesis):** Under the Family-A Lorentz-link hypothesis, increased $\|\mathbf{w}\|$ makes the complete braid's **oblate spheroidal exclusion envelope** flatten along the direction of motion:
+3. **Shape deformation (Lorentz-link hypothesis):** Under the orthogonal-axis three-binary Lorentz-link hypothesis, increased $\|\mathbf{w}\|$ makes the complete braid's **oblate spheroidal exclusion envelope** flatten along the direction of motion:
  - At low $\|\mathbf{w}\|$, the oblate spheroidal exclusion envelope is nearly spherical.
  - As $\|\mathbf{w}\|\to c_\star$, that envelope contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding semiaxes $(R_{\perp}, R_{\perp}, R_{\parallel})$ and $R_{\parallel} < R_{\perp}$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
@@ -1105,9 +1105,9 @@ For strong-field interpretation, use the canonical event-horizon alignment condi
 
 To close the derivation gap, fix an explicit clock model and an explicit observable-extraction map.
 
-### Concrete A1 Clock State
+### Concrete coincident-midpoint orthogonal-axis braid Clock State
 
-Use one A1 record with six constituent architrinos grouped into three persistently indexed neutral binaries:
+Use one coincident-midpoint orthogonal-axis braid record with six constituent architrinos grouped into three persistently indexed neutral binaries:
 $$
 \mathcal{A}=\{1_+,1_-,2_+,2_-,3_+,3_-\}
 $$
@@ -1125,7 +1125,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-3c71c57e2ff4abc4)
 with radii $R_a=\|\mathbf r_a\|$. The three radii are independently assignable and do not order or relabel the binaries.
 
-For this state to carry the A1 label, its three binary axes must also be mutually orthogonal at the Family-A near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$. The frequencies $f_a$ remain independently assignable, and the axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain explicit binary coordinates. This prescribed chart does not establish that the clock is retained or stable under EOM-solver evolution; failure to preserve the declared coordinate relations on the same evolved record would falsify the A1 clock assignment.
+For this state to carry the coincident-midpoint orthogonal-axis braid label, its three binary axes must also be mutually orthogonal at the orthogonal-axis three-binary near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$. The frequencies $f_a$ remain independently assignable, and the axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain explicit binary coordinates. This prescribed chart does not establish that the clock is retained or stable under EOM-solver evolution; failure to preserve the declared coordinate relations on the same evolved record would falsify the coincident-midpoint orthogonal-axis braid clock assignment.
 
 ### Microscopic Evolution Equation (Regularized)
 
@@ -1195,7 +1195,7 @@ Thus a boundary contribution may affect clock coupling only by changing the same
 
 ### Controlled Perturbation Family
 
-Run the same A1 clock record under controlled backgrounds:
+Run the same coincident-midpoint orthogonal-axis braid clock record under controlled backgrounds:
 
 1. Uniform group speed (center-of-mass convention) $v=\|\mathbf{V}_{\text{CM}}\|$ through homogeneous medium.
 2. Weak static potential background $\Phi_N(\mathbf X,T)$ (or $U\equiv-\Phi_N>0$).

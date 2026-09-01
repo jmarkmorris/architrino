@@ -5,7 +5,7 @@
   "claimGrade": "measured executable-architecture evidence conditioned on one declared accepted linear prehistory",
   "scope": {
     "familyGeneralizationAuthorized": false,
-    "candidateAScope": "one affine five-coordinate A3 slice at one declared coordinate/rate row",
+    "candidateAScope": "one affine five-coordinate axially separated orthogonal-axis slice at one declared coordinate/rate row",
     "candidateBScope": "its metric-matched gauge-fixed sector-differential row",
     "stabilityClaimAuthorized": false,
     "retentionClaimAuthorized": false,
@@ -2544,13 +2544,13 @@
     "requestedWindowReachedWithoutGuardCrossing": true,
     "causalRootGuardsClosed": true,
     "commonLocusEncodingControlPassed": true,
-    "resultScope": "specific declared A3 slice only; no full-family inference",
+    "resultScope": "specific declared axially separated orthogonal-axis slice only; no full-chart inference",
     "excludedClaims": [
       "retention or stability",
       "binding or particle identity",
       "electromagnetic recovery",
       "causal attribution to pair conjugacy alone",
-      "behavior of the full A3 family"
+      "behavior of the full axially separated orthogonal-axis chart"
     ]
   }
 }

@@ -4,15 +4,11 @@ import {
 
 const GEOMETRY_TOLERANCE = 1e-12;
 
-// Family-A/B/C analytical campaigns use this derived projection to vary the
-// declared circular relationships. It is not a candidate source schema and it
+// Analytical campaigns use this derived projection to vary the declared
+// circular relationships. It is not a configuration source schema and it
 // owns no constituent or worldline. Applying it rewrites the individually
-// declared worldline operators in prescribed-assembly-spec.v2.
+// declared worldline operators in prescribed-assembly-spec.v3.
 export function projectCircularRelationshipParameters(spec) {
-  const taxonomy = spec.identity?.taxonomy;
-  if (!taxonomy || !["A", "B", "C"].includes(taxonomy.familyId)) {
-    throw new TypeError("circular relationship parameters require a Family-A, Family-B, or Family-C specification.");
-  }
   const placement = spec.geometry?.assemblyPlacement;
   if (!placement) throw new TypeError("circular relationship parameters require geometry.assemblyPlacement.");
   const constituentById = new Map(spec.constituents.map((row) => [row.id, row]));
@@ -50,7 +46,6 @@ export function projectCircularRelationshipParameters(spec) {
     pairOrder.push(pair.id);
   }
   const projected = {
-    taxonomy: structuredClone(taxonomy),
     assemblyPlacement: {
       centerAtEpoch: [...placement.centerAtEpoch],
       velocity: [...placement.velocity],
@@ -138,7 +133,7 @@ export function applyCircularRelationshipParameters(rawSpec, rawParameters) {
       circulationSense: componentParameters.circulationSense,
       frameDefinition: structuredClone(componentParameters.frameDefinition),
     };
-    const frames = materializeFrames(parameters.taxonomy.familyId, componentParameters);
+    const frames = materializeFrames(componentParameters);
     componentParameters.pairs.forEach((pairParameters, pairIndex) => {
       const pair = pairById.get(pairParameters.pairId);
       const frame = frames[pairIndex];
@@ -200,9 +195,6 @@ function rebuildPolaritySectors(spec) {
 }
 
 export function validateCircularRelationshipParameters(parameters) {
-  const familyId = parameters.taxonomy?.familyId;
-  const memberId = parameters.taxonomy?.memberId;
-  if (!["A", "B", "C"].includes(familyId)) throw new TypeError("circular relationship family is invalid.");
   vector3(parameters.assemblyPlacement?.centerAtEpoch, "assemblyPlacement.centerAtEpoch");
   vector3(parameters.assemblyPlacement?.velocity, "assemblyPlacement.velocity");
   if (!Array.isArray(parameters.components) || parameters.components.length === 0) {
@@ -216,7 +208,7 @@ export function validateCircularRelationshipParameters(parameters) {
     if (component.circulationSense !== -1 && component.circulationSense !== 1) {
       throw new TypeError(`components[${componentIndex}].circulationSense must be -1 or +1.`);
     }
-    validateFrameDefinition(component.frameDefinition, familyId, `components[${componentIndex}].frameDefinition`);
+    validateFrameDefinition(component.frameDefinition, `components[${componentIndex}].frameDefinition`);
     if (!Array.isArray(component.pairs) || component.pairs.length !== 3) {
       throw new TypeError(`components[${componentIndex}].pairs must contain three declared neutral-pair relationships.`);
     }
@@ -242,141 +234,10 @@ export function validateCircularRelationshipParameters(parameters) {
       new Set(parameters.pairOrder).size !== ids.size || parameters.pairOrder.some((id) => !ids.has(id))) {
     throw new TypeError("pairOrder must name every neutral-pair relationship exactly once.");
   }
-  validateFamilyConstraints(parameters, familyId, memberId);
   return parameters;
 }
-
-function validateFamilyConstraints(parameters, familyId, memberId) {
-  const components = parameters.components;
-  const pairs = components[0].pairs;
-  const equal = (read) => pairs.every((pair) => near(read(pair), read(pairs[0])));
-  const phasesMatch = pairs.every((pair, index) =>
-    near(wrappedAngle(pair.phase), wrappedAngle(index * 2 * Math.PI / 3)));
-  if (familyId === "A") {
-    if (!components.every((component) => component.centerOffset.every((value) => near(value, 0))) ||
-        !pairs.every((pair) => pair.centerOffset.every((value) => near(value, 0)))) {
-      throw new RangeError("Family A requires every neutral-pair midpoint at the component origin.");
-    }
-  }
-  if (memberId === "A1" || memberId.startsWith("A1.")) {
-    if (!pairs.every((pair) => near(pair.axialHalfSeparation, 0) && near(pair.transverseOrbitRadius, pair.radius))) {
-      throw new RangeError(`${memberId} requires h_a=0 and rho_a=R_a for every neutral pair.`);
-    }
-  }
-  if (["A1.1", "A3.1"].includes(memberId) && !equal((pair) => pair.frequency)) {
-    throw new RangeError(`${memberId} requires one common frequency.`);
-  }
-  if (["A1.2", "A3.2"].includes(memberId) &&
-      !(equal((pair) => pair.radius) && equal((pair) => pair.frequency) && phasesMatch)) {
-    throw new RangeError(`${memberId} requires equal radii, equal frequencies, and 120-degree phase spacing.`);
-  }
-  if (["A1.3", "A3.3"].includes(memberId)) validateFrequencyRatio(pairs, [4, 2, 1], memberId);
-  if (["A1.4", "A3.4"].includes(memberId)) validateFrequencyRatio(pairs, [3, 2, 1], memberId);
-  if (memberId === "A2" && !(equal((pair) => pair.radius) &&
-      equal((pair) => pair.axialHalfSeparation) && equal((pair) => pair.transverseOrbitRadius) &&
-      equal((pair) => pair.frequency) && phasesMatch &&
-      components[0].frameDefinition.phaseCompensatedCyclicFrames)) {
-    throw new RangeError("A2 requires equal geometry, equal frequencies, 120-degree phases, and phase-compensated cyclic frames.");
-  }
-  if (familyId === "B" || (familyId === "C" && ["C3", "C4", "C5", "C6"].includes(memberId))) {
-    components.forEach((component, index) => validateB1Component(component, index));
-  }
-  if (memberId === "B1.1" && !pairs.every((pair) => pair.axialHalfSeparation > 0 && pair.transverseOrbitRadius > 0)) {
-    throw new RangeError("B1.1 requires h_a>0 and rho_a>0 for every neutral pair.");
-  }
-  if (memberId === "B1.2" && !pairs.every((pair) => pair.axialHalfSeparation > pair.transverseOrbitRadius && pair.transverseOrbitRadius > 0)) {
-    throw new RangeError("B1.2 requires h_a>rho_a>0 for every neutral pair.");
-  }
-  if (memberId === "B1.3" && !pairs.every((pair) => near(pair.axialHalfSeparation, 0) && near(pair.transverseOrbitRadius, pair.radius))) {
-    throw new RangeError("B1.3 requires h_a=0 and rho_a=R_a for every neutral pair.");
-  }
-  if (memberId === "B1.4" && !pairs.every((pair) => near(pair.transverseOrbitRadius, 0) && near(pair.axialHalfSeparation, pair.radius))) {
-    throw new RangeError("B1.4 requires rho_a=0 and h_a=R_a for every neutral pair.");
-  }
-  if (familyId === "C") validateFamilyC(parameters, memberId);
-}
-
-function validateFamilyC(parameters, memberId) {
-  const [left, right] = parameters.components;
-  if (!left || !right) throw new TypeError("Family C requires two declared component relationships.");
-  if (["C1", "C2"].includes(memberId)) validateGeneralFamilyC(parameters);
-  if (["C3", "C4", "C5", "C6"].includes(memberId) && near(norm(subtract(left.centerOffset, right.centerOffset)), 0)) {
-    throw new RangeError(`${memberId} requires two distinct declared component centers.`);
-  }
-  if (["C1", "C3", "C5"].includes(memberId) && left.circulationSense !== right.circulationSense) {
-    throw new RangeError(`${memberId} requires a common circulation sense.`);
-  }
-  if (["C2", "C4", "C6"].includes(memberId) && left.circulationSense !== -right.circulationSense) {
-    throw new RangeError(`${memberId} requires opposite circulation senses.`);
-  }
-  if (["C5", "C6"].includes(memberId) && !parameters.components.every((component) =>
-    component.pairs.every((pair) => near(pair.axialHalfSeparation, 0) && near(pair.transverseOrbitRadius, pair.radius)))) {
-    throw new RangeError(`${memberId} requires two all-equatorial B1.3 components.`);
-  }
-  if (["C3", "C4", "C5", "C6"].includes(memberId)) {
-    const leftAxis = left.frameDefinition.axis;
-    const rightAxis = right.frameDefinition.axis;
-    const displacement = subtract(right.centerOffset, left.centerOffset);
-    const transverse = subtract(displacement, scale(leftAxis, dot(displacement, leftAxis)));
-    if (norm(subtract(leftAxis, rightAxis)) > GEOMETRY_TOLERANCE || norm(transverse) > GEOMETRY_TOLERANCE) {
-      throw new RangeError(`${memberId} requires coaxial component relationships.`);
-    }
-  }
-}
-
-function validateGeneralFamilyC(parameters) {
-  const axis = parameters.components[0].frameDefinition.axis;
-  const rows = parameters.components.flatMap((component) => {
-    if (norm(subtract(axis, component.frameDefinition.axis)) > GEOMETRY_TOLERANCE) {
-      throw new RangeError(`${parameters.taxonomy.memberId} requires one common oriented axis.`);
-    }
-    return component.pairs.map((pair) => {
-      const midpoint = add(component.centerOffset, pair.centerOffset);
-      const transverse = subtract(midpoint, scale(axis, dot(midpoint, axis)));
-      if (norm(transverse) > GEOMETRY_TOLERANCE) {
-        throw new RangeError(`${parameters.taxonomy.memberId} requires every neutral-pair midpoint on the common axis.`);
-      }
-      return {
-        pairId: pair.pairId,
-        midpoint: dot(midpoint, axis),
-        centers: [
-          dot(midpoint, axis) - pair.axialHalfSeparation,
-          dot(midpoint, axis) + pair.axialHalfSeparation,
-        ],
-      };
-    });
-  }).toSorted((a, b) => a.midpoint - b.midpoint);
-  if (rows.some((row, index) => row.pairId !== parameters.pairOrder[index])) {
-    throw new RangeError(`${parameters.taxonomy.memberId} pairOrder must follow increasing axial midpoint coordinate.`);
-  }
-  const centers = rows.flatMap((row) => row.centers).toSorted((a, b) => a - b);
-  for (let index = 1; index < centers.length; index += 1) {
-    if (!(centers[index] - centers[index - 1] > GEOMETRY_TOLERANCE)) {
-      throw new RangeError(`${parameters.taxonomy.memberId} requires twelve strictly ordered coaxial orbit centers.`);
-    }
-  }
-}
-
-function validateB1Component(component, index) {
-  const frequency = component.pairs[0].frequency;
-  if (!component.pairs.every((pair) => near(pair.frequency, frequency))) {
-    throw new RangeError(`components[${index}] must be a common-frequency B1 relationship group.`);
-  }
-  if (!component.pairs.every((pair) => pair.centerOffset.every((value) => near(value, 0)))) {
-    throw new RangeError(`components[${index}] must place every neutral-pair midpoint at its component center.`);
-  }
-}
-
-function validateFrequencyRatio(pairs, ratio, memberId) {
-  const base = pairs[2].frequency;
-  if (!pairs.every((pair, index) => near(pair.frequency, ratio[index] * base))) {
-    throw new RangeError(`${memberId} requires the indexed frequency ratio ${ratio.join(":")}.`);
-  }
-}
-
-function validateFrameDefinition(frame, familyId, label) {
-  if (familyId === "A") {
-    if (frame?.type !== "family-a-flattening.v1") throw new TypeError(`${label}.type is invalid.`);
+function validateFrameDefinition(frame, label) {
+  if (frame?.type === "three-axis-flattening.v1") {
     const flattening = finite(frame.flattening, `${label}.flattening`);
     if (flattening < 0 || flattening > 1) throw new RangeError(`${label}.flattening must be in [0,1].`);
     validateOrthonormalAxes(frame.nearRestAxes, `${label}.nearRestAxes`);
@@ -388,9 +249,9 @@ function validateFrameDefinition(frame, familyId, label) {
   validateOrthonormalFrame(frame, label);
 }
 
-function materializeFrames(familyId, component) {
+function materializeFrames(component) {
   let frames;
-  if (familyId === "A") {
+  if (component.frameDefinition.type === "three-axis-flattening.v1") {
     const axes0 = component.frameDefinition.nearRestAxes;
     const direction = normalize(add(...axes0));
     const lambda = component.frameDefinition.flattening;
@@ -407,7 +268,8 @@ function materializeFrames(familyId, component) {
       e2: [...component.frameDefinition.e2],
     }));
   }
-  if (familyId === "A" && component.frameDefinition.phaseCompensatedCyclicFrames) {
+  if (component.frameDefinition.type === "three-axis-flattening.v1" &&
+      component.frameDefinition.phaseCompensatedCyclicFrames) {
     return frames.map((frame, index) => rotateTransverseFrame(frame, -component.pairs[index].phase));
   }
   return frames;
@@ -448,11 +310,6 @@ function requireSameIds(actual, expected, label) {
       actual.some((id) => !expected.includes(id))) {
     throw new TypeError(`${label} identities differ from the source specification.`);
   }
-}
-
-function wrappedAngle(angle) {
-  const result = angle % (2 * Math.PI);
-  return result < 0 ? result + 2 * Math.PI : result;
 }
 
 function near(left, right) {

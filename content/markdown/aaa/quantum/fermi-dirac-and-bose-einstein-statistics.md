@@ -20,7 +20,7 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 The relevant object is the Noether braid described in [Noether Braid](../noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md). Packing consumes the channel-specific interface $D_{a,\mathrm{packing}}$ from that chapter rather than treating a visual surface as a universal hard boundary.
 
-The family flag must remain explicit. A prescribed B1 candidate—with one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense—can be assigned a fusiform envelope, while a Family-A candidate whose axes follow the prescribed orthogonal-to-coincident response can be assigned an oblate spheroidal envelope. The envelope assignments and matter interpretation are hypotheses beyond the coordinate definitions. Either form can remain genuinely three-dimensional and volume-excluding. The statistics hypothesis therefore consumes a retained family-declared envelope and its packing interface, not the oblate sign $\xi<1$ as a universal Noether braid property.
+The family flag must remain explicit. A prescribed coincident-axis three-binary braid candidate—with one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense—can be assigned a fusiform envelope, while an orthogonal-axis three-binary candidate whose axes follow the prescribed orthogonal-to-coincident response can be assigned an oblate spheroidal envelope. The envelope assignments and matter interpretation are hypotheses beyond the coordinate definitions. Either form can remain genuinely three-dimensional and volume-excluding. The statistics hypothesis therefore consumes a retained family-declared envelope and its packing interface, not the oblate sign $\xi<1$ as a universal Noether braid property.
 
 The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for the packing part of fermionic exclusion: another same-channel assembly cannot occupy the same complete spatial-mode and ordered-frame row without disturbing the retained branch.
 
@@ -61,7 +61,7 @@ In the pullback notation of [Angular Momentum and Spin](../philosophy-history/th
 
 ## Candidate Elementary Bose Route: 2D Coherence
 
-For the photon-like carrier program, Bose-Einstein behavior is hypothesized to correspond to a regime where the relevant orbital support has been oblated toward an effectively two-dimensional coherent structure. The key transition is not merely that a Family-A envelope is somewhat flattened. Family-A candidates can already be oblate. The proposed statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume and the exchange holonomy is separately shown to be symmetric.
+For the photon-like carrier program, Bose-Einstein behavior is hypothesized to correspond to a regime where the relevant orbital support has been oblated toward an effectively two-dimensional coherent structure. The key transition is not merely that an orthogonal-axis three-binary envelope is somewhat flattened. orthogonal-axis three-binary candidates can already be oblate. The proposed statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume and the exchange holonomy is separately shown to be symmetric.
 
 In plain terms, the channel stops acting like many separate volumetric packages and starts acting like a shared coherent support. Multiple excitations can then be counted as occupying the same effective state because the physical support is phase-compatible rather than volume-exclusive.
 
@@ -299,7 +299,7 @@ This chapter depends on:
 
 - [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) for family-declared fusiform and oblate spheroidal exclusion envelopes and the packing-interface diagnostic,
 - [Noether Braid](../noether-braid/noether-braid.md) for the braid taxonomy and neutral scaffold,
-- [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) for the delayed-dynamics regime map,
+- [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](./wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
 
@@ -318,4 +318,4 @@ The next proof steps are:
 7. Derive the Fermi-Dirac and Bose-Einstein occupation laws from many-excitation record basins and the same finite-window measure used by the exchange and thermodynamic ledgers.
 8. Check that ordinary low-energy three-dimensional matter does not acquire forbidden intermediate statistics, while confined two-dimensional quasiparticle channels recover the observed anyonic cases.
 
-Until those steps are complete, the elementary-carrier claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether braid exclusion plus the ordered-frame spinor exchange phase on the same retained row; one photon-like Bose route is expected when Family-A orbital support becomes an effectively 2D coherent channel with trivial exchange holonomy. Composite bosons instead consume the exchange-sign composition target, and confined 2D excitations may be anyonic.
+Until those steps are complete, the elementary-carrier claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether braid exclusion plus the ordered-frame spinor exchange phase on the same retained row; one photon-like Bose route is expected when orthogonal-axis three-binary orbital support becomes an effectively 2D coherent channel with trivial exchange holonomy. Composite bosons instead consume the exchange-sign composition target, and confined 2D excitations may be anyonic.

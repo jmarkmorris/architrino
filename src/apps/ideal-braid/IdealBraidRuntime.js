@@ -86,7 +86,7 @@ const ASSEMBLY_TRANSVERSE_AXIS_V = new THREE.Vector3(
 );
 const IDEAL_BRAID_DOCS = {
   notes: {
-    name: "A1 Lorentz Geometry Guide",
+    name: "Coincident-Midpoint Three-Axis Circular Lorentz Geometry Guide",
     markdownPath: "content/markdown/aaa/archie/ideal-braid-guide.md",
     markdownColumns: 1,
   },
@@ -1128,12 +1128,12 @@ export function mountIdealBraid(options = {}) {
   const AbortControllerCtor =
     options.AbortController ?? windowLike?.AbortController ?? globalThis.AbortController;
   if (typeof AbortControllerCtor !== "function") {
-    throw new Error("A1 Lorentz Geometry requires AbortController support.");
+    throw new Error("Coincident-Midpoint Three-Axis Circular Lorentz Geometry requires AbortController support.");
   }
   const ResizeObserverCtor =
     options.ResizeObserver ?? windowLike?.ResizeObserver ?? globalThis.ResizeObserver;
   if (typeof ResizeObserverCtor !== "function") {
-    throw new Error("A1 Lorentz Geometry requires ResizeObserver support.");
+    throw new Error("Coincident-Midpoint Three-Axis Circular Lorentz Geometry requires ResizeObserver support.");
   }
   const listenerController = new AbortControllerCtor();
   const listenerOptions = { signal: listenerController.signal };
@@ -1363,7 +1363,7 @@ export function mountIdealBraid(options = {}) {
     },
     onError(error) {
       surfaceSolverError = error;
-      console.error("A1 Lorentz Geometry surface analysis failed.", error);
+      console.error("Coincident-Midpoint Three-Axis Circular Lorentz Geometry surface analysis failed.", error);
       renderAnalysisStatus();
     },
     onErrorCleared() {
@@ -1417,7 +1417,7 @@ export function mountIdealBraid(options = {}) {
           return;
         }
         orbitProfileSolverError = error;
-        console.error("A1 Lorentz Geometry wake-span analysis failed.", error);
+        console.error("Coincident-Midpoint Three-Axis Circular Lorentz Geometry wake-span analysis failed.", error);
         renderAnalysisStatus();
       });
   }

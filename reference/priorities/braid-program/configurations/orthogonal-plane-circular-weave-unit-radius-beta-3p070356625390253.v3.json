@@ -1,0 +1,534 @@
+{
+  "schema": "prescribed-assembly-spec.v3",
+  "specId": "orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253-v1",
+  "label": "Six-member orthogonal-plane circular weave — unit radius, common angular rate 3.070356625390253",
+  "provenanceDescription": "Exact six-member orthogonal-plane circular weave diagnostic seed with three antipodal neutral binaries on mutually orthogonal great circles, unit radius, common angular rate 3.070356625390253, and fixed relative phases 0, 2pi/3, and 4pi/3. This is the evidence-bound seed rejected by the complete-cycle evaluation and the bounded fixed-locus no-balance certificate.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-09-01",
+  "identity": {
+    "assemblyId": "asm-b7fdeb1b3f9aa074cacbab3c593a2273",
+    "modelRevisionSha256": "b7fdeb1b3f9aa074cacbab3c593a227332178e7b97f50409f759f420cec4cb34",
+    "displayLabel": "Six-member orthogonal-plane circular weave — unit radius, common angular rate 3.070356625390253",
+    "status": "bounded-no-balance-diagnostic-control",
+    "geometryOwner": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
+  },
+  "illustrativeCoordinates": {
+    "status": "exact-rejected-prescribed-history",
+    "choices": [
+      "Three antipodal neutral binaries occupy the yz, xz, and xy planes with one common center and unit radius.",
+      "The common angular rate is beta_f=3.070356625390253 in normalized c_f=1 units; the binary phases are 0, 2pi/3, and 4pi/3.",
+      "The prescribed history is periodic and retains two complete cycles plus the full unit-radius causal-delay horizon.",
+      "The bounded fixed-locus certificate rejects acceleration balance at this seed and throughout beta_f in [0.25,12]; it establishes no retention or stability result."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "member-1",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-1",
+      "metadata": {
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "member-2",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-2",
+      "metadata": {
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "member-3",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-3",
+      "metadata": {
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "member-4",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-4",
+      "metadata": {
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "member-5",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-5",
+      "metadata": {
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "member-6",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-6",
+      "metadata": {
+        "persistentEndpointIndex": 2
+      }
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "worldline-1",
+      "constituentId": "member-1",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0,
+          1,
+          0
+        ],
+        "radiusV": [
+          0,
+          0,
+          1
+        ],
+        "angularVelocity": 3.070356625390253,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      },
+      "metadata": {
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "worldline-2",
+      "constituentId": "member-2",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0,
+          -1,
+          0
+        ],
+        "radiusV": [
+          0,
+          0,
+          -1
+        ],
+        "angularVelocity": 3.070356625390253,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      },
+      "metadata": {
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "worldline-3",
+      "constituentId": "member-3",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.8660254037844387,
+          0,
+          -0.4999999999999998
+        ],
+        "radiusV": [
+          -0.4999999999999998,
+          0,
+          0.8660254037844387
+        ],
+        "angularVelocity": 3.070356625390253,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 2.0943951023931953
+      },
+      "metadata": {
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "worldline-4",
+      "constituentId": "member-4",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.8660254037844387,
+          0,
+          0.4999999999999998
+        ],
+        "radiusV": [
+          0.4999999999999998,
+          0,
+          -0.8660254037844387
+        ],
+        "angularVelocity": 3.070356625390253,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 2.0943951023931953
+      },
+      "metadata": {
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "worldline-5",
+      "constituentId": "member-5",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.5000000000000004,
+          0.8660254037844385,
+          0
+        ],
+        "radiusV": [
+          -0.8660254037844385,
+          -0.5000000000000004,
+          0
+        ],
+        "angularVelocity": 3.070356625390253,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.1887902047863905
+      },
+      "metadata": {
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "worldline-6",
+      "constituentId": "member-6",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.5000000000000004,
+          -0.8660254037844385,
+          0
+        ],
+        "radiusV": [
+          0.8660254037844385,
+          0.5000000000000004,
+          0
+        ],
+        "angularVelocity": 3.070356625390253,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.1887902047863905
+      },
+      "metadata": {
+        "persistentEndpointIndex": 2
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [
+      {
+        "braidId": "component-braids-1",
+        "frameDefinition": {
+          "type": "three-axis-flattening.v1",
+          "nearRestAxes": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "flattening": 0,
+          "interpolation": "normalized-linear-to-equal-component/v1",
+          "phaseCompensatedCyclicFrames": true
+        }
+      }
+    ]
+  },
+  "relationships": {
+    "sourceOrder": [
+      "member-1",
+      "member-2",
+      "member-3",
+      "member-4",
+      "member-5",
+      "member-6"
+    ],
+    "neutralPairs": [
+      {
+        "id": "neutral-pairs-1",
+        "members": [
+          "member-1",
+          "member-2"
+        ],
+        "componentBraidId": "component-braids-1",
+        "display": {
+          "binaryIndex": 1,
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "transverseBasis": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "id": "neutral-pairs-2",
+        "members": [
+          "member-3",
+          "member-4"
+        ],
+        "componentBraidId": "component-braids-1",
+        "display": {
+          "binaryIndex": 2,
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "transverseBasis": [
+            [
+              -0.8660254037844387,
+              0,
+              -0.4999999999999998
+            ],
+            [
+              -0.4999999999999998,
+              0,
+              0.8660254037844387
+            ]
+          ]
+        }
+      },
+      {
+        "id": "neutral-pairs-3",
+        "members": [
+          "member-5",
+          "member-6"
+        ],
+        "componentBraidId": "component-braids-1",
+        "display": {
+          "binaryIndex": 3,
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "transverseBasis": [
+            [
+              -0.5000000000000004,
+              0.8660254037844385,
+              0
+            ],
+            [
+              -0.8660254037844385,
+              -0.5000000000000004,
+              0
+            ]
+          ]
+        }
+      }
+    ],
+    "componentBraids": [
+      {
+        "id": "component-braids-1",
+        "members": [
+          "member-1",
+          "member-2",
+          "member-3",
+          "member-4",
+          "member-5",
+          "member-6"
+        ],
+        "metadata": {
+          "centerOffset": [
+            0,
+            0,
+            0
+          ],
+          "phaseOffset": 0,
+          "circulationSense": 1,
+          "frameDefinition": {
+            "type": "three-axis-flattening.v1",
+            "nearRestAxes": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "flattening": 0,
+            "interpolation": "normalized-linear-to-equal-component/v1",
+            "phaseCompensatedCyclicFrames": true
+          }
+        }
+      }
+    ],
+    "polaritySectors": [
+      {
+        "id": "polarity-sectors-1",
+        "polarity": 1,
+        "members": [
+          "member-1",
+          "member-3",
+          "member-5"
+        ]
+      },
+      {
+        "id": "polarity-sectors-2",
+        "polarity": -1,
+        "members": [
+          "member-2",
+          "member-4",
+          "member-6"
+        ]
+      }
+    ],
+    "symmetryOrbits": [],
+    "accessorySets": []
+  },
+  "history": {
+    "start": 0,
+    "end": 4.092804891276089,
+    "delayHorizon": 2,
+    "periodic": true,
+    "returnPeriod": 2.0464024456380443
+  },
+  "constraints": {
+    "validators": [
+      "circular-relationship-consistency.v2"
+    ],
+    "centering": {
+      "declaration": "source-preserved",
+      "gauge": "source-preserved"
+    },
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "preserve-and-report",
+      "observedBound": 3.070356625390253,
+      "migrationBoundary": "geometry-preservation-only"
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 1.15,
+    "trailPeriods": 1,
+    "ansatzSampleCount": 96
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.03197503821309444,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  }
+}

@@ -425,6 +425,14 @@ function normalizeSegment(segment, worldlineId, index, { isAssemblyViewRecord = 
 }
 
 function validateAssemblyViewMetadata(record) {
+  if (record.provenance?.engineId === PRESCRIBED_GEOMETRY_ENGINE_ID) {
+    requireConcreteString(record.assemblyId, "assemblyId");
+    requireConcreteString(record.modelRevisionSha256, "modelRevisionSha256");
+    if (!/^[a-f0-9]{64}$/.test(record.modelRevisionSha256) ||
+        record.assemblyId !== `asm-${record.modelRevisionSha256.slice(0, 32)}`) {
+      throw new TypeError("prescribed assembly-view-record.v0 requires a consistent exact identity pair.");
+    }
+  }
   if (!record.provenance || typeof record.provenance !== "object") {
     throw new TypeError("assembly-view-record.v0 requires provenance.");
   }

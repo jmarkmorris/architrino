@@ -87,12 +87,12 @@ test("Borg merges coincident binary axes without unowned chart-path overlays", (
 
 test("canonical prescribed records render one axis per distinct geometric line", () => {
   const cases = [
-    ["family-a-a1-general.assembly-view-record.v0.json", 3],
-    ["illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json", 1],
-    ["family-c-c1-co-rotating-general.assembly-view-record.v0.json", 1],
-    ["family-c-c2-counter-rotating-general.assembly-view-record.v0.json", 1],
-    ["family-c-c1-co-rotating-b1-pair.assembly-view-record.v0.json", 1],
-    ["family-c-c2-counter-rotating-b1-pair.assembly-view-record.v0.json", 1],
+    ["three-axis-circular-coincident-midpoints.assembly-view-record.v0.json", 3],
+    ["axial-transverse-three-binary-interior.assembly-view-record.v0.json", 1],
+    ["coincident-center-two-component-circular-co-rotating.assembly-view-record.v0.json", 1],
+    ["coincident-center-two-component-circular-counter-rotating.assembly-view-record.v0.json", 1],
+    ["coaxial-separated-two-component-circular-co-rotating.assembly-view-record.v0.json", 1],
+    ["coaxial-separated-two-component-circular-counter-rotating.assembly-view-record.v0.json", 1],
   ];
   for (const [filename, expectedAxisCount] of cases) {
     const record = JSON.parse(readFileSync(new URL(

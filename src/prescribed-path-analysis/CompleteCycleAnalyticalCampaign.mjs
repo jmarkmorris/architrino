@@ -6,14 +6,14 @@ import {
   validatePrescribedRecordAnalysisProtocol,
 } from "./AnalyticalBraidEvaluator.mjs";
 import {
-  buildB1FixedInternalEventAnalysisProtocol,
+  buildCoincidentAxisThreeBinaryFixedInternalEventAnalysisProtocol,
   createPeriodicCycleTimes,
-  validateB1CompleteCycleProbeProtocol,
-} from "./B1CompleteCycleProbeProtocol.mjs";
+  validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol,
+} from "./CoincidentAxisThreeBinaryCompleteCycleProbeProtocol.mjs";
 import {
-  evaluateB1StreamingSurfaceReductions,
-  finalizeB1StreamingReductionPacket,
-} from "./B1StreamingReductions.mjs";
+  evaluateCoincidentAxisThreeBinaryStreamingSurfaceReductions,
+  finalizeCoincidentAxisThreeBinaryStreamingReductionPacket,
+} from "./CoincidentAxisThreeBinaryStreamingReductions.mjs";
 import {
   evaluateExactPrescribedSourceState,
   validateExactPrescribedSourceRecord,
@@ -1126,7 +1126,7 @@ function evaluateSensitivity({
     });
     rawArtifactInventory.push(exactSourceArtifact);
     const topology = [];
-    const surface = evaluateB1StreamingSurfaceReductions({
+    const surface = evaluateCoincidentAxisThreeBinaryStreamingSurfaceReductions({
       sourceRecord,
       completeCycleProtocol: protocol,
       onSurfacePacket(packet, context) {
@@ -1333,7 +1333,7 @@ export function evaluateCompleteCycleCandidate({
   evidenceMode = "full",
 } = {}) {
   const sourceRecord = validateExactPrescribedSourceRecord(rawSourceRecord);
-  const protocol = validateB1CompleteCycleProbeProtocol(rawProtocol);
+  const protocol = validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol(rawProtocol);
   if (evidenceMode !== "full" && evidenceMode !== "compact") {
     throw new TypeError("evidenceMode must be full or compact.");
   }
@@ -1348,7 +1348,7 @@ export function evaluateCompleteCycleCandidate({
   const sourceHash = sha256Canonical(sourceRecord);
   const surfaceTopology = [];
   onProgress?.({ candidateId, stage: "surface-reduction-start" });
-  const surface = evaluateB1StreamingSurfaceReductions({
+  const surface = evaluateCoincidentAxisThreeBinaryStreamingSurfaceReductions({
     sourceRecord,
     completeCycleProtocol: protocol,
     evidenceMode,
@@ -1380,7 +1380,7 @@ export function evaluateCompleteCycleCandidate({
   onProgress?.({ candidateId, stage: "internal-fixed-start" });
   const internalFixed = {};
   for (const resolution of ["primary", "refined"]) {
-    const fixedProtocol = buildB1FixedInternalEventAnalysisProtocol(protocol, { resolution });
+    const fixedProtocol = buildCoincidentAxisThreeBinaryFixedInternalEventAnalysisProtocol(protocol, { resolution });
     const packet = evaluatePrescribedRecordAnalysis({
       sourceRecord,
       protocol: fixedProtocol,
@@ -1564,7 +1564,7 @@ export function evaluateCompleteCycleCandidate({
       "Reject this result if an independent closed form disagrees beyond tolerance, a retained root is missing, a complete-cycle reference identity fails after refinement, a raw ledger cannot reconstruct a reduced row, an identity mismatch is accepted, or a required candidate or measure is absent.",
   };
   onProgress?.({ candidateId, stage: "candidate-complete", accepted });
-  return finalizeB1StreamingReductionPacket(packetWithoutHash);
+  return finalizeCoincidentAxisThreeBinaryStreamingReductionPacket(packetWithoutHash);
 }
 
 export function verifyCompleteCycleCandidatePacket(packet) {

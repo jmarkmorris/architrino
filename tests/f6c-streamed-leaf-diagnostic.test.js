@@ -279,11 +279,11 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
  }
  if(mode==='missing-runtime'||mode==='runtime-in-provenance')runtimeList.splice(runtimeList.findIndex(b=>b.path.endsWith('/_pylong.py')),1);
  const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v4',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],evidencePackage:null,acceptedParentEvidence:[],continuation:null,maxAdvances:maximum,limits:C.LIMITS};
- if(mode==='archives'||mode==='shared-archives'||mode==='archive-runtime'){
+ if(mode==='archives'||mode==='multi-occupant-archives'||mode==='archive-runtime'){
   const prior={};for(const k of['plan','manifest','comparison','operation','launcher_log','resource_log']){const p=path.join(dir,'prior-'+k);writeFileSync(p,'prior '+k);prior[k]=bind(p);}
   const archive=path.join(dir,mode==='archive-runtime'?'scripts/eom/archived-owner.py':'owner-archive');writeFileSync(archive,'prior-v1');const ar=bind(archive),original={...ar,path:bindings.readiness.path};
   spec.parentRefinements=[{parent_index:1,...prior,closure:{owner:bindings.readiness,operation:prior.operation,original_caller_session:'9158',final_completion_chunk:'1eda87',exit_code:0,elapsed_seconds:'261.94229158400003',processes_closed:true,independent_audit_accepted:true,authority:'attributed-versioned-acceptance-owner-not-fresh-process-observation'},archived_sources:[{role:'acceptanceOwner',original,archive:ar}]}];
-  if(mode==='shared-archives'){
+  if(mode==='multi-occupant-archives'){
    const next=structuredClone(spec.parentRefinements[0]);next.parent_index=2;next.closure.original_caller_session='12345';next.closure.final_completion_chunk='abc123';next.closure.elapsed_seconds='3.125';
    for(const k of ['plan','manifest','comparison','operation','launcher_log','resource_log']){const p=path.join(dir,'second-'+k);writeFileSync(p,'second '+k);next[k]=bind(p);}
    next.closure.operation=next.operation;spec.parentRefinements.push(next);
@@ -707,7 +707,7 @@ test('worker expires before reading source and admission requires closed target'
  for(const proc of[{accepted:true},{accepted:false,processesClosed:false},{accepted:false,processesClosed:true,exit:{code:1,signal:null}}])
   assert.throws(()=>C.fileOperation({kind:'admit',processReceipt:proc,deadlineNanoseconds:String(process.hrtime.bigint()+1000000000n)}));
 });
-for(const mode of['normal','exhausted','archives','shared-archives']){
+for(const mode of['normal','exhausted','archives','multi-occupant-archives']){
  test('actual captured Python + frozen stream/codec/publication: '+mode,async()=>{
   const f=fixture(mode);try{
    const r=await runFixture(f);assert.equal(r.code,0,r.err.slice(-2000));const done=JSON.parse(r.out);
@@ -719,7 +719,7 @@ for(const mode of['normal','exhausted','archives','shared-archives']){
    assert.equal(completion.callCounts.projections,4*completion.completedAdvances);
    assert.equal(readFileSync(f.events,'utf8').trim().split('\n').length,completion.completedAdvances);
    const stream=path.join(f.output,'leaf-evidence.ndjson');assert.equal(C.scanStream(stream,bind(stream).sha256).pairs,completion.completedAdvances);
-   if(mode==='shared-archives'){
+   if(mode==='multi-occupant-archives'){
     const decode=String.raw`import hashlib,json,pathlib,sys,types
 p=pathlib.Path(sys.argv[1]);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==sys.argv[2]
 m=types.ModuleType('exact_frozen_header_decoder');exec(compile(raw,str(p),'exec'),m.__dict__)

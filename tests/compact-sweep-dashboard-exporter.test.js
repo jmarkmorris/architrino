@@ -36,13 +36,13 @@ function writeJson(filePath, value) {
 function buildAnalyzerReceipt(campaign) {
   const manifest = {
     schema:
-      "prescribed-path-analysis/compact-family-sweep-coordinator-receipt.v1",
+      "prescribed-path-analysis/compact-configuration-sweep-coordinator-receipt.v2",
     campaignFiles: [{
       file: "wave-01-shard-01.json",
       fileKind: "shard",
       waveId: "wave-01",
       shardNumber: 1,
-      memberToken: null,
+      configurationToken: null,
       fileBytes: 1,
       fileSha256: compactSha256Canonical("fixture-file"),
       campaignId: campaign.campaignId,
@@ -55,7 +55,7 @@ function buildAnalyzerReceipt(campaign) {
     }],
   };
   const body = {
-    schema: "prescribed-path-analysis/compact-family-sweep-analysis.v1",
+    schema: "prescribed-path-analysis/compact-configuration-sweep-analysis.v2",
     claimGrade: "measured",
     claimBoundary: {
       diagnosticOnly: true,
@@ -102,7 +102,7 @@ function buildAnalyzerReceipt(campaign) {
     ...body,
     coordinatorReceipt: {
       schema:
-        "prescribed-path-analysis/compact-family-sweep-coordinator-receipt.v1",
+        "prescribed-path-analysis/compact-configuration-sweep-coordinator-receipt.v2",
       status: body.status,
       analysisHash: compactSha256Canonical(body),
       manifestHash: compactSha256Canonical(manifest),
@@ -277,7 +277,7 @@ test("exporter does not advance on malformed, non-terminal, mismatched, and unsu
 
 test("sealed 660-row active sweep retains the dashboard regression facts", (t) => {
   const databasePath = path.resolve(
-    ".local-data/braid-analysis/compact-monte-carlo/family-sweep-v1/compact-campaigns.sqlite3",
+    ".local-data/braid-analysis/compact-monte-carlo/configuration-sweep-v2/compact-campaigns.sqlite3",
   );
   if (!existsSync(databasePath)) {
     t.skip("sealed local compact sweep is not present");
@@ -292,28 +292,27 @@ test("sealed 660-row active sweep retains the dashboard regression facts", (t) =
     compactPassed: 0,
     drawn: 660,
     evaluated: 641,
-    memberCount: 20,
+    configurationCount: 20,
     nullScoreRows: 19,
   });
   assert.deepEqual(data.summary.deprecatedControls, {
     drawn: 0,
     evaluated: 0,
-    memberIds: [],
+    sourceSlugs: [],
   });
-  assert.deepEqual(
-    Object.fromEntries(data.summary.families.map((family) => [
-      family.familyId,
-      family.drawCount,
-    ])),
-    { A: 363, B: 99, C: 198 },
-  );
   assert.equal(
-    data.summary.members.every((member) => member.drawCount === 33),
+    data.summary.assemblies.every((assembly) =>
+      /^asm-[0-9a-f]{32}$/u.test(assembly.assemblyId) &&
+      assembly.drawCount > 0),
     true,
   );
   assert.equal(
-    data.summary.members.find((member) =>
-      member.memberId === "A1.3").nullScoreCount,
+    data.summary.configurations.every((configuration) => configuration.drawCount === 33),
+    true,
+  );
+  assert.equal(
+    data.summary.configurations.find((configuration) =>
+      configuration.sourceSlug === "three-axis-circular-coincident-midpoints-4-2-1-frequency").nullScoreCount,
     9,
   );
   assert.equal(
@@ -335,7 +334,7 @@ test("sealed 660-row active sweep retains the dashboard regression facts", (t) =
     2,
   );
   assert.equal(
-    data.rows.some((row) => row.memberId === "B1.4"),
+    data.rows.some((row) => row.sourceSlug === "all-axial-three-binary-boundary"),
     false,
   );
   assert.equal(
@@ -344,9 +343,9 @@ test("sealed 660-row active sweep retains the dashboard regression facts", (t) =
     true,
   );
   assert.ok(data.summary.etaExtEtaWakeFluxPearson > 0.9);
-  const familyMedians = Object.fromEntries(data.summary.families.map(
-    (family) => [family.familyId, family.medianWallSeconds],
-  ));
-  assert.ok(familyMedians.C / familyMedians.A > 1.7);
-  assert.ok(familyMedians.C / familyMedians.B > 1.8);
+  assert.equal(
+    data.summary.assemblies.every((assembly) =>
+      Number.isFinite(assembly.medianWallSeconds)),
+    true,
+  );
 });

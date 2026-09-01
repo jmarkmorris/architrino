@@ -7,12 +7,13 @@ import { evaluateExactPrescribedSourceState } from "../src/prescribed-path-analy
 import {
   evaluateMaterializedWorldline,
 } from "../src/prescribed-geometry/PrescribedAssemblySpec.mjs";
+import { deriveAssemblyScientificIdentity } from "../src/prescribed-geometry/AssemblyScientificIdentity.mjs";
 import {
   buildMatchedFiveCoordinateInitializations,
 } from "../scripts/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.mjs";
 import {
   ACTIVE_PRESCRIBED_BRAID_TARGETS,
-  DEPRECATED_PRESCRIBED_BRAID_TARGETS,
+  CONTROL_PRESCRIBED_BRAID_TARGETS,
   PRESCRIBED_BRAID_TARGETS,
   createPrescribedBraidExactSourceRecord,
   generatePrescribedBraidRecord,
@@ -41,8 +42,8 @@ function vectorNear(actual, expected, tolerance = 1e-11) {
 }
 
 function arbitraryCountFixture() {
-  return {
-    schema: "prescribed-assembly-spec.v2",
+  const spec = {
+    schema: "prescribed-assembly-spec.v3",
     specId: "arbitrary-three-member-fixture-v2",
     label: "Arbitrary three-member fixture",
     provenanceDescription: "Test-only explicit worldlines with one accessory.",
@@ -50,7 +51,6 @@ function arbitraryCountFixture() {
     evidenceStatus: "display-only",
     date: "2026-08-25",
     identity: {
-      candidateId: "test-three-member",
       displayLabel: "Arbitrary three-member fixture",
       status: "test-only",
       geometryOwner: "tests/prescribed-braid-record.test.js",
@@ -112,18 +112,21 @@ function arbitraryCountFixture() {
       speedGuard: { normalizedFieldSpeed: 1, maximumExclusive: 1, policy: "reject" },
       collisionGuard: { sampleCount: 16, minimumSampledClearance: 0.1 },
     },
-    compatibility: { retainedIdentifiers: [] },
   };
+  const exact = deriveAssemblyScientificIdentity(spec);
+  spec.identity.assemblyId = exact.assemblyId;
+  spec.identity.modelRevisionSha256 = exact.modelRevisionSha256;
+  return spec;
 }
 
 test("the target map has unique source and record identities and retains scoped controls", () => {
   assert.equal(ACTIVE_PRESCRIBED_BRAID_TARGETS.length, 20);
   assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.specPath)).size, PRESCRIBED_BRAID_TARGETS.length);
   assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.outPath)).size, PRESCRIBED_BRAID_TARGETS.length);
-  assert.ok(DEPRECATED_PRESCRIBED_BRAID_TARGETS.some((row) =>
-    row.specPath.endsWith("illustrative-full-cap-axial-spindle-boundary.v2.json")));
-  assert.ok(DEPRECATED_PRESCRIBED_BRAID_TARGETS.some((row) =>
-    row.specPath.endsWith("f6b-scoped-negative-circular.v2.json")));
+  assert.ok(CONTROL_PRESCRIBED_BRAID_TARGETS.some((row) =>
+    row.specPath.endsWith("all-axial-three-binary-boundary.v3.json")));
+  assert.ok(CONTROL_PRESCRIBED_BRAID_TARGETS.some((row) =>
+    row.specPath.endsWith("co-spherical-scoped-negative-circular-control.v3.json")));
 });
 
 test("the general schema accepts arbitrary counts and keeps accessories outside neutral pairs", () => {
@@ -152,7 +155,7 @@ test("every available source declares one stable worldline per individual consti
   assert.ok(availableFixtures.length >= 23);
   for (const { spec } of availableFixtures) {
     validatePrescribedBraidSpec(spec);
-    assert.equal(spec.schema, "prescribed-assembly-spec.v2");
+    assert.equal(spec.schema, "prescribed-assembly-spec.v3");
     assert.equal(spec.geometry.representation, "individual-worldlines");
     assert.equal(spec.worldlines.length, spec.constituents.length);
     assert.equal(new Set(spec.constituents.map((row) => row.id)).size, spec.constituents.length);
@@ -195,8 +198,8 @@ test("the exact-source producer delegates position and velocity to each declared
   }
 });
 
-test("SD3 worldlines reproduce the exact centered five-coordinate owner", () => {
-  const fixture = availableFixtures.find(({ spec }) => spec.identity.candidateId === "SD3");
+test("centered five-coordinate worldlines reproduce the exact owner", () => {
+  const fixture = availableFixtures.find(({ spec }) => spec.specId === "centered-five-coordinate-linear-history-v1");
   assert.ok(fixture);
   const input = fixture.spec.geometry.reconstruction.input;
   const expected = buildMatchedFiveCoordinateInitializations(input).candidateB.members;
@@ -214,8 +217,8 @@ test("SD3 worldlines reproduce the exact centered five-coordinate owner", () => 
   vectorNear(centroid, [0, 0, 0], 2e-12);
 });
 
-test("F6c is eight-member 4:4 with exact sector identities when its representative is frozen", () => {
-  const fixture = availableFixtures.find(({ spec }) => spec.identity.candidateId === "F6c");
+test("the asymmetric counter-breathing representative is eight-member 4:4 with exact sector identities", () => {
+  const fixture = availableFixtures.find(({ spec }) => spec.specId === "small-asymmetric-counter-breathing-history-v1");
   assert.ok(fixture);
   const { spec } = fixture;
   assert.equal(spec.constituents.length, 8);
@@ -247,13 +250,13 @@ test("generated records remain sealed display-only inputs with no physics invoca
     assert.equal(generated.provenance.claimGrade, "chart-hypothesis");
     assert.equal(generated.provenance.evidenceStatus, "display-only");
     assert.equal(generated.provenance.prescribedGeometry.physicsInvoked, false);
-    assert.equal(generated.provenance.prescribedGeometry.sourceSchema, "prescribed-assembly-spec.v2");
+    assert.equal(generated.provenance.prescribedGeometry.sourceSchema, "prescribed-assembly-spec.v3");
     const dataset = createEomHistoryDataset(generated);
     assert.equal(dataset.worldlines.length, spec.constituents.length);
     assert.equal(dataset.ansatz.length, dataset.worldlines.length);
     if (existsSync(outPath)) {
       const sealed = JSON.parse(readFileSync(outPath, "utf8"));
-      if (sealed.provenance?.prescribedGeometry?.sourceSchema === "prescribed-assembly-spec.v2") {
+      if (sealed.provenance?.prescribedGeometry?.sourceSchema === "prescribed-assembly-spec.v3") {
         assert.equal(serializePrescribedBraidRecord(generated), readFileSync(outPath, "utf8"));
       }
     }

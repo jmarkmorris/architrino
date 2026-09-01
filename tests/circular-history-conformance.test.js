@@ -4,7 +4,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { Q } from "../scripts/eom/derive-abc-subfield-root-reference.mjs";
+import { Q } from "../scripts/eom/derive-subfield-circular-root-reference.mjs";
 import {
   CIRCULAR_ERROR_CONTRACT, certifyCircularSegment, circularConstructionBudget,
   cubicEndpointDefects, formatCircularBound, parseCircularToken, circularCarrierDomain,
@@ -130,10 +130,10 @@ test("nonconstant circle is checked against separately derived rational Taylor e
 });
 
 test("budget CLI checks all frozen members and never overwrites evidence", () => {
-  const directory = mkdtempSync(path.join(tmpdir(), "abc-budget-test-"));
+  const directory = mkdtempSync(path.join(tmpdir(), "subfield-circular-budget-test-"));
   try {
     const output = path.join(directory, "budget.json");
-    const command = ["scripts/eom/derive-abc-circular-history-budget.mjs", "--out", output];
+    const command = ["scripts/eom/derive-subfield-circular-history-budget.mjs", "--out", output];
     const result = spawnSync(process.execPath, command, { encoding: "utf8" });
     assert.equal(result.status, 0, result.stderr);
     const report = JSON.parse(readFileSync(output));

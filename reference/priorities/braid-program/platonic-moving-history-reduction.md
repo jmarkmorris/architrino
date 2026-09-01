@@ -4,7 +4,7 @@
 - **Scope:** vertex-only Platonic assemblies, with complete treatment of the balanced regular-octahedral stationary chart and exact symmetry/root reduction for rigid sub-field-speed octahedral histories.
 - **Claim level:** derived finite-group classification, exact stationary exclusions, and conditional complete-root reduction; the remaining scalar moving-balance equations are closure targets.
 - **Assumptions:** equal-magnitude polarities, normalized $c_f=1$, the canonical regular-domain Master Equation, positive circumradius, rigid co-rotation where stated, and no external or Noether-sea acceleration contribution.
-- **Primary owner:** [Shared-Sphere Assemblies](shared-sphere-assemblies.md).
+- **Primary owner:** [Spatial (3D) Braid Assemblies](../../../content/markdown/aaa/noether-braid/3d-braid-assemblies.md).
 
 ## Exact Calculation Object
 
@@ -112,7 +112,7 @@ The unchanged balanced-word enumerator proves that the twenty $3{:}3$ words form
 
 Plainly: one class contains a same-polarity antipodal pair for each polarity. The other assigns opposite polarity to every antipodal pair and separates the two polarities onto opposite triangular faces.
 
-The full exact coloured-axis census is as follows. An axis is *generic* in this table when it lies outside every nontrivial fixed-axis line of the displayed word's equation-symmetry group; geometric vertex, edge, or face axes not listed in a special row belong to that generic stratum.
+The full exact stabilizer-stratum census is as follows. An axis is *generic* in this table when it lies outside every nontrivial fixed-axis line of the displayed word's equation-symmetry group; geometric vertex, edge, or face axes not listed in a special row belong to that generic stabilizer stratum.
 
 | Balanced word | Angular-velocity-axis stratum, up to coloured equation symmetry | $|G_\chi|$ | $|G_{\chi,\boldsymbol\Omega}|$ | Site orbits | Independent scalar channels |
 |---|---:|---:|---:|---:|---:|
@@ -127,6 +127,19 @@ The full exact coloured-axis census is as follows. An axis is *generic* in this 
 The generic antipodal-alternating row retains a two-element history symmetry because inversion combined with global polarity conjugation fixes every axial vector and pairs antipodal receiver rows. The monochromatic-face row is the segregated two-triangle history already excluded by the axial sign theorem. Its three channels are the axial, radial, and tangential components of one representative row; symmetry makes every other receiver row equivalent but does not remove any of those three components.
 
 Plainly: there is no finite list of all rotation axes. There is a finite list of axes with extra symmetry, plus a continuous generic stratum. The table completely closes that symmetry stratification for both balanced octahedral words.
+
+The octahedron's conventional high-symmetry axes form a finite subset of those strata. Quotienting the three vertex axes, six edge axes, and four face axes by each coloured equation-symmetry group gives the following complete list. “Generic channels” means that the geometrically distinguished axis acquires no additional symmetry from the polarity word.
+
+| Balanced word | Geometric axis family | Inequivalent coloured-axis orbits | Channel counts |
+|---|---|---:|---:|
+| `+++---` | vertex | same-polarity axes $\{\mathbf e_x,\mathbf e_z\}$; mixed-polarity axis $\{\mathbf e_y\}$ | $11$; $4$ |
+| `+++---` | edge | $\{\mathbf e_y\pm\mathbf e_z,\mathbf e_x\pm\mathbf e_y\}$; $\{\mathbf e_x\pm\mathbf e_z\}$ | $18$ generic; $9$ |
+| `+++---` | face | all four face-axis lines | $18$ generic |
+| `+-+-+-` | vertex | all three vertex-axis lines | $9$ generic |
+| `+-+-+-` | edge | three difference-axis lines; three sum-axis lines | $5$; $9$ generic |
+| `+-+-+-` | face | three mixed-face-axis lines; monochromatic-face axis $\{\mathbf e_x+\mathbf e_y+\mathbf e_z\}$ | $9$ generic; $3$ |
+
+Plainly: “rotate about an octahedral axis” is still not one case. The polarity word splits geometrically similar axes into inequivalent histories, and some visually special axes have no extra symmetry once their colors are included.
 
 The executable audit `scripts/prescribed-path-analysis/oracle/octahedral_word_axis_reduction.py` enumerates the $48$ signed-permutation matrices, applies the axial-vector action, constructs every special-axis orbit, and computes the site-orbit fixed spaces. It is an implementation audit of the displayed algebra, not independent authority for the theorem.
 
@@ -208,6 +221,135 @@ the octahedron's edge length. This excludes coordinate collision without appeali
 
 > **Claim grade: derived.** Strict monotonicity of $f_{uv}$ proves root existence, uniqueness, and the Jacobian floor; the Lipschitz chord bound excludes self hits; rigid isometry gives clearance. A second positive-delay partner root, a nontrivial self root, a Jacobian below $1-v_{\max}$, or a simultaneous pair distance below $\sqrt2R$ under the stated speed and rigid-history assumptions would falsify the corresponding result. The theorem does not cover a member reaching field speed, a fold, non-rigid motion, incomplete prehistory, or a history with an added provider.
 
+## Exact Vertex-Axis Exclusions
+
+Rigid rotation about an octahedral vertex axis leaves the two axial members stationary. Every equatorial transmitter remains at constant distance $\sqrt2R$ from either axial receiver, so its causal delay is exactly $\sqrt2R$ and its transmitter-side weight is one, at every angular rate. The antipodal axial transmitter is fixed at distance $2R$ and also has weight one. These facts make the axial projection independent of the rotation rate and do not require the sub-field-speed assumption.
+
+For the word `+++---`, the mixed-polarity vertex axis $\hat{\mathbf n}=\mathbf e_y$ gives
+
+$$
+\hat{\mathbf n}\mathbin{\cdot}\mathbf A_{+y}
+=
+-\frac{\kappa}{4R^2}.
+$$
+
+The equatorial same-polarity pair and opposite-polarity pair cancel in this projection, leaving the fixed antipodal attraction. For either same-polarity vertex-axis class, represented by $\hat{\mathbf n}=\mathbf e_z$, the corresponding axial projection is
+
+$$
+\hat{\mathbf n}\mathbin{\cdot}\mathbf A_{+z}
+=
+\frac{\kappa}{R^2}
+\left(\frac14-\frac1{\sqrt2}\right)
+<0.
+$$
+
+For the antipodal-alternating word `+-+-+-`, all three vertex axes are equivalent and a representative gives
+
+$$
+\hat{\mathbf n}\mathbin{\cdot}\mathbf A_{+x}
+=
+-\frac{\kappa}{4R^2}.
+$$
+
+The prescribed acceleration of an axial member is zero. Each displayed nonzero axial component therefore excludes its entire coloured vertex-axis orbit for every rigid angular rate with a complete periodic history.
+
+Plainly: the two members lying on the rotation axis do not move. Their delayed axial acceleration nevertheless remains nonzero, so no choice of spin rate or radius can make a rigid vertex-axis octahedron follow its prescribed path.
+
+> **Claim grade: derived.** Constant source-receiver distances fix the delays and weights, and direct polarity sums give the three projections. A different causal delay for an equatorial-to-axial row, a transmitter-side weight other than one, or a zero recomputation of any displayed projection would falsify the corresponding exclusion. The result does not cover an axis missing every vertex, non-rigid motion, an external constraint, or an added Noether-sea contribution.
+
+## Exact Difference-Edge-Axis Exclusion
+
+Consider the antipodal-alternating word `+-+-+-` and the representative difference-edge axis
+
+$$
+\hat{\mathbf n}=\frac{\mathbf e_y-\mathbf e_z}{\sqrt2},
+\qquad
+\hat{\mathbf t}=\hat{\mathbf n}\times\mathbf e_x
+=
+-\frac{\mathbf e_y+\mathbf e_z}{\sqrt2}.
+$$
+
+At the $+\mathbf e_x$ receiver, rigid rotation requires acceleration only along $-\mathbf e_x$, so its $\hat{\mathbf t}$ component must vanish. Put $\rho=1/\sqrt2$ and $\beta=|\omega|R<1$. The five sources split into the antipode $-\mathbf e_x$, the same-polarity pair $+\mathbf e_y,+\mathbf e_z$, and the opposite-polarity pair $-\mathbf e_y,-\mathbf e_z$. Members within either pair have a common dimensionless delay. Write those delays as $s_B,s_C$ and their phase lags as $z_B=\beta s_B$, $z_C=\beta s_C$. Their root equations and transmitter-side factors are
+
+$$
+\begin{aligned}
+s_B^2&=2+\sqrt2\sin z_B,
+&D_B&=1-\frac{\beta\rho\cos z_B}{s_B},\\
+s_C^2&=2-\sqrt2\sin z_C,
+&D_C&=1+\frac{\beta\rho\cos z_C}{s_C}.
+\end{aligned}
+$$
+
+Each member of the two pairs contributes respectively
+
+$$
+b_B=\frac{\rho\cos z_B}{s_B^3D_B},
+\qquad
+b_C=\frac{\rho\cos z_C}{s_C^3D_C}
+$$
+
+to the dimensionless $\hat{\mathbf t}$ channel. The antipodal source contributes a nonnegative amount because its phase lag is less than $2<\pi$.
+
+Plainly: four sources come in two delay-matched pairs. One pair can turn slightly against the desired inequality near field speed, so the proof must bound that adverse part rather than assume every term has the same sign.
+
+Let
+
+$$
+S=\sqrt{2+\sqrt2},
+\qquad
+\beta_0=\frac{\pi}{2S}.
+$$
+
+For $0\leq\beta\leq\beta_0$, $z_B\leq\beta S\leq\pi/2$, so $b_B\geq0$; also $z_C<1$, hence $b_C>0$. The tangential sum is therefore strictly positive.
+
+For $\beta_0<\beta<1$, only $b_B$ can be negative. In that case $\pi/2<z_B<S$, $D_B>1$, and
+
+$$
+|b_B|
+<
+U_B
+\equiv
+\frac{\rho[-\cos S]}
+{[2+\sqrt2\sin S]^{3/2}}
+<\frac4{125}.
+$$
+
+For the opposite-polarity pair, $z_C<s_C\leq\sqrt2$. If $z_C\geq1$, then $s_C^2>1$ while $s_C^2=2-\sqrt2\sin z_C\leq2-\sqrt2\sin1<1$, a contradiction. Thus $z_C<1$. With
+
+$$
+s_0=\sqrt{2-\sqrt2\sin1},
+$$
+
+one has $s_0<s_C<\sqrt2$ and $D_C<1+\rho/s_0$, which gives
+
+$$
+b_C
+>
+L_C
+\equiv
+\frac{\rho\cos1}
+{2\sqrt2(1+\rho/s_0)}
+>
+\frac3{40}.
+$$
+
+The elementary enclosures $U_B<4/125$ and $L_C>3/40$ follow, for example, from alternating Taylor bounds for sine and cosine on $[0,2]$ together with rational bounds on $\sqrt2$. There are two members in each pair, so even after discarding the nonnegative antipodal contribution,
+
+$$
+\mathbf F_{+x}(\beta)\mathbin{\cdot}\hat{\mathbf t}
+>
+2\left(\frac3{40}-\frac4{125}\right)
+=
+\frac{43}{500}
+>0.
+$$
+
+The required rigid acceleration has zero $\hat{\mathbf t}$ component. The entire five-channel antipodal-alternating difference-edge-axis stratum is therefore excluded for $0\leq\beta<1$.
+
+Plainly: the potentially adverse source pair is uniformly too weak to cancel the favorable pair. A tangential residual of at least $43/500$ remains in dimensionless units, so neither the radius nor the angular rate can repair this sub-field rigid history.
+
+> **Claim grade: derived on the complete rigid sub-field chart.** The root uniqueness theorem supplies the five partner delays and positive Jacobians, the displayed pair equations give the channel decomposition, and the elementary bounds give a strictly positive residual. A root outside the declared pair equations, failure of either rational enclosure, or a complete-root evaluation with nonpositive tangential channel at any $0\leq\beta<1$ would falsify the exclusion. The result does not cover field-speed or super-field-speed motion, another edge-axis orbit, non-rigid motion, or an added provider.
+
 ## Dimensionless Complete-Root Residual
 
 Let $\boldsymbol\Omega=\omega\hat{\mathbf n}$ and define $\beta=|\omega|R$. For each ordered pair $u\ne v$, the unique dimensionless delay $s_{uv}=\Delta_{uv}/R$ is the root of
@@ -252,7 +394,7 @@ for every vertex $u$, with the $\beta=0$ stationary case treated separately. The
 
 Plainly: for a chosen word and axis, the dynamics problem is now explicit. Solve one monotone delay equation for each ordered pair, add the five delayed contributions at each representative receiver, and test only the independent scalar channels in the table. A small total norm without the individual channel zeros is not balance.
 
-This equation stack closes the residual definition and complete-root census for rigid sub-field-speed octahedral histories. It does not establish that any remaining channel system has a zero. The monochromatic-face axis is already excluded for every ordinary simple-root rigid speed by the one-signed axial theorem; the other special-axis and generic-axis residual systems remain to be solved or bounded.
+This equation stack closes the residual definition and complete-root census for rigid sub-field-speed octahedral histories. It does not establish that any remaining channel system has a zero. The monochromatic-face axis is excluded for every ordinary simple-root rigid speed, every vertex-axis orbit is excluded by the fixed-receiver projections, and the five-channel difference-edge-axis stratum is excluded by the tangential lower bound. The remaining nine-channel and eighteen-channel edge-, face-, and continuous generic-axis residual systems remain to be solved or bounded.
 
 > **Claim grade: derived residual reduction; existence remains a closure target.** Substitution of the rigid worldlines into the canonical per-hit acceleration gives the displayed dimensionless equations. A direct complete-root evaluation that disagrees with these equations inside the strict speed domain would falsify the reduction. One independently certified common zero would establish prescribed balance at its declared $(\chi,\hat{\mathbf n},\beta,\lambda)$ point but would not establish retention or stability.
 
@@ -260,12 +402,12 @@ This equation stack closes the residual definition and complete-root census for 
 
 For the axis-aligned simple-cubic octahedral ladder, neither current periodic polarity map reaches either balanced word class: alternating planes give $6{:}0$ for even scale index and $4{:}2$ for odd index, while the three-dimensional checkerboard is monochromatic at every scale. The balanced octahedral calculation is therefore vertex-only unless a different periodic decoration or the ideal-HCP local $3{:}3$ octahedron is specified explicitly.
 
-The next exact dynamics task is the five-channel antipodal-alternating edge-axis system, followed by the four-channel `+++---` mixed-polarity vertex-axis system. These are the smallest unexcluded rigid strata. A certified zero requires all scalar channels, the thirty-root ledger, the positive $D_{uv}$ floor, and the inferred positive scale $R=\kappa\lambda/\beta^2$ to agree. A positive lower bound on either reduced residual over its complete open speed interval would exclude that stratum. The continuous generic-axis charts and non-rigid histories remain separate programs rather than hidden members of this finite special-axis calculation.
+The next exact dynamics task is now a nine-channel rigid stratum. The two natural representatives are the `+++---` edge axis $\mathbf e_x-\mathbf e_z$ and the antipodal-alternating sum-edge or mixed-face axes. A certified zero requires every scalar channel, the thirty-root ledger, the positive $D_{uv}$ floor, and the inferred positive scale $R=\kappa\lambda/\beta^2$ to agree. A positive lower bound over the complete open speed interval would exclude the selected stratum. The eighteen-channel axes, continuous generic-axis charts, and non-rigid histories remain separate programs rather than hidden members of this finite calculation.
 
-Plainly: the theory has advanced from “try other axes” to two exact low-dimensional systems with a complete root count and clear success or failure certificate. The lattice colorings currently in the app do not supply those balanced octahedral words automatically.
+Plainly: the two smallest special-axis systems are now excluded exactly. The next unresolved rigid calculation has nine independent channels; the lattice colorings currently in the app do not supply its balanced octahedral word automatically.
 
 ## Closure Boundary
 
-This packet closes four items: the exact calculation object, the stationary balanced-octahedron chart, the coloured rigid-axis symmetry census, and the complete partner-root criterion for every rigid sub-field-speed octahedral history. It does not close moving balance, non-rigid octahedral motion, shell-complete dynamics, retained EOM-solver evolution, or stability. Release under the EOM solver is admissible only after one prescribed residual actually vanishes with its root ledger certified. Linear stability is admissible only after that balance or a genuine periodic solution exists.
+This packet closes six items: the exact calculation object, the stationary balanced-octahedron chart, the coloured rigid-axis symmetry census, the complete partner-root criterion for every rigid sub-field-speed octahedral history, every rigid vertex-axis octahedral history, and the five-channel antipodal-alternating difference-edge-axis stratum below field speed. It does not close the remaining nine- and eighteen-channel edge-, face-, and generic-axis systems, non-rigid octahedral motion, shell-complete dynamics, retained EOM-solver evolution, or stability. Release under the EOM solver is admissible only after one prescribed residual actually vanishes with its root ledger certified. Linear stability is admissible only after that balance or a genuine periodic solution exists.
 
-Plainly: the bookkeeping and reduction are complete, and stationary octahedra are ruled out. The remaining question is no longer what to calculate; it is whether either of the smallest reduced moving systems has a real zero.
+Plainly: the bookkeeping and reduction are complete, stationary and vertex-axis rigid octahedra are ruled out, and the smallest nonvertex special-axis system also fails. The next unresolved rigid question is whether a nine-channel axis stratum has a real zero.

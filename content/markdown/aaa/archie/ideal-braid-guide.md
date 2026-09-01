@@ -1,6 +1,6 @@
-# A1 Lorentz Geometry Guide
+# Coincident-Midpoint Three-Axis Circular Lorentz Geometry Guide
 
-A1 Lorentz Geometry is the app-facing guide for the standalone prescribed A1 Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
+Coincident-Midpoint Three-Axis Circular Lorentz Geometry is the app-facing guide for the standalone prescribed coincident-midpoint orthogonal-axis braid Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
 
 The app is useful because Lorentz factors can become too abstract too quickly. This lesson puts $\beta_f$, $\gamma_f$, length contraction, relative-time behavior, and oblate spheroidal envelope geometry into one inspectable picture.
 
@@ -15,7 +15,7 @@ Read this alongside:
 
 ## Purpose
 
-The app shows an A1 Noether braid whose velocity-dependent boundary is treated as an oblate spheroidal envelope. The user changes the velocity fraction $\beta_f = v/c_f$ and sees the same factor appear in four linked places:
+The app shows a prescribed coincident-midpoint orthogonal-axis Noether braid whose velocity-dependent boundary is treated as an oblate spheroidal envelope. The user changes the velocity fraction $\beta_f = v/c_f$ and sees the same factor appear in four linked places:
 
 1. the geometry of the flattened braid envelope,
 2. the relative-time readout,
@@ -194,8 +194,8 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | `Axes` | Toggles momentum-frame guides: a short bulk-motion contraction guide along $\hat{\mathbf{n}}$ plus two transverse axes perpendicular to it. |
 | `Pause` / `Resume` | Pauses or resumes the animation. |
 | Home icon | Returns from the standalone lesson to the main webapp. |
-| `Geometry` | Selects the authored geometry record. The current shipped menu contains the A1 geometry. |
-| `Reference orbit` | Sets the reference transverse scale and rescales the displayed Family-A braid from that reference. |
+| `Geometry` | Selects the authored geometry record. The current shipped menu contains the coincident-midpoint orthogonal-axis braid geometry. |
+| `Reference orbit` | Sets the reference transverse scale and rescales the displayed orthogonal-axis three-binary braid from that reference. |
 | $\beta_f=v/c_f$ | Sets the displayed velocity fraction, from rest to the formal field-speed limit. |
 | `Cycle` | Changes animation phase speed only. It does not change $\beta_f$, $\gamma_f$, or the physical factors. |
 

@@ -23,7 +23,7 @@ export function validateLibraryBrowseParams(params) {
     "q",
     "groupBy",
     "cursor",
-    "selected",
+    "assemblyId",
     "modelRevisionSha256",
     "recordSha256",
   ]);
@@ -46,8 +46,9 @@ export function validateLibraryBrowseParams(params) {
 
 export function matchesLibraryFilters(row, params, omitFacet = null) {
   const query = (params.get("q") ?? "").trim().toLowerCase();
-  const textMatch = [row.label, row.alias, ...(row.aliases ?? []), row.id, row.sourceId, row.description].join(" ").toLowerCase().includes(query);
-  const hashMatch = /^[a-f0-9]{8,64}$/.test(query) && row.recordSha256?.startsWith(query);
+  const textMatch = [row.label, row.assemblyId, row.description].join(" ").toLowerCase().includes(query);
+  const hashMatch = /^[a-f0-9]{8,64}$/.test(query) &&
+    (row.recordSha256?.startsWith(query) || row.modelRevisionSha256?.startsWith(query));
   if (query && !textMatch && !hashMatch) return false;
   return Object.keys(LIBRARY_FACETS).every((key) => {
     const selected = params.getAll(key).filter(Boolean);

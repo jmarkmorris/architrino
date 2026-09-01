@@ -1,8 +1,8 @@
-# F6c Full Root-Cover Resource Return
+# asymmetric counter-breathing representative Full Root-Cover Resource Return
 
 Status: `RESOURCE-RETURN`; full 160-cell attempt not launched, 2026-08-27. This planning disposition awaits the separate independent audit of the completed one-cell pilot and review of this document. The [governing root-cover predeclaration](2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md) fixes an unchanged, inclusive 1,800-second full-run ceiling and requires return without launch when its prescribed pilot-based projection does not fit. No larger budget, parallel worker count, replacement scientific subject or automatic retry is selected here.
 
-Plainly: the first cell completed successfully, but its measured cost does not pass the existing rule for starting the full calculation. This is a resource return, not a rejection of the F6c geometry.
+Plainly: the first cell completed successfully, but its measured cost does not pass the existing rule for starting the full calculation. This is a resource return, not a rejection of the asymmetric counter-breathing representative geometry.
 
 ## Bound Pilot And Unchanged Contract
 
@@ -71,7 +71,7 @@ The unexecuted full target remains the same 161 exact future knots forming 160 c
 
 Plainly: the successful pilot retains its one-cell scope. The full calculation is a separate complete attempt, and none of its unperformed work is marked passed.
 
-The following existing operating limits are preserved, not newly authorized: 1,800 seconds inclusive of capture through final publication and closed owned processes; one serial evaluation worker followed by one independent comparison, zero EOM workers and no overlapping F5 response pilot; flushed 15-second heartbeats; conservative owned-process resident-memory monitoring no more than one second apart with the existing 2 GiB stop; host admission of at least 40 percent reported free memory and 64 GiB available disk, with a stop below 20 percent or 16 GiB during work; two-second memory-query timeout; 64 MiB per named raw/comparison file and 16 MiB combined operational logs/rejection diagnostics. Monitoring loss, malformed observations, source drift, failed comparison, unresolved rows, publication failure or incomplete cleanup remain failures. Fresh write-once outputs, no automatic retry and no overwrite/resume remain mandatory under the [one-cell resource plan](2026-08-27-f6c-root-cover-pilot-resource-plan.md) and governing predeclaration.
+The following existing operating limits are preserved, not newly authorized: 1,800 seconds inclusive of capture through final publication and closed owned processes; one serial evaluation worker followed by one independent comparison, zero EOM workers and no overlapping phase-varying display representative response pilot; flushed 15-second heartbeats; conservative owned-process resident-memory monitoring no more than one second apart with the existing 2 GiB stop; host admission of at least 40 percent reported free memory and 64 GiB available disk, with a stop below 20 percent or 16 GiB during work; two-second memory-query timeout; 64 MiB per named raw/comparison file and 16 MiB combined operational logs/rejection diagnostics. Monitoring loss, malformed observations, source drift, failed comparison, unresolved rows, publication failure or incomplete cleanup remain failures. Fresh write-once outputs, no automatic retry and no overwrite/resume remain mandatory under the [one-cell resource plan](2026-08-27-f6c-root-cover-pilot-resource-plan.md) and governing predeclaration.
 
 Plainly: nothing in this return relaxes the time, machine-safety or evidence rules. Since the launch test already fails, no full-run output directory, worker or numerical job is created here.
 

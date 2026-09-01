@@ -1,4 +1,4 @@
-# F6c Parent-Specific Emission Refinement Reference
+# asymmetric counter-breathing representative Parent-Specific Emission Refinement Reference
 
 Status: derived conditional comparison contract for independent review, 2026-08-27. This document supplies neither an implemented comparison nor execution authorization. Its direct consumer is the parent-specific comparison identified by the [accepted four-request diagnostic](2026-08-27-braid-search-launch-readiness.md#independently-accepted-actual-first-four-genuine-requests).
 
@@ -50,6 +50,6 @@ Freeze and independently review the new reference and its controls before implem
 
 All fifteen existing scientific-authority flags remain false. Conditional conformance authenticates neither the source generation nor the premises, and supplies no historical trajectory identity, metric, score, EOM execution, equilibrium, retention or physical claim. A missed original allowance or closed piece, wrong parent or time token, incorrect strict-grid branch, unconstrained face masquerading as proved, changed consumed source, or successful result after an incomplete prefix falsifies the corresponding comparison claim.
 
-Plainly: this prepares one independently checkable refinement step. It does not declare F6c successful, unsuccessful or ready for a large parallel launch.
+Plainly: this prepares one independently checkable refinement step. It does not declare asymmetric counter-breathing representative successful, unsuccessful or ready for a large parallel launch.
 
 Closure goal: independently validate the generic parent comparison before a separate parent-one proposer and bounded execution.

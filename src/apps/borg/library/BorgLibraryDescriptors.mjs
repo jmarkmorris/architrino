@@ -86,6 +86,10 @@ function breathingState(operators) {
 }
 
 export function describeLibraryRecord(record, catalogEntry, recordSha256, classifications = null) {
+  if (record.assemblyId !== catalogEntry.assemblyId ||
+      record.modelRevisionSha256 !== catalogEntry.modelRevisionSha256) {
+    throw new TypeError("Library record identity does not match its exact catalog entry.");
+  }
   const dataset = createEomHistoryDataset(record);
   const bounds = describeBounds(recordControlPoints(dataset));
   const prescribed = record.provenance?.prescribedGeometry;
@@ -102,16 +106,22 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
     : { value: "unavailable", reason: "The source must describe every recorded architrino before comparing assembly-centered radii." };
   const circleOccupancy = describeBorgCircleOccupancy(dataset);
   const braidDimension = describeBraidDimensionality(composition, coordinates, dataset);
-  const confirmedSpindle = recordClassification(classifications, recordSha256, "spindle");
+  const confirmedSpindle = recordClassification(
+    classifications,
+    record.assemblyId,
+    record.modelRevisionSha256,
+    "spindle",
+  );
   const shapes = allCircular ? ["circles"] : ["unavailable"];
   if (confirmedSpindle) { if (shapes[0] === "unavailable") shapes.length = 0; shapes.push("spindle"); }
   const facets = { count: String(dataset.worldlines.length), braidCount: composition.braidCount, breathing: completeOperators ? breathingState(operators) : "unavailable", radii: radii.value,
     circleOccupancy: circleOccupancy.value, assemblySpan: bounds.dimension, braidDimension: braidDimension.value, shape: shapes, speedPolicy };
   const label = catalogEntry.label;
   const summary = {
-    id: catalogEntry.id, sourceId: record.sourceId, label, alias: catalogEntry.label,
-    aliases: [...new Set([record.title, prescribed?.taxonomy?.displayLabel, coordinates?.identity?.displayLabel]
-      .filter((value) => typeof value === "string" && value.length > 0 && value !== catalogEntry.label))],
+    id: catalogEntry.assemblyId,
+    assemblyId: catalogEntry.assemblyId,
+    modelRevisionSha256: catalogEntry.modelRevisionSha256,
+    label,
     recordUrl: catalogEntry.recordUrl, recordSha256, facets, bounds,
     descriptorVersion: LIBRARY_DESCRIPTOR_VERSION, window: dataset.window,
     classificationRevision: classifications?.revision ?? null, classificationSource: classifications?.source ?? null,
@@ -122,7 +132,7 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
     reasons: {
       count: "Number of persistent worldlines in the sealed record.",
       braidCount: composition.reason,
-      breathing: "Moving-circular operators with fixed centers have fixed radii. Nonzero F6c radial or axial harmonics mark breathing. Other operators remain unclassified.",
+      breathing: "Moving-circular operators with fixed centers have fixed radii. Nonzero declared radial or axial harmonics mark breathing. Other operators remain unclassified.",
       radii: radii.reason,
       circleOccupancy: circleOccupancy.reason,
       assemblySpan: `Affine rank of all retained cubic control points over the complete record window, tolerance ${bounds.tolerance}. This describes recorded paths, not dynamical stability.`,
@@ -140,7 +150,10 @@ export function createLibraryPreview(described, sampleCount = 321) {
   const frames = dataset.createFrameSamples({ start, end, frameCount: sampleCount });
   const trails = describeBorgOrbitTrails(dataset);
   return {
-    id: summary.id, recordSha256: summary.recordSha256, bounds: summary.bounds, start, end,
+    assemblyId: summary.assemblyId,
+    modelRevisionSha256: summary.modelRevisionSha256,
+    recordSha256: summary.recordSha256,
+    bounds: summary.bounds, start, end,
     sampleCount, interpolation: "retained-cubic samples; no forward evolution",
     paths: dataset.worldlines.map((line, index) => {
       const trail = trails.get(line.id);

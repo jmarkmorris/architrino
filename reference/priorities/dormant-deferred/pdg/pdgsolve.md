@@ -182,7 +182,7 @@ So the design rule is: the solver core reasons only over explicit admitted assem
 
 `pdgsolve` should model the wildcard-like Noether freedom as a bounded boundary augmentation, not as a solver-native composite, grouping label, dissociation target, or association target.
 
-Define one pro/anti-orientation two-braid augmentation unit by the explicit two-assembly multiset $N_{2\mathcal B} = \mathbf{1}_{\mathrm{pro\ Noether\ braid}} + \mathbf{1}_{\mathrm{anti\ Noether\ braid}}$. The `noether_pair` policy token remains a compatibility identifier for this recipe; it does not establish polarity conjugation, Family C, or photon identity.
+Define one pro/anti-orientation two-braid augmentation unit by the explicit two-assembly multiset $N_{2\mathcal B} = \mathbf{1}_{\mathrm{pro\ Noether\ braid}} + \mathbf{1}_{\mathrm{anti\ Noether\ braid}}$. The `noether_pair` policy token remains a compatibility identifier for this recipe; it does not establish polarity conjugation, two-component circular configurations, or photon identity.
 
 A raw request still enters as requested boundary multisets $R_{\mathrm{req}}$ and $T_{\mathrm{req}}$.
 

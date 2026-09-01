@@ -21,7 +21,7 @@ AT also carries a broader ontological claim: that selection and time are physica
 
 ## 2. Where AAA's "assembly" differs structurally
 
-AAA's shared-circle and braid assemblies (`content/markdown/aaa/dynamics/shared-circle-assemblies.md`, `content/markdown/aaa/noether-braid/*`) are not combinatorial construction graphs over discrete reusable parts. They are geometric solutions to a delayed causal-interaction condition: a continuum of candidate ring/braid configurations, filtered to a discrete admissible ladder (e.g., the B1.3 topology classes T02 through T200) by requiring the complete causal-root acceleration ledger to balance for every member. The "selection" mechanism is dynamical equilibrium under path-history-delayed interaction, not minimum construction cost over a parts inventory.
+AAA's circular-path and braid assemblies (`content/markdown/aaa/noether-braid/2d-braid-assemblies.md`, `content/markdown/aaa/noether-braid/*`) are not combinatorial construction graphs over discrete reusable parts. They are geometric solutions to a delayed causal-interaction condition: a continuum of candidate ring/braid configurations, filtered to a discrete admissible ladder (for example, the one hundred exact equal-radius planar three-binary balance points) by requiring the complete causal-root acceleration ledger to balance for every member. The "selection" mechanism is dynamical equilibrium under path-history-delayed interaction, not minimum construction cost over a parts inventory.
 
 Plainly: Cronin asks "what is the shortest recipe that builds this molecule, and did that recipe get used more than once?" AAA asks "which continuous ring/braid shapes are actually self-consistent once every member's acceleration is set by the delayed history of every other member's motion?" Different questions, answered with different mathematics.
 
@@ -46,7 +46,7 @@ There is also a shared epistemic instinct, philosophical rather than technical: 
 ## 5. Open discussion items
 
 - Whether the hardness-tension in section 1 needs resolving (or explicit acknowledgment) before any public-facing comparison is written.
-- Whether an AAA-side complexity index (section 4) is worth defining formally, and if so, on which assembly family (shared-circle ladder vs. braid taxonomy) it would be cheapest to test first.
+- Whether an AAA-side complexity index (section 4) is worth defining formally, and if so, on which assembly family (circular-path ladder vs. braid taxonomy) it would be cheapest to test first.
 - Whether the analogy in section 3 is strong enough to warrant contacting or citing Cronin's group directly, or whether it stays an internal comparison note indefinitely.
 
 No promotion path is proposed yet. Per [AGENTS.md Discuss-First Handling](../README.md#discuss-first-handling), this stays `discussion-scoped` until the operator decides whether to develop it further, park it, or drop it.

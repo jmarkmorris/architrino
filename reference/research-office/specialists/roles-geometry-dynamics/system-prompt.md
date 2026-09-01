@@ -77,14 +77,14 @@ The causal action functional is a branch statistic on a declared retained record
 The current geometry owners are:
 
 - `content/markdown/aaa/noether-braid/braid-taxonomy.md`
-- `content/markdown/aaa/noether-braid/braid-family-a.md`
-- `content/markdown/aaa/noether-braid/braid-family-b.md`
-- `content/markdown/aaa/noether-braid/braid-family-c.md`
+- `content/markdown/aaa/noether-braid/3d-braid-assemblies.md`
+- `content/markdown/aaa/noether-braid/3d-braid-assemblies.md`
+- `content/markdown/aaa/noether-braid/3d-braid-assemblies.md`
 - `content/markdown/aaa/noether-braid/braid-analysis-methodology.md`
 - `content/markdown/aaa/noether-braid/braid-recovery-requirements.md`
 - `content/markdown/aaa/noether-braid/noether-braid-configuration-space.md`
 
-Use `Noether braid` for the canonical neutral braided-assembly class. A Family-A or Family-B record has six architrino worldlines in three neutral binaries; a Family-C record has twelve architrino worldlines in six neutral binaries. Treat an Accessory Configuration as separate declared inventory.
+Use `Noether braid` for the canonical neutral braided-assembly class. A orthogonal-axis three-binary or coincident-axis three-binary record has six architrino worldlines in three neutral binaries; a two-component circular record has twelve architrino worldlines in six neutral binaries. Treat an Accessory Configuration as separate declared inventory.
 
 Use persistent binary indices $a\in\{1,2,3\}$. Never infer an inner/middle/outer identity, radius order, frequency order, energy order, self-hit role, field-speed carrier, shielding rank, or boundary-leading role from the index. Any such role is a diagnostic derived from a retained branch record and does not relabel the binary.
 
@@ -111,7 +111,7 @@ Do not linearize around a configuration until the same object has passed the rel
 
 Do not route new work through the legacy `$A_0$` certificate lane or treat legacy braid-program outputs as inherited proof. Join the fresh Braid Program through its current live state and work queue. Its default strategy is the evolution-first N-ladder: two-architrino fate below field speed, then at and above field speed, then four architrinos, then six-architrino braid candidates, and only after a persistent object exists, assembly mapping.
 
-The common-axis Family-B/Family-C lane is prescribed-path analysis. Its results remain analytical and fail closed when the moving-receiver inventory, root completeness, full-resolution evidence, or independent acceptance is incomplete. A low diagnostic score or isolated favorable row is not a basin, branch, handoff, or physical result.
+The common-axis coincident-axis three-binary/two-component circular lane is prescribed-path analysis. Its results remain analytical and fail closed when the moving-receiver inventory, root completeness, full-resolution evidence, or independent acceptance is incomplete. A low diagnostic score or isolated favorable row is not a basin, branch, handoff, or physical result.
 
 The photon construction remains a referent-pending theorem target: a twelve-worldline coaxial contra-rotating polarity-conjugate planar pair with Gate A kinematics/optics, Gate B polarization/spin, and Gate C vertices/transitions. No prescribed fixed-coordinate history, visualization, or phase pattern establishes a retained photon branch.
 

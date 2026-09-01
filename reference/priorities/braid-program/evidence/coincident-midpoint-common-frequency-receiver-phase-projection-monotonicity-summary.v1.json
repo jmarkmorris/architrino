@@ -1,0 +1,317 @@
+{
+  "schema": "prescribed-path-analysis/coincident-midpoint-common-frequency-receiver-phase-projection-monotonicity-summary.v1",
+  "scientificIdentity": {
+    "assemblyId": "asm-2a289a6fe32f64922ab71bae973acc80",
+    "modelRevisionSha256": "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6"
+  },
+  "evaluator": {
+    "id": "coincident-midpoint-common-frequency-receiver-phase-projection-monotonicity-certifier",
+    "version": 1,
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "eomIntervalMachineryInvoked": false,
+    "eomCampaignInvoked": false,
+    "diagnosticOnly": true
+  },
+  "projectionProtocolHash": "d528d27f660b0e76eff2d7dc5f717420d2dfcf396b82befbdc719911fe767405",
+  "sealedInputs": {
+    "baseProtocol": {
+      "path": "src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-continuous-ratio-phase-root-inventory-protocol.v1.json",
+      "sha256": "b87b16d140c67608977ac9bb7cf21175936808d0b9617b41778e150c904f4a4f"
+    },
+    "completeInventorySummary": {
+      "path": "reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-root-sheet-monotonic-enclosure-treatment-summary.v1.json",
+      "summaryHash": "f37db3ed32ff38060e3b837d73644f9f219db9fb6543414297bcb0e902aa7e4d",
+      "resultHash": "fe89965435198af812153696e6278adf058c1cbae507a948630fd1adda8401f4"
+    },
+    "structuralLedgerSummary": {
+      "path": "reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-prescribed-structural-root-ledger-summary.v1.json",
+      "ledgerProtocolHash": "63c1cfdada32585279a053b33946ac7bb3608fdc8a92e97111e720c76409b87c",
+      "summaryHash": "5d5a659a497fa644aefe0c0dff13920504cd33e351414120e3d0044d304df3bf",
+      "resultHash": "addd5e758b2d6be181e804753385202fa7c71b7543e0768622cb8da7609aae74",
+      "rawLedgerHash": "aa67b33f8b06ac8b8ce3f54d71b3003344bf2ec22892650997867d64c3b73388"
+    }
+  },
+  "resultHash": "3cea3f991ba78f8b327cbf11c6b83a85162104a92220965e8f0921d73d5ed11d",
+  "relativePhaseLock": {
+    "phaseBaseline": [
+      "0",
+      "2*pi/3",
+      "4*pi/3"
+    ],
+    "varyingCoordinate": "common-cycle-position-only",
+    "emissionPhaseCoordinate": "epsilon=(theta-delta)-modulo-two-pi",
+    "relativePhaseOffsetsVary": false,
+    "geometryFamilyChanges": false
+  },
+  "status": {
+    "code": "evaluated-diagnostic",
+    "score": null,
+    "reason": "continuous-positive-projection-certificate-complete-for-six-emission-fixed-channels"
+  },
+  "continuousConclusion": "the-receiver-phase-projection-is-strictly-increasing-on-each-declared-emission-fixed-root-sheet.v1",
+  "resources": {
+    "declared": {
+      "squaredResidualExclusionFloor": 1e-10,
+      "squaredDelayDerivativeNegativityFloor": 1e-8,
+      "intervalPaddingUlps": 4,
+      "initialRatioSubdivisions": 2,
+      "initialEmissionPhaseSubdivisions": 24,
+      "maximumSubdivisionDepth": 18,
+      "maximumBoxesPerRepresentative": 20000,
+      "maximumBoxesPerPacket": 60000,
+      "maximumIntervalEvaluationsPerPacket": 500000,
+      "minimumAlphaWidth": 0.0000152587890625,
+      "minimumEmissionPhaseWidth": 0.00009587379924285257,
+      "minimumDelayWidth": 0.000034332275390625,
+      "splitPolicy": "largest-active-parameter-normalized-width.v1",
+      "dispositions": [
+        "certified-root-free-box",
+        "certified-root-capable-positive-projection-box",
+        "counterexample-nonpositive-projection-box",
+        "unresolved-projection-sign-box",
+        "unresolved-resource-box"
+      ]
+    },
+    "analyticDomainCertificates": 3,
+    "intervalPartitionUsedForConclusion": false,
+    "intervalFallbackRetainedAsFailClosedControl": true,
+    "executedBoxes": 0,
+    "intervalEvaluations": 0,
+    "executionLimits": {
+      "maximumBoxesPerRepresentative": 20000,
+      "maximumBoxesPerPacket": 60000
+    }
+  },
+  "controls": {
+    "baseProtocol": {
+      "id": "coincident-midpoint-common-frequency-projection-base-protocol-provenance.v1",
+      "expectedHash": "b87b16d140c67608977ac9bb7cf21175936808d0b9617b41778e150c904f4a4f",
+      "observedHash": "b87b16d140c67608977ac9bb7cf21175936808d0b9617b41778e150c904f4a4f",
+      "passed": true
+    },
+    "complete36ChannelInventory": {
+      "id": "coincident-midpoint-common-frequency-projection-sealed-36-channel-inventory.v1",
+      "orderedChannelCount": 36,
+      "unresolvedChannelCount": 0,
+      "passed": true
+    },
+    "structuralIndependentResidualAndProvenance": {
+      "id": "coincident-midpoint-common-frequency-projection-sealed-structural-ledger-control.v1",
+      "ledgerProtocolHash": "63c1cfdada32585279a053b33946ac7bb3608fdc8a92e97111e720c76409b87c",
+      "rawLedgerHash": "aa67b33f8b06ac8b8ce3f54d71b3003344bf2ec22892650997867d64c3b73388",
+      "sampledRootCount": 5204,
+      "maximumIndependentNormalizedResidual": 2.5089753066770497e-15,
+      "passed": true
+    },
+    "fixedRelativePhases": {
+      "id": "coincident-midpoint-common-frequency-projection-fixed-relative-phase-control.v1",
+      "expected": [
+        "0",
+        "2*pi/3",
+        "4*pi/3"
+      ],
+      "observed": [
+        "0",
+        "2*pi/3",
+        "4*pi/3"
+      ],
+      "varyingCoordinate": "common-cycle-position-only",
+      "passed": true
+    },
+    "syntheticProjectionClassifier": {
+      "id": "coincident-midpoint-common-frequency-projection-classifier-positive-negative-controls.v1",
+      "rows": [
+        {
+          "name": "positive",
+          "expectedDisposition": "certified-root-capable-positive-projection-box",
+          "observedDisposition": "certified-root-capable-positive-projection-box",
+          "passed": true
+        },
+        {
+          "name": "negative",
+          "expectedDisposition": "counterexample-nonpositive-projection-box",
+          "observedDisposition": "counterexample-nonpositive-projection-box",
+          "passed": true
+        },
+        {
+          "name": "indeterminate",
+          "expectedDisposition": "unresolved-projection-sign-box",
+          "observedDisposition": "unresolved-projection-sign-box",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    "endpointInversion": {
+      "id": "coincident-midpoint-common-frequency-projection-endpoint-inversion-control.v1",
+      "comparisonCount": 324,
+      "maximumEnclosureEndpointDifference": 0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "phaseSeam": {
+      "id": "coincident-midpoint-common-frequency-projection-emission-phase-seam-control.v1",
+      "replayCount": 36,
+      "maximumEnclosureEndpointDifference": 1.865174681370263e-14,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "independentWitness": {
+      "id": "coincident-midpoint-common-frequency-projection-independent-witness-recomputation.v1",
+      "witnessCount": 12,
+      "finiteDifferenceStep": 9.5367431640625e-7,
+      "maximumNormalizedResidual": 4.1107755093159406e-16,
+      "normalizedResidualFloor": 1e-9,
+      "maximumReceptionSquaredDerivativeDifference": 2.3372859203618646e-10,
+      "maximumEmissionSquaredDerivativeDifference": 3.6065195274659345e-10,
+      "derivativeDifferenceTolerance": 0.000001,
+      "passed": true
+    },
+    "resourceExhaustion": {
+      "id": "coincident-midpoint-common-frequency-projection-resource-exhaustion-negative-control.v1",
+      "status": "drawn-not-evaluated",
+      "score": null,
+      "unresolvedBoxCount": 49,
+      "passed": true
+    }
+  },
+  "targetChannelResults": [
+    {
+      "channelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+      "representativeChannelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+      "reuse": false,
+      "status": "evaluated-diagnostic",
+      "continuousProjectionDerivativeLowerBound": 0.0003619418178527802,
+      "continuousProjectionDerivativeUpperBound": 736
+    },
+    {
+      "channelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "representativeChannelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "reuse": false,
+      "status": "evaluated-diagnostic",
+      "continuousProjectionDerivativeLowerBound": 0.0012531328320802004,
+      "continuousProjectionDerivativeUpperBound": 399
+    },
+    {
+      "channelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+      "representativeChannelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+      "reuse": false,
+      "status": "evaluated-diagnostic",
+      "continuousProjectionDerivativeLowerBound": 0.0012531328320802004,
+      "continuousProjectionDerivativeUpperBound": 399
+    },
+    {
+      "channelId": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-2-endpoint-1",
+      "representativeChannelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+      "reuse": true,
+      "status": "evaluated-diagnostic",
+      "continuousProjectionDerivativeLowerBound": 0.0003619418178527802,
+      "continuousProjectionDerivativeUpperBound": 736
+    },
+    {
+      "channelId": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "representativeChannelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+      "reuse": true,
+      "status": "evaluated-diagnostic",
+      "continuousProjectionDerivativeLowerBound": 0.0012531328320802004,
+      "continuousProjectionDerivativeUpperBound": 399
+    },
+    {
+      "channelId": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+      "representativeChannelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "reuse": true,
+      "status": "evaluated-diagnostic",
+      "continuousProjectionDerivativeLowerBound": 0.0012531328320802004,
+      "continuousProjectionDerivativeUpperBound": 399
+    }
+  ],
+  "representativeSummaries": [
+    {
+      "channelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+      "status": "evaluated-diagnostic",
+      "continuousProjectionDerivativeLowerBound": 0.0003619418178527802,
+      "continuousProjectionDerivativeUpperBound": 736,
+      "counts": {
+        "evaluatedBoxes": 0,
+        "rootFreeBoxes": 0,
+        "positiveProjectionBoxes": 1,
+        "unresolvedBoxes": 0,
+        "counterexampleEnclosureBoxes": 0,
+        "maximumDepthReached": 0,
+        "delayContractionEvaluations": 0
+      },
+      "unresolved": [],
+      "counterexampleEnclosures": [],
+      "rawLedgerHash": "f8b2b0f97256fadbd03468e79a499101bd5f4d1968a97047d5e2ecb0e8e2160c"
+    },
+    {
+      "channelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "status": "evaluated-diagnostic",
+      "continuousProjectionDerivativeLowerBound": 0.0012531328320802004,
+      "continuousProjectionDerivativeUpperBound": 399,
+      "counts": {
+        "evaluatedBoxes": 0,
+        "rootFreeBoxes": 0,
+        "positiveProjectionBoxes": 1,
+        "unresolvedBoxes": 0,
+        "counterexampleEnclosureBoxes": 0,
+        "maximumDepthReached": 0,
+        "delayContractionEvaluations": 0
+      },
+      "unresolved": [],
+      "counterexampleEnclosures": [],
+      "rawLedgerHash": "cc1075a2317e509f6b644111532140fdd8379300c37d1966f4176ed72da477a3"
+    },
+    {
+      "channelId": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+      "status": "evaluated-diagnostic",
+      "continuousProjectionDerivativeLowerBound": 0.0012531328320802004,
+      "continuousProjectionDerivativeUpperBound": 399,
+      "counts": {
+        "evaluatedBoxes": 0,
+        "rootFreeBoxes": 0,
+        "positiveProjectionBoxes": 1,
+        "unresolvedBoxes": 0,
+        "counterexampleEnclosureBoxes": 0,
+        "maximumDepthReached": 0,
+        "delayContractionEvaluations": 0
+      },
+      "unresolved": [],
+      "counterexampleEnclosures": [],
+      "rawLedgerHash": "7867d6f75c7c4cf39f894ee6ff4ac252c210f10f3d4e0701b9508bde7302a4a1"
+    }
+  ],
+  "rawLedger": {
+    "representativeCount": 3,
+    "rowCount": 3,
+    "hash": "395cf3a98f8bcc683d7448e93de8d0df210aa14a208c98946aa005582c495fa8",
+    "location": "full result artifact bound by resultHash"
+  },
+  "claimBoundary": {
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "eomIntervalMachineryInvoked": false,
+    "eomCampaignInvoked": false,
+    "diagnosticOnly": true,
+    "score": null,
+    "candidateSelection": false,
+    "excludedClaims": [
+      "retention",
+      "stability",
+      "binding",
+      "physical-candidate-selection",
+      "physical-realization",
+      "physical-superluminal-transport",
+      "energy",
+      "action",
+      "angular-momentum-dynamics",
+      "radiation",
+      "pressure",
+      "general-relativity-recovery"
+    ]
+  },
+  "summaryHash": "f862fe2bc950d7026e0729b9a8dd7f9cbe7b992a16ae5c64050c207f7cd0947a"
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "braid-program/subfield-circular-root-ladder-resource-plan.v1",
+  "resourceBudgetReviewed": true,
+  "independentReviewStatus": "accepted",
+  "h3EvidenceEligible": false,
+  "rungs": [8, 32, 128],
+  "maximumConcurrentCandidates": 4,
+  "totalEomWorkers": 4,
+  "eomWorkersPerCandidate": 1,
+  "wallLimitSecondsPerCandidateRung": 1800,
+  "cohortWallLimitPrecedence": "accepted-hash-bound-cohort-override-otherwise-default",
+  "resourceObservation": {
+    "cadenceSeconds": 15,
+    "commandTimeoutMs": 2000,
+    "memoryPressureCommand": "/usr/bin/memory_pressure",
+    "minimumSystemFreePercent": 20,
+    "planningMemoryBytesPerCandidate": 2147483648,
+    "planningSharedMemoryBytes": 1073741824,
+    "planningOutputBytes": 171798691840,
+    "minimumFreeDiskBytesAtLaunch": 171798691840,
+    "minimumFreeDiskBytesDuringRun": 17179869184,
+    "onContact": "stop-new-dispatch-cancel-owned-active-jobs-preserve-resource-interruption"
+  },
+  "candidates": ["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"],
+  "resourceReturns": [],
+  "cohorts": [
+    {
+      "id": "six-member-prescribed-circular",
+      "candidates": ["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary"],
+      "wallLimitSeconds": 1800,
+      "resourceReturn": null
+    },
+    {
+      "id": "twelve-member-two-component-circular",
+      "candidates": ["coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"],
+      "wallLimitSeconds": 3600,
+      "resourceReturn": {
+        "path": "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-parallel-resource-plan.md",
+        "sha256": "0a06ab813210bc9ca4d89999d4212f4bab8b93950343239e35955b5ad8757026",
+        "independentReviewStatus": "accepted"
+      }
+    }
+  ],
+  "pilotAdmission": {
+    "path": ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/serial-pilot-20260827-v1/outer-admission.json",
+    "sha256": "ded3e09eb666007aa0067e7871e5519d4a3dc944cd619555227ccead8726ee84"
+  },
+  "buildReceipt": {
+    "path": ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/recorded-build-20260827-v2/preparation.json",
+    "sha256": "be6f2e43cc2c608a568d128c79535eacc628ea80cfc62cfe273af7c434243866"
+  },
+  "runnerSha256": "300578e8651160a3f8ee25a8e8f887b5137eff6b05b155dc36f4c5d951480bcc",
+  "dispatcherSha256": "5aa7162a098f315dff477a1d38d301746f146c1e36a2f79a366f1caa123b3bc4"
+}

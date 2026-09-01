@@ -5,15 +5,15 @@ import {
   sha256Canonical,
 } from "./AnalyticalBraidEvaluator.mjs";
 import {
-  validateB1CompleteCycleProbeProtocol,
-} from "./B1CompleteCycleProbeProtocol.mjs";
+  validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol,
+} from "./CoincidentAxisThreeBinaryCompleteCycleProbeProtocol.mjs";
 import {
   buildCompleteCycleEndpointProtocol,
   comparePointwiseMemberResidualSearchScreens,
   reduceCompleteCycleEndpointPacket,
 } from "./CompleteCycleAnalyticalCampaign.mjs";
 import {
-  sampleFullConstraintPreservingTaxonomy,
+  sampleFullConstraintPreservingConfiguration,
   sampleLocalReferenceNeighborhood,
 } from "./CompactMonteCarloCampaign.mjs";
 import {
@@ -24,16 +24,19 @@ import {
   createPrescribedBraidExactSourceRecord,
   validatePrescribedBraidSpec,
 } from "../../scripts/eom/generate-prescribed-braid-record.mjs";
+import {
+  deriveAssemblyScientificIdentity,
+} from "../prescribed-geometry/AssemblyScientificIdentity.mjs";
 
 export const ENDPOINT_RESIDUAL_SEARCH_SCHEMA =
-  "prescribed-path-analysis/endpoint-residual-search-campaign.v1";
+  "prescribed-path-analysis/endpoint-residual-search-campaign.v2";
 export const ENDPOINT_RESIDUAL_SEARCH_VERSION =
-  "prescribed-record-analytics/endpoint-residual-search-campaign.v1";
+  "prescribed-record-analytics/endpoint-residual-search-campaign.v2";
 
 const DEFAULT_STRATA = Object.freeze([
   Object.freeze({ stratumId: "catalog-reference", sampler: "reference", count: 1 }),
   Object.freeze({ stratumId: "local-neighborhood", sampler: "local", count: 2 }),
-  Object.freeze({ stratumId: "full-bounded-taxonomy", sampler: "full", count: 3 }),
+  Object.freeze({ stratumId: "full-bounded-exact-configuration", sampler: "full", count: 3 }),
 ]);
 
 function withoutMeasuredTiming(value) {
@@ -70,7 +73,7 @@ function sampleForStratum({ candidate, seed, stratum, stratumOrdinal }) {
   }
   const sampler = stratum.sampler === "local"
     ? sampleLocalReferenceNeighborhood
-    : sampleFullConstraintPreservingTaxonomy;
+    : sampleFullConstraintPreservingConfiguration;
   return sampler({
     candidate,
     seed: `${seed}/${stratum.stratumId}`,
@@ -159,7 +162,7 @@ function compactScreen(screen) {
       screen.falsifiedAsExactIsolatedPrescribedHistory,
     branchExistenceClaim: screen.branchExistenceClaim,
     returnSymmetryClaim: screen.returnSymmetryClaim,
-    taxonomyClaim: screen.taxonomyClaim,
+    configurationExistenceClaim: screen.taxonomyClaim,
     adjudicationThreshold: screen.adjudicationThreshold,
     windows: screen.windows,
     searchGuidance: screen.searchGuidance,
@@ -229,15 +232,24 @@ export function evaluateEndpointResidualSearchCase({
   stratumOrdinal,
   refinement = "screening",
 } = {}) {
-  const protocol = validateB1CompleteCycleProbeProtocol(rawProtocol);
+  const protocol = validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol(rawProtocol);
   const started = performance.now();
   try {
     const sourceSpecHash = sha256Canonical(sampled.spec);
+    const sampledIdentity = deriveAssemblyScientificIdentity(sampled.spec);
     const sourceRecord = validateExactPrescribedSourceRecord(
-      createPrescribedBraidExactSourceRecord(sampled.spec, {
-        sourceHash: sourceSpecHash,
-        generatingSpec: candidate.declaration.specPath,
-      }),
+      {
+        ...createPrescribedBraidExactSourceRecord(sampled.spec, {
+          sourceHash: sourceSpecHash,
+          generatingSpec: candidate.declaration.specPath,
+        }),
+        sourceSlug: candidate.declaration.sourceSlug,
+        referenceConfigurationIdentity: {
+          assemblyId: candidate.declaration.assemblyId,
+          modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+        },
+        scientificIdentityPreimage: sampledIdentity.canonicalModel,
+      },
     );
     const primary = evaluateResolution({
       sourceRecord,
@@ -262,8 +274,13 @@ export function evaluateEndpointResidualSearchCase({
     return {
       caseId:
         `${candidate.declaration.candidateId}/${stratumId}-${stratumOrdinal}`,
-      familyId: candidate.declaration.familyId,
-      memberId: candidate.declaration.memberId,
+      assemblyId: sampled.spec.identity.assemblyId,
+      modelRevisionSha256: sampled.spec.identity.modelRevisionSha256,
+      sourceSlug: candidate.declaration.sourceSlug,
+      referenceConfigurationIdentity: {
+        assemblyId: candidate.declaration.assemblyId,
+        modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+      },
       candidateId: candidate.declaration.candidateId,
       seed,
       stratumId,
@@ -285,14 +302,19 @@ export function evaluateEndpointResidualSearchCase({
       resolutionComparison: comparison,
       measuredWallSeconds: (performance.now() - started) / 1_000,
       evidenceDisposition:
-        "diagnostic prescribed-path endpoint evaluation only; no path evolution, EOM-solver branch, stability, retention, or taxonomy-existence claim",
+        "diagnostic prescribed-path endpoint evaluation only; no path evolution, EOM-solver branch, stability, retention, or configuration-existence claim",
     };
   } catch (error) {
     return {
       caseId:
         `${candidate.declaration.candidateId}/${stratumId}-${stratumOrdinal}`,
-      familyId: candidate.declaration.familyId,
-      memberId: candidate.declaration.memberId,
+      assemblyId: sampled.spec.identity.assemblyId,
+      modelRevisionSha256: sampled.spec.identity.modelRevisionSha256,
+      sourceSlug: candidate.declaration.sourceSlug,
+      referenceConfigurationIdentity: {
+        assemblyId: candidate.declaration.assemblyId,
+        modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+      },
       candidateId: candidate.declaration.candidateId,
       seed,
       stratumId,
@@ -331,7 +353,7 @@ export function createEndpointResidualSearchProtocol(
   protocol.protocolId = `${protocol.protocolId}-${suffix}`;
   protocol.completeCycle.primary.timeSamples = primaryTimeSamples;
   protocol.completeCycle.refined.timeSamples = refinedTimeSamples;
-  return validateB1CompleteCycleProbeProtocol(protocol);
+  return validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol(protocol);
 }
 
 function rankedEligibleCases(cases) {
@@ -367,7 +389,7 @@ function campaignSummary(cases) {
       summedCancellationHidden.length,
     leadingCases: eligible.slice(0, 10).map((row) => ({
       caseId: row.caseId,
-      memberId: row.memberId,
+      sourceSlug: row.sourceSlug,
       stratumId: row.stratumId,
       stratumOrdinal: row.stratumOrdinal,
       refinedFullCyclePeak:
@@ -397,7 +419,7 @@ function campaignSummary(cases) {
       }, new Map()).entries()].sort(),
     ),
     claimBoundary:
-      "diagnostic prescribed-path endpoint coverage only; near-zero means only not falsified on the sampled grid and no branch, stability, retention, or taxonomy-existence claim",
+      "diagnostic prescribed-path endpoint coverage only; near-zero means only not falsified on the sampled grid and no branch, stability, retention, or configuration-existence claim",
   };
 }
 
@@ -411,7 +433,7 @@ export function runEndpointResidualSearchCampaign({
   if (!Array.isArray(candidates) || candidates.length === 0) {
     throw new TypeError("endpoint residual search requires candidates.");
   }
-  const protocol = validateB1CompleteCycleProbeProtocol(rawProtocol);
+  const protocol = validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol(rawProtocol);
   const started = performance.now();
   const cases = [];
   const tasks = candidates.flatMap((candidate) =>
@@ -426,7 +448,7 @@ export function runEndpointResidualSearchCampaign({
       stage: "case-start",
       taskIndex,
       taskCount: tasks.length,
-      memberId: task.candidate.declaration.memberId,
+      sourceSlug: task.candidate.declaration.sourceSlug,
       stratumId: task.stratum.stratumId,
       stratumOrdinal: task.stratumOrdinal,
     });
@@ -443,8 +465,10 @@ export function runEndpointResidualSearchCampaign({
         caseId:
           `${task.candidate.declaration.candidateId}/` +
           `${task.stratum.stratumId}-${task.stratumOrdinal}`,
-        familyId: task.candidate.declaration.familyId,
-        memberId: task.candidate.declaration.memberId,
+        assemblyId: task.candidate.declaration.assemblyId,
+        modelRevisionSha256:
+          task.candidate.declaration.modelRevisionSha256,
+        sourceSlug: task.candidate.declaration.sourceSlug,
         candidateId: task.candidate.declaration.candidateId,
         seed,
         stratumId: task.stratum.stratumId,
@@ -481,7 +505,7 @@ export function runEndpointResidualSearchCampaign({
     });
   }
   cases.sort((left, right) =>
-    left.memberId.localeCompare(right.memberId, undefined, { numeric: true }) ||
+    left.sourceSlug.localeCompare(right.sourceSlug, undefined, { numeric: true }) ||
     left.stratumId.localeCompare(right.stratumId) ||
     left.stratumOrdinal - right.stratumOrdinal);
   const summary = campaignSummary(cases);
@@ -588,7 +612,7 @@ export function summarizeEndpointResidualRefinements(refinements) {
     ).length,
     leadingCases: ranked.map((row) => ({
       caseId: row.caseId,
-      memberId: row.memberId,
+      sourceSlug: row.sourceSlug,
       selectionReason: row.selectionReason,
       refinedFullCyclePeak:
         row.refined.memberResidual.searchGuidance
@@ -663,7 +687,7 @@ export function runStratifiedEndpointResidualSearch({
     refinementSummary:
       summarizeEndpointResidualRefinements(refinements),
     claimBoundary:
-      "diagnostic prescribed-path endpoint search only; no EOM evolution, branch, stability, retention, or taxonomy-existence claim",
+      "diagnostic prescribed-path endpoint search only; no EOM evolution, branch, stability, retention, or configuration-existence claim",
   };
   return {
     ...resultWithoutHash,

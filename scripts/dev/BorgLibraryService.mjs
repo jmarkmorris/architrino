@@ -1,7 +1,7 @@
 import { readFile, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
-import { BORG_BRAID_RECORD_CATALOG } from "../../src/apps/borg/BorgBraidRecordCatalog.js";
+import { BORG_ASSEMBLY_RECORD_CATALOG } from "../../src/apps/borg/BorgAssemblyRecordCatalog.js";
 import { describeLibraryRecord, createLibraryPreview } from "../../src/apps/borg/library/BorgLibraryDescriptors.mjs";
 import { queryLibraryRows } from "../../src/apps/borg/library/BorgLibraryQuery.mjs";
 import { validateLibraryClassifications } from "../../src/apps/borg/library/BorgLibraryComposition.mjs";
@@ -11,20 +11,21 @@ const send = (res, status, data) => { res.writeHead(status, { "Content-Type": "a
 
 // Read-only seed-catalog provider. No new record, geometry, or migration output
 // is written. Replace this provider with the indexed registry for full BORG-014.
-export function createBorgLibraryService({ repoRoot, catalog = BORG_BRAID_RECORD_CATALOG.entries, classificationFile = "reference/priorities/app-borg/library-classifications.v3.json" } = {}) {
+export function createBorgLibraryService({ repoRoot, catalog = BORG_ASSEMBLY_RECORD_CATALOG.entries, classificationFile = "reference/priorities/app-borg/library-classifications.v4.json" } = {}) {
   const cache = new Map();
   let pending = Promise.resolve();
   async function load(entry, classification) {
     const path = resolve(repoRoot, entry.recordUrl);
     const info = await stat(path);
     const stamp = `${info.size}:${info.mtimeMs}:${classification.hash}`;
-    if (cache.get(entry.id)?.stamp === stamp) return cache.get(entry.id);
+    const cacheKey = `${entry.assemblyId}:${entry.modelRevisionSha256}`;
+    if (cache.get(cacheKey)?.stamp === stamp) return cache.get(cacheKey);
     const bytes = await readFile(path);
     const recordSha256 = digest(bytes);
     const described = describeLibraryRecord(JSON.parse(bytes), entry, recordSha256, classification.data);
     described.summary.classificationSha256 = classification.hash;
     const result = { stamp, described, preview: null };
-    cache.set(entry.id, result);
+    cache.set(cacheKey, result);
     return result;
   }
   async function route(req, res, url) {
@@ -33,18 +34,20 @@ export function createBorgLibraryService({ repoRoot, catalog = BORG_BRAID_RECORD
       const classificationBytes = await readFile(resolve(repoRoot, classificationFile));
       const classification = { data: validateLibraryClassifications(JSON.parse(classificationBytes)), hash: digest(classificationBytes) };
       if (url.pathname === "/api/borg/library/preview") {
-        const entry = catalog.find((row) => row.id === url.searchParams.get("id"));
+        const assemblyId = url.searchParams.get("assemblyId");
+        const modelRevisionSha256 = url.searchParams.get("modelRevisionSha256");
+        const recordSha256 = url.searchParams.get("recordSha256");
+        const entry = catalog.find((row) => row.assemblyId === assemblyId && row.modelRevisionSha256 === modelRevisionSha256);
         if (!entry) return send(res, 404, { error: "Unknown catalog identity." });
         const loaded = await load(entry, classification);
-        const expected = url.searchParams.get("sha256");
-        if (expected && expected !== loaded.described.summary.recordSha256) return send(res, 409, { error: "Record changed. Reload the catalog; the saved hash was not retargeted." });
+        if (!recordSha256 || recordSha256 !== loaded.described.summary.recordSha256) return send(res, 409, { error: "Record changed. Reload the catalog; the saved hash was not retargeted." });
         loaded.preview ??= createLibraryPreview(loaded.described);
         return send(res, 200, { summary: loaded.described.summary, preview: loaded.preview });
       }
       const rows = []; const failures = [];
       for (const entry of catalog) {
         try { rows.push((await load(entry, classification)).described.summary); }
-        catch (error) { failures.push({ id: entry.id, error: error.message }); }
+        catch (error) { failures.push({ assemblyId: entry.assemblyId, error: error.message }); }
       }
       const params = url.searchParams;
       const query = queryLibraryRows(rows, params);

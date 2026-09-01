@@ -34,10 +34,10 @@
     "betaStep": 0.025,
     "coverage": "one exact symmetry class; not a census of all balanced 12:12 polarity classes and not a nonuniform-phase search"
   },
-  "taxonomyDecision": {
-    "verdict": "outside-B1.3",
-    "reason": "B1.3 contains exactly six architrinos in three antipodal neutral binaries; this 12:12 record contains 24 architrinos and its alternating word has like-polarity antipodes.",
-    "familyCDecision": "not C5/C6; the record has one common center, no positive component-center separation, and no antipodal-neutral B1.3 component decomposition."
+  "configurationRelation": {
+    "verdict": "outside-planar-three-binary-common-center",
+    "reason": "planar common-center three-binary constraint contains exactly six architrinos in three antipodal neutral binaries; this 12:12 record contains 24 architrinos and its alternating word has like-polarity antipodes.",
+    "twoComponentCircularDecision": "not a coaxial-separated two-planar-braid configuration; the record has one common center, no positive component-center separation, and no antipodal-neutral planar three-binary common-center component decomposition."
   },
   "regularResult": {
     "n": 12,
@@ -134,9 +134,9 @@
     "crossTransmitterInstrument": "src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs",
     "sameTransmitterInstrument": "scripts/equation-mapping/analyze-circular-self-hit-binary.mjs"
   },
-  "claimGrade": "derived taxonomy plus bounded numerical regular-alternating search; candidate promotion requires the declared independent test",
+  "claimGrade": "derived configuration relation plus bounded numerical regular-alternating search; candidate promotion requires the declared independent test",
   "excludedClaims": [
-    "B1.3 membership",
+    "planar common-center three-binary constraint membership",
     "complete 12:12 polarity coverage",
     "nonuniform-phase coverage",
     "retention",
@@ -147,7 +147,7 @@
     "score increase",
     "scientific acceptance"
   ],
-  "falsifier": "A missing causal root, failed independent root or acceleration comparison, changed topology under refinement, receiver-incompatible scale, or residual above the declared tolerance overturns the balance verdict; a taxonomy change would require a canonical inventory revision rather than this calculation.",
+  "falsifier": "A missing causal root, failed independent root or acceleration comparison, changed topology under refinement, receiver-incompatible scale, or residual above the declared tolerance overturns the balance verdict; a configuration-definition change would require a canonical inventory revision rather than this calculation.",
   "execution": {
     "commandOptions": {
       "minimumBeta": 0.05,

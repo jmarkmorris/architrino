@@ -312,7 +312,7 @@ test("Borg record replay chunks carry recorded frames with record provenance", a
 
 test("Borg display-oversamples prescribed cubic records by four without changing the record", async () => {
   const record = JSON.parse(readFileSync(new URL(
-    "../content/assets/borg/records/family-a-a1-general.assembly-view-record.v0.json",
+    "../content/assets/borg/records/three-axis-circular-coincident-midpoints.assembly-view-record.v0.json",
     import.meta.url,
   )));
   const recordSampleInterval = record.window.sampleInterval;
@@ -811,17 +811,16 @@ test("Borg surface keeps EOM-native policy requiring verification for advancemen
   );
 });
 
-test("Borg presents the catalog alias separately from source-carried geometry classes and labels", () => {
+test("Borg presents exact configuration identity without a family or alias surface", () => {
   const assemblyViewControlsSource = readFileSync(
     new URL("../src/apps/borg/BorgAssemblyViewControls.js", import.meta.url),
     "utf8",
   );
-  assert.doesNotMatch(assemblyViewControlsSource, /taxonomy\.family(?:Id|Label)|"Braid family"/);
-  assert.match(assemblyViewControlsSource, /\["Candidate", presentation\.catalogLabel \?\? taxonomy\.displayLabel\]/);
-  assert.match(assemblyViewControlsSource, /\["Geometry class", `\$\{taxonomy\.memberId\} — \$\{taxonomy\.memberLabel\}`\]/);
-  assert.match(assemblyViewControlsSource, /\["Recorded label", taxonomy\.displayLabel\]/);
-  assert.match(assemblyViewControlsSource, /\["Instantiation", taxonomy\.instantiationLabel\]/);
-  assert.match(assemblyViewControlsSource, /\["Canon source", taxonomy\.canonSource\]/);
+  assert.doesNotMatch(assemblyViewControlsSource, /taxonomy\.|alias|"Braid family"|"Geometry class"/);
+  assert.match(assemblyViewControlsSource, /\["Configuration", presentation\.catalogLabel \?\? identity\.displayLabel\]/);
+  assert.match(assemblyViewControlsSource, /\["Assembly ID", presentation\.rawRecord\.assemblyId\]/);
+  assert.match(assemblyViewControlsSource, /\["Model revision SHA-256", presentation\.rawRecord\.modelRevisionSha256\]/);
+  assert.match(assemblyViewControlsSource, /\["Geometry owner", identity\.geometryOwner\]/);
   assert.match(assemblyViewControlsSource, /\["Record date", presentation\.provenance\.date\]/);
   assert.doesNotMatch(assemblyViewControlsSource, /dateChip/);
 });

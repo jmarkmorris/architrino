@@ -3646,26 +3646,26 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#discrete-symmetry-structure",
+      "target": "../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#discrete-symmetry-structure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md"
     },
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#discrete-symmetry-structure",
+      "target": "../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#discrete-symmetry-structure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md"
     },
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-c.md#c2",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#c2",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-c.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -16062,7 +16062,7 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#collision-free-shared-circle-winding-lemma",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#collision-free-circular-path-winding-lemma",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
@@ -16422,10 +16422,10 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/shared-circle-assemblies.md",
+      "target": "../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -16510,42 +16510,42 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md#fixed-axial-translation-control",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#fixed-axial-translation-control",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -19662,34 +19662,34 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#discrete-symmetry-structure",
+      "target": "../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#discrete-symmetry-structure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -23606,34 +23606,34 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/shared-circle-assemblies.md",
+      "target": "../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/shared-circle-assemblies.md#equal-radius-b13-velocity-search",
+      "target": "../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#equal-radius-b13-velocity-search",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/shared-circle-assemblies.md#exact-taxonomy-intersections",
+      "target": "../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#exact-taxonomy-intersections",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/shared-circle-assemblies.md#fixed-axial-translation-study",
+      "target": "../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#fixed-axial-translation-study",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -23718,186 +23718,178 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-shielding-and-fermion-generations",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-shielding-and-fermion-generations",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#reduced-a1-closure-label",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#reduced-a1-closure-label",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#retention-and-interpretation",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#retention-and-interpretation",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#invariant-channels-and-equivariant-reductions",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#invariant-channels-and-equivariant-reductions",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#moments-and-the-axial-polarity-dipole",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#moments-and-the-axial-polarity-dipole",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md#assumption-2-exact-integer-phase-closure",
+      "target": "../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md#assumption-2-exact-integer-phase-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md#rg-style-truncation-test",
+      "target": "../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md#rg-style-truncation-test",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-analysis-methodology.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -23910,34 +23902,42 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-analysis-methodology.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#cyclic-symmetric-a2b1-overlap",
+      "target": "../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#cyclic-symmetric-a2b1-overlap",
+      "target": "../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#cyclic-symmetric-a2b1-overlap",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#fixed-plane-axial-no-balance-lemma",
+      "target": "../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#cyclic-symmetric-a2b1-overlap",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#fixed-plane-axial-no-balance-lemma",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -23990,282 +23990,282 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md#a1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md#a1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md#a2",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a2",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md#a2",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a2",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md#a3-constrained-variants",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a3-constrained-variants",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md#b1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md#b1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md#b1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md#b1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md#b1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md#b1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-c.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-c.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-c.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-c.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-c.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-c.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-c.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-c.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-c.md#c2",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#c2",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-c.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-c.md#shared-family-c-coordinate-chart",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#shared-family-c-coordinate-chart",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-c.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -26670,18 +26670,18 @@
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
@@ -34326,50 +34326,50 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md",
+      "target": "../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -34398,18 +34398,18 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md#b1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -38686,10 +38686,10 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -47326,66 +47326,66 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#moments-and-the-axial-polarity-dipole",
+      "target": "../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#moments-and-the-axial-polarity-dipole",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -47478,10 +47478,10 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-b.md#b1",
+      "target": "../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-b.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -52382,66 +52382,66 @@
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis",
+      "target": "../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md"
     },
     {
       "sourceChapterId": "validation",

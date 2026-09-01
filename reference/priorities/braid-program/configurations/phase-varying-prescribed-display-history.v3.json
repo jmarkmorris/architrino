@@ -1,0 +1,938 @@
+{
+  "schema": "prescribed-assembly-spec.v3",
+  "specId": "phase-varying-prescribed-display-history-v1",
+  "label": "Phase-varying prescribed display history",
+  "provenanceDescription": "Operator-approved twelve-member revised Phase-varying prescribed display history prescribed display history selected by the frozen bounded guard-margin search. It is an executable input and prescribed visualization, not EOM evolution, binding, return under ordinary evolution, retention, stability, particle identity, or physical realization.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-08-26",
+  "identity": {
+    "assemblyId": "asm-5221daa4bd010d9a791e208c08fe20e8",
+    "modelRevisionSha256": "5221daa4bd010d9a791e208c08fe20e88604aebe6163d01f38de832df86b1e7f",
+    "displayLabel": "Phase-varying prescribed display history",
+    "status": "operator-approved-prescribed-display",
+    "geometryOwner": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
+  },
+  "illustrativeCoordinates": {
+    "status": "operator-selected-display-only-representative",
+    "choices": [
+      "The frozen search fixed h=0.31, rho_1=0.30, rho_2=0.22, A_+=0.24, A_-=0.27, and the standard right-handed frame.",
+      "All 64 branch sheets and the predeclared relative-phase grids were evaluated; the selected branch row is (-1,-1,+1,-1,-1,+1) with negative-sector phase 3.0434178831651124.",
+      "The common resultant frequency 0.3200222059958718 makes the owner-derived conservative maximum speed exactly 0.5 in normalized c_f=1 units.",
+      "The continuous point-clearance lower bound is 0.12014843873518877 and the retained-history depth 1 exceeds the centered-radius delay bound 0.8627861844049196.",
+      "The operator approved this exact bounded-search row as Phase-varying prescribed display history's prescribed display-only representative on 2026-08-26."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "member-1",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-1",
+      "metadata": {
+        "axisIndex": 0,
+        "ringIndex": 1,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "member-2",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-2",
+      "metadata": {
+        "axisIndex": 0,
+        "ringIndex": 2,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "member-3",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-3",
+      "metadata": {
+        "axisIndex": 1,
+        "ringIndex": 1,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "member-4",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-4",
+      "metadata": {
+        "axisIndex": 1,
+        "ringIndex": 2,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "member-5",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-5",
+      "metadata": {
+        "axisIndex": 2,
+        "ringIndex": 1,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "member-6",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-6",
+      "metadata": {
+        "axisIndex": 2,
+        "ringIndex": 2,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "member-7",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-7",
+      "metadata": {
+        "axisIndex": 0,
+        "ringIndex": 1,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "member-8",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-8",
+      "metadata": {
+        "axisIndex": 0,
+        "ringIndex": 2,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "member-9",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-9",
+      "metadata": {
+        "axisIndex": 1,
+        "ringIndex": 1,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "member-10",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-10",
+      "metadata": {
+        "axisIndex": 1,
+        "ringIndex": 2,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "member-11",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-11",
+      "metadata": {
+        "axisIndex": 2,
+        "ringIndex": 1,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "member-12",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-12",
+      "metadata": {
+        "axisIndex": 2,
+        "ringIndex": 2,
+        "polaritySector": "negative"
+      }
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "worldline-1",
+      "constituentId": "member-1",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 0,
+        "ringIndex": 1,
+        "polarity": 1,
+        "branchSign": -1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.24,
+        "resultantPhase": 0,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-2",
+      "constituentId": "member-2",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 0,
+        "ringIndex": 2,
+        "polarity": 1,
+        "branchSign": -1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.24,
+        "resultantPhase": 0,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-3",
+      "constituentId": "member-3",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 1,
+        "ringIndex": 1,
+        "polarity": 1,
+        "branchSign": -1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.24,
+        "resultantPhase": 0,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-4",
+      "constituentId": "member-4",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 1,
+        "ringIndex": 2,
+        "polarity": 1,
+        "branchSign": -1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.24,
+        "resultantPhase": 0,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-5",
+      "constituentId": "member-5",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 2,
+        "ringIndex": 1,
+        "polarity": 1,
+        "branchSign": 1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.24,
+        "resultantPhase": 0,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-6",
+      "constituentId": "member-6",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 2,
+        "ringIndex": 2,
+        "polarity": 1,
+        "branchSign": 1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.24,
+        "resultantPhase": 0,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-7",
+      "constituentId": "member-7",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 0,
+        "ringIndex": 1,
+        "polarity": -1,
+        "branchSign": -1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.27,
+        "resultantPhase": 3.0434178831651124,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-8",
+      "constituentId": "member-8",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 0,
+        "ringIndex": 2,
+        "polarity": -1,
+        "branchSign": -1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.27,
+        "resultantPhase": 3.0434178831651124,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-9",
+      "constituentId": "member-9",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 1,
+        "ringIndex": 1,
+        "polarity": -1,
+        "branchSign": -1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.27,
+        "resultantPhase": 3.0434178831651124,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-10",
+      "constituentId": "member-10",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 1,
+        "ringIndex": 2,
+        "polarity": -1,
+        "branchSign": -1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.27,
+        "resultantPhase": 3.0434178831651124,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-11",
+      "constituentId": "member-11",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 2,
+        "ringIndex": 1,
+        "polarity": -1,
+        "branchSign": 1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.27,
+        "resultantPhase": 3.0434178831651124,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    },
+    {
+      "id": "worldline-12",
+      "constituentId": "member-12",
+      "operator": {
+        "kind": "f5-phase-varying-member.v1",
+        "epochTime": 0,
+        "assemblyCenter": [
+          0,
+          0,
+          0
+        ],
+        "bodyAxes": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "axisIndex": 2,
+        "ringIndex": 2,
+        "polarity": -1,
+        "branchSign": 1,
+        "axialHalfSeparation": 0.31,
+        "transverseRadii": [
+          0.3,
+          0.22
+        ],
+        "resultantAmplitude": 0.27,
+        "resultantPhase": 3.0434178831651124,
+        "resultantAngularFrequency": 0.3200222059958718,
+        "reconstruction": {
+          "operator": "f5-phase-varying-exact-member-map.v1"
+        }
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [
+      {
+        "frameId": "f5-standard-ordered-frame",
+        "frameDefinition": {
+          "type": "ordered-right-handed-body-frame.v1",
+          "owner": "reference/priorities/mapping-electromagnetism/inferring-braid-requirements.md#a-phase-varying-gauge-escapes-the-common-cadence-obstruction",
+          "axes": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      }
+    ],
+    "reconstruction": {
+      "operator": "f5-phase-varying-exact-member-map.v1",
+      "owner": "reference/priorities/mapping-electromagnetism/inferring-braid-requirements.md#the-revised-f5-reconstruction-places-all-twelve-members",
+      "representativeSelection": {
+        "authority": "operator",
+        "approvedDate": "2026-08-26",
+        "choice": "phase-varying-bounded-search-row",
+        "selectionProvenance": "campaign-scoped-bounded-guard-margin-search",
+        "predeclarationSha256": "c1d3f1cb4242400dc2a161811dd637b20acceb99dfd3000c0ca2b88017850bdb",
+        "rawRecord": ".local-data/braid-analysis/2026-08-26-complete-registry-closure/f5-phase-varying-guard-search.v1.json"
+      }
+    }
+  },
+  "relationships": {
+    "sourceOrder": [
+      "member-1",
+      "member-2",
+      "member-3",
+      "member-4",
+      "member-5",
+      "member-6",
+      "member-7",
+      "member-8",
+      "member-9",
+      "member-10",
+      "member-11",
+      "member-12"
+    ],
+    "neutralPairs": [],
+    "pairings": [
+      {
+        "id": "pairings-1",
+        "kind": "polarity-conjugate-dyad",
+        "members": [
+          "member-1",
+          "member-7"
+        ]
+      },
+      {
+        "id": "pairings-2",
+        "kind": "polarity-conjugate-dyad",
+        "members": [
+          "member-2",
+          "member-8"
+        ]
+      },
+      {
+        "id": "pairings-3",
+        "kind": "polarity-conjugate-dyad",
+        "members": [
+          "member-3",
+          "member-9"
+        ]
+      },
+      {
+        "id": "pairings-4",
+        "kind": "polarity-conjugate-dyad",
+        "members": [
+          "member-4",
+          "member-10"
+        ]
+      },
+      {
+        "id": "pairings-5",
+        "kind": "polarity-conjugate-dyad",
+        "members": [
+          "member-5",
+          "member-11"
+        ]
+      },
+      {
+        "id": "pairings-6",
+        "kind": "polarity-conjugate-dyad",
+        "members": [
+          "member-6",
+          "member-12"
+        ]
+      }
+    ],
+    "componentBraids": [
+      {
+        "id": "component-braids-1",
+        "members": [
+          "member-1",
+          "member-2",
+          "member-3",
+          "member-4",
+          "member-5",
+          "member-6",
+          "member-7",
+          "member-8",
+          "member-9",
+          "member-10",
+          "member-11",
+          "member-12"
+        ]
+      }
+    ],
+    "polaritySectors": [
+      {
+        "id": "polarity-sectors-1",
+        "polarity": 1,
+        "members": [
+          "member-1",
+          "member-2",
+          "member-3",
+          "member-4",
+          "member-5",
+          "member-6"
+        ]
+      },
+      {
+        "id": "polarity-sectors-2",
+        "polarity": -1,
+        "members": [
+          "member-7",
+          "member-8",
+          "member-9",
+          "member-10",
+          "member-11",
+          "member-12"
+        ]
+      }
+    ],
+    "symmetryOrbits": [
+      {
+        "id": "symmetry-orbits-1",
+        "members": [
+          "member-1",
+          "member-2",
+          "member-3",
+          "member-4",
+          "member-5",
+          "member-6",
+          "member-7",
+          "member-8",
+          "member-9",
+          "member-10",
+          "member-11",
+          "member-12"
+        ]
+      }
+    ],
+    "accessorySets": []
+  },
+  "history": {
+    "start": -1,
+    "end": 18.63359163663986,
+    "delayHorizon": 1,
+    "periodic": true,
+    "returnPeriod": 19.63359163663986
+  },
+  "constraints": {
+    "validators": [
+      "phase-varying-history-consistency.v2"
+    ],
+    "centering": {
+      "declaration": "exact polarity-sector and full equal-member centering on the fixed assembly center",
+      "gauge": "fixed assembly center and ordered body frame"
+    },
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "reject",
+      "certifiedUpperBound": 0.5
+    },
+    "collisionGuard": {
+      "sampleCount": 65536,
+      "minimumSampledClearance": 0.12014843873518877,
+      "continuousLowerBound": 0.12014843873518877,
+      "method": "sample-minus-global-pair-lipschitz"
+    },
+    "historyCoverage": {
+      "retainedDepth": 1,
+      "maximumPossibleRootDelay": 0.8627861844049196,
+      "method": "twice-centered-radius-bound"
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 0.45,
+    "trailPeriods": 1,
+    "ansatzSampleCount": 192
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.02,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  }
+}

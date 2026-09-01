@@ -1,4 +1,4 @@
-Closure goal: Integrate the externally supplied neutral-braid review into BP-002 as a scope-and-provenance overlay, while preserving Family A, Family B, Family C, and every other admitted proposal as a finite ansatz subchart.
+Closure goal: Integrate the externally supplied neutral-braid review into BP-002 as a scope-and-provenance overlay, while preserving orthogonal-axis three-binary configurations, coincident-axis three-binary configurations, two-component circular configurations, and every other admitted proposal as a finite ansatz subchart.
 
 # BP-002 Scope-and-Provenance Overlay
 
@@ -10,7 +10,7 @@ Closure goal: Integrate the externally supplied neutral-braid review into BP-002
 
 ## research findings
 
-The external review is compatible with the live Braid Program only as an overlay on the existing family taxonomy. The charter already requires scoped negatives, the method already separates prescribed screening from retained evolution, and the live chart already requires every campaign to declare which axes it can vary and which it freezes. The current taxonomy defines Family A, Family B, and Family C as prescribed geometry-and-motion families and expressly leaves room for additional geometries. Nothing in the review supplies authority to replace, merge, rank, or retire those proposals.
+The external review is compatible with the live Braid Program only as an overlay on the existing family taxonomy. The charter already requires scoped negatives, the method already separates prescribed screening from retained evolution, and the live chart already requires every campaign to declare which axes it can vary and which it freezes. The current taxonomy defines orthogonal-axis three-binary configurations, coincident-axis three-binary configurations, and two-component circular configurations as prescribed geometry-and-motion families and expressly leaves room for additional geometries. Nothing in the review supplies authority to replace, merge, rank, or retire those proposals.
 
 Plainly: the existing families remain useful finite search charts. The new material records what each chart actually represents and how far a computation reached; it does not choose a winning family.
 
@@ -67,7 +67,7 @@ No finding here establishes retention, stability, binding, physical realization,
 
 ## proposed changes
 
-1. Preserve Family A, Family B, Family C, their members and constrained variants, and every other admitted proposal as finite ansatz subcharts. Do not replace the taxonomy with the overlay.
+1. Preserve orthogonal-axis three-binary configurations, coincident-axis three-binary configurations, two-component circular configurations, their members and constrained variants, and every other admitted proposal as finite ansatz subcharts. Do not replace the taxonomy with the overlay.
 2. Add one scope-and-provenance obligation to `configuration-chart.md`. The obligation should require the typed fields above, explicit topology-closure conventions, singular-stratum status, and separate expressible, evaluated, and coverage-certified domains.
 3. Complete BP-002 in three bounded passes:
    - inventory the admitted family and campaign subcharts without changing their definitions;

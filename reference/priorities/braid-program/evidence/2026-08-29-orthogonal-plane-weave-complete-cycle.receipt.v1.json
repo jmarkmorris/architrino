@@ -543,11 +543,11 @@
         "sha256": "0d0ff22d8b8b037d46963791f7b73091ec0bc644fea8acad3715f313b49870a1"
       },
       {
-        "path": "content/markdown/aaa/noether-braid/braid-family-a.md",
+        "path": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
         "sha256": "8a375bd07514aa8536ef3535c35198a1e04354394cac610f6119f7a183709efb"
       },
       {
-        "path": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+        "path": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
         "sha256": "25ec9d61da3853a6130e2b32dff3a9bd5e9cfe1556d4fbb692c8115916848ffb"
       },
       {
@@ -555,11 +555,11 @@
         "sha256": "26ab902dba2bee6af849080a9ad60ce07560580bd99223ba6f4d543876105b7a"
       },
       {
-        "path": "reference/priorities/braid-program/configurations/family-a-a1-2-equal-frequency-equal-radius.v2.json",
+        "path": "reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json",
         "sha256": "d4ebd94dfb90e4e8245fe4702b478fbd44314a540ea89c808f156c248edb9872"
       },
       {
-        "path": "reference/priorities/braid-program/configurations/family-a-a2-fully-symmetric.v2.json",
+        "path": "reference/priorities/braid-program/configurations/three-axis-circular-phase-compensated-symmetric.v3.json",
         "sha256": "799fda068f8617806a4c81b6d24a7a9001b3c900588e23d2d005a33e264703de"
       }
     ],

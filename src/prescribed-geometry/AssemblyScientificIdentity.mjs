@@ -17,6 +17,7 @@ const PRESENTATION_KEYS = new Set([
   "label",
   "memberId",
   "memberLabel",
+  "owner",
   "provenanceDescription",
   "recordUrl",
   "status",
@@ -70,14 +71,16 @@ export function canonicalAssemblyScientificModel(rawSpec) {
 
   return sortObjectDeep({
     schema: ASSEMBLY_SCIENTIFIC_IDENTITY_SCHEMA,
-    sourceSchema: rawSpec.schema,
     sourceLawVersion: "prescribed-assembly-evaluator.v2",
     normalizedFieldSpeed: 1,
     members,
     relationships,
     geometry: normalizeScientificValue(rawSpec.geometry, tokens),
     history: normalizeScientificValue(rawSpec.history, tokens),
-    motionPolicy: normalizeScientificValue(rawSpec.constraints?.speedGuard, tokens),
+    motionPolicy: normalizeScientificValue({
+      policy: rawSpec.constraints?.speedGuard?.policy,
+      maxAllowedSpeed: rawSpec.constraints?.speedGuard?.maxAllowedSpeed,
+    }, tokens),
   });
 }
 
@@ -134,7 +137,7 @@ function normalizeScientificValue(value, tokens) {
   const result = {};
   for (const [key, entry] of Object.entries(value)) {
     if (PRESENTATION_KEYS.has(key) || key === "compatibility" || entry === undefined) continue;
-    result[key] = normalizeScientificValue(entry, tokens);
+    result[tokens.get(key) ?? key] = normalizeScientificValue(entry, tokens);
   }
   return sortObjectDeep(result);
 }

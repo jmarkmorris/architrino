@@ -1,4 +1,4 @@
-# F5 ordinary evolution evaluation
+# phase-varying display representative ordinary evolution evaluation
 
 Status: independently accepted as a completed bounded unresolved experiment at `2026-08-28T03:46:06.690568Z`, before the original campaign deadline. All three EOM runs halted before the requested horizon, the independent first-step comparison passed, and the completed independent final-snapshot root check failed. Validated motion, collapse, separation and full-horizon persistence are not established. Operational process and lock closure is independently verified.
 
@@ -8,7 +8,7 @@ Plainly: the experiment is complete because its declared calculations and checks
 
 ## Authorized resumption
 
-The operator answered, “Yes, I approve your experimentation efforts going forward. Please proceed.” This is recorded in `.local-data/braid-analysis/f5-ordinary-evolution-20260827/operator-authorization-v1.json` as approval of the immediately preceding fixed-strength F5 question: $K=0.002$, $q_0=1$, $\kappa=0.002$, $c_f=1$, horizon `T=0.5`, three numerical refinements and no strength search. No geometry change, benchmark replicas, commit, push or deadline extension is inferred. The original deadline remains `2026-08-28T08:56:11-04:00`.
+The operator answered, “Yes, I approve your experimentation efforts going forward. Please proceed.” This is recorded in `.local-data/braid-analysis/f5-ordinary-evolution-20260827/operator-authorization-v1.json` as approval of the immediately preceding fixed-strength phase-varying display representative question: $K=0.002$, $q_0=1$, $\kappa=0.002$, $c_f=1$, horizon `T=0.5`, three numerical refinements and no strength search. No geometry change, benchmark replicas, commit, push or deadline extension is inferred. The original deadline remains `2026-08-28T08:56:11-04:00`.
 
 Plainly: the missing scientific choice was supplied before declaration review and execution. It was not inferred from the geometry approval.
 
@@ -22,7 +22,7 @@ Independent frozen-declaration review passed at SHA-256 `712f6b74f36e3b2755f5b48
 
 Plainly: this review accepted the declaration and exact inputs for execution, not a motion result.
 
-After F6c explicitly released its compute window, the complete caller acquired the shared lock at `2026-08-28T03:19:32.519Z` (`2026-08-27 23:19:32.519 EDT`), launcher PID `51864`. The first actual parser admission passed before coarse EOM PID `51872` began. The caller enforces the unchanged declaration and records per-stage resources and complete output under `.local-data/braid-analysis/f5-ordinary-evolution-20260827/evaluation-v1/`. Its final stdout seal is captured in sibling `evaluation-v1.stdout.ndjson`; heartbeats and the external `/usr/bin/time -l` summary are captured in `evaluation-v1.stderr.log`. External maximum RSS is not aggregate simultaneous RSS. The predeclared observation wrapper is recorded in `declared-invocation-observer-v1.json`, SHA-256 `1db2cdd7c2500176c9b4306652a586b14d0f68d4649403c2aa17a54418574ce8`.
+After asymmetric counter-breathing representative explicitly released its compute window, the complete caller acquired the shared lock at `2026-08-28T03:19:32.519Z` (`2026-08-27 23:19:32.519 EDT`), launcher PID `51864`. The first actual parser admission passed before coarse EOM PID `51872` began. The caller enforces the unchanged declaration and records per-stage resources and complete output under `.local-data/braid-analysis/f5-ordinary-evolution-20260827/evaluation-v1/`. Its final stdout seal is captured in sibling `evaluation-v1.stdout.ndjson`; heartbeats and the external `/usr/bin/time -l` summary are captured in `evaluation-v1.stderr.log`. External maximum RSS is not aggregate simultaneous RSS. The predeclared observation wrapper is recorded in `declared-invocation-observer-v1.json`, SHA-256 `1db2cdd7c2500176c9b4306652a586b14d0f68d4649403c2aa17a54418574ce8`.
 
 Plainly: this was an actual evolution invocation from the accepted past-only history. It generated future motion without receiving the prescribed positive-time path.
 
@@ -34,7 +34,7 @@ Plainly: all three consumers received the declared data and controls. Parser acc
 
 ### Completed rung checkpoints
 
-The frozen scientific conditions are the approved F5 geometry, exact retained history `[-1,0]`, release at zero, $K=0.002$, $q_0=1$, $\kappa=0.002$, $c_f=1$, sharp chart and requested end `0.5`. The three runs use these fixed numerical settings:
+The frozen scientific conditions are the approved phase-varying display representative geometry, exact retained history `[-1,0]`, release at zero, $K=0.002$, $q_0=1$, $\kappa=0.002$, $c_f=1$, sharp chart and requested end `0.5`. The three runs use these fixed numerical settings:
 
 | Rung | Initial = maximum step | Minimum step | Root tolerance | Acceleration tolerance | Position = velocity tolerance | Correction tolerance |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -92,7 +92,7 @@ Maximum sampled aggregate RSS during watched stages was `430178304` bytes; the l
 
 Plainly: the measurements retain their instrument limits. Neither sampled RSS nor the external single value is claimed to be an exact continuous whole-call aggregate peak.
 
-The final stdout seal authenticates `invocation-receipt.json`, SHA-256 `4cde5cbb820fb0b3464875f17d2fcf1fcdfd797ee958aaaa1fb16465b92fc525`, and says `operationallyComplete:true`. Independent closure receipt `actual-evaluation-independent-process-closure-v1.json`, SHA-256 `a1b3e63cb68e8645614cb262d344f8055c04b3756d6b0f0a086c279a70d9e1cd`, authenticated all twelve closed stage receipts and their outputs, then performed a fresh process census and kernel existence checks. All thirteen observed PIDs and twelve groups were absent; the shared lock was absent before and after review publication. The parent observed caller session `54457` exit code 0; the independent reviewer separately checked launcher absence and the sealed output, not that tool event itself. The exclusive compute window was released to F6c; no further F5 numerical work is planned for this declaration.
+The final stdout seal authenticates `invocation-receipt.json`, SHA-256 `4cde5cbb820fb0b3464875f17d2fcf1fcdfd797ee958aaaa1fb16465b92fc525`, and says `operationallyComplete:true`. Independent closure receipt `actual-evaluation-independent-process-closure-v1.json`, SHA-256 `a1b3e63cb68e8645614cb262d344f8055c04b3756d6b0f0a086c279a70d9e1cd`, authenticated all twelve closed stage receipts and their outputs, then performed a fresh process census and kernel existence checks. All thirteen observed PIDs and twelve groups were absent; the shared lock was absent before and after review publication. The parent observed caller session `54457` exit code 0; the independent reviewer separately checked launcher absence and the sealed output, not that tool event itself. The exclusive compute window was released to asymmetric counter-breathing representative; no further phase-varying display representative numerical work is planned for this declaration.
 
 Plainly: the owned work is safely closed. This point-in-time operational evidence does not prove that an unobserved detached process could never have existed, and it grants no scientific acceptance by itself.
 
@@ -113,9 +113,9 @@ Plainly: another task can reproduce and compare the same bounded experiment. It 
 
 ## Campaign boundary
 
-The operator requested one independently checked ordinary EOM evolution evaluation of the approved phase-varying F5 geometry. The recorded start is `2026-08-27T20:56:11-04:00`; the hard stop is `2026-08-28T08:56:11-04:00`. Independently verified experimental closure may end the campaign earlier. Operator stops, safety limits and indispensable missing authorization take precedence. Preparation alone is not closure. No commit, push, unrelated regeneration, geometry change or deletion of historical evidence is authorized.
+The operator requested one independently checked ordinary EOM evolution evaluation of the approved phase-varying display representative geometry. The recorded start is `2026-08-27T20:56:11-04:00`; the hard stop is `2026-08-28T08:56:11-04:00`. Independently verified experimental closure may end the campaign earlier. Operator stops, safety limits and indispensable missing authorization take precedence. Preparation alone is not closure. No commit, push, unrelated regeneration, geometry change or deletion of historical evidence is authorized.
 
-The task is `01a045dd-4365-7942-91eb-d1c5cd5f330e`. The parallel F6c task owns its scientific calculation and has requested that the shared [readiness owner](2026-08-27-braid-search-launch-readiness.md) remain byte-stable at SHA-256 `04a889345ee7c4cd43b0f41bebb70cb2f176ac4d13af035204347f3c6904feaf`. Its numerical execution excludes competing numerical programs. This task must coordinate an execution window before launching numerical work. The benchmark coordinator receives an evaluator only after actual independent acceptance; a pending declaration is not an accepted evaluator.
+The task is `01a045dd-4365-7942-91eb-d1c5cd5f330e`. The parallel asymmetric counter-breathing representative task owns its scientific calculation and has requested that the shared [readiness owner](2026-08-27-braid-search-launch-readiness.md) remain byte-stable at SHA-256 `04a889345ee7c4cd43b0f41bebb70cb2f176ac4d13af035204347f3c6904feaf`. Its numerical execution excludes competing numerical programs. This task must coordinate an execution window before launching numerical work. The benchmark coordinator receives an evaluator only after actual independent acceptance; a pending declaration is not an accepted evaluator.
 
 ## Reauthenticated starting evidence
 
@@ -141,7 +141,7 @@ Plainly: the twelve existing polarity signs determine the charge signs. The comm
 
 Plainly: the proposed strength puts the instantaneous acceleration near the scale of the starting path's curvature. This comparison does not match vector directions, certify analytic acceleration bounds, derive a physical constant, establish balance or predict sustained motion. These are ordinary floating-point scale estimates, not new interval proofs or braid metrics. A changed input hash or an independently recomputed scale inconsistent with these values falsifies this rationale.
 
-The authorization question was sent explicitly to the operator. Until an explicit answer is received, no request may gain execution authority and no strength-dependent F5 calculation may run.
+The authorization question was sent explicitly to the operator. Until an explicit answer is received, no request may gain execution authority and no strength-dependent phase-varying display representative calculation may run.
 
 ## Historical preparation: declaration and checks
 
@@ -161,9 +161,9 @@ The existing request preparer and single-shot certified EOM interface are retain
 
 **Measured preparation:** task-specific Release build `build-v2/eom_borg_shadow_cli` has SHA-256 `b24bfb23bc80adce79061273d01ac5e2094653a213041ca27fe44f6021a873aa`. The watched configure and single-worker compile took `1.652212791` and `29.283524958` seconds through process closure. The maximum sampled aggregate build RSS was `564838400` bytes. All project EOM sources matched their pre-build hashes afterward. Exact commands, source bindings and observations are in `build-inputs-v2.json`, `build-completion-v2.json`, `build-configure-v2/` and `build-compile-v2/` under that task directory. The earlier sandbox-rejected observation attempt remains preserved as an unsuccessful attempt.
 
-Plainly: the executable was rebuilt from the recorded current project sources. The reported memory is sampled process memory, not a continuous peak or a measurement of F5 evolution cost.
+Plainly: the executable was rebuilt from the recorded current project sources. The reported memory is sampled process memory, not a continuous peak or a measurement of phase-varying display representative evolution cost.
 
-Five existing or extended synthetic process-consumer tests passed against this exact binary: protocol, parser-only token/endpoint inspection, rejection of incompatible inspection modes, accepted-step progress/local errors, and generated-history publication. Test time was `0.377` seconds; watched process closure took `0.610855667` seconds with maximum sampled aggregate RSS `57769984` bytes. The log and resource receipt are in `consumer-controls-v1/`. These are synthetic interface tests, not an ordinary F5 evolution result. All owned build/test processes were closed and the shared numerical window was released to the F6c task.
+Five existing or extended synthetic process-consumer tests passed against this exact binary: protocol, parser-only token/endpoint inspection, rejection of incompatible inspection modes, accepted-step progress/local errors, and generated-history publication. Test time was `0.377` seconds; watched process closure took `0.610855667` seconds with maximum sampled aggregate RSS `57769984` bytes. The log and resource receipt are in `consumer-controls-v1/`. These are synthetic interface tests, not an ordinary phase-varying display representative evolution result. All owned build/test processes were closed and the shared numerical window was released to the asymmetric counter-breathing representative task.
 
 The independent geometry checker uses exact rational polynomial bounds and has a separately reviewed synthetic test suite. The revised dynamics wrapper has now passed independent source review at SHA-256 `cbf60f6b7e4a48a4622ce475393880689c155199c7f4f3513f0b382528761a6f`, with tests at `c582879d5f83810df4c5f3bf02e6f485d221b9038573da73bcc66d13e05d4998`. The reviewer reran fourteen synthetic tests, checked 500 independently generated valid chronologies and 1000 invalid mutations, and verified the archived previous wrapper and all five frozen oracle modules. Its separate receipt is `dynamics-wrapper-revision-review-cbf60f6b-v1.json`, SHA-256 `5c98a12e65d5878cc8e55689e944e2547d0724e4edf06fab2c60871ecfa37bd2`, under the task directory. This accepts the wrapper's bounded reference-consumer behavior, not a candidate computation or launch.
 
@@ -171,13 +171,13 @@ Plainly: the reference mathematics was kept fixed while a separately checked wra
 
 The full caller passed independent source review at SHA-256 `2844ad05ddba2e1246d89a431de42aab9f113fda5769f6faea91d7ea245934b3`, with tests at `9deecc9756bc518d13e6c8b9245425ebd57f1523cefb95987d3d53550b4ae739`. All twenty synthetic controls passed in `5.537` seconds, including four explicitly admitted process tests. Independent additional controls covered 300 JSON roundtrips, 300 escaped duplicate-key rejections, 100 partial-write schedules and eight status combinations. The separate receipt is `runner-independent-review-2844ad05-v1.json`, SHA-256 `ba215da15eadd03d55a34012bdda07f3af5ec60789626964276d02f531d213af`. It accepts code behavior, not strength, a frozen declaration, launch or an actual outcome. Process supervision retains the reviewed premise that invoked code does not detach descendants; ambiguous closure retains the shared lock.
 
-Plainly: the supervisor was checked against children that ignore termination, broken monitoring, failed logging and other synthetic failures. Those tests show how it stops and preserves evidence; they say nothing about F5 motion.
+Plainly: the supervisor was checked against children that ignore termination, broken monitoring, failed logging and other synthetic failures. Those tests show how it stops and preserves evidence; they say nothing about phase-varying display representative motion.
 
 Runtime metadata records include the compiler dependency snapshot, isolated Python imports and 42 non-system executable/library bindings. Independent inventory review additionally identified and bound the actual Python application executable reached through the shared-venv launcher and the post-build static EOM library. The draft currently contains 190 source, runtime and evidence bindings. The operating-system kernel and system shared-cache libraries remain explicit platform premises.
 
 The separate inventory audit accepted this preparation at draft SHA-256 `a292139e9207fa359c5425e8bb08aad84e6e95bc09cab9f9a02f077b9fa60f22`. It checked all 190 direct bindings, 57 project pre/post-build identities, 1316 compiler dependencies across 23 translation units, 85 Python metadata bindings, 42 library inventories, the actual Python application executable, the static EOM library and 62 resource samples. The receipt is `build-runtime-inventory-independent-review-v1.json`, SHA-256 `f975976e0ab74513d7f60ffb9404dbef85d7a863e19d6e5f8263811d842c12b1`. Its independently approved process snapshot found all 54 recorded process IDs and three owned groups absent; the byte-identical durable snapshot is `build-runtime-inventory-review-process-snapshot-v1.txt` in the task directory.
 
-Plainly: this verifies the recorded preparation and its closed processes. It does not establish a hermetic build, continuous peak memory, platform correctness or an F5 outcome. External compiler dependencies were captured after the build; the reviewer audited the five recorded consumer tests without rerunning them.
+Plainly: this verifies the recorded preparation and its closed processes. It does not establish a hermetic build, continuous peak memory, platform correctness or a phase-varying display representative outcome. External compiler dependencies were captured after the build; the reviewer audited the five recorded consumer tests without rerunning them.
 
 ## Historical preparation: invocation and output contract
 
@@ -197,13 +197,13 @@ The existing certified EOM route must generate its own future. Full generated cu
 
 ## Historical preauthorization restart boundary and owned paths
 
-The scientific result is **not yet evaluated**: no F5 request has gained execution authority and no F5 positive-time history has been generated. The indispensable next decision is the operator's approval or rejection of the single recommended strength. Preparation, synthetic tests and source-review acceptance do not satisfy experimental closure. The original `2026-08-28T08:56:11-04:00` deadline remains in force; waiting for a decision does not restart that clock.
+The scientific result is **not yet evaluated**: no phase-varying display representative request has gained execution authority and no phase-varying display representative positive-time history has been generated. The indispensable next decision is the operator's approval or rejection of the single recommended strength. Preparation, synthetic tests and source-review acceptance do not satisfy experimental closure. The original `2026-08-28T08:56:11-04:00` deadline remains in force; waiting for a decision does not restart that clock.
 
 After an explicit approval, record the exact operator message, fill the three strength tokens without changing geometry or numerical settings, prepare and bind the exact requests, verify the actual parser inspection, and obtain a separate frozen-declaration review. Reauthenticate all inputs, source/runtime aliases and build identities, coordinate an exclusive host window, and admit the unchanged resource limits before executing the complete caller. Preserve its final stdout seal alongside the on-disk index; then independently review actual outputs and numerical sensitivity. If approval arrives too late, preserve a checkpoint at the original deadline without silently extending the campaign.
 
-Plainly: the experiment is ready for the remaining authorization and declaration steps, but there is no physical or numerical F5 evolution result to report yet.
+Plainly: the experiment is ready for the remaining authorization and declaration steps, but there is no physical or numerical phase-varying display representative evolution result to report yet.
 
-Owned implementation changes are the existing EOM CLI and its process tests, the F5 caller and its tests, the independent F5 geometry checker and its tests, and the F5 dynamics wrapper and its tests. Owned task evidence is this document, the draft declaration, and the ignored `.local-data/braid-analysis/f5-ordinary-evolution-20260827/` and `.local-data/braid-analysis/f5-dynamics-reference-20260828/` artifacts. Existing frozen oracle mathematics, shared readiness, shared work queue and other candidates remain outside the write set. No commit, push, unrelated regeneration or historical-evidence deletion was performed.
+Owned implementation changes are the existing EOM CLI and its process tests, the phase-varying display representative caller and its tests, the independent phase-varying display representative geometry checker and its tests, and the phase-varying display representative dynamics wrapper and its tests. Owned task evidence is this document, the draft declaration, and the ignored `.local-data/braid-analysis/f5-ordinary-evolution-20260827/` and `.local-data/braid-analysis/f5-dynamics-reference-20260828/` artifacts. Existing frozen oracle mathematics, shared readiness, shared work queue and other candidates remain outside the write set. No commit, push, unrelated regeneration or historical-evidence deletion was performed.
 
 The preceding restart instructions describe the preserved preauthorization checkpoint. They are superseded operationally by the completed execution and checks above, without altering the old checkpoint files.
 
@@ -212,7 +212,7 @@ The preceding restart instructions describe the preserved preauthorization check
 The task's repository write set is:
 
 - [EOM CLI observability](../../../../src/eom/native/eom_borg_shadow_cli.cpp) and [process tests](../../../../tests/test_eom_borg_native_process.py).
-- [Complete F5 caller](../../../../scripts/eom/run-f5-ordinary-evolution.mjs) and [caller tests](../../../../tests/f5-ordinary-evolution-runner.test.js).
+- [Complete phase-varying display representative caller](../../../../scripts/eom/run-f5-ordinary-evolution.mjs) and [caller tests](../../../../tests/f5-ordinary-evolution-runner.test.js).
 - [Independent geometry checker](../../../../scripts/eom/verify-f5-ordinary-evolution.py) and [geometry tests](../../../../tests/test_f5_ordinary_evolution_outcome.py).
 - [Frozen-oracle dynamics wrapper](../../../../scripts/eom/check-f5-evolution-dynamics.py) and [wrapper tests](../../../../tests/test_f5_evolution_dynamics_checker.py).
 - [Frozen declaration](2026-08-27-f5-ordinary-evolution-declaration.v1.json) and this evidence document.

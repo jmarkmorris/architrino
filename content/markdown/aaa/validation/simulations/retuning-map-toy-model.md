@@ -1,6 +1,6 @@
 # Retuning-Map Toy Model
 
-This chapter defines a proposed arithmetic model for the cadence-scale retuning map introduced in [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis). The model is not a delayed-dynamics proof. It describes constrained branch bookkeeping conditional on an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and tests whether the resulting increment is consistent with same-branch retuning.
+This chapter defines a proposed arithmetic model for the cadence-scale retuning map introduced in [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis). The model is not a delayed-dynamics proof. It describes constrained branch bookkeeping conditional on an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and tests whether the resulting increment is consistent with same-branch retuning.
 
 The toy model answers an accounting question before it answers a physics question. If a branch accepts one action-sized transaction, can the cadence, radius, scale, and speed rows be retuned without leaving the declared branch regime? Only after that arithmetic is clean does the harder delayed-dynamics proof become worth asking.
 
@@ -65,7 +65,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-161a0863a2c781cf)
 
-The proposed increment must satisfy the candidate source-record speed conditions below. These branch roles do not assign an A1 or other taxonomy member:
+The proposed increment must satisfy the candidate source-record speed conditions below. These branch roles do not assign a coincident-midpoint orthogonal-axis braid or other taxonomy member:
 
 $$
 s_1'>c_f,

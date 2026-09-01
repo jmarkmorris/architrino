@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__brand_visual_identity",
+    "title": "Brand Visual Identity Guide",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    }
+  },
+  "objects": []
+}

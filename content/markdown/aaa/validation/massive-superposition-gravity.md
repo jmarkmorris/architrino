@@ -15,7 +15,7 @@ The packet may use external classical-quantum gravity proposals as comparison pr
 
 Every averaged quantity in this packet is a run-record summary. A covariance matrix, branch expectation value, or correlation function may be used only after the Physical Observer access region, detector channel, boundary-data model, and persistence criterion have been declared. It may not be promoted into a primitive gravity state or collapse mechanism merely because it appears in a successful inference pipeline.
 
-## Experiment-Family Classification
+## Experiment-two-component circular configurationslassification
 
 Different laboratory proposals enter this packet at different levels. The classification below keeps the observable pressure while preventing passive phase tests, active branch-mass tests, and mediated-entanglement tests from being treated as one result.
 

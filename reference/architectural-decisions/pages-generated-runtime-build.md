@@ -14,7 +14,7 @@ Git retains the sources and generators for Borg playback records, the equation r
 - [Actions run 33394709268](https://github.com/jmarkmorris/architrino/actions/runs/33394709268): build and deployment succeeded.
 - Measured by artifact enumeration: 4,010 published files totaling 415,243,159 bytes. Artifact ID `9758990509`; GitHub artifact digest `sha256:0108093bebef612837702d7d1472802f79a5dbcc699b1df7590b4d4e10a1e322`.
 - Measured by HTTPS GET and SHA-256 comparison with that run's extracted artifact: all 121 checked paths matched, comprising 46 runtime outputs, 48 images, 23 shared KaTeX files, three app entrypoints, and the filtered image catalog. Both Hyde SVGs matched. Four representative excluded URLs returned HTTP 404.
-- Browser checks loaded the homepage and Hyde artwork/tooltip, advanced Borg's SC-03 prescribed-record playback, and loaded Equation Mapping's 4,646 equations across 154 chapters with a rendered Hyde result. Captured error logs were empty. This was prescribed playback, not an EOM solver run.
+- Browser checks loaded the homepage and Hyde artwork/tooltip, advanced Borg's equal-radius planar three-binary circular balance at $\beta_f=2.974307176117294$ prescribed-record playback, and loaded Equation Mapping's 4,646 equations across 154 chapters with a rendered Hyde result. Captured error logs were empty. This was prescribed playback, not an EOM solver run.
 
 Plainly: the public website received the generated files and selected artwork that GitHub built, and the tested apps loaded their data. This is deployment and packaging evidence, not scientific validation or exhaustive app testing. A failed response, changed byte hash, or failed data-loading interaction would overturn the corresponding delivery check.
 

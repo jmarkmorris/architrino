@@ -87,8 +87,9 @@ CREATE TABLE database_generation_case (
   manifest_hash BLOB NOT NULL REFERENCES campaign_manifest(manifest_hash),
   result_hash BLOB NOT NULL REFERENCES case_result(result_hash),
   case_id TEXT NOT NULL,
-  family_id TEXT,
-  member_id TEXT,
+  assembly_id TEXT NOT NULL,
+  model_revision_sha256 TEXT NOT NULL CHECK (length(model_revision_sha256) = 64),
+  source_slug TEXT NOT NULL,
   source_hash BLOB NOT NULL REFERENCES source_record(source_hash),
   protocol_hash BLOB NOT NULL REFERENCES analysis_protocol(protocol_hash),
   acceptance_state TEXT NOT NULL CHECK (acceptance_state IN ('accepted', 'rejected')),
@@ -98,7 +99,8 @@ CREATE TABLE database_generation_case (
 
 CREATE INDEX generation_case_filter
   ON database_generation_case(
-    generation_hash, family_id, member_id, acceptance_state, failed_gate
+    generation_hash, assembly_id, model_revision_sha256, source_slug,
+    acceptance_state, failed_gate
   );
 
 PRAGMA user_version = 3;

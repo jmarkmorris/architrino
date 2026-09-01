@@ -34,7 +34,7 @@ const IMPLEMENTATION_FILES = Object.freeze([
   "scripts/eom/benchmark-compact-monte-carlo-workers.mjs",
   "src/prescribed-path-analysis/CompactMonteCarloCampaign.mjs",
   "src/prescribed-path-analysis/CompleteCycleAnalyticalCampaign.mjs",
-  "src/prescribed-path-analysis/B1StreamingReductions.mjs",
+  "src/prescribed-path-analysis/CoincidentAxisThreeBinaryStreamingReductions.mjs",
   "src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs",
   "src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs",
   "scripts/eom/generate-prescribed-braid-record.mjs",
@@ -79,12 +79,12 @@ function parseArguments(argv) {
     .map((value) => parsePositiveInteger(value, "--workers", null))
     .filter((value) => value > 0);
   if (workerCounts.length === 0) fail("--workers selected no worker counts.");
-  const casesPerMember = parsePositiveInteger(
-    values.get("--cases-per-member"),
-    "--cases-per-member",
+  const casesPerConfiguration = parsePositiveInteger(
+    values.get("--cases-per-configuration"),
+    "--cases-per-configuration",
     3,
   );
-  if (casesPerMember < 1) fail("--cases-per-member must be positive.");
+  if (casesPerConfiguration < 1) fail("--cases-per-configuration must be positive.");
   return {
     help,
     workerCounts,
@@ -94,11 +94,14 @@ function parseArguments(argv) {
       "--repetitions",
       3,
     ),
-    casesPerMember,
+    casesPerConfiguration,
     seed:
       values.get("--seed") ??
       "compact-monte-carlo-worker-benchmark-20260723-v1",
-    memberIds: (values.get("--members") ?? "A1.2,B1.3,C5")
+    sourceSlugs: (values.get("--source-slugs") ??
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency," +
+      "planar-three-binary-common-center-reference," +
+      "coaxial-separated-two-planar-braid-co-rotating")
       .split(",")
       .map((value) => value.trim())
       .filter(Boolean),
@@ -119,8 +122,8 @@ function printHelp() {
     "Usage:",
     "  node scripts/eom/benchmark-compact-monte-carlo-workers.mjs",
     "    [--workers 1,2,4]",
-    "    [--members A1.2,B1.3,C5]",
-    "    [--cases-per-member 3]",
+    "    [--source-slugs three-axis-circular-coincident-midpoints-equal-radius-common-frequency,planar-three-binary-common-center-reference,coaxial-separated-two-planar-braid-co-rotating]",
+    "    [--cases-per-configuration 3]",
     "    [--seed token]",
     "    [--warmups 1]",
     "    [--repetitions 3]",
@@ -173,8 +176,9 @@ function taskExecutionKey(seed, candidateId, sampleOrdinal) {
 function compactIdentityRow(row) {
   return {
     caseId: row.caseId,
-    familyId: row.familyId,
-    memberId: row.memberId,
+    assemblyId: row.assemblyId,
+    modelRevisionSha256: row.modelRevisionSha256,
+    sourceSlug: row.sourceSlug,
     candidateId: row.candidateId,
     sampleOrdinal: row.sampleOrdinal,
     sampledSpecHash: row.exactRerunInstruction.sampledSpecHash,
@@ -384,24 +388,24 @@ async function main() {
     return;
   }
   const loaded = loadAllCandidateCampaignRegistry(options.registryPath);
-  const requestedMembers = new Set(options.memberIds);
+  const requestedMembers = new Set(options.sourceSlugs);
   const selected = loaded.candidates
     .filter((candidate) =>
-      requestedMembers.has(candidate.declaration.memberId))
+      requestedMembers.has(candidate.declaration.sourceSlug))
     .map((candidate) => ({
       declaration: candidate.declaration,
       spec: candidate.spec,
     }));
   const selectedIds = new Set(
-    selected.map((candidate) => candidate.declaration.memberId),
+    selected.map((candidate) => candidate.declaration.sourceSlug),
   );
-  const missing = options.memberIds.filter((memberId) => !selectedIds.has(memberId));
+  const missing = options.sourceSlugs.filter((sourceSlug) => !selectedIds.has(sourceSlug));
   if (missing.length > 0) {
-    fail(`unknown selected members: ${missing.join(", ")}.`);
+    fail(`unknown selected source slugs: ${missing.join(", ")}.`);
   }
   const protocol = createCompactCoverageProtocol(loaded.protocol);
   const tasks = selected.flatMap((candidate) =>
-    Array.from({ length: options.casesPerMember }, (_, sampleOrdinal) => ({
+    Array.from({ length: options.casesPerConfiguration }, (_, sampleOrdinal) => ({
       candidate,
       sampleOrdinal,
       executionKey: taskExecutionKey(
@@ -450,8 +454,8 @@ async function main() {
       implementationIdentity: identity,
       samplerId: COMPACT_MONTE_CARLO_SAMPLER_ID,
       seed: options.seed,
-      members: options.memberIds,
-      casesPerMember: options.casesPerMember,
+      sourceSlugs: options.sourceSlugs,
+      casesPerConfiguration: options.casesPerConfiguration,
       caseCount: tasks.length,
       scheduling: "seeded execution order with static round-robin partitions",
     },

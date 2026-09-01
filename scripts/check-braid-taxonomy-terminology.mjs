@@ -20,7 +20,7 @@ const CERTIFICATION_READER_SURFACES = Object.freeze([
   "src/apps/borg/BorgAssemblyViewControls.js",
   "src/apps/assembly-explorer/AssemblyConfigurationExplorerRuntime.js",
 ]);
-const A1_PUBLIC_DISPLAY_SURFACES = Object.freeze([
+const LORENTZ_GEOMETRY_PUBLIC_DISPLAY_SURFACES = Object.freeze([
   "README.md",
   "ideal-braid.html",
   "content/scenes/archie/applications.json",
@@ -28,8 +28,11 @@ const A1_PUBLIC_DISPLAY_SURFACES = Object.freeze([
   "content/scenes/scenes_index.json",
   "content/graph/scene_graph.json",
   "scripts/config/foundational-impact-contracts.json",
+  "src/apps/ideal-braid/IdealBraidAnalysisAdapters.js",
   "src/apps/ideal-braid/IdealBraidPathPotentialProfile.js",
   "src/apps/ideal-braid/IdealBraidRuntime.js",
+  "src/apps/ideal-braid/IdealBraidSurfaceSolverScheduler.js",
+  "src/apps/ideal-braid/main.js",
 ]);
 
 export const RETIRED_BRAID_NAME_TOKENS = Object.freeze([
@@ -44,6 +47,30 @@ export const RETIRED_BRAID_NAME_TOKENS = Object.freeze([
 
 const RETIRED_BRAID_NAME_PATTERN = RETIRED_BRAID_NAME_TOKENS.join("|");
 const BRAID_NAME_CONTEXT_PATTERN = "braid|family|member|candidate|variant";
+const FACTS_FIRST_PUBLIC_APP_NAME =
+  "Coincident-Midpoint Three-Axis Circular Lorentz Geometry";
+
+export const INDEPENDENT_ABC_NOTATION_EXCLUSIONS = Object.freeze([
+  {
+    id: "constitutive-ledger-row",
+    relativePath: "content/markdown/aaa/validation/parameter-ledger.md",
+    pattern: /^\s*\|\s*C[1-6]\s*\|/,
+  },
+  {
+    id: "perspective-argument-label",
+    relativePath: "content/markdown/aaa/validation/simulations/perspective.md",
+    pattern: /^\s*-\s*A[1-3]\s+[^.]/,
+  },
+  {
+    id: "c1-continuity-notation",
+    pattern: /\bC1(?:[ -]+(?:continuity|continuous|curve|interpolation|path|trajectory))\b/i,
+  },
+  {
+    id: "chemistry-atom-key",
+    pattern:
+      /\b(?:C1[ -]+(?:atom|site|carbon|chemistry|molecule|bond)(?:[ -]+(?:id|key|label))?|(?:atom|site|carbon|chemistry|molecule|bond)(?:[ -]+(?:id|key|label))?[ -]+C1)\b/i,
+  },
+]);
 
 export const TERMINOLOGY_RULES = [
   {
@@ -59,23 +86,21 @@ export const TERMINOLOGY_RULES = [
     label: "taxonomy member identifier requiring local coordinate ownership",
     pattern: /\b(?:A1(?:\.[0-4])?|A2(?:\.0)?|A3(?:\.[0-4])?|B1(?:\.[1-4])?|C[1-6])\b/g,
     replacement:
-      "retain only when the local passage states the defining coordinates or explicitly delegates them to the canonical member definition; otherwise use Noether braid, candidate braid, or prescribed braid geometry",
-    auditOnly: true,
+      "replace the opaque code with the exact configuration identity or supported factual characteristics",
   },
   {
     id: "taxonomy-family-identifier",
     label: "taxonomy family identifier requiring local geometry ownership",
-    pattern: /\bFamily[ -]?[ABC]\b/gi,
+    pattern: /\b(?:Family[ -]?[ABC]|family[ -][ABC])\b/g,
     replacement:
-      "retain only when the local passage states or explicitly delegates the defining family geometry",
-    auditOnly: true,
+      "replace the family container with supported factual characteristics",
   },
   {
     id: "ideal-braid-name",
-    label: "noncanonical ideal braid display label",
-    pattern: /\bideal[ -]+(?:Noether[ -]+)?braid\b/gi,
+    label: "noncanonical braid display label",
+    pattern: /\b(?:ideal[ -]+(?:Noether[ -]+)?braid|A1 Lorentz Geometry)\b/gi,
     replacement:
-      "use A1 Lorentz Geometry for the public app/display name; retain only a concrete historical title, quoted text, stable machine contract, route, filename, or unrelated mathematical ideality",
+      `use ${FACTS_FIRST_PUBLIC_APP_NAME} for the public app/display name; retain only a stable machine contract, route, filename, or unrelated mathematical ideality`,
   },
   {
     id: "legacy-named-braid-family",
@@ -87,14 +112,14 @@ export const TERMINOLOGY_RULES = [
       "gi",
     ),
     replacement:
-      "use the applicable family/member identifier, such as A1, A2, B1, or C1",
+      "state the supported geometry and motion characteristics directly",
   },
   {
     id: "legacy-braid-name-token",
     label: "older braid-name token requiring contextual review",
     pattern: new RegExp(`(?<!\\\\)\\b(?:${RETIRED_BRAID_NAME_PATTERN})\\b`, "gi"),
     replacement:
-      "use a family/member identifier when the token names a braid geometry; retain it only when the local non-taxonomy meaning is explicit",
+      "state the supported geometry and motion characteristics when the token names a braid geometry; retain it only when the local non-taxonomy meaning is explicit",
     auditOnly: true,
   },
   {
@@ -235,10 +260,17 @@ export function scanTextForBraidTaxonomyTerminology(
         const matchStart = match.index;
         const matchEnd = matchStart + match[0].length;
         if (
-          rule.id === "ideal-braid-name" &&
-          relativePath === "content/markdown/aaa/archie/research-notebook.md" &&
-          rawLine.trim() === "## 2026-06-10: Ideal Noether Braid Lorentz Geometry App"
+          rule.id === "taxonomy-member-identifier" &&
+          matchesIndependentAbcNotationExclusion({
+            relativePath,
+            rawLine,
+            prose,
+            match: match[0],
+          })
         ) {
+          continue;
+        }
+        if (rule.id === "legacy-named-braid-family" && /^shell[ -]+family$/i.test(match[0])) {
           continue;
         }
         if (
@@ -301,11 +333,11 @@ export function scanBraidTaxonomyTerminology({
     const borg = scanBorgPrescribedTaxonomyTerminology({ rootDir });
     files.push(...borg.files.filter((relativePath) => !files.includes(relativePath)));
     findings.push(...borg.findings);
-    const a1PublicDisplay = scanA1PublicDisplayTerminology({ rootDir });
+    const publicDisplay = scanLorentzGeometryPublicDisplayTerminology({ rootDir });
     files.push(
-      ...a1PublicDisplay.files.filter((relativePath) => !files.includes(relativePath)),
+      ...publicDisplay.files.filter((relativePath) => !files.includes(relativePath)),
     );
-    findings.push(...a1PublicDisplay.findings);
+    findings.push(...publicDisplay.findings);
     const certificationDisplay = scanCertificationDisplayTerminology({ rootDir });
     files.push(
       ...certificationDisplay.files.filter((relativePath) => !files.includes(relativePath)),
@@ -321,31 +353,44 @@ export function scanBraidTaxonomyTerminology({
   return { scope, files, findings };
 }
 
-export function scanA1PublicDisplayText(source, relativePath = "<memory>") {
+export function scanLorentzGeometryPublicDisplayText(source, relativePath = "<memory>") {
   const findings = [];
-  const pattern = /\bideal\s+(?:Noether\s+)?braid\b/gi;
+  const patterns = [
+    {
+      pattern: /\bideal\s+(?:Noether\s+)?braid\b/gi,
+      matchLabel: "noncanonical ideal braid public display label",
+    },
+    {
+      pattern:
+        /\bA1(?:\.[0-4])?(?:\s+Lorentz)?\s+Geometry\b|\b(?:Family[ -]?[ABC]|family[ -][ABC])\b/g,
+      matchLabel: "opaque A/B/C-derived public display label",
+    },
+  ];
   for (const [lineIndex, rawLine] of source.split(/\r?\n/).entries()) {
-    for (const match of rawLine.matchAll(pattern)) {
-      findings.push({
-        relativePath,
-        lineNumber: lineIndex + 1,
-        ruleId: "ideal-braid-public-display",
-        label: "noncanonical ideal braid public display label",
-        replacement: "use A1 Lorentz Geometry while preserving machine contracts",
-        match: match[0],
-        excerpt: rawLine.trim(),
-      });
+    for (const { pattern, matchLabel } of patterns) {
+      pattern.lastIndex = 0;
+      for (const match of rawLine.matchAll(pattern)) {
+        findings.push({
+          relativePath,
+          lineNumber: lineIndex + 1,
+          ruleId: "lorentz-geometry-public-display",
+          label: matchLabel,
+          replacement: `use ${FACTS_FIRST_PUBLIC_APP_NAME} while preserving machine contracts`,
+          match: match[0],
+          excerpt: rawLine.trim(),
+        });
+      }
     }
   }
   return findings;
 }
 
-export function scanA1PublicDisplayTerminology({ rootDir = ROOT_DIR } = {}) {
-  const files = [...A1_PUBLIC_DISPLAY_SURFACES];
+export function scanLorentzGeometryPublicDisplayTerminology({ rootDir = ROOT_DIR } = {}) {
+  const files = [...LORENTZ_GEOMETRY_PUBLIC_DISPLAY_SURFACES];
   const findings = [];
   for (const relativePath of files) {
     const source = fs.readFileSync(path.join(rootDir, relativePath), "utf8");
-    findings.push(...scanA1PublicDisplayText(source, relativePath));
+    findings.push(...scanLorentzGeometryPublicDisplayText(source, relativePath));
   }
   return { files: files.sort((left, right) => left.localeCompare(right)), findings };
 }
@@ -388,7 +433,7 @@ export function scanBorgReaderFacingValue(value, relativePath, field) {
       lineNumber: 1,
       ruleId: "retired-borg-candidate-label",
       label: "retired Borg candidate terminology",
-      replacement: "use the canonical A/B/C taxonomy identifier and technical coordinates",
+      replacement: "use the exact configuration identity and supported factual characteristics",
       match: match[0],
       excerpt: `${field}: ${value}`,
     });
@@ -413,7 +458,7 @@ export function scanBorgReaderFacingValue(value, relativePath, field) {
 export function scanBorgPrescribedTaxonomyTerminology({ rootDir = ROOT_DIR } = {}) {
   const files = [];
   const findings = [];
-  const catalogPath = "src/apps/borg/BorgBraidRecordCatalog.js";
+  const catalogPath = "src/apps/borg/BorgAssemblyRecordCatalog.js";
   const catalogSource = fs.readFileSync(path.join(rootDir, catalogPath), "utf8");
   files.push(catalogPath);
   for (const match of catalogSource.matchAll(/\blabel:\s*"([^"]+)"/g)) {
@@ -425,7 +470,7 @@ export function scanBorgPrescribedTaxonomyTerminology({ rootDir = ROOT_DIR } = {
     if (!filename.endsWith(".json")) continue;
     const relativePath = `${BORG_PRESCRIBED_CONFIG_DIRECTORY}/${filename}`;
     const parsed = JSON.parse(fs.readFileSync(path.join(rootDir, relativePath), "utf8"));
-    if (parsed.schema !== "prescribed-assembly-spec.v2") continue;
+    if (parsed.schema !== "prescribed-assembly-spec.v3") continue;
     files.push(relativePath);
     const taxonomy = parsed.identity?.taxonomy;
     const values = [
@@ -534,6 +579,19 @@ function stripNonProseMarkdown(value) {
     .replace(/<https?:\/\/[^>]+>/g, "");
 }
 
+function matchesIndependentAbcNotationExclusion({ relativePath, rawLine, prose, match }) {
+  return INDEPENDENT_ABC_NOTATION_EXCLUSIONS.some((exclusion) => {
+    if (!/^C1$/i.test(match) && !exclusion.relativePath) {
+      return false;
+    }
+    if (exclusion.relativePath && exclusion.relativePath !== relativePath) {
+      return false;
+    }
+    exclusion.pattern.lastIndex = 0;
+    return exclusion.pattern.test(exclusion.relativePath ? rawLine : prose);
+  });
+}
+
 function toPosixPath(value) {
   return String(value).replace(/\\/g, "/");
 }
@@ -542,7 +600,7 @@ function runCli() {
   const args = new Set(process.argv.slice(2));
   if (args.has("--help")) {
     console.log("Usage: node scripts/check-braid-taxonomy-terminology.mjs [--scope migrated|corpus] [--report]");
-    console.log("Default: strict migrated-scope regression check, including the approved A1 Lorentz Geometry display name. Use --scope corpus --report to inventory audit-only member, family, and standalone retired-name candidates without failing.");
+    console.log(`Default: strict migrated-scope regression check, including the approved ${FACTS_FIRST_PUBLIC_APP_NAME} display name. Use --scope corpus --report to inventory standalone retired-name candidates without failing.`);
     return;
   }
 

@@ -1662,16 +1662,16 @@
           },
           {
             "id": "dynamics__shared_circle_assemblies",
-            "title": "Shared-Circle Assemblies",
+            "title": "Planar (2D) Braid Assemblies",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/shared_circle_assemblies.json",
-            "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+            "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "The Rigid Co-Rotating Chart",
-                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
                 "markdownSection": "The Rigid Co-Rotating Chart",
                 "sectionKey": "the rigid co rotating chart",
                 "headingLevel": 2
@@ -1679,7 +1679,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Degrees of Freedom and Search Directions",
-                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
                 "markdownSection": "Degrees of Freedom and Search Directions",
                 "sectionKey": "degrees of freedom and search directions",
                 "headingLevel": 2
@@ -1687,7 +1687,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Collision-Free Winding Constraint",
-                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
                 "markdownSection": "Collision-Free Winding Constraint",
                 "sectionKey": "collision free winding constraint",
                 "headingLevel": 2
@@ -1695,7 +1695,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Complete Causal-Root Balance",
-                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
                 "markdownSection": "Complete Causal-Root Balance",
                 "sectionKey": "complete causal root balance",
                 "headingLevel": 2
@@ -1703,7 +1703,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Exact Taxonomy Intersections",
-                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
                 "markdownSection": "Exact Taxonomy Intersections",
                 "sectionKey": "exact taxonomy intersections",
                 "headingLevel": 2
@@ -1711,7 +1711,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Verified Bounded Landscape",
-                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
                 "markdownSection": "Verified Bounded Landscape",
                 "sectionKey": "verified bounded landscape",
                 "headingLevel": 2
@@ -1719,7 +1719,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Fixed Axial-Translation Study",
-                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
                 "markdownSection": "Fixed Axial-Translation Study",
                 "sectionKey": "fixed axial translation study",
                 "headingLevel": 2
@@ -1727,7 +1727,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Exact Circular-Solution Theorem",
-                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
                 "markdownSection": "Exact Circular-Solution Theorem",
                 "sectionKey": "exact circular solution theorem",
                 "headingLevel": 2
@@ -1735,7 +1735,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Release Attempt and Dynamical Boundary",
-                "markdownPath": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
                 "markdownSection": "Release Attempt and Dynamical Boundary",
                 "sectionKey": "release attempt and dynamical boundary",
                 "headingLevel": 2
@@ -1941,9 +1941,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Base-Family Certificate Instantiation",
+                "title": "Base-two-component circular chartsertificate Instantiation",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
-                "markdownSection": "Base-Family Certificate Instantiation",
+                "markdownSection": "Base-two-component circular chartsertificate Instantiation",
                 "sectionKey": "base family certificate instantiation",
                 "headingLevel": 2
               }
@@ -1983,25 +1983,25 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Family A: Noether Core",
+                "title": "three-axis circular charts: Noether Core",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "Family A: Noether Core",
+                "markdownSection": "three-axis circular charts: Noether Core",
                 "sectionKey": "family a noether core",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Family B: Coincident Binary Axes",
+                "title": "common-axis three-binary charts: Coincident Binary Axes",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "Family B: Coincident Binary Axes",
+                "markdownSection": "common-axis three-binary charts: Coincident Binary Axes",
                 "sectionKey": "family b coincident binary axes",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Family C: Coaxial Twelve-Architrino Geometry",
+                "title": "two-component circular charts: Coaxial Twelve-Architrino Geometry",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "Family C: Coaxial Twelve-Architrino Geometry",
+                "markdownSection": "two-component circular charts: Coaxial Twelve-Architrino Geometry",
                 "sectionKey": "family c coaxial twelve architrino geometry",
                 "headingLevel": 2
               },
@@ -2017,31 +2017,31 @@
           },
           {
             "id": "noether_braid__braid_family_a",
-            "title": "Braid Family A",
+            "title": "Braid three-axis circular charts",
             "kind": "scene-index",
             "sceneType": "Scene-Index",
             "scenePath": "content/scenes/noether-braid/braid_family_a.json",
             "children": [
               {
                 "id": "noether_braid__braid_family_a_overview",
-                "title": "Braid Family A",
+                "title": "Braid three-axis circular charts",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/noether-braid/braid_family_a_overview.json",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Shared Family-A Geometry",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
-                    "markdownSection": "Shared Family-A Geometry",
+                    "title": "Shared three-axis circular-chart Geometry",
+                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                    "markdownSection": "Shared three-axis circular-chart Geometry",
                     "sectionKey": "shared family a geometry",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
                     "title": "A1",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                     "markdownSection": "A1",
                     "sectionKey": "a1",
                     "headingLevel": 2
@@ -2049,7 +2049,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "A2",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                     "markdownSection": "A2",
                     "sectionKey": "a2",
                     "headingLevel": 2
@@ -2057,7 +2057,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "A3",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                     "markdownSection": "A3",
                     "sectionKey": "a3",
                     "headingLevel": 2
@@ -2065,7 +2065,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "A1, A2, and A3 Relations",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                     "markdownSection": "A1, A2, and A3 Relations",
                     "sectionKey": "a1 a2 and a3 relations",
                     "headingLevel": 2
@@ -2073,7 +2073,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Claim Boundary",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                     "markdownSection": "Claim Boundary",
                     "sectionKey": "claim boundary",
                     "headingLevel": 2
@@ -2086,12 +2086,12 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
                     "title": "Claim-Ownership Classification",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
                     "markdownSection": "Claim-Ownership Classification",
                     "sectionKey": "claim ownership classification",
                     "headingLevel": 2
@@ -2099,7 +2099,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Retention and Interpretation",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
                     "markdownSection": "Retention and Interpretation",
                     "sectionKey": "retention and interpretation",
                     "headingLevel": 2
@@ -2112,12 +2112,12 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
                     "title": "Invariant Channels and Equivariant Reductions",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
                     "markdownSection": "Invariant Channels and Equivariant Reductions",
                     "sectionKey": "invariant channels and equivariant reductions",
                     "headingLevel": 2
@@ -2125,7 +2125,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "A2 Two-Ring Geometry",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
                     "markdownSection": "A2 Two-Ring Geometry",
                     "sectionKey": "a2 two ring geometry",
                     "headingLevel": 2
@@ -2133,7 +2133,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Moments and the Axial Polarity Dipole",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
                     "markdownSection": "Moments and the Axial Polarity Dipole",
                     "sectionKey": "moments and the axial polarity dipole",
                     "headingLevel": 2
@@ -2141,7 +2141,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Momentum Screw and Helicity",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
                     "markdownSection": "Momentum Screw and Helicity",
                     "sectionKey": "momentum screw and helicity",
                     "headingLevel": 2
@@ -2149,7 +2149,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Retention and Return Response",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
                     "markdownSection": "Retention and Return Response",
                     "sectionKey": "retention and return response",
                     "headingLevel": 2
@@ -2157,7 +2157,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Claim Boundary",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
                     "markdownSection": "Claim Boundary",
                     "sectionKey": "claim boundary",
                     "headingLevel": 2
@@ -2170,12 +2170,12 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/noether-braid/doubling_frequency_lock.json",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
                     "title": "Status and Assumptions",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Status and Assumptions",
                     "sectionKey": "status and assumptions",
                     "headingLevel": 2
@@ -2183,7 +2183,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Exact Kinematic Identity",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Exact Kinematic Identity",
                     "sectionKey": "exact kinematic identity",
                     "headingLevel": 2
@@ -2191,7 +2191,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
                     "sectionKey": "assumption 1 candidate caustic grazing carrier",
                     "headingLevel": 2
@@ -2199,7 +2199,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Assumption 2 (Exact Integer Phase Closure)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Assumption 2 (Exact Integer Phase Closure)",
                     "sectionKey": "assumption 2 exact integer phase closure",
                     "headingLevel": 2
@@ -2207,7 +2207,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Assumption 3 (Fixed Relative Phase Lock)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Assumption 3 (Fixed Relative Phase Lock)",
                     "sectionKey": "assumption 3 fixed relative phase lock",
                     "headingLevel": 2
@@ -2215,7 +2215,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Bundle Holonomy Reading",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Bundle Holonomy Reading",
                     "sectionKey": "bundle holonomy reading",
                     "headingLevel": 2
@@ -2223,7 +2223,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
                     "sectionKey": "assumption 4 bundle flatness and cancellation selection principle",
                     "headingLevel": 2
@@ -2231,7 +2231,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Non-Assumptions",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Non-Assumptions",
                     "sectionKey": "non assumptions",
                     "headingLevel": 2
@@ -2239,7 +2239,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Immediate Consequences",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Immediate Consequences",
                     "sectionKey": "immediate consequences",
                     "headingLevel": 2
@@ -2247,7 +2247,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Proposition 1 (Exterior Integer Lock Formulas)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
                     "sectionKey": "proposition 1 exterior integer lock formulas",
                     "headingLevel": 2
@@ -2255,7 +2255,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Could $1{:}2{:}4$ Be a Solution?",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
                     "sectionKey": "could 1 2 4 be a solution",
                     "headingLevel": 2
@@ -2263,7 +2263,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "What Exact Periodicity Gives, and What It Does Not",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
                     "sectionKey": "what exact periodicity gives and what it does not",
                     "headingLevel": 2
@@ -2271,7 +2271,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Interpreting the Cancellation Principle",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Interpreting the Cancellation Principle",
                     "sectionKey": "interpreting the cancellation principle",
                     "headingLevel": 2
@@ -2279,7 +2279,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "RG-Style Truncation Test",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "RG-Style Truncation Test",
                     "sectionKey": "rg style truncation test",
                     "headingLevel": 2
@@ -2287,7 +2287,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Reduced-Theorem Target",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Reduced-Theorem Target",
                     "sectionKey": "reduced theorem target",
                     "headingLevel": 2
@@ -2295,7 +2295,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Recurrence Diagnostic",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Recurrence Diagnostic",
                     "sectionKey": "recurrence diagnostic",
                     "headingLevel": 2
@@ -2303,7 +2303,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Ancillary Symmetry Check",
-                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
                     "markdownSection": "Ancillary Symmetry Check",
                     "sectionKey": "ancillary symmetry check",
                     "headingLevel": 2
@@ -2314,24 +2314,24 @@
           },
           {
             "id": "noether_braid__braid_family_b",
-            "title": "Braid Family B",
+            "title": "Braid common-axis three-binary charts",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/noether-braid/braid_family_b.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/braid-family-b.md",
+            "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Shared Family-B Geometry",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-b.md",
-                "markdownSection": "Shared Family-B Geometry",
+                "title": "Shared common-axis three-binary-chart Geometry",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Shared common-axis three-binary-chart Geometry",
                 "sectionKey": "shared family b geometry",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "B1",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-b.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "B1",
                 "sectionKey": "b1",
                 "headingLevel": 2
@@ -2339,7 +2339,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Coordinate Boundaries",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-b.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "Coordinate Boundaries",
                 "sectionKey": "coordinate boundaries",
                 "headingLevel": 2
@@ -2347,23 +2347,23 @@
               {
                 "kind": "markdown-section",
                 "title": "Axial Translation",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-b.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "Axial Translation",
                 "sectionKey": "axial translation",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Boundary with Family A",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-b.md",
-                "markdownSection": "Boundary with Family A",
+                "title": "Boundary with three-axis circular charts",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Boundary with three-axis circular charts",
                 "sectionKey": "boundary with family a",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Claim Boundary",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-b.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "Claim Boundary",
                 "sectionKey": "claim boundary",
                 "headingLevel": 2
@@ -2372,24 +2372,24 @@
           },
           {
             "id": "noether_braid__braid_family_c",
-            "title": "Braid Family C",
+            "title": "Braid two-component circular charts",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/noether-braid/braid_family_c.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+            "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Shared Family-C Coordinate Chart",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
-                "markdownSection": "Shared Family-C Coordinate Chart",
+                "title": "Shared two-component circular-chart Coordinate Chart",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Shared two-component circular-chart Coordinate Chart",
                 "sectionKey": "shared family c coordinate chart",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Neutral-Binary Pairing",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "Neutral-Binary Pairing",
                 "sectionKey": "neutral binary pairing",
                 "headingLevel": 2
@@ -2397,7 +2397,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Optional Accessory Configuration",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "Optional Accessory Configuration",
                 "sectionKey": "optional accessory configuration",
                 "headingLevel": 2
@@ -2405,7 +2405,7 @@
               {
                 "kind": "markdown-section",
                 "title": "C1",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "C1",
                 "sectionKey": "c1",
                 "headingLevel": 2
@@ -2413,7 +2413,7 @@
               {
                 "kind": "markdown-section",
                 "title": "C2",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "C2",
                 "sectionKey": "c2",
                 "headingLevel": 2
@@ -2421,7 +2421,7 @@
               {
                 "kind": "markdown-section",
                 "title": "C3 and C4",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "C3 and C4",
                 "sectionKey": "c3 and c4",
                 "headingLevel": 2
@@ -2429,7 +2429,7 @@
               {
                 "kind": "markdown-section",
                 "title": "C5 and C6",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "C5 and C6",
                 "sectionKey": "c5 and c6",
                 "headingLevel": 2
@@ -2437,7 +2437,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Exact Causal-Delay Relation",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "Exact Causal-Delay Relation",
                 "sectionKey": "exact causal delay relation",
                 "headingLevel": 2
@@ -2445,7 +2445,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Interface With Physical Hypotheses",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "Interface With Physical Hypotheses",
                 "sectionKey": "interface with physical hypotheses",
                 "headingLevel": 2
@@ -2453,7 +2453,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Claim Boundary",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
                 "markdownSection": "Claim Boundary",
                 "sectionKey": "claim boundary",
                 "headingLevel": 2
@@ -2486,9 +2486,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Family-B Example: B1",
+                "title": "common-axis three-binary-chart Example: B1",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Family-B Example: B1",
+                "markdownSection": "common-axis three-binary-chart Example: B1",
                 "sectionKey": "family b example b1",
                 "headingLevel": 2
               },
@@ -2644,12 +2644,12 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/noether-braid/spindle_braid.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
+            "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "The Harmonic-Matching Hypothesis",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
                 "markdownSection": "The Harmonic-Matching Hypothesis",
                 "sectionKey": "the harmonic matching hypothesis",
                 "headingLevel": 2
@@ -2657,7 +2657,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Cyclic-Symmetric A2/B1 Overlap",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
                 "markdownSection": "Cyclic-Symmetric A2/B1 Overlap",
                 "sectionKey": "cyclic symmetric a2 b1 overlap",
                 "headingLevel": 2
@@ -2665,7 +2665,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Discrete-Symmetry Structure",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
                 "markdownSection": "Discrete-Symmetry Structure",
                 "sectionKey": "discrete symmetry structure",
                 "headingLevel": 2
@@ -2673,7 +2673,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Candidate Status and Open Burden",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
                 "markdownSection": "Candidate Status and Open Burden",
                 "sectionKey": "candidate status and open burden",
                 "headingLevel": 2
@@ -8535,9 +8535,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Experiment-Family Classification",
+                "title": "Experiment-two-component circular chartslassification",
                 "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
-                "markdownSection": "Experiment-Family Classification",
+                "markdownSection": "Experiment-two-component circular chartslassification",
                 "sectionKey": "experiment family classification",
                 "headingLevel": 2
               },

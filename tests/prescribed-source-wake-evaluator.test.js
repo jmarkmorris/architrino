@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { createHash } from "node:crypto";
 import test from "node:test";
 import assert from "node:assert/strict";
 
@@ -17,8 +18,8 @@ import {
   verifyIndependentCaseAcceptance,
 } from "../src/prescribed-path-analysis/index.mjs";
 import {
-  DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
-  evaluateSpindleAnalysisFromFiles,
+  DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_ANALYSIS_PROTOCOL_PATH,
+  evaluateAxialTransverseThreeBinaryInteriorAnalysisFromFiles,
   serializePrescribedRecordAnalysis,
 } from "../scripts/eom/evaluate-prescribed-source-wake.mjs";
 import {
@@ -27,8 +28,13 @@ import {
 } from "../scripts/eom/generate-prescribed-braid-record.mjs";
 
 function sourceRecord(sources, history = { start: 0, end: 4 }) {
+  const modelRevisionSha256 = createHash("sha256")
+    .update(JSON.stringify({ sourceSchema: "closed-form-test.v1", history, sources }))
+    .digest("hex");
   return {
     schema: EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
+    assemblyId: `asm-${modelRevisionSha256.slice(0, 32)}`,
+    modelRevisionSha256,
     recordId: "closed-form-test-record",
     sourceSchema: "closed-form-test.v1",
     engineId: "prescribed-geometry",
@@ -247,10 +253,10 @@ test("uniformly translating closed form exercises the transmitter-side causal fa
   assertNear(result.virtualProbeAcceleration.x, 12 / 25);
 });
 
-test("the canonical assembly evaluator preserves every exact B1 source path and supports a six-source evaluation", () => {
+test("the canonical assembly evaluator preserves every exact axial-transverse three-binary interior source path and supports a six-source evaluation", () => {
   const spec = JSON.parse(fs.readFileSync(
     new URL(
-      "../reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v2.json",
+      "../reference/priorities/braid-program/configurations/axial-transverse-three-binary-interior.v3.json",
       import.meta.url,
     ),
     "utf8",
@@ -680,16 +686,16 @@ test("analysis sessions preserve full packets and reuse source-invariant geometr
   });
 });
 
-test("identical B1 source and protocol inputs produce deterministic packet bytes", () => {
-  const first = serializePrescribedRecordAnalysis(evaluateSpindleAnalysisFromFiles({
-    protocolPath: DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
+test("identical axial-transverse three-binary interior source and protocol inputs produce deterministic packet bytes", () => {
+  const first = serializePrescribedRecordAnalysis(evaluateAxialTransverseThreeBinaryInteriorAnalysisFromFiles({
+    protocolPath: DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_ANALYSIS_PROTOCOL_PATH,
   }));
-  const second = serializePrescribedRecordAnalysis(evaluateSpindleAnalysisFromFiles({
-    protocolPath: DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
+  const second = serializePrescribedRecordAnalysis(evaluateAxialTransverseThreeBinaryInteriorAnalysisFromFiles({
+    protocolPath: DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_ANALYSIS_PROTOCOL_PATH,
   }));
   assert.equal(first, second);
   const parsed = JSON.parse(first);
-  assert.equal(parsed.source.recordId, "illustrative-spindle-chart-hypothesis-v0");
+  assert.equal(parsed.source.recordId, "axial-transverse-three-binary-interior-v1");
   assert.equal(parsed.reducedMeasures.events[0].rootCount, 6);
   assert.equal(parsed.reducedMeasures.validity.passed, true);
 });

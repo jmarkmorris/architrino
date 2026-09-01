@@ -13,7 +13,7 @@ import {
 } from "../src/prescribed-geometry/PrescribedWorldlineOperators.mjs";
 
 const specPath = new URL(
-  "../reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json",
+  "../reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
   import.meta.url,
 );
 const frozenPilotSourcePath = new URL(

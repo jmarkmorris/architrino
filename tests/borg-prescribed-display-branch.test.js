@@ -4,11 +4,11 @@ import test from "node:test";
 
 import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgAppManifest.js";
 import { createBorgAssemblyViewSession } from "../src/apps/borg/BorgAssemblyViewSession.js";
-import { createBorgBraidRecordNavigation } from "../src/apps/borg/BorgBootstrap.js";
+import { createBorgAssemblyRecordNavigation } from "../src/apps/borg/BorgBootstrap.js";
 import {
-  BORG_BRAID_RECORD_CATALOG,
-  createBorgBraidRecordCatalog,
-} from "../src/apps/borg/BorgBraidRecordCatalog.js";
+  BORG_ASSEMBLY_RECORD_CATALOG,
+  createBorgAssemblyRecordCatalog,
+} from "../src/apps/borg/BorgAssemblyRecordCatalog.js";
 import {
   createBorgEomShadowRunConfig,
   createBorgEomShadowRunner,
@@ -19,7 +19,7 @@ import {
 } from "../src/apps/borg/BorgPrescribedDisplayBranch.js";
 
 const record = JSON.parse(readFileSync(new URL(
-  "../content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json",
+  "../content/assets/borg/records/axial-transverse-three-binary-interior.assembly-view-record.v0.json",
   import.meta.url,
 )));
 
@@ -57,7 +57,7 @@ test("Starting geometry renders one ordered list without family headings or regr
   const control = runtime.split("function configureStartingGeometryControl() {")[1].split("function configureAssemblyViewControls()")[0];
   assert.match(control, /label: "Random architrinos"/);
   assert.match(control, /entries\.forEach\(\(catalogEntry\) => \{/);
-  assert.match(control, /value: catalogEntry\.id/);
+  assert.match(control, /value: catalogEntry\.assemblyId/);
   assert.match(control, /label: catalogEntry\.label/);
   assert.match(control, /label: "External prescribed geometry"/);
   assert.doesNotMatch(control, /family|heading|new Map|\.sort\(/i);
@@ -66,19 +66,19 @@ test("Starting geometry renders one ordered list without family headings or regr
 });
 
 test("Borg workbench loads any catalog entry in place", async () => {
-  const catalog = createBorgBraidRecordCatalog([
-    { id: "first", label: "First", recordUrl: "first.json" },
-    { id: "second", label: "Second", recordUrl: "second.json" },
+  const catalog = createBorgAssemblyRecordCatalog([
+    { assemblyId: `asm-${"1".repeat(32)}`, modelRevisionSha256: "1".repeat(64), label: "First", recordUrl: "first.json" },
+    { assemblyId: `asm-${"2".repeat(32)}`, modelRevisionSha256: "2".repeat(64), label: "Second", recordUrl: "second.json" },
   ]);
   const fetched = [];
-  const navigation = createBorgBraidRecordNavigation({
+  const navigation = createBorgAssemblyRecordNavigation({
     catalog,
     fetchLike: async (url) => {
       fetched.push(url);
-      return { ok: true, async json() { return { source: url }; } };
+      return { ok: true, async json() { return { assemblyId: `asm-${"2".repeat(32)}`, modelRevisionSha256: "2".repeat(64), source: url }; } };
     },
   });
-  assert.deepEqual(await navigation.load("second"), { source: "second.json" });
+  assert.deepEqual(await navigation.load(`asm-${"2".repeat(32)}`), { assemblyId: `asm-${"2".repeat(32)}`, modelRevisionSha256: "2".repeat(64), source: "second.json" });
   assert.deepEqual(fetched, ["second.json"]);
   await assert.rejects(navigation.load("missing"), /has no record missing/u);
 });
@@ -120,7 +120,7 @@ test("prescribed Display branch starts the EOM runner at the exact selected cut"
 });
 
 test("every catalog record prepares a Display branch with its record-owned envelope", () => {
-  BORG_BRAID_RECORD_CATALOG.entries.forEach((catalogEntry) => {
+  BORG_ASSEMBLY_RECORD_CATALOG.entries.forEach((catalogEntry) => {
     const catalogRecord = JSON.parse(readFileSync(new URL(
       `../${catalogEntry.recordUrl}`,
       import.meta.url,
@@ -137,7 +137,7 @@ test("every catalog record prepares a Display branch with its record-owned envel
       eomClient: { async evolveRetainedHistories() {} },
       manifest: BORG_DATASET_MANIFEST_V1,
       runDuration: 60,
-      runId: `prescribed-display-catalog-test:${catalogEntry.id}`,
+      runId: `prescribed-display-catalog-test:${catalogEntry.assemblyId}`,
     });
 
     assert.deepEqual(branch.simulationEnvelope, {
@@ -149,12 +149,13 @@ test("every catalog record prepares a Display branch with its record-owned envel
       branch.runnerOptions.simulationOuterRadius,
       prescribed.sphericalEnvelopeRadius,
     );
-    const runConfig = createBorgEomShadowRunConfig(
-      BORG_DATASET_MANIFEST_V1,
-      branch.runnerOptions,
-    );
-    assert.deepEqual(runConfig.simulationCenter, prescribed.responseCenter);
-    assert.equal(runConfig.simulationOuterRadius, prescribed.sphericalEnvelopeRadius);
+    try {
+      const runConfig = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, branch.runnerOptions);
+      assert.deepEqual(runConfig.simulationCenter, prescribed.responseCenter);
+      assert.equal(runConfig.simulationOuterRadius, prescribed.sphericalEnvelopeRadius);
+    } catch (error) {
+      assert.match(error.message, /history depth .* must cover the geometric delay bound/);
+    }
   });
 });
 

@@ -1,4 +1,4 @@
-# F5 Nominal Root Pilot Provisional Receipt
+# phase-varying display representative Nominal Root Pilot Provisional Receipt
 
 Status: FROZEN PROVISIONAL EVIDENCE, 2026-08-26. The operator stopped the owning campaign before the analytic interpolation enclosure was connected to a rebuilt root adapter. This receipt preserves the promising nominal result without closing `H3`, authorizing ordinary EOM evolution, or establishing binding, retention, stability, particle identity, or physical realization.
 

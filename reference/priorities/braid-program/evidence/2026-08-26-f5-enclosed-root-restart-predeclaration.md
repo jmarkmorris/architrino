@@ -1,10 +1,10 @@
-# F5 Enclosed Complete-Root Restart Predeclaration
+# phase-varying display representative Enclosed Complete-Root Restart Predeclaration
 
-Status: FROZEN BEFORE IMPLEMENTATION, 2026-08-26. This is the clean restart of F5 `H3` after the operator stopped the broad complete-registry campaign. It may close only complete causal-root accounting for the approved prescribed history. It does not prescribe the future of an ordinary EOM evolution and cannot establish binding, retention, stability, particle identity, or physical realization.
+Status: FROZEN BEFORE IMPLEMENTATION, 2026-08-26. This is the clean restart of phase-varying display representative `H3` after the operator stopped the broad complete-registry campaign. It may close only complete causal-root accounting for the approved prescribed history. It does not prescribe the future of an ordinary EOM evolution and cannot establish binding, retention, stability, particle identity, or physical realization.
 
 ## Admitted scientific row
 
-The canonical prescribed display source is `configurations/f5-phase-varying-campaign.v2.json`, SHA-256 `e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb`. The campaign-time scientific fixture is [`2026-08-26-f5-phase-varying-root-pilot-source.v2.json`](2026-08-26-f5-phase-varying-root-pilot-source.v2.json), SHA-256 `bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344`. The existing focused test must continue to prove parsed equality of `constituents`, `worldlines`, `relationships`, `history`, `constraints`, `display`, and `interpolation`; any mismatch stops the restart.
+The canonical prescribed display source is `configurations/phase-varying-prescribed-display-history.v3.json`, SHA-256 `e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb`. The campaign-time scientific fixture is [`2026-08-26-f5-phase-varying-root-pilot-source.v2.json`](2026-08-26-f5-phase-varying-root-pilot-source.v2.json), SHA-256 `bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344`. The existing focused test must continue to prove parsed equality of `constituents`, `worldlines`, `relationships`, `history`, `constraints`, `display`, and `interpolation`; any mismatch stops the restart.
 
 The approved row independently specifies axial distance `0.31`, circle radii `0.30` and `0.22`, sector oscillation amplitudes `0.24` and `0.27`, branch sheet `(-1,-1,+1,-1,-1,+1)`, negative-sector phase `3.0434178831651124`, cadence `0.3200222059958718`, period `19.63359163663986`, and retained-history depth `1`, with normalized $c_f=1$.
 
@@ -12,7 +12,7 @@ Plainly: this is exactly the creative geometry the operator approved for display
 
 ## Independent enclosure first
 
-The first implementation batch owns only an analytic-to-cubic interpolation enclosure. It must be authored independently of the prescribed-worldline operator and root adapter, import neither, and implement outward-rounded interval arithmetic plus factorial-normalized Taylor arithmetic through fourth order. Primitive controls for constants, polynomials, sine, cosine, reciprocal, and positive square root must pass before the F5 map is admitted. The instrument must cover every member and Cartesian axis on every maximum-width `0.02` segment across `[-1,19.63359163663986]`, record the global fourth-derivative bound, derive position and velocity widths with divisors `300` and `8` plus `64` binary64 roundoff units, and pass a 65,536-sample-per-member dense escape check.
+The first implementation batch owns only an analytic-to-cubic interpolation enclosure. It must be authored independently of the prescribed-worldline operator and root adapter, import neither, and implement outward-rounded interval arithmetic plus factorial-normalized Taylor arithmetic through fourth order. Primitive controls for constants, polynomials, sine, cosine, reciprocal, and positive square root must pass before the phase-varying display representative map is admitted. The instrument must cover every member and Cartesian axis on every maximum-width `0.02` segment across `[-1,19.63359163663986]`, record the global fourth-derivative bound, derive position and velocity widths with divisors `300` and `8` plus `64` binary64 roundoff units, and pass a 65,536-sample-per-member dense escape check.
 
 This independent instrument is frozen and reviewed before the root-adapter batch begins. It is not modified in the adapter batch.
 
@@ -30,12 +30,12 @@ Plainly: success must reproduce the nominal pilot's favorable root structure whi
 
 ## Ordinary-evolution handoff
 
-Only an accepted 128-phase enclosed result may authorize the next F5 question. That ordinary EOM run must take the approved analytic history solely as retained prehistory on `[-1,0]`, initialize the twelve positions and velocities at `0`, and let the EOM solver generate every state for $t>0$. It must record root provenance, clearance, speed, factor margins, centered-RMS deviation from the prescribed continuation, full-state leakage, refinement sensitivity, and exact stopping reasons. A prescribed continuation for $t>0$ is comparison data only and must never be fed back as the evolved future.
+Only an accepted 128-phase enclosed result may authorize the next phase-varying display representative question. That ordinary EOM run must take the approved analytic history solely as retained prehistory on `[-1,0]`, initialize the twelve positions and velocities at `0`, and let the EOM solver generate every state for $t>0$. It must record root provenance, clearance, speed, factor margins, centered-RMS deviation from the prescribed continuation, full-state leakage, refinement sensitivity, and exact stopping reasons. A prescribed continuation for $t>0$ is comparison data only and must never be fed back as the evolved future.
 
-Plainly: this is the test the operator wants. It asks whether the EOM-generated F5 motion behaves as well as the prescribed display geometry, rather than forcing the display motion to continue.
+Plainly: this is the test the operator wants. It asks whether the EOM-generated phase-varying display representative motion behaves as well as the prescribed display geometry, rather than forcing the display motion to continue.
 
 ## Evidence paths and falsifier
 
 Write-once restart artifacts belong under `.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/`, with a durable repository receipt containing exact hashes and summarized results. The result is falsified by any source-field mismatch, independent-enclosure control failure, dense escape, incomplete row, nonpositive factor margin, memory-boundary contact, unexpected self event, output mutation, or rerun disagreement under the same hashes.
 
-Closure goal: close F5 `H3` with an independently enclosed 128-phase complete-root certificate, then begin a separately predeclared ordinary EOM evolution from retained prehistory `[-1,0]`.
+Closure goal: close phase-varying display representative `H3` with an independently enclosed 128-phase complete-root certificate, then begin a separately predeclared ordinary EOM evolution from retained prehistory `[-1,0]`.

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "noether_braid__3d_braid_assemblies",
+    "title": "Spatial (3D) Braid Assemblies",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": { "type": "static" },
+    "source": { "type": "markdown", "path": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md" },
+    "view": { "columns": 1, "autoOpen": true }
+  },
+  "objects": []
+}

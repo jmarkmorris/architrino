@@ -18,7 +18,7 @@ This guide should be read alongside:
 - [software-architecture-and-maintenance.md](software-architecture-and-maintenance.md)
 - [comparative-glossary.md](comparative-glossary.md)
 - [github-presence-and-community.md](github-presence-and-community.md)
-- [A1 Lorentz Geometry Guide](ideal-braid-guide.md)
+- [Coincident-Midpoint Three-Axis Circular Lorentz Geometry Guide](ideal-braid-guide.md)
 - [photon-guide.md](photon-guide.md)
 - [research-notebook.md](research-notebook.md)
 

@@ -1,0 +1,171 @@
+{
+  "schema": "prescribed-path-analysis/coincident-midpoint-common-frequency-root-sheet-monotonic-enclosure-treatment-protocol.v1",
+  "protocolId": "coincident-midpoint-common-frequency-nine-unresolved-symmetry-representatives-root-sheet-treatment-v1",
+  "sourceConfiguration": {
+    "scientificIdentity": {
+      "assemblyId": "asm-2a289a6fe32f64922ab71bae973acc80",
+      "modelRevisionSha256": "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6"
+    }
+  },
+  "claimGrade": "diagnostic",
+  "claimBoundary": {
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "diagnosticOnly": true,
+    "score": null,
+    "excludedClaims": [
+      "physical-candidate-selection",
+      "retention",
+      "stability",
+      "energy",
+      "action",
+      "angular-momentum-dynamics",
+      "radiation",
+      "pressure",
+      "general-relativity-recovery",
+      "physical-superluminal-transport",
+      "physical-realization"
+    ]
+  },
+  "baseProtocol": {
+    "path": "src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-continuous-ratio-phase-root-inventory-protocol.v1.json",
+    "sha256": "b87b16d140c67608977ac9bb7cf21175936808d0b9617b41778e150c904f4a4f"
+  },
+  "sealedRegressionReceipt": {
+    "path": "reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-continuous-ratio-phase-root-inventory-summary.v2.json",
+    "summaryHash": "5db6ee43e521d48d7d664fbf976df9274deea4861dc244f44040694ec1c30543",
+    "resultHash": "00ffefc11b4fc98de88de222e438517f9d9c7eae402a7ed785581094dd3c0d80",
+    "closedInterBinaryChannelIds": [
+      "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-1",
+      "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+      "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "coincident-midpoint-common-frequency-binary-2-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+      "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-1",
+      "coincident-midpoint-common-frequency-binary-3-endpoint-2<-coincident-midpoint-common-frequency-binary-1-endpoint-2"
+    ],
+    "use": "hash-and-channel-list regression control only; the six closed channels are not re-evaluated"
+  },
+  "targetRepresentatives": [
+    "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+    "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-1",
+    "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-1",
+    "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2"
+  ],
+  "rootSheet": {
+    "rootFunction": "G(alpha1,alpha3,theta,delta)=squared-distance-delta^2",
+    "dependentVariable": "dimensionlessDelay",
+    "parameterVariables": [
+      "active-radius-ratios",
+      "receptionPhase"
+    ],
+    "domain": {
+      "alpha1": [0.875, 0.9375],
+      "alpha2": [1, 1],
+      "alpha3": [1.0625, 1.125],
+      "receptionPhase": [0, 6.283185307179586],
+      "dimensionlessDelayInterior": [0.03125, 2.25]
+    },
+    "phaseSeam": "theta-zero-identified-with-two-pi/exact-four-pi-sigma-periodicity.v1",
+    "endpointProofs": {
+      "nearZero": "(minimum-radius-gap)^2-(1/32)^2 >= 3/1024 > 0",
+      "historyEdge": "(maximum-radius-sum)^2-(9/4)^2 <= (17/8)^2-(9/4)^2 < 0"
+    },
+    "rootCountInvarianceTheorem": {
+      "id": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+      "obligations": [
+        "G is continuous on the compact parameter-delay domain",
+        "the parameter domain is connected after the reception-phase seam is identified",
+        "G is strictly positive at the admitted near-zero delay face",
+        "G is strictly negative at the history-edge delay face",
+        "no interior box admits both G=0 and partial-G/partial-delta=0",
+        "one anchor point has exactly one isolated simple root",
+        "the direct-coordinate squared residual independently recomputes every anchor root within the declared floor"
+      ]
+    },
+    "subFieldSpeedCoordinateCharts": {
+      "id": "coincident-midpoint-common-frequency-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+      "receptionFixed": {
+        "parameterPhase": "theta",
+        "dependentVariable": "dimensionlessDelay",
+        "eligibility": "transmitter-radius-parameter-is-alpha1",
+        "movingEndpointAtFixedPhase": "transmitter",
+        "causalResidualDerivativeUpperBound": "alpha1_max-1=-1/16"
+      },
+      "emissionFixed": {
+        "parameterPhase": "epsilon=(theta-delta)-modulo-two-pi",
+        "dependentVariable": "dimensionlessDelay",
+        "eligibility": "receiver-radius-parameter-is-alpha1",
+        "movingEndpointAtFixedPhase": "receiver",
+        "causalResidualDerivativeUpperBound": "alpha1_max-1=-1/16"
+      },
+      "chartTransition": {
+        "map": "(theta,delta)<->(epsilon=theta-delta modulo 2*pi,delta)",
+        "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+        "seamRule": "zero-and-two-pi-are-one-phase-circle-point",
+        "foldConsequence": "strictly-negative causal-residual derivative excludes a squared-residual fold because partial-G/partial-delta=2*delta*partial-F/partial-delta at every positive-delay causal root"
+      }
+    }
+  },
+  "foldExclusion": {
+    "squaredResidualExclusionFloor": 1e-10,
+    "squaredDelayDerivativeExclusionFloor": 1e-8,
+    "intervalPaddingUlps": 4,
+    "initialRatioSubdivisions": 2,
+    "initialReceptionPhaseSubdivisions": 24,
+    "maximumSubdivisionDepth": 18,
+    "maximumBoxesPerRepresentative": 20000,
+    "maximumBoxesPerPacket": 180000,
+    "minimumAlphaWidth": 0.0000152587890625,
+    "minimumReceptionPhaseWidth": 0.00009587379924285257,
+    "minimumDelayWidth": 0.000034332275390625,
+    "splitPolicy": "largest-active-normalized-width.v1",
+    "dispositions": [
+      "certified-root-free-box",
+      "certified-root-capable-no-fold-box",
+      "unresolved-possible-fold-box",
+      "unresolved-resource-box"
+    ]
+  },
+  "anchorRootInventory": {
+    "point": {
+      "alpha1": 0.90625,
+      "alpha3": 1.09375,
+      "coordinatePhase": 0.4487989505128276,
+      "coordinateRule": "use-epsilon-in-emission-fixed-chart; otherwise-use-theta"
+    },
+    "expectedRootCountPerRepresentative": 1,
+    "initialDelaySubdivisions": 32,
+    "maximumSubdivisionDepth": 48,
+    "maximumBoxesPerRepresentative": 4096,
+    "minimumDelayWidth": 1e-10,
+    "rootResidualFloor": 1e-10,
+    "rootTransversalityFloor": 1e-8,
+    "independentNormalizedResidualFloor": 1e-9,
+    "rootSeparationFloor": 1e-7,
+    "boundaryOwnership": "left-open-right-closed/internal; near-zero-and-history-edge-owned-by-endpoint-proofs.v1"
+  },
+  "negativeControls": {
+    "syntheticFold": {
+      "rootFunction": "(delta-1)^2",
+      "foldPoint": 1,
+      "requiredDisposition": "unresolved-possible-fold-box"
+    },
+    "resourceExhaustion": {
+      "maximumBoxesPerRepresentative": 1,
+      "requiredStatus": "drawn-not-evaluated",
+      "requiredScore": null
+    }
+  },
+  "completionRule": {
+    "statusWhenComplete": "evaluated-diagnostic",
+    "statusWhenAnyObligationFails": "drawn-not-evaluated",
+    "score": null,
+    "noCandidateFailureFromUnresolved": true
+  }
+}

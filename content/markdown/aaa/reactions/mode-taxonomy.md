@@ -8,7 +8,7 @@ For concrete channel applications of this vocabulary, see [Radiation](radiation.
 
 The goal is consistency, not new phenomenology. Standard observer-level reaction equations remain unchanged unless a chapter explicitly derives a deviation.
 
-This taxonomy records which channel family a reaction uses; it does not derive the angular-momentum or spin rule for that family. Photon Gate B, weak-corridor vector spin, Pauli/statistics closure, and spin-sensitive measurement outcomes inherit [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) and should remain marked as closure targets in reaction prose.
+This taxonomy records the reaction channel grouping; it does not derive the angular-momentum or spin rule for that grouping. Photon Gate B, weak-corridor vector spin, Pauli/statistics closure, and spin-sensitive measurement outcomes inherit [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) and should remain marked as closure targets in reaction prose.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly-Level Interpretation
 

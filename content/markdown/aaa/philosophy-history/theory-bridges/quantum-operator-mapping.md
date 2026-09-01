@@ -6,7 +6,7 @@ The reader should treat an operator as a recovered record-channel map unless the
 
 ## Candidate Noether-Braid Qubit and Phase Space
 
-A physical qubit is provisionally mapped to stable orientational states of a candidate Noether-braid assembly. Let $\hat{\mathbf{n}}_1$, $\hat{\mathbf{n}}_2$, and $\hat{\mathbf{n}}_3$ denote the orbital-plane normals of its persistently indexed binaries. The reduced source record considered here assigns the speed classes $v_1>c_f$, $v_2=c_f$, and $v_3<c_f$; those assignments are record constraints, not meanings carried by the indices and not evidence for A1 or another taxonomy member.
+A physical qubit is provisionally mapped to stable orientational states of a candidate Noether-braid assembly. Let $\hat{\mathbf{n}}_1$, $\hat{\mathbf{n}}_2$, and $\hat{\mathbf{n}}_3$ denote the orbital-plane normals of its persistently indexed binaries. The reduced source record considered here assigns the speed classes $v_1>c_f$, $v_2=c_f$, and $v_3<c_f$; those assignments are record constraints, not meanings carried by the indices and not evidence for coincident-midpoint orthogonal-axis braid or another taxonomy member.
 
 The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ relative to the source record's binary-2 reference normal $\hat{\mathbf{n}}_2$.
 

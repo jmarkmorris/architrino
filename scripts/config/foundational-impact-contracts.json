@@ -230,7 +230,7 @@
           "matter-antimatter chirality retained-history target"
         ],
         "applications": [
-          "A1 Lorentz Geometry visual surfaces"
+          "Coincident-Midpoint Three-Axis Circular Lorentz Geometry visual surfaces"
         ],
         "validation": [
           "content validation"
@@ -420,10 +420,10 @@
           "matter-antimatter chirality retained-history target"
         ],
         "simulations": [
-          "A1 Lorentz Geometry runtime"
+          "Coincident-Midpoint Three-Axis Circular Lorentz Geometry runtime"
         ],
         "applications": [
-          "A1 Lorentz Geometry app",
+          "Coincident-Midpoint Three-Axis Circular Lorentz Geometry app",
           "Animator",
           "PDG edit surfaces"
         ],
@@ -671,7 +671,7 @@
         "applications": [
           "Animator",
           "Photon",
-          "A1 Lorentz Geometry",
+          "Coincident-Midpoint Three-Axis Circular Lorentz Geometry",
           "Borg",
           "Causal Delay Feedback"
         ],

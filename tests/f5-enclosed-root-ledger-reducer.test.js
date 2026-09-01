@@ -22,7 +22,7 @@ const POSITION_WIDTH = "1.528724905003159e-10";
 const VELOCITY_WIDTH = "2.866983034112353e-7";
 const CONFIG = JSON.parse(readFileSync(
   new URL(
-    "../reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json",
+    "../reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
     import.meta.url,
   ),
   "utf8",

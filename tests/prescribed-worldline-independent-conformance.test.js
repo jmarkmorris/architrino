@@ -2,14 +2,14 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { BORG_BRAID_RECORD_CATALOG } from "../src/apps/borg/BorgBraidRecordCatalog.js";
+import { BORG_ASSEMBLY_RECORD_CATALOG } from "../src/apps/borg/BorgAssemblyRecordCatalog.js";
 import {
   evaluateMaterializedWorldline,
   materializePrescribedAssemblySpec,
 } from "../src/prescribed-geometry/PrescribedAssemblySpec.mjs";
 import {
   ACTIVE_PRESCRIBED_BRAID_TARGETS,
-  DEPRECATED_PRESCRIBED_BRAID_TARGETS,
+  CONTROL_PRESCRIBED_BRAID_TARGETS,
 } from "../scripts/eom/generate-prescribed-braid-record.mjs";
 
 // These expected-value maps are authored directly from the mathematical owners.
@@ -17,19 +17,19 @@ import {
 // or worldline operator from the production path under test.
 
 const SD3_URL = new URL(
-  "../reference/priorities/braid-program/configurations/sd3-centered-five-coordinate.v2.json",
+  "../reference/priorities/braid-program/configurations/centered-five-coordinate-linear-history.v3.json",
   import.meta.url,
 );
 const F5_URL = new URL(
-  "../reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json",
+  "../reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
   import.meta.url,
 );
 const F6C_URL = new URL(
-  "../reference/priorities/braid-program/configurations/f6c-polarity-resolved-harmonic.v2.json",
+  "../reference/priorities/braid-program/configurations/small-asymmetric-counter-breathing-history.v3.json",
   import.meta.url,
 );
 const F6B_URL = new URL(
-  "../reference/priorities/braid-program/configurations/f6b-scoped-negative-circular.v2.json",
+  "../reference/priorities/braid-program/configurations/co-spherical-scoped-negative-circular-control.v3.json",
   import.meta.url,
 );
 const READINESS_MATRIX_URL = new URL(
@@ -363,8 +363,8 @@ test("SD3 independently conforms to the exact centered five-coordinate owner", (
   assert.equal(SD3_SPEC.relationships.neutralPairs.length, 3);
   SD3_SPEC.relationships.neutralPairs.forEach((pair, moduleIndex) => {
     assert.deepEqual(pair.members, [
-      `sd3-module-${moduleIndex + 1}-positrino`,
-      `sd3-module-${moduleIndex + 1}-electrino`,
+      `member-${2 * moduleIndex + 1}`,
+      `member-${2 * moduleIndex + 2}`,
     ]);
   });
 
@@ -602,31 +602,31 @@ test("F6b exact clearance and fail-closed status preserve the scoped-negative re
   assert.match(F6B_SPEC.provenanceDescription, /member-acceleration residual rejected/);
 
   assert.equal(
-    ACTIVE_PRESCRIBED_BRAID_TARGETS.some((row) => row.specPath.endsWith("f6b-scoped-negative-circular.v2.json")),
+    ACTIVE_PRESCRIBED_BRAID_TARGETS.some((row) => row.specPath.endsWith("co-spherical-scoped-negative-circular-control.v3.json")),
     false,
   );
   assert.equal(
-    DEPRECATED_PRESCRIBED_BRAID_TARGETS.some((row) => row.specPath.endsWith("f6b-scoped-negative-circular.v2.json")),
+    CONTROL_PRESCRIBED_BRAID_TARGETS.some((row) => row.specPath.endsWith("co-spherical-scoped-negative-circular-control.v3.json")),
     true,
   );
-  const catalogEntry = BORG_BRAID_RECORD_CATALOG.entries.find((row) => row.id === "f6b-scoped-negative-circular-v2");
+  const catalogEntry = BORG_ASSEMBLY_RECORD_CATALOG.entries.find((row) => row.assemblyId === F6B_SPEC.identity.assemblyId);
   assert.ok(catalogEntry);
-  assert.match(catalogEntry.label, /scoped-negative circular realization/);
+  assert.match(catalogEntry.label, /scoped-negative circular control/i);
 });
 
 test("the four owner-derived cases preserve explicit individual-worldline and fail-closed metadata", () => {
   for (const [spec, recordName] of [
-    [SD3_SPEC, "sd3-centered-five-coordinate.assembly-view-record.v0.json"],
-    [F5_SPEC, "f5-phase-varying-campaign.assembly-view-record.v0.json"],
-    [F6C_SPEC, "f6c-polarity-resolved-harmonic.assembly-view-record.v0.json"],
-    [F6B_SPEC, "f6b-scoped-negative-circular.assembly-view-record.v0.json"],
+    [SD3_SPEC, "centered-five-coordinate-linear-history.assembly-view-record.v0.json"],
+    [F5_SPEC, "phase-varying-prescribed-display-history.assembly-view-record.v0.json"],
+    [F6C_SPEC, "small-asymmetric-counter-breathing-history.assembly-view-record.v0.json"],
+    [F6B_SPEC, "co-spherical-scoped-negative-circular-control.assembly-view-record.v0.json"],
   ]) {
     assertIndividualWorldlineSemantics(spec);
     const record = JSON.parse(readFileSync(new URL(`../content/assets/borg/records/${recordName}`, import.meta.url), "utf8"));
     assert.equal(record.provenance.engineId, "prescribed-geometry");
     assert.equal(record.provenance.claimGrade, "chart-hypothesis");
     assert.equal(record.provenance.evidenceStatus, "display-only");
-    assert.equal(record.provenance.prescribedGeometry.sourceSchema, "prescribed-assembly-spec.v2");
+    assert.equal(record.provenance.prescribedGeometry.sourceSchema, "prescribed-assembly-spec.v3");
     assert.equal(record.provenance.prescribedGeometry.evaluatorId, "prescribed-assembly-evaluator.v2");
     assert.equal(record.provenance.prescribedGeometry.physicsInvoked, false);
   }

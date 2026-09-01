@@ -7,24 +7,33 @@ import {
   calibrateCompactCoverageAgainstFullResolution,
   COMPACT_MONTE_CARLO_CAMPAIGN_SCHEMA,
   COMPACT_MONTE_CARLO_CASE_SCHEMA,
-  FULL_TAXONOMY_SAMPLER_ID,
-  sampleFullConstraintPreservingTaxonomy,
+  FULL_EXACT_CONFIGURATION_SAMPLER_ID,
+  sampleFullConstraintPreservingConfiguration,
   sampleLocalReferenceNeighborhood,
 } from "../src/prescribed-path-analysis/CompactMonteCarloCampaign.mjs";
 import {
-  validateB1CompleteCycleProbeProtocol,
-} from "../src/prescribed-path-analysis/B1CompleteCycleProbeProtocol.mjs";
+  validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol,
+} from "../src/prescribed-path-analysis/CoincidentAxisThreeBinaryCompleteCycleProbeProtocol.mjs";
 import {
   sha256Canonical,
 } from "../src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs";
 import {
   projectCircularRelationshipParameters,
 } from "../src/prescribed-geometry/PrescribedCircularRelationshipParameters.mjs";
+import {
+  deriveAssemblyScientificIdentity,
+} from "../src/prescribed-geometry/AssemblyScientificIdentity.mjs";
+import {
+  createPrescribedBraidExactSourceRecord,
+} from "../scripts/eom/generate-prescribed-braid-record.mjs";
+import {
+  validateCompleteCycleSourceApplicability,
+} from "../src/prescribed-path-analysis/CoincidentAxisThreeBinaryStreamingReductions.mjs";
 
 function loadSamplerFixture() {
   const registry = JSON.parse(fs.readFileSync(
     new URL(
-      "../src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v1.json",
+      "../src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json",
       import.meta.url,
     ),
     "utf8",
@@ -33,7 +42,7 @@ function loadSamplerFixture() {
     declaration,
     spec: JSON.parse(fs.readFileSync(declaration.specPath, "utf8")),
   }));
-  const protocol = validateB1CompleteCycleProbeProtocol(JSON.parse(
+  const protocol = validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol(JSON.parse(
     fs.readFileSync(registry.generatedCampaign.protocolPath, "utf8"),
   ));
   return { candidates, protocol };
@@ -54,31 +63,34 @@ function tinyProtocol(rawProtocol) {
   };
   protocol.angularReduction.maximumDegree = 1;
   protocol.spectralReduction.maximumHarmonic = 1;
-  return validateB1CompleteCycleProbeProtocol(protocol);
+  return validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol(protocol);
 }
 
-test("local Monte Carlo sampling is deterministic and preserves member relations", () => {
+test("local Monte Carlo sampling is deterministic and preserves configuration relations", () => {
   const loaded = loadSamplerFixture();
   assert.equal(loaded.protocol.eventEvaluator.fieldSpeed, 1);
-  const a12 = loaded.candidates.find(
-    (candidate) => candidate.declaration.memberId === "A1.2",
+  const equalRadiusCommonFrequency = loaded.candidates.find(
+    (candidate) => candidate.declaration.sourceSlug ===
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
   );
   const first = sampleLocalReferenceNeighborhood({
-    candidate: a12,
+    candidate: equalRadiusCommonFrequency,
     seed: "deterministic-sampler-test",
     sampleOrdinal: 0,
   });
   const second = sampleLocalReferenceNeighborhood({
-    candidate: a12,
+    candidate: equalRadiusCommonFrequency,
     seed: "deterministic-sampler-test",
     sampleOrdinal: 0,
   });
 
   assert.equal(sha256Canonical(first), sha256Canonical(second));
   const firstParameters = projectCircularRelationshipParameters(first.spec);
-  const sourceParameters = projectCircularRelationshipParameters(a12.spec);
+  const sourceParameters = projectCircularRelationshipParameters(equalRadiusCommonFrequency.spec);
   const firstPairs = firstParameters.components[0].pairs;
-  assert.deepEqual(firstPairs.map((pair) => pair.radius), Array(3).fill(firstPairs[0].radius));
+  assert.equal(firstPairs.every((pair) =>
+    Math.abs(pair.radius - firstPairs[0].radius) <=
+      Number.EPSILON * Math.max(1, pair.radius, firstPairs[0].radius)), true);
   assert.deepEqual(
     firstPairs.map((pair) => pair.frequency),
     Array(3).fill(0.25),
@@ -91,17 +103,17 @@ test("local Monte Carlo sampling is deterministic and preserves member relations
   assert.equal(firstParameters.assemblyPlacement.velocity.every((value) => value === 0), true);
 });
 
-test("full taxonomy sampler preserves every declared member constraint", () => {
+test("full exact-configuration sampler preserves every declared constraint", () => {
   const loaded = loadSamplerFixture();
   assert.equal(loaded.candidates.length, 20);
   for (const candidate of loaded.candidates) {
     for (let sampleOrdinal = 0; sampleOrdinal < 4; sampleOrdinal += 1) {
-      const sampled = sampleFullConstraintPreservingTaxonomy({
+      const sampled = sampleFullConstraintPreservingConfiguration({
         candidate,
-        seed: "full-taxonomy-constraint-audit",
+        seed: "full-exact-configuration-constraint-audit",
         sampleOrdinal,
       });
-      assert.equal(sampled.samplerId, FULL_TAXONOMY_SAMPLER_ID);
+      assert.equal(sampled.samplerId, FULL_EXACT_CONFIGURATION_SAMPLER_ID);
       assert.equal(sampled.spec.specId, candidate.spec.specId);
       const parameters = projectCircularRelationshipParameters(sampled.spec);
       assert.equal(parameters.assemblyPlacement.velocity.some(
@@ -118,56 +130,109 @@ test("full taxonomy sampler preserves every declared member constraint", () => {
     }
   }
 
-  const byMember = (memberId) => loaded.candidates.find(
-    (candidate) => candidate.declaration.memberId === memberId,
+  const bySourceSlug = (sourceSlug) => loaded.candidates.find(
+    (candidate) => candidate.declaration.sourceSlug === sourceSlug,
   );
-  const a12 = projectCircularRelationshipParameters(sampleFullConstraintPreservingTaxonomy({
-    candidate: byMember("A1.2"),
-    seed: "full-taxonomy-relations",
+  const equalRadius = projectCircularRelationshipParameters(sampleFullConstraintPreservingConfiguration({
+    candidate: bySourceSlug("three-axis-circular-coincident-midpoints-equal-radius-common-frequency"),
+    seed: "full-exact-configuration-relations",
     sampleOrdinal: 0,
   }).spec);
   assert.equal(
-    new Set(a12.components[0].pairs.map((pair) => pair.radius)).size,
+    new Set(equalRadius.components[0].pairs.map((pair) => pair.radius)).size,
     1,
   );
-  const a13 = projectCircularRelationshipParameters(sampleFullConstraintPreservingTaxonomy({
-    candidate: byMember("A1.3"),
-    seed: "full-taxonomy-relations",
+  const fourTwoOne = projectCircularRelationshipParameters(sampleFullConstraintPreservingConfiguration({
+    candidate: bySourceSlug("three-axis-circular-coincident-midpoints-4-2-1-frequency"),
+    seed: "full-exact-configuration-relations",
     sampleOrdinal: 0,
   }).spec);
   assert.deepEqual(
-    a13.components[0].pairs.map((pair) =>
-      pair.frequency / a13.components[0].pairs[2].frequency),
+    fourTwoOne.components[0].pairs.map((pair) =>
+      pair.frequency / fourTwoOne.components[0].pairs[2].frequency),
     [4, 2, 1],
   );
-  const b12 = projectCircularRelationshipParameters(sampleFullConstraintPreservingTaxonomy({
-    candidate: byMember("B1.2"),
-    seed: "full-taxonomy-relations",
+  const highAxial = projectCircularRelationshipParameters(sampleFullConstraintPreservingConfiguration({
+    candidate: bySourceSlug("high-axial-three-binary-interior"),
+    seed: "full-exact-configuration-relations",
     sampleOrdinal: 0,
   }).spec);
-  assert.equal(b12.components[0].pairs.every((pair) =>
+  assert.equal(highAxial.components[0].pairs.every((pair) =>
     pair.axialHalfSeparation > pair.transverseOrbitRadius), true);
-  const c2 = projectCircularRelationshipParameters(sampleFullConstraintPreservingTaxonomy({
-    candidate: byMember("C2"),
-    seed: "full-taxonomy-relations",
+  const counterRotating = projectCircularRelationshipParameters(sampleFullConstraintPreservingConfiguration({
+    candidate: bySourceSlug("coincident-center-two-component-circular-counter-rotating"),
+    seed: "full-exact-configuration-relations",
     sampleOrdinal: 0,
   }).spec);
   assert.equal(
-    c2.components[0].circulationSense,
-    -c2.components[1].circulationSense,
+    counterRotating.components[0].circulationSense,
+    -counterRotating.components[1].circulationSense,
+  );
+});
+
+test("exact-configuration cohort applicability fails closed on slug, identity, and preimage drift", () => {
+  const loaded = loadSamplerFixture();
+  const candidate = loaded.candidates.find((row) =>
+    row.declaration.sourceSlug ===
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency");
+  const sampled = sampleFullConstraintPreservingConfiguration({
+    candidate,
+    seed: "exact-applicability-contract",
+    sampleOrdinal: 0,
+  });
+  const derived = deriveAssemblyScientificIdentity(sampled.spec);
+  const source = {
+    ...createPrescribedBraidExactSourceRecord(sampled.spec),
+    sourceSlug: candidate.declaration.sourceSlug,
+    referenceConfigurationIdentity: {
+      assemblyId: candidate.declaration.assemblyId,
+      modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+    },
+    scientificIdentityPreimage: derived.canonicalModel,
+  };
+  assert.doesNotThrow(() =>
+    validateCompleteCycleSourceApplicability(source, loaded.protocol));
+  assert.throws(
+    () => validateCompleteCycleSourceApplicability(
+      { ...source, sourceSlug: "unknown-configuration" },
+      loaded.protocol,
+    ),
+    /unlisted exact configuration preimage/,
+  );
+  assert.throws(
+    () => validateCompleteCycleSourceApplicability(
+      { ...source, modelRevisionSha256: "0".repeat(64) },
+      loaded.protocol,
+    ),
+    /does not match its scientific preimage/,
+  );
+  assert.throws(
+    () => validateCompleteCycleSourceApplicability(
+      {
+        ...source,
+        referenceConfigurationIdentity: {
+          assemblyId: loaded.candidates[0].declaration.assemblyId,
+          modelRevisionSha256:
+            loaded.candidates[0].declaration.modelRevisionSha256,
+        },
+      },
+      loaded.protocol,
+    ),
+    /unlisted exact configuration preimage/,
   );
 });
 
 test("compact Monte Carlo campaign retains exact rerun rows and no raw packets", () => {
   const loaded = loadSamplerFixture();
-  const a12 = loaded.candidates.find(
-    (candidate) => candidate.declaration.memberId === "A1.2",
+  const configuration = loaded.candidates.find(
+    (candidate) => candidate.declaration.sourceSlug ===
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
   );
   const campaign = buildCompactMonteCarloCampaign({
-    candidates: [a12],
+    candidates: [configuration],
     protocol: tinyProtocol(loaded.protocol),
     seed: "compact-campaign-test",
-    casesPerMember: 1,
+    casesPerConfiguration: 1,
     implementationIdentity: {
       implementationHash: "test-implementation",
     },
@@ -211,21 +276,22 @@ test("compact Monte Carlo campaign retains exact rerun rows and no raw packets",
 
 test("compact campaign retains a drawn point when analytical evaluation balks", () => {
   const loaded = loadSamplerFixture();
-  const a12 = loaded.candidates.find(
-    (candidate) => candidate.declaration.memberId === "A1.2",
+  const configuration = loaded.candidates.find(
+    (candidate) => candidate.declaration.sourceSlug ===
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
   );
   const reason = new Error("possible causal fold was not isolated");
   reason.name = "CausalRootEnumerationError";
   reason.code = "causal_root_enumeration_incomplete";
   reason.details = {
-    transmitterId: "A1.2-binary-1-a",
+    transmitterId: "coincident-midpoint-common-frequency-binary-1-a",
     unresolvedIntervals: [{ reason: "possible-root-or-fold-not-isolated" }],
   };
   const campaign = buildCompactMonteCarloCampaign({
-    candidates: [a12],
+    candidates: [configuration],
     protocol: tinyProtocol(loaded.protocol),
     seed: "compact-campaign-balk-test",
-    casesPerMember: 1,
+    casesPerConfiguration: 1,
     evaluateCandidate() {
       throw reason;
     },
@@ -259,8 +325,9 @@ test("compact campaign retains a drawn point when analytical evaluation balks", 
 
 test("resolution calibration identifies coverage false negatives on identical draws", () => {
   const loaded = loadSamplerFixture();
-  const a12 = loaded.candidates.find(
-    (candidate) => candidate.declaration.memberId === "A1.2",
+  const configuration = loaded.candidates.find(
+    (candidate) => candidate.declaration.sourceSlug ===
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
   );
   function calibrationPacket({ completeCycleProtocol }) {
     const coverage =
@@ -293,10 +360,10 @@ test("resolution calibration identifies coverage false negatives on identical dr
     };
   }
   const calibration = calibrateCompactCoverageAgainstFullResolution({
-    candidates: [a12],
+    candidates: [configuration],
     protocol: loaded.protocol,
     seed: "resolution-calibration-test",
-    casesPerMember: 1,
+    casesPerConfiguration: 1,
     evaluateCandidate: calibrationPacket,
   });
 

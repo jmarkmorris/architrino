@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-// Declarative prescribed-assembly record generator. Candidate geometry is
-// owned by prescribed-assembly-spec.v2 JSON. This file invokes no EOM solver,
+// Declarative prescribed-assembly record generator. Configuration geometry is
+// owned by prescribed-assembly-spec.v3 JSON. This file invokes no EOM solver,
 // causal-root evaluator, retention test, stability test, or energy calculation.
 
 import fs from "node:fs";
@@ -26,7 +26,7 @@ import {
 
 export const PRESCRIBED_BRAID_SPEC_SCHEMA = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
 export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA_ID = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
-export const PRESCRIBED_BRAID_EMITTER_ID = "prescribed-assembly-record-emitter.v2";
+export const PRESCRIBED_BRAID_EMITTER_ID = "prescribed-assembly-record-emitter.v3";
 export const PRESCRIBED_GEOMETRY_ENGINE_ID = "prescribed-geometry";
 export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
 
@@ -45,62 +45,35 @@ function target(specFile, outFile, { activeAnalytical = false, control = false }
   });
 }
 
-const MIGRATED_TARGETS = [
-  target("family-a-a1-general.v2.json", "family-a-a1-general.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a1-1-equal-frequency.v2.json", "family-a-a1-1-equal-frequency.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a1-2-equal-frequency-equal-radius.v2.json", "family-a-a1-2-equal-frequency-equal-radius.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a1-3-4-2-1-frequency.v2.json", "family-a-a1-3-4-2-1-frequency.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a1-4-3-2-1-frequency.v2.json", "family-a-a1-4-3-2-1-frequency.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a2-fully-symmetric.v2.json", "family-a-a2-fully-symmetric.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a3-general.v2.json", "family-a-a3-general.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a3-1-equal-frequency.v2.json", "family-a-a3-1-equal-frequency.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a3-2-equal-frequency-equal-radius.v2.json", "family-a-a3-2-equal-frequency-equal-radius.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a3-3-4-2-1-frequency.v2.json", "family-a-a3-3-4-2-1-frequency.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-a-a3-4-3-2-1-frequency.v2.json", "family-a-a3-4-3-2-1-frequency.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("illustrative-spindle-chart-hypothesis.v2.json", "illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("illustrative-extreme-cap-tilt-spindle-variant.v2.json", "illustrative-extreme-cap-tilt-spindle-variant.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("illustrative-planar-tri-binary-spindle-boundary.v2.json", "illustrative-planar-tri-binary-spindle-boundary.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("illustrative-full-cap-axial-spindle-boundary.v2.json", "illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json", { control: true }),
-  target("family-c-c1-co-rotating-general.v2.json", "family-c-c1-co-rotating-general.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-c-c2-counter-rotating-general.v2.json", "family-c-c2-counter-rotating-general.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-c-c1-co-rotating-b1-pair.v2.json", "family-c-c1-co-rotating-b1-pair.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-c-c2-counter-rotating-b1-pair.v2.json", "family-c-c2-counter-rotating-b1-pair.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-c-c1-1-co-rotating-b1-3-pair.v2.json", "family-c-c1-1-co-rotating-b1-3-pair.assembly-view-record.v0.json", { activeAnalytical: true }),
-  target("family-c-c2-1-counter-rotating-b1-3-pair.v2.json", "family-c-c2-1-counter-rotating-b1-3-pair.assembly-view-record.v0.json", { activeAnalytical: true }),
-];
+const ACTIVE_ANALYTICAL_PREFIXES = Object.freeze([
+  "three-axis-circular-",
+  "axial-transverse-three-binary-interior",
+  "high-axial-three-binary-interior",
+  "planar-three-binary-common-center-reference",
+  "coincident-center-two-component-circular-",
+  "coaxial-separated-two-component-circular-",
+  "coaxial-separated-two-planar-braid-",
+]);
+const CONTROL_BASES = new Set([
+  "all-axial-three-binary-boundary",
+  "co-spherical-scoped-negative-circular-control",
+]);
 
-const NEW_TARGETS = [
-  target("shared-circle-01-alternating.v2.json", "shared-circle-01-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-02-alternating.v2.json", "shared-circle-02-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-03-alternating.v2.json", "shared-circle-03-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-04-alternating.v2.json", "shared-circle-04-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-05-alternating.v2.json", "shared-circle-05-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-06-alternating.v2.json", "shared-circle-06-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-07-alternating.v2.json", "shared-circle-07-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-08-alternating.v2.json", "shared-circle-08-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-09-alternating.v2.json", "shared-circle-09-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-10-alternating.v2.json", "shared-circle-10-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-11-alternating.v2.json", "shared-circle-11-alternating.assembly-view-record.v0.json"),
-  target("shared-circle-12-alternating.v2.json", "shared-circle-12-alternating.assembly-view-record.v0.json"),
-  target("shared-sphere-c5-two-rings.v2.json", "shared-sphere-c5-two-rings.assembly-view-record.v0.json"),
-  target("shared-sphere-c6-two-rings.v2.json", "shared-sphere-c6-two-rings.assembly-view-record.v0.json"),
-  target("platonic-vertices-04-tetrahedron.v2.json", "platonic-vertices-04-tetrahedron.assembly-view-record.v0.json"),
-  target("platonic-vertices-06-octahedron.v2.json", "platonic-vertices-06-octahedron.assembly-view-record.v0.json"),
-  target("platonic-vertices-08-cube.v2.json", "platonic-vertices-08-cube.assembly-view-record.v0.json"),
-  target("platonic-vertices-12-icosahedron.v2.json", "platonic-vertices-12-icosahedron.assembly-view-record.v0.json"),
-  target("platonic-vertices-20-dodecahedron.v2.json", "platonic-vertices-20-dodecahedron.assembly-view-record.v0.json"),
-  target("sd3-centered-five-coordinate.v2.json", "sd3-centered-five-coordinate.assembly-view-record.v0.json"),
-  target("f5-phase-varying-campaign.v2.json", "f5-phase-varying-campaign.assembly-view-record.v0.json"),
-  target("f6c-polarity-resolved-harmonic.v2.json", "f6c-polarity-resolved-harmonic.assembly-view-record.v0.json"),
-  target("f6b-scoped-negative-circular.v2.json", "f6b-scoped-negative-circular.assembly-view-record.v0.json", { control: true }),
-];
+const CURRENT_TARGETS = fs.readdirSync(CONFIGURATION_DIRECTORY)
+  .filter((name) => name.endsWith(".v3.json"))
+  .toSorted()
+  .map((specFile) => {
+    const base = specFile.slice(0, -".v3.json".length);
+    return target(specFile, `${base}.assembly-view-record.v0.json`, {
+      activeAnalytical: ACTIVE_ANALYTICAL_PREFIXES.some((prefix) => base.startsWith(prefix)),
+      control: CONTROL_BASES.has(base),
+    });
+  });
 
-export const PRESCRIBED_ASSEMBLY_TARGETS = Object.freeze([...MIGRATED_TARGETS, ...NEW_TARGETS]);
-// Established analytical callers retain these names, but all delegate to the
-// single v2 implementation; no v1 compiler remains.
+export const PRESCRIBED_ASSEMBLY_TARGETS = Object.freeze(CURRENT_TARGETS);
 export const PRESCRIBED_BRAID_TARGETS = PRESCRIBED_ASSEMBLY_TARGETS;
-export const ACTIVE_PRESCRIBED_BRAID_TARGETS = Object.freeze(MIGRATED_TARGETS.filter((entry) => entry.activeAnalytical));
-export const DEPRECATED_PRESCRIBED_BRAID_TARGETS = Object.freeze(PRESCRIBED_ASSEMBLY_TARGETS.filter((entry) => entry.control));
+export const ACTIVE_PRESCRIBED_BRAID_TARGETS = Object.freeze(CURRENT_TARGETS.filter((entry) => entry.activeAnalytical));
+export const CONTROL_PRESCRIBED_BRAID_TARGETS = Object.freeze(CURRENT_TARGETS.filter((entry) => entry.control));
 export const DEFAULT_PRESCRIBED_BRAID_SPEC_PATH = PRESCRIBED_ASSEMBLY_TARGETS[0].specPath;
 export const DEFAULT_PRESCRIBED_BRAID_RECORD_PATH = PRESCRIBED_ASSEMBLY_TARGETS[0].outPath;
 
@@ -111,7 +84,7 @@ export function evaluatePrescribedAssemblySite(rawSpec, worldlineId, time) {
   return evaluatePrescribedAssemblyWorldline(rawSpec, worldlineId, time);
 }
 
-// Thin positional adapter for established spindle callers. Component/pair
+// Thin positional adapter for component/pair callers. Component/pair
 // lookup is relational; path evaluation still uses the individual worldline.
 export function evaluatePrescribedBraidSite(rawSpec, componentIndex, pairIndex, endpointIndex, time) {
   const spec = validatePrescribedAssemblySpec(rawSpec);
@@ -119,7 +92,7 @@ export function evaluatePrescribedBraidSite(rawSpec, componentIndex, pairIndex, 
   const pairs = (spec.relationships.neutralPairs ?? []).filter((row) => row.componentBraidId === component?.id);
   const pair = pairs[pairIndex];
   if (!pair || (endpointIndex !== 0 && endpointIndex !== 1)) {
-    throw new RangeError("prescribed braid compatibility evaluation requires a declared component, pair, and endpoint 0 or 1.");
+    throw new RangeError("prescribed braid evaluation requires a declared component, pair, and endpoint 0 or 1.");
   }
   const constituent = spec.constituents.find((row) => row.id === pair.members[endpointIndex]);
   return evaluatePrescribedAssemblyWorldline(spec, constituent.worldlineId, time);
@@ -138,14 +111,8 @@ export function createPrescribedBraidExactSourceRecord(rawSpec, options = {}) {
     engineVersion: PRESCRIBED_BRAID_EMITTER_ID,
     claimGrade: spec.claimGrade,
     evidenceStatus: spec.evidenceStatus,
-    taxonomy: structuredClone(spec.identity.taxonomy ?? {
-      familyId: spec.identity.candidateId,
-      familyLabel: spec.identity.candidateId,
-      memberId: spec.identity.candidateId,
-      memberLabel: spec.identity.displayLabel,
-      displayLabel: spec.identity.displayLabel,
-      canonSource: spec.identity.geometryOwner,
-    }),
+    assemblyId: spec.identity.assemblyId,
+    modelRevisionSha256: spec.identity.modelRevisionSha256,
     parameterVector: createParameterVector(materialized),
     history: { start: spec.history.start, end: spec.history.end },
     sources: materialized.worldlines.map((row) => ({
@@ -166,7 +133,6 @@ function createParameterVector(materialized) {
     geometry: structuredClone(spec.geometry ?? {}),
     history: structuredClone(spec.history),
     illustrativeCoordinates: structuredClone(spec.illustrativeCoordinates ?? {}),
-    compatibility: structuredClone(spec.compatibility ?? { retainedIdentifiers: [] }),
   };
 }
 
@@ -235,7 +201,6 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
         displayTrailDuration: trailDuration,
         prescribedReturnPeriod: spec.history.periodic ? spec.history.returnPeriod : null,
         description: spec.provenanceDescription,
-        taxonomy: structuredClone(spec.identity.taxonomy ?? null),
         coordinates: createParameterVector(materialized),
       },
     },

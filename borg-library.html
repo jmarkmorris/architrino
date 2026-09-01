@@ -17,13 +17,12 @@
     <aside class="filters" aria-label="Assembly filters">
       <div class="rail-heading"><h2>Find assemblies</h2><button id="clear-filters" type="button">Clear all</button></div>
       <label class="search-label" for="search">Search the collection</label>
-      <input id="search" type="search" placeholder="Name, alias, ID or record hash" autocomplete="off" aria-describedby="search-help" />
+      <input id="search" type="search" placeholder="Name, ID or record hash" autocomplete="off" aria-describedby="search-help" />
       <p id="search-help" class="search-help">Record hash prefixes need at least 8 characters.</p>
       <div id="filter-fields"></div>
       <p class="filter-help">Filters combine to narrow the collection. Any includes records with missing assignments; choosing a value shows only confirmed matches. 1D includes lines and points.</p>
-      <p class="filter-help">Circle occupancy counts complete geometric circles in one declared assembly frame. Multiple per circle means every identified circle has at least two architrinos; One per circle means every identified circle has one; Mixed means both. Different circles may have different radii.</p>
+      <p class="filter-help">Circle occupancy counts complete geometric circles in one declared assembly frame. Multiple per circle means every identified circle has at least two architrinos; One per circle means every identified circle has one; Both occupancy types means both occur. Different circles may have different radii.</p>
       <p class="filter-help">Two-occupant antipodal circle: a red half-turn tail and a blue half-turn tail. A co-rotating multi-occupant circle reaches back to the preceding member. A single-occupant circle shows a full turn in its architrino's color. Trails use only available past motion, so they fill in at the beginning of a record.</p>
-      <p id="filter-migration-note" class="filter-help" role="status" hidden>The old nesting filter was cleared. Choose Assembly radii; your selected record is unchanged.</p>
       <details class="scope-note"><summary>About this demonstrator</summary><p>Live previews of the existing sealed catalog. No simulation runs here. Full registry migration and million-entry indexing remain separate work.</p><p>Assembly radii compares every architrino’s distance from the declared center of the whole assembly at the same time. Iso-radii means equal distances throughout the record; Hetero-radii means unequal distances at some time. Equal radii may breathe together. This is not the radius about an individual orbit center. Missing source information remains unassigned. Spindle classifications are recorded separately from the sealed motion.</p></details>
     </aside>
     <main>
@@ -44,13 +43,13 @@
   </div>
   <dialog id="inspector" aria-labelledby="inspector-title">
     <div class="inspector-top"><p class="eyebrow">EXACT RECORD</p><button id="close-inspector" aria-label="Close inspector">Close</button></div>
-    <h2 id="inspector-title"></h2><p id="inspector-alias" class="muted"></p>
+    <h2 id="inspector-title"></h2><p id="inspector-identity" class="muted"></p>
     <canvas id="inspector-canvas" class="sphere large-sphere" tabindex="0" role="img" aria-label="Selected assembly. Drag or use arrow keys to rotate."></canvas>
     <div class="detail-time"><span id="record-time"></span><button id="detail-play" type="button">Pause previews</button></div>
     <p id="inspector-description"></p><div id="inspector-facets" class="detail-facets"></div>
     <div class="detail-actions"><a id="open-record" class="primary-action">Open in Borg ↗</a><button id="copy-selection">Copy exact link</button></div>
     <p id="copy-status" role="status"></p>
-    <details><summary>Identity and source</summary><dl id="identity"></dl><p class="muted">Catalog IDs are legacy aliases. This demonstrator does not claim a completed semantic model-identity migration.</p><a id="raw-record">View sealed JSON</a></details>
+    <details><summary>Identity and source</summary><dl id="identity"></dl><a id="raw-record">View sealed JSON</a></details>
     <details><summary>Why these filters match</summary><dl id="facet-reasons"></dl></details>
   </dialog>
   <script type="module" src="./src/apps/borg/library/main.js"></script>

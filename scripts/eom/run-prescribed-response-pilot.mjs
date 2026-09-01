@@ -56,7 +56,7 @@ export const ORIGINALS = Object.freeze([
   ['nominalConformance',restart+'prepared-20260827-v1/nominal-history-conformance.json','f862a7148a0a00b3bde5fbb0d164156fce2dbfc161597b0cdaa182457f3741e0'],
   ['apiConformance',restart+'prepared-20260827-v1/api-domain-conformance.json','440deb996eaeb646b7863e9276fb937f9897c11fdbd56fed11a32efb269fe746'],
   ['reviewedBuild',restart+'root-ladder-20260827-v2/reviewed-build.json','5c8a9c36804b8bfed45b7f98834c0c104e758465ca0d19402bf0c328d81f9710'],
-  ['approvedSource','reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json','e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'],
+  ['approvedSource','reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json','e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'],
   ['scientificFixture','reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json','bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344'],
   ['predeclaration','reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md','c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef'],
   ['reference','scripts/eom/oracle/prescribed_acceleration_response.py','e630c2f4c48c9fcfc56866166e8b5977d70ab83c6ca3f2b08ad9ea4f3f5e910c'],

@@ -14,7 +14,7 @@ import {
   buildCompactMonteCarloCampaign,
   calibrateCompactCoverageAgainstFullResolution,
   createCompactCoverageProtocol,
-  sampleFullConstraintPreservingTaxonomy,
+  sampleFullConstraintPreservingConfiguration,
   sampleLocalReferenceNeighborhood,
 } from "../../src/prescribed-path-analysis/CompactMonteCarloCampaign.mjs";
 import {
@@ -43,17 +43,17 @@ function parseArguments(argv) {
     values.set(key, value);
     index += 1;
   }
-  const casesPerMember = Number(values.get("--cases-per-member") ?? "1");
-  if (!Number.isSafeInteger(casesPerMember) || casesPerMember < 1) {
-    fail("--cases-per-member must be a positive integer.");
+  const casesPerConfiguration = Number(values.get("--cases-per-configuration") ?? "1");
+  if (!Number.isSafeInteger(casesPerConfiguration) || casesPerConfiguration < 1) {
+    fail("--cases-per-configuration must be a positive integer.");
   }
   const resolution = values.get("--resolution") ?? "coverage";
   if (resolution !== "coverage" && resolution !== "full") {
     fail("--resolution must be coverage or full.");
   }
-  const sampler = values.get("--sampler") ?? "full-taxonomy";
-  if (sampler !== "full-taxonomy" && sampler !== "local-reference") {
-    fail("--sampler must be full-taxonomy or local-reference.");
+  const sampler = values.get("--sampler") ?? "full-exact-configuration";
+  if (sampler !== "full-exact-configuration" && sampler !== "local-reference") {
+    fail("--sampler must be full-exact-configuration or local-reference.");
   }
   const output = values.get("--output");
   if (!flags.has("--help") && !output) {
@@ -67,14 +67,14 @@ function parseArguments(argv) {
         DEFAULT_ALL_CANDIDATE_CAMPAIGN_REGISTRY_PATH,
     ),
     seed: values.get("--seed") ?? "compact-monte-carlo-default-seed-v1",
-    casesPerMember,
+    casesPerConfiguration,
     resolution,
     sampler,
-    familyIds: (values.get("--families") ?? "")
+    assemblyIds: (values.get("--assembly-ids") ?? "")
       .split(",")
       .map((value) => value.trim())
       .filter(Boolean),
-    memberIds: (values.get("--members") ?? "")
+    sourceSlugs: (values.get("--source-slugs") ?? "")
       .split(",")
       .map((value) => value.trim())
       .filter(Boolean),
@@ -88,12 +88,12 @@ function help() {
     "  node scripts/eom/run-compact-monte-carlo.mjs",
     "    [--registry path]",
     "    [--seed token]",
-    "    [--cases-per-member N]",
+    "    [--cases-per-configuration N]",
     "    [--resolution coverage|full]",
-    "    [--sampler full-taxonomy|local-reference]",
+    "    [--sampler full-exact-configuration|local-reference]",
     "    [--calibrate]",
-    "    [--families A,B,C]",
-    "    [--members A1.2,B1.3,C5]",
+    "    [--assembly-ids asm-...,...]",
+    "    [--source-slugs three-axis-circular-coincident-midpoints,...]",
     "    --output unique-create-exclusive-path",
     "",
     "The command is prescribed-path analytical coverage only. It does not invoke",
@@ -104,15 +104,15 @@ function help() {
 }
 
 function selectedCandidates(loaded, options) {
-  const familyIds = new Set(options.familyIds);
-  const memberIds = new Set(options.memberIds);
+  const assemblyIds = new Set(options.assemblyIds);
+  const sourceSlugs = new Set(options.sourceSlugs);
   const candidates = loaded.candidates.filter((candidate) =>
-    (familyIds.size === 0 ||
-      familyIds.has(candidate.declaration.familyId)) &&
-    (memberIds.size === 0 ||
-      memberIds.has(candidate.declaration.memberId)));
+    (assemblyIds.size === 0 ||
+      assemblyIds.has(candidate.declaration.assemblyId)) &&
+    (sourceSlugs.size === 0 ||
+      sourceSlugs.has(candidate.declaration.sourceSlug)));
   if (candidates.length === 0) {
-    fail("the requested family/member filters selected no candidates.");
+    fail("the requested exact-configuration filters selected no candidates.");
   }
   return candidates;
 }
@@ -122,7 +122,7 @@ function implementationIdentity() {
     "scripts/eom/run-compact-monte-carlo.mjs",
     "src/prescribed-path-analysis/CompactMonteCarloCampaign.mjs",
     "src/prescribed-path-analysis/CompleteCycleAnalyticalCampaign.mjs",
-    "src/prescribed-path-analysis/B1StreamingReductions.mjs",
+    "src/prescribed-path-analysis/CoincidentAxisThreeBinaryStreamingReductions.mjs",
     "src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs",
     "src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs",
     "scripts/eom/generate-prescribed-braid-record.mjs",
@@ -161,8 +161,8 @@ const protocol = options.resolution === "coverage"
   : loaded.protocol;
 const started = Date.now();
 const candidates = selectedCandidates(loaded, options);
-const sample = options.sampler === "full-taxonomy"
-  ? sampleFullConstraintPreservingTaxonomy
+const sample = options.sampler === "full-exact-configuration"
+  ? sampleFullConstraintPreservingConfiguration
   : sampleLocalReferenceNeighborhood;
 let lastHeartbeatAt = 0;
 const progress = (row) => {
@@ -176,11 +176,11 @@ const progress = (row) => {
     if (!boundaryStage && now - lastHeartbeatAt < 10_000) return;
     lastHeartbeatAt = now;
     const candidate = row.candidateId ?? "unknown";
-    const member = row.memberId ?? "unknown";
+    const sourceSlug = row.sourceSlug ?? "unknown";
     const ordinal = row.sampleOrdinal ?? "unknown";
     process.stderr.write(
       `[heartbeat] tier=${row.calibrationTier ?? "campaign"} ` +
-      `stage=${row.stage} member=${member} ` +
+      `stage=${row.stage} sourceSlug=${sourceSlug} ` +
       `candidate=${candidate} sample=${ordinal} ` +
       `elapsed=${((now - started) / 1_000).toFixed(1)}s\n`,
     );
@@ -191,7 +191,7 @@ const result = options.calibrate
     candidates,
     protocol: loaded.protocol,
     seed: options.seed,
-    casesPerMember: options.casesPerMember,
+    casesPerConfiguration: options.casesPerConfiguration,
     sample,
     implementationIdentity: identity,
     onProgress: progress,
@@ -200,7 +200,7 @@ const result = options.calibrate
     candidates,
     protocol,
     seed: options.seed,
-    casesPerMember: options.casesPerMember,
+    casesPerConfiguration: options.casesPerConfiguration,
     sample,
     implementationIdentity: identity,
     onProgress: progress,
@@ -225,9 +225,9 @@ const report = options.calibrate
     evaluationSummary: result.evaluationSummary,
     wallSeconds: result.wallSeconds,
     protocolHash: result.protocolHash,
-    members: result.caseRows.map((row) => row.memberId),
+    sourceSlugs: result.caseRows.map((row) => row.sourceSlug),
     caseWallSeconds: result.caseRows.map((row) => ({
-      memberId: row.memberId,
+      sourceSlug: row.sourceSlug,
       wallSeconds: row.measuredCost.wallSeconds,
       scoreHash: row.scoreHash,
       evaluationStatus: row.evaluationStatus.code,

@@ -1,0 +1,203 @@
+{
+  "schema": "prescribed-path-analysis/all-candidate-campaign-registry.v2",
+  "registryId": "all-exact-prescribed-configuration-candidates.v2",
+  "catalogId": "borg-assembly-record-catalog.v2",
+  "generatedCampaign": {
+    "campaignId": "all-braid-candidate-complete-cycle-v1",
+    "campaignStage": "all-candidate-complete-cycle-prescribed-record-analysis",
+    "protocolPath": "src/prescribed-path-analysis/protocols/exact-configuration-cohort-complete-cycle-protocol.v2.json",
+    "methodologyCoveragePath": "src/prescribed-path-analysis/analytical-measure-coverage.v2.json"
+  },
+  "candidates": [
+    {
+      "candidateId": "three-axis-circular-coincident-midpoints-v1",
+      "sourceSlug": "three-axis-circular-coincident-midpoints",
+      "assemblyId": "asm-0153fdc7276d1a064d8794a423bd775b",
+      "modelRevisionSha256": "0153fdc7276d1a064d8794a423bd775b9dd14f0d70cf489c80848aa383f1987c",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-coincident-midpoints.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-coincident-midpoints-common-frequency-v1",
+      "sourceSlug": "three-axis-circular-coincident-midpoints-common-frequency",
+      "assemblyId": "asm-2a289a6fe32f64922ab71bae973acc80",
+      "modelRevisionSha256": "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-common-frequency.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-coincident-midpoints-common-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-coincident-midpoints-equal-radius-common-frequency-v1",
+      "sourceSlug": "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
+      "assemblyId": "asm-1a42771b28b0a549e67b06a4663a8e11",
+      "modelRevisionSha256": "1a42771b28b0a549e67b06a4663a8e11a33b5ef88b3a2f6872523bc6fe37b7ee",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-coincident-midpoints-4-2-1-frequency-v1",
+      "sourceSlug": "three-axis-circular-coincident-midpoints-4-2-1-frequency",
+      "assemblyId": "asm-d8bb2d00210eba7ab7c052b8e8b37d21",
+      "modelRevisionSha256": "d8bb2d00210eba7ab7c052b8e8b37d218fd23e5593052d5749e799b4abfb1ec7",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-4-2-1-frequency.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-coincident-midpoints-4-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-coincident-midpoints-3-2-1-frequency-v1",
+      "sourceSlug": "three-axis-circular-coincident-midpoints-3-2-1-frequency",
+      "assemblyId": "asm-8d642fda81c6155f03660eef94013ff7",
+      "modelRevisionSha256": "8d642fda81c6155f03660eef94013ff7c8c1feb1a2eaca7d71d801142ae3a0e2",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-3-2-1-frequency.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-coincident-midpoints-3-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-phase-compensated-symmetric-v1",
+      "sourceSlug": "three-axis-circular-phase-compensated-symmetric",
+      "assemblyId": "asm-36bc71c0fb5a32b1410d00eceedb1776",
+      "modelRevisionSha256": "36bc71c0fb5a32b1410d00eceedb177649e71db029497b7023ec666722d032cc",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-phase-compensated-symmetric.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-phase-compensated-symmetric.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-axially-separated-v1",
+      "sourceSlug": "three-axis-circular-axially-separated",
+      "assemblyId": "asm-cf2ac3be564112ff1347867d04593bc6",
+      "modelRevisionSha256": "cf2ac3be564112ff1347867d04593bc6af77233fffb5754c0bc0f7220e496966",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-axially-separated.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-axially-separated.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-axially-separated-common-frequency-v1",
+      "sourceSlug": "three-axis-circular-axially-separated-common-frequency",
+      "assemblyId": "asm-0782139749ad443a7d7a39f8e76dbfb4",
+      "modelRevisionSha256": "0782139749ad443a7d7a39f8e76dbfb4a29fc2db62bbc9a41445008e95aa3461",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-axially-separated-common-frequency.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-axially-separated-common-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-axially-separated-equal-radius-common-frequency-v1",
+      "sourceSlug": "three-axis-circular-axially-separated-equal-radius-common-frequency",
+      "assemblyId": "asm-d4a1624c08684a36149a0217714607fc",
+      "modelRevisionSha256": "d4a1624c08684a36149a0217714607fccf37fa916d88b4cb45aaf91db4bbf76b",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-axially-separated-equal-radius-common-frequency.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-axially-separated-equal-radius-common-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-axially-separated-4-2-1-frequency-v1",
+      "sourceSlug": "three-axis-circular-axially-separated-4-2-1-frequency",
+      "assemblyId": "asm-effe9ef5527b7eb5162d3611ec11cc08",
+      "modelRevisionSha256": "effe9ef5527b7eb5162d3611ec11cc0878147e0d98d8b6ca4a18be3dad6f033a",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-axially-separated-4-2-1-frequency.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-axially-separated-4-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "three-axis-circular-axially-separated-3-2-1-frequency-v1",
+      "sourceSlug": "three-axis-circular-axially-separated-3-2-1-frequency",
+      "assemblyId": "asm-8d55504a0d3d60e14fcdfe43cf60d03f",
+      "modelRevisionSha256": "8d55504a0d3d60e14fcdfe43cf60d03f6a65024de7ef931eef1858521f16268e",
+      "specPath": "reference/priorities/braid-program/configurations/three-axis-circular-axially-separated-3-2-1-frequency.v3.json",
+      "recordPath": "content/assets/borg/records/three-axis-circular-axially-separated-3-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "axial-transverse-three-binary-interior-v0",
+      "sourceSlug": "axial-transverse-three-binary-interior",
+      "assemblyId": "asm-3e9d646d95041634d7ee5fe7eed862d6",
+      "modelRevisionSha256": "3e9d646d95041634d7ee5fe7eed862d679c8f9f93518ebca7c98f549d352ec8f",
+      "specPath": "reference/priorities/braid-program/configurations/axial-transverse-three-binary-interior.v3.json",
+      "recordPath": "content/assets/borg/records/axial-transverse-three-binary-interior.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "high-axial-three-binary-interior-v0",
+      "sourceSlug": "high-axial-three-binary-interior",
+      "assemblyId": "asm-62623e5eeef817994217a8c56c9f0cca",
+      "modelRevisionSha256": "62623e5eeef817994217a8c56c9f0cca23b42de571bb3eb185a30c9226caf112",
+      "specPath": "reference/priorities/braid-program/configurations/high-axial-three-binary-interior.v3.json",
+      "recordPath": "content/assets/borg/records/high-axial-three-binary-interior.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "planar-three-binary-common-center-reference-v0",
+      "sourceSlug": "planar-three-binary-common-center-reference",
+      "assemblyId": "asm-d114b0f2284e4eb8d79c1643a9610b80",
+      "modelRevisionSha256": "d114b0f2284e4eb8d79c1643a9610b80ff4f662b519d33a2f56da537b957f101",
+      "specPath": "reference/priorities/braid-program/configurations/planar-three-binary-common-center-reference.v3.json",
+      "recordPath": "content/assets/borg/records/planar-three-binary-common-center-reference.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "coincident-center-two-component-circular-co-rotating-v1",
+      "sourceSlug": "coincident-center-two-component-circular-co-rotating",
+      "assemblyId": "asm-c65c54f58f828be4cc25fb0ac9fddfaa",
+      "modelRevisionSha256": "c65c54f58f828be4cc25fb0ac9fddfaa1ecf5dbd816072be0215018acb06fffb",
+      "specPath": "reference/priorities/braid-program/configurations/coincident-center-two-component-circular-co-rotating.v3.json",
+      "recordPath": "content/assets/borg/records/coincident-center-two-component-circular-co-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "coincident-center-two-component-circular-counter-rotating-v1",
+      "sourceSlug": "coincident-center-two-component-circular-counter-rotating",
+      "assemblyId": "asm-564682f8b12f9a2e9d1ed520a5adef7b",
+      "modelRevisionSha256": "564682f8b12f9a2e9d1ed520a5adef7b3c2eb397276b825f4523382357433a71",
+      "specPath": "reference/priorities/braid-program/configurations/coincident-center-two-component-circular-counter-rotating.v3.json",
+      "recordPath": "content/assets/borg/records/coincident-center-two-component-circular-counter-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "coaxial-separated-two-component-circular-co-rotating-v1",
+      "sourceSlug": "coaxial-separated-two-component-circular-co-rotating",
+      "assemblyId": "asm-4026f72b5d0fd6a58ef7c021dcca5271",
+      "modelRevisionSha256": "4026f72b5d0fd6a58ef7c021dcca52719bf209a5f92f23aa1ceb355171bea1f0",
+      "specPath": "reference/priorities/braid-program/configurations/coaxial-separated-two-component-circular-co-rotating.v3.json",
+      "recordPath": "content/assets/borg/records/coaxial-separated-two-component-circular-co-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "coaxial-separated-two-component-circular-counter-rotating-v1",
+      "sourceSlug": "coaxial-separated-two-component-circular-counter-rotating",
+      "assemblyId": "asm-6db8e29ee5ae51d39221d7f2d36f7bcb",
+      "modelRevisionSha256": "6db8e29ee5ae51d39221d7f2d36f7bcb0798ae2502558523fd3c30fc0faa11f6",
+      "specPath": "reference/priorities/braid-program/configurations/coaxial-separated-two-component-circular-counter-rotating.v3.json",
+      "recordPath": "content/assets/borg/records/coaxial-separated-two-component-circular-counter-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "coaxial-separated-two-planar-braid-co-rotating-v1",
+      "sourceSlug": "coaxial-separated-two-planar-braid-co-rotating",
+      "assemblyId": "asm-ebc963eea7e9104f8f826e86dd4287bc",
+      "modelRevisionSha256": "ebc963eea7e9104f8f826e86dd4287bce8818c853a7c3315deafce7729c10807",
+      "specPath": "reference/priorities/braid-program/configurations/coaxial-separated-two-planar-braid-co-rotating.v3.json",
+      "recordPath": "content/assets/borg/records/coaxial-separated-two-planar-braid-co-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "coaxial-separated-two-planar-braid-counter-rotating-v1",
+      "sourceSlug": "coaxial-separated-two-planar-braid-counter-rotating",
+      "assemblyId": "asm-40aa1d27a3e84b66c92d054b61956b80",
+      "modelRevisionSha256": "40aa1d27a3e84b66c92d054b61956b80492f5373c367da27e78d45251919fc38",
+      "specPath": "reference/priorities/braid-program/configurations/coaxial-separated-two-planar-braid-counter-rotating.v3.json",
+      "recordPath": "content/assets/borg/records/coaxial-separated-two-planar-braid-counter-rotating.assembly-view-record.v0.json"
+    }
+  ],
+  "excludedCatalogCandidates": [
+    {
+      "sourceSlug": "centered-five-coordinate-linear-history",
+      "assemblyId": "asm-f70757c6a491cf997305c297efa86bf8",
+      "modelRevisionSha256": "f70757c6a491cf997305c297efa86bf8ba3d2ae66eed6a8cbea9b66e85c34d62",
+      "reason": "centered five-coordinate linear history is a nonperiodic centered five-coordinate prescribed display and is outside the current circular complete-cycle analytical campaign."
+    },
+    {
+      "sourceSlug": "small-asymmetric-counter-breathing-history",
+      "assemblyId": "asm-c9eaeb2874337049a542bb15e5623d92",
+      "modelRevisionSha256": "c9eaeb2874337049a542bb15e5623d924085407eb3b686faa8020c946ab2a5c5",
+      "reason": "small asymmetric counter-breathing history is an operator-selected prescribed visualization with no analytical campaign result and is excluded from the current active analytical comparison."
+    },
+    {
+      "sourceSlug": "co-spherical-scoped-negative-circular-control",
+      "assemblyId": "asm-0b8ebf36be00b06978c8a58dee6604fb",
+      "modelRevisionSha256": "0b8ebf36be00b06978c8a58dee6604fb280200374047fae2734d82623e7f2ffe",
+      "reason": "co-spherical scoped-negative circular control is a scoped-negative reproducibility control and is excluded from active analytical comparison."
+    }
+  ],
+  "routedCatalogCandidates": [
+    {
+      "sourceSlug": "phase-varying-prescribed-display-history",
+      "assemblyId": "asm-5221daa4bd010d9a791e208c08fe20e8",
+      "modelRevisionSha256": "5221daa4bd010d9a791e208c08fe20e88604aebe6163d01f38de832df86b1e7f",
+      "reason": "phase-varying prescribed display history is an active creative phase-varying geometry with its own exact individual-worldline operator, H1/H2 guard certificate, independent interpolation-enclosure prerequisite, and separately gated H3 restart. The fixed circular-relationship sampler cannot represent this time-varying prescribed history, so it is routed to its dedicated instruments without demotion, exclusion from scientific work, score change, or negative disposition."
+    }
+  ],
+  "checkedCampaigns": [],
+  "excludedCampaigns": []
+}

@@ -25,11 +25,11 @@ import {
 } from "./IndependentAnalyticalAcceptance.mjs";
 
 export const ANALYTICAL_CAMPAIGN_DATABASE_SCHEMA =
-  "prescribed-record-analytics/sqlite.v1";
+  "prescribed-record-analytics/sqlite.v2";
 export const ANALYTICAL_CAMPAIGN_IMPORTER_VERSION =
-  "prescribed-record-analytics/sqlite-importer.v1";
+  "prescribed-record-analytics/sqlite-importer.v2";
 export const ANALYTICAL_CAMPAIGN_EXPORTER_VERSION =
-  "prescribed-record-analytics/sqlite-exporter.v1";
+  "prescribed-record-analytics/sqlite-exporter.v2";
 export const DEFAULT_INGEST_TRANSACTION_BATCH_SIZE = 32;
 
 const B1_MANIFEST_SCHEMA =
@@ -37,9 +37,9 @@ const B1_MANIFEST_SCHEMA =
 const B1_SUMMARY_SCHEMA =
   "prescribed-path-analysis/b1-cap-angle-campaign-summary.v1";
 const ALL_CANDIDATE_MANIFEST_SCHEMA =
-  "prescribed-path-analysis/all-candidate-campaign-manifest.v1";
+  "prescribed-path-analysis/all-candidate-campaign-manifest.v2";
 const ALL_CANDIDATE_SUMMARY_SCHEMA =
-  "prescribed-path-analysis/all-candidate-campaign-summary.v1";
+  "prescribed-path-analysis/all-candidate-campaign-summary.v2";
 const ALL_CASES_POLICY = "all-cases-all-gates/fail-closed.v1";
 const COMPLETE_CANDIDATE_INVENTORY_POLICY =
   "complete-candidate-inventory/fail-closed.v1";
@@ -473,14 +473,40 @@ function closeEnough(left, right) {
     Math.abs(left - right) <= 64 * Number.EPSILON * scale;
 }
 
-function validateSummaryCase(summaryCase, acceptance, campaignKind) {
+function exactSummaryIdentity(summaryCase) {
+  const identity = summaryCase.scientificIdentity ?? {
+    assemblyId: summaryCase.assemblyId,
+    modelRevisionSha256: summaryCase.modelRevisionSha256,
+  };
+  if (typeof identity?.assemblyId !== "string" ||
+      typeof identity?.modelRevisionSha256 !== "string" ||
+      !/^[a-f0-9]{64}$/.test(identity.modelRevisionSha256) ||
+      identity.assemblyId !== `asm-${identity.modelRevisionSha256.slice(0, 32)}` ||
+      typeof summaryCase.sourceSlug !== "string" ||
+      summaryCase.sourceSlug.length === 0) {
+    fail(`${summaryCase.caseId} summary requires an exact configuration identity.`);
+  }
+  return {
+    assemblyId: identity.assemblyId,
+    modelRevisionSha256: identity.modelRevisionSha256,
+    sourceSlug: summaryCase.sourceSlug,
+  };
+}
+
+function validateSummaryCase(summaryCase, acceptance, campaignKind, exactSourceRecord) {
   const packet = acceptance.packet;
+  const summaryIdentity = exactSummaryIdentity(summaryCase);
+  if (!exactSourceRecord ||
+      summaryIdentity.assemblyId !== exactSourceRecord.normalized.assemblyId ||
+      summaryIdentity.modelRevisionSha256 !==
+        exactSourceRecord.normalized.modelRevisionSha256) {
+    fail(`${summaryCase.caseId} summary exact identity differs from its source preimage.`);
+  }
   if (packet.schema === COMPLETE_CYCLE_RESULT_SCHEMA) {
     if (summaryCase.sourceHash !== packet.source.sourceHash ||
         summaryCase.sourceRecordId !== packet.source.recordId ||
         summaryCase.resultHash !== packet.resultHash ||
         summaryCase.protocolHash !== packet.completeCycleProtocolHash ||
-        canonicalJson(summaryCase.taxonomy) !== canonicalJson(packet.source.taxonomy) ||
         summaryCase.acceptanceState !==
           (packet.status.accepted ? "accepted" : "rejected") ||
         canonicalJson(summaryCase.gates) !== canonicalJson(packet.gates)) {
@@ -502,9 +528,6 @@ function validateSummaryCase(summaryCase, acceptance, campaignKind) {
         angles.some((angle, index) => !closeEnough(angle, summaryAngles[index]))) {
       fail(`${summaryCase.caseId} summary coordinates differ from its packet.`);
     }
-  } else if (canonicalJson(summaryCase.taxonomy) !==
-      canonicalJson(packet.source.taxonomy)) {
-    fail(`${summaryCase.caseId} summary taxonomy differs from its packet.`);
   }
   const rootCount = packet.rawLedgers.causalRoots.reduce(
     (sum, event) => sum + event.roots.length,
@@ -674,12 +697,18 @@ export function preflightAnalyticalCampaignImport(options) {
         acceptance.failureCodes.join(", "),
       );
     }
-    validateSummaryCase(summaryCase, acceptance, validated.campaignKind);
     const exactSourceRecord = exactSourceRecordForCase(
       summaryCase,
       summaryPath,
       acceptance.packet,
     );
+    validateSummaryCase(
+      summaryCase,
+      acceptance,
+      validated.campaignKind,
+      exactSourceRecord,
+    );
+    const scientificIdentity = exactSummaryIdentity(summaryCase);
     cases.push({
       caseOrdinal,
       summaryCase,
@@ -691,8 +720,9 @@ export function preflightAnalyticalCampaignImport(options) {
         ? sha256Canonical(acceptance.packet.source.parameterVector)
         : sha256Canonical({
           coordinateDefinition: "prescribed-braid-parameter-vector/v1",
-          familyId: acceptance.packet.source.taxonomy?.familyId ?? null,
-          memberId: acceptance.packet.source.taxonomy?.memberId ?? null,
+          assemblyId: scientificIdentity.assemblyId,
+          modelRevisionSha256: scientificIdentity.modelRevisionSha256,
+          sourceSlug: scientificIdentity.sourceSlug,
           parameterVector: acceptance.packet.source.parameterVector,
         }),
     });
@@ -1131,8 +1161,14 @@ function insertCampaignEnvelope(database, preflight, options = {}) {
   }
 }
 
-function insertSource(database, packet, exactSourceRecord = null) {
+function insertSource(database, packet, exactSourceRecord, summaryCase) {
   const source = packet.source;
+  const identity = exactSummaryIdentity(summaryCase);
+  if (identity.assemblyId !== exactSourceRecord?.normalized?.assemblyId ||
+      identity.modelRevisionSha256 !==
+        exactSourceRecord?.normalized?.modelRevisionSha256) {
+    fail(`${summaryCase.caseId} exact source identity is inconsistent.`);
+  }
   const sourceHash = hashBuffer(source.sourceHash, "source hash");
   const bytes = canonicalBytes(source);
   const exactArtifact = exactSourceRecord
@@ -1150,17 +1186,18 @@ function insertSource(database, packet, exactSourceRecord = null) {
     exact_source_record_schema: source.exactSourceRecordSchema ?? null,
     engine_id: source.engineId,
     engine_version: source.engineVersion ?? null,
-    family_id: source.taxonomy?.familyId ?? null,
-    member_id: source.taxonomy?.memberId ?? null,
+    assembly_id: identity.assemblyId,
+    model_revision_sha256: identity.modelRevisionSha256,
+    source_slug: identity.sourceSlug,
     source_envelope_json: bytes,
   };
   database.prepare(`
     INSERT INTO source_record(
       source_hash, record_id, source_schema, exact_source_record_schema,
-      engine_id, engine_version, family_id, member_id,
+      engine_id, engine_version, assembly_id, model_revision_sha256, source_slug,
       source_envelope_json, exact_source_artifact_hash,
       source_hash_verification_state
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(source_hash) DO NOTHING
   `).run(
     sourceHash,
@@ -1169,15 +1206,17 @@ function insertSource(database, packet, exactSourceRecord = null) {
     source.exactSourceRecordSchema ?? null,
     source.engineId,
     source.engineVersion ?? null,
-    source.taxonomy?.familyId ?? null,
-    source.taxonomy?.memberId ?? null,
+    identity.assemblyId,
+    identity.modelRevisionSha256,
+    identity.sourceSlug,
     bytes,
     exactArtifact?.artifactHash ?? null,
     exactArtifact ? "exact-preimage-verified" : "packet-bound",
   );
   let actual = database.prepare(`
     SELECT record_id, source_schema, exact_source_record_schema, engine_id,
-           engine_version, family_id, member_id, source_envelope_json,
+           engine_version, assembly_id, model_revision_sha256, source_slug,
+           source_envelope_json,
            exact_source_artifact_hash, source_hash_verification_state
     FROM source_record WHERE source_hash = ?
   `).get(sourceHash);
@@ -1207,6 +1246,7 @@ function insertSource(database, packet, exactSourceRecord = null) {
 
 function insertConfiguration(database, row) {
   const packet = row.acceptance.packet;
+  const identity = exactSummaryIdentity(row.summaryCase);
   const coordinates = row.summaryCase.coordinates?.capAngles ?? [];
   const configurationHash = hashBuffer(row.configurationHash);
   const vectorBytes = canonicalBytes(packet.source.parameterVector);
@@ -1217,15 +1257,17 @@ function insertConfiguration(database, row) {
   insertOrVerify(database, {
     insertSql: `
       INSERT INTO configuration(
-        configuration_hash, family_id, member_id, parameter_vector_json,
+        configuration_hash, assembly_id, model_revision_sha256, source_slug,
+        parameter_vector_json,
         coordinate_definition, alpha_1, alpha_2, alpha_3
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(configuration_hash) DO NOTHING
     `,
     insertParameters: [
       configurationHash,
-      packet.source.taxonomy?.familyId ?? null,
-      packet.source.taxonomy?.memberId ?? null,
+      identity.assemblyId,
+      identity.modelRevisionSha256,
+      identity.sourceSlug,
       vectorBytes,
       coordinateDefinition,
       coordinates[0] ?? null,
@@ -1233,14 +1275,15 @@ function insertConfiguration(database, row) {
       coordinates[2] ?? null,
     ],
     selectSql: `
-      SELECT family_id, member_id, parameter_vector_json,
+      SELECT assembly_id, model_revision_sha256, source_slug, parameter_vector_json,
              coordinate_definition, alpha_1, alpha_2, alpha_3
       FROM configuration WHERE configuration_hash = ?
     `,
     selectParameters: [configurationHash],
     expected: {
-      family_id: packet.source.taxonomy?.familyId ?? null,
-      member_id: packet.source.taxonomy?.memberId ?? null,
+      assembly_id: identity.assemblyId,
+      model_revision_sha256: identity.modelRevisionSha256,
+      source_slug: identity.sourceSlug,
       parameter_vector_json: vectorBytes,
       coordinate_definition: coordinateDefinition,
       alpha_1: coordinates[0] ?? null,
@@ -1462,15 +1505,16 @@ function completeCycleMultidimensionalRows(packet, summaryCase) {
       });
     }
   }
-  const commonAxis = packet.diagnosticReductions.commonAxisBraid;
-  if (commonAxis?.schema ===
-      "prescribed-path-analysis/common-axis-braid-reduction.v2") {
+  const configurationReduction =
+    packet.diagnosticReductions.coincidentAxisAndTwoComponentCircular;
+  if (configurationReduction?.schema ===
+      "prescribed-path-analysis/coincident-axis-and-two-component-circular-reduction.v3") {
     for (const resolution of ["primary", "refined"]) {
       const disposition = resolution === "primary"
         ? acceptedDisposition
         : "diagnostic-only";
       for (const [projection, summary] of Object.entries(
-        commonAxis.residuals[resolution],
+        configurationReduction.residuals[resolution],
       )) {
         for (const receiver of summary.receivers) {
           for (const [measure, scalarValue] of [
@@ -1479,8 +1523,9 @@ function completeCycleMultidimensionalRows(packet, summaryCase) {
             ["signed-cycle-average", receiver.signedCycleAverage],
           ]) {
             rows.push({
-              measureId: `common-axis-braid/residual/${projection}/${measure}`,
-              reductionVersion: commonAxis.reducerVersion,
+              measureId:
+                `coincident-axis-and-two-component-circular/residual/${projection}/${measure}`,
+              reductionVersion: configurationReduction.reducerVersion,
               disposition,
               scalarValue,
               unit: "acceleration",
@@ -1493,36 +1538,43 @@ function completeCycleMultidimensionalRows(packet, summaryCase) {
       }
     }
     rows.push({
-      measureId: "common-axis-braid/residual-convergence/maximum-change",
-      reductionVersion: commonAxis.reducerVersion,
-      disposition: commonAxis.residuals.convergence.passed
+      measureId:
+        "coincident-axis-and-two-component-circular/residual-convergence/maximum-change",
+      reductionVersion: configurationReduction.reducerVersion,
+      disposition: configurationReduction.residuals.convergence.passed
         ? acceptedDisposition
         : "diagnostic-only",
-      scalarValue: commonAxis.residuals.convergence.maximumChange,
+      scalarValue: configurationReduction.residuals.convergence.maximumChange,
       unit: "relative-or-absolute",
-      numericalUncertainty: commonAxis.residuals.convergence.maximumChange,
-      normalization: commonAxis.residuals.convergence.comparison,
-      details: commonAxis.residuals.convergence,
+      numericalUncertainty:
+        configurationReduction.residuals.convergence.maximumChange,
+      normalization: configurationReduction.residuals.convergence.comparison,
+      details: configurationReduction.residuals.convergence,
     });
     for (const resolution of ["primary", "refined"]) {
       rows.push({
-        measureId: "common-axis-braid/root-transversality-margin",
-        reductionVersion: commonAxis.reducerVersion,
+        measureId:
+          "coincident-axis-and-two-component-circular/root-transversality-margin",
+        reductionVersion: configurationReduction.reducerVersion,
         disposition: resolution === "primary" ? acceptedDisposition : "diagnostic-only",
-        scalarValue: commonAxis.minimumRootTransversalityMargin[resolution],
+        scalarValue:
+          configurationReduction.minimumRootTransversalityMargin[resolution],
         unit: "speed",
         resolution,
-        details: commonAxis.minimumRootTransversalityMargin,
+        details: configurationReduction.minimumRootTransversalityMargin,
       });
       rows.push({
-        measureId: "common-axis-braid/axial-angular-momentum/rms-about-mean",
-        reductionVersion: commonAxis.reducerVersion,
+        measureId:
+          "coincident-axis-and-two-component-circular/axial-angular-momentum/rms-about-mean",
+        reductionVersion: configurationReduction.reducerVersion,
         disposition: "diagnostic-only",
         scalarValue:
-          commonAxis.axialAngularMomentumDiagnostic[resolution].cycle.rmsAboutMean,
+          configurationReduction.axialAngularMomentumDiagnostic[resolution]
+            .cycle.rmsAboutMean,
         unit: "angular-momentum-per-unit-mu_arch",
         resolution,
-        details: commonAxis.axialAngularMomentumDiagnostic[resolution],
+        details:
+          configurationReduction.axialAngularMomentumDiagnostic[resolution],
       });
     }
   }
@@ -1581,7 +1633,7 @@ function insertMultidimensionalMeasures(database, packet, summaryCase) {
 function insertCase(database, preflight, row) {
   const packet = row.acceptance.packet;
   insertProtocol(database, packet);
-  insertSource(database, packet, row.exactSourceRecord);
+  insertSource(database, packet, row.exactSourceRecord, row.summaryCase);
   insertConfiguration(database, row);
   const artifact = insertArtifact(database, {
     rawBytes: row.packetBytes,
@@ -2156,7 +2208,9 @@ export function recordAnalyticalDatabaseGeneration(databasePath, options) {
         const manifestHash = hashBuffer(campaign.manifestHash, "generation campaign manifestHash");
         const cases = database.prepare(`
           SELECT campaign_case.result_hash, campaign_case.case_id,
-                 source_record.family_id, source_record.member_id,
+                 source_record.assembly_id,
+                 source_record.model_revision_sha256,
+                 source_record.source_slug,
                  campaign_case.source_hash, case_result.protocol_hash,
                  case_acceptance.accepted
           FROM campaign_case
@@ -2179,17 +2233,19 @@ export function recordAnalyticalDatabaseGeneration(databasePath, options) {
           database.prepare(`
             INSERT INTO database_generation_case(
               generation_hash, manifest_hash, result_hash, case_id,
-              family_id, member_id, source_hash, protocol_hash,
+              assembly_id, model_revision_sha256, source_slug,
+              source_hash, protocol_hash,
               acceptance_state, failed_gate
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(generation_hash, result_hash) DO NOTHING
           `).run(
             hashBuffer(generationHash),
             manifestHash,
             row.result_hash,
             row.case_id,
-            row.family_id,
-            row.member_id,
+            row.assembly_id,
+            row.model_revision_sha256,
+            row.source_slug,
             row.source_hash,
             row.protocol_hash,
             row.accepted === 1 ? "accepted" : "rejected",
@@ -2844,7 +2900,7 @@ function generationCandidateDigest(database, generation) {
            lower(hex(database_generation_case.result_hash)) AS result_hash_hex
     FROM database_generation_case
     WHERE generation_hash = ?
-    ORDER BY family_id, member_id, case_id
+    ORDER BY assembly_id, model_revision_sha256, source_slug, case_id
   `).all(generation.generation_hash).map((row) => {
     const summaryMeasures = database.prepare(`
       SELECT measure_id, reduction_version, disposition, scalar_value, unit,
@@ -2865,9 +2921,11 @@ function generationCandidateDigest(database, generation) {
     `).all(row.result_hash);
     return {
       candidateId: row.case_id,
-      familyId: row.family_id,
-      memberId: row.member_id,
-      referenceCase: row.member_id === "B1.1",
+      assemblyId: row.assembly_id,
+      modelRevisionSha256: row.model_revision_sha256,
+      sourceSlug: row.source_slug,
+      referenceCase:
+        row.source_slug === "axial-transverse-three-binary-interior",
       sourceHash: row.source_hash_hex,
       protocolHash: row.protocol_hash_hex,
       resultHash: row.result_hash_hex,
@@ -2891,8 +2949,9 @@ function generationCandidateDigest(database, generation) {
       const current = leaderGroups.get(key);
       const displayed = {
         candidateId: candidate.candidateId,
-        familyId: candidate.familyId,
-        memberId: candidate.memberId,
+        assemblyId: candidate.assemblyId,
+        modelRevisionSha256: candidate.modelRevisionSha256,
+        sourceSlug: candidate.sourceSlug,
         sourceHash: candidate.sourceHash,
         protocolHash: candidate.protocolHash,
         databaseGenerationHash: generationHash,
@@ -2920,8 +2979,9 @@ function generationCandidateDigest(database, generation) {
     .filter((candidate) => candidate.referenceCase && candidate.acceptance === "accepted")
     .flatMap((candidate) => candidate.summaryMeasures.map((measure) => ({
       candidateId: candidate.candidateId,
-      familyId: candidate.familyId,
-      memberId: candidate.memberId,
+      assemblyId: candidate.assemblyId,
+      modelRevisionSha256: candidate.modelRevisionSha256,
+      sourceSlug: candidate.sourceSlug,
       sourceHash: candidate.sourceHash,
       protocolHash: candidate.protocolHash,
       databaseGenerationHash: generationHash,
@@ -2936,14 +2996,16 @@ function generationCandidateDigest(database, generation) {
       numericalUncertainty: measure.numerical_uncertainty,
       probePolarity: measure.probe_polarity,
       scalarValue: measure.scalar_value,
-      inclusionReason: "explicit-reference-case-B1.1",
+      inclusionReason:
+        "explicit-reference-case-axial-transverse-three-binary-interior",
     })));
   const rejectedRows = candidates
     .filter((candidate) => candidate.acceptance === "rejected")
     .map((candidate) => ({
       candidateId: candidate.candidateId,
-      familyId: candidate.familyId,
-      memberId: candidate.memberId,
+      assemblyId: candidate.assemblyId,
+      modelRevisionSha256: candidate.modelRevisionSha256,
+      sourceSlug: candidate.sourceSlug,
       sourceHash: candidate.sourceHash,
       protocolHash: candidate.protocolHash,
       databaseGenerationHash: generationHash,

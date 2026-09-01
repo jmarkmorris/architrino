@@ -1,4 +1,4 @@
-# F6c Correlated Residual Box Envelope
+# asymmetric counter-breathing representative Correlated Residual Box Envelope
 
 Status: derived conditional proof and independently fixed implementation controls, pending independent review, 2026-08-27. This artifact supplies no actual-data evaluation, execution plan, metric or score.
 
@@ -65,7 +65,7 @@ Plainly: subtracting a useful polynomial before taking the time range can preser
 
 A constant box midpoint is already an allowed auxiliary vector: $a_k=(\ell_k+v_k)/2$ gives $\delta_k\in[-(v_k-\ell_k)/2,(v_k-\ell_k)/2]$. The theorem above computes the exact pointwise box extrema of this same identity while retaining common time. For example, with $B_1(u)=10u$, all other components zero, point acceleration zero and $p(u)=100\lambda u^2$ on $[0,0.1]$, the exact result is $E_J=[0,0]$. Independently taking $Q=[0,\lambda]$ and $\operatorname{range}(p)=[0,\lambda]$ would give $Q-\operatorname{range}(p)=[-\lambda,\lambda]$.
 
-Plainly: the example proves that the operation can genuinely tighten a remainder using existing boxes alone. It is an analytic control, not a prediction for F6c data.
+Plainly: the example proves that the operation can genuinely tighten a remainder using existing boxes alone. It is an analytic control, not a prediction for asymmetric counter-breathing representative data.
 
 If an existing $Q$ encloses the entire same box relaxation of $f$, then $E_J\subseteq Q-\operatorname{range}(p)$. A separately serialized acceleration box may be slightly wider than the unrounded box used to compute a saved $Q$, so that stronger containment must not be assumed across differently rounded intermediates. When both are valid uniform bounds for the actual family, their intersection is always a valid remainder bound; an empty intersection is a failed premise or arithmetic check. No strict contraction, final $10^{-6}$ width, total runtime or full-history result follows without the corresponding calculation and reviewed execution authority.
 
@@ -102,7 +102,7 @@ The following exact known-answer plan was fixed and sent before the subject impl
 | Coincident cuts and boundary cuts | $\mathbf B=(z,z,z)$; all boxes $[0,1]$ | $0$ | $[0,3\lambda]$ |
 | Zero slopes and point boxes | $\mathbf B=\mathbf A=(1,1,1)$ | $0$ | $[0,0]$ |
 
-Plainly: these examples exercise cancellation, both kinds of turning point, signed values, all nine possible interior cuts, repeated cuts and constant components. They can expose a wrong algorithm without consulting actual F6c data.
+Plainly: these examples exercise cancellation, both kinds of turning point, signed values, all nine possible interior cuts, repeated cuts and constant components. They can expose a wrong algorithm without consulting actual asymmetric counter-breathing representative data.
 
 The nine-cut case has lower minimum $2\lambda/25$ at $z=1/2$ and upper maximum $63\lambda/50$ at $z=0,1$; its nine cuts are $z=.1,.2,\ldots,.9$. The negative-slope case has lower vertex $z=3/4$. Repeat the first eight cases on $J=[.02,.12]$ with unchanged local coefficients to check the origin. Replacing the cancellation case's polynomial by $p-10^{-90}$ gives the exact point remainder $[10^{-90},10^{-90}]$. Check outward inclusion of every exact answer, unchanged inputs, the same key and full-leaf single-piece output, and all false authority flags. Reject degree three, reversed or nonfinite boxes, invalid shapes, invalid normalization/context/domain and unsupported record types using the frozen parser contract.
 

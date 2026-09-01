@@ -1,14 +1,14 @@
 # Horizon Chirality and Planar Spin
 
-This chapter studies one narrow theory question: how the Noether braid `pro/anti` distinction should be understood as a Family-A braid approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
+This chapter studies one narrow theory question: how the Noether braid `pro/anti` distinction should be understood as an orthogonal-axis three-binary braid approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
 
-The guiding problem is simple. In ordinary low-stress conditions, the Family-A braid is a fully 3D object with persistent binary indices, an ordered set of normals, and precession structure. At the event horizon, the same assembly is hypothesized to approach coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
+The guiding problem is simple. In ordinary low-stress conditions, the orthogonal-axis three-binary braid is a fully 3D object with persistent binary indices, an ordered set of normals, and precession structure. At the event horizon, the same assembly is hypothesized to approach coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
 
 The chapter is therefore a reduction map, not a new chirality doctrine. It keeps four labels from collapsing into one another: the deeper 3D pro/anti branch orientation, polarity conjugation at fixed worldlines, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
 
 ## Source-Record Horizon Condition
 
-The Family-A terminal-alignment target is inherited from [singularity-resolution.md](./singularity-resolution.md) and [black-holes.md](./black-holes.md). In the illustrative source record used here, the near-horizon speed rows are
+The orthogonal-axis three-binary terminal-alignment target is inherited from [singularity-resolution.md](./singularity-resolution.md) and [black-holes.md](./black-holes.md). In the illustrative source record used here, the near-horizon speed rows are
 
 $$
 v_2 = c_f,
@@ -20,16 +20,16 @@ $$
 
 with binaries 2 and 3 becoming coplanar and collinear with binary 1 at alignment and precession ceasing in that limit.
 
-The speed assignments to binaries 2 and 3 belong to this source record; the taxonomy does not assign field-speed roles to fixed indices. This chapter asks what chirality information can still be distinguished once the Family-A braid has been compressed into that planar boundary-like state.
+The speed assignments to binaries 2 and 3 belong to this source record; the taxonomy does not assign field-speed roles to fixed indices. This chapter asks what chirality information can still be distinguished once the orthogonal-axis three-binary braid has been compressed into that planar boundary-like state.
 
 ## Pro/Anti Before Planar Lock
 
-Away from the horizon, the project treats `pro/anti` as an orientation property of the 3D Family-A braid scaffold rather than as polarity conjugation, matter/antimatter, or a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis):
+Away from the horizon, the project treats `pro/anti` as an orientation property of the 3D orthogonal-axis three-binary braid scaffold rather than as polarity conjugation, matter/antimatter, or a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis):
 
 - `pro`: deformation-stable indexed-frame orientation $o_{\mathrm{PA}}=+1$, conventionally represented by `123`;
 - `anti`: deformation-stable indexed-frame orientation $o_{\mathrm{PA}}=-1$, conventionally represented by `132`.
 
-The `123/132` strings are orientation mnemonics in a declared indexed frame, not temporal orderings of labelled events. Parity cannot reverse a bare temporal ordering. The $P$-odd claim belongs to the retained path or angular-momentum-frame row $o_{\mathrm{PA}}$, whose deformation stability and parity action must be demonstrated. In the ordinary Family-A braid, the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure, so that row is a candidate 3D chirality datum.
+The `123/132` strings are orientation mnemonics in a declared indexed frame, not temporal orderings of labelled events. Parity cannot reverse a bare temporal ordering. The $P$-odd claim belongs to the retained path or angular-momentum-frame row $o_{\mathrm{PA}}$, whose deformation stability and parity action must be demonstrated. In the ordinary orthogonal-axis three-binary braid, the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure, so that row is a candidate 3D chirality datum.
 
 The strongest mathematical candidate beneath that datum comes from [causal-action-functional.md](../dynamics/causal-action-functional.md): the causal writhe
 
@@ -47,7 +47,7 @@ records signed causal-locus crossings or linkages in the retained branch record 
 
 So the cleanest reading is:
 
-- the surface convention for `pro/anti` remains the ordered `123/132` Family-A braid distinction;
+- the surface convention for `pro/anti` remains the ordered `123/132` orthogonal-axis three-binary braid distinction;
 - the best formalization candidate is a topological branch label carried by the retained causal-locus and framed-topology record, with $Wr_c$ as a leading crossing statistic only when the same retained branch record also supplies $D_t$, $D_r$, and $W^{\mathrm{acc}}$.
 - polarity conjugation $C$ leaves $o_{\mathrm{PA}}$ unchanged because it relabels polarities at fixed worldlines; the proposed parity row is $P:o_{\mathrm{PA}}\mapsto-o_{\mathrm{PA}}$.
 
@@ -93,7 +93,7 @@ The horizon question becomes clearer when compared against the main assembly sec
 | $2+2$ pro/anti cluster hypothesis | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
 | Orientation-selective reaction channels | pro/anti encounters can open rapid reconfiguration channels without thereby being matter/antimatter events | mixed 3D and reaction geometry | tests whether ordered orientation changes reaction accessibility |
 
-This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed Family-A braid advertises its branch structure when driven into the strongest alignment regime.
+This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed orthogonal-axis three-binary braid advertises its branch structure when driven into the strongest alignment regime.
 
 The photon row is also an interface to the radiation and cosmology stack. Because the candidate photon-channel construction is modeled as a moving planar polarity-conjugate pair, it is the transport target most naturally comparable to the flat symmetry-breaking state. That does not make every photon a horizon fragment, but it does make horizon-adjacent photon processing a serious candidate mechanism: the same planar branch logic is proposed for free photon propagation, horizon-interface compression, strong-field blueshift, outward redshift, or release-channel conversion depending on the surrounding Noether sea record.
 
@@ -137,22 +137,22 @@ The simplest exterior quantity is the sign of the common planar angular momentum
 
 This chapter will call that reduced exterior quantity **boundary helicity**: the horizon-local sign of common planar angular momentum relative to a chosen normal. The term is deliberately narrower than standard helicity until the normal is identified with the relevant propagation or translation direction.
 
-The deeper `pro/anti` distinction is plausibly stronger than boundary helicity alone. In the 3D scaffold, `pro/anti` tracks ordered Family-A braid chirality, not merely the sign of one visible planar swirl. Once the horizon suppresses precession and forces coplanarity, two different 3D histories may collapse to the same exterior planar sign.
+The deeper `pro/anti` distinction is plausibly stronger than boundary helicity alone. In the 3D scaffold, `pro/anti` tracks ordered orthogonal-axis three-binary braid chirality, not merely the sign of one visible planar swirl. Once the horizon suppresses precession and forces coplanarity, two different 3D histories may collapse to the same exterior planar sign.
 
 That motivates the following working distinction:
 
 - **Boundary helicity:** the visible sign of the common planar angular momentum at the horizon, measured relative to a chosen normal.
-- **Core chirality:** the deeper `pro/anti` distinction inherited from the ordered 3D Family-A braid before flattening.
+- **Core chirality:** the deeper `pro/anti` distinction inherited from the ordered 3D orthogonal-axis three-binary braid before flattening.
 
 If this distinction is correct, then the horizon does not necessarily erase `pro/anti`, but it may compress it so strongly that the exterior observer sees only a reduced proxy.
 
 ## Translation-Axis Alignment at High Velocity
 
-The next question is whether a rapidly translating Family-A braid should drive the three orbital angular-momentum vectors toward the translation axis itself.
+The next question is whether a rapidly translating orthogonal-axis three-binary braid should drive the three orbital angular-momentum vectors toward the translation axis itself.
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the group velocity (center-of-mass convention).
 
-The stronger argument is a conditional cross-section test within the proposed high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native group speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Assume, rather than derive here, the ruler-law target from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics):
+The stronger argument is a conditional cross-section test within the proposed high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native group speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Assume, rather than derive here, the ruler-law target from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation):
 
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_\perp^2}
@@ -238,7 +238,7 @@ $$
 
 The intended label flow along that ladder is:
 
-1. In the ordinary 3D regime, `pro/anti` is carried by ordered Family-A braid chirality.
+1. In the ordinary 3D regime, `pro/anti` is carried by ordered orthogonal-axis three-binary braid chirality.
 2. Under high group speed, the orbital normals are biased toward the translation axis.
 3. Near the terminal aligned state, the surviving branch data may reduce to the sign of the common axial orientation and then to the sign of the visible planar helicity.
 4. After passage through the lock, the Noether braid may either preserve that branch, re-expand with the same handed history, or undergo a deeper reconfiguration if the planar degeneracy is strong enough.
@@ -286,7 +286,7 @@ In the more cautious reduction, the two uniform planar states are still the visi
 - the uniform planar sign is the **visible boundary marker**;
 - the deeper `pro/anti` label still refers to the ordered 3D chirality from which the planar state was reached.
 
-On this reading, the horizon preserves only a compressed image of the deeper Family-A braid chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
+On this reading, the horizon preserves only a compressed image of the deeper orthogonal-axis three-binary braid chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
 
 Theory B is the stronger conceptual fit with the existing 3D `123/132` framing, because that framing is richer than a single planar spin sign.
 
@@ -319,7 +319,7 @@ In that reading, the horizon or near-horizon limit does not merely present two b
 
 or the reverse, depending on the eventual sign convention.
 
-This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the Family-A braid angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
+This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the orthogonal-axis three-binary braid angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
 
 The explicit defer condition is that terminal axial sign,
 
@@ -337,7 +337,7 @@ This chapter mixes canonical inputs with stronger and weaker hypotheses. The dis
 
 | Claim | Status |
 | --- | --- |
-| Family-A terminal alignment drives the braid toward coplanarity and suppresses precession | canonical target in project framing; retained-branch derivation remains open |
+| orthogonal-axis three-binary terminal alignment drives the braid toward coplanarity and suppresses precession | canonical target in project framing; retained-branch derivation remains open |
 | `pro/anti` is a deeper 3D Noether braid chirality label rather than a net-charge label | canonical working convention |
 | `Wr_c` and causal-locus topology supply the best formalization candidate for that chirality | strong structural candidate only on the same retained branch record that supplies $D_t$, $D_r$, and $W^{\mathrm{acc}}$; not yet sole canonical definition |
 | the planar exterior sign space has 8 rows for labeled `1/2/3` binaries | exact combinatorial statement |
@@ -385,7 +385,7 @@ The safest working rule is:
 
 ## Simulation Diagnostics
 
-If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent Family-A braids:
+If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent orthogonal-axis three-binary braids:
 
 - **Axis-alignment diagnostic:** track $\hat J_{\text{net}} \cdot \hat{\mathbf V}$ and test whether it tends toward $\pm 1$ as $v_{\text{trans}} \to c_f$.
 - **Tilt decay diagnostic:** track each orbital-normal angle $\alpha_i$ to test whether non-axial states relax toward the translation axis with a rate that grows with $\gamma_f$.
@@ -400,8 +400,8 @@ The full planar spin-sign space at the horizon has eight rows because each of th
 
 That yields a disciplined provisional picture:
 
-- `pro/anti` in the ordinary Family-A braid is a 3D chirality or ordering property;
-- the horizon compresses the Family-A braid into a planar state with a reduced exterior signature;
+- `pro/anti` in the ordinary orthogonal-axis three-binary braid is a 3D chirality or ordering property;
+- the horizon compresses the orthogonal-axis three-binary braid into a planar state with a reduced exterior signature;
 - the exterior planar state has eight logical spin permutations;
 - the two uniform rows are the best candidates for stable horizon branches;
 - the other six rows are most naturally read as transitional, frustrated, or unstable states unless future dynamics show otherwise.
@@ -410,8 +410,8 @@ That yields a disciplined provisional picture:
 
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](./black-holes.md): horizon interface and strong-field ontology.
-- [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics): regime map, planarity diagnostics, and alignment observables.
-- [Mapping the Planck Scale to the A1 Geometry](../philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md): terminal planar lock and alignment-horizon interpretation.
+- [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation): regime map, planarity diagnostics, and alignment observables.
+- [Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry](../philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): separation of pro/anti ordered orientation from matter/antimatter polarity conjugation.
 - [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad, polarity-conjugation, and chirality language.

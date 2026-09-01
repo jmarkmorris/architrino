@@ -1,12 +1,12 @@
-# F6c Continuous-Reception Enclosure Contract
+# asymmetric counter-breathing representative Continuous-Reception Enclosure Contract
 
-Status: conditional mathematical artifact, pending independent review, 2026-08-27. No F6c continuous-reception premise is certified here, no measurement is performed, and no execution is authorized.
+Status: conditional mathematical artifact, pending independent review, 2026-08-27. No asymmetric counter-breathing representative continuous-reception premise is certified here, no measurement is performed, and no execution is authorized.
 
 ## Scope And Existing Consumer
 
-**Claim grade: derived, conditional.** This document proves a finite-history route from uniformly bounded, continuously differentiable member paths to complete causal-root coverage and outward acceleration bounds over a whole reception-time interval. Its direct consumer is the existing [F6c normalized member-acceleration predeclaration](2026-08-26-f6c-normalized-member-acceleration-predeclaration.md), which supplies `M05` and `M06` to the [frozen metric normalization](../candidate-weighted-score-packet.md#frozen-metric-normalization). It does not amend either metric, the refinement ladder, or the stopping rules.
+**Claim grade: derived, conditional.** This document proves a finite-history route from uniformly bounded, continuously differentiable member paths to complete causal-root coverage and outward acceleration bounds over a whole reception-time interval. Its direct consumer is the existing [asymmetric counter-breathing representative normalized member-acceleration predeclaration](2026-08-26-f6c-normalized-member-acceleration-predeclaration.md), which supplies `M05` and `M06` to the [frozen metric normalization](../candidate-weighted-score-packet.md#frozen-metric-normalization). It does not amend either metric, the refinement ladder, or the stopping rules.
 
-Plainly: the missing capability is to bound the law between evaluation times, not just at selected times. The theorem below describes sufficient conditions for that capability; it does not report that the selected F6c history meets them.
+Plainly: the missing capability is to bound the law between evaluation times, not just at selected times. The theorem below describes sufficient conditions for that capability; it does not report that the selected asymmetric counter-breathing representative history meets them.
 
 We work in normalized wake-speed units with $c_f=1$. The derivation uses only the $\mathbb{A}\mathbb{A}\mathbb{A}$ delayed-history residual and sharp acceleration expression implemented by the frozen references. It imports no observer-level physical law. The retained domain is $[T_{\min},T_{\max}]=[-8,0.13]$, and the measurement domain is $I=[0,0.13]$. Completeness below always means completeness inside this finite retained domain, never absence of contributions from an unretained earlier past.
 
@@ -16,7 +16,7 @@ Plainly: the wake travels one distance unit per time unit. Every statement is li
 
 The subject remains the refined Stage B record identified by the [durable manifest](2026-08-27-f6c-refined-stage-b-manifest.json) and [durable summary](2026-08-27-f6c-refined-stage-b-summary.json). Their SHA-256 digests are, respectively, `cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b` and `9e053c214e2d09544a488957dde7d59de40ee15937b8c056ef7d56d24eb40d3d`. The [data-export handoff](2026-08-27-braid-search-launch-readiness.md#bp-010-reference-blocker) binds `.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json` at SHA-256 `f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1`. This is a provenance reference, not a new data-validation result from this document.
 
-Plainly: the theorem is attached to the already preserved calculation and its separately checked export. It neither substitutes another F6c geometry nor repeats the export check as if it were new evidence.
+Plainly: the theorem is attached to the already preserved calculation and its separately checked export. It neither substitutes another asymmetric counter-breathing representative geometry nor repeats the export check as if it were new evidence.
 
 The export preserves eight labeled paths, each with 1,600 prehistory segments and 160 evolved segments, totaling 14,080 segments. Its 648 accepted-frame rows represent 81 eight-member frames and therefore 80 adjacent accepted-frame intervals. The path-key order is `(1,2,3,4,5,6,7,8)` with labels `(0+,0-,1+,1-,2+,2-,3+,3-)`. Original coefficient, endpoint, per-axis error, scalar error, and polarity tokens remain authoritative. In particular, the recorded polarity magnitudes are the decimal literal `0.1666666666666666666666666666666667`, not an exact replacement by $1/6$, and the coupling is the literal `10.304229970992187`.
 
@@ -53,7 +53,7 @@ For a closed reception cell $I_r=[a_r,b_r]\subset I$, assume the following bound
 
 Plainly: these conditions require a coherent saved path, speeds below the wake speed, separation of distinct members, a causal crossing inside the saved past, and reliable arithmetic over every time in the interval. None can be established by checking a few frames alone.
 
-**Application status: all five premises remain unverified for F6c in this artifact.** The exact join tests in `PiecewisePolynomialHistory.from_segments` admit overlapping endpoint position and velocity envelopes. They do not prove that a single globally $C^1$ path realizes all those envelopes. The export's successful identity and token preservation does not discharge this mathematical existence or subject-membership requirement. A nominal cubic chain with unequal endpoint values cannot simply be declared $C^1$ because the discrepancies are small.
+**Application status: all five premises remain unverified for asymmetric counter-breathing representative in this artifact.** The exact join tests in `PiecewisePolynomialHistory.from_segments` admit overlapping endpoint position and velocity envelopes. They do not prove that a single globally $C^1$ path realizes all those envelopes. The export's successful identity and token preservation does not discharge this mathematical existence or subject-membership requirement. A nominal cubic chain with unequal endpoint values cannot simply be declared $C^1$ because the discrepancies are small.
 
 Plainly: a small mismatch is still a mismatch. Error allowances may permit a compatible path, but that compatibility has to be demonstrated without enlarging the allowances.
 
@@ -242,10 +242,10 @@ Plainly: a path that fits the boxes is not automatically the path the original c
 
 - **Conditional theorem falsifier:** exhibit histories satisfying all stated common-history, uniform-speed, clearance, and strict boundary premises but having a missing or additional retained nonself root, a positive-delay self root, a root-transport derivative outside the derived bounds, or an exact sharp acceleration outside a faithfully constructed interval box.
 - **Application rejection or unresolved premise:** incompatible original position/velocity constraints, unproved subject membership, a speed upper bound reaching one, unproved positive clearance, a non-strict retained-boundary or face bound, an empty interval intersection, a factor bound below the frozen floor, missing time/segment/pair coverage, or an identity/hash mismatch. A loose speed bound reaching one is failure to prove the premise, not evidence that the subject actually exceeds the wake speed.
-- **Measurement failure:** inability to reach the predeclared RMS or peak enclosure width, incomplete rung coverage, or unreviewed knot semantics leaves the affected metric unavailable. It is not a zero residual, favorable score, or a negative result about the entire F6c geometry family.
+- **Measurement failure:** inability to reach the predeclared RMS or peak enclosure width, incomplete rung coverage, or unreviewed knot semantics leaves the affected metric unavailable. It is not a zero residual, favorable score, or a negative result about the entire asymmetric counter-breathing representative geometry family.
 
 Plainly: a true counterexample would refute the conditional mathematics. Most practical failures instead mean the supplied record or instrument has not met its premises; they must remain visible as missing evidence.
 
 No claim is made here about retained braid, equilibrium, binding, stability, return, complete infinite-past history, physical realization, particle identity, recovery of observer-level physics, general EOM solver correctness, or a measured runtime. The frozen references, geometry, predeclaration, scores, and candidate status are unchanged.
 
-Closure goal: independently review this finite-history conditional theorem, then establish global retained-path compatibility and subject membership before attempting uniform F6c acceleration measurement.
+Closure goal: independently review this finite-history conditional theorem, then establish global retained-path compatibility and subject membership before attempting uniform asymmetric counter-breathing representative acceleration measurement.

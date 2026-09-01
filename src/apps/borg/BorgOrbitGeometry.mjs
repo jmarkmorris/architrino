@@ -123,9 +123,9 @@ export function describeBorgSourceTrackGroups(dataset) {
     indices.forEach((j) => assigned.add(j));
     groups.push(indices.map((j) => lines[j].id));
   }
-  const shared = groups.filter((group) => group.length > 1).length, dedicated = groups.length - shared;
-  const value = shared && dedicated ? "mixed" : shared ? "shared" : "dedicated";
-  return { value, groups, reason: `Source geometry identifies ${shared} multiply occupied and ${dedicated} singly occupied tracks (geometric tolerance ${EPS}). Track grouping is independent of radius equality, phase, polarity pairing, and trail length; it is an internal presentation input, not a browse classification or physical acceptance.` };
+  const multiple = groups.filter((group) => group.length > 1).length, single = groups.length - multiple;
+  const value = multiple && single ? "mixed" : multiple ? "multiple" : "one";
+  return { value, groups, reason: `Source geometry identifies ${multiple} multiply occupied and ${single} singly occupied tracks (geometric tolerance ${EPS}). Track grouping is independent of radius equality, phase, polarity pairing, and trail length; it is an internal presentation input, not a browse classification or physical acceptance.` };
 }
 
 export function describeBorgCircleOccupancy(dataset) {

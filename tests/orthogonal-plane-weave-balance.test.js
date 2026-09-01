@@ -13,6 +13,11 @@ import {
   applyCircularRelationshipParameters,
   projectCircularRelationshipParameters,
 } from "../src/prescribed-geometry/PrescribedCircularRelationshipParameters.mjs";
+import { validatePrescribedAssemblySpec } from "../src/prescribed-geometry/PrescribedAssemblySpec.mjs";
+import {
+  generatePrescribedBraidRecord,
+  PRESCRIBED_ASSEMBLY_TARGETS,
+} from "../scripts/eom/generate-prescribed-braid-record.mjs";
 
 const BINARY_SEED_BETA = 3.070356625390253;
 
@@ -70,22 +75,72 @@ function stateFromCircularOperator(operator, time) {
   };
 }
 
-test("target coordinates are accepted by the live A1.2 relations and A2 cyclic-frame materializer", () => {
-  const a12 = projectCircularRelationshipParameters(readJson(
-    "../reference/priorities/braid-program/configurations/family-a-a1-2-equal-frequency-equal-radius.v2.json",
-  ));
-  const a12Pairs = a12.components[0].pairs;
-  assert.deepEqual(a12Pairs.map((pair) => pair.phase),
-    [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3]);
-  assert.ok(a12Pairs.every((pair) => pair.radius === a12Pairs[0].radius));
-  assert.ok(a12Pairs.every((pair) => pair.frequency === a12Pairs[0].frequency));
-  assert.ok(a12Pairs.every((pair) => pair.axialHalfSeparation === 0));
-  assert.ok(a12Pairs.every((pair) => pair.transverseOrbitRadius === pair.radius));
-
-  const a2Source = readJson(
-    "../reference/priorities/braid-program/configurations/family-a-a2-fully-symmetric.v2.json",
+test("the exact six-member orthogonal-plane weave seed is validated and routed for Borg generation", () => {
+  const sourceRelativeUrl =
+    "../reference/priorities/braid-program/configurations/orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253.v3.json";
+  const spec = readJson(sourceRelativeUrl);
+  assert.equal(validatePrescribedAssemblySpec(spec), spec);
+  assert.equal(spec.identity.assemblyId, "asm-b7fdeb1b3f9aa074cacbab3c593a2273");
+  assert.equal(
+    spec.identity.modelRevisionSha256,
+    "b7fdeb1b3f9aa074cacbab3c593a227332178e7b97f50409f759f420cec4cb34",
   );
-  const targetParameters = projectCircularRelationshipParameters(a2Source);
+  assert.equal(spec.constituents.length, 6);
+  assert.equal(spec.relationships.neutralPairs.length, 3);
+
+  const generatorTargets = PRESCRIBED_ASSEMBLY_TARGETS.filter((target) =>
+    target.specPath.endsWith(
+      "/orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253.v3.json",
+    ));
+  assert.equal(generatorTargets.length, 1);
+  assert.ok(generatorTargets[0].outPath.endsWith(
+    "/orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253.assembly-view-record.v0.json",
+  ));
+  const record = generatePrescribedBraidRecord(spec, {
+    specPath: generatorTargets[0].specPath,
+  });
+  assert.equal(record.assemblyId, spec.identity.assemblyId);
+  assert.equal(record.modelRevisionSha256, spec.identity.modelRevisionSha256);
+  assert.equal(record.title, spec.label);
+  assert.equal(record.worldlines.length, 6);
+
+  const constituentById = new Map(spec.constituents.map((row) => [row.id, row]));
+  for (const [index, label] of ORTHOGONAL_PLANE_WEAVE_LABELS.entries()) {
+    const worldline = spec.worldlines[index];
+    assert.equal(constituentById.get(worldline.constituentId).polarity, label.polarity);
+    for (const time of [0, 0.137, 0.811]) {
+      const actual = stateFromCircularOperator(worldline.operator, time);
+      const expected = orthogonalPlaneWeaveState(label, time, BINARY_SEED_BETA);
+      assert.ok(norm(subtract(actual.position, expected.position)) < 3e-15);
+      assert.ok(norm(subtract(actual.velocity, expected.velocity)) < 1e-14);
+    }
+  }
+
+  const displayCatalog = readFileSync(new URL(
+    "../reference/priorities/braid-program/configuration-display-catalog.md",
+    import.meta.url,
+  ), "utf8");
+  assert.match(displayCatalog, /Six-member orthogonal-plane circular weave/);
+  assert.match(displayCatalog, /orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253\.v3\.json/);
+  assert.doesNotMatch(displayCatalog, /Orthogonal-plane four-point weave/);
+});
+
+test("target coordinates are accepted by the coincident-midpoint and phase-compensated cyclic relations", () => {
+  const coincidentMidpoint = projectCircularRelationshipParameters(readJson(
+    "../reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json",
+  ));
+  const coincidentMidpointPairs = coincidentMidpoint.components[0].pairs;
+  assert.deepEqual(coincidentMidpointPairs.map((pair) => pair.phase),
+    [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3]);
+  assert.ok(coincidentMidpointPairs.every((pair) => pair.radius === coincidentMidpointPairs[0].radius));
+  assert.ok(coincidentMidpointPairs.every((pair) => pair.frequency === coincidentMidpointPairs[0].frequency));
+  assert.ok(coincidentMidpointPairs.every((pair) => pair.axialHalfSeparation === 0));
+  assert.ok(coincidentMidpointPairs.every((pair) => pair.transverseOrbitRadius === pair.radius));
+
+  const phaseCompensatedSource = readJson(
+    "../reference/priorities/braid-program/configurations/three-axis-circular-phase-compensated-symmetric.v3.json",
+  );
+  const targetParameters = projectCircularRelationshipParameters(phaseCompensatedSource);
   targetParameters.assemblyPlacement.centerAtEpoch = [0, 0, 0];
   targetParameters.assemblyPlacement.velocity = [0, 0, 0];
   targetParameters.components[0].circulationSense = 1;
@@ -101,7 +156,7 @@ test("target coordinates are accepted by the live A1.2 relations and A2 cyclic-f
     pair.frequency = BINARY_SEED_BETA / (2 * Math.PI);
     pair.polarityAssignment = 1;
   });
-  const materialized = applyCircularRelationshipParameters(a2Source, targetParameters);
+  const materialized = applyCircularRelationshipParameters(phaseCompensatedSource, targetParameters);
   const constituentById = new Map(materialized.constituents.map((row) => [row.id, row]));
   for (const [index, label] of ORTHOGONAL_PLANE_WEAVE_LABELS.entries()) {
     const worldline = materialized.worldlines[index];
@@ -116,7 +171,7 @@ test("target coordinates are accepted by the live A1.2 relations and A2 cyclic-f
   }
 });
 
-test("orthogonal-plane weave satisfies the frozen A1.2 and cyclic geometry identities", () => {
+test("orthogonal-plane weave satisfies the frozen coincident-midpoint and cyclic geometry identities", () => {
   const geometry = verifyOrthogonalPlaneWeaveGeometry({
     beta: BINARY_SEED_BETA,
     sampleCount: 96,

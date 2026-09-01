@@ -6,8 +6,8 @@ import { performance } from "node:perf_hooks";
 import { fileURLToPath } from "node:url";
 
 import {
-  evaluateB1StreamingSurfaceReductions,
-} from "../../src/prescribed-path-analysis/B1StreamingReductions.mjs";
+  evaluateCoincidentAxisThreeBinaryStreamingSurfaceReductions,
+} from "../../src/prescribed-path-analysis/CoincidentAxisThreeBinaryStreamingReductions.mjs";
 import {
   evaluateCompleteCycleCandidate,
 } from "../../src/prescribed-path-analysis/CompleteCycleAnalyticalCampaign.mjs";
@@ -17,6 +17,9 @@ import {
 import {
   createPrescribedBraidExactSourceRecord,
 } from "./generate-prescribed-braid-record.mjs";
+import {
+  deriveAssemblyScientificIdentity,
+} from "../../src/prescribed-geometry/AssemblyScientificIdentity.mjs";
 
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const REPORT_SCHEMA =
@@ -25,8 +28,15 @@ const DEFAULT_OUTPUT = path.resolve(
   ".local-data/braid-analysis/gate-adjudication/targeted-resolution-ladders.v1.json",
 );
 
-const SURFACE_CANDIDATES = Object.freeze(["B1.3", "B1.1", "C1"]);
-const SENSITIVITY_CANDIDATES = Object.freeze(["A1.2", "A2"]);
+const SURFACE_CANDIDATES = Object.freeze([
+  "planar-three-binary-common-center-reference",
+  "axial-transverse-three-binary-interior",
+  "coincident-center-two-component-circular-co-rotating",
+]);
+const SENSITIVITY_CANDIDATES = Object.freeze([
+  "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
+  "three-axis-circular-phase-compensated-symmetric",
+]);
 const SURFACE_LEVELS = Object.freeze([
   {
     id: "12x8x16-versus-24x12x24",
@@ -74,18 +84,27 @@ function parseArguments(args) {
   return { output, surfaceLevelCount, sensitivityLevelCount };
 }
 
-function candidateByMemberId(loaded, memberId) {
+function candidateBySourceSlug(loaded, sourceSlug) {
   const candidate = loaded.candidates.find(
-    (row) => row.declaration.memberId === memberId,
+    (row) => row.declaration.sourceSlug === sourceSlug,
   );
-  if (!candidate) fail(`campaign registry does not contain ${memberId}.`);
+  if (!candidate) fail(`campaign registry does not contain ${sourceSlug}.`);
   return candidate;
 }
 
 function exactSource(candidate) {
-  return createPrescribedBraidExactSourceRecord(candidate.spec, {
-    generatingSpec: candidate.declaration.specPath,
-  });
+  const derived = deriveAssemblyScientificIdentity(candidate.spec);
+  return {
+    ...createPrescribedBraidExactSourceRecord(candidate.spec, {
+      generatingSpec: candidate.declaration.specPath,
+    }),
+    sourceSlug: candidate.declaration.sourceSlug,
+    referenceConfigurationIdentity: {
+      assemblyId: candidate.declaration.assemblyId,
+      modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+    },
+    scientificIdentityPreimage: derived.canonicalModel,
+  };
 }
 
 function outerRadiusOnly(protocol, suffix) {
@@ -137,15 +156,15 @@ function heartbeat(fields) {
   })}\n`);
 }
 
-function runSurfaceLadder(loaded, memberId, levelCount, campaignStart) {
-  const candidate = candidateByMemberId(loaded, memberId);
+function runSurfaceLadder(loaded, sourceSlug, levelCount, campaignStart) {
+  const candidate = candidateBySourceSlug(loaded, sourceSlug);
   const sourceRecord = exactSource(candidate);
   const levels = [];
   for (const [levelIndex, declaration] of
     SURFACE_LEVELS.slice(0, levelCount).entries()) {
     const started = performance.now();
     heartbeat({
-      memberId,
+      sourceSlug,
       lane: "surface-resolution",
       level: levelIndex + 1,
       totalLevels: levelCount,
@@ -153,12 +172,12 @@ function runSurfaceLadder(loaded, memberId, levelCount, campaignStart) {
       wallSeconds: (started - campaignStart) / 1000,
     });
     const protocol = surfaceLevelProtocol(loaded.protocol, declaration);
-    const reduction = evaluateB1StreamingSurfaceReductions({
+    const reduction = evaluateCoincidentAxisThreeBinaryStreamingSurfaceReductions({
       sourceRecord,
       completeCycleProtocol: protocol,
       onProgress(progress) {
         heartbeat({
-          memberId,
+          sourceSlug,
           lane: "surface-resolution",
           level: levelIndex + 1,
           totalLevels: levelCount,
@@ -186,7 +205,7 @@ function runSurfaceLadder(loaded, memberId, levelCount, campaignStart) {
       causalWakeFlux: compactGate(gates.causalWakeFlux),
     });
     heartbeat({
-      memberId,
+      sourceSlug,
       lane: "surface-resolution",
       level: levelIndex + 1,
       totalLevels: levelCount,
@@ -200,23 +219,24 @@ function runSurfaceLadder(loaded, memberId, levelCount, campaignStart) {
   }
   return {
     candidateId: candidate.declaration.candidateId,
-    memberId,
-    familyId: candidate.declaration.familyId,
+    sourceSlug,
+    assemblyId: candidate.declaration.assemblyId,
+    modelRevisionSha256: candidate.declaration.modelRevisionSha256,
     levels,
     falsifier:
       "The aliasing diagnosis fails if the frequency-resolved discrepancy does not decrease or settle under the declared resolution ladder.",
   };
 }
 
-function runSensitivityLadder(loaded, memberId, levelCount, campaignStart) {
-  const candidate = candidateByMemberId(loaded, memberId);
+function runSensitivityLadder(loaded, sourceSlug, levelCount, campaignStart) {
+  const candidate = candidateBySourceSlug(loaded, sourceSlug);
   const sourceRecord = exactSource(candidate);
   const levels = [];
   for (let levelIndex = 0; levelIndex < levelCount; levelIndex += 1) {
     const protocol = sensitivityLevelProtocol(loaded.protocol, levelIndex);
     const started = performance.now();
     heartbeat({
-      memberId,
+      sourceSlug,
       lane: "sensitivity-step",
       level: levelIndex + 1,
       totalLevels: levelCount,
@@ -248,7 +268,7 @@ function runSensitivityLadder(loaded, memberId, levelCount, campaignStart) {
       convergenceAdjudication: sensitivity.convergenceAdjudication,
     });
     heartbeat({
-      memberId,
+      sourceSlug,
       lane: "sensitivity-step",
       level: levelIndex + 1,
       totalLevels: levelCount,
@@ -263,8 +283,8 @@ function runSensitivityLadder(loaded, memberId, levelCount, campaignStart) {
   }
   return {
     candidateId: candidate.declaration.candidateId,
-    memberId,
-    familyId: candidate.declaration.familyId,
+    sourceSlug,
+    assemblyId: candidate.declaration.assemblyId,
     levels,
     falsifier:
       "The numerical-stencil diagnosis fails if normalized uncertainty does not decrease or settle as the phase step is halved.",
@@ -301,10 +321,10 @@ export function runAnalyticalGateAdjudication(options = {}) {
           "per-measure dimensionless stencil-settling uncertainty with declared scales",
       },
     },
-    surfaceResolutionLadders: SURFACE_CANDIDATES.map((memberId) =>
-      runSurfaceLadder(loaded, memberId, surfaceLevelCount, campaignStart)),
-    sensitivityStepLadders: SENSITIVITY_CANDIDATES.map((memberId) =>
-      runSensitivityLadder(loaded, memberId, sensitivityLevelCount, campaignStart)),
+    surfaceResolutionLadders: SURFACE_CANDIDATES.map((sourceSlug) =>
+      runSurfaceLadder(loaded, sourceSlug, surfaceLevelCount, campaignStart)),
+    sensitivityStepLadders: SENSITIVITY_CANDIDATES.map((sourceSlug) =>
+      runSensitivityLadder(loaded, sourceSlug, sensitivityLevelCount, campaignStart)),
   };
   report.wallSeconds = (performance.now() - campaignStart) / 1000;
   return report;

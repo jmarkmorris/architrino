@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "noether_braid__zero_axial_offset_three_binary_dynamics_and_interpretation",
+    "title": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": { "type": "static" },
+    "source": { "type": "markdown", "path": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md" },
+    "view": { "columns": 1, "autoOpen": true }
+  },
+  "objects": []
+}

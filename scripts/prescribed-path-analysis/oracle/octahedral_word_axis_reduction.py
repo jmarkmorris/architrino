@@ -34,6 +34,19 @@ WORDS = {
     "face-opposite": (1, -1, 1, -1, 1, -1),
 }
 
+HIGH_SYMMETRY_AXIS_FAMILIES = {
+    "vertex": ((1, 0, 0), (0, 1, 0), (0, 0, 1)),
+    "edge": (
+        (1, 1, 0),
+        (1, -1, 0),
+        (1, 0, 1),
+        (1, 0, -1),
+        (0, 1, 1),
+        (0, 1, -1),
+    ),
+    "face": ((1, 1, 1), (1, 1, -1), (1, -1, 1), (1, -1, -1)),
+}
+
 
 def mat_key(matrix: sp.Matrix) -> tuple[int, ...]:
     return tuple(int(value) for value in matrix)
@@ -202,6 +215,16 @@ def analyze_word(word: tuple[int, ...]):
         "special_axis_orbits": orbits,
         "generic": generic,
         "special": tuple(reduction_row(group, orbit[0]) for orbit in orbits),
+        "high_symmetry_axis_orbits": {
+            family: tuple(
+                {
+                    "orbit": orbit,
+                    "reduction": reduction_row(group, orbit[0]),
+                }
+                for orbit in line_orbits(group, lines)
+            )
+            for family, lines in HIGH_SYMMETRY_AXIS_FAMILIES.items()
+        },
     }
 
 
@@ -232,6 +255,15 @@ def main() -> None:
                 f"channels={row['scalar_channels']} "
                 f"bases={row['channel_bases']}"
             )
+        print("  high-symmetry axis families:")
+        for family, family_rows in result["high_symmetry_axis_orbits"].items():
+            for family_row in family_rows:
+                row = family_row["reduction"]
+                print(
+                    f"    {family:6} orbit={family_row['orbit']} "
+                    f"history group={row['history_group_order']} "
+                    f"channels={row['scalar_channels']}"
+                )
 
 
 if __name__ == "__main__":

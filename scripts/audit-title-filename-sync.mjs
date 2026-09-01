@@ -24,7 +24,7 @@ const STOP_WORDS = new Set([
 // Stable compatibility routes may intentionally retain a legacy filename while
 // presenting the current reader-facing title.
 const COMPATIBILITY_TITLE_ALIASES = new Map([
-  ["content/markdown/aaa/archie/ideal-braid-guide.md", "A1 Lorentz Geometry Guide"],
+  ["content/markdown/aaa/archie/ideal-braid-guide.md", "Coincident-Midpoint Three-Axis Circular Lorentz Geometry Guide"],
   [
     "content/markdown/aaa/archie/licenses-attributions.md",
     "Licenses, Attribution & Source Use",

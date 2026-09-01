@@ -1,4 +1,4 @@
-# F6c Cubic Lattice
+# asymmetric counter-breathing representative Cubic Lattice
 
 ## Document Status
 
@@ -8,7 +8,7 @@
 - **Claim level:** mixed derived geometry, derived stationary cancellation, inferred response coordinates, and guessed medium interpretation
 - **Advancement:** no retained branch, physical Noether sea, equation-score movement, or reader-facing promotion
 
-This document is the durable priority-side home for the alternating cubic population proposed in [Session 23](brainstorming.md#session-23--deformable-alternating-cubic-sea-with-orbiting-sites-2026-08-24). It consumes the exact F6c center scaffold from [F6c Geometry](../braid-program/f6c-geometry.md), the stationary theorem from the [Simple-Cubic Checkerboard Stationary-Release Cancellation Certificate](../dormant-deferred/app-lattice-lab/simple-cubic-checkerboard-cancellation-certificate.md), and the campaign discipline in [Simulation Run Protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md). It does not promote the candidate into `content/markdown/aaa`.
+This document is the durable priority-side home for the alternating cubic population proposed in [Session 23](brainstorming.md#session-23--deformable-alternating-cubic-sea-with-orbiting-sites-2026-08-24). It consumes the exact asymmetric counter-breathing representative center scaffold from [asymmetric counter-breathing representative Geometry](../braid-program/f6c-geometry.md), the stationary theorem from the [Simple-Cubic Checkerboard Stationary-Release Cancellation Certificate](../dormant-deferred/app-lattice-lab/simple-cubic-checkerboard-cancellation-certificate.md), and the campaign discipline in [Simulation Run Protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md). It does not promote the candidate into `content/markdown/aaa`.
 
 Plainly: this is a rigorous research seed, not a declaration that the universe is a cubic lattice. The exact results concern corner geometry and one stationary cancellation family. The moving medium remains a testable guess.
 
@@ -16,7 +16,7 @@ Plainly: this is a rigorous research seed, not a declaration that the universe i
 
 The candidate population occupies nominal simple-cubic sites indexed by integer triples and alternates polarity on every one-step move. The nominal sites are not primitive points of space. They are candidate mean positions or symmetry centers of one retained collective architrino history inside the Euclidean void.
 
-The equal-scale F6c track centers supply one exact local cube motif. They do not supply a tiling rule for member tracks. Every lattice vertex belongs to eight visible cubes, so a physical architrino at that vertex must have one site-indexed history rather than eight independently copied cell histories.
+The equal-scale asymmetric counter-breathing representative track centers supply one exact local cube motif. They do not supply a tiling rule for member tracks. Every lattice vertex belongs to eight visible cubes, so a physical architrino at that vertex must have one site-indexed history rather than eight independently copied cell histories.
 
 The strongest static foothold is exact: a complete stationary checkerboard history has zero release acceleration under receiver-centered inversion-symmetric exhaustion. The same proof holds after every fixed nonsingular uniform linear deformation, not only one-axis compression. This family supplies no acceleration-restoring slope for a homogeneous affine strain. Any nonzero stiffness must therefore come from nonstationary causal history, nonuniform structure, or additional retained assemblies.
 
@@ -26,7 +26,7 @@ Plainly: the static array is exactly quiet under a broad family of uniform shape
 
 1. [Vocabulary And Symbols](#vocabulary-and-symbols) defines the lattice, polarity, orbit, and response records.
 2. [Exact Static Checkerboard Foothold](#exact-static-checkerboard-foothold) proves the stationary cancellation and states its stiffness boundary.
-3. [Relationship To F6c](#relationship-to-f6c) identifies the exact cube map and the isolated-cube dynamical contrast.
+3. [Relationship To asymmetric counter-breathing representative](#relationship-to-f6c) identifies the exact cube map and the isolated-cube dynamical contrast.
 4. [Candidate Orbiting-Site Map](#candidate-orbiting-site-map) gives a site-indexed history without treating the grid as primitive.
 5. [Shared-Vertex Compatibility](#shared-vertex-compatibility) proves the cell-copy obstruction and compares candidate orientation classes.
 6. [Common And Polarity-Differential Response Coordinates](#common-and-polarity-differential-response-coordinates) defines the first translation-symmetry diagnostics and the cubic-anisotropy boundary.
@@ -139,11 +139,11 @@ This statement is not an elastic-modulus calculation. A modulus is a constitutiv
 
 Plainly: squeezing the whole stationary array uniformly moves it to another exactly balanced stationary array. A spring-like response, if one exists, must come from history-dependent motion, local gradients, defects, or additional retained structure.
 
-## Relationship To F6c
+## Relationship To asymmetric counter-breathing representative
 
 ### Exact Track-Center Cube
 
-Use the F6c tetrahedral axes
+Use the asymmetric counter-breathing representative tetrahedral axes
 
 $$
 \begin{aligned}
@@ -172,23 +172,23 @@ $$
 (-,-,-),\quad(-,+,+),\quad(+,-,+),\quad(+,+,-).
 $$
 
-Plainly: one F6c sector occupies one tetrahedron inside the cube and the other sector occupies the alternating tetrahedron. Their union has the cube as its convex hull; the two solid tetrahedra do not fill the cube.
+Plainly: one asymmetric counter-breathing representative sector occupies one tetrahedron inside the cube and the other sector occupies the alternating tetrahedron. Their union has the cube as its convex hull; the two solid tetrahedra do not fill the cube.
 
-For a checkerboard cube with $\mathbf g\in\{0,1\}^3$ and centered coordinates $d(\mathbf g-\tfrac12\mathbf1)$, the convention $s_{\mathbf g}=+1$ on even index sum places the positive checkerboard sites on the F6c negative-sector vertex set. The two colorings therefore agree exactly up to one global polarity conjugation, equivalently up to shifting the checkerboard index origin by one lattice step.
+For a checkerboard cube with $\mathbf g\in\{0,1\}^3$ and centered coordinates $d(\mathbf g-\tfrac12\mathbf1)$, the convention $s_{\mathbf g}=+1$ on even index sum places the positive checkerboard sites on the asymmetric counter-breathing representative negative-sector vertex set. The two colorings therefore agree exactly up to one global polarity conjugation, equivalently up to shifting the checkerboard index origin by one lattice step.
 
 Plainly: the alternating corner geometry is exact, but which tetrahedron is called positive depends on the chosen checkerboard origin. That global label choice carries no extra geometry.
 
 ### What Does Not Transfer
 
-The exact equality concerns track centers only. For nonzero F6c transverse radii, the instantaneous moving-member positions are displaced from those centers and generally are not cube vertices or regular-tetrahedron vertices. The F6c module labels, local track planes, circulation signs, phase offsets, six-coordinate reduction, causal roots, and retained-history obligations do not follow from the checkerboard coloring.
+The exact equality concerns track centers only. For nonzero asymmetric counter-breathing representative transverse radii, the instantaneous moving-member positions are displaced from those centers and generally are not cube vertices or regular-tetrahedron vertices. The asymmetric counter-breathing representative module labels, local track planes, circulation signs, phase offsets, six-coordinate reduction, causal roots, and retained-history obligations do not follow from the checkerboard coloring.
 
-The cube hull is neither a boundary nor a binding mechanism. An infinite checkerboard also adds all shells of transmitters, whereas an isolated F6c cube contains only seven partner transmitters per receiver. The two acceleration ledgers are therefore different even when their eight visible positions coincide.
+The cube hull is neither a boundary nor a binding mechanism. An infinite checkerboard also adds all shells of transmitters, whereas an isolated asymmetric counter-breathing representative cube contains only seven partner transmitters per receiver. The two acceleration ledgers are therefore different even when their eight visible positions coincide.
 
 Plainly: matching the eight dots does not match the moving paths or the delayed interactions. The local picture is a scaffold, not a complete assembly.
 
 ### Isolated Frozen-Cube Contrast
 
-The difference can be shown exactly. Freeze the eight equal-scale F6c centers on a sphere of radius $h$ for the complete relevant history. For a positive-sector receiver $\mathbf X$ with $\|\mathbf X\|=h$, the three same-polarity vertices contribute the outward radial coefficient $3\sqrt6/8$, while the four opposite-polarity vertices contribute the inward coefficient $(1+3\sqrt3)/4$. Hence
+The difference can be shown exactly. Freeze the eight equal-scale asymmetric counter-breathing representative centers on a sphere of radius $h$ for the complete relevant history. For a positive-sector receiver $\mathbf X$ with $\|\mathbf X\|=h$, the three same-polarity vertices contribute the outward radial coefficient $3\sqrt6/8$, while the four opposite-polarity vertices contribute the inward coefficient $(1+3\sqrt3)/4$. Hence
 
 $$
 \mathbf A_{\mathrm{cube}}
@@ -214,7 +214,7 @@ $$
 
 Plainly: the isolated frozen eight-member cube accelerates inward. The same local corner pattern embedded in the complete inversion-balanced checkerboard has zero stationary release acceleration because the exterior lattice supplies the missing opposite partners.
 
-Claim grade: **derived** for the declared frozen eight-member history. The result is falsified by an exact evaluation of the seven partner contributions that changes the displayed coefficient. It is not a no-equilibrium theorem for nonzero-radius F6c histories and not evidence that the infinite checkerboard is retained.
+Claim grade: **derived** for the declared frozen eight-member history. The result is falsified by an exact evaluation of the seven partner contributions that changes the displayed coefficient. It is not a no-equilibrium theorem for nonzero-radius asymmetric counter-breathing representative histories and not evidence that the infinite checkerboard is retained.
 
 ## Candidate Orbiting-Site Map
 
@@ -283,9 +283,9 @@ The prescribed circular prehistory for this seed is only an initial-history prop
 
 ### Cell-Copy No-Go
 
-**Lemma.** Independently copying the nonzero-radius F6c member track from every checkerboard cube cannot assign one circular orbit plane to a shared lattice vertex.
+**Lemma.** Independently copying the nonzero-radius asymmetric counter-breathing representative member track from every checkerboard cube cannot assign one circular orbit plane to a shared lattice vertex.
 
-**Proof.** A lattice vertex belongs to eight adjacent cubes. Their center-to-vertex directions are the eight body diagonals $(\pm1,\pm1,\pm1)$. Opposite directions define the same unoriented plane normal, leaving four distinct unoriented normals. A copied F6c member track would require the shared architrino's circular path to lie in a plane perpendicular to each of those four normals. No nonzero-radius circle lies in four distinct planes. The only common cell-copy limit is $\rho=0$, where the orbit collapses to the shared point.
+**Proof.** A lattice vertex belongs to eight adjacent cubes. Their center-to-vertex directions are the eight body diagonals $(\pm1,\pm1,\pm1)$. Opposite directions define the same unoriented plane normal, leaving four distinct unoriented normals. A copied asymmetric counter-breathing representative member track would require the shared architrino's circular path to lie in a plane perpendicular to each of those four normals. No nonzero-radius circle lies in four distinct planes. The only common cell-copy limit is $\rho=0$, where the orbit collapses to the shared point.
 
 Plainly: opposite neighboring cubes agree on an unoriented axis, but the remaining cube pairs demand three other axes. One architrino cannot run four different circles at once.
 
@@ -570,7 +570,7 @@ The decision is `background_rejected` for this eight-site finite open crop. The 
 
 Plainly: the hashes bind the source, executable, release-root record, atomic checkpoint, manifest, guard census, sampled frames, and complete retained-history export used for this verdict. The `.tmp` paths are local campaign artifacts rather than corpus files, so the hashes are the durable identity record.
 
-Claim grade: **measured** by the EOM solver finite-replicated diagnostic and [F6c cubic-lattice O0 analyzer](../../../scripts/mapping-electromagnetism/f6c-cubic-lattice-o0-analysis.mjs). The analyzer is independently unit-tested for fail-closed symmetry rejection, but it consumes the EOM output and is not an independent numerical oracle for the evolution law. The result is falsified by rerunning the immutable seed and obtaining $\lambda_{\mathrm{sym}}\le10^{-8}$ through the accepted window under the same finite boundary and model fingerprint. It does not reject a `periodic_exact` implementation, a larger replication ladder, or a different multi-plane or time-dependent orientation field.
+Claim grade: **measured** by the EOM solver finite-replicated diagnostic and [asymmetric counter-breathing representative cubic-lattice O0 analyzer](../../../scripts/mapping-electromagnetism/f6c-cubic-lattice-o0-analysis.mjs). The analyzer is independently unit-tested for fail-closed symmetry rejection, but it consumes the EOM output and is not an independent numerical oracle for the evolution law. The result is falsified by rerunning the immutable seed and obtaining $\lambda_{\mathrm{sym}}\le10^{-8}$ through the accepted window under the same finite boundary and model fingerprint. It does not reject a `periodic_exact` implementation, a larger replication ladder, or a different multi-plane or time-dependent orientation field.
 
 Plainly: the finite crop is not an admissible orbiting background, so the campaign stops before response interpretation. The missing exterior is a real boundary limitation; this result cannot decide whether exact periodic images would preserve the two-sublattice motion.
 
@@ -614,12 +614,12 @@ Plainly: the measurements decisively answer the experiment that was run. Their c
 | Claim | Grade | Assumptions | Operator-checkable falsifier |
 | --- | --- | --- | --- |
 | checkerboard polarity alternates on every one-step move | derived | integer parity coloring | one unit coordinate step that preserves $s_{\mathbf g}$ |
-| equal-scale F6c track centers are one alternating cube | derived | common center, dual tetrahedral axes, $h_+=h_-$ | direct coordinate substitution fails to give the eight cube vertices |
-| F6c moving members are the same cube vertices | rejected except at $\rho_+=\rho_-=0$ | exact F6c member map | a nonzero-radius map whose moving members remain those eight centers at every phase |
+| equal-scale asymmetric counter-breathing representative track centers are one alternating cube | derived | common center, dual tetrahedral axes, $h_+=h_-$ | direct coordinate substitution fails to give the eight cube vertices |
+| asymmetric counter-breathing representative moving members are the same cube vertices | rejected except at $\rho_+=\rho_-=0$ | exact asymmetric counter-breathing representative member map | a nonzero-radius map whose moving members remain those eight centers at every phase |
 | stationary checkerboard release acceleration vanishes | derived | complete stationary history and receiver-centered inversion-symmetric exhaustion | a certified admitted inversion pair or centered exhaustion with nonzero sum |
 | uniform nonsingular linear deformation preserves that cancellation | derived | fixed invertible linear $L$ | an $L$ satisfying the assumptions but violating pair opposition |
 | the stationary family supplies nonzero homogeneous restoring acceleration | not established; contradicted within the stationary family | same stationary hypotheses | a nonzero derivative of the exact stationary acceleration along that affine family |
-| independent cell-by-cell F6c orbit copying is compatible | rejected for nonzero-radius circular tracks | eight incident cube centers and copied radial track normals | one nonzero circle satisfying all incident cell-plane demands |
+| independent cell-by-cell asymmetric counter-breathing representative orbit copying is compatible | rejected for nonzero-radius circular tracks | eight incident cube centers and copied radial track normals | one nonzero circle satisfying all incident cell-plane demands |
 | the selected global-plane two-sublattice history is site-compatible | derived geometry | one history assigned by sublattice | one site receives two different histories under the declared translation cell |
 | the selected history is retained and stable | rejected for the rigid eight-site evolution, rigid $N=2,4,6$ release-symmetry ladder, and parity-tetrahedral site-local circular $N=2,4,6$ release-consistency ladder; `periodic_exact` case open | complete periodic EOM solution and response record | the finite-crop release failures reject those runs; a periodic case still requires its own complete return record |
 | common/differential coordinates map to gravity/electromagnetism | guessed | fixed source, background, receiver, and constitutive maps | wrong conjugation, parity, source, propagation, receiver, or null-control behavior |
@@ -633,10 +633,10 @@ Plainly: the exact claims can be checked with coordinates and paired acceleratio
 
 The current evidence establishes six hard facts:
 
-1. the checkerboard coloring is bipartite and locally matches the equal-scale F6c center cube up to global polarity convention;
+1. the checkerboard coloring is bipartite and locally matches the equal-scale asymmetric counter-breathing representative center cube up to global polarity convention;
 2. the complete stationary checkerboard cancels exactly under its declared exhaustion, including fixed nonsingular uniform linear deformation;
-3. the isolated frozen eight-member F6c cube has nonzero inward release acceleration, so local visual equality does not equate the finite and infinite ledgers; and
-4. independent cell copying cannot assign a nonzero-radius F6c circular track to shared vertices;
+3. the isolated frozen eight-member asymmetric counter-breathing representative cube has nonzero inward release acceleration, so local visual equality does not equate the finite and infinite ledgers; and
+4. independent cell copying cannot assign a nonzero-radius asymmetric counter-breathing representative circular track to shared vertices;
 5. the first eight-site finite open-crop `O0` run violates the frozen translation/sublattice-symmetry guard before a one-period history comparison can be made; and
 6. the matched $N=2,4,6$ finite replication ladder shows monotone central boundary suppression but certifies nonzero release splitting at every rung.
 7. the parity-tetrahedral site-local orientation field has exact second moment $I/3$ on every even cell, but its prescribed circular acceleration is excluded by the certified EOM release acceleration at $N=2,4,6$; the maximum normalized residual lower bounds are respectively $0.2680958096054972$, $0.24509272401555549$, and $0.2450927240155446$ against the frozen $10^{-8}$ tolerance.
@@ -651,7 +651,7 @@ Plainly: the rejected rigid seed remains a useful control. The flexible descript
 
 ## Local Provenance
 
-- [F6c Geometry](../braid-program/f6c-geometry.md) supplies the exact tetrahedral axes, member map, track-center versus moving-member distinction, equal-scale *stella octangula*, cube hull, and F6c claim boundaries.
+- [asymmetric counter-breathing representative Geometry](../braid-program/f6c-geometry.md) supplies the exact tetrahedral axes, member map, track-center versus moving-member distinction, equal-scale *stella octangula*, cube hull, and asymmetric counter-breathing representative claim boundaries.
 - [Session 23 — Deformable Alternating Cubic Sea With Orbiting Sites](brainstorming.md#session-23--deformable-alternating-cubic-sea-with-orbiting-sites-2026-08-24) supplies the candidate synthesis, descriptive site history, common/differential idea, and original proof burden.
 - [Adaptive Cubic-Medium Kinematics And Ledger Contract](adaptive-cubic-medium-kinematics-and-ledger-contract.md) supplies site-local history reconstruction, cutoff-robust neighbor selection, lawful reclassification decisions, and the matched Physical Observer directional adjudicator.
 - [Adaptive Cubic-Background O0 Audit](adaptive-cubic-background-o0-audit-2026-08-25.json) applies the continuous EOM-history return and instantaneous site-chart consumer to the provenance-bound eight-site run and records its four blocking prerequisites.

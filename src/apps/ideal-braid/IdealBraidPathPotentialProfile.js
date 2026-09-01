@@ -146,7 +146,7 @@ function extractCircularSelfHitSpanRows(runHandle = {}) {
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.circularSelfHitSpans) ? geometry.circularSelfHitSpans : [];
   if (rows.length === 0) {
-    throw new Error("A1 Lorentz Geometry prescribed-path analysis did not include a circular self-hit span record.");
+    throw new Error("Coincident-Midpoint Three-Axis Circular Lorentz Geometry prescribed-path analysis did not include a circular self-hit span record.");
   }
   return rows.map((row) => ({
     analysisId: IDEAL_BRAID_ANALYSIS_ID,

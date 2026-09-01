@@ -24,11 +24,11 @@ const PROVENANCE_PATHS = [
   "scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs",
   "scripts/equation-mapping/analyze-circular-self-hit-binary.mjs",
   "content/markdown/aaa/dynamics/master-equation.md",
-  "content/markdown/aaa/noether-braid/braid-family-a.md",
-  "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+  "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+  "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
   "reference/priorities/braid-program/brainstorming.md",
-  "reference/priorities/braid-program/configurations/family-a-a1-2-equal-frequency-equal-radius.v2.json",
-  "reference/priorities/braid-program/configurations/family-a-a2-fully-symmetric.v2.json",
+  "reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json",
+  "reference/priorities/braid-program/configurations/three-axis-circular-phase-compensated-symmetric.v3.json",
 ];
 
 function parseArguments(argv) {

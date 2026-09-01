@@ -1248,7 +1248,7 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-0d70f47d976124de)
 Above that scale, the checkpoint no longer tracks the same causal-root ledger: the full Noether braid proof must show a ledger reorganization, a sea-mediated replacement record, or a declared failure of the translating-loop reduction.
 
-The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full oblate-envelope-to-sphere reduction in the internal Family-A phase space, not just the equality
+The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full oblate-envelope-to-sphere reduction in the internal three-axis circular-chart phase space, not just the equality
 $$
 T_\parallel=T_\perp
 $$
@@ -5559,7 +5559,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with moving archit
 
 This chapter answers four linked questions. What kinetic bookkeeping is allowed for a single architrino? How does work occur when a receiver crosses delayed causal wakes? How do assemblies hide or expose internal energy? How can Noether sea coupling make energy, inertia, and effective geometry appear at larger scales?
 
-The chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
+The chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics), [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Accelerations and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and transmitter-side acceleration weight, on this fixed background. Derivations keep $c_f$ symbolic so the primitive-speed dependence remains visible; numerical instantiations use normalized units with $c_f=1$.
 
@@ -6303,7 +6303,7 @@ Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\ch
 At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether braid assemblies**. The following size and energy statements are hypotheses awaiting a certified Noether braid and scale map:
 
 - These Noether braids are extremely small compared to ordinary particles (electrons, protons, etc.).
-- Each Noether braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy; A1 is the best-developed Family-A member, not the definition of the sea.
+- Each Noether braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy; A1 is the best-developed three-axis circular-chart member, not the definition of the sea.
 - As a sea, they form a **dense population of coupled assemblies** occupying the Euclidean void. This ambient Noether sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
   - Effective causal-cone behavior and Lorentz-like behavior,
@@ -9430,7 +9430,7 @@ The excess over $H_2(P)$ measures model mismatch, not a new substrate ingredient
 
 Record entropy maps to durable alternatives in an apparatus or observer channel. A record is not merely a symbolic label. It is an assembly/environment state that persists long enough to be read, copied, or reset within a declared window.
 
-Horizon entropy maps to observer-accessible boundary or horizon-interface label capacity. It is not a literal statement that the Euclidean void is made of area bits. The label count must be derived from strong-field Noether sea and Family-A records.
+Horizon entropy maps to observer-accessible boundary or horizon-interface label capacity. It is not a literal statement that the Euclidean void is made of area bits. The label count must be derived from strong-field Noether sea and three-axis circular-chart records.
 
 Computation entropy maps to implemented device cost. Bit logic alone does not create a thermodynamic cost. A cost claim is physical only after the device state space, success criterion, reset operation, heat/work ledger, and boundary exchange have been declared.
 
@@ -9741,7 +9741,7 @@ $$
 
 This is a recovery target, not a postulate. The proof fails if $S_{\partial\Omega}^{(O)}$, $T_U^{(O)}$, $dQ_{\partial\Omega}^{(O)}$, and the effective metric are assigned independent records.
 
-For black holes, the area-law coefficient must come from terminal Family-A alignment and horizon-interface label compatibility. For a connected block $U$ of alignment-area patches,
+For black holes, the area-law coefficient must come from terminal three-axis circular-chart alignment and horizon-interface label compatibility. For a connected block $U$ of alignment-area patches,
 
 $$
 s_{\mathrm{align}}(\theta)
@@ -9769,7 +9769,7 @@ $$
 
 This target avoids a false one-patch interpretation. The coefficient is a block entropy density and patch-area normalization, not a literal independent count on one microscopic patch.
 
-The label set is not arbitrary. At terminal alignment a Family-A braid collapses its binary-axis directions onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
+The label set is not arbitrary. At terminal alignment a three-axis circular-chart braid collapses its binary-axis directions onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
 
 $$
 \left|
@@ -9835,7 +9835,7 @@ Read the chapter as a branch atlas, not as a single orbit story. The partner-onl
 
 **Claim-status convention.** A **derived** statement follows from the declared circular or history-space equations on its stated chart. A **conditional** statement follows only under the assumptions named with it. A **target** states a proof or certificate obligation that is not yet closed. A **diagnostic** is a computable comparison or branch record whose agreement does not by itself promote the underlying claim. These labels apply chapter-wide; an unlabeled explanation does not upgrade a conditional, target, or diagnostic statement.
 
-This chapter is the foundational precursor to [Shared-Circle Assemblies](../../../../markdown/aaa/dynamics/shared-circle-assemblies.md), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), and the assembly-level [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). Shared-Circle Assemblies carries the complete-root circular benchmark into balanced many-member rings while keeping their braid-taxonomy status explicit. The primitive-entity ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
+This chapter is the foundational precursor to [Planar (2D) Braid Assemblies](../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md), [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics), [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), and the assembly-level [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). Planar (2D) Braid Assemblies carries the complete-root circular benchmark into balanced many-member rings while keeping their braid-taxonomy status explicit. The primitive-entity ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
 
 ### The Spiral Orbiting Binary and the Contraction Phase
 
@@ -10110,7 +10110,7 @@ If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the
 2. self-hit repulsion (non-Markovian feedback when same-transmitter roots exist; super-field-speed circular history is the relevant branch),
 3. Centripetal requirement for stable circular orbit.
 
-**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the candidate Family-A ladder and broader Noether braid claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
+**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the candidate three-axis circular-chart ladder and broader Noether braid claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
 
 #### Setup and Notation (Symmetric Frame)
 
@@ -12004,9 +12004,9 @@ For $K(T)$ to diverge, $\mathcal{W}(T)$ must decrease without bound.
 
 The circular atlas establishes exact delay equations, signed-sheet root thresholds, and canonically weighted radial and tangential coefficients. The principal partner branch cannot form a particle-only constant-speed circle because its tangential acceleration is positive. The complete unregularized canonical simple-root ledger does contain algebraic radial/tangential balance points, so the circular ansatz is not excluded at that level. Redirecting the acceleration toward an inertially extrapolated emission site removes those candidates and supplies no replacement equilibrium on $1<s<20$, but the autonomous fixed-speed wake state rejects that construction as the local response of the present causal surfaces. A maximum-curvature binary remains conditional: the canonical candidates must survive one finite singular-event convention, retained-history transport, wake-boundary exchange, return-map stability, Jacobian floors, and the action-derived conservation charges on one retained history record.
 
-## Shared-Circle Assemblies
+## Planar (2D) Braid Assemblies
 
-A shared-circle assembly is a prescribed collection of architrinos whose worldlines remain on one common circle. The chart provides a direct bridge from the two-body circular benchmark to many-member rings while keeping braid taxonomy separate from circular appearance. A shared-circle record becomes a named Noether-braid locus only when its member inventory, polarity pairing, centers, axes, frequencies, and circulation satisfy that braid's exact coordinate contract.
+A circular-path assembly is a prescribed collection of architrinos whose worldlines remain on one common circle. The chart provides a direct bridge from the two-body circular benchmark to many-member rings while keeping braid taxonomy separate from circular appearance. A circular-path record becomes a named Noether-braid locus only when its member inventory, polarity pairing, centers, axes, frequencies, and circulation satisfy that braid's exact coordinate contract.
 
 The equal-radius, phase-symmetric B1.3 intersection contains one hundred independently accepted prescribed acceleration balances in the consecutive even topology classes T02 through T200. Their complete causal-root ledgers obey an exact polarity-controlled fold mechanism, an exact root-count ladder, and derived high-speed spacing and scale laws. On $0.05\leq\beta_f\leq20$, an outward-rounded interval certificate proves that the T02 through T36 rows are the only balances: each even interval contains exactly one simple inward-radial zero, while T00, T01, and every odd interval contain none. This derived ledger-indexed isolation supports an inferred quantum-like comparison in the restricted sense of internally selected, isolated admissible modes. Above speed 20, the accepted rows establish existence but not interval-by-interval completeness. The exact circular-solution theorem below proves that an exact balance with its exact complete circular history is an invariant periodic solution; it does not establish perturbation stability, physical energy quantization, or selection of that solution from an approximate history.
 
@@ -12018,7 +12018,7 @@ Plainly: putting several architrinos on the same rotating circle defines a usefu
 
 ### The Rigid Co-Rotating Chart
 
-Choose a fixed center $\mathbf C$, an oriented orthonormal planar basis $(\hat{\mathbf e}_1,\hat{\mathbf e}_2)$, a radius $R > 0$, an angular rate $\Omega\ne 0$, and $2N$ distinct fixed phases $\phi_k$. The worldlines are $\mathbf X_k(T)=\mathbf C+R[\cos(\Omega T+\phi_k)\hat{\mathbf e}_1+\sin(\Omega T+\phi_k)\hat{\mathbf e}_2]$ for $k\in\{0,\ldots,2N-1\}$. A balanced $N{:}N$ polarity word assigns $N$ sites each polarity, so $q_k\in\{+\epsilon,-\epsilon\}$ and $\sum_k q_k=0$. Neutrality is a declared restriction of this chart; net-polarity shared-circle inventories lie outside its coverage. Unequal polarity magnitudes are not an additional assembly coordinate because $\epsilon$ is the fundamental polarity magnitude. The speed coordinate is $\beta_f=|\Omega|R/c_f$; every numerical result below uses normalized units with $c_f=1$.
+Choose a fixed center $\mathbf C$, an oriented orthonormal planar basis $(\hat{\mathbf e}_1,\hat{\mathbf e}_2)$, a radius $R > 0$, an angular rate $\Omega\ne 0$, and $2N$ distinct fixed phases $\phi_k$. The worldlines are $\mathbf X_k(T)=\mathbf C+R[\cos(\Omega T+\phi_k)\hat{\mathbf e}_1+\sin(\Omega T+\phi_k)\hat{\mathbf e}_2]$ for $k\in\{0,\ldots,2N-1\}$. A balanced $N{:}N$ polarity word assigns $N$ sites each polarity, so $q_k\in\{+\epsilon,-\epsilon\}$ and $\sum_k q_k=0$. Neutrality is a declared restriction of this chart; net-polarity circular-path inventories lie outside its coverage. Unequal polarity magnitudes are not an additional assembly coordinate because $\epsilon$ is the fundamental polarity magnitude. The speed coordinate is $\beta_f=|\Omega|R/c_f$; every numerical result below uses normalized units with $c_f=1$.
 
 The phase gaps and polarity word are part of the geometry. A global phase shift only rotates the whole record and may be removed. Global polarity conjugation leaves every receiver-transmitter polarity product unchanged. Reflection is a valid reduction only together with the applicable circulation reversal and only after that covariance is checked. The regular-ring search removes duplicates under exactly these three transformations: cyclic label rotation, global polarity conjugation, and reflection together with circulation reversal. On the regular ring, cyclic label rotation is the discrete form of a global phase rotation. A focused generic full-ledger test checks the reflection-plus-circulation covariance on a nonuniform six-phase, balanced-polarity record, and the regular-ring evaluation confirms the same covariance for each inventory $N=2,\ldots,6$, with exact zero even- and odd-projection differences.
 
@@ -12030,11 +12030,11 @@ Plainly: an alternating regular ring is a collection of neutral antipodal pairs 
 
 The nonuniform fixed-phase subchart keeps the same circle, angular rate, and cyclic order while allowing unequal positive phase gaps whose sum is $2\pi$. It excludes equal-time coordinate coincidence. This chart is broader than the regular polygon and must be searched separately; a regular solution does not prove that the optimum or the only solution is regular.
 
-Plainly: regular polygons are symmetry landmarks inside a larger fixed-phase chart. A search that stops at those landmarks has not tested every shared-circle arrangement.
+Plainly: regular polygons are symmetry landmarks inside a larger fixed-phase chart. A search that stops at those landmarks has not tested every circular-path arrangement.
 
 ### Degrees of Freedom and Search Directions
 
-A degree of freedom in this discussion is a geometric coordinate, discrete assembly choice, or retained path-history function that may be varied while the Master Equation and its normalization remain fixed. For a rigid shared circle with $2N$ labeled members, removing one common phase leaves $2N-1$ independent relative phases, together with the common radius and angular rate. Inventory, polarity word, and circulation sense are additional discrete choices. The balance equations do not leave all of these coordinates free: they select the combinations whose complete radial, tangential, and axial residuals vanish.
+A degree of freedom in this discussion is a geometric coordinate, discrete assembly choice, or retained path-history function that may be varied while the Master Equation and its normalization remain fixed. For a rigid multiply occupied circle with $2N$ labeled members, removing one common phase leaves $2N-1$ independent relative phases, together with the common radius and angular rate. Inventory, polarity word, and circulation sense are additional discrete choices. The balance equations do not leave all of these coordinates free: they select the combinations whose complete radial, tangential, and axial residuals vanish.
 
 Plainly: before imposing balance, the members may be rearranged around the circle and the circle's size and turning rate may be changed. Balance then acts like a set of filters, retaining only the combinations compatible with the complete delayed acceleration ledger.
 
@@ -12069,13 +12069,13 @@ Plainly: $\delta r_k$ changes distance from the center, $\delta\phi_k$ changes a
 | --- | --- | --- | --- |
 | Member inventory | Integer $N$, giving $2N$ members | Regular alternating candidates measured for $1\leq N\leq12$; polarity completeness is narrower | Test which inventories admit balance, derive large-$N$ laws, and distinguish a general ring mechanism from an isolated six-member effect |
 | Polarity word | $q_k\in\{+\epsilon,-\epsilon\}$ with $\sum_kq_k=0$ | Every regular neutral polarity orbit is enumerated through $N=6$; all non-alternating no-balance verdicts are measured bounded searches, while only the alternating orbit was tested for $N=7$ through $N=12$ | Identify which delayed acceleration channels cancel and whether strict alternation is necessary or merely favored |
-| Pairing and label map | A declared fixed-point-free pairing or other taxonomy map on the labels | Fixed on the B1.3 overlap; not every ring possesses such a map | Separate path geometry from braid identity and test neutral-antipode or Family-C decompositions without inferring them from member count |
+| Pairing and label map | A declared fixed-point-free pairing or other taxonomy map on the labels | Fixed on the B1.3 overlap; not every ring possesses such a map | Separate path geometry from braid identity and test neutral-antipode or two-component circular-chart decompositions without inferring them from member count |
 | Fixed relative phase offsets | $2N-1$ independent relative phases, or positive gaps summing to $2\pi$ | Regular gaps are solved extensively; asymmetric fixed gaps have only bounded exploratory coverage | Search for asymmetric balances, determine whether regular spacing is isolated, and test which symmetry cancellations are essential |
 | Time-dependent phase offsets | $\delta\phi_k(T)$ | Open beyond limited prescribed variable-speed constructions | Test phase locking, internal angular shear, collision-free speed exchange, and possible paths between discrete balance modes |
 | Common angular speed | $\Omega$, equivalently $\beta_f=|\Omega|R/c_f$ | The equal-radius B1.3 ladder is solved through T200; the accepted completeness theorem is certified through $\beta_f=20$ | Locate balance modes, causal-root folds, high-speed spacing laws, and topology changes |
 | Circulation sense | $s=\operatorname{sgn}\Omega\in\{-1,+1\}$ | Reflection with circulation reversal is checked for the declared regular-ring reduction through $N=6$; broader charts require their own covariance check | Test handedness, reflection covariance, and any genuine circulation asymmetry after symmetry-equivalent cases are removed |
 | Common radius | $R$, or $R/R_*$ | Solved jointly with $\beta_f$ on the regular B1.3 ladder | Determine the compatible assembly scale, test scalability, and measure how scale changes across root-topology modes |
-| Independent member or binary radii | $R_k$, or $(R_1,R_2,R_3)$ for general B1.3 | Open; unequal radii leave the one-shared-circle chart | Explore the broader B1.3 family, symmetry breaking, nested radial structure, and whether unequal-radius balance families exist |
+| Independent member or binary radii | $R_k$, or $(R_1,R_2,R_3)$ for general B1.3 | Open; unequal radii leave the one-circular-path chart | Explore the broader B1.3 family, symmetry breaking, nested radial structure, and whether unequal-radius balance families exist |
 | Common radial breathing | $\delta r_k(T)=\delta R(T)$ for every member | Open as a retained-history problem | Test coherent expansion and contraction, radial oscillation, and whether the exact circle is a center, attractor, repeller, or separatrix in the radial direction |
 | Differential planar shape modes | Nonidentical $\delta r_k(T)$ and $\delta\phi_k(T)$ | Open | Test elliptical, alternating, binary-splitting, and higher cyclic deformations; construct the planar return map around an exact balance mode |
 | Perturbative planar acceleration diagnostic | A small prescribed planar path perturbation with controlled $\delta\ddot{\mathbf X}_k^{\parallel}(T)$ | Available as a prescribed-path probe, not as an independent released-state coordinate | Measure acceleration response, identify coupled radial and tangential modes, and design stability perturbations; under EOM release the acceleration must be recomputed from causal history rather than freely assigned |
@@ -12100,7 +12100,7 @@ Plainly: we may push a trial path in a chosen planar pattern to learn how the le
 
 For continuous labeled paths on one fixed nondegenerate circle, one common labelwise return period and no pairwise coincidence require every label to have the same signed winding number. If $\theta_i$ is a continuous angular lift, then $w_i=[\theta_i(P)-\theta_i(0)]/(2\pi)$ is an integer. The difference $\theta_i-\theta_j$ cannot cross $2\pi\mathbb Z$ without a coincidence, so its endpoint change cannot be a nonzero multiple of $2\pi$; hence $w_i=w_j$.
 
-> Claim grade: derived. The proof is the collision-free shared-circle winding lemma. Falsifier: exhibit continuous labeled paths on one fixed nondegenerate circle, with one common labelwise period and no coincidence, whose continuous lifts have unequal winding numbers. The full proof appears in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#collision-free-shared-circle-winding-lemma).
+> Claim grade: derived. The proof is the collision-free circular-path winding lemma. Falsifier: exhibit continuous labeled paths on one fixed nondegenerate circle, with one common labelwise period and no coincidence, whose continuous lifts have unequal winding numbers. The full proof appears in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#collision-free-circular-path-winding-lemma).
 
 Plainly: labels may speed up, slow down, or reverse temporarily, but they cannot finish different net numbers of laps without a collision, loss of labelwise return, or departure from the fixed circle. Rigid co-rotation is one especially simple way to satisfy this topological restriction.
 
@@ -12120,17 +12120,17 @@ Plainly: every member must receive exactly the inward acceleration required by i
 
 The $N=1$ regular alternating record is the neutral antipodal two-body circular benchmark. It is a binary dynamics chart, not a six-worldline Noether braid.
 
-The shared-circle chart intersects B1.3 exactly when $N=3$ and the six members can be partitioned into three opposite-polarity antipodal pairs with one common center, one common axis, one common frequency, one common circulation sense, and $h_a=0$, $\rho_a=R_a$ for every binary. Within that intersection, equal radii are already supplied by the shared circle. The regular alternating hexagon is the further phase-symmetric point whose three positive-endpoint phases may be chosen as $0$, $2\pi/3$, and $4\pi/3$.
+The circular-path chart intersects B1.3 exactly when $N=3$ and the six members can be partitioned into three opposite-polarity antipodal pairs with one common center, one common axis, one common frequency, one common circulation sense, and $h_a=0$, $\rho_a=R_a$ for every binary. Within that intersection, equal radii are already supplied by the multiply occupied circle. The regular alternating hexagon is the further phase-symmetric point whose three positive-endpoint phases may be chosen as $0$, $2\pi/3$, and $4\pi/3$.
 
-B1.3 and the shared-circle chart are not interchangeable. General B1.3 permits three independent radii, and a B1.3 record with unequal radii does not lie on one common circle. General shared-circle assemblies may have any balanced inventory size and need not possess three neutral antipodal binaries, so most shared-circle records are not B1.3.
+B1.3 and the circular-path chart are not interchangeable. General B1.3 permits three independent radii, and a B1.3 record with unequal radii does not lie on one common circle. General circular-path assemblies may have any balanced inventory size and need not possess three neutral antipodal binaries, so most circular-path records are not B1.3.
 
-Plainly: the overlap is exact but narrow. The verified hexagon belongs to both descriptions; the other tested inventories remain shared-circle assemblies, and unequal-radius B1.3 remains outside this chapter's chart.
+Plainly: the overlap is exact but narrow. The verified hexagon belongs to both descriptions; the other tested inventories remain circular-path assemblies, and unequal-radius B1.3 remains outside this chapter's chart.
 
-A common translation along the circle's axis moves the center $\mathbf C(T)$ and turns each circular worldline into a screw path, so it leaves the fixed-center chart defined here while remaining a B1 specialization. [Family B axial translation](../../../../markdown/aaa/noether-braid/braid-family-b.md#fixed-axial-translation-control) owns the general geometry. Because the fixed-speed control begins from the verified equal-radius B1.3 shared-circle row, the adjacent translated study and its bounded certificate are recorded below without folding them into the stationary balance ladder.
+A common translation along the circle's axis moves the center $\mathbf C(T)$ and turns each circular worldline into a screw path, so it leaves the fixed-center chart defined here while remaining a B1 specialization. [common-axis three-binary charts axial translation](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#fixed-axial-translation-control) owns the general geometry. Because the fixed-speed control begins from the verified equal-radius B1.3 circular-path row, the adjacent translated study and its bounded certificate are recorded below without folding them into the stationary balance ladder.
 
 Plainly: carrying the whole rotating hexagon upward changes every delayed chord even though its instantaneous cross-section still looks like the same circle. That is a different path history, so the stationary radius and speed cannot be assumed to remain balanced.
 
-A twelve-worldline $6{:}6$ shared-circle record does not become Family C from its member count alone. Family C requires a declared fixed-point-free map into six neutral binaries and strictly ordered axial coordinates on its coaxial chart. The tested planar regular alternating $6{:}6$ ring has like-polarity antipodes and one common axial coordinate, so it is outside Family C. In particular, it cannot be C5 or C6, whose two B1.3 component centers must have positive axial separation. The 24-member $12{:}12$ ring lies outside both the six-member B1.3 inventory and the twelve-worldline Family-C inventory.
+A twelve-worldline $6{:}6$ circular-path record does not become two-component circular charts from its member count alone. two-component circular charts requires a declared fixed-point-free map into six neutral binaries and strictly ordered axial coordinates on its coaxial chart. The tested planar regular alternating $6{:}6$ ring has like-polarity antipodes and one common axial coordinate, so it is outside two-component circular charts. In particular, it cannot be C5 or C6, whose two B1.3 component centers must have positive axial separation. The 24-member $12{:}12$ ring lies outside both the six-member B1.3 inventory and the twelve-worldline two-component circular-chart inventory.
 
 Plainly: taxonomy follows the coordinate record, not visual resemblance or arithmetic decomposition. A large ring may be compared with a braid locus without being renamed as that braid.
 
@@ -12796,7 +12796,7 @@ Plainly: the fixed $0.1c_f$ translation slice is closed. The result does not exc
 
 ### Exact Circular-Solution Theorem
 
-The balance condition has a stronger consequence than a one-phase numerical observation. Let $Q_\Omega(T)$ be rotation through angle $\Omega T$ in the shared-circle plane, let $\mathbf x_j$ be the fixed center-relative phase vector of member $j$, and consider the exact circular histories
+The balance condition has a stronger consequence than a one-phase numerical observation. Let $Q_\Omega(T)$ be rotation through angle $\Omega T$ in the circular-path plane, let $\mathbf x_j$ be the fixed center-relative phase vector of member $j$, and consider the exact circular histories
 
 $$
 \mathbf X_j(T)
@@ -12941,9 +12941,9 @@ The B1.3 circular result is a mathematically structured prescribed-balance ladde
 
 Plainly: the exact-root mathematics establishes continuing circular solutions, while the release experiment reached only a very short approximation to one of them. Exact continuation, numerical reproduction, and stability are three different evidence levels; none yet establishes a bound or perturbatively stable physical assembly.
 
-Broader geometric closure separately requires controlled coverage of unequal phase gaps, unequal B1.3 binary radii, and translated screw paths beyond the bounded diagnostic recorded in Family B.
+Broader geometric closure separately requires controlled coverage of unequal phase gaps, unequal B1.3 binary radii, and translated screw paths beyond the bounded diagnostic recorded in common-axis three-binary charts.
 
-Plainly: this chapter closes the shared-circle taxonomy bridge, derives exact circular continuation for the exact balance members, and records the separate release-prefix evidence at its measured grade. It supplies no binding, perturbation-stability, physical-spectrum, energy-quantization, transition, or scientific-acceptance verdict.
+Plainly: this chapter closes the circular-path taxonomy bridge, derives exact circular continuation for the exact balance members, and records the separate release-prefix evidence at its measured grade. It supplies no binding, perturbation-stability, physical-spectrum, energy-quantization, transition, or scientific-acceptance verdict.
 
 ## Causal Action Functional
 
@@ -13331,7 +13331,7 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-9700d8bcef28fc29)
 on that reduced chart. The value of this comparison is methodological: a replayable branch can expose frequency and harmonic content before the full path-history solution is written, but only if the same causal-root ledger and retained branch record make the closed-cycle integral and canonical residual stable.
 
-The action variables are local objects unless the phase torus is globally unobstructed. For a three-binary Family-A chart, the indexed phase circles need not form a trivial $T^3$ bundle over the retained branch family. Choose any declared ordering $(a,b,c)$ of the persistent binary indices. A retained return cycle of binary $a$ can carry a phase-entry degree pair rather than a single scalar winding. With $\rho_a:S^1_a\to\mathfrak B$ denoting that return cycle,
+The action variables are local objects unless the phase torus is globally unobstructed. For a three-binary three-axis circular-chart chart, the indexed phase circles need not form a trivial $T^3$ bundle over the retained branch family. Choose any declared ordering $(a,b,c)$ of the persistent binary indices. A retained return cycle of binary $a$ can carry a phase-entry degree pair rather than a single scalar winding. With $\rho_a:S^1_a\to\mathfrak B$ denoting that return cycle,
 
 $$
 c_1[\theta^a,\theta^b,\theta^c]
@@ -13346,7 +13346,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a0bfe0d7c31089ab)
 
-when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
+when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
 
 More precisely, the action variables $I_\alpha$ are sections of a flat action bundle over the retained branch family. They are globally defined only when the return holonomy is trivial on the admitted observables; equivalently, the phase-return degree pair closes by integer multiples of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is therefore admissible only on this trivial-holonomy locus:
 
@@ -14061,7 +14061,7 @@ with the integer tied to the phase-return degree pair above. Thus quantization i
 
 #### Topological Constraints and Assembly Stability
 
-The delayed action, after branch reduction to causal-locus and root-ledger data, constrains the allowed topological configurations of architrino assemblies in the Noether sea. Stable assemblies, such as maximum-curvature candidates inside Family-A braids, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or continuum topological defects.
+The delayed action, after branch reduction to causal-locus and root-ledger data, constrains the allowed topological configurations of architrino assemblies in the Noether sea. Stable assemblies, such as maximum-curvature candidates inside three-axis circular-chart braids, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or continuum topological defects.
 
 The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate outward branch barrier, not the centripetal binder. It becomes part of a robust geometric attractor only after the complete signed acceleration ledger, a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
 

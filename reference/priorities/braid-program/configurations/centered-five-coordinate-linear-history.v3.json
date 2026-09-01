@@ -1,0 +1,483 @@
+{
+  "schema": "prescribed-assembly-spec.v3",
+  "specId": "centered-five-coordinate-linear-history-v1",
+  "label": "Centered five-coordinate linear history",
+  "provenanceDescription": "Exact centered Centered five-coordinate linear history five-coordinate initialization continued linearly with the ledger's declared member velocities for prescribed display only; no EOM evolution, return, retention, stability, or physical realization is implied.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-08-25",
+  "identity": {
+    "assemblyId": "asm-f70757c6a491cf997305c297efa86bf8",
+    "modelRevisionSha256": "f70757c6a491cf997305c297efa86bf8ba3d2ae66eed6a8cbea9b66e85c34d62",
+    "displayLabel": "Centered five-coordinate linear history",
+    "status": "operator-approved-prescribed-display",
+    "geometryOwner": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
+  },
+  "illustrativeCoordinates": {
+    "status": "owner-declared-sample-linear-continuation",
+    "choices": [
+      "The position and velocity at T=0 are the immutable measured sample from the exact five-coordinate initialization ledger.",
+      "Each individually identified worldline uses the simplest centered linear continuation of that exact position and velocity.",
+      "The continuation is nonperiodic and is not an EOM-solver trajectory or a return claim."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "member-1",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-1",
+      "metadata": {
+        "moduleIndex": 0,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "member-2",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-2",
+      "metadata": {
+        "moduleIndex": 0,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "member-3",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-3",
+      "metadata": {
+        "moduleIndex": 1,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "member-4",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-4",
+      "metadata": {
+        "moduleIndex": 1,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "member-5",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-5",
+      "metadata": {
+        "moduleIndex": 2,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "member-6",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-6",
+      "metadata": {
+        "moduleIndex": 2,
+        "polaritySector": "negative"
+      }
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "worldline-1",
+      "constituentId": "member-1",
+      "operator": {
+        "kind": "sd3-centered-linear-member.v1",
+        "epochTime": 0,
+        "positionAtEpoch": [
+          0.3052192950505277,
+          0.14396169232610875,
+          0.08702094133596967
+        ],
+        "velocity": [
+          0.04094734345490753,
+          -0.08927111372809406,
+          0.08450665780182698
+        ],
+        "reconstruction": {
+          "operator": "centered-five-coordinate-linear-history.v1",
+          "moduleIndex": 0,
+          "polarity": 1,
+          "owner": "reference/priorities/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.md"
+        }
+      }
+    },
+    {
+      "id": "worldline-2",
+      "constituentId": "member-2",
+      "operator": {
+        "kind": "sd3-centered-linear-member.v1",
+        "epochTime": 0,
+        "positionAtEpoch": [
+          -0.2947807049494724,
+          -0.16746422772200772,
+          -0.07395699604112606
+        ],
+        "velocity": [
+          -0.03905265654509247,
+          0.06288152939044721,
+          -0.06001176037399519
+        ],
+        "reconstruction": {
+          "operator": "centered-five-coordinate-linear-history.v1",
+          "moduleIndex": 0,
+          "polarity": -1,
+          "owner": "reference/priorities/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.md"
+        }
+      }
+    },
+    {
+      "id": "worldline-3",
+      "constituentId": "member-3",
+      "operator": {
+        "kind": "sd3-centered-linear-member.v1",
+        "epochTime": 0,
+        "positionAtEpoch": [
+          0.08702094133596967,
+          0.3052192950505277,
+          0.14396169232610875
+        ],
+        "velocity": [
+          0.08450665780182698,
+          0.04094734345490753,
+          -0.08927111372809406
+        ],
+        "reconstruction": {
+          "operator": "centered-five-coordinate-linear-history.v1",
+          "moduleIndex": 1,
+          "polarity": 1,
+          "owner": "reference/priorities/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.md"
+        }
+      }
+    },
+    {
+      "id": "worldline-4",
+      "constituentId": "member-4",
+      "operator": {
+        "kind": "sd3-centered-linear-member.v1",
+        "epochTime": 0,
+        "positionAtEpoch": [
+          -0.07395699604112606,
+          -0.2947807049494724,
+          -0.16746422772200772
+        ],
+        "velocity": [
+          -0.06001176037399519,
+          -0.03905265654509247,
+          0.06288152939044721
+        ],
+        "reconstruction": {
+          "operator": "centered-five-coordinate-linear-history.v1",
+          "moduleIndex": 1,
+          "polarity": -1,
+          "owner": "reference/priorities/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.md"
+        }
+      }
+    },
+    {
+      "id": "worldline-5",
+      "constituentId": "member-5",
+      "operator": {
+        "kind": "sd3-centered-linear-member.v1",
+        "epochTime": 0,
+        "positionAtEpoch": [
+          0.14396169232610875,
+          0.08702094133596967,
+          0.3052192950505277
+        ],
+        "velocity": [
+          -0.08927111372809406,
+          0.08450665780182698,
+          0.04094734345490753
+        ],
+        "reconstruction": {
+          "operator": "centered-five-coordinate-linear-history.v1",
+          "moduleIndex": 2,
+          "polarity": 1,
+          "owner": "reference/priorities/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.md"
+        }
+      }
+    },
+    {
+      "id": "worldline-6",
+      "constituentId": "member-6",
+      "operator": {
+        "kind": "sd3-centered-linear-member.v1",
+        "epochTime": 0,
+        "positionAtEpoch": [
+          -0.16746422772200772,
+          -0.07395699604112606,
+          -0.2947807049494724
+        ],
+        "velocity": [
+          0.06288152939044721,
+          -0.06001176037399519,
+          -0.03905265654509247
+        ],
+        "reconstruction": {
+          "operator": "centered-five-coordinate-linear-history.v1",
+          "moduleIndex": 2,
+          "polarity": -1,
+          "owner": "reference/priorities/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.md"
+        }
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [
+      {
+        "frameId": "sd3-cyclic-frame",
+        "frameDefinition": {
+          "type": "sd3-cyclic-frame.v1",
+          "owner": "reference/priorities/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.md"
+        }
+      }
+    ],
+    "transforms": [
+      {
+        "id": "sd3-cyclic-transform",
+        "operator": "sd3-cyclic-order-three.v1"
+      }
+    ],
+    "reconstruction": {
+      "operator": "centered-five-coordinate-linear-history.v1",
+      "input": {
+        "seed": {
+          "h": 0.28,
+          "rho": 0.19,
+          "theta": 0.42,
+          "hDot": 0.01,
+          "rhoDot": -0.02,
+          "thetaDot": 0.3
+        },
+        "coordinates": [
+          0.02,
+          -0.015,
+          0.01,
+          0.012,
+          -0.008
+        ],
+        "rates": [
+          0.03,
+          -0.02,
+          0.04,
+          0.01,
+          -0.015
+        ],
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      "cyclicTransform": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "cyclicAxis": [
+        0.5773502691896258,
+        0.5773502691896258,
+        0.5773502691896258
+      ],
+      "midpointBasis": [
+        [
+          0.7071067811865475,
+          -0.7071067811865475,
+          0
+        ],
+        [
+          0.4082482904638631,
+          0.4082482904638631,
+          -0.8164965809277261
+        ]
+      ],
+      "tangentGram": "6 I_5",
+      "removedGauge": {
+        "coordinate": "gamma",
+        "value": 0,
+        "rate": 0
+      }
+    }
+  },
+  "relationships": {
+    "sourceOrder": [
+      "member-1",
+      "member-2",
+      "member-3",
+      "member-4",
+      "member-5",
+      "member-6"
+    ],
+    "neutralPairs": [
+      {
+        "id": "neutral-pairs-1",
+        "members": [
+          "member-1",
+          "member-2"
+        ],
+        "componentBraidId": "component-braids-1"
+      },
+      {
+        "id": "neutral-pairs-2",
+        "members": [
+          "member-3",
+          "member-4"
+        ],
+        "componentBraidId": "component-braids-1"
+      },
+      {
+        "id": "neutral-pairs-3",
+        "members": [
+          "member-5",
+          "member-6"
+        ],
+        "componentBraidId": "component-braids-1"
+      }
+    ],
+    "componentBraids": [
+      {
+        "id": "component-braids-1",
+        "members": [
+          "member-1",
+          "member-2",
+          "member-3",
+          "member-4",
+          "member-5",
+          "member-6"
+        ]
+      }
+    ],
+    "polaritySectors": [
+      {
+        "id": "polarity-sectors-1",
+        "polarity": 1,
+        "members": [
+          "member-1",
+          "member-3",
+          "member-5"
+        ]
+      },
+      {
+        "id": "polarity-sectors-2",
+        "polarity": -1,
+        "members": [
+          "member-2",
+          "member-4",
+          "member-6"
+        ]
+      }
+    ],
+    "symmetryOrbits": [
+      {
+        "id": "symmetry-orbits-1",
+        "members": [
+          "member-1",
+          "member-3",
+          "member-5"
+        ]
+      },
+      {
+        "id": "symmetry-orbits-2",
+        "members": [
+          "member-2",
+          "member-4",
+          "member-6"
+        ]
+      }
+    ],
+    "permutations": [
+      {
+        "id": "permutations-1",
+        "kind": "cyclic-order-three",
+        "mapping": {
+          "member-1": "member-3",
+          "member-3": "member-5",
+          "member-5": "member-1",
+          "member-2": "member-4",
+          "member-4": "member-6",
+          "member-6": "member-2"
+        }
+      }
+    ],
+    "accessorySets": []
+  },
+  "history": {
+    "start": -1,
+    "end": 0.5,
+    "delayHorizon": 1.25,
+    "periodic": false
+  },
+  "constraints": {
+    "validators": [
+      "centered-five-coordinate-consistency.v2"
+    ],
+    "centering": {
+      "declaration": "exact whole centroid",
+      "gauge": "gamma=0"
+    },
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "reject"
+    },
+    "collisionGuard": {
+      "sampleCount": 1024,
+      "minimumSampledClearance": 0.12
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 0.6,
+    "trailDuration": 1.5,
+    "ansatzSampleCount": 128
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.02,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  }
+}

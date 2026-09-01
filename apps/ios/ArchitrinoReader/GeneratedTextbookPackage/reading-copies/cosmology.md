@@ -2898,7 +2898,7 @@ This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretati
 
 ### Core Idea
 
-The early rapid-expansion phase is hypothesized to arise from a high-curvature continuation of the prescribed Family-A response, not from a fundamental standalone inflaton ontology. Here Family A means only the one-braid chart whose three binary axes are mutually orthogonal at $\lambda_A=0$ and converge toward the group-translation direction as $\lambda_A\to1$; the cosmological assignment, dynamics, stability, and retention do not follow from that geometry.
+The early rapid-expansion phase is hypothesized to arise from a high-curvature continuation of the prescribed three-axis circular-chart response, not from a fundamental standalone inflaton ontology. Here three-axis circular charts means only the one-braid chart whose three binary axes are mutually orthogonal at $\lambda_A=0$ and converge toward the group-translation direction as $\lambda_A\to1$; the cosmological assignment, dynamics, stability, and retention do not follow from that geometry.
 
 ### Local-Process Commitment
 
@@ -3189,7 +3189,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6d4488b0633aa4b1)
-Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the conjecture that inflation-like release, horizon-scale transport, and late-time expansion could be different channels of one candidate continuation of the Family-A response.
+Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the conjecture that inflation-like release, horizon-scale transport, and late-time expansion could be different channels of one candidate continuation of the three-axis circular-chart response.
 
 ### Expansion-Module Interface
 
@@ -3869,7 +3869,7 @@ CMB photons must remain source-and-path records. A proposed background bath has 
 
 #### Horizon-Interface Photon Release Candidate
 
-The strong-field version of this source story should keep a specific candidate channel visible. A photon-channel packet is a coaxial contra-rotating polarity-conjugate planar pair, while the black-hole horizon interface is the regime where a Family-A branch is hypothesized to approach its flat endpoint $\lambda_A=1$ with branch-derived speed rows near $c_f$. The shared planar geometry makes the horizon a natural candidate site for photon-channel or photon-channel-adjacent release, not merely a place where already-formed photons suffer an exterior gravitational redshift.
+The strong-field version of this source story should keep a specific candidate channel visible. A photon-channel packet is a coaxial contra-rotating polarity-conjugate planar pair, while the black-hole horizon interface is the regime where a three-axis circular-chart branch is hypothesized to approach its flat endpoint $\lambda_A=1$ with branch-derived speed rows near $c_f$. The shared planar geometry makes the horizon a natural candidate site for photon-channel or photon-channel-adjacent release, not merely a place where already-formed photons suffer an exterior gravitational redshift.
 
 The same signed row can contain both sides of the process. Interior or interface segments may blueshift photon-channel packets, raising their receiver-facing phase cadence and energy relative to local exterior standards. Outward transport through the surrounding Noether sea may then redshift, thermalize, scatter, or convert those packets before they become visible to ordinary observers. The existence of such high-energy interior photon records is therefore a plausible branch of the CMB source program, but it is not a shortcut around the CMB constraints.
 

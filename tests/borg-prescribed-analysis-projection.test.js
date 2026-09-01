@@ -23,7 +23,7 @@ import {
   createBorgPrescribedAnalysisScene,
 } from "../src/apps/borg/BorgPrescribedAnalysisScene.js";
 import {
-  evaluateSpindleAnalysisFromFiles,
+  evaluateAxialTransverseThreeBinaryInteriorAnalysisFromFiles,
 } from "../scripts/eom/evaluate-prescribed-source-wake.mjs";
 
 const H = Object.freeze({
@@ -51,10 +51,10 @@ test("strict projection preserves multiple certified roots and verifies its hash
   assert.equal(Object.isFrozen(verified.events[0].roots[0].direction), true);
 });
 
-test("canonical B1 evaluator packet projects retained history, probe identity, and binary membership", async () => {
-  const packet = evaluateSpindleAnalysisFromFiles();
+test("canonical axial-transverse three-binary interior evaluator packet projects retained history, probe identity, and binary membership", async () => {
+  const packet = evaluateAxialTransverseThreeBinaryInteriorAnalysisFromFiles();
   const displayRecord = JSON.parse(readFileSync(new URL(
-    "../content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json",
+    "../content/assets/borg/records/axial-transverse-three-binary-interior.assembly-view-record.v0.json",
     import.meta.url,
   )));
   const displayRecordHash = await sha256BorgCanonicalJson(displayRecord, {
@@ -79,7 +79,7 @@ test("canonical B1 evaluator packet projects retained history, probe identity, a
     projection.events[0].receiver.id,
     "b1-interior-coordinate-reference-probe",
   );
-  assert.equal(projection.events[0].roots[0].binaryId, "spindle-binary-1");
+  assert.equal(projection.events[0].roots[0].binaryId, "neutral-pairs-1");
   assert.equal(projection.branches.length, 0);
 });
 

@@ -172,7 +172,7 @@
     },
     {
       "id": "archie__ideal_braid",
-      "name": "A1 Lorentz Geometry",
+      "name": "Coincident-Midpoint Three-Axis Circular Lorentz Geometry",
       "path": "content/scenes/archie/ideal_braid.json"
     },
     {
@@ -1881,54 +1881,14 @@
       "path": "content/scenes/noether-braid/braid_envelope_geometry.json"
     },
     {
-      "id": "noether_braid__explored_braid_geometries",
-      "name": "Explored Braid Geometries",
-      "path": "content/scenes/noether-braid/explored_braid_geometries.json"
-    },
-    {
-      "id": "noether_braid__spindle_braid",
-      "name": "Spindle Braid",
-      "path": "content/scenes/noether-braid/spindle_braid.json"
-    },
-    {
-      "id": "noether_braid__doubling_frequency_lock",
-      "name": "Doubling-Frequency Resonance Lock",
-      "path": "content/scenes/noether-braid/doubling_frequency_lock.json"
-    },
-    {
-      "id": "noether_braid__braid_a2_symmetry_and_return_response",
-      "name": "A2 Symmetry and Return Response",
-      "path": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json"
-    },
-    {
       "id": "noether_braid__braid_analysis_methodology",
       "name": "Candidate Braid Analysis Methodology",
       "path": "content/scenes/noether-braid/braid_analysis_methodology.json"
     },
     {
-      "id": "noether_braid__braid_family_a",
-      "name": "Braid Family A",
-      "path": "content/scenes/noether-braid/braid_family_a.json"
-    },
-    {
-      "id": "noether_braid__braid_family_b",
-      "name": "Braid Family B",
-      "path": "content/scenes/noether-braid/braid_family_b.json"
-    },
-    {
-      "id": "noether_braid__braid_family_c",
-      "name": "Braid Family C",
-      "path": "content/scenes/noether-braid/braid_family_c.json"
-    },
-    {
       "id": "noether_braid__braid_taxonomy",
       "name": "Braid Taxonomy",
       "path": "content/scenes/noether-braid/braid_taxonomy.json"
-    },
-    {
-      "id": "noether_braid__braid_family_a_overview",
-      "name": "Braid Family A",
-      "path": "content/scenes/noether-braid/braid_family_a_overview.json"
     },
     {
       "id": "lattice-lab",
@@ -1966,9 +1926,49 @@
       "path": "content/scenes/philosophy_history/information_and_the_wake.json"
     },
     {
-      "id": "dynamics__shared_circle_assemblies",
-      "name": "Shared-Circle Assemblies",
-      "path": "content/scenes/dynamics/shared_circle_assemblies.json"
+      "id": "archie__brand_visual_identity",
+      "name": "Brand Visual Identity Guide",
+      "path": "content/scenes/archie/brand_visual_identity.json"
+    },
+    {
+      "id": "archie__branding_and_marketing_overview",
+      "name": "Branding & Marketing Overview",
+      "path": "content/scenes/archie/branding_and_marketing_overview.json"
+    },
+    {
+      "id": "archie__branding_and_marketing",
+      "name": "Branding & Marketing",
+      "path": "content/scenes/archie/branding_and_marketing.json"
+    },
+    {
+      "id": "noether_braid__2d_braid_assemblies",
+      "name": "Planar (2D) Braid Assemblies",
+      "path": "content/scenes/noether-braid/2d_braid_assemblies.json"
+    },
+    {
+      "id": "noether_braid__3d_braid_assemblies",
+      "name": "Spatial (3D) Braid Assemblies",
+      "path": "content/scenes/noether-braid/3d_braid_assemblies.json"
+    },
+    {
+      "id": "noether_braid__coincident_axis_three_binary_symmetry",
+      "name": "Coincident-Axis Three-Binary Symmetry",
+      "path": "content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json"
+    },
+    {
+      "id": "noether_braid__coordinate_axis_six_point_symmetry_and_return_response",
+      "name": "Coordinate-Axis Six-Point Symmetry and Return Response",
+      "path": "content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json"
+    },
+    {
+      "id": "noether_braid__three_binary_4_2_1_frequency_lock",
+      "name": "Three-Binary 4:2:1 Frequency Lock",
+      "path": "content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json"
+    },
+    {
+      "id": "noether_braid__zero_axial_offset_three_binary_dynamics_and_interpretation",
+      "name": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+      "path": "content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json"
     }
   ]
 }

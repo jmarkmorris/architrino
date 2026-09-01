@@ -13,10 +13,10 @@ if (args.length !== 2 || args[0] !== "--out" || !args[1]) {
   );
 }
 const outputPath = path.resolve(root, args[1]);
-const configPath = path.resolve(root, "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json");
+const configPath = path.resolve(root, "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json");
 
 const bindings = [
-  ["f5-approved-row", "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json", "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb"],
+  ["f5-approved-row", "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json", "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb"],
   ["f5-h3-predeclaration", "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md", "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5"],
   ["f5-independent-guard", "scripts/eom/analyze-f5-phase-varying-guard-margin.mjs", "aab128d5abbd248fb1879ad6dba71844951593b3ef636d67742729bbff886dfd"],
   ["f5-production-operator", "src/prescribed-geometry/PrescribedWorldlineOperators.mjs", "f641daba8184c7e997478494d1642291d40fd6a6d365c289c6ee8b6637ef0a01"],

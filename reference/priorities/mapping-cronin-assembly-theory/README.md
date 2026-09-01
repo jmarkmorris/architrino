@@ -1,6 +1,6 @@
 # Mapping: Cronin Assembly Theory
 
-Purpose: an operator/developer-facing draft comparing Lee Cronin's assembly theory (AT) against $\mathbb{A}\mathbb{A}\mathbb{A}$'s own assembly concept (shared-circle/braid assemblies), to test whether a formal cross-domain bridge is worth developing.
+Purpose: an operator/developer-facing draft comparing Lee Cronin's assembly theory (AT) against $\mathbb{A}\mathbb{A}\mathbb{A}$'s own assembly concept (circular-path/braid assemblies), to test whether a formal cross-domain bridge is worth developing.
 
 Status: `discussion-scoped`. This directory holds exploratory comparison only. Nothing here is promoted, and nothing here licenses AT as a premise at the architrino level — see the import test in [AGENTS.md](../../../AGENTS.md#theory-layer-discipline-governs-all-physics-reasoning-in-this-repo).
 

@@ -34,8 +34,9 @@ CREATE TABLE compact_case (
   case_hash TEXT NOT NULL,
   schema_id TEXT NOT NULL,
   case_id TEXT NOT NULL,
-  family_id TEXT NOT NULL,
-  member_id TEXT NOT NULL,
+  assembly_id TEXT NOT NULL,
+  model_revision_sha256 TEXT NOT NULL,
+  source_slug TEXT NOT NULL,
   candidate_id TEXT NOT NULL,
   sample_ordinal INTEGER NOT NULL CHECK (sample_ordinal >= 0),
   sampled_spec_hash TEXT NOT NULL,
@@ -65,12 +66,12 @@ CREATE TABLE compact_case (
 
 CREATE INDEX compact_campaign_id
   ON compact_campaign(campaign_id, campaign_hash);
-CREATE INDEX compact_case_family_member
-  ON compact_case(family_id, member_id, sample_ordinal, campaign_hash);
+CREATE INDEX compact_case_exact_configuration
+  ON compact_case(assembly_id, model_revision_sha256, source_slug, sample_ordinal, campaign_hash);
 CREATE INDEX compact_case_status
-  ON compact_case(status_code, reason_code, family_id, member_id);
+  ON compact_case(status_code, reason_code, assembly_id, model_revision_sha256);
 CREATE INDEX compact_case_score_status
-  ON compact_case(score_status_code, family_id, member_id)
+  ON compact_case(score_status_code, assembly_id, model_revision_sha256)
   WHERE score_status_code IS NOT NULL;
 CREATE INDEX compact_case_source
   ON compact_case(exact_source_hash, sampled_spec_hash);

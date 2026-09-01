@@ -2,7 +2,7 @@
 
 Status: separate reference successor prepared for independent review; not connected to an accepted consumer or launch plan. This artifact concerns reuse of immutable interval computations, not a new geometry, root proposal or measurement. All synthetic examples use normalized wake-speed units with $c_f=1$.
 
-Plainly: the new module saves repeated intermediate answers during one calculation. It has not replaced the accepted F6c program or authorized another run.
+Plainly: the new module saves repeated intermediate answers during one calculation. It has not replaced the accepted asymmetric counter-breathing representative program or authorized another run.
 
 ## Exact Source Boundary
 
@@ -40,18 +40,18 @@ Plainly: the known formulas check mathematical answers independently. Comparing 
 
 The author-run focused command `"${AAA_VENV:-../.venv}/bin/python" -B -m unittest discover -s tests -p 'test_eom_continuous_reception_roots*.py' -v` passed 63 tests: all 35 unchanged baseline controls and 28 new controls. The shared-box eight-member control observed 448 baseline state evaluations versus 32 cache misses, with eight complete history validations in both versions and identical serialized results. This count is not a wall-time estimate.
 
-Plainly: the expected repeated work is actually removed in that synthetic case, while validation remains present. The test count and operation count do not establish actual F6c performance.
+Plainly: the expected repeated work is actually removed in that synthetic case, while validation remains present. The test count and operation count do not establish actual asymmetric counter-breathing representative performance.
 
 Claim grade: measured, synthetic function-call timing only. A separate inline shared-venv profile constructed stationary histories $X_i(T)=i$ along one axis, each partitioned into 128 uniform pieces on `[-8,1]`, with reception `[0,0.001]` and emission `[-8,-0.05]`. Each variant ran three times without observation mocks. Preparation, imports and comparison were outside the timed cover call; a 60-second alarm and 15-second heartbeat watcher enclosed the entire profile. Exact static geometry and serialized implementation parity passed after each call. The profile closed normally after `4.538606500020251` seconds.
 
-Plainly: these are small invented histories with known answers, not the saved F6c trajectories. The timings measure only the library call, not a complete launched attempt.
+Plainly: these are small invented histories with known answers, not the saved asymmetric counter-breathing representative trajectories. The timings measure only the library call, not a complete launched attempt.
 
 | Synthetic members | Baseline median seconds | Cached median seconds |
 | --- | ---: | ---: |
 | 2 | `0.044816665817052126` | `0.043015207862481475` |
 | 8 | `1.1797350409906358` | `0.18471512501128018` |
 
-Plainly: reuse helped this eight-member fixture substantially and the two-member fixture only slightly. Neither measurement predicts the actual F6c whole-attempt cost or overturns its accepted resource return.
+Plainly: reuse helped this eight-member fixture substantially and the two-member fixture only slightly. Neither measurement predicts the actual asymmetric counter-breathing representative whole-attempt cost or overturns its accepted resource return.
 
 ## Falsifiers And Remaining Authority
 
@@ -59,8 +59,8 @@ The equivalence claim is falsified by a same-environment valid input producing d
 
 Plainly: disagreement on those concrete checks would invalidate this successor. No amount of synthetic speed improvement would excuse a changed bound or missing piece.
 
-The existing F6c root-cover consumer is the intended later consumer, but its current plan and independent comparison still pin the baseline. This batch authorizes no binding change, actual-history evaluation, new pilot, full run, additional worker, larger 1,800-second allowance, EOM execution, acceleration/residual measurement, score, H3 claim or historical trajectory identity. The [accepted resource return](2026-08-27-f6c-root-cover-full-resource-plan.md) remains in force. Any eventual actual performance conclusion requires a separately reviewed successor composition and fresh bounded measured baseline.
+The existing asymmetric counter-breathing representative root-cover consumer is the intended later consumer, but its current plan and independent comparison still pin the baseline. This batch authorizes no binding change, actual-history evaluation, new pilot, full run, additional worker, larger 1,800-second allowance, EOM execution, acceleration/residual measurement, score, H3 claim or historical trajectory identity. The [accepted resource return](2026-08-27-f6c-root-cover-full-resource-plan.md) remains in force. Any eventual actual performance conclusion requires a separately reviewed successor composition and fresh bounded measured baseline.
 
-Plainly: this is a candidate improvement to the reference calculation. F6c remains exactly where the accepted evidence left it until separate reviews and a permitted measurement establish more.
+Plainly: this is a candidate improvement to the reference calculation. asymmetric counter-breathing representative remains exactly where the accepted evidence left it until separate reviews and a permitted measurement establish more.
 
 Closure goal: independently review the call-local equivalence and synthetic controls before any separate consumer or protocol update; preserve all accepted source and evidence bytes.

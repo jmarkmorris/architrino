@@ -1,4 +1,4 @@
-# F6c Residual Integral and Supremum Enclosure
+# asymmetric counter-breathing representative Residual Integral and Supremum Enclosure
 
 Status: definition and conditional proof, pending independent review, 2026-08-27. No software, numerical evaluation, execution plan, metric or score is supplied by this artifact.
 
@@ -238,10 +238,10 @@ Independent review should reject this theorem if an integrable, piecewise-contin
 
 Plainly: a counterexample must satisfy the premises and escape the resulting bound. Ordinary exact integrals and one-sided limits are enough to test the proof independently of the acceleration producer.
 
-A future consumer must instead report invalid or unresolved input for missing members, an incomplete or overlapping positive-duration partition, an incorrect frame side, changed family or normalization, unsupported uniform or nodal bounds, an empty intersection, nonfinite arithmetic, or unverified source identity. Exhausting a settled subdivision allowance without the required global width leaves the measurement unavailable; it is neither a zero residual nor a negative result about every F6c history. Historical metric use still requires the owner’s subject and refinement obligations, not only a passing pure aggregation.
+A future consumer must instead report invalid or unresolved input for missing members, an incomplete or overlapping positive-duration partition, an incorrect frame side, changed family or normalization, unsupported uniform or nodal bounds, an empty intersection, nonfinite arithmetic, or unverified source identity. Exhausting a settled subdivision allowance without the required global width leaves the measurement unavailable; it is neither a zero residual nor a negative result about every asymmetric counter-breathing representative history. Historical metric use still requires the owner’s subject and refinement obligations, not only a passing pure aggregation.
 
 Plainly: failure to prove a measurement is different from proving that a history violates the law. Both outcomes must keep their actual scope.
 
 The next use of this single artifact is independent mathematical review before a separate pure aggregation/remainder reference is authored. A later protocol must settle the currently unspecified algorithm and allowance semantics and independently validate the actual implementation before any measurement. No additional obligation ledger is introduced, and no existing owner is edited by this definition.
 
-Closure goal: independently review the complete-partition integral, RMS, peak and residual-remainder inclusions while preserving the fixed F6c family and all unresolved execution choices.
+Closure goal: independently review the complete-partition integral, RMS, peak and residual-remainder inclusions while preserving the fixed asymmetric counter-breathing representative family and all unresolved execution choices.

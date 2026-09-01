@@ -1,6 +1,6 @@
 # Noether Braid Configuration Space
 
-This chapter gives the analysis space surrounding the canonical braid taxonomy: the evidence-level vocabulary and the rank-three angular-momentum-frame variables used to test a candidate record. It comes after the family map in [Noether Braid](noether-braid.md), the prescribed coordinates in [Braid Taxonomy](braid-taxonomy.md), and the retention contract of [Braid Recovery Requirements](braid-recovery-requirements.md). The analyzed regions include [Family A](braid-family-a.md), the A3.3 $4{:}2{:}1$ lock and its A1.3 zero-axial-offset locus, iso-frequency candidates, and field-speed hinge-occupancy candidates. Within the rank-three sublocus, a branch candidate is a three-row state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
+This chapter gives the analysis space surrounding the canonical braid taxonomy: the evidence-level vocabulary and the rank-three angular-momentum-frame variables used to test a candidate record. It comes after the family map in [Noether Braid](noether-braid.md), the prescribed coordinates in [Braid Taxonomy](braid-taxonomy.md), and the retention contract of [Braid Recovery Requirements](braid-recovery-requirements.md). The analyzed regions include [orthogonal-axis three-binary configurations](3d-braid-assemblies.md), the axially separated 4:2:1 reference $4{:}2{:}1$ lock and its coincident-midpoint 4:2:1 reference zero-axial-offset locus, iso-frequency candidates, and field-speed hinge-occupancy candidates. Within the rank-three sublocus, a branch candidate is a three-row state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
 
 This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which branches remain candidate braids and which can be promoted to certified braids, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
 
@@ -12,7 +12,7 @@ This distinction prevents premature naming. A three-row branch is valuable becau
 
 This chapter owns the rank-three angular-momentum-frame search variables: unordered layer labels, angular-momentum two-form rows, the plane-frame determinant, group velocity, energy/frequency/speed/radius ledgers, role assignment, and permutation accounting. It is the place to ask whether a candidate branch supplies three retained angular-momentum rows with enough conditioning to form a volumetric internal frame.
 
-It does not exhaust the full Noether braid class, certify A1 retention, or make $4{:}2{:}1$, iso-frequency, or field-speed-hinge assumptions the default. Those are specializations that must declare their member definition and same-record branch rows before any analysis label is attached.
+It does not exhaust the full Noether braid class, certify coincident-midpoint orthogonal-axis locus retention, or make $4{:}2{:}1$, iso-frequency, or field-speed-hinge assumptions the default. Those are specializations that must declare their member definition and same-record branch rows before any analysis label is attached.
 
 ## Evidence-Level Terms
 
@@ -20,9 +20,9 @@ This chapter uses four evidence-level terms in a controlled way:
 
 | Term | Meaning in this chapter | What it does not claim by itself |
 | --- | --- | --- |
-| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window; this chapter's analysis space is the six-body base and Family-A/B case, while a twelve-worldline Family-C candidate carries the corresponding rows on its own declared ledger. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
+| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window; this chapter's analysis space is the six-body base and orthogonal-axis three-binary/B case, while a twelve-worldline two-component circular candidate carries the corresponding rows on its own declared ledger. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
 | retained | Evidential status for a branch, row, or chart whose required data close on the same record under the declared tolerance, event/domain convention, and stability conditions. | `Retained` does not mean assumed, preferred, or merely still under discussion. If the same-record ledgers are missing, the object remains a candidate. |
-| support | The geometric region, envelope, or comparison chart occupied by the branch data. A1 path support, a path-history-derived oblate spheroidal envelope, and an axial comparison chart describe different objects. | Support is not an acceleration law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
+| support | The geometric region, envelope, or comparison chart occupied by the branch data. Coincident-midpoint orthogonal-axis locus path support, a path-history-derived oblate spheroidal envelope, and an axial comparison chart describe different objects. | Support is not an acceleration law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
 | record | The finite ledger attached to one branch over the declared memory window. It includes only data that can still affect the next delayed update or certificate: inventory, path history, causal-root rows, wake rows, energy/action rows, momentum and angular-momentum rows, phase and plane-orientation rows, support claims, response-center and group-velocity rows, and the local Noether sea row. | A record is not a narrative summary or a loose collection of diagnostics. A proof claim must say which rows close on the same record. |
 
 This chapter is the front door for classifying Noether braid configurations. It names the independent axes used to describe a candidate branch before any adjudication of retention. The taxonomy is therefore a configuration language, not a classification theorem.
@@ -45,11 +45,11 @@ $$
 These entries are diagnostics that may be computed from a taxonomy member's record. They are not additional columns in the canonical taxonomy, and they do not by themselves prove that the delayed dynamics admit a stable branch. Retention and certification are evidence statuses, not configuration axes.
 
 
-## Family-B Example: B1
+## Coincident-Axis Three-Binary Example
 
-A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](braid-family-b.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member. Active B1 candidate records require $\sum_a\rho_a^2>0$; the all-axial endpoint is a static coordinate boundary rather than an internally moving candidate.
+A reader who wants one concrete configuration to hold in mind while reading the axes below can use [coincident-axis three-binary locus](3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member. Active coincident-axis three-binary locus candidate records require $\sum_a\rho_a^2>0$; the all-axial endpoint is a static coordinate boundary rather than an internally moving candidate.
 
-The status discipline binds. B1 is a prescribed member, not a retained branch, and no family ranking is asserted. Its exact geometry does not establish physical formation, retention, or preference over another taxonomy member.
+The status discipline binds. coincident-axis three-binary locus is a prescribed member, not a retained branch, and no family ranking is asserted. Its exact geometry does not establish physical formation, retention, or preference over another taxonomy member.
 
 
 ## Supplementary Diagnostics
@@ -71,7 +71,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0d4777bc34bf095e)
 
-This inventory says only that the candidate has the required polarity count and a shared causal-return ledger. It does not assume exact binary pairs, an A1 or B1 member, an orthogonal angular-momentum frame, or a protected topological class.
+This inventory says only that the candidate has the required polarity count and a shared causal-return ledger. It does not assume exact binary pairs, a coincident-midpoint orthogonal-axis locus or coincident-axis three-binary locus member, an orthogonal angular-momentum frame, or a protected topological class.
 
 ## Angular-Momentum Frame
 
@@ -81,7 +81,7 @@ The angular-momentum-frame axis asks whether the retained branch emits enough an
 | --- | --- | --- |
 | not assigned | The branch has not yet supplied retained angular-momentum rows. | It does not reject the branch; it only leaves the frame axis open. |
 | rank-three frame | The branch supplies three retained angular-momentum rows with nonzero frame determinant. | It does not by itself prove shell support, frequency lock, polarity placement, or certification. |
-| planar lower-rank braid (`PL`) | The branch is lower-rank on this axis because the determinant defined in this section vanishes or because no retained three-row frame exists. | It is not automatically the planar reduced chart and not automatically a terminal A1 boundary. |
+| planar lower-rank braid (`PL`) | The branch is lower-rank on this axis because the determinant defined in this section vanishes or because no retained three-row frame exists. | It is not automatically the planar reduced chart and not automatically a terminal coincident-midpoint orthogonal-axis locus boundary. |
 
 For a rank-three frame, the branch record includes three angular-momentum two-form classes. Here class means a ledger-extracted angular-momentum two-form row up to the declared branch-window equivalence, not a de Rham cohomology class of the Euclidean void:
 
@@ -109,7 +109,7 @@ $$
 
 A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid branch until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
-The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of A1, or the photon-channel bridge described by the coaxial contra-rotating polarity-conjugate planar pair. The generic opposite-circulation composition coordinates for two complete B1 records are defined separately by [C2](braid-family-c.md#c2); planarization and photon identity are additional constraints. A planar reduced chart should therefore be named as a chart, not used as a base-family name.
+The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of coincident-midpoint orthogonal-axis locus, or the photon-channel bridge described by the coaxial contra-rotating polarity-conjugate planar pair. The generic opposite-circulation composition coordinates for two complete coincident-axis three-binary locus records are defined separately by [coincident-center counter-rotating two-component configuration](3d-braid-assemblies.md#counter-rotating-coincident-center-two-component-circular-configuration); planarization and photon identity are additional constraints. A planar reduced chart should therefore be named as a chart, not used as a base-family name.
 
 ## Angular-Momentum Handedness
 
@@ -145,9 +145,9 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 
 | Frequency-ratio value | Meaning |
 | --- | --- |
-| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The fixed-coordinate common-axis member is [B1](braid-family-b.md#b1). |
+| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The fixed-coordinate common-axis member is [coincident-axis three-binary locus](3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
-| doubling-frequency $4{:}2{:}1$ | The A3.3 member with indexed ratio $f_1:f_2:f_3=4:2:1$, studied in [A3.3 Doubling-Frequency Resonance Lock](braid-a3-3-doubling-frequency-lock.md). A1.3 is its zero-axial-offset locus. The ratio does not imply a radius order. |
+| doubling-frequency $4{:}2{:}1$ | The axially separated 4:2:1 reference member with indexed ratio $f_1:f_2:f_3=4:2:1$, studied in [axially separated 4:2:1 reference Doubling-Frequency Resonance Lock](three-binary-4-2-1-frequency-lock.md). Coincident-midpoint 4:2:1 reference is its zero-axial-offset locus. The ratio does not imply a radius order. |
 
 Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
 
@@ -332,7 +332,7 @@ C_{\mathrm{branch}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-009b182c8f2f956c)
-when Lorentz closure applies. Here $C_{\mathrm{branch}}$ is the branch-intrinsic component vector being exported, such as an energy-momentum, angular-momentum, clock, or ruler row, and $C_{\mathrm{obs}}$ is the corresponding effective observer-chart component vector. The map $\Lambda_{\mathrm{eff}}$ is the effective export map, not the reduced A1 closure label $\Lambda_{A1}$. The export may dress those components, but it does not replace the branch record itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
+when Lorentz closure applies. Here $C_{\mathrm{branch}}$ is the branch-intrinsic component vector being exported, such as an energy-momentum, angular-momentum, clock, or ruler row, and $C_{\mathrm{obs}}$ is the corresponding effective observer-chart component vector. The map $\Lambda_{\mathrm{eff}}$ is the effective export map, not the reduced coincident-midpoint closure label $\Lambda_{\mathrm{cm}}$. The export may dress those components, but it does not replace the branch record itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
 
 ## Momentum And Principal-Direction Decomposition
 
@@ -396,7 +396,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-cafb587d98c45e8f)
 with $J_a$ supplied by the retained branch-angular-momentum or action row. A promoted rank-three Noether braid branch should show that this tensor has three nonzero eigenvalues and that its eigenframe agrees with the retained normal frame up to the allowed $S_3$ relabeling and sign conventions. This is an orthogonality-sensitive test: when the normals are not mutually orthogonal, the eigenvectors of $\mathsf{J}_{\mathfrak B}^{ij}$ need not coincide with $\{\hat{\mathbf n}_a\}$ even if the retained weights are nonzero. If two $J_a$ are equal within tolerance, the certificate must use an eigenvalue-gap condition or a subspace-match criterion rather than a unique eigenvector match. If diagonalizing $\mathsf{J}_{\mathfrak B}^{ij}$ produces a different frame, then $\mathcal{R}_{J\mathrm{-axis}}$ is not a mere visualization error: the three retained rows are not a faithful decomposition of the conserved angular-momentum ledger.
 
-The retained angular-momentum decomposition does not select one coarse envelope family. In a rest branch, $\mathbf{P}_{\mathfrak B}=\mathbf 0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support, while the swept constituent paths separately determine whether the envelope is fusiform, oblate spheroidal, or another certified form. In a moving branch, $\hat{\mathbf e}_{P}$ marks the group-velocity direction relative to the Noether sea, and Lorentz closure asks whether the family-declared envelope deforms with a longitudinal-to-transverse ratio
+The retained angular-momentum decomposition does not select one coarse envelope family. In a rest branch, $\mathbf{P}_{\mathfrak B}=\mathbf 0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support, while the swept constituent paths separately determine whether the envelope is fusiform, oblate spheroidal, or another certified form. In a moving branch, $\hat{\mathbf e}_{P}$ marks the group-velocity direction relative to the Noether sea, and Lorentz closure asks whether the source-declared envelope deforms with a longitudinal-to-transverse ratio
 $$
 \xi
 =
@@ -406,7 +406,7 @@ R_{\parallel}\ \text{measured along }\hat{\mathbf e}_{P},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5e8668088a844ee9)
-while the same internal angular-momentum ledger remains retained. Thus the retained rows decompose internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis. They do not convert the [B1](braid-family-b.md#b1) common-axis internal geometry into a Family-A oblate response; B1's member-declared rest envelope and its moving-envelope projection are separate records in [Braid Envelope Geometry](braid-envelope-geometry.md#envelope-forms).
+while the same internal angular-momentum ledger remains retained. Thus the retained rows decompose internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis. They do not convert the [coincident-axis three-binary locus](3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart) common-axis internal geometry into an orthogonal-axis three-binary oblate response; coincident-axis three-binary locus's member-declared rest envelope and its moving-envelope projection are separate records in [Braid Envelope Geometry](braid-envelope-geometry.md#envelope-forms).
 
 ## Unordered Layer Semantics
 
@@ -521,7 +521,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-7e20fb680994f77b)
 This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge. A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
-Family B realizes this decoupling directly. In [B1](braid-family-b.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius values when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](braid-b1-symmetry.md). No family ordering is asserted.
+coincident-axis three-binary configurations realizes this decoupling directly. In [coincident-axis three-binary locus](3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius values when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of coincident-axis three-binary locus. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [coincident-axis three-binary locus Hypotheses and Discrete Symmetry](coincident-axis-three-binary-symmetry.md). No family ordering is asserted.
 
 A terminology boundary applies throughout this section: the field-speed value $s_a=c_f$ is a **coordinate locus** of the configuration space — the boundary where the same-transmitter root inventory changes — and nothing here asserts that any dynamical mechanism holds a layer at that locus. Occupancy of the locus is a chart label, not an attractor claim.
 
@@ -669,7 +669,7 @@ while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing aniso
 
 ## Relation To The Doubling-frequency Chapter
 
-[A3.3 Doubling-Frequency Resonance Lock](braid-a3-3-doubling-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the indexed A3 frequency triplet, especially the A3.3 relation $f_1:f_2:f_3=4:2:1$, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior. The A1.3 chart inherits the same frequency relation on the zero-axial-offset locus.
+[axially separated 4:2:1 reference Doubling-Frequency Resonance Lock](three-binary-4-2-1-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the indexed axially separated orthogonal-axis locus frequency triplet, especially the axially separated 4:2:1 reference relation $f_1:f_2:f_3=4:2:1$, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior. The coincident-midpoint 4:2:1 reference chart inherits the same frequency relation on the zero-axial-offset locus.
 
 The doubling-frequency chapter should therefore be read as a specialized search row:
 $$

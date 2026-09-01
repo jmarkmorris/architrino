@@ -14,7 +14,7 @@ Black-hole mergers, neutron-star mergers, mixed mergers, compact-star collapse, 
 
 An observer equation is a legitimate test only when it enters through a declared projection, its uncertainty-aware residual can fail, and removing the observation leaves the substrate premises unchanged. Schwarzschild, Kerr, TOV, inspiral, radiation, shock, and thermalization equations therefore constrain outputs; they do not construct architrino or Noether sea dynamics.
 
-## Equation-Family Coverage
+## Equation-two-component circular configurationsoverage
 
 The highest-density strong-field rows are:
 

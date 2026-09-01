@@ -1,0 +1,133 @@
+{
+  "schema": "prescribed-path-analysis/coincident-midpoint-common-frequency-prescribed-structural-root-ledger-protocol.v1",
+  "protocolId": "coincident-midpoint-common-frequency-bounded-prescribed-structural-root-ledger-v1",
+  "sourceConfiguration": {
+    "scientificIdentity": {
+      "assemblyId": "asm-2a289a6fe32f64922ab71bae973acc80",
+      "modelRevisionSha256": "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6"
+    }
+  },
+  "claimGrade": "diagnostic",
+  "claimBoundary": {
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "eomIntervalMachineryInvoked": false,
+    "eomCampaignInvoked": false,
+    "diagnosticOnly": true,
+    "candidateScore": null,
+    "candidateSelection": false,
+    "excludedClaims": [
+      "retention",
+      "stability",
+      "binding",
+      "physical-candidate-selection",
+      "physical-realization",
+      "physical-superluminal-transport",
+      "energy",
+      "action",
+      "angular-momentum-dynamics",
+      "radiation",
+      "pressure",
+      "general-relativity-recovery"
+    ]
+  },
+  "sealedInputs": {
+    "baseProtocol": {
+      "path": "src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-continuous-ratio-phase-root-inventory-protocol.v1.json",
+      "sha256": "b87b16d140c67608977ac9bb7cf21175936808d0b9617b41778e150c904f4a4f",
+      "migrationDisposition": "The v2 source path and hash replace the v1 display-source provenance only; the parity receipt establishes the same individual worldlines, and no structural-root formula, sample, result, or physical claim is changed."
+    },
+    "continuousInventorySummary": {
+      "path": "reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-continuous-ratio-phase-root-inventory-summary.v2.json",
+      "summaryHash": "5db6ee43e521d48d7d664fbf976df9274deea4861dc244f44040694ec1c30543",
+      "resultHash": "00ffefc11b4fc98de88de222e438517f9d9c7eae402a7ed785581094dd3c0d80",
+      "migrationDisposition": "This sealed summary remains bound to the pre-migration source serialization. It is reused only as parity-preserved analytical provenance; generated-record parity is not independent evidence and does not establish the geometry."
+    },
+    "rootSheetSummary": {
+      "path": "reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-root-sheet-monotonic-enclosure-treatment-summary.v1.json",
+      "summaryHash": "f37db3ed32ff38060e3b837d73644f9f219db9fb6543414297bcb0e902aa7e4d",
+      "resultHash": "fe89965435198af812153696e6278adf058c1cbae507a948630fd1adda8401f4"
+    }
+  },
+  "declaredRows": [
+    "sealed-root-count-topology-by-declared-sheet-chart",
+    "sampled-root-delay-range-and-witnesses",
+    "sampled-sheet-coordinate-transversality-margin",
+    "sampled-reception-coordinate-conditioning-margin",
+    "sampled-receiver-phase-projection-range-and-sign-change-brackets",
+    "sampled-radius-and-phase-sensitivity-range",
+    "endpoint-inversion-symmetry-relation",
+    "raw-root-and-provenance-row"
+  ],
+  "sampling": {
+    "alpha1": [0.875, 0.90625, 0.9375],
+    "alpha2": [1],
+    "alpha3": [1.0625, 1.09375, 1.125],
+    "ratioRule": "closed-box-endpoints-and-midpoint.v1",
+    "phaseNodeCount": 24,
+    "phaseNodeRule": "theta-or-epsilon=2*pi*k/24-for-k=0-through-23.v1",
+    "phaseSeamRule": "node-23-connects-to-node-0-plus-2*pi.v1",
+    "dimensionlessDelay": [0.03125, 2.25],
+    "sameBinaryPhaseReduction": "phase-independent-exact-circular-equations.v1"
+  },
+  "sheetCharts": {
+    "chartSource": "sealed-root-sheet-summary-when-present; otherwise-reception-fixed",
+    "receptionFixed": {
+      "phaseVariable": "theta",
+      "rootFunction": "G(theta,delta)=squared-distance-delta^2"
+    },
+    "emissionFixed": {
+      "phaseVariable": "epsilon=(theta-delta)-modulo-two-pi",
+      "rootFunction": "H(epsilon,delta)=G(theta=epsilon+delta,delta)",
+      "receiverPhaseProjection": "theta(epsilon)=epsilon+delta(epsilon)",
+      "projectionDerivative": "dtheta/depsilon=(partial-G/partial-delta-at-fixed-theta)/(partial-H/partial-delta-at-fixed-epsilon)"
+    },
+    "projectionFoldObservation": "an opposite-sign adjacent-node bracket is recorded and refined; it is a prescribed-sheet observation, not a retained fold or physical caustic claim"
+  },
+  "rootSolve": {
+    "method": "bracketed-bisection-on-sealed-single-sheet-root.v1",
+    "iterations": 128,
+    "projectionFoldTreatment": "retain-adjacent-phase-node-bracket-and-endpoint-rows.v1",
+    "independentNormalizedResidualFloor": 1e-9,
+    "primaryIndependentDerivativeAgreementTolerance": 1e-7,
+    "endpointInversionSymmetryTolerance": 1e-12,
+    "phaseSeamTolerance": 1e-12,
+    "rootBracketRule": "positive-at-1/32-and-negative-at-9/4-for-every-declared-root-bearing-sheet.v1"
+  },
+  "controls": {
+    "sealed36ChannelAccountingRequired": true,
+    "independentResidualRecomputationRequiredForEverySampledRoot": true,
+    "independentDirectDerivativeAgreementRequiredForEverySampledRoot": true,
+    "endpointInversionSymmetryRequiredForAllInterBinaryGridRows": true,
+    "phaseSeamReplayRequiredAtTwoPi": true,
+    "syntheticProjectionFold": {
+      "derivative": "cos(phase)",
+      "requiredAdjacentSignChange": true
+    },
+    "syntheticMonotoneProjection": {
+      "derivative": "1",
+      "requiredAdjacentSignChange": false
+    },
+    "noRootSelfControl": {
+      "binaryIndices": [1, 2],
+      "requiredNontrivialRootCount": 0
+    },
+    "outerSelfControl": {
+      "binaryIndex": 3,
+      "requiredNontrivialRootCount": 1
+    }
+  },
+  "resources": {
+    "maximumSampledRootRows": 5400,
+    "maximumProjectionFoldBrackets": 512,
+    "maximumBisectionEvaluations": 800000
+  },
+  "completionRule": {
+    "statusWhenComplete": "evaluated-diagnostic",
+    "statusWhenAnyRequiredControlFails": "drawn-not-evaluated",
+    "score": null,
+    "projectionFoldObservationsDoNotChangeStatus": true,
+    "noCandidateDisposition": true
+  }
+}

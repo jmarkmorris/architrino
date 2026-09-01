@@ -449,9 +449,9 @@ export function enumerateBalancedPolarityClasses(n, { includeReflection = true }
   return [...classes.values()].sort((left, right) => left.canonicalWord.localeCompare(right.canonicalWord));
 }
 
-export function classifyPlanarRingTaxonomy({ n, phases, polarities, tolerance = 1e-10 } = {}) {
+export function classifyPlanarRingCharacteristics({ n, phases, polarities, tolerance = 1e-10 } = {}) {
   if (!Number.isSafeInteger(n) || n < 1 || phases?.length !== 2 * n || polarities?.length !== 2 * n) {
-    throw new TypeError("taxonomy classification requires n and exactly 2n phases and polarities.");
+    throw new TypeError("configuration classification requires n and exactly 2n phases and polarities.");
   }
   const antipodalPartners = phases.map((phase, index) => {
     let match = -1;
@@ -468,8 +468,8 @@ export function classifyPlanarRingTaxonomy({ n, phases, polarities, tolerance = 
   const allAntipodesNeutral = allAntipodesExist && antipodalPartners.every((partner, index) => polarities[partner] === -polarities[index]);
   if (n === 3 && allAntipodesNeutral) {
     return {
-      classification: "B1.3 equal-radius planar locus",
-      memberId: "B1.3",
+      classification: "equal-radius planar three-binary common-center locus",
+      configurationId: "planar-three-binary-common-center",
       coordinateMappingEstablished: true,
       scope: "equal-radius antipodal-neutral common-center common-axis common-frequency common-circulation locus",
       antipodalPartners,
@@ -478,9 +478,9 @@ export function classifyPlanarRingTaxonomy({ n, phases, polarities, tolerance = 
   }
   return {
     classification: n === 6 && allAntipodesNeutral
-      ? "twelve-member shared-circle assembly; not C5/C6 because d_C=0"
-      : `${n}:${n} shared-circle assembly outside B1.3 inventory`,
-    memberId: null,
+      ? "twelve-member single-circle assembly; not a coaxial-separated two-planar-braid configuration because the component-center separation is zero"
+      : `${n}:${n} single-circle assembly outside the six-member planar three-binary inventory`,
+    configurationId: null,
     coordinateMappingEstablished: false,
     scope: "planar equal-radius common-circle prescribed assembly",
     antipodalPartners,

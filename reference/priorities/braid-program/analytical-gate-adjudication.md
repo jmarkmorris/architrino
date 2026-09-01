@@ -69,18 +69,18 @@ The factors are time samples, Gauss-Legendre polar order, and azimuth count. All
 
 | Candidate | Worst frequency-resolved change, level 1 | Level 2 | Level 3 | Outcome |
 | --- | ---: | ---: | ---: | --- |
-| B1.3 | $1.0000000003$ | $2.9003\times10^{-6}$ | $2.5689\times10^{-9}$ | Recovers at level 2 and settles further at level 3 |
-| B1.1 control | $1.2118\times10^{-3}$ | $1.9553\times10^{-6}$ | $3.7166\times10^{-9}$ | Passes all levels |
-| C1 negative control | $1.8713$ | $1.6782$ | $1.3037$ | Remains rejected |
+| planar common-center three-binary constraint | $1.0000000003$ | $2.9003\times10^{-6}$ | $2.5689\times10^{-9}$ | Recovers at level 2 and settles further at level 3 |
+| axial-transverse coincident-axis three-binary interior control | $1.2118\times10^{-3}$ | $1.9553\times10^{-6}$ | $3.7166\times10^{-9}$ | Passes all levels |
+| coaxial-separated co-rotating two-component circular negative control | $1.8713$ | $1.6782$ | $1.3037$ | Remains rejected |
 
-At C1 level 3, exposure, anisotropy, retained spectral power, aggregate wake flux, and out-of-band coverage pass their declared gates. The remaining blocker is a transmitter-root-tagged frequency coefficient at radius $1$, so C1 remains unresolved rather than disproven.
+At level 3 for the coaxial-separated co-rotating two-component circular configuration, exposure, anisotropy, retained spectral power, aggregate wake flux, and out-of-band coverage pass their declared gates. The remaining blocker is a transmitter-root-tagged frequency coefficient at radius $1$, so the configuration remains unresolved rather than disproven.
 
 ### Source-sensitivity step ladder
 
 | Candidate | $h=\pi/64$ | $h=\pi/128$ | $h=\pi/256$ | Outcome |
 | --- | ---: | ---: | ---: | --- |
-| A1.2 | $0.0242803$ | $0.00628424$ | $0.00158536$ | Recovers after one step halving |
-| A2 | $0.0151602$ | $0.00383617$ | $0.000962031$ | Passes the corrected gate at every level |
+| coincident-midpoint equal-radius common-frequency orthogonal-axis three-binary configuration | $0.0242803$ | $0.00628424$ | $0.00158536$ | Recovers after one step halving |
+| phase-compensated equal-geometry orthogonal-axis three-binary configuration | $0.0151602$ | $0.00383617$ | $0.000962031$ | Passes the corrected gate at every level |
 
 Every perturbation retained matching root topology and an accepted perturbed surface/endpoint packet.
 
@@ -90,14 +90,14 @@ The complete five-candidate harness took $1389.41$ seconds on the operator's Mac
 
 - Surface ladders: $1246.43$ seconds, or $89.7\%$ of measured wall time.
 - Sensitivity ladders: $142.96$ seconds, or $10.3\%$.
-- C1 at the largest surface level alone took $424.41$ seconds.
+- The coaxial-separated co-rotating two-component circular configuration at the largest surface level alone took $424.41$ seconds.
 
 The next cohort protocol adopts level 2 surface resolution and the $h=\pi/128$, $h/2=\pi/256$ sensitivity stencil. Level 3 should be reserved for changed or marginal verdicts rather than applied uniformly.
 
 ## Outstanding obligations
 
 1. Run the complete 19-candidate nonpublishing rebuild under the revised protocol and independent acceptance instrument.
-2. Determine whether C1's moving worst coefficient converges under a targeted frequency-only ladder, a larger retained harmonic band, or an error-bounded coefficient floor. Do not relax the five-percent gate while the discrepancy remains order one.
+2. Determine whether the coaxial-separated co-rotating two-component circular configuration's moving worst coefficient converges under a targeted frequency-only ladder, a larger retained harmonic band, or an error-bounded coefficient floor. Do not relax the five-percent gate while the discrepancy remains order one.
 3. Add checkpoint/resume support to the adjudication harness. Fine-grained surface heartbeats are implemented, but a terminated run still restarts the current report.
 4. Reassess radial-exponent rows with an uncertainty-aware positive-measure floor after the complete cohort rebuild.
 5. Publish a new SQLite generation only after the nonpublishing rebuild, targeted tests, deterministic export verification, and database integrity checks pass.

@@ -30,7 +30,7 @@ LIMIT_SECONDS = 1800
 HEARTBEAT_SECONDS = 15
 FIXED_BINDINGS = {
     "approved-config": (
-        "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json",
+        "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
         "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
     ),
     "pilot-fixture": (

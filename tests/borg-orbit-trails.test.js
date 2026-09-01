@@ -6,7 +6,7 @@ import { borgPolarityColor, borgTrailSegments, describeBorgOrbitTrails } from ".
 import { createBorgAssemblyViewScene } from "../src/apps/borg/BorgAssemblyViewScene.js";
 import { createBorgPathTrails } from "../src/apps/borg/BorgPathTrails.js";
 import { createEomHistoryDataset } from "../src/apps/shared/EomHistoryDataset.mjs";
-import { BORG_BRAID_RECORD_CATALOG } from "../src/apps/borg/BorgBraidRecordCatalog.js";
+import { BORG_ASSEMBLY_RECORD_CATALOG } from "../src/apps/borg/BorgAssemblyRecordCatalog.js";
 import { describeLibraryRecord, createLibraryPreview } from "../src/apps/borg/library/BorgLibraryDescriptors.mjs";
 
 // Hand-authored source controls: x=(cos T,sin T,0), -x; c_f=1.
@@ -20,7 +20,7 @@ function paired(height=0) {
   }}},window:{start:0,end:8},worldlines:[{id:"0",polarity:1},{id:"1",polarity:-1}] };
 }
 
-test("shared antipodal circle has two half-turn tails; separate circles each have a full turn",()=>{
+test("a two-occupant antipodal circle has two half-turn tails; separate circles each have a full turn",()=>{
   for(const height of [0,0.5]) {
     const rows=[...describeBorgOrbitTrails(paired(height)).values()];
     assert.deepEqual(rows.map(r=>r.duration),[height?2*Math.PI:Math.PI,height?2*Math.PI:Math.PI]);
@@ -31,7 +31,7 @@ test("shared antipodal circle has two half-turn tails; separate circles each hav
   assert.ok([...describeBorgOrbitTrails(reverse).values()].every(r=>r.duration===Math.PI));
 });
 
-test("shared geometry without confirmed antipodal ownership never invents a binary split",()=>{
+test("multiply occupied geometry without confirmed antipodal ownership never invents a binary split",()=>{
   const data=paired();
   data.provenance.prescribedGeometry.coordinates.relationships.neutralPairs=[];
   assert.ok([...describeBorgOrbitTrails(data).values()].every(r=>r.mode==="unavailable"));
@@ -67,12 +67,9 @@ test("live retained and compacted paths ignore alternate style colors and reject
 });
 
 test("all catalog scenes and library previews share expected per-worldline spans and exact colors",()=>{
-  // Source geometry: A1 and planar B1.3 components are coincident antipodal
-  // circles; axially separated partners have distinct dedicated circles.
-  const shared=new Set(["A1.0","A1.1","A1.2","A1.3","A1.4","B1.3","C5","C6"]);
-  for(const entry of BORG_BRAID_RECORD_CATALOG.entries) {
-    const raw=JSON.parse(readFileSync(entry.recordUrl)),dataset=createEomHistoryDataset(raw),alias=entry.label.split(" —")[0];
-    const expected=alias==="SC-01"?"half-turn":/^(SC-|SS-)/.test(alias)?"shared-arc":shared.has(alias)?"half-turn":alias==="SD3"?"record-window":alias==="F5"?"full-cycle":"full-turn";
+  for(const entry of BORG_ASSEMBLY_RECORD_CATALOG.entries) {
+    const raw=JSON.parse(readFileSync(entry.recordUrl)),dataset=createEomHistoryDataset(raw);
+    const policies=describeBorgOrbitTrails(dataset);
     const root=new THREE.Group(),scene=createBorgAssemblyViewScene({group:root,toWorld:(p,v)=>v.set(p.x,p.y,p.z),render(){}});
     scene.setRecord({dataset});scene.setDisplayMode("chart-pose");scene.updateTime(dataset.window.end);
     const group=root.children.find(g=>g.userData.kind==="prescribed-path-history-strands");
@@ -80,13 +77,15 @@ test("all catalog scenes and library previews share expected per-worldline spans
     assert.equal(group.children.length,dataset.worldlines.length);
     group.children.forEach((line,i)=>{
       const trail=line.userData.trailPolicy,segments=line.userData.visibleSegments;
-      assert.equal(trail.mode,expected,alias);assert.equal(preview.paths[i].trailMode,expected,alias);
+      const expected=policies.get(dataset.worldlines[i].id).mode;
+      assert.equal(trail.mode,expected,entry.label);assert.equal(preview.paths[i].trailMode,expected,entry.label);
       assert.equal(line.material.color.getHex(),dataset.worldlines[i].polarity===1?0xff0000:0x0000ff);
       assert.equal(line.material.opacity,1);assert.equal(line.material.vertexColors,true);
-      assert.ok(segments.length>0,alias);assert.equal(segments.at(-1).end,dataset.window.end);
+      if(expected==="unavailable") { assert.equal(segments.length,0,entry.label); return; }
+      assert.ok(segments.length>0,entry.label);assert.equal(segments.at(-1).end,dataset.window.end);
       assert.ok(Math.abs(segments[0].start-Math.max(dataset.window.start,dataset.window.end-trail.duration))<1e-10);
       assert.equal(segments.at(-1).endAlpha,1);
-      if(!["half-turn","shared-arc"].includes(expected))assert.ok(segments.every(s=>s.startAlpha===1&&s.endAlpha===1));
+      if(!["half-turn","multi-occupant-arc"].includes(expected))assert.ok(segments.every(s=>s.startAlpha===1&&s.endAlpha===1));
     });
     scene.updateTime(dataset.window.start);
     assert.ok(group.children.every(line=>line.geometry.drawRange.count===0));

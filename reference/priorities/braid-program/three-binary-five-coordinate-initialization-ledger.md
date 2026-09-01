@@ -5,24 +5,24 @@
 - Owner: [Braid Program](priorities.md)
 - Kind: focused priority-side exact initialization derivation and pre-EOM ledger
 - Created: 2026-08-24
-- Permanent short name: `SD3`, meaning sector-differential three-pair geometry; provenance-bound `candidateB` machine fields retain their recorded schema names
+- Configuration name: `centered five-coordinate representative`, meaning sector-differential three-pair geometry
 - Registry status: admitted candidate on the strength of the exact centered five-coordinate position-and-velocity chart; no retained branch is implied
 - Claim level: derived affine geometry, measured implementation checks, and a geometry-only authorization boundary
-- Parent comparison: [Pair-Conjugate And Sector-Differential Three-Binary Geometry](three-binary-orbiting-endpoint-comparison.md)
-- Scope: one common A2 seed, five position coordinates, five rate coordinates, exact whole centering, inverse maps, tangent metrics, collision and normalized-speed guards
+- Source comparison: [Pair-Conjugate And Sector-Differential Three-Binary Geometry](three-binary-orbiting-endpoint-comparison.md)
+- Scope: one common phase-compensated equal-geometry orthogonal-axis seed, five position coordinates, five rate coordinates, exact whole centering, inverse maps, tangent metrics, collision and normalized-speed guards
 - Exclusions: no Master Equation evaluation, causal-root certificate, binding, return, retention, stability, current, spin, electromagnetic recovery, particle identity, or EOM solver result
 
-**Decision: the five-coordinate initialization prerequisite closes, with one exact non-equivalence recorded in the ledger.** Both candidates now have injective affine maps from the same five length coordinates and five speed coordinates, the same declared center and group velocity, the same six-member root-mean-square displacement and speed metric, and an exactly identical three-coordinate A2 locus. Their remaining two directions cannot be memberwise identical: Candidate A must preserve polarity-antisymmetric pair conjugacy, whereas SD3's two additional centered directions are polarity-symmetric pair-midpoint motion. The selected Candidate-A complement is a seed-derived, zero-sum cyclic scale doublet with the same norm and coordinate units.
+**Decision: the five-coordinate initialization prerequisite closes, with one exact non-equivalence recorded in the ledger.** Both candidates now have injective affine maps from the same five length coordinates and five speed coordinates, the same declared center and group velocity, the same six-member root-mean-square displacement and speed metric, and an exactly identical three-coordinate phase-compensated equal-geometry locus. Their remaining two directions cannot be memberwise identical: Candidate A must preserve polarity-antisymmetric pair conjugacy, whereas centered five-coordinate representative's two additional centered directions are polarity-symmetric pair-midpoint motion. The selected Candidate-A complement is a seed-derived, zero-sum cyclic scale doublet with the same norm and coordinate units.
 
-Plainly: the earlier six-to-six comparison failed because one SD3 parameter moved the whole assembly. The repaired comparison uses five real shape directions on each side. Three directions are literally the same motion. The other two are normalized competitor modes: Candidate A changes conjugate-pair scales, while SD3 moves pair midpoints without moving the whole center.
+Plainly: the earlier six-to-six comparison failed because one centered five-coordinate representative parameter moved the whole assembly. The repaired comparison uses five real shape directions on each side. Three directions are literally the same motion. The other two are normalized competitor modes: Candidate A changes conjugate-pair scales, while centered five-coordinate representative moves pair midpoints without moving the whole center.
 
 This result changes the previous pre-EOM status from “missing matched chart” to **go for authoring one bounded five-coordinate EOM solver comparison protocol**. That authorized comparison is now complete in [Bounded Five-Coordinate Three-Binary EOM Comparison](three-binary-five-coordinate-bounded-eom-comparison.md) for the one declared row through $T=0.15$. It does not authorize interpreting the measured difference as the effect of pair conjugacy alone. Away from the common three-coordinate locus, the polarity parity and fixed-history symmetry of the two structural complements differ as a mathematical consequence of the competing geometry.
 
-Plainly: a bounded dynamical comparison can now be specified fairly, but its result would compare two complete geometry packages. SD3 keeps exact threefold symmetry while breaking pair antipodality; Candidate A keeps pair antipodality while its two extra module-scale modes break pointwise threefold symmetry.
+Plainly: a bounded dynamical comparison can now be specified fairly, but its result would compare two complete geometry packages. centered five-coordinate representative keeps exact threefold symmetry while breaking pair antipodality; Candidate A keeps pair antipodality while its two extra module-scale modes break pointwise threefold symmetry.
 
 ## Common Frame And Seed
 
-Retain the orthonormal axes, order-three map $Q$, phase offsets $phi_a=2pi(a-1)/3$, and transverse frames from the parent comparison. Define
+Retain the orthonormal axes, order-three map $Q$, phase offsets $phi_a=2pi(a-1)/3$, and transverse frames from the source comparison. Define
 
 $$
 \hat{\mathbf k}=\frac{1}{\sqrt3}(1,1,1),
@@ -32,9 +32,9 @@ $$
 \mathbf b_s=\frac{1}{\sqrt6}(1,1,-2).
 $$
 
-Then $(\mathbf b_c,\mathbf b_s,\hat{\mathbf k})$ is an orthonormal frame and $\mathbf b_c,\mathbf b_s\in\hat{\mathbf k}^{\perp}$. The subscript labels are local cosine and sine coordinate labels, not new braid-family terminology.
+Then $(\mathbf b_c,\mathbf b_s,\hat{\mathbf k})$ is an orthonormal frame and $\mathbf b_c,\mathbf b_s\in\hat{\mathbf k}^{\perp}$. The subscript labels are local cosine and sine coordinate labels, not new braid-taxonomy terminology.
 
-Choose one A2 seed at the initialization time $T_0$:
+Choose one phase-compensated equal-geometry orthogonal-axis seed at the initialization time $T_0$:
 
 $$
 \mathbf d_0
@@ -62,7 +62,7 @@ $$
 
 Claim grade: **derived**. The displayed vectors supply an orthonormal cyclic-axis frame, and $R_0>0$ makes the seed-derived scale direction $\mathbf g$ unique. A nonorthogonal reconstructed frame or a zero seed displacement falsifies this ledger declaration.
 
-Plainly: both candidates start from the same A2 member positions and velocities. The two transverse vectors span every direction that is not a translation along the threefold axis. The unit vector $\mathbf g$ points along the seed binary displacement and gives Candidate A a scale direction without adding an external preferred axis.
+Plainly: both candidates start from the same phase-compensated equal-geometry member positions and velocities. The two transverse vectors span every direction that is not a translation along the threefold axis. The unit vector $\mathbf g$ points along the seed binary displacement and gives Candidate A a scale direction without adding an external preferred axis.
 
 ## Five Shared Coordinate Labels
 
@@ -110,7 +110,7 @@ $$
 
 Because $\mathbf w,\dot{\mathbf w}\perp\hat{\mathbf k}$, neither contains the removed common translation coordinate $\gamma$ or its rate.
 
-Plainly: the first three controls are the same axial, radial, and tangential displacement of the common A2 representative. The last two controls span the only two allowed sideways directions around the cyclic axis. Expressing every control as a length prevents an angular coordinate from receiving a misleading equal numerical amplitude.
+Plainly: the first three controls are the same axial, radial, and tangential displacement of the common phase-compensated equal-geometry representative. The last two controls span the only two allowed sideways directions around the cyclic axis. Expressing every control as a length prevents an angular coordinate from receiving a misleading equal numerical amplitude.
 
 ## Candidate A Map: Pair-Conjugate Scale Doublet
 
@@ -159,7 +159,7 @@ $$
 \right).
 $$
 
-This map stays inside generic A3 wherever the reconstructed transverse radii are nonzero and stays pair conjugate everywhere. The identities
+This map stays inside the generic axially separated orthogonal-axis chart wherever the reconstructed transverse radii are nonzero and stays pair conjugate everywhere. The identities
 
 $$
 \sum_a\cos\phi_a
@@ -177,11 +177,11 @@ $$
 =\frac32
 $$
 
-make the scale doublet orthogonal to all three common A2 directions and normalize its two columns.
+make the scale doublet orthogonal to all three common phase-compensated equal-geometry directions and normalize its two columns.
 
-Plainly: Candidate A spends its last two controls making the three pair sizes unequal in the two independent zero-sum patterns available around a three-member cycle. Every negative member remains the exact opposite of its positive partner, so the price of leaving A2 is loss of pointwise threefold symmetry rather than loss of pair conjugacy.
+Plainly: Candidate A spends its last two controls making the three pair sizes unequal in the two independent zero-sum patterns available around a three-member cycle. Every negative member remains the exact opposite of its positive partner, so the price of leaving the phase-compensated equal-geometry locus is loss of pointwise threefold symmetry rather than loss of pair conjugacy.
 
-## SD3 Map: Gauge-Fixed Midpoint Doublet
+## Centered Five-Coordinate Representative Map: Gauge-Fixed Midpoint Doublet
 
 Define the two module-one representatives
 
@@ -195,7 +195,7 @@ $$
 -\mathbf d_0-\mathbf v+\mathbf w.
 $$
 
-The SD3 position and velocity rows are
+The centered five-coordinate representative position and velocity rows are
 
 $$
 \mathbf X_{a,+}^{B}
@@ -254,7 +254,7 @@ $$
 
 The same equations hold for $\dot\gamma$ and the center-relative velocity sum.
 
-Plainly: SD3 spends its last two controls moving both polarities of one labeled pair in the same sideways direction. The other two pair midpoints follow by cyclic rotation. Their three shifts balance exactly, so the assembly center and group velocity stay fixed without concealing another coordinate in a centroid correction.
+Plainly: centered five-coordinate representative spends its last two controls moving both polarities of one labeled pair in the same sideways direction. The other two pair midpoints follow by cyclic rotation. Their three shifts balance exactly, so the assembly center and group velocity stay fixed without concealing another coordinate in a centroid correction.
 
 ## Exact Common Locus And Non-Match Theorem
 
@@ -276,9 +276,9 @@ $$
 \sigma Q^{a-1}(\mathbf d_0+\mathbf v),
 $$
 
-with the same velocity. This is the shared three-coordinate A2 locus.
+with the same velocity. This is the shared three-coordinate phase-compensated equal-geometry locus.
 
-At that locus, every centered SD3 tangent has the form
+At that locus, every centered five-coordinate representative tangent has the form
 
 $$
 \delta\mathbf X_{a,+}^{B}
@@ -290,13 +290,13 @@ Q^{a-1}(\delta\mathbf v+\delta\mathbf w),
 Q^{a-1}(-\delta\mathbf v+\delta\mathbf w),
 $$
 
-where $\delta\mathbf v\in\mathbb R^3$ and $\delta\mathbf w\in\hat{\mathbf k}^{\perp}$. Candidate A requires $\delta\mathbf X_{a,-}^{A}=-\delta\mathbf X_{a,+}^{A}$ for every module. An SD3 tangent can satisfy that condition only if $\delta\mathbf w=\mathbf0$. Therefore
+where $\delta\mathbf v\in\mathbb R^3$ and $\delta\mathbf w\in\hat{\mathbf k}^{\perp}$. Candidate A requires $\delta\mathbf X_{a,-}^{A}=-\delta\mathbf X_{a,+}^{A}$ for every module. An centered five-coordinate representative tangent can satisfy that condition only if $\delta\mathbf w=\mathbf0$. Therefore
 
 $$
 \dim(T_A\cap T_B)=3,
 $$
 
-and no five Candidate-A directions can be memberwise identical to the five centered SD3 directions. The SD3 midpoint complement is also orthogonal in six-member Euclidean position space to every polarity-antisymmetric Candidate-A perturbation.
+and no five Candidate-A directions can be memberwise identical to the five centered five-coordinate representative directions. The centered five-coordinate representative midpoint complement is also orthogonal in six-member Euclidean position space to every polarity-antisymmetric Candidate-A perturbation.
 
 Claim grade: **derived**. Adding and subtracting the two polarity rows proves the intersection and orthogonality. A nonzero $\delta\mathbf w$ that also obeys pair conjugacy would falsify the theorem.
 
@@ -335,7 +335,7 @@ $$
 \sum_a\eta_a\sin\phi_a.
 $$
 
-For SD3, use the module-one center-relative rows $\mathbf p_+=\mathbf X_{1,+}^{B}-\mathbf C$ and $\mathbf p_-=\mathbf X_{1,-}^{B}-\mathbf C$. The superscript $B$ is retained as a provenance-bound formula label from the original two-column derivation. Then
+For centered five-coordinate representative, use the module-one center-relative rows $\mathbf p_+=\mathbf X_{1,+}^{B}-\mathbf C$ and $\mathbf p_-=\mathbf X_{1,-}^{B}-\mathbf C$. The superscript $B$ is retained as a provenance-bound formula label from the original two-column derivation. Then
 
 $$
 \mathbf v
@@ -410,10 +410,10 @@ Plainly: the same five-number perturbation has the same total size and the same 
 
 ## Initialization Ledger
 
-| Ledger field | Candidate A | SD3 | Exact comparison status |
+| Ledger field | Candidate A | centered five-coordinate representative | Exact comparison status |
 | --- | --- | --- | --- |
 | member inventory and labels | three $+/-$ pairs | three $+/-$ module labels | identical |
-| base positions and velocities | common A2 seed | same common A2 seed | identical at $\xi_c=\xi_s=\dot\xi_c=\dot\xi_s=0$ |
+| base positions and velocities | common phase-compensated equal-geometry seed | same common phase-compensated equal-geometry seed | identical at $\xi_c=\xi_s=\dot\xi_c=\dot\xi_s=0$ |
 | center and group velocity | declared $\mathbf C,\dot{\mathbf C}$ | same declared $\mathbf C,\dot{\mathbf C}$ | identical and exact |
 | first three coordinates | common axial, radial, tangential length | same | memberwise identical |
 | final two coordinates | zero-sum cyclic pair-scale doublet | transverse pair-midpoint doublet | same units and metric; different polarity parity |
@@ -428,7 +428,7 @@ Plainly: the same five-number perturbation has the same total size and the same 
 | speed guard | every member speed below $c_f=1$ | same | checked separately |
 | causal history | not supplied by this ledger | not supplied by this ledger | required before EOM evaluation |
 
-Plainly: the ledger makes every equality and every remaining difference explicit. It does not describe the last two controls as identical motions; it proves that they are the same size, use the same units, and occupy the two competitor-specific directions left after the common A2 motions are removed.
+Plainly: the ledger makes every equality and every remaining difference explicit. It does not describe the last two controls as identical motions; it proves that they are the same size, use the same units, and occupy the two competitor-specific directions left after the common phase-compensated equal-geometry motions are removed.
 
 ## Instrument And Measured Sample
 
@@ -456,7 +456,7 @@ $$
 
 the instrument measured:
 
-| Check | Candidate A | SD3 |
+| Check | Candidate A | centered five-coordinate representative |
 | --- | ---: | ---: |
 | tangent rank | $5$ | $5$ |
 | maximum $|J^{\mathsf T}J-6I_5|$ | $2.23\times10^{-15}$ | $2.67\times10^{-15}$ |
@@ -467,7 +467,7 @@ the instrument measured:
 | maximum member speed in $c_f=1$ units | $0.1144985399$ | $0.1295661680$ |
 | cyclic fixed-history residual | $0.0352538031$ | $0$ |
 
-The SD3 gauge residual was $1.61\times10^{-17}$, its gauge-rate residual was $8.68\times10^{-19}$, and the common-locus position and velocity residuals were exactly zero in the implementation.
+The centered five-coordinate representative gauge residual was $1.61\times10^{-17}$, its gauge-rate residual was $8.68\times10^{-19}$, and the common-locus position and velocity residuals were exactly zero in the implementation.
 
 Claim grade: **measured** by the named initialization instrument on the immutable declared sample. Rerunning the command and obtaining values outside the declared floating-point tolerances falsifies the receipt. The measurements establish implementation consistency, sample clearance, and sample speed allocation only.
 
@@ -477,9 +477,9 @@ Plainly: the numerical audit reconstructs every input coordinate, confirms that 
 
 The geometry prerequisite is **go** only for a bounded comparison whose initialization rows preserve all of the following:
 
-1. one immutable common A2 seed and one immutable center history prefix;
-2. the exact five coordinates and rates above, with no sixth SD3 internal parameter;
-3. $\gamma=\dot\gamma=0$ for SD3;
+1. one immutable common phase-compensated equal-geometry seed and one immutable center history prefix;
+2. the exact five coordinates and rates above, with no sixth centered five-coordinate representative internal parameter;
+3. $\gamma=\dot\gamma=0$ for centered five-coordinate representative;
 4. the $6I_5$ tangent metric and exact inverse-map provenance;
 5. all 15 labeled pair clearances and every member speed in $c_f=1$ units;
 6. the recorded distinction between three shared directions and two orthogonal structural complements;
@@ -495,7 +495,7 @@ Plainly: the initialization question is closed. The dynamics question is untouch
 | Claim | Grade | Operator-checkable falsifier |
 | --- | --- | --- |
 | both initialization maps are injective | derived | either displayed left inverse fails on an admissible labeled state |
-| SD3 has no group-translation coordinate | derived | $\gamma$ or $\dot\gamma$ is nonzero for a declared ledger row |
+| centered five-coordinate representative has no group-translation coordinate | derived | $\gamma$ or $\dot\gamma$ is nonzero for a declared ledger row |
 | both tangent metrics equal $6I_5$ | derived and measured | exact column products or the focused audit disagree |
 | the common memberwise tangent has dimension three | derived | a nonzero midpoint mode also satisfies pair conjugacy |
 | the two structural complements are orthogonal by polarity parity | derived | their six-member Euclidean inner product is nonzero |
@@ -510,8 +510,8 @@ Plainly: the ledger proves what was needed to start a fair bounded comparison an
 
 - The six-to-six no-go remains correct and is not weakened.
 - The exact five-coordinate repair is complete in this document, the focused implementation, and its tests.
-- Session 22 remains priority-side under existing Family-A terminology; no new canonical family name is introduced.
+- Session 22 remains priority-side under existing orthogonal-axis three-binary terminology; no separate catalog record is introduced.
 - The mapping-electromagnetism queue and `EMAP-001` are unchanged because this focused geometry request does not complete an accepted electromagnetic recovery object.
-- The separate bounded EOM solver artifact is complete for the one declared row and does not generalize its result to the full A3 family.
+- The separate bounded EOM solver artifact is complete for the one declared row and does not generalize its result to the full axially separated orthogonal-axis chart.
 
-Closure goal: preserve the completed bounded result at its one-row scope and require a separately predeclared covering campaign before making any full-A3-family inference.
+Closure goal: preserve the completed bounded result at its one-row scope and require a separately predeclared covering campaign before making any inference over the full axially separated orthogonal-axis chart.

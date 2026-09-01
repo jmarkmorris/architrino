@@ -969,7 +969,7 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 - [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md)
 - [synthetic-observables](../../../content/markdown/aaa/validation/simulations/synthetic-observables.md)
 - [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md)
-- [planck-scale-nested-shell-braid-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md)
+- [Planck-scale coincident-midpoint orthogonal-axis alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md)
 
 ## Preserved Implementation Contracts
 

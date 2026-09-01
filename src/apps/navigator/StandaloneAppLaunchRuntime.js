@@ -9,6 +9,7 @@ const standaloneAppPathBySceneToken = Object.freeze({
   archie__ideal_braid: "ideal-braid.html",
   archie__photon: "photon.html",
   archie__website_stats: "website-stats.html",
+  archie__brand_visual_identity: "brand-visual-identity.html",
   "braid-search": "braid-search.html",
   borg: "borg.html",
   "content/scenes/archie/animator.json": "animator.html",
@@ -22,6 +23,7 @@ const standaloneAppPathBySceneToken = Object.freeze({
   "content/scenes/archie/topo.json": "topo.html",
   "content/scenes/archie/molecule.json": "molecule.html",
   "content/scenes/archie/website_stats.json": "website-stats.html",
+  "content/scenes/archie/brand_visual_identity.json": "brand-visual-identity.html",
   "content/scenes/chemistry/molecule.json": "molecule.html",
   molecule: "molecule.html",
 });
