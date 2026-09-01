@@ -283,6 +283,152 @@ The sites in the last column are not additional vertices of the regular solid. T
 
 Plainly: the nested solids can divide the grid points into complete cubical, octahedral, or tetrahedral layers, but only when every point on each layer is counted. Keeping only the four, six, or eight corner sites leaves nearly the entire lattice unused and does not make a shell.
 
+#### Space-Filling Honeycombs and the Three-Shape Boundary
+
+The shell constructions above partition lattice sites by a level-set index. A polyhedral honeycomb asks a different question: whether closed three-dimensional cells cover Euclidean space with disjoint interiors. In a *face-to-face* honeycomb, the intersection of two cells is empty or is one complete face, edge, or vertex of each cell. This stronger condition makes the tetrahedron–octahedron construction exact and also gives a sharp boundary on mixing cubes into the same honeycomb.
+
+Split the simple-cubic point set into its two checkerboard parity classes
+
+$$
+\Lambda_0=\{a\mathbf k:\mathbf k\in\mathbb Z^3,\ k_1+k_2+k_3\equiv0\pmod2\},
+\qquad
+\Lambda_1=\{a\mathbf k:\mathbf k\in\mathbb Z^3,\ k_1+k_2+k_3\equiv1\pmod2\}.
+$$
+
+Each class is an FCC lattice with conventional cubic side $2a$ and nearest-neighbor distance $\sqrt2a$. For every $\mathbf u\in\Lambda_1$, define the octahedron
+
+$$
+\mathcal O_{\mathbf u}
+=
+\operatorname{conv}\{\mathbf u\pm a\mathbf e_1,\mathbf u\pm a\mathbf e_2,\mathbf u\pm a\mathbf e_3\}.
+$$
+
+For each unit simple-cubic cell indexed by $\mathbf k\in\mathbb Z^3$, define the tetrahedron from its four even-parity corners
+
+$$
+\mathcal T_{\mathbf k}
+=
+\operatorname{conv}
+\left\{
+a(\mathbf k+\boldsymbol\delta):
+\boldsymbol\delta\in\{0,1\}^3,
+\ \sum_{i=1}^3(k_i+\delta_i)\equiv0\pmod2
+\right\}.
+$$
+
+Every cell in $\{\mathcal T_{\mathbf k}\}\cup\{\mathcal O_{\mathbf u}\}$ is regular with edge $\sqrt2a$. Direct comparison of the triangular supporting planes shows that their interiors are disjoint and that each triangular face is shared by one tetrahedron and one octahedron. The periodic cell densities and volumes are
+
+$$
+\nu_{\mathrm T}=\frac1{a^3},
+\qquad
+\nu_{\mathrm O}=\frac1{2a^3},
+\qquad
+V_{\mathrm T}=\frac{a^3}{3},
+\qquad
+V_{\mathrm O}=\frac{4a^3}{3},
+$$
+
+so $\nu_{\mathrm T}V_{\mathrm T}+\nu_{\mathrm O}V_{\mathrm O}=1$ and the cell-count ratio is $\nu_{\mathrm T}:\nu_{\mathrm O}=2:1$. Around every honeycomb edge, two tetrahedra and two octahedra alternate. Their internal dihedral angles satisfy
+
+$$
+\theta_{\mathrm T}=\arccos\!\left(\frac13\right),
+\qquad
+\theta_{\mathrm O}=\arccos\!\left(-\frac13\right)=\pi-\theta_{\mathrm T},
+\qquad
+2\theta_{\mathrm T}+2\theta_{\mathrm O}=2\pi.
+$$
+
+This is the tetrahedral–octahedral honeycomb, also called the alternated cubic honeycomb. Nicholas Matteo's classification of face-to-face two-orbit tilings identifies the same honeycomb as the three-dimensional quasiregular case; see *Two-Orbit Convex Polytopes and Tilings*, *Discrete & Computational Geometry* **55** (2016), 296–313, [doi:10.1007/s00454-015-9754-2](https://doi.org/10.1007/s00454-015-9754-2), [arXiv:1403.2125](https://arxiv.org/abs/1403.2125). The coordinate construction above independently establishes the particular realization used here.
+
+Plainly: the even checkerboard sites are the complete vertex set of a gapless three-dimensional jigsaw made from regular tetrahedra and octahedra of one edge length. There are exactly two tetrahedral cells for every octahedral cell.
+
+The unused checkerboard class has an exact geometric role. Every $\mathbf u\in\Lambda_1$ is the center of the octahedral cell $\mathcal O_{\mathbf u}$, while its six nearest neighbors in $\Lambda_0$ are that octahedron's vertices. Conversely, every site in $\Lambda_0$ has six nearest neighbors in $\Lambda_1$. Thus the complete checkerboard simple-cubic point set has the same two-interpenetrating-FCC and sixfold opposite-class coordination geometry as the conventional rock-salt structure. This is a point-set comparison only: it imports neither a chemical bond rule nor a physical selection mechanism into $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+The distinction between a honeycomb and a lattice assembly remains essential. The tetrahedral–octahedral honeycomb uses $\Lambda_0$ as its vertex set; the sites in $\Lambda_1$ are cell centers, not additional honeycomb vertices. If both parity classes are occupied by architrinos, the center sites become additional assembly members and require their own polarities, histories, and complete delayed-acceleration rows.
+
+Plainly: the second polarity class is not geometrically unexplained, but including it physically changes the member inventory. In the honeycomb it labels octahedron centers; in a full checkerboard assembly those centers are occupied sites as well.
+
+The full simple-cubic point set separately supports the ordinary cubic honeycomb
+
+$$
+\mathcal C_{\mathbf k}=a\bigl(\mathbf k+[0,1]^3\bigr),
+\qquad
+\mathbf k\in\mathbb Z^3.
+$$
+
+The cubic and tetrahedral–octahedral honeycombs are two complete decompositions of the same Euclidean space, not cell sets that can be superposed without overlap. More strongly, an intact regular cube cannot occur together with intact regular tetrahedral or octahedral cells in one connected face-to-face honeycomb. Every cube facet is a square, whereas every tetrahedron and octahedron facet is a triangle. A cube facet must therefore meet another cube facet. The facet-adjacency graph of a face-to-face honeycomb of connected Euclidean space is connected, so the presence of one cube forces every facet-adjacent cell, and hence every cell, to be a cube. This obstruction does not depend on a common edge length.
+
+The conclusion is scoped to intact regular cells in a face-to-face honeycomb. It does not classify non-face-to-face contacts, subdivided cube faces, compound supercells, truncated or deformed cells, or other nonregular space fillings. Those are different tiling problems and cannot be inferred from the two honeycombs above.
+
+Plainly: cubes tile space, and regular tetrahedra plus regular octahedra tile space, but the three regular cell types cannot all participate in one ordinary face-matched honeycomb. A construction that cuts faces into smaller pieces or changes the cells leaves that theorem's domain.
+
+> Claim grade: derived. The coordinate construction, face incidences, cell densities, volumes, and exact dihedral-angle identity establish the tetrahedral–octahedral honeycomb and its $2:1$ cell ratio. The square-versus-triangle facet argument excludes any connected face-to-face honeycomb containing all three intact regular cell types. A coordinate point lying in two cell interiors, an uncovered positive-volume region, an incorrect face incidence or density, or a face-to-face counterexample containing a regular cube together with a regular tetrahedron or octahedron would overturn the corresponding claim. The rock-salt identification is a geometric comparison and is falsified by failure of either parity class to form an FCC lattice or failure of sixfold opposite-class nearest-neighbor coordination.
+
+#### Periodic Polarity Decorations of the Simple-Cubic Ladders
+
+The same simple-cubic point set supports distinct periodic polarity maps. For the app's axis convention, let $\mathbf x=a(i,j,k)$ and assign the origin positive polarity. The alternating-plane and checkerboard maps are
+
+$$
+s_{\mathrm{plane}}(i,j,k)=(-1)^k,
+\qquad
+s_{\mathrm{check}}(i,j,k)=(-1)^{i+j+k}.
+$$
+
+The first map makes each plane of constant $k$ monochromatic and alternates polarity between adjacent planes along $Z$. The second changes polarity across every axial nearest-neighbor step. Its two polarity classes are the even- and odd-coordinate-sum subsets of $\mathbb Z^3$; after multiplication by $a$, each class is an FCC lattice with conventional cubic side $2a$, and the two classes are translates of one another. A lattice translation changes at most the names of the two polarities: translating by $(r,s,t)$ multiplies the plane map by $(-1)^t$ and the checkerboard map by $(-1)^{r+s+t}$. The polarity counts below are therefore translation-invariant even when the polarity names exchange.
+
+Plainly: alternating planes cut the grid into monochromatic slabs. The checkerboard instead splits the same grid into two interpenetrating three-dimensional point sets. Neither decoration changes which lattice positions exist.
+
+The following table evaluates the axis-aligned sets $C_n$, $O_n$, and $T_n$ exactly as displayed above. The origin is an anchoring vertex of $C_n$ and $T_n$, but it is the center of $O_n$; for odd $n$, the cube and tetrahedron centers are half-cell points rather than polarity-labelled lattice sites.
+
+| Shape | Alternating planes, $s_{\mathrm{plane}}$ | Checkerboard, $s_{\mathrm{check}}$ |
+|---|---|---|
+| Cube, $C_n$ | even $n$: monochromatic $8{:}0$; odd $n$: balanced $4{:}4$, with two monochromatic opposite faces | even $n$: monochromatic $8{:}0$; odd $n$: balanced $4{:}4$, with each polarity class forming a regular tetrahedron |
+| Octahedron, $O_n$ | even $n$: monochromatic $6{:}0$; odd $n$: unbalanced $4{:}2$, with the axial pair opposite to the four transverse vertices | monochromatic for every $n$; relative to the positive origin, the six vertices are positive for even $n$ and negative for odd $n$ |
+| Tetrahedron, $T_n$ | even $n$: monochromatic $4{:}0$; odd $n$: balanced $2{:}2$, with each polarity occupying one of a pair of opposite edges | monochromatic positive for every $n$ |
+
+These entries follow directly by evaluating the two exponents at every displayed vertex. They also delimit neutrality. For equal-magnitude opposite polarities, the alternating-plane cube at odd $n$, the alternating-plane tetrahedron at odd $n$, and the checkerboard cube at odd $n$ are neutral. The alternating-plane octahedron at odd $n$ is not neutral, and none of the monochromatic cases is neutral.
+
+For odd $n$, both cube decorations are also antipodal-alternating: opposite cube vertices have opposite polarities. The alternating-plane map groups those polarities by opposite faces, whereas the checkerboard map groups them into the two tetrahedra below. By contrast, opposite octahedral vertices always have the same parity because $-n\equiv n\pmod2$, so neither decoration produces an antipodal-alternating octahedron. The tetrahedron has no antipodal vertex pairs.
+
+Plainly: the checkerboard tetrahedron and octahedron stay within one polarity class at each scale. The odd checkerboard cube is the exceptional case in which the eight corners divide into two complete, oppositely labelled tetrahedra.
+
+For odd $n$, define the two checkerboard subsets of the cube by
+
+$$
+P_+=\left\{na(i,j,k):i,j,k\in\{0,1\},\ i+j+k\equiv0\pmod2\right\},
+\qquad
+P_-=C_n\setminus P_+.
+$$
+
+Both $P_+$ and $P_-$ are regular tetrahedral vertex sets with edge $\sqrt2na$, and $P_+\sqcup P_-=C_n$. Their compound is the classical *stella octangula*. The vertex sets themselves do not intersect. If $\mathbf c=na(1,1,1)/2$ is the cube center, the filled tetrahedra instead satisfy
+
+$$
+\operatorname{conv}(P_+)\cap\operatorname{conv}(P_-)
+=\left\{\mathbf c+\mathbf y:\|\mathbf y\|_1\leq\frac{na}{2}\right\},
+$$
+
+which is the regular octahedron whose six vertices are the cube's face centers. Thus “stella octangula” names the union of the dual tetrahedra, while their common filled region is the central octahedron.
+
+Plainly: the opposite-polarity tetrahedra use all eight cube corners and pass through one another. The star compound is their union, not their set intersection; the volume shared by the two solid tetrahedra has the shape of an octahedron.
+
+This is a prescribed polarity geometry, not by itself a physical realization. In particular, an acceleration result for the complete infinite checkerboard or alternating-plane lattice cannot be transferred to the eight-site cube by deleting every other lattice site: that deletion changes the complete causal-root acceleration sum. The compound therefore remains a geometric and polarity construction until a declared path history is evaluated for precisely its member inventory.
+
+The app's other periodic polarity decorations give additional exact consequences for the Platonic constructions displayed in this section.
+
+| Decorated point set | Exact consequence for the displayed Platonic families |
+|---|---|
+| BCC, opposite corner/body cosets | Every ladder confined to one conventional simple-cubic coset is monochromatic. The eight nearest neighbors of any site form a monochromatic cube whose polarity is opposite that of the central site. |
+| FCC, alternating $(001)$ site planes | Every ladder confined to one conventional simple-cubic coset is monochromatic. For the smaller FCC tetrahedral ladder, even $m$ is monochromatic and odd $m$ is $2{:}2$ on opposite edges. For the smaller octahedral ladder, even $m$ is monochromatic and odd $m$ is $4{:}2$. |
+| Diamond cubic, opposite FCC subnetworks | Every family confined to one FCC subnetwork is monochromatic. The four nearest neighbors of any site form a monochromatic regular tetrahedron with polarity opposite the central site. |
+| Ideal HCP, opposite A/B stacking positions | The scalable constructions confined to one A or B sublattice are monochromatic. The local packing tetrahedron described below is $3{:}1$, while the local octahedron is balanced $3{:}3$ with one monochromatic triangular face from each stacking position. |
+| Finite simple-cubic random $50/50$ configuration | No deterministic parity classification follows. Each candidate solid must be tested against the realized finite assignment and crop. |
+
+The checkerboard rule has no nearest-neighbor-opposite analogue on an FCC or HCP nearest-neighbor graph because each graph contains triangles. For the app's FCC alternating-plane decoration, an FCC site has four same-polarity and eight opposite-polarity nearest neighbors. For the app's ideal-HCP A/B decoration, a site has six same-polarity in-plane and six opposite-polarity out-of-plane nearest neighbors. BCC and diamond are different: their nearest-neighbor graphs are bipartite under the app's two-sublattice polarity assignments.
+
+Plainly: “two sublattices” does not imply the same polarity geometry in every lattice. BCC and diamond can reverse polarity across every nearest-neighbor edge. FCC and HCP cannot, because their nearest-neighbor triangles force at least one same-polarity edge.
+
+> Claim grade: derived. The simple-cubic table follows by substituting the displayed vertex coordinates into $s_{\mathrm{plane}}$ and $s_{\mathrm{check}}$. The stella-octangula statement follows from the two parity classes and their pairwise distances; the intersection formula follows from the eight facet inequalities of the two tetrahedra. The BCC, FCC, diamond, and HCP rows follow from the displayed coset or stacking-position assignments. Falsifier: a vertex whose evaluated parity gives a different table count, unequal pairwise edge lengths within either $P_+$ or $P_-$, a point belonging to exactly one side of the displayed convex-hull intersection equality, or a nearest-neighbor triangle admitting an opposite-polarity label on all three edges would invalidate the corresponding claim.
+
 #### Conventional-Cubic Cosets and Site Coverage
 
 Body-centered cubic and face-centered cubic are Bravais lattices in their own primitive bases, while diamond cubic is a periodic point set with a two-site basis. Relative to a conventional cubic cell of side $a$, however, all three admit exact decompositions into translated simple-cubic point sets. Define
@@ -375,6 +521,7 @@ The resulting site-coverage statement is separate from the existence table below
 | Diamond cubic | 8 | yes |
 | Ideal hexagonal close packing | 864 in the explicit $K$ decomposition | yes; no minimal coset count is asserted |
 | Simple cubic with alternating planes | 1 geometrically | yes; polarity labels are a separate restriction |
+| Simple cubic checkerboard | 1 geometrically | yes; polarity labels are a separate restriction |
 | Finite simple-cubic 50/50 configuration | not an infinite coset decomposition | not guaranteed after cropping |
 
 Plainly: for every infinite deterministic point set in the table, no site is permanently excluded from all three allowed Platonic vertex families. That is a coverage result obtained by moving the selected solid among translated sublattices. It is not a claim that one nested sequence uses every site, that the solids tile space, or that every site belongs to one common-center shell as a Platonic vertex.
@@ -387,15 +534,16 @@ Plainly: for every infinite deterministic point set in the table, no site is per
 | Diamond cubic | yes; inherited from either face-centered cubic sublattice | yes; inherits the FCC $ma/\sqrt2$ ladder | yes; inherits the FCC $ma/\sqrt2$ ladder, plus the local nearest-neighbor tetrahedron | no |
 | Ideal hexagonal close packing | yes; edge $6\sqrt2ma$ in the displayed family | yes; edge $6ma$ in the displayed family, in addition to the local packing motif | yes; edge $6ma$ in the displayed family, in addition to the local packing motif | no |
 | Simple cubic with alternating planes | geometrically the simple-cubic result; polarity is a separate condition | geometrically the simple-cubic result; polarity is a separate condition | geometrically the simple-cubic result; polarity is a separate condition | no |
+| Simple cubic checkerboard | geometrically the simple-cubic result; polarity is a separate condition | geometrically the simple-cubic result; polarity is a separate condition | geometrically the simple-cubic result; polarity is a separate condition | no |
 | Finite simple-cubic 50/50 configuration | conditional on the finite crop and any required polarity word; the underlying coordinates are simple cubic | same condition | same condition | no |
 
-The first six rows are periodic point sets; the final row is a finite nonperiodic configuration and therefore is not a seventh lattice type. The alternating-plane construction changes polarity labels, not occupied positions. In the axis-aligned simple-cubic examples above, requiring every selected vertex to have the same alternating-plane polarity restricts $n$ to even values; that is a property of those polarity-decorated examples, not a geometric restriction on the lattice. Likewise, randomness in a finite 50/50 configuration concerns the polarity assignment. It does not make the underlying simple-cubic vertex geometry probabilistic. A Borel–Cantelli-style “probability one” conclusion is not available for the present finite exact-50/50 sampler: it would first require a declared sequence of growing domains, a compatible probability law across that sequence, and a specified polarity event for each candidate solid.
+The first seven rows are periodic configurations, not seven distinct lattice types; the final row is a finite nonperiodic configuration. The alternating-plane and checkerboard constructions change polarity labels, not occupied positions. Their exact parity effects on the axis-aligned simple-cubic families are stated above; those effects are properties of the polarity-decorated examples, not geometric restrictions on the lattice. Likewise, randomness in a finite 50/50 configuration concerns the polarity assignment. It does not make the underlying simple-cubic vertex geometry probabilistic. A Borel–Cantelli-style “probability one” conclusion is not available for the present finite exact-50/50 sampler: it would first require a declared sequence of growing domains, a compatible probability law across that sequence, and a specified polarity event for each candidate solid.
 
 > Claim grade: derived. The negative icosahedral and dodecahedral result follows from the difference-lattice trace argument above. The positive cube, octahedron, and tetrahedron results follow from the displayed coordinates and the stated sublattice inclusions. The common-center parity rule follows from requiring the coordinates $\mathbf c\pm(na/2)\mathbf e_i$ to remain lattice points, and the shell counts follow from the three displayed level-set definitions. The BCC, FCC, and diamond site-coverage result follows from their displayed two-, four-, and eight-coset decompositions; the ideal-HCP coverage result follows from the orthogonal equal-length generators and their index-$432$ coefficient determinant in each of the two HCP sublattices. Falsifier: an exact icosahedral or dodecahedral vertex set in any listed point set would contradict the obstruction; an unequal asserted edge length, a displayed coordinate outside its claimed lattice, a host-lattice site outside every stated coset, a lattice site belonging to zero or two shells of one shell family, or a shell count differing from the stated polynomial would invalidate the corresponding positive claim.
 
-These are geometric embedding results only. They do not select a polarity word, specify a rotation axis or complete path history, establish delayed acceleration balance, or show that any lattice-selected polyhedron is retained under the Master Equation.
+The uncoloured embedding rows are geometric results only. The polarity-decoration subsection additionally selects and classifies particular polarity words, but neither level specifies a rotation axis or complete path history, establishes delayed acceleration balance for the isolated polyhedron, or shows that any lattice-selected polyhedron is retained under the Master Equation.
 
-Plainly: a large lattice can supply exact vertices for cubes, octahedra, and tetrahedra in every deterministic lattice family listed here, including ideal HCP. It cannot supply exact regular dodecahedral or icosahedral vertex sets. After the vertices are chosen, polarity and dynamics remain separate problems.
+Plainly: a large lattice can supply exact vertices for cubes, octahedra, and tetrahedra in every deterministic lattice family listed here, including ideal HCP. It cannot supply exact regular dodecahedral or icosahedral vertex sets. The point set does not choose polarity; the displayed decorations make particular choices, and dynamics remains a separate problem.
 
 ### The Discrete Inventory
 

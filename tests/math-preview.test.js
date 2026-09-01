@@ -78,6 +78,35 @@ test("section selection includes children and rejects absent or ambiguous headin
   assert.throws(() => selectSection(source + '\n## First\nAgain\n', 'First'), /found 2/);
 });
 
+test("section selection ignores setext-like lines inside display mathematics", () => {
+  const source = String.raw`# Document
+
+#### Target
+
+Before.
+
+$$
+\mathcal O_{\mathbf u}
+=
+\operatorname{conv}\{\mathbf u\pm\mathbf e_i\}
+$$
+
+After.
+
+#### Next
+
+Outside.
+`;
+  const selected = selectSection(source, 'Target');
+  assert.match(selected, /\\mathcal O_/);
+  assert.match(selected, /After\./);
+  assert.doesNotMatch(selected, /Outside\./);
+  const { html, receipt } = renderPreview(source, { section: 'Target' });
+  assert.equal(receipt.mathExpressions, 1);
+  assert.equal(mathCount(html), 1);
+  assert.match(html, /After\./);
+});
+
 test("invalid math fails rather than silently replacing or dropping the expression", () => {
   assert.throws(() => renderPreview('$\\unknownPreviewCommand{x}$'), /Math expression 1 failed/);
   assert.throws(() => renderPreview(String.raw`\[x`), /Unclosed math delimiter/);

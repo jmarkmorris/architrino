@@ -1,6 +1,6 @@
 # Braid-Assembly Taxonomy Migration
 
-Status: ACTIVE PLAN. The operator accepted the direction on 2026-08-31. No corpus, Borg, source-record, label, filename, or generated-artifact migration is completed by this plan.
+Status: ACTIVE PLAN. The operator accepted the direction on 2026-08-31 and selected exact-configuration identity with current-only indexes and no compatibility layer on 2026-09-01. No corpus, Borg, source-record, label, filename, or generated-artifact migration is completed by this plan.
 
 ## Closure Goal
 
@@ -29,6 +29,8 @@ Each configuration is identified in prose and Borg by:
 - one explicit characteristic row and path prescription.
 
 Do not invent replacement letter or number families. When two records share facts, filters expose those common characteristics without creating a parent class. When a short display label cannot state every fact, the exact characteristic row and opaque identity disambiguate it. Opaque codes may remain only inside this active migration plan and its matrix long enough to locate current artifacts; they disappear when the migration closes and the plan is removed.
+
+`assemblyId` denotes exactly one scientific configuration. Any change to inventory, polarity assignment, persistent member order, component relations, coordinates, paths, units, motion policy, parameters, or source-law version creates a new `assemblyId` and `modelRevisionSha256`. Presentation-only changes to labels, prose, taxonomy placement, filenames, or URLs retain both values; an emitted-byte change updates only `recordSha256`. Borg has no configuration-lineage identity, compatibility identity, or alias identity.
 
 The current `braid-family-a.md`, `braid-family-b.md`, and `braid-family-c.md` chapters are migration sources, not permanent destinations. Redistribute their exact geometry, equations, and configuration-specific explanations into the canonical taxonomy, the 2D/3D worked chapters, and factually named specialist chapters; then remove the family-named files and repair all inbound links. Apply the same test to specialist filenames and headings derived from A-, B-, or C-codes.
 
@@ -158,15 +160,21 @@ Identity foundation is the serial prerequisite for every broad rename.
 6. Resolve corpus references by `assemblyId + modelRevisionSha256`; add `recordSha256` only when the exact visual artifact matters.
 7. Remove the Library assumption that every label begins with a taxonomy code followed by an em dash.
 
-One identity decision remains open and must close before Wave 0 assigns IDs: whether `assemblyId` denotes one exact scientific configuration or a configuration lineage that may contain scientifically different model revisions. Do not let implementation choose this boundary implicitly.
+`assemblyId` and `modelRevisionSha256` both bind one exact scientific configuration. A scientifically changed payload receives new values for both, while a presentation-only mutation retains both. `modelRevisionSha256` is therefore a deterministic checksum of the exact configuration, not a revision-lineage marker.
 
-Plainly: the stable assembly and model revision identify the geometry. The repository does not need to preserve every temporary label used while the application is still under development.
+Plainly: one assembly ID means one exact configuration. Names and locations may move quickly, but a change to the scientific configuration creates a new identity.
+
+### Current-Index Rule
+
+Every migration batch updates its canonical sources and every authored catalog, index, router, exact link, and current query surface that consumes them. Generated surfaces are refreshed in the authorized final generation wave, and the migration cannot close until their checks establish agreement with the canonical sources. The live repository exposes only the current state: do not retain stale parallel indexes, compatibility readers, redirects, aliases, or translated old queries. Temporary locator labels inside this active plan do not establish a supported compatibility surface and disappear with the plan.
+
+Plainly: after a change lands, every way of finding the configuration must point to the new current form; old routes are not kept alive.
 
 ### Evidence-Bound Rename Rule
 
 Before changing a label, source ID, filename, route, or emitted record, freeze the canonical identity-bearing payload and `modelRevisionSha256` for every evidence-referenced configuration. After the rename, an independently authored comparison must establish byte equality of the canonical scientific payload and equality of `modelRevisionSha256`. A changed `recordSha256` is then presentation-byte change only.
 
-If the canonical payload or model revision changes, the migration must assign the disposition required by the identity decision above and rerun, withdraw, or re-scope every dependent evidence claim. It must not transfer an old result to scientifically different content merely because the display looks the same.
+If the canonical payload or model revision changes, the migration must assign a new `assemblyId` and `modelRevisionSha256` and rerun, withdraw, or re-scope every dependent evidence claim. It must not transfer an old result to scientifically different content merely because the display looks the same.
 
 The operator has authorized a one-time development exception to the Braid Program's append-only work-log and write-once evidence-file rules solely for removing obsolete labels, paths, and exact-byte references. Numerical results, equations, claim grades, falsifiers, and execution facts may not change under that exception. The independent payload comparison and ordinary content checks must pass before the rewritten evidence is accepted.
 
@@ -224,12 +232,12 @@ Every exact configuration used as the subject of reader-facing study must have a
 
 Do not invent a representative for a parameterized negative class. An exact point enters Borg only when its source owner freezes the point, history, polarity word, and evidence relation.
 
-## Versioned Borg Facet Migration
+## Direct Borg Facet Replacement
 
-Do not rename existing fields in place.
+Replace the current fields throughout source, implementation, tests, URLs, and development browser state. Do not retain a reader, translator, normalizer, warning path, or compatibility schema for the old keys or values.
 
 1. Split the current track-grouping implementation into an internal neutral `sourceTrackGroups` helper and a reader-facing `Circle occupancy` descriptor. Trails may use track grouping even where the circle-specific facet is unavailable.
-2. Replace the saved-query key `orbitSharing` with `circleOccupancy`; increment the facet schema version. Clear old saved filters with an explanation because `Dedicated` is not semantically equivalent to `One per circle`.
+2. Replace the query key `orbitSharing` with `circleOccupancy` everywhere and delete old-key handling. Existing development URLs and saved filters using the old key may fail or be cleared without translation. Update the current schema identifier if its ordinary contract requires one, but do not retain the prior schema or a migration reader.
 3. Rename internal trail presentation from `shared-arc` to `multi-occupant-arc`, `shared binary orbit` to `two-occupant antipodal circle`, and `dedicated orbit` to `single-occupant circle` or `single-occupant path` according to the actual carrier.
 4. Preserve current whole-record `dimension` semantics under the explicit name `assemblySpan`. Add a separate `braidDimension` derived only from complete declared component-braid membership.
 5. Keep incomplete, unsupported, noncircular, or mixed circular/noncircular records `Not assigned`. Never infer a false negative.
@@ -246,8 +254,10 @@ Serial coordinator work:
 
 - enumerate every authored, source, test, scene, generated, evidence, route, and query consumer in the live tree;
 - freeze current path, current label, permanent identity, replacement label, replacement path, record status, characteristic values, and evidence owner for every row;
+- freeze the canonical identity-bearing payload and current evidence dependencies for every record before any rename;
 - resolve whether each current C-coded record describes one assembly or a component grouping before braid dimensionality is assigned;
-- extract the useful equations and constraints from every current A/B/C chart while assigning no replacement family code.
+- extract the useful equations and constraints from every current A/B/C chart while assigning no replacement family code;
+- assign a factual replacement label to every opaque human-facing configuration code, including T-, F-, SD-, SC-, SS-, PV-, A-, B-, and C-derived labels.
 
 Acceptance: no destination, identity, or semantic cell remains implicit.
 
@@ -255,11 +265,12 @@ Acceptance: no destination, identity, or semantic cell remains implicit.
 
 Serial Borg-owner work; no corpus or bulk label edits:
 
-- implement `assemblyId`, model revision, direct path migration, and exact-link resolution;
-- replace old catalog IDs, URLs, specification IDs, and record hashes throughout the live tree;
-- add identity, exact-link, and stale-label absence tests.
+- implement the exact-configuration `assemblyId` rule, canonical model serialization, `modelRevisionSha256`, and exact-link resolution against the current source records;
+- prove with an isolated presentation-only mutation test that changing a label, path, or prose field does not change `modelRevisionSha256`;
+- prove with an identity-bearing mutation test that changing any scientific field creates a new `assemblyId` and `modelRevisionSha256`;
+- add identity uniqueness, canonical-serialization parity, and exact-link tests without renaming the current presentation fields.
 
-Acceptance: a label and filename can change without changing model identity, every current exact reference resolves, and no obsolete label or route remains live.
+Acceptance: every current configuration has one unambiguous identity under the exact-configuration boundary, independent canonical serializers agree, every current exact reference resolves through that identity, presentation-only changes leave the identity and model revision unchanged, and every identity-bearing change creates new values for both. Obsolete-label removal is not a Wave 1 acceptance condition.
 
 ### Wave 2 — Parallel Non-Overlapping Batches
 
@@ -269,7 +280,7 @@ After Wave 1 passes, run these shards in parallel:
 | --- | --- | --- |
 | Taxonomy and corpus | `content/markdown/aaa/noether-braid/**` plus authored Noether-braid scene sources | Refactored canonical taxonomy, reader-ready 2D/3D worked chapters, redistributed family-source content, and factually named specialist chapters; no Borg code or source specifications. |
 | Scientific source and record coverage | `reference/priorities/braid-program/configurations/**`, the prescribed-record generator, catalog source, and record migration map | Descriptive source paths and labels, missing exact studied configurations, and reproducible record targets; no Library facets or corpus prose. |
-| Borg facets and presentation | `src/apps/borg/library/**`, `BorgOrbitGeometry.mjs`, `BorgOrbitTrails.mjs`, `borg-library.html`, Borg requirements/audit, and focused facet/trail tests | Circle occupancy, assembly span, braid dimensionality, saved-query migration, and UI copy; no configuration files or corpus prose. |
+| Borg facets and presentation | `src/apps/borg/library/**`, `BorgOrbitGeometry.mjs`, `BorgOrbitTrails.mjs`, `borg-library.html`, Borg requirements/audit, and focused facet/trail tests | Circle occupancy, assembly span, braid dimensionality, current-query replacement, and UI copy; no configuration files or corpus prose. |
 
 The coordinator alone edits cross-lane indexes, migration tables, queue state, and files touched by more than one shard.
 
@@ -277,9 +288,11 @@ The coordinator alone edits cross-lane indexes, migration tables, queue state, a
 
 Coordinator-led serial integration:
 
-- migrate `binary-dynamics.md`, all three `braid-family-*.md` sources, code-derived specialist sources, Braid Program registries, active queues, and all authored inbound links;
+- migrate `binary-dynamics.md`, all three `braid-family-*.md` sources, A/B/C-code-derived specialist sources, Braid Program registries, active queues, and all authored inbound links;
 - migrate source `geometryOwner` and `canonSource` routes;
+- replace obsolete catalog IDs, specification IDs, filenames, URLs, and query keys directly throughout the live tree without compatibility paths;
 - update scenes, stable scene-label locks, catalog documentation, exact Borg links, and renamed tests;
+- update every authored catalog, index, router, and current query surface in the same direct-replacement batch so no stale lookup surface remains;
 - update current work logs, evidence references, and routes to the replacement labels; rely on repository history rather than compatibility names;
 - verify no geometry-taxonomy use of `shared` remains, while leaving unrelated ordinary uses such as a shared clock, helper, residual, or renderer intact.
 
@@ -308,7 +321,7 @@ node scripts/build-textbook-md-pdf.mjs --check
 git diff --check
 ```
 
-Also run the focused Borg catalog, identity, Library, circle-occupancy, braid-dimensionality, trail, record-geometry, source-generation, scene, link, and browser tests selected by the implemented batches. Independent review must compare the final migration matrix against the actual repository, not merely replay the migration code.
+Also run the focused Borg catalog, identity, canonical-serialization parity, Library, circle-occupancy, braid-dimensionality, trail, record-geometry, source-generation, scene, link, and browser tests selected by the implemented batches. For every evidence-bound rename, the independent payload comparison must prove unchanged canonical scientific content and model revision; otherwise the dependent evidence must be rerun, withdrawn, or re-scoped. Independent review must compare the final migration matrix against the actual repository, not merely replay the migration code.
 
 After the migration passes, remove this migration-only plan and the BP-016 queue entry after transferring the current definitions and maintenance rules into their permanent owners. Do not retain an old-label migration document as historical product documentation.
 
@@ -319,23 +332,26 @@ The migration closes only when:
 1. `braid-taxonomy.md` is the sole reader-facing owner of assembly-identification characteristics.
 2. The 2D/3D classification uses declared component braids; whole-assembly span remains separately visible.
 3. No live geometry-taxonomy artifact depends on the word `shared` or on SC/SS labels.
-4. No live taxonomy, catalog, chapter, filename, route, source ID, or selector uses Family A/B/C or an A/B/C-derived configuration code.
+4. No live taxonomy, catalog, chapter, filename, route, source ID, selector, or human-facing label uses Family A/B/C or any other opaque development code in place of factual characteristics.
 5. No catalog, chapter, or selector uses a parent/member hierarchy or inherited characteristic row.
 6. Every specifically studied configuration has an exact Borg record or one explicit collection-level/non-instantiated reason why a leaf does not apply.
 7. Every reader-facing configuration subsection links to its exact Borg identity and separately cites its scientific evidence owner.
-8. No obsolete label, compatibility identifier, redirect, parallel route, or old-name saved query remains in the live tree.
+8. No obsolete label, compatibility identifier, redirect, parallel route, stale catalog or index, or old-name saved query remains in the live tree.
 9. Borg and corpus assign identical characteristics from the same source definitions, including fail-closed `Not assigned` outcomes.
-10. All authored filenames, headings, anchors, links, catalog labels, source labels, tests, and visible filenames agree with the new terminology.
-11. Generated checks and focused tests pass, an independent route audit finds no stale authored consumer, and migration-only planning artifacts containing the replaced labels are removed after their current rules reach permanent owners.
+10. All authored filenames, headings, anchors, links, catalog labels, source labels, tests, and visible filenames agree with the new terminology, and every evidence-bound rename either passes independent canonical-payload equivalence or has its dependent evidence rerun, withdrawn, or re-scoped.
+11. Generated checks and focused tests pass, every generated and authored index agrees with its current canonical sources, an independent route audit finds no stale authored consumer, and migration-only planning artifacts containing the replaced labels are removed after their current rules reach permanent owners.
 
 ## Falsifiers And Stop Conditions
 
 - If one exact record receives different characteristic values in Borg and the corpus, stop and repair the common definition or source data.
+- If two scientifically different payloads share an `assemblyId`, or one scientific payload change retains its prior `assemblyId` or `modelRevisionSha256`, the identity contract has failed.
+- If a presentation-only change produces a new `assemblyId` or `modelRevisionSha256`, the canonical serialization has admitted presentation data and the identity contract has failed.
 - If a label-derived parent is still required to identify or classify a record, the flat taxonomy migration has failed.
-- If removing an A/B/C code makes a configuration impossible to identify, its factual characteristic row or exact identity is incomplete; repair that data rather than restoring the family code.
+- If removing any opaque development code makes a configuration impossible to identify, its factual characteristic row or exact identity is incomplete; repair that data rather than restoring the code.
 - If a source lacks complete component membership, do not assign braid count or braid dimensionality.
 - If circle equality is supported only by samples, rendering, equal radius, or independent recentering, leave circle occupancy `Not assigned`.
 - If an obsolete label remains in a live authored, source, code, test, evidence, generated, route, or query artifact, the migration is incomplete.
+- If any authored or generated catalog, index, router, exact link, or query surface resolves against an obsolete state, the migration is incomplete.
 - If two shards need to edit the same file, stop parallel editing for that file and return it to the coordinator.
 
 Plainly: ambiguity closes a classification; it never licenses the app or corpus to manufacture one.
