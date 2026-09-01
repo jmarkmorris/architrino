@@ -1,0 +1,145 @@
+{
+  "schema": "braid-program/stella-octangula-short-eom-release-predeclaration.v1",
+  "packetId": "stella-octangula-short-eom-release-2026-09-01-v1",
+  "date": "2026-09-01",
+  "closureGoal": "Build and run a bounded short EOM release from the exact stationary stella-octangula history through T=0.01, while withholding animation and braid classification.",
+  "executionAuthorization": "Operator selected the short EOM release closure goal in the current task.",
+  "bindings": [
+    {
+      "role": "eom-executable",
+      "path": ".tmp/eom-native-dev/eom_borg_shadow_cli",
+      "sha256": "52763de017a958cb43cf2d4a6bc71d64bb2f1ddcf9bc3c760b49a36e3da69380",
+      "bytes": 1721392
+    },
+    {
+      "role": "static-assembly-source",
+      "path": "reference/priorities/braid-program/configurations/stella-octangula-static-assembly.v3.json",
+      "sha256": "cfe4893b81eb3a079961633755af07d4c46aca719ec1ce1db1cc7eb5102b5825",
+      "bytes": 7806
+    },
+    {
+      "role": "stationary-release-packet",
+      "path": "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-stationary-release.packet.v1.json",
+      "sha256": "408afcef56aa8ec00383361b257004dc7ceb28cf05866e3d2f5b47fe36e86395",
+      "bytes": 338770
+    },
+    {
+      "role": "short-release-runner",
+      "path": "scripts/eom/run-stella-octangula-short-release.mjs",
+      "sha256": "4b3044cd163cbdc368234d9199100e89ed340b777836dea8028ff263ae5b936b",
+      "bytes": 17298
+    },
+    {
+      "role": "independent-response-checker",
+      "path": "scripts/eom/check-stella-octangula-short-release.py",
+      "sha256": "85d200396a063ab9c4c70b56edd328992b09868174b257ef170837db877f7660",
+      "bytes": 9940
+    },
+    {
+      "role": "ordinary-request-preparer",
+      "path": "scripts/eom/prepare-ordinary-evolution-request.mjs",
+      "sha256": "b641292c3597baacb558c1c48db471dfc038d1260ddd79ec32b80b037f72f5f4",
+      "bytes": 22772
+    },
+    {
+      "role": "native-process-client",
+      "path": "scripts/eom/BorgNativeEomProcessClient.mjs",
+      "sha256": "aee16e2fb7350c3e2903bc0f5d7cce01bf61ad74d866b621ae53ec1fdca186dc",
+      "bytes": 31635
+    },
+    {
+      "role": "certified-budget-owner",
+      "path": "src/apps/borg/BorgCertifiedBudgets.js",
+      "sha256": "b7003c59d326cf2f2c83d82bd430638636b96c653f97b6b8ab13ccfad259044c",
+      "bytes": 7306
+    }
+  ],
+  "stationaryReleaseResultHash": "6812b782d0629eb70557a801b022e6c7f094a538bc2870151f55f8193a9a7268",
+  "historyEvidence": [
+    {
+      "role": "exact-static-assembly",
+      "path": "reference/priorities/braid-program/configurations/stella-octangula-static-assembly.v3.json",
+      "sha256": "cfe4893b81eb3a079961633755af07d4c46aca719ec1ce1db1cc7eb5102b5825"
+    },
+    {
+      "role": "stationary-release-boundary-measurement",
+      "path": "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-stationary-release.packet.v1.json",
+      "sha256": "408afcef56aa8ec00383361b257004dc7ceb28cf05866e3d2f5b47fe36e86395"
+    }
+  ],
+  "scientificConditions": {
+    "contractId": "eom_evolution_contract/v1",
+    "modelBindingId": "master_eom_binding/v1",
+    "historyKind": "exact-stationary-cubic.v1",
+    "historyStart": "-2",
+    "releaseTime": "0",
+    "endTime": "0.01",
+    "fieldSpeed": "1",
+    "chargeMagnitude": "1",
+    "coupling": "1",
+    "effectiveStrength": "1",
+    "initialCircumradius": 0.5,
+    "initialAccelerationMagnitude": 2.5219178085318643,
+    "initialRadialCoefficient": -5.043835617063729,
+    "selfPairs": "included-except-coincident-endpoint",
+    "futurePathPolicy": "prohibited"
+  },
+  "rungs": [
+    {
+      "id": "fine",
+      "role": "primary",
+      "step": "0.0025",
+      "expectedMaximumAcceptedSteps": 4
+    },
+    {
+      "id": "medium",
+      "role": "refinement-control",
+      "step": "0.005",
+      "expectedMaximumAcceptedSteps": 2
+    },
+    {
+      "id": "coarse",
+      "role": "stress-diagnostic",
+      "step": "0.01",
+      "expectedMaximumAcceptedSteps": 1
+    }
+  ],
+  "stoppingRules": {
+    "rootCompleteness": "The EOM solver must fail closed; a halted primary run prevents all later rungs.",
+    "acceptedFramePolicy": "After the primary returns, any accepted frame crossing a geometric threshold prevents later comparison rungs.",
+    "maximumCenterResidual": 1e-8,
+    "maximumTangentialSpeed": 1e-8,
+    "radialReversalTolerance": 1e-12,
+    "minimumPairSeparation": 0.55
+  },
+  "acceptance": {
+    "primaryMediumMaximumStateDelta": 0.000005,
+    "pass": "The fine primary and medium refinement control both reach T=0.01 with no step failures or stopping violations; all members have smaller radius and negative radial velocity; the primary-to-medium maximum endpoint state delta is at most 5e-6.",
+    "coarseDisposition": "The coarse rung is a recorded stress diagnostic and is not required for primary acceptance.",
+    "falsifier": "A changed binding, incomplete root set, failed primary or medium run, non-inward member, radial reversal, tangential speed above threshold, center drift above threshold, pair separation below threshold, or excessive primary-to-medium state delta overturns the accepted short-release conclusion."
+  },
+  "operationalLimits": {
+    "wallSeconds": 60,
+    "heartbeatSeconds": 5,
+    "aggregateRssBytes": 1073741824,
+    "rssSampleIntervalSeconds": 1,
+    "logBytes": 16777216,
+    "outputBytes": 268435456,
+    "diskMinimumBytes": 1073741824
+  },
+  "claimBoundary": {
+    "included": "Measured EOM-solver accepted history over 0 <= T <= 0.01 for the exact stationary prehistory, declared unit strength, and isolated eight-member inventory.",
+    "excluded": [
+      "long-term convergence on the origin",
+      "collision outcome",
+      "turning after T=0.01",
+      "animation",
+      "braid classification",
+      "binding",
+      "retention",
+      "stability",
+      "energy",
+      "physical realization"
+    ]
+  }
+}

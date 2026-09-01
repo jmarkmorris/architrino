@@ -14,7 +14,9 @@
 #include <iostream>
 #include <limits>
 #include <map>
+#include <numbers>
 #include <optional>
+#include <set>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -25,7 +27,7 @@ namespace eom = architrino::eom;
 
 namespace {
 
-constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V10";
+constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V11";
 
 bool is_exact_history_storage_failure(const std::string& detail) {
   return detail.find("exact history") != std::string::npos ||
@@ -38,6 +40,21 @@ void print_json_number(double value) {
   } else {
     std::cout << "null";
   }
+}
+
+void print_interval_json(const eom::Interval& value) {
+  std::cout << "{\"lower\":\""
+            << eom::finite_double_token(value.lower())
+            << "\",\"upper\":\""
+            << eom::finite_double_token(value.upper()) << "\"}";
+}
+
+void print_optional_interval_json(const std::optional<eom::Interval>& value) {
+  if (!value.has_value()) {
+    std::cout << "null";
+    return;
+  }
+  print_interval_json(*value);
 }
 
 struct ParsedPath {
@@ -69,6 +86,378 @@ struct CausalHistoryRetentionCertificate {
   std::vector<CausalHistoryRetentionPath> paths;
   std::size_t total_retired_segment_count = 0U;
 };
+
+struct BoundaryResidualSample {
+  std::string sample_id;
+  std::size_t ordinal = 0U;
+  std::string entity_id;
+  std::string surface_patch_id;
+  std::string time_bin_id;
+  std::string receiver_path_id;
+  std::string sample_time;
+  std::string component_id;
+  eom::Interval reference;
+  eom::Interval boundary;
+  eom::Interval weight = eom::Interval::point(1.0);
+  std::string reference_source_row_id;
+  std::string boundary_source_row_id;
+};
+
+struct BoundaryResidualSpec {
+  std::string comparison_id;
+  std::string label;
+  std::string sample_domain;
+  std::string tolerance_token;
+  double tolerance = 0.0;
+  std::string epsilon_token;
+  double epsilon = 0.0;
+  std::string reference_run_id;
+  std::string boundary_run_id;
+  std::string comparison_window_id;
+  std::string decision_norm_id;
+  std::size_t expected_sample_count = 0U;
+  std::string reference_value_authority;
+  std::string boundary_value_authority;
+  bool required_for_advancement = false;
+  std::vector<BoundaryResidualSample> samples;
+};
+
+struct BoundaryTimeBin {
+  std::string time_bin_id;
+  std::size_t ordinal = 0U;
+  std::string start_token;
+  std::string end_token;
+  double start = 0.0;
+  double end = 0.0;
+};
+
+struct BoundaryDiagnosticsConfig {
+  bool enabled = false;
+  std::string envelope_id;
+  std::array<std::string, 3> center_tokens{"0", "0", "0"};
+  std::array<double, 3> center{};
+  std::string outer_radius_token = "0";
+  double outer_radius = 0.0;
+  std::string central_radius_token = "0";
+  double central_radius = 0.0;
+  std::string history_depth_token = "0";
+  double history_depth = 0.0;
+  std::string radial_buffer_margin_token = "0";
+  double radial_buffer_margin = 0.0;
+  std::string wake_horizon_token = "0";
+  double wake_horizon = 0.0;
+  std::string wake_floor_token = "0";
+  double wake_floor = 0.0;
+  std::string boundary_mode;
+  std::string extraction_window_id;
+  std::string extraction_start_token;
+  std::string extraction_end_token;
+  double extraction_start = 0.0;
+  double extraction_end = 0.0;
+  std::string central_observation_window_id;
+  std::string central_observation_start_token;
+  std::string central_observation_end_token;
+  double central_observation_start = 0.0;
+  double central_observation_end = 0.0;
+  std::optional<double> central_velocity_bound;
+  bool replay_consumes_values = false;
+  std::string comparison_set_id;
+  std::string surface_partition_id;
+  std::string partition_policy;
+  std::size_t z_band_count = 0U;
+  std::size_t azimuth_sector_count = 0U;
+  std::array<double, 4> orientation_quaternion{};
+  std::string uncovered_area_bound_token = "0";
+  double uncovered_area_bound = 0.0;
+  std::vector<BoundaryTimeBin> time_bins;
+  std::string replay_source_id;
+  std::string summary_set_id;
+  std::string replay_target_run_id;
+  std::string sampling_seed;
+  std::string surface_mapping_policy;
+  std::string time_mapping_id;
+  std::string velocity_sampling_result_id;
+  std::string polarity_sampling_policy;
+  std::string history_hiding_policy;
+  std::string wake_reconstruction_policy;
+  std::string replay_value_authority;
+  std::vector<BoundaryResidualSpec> residual_specs;
+};
+
+enum class ShellEndpointSide { inside, outside, unresolved };
+
+struct ShellCrossingRow {
+  std::string event_id;
+  std::string path_id;
+  std::size_t segment_index = 0U;
+  std::string segment_start;
+  std::string segment_end;
+  std::string direction;
+  eom::Interval crossing_time;
+  eom::IntervalVector position;
+  eom::IntervalVector velocity;
+  eom::Interval normal_velocity_projection;
+};
+
+struct ShellCoverageCertificate {
+  std::size_t segment_count = 0U;
+  std::size_t certified_empty_segment_count = 0U;
+  std::size_t crossing_segment_count = 0U;
+  std::size_t unresolved_segment_count = 0U;
+  std::vector<ShellCrossingRow> crossings;
+};
+
+eom::Interval radial_squared(
+    const eom::IntervalVector& position,
+    const std::array<double, 3>& center) {
+  eom::Interval result = eom::Interval::point(0.0);
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    result = result + eom::interval_square(
+        position[axis] - eom::Interval::point(center[axis]));
+  }
+  return result;
+}
+
+ShellEndpointSide shell_side(
+    const eom::IntervalVector& position,
+    const BoundaryDiagnosticsConfig& config) {
+  const auto radius_squared = radial_squared(position, config.center);
+  const double shell_squared = config.outer_radius * config.outer_radius;
+  if (radius_squared.upper() < shell_squared) {
+    return ShellEndpointSide::inside;
+  }
+  if (radius_squared.lower() > shell_squared) {
+    return ShellEndpointSide::outside;
+  }
+  return ShellEndpointSide::unresolved;
+}
+
+eom::Interval dot_product(
+    const eom::IntervalVector& left,
+    const eom::IntervalVector& right) {
+  eom::Interval result = eom::Interval::point(0.0);
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    result = result + left[axis] * right[axis];
+  }
+  return result;
+}
+
+ShellCoverageCertificate certify_shell_crossings(
+    const std::vector<eom::NativePublishedPath>& histories,
+    const BoundaryDiagnosticsConfig& config) {
+  ShellCoverageCertificate certificate;
+  for (const auto& path : histories) {
+    for (std::size_t segment_index = 0U;
+         segment_index < path.history.segments().size(); ++segment_index) {
+      ++certificate.segment_count;
+      const auto segment_pin = path.history.segments().pin(segment_index);
+      const auto& segment = *segment_pin;
+      const double clipped_start = std::max(
+          segment.t_start(), config.extraction_start);
+      const double clipped_end = std::min(
+          segment.t_end(), config.extraction_end);
+      if (!(clipped_end > clipped_start)) {
+        --certificate.segment_count;
+        continue;
+      }
+      const eom::Interval full_time(
+          clipped_start, clipped_end);
+      const auto full_side = shell_side(
+          segment.position_interval(full_time), config);
+      if (full_side != ShellEndpointSide::unresolved) {
+        ++certificate.certified_empty_segment_count;
+        continue;
+      }
+      double lower_time = clipped_start;
+      double upper_time = clipped_end;
+      auto lower_side = shell_side(
+          segment.position_interval(eom::Interval::point(lower_time)), config);
+      auto upper_side = shell_side(
+          segment.position_interval(eom::Interval::point(upper_time)), config);
+      if (lower_side == ShellEndpointSide::unresolved ||
+          upper_side == ShellEndpointSide::unresolved ||
+          lower_side == upper_side) {
+        ++certificate.unresolved_segment_count;
+        continue;
+      }
+      bool bisection_resolved = true;
+      for (std::size_t iteration = 0U; iteration < 80U; ++iteration) {
+        const double midpoint = lower_time + (upper_time - lower_time) * 0.5;
+        if (!(midpoint > lower_time && midpoint < upper_time)) break;
+        const auto midpoint_side = shell_side(
+            segment.position_interval(eom::Interval::point(midpoint)), config);
+        if (midpoint_side == ShellEndpointSide::unresolved) {
+          const double probe_offset = std::max(
+              (clipped_end - clipped_start) * 1.0e-12,
+              256.0 * std::numeric_limits<double>::epsilon() *
+                  std::max(1.0, std::abs(midpoint)));
+          const double left_probe = std::max(
+              lower_time, midpoint - probe_offset);
+          const double right_probe = std::min(
+              upper_time, midpoint + probe_offset);
+          const auto left_side = shell_side(
+              segment.position_interval(eom::Interval::point(left_probe)), config);
+          const auto right_side = shell_side(
+              segment.position_interval(eom::Interval::point(right_probe)), config);
+          if (left_side != ShellEndpointSide::unresolved &&
+              right_side != ShellEndpointSide::unresolved &&
+              left_side != right_side) {
+            lower_time = left_probe;
+            upper_time = right_probe;
+            lower_side = left_side;
+            upper_side = right_side;
+            break;
+          }
+          bisection_resolved = false;
+          break;
+        }
+        if (midpoint_side == lower_side) {
+          lower_time = midpoint;
+        } else {
+          upper_time = midpoint;
+          upper_side = midpoint_side;
+        }
+      }
+      if (!bisection_resolved) {
+        ++certificate.unresolved_segment_count;
+        continue;
+      }
+      const eom::Interval crossing_time(lower_time, upper_time);
+      const auto position = segment.position_interval(crossing_time);
+      const auto velocity = segment.velocity_interval(crossing_time);
+      eom::IntervalVector outward_normal{
+          eom::Interval::point(0.0), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)};
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        outward_normal[axis] =
+            (position[axis] - eom::Interval::point(config.center[axis])) /
+            eom::Interval::point(config.outer_radius);
+      }
+      const auto normal_projection = dot_product(velocity, outward_normal);
+      const std::string expected_direction =
+          lower_side == ShellEndpointSide::inside ? "outbound" : "inbound";
+      const bool direction_certified = expected_direction == "outbound"
+          ? normal_projection.lower() > 0.0
+          : normal_projection.upper() < 0.0;
+      if (!direction_certified) {
+        ++certificate.unresolved_segment_count;
+        continue;
+      }
+      ++certificate.crossing_segment_count;
+      certificate.crossings.push_back({
+          .event_id = "shell-crossing:" + path.path_id + ":" +
+              std::to_string(segment_index),
+          .path_id = path.path_id,
+          .segment_index = segment_index,
+          .segment_start = segment.t_start_token(),
+          .segment_end = segment.t_end_token(),
+          .direction = expected_direction,
+          .crossing_time = crossing_time,
+          .position = position,
+          .velocity = velocity,
+          .normal_velocity_projection = normal_projection,
+      });
+    }
+  }
+  return certificate;
+}
+
+std::array<double, 3> rotate_by_partition_quaternion(
+    const std::array<double, 3>& value,
+    const std::array<double, 4>& quaternion) {
+  const double w = quaternion[0];
+  const double x = quaternion[1];
+  const double y = quaternion[2];
+  const double z = quaternion[3];
+  const std::array<double, 3> qv{x, y, z};
+  const std::array<double, 3> cross{
+      qv[1] * value[2] - qv[2] * value[1],
+      qv[2] * value[0] - qv[0] * value[2],
+      qv[0] * value[1] - qv[1] * value[0],
+  };
+  const std::array<double, 3> cross_twice{
+      qv[1] * cross[2] - qv[2] * cross[1],
+      qv[2] * cross[0] - qv[0] * cross[2],
+      qv[0] * cross[1] - qv[1] * cross[0],
+  };
+  return {
+      value[0] + 2.0 * (w * cross[0] + cross_twice[0]),
+      value[1] + 2.0 * (w * cross[1] + cross_twice[1]),
+      value[2] + 2.0 * (w * cross[2] + cross_twice[2]),
+  };
+}
+
+std::string shell_patch_id(
+    const ShellCrossingRow& crossing,
+    const BoundaryDiagnosticsConfig& config) {
+  std::array<double, 3> normal{};
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const double midpoint = 0.5 * (
+        crossing.position[axis].lower() + crossing.position[axis].upper());
+    normal[axis] = (midpoint - config.center[axis]) / config.outer_radius;
+  }
+  normal = rotate_by_partition_quaternion(
+      normal, config.orientation_quaternion);
+  const double z = std::clamp(normal[2], -1.0, 1.0);
+  const std::size_t band = std::min(
+      config.z_band_count - 1U,
+      static_cast<std::size_t>(
+          std::floor((z + 1.0) * 0.5 * config.z_band_count)));
+  double phi = std::atan2(normal[1], normal[0]);
+  if (phi < 0.0) phi += 2.0 * std::numbers::pi;
+  const std::size_t sector = std::min(
+      config.azimuth_sector_count - 1U,
+      static_cast<std::size_t>(std::floor(
+          phi / (2.0 * std::numbers::pi) *
+          config.azimuth_sector_count)));
+  return config.surface_partition_id + ":z" + std::to_string(band) +
+      ":phi" + std::to_string(sector);
+}
+
+std::string shell_time_bin_id(
+    const ShellCrossingRow& crossing,
+    const BoundaryDiagnosticsConfig& config) {
+  const double midpoint = 0.5 * (
+      crossing.crossing_time.lower() + crossing.crossing_time.upper());
+  for (std::size_t index = 0U; index < config.time_bins.size(); ++index) {
+    const auto& bin = config.time_bins[index];
+    if (midpoint >= bin.start &&
+        (midpoint < bin.end ||
+         (index + 1U == config.time_bins.size() && midpoint <= bin.end))) {
+      return bin.time_bin_id;
+    }
+  }
+  return "NONE";
+}
+
+eom::Interval boundary_residual_interval(
+    const BoundaryResidualSpec& spec) {
+  eom::Interval numerator_squared = eom::Interval::point(0.0);
+  eom::Interval denominator_squared = eom::Interval::point(0.0);
+  for (const auto& sample : spec.samples) {
+    numerator_squared = numerator_squared +
+        sample.weight * eom::interval_square(sample.boundary - sample.reference);
+    denominator_squared = denominator_squared +
+        sample.weight * eom::interval_square(sample.reference);
+  }
+  const auto numerator = eom::interval_sqrt(eom::Interval(
+      std::max(0.0, numerator_squared.lower()),
+      std::max(0.0, numerator_squared.upper())));
+  const auto denominator = eom::interval_sqrt(eom::Interval(
+      std::max(0.0, denominator_squared.lower()),
+      std::max(0.0, denominator_squared.upper()))) +
+      eom::Interval::point(spec.epsilon);
+  return numerator / denominator;
+}
+
+void print_interval_vector_json(const eom::IntervalVector& value) {
+  std::cout << '[';
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    if (axis > 0U) std::cout << ',';
+    print_interval_json(value[axis]);
+  }
+  std::cout << ']';
+}
 
 double interval_component_absolute_upper(const eom::Interval& value) {
   return std::max(std::abs(value.lower()), std::abs(value.upper()));
@@ -833,6 +1222,503 @@ void print_request_inspection(
   std::cout << "]}\n" << std::setprecision(prior_precision);
 }
 
+void print_borg_wake_boundary_products(
+    const std::string& run_id,
+    const std::string& value_authority,
+    const std::vector<eom::NativePublishedPath>& histories,
+    const eom::NativeAccelerationSnapshotCertificate* snapshot,
+    const BoundaryDiagnosticsConfig* boundary_diagnostics) {
+  std::size_t resolved_count = 0U;
+  std::size_t failure_count = 0U;
+  if (snapshot != nullptr) {
+    for (const auto& pair : snapshot->acceleration.pair_certificates) {
+      if (pair.status != "uncertified") {
+        resolved_count += pair.rows.size();
+      } else {
+        ++failure_count;
+      }
+    }
+  }
+  const std::size_t candidate_count = resolved_count + failure_count;
+  const bool snapshot_ready = snapshot != nullptr &&
+      snapshot->status == "certified_complete";
+  std::optional<ShellCoverageCertificate> shell_coverage;
+  bool complete_history_window = false;
+  bool complete_influence_traceability = false;
+  std::map<std::string, std::vector<std::string>> coverage_events;
+  if (boundary_diagnostics != nullptr && boundary_diagnostics->enabled) {
+    shell_coverage = certify_shell_crossings(histories, *boundary_diagnostics);
+    complete_history_window = std::all_of(
+        histories.begin(), histories.end(), [&](const auto& path) {
+          return path.history.t_start() <= boundary_diagnostics->extraction_start &&
+              path.history.t_end() >= boundary_diagnostics->extraction_end;
+        });
+    bool all_crossings_binned = true;
+    bool all_crossings_have_influence = true;
+    for (const auto& crossing : shell_coverage->crossings) {
+      const std::string patch_id = shell_patch_id(
+          crossing, *boundary_diagnostics);
+      const std::string time_bin_id = shell_time_bin_id(
+          crossing, *boundary_diagnostics);
+      if (time_bin_id == "NONE") {
+        all_crossings_binned = false;
+      } else {
+        coverage_events[patch_id + "\t" + time_bin_id].push_back(
+            crossing.event_id);
+      }
+      bool found_contribution = false;
+      if (snapshot != nullptr) {
+        for (const auto& pair : snapshot->acceleration.pair_certificates) {
+          if (pair.status == "uncertified") continue;
+          for (const auto& row : pair.rows) {
+            found_contribution = found_contribution ||
+                row.transmitter_path_id == crossing.path_id;
+          }
+        }
+      }
+      all_crossings_have_influence =
+          all_crossings_have_influence && found_contribution;
+    }
+    complete_influence_traceability = all_crossings_have_influence;
+    if (shell_coverage->crossings.empty()) {
+      complete_influence_traceability = true;
+    }
+    if (!all_crossings_binned) {
+      ++shell_coverage->unresolved_segment_count;
+    }
+  }
+  std::cout << "{\"schema\":\"eom_borg_wake_boundary_products/v1\""
+            << ",\"status\":\""
+            << (snapshot_ready ? "native-products-ready" : "fail-closed")
+            << "\",\"runId\":\"" << json_escape(run_id) << "\""
+            << ",\"sourceSnapshotReceptionTime\":";
+  if (snapshot == nullptr) {
+    std::cout << "null";
+  } else {
+    std::cout << '"' << json_escape(snapshot->reception_time) << '"';
+  }
+  std::cout << ",\"valueAuthority\":\""
+            << (snapshot_ready
+                    ? "retained-local-evidence"
+                    : "fail-closed-value")
+            << "\",\"claimGrade\":\""
+            << json_escape(value_authority) << "\""
+            << ",\"pathHistoryRows\":[";
+  for (std::size_t index = 0U; index < histories.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    const auto& path = histories[index];
+    std::cout << "{\"schema\":\"eom_borg_retained_path_history/v1\""
+              << ",\"pathId\":\"" << json_escape(path.path_id) << "\""
+              << ",\"historyId\":\""
+              << json_escape(path.history.history_id()) << "\""
+              << ",\"historyFingerprint\":\""
+              << json_escape(path.history.provenance_fingerprint()) << "\""
+              << ",\"coverageStart\":\""
+              << json_escape(path.history.segments().front().t_start_token())
+              << "\",\"coverageEnd\":\""
+              << json_escape(path.history.segments().back().t_end_token())
+              << "\",\"segmentCount\":" << path.history.segments().size()
+              << ",\"valueAuthority\":\"retained-local-evidence\"}";
+  }
+  std::cout << "],\"resolvedWakeInteractionRows\":[";
+  bool first_resolved = true;
+  if (snapshot != nullptr) {
+    for (const auto& pair : snapshot->acceleration.pair_certificates) {
+      if (pair.status == "uncertified") continue;
+      for (const auto& row : pair.rows) {
+        if (!first_resolved) std::cout << ',';
+        first_resolved = false;
+        std::cout << "{\"schema\":\"eom_borg_retained_wake_interaction/v1\""
+                  << ",\"rowId\":\"" << json_escape(row.row_id) << "\""
+                  << ",\"receiverPathId\":\""
+                  << json_escape(row.receiver_path_id) << "\""
+                  << ",\"transmitterPathId\":\""
+                  << json_escape(row.transmitter_path_id) << "\""
+                  << ",\"rootCertificateRowId\":\""
+                  << json_escape(pair.root_certificate_row_id) << "\""
+                  << ",\"receptionTime\":\""
+                  << json_escape(row.reception_time) << "\""
+                  << ",\"emissionLower\":\""
+                  << json_escape(row.emission_lower) << "\""
+                  << ",\"emissionUpper\":\""
+                  << json_escape(row.emission_upper) << "\""
+                  << ",\"acceptanceStatus\":\""
+                  << json_escape(row.acceptance_status) << "\""
+                  << ",\"valueAuthority\":\"retained-local-evidence\"}";
+      }
+    }
+  }
+  std::cout << "],\"failureWakeRows\":[";
+  bool first_failure = true;
+  if (snapshot != nullptr) {
+    for (const auto& pair : snapshot->acceleration.pair_certificates) {
+      if (pair.status != "uncertified") continue;
+      if (!first_failure) std::cout << ',';
+      first_failure = false;
+      std::cout << "{\"schema\":\"eom_borg_wake_failure/v1\""
+                << ",\"rowId\":\"" << json_escape(pair.row_id) << "\""
+                << ",\"receiverPathId\":\""
+                << json_escape(pair.receiver_path_id) << "\""
+                << ",\"transmitterPathId\":\""
+                << json_escape(pair.transmitter_path_id) << "\""
+                << ",\"firstFailureCode\":\""
+                << json_escape(pair.failure_code.empty()
+                    ? "ordered_pair_acceleration_uncertified"
+                    : pair.failure_code)
+                << "\",\"valueAuthority\":\"fail-closed-value\"}";
+    }
+  }
+  std::cout << "],\"rowConservationCounts\":{"
+            << "\"candidateWakeRowCount\":" << candidate_count
+            << ",\"resolvedWakeRowCount\":" << resolved_count
+            << ",\"aggregatedWakeRowCount\":0"
+            << ",\"boundaryGeneratedWakeRowCount\":0"
+            << ",\"failureWakeRowCount\":" << failure_count
+            << ",\"conservationResidual\":0"
+            << ",\"firstFailureCode\":null}"
+            << ",\"rowConservationStatus\":\"passed\""
+            << ",\"accelerationContributionRows\":[";
+  bool first_contribution = true;
+  if (snapshot != nullptr) {
+    for (const auto& pair : snapshot->acceleration.pair_certificates) {
+      if (pair.status == "uncertified") continue;
+      for (const auto& row : pair.rows) {
+        if (!first_contribution) std::cout << ',';
+        first_contribution = false;
+        std::cout << "{\"schema\":\"eom_borg_acceleration_contribution/v1\""
+                  << ",\"rowId\":\"" << json_escape(row.row_id) << "\""
+                  << ",\"receiverPathId\":\""
+                  << json_escape(row.receiver_path_id) << "\""
+                  << ",\"transmitterPathId\":\""
+                  << json_escape(row.transmitter_path_id) << "\""
+                  << ",\"rootCertificateRowId\":\""
+                  << json_escape(pair.root_certificate_row_id) << "\""
+                  << ",\"chart\":\"" << json_escape(row.chart) << "\""
+                  << ",\"receptionTime\":\""
+                  << json_escape(row.reception_time) << "\""
+                  << ",\"emissionLower\":\""
+                  << json_escape(row.emission_lower) << "\""
+                  << ",\"emissionUpper\":\""
+                  << json_escape(row.emission_upper) << "\""
+                  << ",\"evaluationEmission\":";
+        print_optional_interval_json(row.evaluation_emission);
+        std::cout << ",\"transmitterSegmentIndices\":[";
+        for (std::size_t index = 0U;
+             index < row.transmitter_segment_indices.size(); ++index) {
+          if (index > 0U) std::cout << ',';
+          std::cout << row.transmitter_segment_indices[index];
+        }
+        std::cout << ']';
+        std::cout << ",\"separation\":";
+        print_optional_interval_json(row.separation);
+        std::cout << ",\"transmitterFactor\":";
+        print_optional_interval_json(row.transmitter_factor);
+        std::cout << ",\"receiverFactor\":";
+        print_optional_interval_json(row.receiver_factor);
+        std::cout << ",\"accelerationWeight\":";
+        print_optional_interval_json(row.acceleration_weight);
+        std::cout << ",\"rootPlayback\":";
+        print_optional_interval_json(row.root_playback);
+        std::cout << ",\"chargeProductMagnitude\":";
+        print_interval_json(row.charge_product_magnitude);
+        std::cout << ",\"coupling\":";
+        print_interval_json(row.coupling);
+        std::cout << ",\"polarity\":" << row.polarity
+                  << ",\"accumulationGroup\":\""
+                  << json_escape(row.accumulation_group) << "\""
+                  << ",\"acceptanceStatus\":\""
+                  << json_escape(row.acceptance_status) << "\""
+                  << ",\"rootPrecisionRoute\":\""
+                  << json_escape(row.root_precision_route) << "\""
+                  << ",\"rootPrecisionBits\":" << row.root_precision_bits
+                  << ",\"accelerationPrecisionRoute\":\""
+                  << json_escape(row.acceleration_precision_route) << "\""
+                  << ",\"accelerationPrecisionBits\":"
+                  << row.acceleration_precision_bits
+                  << ",\"acceleration\":[";
+        for (std::size_t axis = 0U; axis < 3U; ++axis) {
+          if (axis > 0U) std::cout << ',';
+          print_interval_json(row.acceleration[axis]);
+        }
+        std::cout << "]}";
+      }
+    }
+  }
+  const bool boundary_requested = boundary_diagnostics != nullptr &&
+      boundary_diagnostics->enabled;
+  const bool crossing_coverage_complete = boundary_requested &&
+      shell_coverage.has_value() && complete_history_window &&
+      shell_coverage->unresolved_segment_count == 0U;
+  const bool boundary_products_complete = crossing_coverage_complete &&
+      complete_influence_traceability &&
+      (!boundary_diagnostics->replay_consumes_values ||
+       !boundary_diagnostics->replay_source_id.empty());
+  bool all_required_residuals_passed = boundary_requested;
+  if (boundary_requested) {
+    for (const auto& spec : boundary_diagnostics->residual_specs) {
+      const auto residual = boundary_residual_interval(spec);
+      if (spec.required_for_advancement &&
+          !(residual.upper() <= spec.tolerance)) {
+        all_required_residuals_passed = false;
+      }
+    }
+  }
+  const bool boundary_value_ready = boundary_products_complete &&
+      all_required_residuals_passed;
+  std::cout << "],\"boundaryShell\":{"
+            << "\"schema\":\"eom_borg_boundary_shell_products/v1\""
+            << ",\"envelopeId\":";
+  if (boundary_requested) {
+    std::cout << '"' << json_escape(boundary_diagnostics->envelope_id) << '"';
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"surfacePartitionId\":";
+  if (boundary_requested) {
+    std::cout << '"' << json_escape(
+        boundary_diagnostics->surface_partition_id) << '"';
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"shellCrossingRows\":[";
+  if (shell_coverage.has_value()) {
+    for (std::size_t index = 0U;
+         index < shell_coverage->crossings.size(); ++index) {
+      if (index > 0U) std::cout << ',';
+      const auto& crossing = shell_coverage->crossings[index];
+      std::cout << "{\"schema\":\"eom_borg_shell_crossing/v1\""
+                << ",\"rowId\":\"" << json_escape(crossing.event_id) << "\""
+                << ",\"pathId\":\"" << json_escape(crossing.path_id) << "\""
+                << ",\"segmentIndex\":" << crossing.segment_index
+                << ",\"segmentStart\":\""
+                << json_escape(crossing.segment_start) << "\""
+                << ",\"segmentEnd\":\""
+                << json_escape(crossing.segment_end) << "\""
+                << ",\"surfacePatchId\":\""
+                << json_escape(shell_patch_id(
+                    crossing, *boundary_diagnostics)) << "\""
+                << ",\"timeBinId\":\""
+                << json_escape(shell_time_bin_id(
+                    crossing, *boundary_diagnostics)) << "\""
+                << ",\"direction\":\""
+                << json_escape(crossing.direction) << "\""
+                << ",\"crossingTime\":";
+      print_interval_json(crossing.crossing_time);
+      std::cout << ",\"position\":";
+      print_interval_vector_json(crossing.position);
+      std::cout << ",\"velocity\":";
+      print_interval_vector_json(crossing.velocity);
+      std::cout << ",\"normalVelocityProjection\":";
+      print_interval_json(crossing.normal_velocity_projection);
+      std::cout << ",\"valueAuthority\":\"retained-local-evidence\"}";
+    }
+  }
+  std::cout << "],\"coverageRows\":[";
+  bool first_coverage = true;
+  if (boundary_requested) {
+    for (std::size_t band = 0U;
+         band < boundary_diagnostics->z_band_count; ++band) {
+      for (std::size_t sector = 0U;
+           sector < boundary_diagnostics->azimuth_sector_count; ++sector) {
+        const std::string patch_id =
+            boundary_diagnostics->surface_partition_id + ":z" +
+            std::to_string(band) + ":phi" + std::to_string(sector);
+        for (const auto& time_bin : boundary_diagnostics->time_bins) {
+          if (!first_coverage) std::cout << ',';
+          first_coverage = false;
+          const auto found = coverage_events.find(
+              patch_id + "\t" + time_bin.time_bin_id);
+          const bool empty = found == coverage_events.end();
+          std::cout << "{\"schema\":\"eom_borg_shell_patch_time_coverage/v1\""
+                    << ",\"rowId\":\"coverage:"
+                    << json_escape(patch_id) << ":"
+                    << json_escape(time_bin.time_bin_id) << "\""
+                    << ",\"surfacePatchId\":\""
+                    << json_escape(patch_id) << "\""
+                    << ",\"timeBinId\":\""
+                    << json_escape(time_bin.time_bin_id) << "\""
+                    << ",\"crossingEventIds\":[";
+          if (!empty) {
+            for (std::size_t index = 0U;
+                 index < found->second.size(); ++index) {
+              if (index > 0U) std::cout << ',';
+              std::cout << '"' << json_escape(found->second[index]) << '"';
+            }
+          }
+          std::cout << "],\"status\":\""
+                    << (empty ? "certified-empty" : "accepted") << "\"}"
+                    ;
+        }
+      }
+    }
+  }
+  std::cout << "],\"coverageCounts\":{"
+            << "\"segmentCount\":"
+            << (shell_coverage.has_value() ? shell_coverage->segment_count : 0U)
+            << ",\"certifiedEmptySegmentCount\":"
+            << (shell_coverage.has_value()
+                    ? shell_coverage->certified_empty_segment_count : 0U)
+            << ",\"crossingSegmentCount\":"
+            << (shell_coverage.has_value()
+                    ? shell_coverage->crossing_segment_count : 0U)
+            << ",\"unresolvedSegmentCount\":"
+            << (shell_coverage.has_value()
+                    ? shell_coverage->unresolved_segment_count : 0U)
+            << ",\"patchTimeCellCount\":"
+            << (boundary_requested
+                    ? boundary_diagnostics->z_band_count *
+                        boundary_diagnostics->azimuth_sector_count *
+                        boundary_diagnostics->time_bins.size()
+                    : 0U)
+            << "}"
+            << ",\"coverageStatus\":\""
+            << (crossing_coverage_complete
+                    ? "boundary-shell-complete" : "fail-closed") << "\""
+            << ",\"shellInfluenceRows\":[";
+  if (shell_coverage.has_value()) {
+    for (std::size_t index = 0U;
+         index < shell_coverage->crossings.size(); ++index) {
+      if (index > 0U) std::cout << ',';
+      const auto& crossing = shell_coverage->crossings[index];
+      std::vector<std::string> contribution_ids;
+      if (snapshot != nullptr) {
+        for (const auto& pair : snapshot->acceleration.pair_certificates) {
+          if (pair.status == "uncertified") continue;
+          for (const auto& row : pair.rows) {
+            if (row.transmitter_path_id == crossing.path_id) {
+              contribution_ids.push_back(row.row_id);
+            }
+          }
+        }
+      }
+      std::cout << "{\"schema\":\"borg-boundary-shell-influence-model.v1\""
+                << ",\"rowId\":\"influence:"
+                << json_escape(crossing.event_id) << "\""
+                << ",\"shellCrossingEventId\":\""
+                << json_escape(crossing.event_id) << "\""
+                << ",\"sourcePathId\":\""
+                << json_escape(crossing.path_id) << "\""
+                << ",\"interactionKernelId\":\"eom-master-equation-acceleration/v1\""
+                << ",\"accelerationContributionRowIds\":[";
+      for (std::size_t row_index = 0U;
+           row_index < contribution_ids.size(); ++row_index) {
+        if (row_index > 0U) std::cout << ',';
+        std::cout << '"' << json_escape(contribution_ids[row_index]) << '"';
+      }
+      std::cout << "],\"compressionError\":{\"lower\":\"0\",\"upper\":\"0\"}"
+                << ",\"mappingStatus\":\""
+                << (contribution_ids.empty()
+                        ? "fail-closed" : "path-derived-ready") << "\""
+                << ",\"valueAuthority\":\""
+                << (contribution_ids.empty()
+                        ? "fail-closed-value" : "retained-local-evidence")
+                << "\"}";
+    }
+  }
+  std::cout << "],\"replaySourceRows\":[";
+  if (boundary_requested && boundary_diagnostics->replay_consumes_values) {
+    std::cout << "{\"schema\":\"borg-boundary-shell-replay-source.v1\""
+              << ",\"replaySourceId\":\""
+              << json_escape(boundary_diagnostics->replay_source_id) << "\""
+              << ",\"summarySetId\":\""
+              << json_escape(boundary_diagnostics->summary_set_id) << "\""
+              << ",\"targetRunId\":\""
+              << json_escape(boundary_diagnostics->replay_target_run_id) << "\""
+              << ",\"samplingSeed\":\""
+              << json_escape(boundary_diagnostics->sampling_seed) << "\""
+              << ",\"surfaceMappingPolicy\":\""
+              << json_escape(boundary_diagnostics->surface_mapping_policy) << "\""
+              << ",\"timeMapping\":\""
+              << json_escape(boundary_diagnostics->time_mapping_id) << "\""
+              << ",\"velocitySamplingResultId\":\""
+              << json_escape(boundary_diagnostics->velocity_sampling_result_id) << "\""
+              << ",\"polaritySamplingPolicy\":\""
+              << json_escape(boundary_diagnostics->polarity_sampling_policy) << "\""
+              << ",\"historyHidingPolicy\":\""
+              << json_escape(boundary_diagnostics->history_hiding_policy) << "\""
+              << ",\"wakeReconstructionPolicy\":\""
+              << json_escape(boundary_diagnostics->wake_reconstruction_policy) << "\""
+              << ",\"valueAuthority\":\""
+              << (boundary_value_ready
+                      ? "reduced-model-boundary" : "fail-closed-value")
+              << "\"}";
+  }
+  std::cout << "],\"firstFailureCode\":";
+  if (!crossing_coverage_complete) {
+    std::cout << "\"missing_boundary_shell_crossing_coverage\"";
+  } else if (!complete_influence_traceability) {
+    std::cout << "\"boundary_shell_influence_model_missing\"";
+  } else if (!boundary_products_complete) {
+    std::cout << "\"boundary_shell_policy_missing\"";
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"valueAuthority\":\""
+            << (boundary_value_ready
+                    ? "reduced-model-boundary" : "fail-closed-value")
+            << "\"}"
+            << ",\"residualDecisions\":[";
+  const std::array<const char*, 3> residuals{
+      "shell_self_similarity", "shell_replay_residual",
+      "boundary_to_central_residual"};
+  for (std::size_t index = 0U; index < residuals.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    if (!boundary_requested) {
+      std::cout << "{\"schema\":\"eom_borg_residual_decision/v1\""
+                << ",\"residualLabel\":\"" << residuals[index] << "\""
+                << ",\"residualValue\":null,\"residualInterval\":null"
+                << ",\"tolerance\":null,\"status\":\"not-measured\""
+                << ",\"firstFailureCode\":\"required_residual_unmeasured\""
+                << ",\"valueAuthority\":\"fail-closed-value\"}";
+      continue;
+    }
+    const auto& spec = boundary_diagnostics->residual_specs[index];
+    const auto residual = boundary_residual_interval(spec);
+    const bool passed = residual.upper() <= spec.tolerance;
+    const bool failed = residual.lower() > spec.tolerance;
+    std::cout << "{\"schema\":\"eom_borg_residual_decision/v1\""
+              << ",\"comparisonSetId\":\""
+              << json_escape(boundary_diagnostics->comparison_set_id) << "\""
+              << ",\"comparisonId\":\""
+              << json_escape(spec.comparison_id) << "\""
+              << ",\"residualLabel\":\"" << residuals[index] << "\""
+              << ",\"sampleDomain\":\""
+              << json_escape(spec.sample_domain) << "\""
+              << ",\"referenceRunId\":\""
+              << json_escape(spec.reference_run_id) << "\""
+              << ",\"boundaryRunId\":\""
+              << json_escape(spec.boundary_run_id) << "\""
+              << ",\"comparisonWindowId\":\""
+              << json_escape(spec.comparison_window_id) << "\""
+              << ",\"decisionNormId\":\""
+              << json_escape(spec.decision_norm_id) << "\""
+              << ",\"sampleCount\":" << spec.samples.size()
+              << ",\"residualValue\":\""
+              << eom::finite_double_token(residual.upper()) << "\""
+              << ",\"residualInterval\":";
+    print_interval_json(residual);
+    std::cout << ",\"tolerance\":\""
+              << json_escape(spec.tolerance_token) << "\""
+              << ",\"epsilon0\":\""
+              << json_escape(spec.epsilon_token) << "\""
+              << ",\"status\":\""
+              << (passed ? "passed" : failed ? "failed" : "fail-closed")
+              << "\",\"firstFailureCode\":";
+    if (passed) {
+      std::cout << "null";
+    } else {
+      std::cout << '"' << (failed
+          ? "residual_tolerance_exceeded"
+          : "residual_decision_indeterminate") << '"';
+    }
+    std::cout << ",\"valueAuthority\":\""
+              << (passed && boundary_products_complete
+                      ? "reduced-model-boundary" : "fail-closed-value")
+              << "\"}";
+  }
+  std::cout << "]}";
+}
+
 void run(
     unsigned maximum_mpfr_bits,
     std::size_t quadrature_max_depth,
@@ -959,7 +1845,366 @@ void run(
         .history = std::move(history),
     });
   }
-  if (read_required_line("END record") != "END") {
+  BoundaryDiagnosticsConfig boundary_diagnostics;
+  std::string terminal_record = read_required_line("boundary diagnostics or END record");
+  if (terminal_record.rfind("BORG_SHELL_ENVELOPE\t", 0U) == 0U) {
+    boundary_diagnostics.enabled = true;
+    const auto envelope = split_tabs(terminal_record);
+    if (envelope.size() != 24U ||
+        envelope[1] != "eom_borg_shell_extraction_request/v1") {
+      throw std::invalid_argument(
+          "invalid BORG_SHELL_ENVELOPE record: expected 24 fields");
+    }
+    boundary_diagnostics.envelope_id = envelope[2];
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      boundary_diagnostics.center_tokens[axis] = envelope[3U + axis];
+      boundary_diagnostics.center[axis] = eom::parse_finite_double(
+          envelope[3U + axis], "boundary shell center");
+    }
+    boundary_diagnostics.outer_radius_token = envelope[6];
+    boundary_diagnostics.outer_radius = eom::parse_finite_double(
+        envelope[6], "boundary shell outer radius");
+    boundary_diagnostics.central_radius_token = envelope[7];
+    boundary_diagnostics.central_radius = eom::parse_finite_double(
+        envelope[7], "boundary shell central radius");
+    boundary_diagnostics.radial_buffer_margin_token = envelope[8];
+    boundary_diagnostics.radial_buffer_margin = eom::parse_finite_double(
+        envelope[8], "boundary shell radial buffer margin");
+    boundary_diagnostics.history_depth_token = envelope[9];
+    boundary_diagnostics.history_depth = eom::parse_finite_double(
+        envelope[9], "boundary shell history depth");
+    boundary_diagnostics.wake_horizon_token = envelope[10];
+    boundary_diagnostics.wake_horizon = eom::parse_finite_double(
+        envelope[10], "boundary shell wake horizon");
+    boundary_diagnostics.wake_floor_token = envelope[11];
+    boundary_diagnostics.wake_floor = eom::parse_finite_double(
+        envelope[11], "boundary shell wake floor");
+    boundary_diagnostics.boundary_mode = envelope[12];
+    boundary_diagnostics.extraction_window_id = envelope[13];
+    boundary_diagnostics.extraction_start_token = envelope[14];
+    boundary_diagnostics.extraction_end_token = envelope[15];
+    boundary_diagnostics.extraction_start = eom::parse_finite_double(
+        envelope[14], "boundary extraction start");
+    boundary_diagnostics.extraction_end = eom::parse_finite_double(
+        envelope[15], "boundary extraction end");
+    boundary_diagnostics.central_observation_window_id = envelope[16];
+    boundary_diagnostics.central_observation_start_token = envelope[17];
+    boundary_diagnostics.central_observation_end_token = envelope[18];
+    boundary_diagnostics.central_observation_start = eom::parse_finite_double(
+        envelope[17], "central observation start");
+    boundary_diagnostics.central_observation_end = eom::parse_finite_double(
+        envelope[18], "central observation end");
+    if (envelope[19] != "NONE") {
+      boundary_diagnostics.central_velocity_bound = eom::parse_finite_double(
+          envelope[19], "central velocity bound");
+    }
+    const std::size_t time_bin_count = parse_size(
+        envelope[20], "boundary shell time-bin count");
+    const std::size_t residual_spec_count = parse_size(
+        envelope[21], "boundary residual-spec count");
+    boundary_diagnostics.replay_consumes_values = parse_bool(
+        envelope[22], "boundary replay consumes values");
+    boundary_diagnostics.comparison_set_id = envelope[23];
+    const double field_speed = eom::parse_finite_double(
+        run[8], "boundary wake field speed");
+    const auto approximately_equal = [](double left, double right) {
+      return std::abs(left - right) <=
+          128.0 * std::numeric_limits<double>::epsilon() *
+              std::max({1.0, std::abs(left), std::abs(right)});
+    };
+    if (boundary_diagnostics.envelope_id.empty() ||
+        boundary_diagnostics.comparison_set_id.empty() ||
+        !(boundary_diagnostics.outer_radius > 0.0) ||
+        !(boundary_diagnostics.central_radius > 0.0) ||
+        !(boundary_diagnostics.central_radius <
+          boundary_diagnostics.outer_radius) ||
+        !approximately_equal(
+            boundary_diagnostics.radial_buffer_margin,
+            boundary_diagnostics.outer_radius -
+                boundary_diagnostics.central_radius) ||
+        !(boundary_diagnostics.history_depth > 0.0) ||
+        !approximately_equal(
+            boundary_diagnostics.wake_horizon,
+            field_speed * boundary_diagnostics.history_depth) ||
+        !(boundary_diagnostics.wake_floor >= 0.0) ||
+        (boundary_diagnostics.boundary_mode != "local-window" &&
+         boundary_diagnostics.boundary_mode != "statistical-boundary-shell" &&
+         boundary_diagnostics.boundary_mode != "display-only-preview") ||
+        !(boundary_diagnostics.extraction_end >
+          boundary_diagnostics.extraction_start) ||
+        !(boundary_diagnostics.central_observation_end >
+          boundary_diagnostics.central_observation_start) ||
+        boundary_diagnostics.central_observation_start <
+            boundary_diagnostics.extraction_start ||
+        boundary_diagnostics.central_observation_end >
+            boundary_diagnostics.extraction_end ||
+        time_bin_count == 0U || residual_spec_count != 3U) {
+      throw std::invalid_argument("invalid boundary shell envelope invariants");
+    }
+
+    const auto partition = split_tabs(read_required_line("BORG_SHELL_PARTITION record"));
+    if (partition.size() != 12U || partition[0] != "BORG_SHELL_PARTITION" ||
+        partition[1] != "eom_borg_shell_partition/v1" ||
+        partition[2] != boundary_diagnostics.envelope_id ||
+        partition[4] != "equal-area-zphi/v1") {
+      throw std::invalid_argument("invalid BORG_SHELL_PARTITION record");
+    }
+    boundary_diagnostics.surface_partition_id = partition[3];
+    boundary_diagnostics.partition_policy = partition[4];
+    boundary_diagnostics.z_band_count = parse_size(
+        partition[5], "boundary z-band count");
+    boundary_diagnostics.azimuth_sector_count = parse_size(
+        partition[6], "boundary azimuth-sector count");
+    double quaternion_norm_squared = 0.0;
+    for (std::size_t component = 0U; component < 4U; ++component) {
+      boundary_diagnostics.orientation_quaternion[component] =
+          eom::parse_finite_double(
+              partition[7U + component], "boundary partition quaternion");
+      quaternion_norm_squared +=
+          boundary_diagnostics.orientation_quaternion[component] *
+          boundary_diagnostics.orientation_quaternion[component];
+    }
+    boundary_diagnostics.uncovered_area_bound_token = partition[11];
+    boundary_diagnostics.uncovered_area_bound = eom::parse_finite_double(
+        partition[11], "boundary uncovered-area bound");
+    if (boundary_diagnostics.surface_partition_id.empty() ||
+        boundary_diagnostics.z_band_count == 0U ||
+        boundary_diagnostics.azimuth_sector_count == 0U ||
+        boundary_diagnostics.z_band_count > 4096U ||
+        boundary_diagnostics.azimuth_sector_count > 4096U ||
+        !approximately_equal(quaternion_norm_squared, 1.0) ||
+        boundary_diagnostics.uncovered_area_bound < 0.0) {
+      throw std::invalid_argument("invalid boundary shell partition invariants");
+    }
+
+    boundary_diagnostics.time_bins.reserve(time_bin_count);
+    for (std::size_t index = 0U; index < time_bin_count; ++index) {
+      const auto bin = split_tabs(read_required_line("BORG_SHELL_TIME_BIN record"));
+      if (bin.size() != 7U || bin[0] != "BORG_SHELL_TIME_BIN" ||
+          bin[1] != "eom_borg_shell_time_bin/v1" ||
+          bin[2] != boundary_diagnostics.envelope_id ||
+          parse_size(bin[4], "boundary time-bin ordinal") != index) {
+        throw std::invalid_argument("invalid BORG_SHELL_TIME_BIN record");
+      }
+      BoundaryTimeBin row{
+          .time_bin_id = bin[3],
+          .ordinal = index,
+          .start_token = bin[5],
+          .end_token = bin[6],
+          .start = eom::parse_finite_double(bin[5], "boundary time-bin start"),
+          .end = eom::parse_finite_double(bin[6], "boundary time-bin end"),
+      };
+      if (row.time_bin_id.empty() || !(row.end > row.start) ||
+          (index == 0U
+               ? !approximately_equal(
+                     row.start, boundary_diagnostics.extraction_start)
+               : !approximately_equal(
+                     row.start, boundary_diagnostics.time_bins.back().end))) {
+        throw std::invalid_argument("boundary shell time bins are not contiguous");
+      }
+      boundary_diagnostics.time_bins.push_back(std::move(row));
+    }
+    if (!approximately_equal(
+            boundary_diagnostics.time_bins.back().end,
+            boundary_diagnostics.extraction_end)) {
+      throw std::invalid_argument("boundary shell time bins do not cover extraction window");
+    }
+
+    if (boundary_diagnostics.replay_consumes_values) {
+      const auto replay = split_tabs(read_required_line("BORG_REPLAY_SOURCE record"));
+      if (replay.size() != 13U || replay[0] != "BORG_REPLAY_SOURCE" ||
+          replay[1] != "eom_borg_boundary_shell_replay_source/v1" ||
+          replay[4] != run[1] || replay[12] != "reduced-model-boundary") {
+        throw std::invalid_argument("invalid BORG_REPLAY_SOURCE record");
+      }
+      boundary_diagnostics.replay_source_id = replay[2];
+      boundary_diagnostics.summary_set_id = replay[3];
+      boundary_diagnostics.replay_target_run_id = replay[4];
+      boundary_diagnostics.sampling_seed = replay[5];
+      boundary_diagnostics.surface_mapping_policy = replay[6];
+      boundary_diagnostics.time_mapping_id = replay[7];
+      boundary_diagnostics.velocity_sampling_result_id = replay[8];
+      boundary_diagnostics.polarity_sampling_policy = replay[9];
+      boundary_diagnostics.history_hiding_policy = replay[10];
+      boundary_diagnostics.wake_reconstruction_policy = replay[11];
+      boundary_diagnostics.replay_value_authority = replay[12];
+      if (boundary_diagnostics.replay_source_id.empty() ||
+          boundary_diagnostics.summary_set_id.empty() ||
+          boundary_diagnostics.sampling_seed.empty() ||
+          boundary_diagnostics.surface_mapping_policy.empty() ||
+          boundary_diagnostics.time_mapping_id.empty() ||
+          boundary_diagnostics.velocity_sampling_result_id.empty() ||
+          boundary_diagnostics.polarity_sampling_policy.empty() ||
+          boundary_diagnostics.history_hiding_policy.empty() ||
+          boundary_diagnostics.wake_reconstruction_policy.empty()) {
+        throw std::invalid_argument("boundary replay-source carriers are incomplete");
+      }
+    }
+
+    const std::array<std::pair<const char*, const char*>, 3> required_residuals{{
+        {"shell_self_similarity", "shell-statistic-component"},
+        {"shell_replay_residual", "shell-influence-component"},
+        {"boundary_to_central_residual", "central-acceleration-component"},
+    }};
+    boundary_diagnostics.residual_specs.reserve(3U);
+    for (std::size_t index = 0U; index < 3U; ++index) {
+      const auto spec = split_tabs(read_required_line("BORG_RESIDUAL_SPEC record"));
+      if (spec.size() != 16U || spec[0] != "BORG_RESIDUAL_SPEC" ||
+          spec[1] != "eom_borg_residual_spec/v1" ||
+          spec[2] != boundary_diagnostics.comparison_set_id ||
+          spec[4] != required_residuals[index].first ||
+          spec[5] != required_residuals[index].second ||
+          spec[9] != "relative-weighted-l2/v1" ||
+          spec[7] != run[1] || spec[6] == spec[7]) {
+        throw std::invalid_argument("invalid BORG_RESIDUAL_SPEC record");
+      }
+      BoundaryResidualSpec row{
+          .comparison_id = spec[3],
+          .label = spec[4],
+          .sample_domain = spec[5],
+          .tolerance_token = spec[10],
+          .tolerance = eom::parse_finite_double(spec[10], "residual tolerance"),
+          .epsilon_token = spec[11],
+          .epsilon = eom::parse_finite_double(spec[11], "residual epsilon"),
+          .reference_run_id = spec[6],
+          .boundary_run_id = spec[7],
+          .comparison_window_id = spec[8],
+          .decision_norm_id = spec[9],
+          .expected_sample_count = parse_size(spec[12], "residual sample count"),
+          .reference_value_authority = spec[13],
+          .boundary_value_authority = spec[14],
+          .required_for_advancement = parse_bool(spec[15], "residual required flag"),
+      };
+      const bool reference_authority =
+          row.reference_value_authority == "retained-local-evidence" ||
+          row.reference_value_authority == "authoritative-solver-output" ||
+          row.reference_value_authority == "executable_architecture_evidence" ||
+          row.reference_value_authority == "canonical";
+      const bool boundary_authority =
+          row.boundary_value_authority == "retained-local-evidence" ||
+          row.boundary_value_authority == "reduced-model-boundary" ||
+          row.boundary_value_authority == "boundary-generated-value" ||
+          row.boundary_value_authority == "authoritative-solver-output";
+      if (row.comparison_id.empty() || !(row.tolerance > 0.0) ||
+          !(row.epsilon > 0.0) || row.expected_sample_count == 0U ||
+          !reference_authority || !boundary_authority ||
+          (row.label == "boundary_to_central_residual"
+               ? row.comparison_window_id !=
+                     boundary_diagnostics.central_observation_window_id
+               : row.comparison_window_id !=
+                     boundary_diagnostics.extraction_window_id)) {
+        throw std::invalid_argument("invalid boundary residual specification");
+      }
+      boundary_diagnostics.residual_specs.push_back(std::move(row));
+    }
+    for (auto& spec : boundary_diagnostics.residual_specs) {
+      spec.samples.reserve(spec.expected_sample_count);
+      std::set<std::string> sample_ids;
+      std::set<std::string> source_pairs;
+      for (std::size_t index = 0U; index < spec.expected_sample_count; ++index) {
+        const auto sample = split_tabs(read_required_line("BORG_RESIDUAL_SAMPLE record"));
+        if (sample.size() != 20U || sample[0] != "BORG_RESIDUAL_SAMPLE" ||
+            sample[1] != "eom_borg_paired_residual_sample/v1" ||
+            sample[2] != boundary_diagnostics.comparison_set_id ||
+            sample[3] != spec.comparison_id ||
+            parse_size(sample[5], "residual sample ordinal") != index) {
+          throw std::invalid_argument("invalid BORG_RESIDUAL_SAMPLE record");
+        }
+        const eom::Interval reference(
+            eom::parse_finite_double(sample[12], "reference interval lower"),
+            eom::parse_finite_double(sample[13], "reference interval upper"));
+        const eom::Interval boundary(
+            eom::parse_finite_double(sample[14], "boundary interval lower"),
+            eom::parse_finite_double(sample[15], "boundary interval upper"));
+        const eom::Interval weight(
+            eom::parse_finite_double(sample[16], "weight interval lower"),
+            eom::parse_finite_double(sample[17], "weight interval upper"));
+        if (sample[4].empty() || sample[6].empty() || sample[11].empty() ||
+            sample[18].empty() || sample[19].empty() ||
+            !(weight.lower() > 0.0) || !sample_ids.insert(sample[4]).second ||
+            !source_pairs.insert(sample[18] + "\n" + sample[19]).second) {
+          throw std::invalid_argument("residual sample carriers are incomplete");
+        }
+        const bool shell_statistic =
+            spec.sample_domain == "shell-statistic-component";
+        const bool shell_influence =
+            spec.sample_domain == "shell-influence-component";
+        const bool central =
+            spec.sample_domain == "central-acceleration-component";
+        const bool known_time_bin = std::any_of(
+            boundary_diagnostics.time_bins.begin(),
+            boundary_diagnostics.time_bins.end(), [&](const auto& bin) {
+              return bin.time_bin_id == sample[8];
+            });
+        const bool known_patch = [&]() {
+          for (std::size_t band = 0U;
+               band < boundary_diagnostics.z_band_count; ++band) {
+            for (std::size_t sector = 0U;
+                 sector < boundary_diagnostics.azimuth_sector_count; ++sector) {
+              if (sample[7] == boundary_diagnostics.surface_partition_id +
+                      ":z" + std::to_string(band) + ":phi" +
+                      std::to_string(sector)) {
+                return true;
+              }
+            }
+          }
+          return false;
+        }();
+        if ((shell_statistic || shell_influence) &&
+            (!known_patch || !known_time_bin || sample[9] != "NONE")) {
+          throw std::invalid_argument("shell residual sample has wrong domain");
+        }
+        if (shell_statistic && sample[10] != "NONE") {
+          throw std::invalid_argument(
+              "shell statistic sample carries a receiver-event time");
+        }
+        if (shell_influence) {
+          const double sample_time = eom::parse_finite_double(
+              sample[10], "shell influence sample time");
+          if (sample_time < boundary_diagnostics.extraction_start ||
+              sample_time > boundary_diagnostics.extraction_end) {
+            throw std::invalid_argument(
+                "shell influence sample lies outside extraction window");
+          }
+        }
+        if (central) {
+          const auto* receiver = parsed_path(parsed_paths, sample[9]);
+          const double sample_time = eom::parse_finite_double(
+              sample[10], "central residual sample time");
+          if (sample[7] != "NONE" || sample[8] != "NONE" ||
+              receiver == nullptr ||
+              sample_time < boundary_diagnostics.central_observation_start ||
+              sample_time > boundary_diagnostics.central_observation_end ||
+              !receiver->history.covers(eom::Interval::point(sample_time)) ||
+              radial_upper_from_center(
+                  receiver->history.position_hull(
+                      eom::Interval::point(sample_time)),
+                  boundary_diagnostics.center) >
+                  boundary_diagnostics.central_radius) {
+            throw std::invalid_argument(
+                "central residual sample lies outside central receiver domain");
+          }
+        }
+        spec.samples.push_back({
+            .sample_id = sample[4],
+            .ordinal = index,
+            .entity_id = sample[6],
+            .surface_patch_id = sample[7],
+            .time_bin_id = sample[8],
+            .receiver_path_id = sample[9],
+            .sample_time = sample[10],
+            .component_id = sample[11],
+            .reference = reference,
+            .boundary = boundary,
+            .weight = weight,
+            .reference_source_row_id = sample[18],
+            .boundary_source_row_id = sample[19],
+        });
+      }
+    }
+    terminal_record = read_required_line("END record");
+  }
+  if (terminal_record != "END") {
     throw std::invalid_argument("missing Borg EOM native END record");
   }
   if (inspect_request_only && std::cin.peek() != std::char_traits<char>::eof()) {
@@ -2149,6 +3394,10 @@ void run(
     }
     std::cout << "]}";
   }
+  std::cout << ",\"wakeBoundaryProducts\":";
+  print_borg_wake_boundary_products(
+      request.run_id, output_grade, result.histories, final_snapshot,
+      boundary_diagnostics.enabled ? &boundary_diagnostics : nullptr);
   std::cout << ",\"publishedExtensions\":[";
   for (std::size_t path_index = 0; path_index < result.histories.size();
        ++path_index) {

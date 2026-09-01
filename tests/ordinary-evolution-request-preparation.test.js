@@ -67,7 +67,7 @@ test('explicit synthetic complete request uses existing wire format and never ga
   assert.equal(p.transportRequest.histories[0].charge, '2'); assert.equal(p.transportRequest.histories[1].charge, '-2');
   // Hand-written protocol expectations, not an encoder-vs-itself scientific oracle.
   const lines = p.wire.utf8.trimEnd().split('\n');
-  assert.equal(lines[0], 'EOM_BORG_NATIVE_V10'); assert.equal(lines.at(-1), 'END');
+  assert.equal(lines[0], 'EOM_BORG_NATIVE_V11'); assert.equal(lines.at(-1), 'END');
   assert.equal(lines[2], 'PATH\tfixture-0\t2\t0\t0\t1');
   assert.equal(lines[3], 'SEG\t-1\t0\t1.00\t-0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0.01\t0.01\t0.01\t0.02\t0.02\t0.02');
   assert.equal(lines[1].split('\t')[8], '1'); assert.equal(lines[1].split('\t')[9], '3');

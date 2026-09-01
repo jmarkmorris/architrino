@@ -6,6 +6,39 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-01 - BORG-014 Indexed Assembly Registry Verified
+
+- Replaced the Library's eager seed-provider authority with the canonical `borg-assembly-registry.v1` migration and indexed `borg-assembly-registry-sqlite.v1` control plane. All 144 exact models and sealed records belong to 45 permanent opaque Borg braid identities. The registry carries exact model and record hashes, explicit unavailable occurrence identity, the future-causal-state boundary, a versioned taxonomy-relation graph, the v12 facet contract, content-addressed source/record locations, and deterministic poster, inspection, animation, and component-isolation dispositions. Coverage reports zero missing visual representatives and zero silently substituted rows.
+- Added typed comparison APIs for exact model, sealed record, braid entry, occurrence lineage, future causal state, morphology, and taxonomy co-membership. No comparison silently substitutes preview similarity, taxonomy, record bytes, or grouping for another relation. The exact inspector exposes braid, assembly, occurrence, model revision, record, taxonomy, source, and visual-coverage identity; two-component records expose source-member isolation. Static records are explicitly labeled as camera turntables rather than assembly motion.
+
+Plainly: Borg can now say exactly which catalog entry, exact model, record bytes, taxonomy relation, and occurrence availability a collaborator is viewing. A matching picture still does not prove a matching history, future, or lineage.
+
+- The separately authored Python verifier independently reconstructed `assembly-scientific-identity.v1` bytes from all 144 source v3 specifications and checked every registry identity plus every sealed-record hash. It does not import the production canonicalizer, identity-bearing field list, worldline operators, record emitter, expected hashes, or registry output as its oracle. Result: 144 exact models, 45 braid entries, 144 distinct sealed records, pass. Claim grade: independent identity/byte migration verification only; no geometry, acceleration, evolution, retention, stability, binding, or physical-acceptance result.
+- The deterministic synthetic benchmark imported 1,000,000 exact entries and 4,000,000 facet rows into a 7,432,015,872-byte SQLite database in 264,139 ms on Node v26.3.0 / SQLite 3.53.2 / arm64. Integrity returned `ok`. Median exact-id, full-model-hash, unique-prefix-hash, facet-count, text-search, cursor-page, and record-hash operations measured 0.018 ms, 0.008 ms, 78.955 ms, 23.059 ms, 0.032 ms, 0.015 ms, and 0.020 ms. [Receipt](evidence/assembly-registry-million-entry-benchmark.2026-09-01.json). These are engineering measurements of a synthetic corpus, not scientific evidence about assemblies.
+- Focused validation passes 60/60 registry, identity, catalog, status, geometry/facet, preview, scene, replay, and query tests. Registry freshness, independent migration verification, strict content validation with zero errors/warnings, priority-ranking validation, and `git diff --check` pass. Browser QA on the current indexed server verifies exact source search, permanent braid/model/record/taxonomy identity, explicit unavailable occurrence identity, component-1 isolation, static camera-turntable labeling, a 390-by-844 layout with 390-pixel scroll width and no inspector overflow, and empty warning/error logs. Falsifier: any source/record hash mismatch, ambiguous prefix accepted as exact, missing registry row, substituted visual representative, typed relation substitution, component isolation outside source membership, synthetic benchmark treated as scientific evidence, or repetition of the named browser interactions with a different result.
+
+Closure goal: Preserve complete, fail-closed registry identity and visual coverage as new source-owned models, occurrences, taxonomy relations, and records are admitted.
+
+### 2026-09-01 - BORG-001 Native Wake And Boundary Residuals Verified
+
+- Added `eom_borg_wake_boundary_products/v1` to the EOM response. The product preserves accepted final-snapshot retained path identities, root-bound wake/interaction rows, exact interval acceleration contributions, explicit pair failures, and the exhaustive candidate/resolved/aggregated/boundary/failure census. Borg validates run/time binding, row identity, interval shape, and the conservation equation before retaining the product on a live chunk.
+- Advanced the process protocol to `EOM_BORG_NATIVE_V11` without changing the 60-field evolution row. Optional typed records now carry the complete shell envelope, oriented equal-area partition, contiguous time bins, replay-source identity, three residual specifications, and paired scalar-interval samples. The EOM process brackets crossings from retained cubic histories, certifies direction from the interval normal projection, emits every patch/time cell as accepted or certified empty, binds shell influence rows to accepted acceleration contributions, and computes the three relative weighted-$L^2$ residual intervals. JavaScript validates and transports these products but performs no boundary dynamics.
+- The exact two-path fixture certifies one outbound shell crossing, all eight declared patch/time cells, one path-derived influence row, one replay source, and passing `shell_self_similarity`, `shell_replay_residual`, and `boundary_to_central_residual` decisions. The full EOM process suite passes 27/27, the focused contract suite passes 44/44, and the CTest protocol and acceleration fixtures pass 2/2. The broader Borg migration suite passes 87/88; its only failure is an unrelated live Braid Program bootstrap-dependency change.
+- Claim grade: implemented software contract plus measured fixture behavior. The fixture establishes extraction, transport, accounting, interval comparison, and fail-closed enforcement; it does not establish that a production replay policy is physically adequate, benign, retained, stable, bound, or scientifically accepted. BORG-003 still owns measured velocity-scale calibration and holdout evidence. Falsifier: a retained segment is absent from the crossing census, a patch/time cell is silent, an influence row loses its accepted contribution identity, a comparison sample is unbound, or any non-passing residual gains reduced-model authority.
+
+Plainly: Borg can now measure the complete fixture from retained paths through the three comparison decisions. Production replay still needs its own measured inputs; if any are missing or exceed tolerance, the value remains fail-closed.
+
+Closure goal: Supply BORG-003 velocity calibration and holdout evidence before any production replay policy claims reduced-model adequacy.
+
+### 2026-09-01 - Exact-Record Backdrop Dismissal
+
+- The Assembly Library's modal Exact Record inspector now closes when a pointer click lands outside the dialog panel. Clicks within the panel, including its padding and interactive controls, do not dismiss it; the existing Close button and native Escape behavior remain available.
+- Claim grade: implemented browser interaction. Falsifier: a backdrop click leaves the dialog open, an interior click closes it, or dismissal leaves the exact-record URL pin or preview controller active.
+
+Plainly: clicking the dimmed page around the Exact Record panel now closes it, while working inside the panel does not.
+
+Closure goal: Keep modal dismissal predictable across pointer, Close-button, and keyboard paths.
+
 ### 2026-09-01 - Geometry-First Library Filter Order
 
 - Reordered the Assembly Library filters to lead with `Assembly span`, `Braids in assembly`, `Braid dimensionality`, and `Architrinos`, followed by `Assembly radii`, `Circle occupancy`, `Breathing`, and `Speed policy`. The shared facet definition owns this order across the left rail, counts, and exact-record inspector.

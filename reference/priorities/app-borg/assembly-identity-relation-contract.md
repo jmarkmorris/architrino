@@ -1,6 +1,6 @@
 # Borg Assembly Identity-Relation Contract
 
-Status: CURRENT SEED CONTRACT. The 45-entry Borg demonstrator and scientific-coverage counts implement the relations below. Permanent opaque braid identity, evolved-occurrence identity, causal-state equality, lineage lifecycle, and the indexed million-entry registry remain BORG-014 work.
+Status: ACCEPTED REGISTRY CONTRACT. The 45-entry Borg catalog relation, 144 exact configurations, typed identity comparisons, explicit unavailable occurrence/causal-state dispositions, indexed registry, scientific-coverage counts, independent migration verification, and million-entry engineering measurement implement the relations below.
 
 ## Purpose
 
@@ -28,9 +28,9 @@ Thus the current 144 exact configurations form 45 Borg braid entries: 44 singlet
 
 Plainly: the one 100-member card means “one source-declared braid relation with 100 calculated configurations,” not “one record copied 100 times.”
 
-The demonstrator's current group-result identifier is query identity, not yet the permanent opaque `braidId` required by the full registry. The permanent id must survive presentation renames and model revisions and therefore cannot be inferred from a mutable label or borrowed from one representative configuration.
+The canonical [assembly registry](assembly-registry.v1.json) assigns each of the 45 entries one permanent opaque `braidId`. The identifier survives presentation renames and does not encode a mutable label, taxonomy placement, representative model revision, geometry, evidence grade, or component-braid count. Exact members retain independent `assemblyId + modelRevisionSha256` identities beneath that entry.
 
-Plainly: the 45-card relation is usable now, but BORG-014 still owes stable long-lived braid ids before a million-entry migration.
+Plainly: the card identity and each exact configuration identity now answer different questions and remain independently copyable.
 
 ## Scientific-Coverage Configuration Count
 
@@ -52,12 +52,12 @@ Relation status is lifecycle state, not verdict sign. The projection supports `a
 
 ## Other Required Identity Relations
 
-The seed grouping does not replace the remaining typed relations required by BORG-014:
+The registry exposes the following typed relations without substituting one for another:
 
 - exact sealed-record equality compares `recordSha256` under the declared record schema;
 - model-specification equality compares canonical identity-bearing model specifications under frozen symmetry and persistent-order rules;
-- future-sufficient causal-state equality remains unavailable until the complete future-consumed EOM checkpoint and path-history state is defined and proven sufficient for identical discrete decisions;
-- occurrence and formation-lineage continuity requires a separate opaque occurrence identity and source-carried continuation, merge, split, and supersession events;
+- future-sufficient causal-state equality returns an explicit unavailable result until the complete future-consumed EOM checkpoint and path-history state is defined and proven sufficient for identical discrete decisions;
+- occurrence and formation-lineage continuity uses the ratified `occurrenceId` field plus source-carried continuation, merge, split, and supersession events; every current prescribed model record reports that identity unavailable rather than fabricating an occurrence;
 - morphology similarity requires a named metric, tolerance, alignment rule, and comparison time or interval; and
 - taxonomy co-membership requires a named taxonomy revision and membership relation.
 
@@ -78,10 +78,10 @@ Plainly: matching previews or matching taxonomy tags cannot prove that two recor
 
 ## Migration And Falsifiers
 
-The full registry migration must assign a permanent opaque braid identity, preserve every exact configuration member, retain relation revision and provenance, and reject ambiguous or label-derived mappings. Changing a display label or taxonomy membership must leave model and occurrence identity unchanged. Changing identity-bearing inventory, persistent source order, component relations, coordinates, motion prescription, applicable speed policy, units, source-law version, or future-consumed causal state must change the applicable revision identity.
+The completed migration assigns a permanent opaque braid identity, preserves every exact configuration member, retains relation revision and provenance, and rejects ambiguous or label-derived mappings. Changing a display label or taxonomy membership leaves model and occurrence identity unchanged. Changing identity-bearing inventory, persistent source order, component relations, coordinates, motion prescription, applicable speed policy, units, source-law version, or future-consumed causal state changes the applicable revision identity. The independently authored Python verifier reconstructs source scientific bytes and sealed-record hashes without importing production identity or emission code.
 
 This seed contract is falsified if the current default query does not return exactly 45 braid entries over all 144 exact configurations; if the balance group does not contain exactly 100 independent exact identities; if the scientific-coverage count double-counts a configuration with multiple relations; if a missing relation is presented as scientific absence; if a broader context is presented as an exact verdict; if a label, filename, pixel comparison, or app-local dynamics calculation creates a finding or identity relation; or if a hash-pinned exact selection is silently retargeted.
 
 Plainly: the counts are trustworthy only while every grouping and finding link can be traced back to structured source identity and a named revision.
 
-Closure goal: Preserve 45 distinct visual braid entries, 144 exact configuration identities, and source-owned per-braid scientific-coverage counts while replacing the seed result relation with permanent opaque braid, occurrence, causal-state, lineage, morphology, record, and taxonomy identities suitable for the million-entry registry.
+Closure goal: Preserve the accepted 45-entry/144-configuration migration and fail-closed typed identity boundaries as new models, occurrences, taxonomy relations, and evidence records enter the indexed registry.

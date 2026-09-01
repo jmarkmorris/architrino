@@ -798,7 +798,12 @@ test("Borg surface keeps EOM-native policy requiring verification for advancemen
 
   const wakeLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "wake-streams");
   assert.equal(wakeLayer.state, "disabled");
-  assert.equal(wakeLayer.valueAuthority, "fail-closed-value");
+  assert.equal(wakeLayer.valueAuthority, "runtime-eom-owned-or-fail-closed");
+  assert.deepEqual(wakeLayer.sourceFields, [
+    "eom-response.wakeBoundaryProducts.resolvedWakeInteractionRows",
+    "eom-response.wakeBoundaryProducts.failureWakeRows",
+    "eom-response.wakeBoundaryProducts.rowConservationCounts",
+  ]);
   assert.equal(
     surfaceDesign.layerStrip.some((layer) => layer.layer === "boundary-shell-status"),
     false,
@@ -807,7 +812,12 @@ test("Borg surface keeps EOM-native policy requiring verification for advancemen
   assert.equal(surfaceDesign.authorityMap.boundaryShellStatus, undefined);
   assert.equal(
     BORG_FAIL_CLOSED_ROWS.some((row) => /boundary[_-]shell/u.test(row.firstFailureCode)),
-    false,
+    true,
+  );
+  assert.equal(
+    BORG_FAIL_CLOSED_ROWS.some((row) =>
+      row.firstFailureCode === "required_residual_unmeasured"),
+    true,
   );
 });
 

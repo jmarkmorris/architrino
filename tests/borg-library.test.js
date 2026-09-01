@@ -156,5 +156,8 @@ test("Library presents grouped results as braids and exact configurations as sup
   assert.match(mainSource, /data\.exactRecordCount.*exact/);
   assert.match(mainSource, /data\.activeFindingConfigurationCount.*indexed active evidence/);
   assert.doesNotMatch(mainSource, /assembly cards/);
+  assert.match(mainSource, /event\.target !== event\.currentTarget/);
+  assert.match(mainSource, /const outsidePanel = event\.clientX < bounds\.left/);
+  assert.match(mainSource, /if \(outsidePanel\) event\.currentTarget\.close\(\)/);
   assert.match(pageSource, /<option value="none">Braids<\/option>/);
 });

@@ -1244,7 +1244,7 @@ test("Borg native process protocol carries the same continuous-history request",
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
   assert.equal(protocol.split("\n")[0], BORG_NATIVE_EOM_PROTOCOL_MAGIC);
-  assert.match(protocol, /^EOM_BORG_NATIVE_V10\nRUN\t/u);
+  assert.match(protocol, /^EOM_BORG_NATIVE_V11\nRUN\t/u);
   const runFields = protocol.split("\n")[1].split("\t");
   assert.equal(runFields.length, 60);
   assert.equal(runFields[4], "0.05");
@@ -1399,7 +1399,7 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
     assert.throws(
       () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary }),
       (error) => {
-        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V10/u);
+        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V11/u);
         assert.match(error.message, /binary parser=EOM_BORG_NATIVE_V999/u);
         assert.match(
           error.message,
@@ -1420,7 +1420,7 @@ test("Borg native clients own separate exact-history temporary roots", async () 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V11\\n");
   process.exit(0);
 }
 const rootArgument = process.argv.find((argument) =>
@@ -1506,7 +1506,7 @@ test("Borg native client restarts a persistent worker when its executable change
   const fixtureBinary = join(fixtureDirectory, "refreshable-eom-binary.mjs");
   const fixtureSource = (marker) => `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V11\\n");
   process.exit(0);
 }
 let buffer = "";
@@ -1572,7 +1572,7 @@ test("Borg native client clears its history prefix after a halted request", asyn
   const fixtureBinary = join(fixtureDirectory, "cache-reset-eom-binary.mjs");
   const fixtureSource = `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V11\\n");
   process.exit(0);
 }
 let buffer = "";
@@ -1666,7 +1666,7 @@ test("Borg server process client forwards a validated Display prefix without seg
   const fixtureBinary = join(fixtureDirectory, "display-prefix-eom-binary.mjs");
   const fixtureSource = `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V11\\n");
   process.exit(0);
 }
 let buffer = "";

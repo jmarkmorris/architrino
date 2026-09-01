@@ -11,27 +11,25 @@ This is the canonical execution ledger for accepted Borg work. `priorities.md` o
 
 ## Next real work
 
-`BORG-001` — native wake-history and boundary-residual fixture.
+`BORG-002` — assembly-viewer record-contract carriers.
 
 ## Ranked Next Objects
 
-1. `native_wake_history_and_boundary_residual_fixture` — [BORG-001](#borg-001--native-wake-history-and-boundary-residuals). Status: `Queued`.
-2. `assembly_viewer_record_contract_carriers` — [BORG-002](#borg-002--assembly-viewer-record-contract-carriers). Status: `Queued`.
-3. `assembly_registry_identity_and_taxonomy_browser` — [BORG-014](#borg-014--assembly-registry-durable-identity-and-taxonomy-browser). Status: `In progress`.
-4. `borg_taxonomy_selection_canvas` — [BORG-015](#borg-015--taxonomy-selection-canvas). Status: `In progress`.
-5. `borg_polarity_path_color_and_half_turn_fade` — [BORG-016](#borg-016--polarity-path-color-and-half-turn-fade). Status: `In progress`.
-6. `velocity_scale_sampling_evidence` — [BORG-003](#borg-003--velocity-scale-sampling-evidence). Status: `Queued`.
-7. `assembly_explorer_disposition` — [BORG-004](#borg-004--assembly-explorer-disposition). Status: `Queued`.
-8. `borg_runtime_decomposition` — [BORG-005](#borg-005--borg-runtime-decomposition). Status: `Queued`.
-9. `borg_prescribed_translation_tubes` — [BORG-006](#borg-006--prescribed-translation-and-causal-history-tubes). Status: `Queued`.
-10. `borg_taxonomy_morph_lab` — [BORG-007](#borg-007--taxonomy-morph-lab). Status: `Deferred / blocked`.
-11. `borg_braid_harmonics_studio` — [BORG-008](#borg-008--braid-harmonics-studio). Status: `Deferred / blocked`.
-12. `borg_orthogonal_axis_three_binary_exclusion_geometry` — [BORG-009](#borg-009--orthogonal-axis-three-binary-exclusion-geometry). Status: `Deferred / blocked`.
-13. `borg_gell_mann_pattern_atlas` — [BORG-010](#borg-010--gell-mann-pattern-atlas). Status: `Deferred / blocked`.
-14. `borg_polarity_ledger_builder` — [BORG-011](#borg-011--polarity-ledger-builder). Status: `Deferred / blocked`.
-15. `borg_conservation_flow_board` — [BORG-012](#borg-012--conservation-flow-board). Status: `Deferred / blocked`.
-16. `borg_material_surface_routing` — [BORG-013](#borg-013--material-surface-routing). Status: `Deferred / blocked`.
-17. `borg_platonic_relationship_classification` — [BORG-017](#borg-017--platonic-relationship-classification-and-facet). Status: `Queued`.
+1. `assembly_viewer_record_contract_carriers` — [BORG-002](#borg-002--assembly-viewer-record-contract-carriers). Status: `Queued`.
+2. `borg_taxonomy_selection_canvas` — [BORG-015](#borg-015--taxonomy-selection-canvas). Status: `In progress`.
+3. `borg_polarity_path_color_and_half_turn_fade` — [BORG-016](#borg-016--polarity-path-color-and-half-turn-fade). Status: `In progress`.
+4. `velocity_scale_sampling_evidence` — [BORG-003](#borg-003--velocity-scale-sampling-evidence). Status: `Queued`.
+5. `assembly_explorer_disposition` — [BORG-004](#borg-004--assembly-explorer-disposition). Status: `Queued`.
+6. `borg_runtime_decomposition` — [BORG-005](#borg-005--borg-runtime-decomposition). Status: `Queued`.
+7. `borg_prescribed_translation_tubes` — [BORG-006](#borg-006--prescribed-translation-and-causal-history-tubes). Status: `Queued`.
+8. `borg_taxonomy_morph_lab` — [BORG-007](#borg-007--taxonomy-morph-lab). Status: `Deferred / blocked`.
+9. `borg_braid_harmonics_studio` — [BORG-008](#borg-008--braid-harmonics-studio). Status: `Deferred / blocked`.
+10. `borg_orthogonal_axis_three_binary_exclusion_geometry` — [BORG-009](#borg-009--orthogonal-axis-three-binary-exclusion-geometry). Status: `Deferred / blocked`.
+11. `borg_gell_mann_pattern_atlas` — [BORG-010](#borg-010--gell-mann-pattern-atlas). Status: `Deferred / blocked`.
+12. `borg_polarity_ledger_builder` — [BORG-011](#borg-011--polarity-ledger-builder). Status: `Deferred / blocked`.
+13. `borg_conservation_flow_board` — [BORG-012](#borg-012--conservation-flow-board). Status: `Deferred / blocked`.
+14. `borg_material_surface_routing` — [BORG-013](#borg-013--material-surface-routing). Status: `Deferred / blocked`.
+15. `borg_platonic_relationship_classification` — [BORG-017](#borg-017--platonic-relationship-classification-and-facet). Status: `Queued`.
 
 ## Awaiting verification
 
@@ -39,16 +37,18 @@ No rows.
 
 ## In progress
 
-[BORG-014](#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) and [BORG-015](#borg-015--taxonomy-selection-canvas); their full acceptance rows remain below in execution order.
+[BORG-015](#borg-015--taxonomy-selection-canvas); its full acceptance row remains below in execution order.
 
 ## Queued
 
 ### BORG-001 — Native wake history and boundary residuals
 
-- **Status:** Queued
-- **Priority source:** [Ranked Next Objects item 1](priorities.md#ranked-next-objects)
+- **Status:** Verified — complete V11 retained-wake, shell-crossing, patch/time coverage, influence, replay-source, and paired residual contract accepted on 2026-09-01.
+- **Priority source:** [Ranked Next Objects](priorities.md#ranked-next-objects)
 - **Request / acceptance:** Extend the EOM contracts and native implementation so Borg receives retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics. The app must consume these as EOM-owned data; no app-local physics or visual tuning may replace missing rows.
-- **Evidence / blocker:** EOM solver and bridge capability work is required. Until these rows exist, replay-affected values remain fail-closed or display-only.
+- **Implemented:** `EOM_BORG_NATIVE_V11` preserves the 60-field evolution request and adds typed shell-envelope, oriented equal-area partition, time-bin, replay-source, residual-specification, and paired interval-sample records before `END`. The EOM process extracts and brackets retained cubic-history crossings, certifies inbound or outbound direction from the interval normal projection, accounts for every patch/time cell as accepted or certified empty, binds path-derived influence rows to accepted acceleration contributions, preserves replay-source identity, and computes all three declared relative weighted-$L^2$ residual intervals. Borg validates the same request and response identities without recalculating dynamics.
+- **Verification:** The exact two-path native fixture certifies one outbound crossing, eight complete patch/time coverage cells, one path-derived influence row, one replay-source row, and passing `shell_self_similarity`, `shell_replay_residual`, and `boundary_to_central_residual` decisions. The full EOM process suite passes 27/27; focused EOM/Borg/transport tests pass 44/44; CTest protocol and independent acceleration fixtures pass 2/2; `git diff --check` passes. The larger Borg migration suite passes 87/88, with its sole failure caused by an unrelated live Braid Program bootstrap-dependency addition.
+- **Evidence boundary:** Verification establishes software transport, native extraction, complete accounting, interval comparison, and fail-closed validation. The fixture values are engineering inputs, not evidence that a production replay policy is physically adequate. BORG-003 still owns measured velocity-scale calibration and holdout evidence; missing or non-passing production inputs remain fail-closed.
 - **Completion:** Contract, native implementation, bridge schema, focused validation fixtures, and Borg consumer coverage pass; any learner/operator surface requiring these values is verified against current EOM output.
 
 ### BORG-002 — Assembly-viewer record-contract carriers
@@ -61,7 +61,9 @@ No rows.
 
 ### BORG-014 — Assembly registry, durable identity, and taxonomy browser
 
-- **Status:** In progress — seed-catalog visual demonstrator available; registry and migration remain open.
+- **Status:** Verified — indexed registry, identity/taxonomy contracts, complete seed migration, independent verification, visual coverage, and million-entry measurement accepted on 2026-09-01.
+- **Implemented:** The canonical `borg-assembly-registry.v1` binds all 144 exact models and sealed records to 45 permanent opaque `braidId` values, explicit unavailable occurrence and future-causal-state dispositions, a versioned taxonomy-relation graph, the v12 facet contract, content-addressed source/record locations, deterministic poster/inspection/animation coverage, and zero missing or substituted rows. The Library service builds the validated manifest into the indexed `borg-assembly-registry-sqlite.v1` control plane and searches exact identities, full or collision-checked hash prefixes, source identities, descriptive text, taxonomy relations, and facets before cursor pagination. The exact inspector exposes braid, model, occurrence, record, taxonomy, source, and coverage identity; multi-braid records expose source-member component isolation.
+- **Verification:** The separately authored Python verifier independently reconstructed canonical scientific bytes from every v3 source specification and checked all 144 model identities and sealed record hashes without importing the production canonicalizer, field list, operators, emitter, expected hashes, or registry output as an oracle. The deterministic one-million-entry benchmark imported 1,000,000 exact models and 4,000,000 facet rows into a 7,432,015,872-byte SQLite database in 264,139 ms on the recorded arm64 environment; integrity passed. Median exact-id, full-hash, text-search, cursor-page, facet-count, and collision-checked prefix lookup times were 0.018 ms, 0.008 ms, 0.032 ms, 0.015 ms, 23.059 ms, and 78.955 ms. These are engineering measurements, not scientific evidence. [Benchmark receipt](evidence/assembly-registry-million-entry-benchmark.2026-09-01.json).
 - **Flat exact catalog:** The [accepted repository decision](../../architectural-decisions/flat-assembly-catalog.md) defines a parent-free catalog and property-based discovery. The current seed catalog contains 144 exact peer configurations, each bound by `assemblyId + modelRevisionSha256`; exact display bytes add `recordSha256`. The current [identity-relation contract](assembly-identity-relation-contract.md) organizes those exact configurations into 45 unique Borg braid entries: 44 singleton entries and one source-declared equal-radius planar three-binary balance entry containing 100 exact configurations.
 - **Current geometry coverage:** Twelve alternating circular rings, one hundred equal-radius planar three-binary balance records, two co-spherical two-planar-braid displays, five rotating Platonic vertex sets, and the remaining frozen prescribed configurations are all emitted from exact v3 source specifications. [Source choices and explicit non-instantiated reasons](../braid-program/configuration-display-catalog.md).
 - **Facts-first facets:** [The assignment audit](selector-assignment-audit.md) defines source-derived Circle occupancy, component-braid dimensionality, assembly span, radii, breathing, braid count, speed policy, and shape boundaries. Missing or unsupported values remain `Not assigned`. Circle occupancy permits several distinct circles and several radii.
@@ -154,11 +156,11 @@ No rows.
 
 ### BORG-015 — Taxonomy selection canvas
 
-- **Status:** In progress — bounded visual demonstrator implemented and browser-checked; full registry acceptance remains open.
+- **Status:** In progress — visual canvas implemented and browser-checked; the BORG-014 registry dependency is verified, while the remaining canvas-specific eye-test matrix stays open.
 - **Source:** Operator direction on 2026-08-29 and visual-first discovery decision on 2026-08-30.
-- **Demonstrator:** [Assembly Library](../../../borg-library.html) implements nine selectors, alternative facet counts, query URLs, group descent, lazy 12-result pages, independent pointer/keyboard rotation, fixed framing, playback/scrubbing, exact-record inspection, and accessible identity/facet/scientific-coverage hooks. The default surface lists 45 unique Borg braid entries over 144 exact configurations. The unified Braid-owned projection links 136 current exact configurations across 37 braid entries and reports separate member-derived coverage without treating an unindexed relation as a scientific negative. Source-formula radius comparisons classify 24 braid entries as Iso-radii and 21 as Hetero-radii; versioned operator assignments retain six spindle entries. Source membership supplies 20 one-braid and eight two-braid entries, with 17 unassigned after the static stella-octangula replacement; three is offered with zero matches. All current speed policies remain unavailable. General spindle/spherical descriptors, component isolation, complete taxonomy coverage, permanent braid identity, and model/occurrence identity remain BORG-014 work. [Identity and scientific-coverage contract](assembly-identity-relation-contract.md); [radius contract](requirements-and-design.md#catalog-composition-classifications); [BORG-018 verification](work-log.md#2026-09-01---borg-018-identity-bound-scientific-status-inspector).
+- **Implemented surface:** [Assembly Library](../../../borg-library.html) implements eight factual selectors, alternative facet counts, query URLs, group descent, lazy 12-result pages, independent pointer/keyboard rotation, fixed framing, playback/scrubbing, exact-record inspection, source-member component isolation, and accessible registry/facet/scientific-coverage hooks. The default surface lists 45 unique Borg braid entries over 144 exact configurations. The unified Braid-owned projection links 136 current exact configurations across 37 braid entries and reports separate member-derived coverage without treating an unindexed relation as a scientific negative. Source-formula radius comparisons classify 25 braid entries as Iso-radii and 20 as Hetero-radii; versioned operator assignments retain six spindle entries. Source membership supplies 20 one-braid and eight two-braid entries, with 17 unassigned after the static stella-octangula replacement; three is offered with zero matches. All current speed policies remain unavailable. General spindle/spherical browse descriptors and the remaining representative eye-test matrix remain in this row. [Identity and scientific-coverage contract](assembly-identity-relation-contract.md); [radius contract](requirements-and-design.md#catalog-composition-classifications); [BORG-018 verification](work-log.md#2026-09-01---borg-018-identity-bound-scientific-status-inspector).
 - **Request / acceptance:** Implement the visual-first faceted Borg selection canvas specified in [requirements-and-design.md](requirements-and-design.md#taxonomy-selection-canvas), using the BORG-014 registry, facet descriptors, identity layers, and paginated query contract. The primary workflow is filter, visually inspect independently rotatable assembly-preview spheres, narrow through explicitly marked group spheres when necessary, and select a leaf sphere that resolves to one exact model or record. Descriptive labels and exact identities remain searchable secondary metadata. The filter rail includes architrino count, braid count, breathing state, assembly-centered radius equality, circle occupancy, declared speed policy, separate braid dimensionality and assembly span, and nonexclusive visual-form descriptors. Menus omit `Unavailable`; shape retains `Unclassified`. Internal missing values remain distinct from `false` and visible as `Not assigned` in record details. Render only a deterministic paginated or virtualized working set in a responsive standard grid and load preview geometry lazily. Each sphere must expose accessible machine-readable result metadata, rotate independently in three dimensions, expose no zoom path, keep the complete assembly visible at every orientation, and contain only source-carried architrinos and their paths. Do not render Borg's dotted spherical-envelope or globe-dot overlay inside these selection spheres.
-- **Evidence / blocker:** Depends on BORG-014 for durable model, occurrence, record, group-result, taxonomy, and facet identity; stable filter semantics; paginated queries; and complete source-declared preview geometry. A missing facet is visibly unavailable rather than false. A missing or incomplete representative remains an unavailable row; Borg may not infer identity or facets from pixels or invent coordinates to fill the canvas.
+- **Evidence / blocker:** Consumes the verified BORG-014 durable model, occurrence, record, braid-entry, taxonomy, facet, query, and visual-coverage contracts. A missing facet remains visibly unavailable rather than false. This row retains only the remaining selection-canvas-specific browser acceptance and does not reopen registry identity or migration.
 - **Completion:** Focused tests prove exact filter intersection and reset behavior, unavailable-versus-false handling, source-policy-versus-observed-speed separation without playback clamping, revision-specific facet filtering before grouping, deterministic order and pagination, total and facet counts, lazy preview loading, saved filter-state restoration, group descent, leaf resolution to exact identity, accessible machine hooks, no pixel-derived test identity, no zoom handlers or controls, rotation-invariant fixed framing, deterministic poster/reset orientation, source-only preview content, taxonomy-to-registry identity preservation, and fail-closed missing bounds. Browser QA at desktop and narrow widths performs the operator eye test across representative planar, spatial, breathing, non-breathing, Iso-radii, Hetero-radii, one-per-circle, multiple-per-circle, both-occupancy-types, uncapped, capped-at-$c_f$, missing-speed-policy, multi-braid, boundary, visually similar/different-history, and same-shape/different-name entries: the grid matches canonical UI shell standards, the intended assembly can be reached without knowing its taxonomy name, each assembly remains fully visible through arbitrary rotations, wheel scrolling moves the grid rather than zooming a sphere, and no preview contains globe dots or any object other than architrinos and paths.
 
 ### BORG-016 — Polarity path color and half-turn fade
@@ -268,7 +270,7 @@ Plainly: Borg may say that a record uses the vertices of an octahedron, but it m
 
 ## Verified
 
-No rows.
+[BORG-014](#borg-014--assembly-registry-durable-identity-and-taxonomy-browser).
 
 ## Superseded / withdrawn
 

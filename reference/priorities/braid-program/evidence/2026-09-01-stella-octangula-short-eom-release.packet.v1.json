@@ -1,0 +1,159 @@
+{
+  "schema": "braid-program/stella-octangula-short-eom-release-packet.v1",
+  "packetId": "stella-octangula-short-eom-release-2026-09-01-v1",
+  "date": "2026-09-01",
+  "verdict": "passed",
+  "claimGrade": "measured-eom-solver-executable-architecture-evidence",
+  "sourceBindings": {
+    "predeclaration": {
+      "path": "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-short-eom-release.predeclaration.v1.json",
+      "sha256": "fcde91f3af651d273d89fa77f96306e58f9f3b6db66b3fadd59909afab34bd35",
+      "bytes": 5886
+    },
+    "auditRepairPredeclaration": {
+      "path": "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-short-eom-release-audit-repair.predeclaration.v1.json",
+      "sha256": "1df9f1e9a4862050a24b44012cb410609044e3a73e2ee6f3e056e4f03926884c",
+      "bytes": 3427
+    },
+    "stationaryReleasePacket": {
+      "path": "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-stationary-release.packet.v1.json",
+      "sha256": "408afcef56aa8ec00383361b257004dc7ceb28cf05866e3d2f5b47fe36e86395",
+      "resultHash": "6812b782d0629eb70557a801b022e6c7f094a538bc2870151f55f8193a9a7268"
+    },
+    "eomExecutable": {
+      "path": ".tmp/eom-native-dev/eom_borg_shadow_cli",
+      "sha256": "52763de017a958cb43cf2d4a6bc71d64bb2f1ddcf9bc3c760b49a36e3da69380",
+      "protocol": "EOM_BORG_NATIVE_V10"
+    }
+  },
+  "rawEvidence": {
+    "directory": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1",
+    "runSummary": {
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/run-summary.json",
+      "sha256": "92741778a3c1d355a01b6bc940de36b57a67ddeef89627447e4c8dce48a2dbe7",
+      "bytes": 163730
+    },
+    "fineResponse": {
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/fine-response.json",
+      "sha256": "3a2ac3266e0cf080c126f795085e6be545ccbed9b9837a459732046bf1f3fbae",
+      "bytes": 857677
+    },
+    "mediumResponse": {
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/medium-response.json",
+      "sha256": "b1e221cb58981039c136a8ad58c31f011fb331a61be81d83745100b4079e30c6",
+      "bytes": 438102
+    },
+    "coarseResponse": {
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/coarse-response.json",
+      "sha256": "d0e2f766b04712826dd0ef8e2be8b86c08f8f41f46cda560f7b3e8cbfb38c78c",
+      "bytes": 228291
+    },
+    "firstIndependentCheck": {
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/independent-check.json",
+      "sha256": "1701fa18e4f5937e045b7ea71e0aac6d65f58a6777fd89df2427d3470c2d264d",
+      "bytes": 154216,
+      "accepted": false,
+      "disposition": "preserved-parser-semantics-failure"
+    },
+    "correctedIndependentCheck": {
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/independent-check-v2.json",
+      "sha256": "bf67c3939eedd83b968286cabaec22560fa69599dfeb2db67ba54a196bfca8f5",
+      "bytes": 155730,
+      "accepted": true
+    }
+  },
+  "scientificInput": {
+    "historyInterval": [-2, 0],
+    "evolutionInterval": [0, 0.01],
+    "history": "eight exact constant cubic worldlines with zero incoming velocity",
+    "fieldSpeed": 1,
+    "chargeMagnitude": 1,
+    "coupling": 1,
+    "effectiveStrength": 1,
+    "initialCircumradius": 0.5,
+    "initialAccelerationMagnitude": 2.5219178085318643,
+    "futurePathSupplied": false
+  },
+  "rungs": [
+    {
+      "id": "fine",
+      "role": "primary",
+      "fixedStep": 0.0025,
+      "status": "completed",
+      "acceptedEndTime": 0.01,
+      "acceptedStepCount": 4,
+      "rejectedStepCount": 0,
+      "rootCertificateRowCount": 256,
+      "incompleteRootCertificateRowCount": 0
+    },
+    {
+      "id": "medium",
+      "role": "refinement-control",
+      "fixedStep": 0.005,
+      "status": "completed",
+      "acceptedEndTime": 0.01,
+      "acceptedStepCount": 2,
+      "rejectedStepCount": 0,
+      "rootCertificateRowCount": 128,
+      "incompleteRootCertificateRowCount": 0
+    },
+    {
+      "id": "coarse",
+      "role": "stress-diagnostic",
+      "fixedStep": 0.01,
+      "status": "completed",
+      "acceptedEndTime": 0.01,
+      "acceptedStepCount": 1,
+      "rejectedStepCount": 0,
+      "rootCertificateRowCount": 64,
+      "incompleteRootCertificateRowCount": 0
+    }
+  ],
+  "primaryMeasurementAtT001": {
+    "initialRadius": 0.5,
+    "finalRadius": 0.49987390781532354,
+    "inwardRadiusChange": 0.00012609218467646288,
+    "fractionalRadiusContraction": 0.00025218436935292576,
+    "radialVelocity": -0.02521769834861235,
+    "maximumTangentialSpeed": 3.0046291974743185e-18,
+    "centerResidual": 0,
+    "minimumPairSeparation": 0.5772046704760945,
+    "memberRadiusSpread": 0,
+    "memberRadialVelocitySpread": 0,
+    "interpretation": "All eight members continued directly inward through T=0.01; none turned and none reached the origin."
+  },
+  "independentComparisons": {
+    "primaryToMediumMaximumStateDelta": 5.0032924799742196e-9,
+    "primaryToCoarseMaximumStateDelta": 2.5016174489550513e-8,
+    "constantInitialAccelerationTaylorRadiusAtT001": 0.4998739041095734,
+    "primaryRadiusMinusTaylorRadius": 3.7057501511839064e-9,
+    "allAcceptanceChecksPassed": true
+  },
+  "auditRepair": {
+    "changedScientificData": false,
+    "changedTrajectoryMetrics": false,
+    "changedThresholds": false,
+    "correctedFieldInterpretation": "The native field stepFailures contains accepted and rejected step ledgers. A failure requires status other than accepted or a nonempty failureCode.",
+    "fineAcceptedLedgerRows": 4,
+    "fineActualFailures": 0,
+    "fineCertifiedOrderedPairRows": 256
+  },
+  "animationProduced": false,
+  "braidClassificationAttempted": false,
+  "claimBoundary": {
+    "included": "Measured EOM-solver accepted history over 0 <= T <= 0.01 for the exact stationary prehistory, declared unit strength, and isolated eight-member inventory.",
+    "excluded": [
+      "long-term convergence on the origin",
+      "collision outcome",
+      "turning after T=0.01",
+      "animation",
+      "braid classification",
+      "binding",
+      "retention",
+      "stability",
+      "energy",
+      "physical realization"
+    ]
+  },
+  "falsifier": "A changed binding, incomplete ordered-pair root row, rejected step, non-inward member, radial reversal, tangential speed above threshold, center drift above threshold, pair separation below threshold, or primary-to-medium endpoint state delta above 5e-6 overturns this short-release conclusion."
+}

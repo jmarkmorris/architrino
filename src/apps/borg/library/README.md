@@ -1,4 +1,4 @@
-# Borg Assembly Library demonstrator
+# Borg Assembly Library
 
 Open [the library page](../../../../borg-library.html) through the local development server. Start it from the repository root:
 
@@ -20,7 +20,7 @@ The concrete examples are owned by the Borg catalog and identified by their curr
 
 ## Responsibilities
 
-The catalog is `borg-assembly-record-catalog.v2`: a flat list with `assemblyId`, `modelRevisionSha256`, `label`, and `recordUrl` per entry. Borg's left panel shows Random architrinos followed by these records in catalog order, without taxonomy headings. The catalog rejects parent fields. Analytical geometry constraints remain source-owned and do not rebuild a navigation hierarchy. See [the repository decision](../../../../reference/architectural-decisions/flat-assembly-catalog.md).
+The migration input remains the flat `borg-assembly-record-catalog.v2`, while the canonical Library control plane is [borg-assembly-registry.v1](../../../../reference/priorities/app-borg/assembly-registry.v1.json). It adds permanent opaque braid-entry identity, explicit occurrence availability, exact record pins, a versioned taxonomy-relation graph, the facet descriptor contract, visual-coverage dispositions, and content-addressed source/record locations without adding a parent hierarchy. Borg's left panel shows Random architrinos followed by exact records in catalog order. Analytical geometry constraints remain source-owned. See [the repository decision](../../../../reference/architectural-decisions/flat-assembly-catalog.md).
 
 - [BorgLibraryDescriptors.mjs](BorgLibraryDescriptors.mjs): versioned record facets and complete cubic-path bounds; preview positions are sampled exclusively through the shared history dataset. The cubic bound uses the Bernstein convex-hull property and a fixed display scale under rotations.
 - [BorgOrbitGeometry.mjs](../BorgOrbitGeometry.mjs): circle equality and internal source-track groups, independent of trail length. Fixed circles compare center, plane and radius in a common translation frame. Noncircular, incomplete, or ambiguous carriers remain unassigned for circle occupancy.
@@ -30,7 +30,9 @@ The catalog is `borg-assembly-record-catalog.v2`: a flat list with `assemblyId`,
 - [BorgScientificStatusView.mjs](../BorgScientificStatusView.mjs): renders the shared accessible `H1`--`H5` status panel, evidence boundaries, lifecycle, freshness, and stable machine-readable hooks on both exact-inspection surfaces.
 - [BorgLibraryComposition.mjs](BorgLibraryComposition.mjs): source-membership partition checks for braid count and exact-record matching of [operator classifications](../../../../reference/priorities/app-borg/library-classifications.v4.json). Changing record bytes does not inherit a former classification.
 - [BorgLibraryQuery.mjs](BorgLibraryQuery.mjs): intersection across facets, union within one facet, alternative facet counts, text/hash-prefix search, and grouping after record-level filtering. Hash search requires at least eight leading hexadecimal characters.
-- [BorgLibraryService.mjs](../../../../scripts/dev/BorgLibraryService.mjs): read-only seed-catalog provider for `GET /api/borg/library` and `GET /api/borg/library/preview?assemblyId=…&modelRevisionSha256=…&recordSha256=…`. Pages hold at most 12 results. Cursors bind the query and record snapshot; changed record pins return an error. Summaries load before lazy preview data.
+- [BorgAssemblyRegistryContract.mjs](../registry/BorgAssemblyRegistryContract.mjs): validates registry, taxonomy, facet, occurrence, visual-coverage, and typed-sameness boundaries. Causal-state and occurrence comparisons fail closed when their source carriers are unavailable.
+- [BorgAssemblyRegistryDatabase.mjs](../registry/BorgAssemblyRegistryDatabase.mjs): indexed SQLite control plane for exact ids, full and collision-checked prefix hashes, braid identities, source/descriptive search, facets, taxonomy relations, and cursor-ordered pages.
+- [BorgLibraryService.mjs](../../../../scripts/dev/BorgLibraryService.mjs): read-only indexed provider for `GET /api/borg/library` and `GET /api/borg/library/preview?assemblyId=…&modelRevisionSha256=…&recordSha256=…`. Pages hold at most 12 results. Cursors bind the query and registry snapshot; changed record pins return an error. Summaries load before lazy preview data.
 
 Plainly: the server first reports what matches, then supplies only the previews the user reaches.
 
@@ -47,13 +49,15 @@ Facet version `borg-record-facets.v12` counts persistent worldlines and source-d
 
 Plainly: editing a category assignment does not rewrite the assembly. The provider reloads the classification file and invalidates stale cached results and page cursors when it changes.
 
-The server reads and caches the seed set in memory. Cursor pagination and lazy browser rendering exercise the interaction contract, not million-entry indexing or a scalability benchmark. Opaque model/occurrence identities, taxonomy migration, independent recalculation, indexed storage, complete taxonomy coverage, component isolation, and future live rotational-carrier acceptance remain open in [the Borg queue](../../../../reference/priorities/app-borg/work-queue.md).
+The server validates the committed 144-record migration and builds its indexed control plane once per exact registry/classification/evidence snapshot. The independent Python verifier reconstructs source scientific identities and sealed-record byte hashes without importing production identity or emission code. The deterministic million-entry benchmark receipt records import, database size, exact/full/prefix-hash lookup, facet filter, text search, record lookup, and cursor-page measurements. Component-braid identity is carried into preview paths and multi-braid exact inspectors expose source-member isolation. Future occurrence records remain responsible for supplying their own opaque `occurrenceId`; future-sufficient causal-state equality remains unavailable until the EOM checkpoint contract proves sufficiency.
 
 ## Verification
 
 ```sh
+node scripts/borg/build-assembly-registry.mjs --check
+"${AAA_VENV:-../.venv}/bin/python" scripts/borg/verify-assembly-registry-migration.py
 node scripts/check-borg-scientific-status-projection.mjs
-node --test tests/borg-scientific-status.test.js tests/borg-circle-occupancy.test.js tests/borg-orbit-trails.test.js tests/borg-library-radii.test.js tests/borg-library-variants.test.js tests/borg-library.test.js tests/borg-library-preview.test.js tests/borg-assembly-record-catalog.test.js tests/borg-assembly-view-session.test.js tests/borg-eom-history-evaluation.test.js
+node --test tests/borg-assembly-registry.test.js tests/borg-scientific-status.test.js tests/borg-circle-occupancy.test.js tests/borg-orbit-trails.test.js tests/borg-library-radii.test.js tests/borg-library-variants.test.js tests/borg-library.test.js tests/borg-library-preview.test.js tests/borg-assembly-record-catalog.test.js tests/borg-assembly-view-session.test.js tests/borg-eom-history-evaluation.test.js
 ```
 
 Plainly: the tests check known polynomial answers and what the renderer draws. The descriptor controls use hand-derived values, not production-generated expected fixtures. Canvas-command checks establish display behavior only. Browser checks and known unrelated regression failures are recorded in [the work log](../../../../reference/priorities/app-borg/work-log.md#2026-08-30---visual-assembly-library-demonstrator).

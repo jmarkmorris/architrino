@@ -156,7 +156,7 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
 }
 
 export function createLibraryPreview(described, sampleCount = 321) {
-  const { dataset, summary } = described;
+  const { dataset, summary, sourceLines } = described;
   const { start, end } = dataset.window;
   const frames = dataset.createFrameSamples({ start, end, frameCount: sampleCount });
   const trails = describeBorgOrbitTrails(dataset);
@@ -168,7 +168,10 @@ export function createLibraryPreview(described, sampleCount = 321) {
     sampleCount, interpolation: "retained-cubic samples; no forward evolution",
     paths: dataset.worldlines.map((line, index) => {
       const trail = trails.get(line.id);
+      const constituentId = sourceLines.find((source) => source.id === line.id)?.constituentId;
+      const componentBraidId = summary.braids.find((braid) => braid.members.includes(constituentId))?.id ?? null;
       return { id: line.id, polarity: line.polarity,
+        componentBraidId,
         trailMode: trail.mode, trailDuration: trail.duration, trailFade: trail.fade, trailReason: trail.reason,
         points: frames.map((frame) => { const p = frame.states[index].position; return [p.x, p.y, p.z]; }),
       };

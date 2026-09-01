@@ -74,7 +74,10 @@ test("all catalog scenes and library previews share expected per-worldline spans
     scene.setRecord({dataset});scene.setDisplayMode("chart-pose");scene.updateTime(dataset.window.end);
     const group=root.children.find(g=>g.userData.kind==="prescribed-path-history-strands");
     const preview=createLibraryPreview(describeLibraryRecord(raw,entry,"control"));
-    assert.equal(group.children.length,dataset.worldlines.length);
+    const staticRecord=raw.worldlines.every(line=>line.segments.every(segment=>segment.coefficients.every(axis=>axis.slice(1).every(value=>value===0))));
+    assert.ok(group.children.length===dataset.worldlines.length||(staticRecord&&group.children.length===0));
+    assert.equal(preview.paths.length,dataset.worldlines.length);
+    if(group.children.length===0){ assert.equal(staticRecord,true); scene.dispose(); continue; }
     group.children.forEach((line,i)=>{
       const trail=line.userData.trailPolicy,segments=line.userData.visibleSegments;
       const expected=policies.get(dataset.worldlines[i].id).mode;

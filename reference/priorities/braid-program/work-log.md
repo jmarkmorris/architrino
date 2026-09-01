@@ -396,3 +396,20 @@ Corpus requirements:
 
 
 These requirements record the editorial work described by the historical notebook entry. Current equations and policy remain controlled by their live owners.
+
+## 2026-09-01 — BP-002 configuration chart completed and current scope ratified
+
+- Completed the omission review by matching all twenty-three admitted registry rows one-for-one to the configuration chart: eleven orthogonal-axis three-binary loci, four coincident-axis three-binary loci, six two-component circular charts, and two focused coordinate representatives. Separately routed all seven evaluated Circular Configuration Registry rows, preserving the $N=1$ binary's distinct evidence owner and the different $N=2$ through $N=6$ and $N=12$ coverage boundaries. The six current campaign-restricted rows were also checked for histories or prehistories, declared inventory, free and frozen axes, numerical representation, expressible and evaluated reach, coverage-certified reach, exclusions, abstentions, and claim boundaries.
+- Updated queue routing through BP-017. BP-001, BP-003, BP-010, BP-011, and BP-012 through BP-014 now point to their chart owners; BP-007, BP-016, and BP-017 retain explicit no-subchart abstentions; BP-005, BP-006, BP-008, and BP-015 are documented as non-subchart work. Reassigned the Neutral-Atlas research questions, including omitted finite-width history-tail responsibility, from the completed BP-002 task to the continuing chart and applicable campaign owners without creating new queue rows or claiming those stronger theorems are solved.
+- Ratified the chart as the current-scope inventory under the operator's instruction to implement BP-002, removed BP-002 from the live queue, and renumbered the remaining ranked objects. The coincident-axis registry row now treats ratification as closed and retains executable-point selection and coverage certification as separate future burdens.
+- Claim boundary: ratification verifies scope bookkeeping and owner coverage only. It establishes no family-level negative, causal-root completeness, EOM result, retention, stability, binding, physical realization, solver preference, particle identity, score change, or scientific acceptance. A later candidate admission, materially changed coordinate locus, or newly frozen campaign specification must update the chart and its live owner together.
+
+Plainly: the current search map now accounts for every admitted braid geometry and every live scientific queue target without treating a missing chart as an implicit configuration or a completed inventory as physical evidence.
+
+## 2026-09-01 — BP-005 forty-seven-lead mining disposition review completed
+
+- Added the [BP-005 disposition review](mining/2026-09-01-disposition-review.md) with exactly one outcome for each curated mining lead: twenty-nine `route`, three `keep`, twelve `defer`, and three `reject`, totaling forty-seven. The review covers ten method lessons, nine mechanisms-and-dynamics leads, thirteen assembly-and-mass-map leads, and fifteen medium-and-conservation leads.
+- Routes point only to current owners and explicitly preserve each source lead at **idea (unproven lead)** or the receiving owner's separately declared derivation/closure-target grade. Keeps and defers remain non-load-bearing mining notes. Rejections create no experimental negative: one declines a duplicate method rule, one declines a motion-order definition that conflicts with the current matter/antimatter conjugation boundary, and one declines an unsupported Noether sea and pair-production ontology as a Braid Program obligation.
+- Updated the mining overview and README to point to the completed census, removed BP-005 from the live queue, renumbered the remaining ranked objects, and updated the configuration chart's non-subchart note. No campaign, gate, fixture, score, candidate, source specification, generated artifact, or reader-facing corpus claim was added.
+
+Plainly: every mined idea now has an explicit home, prerequisite, hold, or rejection. The review closes queue bookkeeping only; it does not turn archived inspiration into proof or measurement.

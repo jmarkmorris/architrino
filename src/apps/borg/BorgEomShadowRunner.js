@@ -17,6 +17,10 @@ import {
   BORG_POSITRINO_STATE_FLAG,
 } from "./BorgPolarityDiagnostics.js";
 import {
+  validateBorgEomBoundaryDiagnosticsRequest,
+  validateBorgEomWakeBoundaryProducts,
+} from "./BorgEomWakeBoundaryProducts.js";
+import {
   evaluateEomCubicHistoryAtTime,
 } from "../shared/EomCubicHistoryEvaluation.mjs";
 export {
@@ -239,6 +243,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         memoryBudgetBytes: response.memoryBudgetBytes,
         hostMemoryEnvelope: response.hostMemoryEnvelope,
         causalHistoryRetention: response.causalHistoryRetention,
+        wakeBoundaryProducts: response.wakeBoundaryProducts,
         budgetProvenance: response.budgetProvenance,
         retainedHistoryStart,
         retainedHistoryEnd,
@@ -444,11 +449,12 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
       "Borg EOM steps must satisfy minimumStep <= initialStep <= maximumStep.",
     );
   }
+  const runId = String(options.runId ??
+    `borg-eom-shadow-run:${Date.now()}:${++borgEomRunSequence}`);
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
     runSource: BORG_EOM_SHADOW_RUN_SOURCE,
-    runId: String(options.runId ??
-      `borg-eom-shadow-run:${Date.now()}:${++borgEomRunSequence}`),
+    runId,
     runGrade,
     startTime,
     targetDuration,
@@ -461,6 +467,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     historyStartTime: roundTime(startTime - historyDepth),
     historyDepth,
     causalHistoryRetention,
+    boundaryDiagnostics: options.boundaryDiagnostics ?? null,
     coreScale,
     geometricDelayBound,
     historySafetyMargin,
@@ -595,6 +602,14 @@ export function createBorgEomShadowRequest({
   if (![BORG_EOM_RUN_GRADE_CERTIFIED, BORG_EOM_RUN_GRADE_DISPLAY].includes(runGrade)) {
     throw new TypeError(`Unsupported Borg EOM run grade: ${runGrade}.`);
   }
+  const boundaryDiagnostics = validateBorgEomBoundaryDiagnosticsRequest(
+    config.boundaryDiagnostics ?? null,
+    {
+      runId: config.runId,
+      fieldSpeed: config.fieldSpeed,
+      pathIds: histories.map((history) => history.pathId),
+    },
+  );
   return Object.freeze({
     schema: BORG_EOM_REQUEST_SCHEMA,
     contractId: BORG_EOM_CONTRACT_ID,
@@ -644,6 +659,7 @@ export function createBorgEomShadowRequest({
       memoryBudgetBytes: config.memoryBudgetBytes,
       failurePolicy: "fail-closed",
       causalHistoryRetention: config.causalHistoryRetention,
+      boundaryDiagnostics,
     }),
     provenance: Object.freeze({
       appId: "borg",
@@ -1070,6 +1086,20 @@ function normalizeEomResponse(rawResponse, request) {
     );
   }
   const historyStorage = validateHistoryStorage(response.historyStorage);
+  if (request.resourceEnvelope.boundaryDiagnostics != null &&
+      response.wakeBoundaryProducts == null) {
+    throw new Error(
+      "Borg EOM shadow response omitted requested wake/boundary diagnostics.",
+    );
+  }
+  const wakeBoundaryProducts = response.wakeBoundaryProducts == null
+    ? null
+    : validateBorgEomWakeBoundaryProducts(response.wakeBoundaryProducts, {
+        runId: request.runId,
+        acceptedEndTime: acceptedEndTimeToken,
+        pathIds: request.histories.map((history) => history.pathId),
+        boundaryDiagnostics: request.resourceEnvelope.boundaryDiagnostics,
+      });
   return Object.freeze({
     status: response.status,
     runGrade: responseRunGrade,
@@ -1080,6 +1110,7 @@ function normalizeEomResponse(rawResponse, request) {
     hostMemoryEnvelope,
     causalHistoryRetention,
     historyStorage,
+    wakeBoundaryProducts,
     claimGrade,
     budgetProvenance: Object.freeze({
       schema: budgetProvenance.schema,

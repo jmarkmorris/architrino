@@ -7,4 +7,4 @@ Staging area for content mined from the legacy `braid-*` directories. Rules:
 3. An item leaves this directory only by becoming a campaign objective, a brainstorming entry, or a configuration-chart consideration — at which point it is restated fresh in program terminology and its legacy label is dropped.
 4. Nothing in this directory is load-bearing. A campaign may be motivated by a mined lead; it may never cite one as support.
 
-The mining pass itself is queue item 5 in ../priorities.md and does not begin until the program charter is ratified.
+The first mining pass is complete. [The BP-005 disposition review](2026-09-01-disposition-review.md) assigns exactly one keep, route, defer, or reject outcome to each of its forty-seven curated leads without upgrading any source note above **idea (unproven lead)**.

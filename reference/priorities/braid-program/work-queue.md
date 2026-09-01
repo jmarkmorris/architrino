@@ -9,19 +9,17 @@ The detailed planar common-center three-binary constraint investigation is maint
 ## Ranked Next Objects
 
 1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
-2. `configuration_chart_completion` — [BP-002](#bp-002--configuration-chart-completion). Status: `Queued`.
-3. `collinear_breather_campaign` — [BP-003](#bp-003--collinear-breather-campaign). Status: `Deferred / blocked`.
-4. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
-5. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
-6. `coincident_midpoint_421_coaxial_two_planar_braid_v2_adjudication` — [BP-007](#bp-007--421-coincident-midpoint--co-rotating-two-planar-braid-adjudication). Status: `Deferred / blocked`.
-7. `asymmetric_counter_breathing_member_acceleration` — [BP-010](#bp-010--asymmetric-counter-breathing-representative-normalized-member-acceleration-predeclaration). Status: `Full conditional cover independently verified; one-cell acceleration range accepted, full M05/M06 quadrature and three-rung measurement outstanding`.
-8. `planar_common_center_three_binary_investigation` — [BP-011](#bp-011--planar-common-center-three-binary-constraint-investigation). Status: `Queued`; detailed status lives in the [planar common-center three-binary constraint work queue](planar-three-binary-work-queue.md).
-9. `circular_path_regular_polarity_completion` — [BP-012](#bp-012--circular-path-regular-polarity-completion). Status: `Queued`.
-10. `circular_path_nonuniform_phase_census` — [BP-013](#bp-013--circular-path-nonuniform-phase-census). Status: `Queued`.
-11. `circular_path_large_n_law` — [BP-014](#bp-014--circular-path-large-n-law). Status: `Queued`.
-12. `borg_assembly_source_inventory_handoff` — [BP-015](#bp-015--borg-assembly-source-inventory-handoff). Status: `Queued`; Borg implementation remains owned by [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser).
-13. `platonic_braid_qualification_and_prescribed_history` — [BP-016](#bp-016--platonic-braid-qualification-and-prescribed-history-program). Status: `Queued`.
-14. `packed_platonic_assembly_histories` — [BP-017](#bp-017--packed-platonic-assembly-history-program). Status: `Queued`.
+2. `collinear_breather_campaign` — [BP-003](#bp-003--collinear-breather-campaign). Status: `Deferred / blocked`.
+3. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
+4. `coincident_midpoint_421_coaxial_two_planar_braid_v2_adjudication` — [BP-007](#bp-007--421-coincident-midpoint--co-rotating-two-planar-braid-adjudication). Status: `Deferred / blocked`.
+5. `asymmetric_counter_breathing_member_acceleration` — [BP-010](#bp-010--asymmetric-counter-breathing-representative-normalized-member-acceleration-predeclaration). Status: `Full conditional cover independently verified; one-cell acceleration range accepted, full M05/M06 quadrature and three-rung measurement outstanding`.
+6. `planar_common_center_three_binary_investigation` — [BP-011](#bp-011--planar-common-center-three-binary-constraint-investigation). Status: `Queued`; detailed status lives in the [planar common-center three-binary constraint work queue](planar-three-binary-work-queue.md).
+7. `circular_path_regular_polarity_completion` — [BP-012](#bp-012--circular-path-regular-polarity-completion). Status: `Queued`.
+8. `circular_path_nonuniform_phase_census` — [BP-013](#bp-013--circular-path-nonuniform-phase-census). Status: `Queued`.
+9. `circular_path_large_n_law` — [BP-014](#bp-014--circular-path-large-n-law). Status: `Queued`.
+10. `borg_assembly_source_inventory_handoff` — [BP-015](#bp-015--borg-assembly-source-inventory-handoff). Status: `Queued`; Borg implementation remains owned by [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser).
+11. `platonic_braid_qualification_and_prescribed_history` — [BP-016](#bp-016--platonic-braid-qualification-and-prescribed-history-program). Status: `Queued`.
+12. `packed_platonic_assembly_histories` — [BP-017](#bp-017--packed-platonic-assembly-history-program). Status: `Queued`.
 
 ## Shared search prerequisites
 
@@ -43,7 +41,7 @@ The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evalua
 | `coincident-midpoint orthogonal-axis three-binary configuration`, `coincident-midpoint 4:2:1-frequency orthogonal-axis three-binary configuration`, `axially separated 4:2:1-frequency orthogonal-axis three-binary configuration` | `STASIS` | H2 closed; H3 unknown outside the current sub-field method | independently validate a root method for the unchanged history, or separately freeze a slower history and reconfirm H2 to reuse the sub-field method; no run is authorized here |
 | `coincident-midpoint common-frequency orthogonal-axis three-binary configuration`, `coincident-midpoint equal-radius common-frequency orthogonal-axis three-binary configuration`, `coincident-midpoint 3:2:1-frequency orthogonal-axis three-binary configuration`, `phase-compensated equal-geometry orthogonal-axis three-binary configuration`, `axially separated common-frequency orthogonal-axis three-binary configuration`, `axially separated equal-radius common-frequency orthogonal-axis three-binary configuration`, `axially separated 3:2:1-frequency orthogonal-axis three-binary configuration` | `STASIS` | H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
 | `axially separated orthogonal-axis three-binary configuration` measured slice, `centered five-coordinate representative` | `STASIS` | Not queued | independent same-history member-acceleration packet or new campaign predeclared under the accepted ruler/clock and full leakage contract |
-| `coincident-axis three-binary configuration` | `STASIS` | `BP-002` remains queued | chart ratification followed by one frozen executable slice |
+| `coincident-axis three-binary configuration` | `STASIS` | Chart ratified; no executable slice queued | nominate one frozen executable point before any measured claim; a locus-wide claim separately requires coverage certification over the ratified coordinate domain |
 | `axial-transverse coincident-axis three-binary interior configuration` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed; the obsolete score-free compatibility packet was withdrawn with zero roots evaluated and zero scores computed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; any local-landscape center pilot requires a fresh current exact-identity freeze |
 | `high-axial coincident-axis three-binary interior configuration` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
 | `planar common-center three-binary constraint` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed; the [T04 past-only release attempt](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md#t04-past-only-release-prefix) accepted only a short finite prefix before `root_completeness_not_certified`, while the medium rung supplied non-authoritative resource telemetry and no full-cycle return exists; detailed investigation is queued under [BP-011](#bp-011--planar-common-center-three-binary-constraint-investigation) | execute the ranked objects in the [planar common-center three-binary constraint work queue](planar-three-binary-work-queue.md), beginning with the exact-reference solver handoff; no score, retention, or stability promotion |
@@ -70,43 +68,24 @@ This register owns every deferred action from the [Neutral-Braid Configuration A
 
 | Review item | Live owner and status | Acceptance action |
 | --- | --- | --- |
-| T1 — groupoid and certified pro-presentation architecture | BP-002, `Queued`; configuration chart `DRAFT SKELETON` | Specify objects, arrows, restrictions, uncertainty transport, and abstention, then prove reconstruction on independently classified controls. |
-| T5 — omitted finite-width Gaussian tail | BP-002, `Queued`, owns science and claim scope; EOM evolution contract `requirements-frozen` owns retained-interval computation and implementation of any declared tolerance-bound evaluator | Either derive an independently checked regulator-, history-, and tolerance-dependent omitted-tail bound or certify only the declared retained-interval integral. |
-| T6 — regular-stratum persistence and reconstruction | BP-002, `Queued`; MEC-002/MEC-005/MEC-006 only for full wake, provenance, or gradient rows actually consumed | Prove one prescribed-history regular chart first, then extend only across independently accepted state and derivative components. |
-| T7 — binary coherence and unique matching margin | BP-002, `Queued` | Predeclare the functional from native geometry and pass reassignment and false-coherence controls. |
-| T8 — typed chart-to-instrument record | BP-002, `Queued` | Freeze axes and claim scope, then validate reconstruction, root completeness, closure validity, and refinement without fate authority. |
-| T9 — topology benchmark suite | BP-002, `Queued` | Predeclare each validity domain and independent expected classification, including abstention on ambiguity. |
-| T10 — full-record symmetry deduplication | BP-002, `Queued`; MEC-005 only for causal-root no-double-booking claims | Recompute root and acceleration parity under every admitted action and require unique provenance for every used root row. |
-| T11 — higher-order complement or braid data | BP-002, `Queued` | Add the row only after a declared ambiguity survives the cheaper inventory and an independent expected classification exists. |
-| Open — smooth proper strata for an orbifold or differentiable stack | BP-002, `Queued`; configuration chart `DRAFT INVENTORY` | Prove properness, local smooth structure, stabilizers, and slice data on each claimed finite-dimensional stratum. |
-| Open — atlas binary-coherence weights | BP-002, `Queued` | Freeze weights and root/phase incoherence from native geometry before testing independently classified histories. |
-| Open — minimum topology inventory | BP-002, `Queued` | Freeze closure conventions, then run unlink, square-knot, Hopf, Whitehead, and Borromean controls with independent classifications. |
-| Open — drifting enclosure or undeclared transmitter tail contract | BP-002, `Queued`; EOM contracts own only declared retained computation | Prove the horizon/restriction theorem or keep the claim limited to the declared retained interval and inventory. |
-| Open — finite-width omitted-tail bound | Same explicit BP-002/EOM-contract handoff | Apply the shared T5 acceptance boundary; a retained computation is not an omitted-tail certificate. |
+| T1 — groupoid and certified pro-presentation architecture | Configuration-chart research question; not queued by this register | Specify objects, arrows, restrictions, uncertainty transport, and abstention, then prove reconstruction on independently classified controls. |
+| T5 — omitted finite-width Gaussian tail | Configuration-chart and applicable-campaign research question; EOM evolution contract `requirements-frozen` owns retained-interval computation and implementation of any declared tolerance-bound evaluator | Either derive an independently checked regulator-, history-, and tolerance-dependent omitted-tail bound or certify only the declared retained-interval integral. |
+| T6 — regular-stratum persistence and reconstruction | Configuration-chart and applicable-campaign research question; MEC-002/MEC-005/MEC-006 only for full wake, provenance, or gradient rows actually consumed | Prove one prescribed-history regular chart first, then extend only across independently accepted state and derivative components. |
+| T7 — binary coherence and unique matching margin | Configuration-chart research question; not queued by this register | Predeclare the functional from native geometry and pass reassignment and false-coherence controls. |
+| T8 — typed chart-to-instrument record | Current chart scope ratified; a typed machine record is not queued by this register | Freeze axes and claim scope, then validate reconstruction, root completeness, closure validity, and refinement without fate authority. |
+| T9 — topology benchmark suite | Configuration-chart research question; not queued by this register | Predeclare each validity domain and independent expected classification, including abstention on ambiguity. |
+| T10 — full-record symmetry deduplication | Configuration-chart research question; MEC-005 only for causal-root no-double-booking claims | Recompute root and acceleration parity under every admitted action and require unique provenance for every used root row. |
+| T11 — higher-order complement or braid data | Configuration-chart research question; not queued by this register | Add the row only after a declared ambiguity survives the cheaper inventory and an independent expected classification exists. |
+| Open — smooth proper strata for an orbifold or differentiable stack | Configuration-chart research question; current finite inventory is ratified without this stronger structure | Prove properness, local smooth structure, stabilizers, and slice data on each claimed finite-dimensional stratum. |
+| Open — atlas binary-coherence weights | Configuration-chart research question; not queued by this register | Freeze weights and root/phase incoherence from native geometry before testing independently classified histories. |
+| Open — minimum topology inventory | Configuration-chart research question; not queued by this register | Freeze closure conventions, then run unlink, square-knot, Hopf, Whitehead, and Borromean controls with independent classifications. |
+| Open — drifting enclosure or undeclared transmitter tail contract | Configuration-chart and applicable-campaign research question; EOM contracts own only declared retained computation | Prove the horizon/restriction theorem or keep the claim limited to the declared retained interval and inventory. |
+| Open — finite-width omitted-tail bound | Same explicit chart/campaign/EOM-contract handoff as T5 | Apply the shared T5 acceptance boundary; a retained computation is not an omitted-tail certificate. |
 | Open — candidate retention, stability, physical realization, or solver preference | BP-001 and BP-003, both `Deferred / blocked`; MEC-002 only where a mature wake state is consumed | Apply the candidate-specific EOM evolution, complete-root, multi-prehistory, refinement, fate, and independent-instrument gates. |
 
 Plainly: atlas mathematics remains available within its declared history scope. Physical fate stays with the candidate-specific rows, and the Gaussian-tail question keeps its two-owner handoff.
 
 ## Queued
-
-### BP-002 — Configuration chart completion
-
-- **Status:** Queued
-- **Priority object:** `configuration_chart_completion`
-- **Request / acceptance:** Advance [configuration-chart.md](configuration-chart.md) past skeleton grade, including motion classes beyond fixed-coordinate common-frequency co-rotation.
-- **Evidence / blocker:** The chart is a search-space coordinate system, not evidence that any configuration persists.
-- **Review backlink:** The neutral-atlas action register above owns T1 and T5–T11 plus the architecture questions without changing this status.
-- **Scoped action completed (2026-07-29):** [Configuration chart](configuration-chart.md) now inventories every admitted coincident-midpoint, phase-compensated, and axially separated orthogonal-axis three-binary configuration; every coincident-axis three-binary configuration; and every two-component circular configuration from the coincident-center co-rotating case through the coaxial-separated counter-rotating two-planar-braid case. It attaches the scope-and-provenance profile to each constrained configuration and records the five current campaign-restricted slices plus explicit abstentions for live queue targets that lack a frozen subchart.
-- **Remaining action:** Review the inventory for omission and ratify or return the chart. Ratification would fix search scope only; it would not authorize a family-level negative or any retention, stability, physical-realization, solver-preference, particle-identity, or EOM claim.
-- **Completion:** Every admitted campaign family has explicit coordinates, symmetry reductions, exclusions, and ownership.
-
-### BP-005 — Mining disposition review
-
-- **Status:** Queued
-- **Priority object:** `mining_disposition_review`
-- **Request / acceptance:** Adjudicate the 47 curated `mining/` leads and record one keep, route, defer, or reject disposition for each.
-- **Evidence / blocker:** Mined leads remain priority-only until accepted into a proof route or corpus edit.
-- **Completion:** No curated lead remains without a disposition.
 
 ### BP-011 — planar common-center three-binary constraint investigation
 

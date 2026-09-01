@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V10"
+PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V11"
 
 
 def run_record(
@@ -273,6 +273,36 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertGreater(
             len(response["publishedExtensions"][0]["segments"]), 0
         )
+        products = response["wakeBoundaryProducts"]
+        self.assertEqual(
+            products["schema"], "eom_borg_wake_boundary_products/v1"
+        )
+        self.assertEqual(products["status"], "native-products-ready")
+        self.assertEqual(products["runId"], "native-process-static")
+        self.assertEqual(products["sourceSnapshotReceptionTime"], "2.1")
+        self.assertEqual(len(products["pathHistoryRows"]), 1)
+        counts = products["rowConservationCounts"]
+        self.assertEqual(
+            counts["candidateWakeRowCount"],
+            counts["resolvedWakeRowCount"]
+            + counts["aggregatedWakeRowCount"]
+            + counts["boundaryGeneratedWakeRowCount"]
+            + counts["failureWakeRowCount"],
+        )
+        self.assertEqual(counts["conservationResidual"], 0)
+        self.assertEqual(products["rowConservationStatus"], "passed")
+        self.assertEqual(
+            products["boundaryShell"]["firstFailureCode"],
+            "missing_boundary_shell_crossing_coverage",
+        )
+        self.assertEqual(
+            {row["residualLabel"] for row in products["residualDecisions"]},
+            {
+                "shell_self_similarity",
+                "shell_replay_residual",
+                "boundary_to_central_residual",
+            },
+        )
         history_phase_fields = (
             "endpointStateLookupWallSeconds",
             "endpointPositionLookupWallSeconds",
@@ -319,6 +349,156 @@ class NativeBorgProcessTests(unittest.TestCase):
             self.assertGreater(
                 response["timing"]["reusedJointStartSnapshotCount"], 0
             )
+
+    def test_native_products_preserve_each_accepted_acceleration_contribution(self) -> None:
+        exact_origin = "\t".join(("SEG", "0", "5", *(["0"] * 18)))
+        exact_offset = "\t".join((
+            "SEG", "0", "5", "2", *(["0"] * 17)
+        ))
+        protocol = "\n".join((
+            PROTOCOL_MAGIC,
+            run_record(
+                "native-products-two-path", "5", "5.01",
+                initial_step="0.01", minimum_step="0.01",
+                maximum_step="0.01", path_count="2"
+            ),
+            "PATH\treceiver\t1\t1\t0\t1",
+            exact_origin,
+            "PATH\tsource\t-1\t2\t0\t1",
+            exact_offset,
+            "END", "",
+        ))
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"], input=protocol,
+            check=False, cwd=ROOT, capture_output=True, text=True,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        response = json.loads(completed.stdout)
+        products = response["wakeBoundaryProducts"]
+        self.assertEqual(response["status"], "completed")
+        self.assertGreater(
+            len(products["resolvedWakeInteractionRows"]), 0
+        )
+        self.assertEqual(
+            len(products["resolvedWakeInteractionRows"]),
+            len(products["accelerationContributionRows"]),
+        )
+        self.assertEqual(
+            {row["rowId"] for row in products["resolvedWakeInteractionRows"]},
+            {row["rowId"] for row in products["accelerationContributionRows"]},
+        )
+        for row in products["accelerationContributionRows"]:
+            self.assertEqual(len(row["acceleration"]), 3)
+            self.assertTrue(all(
+                float(component["lower"]) <= float(component["upper"])
+                for component in row["acceleration"]
+            ))
+
+    def test_native_products_measure_complete_shell_and_paired_residual_inputs(self) -> None:
+        crossing_segment = "\t".join((
+            "SEG", "0", "5", "0", "0.4", *("0" for _ in range(16))
+        ))
+        outside_segment = "\t".join((
+            "SEG", "0", "5", *("0" for _ in range(18))
+        ))
+        rows = [
+            PROTOCOL_MAGIC,
+            run_record(
+                "boundary-fixture", "5", "5.01",
+                initial_step="0.01", minimum_step="0.01",
+                maximum_step="0.01", path_count="2",
+            ),
+            "PATH\treceiver\t1\t1\t0\t1",
+            outside_segment,
+            "PATH\tcrossing\t-1\t2\t0\t1",
+            crossing_segment,
+            "\t".join((
+                "BORG_SHELL_ENVELOPE",
+                "eom_borg_shell_extraction_request/v1",
+                "fixture-envelope", "0", "0", "0", "1", "0.5",
+                "0.5", "5", "5", "0", "statistical-boundary-shell",
+                "shell-window", "0", "5", "central-window", "4.9",
+                "5", "NONE", "1", "3", "1", "fixture-comparisons",
+            )),
+            "\t".join((
+                "BORG_SHELL_PARTITION", "eom_borg_shell_partition/v1",
+                "fixture-envelope", "fixture-partition", "equal-area-zphi/v1",
+                "2", "4", "1", "0", "0", "0", "0",
+            )),
+            "\t".join((
+                "BORG_SHELL_TIME_BIN", "eom_borg_shell_time_bin/v1",
+                "fixture-envelope", "fixture-bin", "0", "0", "5",
+            )),
+            "\t".join((
+                "BORG_REPLAY_SOURCE",
+                "eom_borg_boundary_shell_replay_source/v1",
+                "fixture-replay", "fixture-summary", "boundary-fixture",
+                "12345", "rotation-tangent-chart/v1", "identity-time-map/v1",
+                "fixture-velocity-sampling", "observed-polarity-inventory/v1",
+                "new-inbound-identities/v1", "declared-path-index/v1",
+                "reduced-model-boundary",
+            )),
+        ]
+        specs = (
+            ("self-comparison", "shell_self_similarity",
+             "shell-statistic-component", "shell-window", "0.05", "1", "1.01"),
+            ("replay-comparison", "shell_replay_residual",
+             "shell-influence-component", "shell-window", "0.01", "1", "1.005"),
+            ("central-comparison", "boundary_to_central_residual",
+             "central-acceleration-component", "central-window", "0.001", "1", "1.0005"),
+        )
+        for comparison_id, label, domain, window, tolerance, _, _ in specs:
+            rows.append("\t".join((
+                "BORG_RESIDUAL_SPEC", "eom_borg_residual_spec/v1",
+                "fixture-comparisons", comparison_id, label, domain,
+                "reference-fixture", "boundary-fixture", window,
+                "relative-weighted-l2/v1", tolerance, "1e-12", "1",
+                "authoritative-solver-output", "reduced-model-boundary", "1",
+            )))
+        for ordinal, (comparison_id, label, domain, _, _, reference, boundary) in enumerate(specs):
+            is_central = domain == "central-acceleration-component"
+            rows.append("\t".join((
+                "BORG_RESIDUAL_SAMPLE",
+                "eom_borg_paired_residual_sample/v1",
+                "fixture-comparisons", comparison_id, f"sample-{ordinal}", "0",
+                f"entity-{ordinal}", "NONE" if is_central else "fixture-partition:z1:phi0",
+                "NONE" if is_central else "fixture-bin",
+                "receiver" if is_central else "NONE",
+                "NONE" if label == "shell_self_similarity" else (
+                    "4.95" if is_central else "2.5"
+                ), "x",
+                reference, reference, boundary, boundary, "1", "1",
+                f"reference-row-{ordinal}", f"boundary-row-{ordinal}",
+            )))
+        rows.extend(("END", ""))
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"], input="\n".join(rows),
+            check=False, cwd=ROOT, capture_output=True, text=True,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        response = json.loads(completed.stdout)
+        products = response["wakeBoundaryProducts"]
+        boundary = products["boundaryShell"]
+        self.assertEqual(boundary["coverageStatus"], "boundary-shell-complete")
+        self.assertEqual(boundary["coverageCounts"]["segmentCount"], 2)
+        self.assertEqual(boundary["coverageCounts"]["crossingSegmentCount"], 1)
+        self.assertEqual(boundary["coverageCounts"]["unresolvedSegmentCount"], 0)
+        self.assertEqual(len(boundary["coverageRows"]), 8)
+        self.assertEqual(len(boundary["shellCrossingRows"]), 1)
+        self.assertEqual(boundary["shellCrossingRows"][0]["direction"], "outbound")
+        self.assertEqual(len(boundary["shellInfluenceRows"]), 1)
+        self.assertEqual(len(boundary["replaySourceRows"]), 1)
+        self.assertEqual(
+            boundary["valueAuthority"], "reduced-model-boundary", boundary
+        )
+        self.assertEqual(
+            [row["status"] for row in products["residualDecisions"]],
+            ["passed", "passed", "passed"],
+        )
+        self.assertTrue(all(
+            float(row["residualValue"]) <= float(row["tolerance"])
+            for row in products["residualDecisions"]
+        ))
 
     def test_display_grade_preserves_numerical_path_but_marks_every_output_display_only(self) -> None:
         protocol = "\n".join((

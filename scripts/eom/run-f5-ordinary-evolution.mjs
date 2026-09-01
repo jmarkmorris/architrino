@@ -323,7 +323,7 @@ export function admitInspection(actual, prepared, handoff) {
     actual.startTime === '0' && actual.endTime === request.absoluteTimeInterval.end, 'inspection scientific settings differ');
   check(sha256(prepared.wire.utf8) === prepared.wire.sha256 && Buffer.byteLength(prepared.wire.utf8) === prepared.wire.bytes, 'wire identity differs');
   const lines = prepared.wire.utf8.trimEnd().split('\n');
-  check(lines[0] === 'EOM_BORG_NATIVE_V10' && lines.at(-1) === 'END' && lines.length === 627, 'wire census or framing differs');
+  check(lines[0] === 'EOM_BORG_NATIVE_V11' && lines.at(-1) === 'END' && lines.length === 627, 'wire census or framing differs');
   check(JSON.stringify(actual.runTokens) === JSON.stringify(lines[1].split('\t')), 'actual RUN tokens differ');
   const switches = actual.resolvedParserControls;
   check(switches.useQuarterStepPublication === true && switches.useFarFieldEnclosureInEvolution === false &&

@@ -1,6 +1,6 @@
 # Braid Program — Configuration Chart
 
-Status: DRAFT INVENTORY, pending scope review and operator ratification. This document defines the current admitted subcharts and their search-space scope. Until it is ratified, no campaign may claim a coordinate-domain negative, because scope is defined against this chart.
+Status: RATIFIED CURRENT-SCOPE INVENTORY (2026-09-01). This document defines the current admitted subcharts and their search-space scope. Ratification fixes the declared coordinate scope and ownership boundaries; it does not by itself authorize a coordinate-domain negative, which still requires coverage certification over the exact stated domain.
 
 ## Purpose
 
@@ -14,9 +14,9 @@ Orthogonal-axis three-binary configurations, coincident-axis three-binary config
 
 ## Finite-Width Tail Handoff
 
-`BP-002` owns the scientific and certification question for any omitted finite-width Gaussian history tail and owns the resulting atlas or campaign claim scope. The [EOM evolution contract](../app-solver/contracts/evolution-contract-v1.md) owns computation on the declared retained interval and any implementation of a declared tolerance-bound evaluation; it does not decide whether the Braid Program may certify an infinite-past or omitted-tail claim.
+The Braid Program chart owner and the applicable campaign owner jointly own the scientific and certification question for any omitted finite-width Gaussian history tail and the resulting atlas or campaign claim scope. The [EOM evolution contract](../app-solver/contracts/evolution-contract-v1.md) owns computation on the declared retained interval and any implementation of a declared tolerance-bound evaluation; it does not decide whether the Braid Program may certify an infinite-past or omitted-tail claim.
 
-The shared acceptance boundary is exact: either derive an independently checked regulator-, history-, and tolerance-dependent omitted-tail bound, or limit certified claims strictly to the declared retained-interval integral. This handoff creates no new queue, changes no status, and grants no retention, stability, physical-realization, solver-preference, or particle-identity authority.
+The shared acceptance boundary is exact: either derive an independently checked regulator-, history-, and tolerance-dependent omitted-tail bound, or limit certified claims strictly to the declared retained-interval integral. This handoff creates no separate campaign authority and grants no retention, stability, physical-realization, solver-preference, or particle-identity authority.
 
 ## Certified Scope Guardrails
 
@@ -124,25 +124,44 @@ These rows are the only current live campaign specifications with enough frozen 
 | `coincident_midpoint_common_frequency_bounded_root_diagnostic` — [coincident-midpoint common-frequency orthogonal-axis three-binary configuration static-level owner](coincident-midpoint-common-frequency-step-action-ledger.md), prescribed-path diagnostic only | Six exact circular coincident-midpoint common-frequency orthogonal-axis three-binary worldlines in three persistent neutral binaries; zero group velocity; declared symmetric phase baseline distinct from the display-source phases; dimensionless retained-history reach $\chi_n=9/4$; no Stage-E prehistory, Noether sea inventory, or omitted-tail claim | Free within the packet: $\alpha_{1,n}\in[7/8,15/16]$, $\alpha_{3,n}\in[17/16,9/8]$, reception phase, endpoint channel, and root sheet. Frozen: $\alpha_{2,n}=1$, $R_{\star,n}=R_{2,n}=c_f/\omega_n$, middle-layer pinning as an assumption, cyclic planes, phases $(0,2\pi/3,4\pi/3)$, identities, polarities, circulation, history reach, and protocol ceilings | Exact circular equations, symbolic reductions, interval enclosures, certified finite partitions, and a separately checked structural ledger | Expressible: the closed two-ratio box, full reception cycle, and all $36$ ordered endpoint channels. Evaluated: every channel has a diagnostic disposition; the structural ledger sampled $5{,}204$ roots. Coverage-certified: complete root topology of this imposed bounded circular family under the declared simple-root/fold protocol, including endpoint-inversion reuse; not the full coincident-midpoint common-frequency orthogonal-axis three-binary chart | No knot/link closure or identity quotient. Swept loci are disjoint and same-time collision is absent in the declared box; the inner, middle, and outer layers are respectively sub-field, field-speed-pinned by assumption, and super-field-speed prescribed geometry. Root-fold handling is packet-scoped; matching and stabilizer strata are not defined. The result is null-score diagnostic classification, not retention, stability, binding, transport, physical realization, action, conservation, particle identity, or an EOM result |
 | `axial_transverse_score_landscape_predeclaration` — [axial-transverse coincident-axis three-binary interior score-landscape predeclaration](axial-transverse-three-binary-interior-score-landscape-predeclaration.md) | Six prescribed axial-transverse coincident-axis three-binary interior paths in three neutral binaries over return period $4$; no Stage-E prehistory, path evolution, Noether sea inventory, or omitted-tail certificate | Proposed free coordinates: $(R_a,u_a,\theta_a,\kappa,\psi,\sigma)$ inside the bounded local box. Proposed fixed data: common midpoint and axis, $f=0.75$, circulation $-1$, persistent identities and polarities, source order, envelope, phase offset, row order, and no score-dependent mutation | Proposed $377$ rows: one center, $48$ axial, $264$ pairwise, and $64$ held-out rows; the obsolete family/member compatibility freeze was withdrawn with zero roots evaluated and zero scores computed | Expressible only after a new exact-identity manifest is frozen. Evaluated: none under a current manifest. Coverage-certified: none. | No topology closure or undeclared quotient. A future protocol must bind current exact identities and exclude collision, root-fold, and field-speed strata from scored rows. No center pilot, basin, descent, threshold change, retention, stability, binding, particle identity, catalog acceptance, or physical realization is authorized. |
 
+The Circular Configuration Registry's $N=1$ regular alternating binary is an exact point on the free $N$ axis of `planar_rigid_co_rotating_circular_path`. Its independently cross-checked measured balance and bounded all-root simple-chart evidence remain owned by the separate Master Equation circular-binary ledger; they do not inherit the $N=2$ through $N=6$ polarity-orbit coverage stated in the campaign row.
+
+Plainly: the circular binary belongs on the same coordinate map, but its proof has a different owner and a different coverage boundary from the larger regular rings.
+
 Plainly: each campaign row says exactly what can be instantiated, what has actually run, and what the existing checks cover. A frozen manifest or partial run is not a scientific verdict over its surrounding coordinate domain.
 
 Proposed downstream frequency and coincident-axis-outward protocols are not current slices because their prerequisite anchors or compact sweep are not closed. Closed calibration packets, deprecated controls, superseded source identities, and provenance-bound legacy or $c_f=4$ runs remain excluded.
 
-## Live queue targets without an admitted subchart
+## Live queue routing and explicit abstentions
 
-| Queue target | Current abstention |
+| Queue target | Chart routing or abstention |
 | --- | --- |
+| BP-001 `binary_subfield_fate` | Routed to the current campaign-restricted `binary_subfield_fate` row. |
+| BP-003 `collinear_breather_campaign` | Routed to the current campaign-restricted `collinear_breather_campaign` row. |
 | BP-007 `coincident_midpoint_421_coaxial_two_planar_braid_v2_adjudication` | The coincident-midpoint 4:2:1 locus and co-rotating coaxial two-planar-braid record remain admitted rows, but no V2 packet defines the proposed $172$-row adjudication representation. V1 is closed as calibration-insufficient and does not supply current executable coverage. |
+| BP-010 `asymmetric_counter_breathing_member_acceleration` | Routed to the admitted `asymmetric counter-breathing representative` row and its focused geometry owner. The existing one-cell and conditional-cover results do not cover the full six-coordinate surface. |
+| BP-011 `planar_common_center_three_binary_investigation` | Routed to the admitted `planar common-center three-binary locus`; its regular alternating equal-radius point is also routed through `planar_rigid_co_rotating_circular_path`. The subordinate queue owns the narrower phase, radius, translation, release, stability, and action objects. |
+| BP-012 `circular_path_regular_polarity_completion` | Routed to `planar_rigid_co_rotating_circular_path`; only the regular alternating class is currently covered for $7\leq N\leq12$. |
+| BP-013 `circular_path_nonuniform_phase_census` | Routed to the free positive phase-gap axes of `planar_rigid_co_rotating_circular_path`; no multidimensional nonuniform phase domain is coverage-certified. |
+| BP-014 `circular_path_large_n_law` | Routed to the regular alternating branch of `planar_rigid_co_rotating_circular_path`; finite accepted rows through $N=12$ do not establish an asymptotic law. |
+| BP-016 `platonic_braid_qualification_and_prescribed_history` | No Platonic row is admitted as a braid subchart. Exact vertex sets remain geometric comparison objects until a source freezes the complete inventory, polarity word, component membership, worldlines or prescribed history, speed policy, persistent order, and applicable symmetry action. |
+| BP-017 `packed_platonic_assembly_histories` | No packed-Platonic row is admitted. The task remains downstream of the first BP-016 qualified finite history and must not inherit a single-cell chart or evidence. |
 
-BP-006 is a product/record-consumer target rather than a scientific configuration subchart. BP-008 is a completed documentary diagnosis, not a current campaign slice. Neither receives an overlay row here. No row in this inventory consumes an MEC-005 or MEC-006 result.
+The completed BP-005 mining-disposition review, BP-006 product/record-consumer target, completed BP-008 documentary diagnosis, and BP-015 source-inventory handoff are not scientific configuration subcharts. F1 through F4 and F6 remain exploratory seeds without admitted coordinate rows. No row in this inventory consumes an MEC-005 or MEC-006 result. The stopped complete-registry campaign does not supply a current campaign overlay; its preserved phase-varying display representative evidence remains scoped to the exact source record and does not admit the broader exploratory geometry.
 
 Plainly: a queue label without a frozen scientific specification is not an admitted search region. Recording that absence is safer than filling the row from an obsolete campaign or an intended future design.
 
-## Remaining completion sequence
+## Ratification audit
 
-The admitted taxonomy inventory and current campaign overlay rows are complete for the live owners named above. The remaining BP-002 step is scope review and operator ratification. Ratification must confirm that no current campaign specification is missing and that every admitted row’s frozen axes, exclusions, ownership, and coverage boundary are reviewable; it still does not authorize a coordinate-domain negative.
+The 2026-09-01 scope review matched all twenty-three admitted registry rows one-for-one to chart rows: eleven orthogonal-axis three-binary loci, four coincident-axis three-binary loci, six two-component circular charts, and two focused coordinate representatives. It separately routed all seven evaluated Circular Configuration Registry rows: the $N=1$ binary to its exact point and separate evidence owner, the $N=2$ through $N=6$ rows to their complete regular campaign scope, and the $N=12$ alternating row to its focused scope. The six current campaign-restricted rows each name their history or prehistory, declared inventory, free and frozen axes, numerical representation, expressible reach, evaluated reach, coverage-certified reach, exclusions, abstentions, and claim boundary. Every remaining live scientific queue target is either routed to one of those owners or explicitly abstained above because no admitted subchart exists.
 
-## Open questions after inventory
+This audit ratifies the current inventory only. A later candidate admission, materially changed coordinate locus, or newly frozen campaign specification must update this chart and its registry or queue owner in the same scoped change. Ratification establishes search-space bookkeeping; it grants no family-level negative, retention, stability, binding, physical realization, solver preference, particle identity, EOM result, or scientific acceptance.
+
+Plainly: every presently admitted braid geometry has a reviewable coordinate owner, and every live search task either points to that owner or records why no chart exists yet. That completeness keeps future results inside the region actually defined and checked.
+
+## Research questions outside the ratified inventory
+
+These questions remain legitimate research directions, but they do not reopen the completed chart-ratification task or weaken the exact current-scope ratification unless one becomes an accepted chart or campaign change.
 
 - Minimal parameterization that spans the shape axes without redundancy, with the natural coordinates for residual-type responses established fresh from the master equation rather than assumed.
 - Whether prehistory class should be a chart axis (it scopes every evolution result) or a per-campaign declaration.

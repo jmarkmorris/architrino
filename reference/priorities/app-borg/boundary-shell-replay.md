@@ -3,8 +3,8 @@
 ## Status
 
 - Kind: `priority`
-- Status: `design-complete`
-- Claim level: `reduced-model-design`
+- Status: `implemented`
+- Claim level: `reduced-model-software-contract`
 - Source requirements: [requirements-and-design](requirements-and-design.md)
 - Source manifest: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
 
@@ -99,6 +99,26 @@ The reduced-model comparison carries three declared rows:
 
 The v0 thresholds remain $\tau_{\mathrm{self}}=5\times10^{-2}$, $\tau_{\mathrm{shell}}=10^{-2}$, and $\tau_{\mathcal C}=10^{-3}$. Missing observed input, incomplete shell coverage, an unmeasured velocity policy, an untraceable time map, or an exceeded residual requires verification for advancement whenever replay would affect a value-authority claim. Display-only preview is allowed only when no replay value is consumed by the run.
 
+## EOM V11 Input And Output Contract
+
+`EOM_BORG_NATIVE_V11` retains the exact 60-field evolution row and adds optional typed records before `END`. `BORG_SHELL_ENVELOPE` carries the shell and central radii, extraction and observation windows, history and wake bounds, and comparison-set identity. `BORG_SHELL_PARTITION` carries an oriented `equal-area-zphi/v1` partition with zero uncovered area. `BORG_SHELL_TIME_BIN` rows cover the extraction window contiguously. `BORG_REPLAY_SOURCE` carries the new inbound identity, mapping, sampling, polarity, history-hiding, and wake-reconstruction policies. Exactly three `BORG_RESIDUAL_SPEC` rows bind the required labels to distinct reference and boundary runs, and `BORG_RESIDUAL_SAMPLE` rows carry paired scalar intervals, positive interval weights, source-row identities, and their shell or central receiver domain.
+
+Plainly: the app supplies identities, windows, and already-produced reference-versus-boundary values. The EOM process extracts crossings and makes the interval decisions; the app does not recreate boundary physics.
+
+For reference interval $A_i$, boundary interval $B_i$, and positive weight interval $W_i$, the declared `relative-weighted-l2/v1` decision is
+
+$$
+R=\frac{\sqrt{\sum_i W_i(B_i-A_i)^2}}{\sqrt{\sum_i W_iA_i^2}+\epsilon_0}.
+$$
+
+The EOM process returns the complete residual interval and uses its upper bound as `residualValue`. A row passes only when the interval upper bound does not exceed its tolerance. A lower bound above tolerance fails; a tolerance-overlapping interval remains fail-closed.
+
+Plainly: uncertainty can only make the decision more cautious. An interval that straddles the threshold is not rounded into a pass.
+
+The output bundle preserves retained wake and acceleration-contribution rows, brackets each certified shell crossing, derives the normal projection and direction, emits every declared patch/time cell as `accepted` or `certified-empty`, links every crossing influence to accepted acceleration-contribution identities, preserves the replay source, and returns all three residual decisions. Any unresolved segment, silent patch/time cell, missing influence identity, missing replay carrier, unbound comparison row, or non-passing required residual keeps replay-affected values fail-closed.
+
+Plainly: complete coverage includes explicit empty cells. No output silence is interpreted as an empty part of the shell.
+
 ## First-Failure Codes
 
 | Code | Meaning |
@@ -109,6 +129,8 @@ The v0 thresholds remain $\tau_{\mathrm{self}}=5\times10^{-2}$, $\tau_{\mathrm{s
 | `boundary_shell_policy_missing` | Replay is requested without an accepted shell policy row. |
 | `velocity_sampling_protocol_missing` | Velocity sampling has no measured result. |
 | `shell_replay_residual_exceeded` | $R_{\mathrm{shell\ replay}}>\tau_{\mathrm{shell}}$. |
+| `residual_tolerance_exceeded` | A measured required residual interval lies wholly above its declared tolerance. |
+| `residual_decision_indeterminate` | A measured residual interval overlaps its declared tolerance. |
 | `required_residual_unmeasured` | A required replay or central-ball residual is absent. |
 
 ## Evidence Boundary
@@ -117,4 +139,4 @@ Boundary-generated rows may support only the declared reduced-model grade. They 
 
 ## Implementation Burden
 
-The boundary-shell route remains unimplemented. [BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals) owns the first executable artifact: shell-crossing rows, complete-coverage accounting, retained wake/interaction rows, path-derived influence rows, replay-source rows, row-conservation counts, acceleration-contribution rows, and the three residual decisions must enter the EOM-facing data contracts without app-local dynamics. [BORG-003](work-queue.md#borg-003--velocity-scale-sampling-evidence) then owns measured calibration and holdout evidence for the declared velocity range; it depends on BORG-001. Until both applicable rows close, replay-affected output remains reduced-model, display-only, or fail-closed according to the manifest.
+[BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals) verified the executable V11 contract: shell-crossing rows, exhaustive patch/time accounting, retained wake and acceleration-contribution rows, path-derived influence rows, replay-source rows, row conservation, and all three residual decisions pass the focused fixture without app-local dynamics. [BORG-003](work-queue.md#borg-003--velocity-scale-sampling-evidence) now owns measured calibration and holdout evidence for the declared velocity range. Until that evidence and the production comparison rows pass, replay-affected output remains reduced-model, display-only, or fail-closed according to the manifest.

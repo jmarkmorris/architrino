@@ -185,6 +185,7 @@ async function loadResults() {
       card.dataset.variantSetId = variantGroup ? result.variantSetId : row.variantSet?.id ?? "";
       card.dataset.scientificCoverage = JSON.stringify(group ? result.scientificCoverage : row.scientificStatus);
       card.dataset.targetId = group ? "" : row.assemblyId;
+      card.dataset.braidId = group ? result.id : row.braidId;
       card.dataset.previewId = row.assemblyId; card.dataset.previewRecordSha256 = row.recordSha256;
       card.dataset.descriptorVersion = row.descriptorVersion;
       card.dataset.unavailableReasons = JSON.stringify(Object.fromEntries(Object.entries(row.facets)
@@ -220,7 +221,7 @@ async function loadResults() {
           const { preview } = await previewFor(row); if (version !== state.version || !canvas.isConnected) return;
           const controller = createSpherePreview(canvas, preview, action); state.controllers.push(controller); controller.draw(state.fraction);
           canvas.dataset.loaded = "true";
-          note.textContent = variantGroup ? "Example variant · recorded motion" : preview.paths.some((p) => p.trailMode === "unavailable") ? "Some trails unavailable: no phase carrier" : "Recorded motion · drag to rotate";
+          note.textContent = variantGroup ? "Example variant · recorded motion" : row.visualCoverage?.animationMode === "camera-turntable" ? "Static assembly · drag to turn the camera" : preview.paths.some((p) => p.trailMode === "unavailable") ? "Some trails unavailable: no phase carrier" : "Recorded motion · drag to rotate";
         } catch (error) { if (canvas.isConnected) { note.textContent = `Preview unavailable: ${error.message}`; canvas.setAttribute("aria-disabled", "true"); } }
       });
       lazyObserver.observe(canvas);
@@ -260,9 +261,10 @@ async function openInspector(row, persist = true) {
       saveUrl();
     }
     $("inspector-title").textContent = row.label; $("inspector-identity").textContent = row.assemblyId;
+    $("inspector-canvas").setAttribute("aria-label", row.visualCoverage?.animationMode === "camera-turntable" ? "Static assembly presentation. Drag or use arrow keys to turn the camera; the assembly does not move." : "Selected assembly. Drag or use arrow keys to rotate the view.");
     $("inspector-description").textContent = `Recorded description: ${row.description}`; $("copy-status").textContent = "";
     $("identity").replaceChildren();
-    for (const [key, value] of [["Assembly identity", row.assemblyId], ["Model revision SHA-256", row.modelRevisionSha256], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Indexed evidence relations", row.findingRelations.length ? row.findingRelations.map((finding) => `${finding.findingId} (${finding.scope}; ${finding.lifecycle})`).join("; ") : "None indexed"], ["Projection revision", row.findingRelationRevision ?? "Unavailable"], ["Projection source", row.findingRelationSource ?? "Unavailable"], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
+    for (const [key, value] of [["Borg braid identity", row.braidId], ["Assembly identity", row.assemblyId], ["Occurrence identity", row.occurrence?.state === "unavailable" ? `Unavailable · ${row.occurrence.reason}` : row.occurrence?.occurrenceId], ["Model revision SHA-256", row.modelRevisionSha256], ["Record SHA-256", row.recordSha256], ["Taxonomy memberships", row.taxonomyMemberships?.map((membership) => `${membership.nodeId} · ${membership.revision}`).join("; ") || "Unavailable"], ["Visual coverage", `${row.visualCoverage.poster} · ${row.visualCoverage.inspection} · ${row.visualCoverage.animationMode}`], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Indexed evidence relations", row.findingRelations.length ? row.findingRelations.map((finding) => `${finding.findingId} (${finding.scope}; ${finding.lifecycle})`).join("; ") : "None indexed"], ["Projection revision", row.findingRelationRevision ?? "Unavailable"], ["Projection source", row.findingRelationSource ?? "Unavailable"], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
     renderBorgScientificStatus(document, $("scientific-status"), row.scientificStatus);
     $("facet-reasons").replaceChildren(); $("inspector-facets").replaceChildren();
     for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
@@ -273,11 +275,29 @@ async function openInspector(row, persist = true) {
     $("open-record").href = `./borg.html?${new URLSearchParams({ assemblyId: row.assemblyId, modelRevisionSha256: row.modelRevisionSha256, recordSha256: row.recordSha256 })}`;
     $("raw-record").href = `./${row.recordUrl}`;
     if (!$("inspector").open) $("inspector").showModal();
-    state.detail?.dispose(); state.detail = createSpherePreview($("inspector-canvas"), preview); draw();
+    state.detail?.dispose(); state.detail = createSpherePreview($("inspector-canvas"), preview);
+    $("component-isolation").replaceChildren();
+    if (row.braids.length > 1) {
+      const show = (label, componentBraidId = null) => {
+        const button = element("button", label); button.type = "button";
+        button.addEventListener("click", () => { state.detail?.setComponentBraid(componentBraidId); });
+        $("component-isolation").append(button);
+      };
+      show("Show all components");
+      row.braids.forEach((braid, index) => show(`Show component ${index + 1}`, braid.id));
+    }
+    draw();
     document.querySelectorAll(".assembly-card").forEach((card) => { card.dataset.selected = String(card.dataset.resultId === row.assemblyId); });
   } catch (error) { $("errors").hidden = false; $("errors").textContent = error.message; }
 }
 $("close-inspector").addEventListener("click", () => $("inspector").close());
+$("inspector").addEventListener("click", (event) => {
+  if (event.target !== event.currentTarget) return;
+  const bounds = event.currentTarget.getBoundingClientRect();
+  const outsidePanel = event.clientX < bounds.left || event.clientX > bounds.right
+    || event.clientY < bounds.top || event.clientY > bounds.bottom;
+  if (outsidePanel) event.currentTarget.close();
+});
 $("inspector").addEventListener("close", () => {
   inspectorVersion++; state.detail?.dispose(); state.detail = null; state.selected = null;
   if (state.params.has("assemblyId")) { state.params.delete("assemblyId"); state.params.delete("modelRevisionSha256"); state.params.delete("recordSha256"); saveUrl(); }
