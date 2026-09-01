@@ -381,7 +381,7 @@ The measured current-binary result was stark. In the six-path endurance matrix t
 
 where $\Theta_M$ is the admissible configuration space of family member $M$, $S$ is the exact prescribed source record, $P$ is the fixed analysis protocol, and $\mathbf G$ is the resulting analytical measure vector. Result packets, raw ledgers, source and protocol hashes, acceptance state, and indexed measures are stored in a versioned SQLite analytical database so that large campaigns can be queried without separating a result from the exact record that produced it.
 
-The live storage specification is [Analytical Campaign Database Requirements](analytical-campaign-database-requirements.md). Historical naming and catalog dispositions remain in [Taxonomy Migration](taxonomy-migration.md) and [Terminology Audit](terminology-audit-2026-07-22.md). The shared-circle resource limit and unexecuted refinement rung remain in the [B1.3 evidence record](evidence/2026-08-29-b13-shared-circle-balance-ladder.md#t04-past-only-release-prefix).
+The live storage specification is [Analytical Campaign Database Requirements](analytical-campaign-database-requirements.md). The shared-circle resource limit and unexecuted refinement rung remain in the [B1.3 evidence record](evidence/2026-08-29-b13-shared-circle-balance-ladder.md#t04-past-only-release-prefix).
 
 ### Historical March 12 editorial requirements
 

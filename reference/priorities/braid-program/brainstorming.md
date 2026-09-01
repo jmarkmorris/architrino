@@ -166,6 +166,32 @@ The remaining open concepts are deliberately narrower than the former append seq
 - **[guessed] Coupled frequency-work ledger.** Define a branch-level account linking translation, transverse circulation, radius change, root-status change, and internal frequency increments without importing momentum or quantization as premises; the first test requires one retained branch and a closed same-record account.
 - **[guessed] Excitation and reaction mapping.** Test whether internal frequency mismatch on retained assembly branches predicts association, dissociation, radiation, or heating channels under closed event ledgers; a shared mismatch with incompatible channels falsifies the proposed predictor.
 
+## Two-Dimensional And Three-Dimensional Braid-Assembly Organization
+
+**[derived geometry; editorial proposal]** Organize braid-assembly exposition first by the intrinsic dimension of each declared component braid, not by historical family labels, one representative path shape, or the affine span of the whole multi-braid assembly. A component braid is two-dimensional when all of its complete member paths lie in one fixed plane in its declared braid frame; it is three-dimensional when no such plane contains those paths. A multi-braid assembly belongs in the two-dimensional chapter only when every declared component braid is two-dimensional, and in the three-dimensional chapter only when every declared component braid is three-dimensional. Mixed-dimensional component sets require an explicit later treatment rather than forced placement. Thus two planar braids displaced or tilted so that their union spans three-dimensional space remain a two-dimensional-braid assembly under this organization.
+
+Plainly: `2D` and `3D` describe the braids that make up the assembly. They do not automatically describe the space occupied by the complete assembly.
+
+The proposed reader-facing files are `2d-braid-assemblies.md` and `3d-braid-assemblies.md`. They are broad synthesis chapters, not parent templates: named records remain peers, while braid count, braid dimensionality, circular-path count, circle occupancy, radius relation, centers, axes, breathing, and other characteristics provide mental and Borg-filter identification. If either chapter becomes too long, later files should be split by an explicit characteristic or mathematical obligation without creating a family/member hierarchy.
+
+**[derived geometry retained for the two-dimensional chapter]** General planar B1.3 permits different binary radii. For one fixed center, one fixed plane, one nonzero common angular rate $\Omega$, one circulation sense, positive member radii $R_i$, and fixed phases $\phi_i$, let $\chi=|\Omega|(T_r-T_t)$, $\beta_i=|\Omega|R_i/c_f$, $\Delta_{ij}=\phi_i-\phi_j$, and $s=\operatorname{sgn}\Omega$. The directed causal-root equation is
+
+$$
+\chi^2
+=
+\beta_i^2+\beta_j^2
+-2\beta_i\beta_j\cos(\Delta_{ij}+s\chi).
+$$
+
+Plainly: a planar B1.3 braid can use several circles of different radii. Setting $\beta_i=\beta_j$ recovers the one-circle chord equation, but that specialization is a characteristic of the record rather than a parent identity.
+
+- **Claim level:** The per-component dimensional distinction and root reduction are derived geometry. The two-file corpus organization is an editorial proposal and establishes no new acceleration balance, exact continuation, retention, or stability result.
+- **Assumptions and proof burden:** Define the braid frame and planarity test from complete declared component memberships. Keep component-braid dimension separate from whole-assembly span. Re-derive the unequal-radius per-hit radial and tangential projections and prove the root-domain partition before promoting unequal-radius balance claims.
+- **Migration proposal:** Move the B1.3 ladder, exact circular compatibility, and other actual planar-braid material from `shared-circle-assemblies.md` into `2d-braid-assemblies.md`. Route material from `shared-sphere-assemblies.md` by component-braid dimension rather than moving the old file wholesale: co-spherical spatial braids belong in `3d-braid-assemblies.md`, while C5/C6-style assemblies built from planar component braids belong in `2d-braid-assemblies.md` even when the whole assembly spans three dimensions. Shared-circle rings, Platonic vertex sets, stationary point sets, and other configurations without a declared braid component remain explicitly non-braid comparison material or await a separate geometric home; appearance alone does not make them braids.
+- **Promotion target:** Coordinated reader-facing chapters `content/markdown/aaa/noether-braid/2d-braid-assemblies.md` and `content/markdown/aaa/noether-braid/3d-braid-assemblies.md`, with [Braid Taxonomy](../../../content/markdown/aaa/noether-braid/braid-taxonomy.md) as the single characteristic-definition owner and authored backlinks, scene/navigation metadata, and generated targets updated only under the repository's regeneration policy. The coordinated execution owner is [Braid-Assembly Taxonomy Migration](braid-assembly-taxonomy-migration.md).
+- **Next artifact:** Produce a section-level migration matrix for both source documents and a record-level component-dimension audit, then freeze the two chapter definitions and edge-case policy in one architectural decision before renaming files.
+- **Falsifier:** A proposed destination is invalid if the source lacks complete declared braid membership, if a component's full paths violate the assigned planarity class, or if a multi-braid record contains both two- and three-dimensional components. Such material must remain unassigned or receive an explicit mixed-dimensional treatment.
+
 ## Neutral Shared-Circle Histories
 
 Operator exploration on 2026-08-28 asks whether $n$ electrinos and $n$ positrinos can remain stably on one unit circle, including unequal instantaneous speeds and super-field-speed motion. The following is priority-stage synthesis, not candidate admission or a stability result. Use $c_f=1$, no imposed circular constraint, and the canonical emission-site acceleration direction and transmitter-side weight from [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md).

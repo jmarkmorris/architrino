@@ -208,6 +208,195 @@ The vertex counts can be compared with familiar member inventories without ident
 
 Plainly: having eight members does not make an assembly a cube. The positions and motion must establish that geometry independently.
 
+### Embedding Platonic Vertex Sets in Periodic Lattices
+
+An exact lattice embedding asks whether every vertex of a regular polyhedron belongs to a declared point set. This is a finite geometric question, not a claim that the whole point set has the polyhedron's rotational symmetry. The distinction matters because the absence of a fourfold symmetry axis from a hexagonal lattice does not, by itself, exclude a finite cube: a sufficiently sparse cubic sublattice can still lie inside the hexagonal point set.
+
+The crystallographic restriction nevertheless gives an exact obstruction for the icosahedron and dodecahedron in the lattice families considered here. Let $P$ be the vertex set of a full-dimensional regular polyhedron contained in a translate of a rank-three lattice $\Lambda$, and define the difference lattice
+
+$$\Gamma_P=\operatorname{span}_{\mathbb Z}\{\mathbf p-\mathbf q:\mathbf p,\mathbf q\in P\}\subseteq\Lambda.$$
+
+Because $P$ spans three dimensions, $\Gamma_P$ has rank three. Every rotational symmetry $Q$ of $P$ permutes the vertex differences, so $Q\Gamma_P=\Gamma_P$. In a basis of $\Gamma_P$, $Q$ is therefore an integer matrix. If $Q$ is a rotation of order $r$, its eigenvalues are $1,e^{2\pi i/r},e^{-2\pi i/r}$ and hence
+
+$$\operatorname{tr}Q=1+2\cos\!\left(\frac{2\pi}{r}\right)\in\mathbb Z.$$
+
+Since a three-dimensional rotation has trace in $[-1,3]$, integrality restricts $\cos(2\pi/r)$ to $-1,-1/2,0,1/2$, or $1$. The only possible finite rotation orders are therefore $r\in\{1,2,3,4,6\}$. The fivefold rotations of the icosahedron and dodecahedron are incompatible with an exact vertex embedding in any rank-three lattice. The conclusion also covers the body-centered cubic, face-centered cubic, diamond-cubic, ideal hexagonal-close-packed, alternating-plane simple-cubic, and finite simple-cubic point sets below: each is contained in a rank-three lattice after, where necessary, a finite refinement of its translation basis.
+
+Plainly: the regular solid need not be a symmetry of the whole crystal. However, its vertices generate their own difference lattice, and every symmetry of the solid must preserve that generated lattice. A fivefold rotation cannot preserve a three-dimensional translation lattice, so exact regular icosahedral and dodecahedral vertex sets cannot occur in these point sets.
+
+Crystallographic compatibility is only a necessary condition. Positive embedding claims require explicit coordinates. For the simple-cubic lattice $a\mathbb Z^3$, with standard basis vectors $\mathbf e_1,\mathbf e_2,\mathbf e_3$ and any positive integer $n$, the following sets give a cube of edge $na$, an octahedron of edge $\sqrt2na$, and a tetrahedron of edge $\sqrt2na$:
+
+$$
+\begin{aligned}
+C_n&=\left\{na(i\mathbf e_1+j\mathbf e_2+k\mathbf e_3):i,j,k\in\{0,1\}\right\},\\
+O_n&=\left\{\pm na\mathbf e_1,\pm na\mathbf e_2,\pm na\mathbf e_3\right\},\\
+T_n&=\left\{\mathbf0,na(\mathbf e_1+\mathbf e_2),na(\mathbf e_1+\mathbf e_3),na(\mathbf e_2+\mathbf e_3)\right\}.
+\end{aligned}
+$$
+
+#### Point Sets, Selected Vertices, and Relationship Graphs
+
+Three mathematical objects must be distinguished. The occupied point set $\Lambda$ records which positions are available. A Platonic embedding selects a finite subset $P\subset\Lambda$ as the vertices of one regular solid. An optional relationship graph $G=(\Lambda,E)$ then declares which pairs of occupied sites are connected for a specified geometric, computational, or display purpose. The point set alone does not determine that graph. For example, the nearest-neighbor graph is obtained by defining
+
+$$
+d_{\min}=\min_{\mathbf p\ne\mathbf q\in\Lambda}\|\mathbf p-\mathbf q\|,
+\qquad
+E_{\mathrm{nn}}=\left\{\{\mathbf p,\mathbf q\}\subset\Lambda:\|\mathbf p-\mathbf q\|=d_{\min}\right\},
+$$
+
+but another graph may connect a longer shell, only the edges of a selected polyhedron, or no pairs at all. Changing $E$ changes the displayed or analyzed relationships without moving any point of $\Lambda$. In particular, a line called a “bond” in a crystallographic diagram is an adjacency convention, not an additional part of the lattice definition and not, by itself, an $\mathbb{A}\mathbb{A}\mathbb{A}$ interaction law. A Master Equation evaluation still requires the declared path histories and complete causal-root acceleration contributions; a nearest-neighbor drawing does not restrict those contributions unless a separately justified approximation explicitly does so.
+
+Plainly: the dots, the selected Platonic corners, and the lines drawn between dots are three separate choices. The same dots can support several different Platonic selections and several different line drawings without changing the underlying lattice.
+
+#### Integer Ladders, Common Centers, and Lattice Shells
+
+The coordinate families $C_n$, $O_n$, and $T_n$ establish one exact embedding for every integer $n\geq1$, but three different statements must be kept separate. An *integer ladder* means only that the edge length grows linearly with $n$. A *common-center nesting* additionally requires every member of the ladder to have the same center. A *lattice shelling* must assign every lattice site to one discrete layer. None of these statements means that translated copies of the solid tile Euclidean space.
+
+For the displayed families, $O_n$ is centered at the origin for every $n$, whereas both $C_n$ and $T_n$ have center $na(\mathbf e_1+\mathbf e_2+\mathbf e_3)/2$. The cube and tetrahedron therefore exist at every integer edge index only because their centers move with $n$. With one fixed center, lattice parity selects one half of the ladder: a lattice-point center admits even edge indices, while a half-cell center admits odd edge indices. A common-center ladder about the origin can be written with cube vertices $a(\pm m,\pm m,\pm m)$, octahedron vertices $\{\pm ma\mathbf e_i\}_{i=1}^3$, and tetrahedron vertices
+
+$$ma\{(1,1,1),(1,-1,-1),(-1,1,-1),(-1,-1,1)\}.$$
+
+Their edge lengths are respectively $2ma$, $\sqrt2ma$, and $2\sqrt2ma$. Thus the octahedral family retains every integer $m$ about a lattice-point center, while the common-center cube and tetrahedron correspond to the even-index members of the original $n$ ladder.
+
+Plainly: every positive integer gives a valid cube, octahedron, and tetrahedron somewhere in the simple-cubic lattice. If the center must remain fixed, the octahedron can grow one lattice step at a time, but the cube and tetrahedron grow by two edge-index steps because their vertices must remain on lattice points.
+
+Vertex nesting still does not shell the lattice. Across all $m$, the cube vertices occupy eight body-diagonal rays, the octahedron vertices occupy the three coordinate axes, and the tetrahedron vertices occupy four body-diagonal rays. All other lattice sites are absent from those vertex sets. To shell the complete simple-cubic point set, define
+
+$$
+\begin{aligned}
+\mathcal S_m^{\mathrm C}&=\{a\mathbf k:\mathbf k\in\mathbb Z^3,\ \|\mathbf k\|_\infty=m\},\\
+\mathcal S_m^{\mathrm O}&=\{a\mathbf k:\mathbf k\in\mathbb Z^3,\ \|\mathbf k\|_1=m\},\\
+\tau(\mathbf k)&=\max\{-k_1-k_2-k_3,-k_1+k_2+k_3,k_1-k_2+k_3,k_1+k_2-k_3\},\\
+\mathcal S_m^{\mathrm T}&=\{a\mathbf k:\mathbf k\in\mathbb Z^3,\ \tau(\mathbf k)=m\}.
+\end{aligned}
+$$
+
+Each family is disjoint in $m$ and its union over $m\geq0$ is the complete simple-cubic lattice. The corresponding closed level sets have the common-center cube, octahedron, and tetrahedron above as their extreme vertices. For $m\geq1$, elementary lattice-point counting gives
+
+| Shell | All sites on the shell | Platonic vertices | Other boundary sites |
+|---|---:|---:|---:|
+| Cubical, $\mathcal S_m^{\mathrm C}$ | $24m^2+2$ | $8$ | $24m^2-6$ |
+| Octahedral, $\mathcal S_m^{\mathrm O}$ | $4m^2+2$ | $6$ | $4m^2-4$ |
+| Tetrahedral, $\mathcal S_m^{\mathrm T}$ | $8m^2+2$ | $4$ | $8m^2-2$ |
+
+The sites in the last column are not additional vertices of the regular solid. They are lattice sites on its edges or face interiors. Sites on shells with index smaller than $m$ lie inside the solid. A vertex-only prescribed assembly excludes all of them from its member inventory; a lattice assembly does not. In the latter case, every nonvertex boundary site and every interior site requires its own polarity, path history, and delayed-acceleration rows.
+
+Plainly: the nested solids can divide the grid points into complete cubical, octahedral, or tetrahedral layers, but only when every point on each layer is counted. Keeping only the four, six, or eight corner sites leaves nearly the entire lattice unused and does not make a shell.
+
+#### Conventional-Cubic Cosets and Site Coverage
+
+Body-centered cubic and face-centered cubic are Bravais lattices in their own primitive bases, while diamond cubic is a periodic point set with a two-site basis. Relative to a conventional cubic cell of side $a$, however, all three admit exact decompositions into translated simple-cubic point sets. Define
+
+$$
+\mathcal F=\left\{(0,0,0),\left(0,\frac12,\frac12\right),\left(\frac12,0,\frac12\right),\left(\frac12,\frac12,0\right)\right\},
+\qquad
+\mathcal D=\mathcal F\cup\left(\mathcal F+\left(\frac14,\frac14,\frac14\right)\right).
+$$
+
+Their point sets can then be written as the following disjoint unions of cosets of $a\mathbb Z^3$:
+
+$$
+\begin{aligned}
+\Lambda_{\mathrm{BCC}}&=a\mathbb Z^3\ \sqcup\ a\left[\left(\frac12,\frac12,\frac12\right)+\mathbb Z^3\right],\\
+\Lambda_{\mathrm{FCC}}&=\bigsqcup_{\boldsymbol\delta\in\mathcal F}a(\boldsymbol\delta+\mathbb Z^3),\\
+\Lambda_{\mathrm{diamond}}&=\bigsqcup_{\boldsymbol\delta\in\mathcal D}a(\boldsymbol\delta+\mathbb Z^3).
+\end{aligned}
+$$
+
+Thus BCC, FCC, and diamond cubic contain respectively two, four, and eight translated copies of the same simple-cubic point set. These are conventional-cell coset decompositions, not claims that BCC or FCC ceases to be a distinct Bravais lattice. They also explain why the nearest-neighbor graph can look unlike a simple-cubic graph. In BCC, for example, nearest-neighbor edges join the two cosets along conventional-cell body diagonals even though either coset taken alone is simple cubic.
+
+Every site of one coset can be made a vertex of infinitely many cubes, octahedra, and tetrahedra. If $\mathbf p\in a(\boldsymbol\delta+\mathbb Z^3)$, translating $C_n$ or $T_n$ by $\mathbf p$ makes $\mathbf p$ their displayed zero vertex. Translating $O_n$ so that its center is $\mathbf p-na\mathbf e_1$ makes $\mathbf p$ its $+\mathbf e_1$ vertex. Repeating this construction on every coset proves that no BCC, FCC, or diamond-cubic site is omitted from all such vertex families.
+
+Plainly: choosing only the corner-type simple-cubic subset leaves the other site types unused in that one construction. It does not leave them unusable. Each omitted site belongs to another translated cubic grid, and the same cube, octahedron, and tetrahedron recipe can be started from that grid.
+
+The face-centered cubic lattice also supplies smaller tetrahedral and octahedral scales. One corner together with the three adjacent face centers forms a regular tetrahedron, and the six face centers surrounding a cell center form a regular octahedron, both with edge $a/\sqrt2$. Diamond cubic contains two face-centered cubic sublattices, so it inherits those scalable constructions; the four nearest neighbors of any diamond site additionally form the familiar local regular tetrahedron.
+
+The face-centered cubic tetrahedral and octahedral families at the smaller scale also form exact integer ladders. Writing FCC as $(a/2)\{\mathbf k\in\mathbb Z^3:k_1+k_2+k_3\text{ is even}\}$, the four sites
+
+$$\frac{ma}{2}\{\mathbf0,\mathbf e_1+\mathbf e_2,\mathbf e_1+\mathbf e_3,\mathbf e_2+\mathbf e_3\}$$
+
+form a regular tetrahedron of edge $ma/\sqrt2$ for every $m\geq1$. With $\mathbf c_m=m(\mathbf e_1+\mathbf e_2+\mathbf e_3)$, the six sites $(a/2)\{\mathbf c_m\pm m\mathbf e_i\}_{i=1}^3$ form a regular octahedron of the same edge. Diamond cubic inherits both ladders from either of its FCC sublattices. No corresponding all-integer claim is made here for other BCC orientations or for the separate nearest-neighbor adjacency orientation in diamond cubic.
+
+Plainly: a cubic skeleton supplies three reusable constructions. Eight corners give a cube, the six positive and negative coordinate-axis sites give an octahedron, and four alternating cube corners give a tetrahedron. BCC, FCC, and diamond cubic contain such a skeleton even though their complete point sets contain additional sites.
+
+Coset-wise vertex coverage is not one fixed-center shelling of the complete host lattice. It is a collection of translated ladder families with different centers. Within any one selected polyhedron, almost every host-lattice site remains a nonvertex site; across the complete collection, every site occurs as a vertex somewhere. A complete common-center host-lattice shelling would still need one explicit layer index for every site rather than a union of overlapping translated constructions.
+
+Ideal hexagonal close packing supplies a useful counterexample to the claim that a finite cube requires a fourfold axis of the complete point set. Let
+
+$$
+\mathbf a_1=(a,0,0),\qquad
+\mathbf a_2=\left(\frac a2,\frac{\sqrt3a}{2},0\right),\qquad
+\mathbf a_3=\left(0,0,2a\sqrt{\frac23}\right)
+$$
+
+generate the A sublattice of ideal HCP. The B sublattice is offset from it by $(\mathbf a_1+\mathbf a_2)/3+\mathbf a_3/2$. For $n=6m$, the points
+
+$$
+\mathbf0,\quad n\mathbf a_1,\quad n\mathbf a_2,\quad \frac n3(\mathbf a_1+\mathbf a_2)+\frac n2\mathbf a_3
+$$
+
+form a regular tetrahedron of edge $na$. A regular octahedron of the same edge has one triangular face $\{\mathbf0,n\mathbf a_1,n\mathbf a_2\}$ and the opposite face
+
+$$
+\left\{
+\frac{2n}{3}(\mathbf a_1+\mathbf a_2)+\frac n2\mathbf a_3,
+\frac{2n}{3}(\mathbf a_1+\mathbf a_2)+\frac n2\mathbf a_3-n\mathbf a_1,
+\frac{2n}{3}(\mathbf a_1+\mathbf a_2)+\frac n2\mathbf a_3-n\mathbf a_2
+\right\}.
+$$
+
+The coefficient restriction $n=6m$ places every displayed point on the same HCP A sublattice and gives arbitrarily large examples. At nearest-neighbor scale, the same tetrahedral formula with $n=1$ places its fourth vertex on the B sublattice. A local regular octahedron has lower face $\{\mathbf a_1,\mathbf a_2,\mathbf a_1+\mathbf a_2\}$ and upper face $\{\mathbf s,\mathbf s+\mathbf a_1,\mathbf s+\mathbf a_2\}+\mathbf a_3/2$, where $\mathbf s=(\mathbf a_1+\mathbf a_2)/3$. A cubic sublattice is generated by
+
+$$
+\begin{aligned}
+\mathbf u&=-8\mathbf a_1+4\mathbf a_2-3\mathbf a_3,\\
+\mathbf v&=-4\mathbf a_1-4\mathbf a_2+3\mathbf a_3,\\
+\mathbf w&=-4\mathbf a_1+8\mathbf a_2+3\mathbf a_3,
+\end{aligned}
+\qquad
+\mathbf u\cdot\mathbf u=\mathbf v\cdot\mathbf v=\mathbf w\cdot\mathbf w=72a^2,
+\qquad
+\mathbf u\cdot\mathbf v=\mathbf u\cdot\mathbf w=\mathbf v\cdot\mathbf w=0.
+$$
+
+Thus the eight sums $i\mathbf u+j\mathbf v+k\mathbf w$, with $i,j,k\in\{0,1\}$, form a cube of edge $6\sqrt2a$; multiplying all three generators by any positive integer gives arbitrarily large cubes. These HCP constructions use the ideal ratio $c/a=\sqrt{8/3}$. They do not establish the same embeddings for an independently deformed hexagonal lattice.
+
+The coefficient matrix of $(\mathbf u,\mathbf v,\mathbf w)$ relative to $(\mathbf a_1,\mathbf a_2,\mathbf a_3)$ has determinant $432$ in absolute value. Hence $K=\mathbb Z\mathbf u+\mathbb Z\mathbf v+\mathbb Z\mathbf w$ has index $432$ in the HCP A sublattice. The A sublattice is therefore the disjoint union of $432$ cosets of the simple-cubic lattice $K$, and the shifted B sublattice supplies another $432$. Applying the simple-cubic constructions within each of these $864$ cosets proves that every ideal-HCP site, not merely the sites of one sparse cube, belongs to infinitely many cube, octahedron, and tetrahedron vertex families. The number $864$ records this explicit decomposition; no minimality claim is made.
+
+Plainly: ideal HCP contains large exact examples of all three crystallographically allowed Platonic solids. Its lack of a global fourfold axis does not exclude a sparse cube. The tetrahedral and octahedral constructions likewise repeat at unbounded scales rather than occurring only in the nearest-neighbor packing motif.
+
+The resulting site-coverage statement is separate from the existence table below.
+
+| Point set | Translated simple-cubic cosets used | Is every site a vertex in some cube, octahedron, and tetrahedron family? |
+|---|---:|---|
+| Simple cubic | 1 | yes |
+| Body-centered cubic | 2 | yes |
+| Face-centered cubic | 4 | yes |
+| Diamond cubic | 8 | yes |
+| Ideal hexagonal close packing | 864 in the explicit $K$ decomposition | yes; no minimal coset count is asserted |
+| Simple cubic with alternating planes | 1 geometrically | yes; polarity labels are a separate restriction |
+| Finite simple-cubic 50/50 configuration | not an infinite coset decomposition | not guaranteed after cropping |
+
+Plainly: for every infinite deterministic point set in the table, no site is permanently excluded from all three allowed Platonic vertex families. That is a coverage result obtained by moving the selected solid among translated sublattices. It is not a claim that one nested sequence uses every site, that the solids tile space, or that every site belongs to one common-center shell as a Platonic vertex.
+
+| Point set | Cube | Octahedron | Tetrahedron | Dodecahedron or icosahedron |
+|---|---|---|---|---|
+| Simple cubic | yes; edge $na$ for every $n\geq1$ | yes; scalable with $n$ | yes; scalable with $n$ | no |
+| Body-centered cubic | yes; inherited from the corner simple-cubic sublattice | yes; inherited from the corner sublattice | yes; inherited from the corner sublattice | no |
+| Face-centered cubic | yes; inherited from the conventional-cell corner sublattice | yes; edge $ma/\sqrt2$ for every $m\geq1$, plus the corner-sublattice family | yes; edge $ma/\sqrt2$ for every $m\geq1$, plus the corner-sublattice family | no |
+| Diamond cubic | yes; inherited from either face-centered cubic sublattice | yes; inherits the FCC $ma/\sqrt2$ ladder | yes; inherits the FCC $ma/\sqrt2$ ladder, plus the local nearest-neighbor tetrahedron | no |
+| Ideal hexagonal close packing | yes; edge $6\sqrt2ma$ in the displayed family | yes; edge $6ma$ in the displayed family, in addition to the local packing motif | yes; edge $6ma$ in the displayed family, in addition to the local packing motif | no |
+| Simple cubic with alternating planes | geometrically the simple-cubic result; polarity is a separate condition | geometrically the simple-cubic result; polarity is a separate condition | geometrically the simple-cubic result; polarity is a separate condition | no |
+| Finite simple-cubic 50/50 configuration | conditional on the finite crop and any required polarity word; the underlying coordinates are simple cubic | same condition | same condition | no |
+
+The first six rows are periodic point sets; the final row is a finite nonperiodic configuration and therefore is not a seventh lattice type. The alternating-plane construction changes polarity labels, not occupied positions. In the axis-aligned simple-cubic examples above, requiring every selected vertex to have the same alternating-plane polarity restricts $n$ to even values; that is a property of those polarity-decorated examples, not a geometric restriction on the lattice. Likewise, randomness in a finite 50/50 configuration concerns the polarity assignment. It does not make the underlying simple-cubic vertex geometry probabilistic. A Borel–Cantelli-style “probability one” conclusion is not available for the present finite exact-50/50 sampler: it would first require a declared sequence of growing domains, a compatible probability law across that sequence, and a specified polarity event for each candidate solid.
+
+> Claim grade: derived. The negative icosahedral and dodecahedral result follows from the difference-lattice trace argument above. The positive cube, octahedron, and tetrahedron results follow from the displayed coordinates and the stated sublattice inclusions. The common-center parity rule follows from requiring the coordinates $\mathbf c\pm(na/2)\mathbf e_i$ to remain lattice points, and the shell counts follow from the three displayed level-set definitions. The BCC, FCC, and diamond site-coverage result follows from their displayed two-, four-, and eight-coset decompositions; the ideal-HCP coverage result follows from the orthogonal equal-length generators and their index-$432$ coefficient determinant in each of the two HCP sublattices. Falsifier: an exact icosahedral or dodecahedral vertex set in any listed point set would contradict the obstruction; an unequal asserted edge length, a displayed coordinate outside its claimed lattice, a host-lattice site outside every stated coset, a lattice site belonging to zero or two shells of one shell family, or a shell count differing from the stated polynomial would invalidate the corresponding positive claim.
+
+These are geometric embedding results only. They do not select a polarity word, specify a rotation axis or complete path history, establish delayed acceleration balance, or show that any lattice-selected polyhedron is retained under the Master Equation.
+
+Plainly: a large lattice can supply exact vertices for cubes, octahedra, and tetrahedra in every deterministic lattice family listed here, including ideal HCP. It cannot supply exact regular dodecahedral or icosahedral vertex sets. After the vertices are chosen, polarity and dynamics remain separate problems.
+
 ### The Discrete Inventory
 
 The search space here is finite, and it is small. Because the point groups are finite and the polarity assignment is discrete, the balanced words on a Platonic vertex set can be enumerated completely, up to the solid's full point group together with global polarity conjugation.

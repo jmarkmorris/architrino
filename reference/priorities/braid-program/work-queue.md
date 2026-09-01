@@ -20,6 +20,7 @@ The detailed B1.3 investigation is maintained in the subordinate [B1.3 work queu
 10. `shared_circle_nonuniform_phase_census` — [BP-013](#bp-013--shared-circle-nonuniform-phase-census). Status: `Queued`.
 11. `shared_circle_large_n_law` — [BP-014](#bp-014--shared-circle-large-n-law). Status: `Queued`.
 12. `borg_assembly_source_inventory_handoff` — [BP-015](#bp-015--borg-assembly-source-inventory-handoff). Status: `Queued`; Borg implementation remains owned by [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser).
+13. `braid_assembly_taxonomy_migration` — [BP-016](#bp-016--braid-assembly-taxonomy-migration). Status: `Queued`; the coordinated plan is [braid-assembly-taxonomy-migration.md](braid-assembly-taxonomy-migration.md).
 
 ## Shared search prerequisites
 
@@ -166,12 +167,23 @@ Plainly: the current table shows how the first several balanced regular rings gr
 
 - **Status:** Queued
 - **Priority object:** `borg_assembly_source_inventory_handoff`
-- **Closure goal:** Give Borg a complete source-owner inventory of admitted braid and shared-circle assemblies without asking the app to infer scientific geometry or taxonomy.
-- **Request / acceptance:** Enumerate every admitted braid-taxonomy member and separately registered assembly, distinguishing a taxonomy member, a concrete representative, a parameter or history revision, one top-level braid with component-braid rows, and multiple separate top-level braids. For each row, bind the source specification, dimensionality, component inventory and relations, motion prescription, available sealed records, existing aliases, and any missing source coordinates. Produce explicit unavailable rows rather than borrowing a visually similar representative.
+- **Closure goal:** Give Borg a complete source-owner inventory of admitted braid and circular assemblies without asking the app to infer scientific geometry or taxonomy.
+- **Request / acceptance:** Enumerate every admitted braid and separately registered assembly by exact identity and factual characteristics, distinguishing a concrete configuration, a parameter or history revision, one top-level braid with component-braid rows, and multiple separate top-level braids. For each row, bind the source specification, dimensionality, component inventory and relations, motion prescription, available sealed records, and any missing source coordinates. Treat current A/B/C codes and other temporary labels only as migration locators; do not make them identities or retained aliases. Produce explicit unavailable rows rather than borrowing a visually similar representative.
 - **Evidence / blocker:** [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) owns durable app identity, taxonomy navigation, visual coverage, and honest animation. Its coverage cannot close until scientific source owners supply a complete inventory and concrete-representative dispositions.
 - **Completion:** A source-bound machine-readable inventory is accepted by both the Braid Program and Borg owners, every missing representative has an explicit source-owner blocker, and Borg can consume the inventory without reconstructing geometry or dynamics. This row does not implement the app, assign hashes, or establish scientific acceptance.
 
 Plainly: the Braid Program says which mathematical objects and records exist; Borg decides how to identify, browse, display, and animate them. Keeping those responsibilities separate prevents a menu label or visual resemblance from becoming scientific authority.
+
+### BP-016 — Braid-assembly taxonomy migration
+
+- **Status:** Queued
+- **Priority object:** `braid_assembly_taxonomy_migration`
+- **Closure goal:** Replace ambiguous `shared` geometry terminology and Family A/B/C classification with exact characteristics, establish component-braid 2D/3D organization in the canonical taxonomy and worked chapters, and make every specifically studied configuration exactly referenceable in Borg.
+- **Request / acceptance:** Execute the serial identity foundation and the non-overlapping corpus, source-record, Borg-facet, routing, regeneration, and independent-review waves in [the migration plan](braid-assembly-taxonomy-migration.md). Preserve the flat catalog, exact scientific identity, and fail-closed missing classifications, but remove obsolete development labels and routes rather than carrying compatibility aliases. Do not infer braid identity from appearance or materialize unstated parameter points.
+- **Evidence / blocker:** Borg still couples mutable labels and filenames to catalog routes and emitted record hashes; its `Orbit sharing` facet classifies complete tracks rather than the operator-intended circle property, and its `Dimensions` facet measures whole-assembly affine span rather than component-braid dimensionality. The identity foundation must land before broad label and filename migration.
+- **Completion:** The plan's eleven acceptance criteria pass, every specifically studied configuration is exactly represented or explicitly exempted at collection/uninstantiated-chart level, all generated checks and focused tests pass, and an independent route audit finds no stale authored geometry-taxonomy consumer or A/B/C-derived configuration identity.
+
+Plainly: stabilize what each record is, then improve what it is called and where readers find it.
 
 ## Shared-sphere research-draft controls
 
