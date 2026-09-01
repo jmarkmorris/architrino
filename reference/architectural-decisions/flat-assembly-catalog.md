@@ -4,7 +4,7 @@ Status: Accepted by the operator, 2026-08-30.
 
 ## Decision
 
-An assembly catalog is a flat collection of individually identified records, not a family/member hierarchy. A record requires neither a family identifier nor a parent entry. Discovery uses factual properties, descriptive labels, search, and exact record identity. Optional query groups collect current matches; they do not create permanent families or assign a representative's properties to every result.
+An assembly catalog is a flat collection of individually identified records, not a family/member hierarchy. A record requires neither a family identifier nor a parent entry. Discovery uses factual properties, descriptive labels, search, and exact record identity. Optional query groups collect current matches; they do not create permanent families or assign a representative's properties to every result. A presentation-only variant set may collapse exact peers after filtering when their structured source metadata declares one common parameter-row schema and exact source ledger. The set remains a query result with an example preview and member count; selecting it descends to the exact peer records.
 
 Borg's left-panel Starting geometry menu contains Random architrinos followed by one catalog-ordered list of all prescribed records. The catalog owns only the exact assembly identity, current label, and record URL. No family heading, mandatory family field, prefix-derived parent, alias, or compatibility route is part of this contract. Source provenance remains inspectable without retaining an obsolete taxonomy as a current classification.
 

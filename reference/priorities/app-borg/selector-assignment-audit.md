@@ -2,7 +2,7 @@
 
 Status: CURRENT SOURCE-DERIVATION AUDIT.
 
-This audit defines how Borg assigns factual Library facets to every exact catalog record. The executable owners are [Borg Library Descriptors](../../../src/apps/borg/library/BorgLibraryDescriptors.mjs), [Borg Circle Geometry](../../../src/apps/borg/BorgOrbitGeometry.mjs), and the exact [Assembly Record Catalog](../../../src/apps/borg/BorgAssemblyRecordCatalog.js). Focused tests evaluate every catalog leaf; this document does not duplicate a 143-row generated table.
+This audit defines how Borg assigns factual Library facets to every exact catalog record. The executable owners are [Borg Library Descriptors](../../../src/apps/borg/library/BorgLibraryDescriptors.mjs), [Borg Circle Geometry](../../../src/apps/borg/BorgOrbitGeometry.mjs), and the exact [Assembly Record Catalog](../../../src/apps/borg/BorgAssemblyRecordCatalog.js). Focused tests evaluate every catalog leaf; this document does not duplicate a 144-row generated table.
 
 ## Assignment Contract
 

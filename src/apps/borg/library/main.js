@@ -1,4 +1,5 @@
 import { LIBRARY_FACETS, isLibrarySelectorValue, validateLibraryBrowseParams } from "./BorgLibraryQuery.mjs";
+import { libraryVariantSetLabel } from "./BorgLibraryVariants.mjs";
 import { createSpherePreview } from "./BorgSpherePreview.js";
 
 const $ = (id) => document.getElementById(id);
@@ -150,8 +151,8 @@ async function previewFor(row) {
 function activeFilters() {
   $("active-filters").replaceChildren();
   for (const [key, value] of state.params) {
-    if (!(key in LIBRARY_FACETS) && key !== "q") continue;
-    const label = key === "q" ? `Search: ${value}` : `${LIBRARY_FACETS[key].label}: ${facetLabel(key, value)}`;
+    if (!(key in LIBRARY_FACETS) && key !== "q" && key !== "variantSet") continue;
+    const label = key === "q" ? `Search: ${value}` : key === "variantSet" ? `Variant set: ${libraryVariantSetLabel(value)}` : `${LIBRARY_FACETS[key].label}: ${facetLabel(key, value)}`;
     const button = element("button", `${label} ×`);
     button.setAttribute("aria-label", `Remove ${label}`);
     button.addEventListener("click", () => { state.params.delete(key, value); changeQuery(); });
@@ -186,8 +187,10 @@ async function loadResults() {
   try {
     const data = await readJson(`${api}?${params}`); if (version !== state.version) return;
     state.response = data; renderCounts(data);
-    $("result-count").textContent = `${data.total} ${data.total === 1 ? "assembly" : "assemblies"}`;
-    $("result-context").textContent = `Of ${data.registeredCount} registered seed records · prescribed, display-only`;
+    const facetGrouping = state.params.get("groupBy") && state.params.get("groupBy") !== "none";
+    const resultNoun = facetGrouping ? (data.resultCount === 1 ? "group" : "groups") : state.params.has("variantSet") ? (data.resultCount === 1 ? "configuration" : "configurations") : (data.resultCount === 1 ? "braid" : "braids");
+    $("result-count").textContent = `${data.resultCount} ${resultNoun}`;
+    $("result-context").textContent = `${data.exactRecordCount} exact ${data.exactRecordCount === 1 ? "configuration" : "configurations"} · ${data.activeFindingConfigurationCount} with indexed active findings · prescribed display records`;
     if (data.failures.length) { $("errors").hidden = false; $("errors").textContent = `${data.failures.length} unavailable records: ${data.failures.map((r) => `${r.assemblyId}: ${r.error}`).join("; ")}`; }
     const queued = new Map();
     lazyObserver = new IntersectionObserver((entries) => {
@@ -196,43 +199,53 @@ async function loadResults() {
       }
     }, { rootMargin: "100px" });
     for (const result of data.results) {
-      const group = result.kind === "group", row = group ? result.representative : result;
-      const canExplore = !group || isLibrarySelectorValue(result.groupBy, result.value);
+      const facetGroup = result.kind === "group", variantGroup = result.kind === "variant-group", group = facetGroup || variantGroup;
+      const row = group ? result.representative : result;
+      const canExplore = variantGroup || !facetGroup || isLibrarySelectorValue(result.groupBy, result.value);
       const card = element("article", null, "assembly-card"); card.dataset.resultId = result.id; card.dataset.resultKind = result.kind;
-      card.dataset.recordSha256 = group ? "" : row.recordSha256; card.dataset.facets = JSON.stringify(group ? { [result.groupBy]: result.value } : row.facets); card.dataset.memberCount = String(group ? result.memberCount : 1);
+      card.dataset.recordSha256 = group ? "" : row.recordSha256; card.dataset.facets = JSON.stringify(facetGroup ? { [result.groupBy]: result.value } : variantGroup ? {} : row.facets); card.dataset.memberCount = String(group ? result.memberCount : 1);
+      card.dataset.activeFindingConfigurationCount = String(result.activeFindingConfigurationCount ?? (row.activeFindingConfiguration ? 1 : 0));
+      card.dataset.variantSetId = variantGroup ? result.variantSetId : row.variantSet?.id ?? "";
       card.dataset.targetId = group ? "" : row.assemblyId;
       card.dataset.previewId = row.assemblyId; card.dataset.previewRecordSha256 = row.recordSha256;
       card.dataset.descriptorVersion = row.descriptorVersion;
       card.dataset.unavailableReasons = JSON.stringify(Object.fromEntries(Object.entries(row.facets)
-        .filter(([key, value]) => (!group || key === result.groupBy) && [].concat(value).includes("unavailable"))
+        .filter(([key, value]) => (!group || (facetGroup && key === result.groupBy)) && [].concat(value).includes("unavailable"))
         .map(([key]) => [key, row.reasons[key]])));
       card.dataset.selected = String(state.params.get("assemblyId") === row.assemblyId && !group);
-      const title = group ? `${facetLabel(result.groupBy, result.value)}${result.groupBy === "count" ? " architrinos" : result.groupBy === "braidCount" ? ` braid${result.value === "1" ? "" : "s"}` : ""}` : row.label;
-      const top = element("div", null, "card-top"); top.append(element("span", group ? `${result.memberCount} members` : `${row.facets.count} architrinos`), element("span", group ? "GROUP" : facetLabel("assemblySpan", row.facets.assemblySpan)));
+      const title = variantGroup ? result.label : facetGroup ? `${facetLabel(result.groupBy, result.value)}${result.groupBy === "count" ? " architrinos" : result.groupBy === "braidCount" ? ` braid${result.value === "1" ? "" : "s"}` : ""}` : row.label;
+      const exactConfigurationCount = group ? result.memberCount : 1;
+      const findingConfigurationCount = result.activeFindingConfigurationCount ?? (row.activeFindingConfiguration ? 1 : 0);
+      const top = element("div", null, "card-top"); top.append(element("span", `${exactConfigurationCount} ${exactConfigurationCount === 1 ? "configuration" : "configurations"}`), element("span", variantGroup ? "BRAID" : facetGroup ? "GROUP" : facetLabel("assemblySpan", row.facets.assemblySpan)));
       const canvas = element("canvas", null, "sphere"); canvas.tabIndex = 0; canvas.setAttribute("role", "button"); canvas.setAttribute("aria-label", `${group ? "Explore group" : "Inspect"}: ${title}`);
       if (!canExplore) { canvas.setAttribute("aria-disabled", "true"); canvas.setAttribute("aria-label", `Unassigned group: ${title}. Preview only.`); }
       const action = () => {
         if (!canExplore) return;
-        if (group) { state.params.set(result.groupBy, result.value); state.params.set("groupBy", "none"); changeQuery(); }
+        if (variantGroup) { state.params.set("variantSet", result.variantSetId); state.params.set("groupBy", "none"); changeQuery(); }
+        else if (facetGroup) { state.params.set(result.groupBy, result.value); state.params.set("groupBy", "none"); changeQuery(); }
         else openInspector(row);
       };
-      const button = element("button", group ? "Explore group →" : "Inspect assembly →", "card-action"); button.addEventListener("click", action);
+      const button = element("button", variantGroup ? `View ${result.memberCount} configurations →` : facetGroup ? "Explore group →" : "Inspect braid →", "card-action"); button.addEventListener("click", action);
       if (!canExplore) { button.disabled = true; button.textContent = "Classification not assigned"; button.title = "These records remain visible with Any selected; unassigned values are not menu choices."; }
       const note = element("p", "Loading sealed preview…", "preview-state");
-      card.append(top, canvas, element("h2", title, "card-title"), button, note);
+      card.append(top, canvas, element("h2", title, "card-title"));
+      if (variantGroup) card.append(element("p", `${result.parameterLabels.join(" and ")} vary · example preview`, "card-alias"));
+      card.append(element("p", findingConfigurationCount > 0 ? `${findingConfigurationCount} ${findingConfigurationCount === 1 ? "configuration has" : "configurations have"} indexed active findings` : "No active findings indexed yet", `card-finding-count${findingConfigurationCount > 0 ? " has-findings" : ""}`));
+      card.append(button, note);
       $("results").append(card);
       queued.set(canvas, async () => {
         try {
           const { preview } = await previewFor(row); if (version !== state.version || !canvas.isConnected) return;
           const controller = createSpherePreview(canvas, preview, action); state.controllers.push(controller); controller.draw(state.fraction);
           canvas.dataset.loaded = "true";
-          note.textContent = preview.paths.some((p) => p.trailMode === "unavailable") ? "Some trails unavailable: no phase carrier" : "Recorded motion · drag to rotate";
+          note.textContent = variantGroup ? "Example variant · recorded motion" : preview.paths.some((p) => p.trailMode === "unavailable") ? "Some trails unavailable: no phase carrier" : "Recorded motion · drag to rotate";
         } catch (error) { if (canvas.isConnected) { note.textContent = `Preview unavailable: ${error.message}`; canvas.setAttribute("aria-disabled", "true"); } }
       });
       lazyObserver.observe(canvas);
     }
     $("empty-state").hidden = data.total > 0;
-    $("page-label").textContent = data.resultCount ? `${data.offset + 1}–${Math.min(data.offset + data.pageSize, data.resultCount)} of ${data.resultCount} ${state.params.get("groupBy") && state.params.get("groupBy") !== "none" ? "groups" : "records"}` : "0 results";
+    const pageNoun = facetGrouping ? "groups" : state.params.has("variantSet") ? "configurations" : "braids";
+    $("page-label").textContent = data.resultCount ? `${data.offset + 1}–${Math.min(data.offset + data.pageSize, data.resultCount)} of ${data.resultCount} ${pageNoun}` : "0 results";
     $("previous-page").disabled = !data.previousCursor; $("next-page").disabled = !data.nextCursor;
     if (state.params.has("assemblyId")) {
       const assemblyId = state.params.get("assemblyId");
@@ -267,7 +280,7 @@ async function openInspector(row, persist = true) {
     $("inspector-title").textContent = row.label; $("inspector-identity").textContent = row.assemblyId;
     $("inspector-description").textContent = `Recorded description: ${row.description}`; $("copy-status").textContent = "";
     $("identity").replaceChildren();
-    for (const [key, value] of [["Assembly identity", row.assemblyId], ["Model revision SHA-256", row.modelRevisionSha256], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
+    for (const [key, value] of [["Assembly identity", row.assemblyId], ["Model revision SHA-256", row.modelRevisionSha256], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Indexed active findings", row.findingRelations.length ? row.findingRelations.map((finding) => `${finding.findingId} (${finding.claimGrade})`).join("; ") : "None indexed"], ["Finding relation revision", row.findingRelationRevision ?? "Unavailable"], ["Finding relation source", row.findingRelationSource ?? "Unavailable"], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
     $("facet-reasons").replaceChildren(); $("inspector-facets").replaceChildren();
     for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
       const value = [].concat(row.facets[key]).map((v) => facetLabel(key, v)).join(", ");

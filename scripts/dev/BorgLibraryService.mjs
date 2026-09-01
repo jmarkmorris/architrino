@@ -11,18 +11,18 @@ const send = (res, status, data) => { res.writeHead(status, { "Content-Type": "a
 
 // Read-only seed-catalog provider. No new record, geometry, or migration output
 // is written. Replace this provider with the indexed registry for full BORG-014.
-export function createBorgLibraryService({ repoRoot, catalog = BORG_ASSEMBLY_RECORD_CATALOG.entries, classificationFile = "reference/priorities/app-borg/library-classifications.v4.json" } = {}) {
+export function createBorgLibraryService({ repoRoot, catalog = BORG_ASSEMBLY_RECORD_CATALOG.entries, classificationFile = "reference/priorities/app-borg/library-classifications.v4.json", findingRelationFile = "reference/priorities/app-borg/library-finding-relations.v1.json" } = {}) {
   const cache = new Map();
   let pending = Promise.resolve();
-  async function load(entry, classification) {
+  async function load(entry, classification, findingRelations) {
     const path = resolve(repoRoot, entry.recordUrl);
     const info = await stat(path);
-    const stamp = `${info.size}:${info.mtimeMs}:${classification.hash}`;
+    const stamp = `${info.size}:${info.mtimeMs}:${classification.hash}:${findingRelations.hash}`;
     const cacheKey = `${entry.assemblyId}:${entry.modelRevisionSha256}`;
     if (cache.get(cacheKey)?.stamp === stamp) return cache.get(cacheKey);
     const bytes = await readFile(path);
     const recordSha256 = digest(bytes);
-    const described = describeLibraryRecord(JSON.parse(bytes), entry, recordSha256, classification.data);
+    const described = describeLibraryRecord(JSON.parse(bytes), entry, recordSha256, classification.data, findingRelations.data);
     described.summary.classificationSha256 = classification.hash;
     const result = { stamp, described, preview: null };
     cache.set(cacheKey, result);
@@ -33,26 +33,28 @@ export function createBorgLibraryService({ repoRoot, catalog = BORG_ASSEMBLY_REC
     try {
       const classificationBytes = await readFile(resolve(repoRoot, classificationFile));
       const classification = { data: validateLibraryClassifications(JSON.parse(classificationBytes)), hash: digest(classificationBytes) };
+      const findingRelationBytes = await readFile(resolve(repoRoot, findingRelationFile));
+      const findingRelations = { data: JSON.parse(findingRelationBytes), hash: digest(findingRelationBytes) };
       if (url.pathname === "/api/borg/library/preview") {
         const assemblyId = url.searchParams.get("assemblyId");
         const modelRevisionSha256 = url.searchParams.get("modelRevisionSha256");
         const recordSha256 = url.searchParams.get("recordSha256");
         const entry = catalog.find((row) => row.assemblyId === assemblyId && row.modelRevisionSha256 === modelRevisionSha256);
         if (!entry) return send(res, 404, { error: "Unknown catalog identity." });
-        const loaded = await load(entry, classification);
+        const loaded = await load(entry, classification, findingRelations);
         if (!recordSha256 || recordSha256 !== loaded.described.summary.recordSha256) return send(res, 409, { error: "Record changed. Reload the catalog; the saved hash was not retargeted." });
         loaded.preview ??= createLibraryPreview(loaded.described);
         return send(res, 200, { summary: loaded.described.summary, preview: loaded.preview });
       }
       const rows = []; const failures = [];
       for (const entry of catalog) {
-        try { rows.push((await load(entry, classification)).described.summary); }
+        try { rows.push((await load(entry, classification, findingRelations)).described.summary); }
         catch (error) { failures.push({ assemblyId: entry.assemblyId, error: error.message }); }
       }
       const params = url.searchParams;
       const query = queryLibraryRows(rows, params);
       const canonical = new URLSearchParams(params); canonical.delete("cursor"); canonical.sort();
-      const snapshot = digest(JSON.stringify([rows.map((row) => [row.recordSha256, row.descriptorVersion]), classification.hash, canonical.toString()])).slice(0, 24);
+      const snapshot = digest(JSON.stringify([rows.map((row) => [row.recordSha256, row.descriptorVersion]), classification.hash, findingRelations.hash, canonical.toString()])).slice(0, 24);
       let offset = 0;
       if (params.has("cursor")) {
         const decoded = JSON.parse(Buffer.from(params.get("cursor"), "base64url").toString());
@@ -61,8 +63,9 @@ export function createBorgLibraryService({ repoRoot, catalog = BORG_ASSEMBLY_REC
       }
       const pageSize = 12;
       const cursor = (next) => Buffer.from(JSON.stringify({ snapshot, offset: next })).toString("base64url");
-      send(res, 200, { ...query, results: query.results.slice(offset, offset + pageSize),
-        resultCount: query.results.length, registeredCount: catalog.length, failures, offset, pageSize,
+      send(res, 200, { ...query, exactRecordCount: query.total, total: query.results.length,
+        results: query.results.slice(offset, offset + pageSize), resultCount: query.results.length,
+        registeredCount: catalog.length, failures, offset, pageSize,
         nextCursor: offset + pageSize < query.results.length ? cursor(offset + pageSize) : null,
         previousCursor: offset > 0 ? cursor(Math.max(0, offset - pageSize)) : null,
         provider: "seed-catalog demonstrator; not the million-entry registry", snapshot });

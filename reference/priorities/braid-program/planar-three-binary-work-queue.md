@@ -64,6 +64,7 @@ Plainly: the finite discovery sweep has been replaced by a continuous-domain pro
 - **Closure goal:** Bind the already certified exact T04 balance to one independently auditable EOM-solver input without re-proving the accepted ladder theorem.
 - **Request / acceptance:** Freeze outward-rounded intervals for $\beta_f$, $R/R_*$, $\Omega$, and the period; the expected 72-root ownership ledger; the $c_f=1$ normalization; the sufficient circular prehistory depth; and the error introduced by decimal serialization and enclosed cubic history segments. The radius interval must explicitly reconcile the two last-digit decimal forms recorded during the investigation. A separately authored oracle must recompute all six receivers, all 36 directed phase channels, the complete simple-root inventory, and the full-vector acceleration enclosure from the frozen handoff rather than replaying the producing implementation.
 - **Evidence / blocker:** The tracked bounded zero-count certificate already establishes the exact T04 balance member. The remaining gap is the explicit identity-and-error bridge from that mathematical member to the numerical history consumed by the EOM solver. If the handoff cannot cite and independently reproduce the accepted outward-rounded enclosure, its receipt must rebuild that directed-rounding check; an older task recap does not override the tracked accepted packet.
+- **Concurrent Borg boundary:** Borg taxonomy labels, descriptive names, and other presentation-only fields may change while this task runs without invalidating the handoff. A change to the six-member inventory, persistent source order, polarity, component-binary relations, prescribed worldlines, numerical parameters, units, source law, or any other model-identity-bearing field invalidates the pending freeze and requires a newly identified handoff. Borg classification remains display and identity infrastructure and supplies no balance, release, or stability evidence.
 - **Completion:** One sealed handoff and independent receipt establish that both recorded decimal forms enclose the same exact reference and that the numerical input represents it closely enough for the declared one-cycle comparison, or reject the proposed discretization with an explicit failed bound. A missed root, non-simple root, incompatible parameter interval, unresolved decimal discrepancy, or interpolation enclosure outside its budget falsifies acceptance.
 
 Plainly: the exact circle is already known mathematically. This task proves that the finite numerical history handed to the EOM solver is a controlled representation of that exact circle.
@@ -188,31 +189,42 @@ Plainly: first the theory must define what energy means for one delayed-history 
 
 | Dependency | Owner | planar common-center three-binary constraint consumption boundary |
 | --- | --- | --- |
-| Reusable root continuation, memory control, deterministic restart, and full-cycle execution | [App Solver work queue](../app-solver/work-queue.md) | T04 one-cycle EOM reproduction task consumes accepted capabilities; this queue owns the planar common-center three-binary constraint scientific result |
+| Reusable root continuation, memory control, deterministic restart, supervised campaign execution, and full-cycle execution | [EOM-002](../app-solver/work-queue.md#eom-002--coupled-retained-history-integrator), [EOM-003](../app-solver/work-queue.md#eom-003--persistent-long-run-checkpoint-and-campaign-driver), and [EOM-004](../app-solver/work-queue.md#eom-004--precision-convergence-and-failure-policy) | T04 one-cycle EOM reproduction task consumes accepted capabilities; the EOM queue owns reusable implementation and launcher defects, while this queue owns the T04 scientific result |
 | Delayed action and conserved time-cut account | [Master-Equation Closure work queue](../master-equation-closure/work-queue.md) | same-record action and energy ledger task consumes an accepted same-action identity; this queue does not invent an energy law |
 | Assembly identities, taxonomy-oriented navigation, visual representatives, and honest animations | [Borg BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) | Borg displays source-defined planar common-center three-binary constraint records; display coverage does not establish balance or stability |
 | Prescribed translation frames and causal-history tubes | [Borg BORG-006](../app-borg/work-queue.md#borg-006--prescribed-translation-and-causal-history-tubes) | Borg may display translated source records; fixed axial-translation interval certificate task owns the scientific balance certificate |
 
-## Open Codex Task Alignment
+## Task-to-Queue Disposition
 
-These user-visible tasks remain open. This queue reconciliation does not authorize closing or archiving them.
+The former task-scoped obligations are fully transferred to durable queue rows. Their user-visible tasks may be archived without completing, withdrawing, or changing the priority of any scientific or implementation row.
 
-| Open task | Detailed queue coverage | Current best next step retained from the task |
+| Investigation lane | Durable queue coverage | First executable successor |
 | --- | --- | --- |
-| `#1 planar common-center three-binary constraint circular prehistory` | T04 exact-reference-to-solver handoff task, local history-flow well-posedness task, T04 one-cycle EOM reproduction task, and nearby-history return map and stability task | finish the exact-reference-to-solver receipt, then local history-flow uniqueness, one full-cycle conformance check, and only then perturbation stability |
-| `#2 planar common-center three-binary constraint 3:3 velocity search` | global equal-radius ladder theorem task and higher-order ladder asymptotics task | prove one root in every later admissible fold cell and none in every intervening cell; treat higher-order coefficients as a separate follow-on |
-| `#4 planar common-center three-binary constraint axial translation` | axial-translation-speed chart task; fixed axial-translation interval certificate task is complete | certify the stationary-ladder signed axial weights, which decide whether any nonzero-speed screw branch can exist on the declared topology range |
+| Circular prehistory, exact continuation, numerical reproduction, and stability | T04 exact-reference-to-solver handoff task, local history-flow well-posedness task, T04 one-cycle EOM reproduction task, and nearby-history return map and stability task | finish the exact-reference-to-solver receipt, then local history-flow uniqueness, one full-cycle conformance check, and only then perturbation stability |
+| Equal-radius velocity ladder | global equal-radius ladder theorem task and higher-order ladder asymptotics task | prove one root in every later admissible fold cell and none in every intervening cell; treat higher-order coefficients as a separate follow-on |
+| Axial translation | axial-translation-speed chart task; fixed axial-translation interval certificate task is complete | certify the stationary-ladder signed axial weights, which decide whether any nonzero-speed screw branch can exist on the declared topology range |
 
-Plainly: the queue now records every remaining line reported by the three open tasks. The tasks stay available for continued investigation while the repository owns the durable status and acceptance boundaries.
+Plainly: archiving the user-visible tasks removes no work. The repository queues now own the remaining questions, their order, their evidence requirements, and their falsifiers.
 
 ## Investigation-Lane Closure Map
 
-| Investigation lane | Detailed rows | Thread may close when |
+| Investigation lane | Detailed rows | Queue lane is complete when |
 | --- | --- | --- |
 | Circular prehistory and numerical release | T04 exact-reference-to-solver handoff task, local history-flow well-posedness task, T04 one-cycle EOM reproduction task | the exact-reference handoff, local uniqueness disposition, and one-cycle numerical reproduction each have a durable accepted or explicit negative result; perturbation stability may continue separately under nearby-history return map and stability task |
 | Equal-radius velocity ladder | global equal-radius ladder theorem task, higher-order ladder asymptotics task | the global tail theorem is proved or falsified with an explicit finite boundary and independently checkable artifact; higher-order asymptotics may close separately or remain explicitly deferred |
 | Axial translation | axial-translation-speed chart task; fixed axial-translation interval certificate task complete | the stationary-ladder signed axial weights have a certified zero census on the declared topology range; any surviving zero receives an independent full-vector branch check |
 | Investigation writing | no active row | closed: the evidence packet is tracked and the writer thread is archived |
+
+## Queue Completeness
+
+Every remaining obligation associated with this investigation has a durable owner:
+
+- Exact T04 identity, directed-rounding fallback, numerical-history enclosure, local history-flow uniqueness, one-cycle reproduction, and perturbation stability are owned by the detailed rows in this queue.
+- Reusable causal-root continuation, bounded retained-memory evolution, checkpoint parity, precision failure policy, and circular-root launcher supervision are owned by EOM-002, EOM-003, and EOM-004 in the [EOM work queue](../app-solver/work-queue.md).
+- Source-level braid and assembly inventory is owned by [BP-015](work-queue.md#bp-015--borg-assembly-source-inventory-handoff); durable Borg identity, classification coverage, filtering, and visual representatives are owned by [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) and [BORG-015](../app-borg/work-queue.md#borg-015--taxonomy-selection-canvas).
+- The delayed action and conserved time-cut account required by the energy rows is owned by the [Master-Equation Closure work queue](../master-equation-closure/work-queue.md), and translated display remains owned by [BORG-006](../app-borg/work-queue.md#borg-006--prescribed-translation-and-causal-history-tubes).
+
+No remaining research, implementation, taxonomy, Borg, or documentation obligation identified by this investigation is tracked only in a user-visible task.
 
 ## Aggregate Completion
 

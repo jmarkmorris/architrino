@@ -1,10 +1,12 @@
 import { createEomHistoryDataset } from "../../shared/EomHistoryDataset.mjs";
 import { describeBraidComposition, recordClassification } from "./BorgLibraryComposition.mjs";
 import { describeAssemblyRadii } from "./BorgLibraryRadii.mjs";
+import { describeLibraryVariantSet } from "./BorgLibraryVariants.mjs";
+import { describeLibraryFindings } from "./BorgLibraryFindings.mjs";
 import { describeBorgOrbitTrails } from "../BorgOrbitTrails.mjs";
 import { describeBorgCircleOccupancy } from "../BorgOrbitGeometry.mjs";
 
-export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v9";
+export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v11";
 const norm = (v) => Math.hypot(...v);
 const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);
 const subtract = (a, b) => a.map((v, i) => v - b[i]);
@@ -85,7 +87,7 @@ function breathingState(operators) {
   return states.includes("yes") ? "yes" : states.every((s) => s === "no") ? "no" : "unavailable";
 }
 
-export function describeLibraryRecord(record, catalogEntry, recordSha256, classifications = null) {
+export function describeLibraryRecord(record, catalogEntry, recordSha256, classifications = null, findingRelations = null) {
   if (record.assemblyId !== catalogEntry.assemblyId ||
       record.modelRevisionSha256 !== catalogEntry.modelRevisionSha256) {
     throw new TypeError("Library record identity does not match its exact catalog entry.");
@@ -106,6 +108,8 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
     : { value: "unavailable", reason: "The source must describe every recorded architrino before comparing assembly-centered radii." };
   const circleOccupancy = describeBorgCircleOccupancy(dataset);
   const braidDimension = describeBraidDimensionality(composition, coordinates, dataset);
+  const variantSet = describeLibraryVariantSet(coordinates);
+  const findings = describeLibraryFindings(coordinates, catalogEntry, findingRelations);
   const confirmedSpindle = recordClassification(
     classifications,
     record.assemblyId,
@@ -127,7 +131,12 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
     classificationRevision: classifications?.revision ?? null, classificationSource: classifications?.source ?? null,
     braids: composition.braids,
     claimGrade: dataset.provenance.claimGrade, evidenceStatus: dataset.provenance.evidenceStatus,
-    description: prescribed?.description ?? "Sealed assembly record.",
+    findingRelations: findings.active,
+    findingRelationRevision: findings.relationRevision,
+    findingRelationSource: findings.relationSource,
+    activeFindingConfiguration: findings.active.length > 0,
+    findingsIndexed: findings.indexed,
+    description: prescribed?.description ?? "Sealed assembly record.", variantSet,
     source: dataset.provenance.generatingSpec,
     reasons: {
       count: "Number of persistent worldlines in the sealed record.",

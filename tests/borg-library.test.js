@@ -8,6 +8,7 @@ import { BORG_ASSEMBLY_RECORD_CATALOG } from "../src/apps/borg/BorgAssemblyRecor
 import { describeLibraryRecord } from "../src/apps/borg/library/BorgLibraryDescriptors.mjs";
 import { LIBRARY_FACETS, queryLibraryRows, validateLibraryBrowseParams } from "../src/apps/borg/library/BorgLibraryQuery.mjs";
 import { validateLibraryClassifications } from "../src/apps/borg/library/BorgLibraryComposition.mjs";
+import { describeLibraryFindings, validateLibraryFindingRelations } from "../src/apps/borg/library/BorgLibraryFindings.mjs";
 
 const repoRoot = fileURLToPath(new URL("../", import.meta.url));
 
@@ -74,14 +75,37 @@ test("Library classifications bind exact scientific identities", async () => {
   }
 });
 
+test("Library finding relations are source-owned, exact, and fail closed", async () => {
+  const registry = validateLibraryFindingRelations(JSON.parse(await readFile(
+    new URL("../reference/priorities/app-borg/library-finding-relations.v1.json", import.meta.url),
+  )));
+  assert.equal(registry.relations.length, 5);
+  const circularMember = registry.relations[0].match.configurations[0];
+  const circular = describeLibraryFindings({ geometry: {} }, circularMember, registry);
+  assert.equal(circular.indexed, true);
+  assert.deepEqual(circular.active.map((finding) => finding.findingId), ["finding-planar-circular-balance-landscape-2026-08-29"]);
+  const unknown = describeLibraryFindings({ geometry: {} }, {
+    assemblyId: "asm-00000000000000000000000000000000",
+    modelRevisionSha256: "0".repeat(64),
+  }, registry);
+  assert.deepEqual(unknown.active, []);
+  assert.throws(() => validateLibraryFindingRelations({ ...registry, relations: [{ ...registry.relations[0], match: { ...registry.relations[0].match, configurations: [circularMember, circularMember] } }] }), /must not repeat/);
+  assert.throws(() => validateLibraryFindingRelations({ ...registry, relations: [{ ...registry.relations[0], status: "superseded" }] }), /must be active/);
+});
+
 test("seed provider covers all current records and exact preview pins", async () => {
   const service = createBorgLibraryService({ repoRoot });
   const first = await request(service, "/api/borg/library");
   assert.equal(first.status, 200);
-  assert.equal(first.body.total, 144);
+  assert.equal(first.body.total, 45);
+  assert.equal(first.body.exactRecordCount, 144);
+  assert.equal(first.body.activeFindingConfigurationCount, 114);
   assert.equal(first.body.registeredCount, 144);
+  assert.equal(first.body.resultCount, first.body.total);
+  assert.deepEqual(first.body.counts.shape, { circles: 42, spindle: 6, unavailable: 3 });
+  assert.deepEqual(first.body.counts.braidDimension, { unavailable: 17, "3d": 22, "2d": 6 });
   assert.deepEqual(first.body.failures, []);
-  const row = first.body.results[0];
+  const row = first.body.results.find((result) => result.kind === "leaf");
   const query = new URLSearchParams({
     assemblyId: row.assemblyId,
     modelRevisionSha256: row.modelRevisionSha256,
@@ -95,4 +119,49 @@ test("seed provider covers all current records and exact preview pins", async ()
   assert.equal((await request(service, `/api/borg/library/preview?${query}`)).status, 409);
   assert.equal((await request(service, "/api/borg/library?selected=retired")).status, 400);
   assert.equal((await request(service, "/api/borg/library", "POST")).status, 405);
+
+  const circular = await request(service, "/api/borg/library?shape=circles");
+  assert.equal(circular.body.total, 42);
+  assert.equal(circular.body.exactRecordCount, 141);
+});
+
+test("seed provider exposes one 100-variant balance card and exact variant drill-down", async () => {
+  const service = createBorgLibraryService({ repoRoot });
+  const search = new URLSearchParams({ q: "Equal-radius planar three-binary circular balance" });
+  const grouped = await request(service, `/api/borg/library?${search}`);
+  assert.equal(grouped.status, 200);
+  assert.equal(grouped.body.total, 1);
+  assert.equal(grouped.body.exactRecordCount, 100);
+  assert.equal(grouped.body.activeFindingConfigurationCount, 100);
+  assert.equal(grouped.body.resultCount, 1);
+  assert.equal(grouped.body.results[0].kind, "variant-group");
+  assert.equal(grouped.body.results[0].memberCount, 100);
+  assert.equal(grouped.body.results[0].activeFindingConfigurationCount, 100);
+  assert.equal(grouped.body.results[0].representative.variantSet.parameters.betaF, "1.82643096465467872500343418810983797075332652816658643466935687397614525307580589427830187");
+
+  const variantSet = grouped.body.results[0].variantSetId;
+  const drilled = await request(service, `/api/borg/library?${new URLSearchParams({ variantSet })}`);
+  assert.equal(drilled.status, 200);
+  assert.equal(drilled.body.total, 100);
+  assert.equal(drilled.body.exactRecordCount, 100);
+  assert.equal(drilled.body.resultCount, 100);
+  assert.ok(drilled.body.results.every((result) => result.kind === "leaf"));
+
+  const exact = await request(service, `/api/borg/library?${new URLSearchParams({ q: "2.974307176117294" })}`);
+  assert.equal(exact.body.total, 1);
+  assert.equal(exact.body.exactRecordCount, 1);
+  assert.equal(exact.body.resultCount, 1);
+  assert.equal(exact.body.results[0].kind, "leaf");
+});
+
+test("Library presents grouped results as braids and exact configurations as supporting provenance", async () => {
+  const [mainSource, pageSource] = await Promise.all([
+    readFile(new URL("../src/apps/borg/library/main.js", import.meta.url), "utf8"),
+    readFile(new URL("../borg-library.html", import.meta.url), "utf8"),
+  ]);
+  assert.match(mainSource, /data\.resultCount === 1 \? "braid" : "braids"/);
+  assert.match(mainSource, /data\.exactRecordCount.*exact/);
+  assert.match(mainSource, /data\.activeFindingConfigurationCount.*indexed active findings/);
+  assert.doesNotMatch(mainSource, /assembly cards/);
+  assert.match(pageSource, /<option value="none">Braids<\/option>/);
 });

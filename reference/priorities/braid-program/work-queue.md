@@ -20,6 +20,8 @@ The detailed planar common-center three-binary constraint investigation is maint
 10. `circular_path_nonuniform_phase_census` — [BP-013](#bp-013--circular-path-nonuniform-phase-census). Status: `Queued`.
 11. `circular_path_large_n_law` — [BP-014](#bp-014--circular-path-large-n-law). Status: `Queued`.
 12. `borg_assembly_source_inventory_handoff` — [BP-015](#bp-015--borg-assembly-source-inventory-handoff). Status: `Queued`; Borg implementation remains owned by [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser).
+13. `platonic_braid_qualification_and_prescribed_history` — [BP-016](#bp-016--platonic-braid-qualification-and-prescribed-history-program). Status: `Queued`.
+14. `packed_platonic_assembly_histories` — [BP-017](#bp-017--packed-platonic-assembly-history-program). Status: `Queued`.
 
 ## Shared search prerequisites
 
@@ -152,11 +154,43 @@ Plainly: the current table shows how the first several balanced regular rings gr
 - **Status:** Queued
 - **Priority object:** `borg_assembly_source_inventory_handoff`
 - **Closure goal:** Give Borg a complete source-owner inventory of admitted braid and circular assemblies without asking the app to infer scientific geometry or taxonomy.
-- **Request / acceptance:** Enumerate every admitted braid and separately registered assembly by exact identity and factual characteristics, distinguishing a concrete configuration, a parameter or history revision, one top-level braid with component-braid rows, and multiple separate top-level braids. For each row, bind the source specification, dimensionality, component inventory and relations, motion prescription, available sealed records, and any missing source coordinates. Treat provenance-bound letter codes only as historical locators; do not make them identities or retained aliases. Produce explicit unavailable rows rather than borrowing a visually similar representative.
+- **Request / acceptance:** Enumerate every admitted braid and separately registered assembly by exact identity and factual characteristics, distinguishing a concrete configuration, a parameter or history revision, one top-level braid with component-braid rows, and multiple separate top-level braids. For each row, bind the source specification, dimensionality, component inventory and relations, motion prescription, available sealed records, any source-established Platonic relationship from BP-016, and any missing source coordinates. Leave the Platonic relationship unavailable when the source establishes only member count, co-sphericity, or visual resemblance. Treat provenance-bound letter codes only as historical locators; do not make them identities or retained aliases. Produce explicit unavailable rows rather than borrowing a visually similar representative.
 - **Evidence / blocker:** [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) owns durable app identity, taxonomy navigation, visual coverage, and honest animation. Its coverage cannot close until scientific source owners supply a complete inventory and concrete-representative dispositions.
 - **Completion:** A source-bound machine-readable inventory is accepted by both the Braid Program and Borg owners, every missing representative has an explicit source-owner blocker, and Borg can consume the inventory without reconstructing geometry or dynamics. This row does not implement the app, assign hashes, or establish scientific acceptance.
 
 Plainly: the Braid Program says which mathematical objects and records exist; Borg decides how to identify, browse, display, and animate them. Keeping those responsibilities separate prevents a menu label or visual resemblance from becoming scientific authority.
+
+### BP-016 — Platonic braid qualification and prescribed-history program
+
+- **Status:** Queued; the octahedral reduction is the completed analytical starting point, not a braid-admission or stability result.
+- **Source:** Operator direction to study Platonic structures as braids and to keep them distinct from tiled lattices and private-vertex packings.
+- **Closure goal:** Determine, separately for the tetrahedron, cube, octahedron, dodecahedron, and icosahedron, which exact polarity-bearing moving histories qualify as braid candidates and which remain geometric comparison objects.
+- **Qualification boundary:** A regular vertex set becomes a braid candidate only after the source declares the complete member inventory, polarity word, component membership, worldlines or prescribed path-history, speed policy, persistent order, and applicable symmetry action. Co-sphericity, Platonic geometry, balanced population, or a Borg display record alone does not assign a braid. A source may therefore classify a record as an exact Platonic vertex set while leaving braid qualification unavailable.
+- **Execution order:** Continue the accepted [Platonic moving-history reduction](platonic-moving-history-reduction.md) with one nine-channel rigid octahedral stratum, then close the remaining eighteen-channel and continuous generic-axis rigid octahedral strata and the declared non-rigid extension. Next analyze the checkerboard cube and tetrahedron under exact prescribed histories. Admit dodecahedral and icosahedral histories only after their exact coordinate, polarity, clearance, and causal-root objects are frozen; do not transfer a cubic-lattice argument into those finite assemblies.
+- **Per-shape acceptance:** Freeze exact coordinates and scale, enumerate inequivalent 50/50 polarity words where equal population is possible, prove collision clearance on the declared interval, certify the complete applicable causal-root inventory, and calculate every member's acceleration residual for the same prescribed history. Any ordinary EOM evolution requires a separate predeclaration with $c_f=1$, complete future-consumed history, and an independent reference. Confirm acceleration balance before asking a stability question; where balance fails, a spectrum about that unoccupied state has no referent.
+- **Borg handoff:** Supply BP-015 with a source-owned, versioned relationship classification that distinguishes an exact Platonic vertex set from a source-declared Platonic component or compound and from an unavailable assignment. The handoff carries geometry and braid-qualification facts separately, so Borg never infers one from the other.
+- **Completion:** All five regular solids have either (a) an exact source-owned prescribed-history packet with an explicit braid-candidate disposition and falsifier or (b) a precise obstruction or missing-object disposition. Every positive row states only its achieved grade; prescribed balance, EOM retention, stability, binding, particle identity, and effective-spacetime recovery remain separate claims.
+
+Plainly: this program asks whether a Platonic arrangement can carry a complete braid history. It does not call a frozen polyhedral picture a braid merely because its vertices look right.
+
+### BP-017 — Packed Platonic assembly-history program
+
+- **Status:** Queued behind the first BP-016 qualified finite history; geometry design may proceed, but no dynamics run is authorized by this row.
+- **Source:** Operator direction to study packings in which each Platonic cell owns a distinct vertex inventory, with no shared coordinates between cells.
+- **Closure goal:** Construct and test packings of individually owned Platonic assembly candidates while keeping geometric non-overlap, member identity, intra-assembly history, and cross-assembly acceleration as separate obligations.
+- **Geometric object:** Declare a finite or periodic family of transformed regular solids $K_\alpha$ with disjoint member identities and no coincident vertex coordinates. Every packet must state the solid type, edge scale, pose, center set, minimum inter-cell separation, periodic or finite boundary rule, and packing fraction. A shrink-from-honeycomb family may use $K_\alpha(s)=\mathbf c_\alpha+s(K_\alpha-\mathbf c_\alpha)$ for $0<s<1$, but its volume fraction $s^3$ is a geometric result only. Face-to-face shared-vertex incidence belongs to [LAT-105](../dormant-deferred/app-lattice-lab/work-queue.md#lat-105--shared-vertex-platonic-cell-complex-gallery), not this program.
+- **History object:** Give each candidate assembly its own complete prescribed history and persistent member order, then evaluate the full combined system. For member $i$ of assembly $\alpha$, record the decomposition
+
+  $$
+  \mathbf A_i=\mathbf A_i^{\mathrm{intra}}+\mathbf A_i^{\mathrm{cross}},
+  $$
+
+  where $\mathbf A_i^{\mathrm{cross}}$ contains every acceleration contribution sourced by members of other packed assemblies. Exact independent-braid behavior requires a proved zero cross term under the declared history; approximate independence requires a predeclared norm and tolerance bound. Spatial separation or distinct ownership alone establishes neither.
+- **Execution order:** Begin with a periodic packing derived by shrinking and separating one source-qualified cube or tetrahedron-octahedron parent cell complex, because its incidence and packing fraction can be independently reconstructed. Then compare same-solid and mixed-solid finite packets before considering dodecahedral or icosahedral motifs. At each stage, audit unused sites, duplicated coordinates, collision clearance, root completeness, and boundary dependence before ordinary evolution.
+- **Interpretive boundary:** A private-vertex packing is the appropriate candidate model for multiple separate braids. A shared-vertex tiling is one collective member inventory. Either may later support an effective-spacetime mapping, but neither replaces the native $\mathbb{A}\mathbb{A}\mathbb{A}$ description in Euclidean void and absolute time, and neither establishes that mapping without a separate coarse-graining derivation.
+- **Completion:** Each of the five regular-solid types has an exact finite or periodic private-vertex packing construction or a precise geometric obstruction at the declared scope. At least one same-solid and one mixed-solid packed packet pass independent geometry reconstruction, exact ownership and noncoincidence checks, complete prescribed-history root accounting, and the declared cross-assembly acceleration test. Any later retention or stability result is booked only after an occupied balanced history is evolved under a separately accepted EOM protocol.
+
+Plainly: moving the cells apart creates separately owned candidate assemblies, but it does not make their histories independent. Independence is a calculation about the cross-assembly acceleration, not a consequence of drawing a gap.
 
 ## Co-spherical research controls
 

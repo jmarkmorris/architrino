@@ -5,6 +5,8 @@ This is the canonical execution ledger for the exploratory display-only workstre
 ## Ranked Next Objects
 
 1. LAT-015 — Increasing-strength compression coordinate.
+2. LAT-104 — Periodic 50/50 polarity-pattern families, parked until this dormant-deferred owner is explicitly reactivated.
+3. LAT-105 — Shared-vertex Platonic cell-complex gallery, parked until this dormant-deferred owner is explicitly reactivated.
 
 ## Queued
 
@@ -39,6 +41,30 @@ This is the canonical execution ledger for the exploratory display-only workstre
 - **Pre-implementation gate:** A design note must name the standard primitive object used for every gallery case and independently verify that its three vectors reproduce both the occupied geometry and polarity assignment.
 - **Acceptance:** A learner can see how the selected primitive cell and one translated neighbor reproduce the pattern and relationships. This is a separate optional teaching mode or toggle, not the default repeat-cell view. The owned tile and adjacent copy are unmistakably distinct. The view uses translation only, reuses the canonical periodic coordinates and edge graph, preserves unique architrino ownership, avoids visual clutter and a false finite-universe claim, and does not alter the accepted graph.
 - **Scope:** Prototype/presentation work, not a validated mathematics claim. No rotation, color swapping, or ad hoc display cell.
+
+### LAT-104 — Periodic 50/50 polarity-pattern families
+
+- **Status:** Queued by operator direction; execution remains parked while the Lattice Lab owner is dormant-deferred.
+- **Closure goal:** Extend the Lab from its present curated cases and LAT-008 finite random control to a reproducible family of global 50/50 electrino/positrino assignments on declared three-dimensional lattices.
+- **Configuration families:** Preserve LAT-008 as the finite nonperiodic random owner. Add periodic families in bounded stages: simple-cubic alternating planes, the three-dimensional checkerboard, longer periodic supercell words, and source-defined two-species assignments on BCC, FCC, Diamond Cubic, and HCP point sets. Each case must identify the underlying point lattice and the polarity rule separately; a polarity pattern must not silently rename the lattice.
+- **Global-ownership rule:** The lattice is one global architrino inventory. A fundamental translation tile owns each site exactly once under a declared half-open convention, while neighboring display copies are translated context rather than new architrinos. Cells, planes, and visible Platonic motifs may be many-to-many incidence overlays, but they do not acquire private copies of shared sites.
+- **Acceptance:** For every periodic case, freeze primitive vectors, basis coordinates, polarity assignment, minimal polarity-preserving translation cell, exact 50/50 count in that cell, periodic boundary convention, and nearest-neighbor graph. A separately authored verifier must reconstruct the point set and assignment from the frozen rule and check unique site ownership, translation closure, count parity, edge identities, and deterministic case identity. Report pattern observables such as coordination, polarity correlation by neighbor shell, and motif incidence separately from acceleration.
+- **Acceleration boundary:** A pattern may display a certified stationary acceleration result only when an independent calculation covers the declared periodic exhaustion and both polarity receiver classes. Otherwise the result is `Not calculated` or `Not established`. Equal population, geometric symmetry, or deterministic repetition establishes no motion, retention, stability, conservation, energy, or effective-spacetime claim.
+- **Completion:** The gallery exposes at least one independently verified case from each accepted periodic family plus the unchanged LAT-008 random control, with exact provenance, accessible pattern/lattice separation, reproducible recalculation where applicable, and fail-closed evidence labels.
+
+Plainly: this object studies one repeating lattice with different red/blue population rules. The sites belong to the global pattern once; the repeating tile is an accounting device, not a box that owns duplicate particles.
+
+### LAT-105 — Shared-vertex Platonic cell-complex gallery
+
+- **Status:** Queued by operator direction behind LAT-104; execution remains parked while the Lattice Lab owner is dormant-deferred.
+- **Closure goal:** Represent exact tiled or interleaved Platonic-derived structures as periodic cell complexes over one shared lattice inventory, while exposing which lattice sites participate in which cells and which sites remain unused by the selected overlay.
+- **Initial exact objects:** Begin with the cubic honeycomb and the tetrahedral-octahedral honeycomb. Treat the two alternate tetrahedra on cube corners as the stella-octangula compound, not as a space tiling. Admit any additional mixed, interleaved, dodecahedral, or icosahedral pattern only after an exact periodic coordinate and incidence construction establishes what repeats; resemblance to a Platonic solid is insufficient.
+- **Incidence and unused-site ledger:** For every case, freeze the periodic site set, cell types, cell vertices, face/edge incidence, primitive translations, and polarity assignment. Report for each owned site the complete set of incident cells and whether it is unused by the selected Platonic overlay. Report coverage and incidence counts separately: a cell decomposition may cover space while an ambient lattice contains extra sites that are not vertices of that decomposition. Never duplicate a coordinate so that adjacent cells can each claim a private copy.
+- **Display acceptance:** Show cell boundaries as an optional geometric overlay distinct from the nearest-neighbor or acceleration-contribution graph. Make shared vertices, adjacent translated context, owned fundamental-domain sites, and unused overlay sites visually and accessibly distinguishable without changing their identities. Provide a finite inspection crop only as a view of the declared periodic object.
+- **Scientific boundary:** These are tiled-lattice configurations and collective member inventories, not packings of independent braids. Platonic cell incidence does not assign a braid, and a stationary cancellation certificate does not establish retention, stability, binding, or an effective-spacetime model. Private-vertex packing and cross-assembly history belong to [BP-017](../../braid-program/work-queue.md#bp-017--packed-platonic-assembly-history-program).
+- **Completion:** Independent reconstruction verifies periodic closure, exact regular-cell geometry, shared-coordinate incidence, no duplicated site ownership, cell-volume coverage for every claimed tiling, and the complete used/unused-site ledger. Browser checks verify the overlay/graph distinction and the finite-crop boundary.
+
+Plainly: adjacent cells in this gallery meet through the same architrinos. The ledger must show both reuse and omission explicitly, so a beautiful cell overlay cannot hide duplicated or unused lattice sites.
 
 ### LAT-031 — Remove `currently shown` from Polarity count copy
 
