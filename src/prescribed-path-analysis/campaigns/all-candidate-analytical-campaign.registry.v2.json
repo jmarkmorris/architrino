@@ -172,10 +172,10 @@
   ],
   "excludedCatalogCandidates": [
     {
-      "sourceSlug": "centered-five-coordinate-linear-history",
-      "assemblyId": "asm-f70757c6a491cf997305c297efa86bf8",
-      "modelRevisionSha256": "f70757c6a491cf997305c297efa86bf8ba3d2ae66eed6a8cbea9b66e85c34d62",
-      "reason": "centered five-coordinate linear history is a nonperiodic centered five-coordinate prescribed display and is outside the current circular complete-cycle analytical campaign."
+      "sourceSlug": "stella-octangula-static-assembly",
+      "assemblyId": "asm-242282e6154b97b00ac9d8e5123cde46",
+      "modelRevisionSha256": "242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8",
+      "reason": "the stella-octangula record is an exact static assembly geometry with no qualifying path history or braid classification and is outside the circular complete-cycle analytical campaign."
     },
     {
       "sourceSlug": "small-asymmetric-counter-breathing-history",

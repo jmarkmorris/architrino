@@ -1,6 +1,7 @@
 import { LIBRARY_FACETS, isLibrarySelectorValue, validateLibraryBrowseParams } from "./BorgLibraryQuery.mjs";
 import { libraryVariantSetLabel } from "./BorgLibraryVariants.mjs";
 import { createSpherePreview } from "./BorgSpherePreview.js";
+import { renderBorgScientificStatus } from "../BorgScientificStatusView.mjs";
 
 const $ = (id) => document.getElementById(id);
 const element = (tag, text, className) => { const node = document.createElement(tag); if (text != null) node.textContent = text; if (className) node.className = className; return node; };
@@ -190,7 +191,7 @@ async function loadResults() {
     const facetGrouping = state.params.get("groupBy") && state.params.get("groupBy") !== "none";
     const resultNoun = facetGrouping ? (data.resultCount === 1 ? "group" : "groups") : state.params.has("variantSet") ? (data.resultCount === 1 ? "configuration" : "configurations") : (data.resultCount === 1 ? "braid" : "braids");
     $("result-count").textContent = `${data.resultCount} ${resultNoun}`;
-    $("result-context").textContent = `${data.exactRecordCount} exact ${data.exactRecordCount === 1 ? "configuration" : "configurations"} · ${data.activeFindingConfigurationCount} with indexed active findings · prescribed display records`;
+    $("result-context").textContent = `${data.exactRecordCount} exact ${data.exactRecordCount === 1 ? "configuration" : "configurations"} · ${data.activeFindingConfigurationCount} with indexed active evidence · prescribed display records`;
     if (data.failures.length) { $("errors").hidden = false; $("errors").textContent = `${data.failures.length} unavailable records: ${data.failures.map((r) => `${r.assemblyId}: ${r.error}`).join("; ")}`; }
     const queued = new Map();
     lazyObserver = new IntersectionObserver((entries) => {
@@ -206,6 +207,7 @@ async function loadResults() {
       card.dataset.recordSha256 = group ? "" : row.recordSha256; card.dataset.facets = JSON.stringify(facetGroup ? { [result.groupBy]: result.value } : variantGroup ? {} : row.facets); card.dataset.memberCount = String(group ? result.memberCount : 1);
       card.dataset.activeFindingConfigurationCount = String(result.activeFindingConfigurationCount ?? (row.activeFindingConfiguration ? 1 : 0));
       card.dataset.variantSetId = variantGroup ? result.variantSetId : row.variantSet?.id ?? "";
+      card.dataset.scientificCoverage = JSON.stringify(group ? result.scientificCoverage : row.scientificStatus);
       card.dataset.targetId = group ? "" : row.assemblyId;
       card.dataset.previewId = row.assemblyId; card.dataset.previewRecordSha256 = row.recordSha256;
       card.dataset.descriptorVersion = row.descriptorVersion;
@@ -231,6 +233,10 @@ async function loadResults() {
       card.append(top, canvas, element("h2", title, "card-title"));
       if (variantGroup) card.append(element("p", `${result.parameterLabels.join(" and ")} vary · example preview`, "card-alias"));
       card.append(element("p", findingConfigurationCount > 0 ? `${findingConfigurationCount} ${findingConfigurationCount === 1 ? "configuration has" : "configurations have"} indexed active findings` : "No active findings indexed yet", `card-finding-count${findingConfigurationCount > 0 ? " has-findings" : ""}`));
+      if (group) {
+        const counts = result.scientificCoverage.counts;
+        card.append(element("p", `Evidence coverage · pass ${counts.pass} · scoped fail ${counts["scoped-fail"]} · unknown ${counts.unknown} · unindexed ${counts.unindexed} · stale ${counts.stale}`, "card-status-count"));
+      }
       card.append(button, note);
       $("results").append(card);
       queued.set(canvas, async () => {
@@ -280,7 +286,8 @@ async function openInspector(row, persist = true) {
     $("inspector-title").textContent = row.label; $("inspector-identity").textContent = row.assemblyId;
     $("inspector-description").textContent = `Recorded description: ${row.description}`; $("copy-status").textContent = "";
     $("identity").replaceChildren();
-    for (const [key, value] of [["Assembly identity", row.assemblyId], ["Model revision SHA-256", row.modelRevisionSha256], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Indexed active findings", row.findingRelations.length ? row.findingRelations.map((finding) => `${finding.findingId} (${finding.claimGrade})`).join("; ") : "None indexed"], ["Finding relation revision", row.findingRelationRevision ?? "Unavailable"], ["Finding relation source", row.findingRelationSource ?? "Unavailable"], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
+    for (const [key, value] of [["Assembly identity", row.assemblyId], ["Model revision SHA-256", row.modelRevisionSha256], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Indexed evidence relations", row.findingRelations.length ? row.findingRelations.map((finding) => `${finding.findingId} (${finding.scope}; ${finding.lifecycle})`).join("; ") : "None indexed"], ["Projection revision", row.findingRelationRevision ?? "Unavailable"], ["Projection source", row.findingRelationSource ?? "Unavailable"], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
+    renderBorgScientificStatus(document, $("scientific-status"), row.scientificStatus);
     $("facet-reasons").replaceChildren(); $("inspector-facets").replaceChildren();
     for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
       const value = [].concat(row.facets[key]).map((v) => facetLabel(key, v)).join(", ");

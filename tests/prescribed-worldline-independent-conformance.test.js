@@ -615,8 +615,8 @@ test("F6b exact clearance and fail-closed status preserve the scoped-negative re
 });
 
 test("the four owner-derived cases preserve explicit individual-worldline and fail-closed metadata", () => {
+  assertIndividualWorldlineSemantics(SD3_SPEC);
   for (const [spec, recordName] of [
-    [SD3_SPEC, "centered-five-coordinate-linear-history.assembly-view-record.v0.json"],
     [F5_SPEC, "phase-varying-prescribed-display-history.assembly-view-record.v0.json"],
     [F6C_SPEC, "small-asymmetric-counter-breathing-history.assembly-view-record.v0.json"],
     [F6B_SPEC, "co-spherical-scoped-negative-circular-control.assembly-view-record.v0.json"],
@@ -631,6 +631,7 @@ test("the four owner-derived cases preserve explicit individual-worldline and fa
     assert.equal(record.provenance.prescribedGeometry.physicsInvoked, false);
   }
   assert.equal(SD3_SPEC.constituents.length, 6);
+  assert.equal(SD3_SPEC.display.catalogVisibility, "withheld");
   assert.equal(F5_SPEC.constituents.length, 12);
   assert.equal(F5_SPEC.identity.status, "operator-approved-prescribed-display");
   assert.equal(F6C_SPEC.constituents.length, 8);

@@ -62,6 +62,10 @@ const CONTROL_BASES = new Set([
 const CURRENT_TARGETS = fs.readdirSync(CONFIGURATION_DIRECTORY)
   .filter((name) => name.endsWith(".v3.json"))
   .toSorted()
+  .filter((specFile) => {
+    const rawSpec = JSON.parse(fs.readFileSync(path.resolve(CONFIGURATION_DIRECTORY, specFile), "utf8"));
+    return rawSpec.display?.catalogVisibility !== "withheld";
+  })
   .map((specFile) => {
     const base = specFile.slice(0, -".v3.json".length);
     return target(specFile, `${base}.assembly-view-record.v0.json`, {
@@ -174,6 +178,18 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
     label: `${spec.identity.displayLabel}, ${row.constituent.id}`,
     points: createAnsatzPoints(row, start, trailDuration, spec.display.ansatzSampleCount),
   }));
+  const positionByConstituent = new Map(materialized.worldlines.map((row) => [
+    row.constituent.id,
+    objectVector(evaluateMaterializedWorldline(row, start).position),
+  ]));
+  const structuralEdges = (spec.geometry?.structuralEdges ?? []).map((edge) => ({
+    id: edge.id,
+    kind: edge.kind,
+    members: [...edge.members],
+    polarity: edge.polarity,
+    start: positionByConstituent.get(edge.members[0]),
+    end: positionByConstituent.get(edge.members[1]),
+  }));
   return {
     schema: ASSEMBLY_VIEW_RECORD_SCHEMA,
     assemblyId: scientificIdentity.assemblyId,
@@ -195,6 +211,7 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
         interpolation: spec.interpolation.rule,
         errorMethod: spec.interpolation.errorMethod,
         physicsInvoked: false,
+        ...(spec.display.staticGeometryOnly === true ? { staticGeometryOnly: true } : {}),
         responseCenter: objectVector(spec.display.responseCenter ?? [0, 0, 0]),
         sphericalEnvelopeRadius: spec.display.sphericalEnvelopeRadius,
         displayTrailPeriods: spec.history.periodic ? spec.display.trailPeriods : null,
@@ -207,6 +224,7 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
     window: { start, end, delayHorizon, sampleInterval: actualStep },
     worldlines,
     binaries,
+    ...(structuralEdges.length > 0 ? { structuralEdges } : {}),
     ansatz,
     events: [],
   };

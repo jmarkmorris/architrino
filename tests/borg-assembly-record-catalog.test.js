@@ -18,6 +18,8 @@ test("Borg registers every frozen exact configuration once", () => {
   assert.equal(new Set(entries.map((entry) => entry.recordUrl)).size, entries.length);
   assert.equal(entries.filter((entry) => entry.label.startsWith("Equal-radius planar three-binary circular balance —")).length, 100);
   assert.ok(entries.some((entry) => entry.label === "All-axial three-binary boundary control"));
+  assert.ok(entries.some((entry) => entry.assemblyId === "asm-242282e6154b97b00ac9d8e5123cde46"));
+  assert.equal(entries.some((entry) => entry.assemblyId === "asm-f70757c6a491cf997305c297efa86bf8"), false);
 
   for (const entry of entries) {
     assert.deepEqual(Object.keys(entry), ["assemblyId", "modelRevisionSha256", "label", "recordUrl"]);

@@ -150,6 +150,7 @@ export function createEomHistoryDataset(record, options = {}) {
     rawRecord: record,
     events: Object.freeze(Array.isArray(record.events) ? [...record.events] : []),
     binaries: Object.freeze(Array.isArray(record.binaries) ? [...record.binaries] : []),
+    structuralEdges: Object.freeze(Array.isArray(record.structuralEdges) ? [...record.structuralEdges] : []),
     ansatz: Object.freeze(Array.isArray(record.ansatz) ? [...record.ansatz] : []),
     navigation: Object.freeze(
       record.navigation && typeof record.navigation === "object"
@@ -439,7 +440,7 @@ function validateAssemblyViewMetadata(record) {
   if (!record.window || typeof record.window !== "object") {
     throw new TypeError("assembly-view-record.v0 requires window.");
   }
-  for (const field of ["binaries", "ansatz", "events"]) {
+  for (const field of ["binaries", "structuralEdges", "ansatz", "events"]) {
     if (record[field] != null && !Array.isArray(record[field])) {
       throw new TypeError(`assembly-view-record.v0 ${field} must be an array when present.`);
     }
@@ -465,6 +466,22 @@ function validateAssemblyViewMetadata(record) {
         binary.axisDisplayHalfLength,
         `binaries[${index}].axisDisplayHalfLength`,
       );
+    }
+  });
+  (record.structuralEdges ?? []).forEach((edge, index) => {
+    requireConcreteString(edge?.id, `structuralEdges[${index}].id`);
+    requireConcreteString(edge?.kind, `structuralEdges[${index}].kind`);
+    if (!Array.isArray(edge?.members) || edge.members.length !== 2 ||
+        edge.members.some((member) => typeof member !== "string" || member.length === 0)) {
+      throw new TypeError(`structuralEdges[${index}].members must contain two source member ids.`);
+    }
+    if (edge.polarity !== -1 && edge.polarity !== 1) {
+      throw new TypeError(`structuralEdges[${index}].polarity must be -1 or +1.`);
+    }
+    for (const endpoint of ["start", "end"]) {
+      for (const axis of AXES) {
+        requiredFiniteNumber(edge?.[endpoint]?.[axis], `structuralEdges[${index}].${endpoint}.${axis}`);
+      }
     }
   });
   (record.ansatz ?? []).forEach((row, rowIndex) => {

@@ -51,6 +51,12 @@
         background: #191b16;
       }
 
+      .borg-timeline[hidden],
+      .borg-prescribed-branch[hidden],
+      .borg-layer-button[hidden] {
+        display: none !important;
+      }
+
       .borg-side-rail {
         min-width: 0;
         min-height: 0;
@@ -959,6 +965,45 @@
         margin-bottom: 4px;
       }
 
+      .borg-scientific-status {
+        min-width: 0;
+        padding: 10px;
+        border: 1px solid rgba(150, 127, 194, 0.4);
+        border-radius: 7px;
+        background: rgba(28, 24, 39, 0.64);
+        color: #d8dfd2;
+        font-size: 12px;
+      }
+
+      .borg-scientific-status h2,
+      .borg-scientific-status h3 { margin: 0 0 5px; color: #efe8ff; }
+      .borg-scientific-status h2 { font-size: 15px; }
+      .borg-scientific-status h3 { margin-top: 9px; font-size: 12px; }
+      .borg-status-verdict { margin: 0 0 8px; color: #f2f5ee; font-weight: 760; }
+      .borg-status-verdict.is-invalid { color: #ffb8ad; }
+      .borg-status-note,
+      .borg-status-provenance,
+      .borg-status-sections p { color: #aeb8a6; line-height: 1.4; }
+      .borg-status-requirements { width: 100%; border-collapse: collapse; }
+      .borg-status-requirements caption { margin-bottom: 5px; text-align: left; color: #aeb8a6; }
+      .borg-status-requirements th,
+      .borg-status-requirements td { padding: 5px; border-bottom: 1px solid rgba(139, 164, 126, 0.2); text-align: left; vertical-align: top; }
+      .borg-status-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+      .borg-status-sections section { padding: 7px; border: 1px solid rgba(139, 164, 126, 0.2); border-radius: 6px; }
+      .borg-status-sections p { margin: 0; }
+      .borg-status-details { display: grid; grid-template-columns: 118px minmax(0, 1fr); gap: 4px 8px; margin: 9px 0; }
+      .borg-status-field { display: contents; }
+      .borg-status-details dt { color: #c6b6ff; font-weight: 700; }
+      .borg-status-details dd { margin: 0; overflow-wrap: anywhere; color: #b7c0b0; }
+      .borg-status-evidence ul,
+      .borg-status-context ul { margin: 4px 0; padding-left: 18px; }
+      .borg-status-evidence a { color: #d5c8ff; }
+
+      @media (max-width: 680px) {
+        .borg-status-sections,
+        .borg-status-details { grid-template-columns: 1fr; }
+      }
+
       .borg-table-scroll {
         margin-top: 8px;
         overflow-x: auto;
@@ -1551,11 +1596,13 @@
         <section id="borg-assembly-view-controls" class="borg-section borg-replay-controls" aria-label="Assembly-view replay controls" hidden>
           <section class="borg-binary-geometry" aria-labelledby="borg-binary-geometry-heading">
             <h2 id="borg-binary-geometry-heading">Braid Taxonomy</h2>
-            <p>The selected sealed record shows its source-defined constituent inventory and worldlines. Pair-derived candidates also show their declared binary coordinates.</p>
+            <p id="borg-binary-geometry-intro">The selected sealed record shows its source-defined constituent inventory and worldlines. Pair-derived candidates also show their declared binary coordinates.</p>
             <div class="borg-table-scroll">
               <table id="borg-binary-geometry-table" class="borg-binary-table"></table>
             </div>
           </section>
+
+          <section id="borg-scientific-status" aria-label="Scientific status"></section>
 
           <section id="borg-prescribed-branch" class="borg-prescribed-branch" aria-labelledby="borg-prescribed-branch-heading">
             <strong id="borg-prescribed-branch-heading">Display simulation branch</strong>
@@ -1565,7 +1612,7 @@
           </section>
 
           <details class="borg-control-drawer">
-            <summary>Playback tools</summary>
+            <summary id="borg-replay-tools-summary">Playback tools</summary>
             <div class="borg-drawer-content">
               <output id="borg-replay-trail-summary" class="borg-control-help"></output>
               <div class="borg-replay-grid">

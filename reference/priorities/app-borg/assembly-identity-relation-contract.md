@@ -1,10 +1,10 @@
 # Borg Assembly Identity-Relation Contract
 
-Status: CURRENT SEED CONTRACT. The 45-entry Borg demonstrator and active-finding counts implement the relations below. Permanent opaque braid identity, evolved-occurrence identity, causal-state equality, lineage lifecycle, and the indexed million-entry registry remain BORG-014 work.
+Status: CURRENT SEED CONTRACT. The 45-entry Borg demonstrator and scientific-coverage counts implement the relations below. Permanent opaque braid identity, evolved-occurrence identity, causal-state equality, lineage lifecycle, and the indexed million-entry registry remain BORG-014 work.
 
 ## Purpose
 
-Borg must answer several different identity questions without collapsing them into one overloaded idea of “the same assembly.” This contract fixes the current seed-catalog relation used to list 45 unique braid entries over 144 exact configurations and separately count exact configurations that have source-owned active findings.
+Borg must answer several different identity questions without collapsing them into one overloaded idea of “the same assembly.” This contract fixes the current seed-catalog relation used to list 45 unique braid entries over 144 exact configurations and separately count exact configurations that have source-owned active evidence relations.
 
 Plainly: the number of pictures, the number of exact configurations, and the number of configurations with findings are three different counts.
 
@@ -15,7 +15,7 @@ Plainly: the number of pictures, the number of exact configurations, and the num
 | Borg braid entry | Versioned result relation described below | One visual discovery entry. It may contain one exact configuration or a source-declared parameter set of exact configurations. It does not assert that the assembly contains exactly one component braid. |
 | Exact configuration | `assemblyId + modelRevisionSha256` | One exact identity-bearing assembly specification and motion prescription. |
 | Sealed display record | Exact configuration identity plus `recordSha256` | One exact byte representation used for replay. |
-| Active finding relation | `findingId` plus the relation-registry revision | A source-owned evidence statement linked to an exact configuration by an allowed structured matcher. |
+| Scientific evidence relation | `relationId` plus the adjudication-projection revision | A source-owned adjudication or finding-context statement linked by exact identity or an explicitly declared broader structured matcher. |
 | Component braid | Source-declared component membership within an exact configuration | A physical-composition relation used by the `Braids in assembly` facet. It is not the Borg braid-entry identity. |
 
 Plainly: a Borg card can represent an assembly containing two component braids. The card count and the component-braid count answer different questions.
@@ -32,23 +32,23 @@ The demonstrator's current group-result identifier is query identity, not yet th
 
 Plainly: the 45-card relation is usable now, but BORG-014 still owes stable long-lived braid ids before a million-entry migration.
 
-## Active-Finding Configuration Count
+## Scientific-Coverage Configuration Count
 
-Let $C_b$ be the exact configurations in braid entry $b$, and let $R_a$ be the active relations in one exact `borg-library-finding-relations` revision. The displayed count is
+Let $C_b$ be the exact configurations in braid entry $b$, and let $R_a$ be the active relations in one exact `borg-scientific-status-projection.v1` revision. The displayed count is
 
 $$
 N_{\mathrm{active}}(b)=\left|\left\{c\in C_b:\exists r\in R_a\text{ such that }r\text{ matches }c\right\}\right|.
 $$
 
-One exact configuration counts once even if several active findings match it. A finding match is allowed only through a source-declared structured carrier or the exact `assemblyId + modelRevisionSha256` pair. A label, prose search, filename pattern, rendered shape, or app-local physics calculation may not create the relation.
+One exact configuration counts once even if several active relations match it. An exact adjudication match is allowed only through the exact `assemblyId + modelRevisionSha256` pair. A broader finding-context match is allowed only through its explicit source-declared structured carrier and remains labeled broader context rather than an exact verdict. A label, prose search, filename pattern, rendered shape, or app-local physics calculation may not create either relation.
 
 Plainly: this is a count of configurations that have at least one indexed finding, not a count of papers, measurements, plots, or claims.
 
-The initial `borg-library-finding-relations.2026-09-01.v1` index contains five active relations: the regular alternating circular-balance landscape, the exact planar three-binary balance ladder, the orthogonal-plane weave no-balance result, the phase-varying enclosed-root result, and the asymmetric counter-breathing conditional-cover result. They link 114 exact configurations across 15 of the 45 braid entries. The remaining 30 entries report `No active findings indexed yet`; that phrase means only that this registry revision has no active relation for the entry.
+The canonical `braid-candidate-adjudication-projection.2026-09-01.v1` contains 26 Braid Program adjudication rows and five migrated finding-context relations. It links 136 current exact configurations across 37 of the 45 braid entries to at least one active relation. Twenty-three current exact configurations carry exact adjudication bindings; the withdrawn centered-five-coordinate display identity retains its exact scientific binding off-catalog, and no evidence transfers to the replacement stella-octangula record. The remaining current configurations report `No adjudication linked` when no exact row applies, while `No active findings indexed yet` on a card means only that this projection revision has no active relation for the entry.
 
 Plainly: zero indexed findings is not a negative scientific result. A source owner can add an existing or new finding through a reviewed relation-registry revision without changing the configuration identity.
 
-Finding status is lifecycle state, not verdict sign. A later relation schema must allow at least `active`, `superseded`, and `withdrawn`; only `active` contributes to the count. A current negative result may remain active, while a once-positive result may be superseded. The v1 file contains active relations only and fails closed on other statuses until that lifecycle migration is implemented.
+Relation status is lifecycle state, not verdict sign. The projection supports `active`, `superseded`, and `withdrawn`; only `active` contributes to current exact verdicts and counts. A current negative result may remain active, while a once-positive result may be superseded. Exact identity mismatch, stale source revision, missing anchor, unsupported state token, duplicate exact relation, or broken evidence link suppresses the verdict and reports `Projection stale or invalid`.
 
 ## Other Required Identity Relations
 
@@ -71,16 +71,17 @@ Plainly: matching previews or matching taxonomy tags cannot prove that two recor
 | Two equal-radius planar three-binary balance rows with different speeds and radii from the same exact balance ledger | Same Borg braid entry | Exact configuration equality and sealed-record equality do not hold. |
 | A presentation rename with unchanged identity-bearing specification | Exact configuration identity remains addressable | Taxonomy label equality is not required. |
 | Two circular-looking previews with different structured sources | Morphological resemblance may be proposed under a future metric | Same braid entry, model equality, causal-state equality, and lineage continuity do not follow. |
-| One exact configuration linked to two active finding rows | Its active-finding configuration contribution is one | The card does not report two configurations. |
-| One exact configuration with no v1 finding relation | Zero indexed active findings | No scientific finding, failure, or lack of study is not established. |
+| One exact configuration linked to two active evidence rows | Its scientific-coverage configuration contribution is one | The card does not report two configurations. |
+| One exact configuration with no active exact adjudication relation | `No adjudication linked` | No scientific finding, failure, or lack of study is established. |
+| The display-withdrawn centered five-coordinate identity and its stella-octangula replacement | The former retains its exact evidence binding off-catalog | The replacement inherits no `H1`--`H5` state or verdict. |
 | One continuing evolved occurrence whose morphology changes | Lineage continuity may hold when source events say so | Morphology equality need not hold. |
 
 ## Migration And Falsifiers
 
 The full registry migration must assign a permanent opaque braid identity, preserve every exact configuration member, retain relation revision and provenance, and reject ambiguous or label-derived mappings. Changing a display label or taxonomy membership must leave model and occurrence identity unchanged. Changing identity-bearing inventory, persistent source order, component relations, coordinates, motion prescription, applicable speed policy, units, source-law version, or future-consumed causal state must change the applicable revision identity.
 
-This seed contract is falsified if the current default query does not return exactly 45 braid entries over all 144 exact configurations; if the balance group does not contain exactly 100 independent exact identities; if the active-finding count double-counts a configuration with multiple findings; if a missing relation is presented as scientific absence; if a label, filename, pixel comparison, or app-local dynamics calculation creates a finding or identity relation; or if a hash-pinned exact selection is silently retargeted.
+This seed contract is falsified if the current default query does not return exactly 45 braid entries over all 144 exact configurations; if the balance group does not contain exactly 100 independent exact identities; if the scientific-coverage count double-counts a configuration with multiple relations; if a missing relation is presented as scientific absence; if a broader context is presented as an exact verdict; if a label, filename, pixel comparison, or app-local dynamics calculation creates a finding or identity relation; or if a hash-pinned exact selection is silently retargeted.
 
 Plainly: the counts are trustworthy only while every grouping and finding link can be traced back to structured source identity and a named revision.
 
-Closure goal: Preserve 45 distinct visual braid entries, 144 exact configuration identities, and source-owned per-braid active-finding counts while replacing the seed result relation with permanent opaque braid, occurrence, causal-state, lineage, morphology, record, and taxonomy identities suitable for the million-entry registry.
+Closure goal: Preserve 45 distinct visual braid entries, 144 exact configuration identities, and source-owned per-braid scientific-coverage counts while replacing the seed result relation with permanent opaque braid, occurrence, causal-state, lineage, morphology, record, and taxonomy identities suitable for the million-entry registry.

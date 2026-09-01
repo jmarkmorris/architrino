@@ -2,7 +2,9 @@ Closure goal: Implement BORG-018 so every exact assembly inspected in Borg prese
 
 # BORG-018 Candidate-Adjudication Status Inspector
 
-Resume the Borg priority lane from live state and complete [BORG-018](work-queue.md#borg-018--candidate-adjudication-status-inspector). This is an implementation task with authority to edit the Borg priority packets, the Assembly Library and corresponding workbench inspection surfaces, the Borg library service and focused modules, a versioned machine-readable adjudication projection, and focused tests. Preserve unrelated work in the shared checkout. Do not change a scientific disposition in the Braid Program merely to simplify the app.
+Status: COMPLETED 2026-09-01. The durable implementation and verification record is [the BORG-018 work-log entry](work-log.md#2026-09-01---borg-018-identity-bound-scientific-status-inspector). This file preserves the accepted implementation brief; do not resume it as queued work.
+
+The implementation task authorized edits to the Borg priority packets, the Assembly Library and corresponding workbench inspection surfaces, the Borg library service and focused modules, a versioned machine-readable adjudication projection, and focused tests. Preserve unrelated work in the shared checkout. Do not change a scientific disposition in the Braid Program merely to simplify the app.
 
 ## Startup
 

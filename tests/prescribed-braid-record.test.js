@@ -199,8 +199,15 @@ test("the exact-source producer delegates position and velocity to each declared
 });
 
 test("centered five-coordinate worldlines reproduce the exact owner", () => {
-  const fixture = availableFixtures.find(({ spec }) => spec.specId === "centered-five-coordinate-linear-history-v1");
-  assert.ok(fixture);
+  const fixture = {
+    spec: JSON.parse(readFileSync(new URL(
+      "../reference/priorities/braid-program/configurations/centered-five-coordinate-linear-history.v3.json",
+      import.meta.url,
+    ), "utf8")),
+  };
+  assert.equal(fixture.spec.display.catalogVisibility, "withheld");
+  assert.equal(PRESCRIBED_BRAID_TARGETS.some(({ specPath }) => specPath.endsWith("centered-five-coordinate-linear-history.v3.json")), false);
+  assert.equal(PRESCRIBED_BRAID_TARGETS.some(({ specPath }) => specPath.endsWith("stella-octangula-static-assembly.v3.json")), true);
   const input = fixture.spec.geometry.reconstruction.input;
   const expected = buildMatchedFiveCoordinateInitializations(input).candidateB.members;
   const materialized = materializePrescribedBraidSpec(fixture.spec);

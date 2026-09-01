@@ -29,7 +29,7 @@ export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA = "prescribed-assembly-spec.v3";
 export const PRESCRIBED_ASSEMBLY_EVALUATOR_ID = "prescribed-assembly-evaluator.v2";
 export const NORMALIZED_FIELD_SPEED = 1;
 
-const CONSTITUENT_ROLES = new Set(["braid", "accessory"]);
+const CONSTITUENT_ROLES = new Set(["assembly", "braid", "accessory"]);
 const GEOMETRY_TOLERANCE = 1e-12;
 
 export function validatePrescribedAssemblySpec(spec) {
@@ -202,7 +202,7 @@ function validateConstituentsAndWorldlines(spec) {
       throw new TypeError(`${label}.polarity must be -1 or +1.`);
     }
     if (!CONSTITUENT_ROLES.has(row.role)) {
-      throw new TypeError(`${label}.role must be braid or accessory.`);
+      throw new TypeError(`${label}.role must be assembly, braid, or accessory.`);
     }
     const worldlineId = concreteString(row.worldlineId, `${label}.worldlineId`);
     if (constituentWorldlineIds.has(worldlineId)) {

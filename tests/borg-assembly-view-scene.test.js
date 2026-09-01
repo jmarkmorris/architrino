@@ -116,6 +116,29 @@ test("canonical prescribed records render one axis per distinct geometric line",
   }
 });
 
+test("static stella octangula renders only its twelve source-carried tetrahedral edges", () => {
+  const record = JSON.parse(readFileSync(new URL(
+    "../content/assets/borg/records/stella-octangula-static-assembly.assembly-view-record.v0.json",
+    import.meta.url,
+  )));
+  const root = new THREE.Group();
+  const scene = createBorgAssemblyViewScene({
+    group: root,
+    toWorld(source, target) {
+      return target.set(Number(source.x), Number(source.y), Number(source.z));
+    },
+    render() {},
+  });
+  scene.setRecord({ sourceId: record.sourceId, dataset: createEomHistoryDataset(record) });
+  const edgeGroup = root.children.find((child) => child.userData.kind === "source-carried-structural-edges");
+  const pathGroup = root.children.find((child) => child.userData.kind === "prescribed-path-history-strands");
+  assert.equal(edgeGroup.children.length, 12);
+  assert.equal(pathGroup.children.length, 0);
+  assert.ok(edgeGroup.children.every((edge) => edge.userData.valueAuthority === "source-carried-static-assembly-geometry"));
+  assert.deepEqual(new Set(edgeGroup.children.map((edge) => edge.userData.polarity)), new Set([-1, 1]));
+  scene.dispose();
+});
+
 test("prescribed strands and selected tubes share the finite no-future display window", () => {
   const root = new THREE.Group();
   const scene = createBorgAssemblyViewScene({

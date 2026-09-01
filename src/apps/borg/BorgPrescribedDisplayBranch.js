@@ -29,6 +29,11 @@ export function createBorgPrescribedDisplayBranch({
   if (!dataset || dataset.provenance?.prescribedGeometry == null) {
     throw new TypeError("A prescribed Display branch requires a parsed prescribed-geometry record.");
   }
+  if (dataset.provenance.prescribedGeometry.staticGeometryOnly === true) {
+    throw new TypeError(
+      "A prescribed Display branch is unavailable for exact static geometry because no qualifying path history is assigned.",
+    );
+  }
   if (dataset.provenance.claimGrade !== "chart-hypothesis" ||
       dataset.provenance.evidenceStatus !== "display-only") {
     throw new TypeError("A prescribed Display branch requires a display-only chart hypothesis.");

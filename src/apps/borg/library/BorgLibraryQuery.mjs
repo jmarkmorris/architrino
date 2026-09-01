@@ -1,4 +1,5 @@
 import { isLibraryVariantSetId } from "./BorgLibraryVariants.mjs";
+import { aggregateBorgScientificStatus } from "../BorgScientificStatus.mjs";
 
 export const LIBRARY_FACETS = Object.freeze({
   count: { label: "Architrinos", options: [] },
@@ -116,7 +117,7 @@ export function queryLibraryRows(rows, params) {
         row.variantSet.order < best.variantSet.order ? row : best, result.members[0]);
       return { kind: result.kind, id: result.id, variantSetId: result.variantSetId, label: result.label,
         parameterLabels: result.parameterLabels, memberCount: result.members.length,
-        activeFindingConfigurationCount: countFindingConfigurations(result.members), representative };
+        activeFindingConfigurationCount: countFindingConfigurations(result.members), scientificCoverage: aggregateBorgScientificStatus(result.members), representative };
     });
     return { total: matches.length, activeFindingConfigurationCount: countFindingConfigurations(matches), results, counts };
   }
@@ -128,6 +129,6 @@ export function queryLibraryRows(rows, params) {
     groups.get(value).push(row);
   }
   const results = [...groups].map(([value, members]) => ({ kind: "group", id: `group:${groupBy}:${value}`,
-    groupBy, value, memberCount: members.length, activeFindingConfigurationCount: countFindingConfigurations(members), representative: members[0] }));
+    groupBy, value, memberCount: members.length, activeFindingConfigurationCount: countFindingConfigurations(members), scientificCoverage: aggregateBorgScientificStatus(members), representative: members[0] }));
   return { total: matches.length, activeFindingConfigurationCount: countFindingConfigurations(matches), results, counts };
 }

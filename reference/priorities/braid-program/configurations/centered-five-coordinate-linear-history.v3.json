@@ -463,6 +463,7 @@
     }
   },
   "display": {
+    "catalogVisibility": "withheld",
     "responseCenter": [
       0,
       0,

@@ -30,11 +30,14 @@ export function createBorgAssemblyViewScene({
   sweptEnvelopeGroup.userData.kind = "display-only-swept-envelope";
   const prescribedPathGroup = new THREE.Group();
   prescribedPathGroup.userData.kind = "prescribed-path-history-strands";
+  const structuralEdgeGroup = new THREE.Group();
+  structuralEdgeGroup.userData.kind = "source-carried-structural-edges";
   const prescribedTubeGroup = new THREE.Group();
   prescribedTubeGroup.userData.kind = "display-only-path-history-tubes";
   group.add(
     axisGroup,
     sweptEnvelopeGroup,
+    structuralEdgeGroup,
     prescribedPathGroup,
     prescribedTubeGroup,
   );
@@ -56,6 +59,7 @@ export function createBorgAssemblyViewScene({
     entry = nextEntry;
     clearBorgSceneGroup(axisGroup);
     clearBorgSceneGroup(sweptEnvelopeGroup);
+    clearBorgSceneGroup(structuralEdgeGroup);
     clearBorgSceneGroup(prescribedPathGroup);
     clearBorgSceneGroup(prescribedTubeGroup);
     translation = resolveBorgPrescribedTranslation(nextEntry);
@@ -65,6 +69,7 @@ export function createBorgAssemblyViewScene({
     selectedWorldlineId = null;
     tubeVisible = false;
     buildBinaryAxes(nextEntry?.dataset?.binaries ?? []);
+    buildStructuralEdges(nextEntry?.dataset?.structuralEdges ?? []);
     buildPrescribedPathStrands();
     referenceRotation = resolveSourceRotation(nextEntry);
     sweptEnvelopeGroup.visible = displayMode === "swept-envelope";
@@ -173,6 +178,9 @@ export function createBorgAssemblyViewScene({
 
   function buildPrescribedPathStrands() {
     if (entry?.dataset?.provenance?.engineId !== "prescribed-geometry") {
+      return;
+    }
+    if (entry.dataset.provenance.prescribedGeometry?.staticGeometryOnly === true) {
       return;
     }
     const dataset = entry.dataset;
@@ -385,6 +393,31 @@ export function createBorgAssemblyViewScene({
     });
   }
 
+  function buildStructuralEdges(edges) {
+    edges.forEach((edge, sourceIndex) => {
+      if (!finiteVector(edge?.start) || !finiteVector(edge?.end)) return;
+      const start = toWorld(edge.start, new THREE.Vector3());
+      const end = toWorld(edge.end, new THREE.Vector3());
+      const geometry = new THREE.BufferGeometry().setFromPoints([start, end]);
+      const material = new THREE.LineBasicMaterial({
+        color: borgPolarityColor(edge.polarity),
+        transparent: true,
+        opacity: 0.82,
+        depthWrite: false,
+      });
+      const line = new THREE.Line(geometry, material);
+      line.userData = {
+        kind: "source-carried-structural-edge",
+        sourceIndex,
+        sourceEdgeId: edge.id,
+        members: Object.freeze([...edge.members]),
+        polarity: edge.polarity,
+        valueAuthority: "source-carried-static-assembly-geometry",
+      };
+      structuralEdgeGroup.add(line);
+    });
+  }
+
   function buildSweptEnvelope() {
     if (!entry) {
       return;
@@ -421,11 +454,13 @@ export function createBorgAssemblyViewScene({
   function dispose() {
     clearBorgSceneGroup(axisGroup);
     clearBorgSceneGroup(sweptEnvelopeGroup);
+    clearBorgSceneGroup(structuralEdgeGroup);
     clearBorgSceneGroup(prescribedPathGroup);
     clearBorgSceneGroup(prescribedTubeGroup);
     group.remove(
       axisGroup,
       sweptEnvelopeGroup,
+      structuralEdgeGroup,
       prescribedPathGroup,
       prescribedTubeGroup,
     );

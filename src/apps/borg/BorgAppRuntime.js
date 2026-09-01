@@ -312,6 +312,9 @@ export function mountBorgApp(options = {}) {
     prescribedBranchStart: queryRequiredElement(documentLike, "#borg-start-prescribed-display"),
     prescribedBranchFeedback: queryRequiredElement(documentLike, "#borg-prescribed-branch-feedback"),
     replayControls: queryRequiredElement(documentLike, "#borg-assembly-view-controls"),
+    replayToolsSummary: queryRequiredElement(documentLike, "#borg-replay-tools-summary"),
+    replayTaxonomyHeading: queryRequiredElement(documentLike, "#borg-binary-geometry-heading"),
+    replayTaxonomyIntro: queryRequiredElement(documentLike, "#borg-binary-geometry-intro"),
     replayProvenance: queryRequiredElement(documentLike, "#borg-replay-provenance"),
     replayCollectionTools: queryRequiredElement(documentLike, "#borg-replay-collection-tools"),
     replayRecordControl: queryRequiredElement(documentLike, "#borg-replay-record-control"),
@@ -326,7 +329,9 @@ export function mountBorgApp(options = {}) {
     replayOverlayFields: queryRequiredElement(documentLike, "#borg-replay-overlay-fields"),
     replayBinaryGeometryTable: queryRequiredElement(documentLike, "#borg-binary-geometry-table"),
     replayTrailSummary: queryRequiredElement(documentLike, "#borg-replay-trail-summary"),
+    replayScientificStatus: queryRequiredElement(documentLike, "#borg-scientific-status"),
     prescribedTranslationFrame: queryRequiredElement(documentLike, "#borg-prescribed-translation-frame"),
+    prescribedTranslationDrawer: queryRequiredElement(documentLike, "#borg-prescribed-translation-drawer"),
     prescribedTranslationStatus: queryRequiredElement(documentLike, "#borg-prescribed-translation-status"),
     prescribedHistoryDepth: queryRequiredElement(documentLike, "#borg-prescribed-history-depth"),
     prescribedHistoryDepthOutput: queryRequiredElement(documentLike, "#borg-prescribed-history-depth-output"),
@@ -1338,6 +1343,16 @@ export function mountBorgApp(options = {}) {
     dom.envelopeSection.hidden = replayActive;
     dom.sourceProvenance.hidden = replayActive;
     dom.timeline.classList.toggle("is-replay", replayActive);
+    dom.timeline.hidden = false;
+    dom.prescribedTranslationDrawer.hidden = false;
+    dom.playButton.disabled = false;
+    dom.startButton.disabled = false;
+    dom.historyDuration.disabled = false;
+    const existingPathLayerButton = dom.layerStrip.querySelector?.('[data-layer="path-history"]');
+    if (existingPathLayerButton) {
+      existingPathLayerButton.hidden = false;
+      existingPathLayerButton.disabled = false;
+    }
     dom.newDistributionButton.hidden = replayActive || activePrescribedDisplayBranch != null;
     dom.newDistributionButton.disabled = replayActive || activePrescribedDisplayBranch != null;
     dom.newDistributionButton.title = replayActive
@@ -1388,6 +1403,7 @@ export function mountBorgApp(options = {}) {
         overlayFields: dom.replayOverlayFields,
         binaryGeometryTable: dom.replayBinaryGeometryTable,
         trailSummary: dom.replayTrailSummary,
+        scientificStatus: dom.replayScientificStatus,
         translationFrame: dom.prescribedTranslationFrame,
         translationStatus: dom.prescribedTranslationStatus,
         historyDepth: dom.prescribedHistoryDepth,
@@ -1424,14 +1440,40 @@ export function mountBorgApp(options = {}) {
       onAnalysisRootSelect: selectPrescribedAnalysisRoot,
       onContributionVisibleChange: (visible) =>
         prescribedAnalysisScene.setContributionVisible(visible),
+      scientificStatus: options.eomRecordReplay?.scientificStatus,
     });
+    const staticAssembly = isStaticAssemblyReplay();
+    dom.timeline.hidden = staticAssembly;
+    dom.prescribedBranch.hidden = staticAssembly;
+    dom.prescribedTranslationDrawer.hidden = staticAssembly;
+    dom.playButton.disabled = staticAssembly;
+    dom.startButton.disabled = staticAssembly;
+    dom.historyDuration.disabled = staticAssembly;
+    const pathLayerButton = dom.layerStrip.querySelector?.('[data-layer="path-history"]');
+    if (pathLayerButton) {
+      pathLayerButton.hidden = staticAssembly;
+      pathLayerButton.disabled = staticAssembly;
+    }
+    dom.replayTaxonomyHeading.textContent = staticAssembly ? "Assembly Geometry" : "Braid Taxonomy";
+    dom.replayToolsSummary.textContent = staticAssembly ? "Export tools" : "Playback tools";
+    dom.replayTaxonomyIntro.textContent = staticAssembly
+      ? "The selected sealed record shows an exact static constituent inventory and its source-defined structural edges. No braid membership or path history is assigned."
+      : "The selected sealed record shows its source-defined constituent inventory and worldlines. Pair-derived candidates also show their declared binary coordinates.";
     dom.modeBoundary.dataset.mode = "assembly-view-replay";
-    dom.modeLabel.textContent = "Prescribed geometry · display-only";
-    dom.modeDetail.textContent =
-      "The sealed source path is open. Play replays it; the EOM solver is not running.";
+    dom.modeLabel.textContent = staticAssembly
+      ? "Static assembly geometry · display-only"
+      : "Prescribed geometry · display-only";
+    dom.modeDetail.textContent = staticAssembly
+      ? "Exact static geometry. No path history or braid classification is assigned; the EOM solver is not running."
+      : "The sealed source path is open. Play replays it; the EOM solver is not running.";
     updatePrescribedBranchAction();
     setReplayDisplayMode(state.replayDisplayMode);
     describePrescribedAnalysisProvider();
+  }
+
+  function isStaticAssemblyReplay() {
+    return replayActive &&
+      activeReplayEntry?.dataset?.provenance?.prescribedGeometry?.staticGeometryOnly === true;
   }
 
   async function switchStartingGeometry(geometryId) {
@@ -1574,6 +1616,13 @@ export function mountBorgApp(options = {}) {
 
   function updatePrescribedBranchAction() {
     if (!replayActive || !activeReplayEntry) {
+      return;
+    }
+    if (isStaticAssemblyReplay()) {
+      dom.prescribedBranchStart.disabled = true;
+      dom.prescribedBranchFeedback.value =
+        "Unavailable for exact static geometry because no qualifying path history is assigned.";
+      dom.prescribedBranchFeedback.textContent = dom.prescribedBranchFeedback.value;
       return;
     }
     const cut = activeFrameTime();

@@ -214,6 +214,24 @@ Plainly: turning a preview can change which part is in front, but it can never p
 
 Acceptance fixtures include at least one pair of visually similar configurations with different histories, one pair of differently named configurations with the same coarse shape, capped and uncapped configurations with the same sub-$c_f$ displayed speed, and a record with no declared speed policy. A user must be able to reach each exact leaf through filters and selected-result details without knowing any development code, while the machine contract distinguishes the targets without pixel comparison. Identical-looking records must not require visual discrimination alone.
 
+### Scientific-Status Inspector
+
+Every inspected exact Library record and exact prescribed-record replay in the Borg workbench consumes the same `borg-scientific-status-projection.v1` contract. The Braid Program's [candidate requirement adjudication](../braid-program/braid-candidate-requirement-adjudication.md) remains the scientific authority; the versioned [machine-readable projection](../braid-program/braid-candidate-adjudication-projection.v1.json) carries exact identity targets, explicit slice or broader scope, `H1`--`H5` tokens and claim grades, tested realization and domain, assumptions, horizon, instrument, evidence links, boundaries, blocker, falsifier, lifecycle, owner path, owner digest, and source anchor. The browser validates and renders this projection but never parses the Markdown owner, solves a causal root, runs the EOM solver, evaluates stability, or adjudicates a candidate.
+
+Plainly: the panel explains the current Braid Program record for the exact assembly being inspected. It does not calculate a new scientific answer.
+
+Exact adjudication binds only by `assemblyId + modelRevisionSha256`. A presentation rename preserves that binding, but a changed model revision does not. A slice-only or broader finding may appear as labeled context and never supplies an exact verdict. Active, superseded, and withdrawn relation lifecycles remain distinct. Missing exact coverage reports `No adjudication linked`; mismatched identity, stale owner digest, missing source row or anchor, unsupported state token, duplicate active exact relation, or broken evidence link reports `Projection stale or invalid` and suppresses the scientific verdict.
+
+The verdict follows the strongest exact source state without reducing `H1`--`H5` to a score. `H5 P[...]` alone permits `Retained branch established`; `H5 U` reports `No retained branch established yet`; exact `H4 F[...]` reports `This exact realization failed bounded release`; and actual `H5 F[...]` reports `Retained-branch claim falsified within the tested scope`. A bounded no-success result names the searched domain. Unknown is not failure, prescribed replay is not ordinary evolution, bounded release is not retention, and neither playback nor visual persistence is a stability test.
+
+Plainly: passing an early requirement does not silently pass a later one. In particular, `H4` success cannot become an `H5` retained branch.
+
+The shared renderer exposes an accessible `H1`--`H5` table, overall verdict, tested realization, parameter domain, assumptions, horizon, instrument, `Establishes`, `Does not establish`, `Current blocker`, `Falsifier`, controlling links, projection revision, source, freshness, lifecycle, and stable `data-scientific-status`, `data-scientific-verdict`, `data-requirement`, and `data-status-hook` attributes. Group and variant cards aggregate exact members into pass, scoped-fail, unknown, unindexed, and stale counts. An example preview never lends its verdict to other members.
+
+The owner-wide projection census is currently three `H4 P[M]` rows and zero `H5` passes. Of the current Borg catalog, 23 exact configurations have exact adjudication bindings; one further exact adjudication remains bound to the display-withheld centered-five-coordinate identity and transfers nothing to its stella-octangula replacement. These counts are checked against the owner and current catalog by `node scripts/check-borg-scientific-status-projection.mjs`; they are not browser constants.
+
+Plainly: Borg retains the retired row's evidence under its retired identity while treating the new replacement record as scientifically unindexed.
+
 #### Catalog Composition Classifications
 
 The operator's 2026-08-30 clarification replaces the former nesting facet with assembly-centered radius equality. For the one source-declared whole-assembly center $\mathbf C(T)$, define $r_i(T)=\lVert\mathbf x_i(T)-\mathbf C(T)\rVert$. Iso-radii means all $r_i(T)$ agree at each equal-time slice throughout the recorded window; Hetero-radii means at least one slice has unequal radii. The center is not a preview bound, fitted centroid, individual circle center, or component-braid center. Equal radii may breathe together; breathing and shape remain separate dimensions.

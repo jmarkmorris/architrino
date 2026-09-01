@@ -20,6 +20,7 @@ import {
 } from "./BorgInteractiveDefaults.js";
 import { createBorgAssemblyViewSession } from "./BorgAssemblyViewSession.js";
 import { BORG_ASSEMBLY_RECORD_CATALOG } from "./BorgAssemblyRecordCatalog.js";
+import { loadBorgScientificStatus } from "./BorgScientificStatus.mjs";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -58,11 +59,17 @@ export async function bootBorgApp({
       row.assemblyId === assemblyId && row.modelRevisionSha256 === modelRevisionSha256);
     if (!entry) throw new RangeError("The requested exact assembly is not in the current Borg catalog.");
     const records = [await fetchBorgRecord(fetchLike, entry, "assembly-view record", recordSha256)];
+    const scientificStatus = await loadBorgScientificStatus({
+      fetchLike,
+      coordinates: records[0].provenance?.prescribedGeometry?.coordinates,
+      identity: entry,
+    });
     assemblyViewSession = createBorgAssemblyViewSession(records);
     eomRecordReplay = {
       record: records[0],
       records,
       sourceUrls: Object.freeze([entry.recordUrl]),
+      scientificStatus,
     };
   }
 

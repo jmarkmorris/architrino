@@ -82,10 +82,10 @@ export const BORG_ASSEMBLY_RECORD_CATALOG = createBorgAssemblyRecordCatalog([
     "recordUrl": "content/assets/borg/records/axial-transverse-three-binary-interior.assembly-view-record.v0.json"
   },
   {
-    "assemblyId": "asm-f70757c6a491cf997305c297efa86bf8",
-    "modelRevisionSha256": "f70757c6a491cf997305c297efa86bf8ba3d2ae66eed6a8cbea9b66e85c34d62",
-    "label": "Centered five-coordinate linear history",
-    "recordUrl": "content/assets/borg/records/centered-five-coordinate-linear-history.assembly-view-record.v0.json"
+    "assemblyId": "asm-242282e6154b97b00ac9d8e5123cde46",
+    "modelRevisionSha256": "242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8",
+    "label": "Interlocked tetrahedra (stella octangula) — static assembly",
+    "recordUrl": "content/assets/borg/records/stella-octangula-static-assembly.assembly-view-record.v0.json"
   },
   {
     "assemblyId": "asm-0b8ebf36be00b06978c8a58dee6604fb",

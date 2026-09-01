@@ -9,6 +9,7 @@ import {
   resolveBorgPrescribedTranslation,
 } from "./BorgPrescribedTranslation.js";
 import { renderInlineMathText } from "../../runtime/InlineMathRuntime.js";
+import { renderBorgScientificStatus } from "./BorgScientificStatusView.mjs";
 
 const FILTER_LABELS = Object.freeze({
   claimGrade: "Claim grade",
@@ -36,6 +37,7 @@ export function createBorgAssemblyViewControls({
   onVirtualProbe,
   onAnalysisRootSelect,
   onContributionVisibleChange,
+  scientificStatus,
 }) {
   const listeners = [];
   let declaredVirtualProbes = [];
@@ -74,6 +76,9 @@ export function createBorgAssemblyViewControls({
     renderFilterOptions();
     renderComparisonOptions();
     renderPrescribedGeometryTable(documentLike, dom.binaryGeometryTable, presentation);
+    renderBorgScientificStatus(documentLike, dom.scientificStatus, scientificStatus ?? {
+      coverage: "invalid", verdict: "Projection stale or invalid", causes: ["projection unavailable"], projection: null, current: null, context: [], requirements: [],
+    });
     renderOverlayRows(presentation);
 
     dom.cameraMode.value = "free";

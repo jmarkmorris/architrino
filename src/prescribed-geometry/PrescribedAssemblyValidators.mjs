@@ -11,6 +11,7 @@ export const PRESCRIBED_ASSEMBLY_VALIDATOR_IDS = Object.freeze([
   "phase-varying-history-consistency.v2",
   "scoped-negative-circular-consistency.v2",
   "polarity-resolved-harmonic-consistency.v2",
+  "stella-octangula-static-consistency.v1",
 ]);
 
 const VALIDATORS = new Map([
@@ -19,6 +20,7 @@ const VALIDATORS = new Map([
   ["phase-varying-history-consistency.v2", validatePhaseVaryingHistory],
   ["scoped-negative-circular-consistency.v2", validateScopedNegativeCircular],
   ["polarity-resolved-harmonic-consistency.v2", validatePolarityResolvedHarmonic],
+  ["stella-octangula-static-consistency.v1", validateStellaOctangulaStatic],
 ]);
 
 export function runPrescribedAssemblyValidators(spec) {
@@ -88,6 +90,60 @@ function validatePolarityResolvedHarmonic(spec) {
       if (Math.abs(product + 1 / 3) > 1e-12) throw new RangeError("polarity-resolved harmonic axes must have tetrahedral pair products -1/3.");
     }
   }
+}
+
+function validateStellaOctangulaStatic(spec) {
+  requireInventory(spec, 8, "stationary.v1", "static stella octangula");
+  requirePolarityCounts(spec, 4, 4);
+  if (spec.constituents.some((row) => row.role !== "assembly")) {
+    throw new TypeError("static stella octangula members must remain unclassified assembly-role constituents.");
+  }
+  if ((spec.relationships.componentBraids ?? []).length !== 0) {
+    throw new TypeError("static stella octangula must not declare a component braid without a qualifying history.");
+  }
+  const positionByMember = new Map(spec.worldlines.map((row) => [
+    row.constituentId,
+    evaluatePrescribedWorldlineOperator(row.operator, 0).position,
+  ]));
+  const sectors = spec.relationships.polaritySectors ?? [];
+  if (sectors.length !== 2 || sectors.some((row) => row.members.length !== 4)) {
+    throw new TypeError("static stella octangula requires two four-member polarity sectors.");
+  }
+  const expectedEdgeKeys = new Set();
+  let sharedEdgeLength = null;
+  sectors.forEach((sector) => {
+    for (let left = 0; left < sector.members.length; left += 1) {
+      for (let right = left + 1; right < sector.members.length; right += 1) {
+        const first = positionByMember.get(sector.members[left]);
+        const second = positionByMember.get(sector.members[right]);
+        const length = Math.hypot(...first.map((value, index) => value - second[index]));
+        sharedEdgeLength ??= length;
+        if (Math.abs(length - sharedEdgeLength) > 1e-12) {
+          throw new RangeError("each polarity sector of the static stella octangula must be a regular tetrahedron.");
+        }
+        expectedEdgeKeys.add([sector.members[left], sector.members[right]].toSorted().join("|"));
+      }
+    }
+  });
+  const edges = spec.geometry?.structuralEdges;
+  if (!Array.isArray(edges) || edges.length !== 12) {
+    throw new TypeError("static stella octangula requires all twelve tetrahedral structural edges.");
+  }
+  const actualEdgeKeys = new Set(edges.map((edge) => {
+    if (edge.kind !== "tetrahedral-edge" || !Array.isArray(edge.members) || edge.members.length !== 2) {
+      throw new TypeError("static stella-octangula structural edges must be two-member tetrahedral-edge declarations.");
+    }
+    const polarities = edge.members.map((id) => spec.constituents.find((row) => row.id === id)?.polarity);
+    if (polarities[0] == null || polarities[0] !== polarities[1] || edge.polarity !== polarities[0]) {
+      throw new RangeError("static stella-octangula structural edges must stay within one declared polarity sector.");
+    }
+    return edge.members.toSorted().join("|");
+  }));
+  if (actualEdgeKeys.size !== 12 || [...actualEdgeKeys].some((key) => !expectedEdgeKeys.has(key))) {
+    throw new TypeError("static stella-octangula structural edges must be exactly the two tetrahedral K4 edge sets.");
+  }
+  requireCentroid(spec, 0, 1e-12);
+  requireCentroidVelocity(spec, 0, 1e-12);
 }
 
 function requireInventory(spec, count, operatorKind, label) {
