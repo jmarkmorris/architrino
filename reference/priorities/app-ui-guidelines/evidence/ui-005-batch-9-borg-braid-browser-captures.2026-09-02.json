@@ -3,7 +3,7 @@
   "task": "UI-005",
   "batch": "9-borg-braid-final",
   "date": "2026-09-02",
-  "subject": "canonical global navigation on Ideal Braid, Braid Search, Borg, and Borg Library",
+  "subject": "canonical global navigation on Lorentz Geometry, Braid Search, Borg, and Borg Library",
   "source_identity": {
     "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
     "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
@@ -153,7 +153,7 @@
   },
   "visual_inspection": {
     "desktop": "All four pages show one canonical toolbar in the declared order without document-level horizontal overflow. Borg retains Diagnostics after Search; Borg Library retains its separate Workbench action and collection search.",
-    "mobile": "Ideal Braid and Borg reserve a clear row above app content, Braid Search keeps the bar inside its responsive header, and Borg Library right-aligns the wrapped bar so the Search popover remains viewport-bounded. All four global Search popovers remain inside 390x844."
+    "mobile": "Lorentz Geometry and Borg reserve a clear row above app content, Braid Search keeps the bar inside its responsive header, and Borg Library right-aligns the wrapped bar so the Search popover remains viewport-bounded. All four global Search popovers remain inside 390x844."
   },
-  "claim_boundary": "This receipt verifies UI-005 batch 9 navigation ownership, routing, focus, responsive clearance, and Borg Diagnostics integration on Ideal Braid, Braid Search, Borg, and Borg Library. It does not validate their scientific models, simulation results, campaign data, assembly classifications, or local domain-control correctness."
+  "claim_boundary": "This receipt verifies UI-005 batch 9 navigation ownership, routing, focus, responsive clearance, and Borg Diagnostics integration on Lorentz Geometry, Braid Search, Borg, and Borg Library. It does not validate their scientific models, simulation results, campaign data, assembly classifications, or local domain-control correctness."
 }

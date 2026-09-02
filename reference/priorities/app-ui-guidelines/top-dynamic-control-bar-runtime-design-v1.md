@@ -2,13 +2,13 @@
 
 ## Status
 
-This accepted design selects one canonical implementation path for the top dynamic control bar. Every declared full-bar surface now uses that path: the main webapp, Animator, Lattice Lab, Wake Topography, Photon, Causal Delay Feedback, Greek Letter Match, Equation Mapping, PDG Edit, Molecule, Ideal Braid, Braid Search, Borg, and Borg Library.
+This accepted design selects one canonical implementation path for the top dynamic control bar. Every declared full-bar surface now uses that path: the main webapp, Animator, Lattice Lab, Wake Topography, Photon, Causal Delay Feedback, Greek Letter Match, Equation Mapping, PDG Edit, Molecule, Lorentz Geometry, Braid Search, Borg, and Borg Library.
 
 Plainly: all fourteen full-bar surfaces now use one architecture, with one runtime and one stylesheet rather than copied navigation shells.
 
 ## Current Duplication
 
-The migration removed the repeated static `scene-hud-tools` markup from Ideal Braid and Borg, the runtime-built copy from Braid Search, and Borg Library's text-only Applications link. Every standalone full-bar surface now uses `StandaloneAppNavigationRuntime.js`. Equation Mapping retains a separate local icon-button family only for equation Search, Edit, and Settings; Borg retains Diagnostics as a declared app-mode extension.
+The migration removed the repeated static `scene-hud-tools` markup from Lorentz Geometry and Borg, the runtime-built copy from Braid Search, and Borg Library's text-only Applications link. Every standalone full-bar surface now uses `StandaloneAppNavigationRuntime.js`. Equation Mapping retains a separate local icon-button family only for equation Search, Edit, and Settings; Borg retains Diagnostics as a declared app-mode extension.
 
 Plainly: shared navigation changes now have one implementation path, while each app still owns the controls that operate its subject matter.
 

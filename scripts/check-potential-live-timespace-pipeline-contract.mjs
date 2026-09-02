@@ -57,7 +57,7 @@ function validateContractDefinition(contract) {
     "the accepted Core stream capability is not named",
   );
   requireCondition(
-    contract.ownershipBoundary.definesPotentialConsumerStateMachine === true &&
+    contract.ownershipBoundary.definesCorePotentialStateMachine === true &&
       contract.ownershipBoundary.definesSharedStreamEnvelope === false &&
       contract.ownershipBoundary.definesTransport === false &&
       contract.ownershipBoundary.fixtureEnvelopeIsProductionInterchange === false,
@@ -107,7 +107,7 @@ function createState(fixture) {
     lastChunkSha256: null,
     nextMapSequence: 0,
     sourceAcceptedThroughT: source.startT,
-    appConsumedThroughT: source.startT,
+    coreConsumedThroughT: source.startT,
     mapCompletedThroughT: source.startT,
     seen: new Map(),
     buffered: new Map(),
@@ -192,7 +192,7 @@ function ingestChunk(fixture, state, event) {
   state.lastSequence = event.sequence;
   state.lastChunkSha256 = event.contentSha256;
   state.sourceAcceptedThroughT = event.acceptedEndT;
-  state.appConsumedThroughT = event.acceptedEndT;
+  state.coreConsumedThroughT = event.acceptedEndT;
   updateBackpressure(state, fixture.consumerProfile);
 }
 
@@ -235,7 +235,7 @@ function validateSnapshot(fixture, state, event) {
   const actual = {
     completeness: "provisional",
     sourceAcceptedThroughT: state.sourceAcceptedThroughT,
-    appConsumedThroughT: state.appConsumedThroughT,
+    coreConsumedThroughT: state.coreConsumedThroughT,
     mapCompletedThroughT: state.mapCompletedThroughT,
     lagT: state.sourceAcceptedThroughT - state.mapCompletedThroughT,
     queueDepth: state.buffered.size,
@@ -282,7 +282,7 @@ function publishSealed(fixture, state, event) {
     coverage: {
       startT: fixture.consumerProfile.targetStartT,
       sourceAcceptedThroughT: state.sourceAcceptedThroughT,
-      appConsumedThroughT: state.appConsumedThroughT,
+      coreConsumedThroughT: state.coreConsumedThroughT,
       mapCompletedThroughT: state.mapCompletedThroughT,
       missingTileIds: [],
       complete: true,
@@ -350,7 +350,7 @@ export function simulatePotentialLivePipeline(fixture) {
     backpressureEntries: state.backpressureEntries,
     backpressureReleases: state.backpressureReleases,
     sourceAcceptedThroughT: state.sourceAcceptedThroughT,
-    appConsumedThroughT: state.appConsumedThroughT,
+    coreConsumedThroughT: state.coreConsumedThroughT,
     mapCompletedThroughT: state.mapCompletedThroughT,
     snapshots: state.snapshots,
     sealedProduct: state.sealedProduct,
@@ -387,7 +387,7 @@ export function checkPotentialLiveTimespacePipelineContract({ rootDir = ROOT } =
       backpressureEntries: result.backpressureEntries,
       backpressureReleases: result.backpressureReleases,
       sourceAcceptedThroughT: result.sourceAcceptedThroughT,
-      appConsumedThroughT: result.appConsumedThroughT,
+      coreConsumedThroughT: result.coreConsumedThroughT,
       mapCompletedThroughT: result.mapCompletedThroughT,
       sealedProductSha256: result.sealedProductSha256,
     }, positive.expected),

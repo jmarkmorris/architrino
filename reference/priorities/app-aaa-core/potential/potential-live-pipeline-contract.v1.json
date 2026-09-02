@@ -30,7 +30,7 @@
     }
   },
   "ownershipBoundary": {
-    "definesPotentialConsumerStateMachine": true,
+    "definesCorePotentialStateMachine": true,
     "definesSharedStreamEnvelope": false,
     "definesTransport": false,
     "acceptsCandidateEomSteps": false,
@@ -78,7 +78,7 @@
   },
   "watermarkRules": {
     "sourceAcceptedThroughT": "highest contiguous accepted EOM chunk end",
-    "appConsumedThroughT": "highest contiguous chunk validated and admitted by Potential",
+    "coreConsumedThroughT": "highest contiguous chunk validated and admitted by AAA Core Potential",
     "mapCompletedThroughT": "highest contiguous admitted chunk with all declared map updates complete",
     "lagT": "sourceAcceptedThroughT - mapCompletedThroughT",
     "missingPredecessorHaltsDependentAdvancement": true,

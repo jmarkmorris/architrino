@@ -29,7 +29,7 @@ The current app implements:
 - counter-clockwise rotation in the trailing braid and clockwise rotation in the leading braid;
 - per-braid Inner/Middle/Outer controls for enabled state, frequency, radius, and phase;
 - a $\Delta x$ pair-separation control that changes the side-view trace spacing without changing the face-on orbit spacing;
-- Ideal Braid-style architrino markers, orbit paths, and layered trails;
+- Lorentz Geometry-style architrino markers, orbit paths, and layered trails;
 - pause/play, Space bar pause/play, Reset time, Reset all, Paths, and Slow/Fast controls;
 - Virtual Observer $x$, $y$, and $z$ controls with visible zero markers and near-zero snap;
 - direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls plus a first Lorentz-factor local-$c$ mode that derives both speeds from $\gamma$;
@@ -111,7 +111,7 @@ The visual stage should continue to preserve these requirements:
 - each active I/M/O binary contributes one red positrino marker and one blue electrino marker;
 - all architrino markers use one fixed on-screen size;
 - orbit paths use purple neutral blending where no polarity dominates;
-- layered path-history trails retain the Ideal Braid visual grammar;
+- layered path-history trails retain the Lorentz Geometry visual grammar;
 - path/trail visibility remains controlled by the `Paths` control;
 - the side-view traces have height equal to the diameter of the largest enabled binary;
 - the side-view $\Delta x$ arrow spans the side-view trace centers;

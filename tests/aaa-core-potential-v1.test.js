@@ -59,6 +59,11 @@ test("AAA Core is the single Potential API owner for the declared consumers", ()
     AAA_CORE_POTENTIAL_SUPPORTED_CONSUMERS,
   );
   assert.equal(fs.existsSync(path.join(ROOT, "src/apps/ideal-braid/IdealBraidAnalysisAdapters.js")), false);
+  const applicationSources = [
+    "src/apps/ideal-braid/IdealBraidSurfaceSolverScheduler.js",
+    "src/apps/topo/TopoPotentialConsumer.js",
+  ].map((relativePath) => fs.readFileSync(path.join(ROOT, relativePath), "utf8")).join("\n");
+  assert.doesNotMatch(applicationSources, /computeDelayedPotential|geometryRequest:\s*\{\s*delayedPotentials/u);
 });
 
 test("Lorentz Geometry consumes a complete Potential batch through AAA Core", async () => {
@@ -122,6 +127,12 @@ test("Potential output fails closed on missing, unavailable, and nonfinite rows"
     ),
     /potential_output_unavailable/u,
   );
+  const malformedRunRequest = structuredClone(runRequest);
+  malformedRunRequest.config.geometryRequest.delayedPotentials.pop();
+  await assert.rejects(
+    computePotentialSamples({...request, runRequest: malformedRunRequest}),
+    /invalid_potential_request: run request must contain 2 Potential rows/u,
+  );
 });
 
 test("unsupported consumers and provider failures return explicit Core errors", async () => {
@@ -163,4 +174,10 @@ test("Potential has no standalone public route or scene classification", () => {
     const scene = fs.readFileSync(path.join(ROOT, "content/scenes/archie", sceneName), "utf8");
     assert.doesNotMatch(scene, /potential\.html|archie__potential|"nodeId"\s*:\s*"potential"/u);
   }
+  const runtime = fs.readFileSync(
+    path.join(ROOT, "src/apps/ideal-braid/IdealBraidRuntime.js"),
+    "utf8",
+  );
+  assert.match(runtime, /if \(!snapshot\) \{\s*surfacePoints\.visible = false;\s*return;/u);
+  assert.doesNotMatch(runtime, /snapshot\?\.surfacePotentials\s*\?\?/u);
 });

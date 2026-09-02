@@ -79,7 +79,7 @@ The bar is dynamic, so not every surface shows every action. The visible order s
 
 - Document-entry controls can appear in the top bar when they open app-wide notes or guides.
 - Reading-surface controls should prefer a panel header when a markdown panel is open: `Layout`, `Print` / `PDF`, and `Close`.
-- The main webapp, Photon, and Ideal Braid keep reading-only controls in their markdown-panel headers rather than global chrome.
+- The main webapp, Photon, and Lorentz Geometry keep reading-only controls in their markdown-panel headers rather than global chrome.
 
 ### Settings
 
@@ -141,7 +141,7 @@ All public interactive app and workbench surfaces not named below target the ful
 | --- | --- | --- |
 | Main webapp markdown panel | Panel-local `Full document` when a section has a parent document, `Layout`, `Print` / `PDF`, and `Close` icon buttons in a visible header. | Conforming; UI-004 moved the actions out of global chrome and passed desktop/mobile rendered checks. |
 | Photon markdown panel | Panel-local `Layout`, `Print`, and `Close` icon buttons. | Good reference for reading-surface-local markdown actions. |
-| Ideal Braid markdown panel | Panel-local `Layout`, `Print`, and `Close` icon buttons. | Good reference for reading-surface-local markdown actions. |
+| Lorentz Geometry markdown panel | Panel-local `Layout`, `Print`, and `Close` icon buttons. | Good reference for reading-surface-local markdown actions. |
 | iOS ReaderShell | Native-shell content mount with no web top controls. | Treat as native reader parity, not webapp chrome. |
 | Generated reading-copy HTML | Content-only HTML. | Exempt generated output. |
 
@@ -180,7 +180,7 @@ Candidate homes:
 ### Phase 4: Panel-Heavy Apps
 
 1. Photon: complete; canonical Applications Home and global Search are live while document buttons and markdown-panel actions remain local. Evidence is bound by the [UI-005 batch-2 receipt](evidence/ui-005-batch-2-photon-browser-captures.2026-09-02.json).
-2. Ideal Braid: complete; the canonical global bar is separate from local simulation and markdown controls, with browser evidence bound by the [UI-005 batch-9 receipt](evidence/ui-005-batch-9-borg-braid-browser-captures.2026-09-02.json).
+2. Lorentz Geometry: complete; the canonical global bar is separate from local simulation and markdown controls, with browser evidence bound by the [UI-005 batch-9 receipt](evidence/ui-005-batch-9-borg-braid-browser-captures.2026-09-02.json).
 3. PDG Edit: complete; canonical Applications Home and global Search are live while the document picker, reaction search, filters, and editing surface remain local. Evidence is bound by the [UI-005 batch-7 receipt](evidence/ui-005-batch-7-pdgedit-browser-captures.2026-09-02.json).
 4. Borg: complete; the canonical global bar owns navigation and Search, Diagnostics remains a declared app-mode extension, and viewport and timeline controls remain local. Evidence is bound by the [UI-005 batch-9 receipt](evidence/ui-005-batch-9-borg-braid-browser-captures.2026-09-02.json).
 5. Causal Delay Feedback: complete; canonical Applications Home and global Search are live, lesson Previous/Next preserve their declared sequence, and replay controls remain local. Evidence is bound by the [UI-005 batch-3 receipt](evidence/ui-005-batch-3-causal-delay-feedback-browser-captures.2026-09-02.json).

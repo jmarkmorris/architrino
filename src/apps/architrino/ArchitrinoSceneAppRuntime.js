@@ -5966,37 +5966,19 @@ const animatorPlaybackState = {
   lastTickMs: 0,
 };
 let animatorSupplementalDraftState = {};
-const defaultAnimatorWorkerSimulationConfig = Object.freeze({
-  steps: 120,
-  dt: 0.01,
-  stride: 6,
-  particles: 2,
-  radius: 1,
-  radialSpeed: 0,
-  tangentialSpeed: 0.08,
-  kappa: 0.002,
-  shellK: 0,
-  rootHaltPolicy: "partner",
+const animatorRecordedPlaybackWorkerClient = createAnimatorRecordedPlaybackWorkerClient({
+  workerUrl: new URL("../animator/AnimatorRecordedPlaybackWorker.js", import.meta.url),
 });
-const animatorSimulationWorkerClient = createAnimatorSimulationWorkerClient({
-  workerUrl: new URL("../animator/AnimatorSimulationWorker.js", import.meta.url),
-});
-let animatorSimulationWorkerRunActive = false;
-const animatorRunSimulationButtonLabel = animatorRunSimulationButton?.textContent ?? "Run Solver";
-const animatorSimulationRunButtonLabel = animatorSimulationRunButton?.textContent ?? "Run Solver";
+let animatorRecordedPlaybackLoadActive = false;
 
-function setAnimatorSimulationWorkerRunActive(isActive) {
-  animatorSimulationWorkerRunActive = Boolean(isActive);
-  [
-    [animatorRunSimulationButton, animatorRunSimulationButtonLabel],
-    [animatorSimulationRunButton, animatorSimulationRunButtonLabel],
-  ].forEach(([button, label]) => {
+function setAnimatorRecordedPlaybackLoadActive(isActive) {
+  animatorRecordedPlaybackLoadActive = Boolean(isActive);
+  [animatorLoadEomRecordButton, animatorRecordedOutputLoadButton].forEach((button) => {
     if (!button) {
       return;
     }
-    button.disabled = animatorSimulationWorkerRunActive;
-    button.setAttribute("aria-busy", animatorSimulationWorkerRunActive ? "true" : "false");
-    button.textContent = animatorSimulationWorkerRunActive ? "Running..." : label;
+    button.disabled = animatorRecordedPlaybackLoadActive;
+    button.setAttribute("aria-busy", animatorRecordedPlaybackLoadActive ? "true" : "false");
   });
 }
 
@@ -6108,49 +6090,11 @@ const {
   renderAnimatorJsonPreview,
 } = animatorDocumentWorkspaceRuntime;
 
-function setAnimatorSimulationInputValue(input, value) {
-  if (!input) {
+function renderAnimatorRecordedPlaybackDiagnosticsRows(rows = []) {
+  if (!animatorRecordedOutputDiagnostics) {
     return;
   }
-  input.value = String(value ?? "");
-}
-
-function setAnimatorSimulationSelectValue(select, value) {
-  if (!select) {
-    return;
-  }
-  const nextValue = String(value ?? "");
-  const hasOption = Array.from(select.options ?? []).some((option) => option.value === nextValue);
-  select.value = hasOption ? nextValue : select.options?.[0]?.value ?? "";
-}
-
-function readAnimatorSimulationAuthoringDraftFromDom() {
-  return {
-    duration: animatorSimulationDurationInput?.value,
-    loop: animatorSimulationLoopInput?.checked === true,
-    steps: animatorSimulationStepsInput?.value,
-    dt: animatorSimulationDtInput?.value,
-    stride: animatorSimulationStrideInput?.value,
-    particles: animatorSimulationParticlesInput?.value,
-    radius: animatorSimulationRadiusInput?.value,
-    radialSpeed: animatorSimulationRadialSpeedInput?.value,
-    tangentialSpeed: animatorSimulationTangentialSpeedInput?.value,
-    driftX: animatorSimulationDriftXInput?.value,
-    driftY: animatorSimulationDriftYInput?.value,
-    cf: animatorSimulationFieldSpeedInput?.value,
-    kappa: animatorSimulationKappaInput?.value,
-    historyMode: animatorSimulationHistoryModeSelect?.value,
-    rootHaltPolicy: animatorSimulationRootHaltPolicySelect?.value,
-    claimLevel: animatorSimulationClaimLevelInput?.value,
-    datasetId: animatorSimulationDatasetIdInput?.value,
-  };
-}
-
-function renderAnimatorSimulationDiagnosticsRows(rows = []) {
-  if (!animatorSimulationDiagnostics) {
-    return;
-  }
-  animatorSimulationDiagnostics.replaceChildren();
+  animatorRecordedOutputDiagnostics.replaceChildren();
   rows.forEach(([label, value]) => {
     const row = document.createElement("div");
     row.className = "animator-simulation-diagnostic-row";
@@ -6161,125 +6105,38 @@ function renderAnimatorSimulationDiagnosticsRows(rows = []) {
     valueElement.className = "animator-simulation-diagnostic-value";
     valueElement.textContent = value;
     row.append(labelElement, valueElement);
-    animatorSimulationDiagnostics.appendChild(row);
+    animatorRecordedOutputDiagnostics.appendChild(row);
   });
 }
 
-function renderAnimatorSimulationAuthoringPanel(documentData = animatorCurrentDocument) {
-  if (!animatorSimulationPanel || !documentData) {
+function renderAnimatorRecordedPlaybackPanel(documentData = animatorCurrentDocument) {
+  if (!animatorRecordedOutputPanel || !documentData) {
     return;
   }
-  const draft = createAnimatorSimulationAuthoringDraft(documentData);
-  setAnimatorSimulationSelectValue(animatorSimulationModeSelect, "planar-2d");
-  setAnimatorSimulationInputValue(animatorSimulationDurationInput, draft.duration);
-  if (animatorSimulationLoopInput) {
-    animatorSimulationLoopInput.checked = draft.loop;
+  const summary = summarizeAnimatorRecordedPlayback(documentData);
+  const outputRow = summary.rows.find(([label]) => label === "Recorded output");
+  const statusRow = summary.rows.find(([label]) => label === "Status");
+  if (animatorRecordedOutputStatus) {
+    animatorRecordedOutputStatus.textContent = summary.hasDataset
+      ? `Record: ${outputRow?.[1] ?? "loaded"} (${statusRow?.[1] ?? "unknown"})`
+      : "Record: none loaded";
   }
-  setAnimatorSimulationInputValue(animatorSimulationDatasetIdInput, draft.datasetId);
-  setAnimatorSimulationInputValue(animatorSimulationStepsInput, draft.steps);
-  setAnimatorSimulationInputValue(animatorSimulationDtInput, draft.dt);
-  setAnimatorSimulationInputValue(animatorSimulationStrideInput, draft.stride);
-  setAnimatorSimulationInputValue(animatorSimulationFieldSpeedInput, draft.cf);
-  setAnimatorSimulationInputValue(animatorSimulationKappaInput, draft.kappa);
-  setAnimatorSimulationInputValue(animatorSimulationClaimLevelInput, draft.claimLevel);
-  setAnimatorSimulationSelectValue(animatorSimulationHistoryModeSelect, draft.historyMode);
-  setAnimatorSimulationSelectValue(animatorSimulationRootHaltPolicySelect, draft.rootHaltPolicy);
-  setAnimatorSimulationInputValue(animatorSimulationParticlesInput, draft.particles);
-  setAnimatorSimulationInputValue(animatorSimulationRadiusInput, draft.radius);
-  setAnimatorSimulationInputValue(animatorSimulationRadialSpeedInput, draft.radialSpeed);
-  setAnimatorSimulationInputValue(animatorSimulationTangentialSpeedInput, draft.tangentialSpeed);
-  setAnimatorSimulationInputValue(animatorSimulationDriftXInput, draft.driftX);
-  setAnimatorSimulationInputValue(animatorSimulationDriftYInput, draft.driftY);
-
-  if (animatorSceneDurationInput) {
-    animatorSceneDurationInput.value = String(draft.duration);
-  }
-  if (animatorSceneLoopInput) {
-    animatorSceneLoopInput.checked = draft.loop;
-  }
-
-  const summary = summarizeAnimatorSimulationAuthoringDataset(documentData);
-  const datasetRow = summary.rows.find(([label]) => label === "Dataset");
-  const haltRow = summary.rows.find(([label]) => label === "Halt" || label === "Last Run");
-  if (animatorSimulationCacheStatus) {
-    animatorSimulationCacheStatus.textContent = summary.hasDataset
-      ? `Dataset: ${datasetRow?.[1] ?? "loaded"} (${haltRow?.[1] ?? "unknown"})`
-      : `Dataset: ${haltRow?.[1] ?? "not run"}`;
-  }
-  renderAnimatorSimulationDiagnosticsRows(summary.rows);
+  renderAnimatorRecordedPlaybackDiagnosticsRows(summary.rows);
 }
 
-function applyAnimatorSimulationAuthoringDraftFromDom(options = {}) {
+async function loadAnimatorRecordedEomHandoff(handoff, options = {}) {
   const baseDocument =
     options.baseDocument ??
     animatorCurrentDocument ??
     buildAnimatorDocumentData(readAnimatorDraftState());
-  if (!baseDocument) {
-    return null;
-  }
+  setAnimatorStatus("Validating recorded EOM output...");
+  const result = await animatorRecordedPlaybackWorkerClient.load(handoff, {
+    datasetOptions: options.datasetOptions,
+    playbackOptions: options.playbackOptions,
+  });
   const nextDocument = normalizeAnimatorSceneDocument(
-    applyAnimatorSimulationAuthoringDraftToDocument(
-      baseDocument,
-      readAnimatorSimulationAuthoringDraftFromDom()
-    )
-  );
-  updateAnimatorViewportFromDocument(nextDocument);
-  if (animatorJsonPreview) {
-    animatorJsonPreview.textContent = JSON.stringify(nextDocument, null, 2);
-  }
-  if (options.status !== false) {
-    setAnimatorStatus("Simulation settings applied.");
-  }
-  return nextDocument;
-}
-
-function getAnimatorWorkerSimulationConfig(documentData = animatorCurrentDocument, inputConfig = null) {
-  if (inputConfig && typeof inputConfig === "object") {
-    return { ...inputConfig };
-  }
-  const metadataConfig =
-    documentData?.metadata?.simulationWorker?.config ??
-    documentData?.metadata?.simulationRun?.config;
-  if (metadataConfig && typeof metadataConfig === "object") {
-    return { ...metadataConfig };
-  }
-  const timeWindow = getAnimatorSceneTimeWindow(documentData);
-  const sceneDuration = Math.max(0, Number(timeWindow.end ?? 0) - Number(timeWindow.start ?? 0));
-  const dt = Number(defaultAnimatorWorkerSimulationConfig.dt) || 0.01;
-  const durationSteps = sceneDuration > 0 ? Math.ceil(sceneDuration / dt) : 0;
-  return {
-    ...defaultAnimatorWorkerSimulationConfig,
-    steps: Math.max(defaultAnimatorWorkerSimulationConfig.steps, durationSteps),
-  };
-}
-
-function getAnimatorWorkerDatasetOptions(documentData = animatorCurrentDocument, options = {}) {
-  const sceneId = String(documentData?.scene?.id ?? "animator_scene").trim() || "animator_scene";
-  const metadataOptions =
-    documentData?.metadata?.simulationWorker?.datasetOptions ??
-    documentData?.metadata?.simulationRun?.datasetOptions;
-  return {
-    id: `${sceneId}_worker_dataset`,
-    claimLevel: "solver-derived-diagnostic",
-    ...(metadataOptions && typeof metadataOptions === "object" ? metadataOptions : {}),
-    ...(options.datasetOptions && typeof options.datasetOptions === "object"
-      ? options.datasetOptions
-      : {}),
-  };
-}
-
-async function runAnimatorSimulationWorkerFromCurrentDocument(inputConfig = null, options = {}) {
-  const baseDocument =
-    options.baseDocument ??
-    animatorCurrentDocument ??
-    buildAnimatorDocumentData(readAnimatorDraftState());
-  const config = getAnimatorWorkerSimulationConfig(baseDocument, inputConfig);
-  const datasetOptions = getAnimatorWorkerDatasetOptions(baseDocument, options);
-  setAnimatorStatus("Running solver in worker...");
-  const result = await animatorSimulationWorkerClient.run(config, { datasetOptions });
-  const nextDocument = normalizeAnimatorSceneDocument(
-    mergeAnimatorSimulationDatasetIntoDocument(baseDocument, result.dataset, {
-      updateSceneTime: options.updateSceneTime === true,
+    mergeAnimatorRecordedPlaybackIntoDocument(baseDocument, result.dataset, {
+      updateSceneTime: options.updateSceneTime !== false,
     })
   );
   updateAnimatorViewportFromDocument(nextDocument);
@@ -6288,9 +6145,8 @@ async function runAnimatorSimulationWorkerFromCurrentDocument(inputConfig = null
   }
   const frameCount = Array.isArray(result.dataset?.frames) ? result.dataset.frames.length : 0;
   const status = result.dataset?.simulation?.halt?.status ?? "unknown";
-  const byteLength = result.frameBufferSummary?.byteLength ?? 0;
   setAnimatorStatus(
-    `Worker simulation ${status}; ${frameCount} frame(s), ${byteLength} typed-buffer byte(s).`
+    `Recorded EOM output ${status}; ${frameCount} frame(s) accepted for playback.`
   );
   return {
     ...result,
@@ -6298,51 +6154,39 @@ async function runAnimatorSimulationWorkerFromCurrentDocument(inputConfig = null
   };
 }
 
-async function runAnimatorSimulationWorkerFromAuthoringPanel() {
-  const baseDocument = applyAnimatorSimulationAuthoringDraftFromDom({ status: false });
-  const payload = buildAnimatorSimulationAuthoringWorkerPayload(
-    readAnimatorSimulationAuthoringDraftFromDom(),
-    baseDocument
-  );
-  return runAnimatorSimulationWorkerFromCurrentDocument(payload.config, {
-    baseDocument,
-    datasetOptions: payload.datasetOptions,
-  });
-}
-
 if (typeof window !== "undefined") {
-  window.runAnimatorSimulationWorker = runAnimatorSimulationWorkerFromCurrentDocument;
+  window.loadAnimatorRecordedEomHandoff = loadAnimatorRecordedEomHandoff;
 }
 
-function bindAnimatorSimulationRunButton(button) {
+function bindAnimatorRecordedOutputLoadButton(button) {
   if (!button || button.dataset.bound) {
     return;
   }
-  button.addEventListener("click", async () => {
-    if (animatorSimulationWorkerRunActive) {
-      return;
-    }
-    setAnimatorSimulationWorkerRunActive(true);
-    try {
-      await runAnimatorSimulationWorkerFromAuthoringPanel();
-    } catch (error) {
-      console.error("animator worker simulation failed.", error);
-      setAnimatorStatus(`Worker simulation failed: ${error?.message ?? error}`);
-    } finally {
-      setAnimatorSimulationWorkerRunActive(false);
-    }
-  });
+  button.addEventListener("click", () => animatorEomRecordFileInput?.click());
   button.dataset.bound = "true";
 }
 
-bindAnimatorSimulationRunButton(animatorRunSimulationButton);
-bindAnimatorSimulationRunButton(animatorSimulationRunButton);
+bindAnimatorRecordedOutputLoadButton(animatorLoadEomRecordButton);
+bindAnimatorRecordedOutputLoadButton(animatorRecordedOutputLoadButton);
 
-if (animatorSimulationApplyButton && !animatorSimulationApplyButton.dataset.bound) {
-  animatorSimulationApplyButton.addEventListener("click", () => {
-    applyAnimatorSimulationAuthoringDraftFromDom();
+if (animatorEomRecordFileInput && !animatorEomRecordFileInput.dataset.bound) {
+  animatorEomRecordFileInput.addEventListener("change", async () => {
+    const file = animatorEomRecordFileInput.files?.[0];
+    if (!file || animatorRecordedPlaybackLoadActive) {
+      return;
+    }
+    setAnimatorRecordedPlaybackLoadActive(true);
+    try {
+      await loadAnimatorRecordedEomHandoff(JSON.parse(await file.text()));
+    } catch (error) {
+      console.error("Animator recorded EOM output load failed.", error);
+      setAnimatorStatus(`Recorded EOM output rejected: ${error?.message ?? error}`);
+    } finally {
+      animatorEomRecordFileInput.value = "";
+      setAnimatorRecordedPlaybackLoadActive(false);
+    }
   });
-  animatorSimulationApplyButton.dataset.bound = "true";
+  animatorEomRecordFileInput.dataset.bound = "true";
 }
 
 if (animatorHudShellOpacityInput && !animatorHudShellOpacityInput.dataset.bound) {

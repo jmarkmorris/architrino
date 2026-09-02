@@ -6,6 +6,12 @@
     "type": "Scene-Diagram",
     "units": "relative",
     "wrapLabels": true,
+    "application": {
+      "applicationId": "animator",
+      "eomWorkflow": "accepted-recorded-output-playback",
+      "mayInitiateEomRuns": false,
+      "acceptedHandoffSchema": "eom-recorded-playback-handoff.v1"
+    },
     "layout": {
       "type": "static"
     }

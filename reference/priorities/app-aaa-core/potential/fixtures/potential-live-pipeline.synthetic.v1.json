@@ -55,7 +55,7 @@
       "type": "snapshot",
       "completeness": "provisional",
       "sourceAcceptedThroughT": 1,
-      "appConsumedThroughT": 1,
+      "coreConsumedThroughT": 1,
       "mapCompletedThroughT": 1,
       "lagT": 0,
       "queueDepth": 0,
@@ -106,7 +106,7 @@
       "type": "snapshot",
       "completeness": "provisional",
       "sourceAcceptedThroughT": 3,
-      "appConsumedThroughT": 3,
+      "coreConsumedThroughT": 3,
       "mapCompletedThroughT": 1,
       "lagT": 2,
       "queueDepth": 2,
@@ -152,8 +152,8 @@
     "backpressureEntries": 1,
     "backpressureReleases": 1,
     "sourceAcceptedThroughT": 3,
-    "appConsumedThroughT": 3,
+    "coreConsumedThroughT": 3,
     "mapCompletedThroughT": 3,
-    "sealedProductSha256": "de5685831fea7c93e91d06cdae783e2d54f7a45fee3e3f5761ac17dbd3d72fd2"
+    "sealedProductSha256": "e4809a330ef547e5d86c6e24beb0726857497e069c906e5827733f9e630696b4"
   }
 }

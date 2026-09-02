@@ -2,7 +2,7 @@
   "schema": "app-ui-browser-check-receipt.v1",
   "task": "UI-008",
   "date": "2026-09-02",
-  "subject": "shared navigation glyph rendering on Ideal Braid, Braid Search, and Borg Library",
+  "subject": "shared navigation glyph rendering on Lorentz Geometry, Braid Search, and Borg Library",
   "source_identity": {
     "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
     "stylesheet": "src/runtime/top-dynamic-control-bar.css",
@@ -82,5 +82,5 @@
   ],
   "claim_grade": "measured UI conformance on the three named routes; shared implementation consequence for other canonical consumers",
   "falsifier": "Any named route showing an empty shared icon shell, an SVG root outside http://www.w3.org/2000/svg, zero-size icon geometry, a shared action taller than 32px, a Search popover outside the viewport, or document-level horizontal overflow falsifies this receipt.",
-  "claim_boundary": "This receipt verifies visible shared-navigation glyphs, canonical action sizing, order, Search containment, and focus behavior on Ideal Braid, Braid Search, and Borg Library. It does not validate their app-local controls, data, scientific models, or every other shared-runtime consumer."
+  "claim_boundary": "This receipt verifies visible shared-navigation glyphs, canonical action sizing, order, Search containment, and focus behavior on Lorentz Geometry, Braid Search, and Borg Library. It does not validate their app-local controls, data, scientific models, or every other shared-runtime consumer."
 }

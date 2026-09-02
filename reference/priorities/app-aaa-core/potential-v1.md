@@ -21,6 +21,8 @@ Plainly: one missing contribution makes the requested batch unavailable. Zero is
 ## Contract artifacts
 
 - Machine contract: [`aaa-core-potential.v1.json`](aaa-core-potential.v1.json)
+- Potential product contract: [`potential/potential-product-contract.v1.json`](potential/potential-product-contract.v1.json)
+- Live product state machine: [`potential/potential-live-pipeline-contract-v1.md`](potential/potential-live-pipeline-contract-v1.md)
 - Core implementation: [`../../../src/aaa-core/potential-v1.mjs`](../../../src/aaa-core/potential-v1.mjs)
 - Topo consumer: [`../../../src/apps/topo/TopoPotentialConsumer.js`](../../../src/apps/topo/TopoPotentialConsumer.js)
 - Lorentz Geometry consumer: [`../../../src/apps/ideal-braid/IdealBraidSurfaceSolverScheduler.js`](../../../src/apps/ideal-braid/IdealBraidSurfaceSolverScheduler.js)

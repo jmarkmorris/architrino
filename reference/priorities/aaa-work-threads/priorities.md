@@ -120,7 +120,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 ## UI Standalone Migration Closure — 2026-09-02
 
-- `app-ui-guidelines` completed `standalone_app_home_search_settings_migration` across every declared full-bar surface, including the final owner-coordinated Ideal Braid, Braid Search, Borg, and Borg Library batch.
+- `app-ui-guidelines` completed `standalone_app_home_search_settings_migration` across every declared full-bar surface, including the final owner-coordinated Lorentz Geometry, Braid Search, Borg, and Borg Library batch.
 - The lane now has no executable object and becomes an unranked active owner. `app-borg` moves from rank `18` to `17` without score changes.
 - This is UI architecture and attention-routing closure only. It does not validate any simulation, scientific claim, campaign dataset, assembly classification, or Borg/Braid domain control.
 

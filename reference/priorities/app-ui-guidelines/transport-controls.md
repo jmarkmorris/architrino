@@ -46,7 +46,7 @@ Unicode media characters, `||`, CSS pseudo-element drawings, app-local SVG path 
 | Borg | Play/Pause toggle, First frame | Reset View remains a camera action, not a transport control. |
 | Animator | Play/Pause toggle, First frame | The former `Restart` label was the First-frame action: it moves to the scene start and remains paused. |
 | Causal Delay Feedback | Play/Pause toggle, Reset | The former separate Play and Pause buttons are one fixed-location toggle. |
-| Ideal Braid | Play/Pause toggle | Reset View remains a camera action. |
+| Lorentz Geometry | Play/Pause toggle | Reset View remains a camera action. |
 | Photon | Play/Pause toggle, Play result, Reset time | Reset all and Reset preset remain parameter actions. |
 
 ## Verification

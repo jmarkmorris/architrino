@@ -188,7 +188,7 @@ These closed prototype tickets document the implemented baseline. They are not l
 - First visualization candidate when resumed: Molecule Visualization.
 - Later visualization candidates:
   - Photon candidate planar pair and Virtual Observer diagnostic.
-  - Ideal Braid layered trails and causal path-history intuition.
+  - Lorentz Geometry layered trails and causal path-history intuition.
   - Causal Delay Feedback App with one-pair path-history, partial/full wake modes, and orientation-adaptive iPhone/iPad layout.
   - Causal-root delay diagram for source time, observer time, distance, and branch weight.
   - Noether braid layer comparison with Inner, Middle, and Outer roles.

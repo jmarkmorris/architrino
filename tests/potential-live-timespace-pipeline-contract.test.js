@@ -41,7 +41,7 @@ test("Potential live pipeline passes the synthetic stream and declared negative 
 });
 
 test("Potential contract owns only the consumer state machine", () => {
-  assert.equal(contract.ownershipBoundary.definesPotentialConsumerStateMachine, true);
+  assert.equal(contract.ownershipBoundary.definesCorePotentialStateMachine, true);
   assert.equal(contract.ownershipBoundary.definesSharedStreamEnvelope, false);
   assert.equal(contract.ownershipBoundary.definesTransport, false);
   assert.equal(contract.ownershipBoundary.fixtureEnvelopeIsProductionInterchange, false);
@@ -55,7 +55,7 @@ test("provisional snapshots expose lag, buffering, and missing tiles", () => {
     {
       completeness: "provisional",
       sourceAcceptedThroughT: 1,
-      appConsumedThroughT: 1,
+      coreConsumedThroughT: 1,
       mapCompletedThroughT: 1,
       lagT: 0,
       queueDepth: 0,
@@ -66,7 +66,7 @@ test("provisional snapshots expose lag, buffering, and missing tiles", () => {
     {
       completeness: "provisional",
       sourceAcceptedThroughT: 3,
-      appConsumedThroughT: 3,
+      coreConsumedThroughT: 3,
       mapCompletedThroughT: 1,
       lagT: 2,
       queueDepth: 2,

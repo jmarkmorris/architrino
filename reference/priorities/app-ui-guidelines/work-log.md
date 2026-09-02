@@ -8,7 +8,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-09-02 — UI-008 repaired invisible shared-navigation glyphs
 
-- Reproduced the operator-reported incomplete bars on Ideal Braid, Braid Search, and Borg Library: the canonical action shells, labels, order, and search behavior were present, but the Back, Forward, Home, and Search glyph nodes used the HTML namespace and their rendered geometry measured `0x0`.
+- Reproduced the operator-reported incomplete bars on Lorentz Geometry, Braid Search, and Borg Library: the canonical action shells, labels, order, and search behavior were present, but the Back, Forward, Home, and Search glyph nodes used the HTML namespace and their rendered geometry measured `0x0`.
 - Corrected the canonical `TopDynamicControlBarRuntime.js` icon factory to create real SVG elements. This one change repairs every full-bar consumer without adding page-specific markup or a second navigation path.
 - Added canonical border-box and `32px` minimum-height ownership. This prevents Borg Library's generic `button { min-height: 34px; }` rule from expanding shared actions beyond the accepted size.
 - Added regression checks for the SVG namespace and canonical size declarations. The final focused shared-navigation and three-page suite passed `46/46`.
@@ -19,12 +19,12 @@ Plainly: the three apps already called the shared navigation code, but that code
 
 ### 2026-09-02 — UI-005 batch 9 completed the Borg and Braid migrations
 
-- Migrated Ideal Braid, Braid Search, Borg, and Borg Library to `StandaloneAppNavigationRuntime.js` and the canonical top dynamic control-bar stylesheet.
-- Removed Ideal Braid and Borg's repeated static navigation markup, Braid Search's local constructor and event wiring, and Borg Library's text-only Applications link. Deleted the superseded standalone stylesheet after the final import was removed.
-- Preserved Ideal Braid's simulation and markdown controls, Braid Search's dashboard filters and views, Borg's viewport and timeline controls, and Borg Library's collection search, filters, playback, and Workbench route.
+- Migrated Lorentz Geometry, Braid Search, Borg, and Borg Library to `StandaloneAppNavigationRuntime.js` and the canonical top dynamic control-bar stylesheet.
+- Removed Lorentz Geometry and Borg's repeated static navigation markup, Braid Search's local constructor and event wiring, and Borg Library's text-only Applications link. Deleted the superseded standalone stylesheet after the final import was removed.
+- Preserved Lorentz Geometry's simulation and markdown controls, Braid Search's dashboard filters and views, Borg's viewport and timeline controls, and Borg Library's collection search, filters, playback, and Workbench route.
 - Added a centrally registered icon extension so Borg Diagnostics remains the permitted app-mode action after Search while the Borg-owned controller continues to own panel state and rendering.
-- Added compact content clearance on Ideal Braid and Borg, and right-aligned Borg Library's wrapped mobile header so its global Search popover remains viewport-bounded.
-- Focused shared-navigation, Ideal Braid, Braid Search, Borg, and Borg Library tests passed `73/73` after updating the migration contracts. Desktop/mobile browser checks confirmed canonical order, viewport-bounded Search, exact Applications routing, Escape focus restoration, no horizontal overflow, no console errors, and working Borg Diagnostics.
+- Added compact content clearance on Lorentz Geometry and Borg, and right-aligned Borg Library's wrapped mobile header so its global Search popover remains viewport-bounded.
+- Focused shared-navigation, Lorentz Geometry, Braid Search, Borg, and Borg Library tests passed `73/73` after updating the migration contracts. Desktop/mobile browser checks confirmed canonical order, viewport-bounded Search, exact Applications routing, Escape focus restoration, no horizontal overflow, no console errors, and working Borg Diagnostics.
 - Stored eight reproducible captures under ignored `.local-data/app-ui-guidelines/ui-005-batch-9/` and bound them with a [tracked evidence receipt](evidence/ui-005-batch-9-borg-braid-browser-captures.2026-09-02.json).
 - UI-005 is verified. The workstream retains the accepted standard and audit but has no remaining executable queue object.
 
@@ -39,7 +39,7 @@ Plainly: the four owner-coordinated apps now share the same navigation implement
 - Added Molecule to the atomic migration matrix. The shared navigation, launch, control-bar, search, and browser-import suite passed `32/32`.
 - Browser verification at `1440x900` and `390x844` confirmed canonical order and dimensions, ten scene-search results, `Escape` focus restoration, exact Applications routing, zero title/bar and preset/bar overlap in the closed state, a `12px` compact title clearance, 26 visible preset controls in the document, no boot error, and no horizontal overflow.
 - Stored three reproducible captures under ignored `.local-data/app-ui-guidelines/ui-005-batch-8/` and bound them with a [tracked evidence receipt](evidence/ui-005-batch-8-molecule-browser-captures.2026-09-02.json).
-- UI-005 remains active only for Ideal Braid, Braid Search, Borg, and Borg Library. Those surfaces are outside this workstream's current operator scope because their queues are active elsewhere.
+- UI-005 remains active only for Lorentz Geometry, Braid Search, Borg, and Borg Library. Those surfaces are outside this workstream's current operator scope because their queues are active elsewhere.
 
 Plainly: every eligible non-Borg, non-Braid standalone surface now uses the canonical global bar, and Molecule's own controls remain with the molecule.
 
@@ -156,7 +156,7 @@ Plainly: main and Animator now use one real toolbar implementation, while their 
 
 - Closed UI-004 by removing `Full document`, `Layout`, and `Print` / `PDF` from the main global scene toolbar and adding them, in that order, to a visible markdown-panel header followed by the previously missing `Close` action.
 - Preserved the existing runtime element IDs and one listener path. The panel header exposes only actions the current markdown target can honor; full-document remains limited to section readers with a corresponding complete document.
-- Consolidated the four main-reader controls under one `32px` circular action style, made the document title visible in the panel header, and excluded the header from print output. Photon and Ideal Braid already use the same panel-local action model and required no implementation changes.
+- Consolidated the four main-reader controls under one `32px` circular action style, made the document title visible in the panel header, and excluded the header from print output. Photon and Lorentz Geometry already use the same panel-local action model and required no implementation changes.
 - Focused tests passed for toolbar ownership and order, markdown panel behavior, and current-scene action state. Rendered checks at `1440x900` and `390x844` measured every visible action at `32x32`, confirmed that content begins below the `49px` header, found no horizontal overflow, exercised the layout toggle and Close action, and found no browser warnings or errors.
 - Removed UI-004 from the live queue and promoted UI-003, the atomic main-webapp and Animator shared-HUD cutover, to local rank 1.
 - Claim boundary: this closes markdown action ownership for the three named reader panels. It does not implement the accepted shared top-bar runtime or migrate any remaining partial standalone app.
@@ -178,7 +178,7 @@ Plainly: every future migrated bar now has one code destination and a clear rule
 
 - Closed UI-001 with an explicit accepted standard for shared control semantics, `32px` circular icon dimensions, stable action order, responsive behavior, reading-surface action ownership, and page exceptions.
 - Fixed the relative full-bar order as `TOC`, Back, Forward, Home, Search, optional document actions, Settings, and app-mode entry. Global Search means scene search; app-specific equation, molecule, document, or collection searches remain local and explicitly named.
-- Refreshed the audit from live root HTML and runtime ownership. Photon, Ideal Braid, Causal Delay Feedback, Borg, Lattice Lab, and Braid Search structurally carry the full bar; Topo and Equation Mapping are near or partial; the main webapp, Animator, Molecule, PDG Edit, Borg Library, and Greek Letter Match remain partial migrations.
+- Refreshed the audit from live root HTML and runtime ownership. Photon, Lorentz Geometry, Causal Delay Feedback, Borg, Lattice Lab, and Braid Search structurally carry the full bar; Topo and Equation Mapping are near or partial; the main webapp, Animator, Molecule, PDG Edit, Borg Library, and Greek Letter Match remain partial migrations.
 - Confirmed lightweight policy conformance for Website Stats and public feedback, and recorded incomplete lightweight Home/project actions for Brand Visual Identity and Solver GPU Harness. Preserved the accepted review, generated-content, native-mount, and local-review exemptions plus the retired Assembly Explorer redirect.
 - Promoted UI-002 to local rank 1. The live shared navigation stylesheet is a reusable base, but repeated page markup, SVGs, action metadata, and runtime wiring still need one explicit implementation path and extension contract.
 - Claim boundary: this closes the standard and structural code audit only. It does not assert rendered desktop/mobile conformance, migrate a partial surface, or complete the shared runtime.
@@ -197,7 +197,7 @@ Plainly: the rulebook is settled and the current exceptions are named. The next 
 ### 2026-07-21 - Canonical transport controls
 
 - Accepted `Play`, `Pause`, `First frame`, `Rewind`, `Reset`, and `Stop` as the canonical transport-control set.
-- Added one shared SVG/presentation runtime and migrated Borg, Animator, Causal Delay Feedback, Ideal Braid, and Photon away from local paths, CSS drawings, and text glyphs.
+- Added one shared SVG/presentation runtime and migrated Borg, Animator, Causal Delay Feedback, Lorentz Geometry, and Photon away from local paths, CSS drawings, and text glyphs.
 - Preserved the distinction between transport Reset and camera, preset, or parameter resets.
 - Promoted the durable visual and interaction rule into the reader-facing UI guide; retained the implementation contract and migration inventory in [transport-controls.md](transport-controls.md).
 - Focused app/runtime validation passed 230 tests. Browser checks exercised Play/Pause state changes in all five migrated apps and found no console errors; Borg's new two-stroke Pause presentation was visually inspected.

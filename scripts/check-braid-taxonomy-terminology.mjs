@@ -27,7 +27,6 @@ const LORENTZ_GEOMETRY_PUBLIC_DISPLAY_SURFACES = Object.freeze([
   "content/scenes/scenes_index.json",
   "content/graph/scene_graph.json",
   "scripts/config/foundational-impact-contracts.json",
-  "src/apps/ideal-braid/IdealBraidAnalysisAdapters.js",
   "src/apps/ideal-braid/IdealBraidPathPotentialProfile.js",
   "src/apps/ideal-braid/IdealBraidRuntime.js",
   "src/apps/ideal-braid/IdealBraidSurfaceSolverScheduler.js",

@@ -248,7 +248,7 @@ export function createPotentialSamplesRunRequest(request = {}) {
     datasetId: request.datasetId ?? `${runId}-dataset`,
     claimLevel: request.claimLevel ?? "interactive-preview",
     precisionPath: request.precisionPath ?? "auto",
-    configVersion: request.configVersion ?? AAA_CORE_POTENTIAL_API_ID,
+    configVersion: AAA_CORE_POTENTIAL_API_ID,
     configHash: request.configHash ??
       `${AAA_CORE_POTENTIAL_API_ID}:${consumerId}:${formatIdNumber(observationTime)}:${samplePoints.length}:${transmitters.length}`,
     model: request.analysisModel ?? createDefaultModel(consumerId),
@@ -327,6 +327,10 @@ export async function computePotentialSamples(request = {}, dependencies = {}) {
   const runRequest = request.runRequest ?? createPotentialSamplesRunRequest({...request, consumerId});
   if (runRequest.appId !== consumerId || runRequest.configVersion !== AAA_CORE_POTENTIAL_API_ID) {
     fail("invalid_potential_request", "run request does not match the Core Potential API identity");
+  }
+  const expectedRowCount = samplePoints.length * transmitters.length;
+  if (runRequest.config?.geometryRequest?.delayedPotentials?.length !== expectedRowCount) {
+    fail("invalid_potential_request", `run request must contain ${expectedRowCount} Potential rows`);
   }
   const run = dependencies.runPrescribedPathAnalysis ?? runPrescribedPathAnalysisRequest;
   if (typeof run !== "function") {
