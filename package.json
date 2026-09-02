@@ -10,6 +10,6 @@
     "build:site": "node scripts/build-static-site.mjs"
   },
   "dependencies": {
-    "mermaid": "11.16.1"
+    "mermaid": "11.17.2"
   }
 }
