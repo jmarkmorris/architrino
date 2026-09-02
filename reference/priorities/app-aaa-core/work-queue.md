@@ -59,47 +59,7 @@ No rows.
 
 ## Verified
 
-### CORE-010 — AAA Core Potential API
-
-- **Status:** Verified on 2026-09-02.
-- **Priority object:** `aaa_core_potential_v1`
-- **Result:** The accepted [AAA Core Potential v1](potential-v1.md), machine contract, headless implementation, Topo consumer module, migrated Lorentz Geometry scheduler, and focused tests establish one supported Potential calculation and product boundary behind consuming applications.
-- **Claim boundary:** This is prescribed-path software integration and fail-closed output conformance only. It does not independently validate the delayed-Potential kernel, establish a physical Potential result, add a standalone application, or grant EOM authority.
-
-### CORE-008 — Application client SDK
-
-- **Status:** Verified on 2026-09-02.
-- **Priority object:** `application_client_sdk`
-- **Result:** The accepted [AAA Core Client v0](client-v0.md), machine control record, schema, thin service/client implementation, two-application fixture, and focused tests expose manifest validation, codec negotiation, query identity, explicit stream subscriptions and progress, sealed publication caching, exact retrieval, and source failure state through one shared interface.
-- **Claim boundary:** This is synchronous in-process client conformance only. It supplies no network API, durable service or cache, authentication, production retry, workload measurement, scientific kernel, EOM evolution, or application release.
-
-### CORE-005 — Query, transform, and publication contract
-
-- **Status:** Verified on 2026-09-02.
-- **Priority object:** `query_transform_and_publication_contract`
-- **Result:** The accepted [query, transform, and publication contract v0](query-transform-publication-v0.md), machine control record, schema, executable builder and validator, two positive fixtures, and fifteen negative controls close stable query/cache identity, explicit transform order, source closure, provisional/sealed state, authority propagation, and exact cross-application retrieval.
-- **Claim boundary:** This is synthetic contract conformance only. It validates no transform scientifically, publishes no production product, deploys no cache or catalog, measures no workload, and grants no EOM or scientific authority.
-
-### CORE-004 — Accepted-history stream contract
-
-- **Status:** Verified on 2026-09-02.
-- **Priority object:** `accepted_history_stream_contract`
-- **Result:** The accepted [stream contract v0](accepted-history-stream-v0.md), machine control record, schema, in-process broker, three-chunk accepted path bundle, two separately implemented consumers, reconnect/replay and halt scenarios, and twelve negative controls close the shared sequencing and subscription contract.
-- **Claim boundary:** This is synthetic in-process broker and consumer conformance only. It supplies no production network transport, durable service, measured performance, live EOM integration, scientific kernel, or application release.
-
-### CORE-003 — Path codec profile contracts
-
-- **Status:** Verified on 2026-09-02.
-- **Priority object:** `path_codec_profile_contracts`
-- **Result:** The accepted [codec registry v0](codec-registry-v0.md), machine control record, JSON Schema, executable negotiation and conformance layer, four provider capabilities, five positive cases, and eleven negative controls close the registry and provider-profile contract.
-- **Claim boundary:** This is registry and synthetic conformance only. No provider is selected for production, no representative workload is measured, and no codec result grants EOM, scientific, experimental-interpretation, storage, transport, or accelerator authority.
-
-### CORE-001 — AAA Core path interchange v0
-
-- **Status:** Verified on 2026-09-02.
-- **Priority object:** `aaa_core_path_interchange_v0`
-- **Result:** The accepted [path-interchange v0 contract](path-interchange-v0.md), JSON control record, record schema, executable validator, five positive fixture families, ten negative controls, and Potential field-compatibility test close the logical interchange requirement.
-- **Claim boundary:** This is contract and fixture conformance only. It supplies no production storage, transport, codec, scientific kernel, forward evolution, experimental interpretation, or accepted derived product.
+No rows. Completed records are retained in [work-log.md](work-log.md) and focused packets.
 
 ## Superseded / withdrawn
 

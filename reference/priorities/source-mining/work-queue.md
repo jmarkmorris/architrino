@@ -28,17 +28,5 @@ No rows.
 
 ## Verified
 
-### SM-005 — Neoclassical domain disposition
+No rows. Completed records are retained in [work-log.md](work-log.md) and focused packets.
 
-- **Status:** Verified at operator-decision grade
-- **Priority object:** `neoclassical_domain_disposition`
-- **Decision:** On 2026-09-02, the operator selected non-renewal: allow the `neoclassical.ai` registration to expire naturally at the end of its current term.
-- **Execution boundary:** No transfer, sale, early cancellation, registrar-setting change, DNS change, repository action, or credential action was authorized or performed in closing this queue item.
-- **Completion:** The required disposition is recorded and SM-005 is closed. Natural expiration is a future registrar event and is not claimed to have occurred; an externally enabled automatic renewal would prevent the intended outcome.
-
-### SM-003 — Solving the Crisis source refresh
-
-- **Status:** Verified
-- **Priority object:** `solving_the_crisis_source_refresh`
-- **Evidence:** The [source-refresh packet](solving-the-crisis-source-refresh-2026-09-02.md) records one qualifying primary paper, review, data release, or experiment source for each of the 44 chapters retained by the Open Problems audit, with exact source identity, local role, and import boundary. Chapters 45–46 remain excluded.
-- **Completion:** Direct comparison against the claim-level audit found an exact, duplicate-free chapter-title and number match for rows 1–44. Source-mining history records the completed family; no reader-facing citation was added merely to satisfy coverage.

@@ -10,6 +10,15 @@ This file records dated planning, implementation status, validation evidence, fa
 
 ## Log Entries
 
+### 2026-09-02 — Complete Low-Risk Presentation Pass
+
+- Reactivated every remaining row limited to copy, naming, style, already-implemented presentation behavior, or removed-surface reconciliation. Geometry, topology, calculations, certificates, control behavior, and evidence-authority changes remained out of scope.
+- Implemented LAT-091's exact Simple Cubic Alternating Planes Ledger sentence: `In this ideal repeating pattern, net acceleration is zero at every architrino.` The view-model and gallery tests now distinguish that scoped sentence from the shorter certified outcome used by other deterministic cases; calculations and certificate authority are unchanged.
+- Closed fourteen additional implemented presentation rows with the current validation evidence: LAT-042, LAT-047, LAT-051, LAT-052, LAT-055, LAT-056, LAT-057, LAT-058, LAT-061, LAT-062, LAT-067, LAT-077, LAT-090, and LAT-092.
+- Closed fifteen dead-surface requests as superseded: LAT-043, LAT-045, LAT-046, LAT-048, LAT-053, LAT-059, LAT-060, LAT-070, LAT-078, LAT-080, LAT-081, LAT-084, LAT-086, LAT-095, and LAT-099. The [Primer-removal audit](lattice-primer-removal-audit-2026-09-02.md) inventories all eighteen former paragraphs, records their factual or authority class and surviving owners, and finds no sentence requiring migration into another introductory surface.
+- The focused command `node --test tests/lattice-lab-ledger-presentation.test.js tests/lattice-lab-runtime.test.js tests/lattice-lab-bcc-neighbor-graph.test.js tests/lattice-lab-periodic-gallery.test.js tests/lattice-lab-random-finite.test.js` passed `72/72`. Fresh browser inspection selected all seven cases, confirmed no Primer or overview surface, retained Shared Display Conventions and Ledger regions, and confirmed the exact LAT-091 outcome. The rendered Alternating Planes view remained clean at the operator viewport.
+- Reconciled the queue summary from `54` to `24` unresolved entries: `19` queued/requested, `4` in progress, `0` awaiting verification, and `1` explicitly deferred/blocked. One consolidated verified entry increases verified history from `30` to `31`; one consolidated supersession entry records the fifteen dead-surface rows separately.
+
 ### 2026-09-02 — Third Low-Risk Presentation Reconciliation
 
 - Reactivated only LAT-079, LAT-083, LAT-093, LAT-101, and LAT-103 while leaving the broader Lattice Lab owner dormant-deferred.

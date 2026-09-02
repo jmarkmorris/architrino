@@ -107,15 +107,5 @@ Preserve dark-sector photon-like release as a release-channel hypothesis gated o
 
 ## Verified
 
-### SF-001 — Embedded horizon-interface boundary conditions
+No rows. Completed records are retained in [work-log.md](work-log.md) and focused packets.
 
-- **Status:** Verified at priority-contract grade on 2026-09-02.
-- **Result:** [Embedded Horizon-Interface Boundary Conditions](embedded-horizon-interface-boundary-conditions.md) types one finite embedded record containing the compact domain and absolute-time window, initial state and delayed histories, collar traces for $\rho_{\mathrm{NS}}$, canonical $\Sigma_{\mathrm{sea}}$, and $\mathbf u_{\mathrm{sea}}$, boundary wakes, compact-region ledger, admissible $\Lambda_{\mathrm{NS}}^H$, and the same-record exterior projection.
-- **Acceptance boundary:** The contract resolves $F_H=0$ into separate trace, delay, alignment, finiteness, ledger, embedding, and label residuals; supplies fail-closed codes and an explicit SF-002 consumer gate; and identifies the queue's $\Sigma_{\mathrm{medium}}$ request with canonical $\Sigma_{\mathrm{sea}}$ rather than creating competing notation.
-- **Nonclaim:** No horizon-interface solution, retained compact branch, metric recovery, observer prediction, entropy result, release selection, or black-hole mechanism is established. Those tasks require a source-bound carrier, concrete constitutive law, declared tolerances, and independent checks.
-
-### SF-014 — Hypothesis-bank review
-
-- **Status:** Verified on 2026-09-02.
-- **Result:** The [hypothesis-bank review](brainstorming.md#hypothesis-bank-review--2026-09-02) grades and routes every preserved strong-field hypothesis without promoting any of them. Reader-facing Black Holes prose now distinguishes the candidate horizon-interface model and speculative dark-sector release routes from accepted ontology.
-- **Claim boundary:** The review verifies classification and routing only. It supplies no retained branch, horizon identity, release event, particle class, stability result, or observer-level recovery.

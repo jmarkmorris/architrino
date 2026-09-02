@@ -46,45 +46,7 @@ No rows.
 
 ## Verified
 
-### PHO-001 — Reusable absolute-history solver
-
-- **Status:** Verified
-- **Priority object:** `reusable_absolute_history_solver`
-- **Request / acceptance:** Generalize the shared facade beyond Photon circular histories, expose receiver phase records, deepen phase-spread and rejected-root diagnostics, and harden observer-field reconstruction for local-$c$ translation.
-- **Evidence:** The [reusable absolute-history facade packet](reusable-absolute-history-facade.md) fixes display/reference ownership and the boundary to the three already implemented history contracts. `solvePrescribedAbsoluteHistoryRun` dispatches linear, moving-circular, and moving-circular same-transmitter roots; emits receiver phase, circular family spreads, and exact root/request rejection counts; and rejects malformed field branches with zero contribution. The Photon-specific moving-circular entrypoint remains a compatibility wrapper.
-- **Completion:** Verified 2026-09-02. An independent stationary linear fixture gives $t_e=1$, delay $2$, and $\mathbf E=(1/4,0,0)$ at $c_f=1$; separate fixtures cover a bounded no-root request, same-transmitter receiver phase, invalid field geometry, and unsupported-history fail-closed behavior. Focused validation passed 66/66. The facade remains display-only and does not replace production EOM ownership or establish a physical photon branch.
-
-### PHO-006 — Configuration Search comparison
-
-- **Status:** Verified
-- **Priority object:** `configuration_search_absolute_history_comparison`
-- **Request / acceptance:** Add a background deep-comparison path, local-$c$/phase-family filters, and independently produced summaries for export.
-- **Evidence:** The [deep-comparison contract](configuration-search-deep-comparison.md) defines the shared-engine execution boundary, pre-evaluation local-$c$ filter, post-evaluation phase-family filter, responsive yield and progress behavior, and versioned export provenance. `PhotonSearchRuntime.js` evaluates both co-moving and absolute-history modes for every deep candidate, `PhotonRuntime.js` dispatches from a cloned normalized state, and the controls expose both filters.
-- **Completion:** Verified 2026-09-02. `node --test tests/photon-runtime.test.js tests/photon-runtime-orchestration.test.js` passed 62/62, including candidate filtering, progress, event-loop yields, both history modes, and export/import provenance retention. The UI-independent state snapshot is not an independent scientific oracle; no physical-photon, phase-lock-retention, stability, helicity, or Malus-law claim follows.
-
-### PHO-003 — Moving-apparatus delta-x mapping
-
-- **Status:** Verified
-- **Priority object:** `moving_apparatus_delta_x_mapping`
-- **Request / acceptance:** Make absolute-history translation the authoritative $\Delta x$ diagnostic and define clearer stale-root aging thresholds.
-- **Evidence:** The [moving-apparatus $\Delta x$ packet](moving-apparatus-delta-x-mapping.md) declares absolute history authoritative, co-moving output comparison-only, exact braid-center offsets, and retained-root age bands of fresh through one, aging above one through two, and stale above two reference cycles. `PhotonFormulaRuntime.js` emits `photon-moving-apparatus-delta-x.v1`; the diagnostics panel exposes authority, age counts, and oldest retained-root age while preserving separate bounded no-catch-up and stale-window classifications.
-- **Completion:** Verified 2026-09-02. `node --test tests/photon-runtime.test.js tests/photon-runtime-orchestration.test.js` passed 60/60. The result remains display-only-visualization evidence and supplies no photon retention, stability, physical-separation, or constitutive-law result.
-
-### PHO-005 — Substrate mapping refinement
-
-- **Status:** Verified
-- **Priority object:** `substrate_mapping_refinement`
-- **Request / acceptance:** Refine I/M/O branch-sum mapping to transverse observer-field amplitudes while separating co-moving diagnostics from absolute-history results.
-- **Evidence:** The [source-bound mapping packet](substrate-mapping-refinement.md) fixes $W^{\mathrm{acc}}=c_{\mathrm{sig}}/|D_t|$, keeps $D_r/D_t$ as root-playback data, defines exact I/M/O sample and harmonic ledgers, declares both mode identities and all inputs, and supplies algebraic, fit, root-solve, and coverage residuals with operator-checkable falsifiers. `PhotonFormulaRuntime.js` emits `photon-substrate-mapping-refinement.v1`; focused tests cover both modes, the I/M/O partition, coefficient-level closure, and fail-closed causal-factor rows.
-- **Completion:** Verified 2026-09-02. `node --test tests/photon-runtime.test.js` passed 54/54. This is display-only-visualization evidence and supplies no photon retention, stability, physical-field, helicity, Malus-law, or Noether sea constitutive result.
-
-### PHO-004 — Absolute-source-history self-hit
-
-- **Status:** Verified
-- **Priority object:** `absolute_source_history_self_hit`
-- **Request / acceptance:** Deepen rejected-root reasons and extend sweeps only when new transmitter-history families are introduced.
-- **Evidence:** The [self-hit admission packet](absolute-source-history-self-hit-admission.md) gives every numerical helical root candidate an ordered disposition: `singular_root`, `jacobian_floor_failure`, `transversality_not_certified`, or `admitted_regular_root`. Runtime and sweep summaries expose candidate, admitted, rejected, and reason counts; phase families retain singular candidates only as non-promotable diagnostics. No new transmitter-history family was introduced, so the provenance-bound [756-case receipt](helical-self-hit-phase-lock-sweep.receipt.v1.json) was not regenerated or expanded.
-- **Completion:** Verified 2026-09-02. `node --test tests/photon-runtime.test.js tests/photon-runtime-orchestration.test.js` passed 61/61, including a twelve-row boundary fixture with three roots in each disposition and sweep count closure. No self-interaction, phase-lock, stability, retention, or physical-photon result follows.
+No rows. Completed records are retained in [work-log.md](work-log.md) and focused packets.
 
 ## Superseded / withdrawn
 
