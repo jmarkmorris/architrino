@@ -42,6 +42,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Verify three consecutive `codex-pr-branch.md` lifecycles with zero operator decision prompts and zero interactive host permission prompts per handoff; record all permission counters in [the unattended-execution ledger](git/codex-pr-unattended-verification.md).
 - [ ] For a multi-hour theory pass, state the desired checkpoint cadence or final artifact threshold when it differs from the default.
 - [ ] Add optional heartbeat diagnostics to long-running theory tests so healthy multi-minute artifact builds are distinguishable from hung runs; detailed recurrence notes live in [long-running-test-heartbeats.md](long-running-test-heartbeats.md).
+- [x] Require repository-controlled detached compute to carry an owner lease, deadline, heartbeat, authenticated handoff/stop control, and closeout check; reject new detached-launch paths through the owned-compute policy inventory.
 
 ## Clarity
 

@@ -1,0 +1,27 @@
+{
+  "schema": "architrino.owned-compute-launch-policy.v1",
+  "status": "accepted",
+  "canonicalSupervisor": "scripts/dev/owned-compute-supervisor.mjs",
+  "scope": "Repository-controlled JavaScript process-group detachment. Scientific process census, admission, resource, and acceptance controls remain independently required.",
+  "failureBehavior": "A new or additional detached process launch fails validation until it is routed through the canonical supervisor or explicitly reviewed as a specialized process-control owner.",
+  "allowedDetachedLaunchers": [
+    { "path": "scripts/dev/owned-compute-supervisor.mjs", "occurrences": 2, "owner": "canonical operational lease and lifecycle supervisor" },
+    { "path": "scripts/build-textbook-review-pdfs.mjs", "occurrences": 1, "owner": "bounded browser process-group cleanup" },
+    { "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs", "occurrences": 2, "owner": "scientific registered gate and root-guard process ownership" },
+    { "path": "scripts/eom/prepare-f5-enclosed-root.mjs", "occurrences": 1, "owner": "bounded watched build and preparation group" },
+    { "path": "scripts/eom/run-f5-complete-evaluator-batch.mjs", "occurrences": 1, "owner": "registered scientific batch process groups" },
+    { "path": "scripts/eom/run-f5-ordinary-evolution.mjs", "occurrences": 1, "owner": "registered scientific evolution process group" },
+    { "path": "scripts/eom/run-f6c-acceleration-pilot.mjs", "occurrences": 1, "owner": "bounded scientific stage process group" },
+    { "path": "scripts/eom/run-f6c-cached-root-cover-full.mjs", "occurrences": 1, "owner": "bounded scientific stage process group" },
+    { "path": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs", "occurrences": 1, "owner": "bounded scientific stage process group" },
+    { "path": "scripts/eom/run-f6c-emission-refinement-pilot.mjs", "occurrences": 1, "owner": "bounded scientific stage process group" },
+    { "path": "scripts/eom/run-f6c-evidence-packaging.mjs", "occurrences": 1, "owner": "bounded evidence-packaging process group" },
+    { "path": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs", "occurrences": 1, "owner": "bounded parent refinement process group" },
+    { "path": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs", "occurrences": 1, "owner": "bounded scientific stage process group" },
+    { "path": "scripts/eom/run-f6c-root-cover-pilot.mjs", "occurrences": 1, "owner": "bounded scientific stage process group" },
+    { "path": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs", "occurrences": 1, "owner": "bounded streamed scientific process group" },
+    { "path": "scripts/eom/run-prescribed-response-pilot.mjs", "occurrences": 1, "owner": "bounded prescribed-response process group" },
+    { "path": "src/prescribed-path-analysis/SubfieldCircularPhaseProcess.mjs", "occurrences": 1, "owner": "bounded prescribed-path process group" }
+  ],
+  "claimBoundary": "This policy prevents unreviewed repository detachment. It does not prove closed-world descendant membership, resource safety, scientific validity, or completion of a task."
+}
