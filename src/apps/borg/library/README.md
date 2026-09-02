@@ -1,4 +1,4 @@
-# Borg Assembly Library
+# Borg Library
 
 Open [the library page](../../../../borg-library.html) through the local development server. Start it from the repository root:
 

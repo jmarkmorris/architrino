@@ -646,6 +646,26 @@ The current review entrypoint in the implementation tree demonstrates how the ap
 
 The `glyph.py` script should remain reference and comparison code, not the runtime tile engine of the app.
 
+### Controlled Review And Export Surface
+
+`pdgedit-review.html` is a controlled review artifact owned by the PDG editing workflow. It is not a peer product application, does not belong in the public Applications scene or standalone product-app launch map, and must not be folded into Animator. Reviewers retain direct access at `pdgedit-review.html`; the page identifies itself as a non-product review artifact and asks search engines not to index or archive it.
+
+The review page renders the shared `src/apps/pdgedit/pdgedit-tiles.json` and `src/apps/pdgedit/pdgedit-review-groups.json` catalogs through `src/apps/pdgedit/review/main.js` and the PDG-owned tile renderer. It may expose review controls and rendering metadata needed to compare the catalog, but it must not publish internal review state as reader-facing product content.
+
+The reproducible export entrypoint is `node scripts/export-pdgedit-review.mjs`; `VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" scripts/glyphs/glyph.py contact-sheet` remains its compatibility wrapper. The reference-SVG path is `VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" scripts/glyphs/glyph.py`, which delegates to `scripts/pdgedit/render-reference-svg.mjs` and `scripts/pdgedit/ReferenceSvgRuntime.mjs`. The browser review renderer and reference generator intentionally consume the same authored catalogs and canonical tile-rendering implementation. Their drift checks establish deterministic reproduction and committed-artifact alignment, not an independent proof that the rendering rule is correct.
+
+Focused validation is:
+
+```bash
+node --test tests/pdgedit-review-export.test.js tests/pdgedit-review-groups.test.js tests/pdgedit-renderer-drift.test.js tests/pdgedit-generator-drift.test.js
+```
+
+For an actual review export without changing tracked proof sheets, direct PNG and PDF output to an ignored or temporary directory:
+
+```bash
+node scripts/export-pdgedit-review.mjs --output-dir /tmp/pdgedit-review-export
+```
+
 ### Tile Glyph Construction
 
 Assemblies and operators should be constructed from tile glyphs, not from generic cards with text dropped onto them.

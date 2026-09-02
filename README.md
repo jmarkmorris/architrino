@@ -76,9 +76,18 @@ Current application and application-like surfaces include:
 - Equation Mapping: `equation-mapping.html`
 - It's Greek to Me! — Alpha to Omega: `greek-letter-match.html`
 - Animator: `animator.html`
-- Borg App: `borg.html`
+- Borg Library: `borg-library.html`
+- Borg Workbench: `borg.html`
 - Molecule Visualization: `molecule.html`
 - Periodic Table, Hyde Periodic Table, Atom, and Standard Model scene surfaces
+
+UI Guidelines is intentionally absent from this product-app inventory. It governs shared application standards and remains available as documentation through `Archie` → `User Interface` → `UI Guidelines`; its scene route opens the canonical guide and is not a standalone-app launch target.
+
+`pdgedit-review.html` is intentionally absent from this product-app inventory. It remains a directly addressable, reproducible review/export artifact owned by the [PDG editing workflow](reference/priorities/dormant-deferred/pdg/pdgedit.md#controlled-review-and-export-surface), not a standalone product application or an Animator mode.
+
+The [Simulation Protocol Routing Index](reference/op/simulation-protocol-routing-index.md) is also outside this product-app inventory. It is internal operations documentation that assigns simulation work to the EOM solver and scientific or proof owners; it has no visitor launch surface.
+
+AAA Core is deliberately absent from this catalogue. It is the shared headless application platform: it has no visitor launch route, scene entry, or browser composition root. The retained `app-aaa-core` priority path and `aaa_core_*` contract identifiers are stable development and machine interfaces, not product-list membership.
 
 Standalone app launch routing lives in:
 
@@ -86,7 +95,7 @@ Standalone app launch routing lives in:
 src/apps/navigator/StandaloneAppLaunchRuntime.js
 ```
 
-App runtime code is under `src/apps/`. EOM under `src/eom/` is the endorsed solver and sole forward production target. New app and simulation work routes through its contracts and recorded datasets.
+App runtime code is under `src/apps/`; shared AAA Core modules are under `src/aaa-core/`. EOM under `src/eom/` is the endorsed solver and sole forward production target. New app and simulation work routes through its contracts and recorded datasets.
 
 ## Content Model
 

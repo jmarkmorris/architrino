@@ -94,7 +94,7 @@ Plainly: the app now has a fixed interface and a safe preview, while the real sc
 - Selected `Signed ordinary wake intensity`, $\mathcal I_q^{\mathrm{ord}}=\varsigma_q/(\tau_\beta\lambda_\beta)$, as the first raw scalar and explicitly did not identify it as a scalar potential or receiver acceleration.
 - Added the radial $\beta=0$ control, exact equal-distance leading/trailing samples at two regular nonzero speeds, polarity reversal, and the exact $\beta=1$ split between the ordinary trailing half-plane, rootless leading/transverse region, and degenerate source-point family.
 - Defined distinct ordinary, singular, unavailable, nonordinary, unresolved, and display-clipped result states plus operator-checkable falsifiers.
-- Removed TOPO-001 from the live queue. TOPO-002 is now the top item; the reference surface remains blocked on that display contract. A future true scalar-potential mode remains routed to [Potential](../app-potential/priorities.md).
+- Removed TOPO-001 from the live queue. TOPO-002 is now the top item; the reference surface remains blocked on that display contract. A future true scalar-Potential mode remains routed through [AAA Core Potential](../app-aaa-core/potential-v1.md).
 
 Plainly: the first map now has one exact raw meaning and exact endpoint behavior. The open potential question remains separate instead of being hidden inside the wake-intensity label.
 
@@ -105,7 +105,7 @@ Plainly: the first map now has one exact raw meaning and exact endpoint behavior
 - Limited the first release to a static single-time map and deferred dynamics.
 - Recorded linear and signed-log2 field-color transforms for controlled comparison; contour spacing remains an independent decision.
 - Identified the first blocker: `potential` and a signed $1/r^2$ wake-intensity quantity require distinct mathematical definitions unless a versioned scientific contract explicitly equates or relates them.
-- Bound reusable path-to-potential conversion to [Potential](../app-potential/priorities.md) and shared interchange to [AAA Core](../app-aaa-core/priorities.md).
+- Bound reusable path-to-Potential conversion and shared interchange to [AAA Core](../app-aaa-core/priorities.md); consuming applications retain visualization and interaction.
 - Queued the observable/reference-geometry contract and the interaction/color contract. No application implementation began.
 
 Plainly: the app idea now has a durable home, but the first colored pixel waits for an exact definition of what its value means.

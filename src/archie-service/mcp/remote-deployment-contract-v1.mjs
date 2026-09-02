@@ -2,6 +2,7 @@ import { MCP_TOOL_LIMITS } from "./tool-contract-v1.mjs";
 
 export const MCP_REMOTE_DEPLOYMENT_CONTRACT_SCHEMA = "archie-mcp-remote-deployment-contract/v1";
 export const MCP_REMOTE_DEPLOYMENT_NEGATIVE_SUITE_SCHEMA = "archie-mcp-remote-deployment-negative-suite/v1";
+export const MCP_SERVICE_CLASSIFICATION = "archie_service_protocol_adapter";
 
 const EXPECTED_TOOLS = ["search", "read", "topics", "neighbors", "walk"];
 const REQUIRED_READINESS_GATES = [
@@ -53,6 +54,14 @@ export function validateMcpRemoteDeploymentContract({ contract, candidateSnapsho
 
   if (contract.deploymentState !== "fixture_only" || contract.publicDeploymentAuthorized !== false) {
     add("PUBLIC_DEPLOYMENT_FORBIDDEN", "this contract fixture must not authorize a public deployment");
+  }
+
+  if (
+    contract.serviceBoundary?.classification !== MCP_SERVICE_CLASSIFICATION ||
+    contract.serviceBoundary?.userFacingApplication !== false ||
+    contract.serviceBoundary?.staticBrowserSurfaceAllowed !== false
+  ) {
+    add("SERVICE_BOUNDARY_VIOLATION", "MCP must remain an Archie-service protocol adapter, not a user-facing application or static browser surface");
   }
 
   if (contract.protocol?.revision !== "2025-11-25" || contract.protocol?.transport !== "streamable_http") {
@@ -190,9 +199,12 @@ export function validateMcpRemoteDeploymentContract({ contract, candidateSnapsho
     contract.capabilityBoundary?.modelCallsAllowed !== false ||
     contract.capabilityBoundary?.repositoryWritesAllowed !== false ||
     contract.capabilityBoundary?.externalActionsAllowed !== false ||
-    contract.capabilityBoundary?.durableUserStateAllowed !== false
+    contract.capabilityBoundary?.durableUserStateAllowed !== false ||
+    contract.capabilityBoundary?.localToolAccessAllowed !== false ||
+    contract.capabilityBoundary?.repositoryStateAccessAllowed !== false ||
+    contract.capabilityBoundary?.credentialAccessAllowed !== false
   ) {
-    add("CAPABILITY_BOUNDARY_VIOLATION", "remote V1 is limited to the four read-only tools and has no model, write, action, or durable-state surface");
+    add("CAPABILITY_BOUNDARY_VIOLATION", "remote V1 is limited to the declared read-only retrieval tools and has no model, write, action, durable-state, local-tool, repository-state, or credential surface");
   }
 
   const readinessOpen =

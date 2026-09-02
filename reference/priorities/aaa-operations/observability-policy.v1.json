@@ -1,9 +1,10 @@
 {
   "schema": "architrino.operations-observability-policy.v1",
   "status": "accepted",
-  "effectiveDate": "2026-09-01",
+  "effectiveDate": "2026-09-02",
   "scope": [
     "public web applications",
+    "public static operations utilities",
     "iOS reader application",
     "public deployment diagnostics",
     "future client analytics collectors"
@@ -17,6 +18,13 @@
     "crossSiteTracking": false,
     "deviceFingerprinting": false,
     "saleOrAdvertisingUse": false
+  },
+  "websiteStatisticsUtility": {
+    "classification": "public_static_operations_utility",
+    "productApplicationCatalogue": false,
+    "publicSearchDiscovery": false,
+    "accessControl": "none",
+    "route": "website-stats.html"
   },
   "allowedOperationalEvidence": [
     "GitHub Actions build and deployment logs",
@@ -60,6 +68,7 @@
     "known analytics collectors, hidden-send APIs, dynamic scripts, and remote executable URLs are absent from authored app and shared runtime sources",
     "remote executable and media tags are absent from authored app HTML",
     "Website Statistics remains disconnected from a live collector",
+    "Website Statistics remains outside product-application catalogues and public scene search",
     "shared molecule links do not activate PubChem",
     "PubChem use requires the disclosed Add action"
   ],

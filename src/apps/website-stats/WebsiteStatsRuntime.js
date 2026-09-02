@@ -3,13 +3,13 @@ import {
   setWebsiteAnalyticsOptOut,
   WEBSITE_ANALYTICS_OPT_OUT_STORAGE_KEY,
 } from "./WebsiteAnalyticsOptOutRuntime.js";
-import {
-  STANDALONE_APP_HOME_HREF,
-  navigateStandaloneAppHome,
-} from "../navigator/StandaloneAppHomeRuntime.js";
-
 const DEFAULT_PERIOD_LABEL = "Aggregate Window";
 const BREAKDOWN_COLORS = ["#ff0000", "#4b0082", "#0000ff"];
+const ARCHIE_OPERATIONS_HREF =
+  "./index.html#scene=content%2Fscenes%2Farchie%2Foperations.json";
+const ARCHIE_HREF = "./index.html#scene=content%2Fscenes%2Farchie%2Farchie.json";
+const PUBLIC_ROUTE_NOTICE =
+  "Public static operations utility. This route has no access control and is not a private dashboard. No client analytics collector is connected.";
 
 function createElement(tagName, className, textContent) {
   const element = document.createElement(tagName);
@@ -200,8 +200,13 @@ function renderOptOutControl({ storage = globalThis.localStorage } = {}) {
 
   input.type = "checkbox";
   input.checked = isWebsiteAnalyticsOptedOut(storage);
+  input.setAttribute(
+    "aria-label",
+    "Exclude this browser from any future consented analytics collection"
+  );
   input.setAttribute("aria-describedby", "website-stats-opt-out-status");
   status.id = "website-stats-opt-out-status";
+  status.setAttribute("aria-live", "polite");
 
   function syncStatus() {
     status.textContent = input.checked
@@ -244,15 +249,16 @@ function renderShell(data, options = {}) {
   const shell = createElement("div", "website-stats-shell");
   const header = appendChildren(createElement("header", "website-stats-header"), [
     appendChildren(createElement("div", "website-stats-title"), [
-      createElement("h1", "", "Website Stats"),
+      createElement("h1", "", "Website Statistics"),
       createElement("p", "", headerDetail),
     ]),
     appendChildren(createElement("nav", "website-stats-actions"), [
       renderOptOutControl({ storage: options.storage }),
-      createNavLink("./index.html#scene=content%2Fscenes%2Farchie%2Fproject.json", "Archie"),
-      createNavLink(STANDALONE_APP_HOME_HREF, "Home"),
+      createNavLink(ARCHIE_OPERATIONS_HREF, "Operations"),
+      createNavLink(ARCHIE_HREF, "Archie"),
     ]),
   ]);
+  header.querySelector("nav")?.setAttribute("aria-label", "Operations navigation");
 
   const summary = appendChildren(createElement("section", "website-stats-summary"), [
     metricCard({
@@ -304,6 +310,7 @@ function renderShell(data, options = {}) {
   ]);
 
   const main = appendChildren(createElement("main", "website-stats-main"), [
+    createElement("p", "website-stats-notice", PUBLIC_ROUTE_NOTICE),
     summary,
     mainGrid,
     lowerGrid,
@@ -315,14 +322,6 @@ function renderShell(data, options = {}) {
 function createNavLink(href, label) {
   const link = createElement("a", "website-stats-link");
   link.href = href;
-  if (label === "Home") {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      navigateStandaloneAppHome(globalThis.window?.location, href, {
-        windowLike: globalThis.window,
-      });
-    });
-  }
   link.appendChild(createNavIcon(label));
   link.appendChild(createElement("span", "", label));
   return link;
@@ -332,10 +331,9 @@ function createNavIcon(label) {
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("viewBox", "0 0 24 24");
   svg.setAttribute("aria-hidden", "true");
-  const paths =
-    label === "Home"
-      ? ["M3 11.5L12 4l9 7.5", "M6.5 10.5V20h11V10.5"]
-      : ["M4 12a8 8 0 1 0 16 0a8 8 0 0 0-16 0", "M8 12h8", "M12 8v8"];
+  const paths = label === "Operations"
+    ? ["M4 7h16", "M4 12h16", "M4 17h16", "M8 5v4", "M16 10v4", "M11 15v4"]
+    : ["M4 12a8 8 0 1 0 16 0a8 8 0 0 0-16 0", "M8 12h8", "M12 8v8"];
   paths.forEach((pathData) => {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", pathData);
@@ -349,17 +347,22 @@ function renderError(root, message, options = {}) {
     appendChildren(createElement("div", "website-stats-shell"), [
       appendChildren(createElement("header", "website-stats-header"), [
         appendChildren(createElement("div", "website-stats-title"), [
-          createElement("h1", "", "Website Stats"),
+          createElement("h1", "", "Website Statistics"),
           createElement("p", "", "Data unavailable"),
         ]),
         appendChildren(createElement("nav", "website-stats-actions"), [
           renderOptOutControl({ storage: options.storage }),
-          createNavLink("./index.html#scene=content%2Fscenes%2Farchie%2Fproject.json", "Archie"),
+          createNavLink(ARCHIE_OPERATIONS_HREF, "Operations"),
+          createNavLink(ARCHIE_HREF, "Archie"),
         ]),
       ]),
-      createElement("main", "website-stats-error", message),
+      appendChildren(createElement("main", "website-stats-main"), [
+        createElement("p", "website-stats-notice", PUBLIC_ROUTE_NOTICE),
+        createElement("div", "website-stats-error", message),
+      ]),
     ])
   );
+  root.querySelector("nav")?.setAttribute("aria-label", "Operations navigation");
 }
 
 export async function renderWebsiteStatsApp({
@@ -369,10 +372,10 @@ export async function renderWebsiteStatsApp({
   storage = globalThis.localStorage,
 } = {}) {
   if (!root) {
-    throw new Error("Website Stats requires a root element.");
+    throw new Error("Website Statistics requires a root element.");
   }
 
-  root.replaceChildren(createElement("div", "website-stats-empty", "Loading website stats."));
+  root.replaceChildren(createElement("div", "website-stats-empty", "Loading website statistics."));
   try {
     const response = await fetchImpl(dataPath);
     if (!response.ok) {
@@ -381,6 +384,6 @@ export async function renderWebsiteStatsApp({
     const data = await response.json();
     root.replaceChildren(renderShell(data, { storage }));
   } catch (error) {
-    renderError(root, String(error?.message || "Failed to load website stats."), { storage });
+    renderError(root, String(error?.message || "Failed to load website statistics."), { storage });
   }
 }

@@ -10,6 +10,8 @@ The sections below move from the basic navigation model to specific interaction 
 
 This note explains how to move through the webapp, how sphere-based hierarchy works, and how document reading controls behave at runtime.
 
+The [UI Guidelines](ui-guidelines.md) own the shared interface standards applied across applications. This note is their reader-facing operating companion: it explains what accepted controls do without redefining the standards, duplicating application-specific copies, or constituting an application itself.
+
 ## Navigation Model
 
 A sphere represents a node in the scene hierarchy and acts as a portal into the next layer of structure.

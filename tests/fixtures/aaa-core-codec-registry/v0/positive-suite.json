@@ -24,7 +24,7 @@
       "caseId": "core-display-int16le",
       "capabilityId": "aaa-core.quantized-path-display-int16le/v0",
       "profile": "display_stream",
-      "consumer": "Potential display",
+      "consumer": "application rendering",
       "requestedAccess": "sample_range",
       "expectedRoundTrip": "semantic_exact_for_grid_aligned_display_records",
       "logicalBundle": {
@@ -82,10 +82,10 @@
       "caseId": "potential-map-canonical-json",
       "capabilityId": "potential_fixture_map_json/v1",
       "profile": "precision_bounded_analysis",
-      "consumer": "Potential publication",
+      "consumer": "AAA Core Potential",
       "requestedAccess": "whole_record",
       "expectedRoundTrip": "semantic_exact",
-      "sourceFile": "reference/priorities/app-potential/fixtures/potential-consumer-publication.synthetic.v1.json"
+      "sourceFile": "reference/priorities/app-aaa-core/potential/fixtures/potential-product.synthetic.v1.json"
     },
     {
       "caseId": "experimental-source-csv-decode",

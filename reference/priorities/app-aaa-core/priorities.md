@@ -3,6 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-platform`
+- Product classification: `shared-headless-application-platform`
 - Status: `logical-service-contracts-and-client-v0-accepted; measured-workloads-blocked`
 - Claim level: `priority-contract-and-design`
 - Platform name: `AAA Core`
@@ -13,6 +14,7 @@
 - Accepted history stream: [AAA Core Accepted-History Stream v0](accepted-history-stream-v0.md)
 - Accepted query and publication contract: [AAA Core Query, Transform, And Publication v0](query-transform-publication-v0.md)
 - Accepted application client: [AAA Core Client v0](client-v0.md)
+- Accepted shared Potential API: [AAA Core Potential v1](potential-v1.md)
 - Execution ledger: [work queue](work-queue.md)
 - Exploratory notes: [brainstorming](brainstorming.md)
 - Chronological record: [work log](work-log.md)
@@ -25,9 +27,11 @@ Establish AAA Core as the headless factory and shared-service layer for the inte
 
 AAA Core is not one monolithic runtime. It is a collection of focused services behind versioned contracts so that each application can consume the capabilities it needs without copying path logic or depending on another application's private state.
 
+AAA Core is not an end-user application. It has no public scene, visitor launch route, standalone HTML entrypoint, or browser composition root. The `app-aaa-core` directory name is retained as a compatibility routing identifier, and the accepted `aaa_core_*` schemas, capability IDs, classes, and refusal codes remain unchanged.
+
 ## Current Decisions
 
-1. The accepted name is `app-aaa-core`; the platform name is `AAA Core`.
+1. The retained compatibility directory name is `app-aaa-core`; the platform name is `AAA Core`. Neither name places Core in the public application catalogue.
 2. Path histories are the primary interchange object. Derived maps, query views, ledgers, and experimental comparison records are separately versioned interchange products bound to their sources.
 3. One logical path model supports multiple purpose-specific encodings rather than forcing every consumer through one storage format.
 4. Authoritative history, precision-bounded analysis, and display-stream representations remain visibly distinct.
@@ -52,9 +56,13 @@ The accepted [`aaa_core_accepted_history_stream/v0`](accepted-history-stream-v0.
 
 The accepted [`aaa_core_query_transform_publication/v0`](query-transform-publication-v0.md) contract now fixes equivalent request normalization, order-sensitive transform and reusable cache identities, exact source closure, provisional versus sealed state, non-escalating authority, and receipt-bound cross-application retrieval. Its conformance fixtures use complete and incomplete path-interchange sources and cover all fifteen named refusal codes. This is synthetic software conformance, not a production query, cache, catalog, transport, kernel, or scientific result.
 
-The accepted [`aaa_core_client/v0`](client-v0.md) now exposes the four contracts through one defensive-copy operation surface. Potential and Equation Mapping validate and query the same fixture records, subscribe through one shared accepted-history session, inspect the same progress, reuse one equivalent sealed publication, and retrieve it by exact receipt without application-local path logic. This is synchronous in-process client conformance, not a network SDK or production service.
+The accepted [`aaa_core_client/v0`](client-v0.md) now exposes the four contracts through one defensive-copy operation surface. Topo and Equation Mapping validate and query the same fixture records, subscribe through one shared accepted-history session, inspect the same progress, reuse one equivalent sealed publication, and retrieve it by exact receipt without application-local path logic. This is synchronous in-process client conformance, not a network SDK or production service.
 
-No executable Core row remains. CORE-006 and CORE-009 require measured local and rented-accelerator workloads, while CORE-007 requires a selected public experimental dataset and scientific comparison mapping. Production transport, persistence, authentication, and retention choices remain open but are not independently accepted queue objects.
+The accepted [`aaa_core_potential/v1`](potential-v1.md) is the sole supported application-facing Potential calculation boundary. Lorentz Geometry consumes it from its surface scheduler, while Topo exposes a thin consumer module for a separately approved Potential display mode. Complete finite contribution accounting is mandatory; missing, unavailable, duplicate, or nonfinite output fails closed. Core owns no Potential page, scene, controls, or visualization.
+
+Plainly: Core computes and packages Potential results; applications decide how to show them, and no application fills a missing result with zero.
+
+No executable Core queue row remains. CORE-006 and CORE-009 require measured local and rented-accelerator workloads, while CORE-007 requires a selected public experimental dataset and scientific comparison mapping. Production transport, persistence, authentication, and retention choices remain open but are not independently accepted queue objects.
 
 The [representative path workload matrix](representative-path-workload-matrix.md) is accepted as the shared benchmark definition for EOM continuation, Potential live maps, reaction studies, optimization sweeps, and collider imports. All five workloads remain unmeasured; the matrix selects no representation, deployment, or accelerator posture.
 

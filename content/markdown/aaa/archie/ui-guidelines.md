@@ -1,6 +1,6 @@
 # UI Guidelines
 
-This document is the contributor-facing reference for reader-facing UI standards in the Architrino webapp. Its purpose is to provide one place where interface preferences can be recorded deliberately instead of being scattered across code, scenes, and ad hoc decisions.
+This document is the contributor-facing reference for reader-facing UI standards across Architrino applications and application-like surfaces. Its purpose is to provide one place where interface preferences can be recorded deliberately instead of being scattered across code, scenes, and ad hoc decisions.
 
 Interface rules are part of explanation. A reader who is wrestling with unfamiliar physics should not also have to decode inconsistent controls, unclear navigation, or mixed visual language.
 
@@ -10,9 +10,12 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 
 ## Document Role
 
-This document is the canonical UI preference reference. It may also carry a short implementation-audit ledger, but the two roles should remain separate.
+This document is the canonical UI preference reference. It governs applications; it is not itself a product application. Its scene entry is an intentional documentation route, not an Applications-list entry or standalone-app launch target. It may also carry a short implementation-audit ledger, but the two roles should remain separate.
 
 - [Branding and Marketing](branding-and-marketing.md) owns the favored brand palette, logo treatment, public visual identity, contact card, and marketing presentation. This guide owns how that identity is applied inside the webapp.
+- [Navigation and Controls](navigation-and-controls.md) explains accepted controls from the reader's perspective. This guide owns the shared standards those controls implement.
+- Reusable implementation values belong in `ui-tokens.css`, and reusable behavior belongs in shared runtime modules. Applications consume those shared owners and keep only genuinely application-specific presentation or behavior local.
+- Scene views, rendered references, generated manifests, and examples may expose or demonstrate this guide, but they do not replace it or become competing standards authorities.
 - The `Preference` column states durable policy.
 - The `Current Non-Matching Uses` column records known implementation drift that should eventually move into issues, priority notes, or code-review tasks when it becomes active work.
 - Blank preference cells mean the policy has not been decided yet; they should not be treated as silent approval of current behavior.

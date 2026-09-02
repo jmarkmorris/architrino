@@ -32,7 +32,7 @@ This active-only audit read every immediate top-level `reference/priorities/*/pr
 
 Every child of `dormant-deferred` is excluded regardless of whether its parked tracker still contains historical rank metadata. A top-level tracker remains in the active inventory even when its internal status is `deferred` or `watchlist`; moving that directory under `dormant-deferred` is the action that removes it from this table.
 
-The audit preserves component scores for unchanged marginal objects, removes eight archived rows, adds the previously unranked top-level `app-mcp` owner, and re-sorts the remaining winners contiguously. The former `eom-attractor-search` packet is now distributed between EOM's reusable instrument packet and Braid Program's scientific campaign packet.
+The audit preserves component scores for unchanged marginal objects, removes eight archived rows, adds the previously unranked top-level MCP packet, and re-sorts the remaining winners contiguously. The former `eom-attractor-search` packet is now distributed between EOM's reusable instrument packet and Braid Program's scientific campaign packet.
 
 ## Operator Discussion Queue
 
@@ -71,7 +71,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 - The top ten are unchanged. Their marginal objects and component scores remain current enough that removing archived rows does not alter their relative order.
 - Eight `dormant-deferred` rows were removed: `app-equation-mapping`, `information-relay-machines`, `validation-gates`, `lissajou`, `media-videos`, `media-images`, `media-comics`, and `media-posts`.
-- `app-mcp` enters at rank `20` on `named_http_client_conformance`. Its score is for the remaining named-client verification object, not for the already completed local service and loopback adapter.
+- The then-separate MCP packet enters at rank `20` on `named_http_client_conformance`. Its score is for the remaining named-client verification object, not for the already completed local service and loopback adapter.
 - The active rows below rank `16` were renumbered contiguously without changing component scores: `mapping-open-problems` is now `17`, `source-mining` `18`, `mapping-cosmology` `19`, `app-ideas` `21`, `archie` `22`, `app-ios` `23`, `aaa-operations` `24`, `app-ui-guidelines` `25`, `dark-sector` `26`, and `aaa-futures` `27`.
 - Borg and Strong-Field now expose machine-checkable local rank-`1` objects. This changes queue representation, not their scores or evidence grade.
 
@@ -97,7 +97,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 - `symbol_definition_disclosure` and `author_equation_registration_workflow` are verified across all 4,587 corpus display-equation occurrences, so they no longer receive remaining-value credit.
 - The app's next unresolved object is `curated_carousel_promotion_review`. Every equation already has the same search, address, source, and symbol baseline; this object is only an editorial decision about whether one equation merits carousel placement and curated callouts.
-- `app-equation-mapping` moves to rank `23`; `source-mining`, `mapping-cosmology`, `app-mcp`, `archie`, and `app-ios` each move up one rank without score changes. The rerank changes execution attention only and does not change equation claim levels, proof status, corpus authority, or equation-mapping score.
+- `app-equation-mapping` moves to rank `23`; `source-mining`, `mapping-cosmology`, the then-separate MCP packet, `archie`, and `app-ios` each move up one rank without score changes. The rerank changes execution attention only and does not change equation claim levels, proof status, corpus authority, or equation-mapping score.
 
 ## Equation Mapping Arbitrary-Promotion Withdrawal — 2026-09-01
 
@@ -151,14 +151,14 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 ## Dormant-Deferred Routing — 2026-09-02
 
-- At operator direction, `app-ios`, `app-mcp`, and `dark-sector` moved under `dormant-deferred`; their queues and evidence remain preserved but are no longer executable or scored while parked.
+- At operator direction, `app-ios`, the then-separate MCP packet, and `dark-sector` moved under `dormant-deferred`; their queues and evidence remain preserved but are no longer executable or scored while parked.
 - The same archive-policy correction removes the stale `app-animator`, `archie`, and `aaa-futures` rows that were still present in the numeric table despite already living under `dormant-deferred`.
 - The remaining 14 active owners and four shared packets retain their component scores and are renumbered contiguously. This is attention routing only; it does not complete MCP-001, iOS release acceptance, any dark-sector candidate, or any scientific claim.
 
 ## MCP-001 Named-Client Completion — 2026-09-02
 
 - After archival, the operator completed the one outstanding ChatGPT-mode full-corpus HTTP test. The four bounded tools returned typed `ok`, and the missing-source read returned `not_found` with `SOURCE_NOT_FOUND`; loopback telemetry corroborated the five-tool sequence and snapshot identity.
-- MCP-001 is now verified. The result does not reactivate `app-mcp`, alter the active inventory or scores, establish remote deployment readiness, or advance any scientific claim.
+- MCP-001 is now verified. The result does not reactivate the parked Archie-service MCP component, alter the active inventory or scores, establish remote deployment readiness, or advance any scientific claim.
 
 ## Current Focus
 
@@ -184,7 +184,7 @@ The routed next actions now live in [work-queue.md](work-queue.md). Each impleme
 - The numeric ranks are contiguous and include every top-level rankable owner plus the four explicitly ranked shared packets.
 - No `dormant-deferred` child appears in the numeric table or active discussion queue.
 - Legacy braid directories stay archived; Braid Program owns scientific search campaigns, EOM owns reusable execution capability, and the former attractor-search packet is distributed between those two canonical owners.
-- The former `app-simulation` directory is a routing index, not a ranked owner; its preserved protocol detail advances only through the named canonical lane.
+- The former [`app-simulation`](../app-simulation/priorities.md) directory is a compatibility location outside the owner inventory. Its canonical [Simulation Protocol Routing Index](../../op/simulation-protocol-routing-index.md) is operations documentation, and preserved protocol detail advances only through the named scientific or proof owner.
 - [closure-join-matrix.md](closure-join-matrix.md) remains the shared-object dependency view, and [inventory.md](inventory.md) remains the detailed file map.
 - Workstream metadata mirrors this table. Shared theorem packets do not require separate workstream metadata.
 

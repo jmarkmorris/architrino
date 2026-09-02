@@ -10,7 +10,7 @@
 - Output authority: display and analytical-reference use only
 - Not supplied: a scalar potential, receiver acceleration, dynamics, continuation, energy, conservation, stability, or physical validation
 
-This contract selects the **signed ordinary wake-intensity product** as Topo's first raw scalar. It does not call that scalar a potential. A true scalar-potential product remains owned by [Potential](../app-potential/priorities.md) and requires a separately versioned scientific kernel.
+This contract selects the **signed ordinary wake-intensity product** as Topo's first raw scalar. It does not call that scalar a potential. A true scalar-Potential product remains routed through [AAA Core Potential](../app-aaa-core/potential-v1.md) and requires a separately versioned scientific kernel.
 
 Plainly: v1 colors the signed inverse-square strength of the ordinary arriving wake geometry. It does not invent a potential formula to make the application name or display more convenient.
 
@@ -337,6 +337,6 @@ This contract fails if any of these operator-checkable observations occurs:
 
 ## Remaining Scientific Decision
 
-Topo v1 can proceed with `Signed ordinary wake intensity` as its exact observable label. A true scalar-potential mode remains open and must arrive from Potential with its own kernel identity, history measure or mollification, radial dependence, normalization, singular and nonordinary behavior, and independent analytical reference. It must be a separate menu product rather than a relabeling or display transform of $\mathcal I_q^{\mathrm{ord}}$.
+Topo v1 can proceed with `Signed ordinary wake intensity` as its exact observable label. A true scalar-Potential mode remains open and must arrive through AAA Core with its own kernel identity, history measure or mollification, radial dependence, normalization, singular and nonordinary behavior, and independent analytical reference. It must be a separate menu product rather than a relabeling or display transform of $\mathcal I_q^{\mathrm{ord}}$.
 
 Plainly: the geometry is closed for the first map. The open issue is whether a later, genuinely defined potential should be added as a second map mode.

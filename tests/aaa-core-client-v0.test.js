@@ -25,33 +25,33 @@ function setup() {
   const service = new AAAClientService({clientContract: CLIENT_CONTRACT, pathContract: PATH_CONTRACT,
     codecRegistry: CODECS, streamContract: STREAM_CONTRACT, queryPublicationContract: QUERY_CONTRACT});
   const clients = FIXTURE.clients.map((identity) => service.createClient(identity));
-  return {service, potential: clients[0], equationMapping: clients[1]};
+  return {service, topo: clients[0], equationMapping: clients[1]};
 }
 
-test("Potential and Equation Mapping receive the same client implementation and operation surface", () => {
-  const {potential, equationMapping} = setup();
-  assert.ok(potential instanceof AAAClient);
+test("Topo and Equation Mapping receive the same client implementation and operation surface", () => {
+  const {topo, equationMapping} = setup();
+  assert.ok(topo instanceof AAAClient);
   assert.ok(equationMapping instanceof AAAClient);
-  assert.equal(potential.constructor, equationMapping.constructor);
-  for (const operation of CLIENT_CONTRACT.operations) assert.equal(typeof potential[operation], "function");
+  assert.equal(topo.constructor, equationMapping.constructor);
+  for (const operation of CLIENT_CONTRACT.operations) assert.equal(typeof topo[operation], "function");
 });
 
 test("both applications validate and normalize through Core without local path logic", () => {
-  const {potential, equationMapping} = setup();
-  const potentialManifest = potential.validateManifest(sourceBundle);
+  const {topo, equationMapping} = setup();
+  const potentialManifest = topo.validateManifest(sourceBundle);
   const equationManifest = equationMapping.validateManifest(sourceBundle);
   assert.equal(potentialManifest.state, "succeeded");
   assert.deepEqual(potentialManifest.result, equationManifest.result);
-  const potentialQuery = potential.prepareQuery(queryCase.request);
+  const potentialQuery = topo.prepareQuery(queryCase.request);
   const equationQuery = equationMapping.prepareQuery(queryCase.equivalentRequest);
   assert.equal(potentialQuery.result.cacheIdentity, equationQuery.result.cacheIdentity);
 });
 
 test("equivalent sealed publication is reused and retrieved by the second application", () => {
-  const {potential, equationMapping} = setup();
+  const {topo, equationMapping} = setup();
   const base = {sourceBundle, publisher: queryCase.publisher, permittedConsumers: queryCase.permittedConsumers, state: "sealed"};
-  const first = potential.publish({...base, request: queryCase.request});
-  const second = potential.publish({...base, request: queryCase.equivalentRequest});
+  const first = topo.publish({...base, request: queryCase.request});
+  const second = topo.publish({...base, request: queryCase.equivalentRequest});
   assert.equal(first.state, "succeeded");
   assert.equal(first.result.cacheStatus, FIXTURE.expected.firstPublicationCacheStatus);
   assert.equal(second.result.cacheStatus, FIXTURE.expected.equivalentPublicationCacheStatus);
@@ -64,18 +64,18 @@ test("equivalent sealed publication is reused and retrieved by the second applic
 });
 
 test("both clients subscribe through one shared accepted-history session", () => {
-  const {service, potential, equationMapping} = setup();
+  const {service, topo, equationMapping} = setup();
   const producer = service.createClient({clientId: "eom-fixture-client", applicationId: "EOM solver"});
   const streamId = streamCase.stream.streamId;
   const opened = producer.openStream({streamId, fixtureCase: streamCase, pathBundle: streamCase.pathBundle});
   assert.equal(opened.state, "succeeded");
   for (const action of streamCase.actions) {
-    const client = action.consumerId === "potential-consumer" ? potential :
+    const client = action.consumerId === "potential-consumer" ? topo :
       action.consumerId === "history-audit-consumer" ? equationMapping : producer;
     const result = client.streamAction({streamId, action});
     assert.equal(result.state, "succeeded", result.failure?.message);
   }
-  const first = potential.inspectStream(streamId);
+  const first = topo.inspectStream(streamId);
   const second = equationMapping.inspectStream(streamId);
   assert.deepEqual(first.result, second.result);
   assert.equal(first.result.progress.producerState, FIXTURE.expected.streamState);
@@ -85,25 +85,25 @@ test("both clients subscribe through one shared accepted-history session", () =>
 });
 
 test("failures retain exact source code and inspectable terminal progress", () => {
-  const {potential} = setup();
+  const {topo} = setup();
   const malformed = structuredClone(queryCase.request);
   delete malformed.output;
-  const failed = potential.prepareQuery(malformed);
+  const failed = topo.prepareQuery(malformed);
   assert.equal(failed.state, "failed");
   assert.equal(failed.failure.source, "QueryPublicationError");
   assert.equal(failed.failure.code, FIXTURE.expected.failureCode);
   assert.deepEqual(failed.progress, {phase: "failed", completedUnits: 0, totalUnits: 1});
-  assert.deepEqual(potential.inspectOperation(failed.operationId), failed);
+  assert.deepEqual(topo.inspectOperation(failed.operationId), failed);
   failed.failure.code = "mutated";
-  assert.equal(potential.inspectOperation(failed.operationId).failure.code, FIXTURE.expected.failureCode);
+  assert.equal(topo.inspectOperation(failed.operationId).failure.code, FIXTURE.expected.failureCode);
 });
 
 test("codec negotiation delegates to the accepted registry", () => {
-  const {potential} = setup();
+  const {topo} = setup();
   const provider = CODECS.providers.find((candidate) => candidate.capabilityId === "potential_fixture_map_json/v1");
-  const result = potential.negotiateCodec({registrySchema: CODECS.schema, capabilityId: provider.capabilityId,
+  const result = topo.negotiateCodec({registrySchema: CODECS.schema, capabilityId: provider.capabilityId,
     deterministicVersion: provider.deterministicVersion, profile: "precision_bounded_analysis",
-    consumer: "Potential publication", requestedAccess: "whole_record", direction: "encode"});
+    consumer: "AAA Core Potential", requestedAccess: "whole_record", direction: "encode"});
   assert.equal(result.state, "succeeded");
   assert.deepEqual(result.result, {capabilityId: provider.capabilityId, providerId: provider.providerId,
     deterministicVersion: provider.deterministicVersion});
@@ -115,5 +115,5 @@ test("client schema retains dependency, operation, cache, failure, and consumer 
     assert.ok(schema.required.includes(field));
   }
   assert.deepEqual(new Set(CLIENT_CONTRACT.consumerConformance.map((candidate) => candidate.applicationId)),
-    new Set(["Potential", "Equation Mapping"]));
+    new Set(["Topo", "Equation Mapping"]));
 });

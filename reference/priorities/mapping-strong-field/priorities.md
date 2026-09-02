@@ -513,7 +513,7 @@ Failure modes to retain:
 - braid
 - [dark-sector](../dormant-deferred/dark-sector/priorities.md)
 - [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md)
-- [app-simulation](../app-simulation/priorities.md)
+- [simulation protocol routing index](../../op/simulation-protocol-routing-index.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

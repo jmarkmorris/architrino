@@ -157,7 +157,7 @@ The positive suite contains five independent bundles:
 
 The negative suite mutates those bundles to reject missing coverage, incompatible normalized scale, a broken predecessor, unsupported precision, an unknown version, authority escalation, a missing source binding, an incomplete seal, experimental uncertainty loss, and stale identity.
 
-The Potential compatibility test maps a Core path-set manifest into every upstream field currently required by [`potential-consumer-publication-contract.v1.json`](../app-potential/potential-consumer-publication-contract.v1.json). This proves field-level application conformance for the synthetic v1 fixture; it does not prove a production Potential service, codec, kernel, stream broker, or published map.
+The Potential compatibility test maps a Core path-set manifest into every upstream field currently required by [`potential-product-contract.v1.json`](potential/potential-product-contract.v1.json). This proves field-level Core product conformance for the synthetic v1 fixture; it does not prove a production Potential service, codec, kernel, stream broker, or published map.
 
 Plainly: every completion family named by CORE-001 has a passing example, and every required fail-closed class has an executable negative control. The evidence is contract conformance, not runtime or scientific acceptance.
 

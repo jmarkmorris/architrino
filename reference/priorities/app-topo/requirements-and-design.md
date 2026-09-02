@@ -6,7 +6,7 @@
 - Implementation: `TOPO-002 synthetic preview complete; TOPO-003 reference surface not started`
 - Application authority: display-only prescribed-path exploration
 - Forward-evolution authority: EOM solver only
-- Potential-product authority: [Potential](../app-potential/priorities.md)
+- Potential-product API: [AAA Core Potential](../app-aaa-core/potential-v1.md)
 - First observable: [TOPO-001 signed ordinary wake intensity](topo-observable-and-reference-geometry-v1.md)
 - Interaction contract: [TOPO-002 interaction and color contract v1](topo-interaction-and-color-contract-v1.md)
 - Circular-binary contract: [prescribed circular binary v1](topo-circular-binary-prescribed-history-v1.md)
@@ -219,6 +219,6 @@ The first release is acceptable only when:
 
 ## Open Decisions
 
-1. Whether and when a separately defined true scalar-potential product from Potential becomes a second map mode.
+1. Whether and when a separately defined true scalar-Potential product supplied through AAA Core becomes a second map mode.
 2. Map resolution, recomputation budget, and progressive-rendering policy.
 3. Whether the source stays at $(2/3,1/2)$ for every later scenario or becomes scenario metadata.

@@ -35,13 +35,14 @@ This document is no longer an active backlog. It is the compact orientation note
 - [pdgapps](pdgapps.md) — cross-app and cross-boundary architecture rules for the deferred PDG workstream.
 - [pdgfeed](pdgfeed.md) — upstream PDG ingest, normalization, and request-boundary reference.
 - [pdgsolve](pdgsolve.md) — solve, acceptance, and publication-boundary reference.
-- [pdgedit](pdgedit.md) — final authored-surface document and editor reference.
+- [pdgedit](pdgedit.md) — final authored-surface document and editor reference, including the controlled [review/export surface](pdgedit.md#controlled-review-and-export-surface).
 
 ## Deferred State
 
 - `pdgfeed` remained the upstream Python layer under `scripts/pdg/` plus the root `pdgfeed.py` delegate entrypoint.
 - `pdgsolve` remained the Python solve, acceptance, and publication boundary centered on `scripts/pdg/pdgsolve.py`.
 - `pdgedit` remained the standalone authored-surface runtime under `src/apps/pdgedit/` and `pdgedit.html`.
+- `pdgedit-review.html` remained a directly addressable review/export artifact within the `pdgedit` workflow, outside the peer product-app inventory.
 - Shared schemas, examples, and manifests under `src/contracts/` and `content/contracts/examples/` were the frozen boundary surface between stages.
 - The main Architrino web app no longer routed archived PDG tools through the active launcher surface.
 

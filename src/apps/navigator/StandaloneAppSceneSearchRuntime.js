@@ -3,7 +3,7 @@ import { createSceneSearchUiRuntime } from "../../runtime/SceneSearchUiRuntime.j
 import { SceneIndexService } from "../../services/SceneIndexService.js";
 import { createSceneSearchCoordinatorService } from "../../services/SceneSearchCoordinatorService.js";
 import {
-  isPublicStandaloneAppSearchEntry,
+  isPublicProductSceneSearchEntry,
   resolveStandaloneAppHrefForScene,
 } from "./StandaloneAppLaunchRuntime.js";
 
@@ -91,7 +91,7 @@ export function createStandaloneAppSceneSearchRuntime({
     },
     documentRef: documentLike,
     onOpenChange,
-    isSearchEntryVisible: isPublicStandaloneAppSearchEntry,
+    isSearchEntryVisible: isPublicProductSceneSearchEntry,
   });
   const sceneSearchCoordinator = createSceneSearchCoordinatorService({
     sceneIndexService,

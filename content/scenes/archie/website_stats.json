@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "archie__website_stats",
-    "title": "Website Stats",
+    "title": "Website Statistics — Operations",
     "type": "Scene-Diagram",
     "units": "relative",
     "layout": {

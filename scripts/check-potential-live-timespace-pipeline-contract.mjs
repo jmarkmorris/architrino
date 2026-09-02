@@ -6,7 +6,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const CONTRACT_PATH = "reference/priorities/app-potential/potential-live-timespace-pipeline-contract.v1.json";
+const CONTRACT_PATH = "reference/priorities/app-aaa-core/potential/potential-live-pipeline-contract.v1.json";
 
 export class PipelineContractError extends Error {
   constructor(code, message) {
@@ -62,7 +62,7 @@ function validateContractDefinition(contract) {
       contract.ownershipBoundary.definesTransport === false &&
       contract.ownershipBoundary.fixtureEnvelopeIsProductionInterchange === false,
     "invalid_fixture",
-    "Potential must not claim the Core stream or transport boundary",
+    "the Core Potential pipeline must not redefine the shared stream or transport boundary",
   );
   requireCondition(
     sameValue(contract.stateMachine.terminal, ["sealed", "halted", "failed"]) &&

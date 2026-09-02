@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
@@ -7,6 +8,8 @@ import { normalizePdgeditReviewGroupCatalog } from "../../src/apps/pdgedit/Pdged
 import { renderPdgeditTileSvg } from "../../src/apps/pdgedit/PdgeditTileSvgRuntime.js";
 
 const repoRootPath = fileURLToPath(new URL("../../", import.meta.url));
+const pythonVenvPath = path.resolve(repoRootPath, process.env.AAA_VENV ?? "../.venv");
+const pythonPath = path.join(pythonVenvPath, "bin/python");
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 const TEXT_FONT_PATH = "/System/Library/Fonts/HelveticaNeue.ttc";
 const EPSILON_FONT_PATH = "/System/Library/Fonts/Supplemental/Times New Roman.ttf";
@@ -80,11 +83,12 @@ export function createPythonMeasurementContext() {
       const cacheKey = `${fontPath}\u0000${fontSize}\u0000${text}`;
       if (!measurementCache.has(cacheKey)) {
         const rawMeasurement = execFileSync(
-          "python3",
+          pythonPath,
           ["-c", PYTHON_FONT_MEASURE_SCRIPT, fontPath, String(fontSize), String(text)],
           {
             cwd: repoRootPath,
             encoding: "utf8",
+            env: { ...process.env, VIRTUAL_ENV: pythonVenvPath },
           }
         );
         measurementCache.set(cacheKey, JSON.parse(rawMeasurement));

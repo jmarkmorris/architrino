@@ -159,7 +159,7 @@ The reader-facing Noether sea pro/anti coupling chapter should state the provisi
 ## Related Priorities
 
 - [app-animator](../dormant-deferred/app-animator/priorities.md)
-- [app-simulation](../app-simulation/priorities.md)
+- [simulation protocol routing index](../../op/simulation-protocol-routing-index.md)
 - [mapping-strong-field](../mapping-strong-field/priorities.md)
 
 ## Related AAA Notes

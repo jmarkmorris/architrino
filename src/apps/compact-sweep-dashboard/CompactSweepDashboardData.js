@@ -1,5 +1,9 @@
+import {
+  validateBorgSelection,
+} from "../shared/BorgSelectionNavigation.mjs";
+
 export const COMPACT_SWEEP_DASHBOARD_SCHEMA =
-  "prescribed-path-analysis/compact-sweep-dashboard-data.v2";
+  "prescribed-path-analysis/compact-sweep-dashboard-data.v3";
 
 export const ACTIVE_CANDIDATE_DISPOSITION = "active-candidate";
 export const DEPRECATED_CONTROL_DISPOSITION =
@@ -210,7 +214,12 @@ export function validateCompactSweepDashboardData(data) {
       "identity.databaseVerificationFileSha256",
       data.identity?.databaseVerificationFileSha256,
     ],
+    ["identity.borgRegistrySha256", data.identity?.borgRegistrySha256],
   ].forEach(([label, value]) => assertSha256(value, label));
+  if (typeof data.identity?.borgRegistryRevision !== "string" ||
+      data.identity.borgRegistryRevision.length === 0) {
+    fail("identity.borgRegistryRevision must be a nonempty string.");
+  }
   if (!Array.isArray(data.rows)) {
     fail("dashboard data rows must be an array.");
   }
@@ -240,6 +249,19 @@ export function validateCompactSweepDashboardData(data) {
     assertSha256(row.modelRevisionSha256, `${label}.modelRevisionSha256`);
     if (row.assemblyId !== `asm-${row.modelRevisionSha256.slice(0, 32)}`) {
       fail(`${label} exact identity pair is inconsistent.`);
+    }
+    let borgSelection;
+    try {
+      borgSelection = validateBorgSelection(
+        row.borgSelection,
+        `${label}.borgSelection`,
+      );
+    } catch {
+      fail(`${label}.borgSelection must retain the row's exact assembly pair and permanent braidId.`);
+    }
+    if (borgSelection.assemblyId !== row.assemblyId ||
+        borgSelection.modelRevisionSha256 !== row.modelRevisionSha256) {
+      fail(`${label}.borgSelection must retain the row's exact assembly pair and permanent braidId.`);
     }
     if (![ACTIVE_CANDIDATE_DISPOSITION, DEPRECATED_CONTROL_DISPOSITION]
       .includes(row.candidateDisposition)) {

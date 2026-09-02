@@ -397,7 +397,7 @@ export function encodePotentialMapFixture(registry, request, document) {
   const provider = negotiateCodec(registry, {...request, direction: "encode"});
   if (provider.capabilityId !== "potential_fixture_map_json/v1" ||
       document.schema !== "architrino.potential-consumer-publication-example.v1" ||
-      document.publication?.codec?.provider !== "app-potential" ||
+      document.publication?.codec?.provider !== "aaa-core" ||
       document.publication?.codec?.capabilityId !== provider.capabilityId ||
       document.publication?.codec?.registry !== registry.schema ||
       document.publication?.codec?.representationProfile !== request.profile) {

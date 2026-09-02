@@ -20,7 +20,7 @@ AAA Core owns the registry schema, provider discovery, compatibility check, capa
 | Provider class | Owner | Registered responsibility | Boundary |
 | --- | --- | --- | --- |
 | Core | AAA Core | Canonical logical-record JSON and a reusable quantized path-display layout | No EOM evolution or scientific interpretation |
-| Application | Potential | Existing fixture map JSON for a Potential publication product | Fixture-only; no production map format selected |
+| Core product | AAA Core Potential | Existing fixture map JSON for a Potential publication product | Fixture-only; no production map format selected |
 | Experimental | Synthetic experiment adapter | Fixture CSV decoding with source-native byte retention | Fixture-only; no public dataset or production detector decoder selected |
 
 Plainly: Core controls the loading-dock rules. Core, an app, or an experiment adapter may own particular loading equipment, but anything exchanged outside its private process must register the same facts and pass the same safety checks.
@@ -78,9 +78,9 @@ Plainly: positions and times can be packed efficiently for drawing, but the disp
 
 ### Potential fixture-map JSON
 
-`potential_fixture_map_json/v1` registers the already accepted Potential consumer/publication fixture as an application-owned capability. It encodes the complete app-contract-valid document as canonical UTF-8 JSON and preserves the derived map, source binding, coverage, provenance, completeness, error grade, and publication identity exactly. It supports `precision_bounded_analysis` and `display_stream`, but the current fixture exercises only the precision-bounded-analysis profile. Its status is `conformance_accepted_fixture_only`.
+`potential_fixture_map_json/v1` registers the accepted Potential product fixture as a Core-owned capability. It encodes the complete contract-valid document as canonical UTF-8 JSON and preserves the derived map, source binding, coverage, provenance, completeness, error grade, and publication identity exactly. It supports `precision_bounded_analysis` and `display_stream`, but the current fixture exercises only the precision-bounded-analysis profile. Its status is `conformance_accepted_fixture_only`.
 
-Plainly: Potential's existing test map now has a real entry in the Core registry rather than merely naming a future registry. That does not choose a production tile format.
+Plainly: the Potential test map has one Core registry entry. That does not choose a production tile format.
 
 ### Experimental fixture CSV decoder
 

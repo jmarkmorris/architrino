@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>architrino · borg assembly library</title>
+  <title>architrino · borg library</title>
   <link rel="icon" href="data:," />
   <link rel="stylesheet" href="./ui-tokens.css" />
   <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
@@ -11,10 +11,11 @@
 </head>
 <body>
   <header class="library-header">
-    <a class="brand" href="./borg-library.html"><span class="brand-mark" aria-hidden="true"></span><strong>Borg</strong><span>Assembly discovery</span></a>
-    <nav class="library-header-actions" aria-label="Borg entry actions">
+    <a class="brand" href="./borg-library.html"><span class="brand-mark" aria-hidden="true"></span><strong>Borg</strong><span>Library</span></a>
+    <nav class="library-header-actions" aria-label="Borg Library actions">
       <div id="scene-hud-tools" class="borg-library-navigation"></div>
-      <a class="workbench-link" href="./borg.html">Start random simulation <span aria-hidden="true">↗</span></a>
+      <a id="borg-library-return-to-search" class="workbench-link" hidden>Return to Braid Search</a>
+      <a id="borg-workbench-entry" class="workbench-link" href="./borg.html">Start new simulation in Borg Workbench <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
   <div class="library-layout">
@@ -34,7 +35,7 @@
       </aside>
     </div>
     <main>
-      <div class="page-heading"><div><p class="eyebrow">BORG ASSEMBLY DISCOVERY</p><h1>Explore assemblies.</h1><p class="intro">Filter the visual catalog, inspect an exact configuration, or start a new random simulation.</p></div><span class="demo-badge">Exact registry</span></div>
+      <div class="page-heading"><div><p class="eyebrow">BORG PRODUCT</p><h1>Borg Library</h1><p class="intro">Explore the visual catalog, inspect an exact configuration, or continue to the Borg Workbench.</p></div><span class="demo-badge">Exact registry</span></div>
       <div class="collection-toolbar">
         <div><strong id="result-count" role="status" aria-live="polite">Loading catalog…</strong><span id="result-context"></span></div>
         <label class="group-control">Group by <select id="group-by"><option value="none">Braids</option><option value="count">Architrino count</option><option value="braidCount">Braid count</option><option value="assemblySpan">Assembly span</option><option value="braidDimension">Braid dimensionality</option><option value="breathing">Breathing</option></select></label>
@@ -58,7 +59,7 @@
     <p id="inspector-description"></p><div id="inspector-facets" class="detail-facets"></div>
     <section id="scientific-status" aria-label="Scientific status"></section>
     <section id="platonic-relationships" aria-label="Platonic relationship"></section>
-    <div class="detail-actions"><a id="open-record" class="primary-action">Open in workbench ↗</a><button id="copy-selection">Copy exact link</button></div>
+    <div class="detail-actions"><a id="open-record" class="primary-action">Open in Borg Workbench ↗</a><button id="copy-selection">Copy exact link</button></div>
     <p id="copy-status" role="status"></p>
     <details><summary>Identity and source</summary><dl id="identity"></dl><a id="raw-record">View sealed JSON</a></details>
     <details><summary>Why these filters match</summary><dl id="facet-reasons"></dl></details>

@@ -43,9 +43,9 @@ No executable rows. The following operator-routed teaching tasks remain parked w
 ### CDF-069 — Roots Mode
 
 - **Status:** Deferred / blocked
-- **Source:** [Roots plan](roots-product-plan.md) and [learner progression plan](causal-delay-feedback-advancement.md)
+- **Source:** [Roots mode plan](roots-mode-plan.md) and [learner progression plan](causal-delay-feedback-advancement.md)
 - **Request / acceptance:** Synchronize delay-map zeroes, causal-wake intersections, ordinary-fold behavior, root identity, and active-root counts in the existing app.
-- **Evidence / blocker:** The linked-view lesson remains a genuine teaching challenge; no separate route, runtime, evaluator, state store, or wake renderer is authorized.
+- **Evidence / blocker:** The existing Roots view is live at `causal-delay-feedback.html?mode=roots` inside the shared application shell. The deferred object is only the more advanced synchronized linked-view lesson; no standalone product route, duplicate runtime, evaluator, state store, or wake renderer is authorized.
 - **Completion:** Ordinary folds are legible and checkable without generalizing their $\Delta N=\pm2$ law to unresolved coincident same-source birth.
 
 ### CDF-070 — Self-Hit Near Field Speed

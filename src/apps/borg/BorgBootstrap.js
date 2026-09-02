@@ -24,6 +24,12 @@ import { loadBorgScientificStatus } from "./BorgScientificStatus.mjs";
 import { loadBorgPlatonicRelationships } from "./BorgPlatonicRelationships.mjs";
 import { describeLibraryRecord } from "./library/BorgLibraryDescriptors.mjs";
 import { LIBRARY_FACETS } from "./library/BorgLibraryQuery.mjs";
+import {
+  BORG_SELECTION_STATUS,
+  resolveBorgSelectionRequest,
+  resolveBorgLibraryReturnHref,
+  resolveBraidSearchReturnHref,
+} from "../shared/BorgSelectionNavigation.mjs";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -41,26 +47,45 @@ export async function bootBorgApp({
 } = {}) {
   const query = new URLSearchParams(search);
   const runtimeMode = resolveBorgRuntimeMode(query);
+  const returnHref = resolveBraidSearchReturnHref(
+    query.get("returnTo"),
+    locationLike,
+  );
+  const libraryReturnHref = resolveBorgLibraryReturnHref(
+    query.get("libraryReturnTo"),
+    locationLike,
+  );
   const braidRecordNavigation = createBorgAssemblyRecordNavigation({
     catalog: assemblyRecordCatalog,
     selectedAssemblyId: query.get("assemblyId"),
+    returnTo: returnHref,
+    libraryReturnTo: libraryReturnHref,
     locationLike,
     historyLike,
     fetchLike,
   });
   let assemblyViewSession = null;
   let eomRecordReplay = null;
+  let selectedCatalogEntry = null;
+  let selectedRecordSha256 = null;
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
-    const assemblyId = query.get("assemblyId");
-    const modelRevisionSha256 = query.get("modelRevisionSha256");
-    const recordSha256 = query.get("recordSha256");
-    if (!/^asm-[a-f0-9]{32}$/.test(assemblyId ?? "") || !/^[a-f0-9]{64}$/.test(modelRevisionSha256 ?? "") ||
-        (recordSha256 !== null && !/^[a-f0-9]{64}$/.test(recordSha256))) {
-      throw new TypeError("Assembly replay requires a valid assemblyId and modelRevisionSha256; recordSha256, when present, must be a lowercase SHA-256 hash.");
+    const selection = resolveBorgSelectionRequest(
+      query,
+      assemblyRecordCatalog.entries,
+    );
+    if (selection.status === BORG_SELECTION_STATUS.MISSING) {
+      throw new RangeError(selection.reason);
     }
-    const entry = assemblyRecordCatalog.entries.find((row) =>
-      row.assemblyId === assemblyId && row.modelRevisionSha256 === modelRevisionSha256);
-    if (!entry) throw new RangeError("The requested exact assembly is not in the current Borg catalog.");
+    if (selection.status === BORG_SELECTION_STATUS.STALE) {
+      throw new RangeError(selection.reason);
+    }
+    if (selection.status !== BORG_SELECTION_STATUS.VALID) {
+      throw new TypeError(selection.reason);
+    }
+    const entry = selection.entry;
+    const recordSha256 = selection.recordSha256;
+    selectedCatalogEntry = entry;
+    selectedRecordSha256 = recordSha256;
     const records = [await fetchBorgRecord(fetchLike, entry, "assembly-view record", recordSha256)];
     const [scientificStatus, platonicRelationships] = await Promise.all([
       loadBorgScientificStatus({
@@ -172,6 +197,16 @@ export async function bootBorgApp({
     assemblyViewSession,
     eomRecordReplay,
     braidRecordNavigation,
+    libraryNavigation: Object.freeze({
+      href: libraryReturnHref ?? buildBorgLibrarySelectionHref(
+        selectedCatalogEntry,
+        selectedRecordSha256,
+      ),
+      label: "Back to Borg Library",
+    }),
+    returnNavigation: returnHref
+      ? Object.freeze({ href: returnHref, label: "Return to Braid Search" })
+      : null,
   });
 }
 
@@ -218,6 +253,8 @@ function borgWorkbenchFacetLabel(key, value) {
 export function createBorgAssemblyRecordNavigation({
   catalog = BORG_ASSEMBLY_RECORD_CATALOG,
   selectedAssemblyId = null,
+  returnTo = null,
+  libraryReturnTo = null,
   locationLike = globalThis.location,
   historyLike = globalThis.history,
   fetchLike = globalThis.fetch,
@@ -233,10 +270,13 @@ export function createBorgAssemblyRecordNavigation({
     if (!entry) {
       throw new RangeError(`Borg assembly record catalog has no entry ${String(assemblyId)}.`);
     }
-    return `borg.html?${new URLSearchParams({
+    const query = new URLSearchParams({
       assemblyId: entry.assemblyId,
       modelRevisionSha256: entry.modelRevisionSha256,
-    })}`;
+    });
+    if (returnTo) query.set("returnTo", returnTo);
+    if (libraryReturnTo) query.set("libraryReturnTo", libraryReturnTo);
+    return `borg.html?${query}`;
   }
 
   function navigate(assemblyId) {
@@ -276,6 +316,16 @@ export function createBorgAssemblyRecordNavigation({
     load,
     persistSelection,
   });
+}
+
+function buildBorgLibrarySelectionHref(entry, recordSha256 = null) {
+  if (!entry) return "./borg-library.html";
+  const query = new URLSearchParams({
+    assemblyId: entry.assemblyId,
+    modelRevisionSha256: entry.modelRevisionSha256,
+  });
+  if (recordSha256) query.set("recordSha256", recordSha256);
+  return `./borg-library.html?${query}`;
 }
 
 async function fetchBorgRecord(fetchLike, entry, label, expectedSha256 = null) {

@@ -7,7 +7,7 @@
   "streamCaseId": "sealed-dual-consumer-reconnect",
   "queryCaseId": "complete-equivalent-and-ordered",
   "clients": [
-    {"clientId": "potential-client", "applicationId": "Potential"},
+    {"clientId": "topo-client", "applicationId": "Topo"},
     {"clientId": "equation-mapping-client", "applicationId": "Equation Mapping"}
   ],
   "expected": {

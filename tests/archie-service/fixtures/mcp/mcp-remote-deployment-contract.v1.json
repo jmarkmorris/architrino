@@ -5,6 +5,11 @@
   "remoteReady": false,
   "publicDeploymentAuthorized": false,
   "host": null,
+  "serviceBoundary": {
+    "classification": "archie_service_protocol_adapter",
+    "userFacingApplication": false,
+    "staticBrowserSurfaceAllowed": false
+  },
   "protocol": {
     "revision": "2025-11-25",
     "transport": "streamable_http",
@@ -145,6 +150,9 @@
     "modelCallsAllowed": false,
     "repositoryWritesAllowed": false,
     "externalActionsAllowed": false,
-    "durableUserStateAllowed": false
+    "durableUserStateAllowed": false,
+    "localToolAccessAllowed": false,
+    "repositoryStateAccessAllowed": false,
+    "credentialAccessAllowed": false
   }
 }

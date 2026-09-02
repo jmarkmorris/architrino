@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — MCP reclassified under Archie service ownership
+
+- Reclassified MCP as an Archie-service protocol adapter for authorized software clients, not a user-facing application, and moved its preserved packet under the archived Archie service owner.
+- Removed the separate application-inventory row while preserving code under `src/archie-service/mcp`, fixtures and tests under `tests/archie-service`, all conformance receipts, and the deferred semantic-retrieval object.
+- Strengthened the remote deployment contract so static-browser exposure, local-tool access, live repository-state access, and credential access fail closed in addition to the existing authentication, origin, limit, snapshot, logging, and rollback gates.
+
+Plainly: MCP remains available as a controlled software integration boundary, but it is not a website app and cannot expose the local machine through a static page.
+
 ### 2026-09-02 — Cosmology and nuclear-to-molecular owners archived
 
 - Moved `mapping-cosmology` and `mapping-nuclear-atomic-molecular` intact under `dormant-deferred` at operator direction.
@@ -17,13 +25,13 @@ Plainly: the two programs are parked, not deleted or declared complete.
 ### 2026-09-02 — MCP-001 closed after archive placement
 
 - Captured the operator-supplied ChatGPT-mode five-call result and corroborated its `topics`, `search`, `read`, `neighbors`, `read` sequence against the loopback server telemetry for the current 2,042-record full-corpus snapshot.
-- Closed MCP-001 at the named-client boundary. The archived `app-mcp` owner remains dormant-deferred, MCP-002 and MCP-003 remain parked, and no global score, active-owner count, remote-deployment status, or theory claim changed.
+- Closed MCP-001 at the named-client boundary. The then-separate MCP packet remained dormant-deferred, MCP-002 and MCP-003 remained parked, and no global score, active-owner count, remote-deployment status, or theory claim changed.
 
 Plainly: completing the one manual acceptance test removes the unfinished-client caveat without reactivating the archived MCP program.
 
 ### 2026-09-02 — iOS, MCP, and Dark Sector archived
 
-- Moved `app-ios`, `app-mcp`, and `dark-sector` under `dormant-deferred` at operator direction. Their documents, queues, and evidence remain preserved, but no parked row is executable or scored.
+- Moved `app-ios`, the then-separate MCP packet, and `dark-sector` under `dormant-deferred` at operator direction. Their documents, queues, and evidence remain preserved, but no parked row is executable or scored.
 - Removed those three rows and the stale archived `app-animator`, `archie`, and `aaa-futures` rows from the numeric table, then renumbered the remaining 14 active owners and four shared packets without changing component scores.
 - Updated archive inventory counts and incoming authored links. MCP-001 remains unfinished at the direct ChatGPT tool-call boundary; archive placement is not a completion claim.
 
@@ -79,7 +87,7 @@ Plainly: a finished paper-maintenance check no longer consumes a live priority r
 
 - Rebuilt [inventory.md](inventory.md) from the live top-level directory tree: 23 ranked owners, four separately ranked shared packets, two unranked control/routing surfaces, and 15 children under `dormant-deferred`.
 - Removed all eight previously ranked `dormant-deferred` rows from the unified table and excluded dormant discussion items from the active discussion queue.
-- Added top-level `app-mcp` at rank `20` on the remaining `named_http_client_conformance` object. Completed service, fixture, and loopback work received no remaining value credit.
+- Added the then-separate MCP packet at rank `20` on the remaining `named_http_client_conformance` object. Completed service, fixture, and loopback work received no remaining value credit.
 - Preserved component scores for unchanged marginal objects, renumbered the active rows contiguously, and synchronized tracker metadata. The top ten did not move.
 - Made Borg and Strong-Field local winners machine-checkable, reopened App Ideas selection after Causal Delay Feedback was deferred, refreshed the top-six closure join, and repaired current archive routing.
 - Claim grade: inferred attention allocation and priority-only organization. No proof, campaign fate, branch, coefficient, app acceptance, or closure-score row was promoted.

@@ -144,7 +144,7 @@
         "maximumOutputAuthority": "display_only",
         "continuationEligible": false
       },
-      "permittedConsumers": ["Potential display", "application rendering"],
+      "permittedConsumers": ["application rendering"],
       "compatibility": {
         "registrySchema": "aaa_core_codec_registry/v0",
         "logicalSchema": "aaa_core_path_interchange/v0",
@@ -159,8 +159,8 @@
     },
     {
       "capabilityId": "potential_fixture_map_json/v1",
-      "providerId": "app-potential",
-      "providerClass": "application",
+      "providerId": "aaa-core",
+      "providerClass": "core",
       "status": "conformance_accepted_fixture_only",
       "deterministicVersion": "1.0.0",
       "directions": ["encode", "decode"],
@@ -200,7 +200,7 @@
         "maximumOutputAuthority": "derived_analysis",
         "continuationEligible": false
       },
-      "permittedConsumers": ["Potential publication", "application services"],
+      "permittedConsumers": ["AAA Core Potential", "application services"],
       "compatibility": {
         "registrySchema": "aaa_core_codec_registry/v0",
         "logicalSchema": "aaa_core_path_interchange/v0",

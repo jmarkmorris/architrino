@@ -4,7 +4,7 @@
 
 - Claim level: `derivation-target`
 - Priority rank: `1` within Master Equation closure
-- Current result: `regular-kinematic-substate-derived; account-complete-update-closed-negatively-under-current-primitives`
+- Current result: `regular-kinematic-substate-derived; unchanged-regular-law-finite-birth-incompatible; account-complete-update-closed-negatively-under-current-primitives`
 - Canonical regular-domain law: unchanged transmitter-side acceleration
 - Required outcome: one causal update that closes the coincident transition and conserved accounts together
 
@@ -39,6 +39,10 @@ Claim grade: derived on certified regular support from the existing fixed-speed 
 The same derivation rejects the inertially extrapolated direction as a local response of the present wake state. Redirecting only the acceleration breaks surface-normal response. Moving each emitted center inertially changes surface element speeds away from the fixed absolute value $c_f$ and produces a different causal support and collapse denominator.
 
 This does not overturn the negative result below. The transparent kinematic state has no derived maturity, energy, momentum, reception-transfer, or account-bearing boundary law. It therefore does not cross coincident same-transmitter birth or close the three conserved accounts. Promotion classification for the full packet remains `defer with blocker`.
+
+For the present-state interpretation, causal-root solving is an intersection lookup against the retained emitted-surface ledger. It does not reconstruct or revise the transmitter history. Counterfactual receiver displacement is used only as a local sensitivity test with the transmitter history frozen and one isolated simple root followed. At a fold or coincident root birth that local derivative fails, and a complete root census plus a separately derived transition rule is required.
+
+The quadratic same-transmitter control now gives a decisive unchanged-law boundary. Every sufficiently small positive-age row is a noncoincident simple root. Exact preservation of the sharp row at every such root requires unit maturity throughout that open one-sided neighborhood, while finite accumulated acceleration requires a nontrivial integrable suppression there. A value assigned only at the exact diagonal cannot satisfy both. Any finite continuation must therefore add a new open-neighborhood boundary/core prescription or a separately derived domain rule; the unchanged current primitives do not contain one.
 
 ## Required State And Update
 

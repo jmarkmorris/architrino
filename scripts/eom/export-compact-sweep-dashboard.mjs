@@ -32,6 +32,13 @@ import {
   summarizeGate,
   thresholdRatio,
 } from "../../src/apps/compact-sweep-dashboard/CompactSweepDashboardData.js";
+import {
+  BORG_SELECTION_SCHEMA,
+} from "../../src/apps/shared/BorgSelectionNavigation.mjs";
+import {
+  exactModelKey,
+  validateBorgAssemblyRegistry,
+} from "../../src/apps/borg/registry/BorgAssemblyRegistryContract.mjs";
 
 const REPOSITORY_ROOT = path.resolve(import.meta.dirname, "../..");
 const DEFAULT_INPUT_DIRECTORY = path.join(
@@ -50,9 +57,13 @@ const DEFAULT_DATABASE_VERIFICATION_PATH = path.join(
   DEFAULT_INPUT_DIRECTORY,
   "active-database-verification.v2.json",
 );
+const DEFAULT_BORG_REGISTRY_PATH = path.join(
+  REPOSITORY_ROOT,
+  "reference/priorities/app-borg/assembly-registry.v1.json",
+);
 const DEFAULT_OUTPUT_PATH = path.join(
   DEFAULT_INPUT_DIRECTORY,
-  "compact-sweep-dashboard.v2.json",
+  "compact-sweep-dashboard.v3.json",
 );
 const ANALYZER_SCHEMA =
   "prescribed-path-analysis/compact-configuration-sweep-analysis.v2";
@@ -258,6 +269,7 @@ function readDatabase(databasePath) {
         schema_id AS schema,
         case_id AS caseId,
         assembly_id AS assemblyId,
+        model_revision_sha256 AS modelRevisionSha256,
         source_slug AS sourceSlug,
         candidate_id AS candidateId,
         sample_ordinal AS sampleOrdinal,
@@ -593,7 +605,7 @@ function rerunCommand(row, campaign, wave) {
   ].join(" \\\n  ");
 }
 
-function buildDashboardRows(databaseRows, analyzerReceipt) {
+function buildDashboardRows(databaseRows, analyzerReceipt, borgRegistry) {
   const campaignsByHash = new Map(
     databaseRows.campaigns.map((campaign) => [
       campaign.campaignHash,
@@ -615,6 +627,11 @@ function buildDashboardRows(databaseRows, analyzerReceipt) {
     const evaluated = row.evaluated === 1;
     const comparativeRankingEligible =
       !DEPRECATED_COMPARATIVE_MEMBERS.has(row.sourceSlug);
+    const borgEntry = borgRegistry.entries.find((entry) =>
+      exactModelKey(entry) === exactModelKey(row));
+    if (!borgEntry) {
+      fail(`${row.caseId} exact assembly identity is missing from the current Borg registry.`);
+    }
     return {
       campaignFile: wave.file,
       campaignHash: row.campaignHash,
@@ -623,6 +640,12 @@ function buildDashboardRows(databaseRows, analyzerReceipt) {
         ? ACTIVE_CANDIDATE_DISPOSITION
         : DEPRECATED_CONTROL_DISPOSITION,
       candidateId: row.candidateId,
+      borgSelection: {
+        schema: BORG_SELECTION_SCHEMA,
+        braidId: borgEntry.braidId,
+        assemblyId: row.assemblyId,
+        modelRevisionSha256: row.modelRevisionSha256,
+      },
       caseHash: row.caseHash,
       caseId: row.caseId,
       evaluation: {
@@ -773,6 +796,7 @@ export function buildCompactSweepDashboardExport({
   databasePath = DEFAULT_DATABASE_PATH,
   analyzerReceiptPath = DEFAULT_ANALYZER_RECEIPT_PATH,
   databaseVerificationPath = DEFAULT_DATABASE_VERIFICATION_PATH,
+  borgRegistryPath = DEFAULT_BORG_REGISTRY_PATH,
 } = {}) {
   const resolvedDatabasePath = path.resolve(databasePath);
   const databaseIdentityBefore = fileIdentity(resolvedDatabasePath);
@@ -784,6 +808,11 @@ export function buildCompactSweepDashboardExport({
     path.resolve(databaseVerificationPath),
     "database verification receipt",
   );
+  const borgRegistryFile = readJsonFile(
+    path.resolve(borgRegistryPath),
+    "Borg assembly registry",
+  );
+  const borgRegistry = validateBorgAssemblyRegistry(borgRegistryFile.value);
   const analyzerReceipt = validateAnalyzerReceipt(analyzerFile.value);
   const verificationReceipt = validateDatabaseVerification(
     databaseVerificationFile.value,
@@ -804,7 +833,7 @@ export function buildCompactSweepDashboardExport({
     databaseIdentityAfter,
     "compact SQLite database",
   );
-  const rows = buildDashboardRows(databaseRows, analyzerReceipt);
+  const rows = buildDashboardRows(databaseRows, analyzerReceipt, borgRegistry);
   const campaigns = databaseRows.campaigns.map((campaign) => {
     const manifest = analyzerReceipt.campaignAndFileManifest.campaignFiles
       .find((entry) => entry.campaignHash === campaign.campaignHash);
@@ -835,6 +864,8 @@ export function buildCompactSweepDashboardExport({
         analyzerReceipt.coordinatorReceipt.manifestHash,
       analyzerReceiptFileSha256: analyzerFile.sha256,
       combinedCandidateScoreCreated: false,
+      borgRegistryRevision: borgRegistry.revision,
+      borgRegistrySha256: borgRegistryFile.sha256,
       databaseSha256: databaseIdentityBefore.sha256,
       databaseVerificationFileSha256:
         databaseVerificationFile.sha256,
@@ -863,6 +894,10 @@ export function buildCompactSweepDashboardExport({
     outputSha256: sha256Bytes(bytes),
     databaseIdentityBefore,
     databaseIdentityAfter,
+    borgRegistryIdentity: {
+      revision: borgRegistry.revision,
+      sha256: borgRegistryFile.sha256,
+    },
   };
 }
 
@@ -895,6 +930,8 @@ export function writeCompactSweepDashboardExport({
     databaseUnchanged:
       compactCanonicalJson(result.databaseIdentityBefore) ===
       compactCanonicalJson(result.databaseIdentityAfter),
+    borgRegistryRevision: result.borgRegistryIdentity.revision,
+    borgRegistrySha256: result.borgRegistryIdentity.sha256,
   };
 }
 
@@ -924,6 +961,8 @@ function parseArguments(argv) {
     databaseVerificationPath:
       values.get("--database-verification") ??
       DEFAULT_DATABASE_VERIFICATION_PATH,
+    borgRegistryPath:
+      values.get("--borg-registry") ?? DEFAULT_BORG_REGISTRY_PATH,
     outputPath: values.get("--output") ?? DEFAULT_OUTPUT_PATH,
   };
 }
@@ -945,6 +984,10 @@ function help() {
     `  --database-verification PATH default: ${path.relative(
       REPOSITORY_ROOT,
       DEFAULT_DATABASE_VERIFICATION_PATH,
+    )}`,
+    `  --borg-registry PATH         default: ${path.relative(
+      REPOSITORY_ROOT,
+      DEFAULT_BORG_REGISTRY_PATH,
     )}`,
     `  --output PATH                default: ${path.relative(
       REPOSITORY_ROOT,

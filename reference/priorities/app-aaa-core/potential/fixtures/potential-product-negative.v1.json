@@ -1,0 +1,31 @@
+{
+  "schema": "architrino.potential-consumer-publication-negative-suite.v1",
+  "baseFixture": "reference/priorities/app-aaa-core/potential/fixtures/potential-product.synthetic.v1.json",
+  "cases": [
+    {
+      "id": "missing-history",
+      "mutation": {"path": "sourceHistory.coverage.acceptedThroughT", "value": 0.5},
+      "expectedCode": "missing_history"
+    },
+    {
+      "id": "incompatible-scales",
+      "mutation": {"path": "sourceHistory.units.wakeSpeed", "value": 2},
+      "expectedCode": "incompatible_scales"
+    },
+    {
+      "id": "unsupported-precision",
+      "mutation": {"path": "request.numericPolicy.precisionBits", "value": 128},
+      "expectedCode": "unsupported_precision"
+    },
+    {
+      "id": "incomplete-sealed-publication",
+      "mutation": {"path": "publication.coverage.complete", "value": false},
+      "expectedCode": "incomplete_publication"
+    },
+    {
+      "id": "unknown-observable-version",
+      "mutation": {"path": "request.observable.version", "value": "synthetic_scalar_potential/v999"},
+      "expectedCode": "unknown_observable_version"
+    }
+  ]
+}

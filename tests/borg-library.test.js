@@ -101,6 +101,13 @@ test("seed provider covers all current records and exact preview pins", async ()
   assert.deepEqual(first.body.counts.braidDimension, { unavailable: 19, "3d": 21, "2d": 6 });
   assert.deepEqual(first.body.failures, []);
   const row = first.body.results.find((result) => result.kind === "leaf");
+  const braidSearch = await request(
+    service,
+    `/api/borg/library?${new URLSearchParams({ q: row.braidId })}`,
+  );
+  assert.equal(braidSearch.status, 200);
+  assert.ok(braidSearch.body.results.some((result) =>
+    result.braidId === row.braidId));
   const query = new URLSearchParams({
     assemblyId: row.assemblyId,
     modelRevisionSha256: row.modelRevisionSha256,

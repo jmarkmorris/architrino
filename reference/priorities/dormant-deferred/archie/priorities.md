@@ -22,6 +22,7 @@
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Long-term service platform: [service-platform.md](service-platform.md)
+- Service-owned MCP protocol adapter: [mcp/priorities.md](mcp/priorities.md)
 - Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
 - Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
 - Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)

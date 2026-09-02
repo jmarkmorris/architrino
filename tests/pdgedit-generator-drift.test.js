@@ -11,6 +11,8 @@ import { normalizePdgeditReviewGroupCatalog } from "../src/apps/pdgedit/PdgeditR
 
 const repoRootPath = fileURLToPath(new URL("../", import.meta.url));
 const glyphOutputDirPath = fileURLToPath(new URL("../scripts/glyphs/", import.meta.url));
+const pythonVenvPath = path.resolve(repoRootPath, process.env.AAA_VENV ?? "../.venv");
+const pythonPath = path.join(pythonVenvPath, "bin/python");
 
 function parseSvgTree(svgText) {
   const tokens = svgText.match(/<[^>]+>|[^<]+/g) ?? [];
@@ -167,9 +169,10 @@ test("glyph.py regenerates the committed pdgedit reference svg set and canonical
   const expectedFilenames = getExpectedReferenceSvgFilenames();
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "pdgedit-glyph-drift-"));
 
-  execFileSync("python3", ["scripts/glyphs/glyph.py", "--output-dir", tempDir], {
+  execFileSync(pythonPath, ["scripts/glyphs/glyph.py", "--output-dir", tempDir], {
     cwd: repoRootPath,
     encoding: "utf8",
+    env: { ...process.env, VIRTUAL_ENV: pythonVenvPath },
   });
 
   assert.deepEqual(listReferenceSvgFilenames(tempDir), expectedFilenames);

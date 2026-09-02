@@ -4,11 +4,24 @@ This file is the chronological work log for `app-aaa-core`. Use [priorities.md](
 
 ## Log Entries
 
+### 2026-09-02 — AAA Core Classified As The Shared Headless Application Platform
+
+- Classified AAA Core as shared headless application infrastructure rather than an end-user product, while retaining the `app-aaa-core` compatibility path and every accepted `aaa_core_*` schema, capability, class, and refusal interface.
+- Inventoried the six current `src/aaa-core/` modules, their in-process `AAAClientService`/`AAAClient` composition root and headless Potential API, accepted schemas and fixtures, representative consumers, and focused tests.
+- Measured with repository import, route, and scene scans that no consumer imports a Core UI. Lorentz Geometry calls the headless Potential API from its own surface scheduler, Topo has a tested thin Potential consumer not yet composed into its browser root, Topo and Equation Mapping share the synthetic client-conformance surface, and Equation Mapping's existing browser runtime remains independent. A Core DOM import, public scene, or standalone route would falsify this result.
+- Removed the design-level assignment of a Study Pipeline Workbench UI to Core. A separately owned consuming application may present those capabilities through Core contracts.
+- Kept Core outside the public Applications hierarchy and standalone launch routing, separated it from other unranked owners in the priority inventory, and added a focused regression assertion for catalogue and search exclusion.
+- Claim boundary: this is an architecture, ownership, and discovery classification. It does not deploy a Core service, add a production consumer, validate a scientific kernel, or upgrade any accepted contract's evidence grade.
+
+Plainly: AAA Core supplies tested shared machinery behind applications; it is not something a visitor launches.
+
+Closure goal: preserve this headless boundary as production services and real application consumers are added.
+
 ### 2026-09-02 — CORE-008 AAA Core Client v0 Closed
 
 - Accepted [`aaa_core_client/v0`](client-v0.md) as a thin defensive-copy client over the path, codec, accepted-history stream, and query/publication contracts.
 - Exposed manifest validation, codec negotiation, query preparation, explicit stream opening and actions, stream progress, sealed publication caching, exact retrieval, and operation inspection without defining another path or product schema.
-- Drove Potential and Equation Mapping through the same `AAAClient` class. Both validate the same source, normalize equivalent requests, subscribe to one shared stream session, and inspect the same producer and consumer progress.
+- Drove Topo and Equation Mapping through the same `AAAClient` class. Both validate the same source, normalize equivalent requests, subscribe to one shared stream session, and inspect the same producer and consumer progress.
 - Published one sealed Potential fixture, returned the same immutable publication as a cache hit for its equivalent request, and retrieved it through Equation Mapping's exact receipt permission.
 - Preserved originating exception names, refusal codes, and messages in terminal operation envelopes, and returned defensive copies so callers cannot mutate retained client state.
 - Removed CORE-008 from the live queue. CORE-006, CORE-007, and CORE-009 remain blocked on measured workloads, a public dataset and scientific mapping, or rented accelerator evidence.
@@ -101,7 +114,7 @@ Closure goal: execute the versioned matrix and use measured end-to-end evidence 
 - Defined focused service boundaries for construction/validation, identity, codecs/storage, indexing, streams, queries/transforms, compute dispatch, publication/catalog, and application clients.
 - Defined authoritative-history, precision-bounded-analysis, and display-stream representation profiles over one logical path model.
 - Captured live accepted-history flow, provisional and sealed publication, replay, backpressure, heterogeneous GPU/CPU routing, and multiple deployment postures.
-- Moved suite-wide architecture ideas from `app-potential` into AAA Core ownership and retained Potential as the first concrete consumer.
+- Moved suite-wide architecture ideas from the former Potential-app proposal into AAA Core ownership. The later Core Potential consolidation removed that proposal as a separate product and retained applications as presentation consumers.
 - Marked `aaa_core_path_interchange/v0` as awaiting verification; no implementation or production authority was claimed.
 
 Plainly: AAA Core now has a first blueprint for turning trustworthy path inputs into reusable services and products for many apps, while keeping the solver and scientific claims in their proper owners.

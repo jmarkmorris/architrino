@@ -17,6 +17,8 @@ import {
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackModeController.js";
 import {
   CAUSAL_DELAY_FEEDBACK_MODES,
+  createCausalDelayFeedbackModeHref,
+  getCausalDelayFeedbackModeFromHref,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackModes.js";
 import {
   SPACE_AXIS_TOP_Y,
@@ -629,7 +631,7 @@ test("representative paired paths stay gently wavy and converge monotonically", 
   assert.ok(countTurns("electrino") >= 4);
 });
 
-test("guided progression follows all lessons and ends in Laboratory", () => {
+test("guided progression keeps Roots between the lessons and Laboratory", () => {
   const state = createState();
   state.storyStep = 4;
   const controller = new CausalDelayFeedbackModeController({ state });
@@ -643,19 +645,48 @@ test("guided progression follows all lessons and ends in Laboratory", () => {
   assert.equal(state.mode, "story");
   assert.equal(state.storyStep, 7);
   controller.goNext();
+  assert.equal(state.mode, "roots");
+  controller.goNext();
   assert.equal(state.mode, "sandbox");
   assert.deepEqual(
     CAUSAL_DELAY_FEEDBACK_MODES.map((mode) => mode.id),
-    ["story", "sandbox"],
+    ["story", "roots", "sandbox"],
   );
+  controller.goBack();
+  assert.equal(state.mode, "roots");
   controller.goBack();
   assert.equal(state.mode, "story");
   assert.equal(state.storyStep, 7);
   assert.equal(controller.setMode("prediction"), false);
   assert.equal(controller.setMode("history"), false);
-  assert.equal(controller.setMode("roots"), false);
+  assert.equal(controller.setMode("roots"), true);
   assert.equal(controller.setMode("self-hit"), false);
   assert.equal(controller.setMode("branch-lab"), false);
+});
+
+test("Roots direct-mode links preserve unrelated route state", () => {
+  const startingHref =
+    "https://architrino.com/causal-delay-feedback.html?replay=mock#reception";
+  const rootsHref = createCausalDelayFeedbackModeHref(startingHref, "roots");
+  const laboratoryHref = createCausalDelayFeedbackModeHref(rootsHref, "sandbox");
+  const storyHref = createCausalDelayFeedbackModeHref(laboratoryHref, "story");
+
+  assert.equal(
+    rootsHref,
+    "https://architrino.com/causal-delay-feedback.html?replay=mock&mode=roots#reception",
+  );
+  assert.equal(getCausalDelayFeedbackModeFromHref(rootsHref), "roots");
+  assert.equal(getCausalDelayFeedbackModeFromHref(laboratoryHref), "sandbox");
+  assert.equal(
+    storyHref,
+    "https://architrino.com/causal-delay-feedback.html?replay=mock#reception",
+  );
+  assert.equal(
+    getCausalDelayFeedbackModeFromHref(
+      "https://architrino.com/causal-delay-feedback.html?mode=unknown",
+    ),
+    "story",
+  );
 });
 
 test("changing Story steps clears the prior scene's pause-resume presentation", () => {
@@ -929,7 +960,7 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
   assert.match(html, /@media \(prefers-reduced-motion: reduce\)/u);
   assert.match(html, /@media \(forced-colors: active\)/u);
   assert.match(html, /\.causal-journey\[data-mode="story"\] \.causal-lesson-panel/u);
-  assert.match(html, /aria-label="Lesson table of contents"/u);
+  assert.match(html, /aria-label="Causal Delay Feedback lessons and tools"/u);
   assert.doesNotMatch(html, /id="causal-delay-feedback-guided-replay"/u);
   assert.doesNotMatch(html, /causal-delay-feedback-journey-provenance/u);
   assert.doesNotMatch(html, /data-guided-action="sandbox"/u);
@@ -967,10 +998,9 @@ test("lesson navigation fits twelve uniform entries before ordinary scrolling", 
     html,
     /@media \(max-width: 820px\)[\s\S]*?\.causal-mode-tabs\s*\{[\s\S]*?max-height:\s*min\(390px,\s*calc\(100vh - 104px\)\)[\s\S]*?\.causal-lesson-toc-list\s*\{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/u,
   );
-  assert.match(
-    controller,
-    /laboratoryItem\.append\([\s\S]*?className: "causal-mode-tab"[\s\S]*?list\.append\(laboratoryItem\)[\s\S]*?replaceChildren\(list\)/u,
-  );
+  assert.match(controller, /\.filter\(\(mode\) => mode\.id !== "story"\)/u);
+  assert.match(controller, /"data-causal-mode": mode\.id/u);
+  assert.match(controller, /"aria-controls": "causal-delay-feedback-lesson-panel"/u);
   assert.doesNotMatch(controller, /opens for inspection/u);
   assert.match(
     controller,
@@ -1029,8 +1059,8 @@ test("canonical top-right shell keeps Search and the local lesson list persisten
     /#scene-search\.is-open\s+#scene-search-toggle\s*\{\s*display:\s*none/u,
   );
   assert.match(runtime, /createStandaloneAppNavigationRuntime/u);
-  assert.match(runtime, /label: "Previous lesson"/u);
-  assert.match(runtime, /label: "Next lesson"/u);
+  assert.match(runtime, /label: "Previous view"/u);
+  assert.match(runtime, /label: "Next view"/u);
   assert.doesNotMatch(runtime, /createStandaloneAppSceneSearchRuntime/u);
   assert.doesNotMatch(runtime, /resolveStandaloneSiteHomeHref|TEXTBOOK_TOC_SCENE_PATH/u);
   assert.match(
@@ -1077,7 +1107,7 @@ test("Story canvas omits redundant headings and the retired learner surfaces", a
   assert.match(runtime, /drawStoryForwardWakeBuildup/u);
 });
 
-test("learner journey stays one app with no separate Roots route", async () => {
+test("learner journey exposes Roots inside one app with no separate product route", async () => {
   const [html, main, controller, modes] = await Promise.all([
     readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
     readFile(new URL("src/apps/causal-delay-feedback/main.js", REPO_ROOT), "utf8"),
@@ -1086,9 +1116,26 @@ test("learner journey stays one app with no separate Roots route", async () => {
   ]);
   assert.doesNotMatch(`${html}\n${main}\n${controller}\n${modes}`, /roots\.html/iu);
   assert.doesNotMatch(modes, /\{ id: "history"/u);
-  assert.doesNotMatch(modes, /\{ id: "roots"/u);
+  assert.match(modes, /\{ id: "roots", label: "Roots", renderMethod: "renderRoots" \}/u);
   assert.doesNotMatch(modes, /\{ id: "self-hit"/u);
   assert.match(modes, /\{ id: "sandbox", label: "Laboratory"/u);
+});
+
+test("Applications metadata keeps Roots under the single Causal Delay Feedback product", async () => {
+  const metadata = JSON.parse(await readFile(
+    new URL("content/scenes/archie/applications_learn_reference.json", REPO_ROOT),
+    "utf8",
+  ));
+  const causalDelayEntries = metadata.objects.filter(
+    (entry) => entry.id === "causal_delay_feedback",
+  );
+  const rootsEntries = metadata.objects.filter(
+    (entry) => /roots?/iu.test(`${entry.id} ${entry.title} ${entry.labelTitle}`),
+  );
+
+  assert.equal(causalDelayEntries.length, 1);
+  assert.equal(causalDelayEntries[0].title, "Causal Delay Feedback");
+  assert.deepEqual(rootsEntries, []);
 });
 
 test("new learner-facing copy remains acceleration-first", async () => {

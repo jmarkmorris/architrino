@@ -3014,6 +3014,7 @@
         "remoteReady",
         "publicDeploymentAuthorized",
         "host",
+        "serviceBoundary",
         "protocol",
         "networkBoundary",
         "originPolicy",
@@ -3032,6 +3033,16 @@
         "remoteReady": { "const": false },
         "publicDeploymentAuthorized": { "const": false },
         "host": { "type": "null" },
+        "serviceBoundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["classification", "userFacingApplication", "staticBrowserSurfaceAllowed"],
+          "properties": {
+            "classification": { "const": "archie_service_protocol_adapter" },
+            "userFacingApplication": { "const": false },
+            "staticBrowserSurfaceAllowed": { "const": false }
+          }
+        },
         "protocol": {
           "type": "object",
           "additionalProperties": false,
@@ -3166,7 +3177,7 @@
         "capabilityBoundary": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["tools", "resourcesEnabled", "promptsEnabled", "modelCallsAllowed", "repositoryWritesAllowed", "externalActionsAllowed", "durableUserStateAllowed"],
+          "required": ["tools", "resourcesEnabled", "promptsEnabled", "modelCallsAllowed", "repositoryWritesAllowed", "externalActionsAllowed", "durableUserStateAllowed", "localToolAccessAllowed", "repositoryStateAccessAllowed", "credentialAccessAllowed"],
           "properties": {
             "tools": { "type": "array", "minItems": 5, "items": { "type": "string", "minLength": 1 } },
             "resourcesEnabled": { "const": false },
@@ -3174,7 +3185,10 @@
             "modelCallsAllowed": { "const": false },
             "repositoryWritesAllowed": { "const": false },
             "externalActionsAllowed": { "const": false },
-            "durableUserStateAllowed": { "const": false }
+            "durableUserStateAllowed": { "const": false },
+            "localToolAccessAllowed": { "const": false },
+            "repositoryStateAccessAllowed": { "const": false },
+            "credentialAccessAllowed": { "const": false }
           }
         }
       }

@@ -12,7 +12,7 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
-const CONTRACT_PATH = "reference/priorities/app-potential/potential-live-timespace-pipeline-contract.v1.json";
+const CONTRACT_PATH = "reference/priorities/app-aaa-core/potential/potential-live-pipeline-contract.v1.json";
 const contract = readJson(CONTRACT_PATH);
 const positive = readJson(contract.fixtures.positive);
 
@@ -109,7 +109,7 @@ test("missing history and producer halt cannot advance or seal the map", () => {
 
 test("the contract documents both the state machine and cross-owner sequence", () => {
   const specification = fs.readFileSync(
-    path.join(ROOT, "reference/priorities/app-potential/potential-live-timespace-pipeline-contract-v1.md"),
+    path.join(ROOT, "reference/priorities/app-aaa-core/potential/potential-live-pipeline-contract-v1.md"),
     "utf8",
   );
   assert.match(specification, /stateDiagram-v2/u);

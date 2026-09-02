@@ -299,6 +299,8 @@ export function mountBorgApp(options = {}) {
     recordSummaryIdentity: documentLike.querySelector?.("#borg-record-summary-identity") ?? null,
     recordSummaryDescription: documentLike.querySelector?.("#borg-record-summary-description") ?? null,
     recordSummaryFacets: documentLike.querySelector?.("#borg-record-summary-facets") ?? null,
+    libraryLink: documentLike.querySelector?.("#borg-library-link") ?? null,
+    returnToSearch: documentLike.querySelector?.("#borg-return-to-search") ?? null,
     obstructionBadge: documentLike.querySelector?.("#borg-obstruction-badge") ?? null,
     obstructionDetail: documentLike.querySelector?.("#borg-obstruction-detail") ?? null,
     obstructionReadout: documentLike.querySelector?.("#borg-obstruction-readout") ?? null,
@@ -355,6 +357,20 @@ export function mountBorgApp(options = {}) {
     prescribedBranchPlot: queryRequiredElement(documentLike, "#borg-prescribed-root-branch-plot"),
     prescribedAnalysisProvenance: queryRequiredElement(documentLike, "#borg-prescribed-analysis-provenance"),
   };
+
+  if (dom.libraryLink && options.libraryNavigation?.href) {
+    dom.libraryLink.href = options.libraryNavigation.href;
+    dom.libraryLink.textContent = options.libraryNavigation.label;
+  }
+
+  if (dom.returnToSearch) {
+    const returnNavigation = options.returnNavigation;
+    dom.returnToSearch.hidden = !returnNavigation?.href;
+    if (returnNavigation?.href) {
+      dom.returnToSearch.href = returnNavigation.href;
+      dom.returnToSearch.textContent = returnNavigation.label;
+    }
+  }
 
   const initialEomSeed = options.initialEomSeed ?? null;
   const initialDistributionSeedIndex = Number.isSafeInteger(options.initialDistributionSeedIndex) &&

@@ -10,13 +10,13 @@ import {
   calculateMoleculeLedger,
   formatLedgerNumber,
 } from "./MoleculeLedgerRuntime.js";
-import { APPLICATIONS_SCENE_PATH } from "../navigator/StandaloneAppHomeRuntime.js";
 import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import {
   PUBCHEM_BASE_URL,
   PUBCHEM_EXPLICIT_FORM_SUBMIT,
   shouldQueryPubChem,
 } from "./MoleculeExternalLookupPolicy.js";
+import { navigateMoleculeElementScene } from "./MoleculeElementNavigationRuntime.js";
 
 const DEFAULT_PRESET_ID = "water";
 const BOND_RADIUS = 0.055;
@@ -506,18 +506,6 @@ function disposeObject(object) {
       });
     }
   });
-}
-
-function buildHashUrl({ windowLike, scenePath, parentPath, focus }) {
-  const url = new URL("./index.html", windowLike.location.href);
-  const params = new URLSearchParams();
-  params.set("scene", scenePath);
-  if (parentPath && focus) {
-    params.set("parent", parentPath);
-    params.set("focus", focus);
-  }
-  url.hash = params.toString();
-  return url.href;
 }
 
 export function createMoleculeRuntime(options = {}) {
@@ -1424,13 +1412,10 @@ export function createMoleculeRuntime(options = {}) {
     if (!scenePath) {
       return;
     }
-    const href = buildHashUrl({
+    navigateMoleculeElementScene({
       windowLike,
       scenePath,
-      parentPath: APPLICATIONS_SCENE_PATH,
-      focus: "molecule",
     });
-    windowLike.location.assign(href);
   }
 
   function updateHover(event) {

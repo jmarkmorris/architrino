@@ -3,10 +3,12 @@
 ## Status
 
 - Architecture id: `aaa_core/v0`
+- Product classification: shared headless application platform, not an end-user application
 - Stage: `accepted logical architecture; service implementation incomplete`
-- Implementation authority: path-interchange, codec-registry, accepted-history stream, query/transform/publication, and thin-client validators and synthetic fixtures only
-- Contract status: [`aaa_core_path_interchange/v0`](path-interchange-v0.md), [`aaa_core_codec_registry/v0`](codec-registry-v0.md), [`aaa_core_accepted_history_stream/v0`](accepted-history-stream-v0.md), [`aaa_core_query_transform_publication/v0`](query-transform-publication-v0.md), and [`aaa_core_client/v0`](client-v0.md) accepted; production service orchestration remains open
-- Primary consumer: [Potential](../app-potential/priorities.md)
+- Implementation authority: path-interchange, codec-registry, accepted-history stream, query/transform/publication, thin-client, and shared Potential API validators, adapters, and synthetic fixtures only
+- Contract status: [`aaa_core_path_interchange/v0`](path-interchange-v0.md), [`aaa_core_codec_registry/v0`](codec-registry-v0.md), [`aaa_core_accepted_history_stream/v0`](accepted-history-stream-v0.md), [`aaa_core_query_transform_publication/v0`](query-transform-publication-v0.md), [`aaa_core_client/v0`](client-v0.md), and [`aaa_core_potential/v1`](potential-v1.md) accepted; production service orchestration remains open
+- Primary current Potential consumers: Lorentz Geometry and Topo
+- Current executable application consumers: Lorentz Geometry through its surface scheduler; Topo through a tested thin consumer boundary not yet composed into its browser root
 - Forward solver: [EOM solver](../app-solver/priorities.md)
 
 ## Mission
@@ -15,17 +17,19 @@ AAA Core is the shared path factory and service substrate for the application ec
 
 `Factory` describes the flow of durable products through focused stations. It does not mean one central class, process, database, or executable owns every responsibility.
 
-## Science Workbench Vision
+AAA Core has no visitor-facing product surface of its own. Applications compose its headless services behind their own controls and visual grammar. The retained `app-aaa-core` path and accepted `aaa_core_*` identifiers remain stable compatibility and machine interfaces; they are not catalogue entries.
 
-AAA Core is the shared scientific environment for causal path-based inquiry. Its purpose is larger than supplying common services to a collection of applications: it enables a reproducible and inspectable route from source paths and declared rules through study design, EOM evolution where eligible, transforms, derived products, comparison, revision, and publication.
+## Headless Platform Role
 
-The environment must let a user bring in observations or reconstructed records; author hypotheses, initial histories, transforms, and study pipelines; run declared computations; inspect potentials, assemblies, events, and maps; compare simulation products with observational products; and preserve the assumptions, representations, failures, revisions, and results needed for another user to review or rerun the study.
+AAA Core is the shared scientific platform for causal path-based inquiry. Its headless services enable a reproducible and inspectable route from source paths and declared rules through study design, EOM evolution where eligible, transforms, derived products, comparison, revision, and publication.
+
+Consumer applications may let a user bring in observations or reconstructed records; author hypotheses, initial histories, transforms, and study pipelines; run declared computations; inspect potentials, assemblies, events, and maps; and compare simulation products with observational products. Core preserves the versioned inputs, operations, failures, outputs, and provenance needed for another user or application to review or rerun the study.
 
 Applications are working surfaces for this environment, not separate private worlds. The EOM solver remains its only forward-evolution instrument. AAA Core provides the path, study, provenance, storage, and compute substrate through which applications can interoperate without inventing another solver or obscuring the lineage of a result.
 
-Visual resemblance, a convenient representation, or a successful pipeline does not itself establish scientific agreement. The workbench must keep the route from input to conclusion visible enough to test, challenge, and improve.
+Visual resemblance, a convenient representation, or a successful pipeline does not itself establish scientific agreement. A consumer interface must obtain the route from input to conclusion through Core's contracts and keep it visible enough to test, challenge, and improve.
 
-Plainly: this is a place to formulate, run, compare, revise, and share causal-path studies. It keeps the evidence trail visible so a useful picture or result cannot be mistaken for a proof by itself.
+Plainly: Core supplies the records and services behind places where people formulate, run, compare, revise, and share causal-path studies. It is not one of those places itself.
 
 ## Governing Boundaries
 
@@ -41,6 +45,62 @@ Plainly: this is a place to formulate, run, compare, revise, and share causal-pa
 
 Plainly: Core moves and processes path information; it does not decide what nature does, what the EOM accepts, or what an experiment proves.
 
+## Current Executable Inventory
+
+[Measured by a repository file, import, route, and scene scan on 2026-09-02.] AAA Core currently consists of six headless ECMAScript modules under `src/aaa-core/`, their accepted machine control records under this priority directory, five structural schemas under `src/contracts/`, and focused tests and fixtures under `tests/`. None of these modules imports a browser runtime, mounts a DOM surface, registers a public scene, or supplies a standalone HTML entrypoint. This result is falsified if a Core module acquires browser rendering, a standalone entrypoint maps to Core, or an Applications scene names Core.
+
+| Module | Current responsibility | Composition role |
+| --- | --- | --- |
+| `src/aaa-core/path-interchange-v0.mjs` | Canonical record identity, logical path-bundle validation, fixture mutation, and contract conformance | Foundational validator used by the codec, stream, query/publication, and client layers |
+| `src/aaa-core/codec-registry-v0.mjs` | Provider-shape validation, capability negotiation, Core codecs, registered fixture providers, and codec conformance | Headless codec service over the path validator |
+| `src/aaa-core/accepted-history-stream-v0.mjs` | Bounded in-process broker, ordered subscriptions, replay, backpressure, sealing, halt propagation, and stream conformance | Headless stream service over accepted path bundles |
+| `src/aaa-core/query-transform-publication-v0.mjs` | Query normalization and identity, source closure, publication construction, sealing, validation, and receipt-bound retrieval | Headless query/publication service over path and codec contracts |
+| `src/aaa-core/client-v0.mjs` | Defensive-copy operation envelopes and one shared facade across validation, codec, stream, query, publication, and retrieval | Current in-process Core composition root through `AAAClientService` and per-consumer `AAAClient` instances |
+| `src/aaa-core/potential-v1.mjs` | Potential-sample request validation, prescribed-path analysis dispatch, complete contribution accounting, reduction, and exact unavailable-output failure | Headless application API consumed directly by Lorentz Geometry and through Topo's thin consumer module |
+
+The contract-check functions exported by the first four modules are verification entrypoints, not application composition roots. `AAAClientService` is the composite contract-service root: it receives the accepted contracts and registry as dependencies and creates application-identified clients. `computePotentialSamples` is a separate headless API entrypoint that delegates to the prescribed-path analysis provider. Neither creates a user interface.
+
+Plainly: the modules can be assembled in one process and tested end to end, but nothing in Core creates a page for a visitor to open.
+
+### Current composition roots
+
+| Root | What it composes | UI ownership |
+| --- | --- | --- |
+| `AAAClientService` in `src/aaa-core/client-v0.mjs` | Path validation, codec negotiation, accepted-history streams, query/publication, cache, retrieval, and per-application operation records | None; headless in-process service root |
+| `createIdealBraidSurfaceSolverScheduler` in `src/apps/ideal-braid/IdealBraidSurfaceSolverScheduler.js` | Lorentz Geometry's sample points and display scheduler with `aaa_core_potential/v1` | Lorentz Geometry owns the browser runtime and presentation |
+| `src/apps/topo/TopoPotentialConsumer.js` | Topo-identified request and compute wrappers over `aaa_core_potential/v1` | No browser composition yet; the module is a tested thin consumer boundary |
+| `tests/aaa-core-client-v0.test.js` | Topo and Equation Mapping identities over one `AAAClientService` fixture | Test-only composition; no public UI |
+
+Plainly: actual app wiring ends at a headless Core call. Controls, scenes, and drawing stay in the consuming app.
+
+### Current consumers
+
+| Consumer | Current dependency | Executable boundary |
+| --- | --- | --- |
+| Equation Mapping | Equivalent-query, shared-stream, sealed-publication retrieval, and shared-client conformance | The conformance fixture uses `AAAClient`; the existing browser application does not import Core and therefore does not depend on a Core UI |
+| Lorentz Geometry | Direct `aaa_core_potential/v1` sampling through its surface-solver scheduler | Executable browser consumer; its application runtime owns presentation and imports no Core UI |
+| Topo | Thin `TopoPotentialConsumer` wrapper over `aaa_core_potential/v1`, plus documented downstream use of Potential products and Core interchange | Executable/tested consumer module not yet composed into `src/apps/topo/main.js`; no Core UI dependency |
+| EOM solver | Documented producer/request relationship for accepted histories | Planned adapter boundary; the EOM solver remains independent and no current EOM composition root imports Core |
+| Borg and Photon | Documented future/shared-history relationships | Existing browser runtimes remain direct application owners and do not import Core |
+| Future path, reaction, and experimental tools | Proposed contract consumers | No executable consumer exists |
+
+[Measured by the same import and route scan.] No executable consumer depends on an accidental Core public UI. Lorentz Geometry and Topo call the headless Potential API directly, while the client-conformance consumers call `AAAClient`. The prior architecture language assigning a Study Pipeline Workbench interface to Core was therefore an ownership error in the design, not a deployed dependency; the interface responsibility now remains with a separate consuming application. A browser consumer importing a Core DOM surface or navigating through a Core route would falsify this finding.
+
+### Current tests
+
+| Test family | Boundary established |
+| --- | --- |
+| `tests/aaa-core-path-interchange-v0.test.js` | Logical record families, immutable identity, fail-closed mutations, and Potential field mapping |
+| `tests/aaa-core-codec-registry-v0.test.js` | Registry/provider negotiation and positive and negative codec conformance |
+| `tests/aaa-core-accepted-history-stream-v0.test.js` | Dual-consumer sequencing, backpressure, replay, sealing, halt, and refusal behavior |
+| `tests/aaa-core-query-transform-publication-v0.test.js` | Query/cache identity, transform order, source closure, publication, retrieval, and refusal behavior |
+| `tests/aaa-core-client-v0.test.js` | Shared in-process composition across Topo and Equation Mapping identities |
+| `tests/aaa-core-potential-v1.test.js` | Shared Potential API ownership, Lorentz Geometry and Topo consumption, complete-row refusal, and absence of a standalone Potential product route |
+| `tests/potential-consumer-publication-contract.test.js` and `tests/potential-live-timespace-pipeline-contract.test.js` | Core-owned Potential product publication and live-pipeline refusal behavior |
+| `tests/standalone-app-launch.test.js` | Public catalogue and standalone-launch exclusion for the headless platform |
+
+Plainly: the tests establish contract and in-process software behavior. They do not establish a deployed Core service, a production application integration, or a scientific result.
+
 ## Core Shared-Service Map
 
 ```mermaid
@@ -53,7 +113,7 @@ config:
 flowchart LR
     EOM["`**EOM solver**
 Sole forward-evolution and acceptance authority`"]
-    APPS["`Potential and other applications`"]
+    APPS["`Consuming applications`"]
 
     subgraph CORE["AAA Core reusable shared services"]
         direction TB
@@ -68,7 +128,7 @@ Sole forward-evolution and acceptance authority`"]
     CORE <-->|Versioned service exchange| APPS
 ```
 
-Plainly: Core offers composable capabilities rather than a required processing sequence. The EOM solver, Potential, and other applications use those shared services as needed, but only the EOM solver advances the forward state and decides whether an evolved step is accepted.
+Plainly: Core offers composable capabilities rather than a required processing sequence. The EOM solver and consuming applications use those shared services as needed, but only the EOM solver advances the forward state and decides whether an evolved step is accepted.
 
 ## EOM Solver Setup Flow
 
@@ -153,12 +213,12 @@ Plainly: the same run can have a large authoritative record, a compact analysis 
 AAA Core owns the codec control plane, not every codec implementation. The control plane defines the common interchange envelope, codec-provider interface, registry, version negotiation, source and output identities, error and authority rules, and conformance fixtures. Concrete encoder and decoder providers are placed according to the semantics they own:
 
 1. **Core interchange codecs:** common path chunks, manifests, streams, indices, and broadly reusable representation profiles live with AAA Core.
-2. **Domain or application codec providers:** EOM accepted-history codecs, Potential map-tile codecs, detector-family decoders, and other purpose-specific representations live with their owning solver, application, or import package and register capabilities with Core.
+2. **Domain or specialized codec providers:** EOM accepted-history codecs, detector-family decoders, and other purpose-specific representations live with their owning solver or import package and register capabilities with Core. Reusable Potential map and tile codecs are Core providers; transient renderer buffers remain application-private.
 3. **Private transient layouts:** an app-only vertex buffer, texture, or ephemeral cache may remain entirely inside the app when it is never published or treated as interchange. Once a second process or application consumes it, it must use a registered interchange contract.
 
 A registered codec capability must declare its logical input and output types, supported representation profiles, numeric and error behavior, event/branch preservation, streaming and random-access properties, CPU/GPU decode layout, deterministic version, authority effects, permitted consumers, and exact refusal cases. Capability negotiation selects a compatible provider; it may not silently weaken precision, coverage, provenance, or authority.
 
-Plainly: Core supplies the loading dock rules and provider catalog. The EOM solver, Potential, and experiment adapters can each build specialized loading equipment, but anything crossing the dock has a common label, measured limits, and a reproducible version.
+Plainly: Core supplies the loading dock rules and provider catalog. The EOM solver and experiment adapters can build specialized loading equipment, but anything crossing the dock has a common label, measured limits, and a reproducible version.
 
 ### Experimental Source And Derived Paths
 
@@ -236,7 +296,7 @@ Every provider and produced representation must declare: its logical input and o
 
 Core conformance fixtures must test each proposed optimization against a separately authored reference or analytical case where one exists. The tests distinguish semantic round-trip, purpose-specific error behavior, root-search suitability, and measured end-to-end resource behavior. Agreement with the provider's own input or a golden record derived from the same implementation establishes deterministic replay only; it does not independently validate the optimization rule.
 
-The Study Pipeline Workbench should let a user compare qualified representations for a selected source interval, see their declared tradeoffs, choose one for a permitted consumer, and record the choice in the study manifest. This supports future specialist contributions without letting a compact display curve silently become an authoritative solver input.
+A separate consuming application may let a user compare qualified representations for a selected source interval, see their declared tradeoffs, choose one for a permitted consumer, and record the choice through Core's study-manifest contract. This supports future specialist contributions without letting a compact display curve silently become an authoritative solver input or making Core itself a visitor-facing product.
 
 Plainly: creative compression and indexing ideas are welcome, but each one must say what it keeps, what it loses, when it is safe to use, and how its claims are checked.
 
@@ -261,19 +321,19 @@ The accepted [`aaa_core_query_transform_publication/v0`](query-transform-publica
 
 Plainly: the design rule now has a tested identity and refusal model. Production storage, catalog, authorization, and transform execution remain later service work.
 
-The accepted [`aaa_core_client/v0`](client-v0.md) exposes these contracts without another data model. Potential and Equation Mapping use the same methods for validation, query identity, shared stream subscription and progress, sealed-publication reuse, exact retrieval, and failure inspection. Each operation preserves the originating contract's refusal code and returns defensive copies.
+The accepted [`aaa_core_client/v0`](client-v0.md) exposes these contracts without another data model. Topo and Equation Mapping use the same methods for validation, query identity, shared stream subscription and progress, sealed-publication reuse, exact retrieval, and failure inspection. Each operation preserves the originating contract's refusal code and returns defensive copies.
 
 Plainly: apps now share one local loading-dock client. A network service, durable cache, and real workload remain unbuilt and unmeasured.
 
-## Study Pipeline Workbench
+## Study Pipeline Application Contract
 
-AAA Core must eventually provide a study-workbench user interface for designing and inspecting a study pipeline. The workbench composes declared source products, queries, transforms, codec or representation choices, kernel requests, resource profiles, publications, and optional EOM requests without embedding their private semantics in the interface.
+AAA Core must eventually provide the headless contracts needed by a separate study-pipeline application. That consumer may compose declared source products, queries, transforms, codec or representation choices, kernel requests, resource profiles, publications, and optional EOM requests without embedding their private semantics in Core.
 
-For every pipeline stage, the workbench must show its exact inputs, declared output type, coverage, scale range, numeric policy, uncertainty or error behavior, provenance, authority effect, supported consumers, and failure conditions. Before execution, it should surface compatibility failures, missing source coverage, unsupported precision or codec capabilities, expected provisional versus sealed state, and the resource/cost envelope supplied by the selected profile. After execution, it must preserve the immutable manifest, result, logs, and exact failure record needed to replay or audit the study.
+For every pipeline stage, Core must return the exact inputs, declared output type, coverage, scale range, numeric policy, uncertainty or error behavior, provenance, authority effect, supported consumers, failure conditions, and resource/cost envelope available from the selected profile. The consuming application decides how to present compatibility failures, missing source coverage, unsupported precision or codec capabilities, and provisional versus sealed state. Core preserves the immutable manifest, result, logs, and exact failure record needed to replay or audit the study.
 
-The interface may help a user author or transform a path, compare representations, choose a lower-rate stream, or prepare an EOM request. It does not make a transformation scientifically valid, turn a display product into evidence, or allow a prescribed future to appear as an EOM-evolved result.
+A consuming interface may help a user author or transform a path, compare representations, choose a lower-rate stream, or prepare an EOM request. It does not make a transformation scientifically valid, turn a display product into evidence, or allow a prescribed future to appear as an EOM-evolved result.
 
-Plainly: the workbench lets people see and design the full route from a known input to a declared output before they spend compute, while keeping every trade and limitation visible.
+Plainly: Core supplies the complete route and its limitations; a separate application decides how people see and edit it.
 
 ## Study Revision And Archival
 
@@ -337,7 +397,7 @@ Plainly: deployment can change with scale without creating a new data model for 
 
 The cloud deployment should be a layered path-and-product laboratory rather than a single compute server:
 
-1. **Web workbench and application services:** browser-facing study design, path inspection, Potential and other application views, sharing, and administration.
+1. **Application consumers:** separately owned browser-facing study design, path inspection, Potential and other application views, sharing, and administration, all using Core contracts rather than a Core-owned public UI.
 2. **Identity and control plane:** accounts, workspaces, permissions, quotas, budgets, study revisions, publication rules, audit records, and job scheduling.
 3. **Path and product data plane:** immutable path chunks, manifests, indexes, stream watermarks, queries, transforms, codec registration, and product discovery.
 4. **Compute fabric:** CPU reference, orchestration, and difficult-row services alongside scheduled GPU workers for regular tiled screening, decoding, sampling, and map work.
@@ -362,16 +422,18 @@ Plainly: people can build and keep their own studies in the cloud, share them wh
 
 ## Application Relationship
 
+AAA Core is excluded from the application portfolio and public catalogue because it has no end-user problem, scene, launch route, or browser composition root of its own. The application relationships below are consumer relationships, not peer-product listings.
+
 The intended first application relationships are:
 
-- **Potential:** is the sole shared product route from selected path histories to declared potential products. It requests versioned sampling through AAA Core and publishes exportable potential samples, spatial or timespace maps, volumes, and progressive views for other applications. Applications may render or query those products, but do not independently recreate the path-to-potential conversion.
+- **AAA Core Potential:** is the sole shared product route from selected path histories to declared Potential products. It dispatches versioned sampling and publishes exportable samples, spatial or timespace maps, volumes, and progressive views. Applications may render or query those products, but do not independently recreate the path-to-Potential conversion.
 - **Borg:** consumes EOM runs and sealed assembly records without reconstructing missing physics.
 - **Photon:** consumes shared path/history analysis while retaining its candidate and diagnostic boundaries.
 - **Future Path Studio:** constructs, imports, inspects, filters, transforms, and exports path products.
 - **Future Reaction app:** composes initial histories, EOM results, event/interaction ledgers, optimization records, potential maps, and experimental comparisons.
 - **Future experimental app:** imports and compares observer-level reconstructed tracks with explicit uncertainty and mapping.
 
-No application is the private transport layer for another application. Applications meet through AAA Core contracts.
+No application is the private transport layer for another application. Applications meet through AAA Core contracts, never through a Core public interface.
 
 ## First Vertical Slice
 
@@ -404,7 +466,7 @@ Plainly: the first build should prove that one trustworthy path can travel throu
 
 ## Eventual Application Migration
 
-AAA Core does not commit the suite to the current application list, names, or internal structures. Existing applications are useful consumer evidence and may supply temporary adapters, but they are not the target product taxonomy.
+AAA Core does not commit the suite to the current application list, names, or internal structures, and Core itself is not a member of that list. Existing applications are useful consumer evidence and may supply temporary adapters, but they are not the target product taxonomy.
 
 Before adopting a migration plan, the suite needs an explicit application portfolio review: identify the enduring user problems, decide which products should exist, choose their reader-facing names, and assign each product a bounded responsibility. `Borg`, for example, is a current EOM-facing and assembly-view surface, not a commitment to an eventual product name or final application shape.
 
@@ -416,6 +478,6 @@ Migration should then proceed contract-first and product-by-product:
 4. keep app-specific interaction, visual language, and product composition local to the application;
 5. decommission a legacy route only after its successor reproduces its declared user-facing capability and preserves any required replay or record access.
 
-The first portfolio review should consider the current Potential, Borg, Photon, authoring and path-inspection surfaces, and planned reaction and experimental-comparison work. It should not pre-approve all of them as permanent products or force them into a single interface.
+The first portfolio review should consider the current Topo, Lorentz Geometry, Borg, Photon, authoring and path-inspection surfaces, and planned reaction and experimental-comparison work. It should not pre-approve all of them as permanent products or force them into a single interface.
 
 Plainly: first decide which applications people should ultimately use. Then move each one onto shared contracts at a pace that preserves its useful behavior, rather than preserving today’s app names or private plumbing.

@@ -4,7 +4,9 @@
 
 This policy closes OPS-008 by defining the accepted telemetry, consent, retention, and sensitive-work boundaries for public applications and deployment operations. Its machine-checkable state is [`observability-policy.v1.json`](observability-policy.v1.json). The policy governs application-controlled collection; it does not claim that hosting, network, browser, operating-system, or external-data providers retain no request metadata under their own terms.
 
-Plainly: Architrino currently sends no client analytics. Build logs and operator-run measurements remain available for reliability work, but they must not be repurposed into user tracking.
+Website Statistics is a public static operations utility under Archie Operations. It is not a product application, it is excluded from product-application discovery, and its direct route provides no access control. The route must never be described as private unless an actual authenticated service boundary is introduced and separately accepted.
+
+Plainly: Architrino currently sends no client analytics. Build logs and operator-run measurements remain available for reliability work, but they must not be repurposed into user tracking. Anyone who knows the Website Statistics URL can open it; its operational purpose does not make the static page private.
 
 ## Accepted Current State
 
@@ -13,7 +15,7 @@ Plainly: Architrino currently sends no client analytics. Build logs and operator
 | Client analytics | `disabled_no_collector` | No page-view, engagement, error, device, identity, or content event may be sent by an Architrino application. |
 | Consent | Explicit opt-in before the first event | An absent preference, unchecked opt-out, unavailable storage, or hypothetical future collector does not authorize sending. |
 | Raw analytics retention | 0 days | No raw client analytics event is collected or retained. |
-| Aggregate analytics retention | 0 days | The Website Statistics page remains an unconnected zero-data display, not a live traffic report. |
+| Aggregate analytics retention | 0 days | The Website Statistics operations utility remains an unconnected zero-data display, not a live traffic report or a private dashboard. |
 | Cross-site tracking | Prohibited | No cross-site identifier or advertising profile may be created. |
 | Device fingerprinting | Prohibited | Raw user-agent, font, canvas, screen, hardware, or similar attributes may not be combined to recognize a browser. |
 | Sale or advertising use | Prohibited | Operational evidence cannot be sold, shared for advertising, or used to target a person. |
@@ -32,7 +34,7 @@ The negative-control test audited 219 authored app-source files: 23 HTML, 171 Ja
 | Known analytics collector domains | None found | Measured by [`operations-observability-policy.test.js`](../../../tests/operations-observability-policy.test.js); the finite pattern list is not proof against an unlisted endpoint. |
 | `sendBeacon`, cookie access, `XMLHttpRequest`, `WebSocket`, and `EventSource` | None found | Measured source scan over the named authored files. |
 | Remote executable, stylesheet, image, or iframe tags | None found | Measured HTML source scan. |
-| Website Statistics live source | Not connected | Measured from [`website-stats.json`](../../../content/analytics/website-stats.json): mode is `unconnected`, totals are zero, and every series is empty. |
+| Website Statistics live source | Not connected | Measured from [`website-stats.json`](../../../content/analytics/website-stats.json): mode is `unconnected`, totals are zero, and every series is empty. Its public static route has no authentication or privacy boundary. |
 | Website analytics send decision | Defaults to false | Measured unit tests cover absent preference, explicit opt-out, unavailable storage, and hypothetical collector/consent flags while policy mode remains disabled. |
 | iOS reader | No application analytics | Source-bound to the current iOS reader contract and included in the known-collector scan; App Store or provider behavior remains separately verifiable. |
 

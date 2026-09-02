@@ -62,7 +62,7 @@ test("the schema and control record expose the same five logical record kinds", 
 });
 
 test("the Potential v1 consumer fields are supplied by the Core manifest mapping", () => {
-  const potentialContract = readJson("reference/priorities/app-potential/potential-consumer-publication-contract.v1.json");
+  const potentialContract = readJson("reference/priorities/app-aaa-core/potential/potential-product-contract.v1.json");
   assert.equal(potentialContract.upstreamContracts.pathInterchange.schema, contract.interchangeSchema);
   assert.equal(potentialContract.upstreamContracts.pathInterchange.status, "accepted");
   const fixtureCase = positiveSuite.cases.find((entry) => entry.caseId === "potential-map-product");

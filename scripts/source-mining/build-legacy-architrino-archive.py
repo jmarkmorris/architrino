@@ -515,7 +515,7 @@ TOPICS = [
         "destinations": [
             "reference/priorities/source-mining",
             "reference/priorities/aaa-futures",
-            "reference/priorities/app-simulation",
+            "reference/op/simulation-protocol-routing-index.md",
         ],
         "claim_bucket": "speculation",
         "priority": 3,

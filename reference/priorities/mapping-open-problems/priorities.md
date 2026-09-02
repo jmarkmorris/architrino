@@ -66,7 +66,7 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 | Candidate section | Primary priority route | Primary corpus route | Promotion gate |
 | --- | --- | --- | --- |
 | Foundations and spacetime | [master-equation-closure](../master-equation-closure/priorities.md), braid program, [mapping-benchmarks](../mapping-benchmarks/priorities.md) | Spacetime and dynamics corpus documents. | One effective metric and one path-history record recover known clock, ruler, null-path, and phase benchmarks. |
-| Strong-field gravity | [mapping-strong-field](../mapping-strong-field/priorities.md), [dark-sector](../dormant-deferred/dark-sector/priorities.md), [app-simulation](../app-simulation/priorities.md) | Black-hole, singularity, radiation, and nested shell braid documents. | Boundary conditions, entropy counts, event ledgers, and release channels are expressed without hidden singular sinks. |
+| Strong-field gravity | [mapping-strong-field](../mapping-strong-field/priorities.md), [dark-sector](../dormant-deferred/dark-sector/priorities.md), and the operations [simulation protocol routing index](../../op/simulation-protocol-routing-index.md) | Black-hole, singularity, radiation, and nested shell braid documents. | Boundary conditions, entropy counts, event ledgers, and release channels are expressed without hidden singular sinks. |
 | Cosmology and large-scale structure | [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md), [dark-sector](../dormant-deferred/dark-sector/priorities.md), [mapping-benchmarks](../mapping-benchmarks/priorities.md) | Cosmology, CMB, BBN, structure, dark-sector, and redshift documents. | The same Noether sea variables support redshift, distance, growth, CMB, lensing, and structure records. |
 | Quantum and statistical emergence | [mapping-quantum](../mapping-quantum/priorities.md), braid program, [mapping-benchmarks](../mapping-benchmarks/priorities.md) | Quantum, measurement, Bell, entropy, and radiation documents. | Basin measures, detector response, pair provenance, and path-history phase recover the benchmark probabilities without free collapse postulates. |
 | Standard Model and particle closure | [mapping-standard-model](../mapping-standard-model/priorities.md), braid program | Assemblies, fermions, bosons, gauge, mass, nuclear, and validation documents. | Branch geometry, exposure maps, mixing integrals, confinement energetics, and event provenance produce testable particle records. |
@@ -81,4 +81,4 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 - [mapping-quantum](../mapping-quantum/priorities.md)
 - [mapping-standard-model](../mapping-standard-model/priorities.md)
 - braid program
-- [app-simulation](../app-simulation/priorities.md)
+- [simulation protocol routing index](../../op/simulation-protocol-routing-index.md)

@@ -6,7 +6,7 @@
 
 The implementation is synchronous and in-process. It supplies no network API, durable storage or catalog, authentication, authorization, retry policy, production telemetry, workload measurement, scientific kernel, EOM evolution, or application release.
 
-Plainly: Potential and Equation Mapping can now call the same small interface rather than copying path and publication rules. This is a tested local client boundary, not a deployed service.
+Plainly: Topo and Equation Mapping can now call the same small interface rather than copying path and publication rules. This is a tested local client boundary, not a deployed service.
 
 ## Shared Operation Surface
 
@@ -36,7 +36,7 @@ Plainly: each call says whether it finished or failed and keeps the exact reason
 
 Only sealed publications enter the in-memory fixture cache. Its key is the accepted computation cache identity plus a separately checked publisher and permission policy. An equivalent request with a different trace request id returns the same immutable publication as a cache hit; a provisional product is never reused as a completed hit.
 
-The conformance fixture creates Potential and Equation Mapping clients from the same class. Both validate the same manifest, normalize equivalent requests to the same cache identity, subscribe to one shared accepted-history session, and inspect identical progress. Potential publishes the sealed fixture once and receives a hit for the equivalent request; Equation Mapping retrieves its exact product and receipt as a permitted consumer.
+The conformance fixture creates Topo and Equation Mapping clients from the same class. Both validate the same manifest, normalize equivalent requests to the same cache identity, subscribe to one shared accepted-history session, and inspect identical progress. Topo requests publication of the sealed Core Potential fixture once and receives a hit for the equivalent request; Equation Mapping retrieves its exact product and receipt as a permitted consumer.
 
 Plainly: the two apps share code and records, but they keep their own application identities. The test proves interface reuse and exact handoff, not a potential result or production cache behavior.
 

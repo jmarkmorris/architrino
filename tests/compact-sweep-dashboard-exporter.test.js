@@ -17,6 +17,9 @@ import {
   writeCompactSweepDashboardExport,
 } from "../scripts/eom/export-compact-sweep-dashboard.mjs";
 import {
+  validateCompactSweepDashboardData,
+} from "../src/apps/compact-sweep-dashboard/CompactSweepDashboardData.js";
+import {
   compactSha256Canonical,
   importCompactMonteCarloCampaign,
   verifyCompactAnalyticalCampaignDatabase,
@@ -176,6 +179,31 @@ test("read-only exporter is byte deterministic and leaves SQLite unchanged", () 
     );
     assert.equal(first.data.summary.drawn, 3);
     assert.equal(first.data.rows[0].exactRerunInstruction != null, true);
+    assert.match(first.data.identity.borgRegistrySha256, /^[a-f0-9]{64}$/u);
+    assert.equal(
+      typeof first.data.identity.borgRegistryRevision,
+      "string",
+    );
+    assert.equal(
+      first.data.rows.every((row) =>
+        row.borgSelection.schema === "borg-selection.v1" &&
+        /^brd-[a-f0-9]{32}$/u.test(row.borgSelection.braidId) &&
+        row.borgSelection.assemblyId === row.assemblyId &&
+        row.borgSelection.modelRevisionSha256 === row.modelRevisionSha256),
+      true,
+    );
+    const missingSelection = structuredClone(first.data);
+    delete missingSelection.rows[0].borgSelection;
+    assert.throws(
+      () => validateCompactSweepDashboardData(missingSelection),
+      /borgSelection must retain/u,
+    );
+    const staleSelection = structuredClone(first.data);
+    staleSelection.rows[0].borgSelection.modelRevisionSha256 = "0".repeat(64);
+    assert.throws(
+      () => validateCompactSweepDashboardData(staleSelection),
+      /borgSelection must retain/u,
+    );
     assert.equal(
       first.data.identity.combinedCandidateScoreCreated,
       false,

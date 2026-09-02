@@ -4,14 +4,15 @@ Snapshot: 2026-09-02.
 
 This is the developer-facing ownership and routing inventory for [reference/priorities](../README.md). The canonical numeric order lives in [priorities.md](priorities.md); the repeated mathematical joins live in [closure-join-matrix.md](closure-join-matrix.md).
 
-The live filesystem contains 27 immediate top-level directories plus the `dormant-deferred` container: 25 owner directories comprising 11 ranked owners, 2 control/routing surfaces, and 12 unranked owners, plus the non-owner `mapping` overview and `mapping-cronin-assembly-theory` packet. The archive contains 27 child directories. The four separately ranked shared packets are not additional directory owners.
+The live filesystem contains 26 immediate top-level directories plus the `dormant-deferred` container: 23 priority inventory directories comprising 11 ranked owners, 1 control surface, 1 unranked shared headless platform, and 10 other unranked owners, plus the non-owner `mapping` overview, the `mapping-cronin-assembly-theory` packet, and the legacy `app-simulation` compatibility directory. The archive contains 26 child directories. The four separately ranked shared packets are not additional directory owners.
 
 ## Inclusion Rules
 
 - An immediate top-level directory with its own `priorities.md` is part of the active inventory unless it is explicitly a control or routing surface.
 - A top-level tracker may carry an internal `deferred` or `watchlist` status and still remain in the active inventory. Moving the directory under `dormant-deferred` is what removes it from active ranking.
 - Every child of `dormant-deferred` belongs in the archive inventory and is unscored by policy, even when its parked tracker or a stale unified-table row retains historical rank metadata.
-- `aaa-work-threads` is the ranking/control surface and `app-simulation` is a protocol-routing index; neither is a separately ranked owner.
+- `aaa-work-threads` is the ranking/control surface and is not a separately ranked owner.
+- `app-simulation` is a compatibility directory outside the priority-owner and product-application inventories. Its canonical [Simulation Protocol Routing Index](../../op/simulation-protocol-routing-index.md) is operations documentation.
 - Supporting subdirectories inherit their parent owner unless a shared theorem packet is explicitly ranked in the unified table.
 - Completed objects leave the live queue. The next local marginal winner then replaces the workstream's unified-table row and is rescored from scratch.
 
@@ -46,23 +47,30 @@ These rows multiply several owners and therefore retain their own numeric attent
 | 7 | `exposure-quotient-theorem` | Table-level shared contract in [closure-join-matrix.md](closure-join-matrix.md#exposure-quotient-contract) | One accepted branch-to-sector exposure quotient with a null-sector bound. |
 | 10 | `residual-routing-event-ledger` | Table-level shared contract in [closure-join-matrix.md](closure-join-matrix.md#residual-routing-contract) | One concrete EOM-evolved transition with a closed event ledger. |
 
-## Unranked Active Control And Routing Surfaces
+## Unranked Active Control Surface
 
 | Directory | Role | Rule |
 | --- | --- | --- |
 | [`aaa-work-threads`](priorities.md) | Canonical active ranking, inventory, join matrix, history, and [routing queue](work-queue.md). | Never score the control surface as its own workstream. |
-| [`app-simulation`](../app-simulation/priorities.md) | Preserved simulation-protocol routing index with a [no-local-owner queue](../app-simulation/work-queue.md). | EOM owns execution, the scientific lane owns campaigns, and the proof lane owns acceptance. |
 
-## Unranked Active Owners
+The former [`app-simulation`](../app-simulation/priorities.md) address remains a compatibility anchor for the operations [Simulation Protocol Routing Index](../../op/simulation-protocol-routing-index.md) and its preserved detail. It is not counted as a priority owner or application. The EOM solver owns reusable execution, the scientific lane owns campaigns, and the proof lane owns acceptance.
 
-These twelve directories remain in the top-level inventory without a numeric rank. Their local status and ownership boundaries are preserved; inclusion here does not make a blocked task executable or reopen completed work.
+## Unranked Shared Headless Platform
+
+| Directory | Present role | Catalogue and execution boundary |
+| --- | --- | --- |
+| [`app-aaa-core`](../app-aaa-core/priorities.md) | Shared path, storage, query, codec, stream, publication, client, and Potential platform. | The compatibility directory name is retained for stable references, but AAA Core is not an end-user application and is excluded from the public Applications scene, standalone launch routing, and the product count. Logical path, workload, codec, stream, query/publication, thin-client, and Potential contracts are accepted; remaining rows require measured workloads or external inputs. |
+
+Plainly: AAA Core supplies shared machinery behind applications. A visitor does not launch it.
+
+## Other Unranked Active Owners
+
+These ten directories remain in the top-level inventory without a numeric rank. Their local status and ownership boundaries are preserved; inclusion here does not make a blocked task executable or reopen completed work.
 
 | Directory | Present role | Ranking or execution boundary |
 | --- | --- | --- |
-| [`app-aaa-core`](../app-aaa-core/priorities.md) | Shared path, storage, query, codec, and publication platform. | Logical path, workload, codec, stream, query/publication, and thin-client contracts are accepted; remaining rows require measured workloads or external inputs. |
 | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | Interactive explanatory surface for stable-ID equation documents and canonical page links; it does not certify equation claims. | No executable object remains: carousel expansion requires a newly justified task, and review-packet export requires an operator-selected local draft. |
-| [`app-potential`](../app-potential/priorities.md) | Potential-observable reconstruction and display application. | Core path, codec, stream, and query/publication contracts are accepted; ranking awaits a scientific reference sampler and measured workloads; no separate forward solver. |
-| [`app-topo`](../app-topo/priorities.md) | Planar topographic display of prescribed potential products. | Ranking awaits a reference-surface estimate; consumes Potential and AAA Core services. |
+| [`app-topo`](../app-topo/priorities.md) | Planar topographic display of prescribed wake-intensity and declared Potential products. | Ranking awaits a reference-surface estimate; consumes AAA Core services and retains visualization ownership. |
 | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | Shared implementation-facing control-bar and app-chrome standardization. | The accepted standard has no executable object; later migrations require a newly justified queue item. |
 | [`category-theory`](../category-theory/priorities.md) | Supporting mathematical structures for history composition, restrictions, and recovery interfaces. | Low-intensity support; physical realization and acceptance remain with the scientific owners. |
 | [`aaa-corpus-dragnet`](../aaa-corpus-dragnet/priorities.md) | Read-only inventory of possible corpus connections, duplication, terminology drift, and routing gaps. | Recommendations require owner or operator triage; no independent edit or promotion authority. |
@@ -76,7 +84,7 @@ Plainly: these folders have defined responsibilities but no global numeric rank.
 
 ## Dormant-Deferred Archive
 
-The following 27 children are preserved as archived work. They are excluded from the active inventory, and archive policy excludes them from numeric ranking, the active discussion queue, and tracker-metadata synchronization. Historical tracker metadata does not reactivate a directory.
+The following 26 children are preserved as archived work. They are excluded from the active inventory, and archive policy excludes them from numeric ranking, the active discussion queue, and tracker-metadata synchronization. Historical tracker metadata does not reactivate a directory. The Archie service MCP adapter is a component of the archived `archie` owner, not a separate application or inventory owner.
 
 | Archived child | Parked role |
 | --- | --- |
@@ -89,8 +97,7 @@ The following 27 children are preserved as archived work. They are excluded from
 | [`app-ios`](../dormant-deferred/app-ios/priorities.md) | Parked iPhone/iPad reader release and post-v1 app queue; release remains deferred until theory closure and an explicit operator decision. |
 | [`app-lattice-lab`](../dormant-deferred/app-lattice-lab/priorities.md) | Accepted Lattice Lab teaching app and its parked follow-on queue. |
 | [`app-lorentz-geometry`](../dormant-deferred/app-lorentz-geometry/priorities.md) | Deferred Lorentz-geometry teaching app. |
-| [`app-mcp`](../dormant-deferred/app-mcp/priorities.md) | Parked read-only MCP access layer; named Codex and ChatGPT HTTP conformance is complete, while higher-order graph and semantic-retrieval extensions remain deferred. |
-| [`archie`](../dormant-deferred/archie/priorities.md) | Parked persona, interface product, and service-platform architecture. |
+| [`archie`](../dormant-deferred/archie/priorities.md) | Parked persona, interface product, service-platform architecture, and service-owned MCP protocol adapter. |
 | [`cosmic-civics`](../dormant-deferred/cosmic-civics/priorities.md) | Exploratory movement, map, and claims-registry concepts; no rights or implementation authority. |
 | [`dark-sector`](../dormant-deferred/dark-sector/priorities.md) | Parked speculative candidate-assembly and dark-visible re-entry watchlist. |
 | [`electrodynamics`](../dormant-deferred/electrodynamics/priorities.md) | Parked electrodynamics recovery and primitive-dyon brainstorm; no executable queue. |
@@ -108,7 +115,7 @@ The following 27 children are preserved as archived work. They are excluded from
 | [`ruth-kastner`](../dormant-deferred/ruth-kastner/priorities.md) | Deferred source/interpretation packet. |
 | [`validation-gates`](../dormant-deferred/validation-gates/priorities.md) | Archived acceptance-intersection packet retained as reference, not a live ranked owner. |
 
-Plainly: all 27 folders are parked. An old active label or rank inside a parked file does not return it to the active inventory.
+Plainly: all 26 top-level folders are parked. The nested MCP adapter remains preserved with Archie service contracts and tests, but it is not a website application or a separate workstream owner. An old active label or rank inside a parked file does not return it to the active inventory.
 
 The pre-split monolith remains recoverable from Git history; it is not a live archive packet.
 

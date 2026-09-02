@@ -5,8 +5,8 @@
     {
       "caseId": "complete-equivalent-and-ordered",
       "sourceCaseId": "prescribed-paths",
-      "publisher": "Potential publication",
-      "permittedConsumers": ["Potential", "Equation Mapping"],
+      "publisher": "AAA Core Potential",
+      "permittedConsumers": ["Topo", "Equation Mapping"],
       "retrievalConsumer": "Equation Mapping",
       "state": "sealed",
       "request": {
@@ -19,10 +19,10 @@
           {"transformId": "aaa-core.scale/v0", "version": "0.1.0", "parameters": {"factor": 2}, "authorityEffect": "preserve", "maximumAddedAbsoluteError": 0, "coverageEffect": "preserve"}
         ],
         "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 1e-12},
-        "output": {"productKind": "potential_map_product/v1", "representationProfile": "precision_bounded_analysis", "codecCapabilityId": "potential_fixture_map_json/v1", "codecProvider": "app-potential"}
+        "output": {"productKind": "potential_map_product/v1", "representationProfile": "precision_bounded_analysis", "codecCapabilityId": "potential_fixture_map_json/v1", "codecProvider": "aaa-core"}
       },
       "equivalentRequest": {
-        "output": {"codecProvider": "app-potential", "codecCapabilityId": "potential_fixture_map_json/v1", "representationProfile": "precision_bounded_analysis", "productKind": "potential_map_product/v1"},
+        "output": {"codecProvider": "aaa-core", "codecCapabilityId": "potential_fixture_map_json/v1", "representationProfile": "precision_bounded_analysis", "productKind": "potential_map_product/v1"},
         "numericPolicy": {"maximumAbsoluteError": 1e-12, "nonfiniteBehavior": "reject", "rounding": "nearest_ties_even", "precisionBits": 53, "representation": "binary64", "representationProfile": "precision_bounded_analysis"},
         "transforms": [
           {"coverageEffect": "preserve", "maximumAddedAbsoluteError": 0, "authorityEffect": "cap_derived_analysis", "parameters": {"offset": [1, 0, 0]}, "version": "0.1.0", "transformId": "aaa-core.translate/v0"},
@@ -43,14 +43,14 @@
           {"transformId": "aaa-core.translate/v0", "version": "0.1.0", "parameters": {"offset": [1, 0, 0]}, "authorityEffect": "cap_derived_analysis", "maximumAddedAbsoluteError": 0, "coverageEffect": "preserve"}
         ],
         "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 1e-12},
-        "output": {"productKind": "potential_map_product/v1", "representationProfile": "precision_bounded_analysis", "codecCapabilityId": "potential_fixture_map_json/v1", "codecProvider": "app-potential"}
+        "output": {"productKind": "potential_map_product/v1", "representationProfile": "precision_bounded_analysis", "codecCapabilityId": "potential_fixture_map_json/v1", "codecProvider": "aaa-core"}
       }
     },
     {
       "caseId": "incomplete-provisional",
       "sourceCaseId": "live-accepted-stream",
-      "publisher": "Potential display",
-      "permittedConsumers": ["Potential"],
+      "publisher": "AAA Core Potential",
+      "permittedConsumers": ["Topo"],
       "state": "provisional",
       "request": {
         "schema": "aaa_core_query_request/v0",

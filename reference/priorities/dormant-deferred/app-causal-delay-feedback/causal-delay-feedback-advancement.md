@@ -30,7 +30,7 @@ Before editing:
    - `reference/priorities/dormant-deferred/app-causal-delay-feedback/priorities.md`;
    - `reference/priorities/dormant-deferred/app-causal-delay-feedback/brainstorming.md`;
    - `reference/priorities/dormant-deferred/app-causal-delay-feedback/v1-product-requirements.md`;
-   - `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-product-plan.md`;
+   - `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-mode-plan.md`;
    - `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-requirements-and-design.md`;
    - `content/markdown/aaa/dynamics/master-equation.md`, especially causal roots and caustic transit;
    - `content/markdown/aaa/archie/navigation-and-controls.md`;
@@ -273,7 +273,7 @@ Add or update tests for:
 16. representative mock, EOM replay, and unavailable-provider authority labels;
 17. keyboard operation, focus order, reduced motion, and text-equivalent state;
 18. no force-language regression in new UI copy; and
-19. no separate Roots route or second root evaluator.
+19. no separate Roots product route or second root evaluator; direct mode selection remains on `causal-delay-feedback.html?mode=roots`.
 
 Use independently known closed-form fixtures for the simple-root and ordinary fold mathematics. Agreement between two consumers of the same production evaluator proves synchronization, not mathematical correctness.
 

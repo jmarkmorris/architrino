@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 
 import {
   getStandaloneAppPathForScene,
-  isPublicStandaloneAppSearchEntry,
+  isPublicProductSceneSearchEntry,
   resolveStandaloneAppHrefForScene,
 } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
 import {
@@ -149,12 +149,127 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
     ),
     "http://127.0.0.1:5173/braid-search.html"
   );
+});
+
+test("brand visual reference keeps direct launch routing outside product discovery", () => {
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/brand_visual_identity.json"),
+    "brand-visual-identity.html",
+  );
   assert.equal(
     resolveStandaloneAppHrefForScene(
       "content/scenes/archie/brand_visual_identity.json",
-      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fbrand_visual_identity.json"
+      "http://127.0.0.1:5173/index.html",
     ),
-    "http://127.0.0.1:5173/brand-visual-identity.html"
+    "http://127.0.0.1:5173/brand-visual-identity.html",
+  );
+  assert.equal(
+    isPublicProductSceneSearchEntry({
+      id: "archie__brand_visual_identity",
+      path: "content/scenes/archie/brand_visual_identity.json",
+    }),
+    false,
+  );
+
+  for (const scenePath of [
+    "content/scenes/archie/applications.json",
+    "content/scenes/archie/applications_learn_reference.json",
+    "content/scenes/archie/applications_explore_models.json",
+    "content/scenes/archie/applications_analyze_evidence.json",
+    "content/scenes/archie/applications_build_simulate.json",
+  ]) {
+    assert.doesNotMatch(readRepoFile(scenePath), /brand[_-]visual[_-](?:identity|reference)/iu);
+  }
+});
+
+test("AAA Core remains a headless platform outside public product discovery", () => {
+  for (const sceneToken of [
+    "aaa-core",
+    "aaa_core",
+    "app-aaa-core",
+    "archie__aaa_core",
+    "content/scenes/archie/aaa_core.json",
+  ]) {
+    assert.equal(getStandaloneAppPathForScene(sceneToken), null);
+    assert.equal(isPublicProductSceneSearchEntry({id: sceneToken, path: sceneToken}), false);
+  }
+
+  for (const scenePath of [
+    "content/scenes/archie/applications.json",
+    "content/scenes/archie/applications_learn_reference.json",
+    "content/scenes/archie/applications_explore_models.json",
+    "content/scenes/archie/applications_analyze_evidence.json",
+    "content/scenes/archie/applications_build_simulate.json",
+  ]) {
+    assert.doesNotMatch(readRepoFile(scenePath), /(?:aaa[_-]?core|app-aaa-core)/iu);
+  }
+});
+
+test("UI Guidelines remains shared standards documentation, not a product application", () => {
+  assert.equal(getStandaloneAppPathForScene("archie__ui_guidelines"), null);
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/ui_guidelines.json"),
+    null,
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/archie/ui_guidelines.json",
+      "http://127.0.0.1:5173/index.html",
+    ),
+    null,
+  );
+
+  for (const scenePath of [
+    "content/scenes/archie/applications.json",
+    "content/scenes/archie/applications_learn_reference.json",
+    "content/scenes/archie/applications_explore_models.json",
+    "content/scenes/archie/applications_analyze_evidence.json",
+    "content/scenes/archie/applications_build_simulate.json",
+  ]) {
+    assert.doesNotMatch(readRepoFile(scenePath), /ui[_-]?guidelines/iu);
+  }
+
+  const userInterfaceScene = JSON.parse(
+    readRepoFile("content/scenes/archie/user_interface.json"),
+  );
+  const guidelinesScene = JSON.parse(
+    readRepoFile("content/scenes/archie/ui_guidelines.json"),
+  );
+  const guidelinesGuide = readRepoFile(
+    "content/markdown/aaa/archie/ui-guidelines.md",
+  );
+  const navigationGuide = readRepoFile(
+    "content/markdown/aaa/archie/navigation-and-controls.md",
+  );
+  const sharedTokens = readRepoFile("ui-tokens.css");
+  assert.deepEqual(
+    userInterfaceScene.scene.children.find((child) => child.nodeId === "ui_guidelines"),
+    {
+      nodeId: "ui_guidelines",
+      scenePath: "content/scenes/archie/ui_guidelines.json",
+    },
+  );
+  assert.deepEqual(
+    userInterfaceScene.objects
+      .filter((object) => object.id === "ui_guidelines")
+      .map(({ labelSubtitle, labelBadge }) => ({ labelSubtitle, labelBadge })),
+    [{ labelSubtitle: "Shared application standards", labelBadge: "doc" }],
+  );
+  assert.equal(guidelinesScene.scene.type, "Scene-Markdown-View");
+  assert.equal(
+    guidelinesScene.scene.source.path,
+    "content/markdown/aaa/archie/ui-guidelines.md",
+  );
+  assert.match(guidelinesGuide, /It governs applications; it is not itself a product application/u);
+  assert.match(guidelinesGuide, /Reusable implementation values belong in `ui-tokens\.css`/u);
+  assert.match(navigationGuide, /UI Guidelines.*own the shared interface standards/iu);
+  assert.match(sharedTokens, /--ui-font-family:\s*"Helvetica Neue", Arial, sans-serif;/u);
+  assert.equal(
+    isPublicProductSceneSearchEntry({
+      id: "archie__ui_guidelines",
+      path: "content/scenes/archie/ui_guidelines.json",
+    }),
+    false,
   );
 });
 
@@ -198,7 +313,7 @@ test("standalone global search uses the canonical scene graph and main-app navig
   );
 });
 
-test("public scene search filters internal standalone app entries", () => {
+test("public product scene search filters non-product entries", () => {
   const appended = [];
   const sceneSearchResults = {
     set innerHTML(_value) {
@@ -230,6 +345,18 @@ test("public scene search filters internal standalone app entries", () => {
           path: "content/scenes/archie/equation_mapping.json",
           nodeType: "scene",
         },
+        {
+          id: "archie__website_stats",
+          name: "Website Statistics — Operations",
+          path: "content/scenes/archie/website_stats.json",
+          nodeType: "scene",
+        },
+        {
+          id: "archie__operations",
+          name: "Archie Operations",
+          path: "content/scenes/archie/operations.json",
+          nodeType: "scene",
+        },
       ];
     },
   };
@@ -241,7 +368,7 @@ test("public scene search filters internal standalone app entries", () => {
     searchBackStack: [],
     jumpToScene() {},
     documentRef,
-    isSearchEntryVisible: isPublicStandaloneAppSearchEntry,
+    isSearchEntryVisible: isPublicProductSceneSearchEntry,
   });
 
   runtime.updateSearchResults("braid");
@@ -249,6 +376,11 @@ test("public scene search filters internal standalone app entries", () => {
   runtime.updateSearchResults("equation");
   assert.equal(appended.length, 1);
   assert.equal(appended[0].textContent, "Equation Mapping");
+  runtime.updateSearchResults("website");
+  assert.equal(appended.length, 0);
+  runtime.updateSearchResults("operations");
+  assert.equal(appended.length, 1);
+  assert.equal(appended[0].textContent, "Archie Operations");
 });
 
 test("standalone global TOC resolves the canonical textbook TOC scene", () => {
@@ -349,6 +481,62 @@ test("Applications scene does not expose Assembly Explorer", () => {
       scene.scene.children.some((child) => child.nodeId === "assembly_explorer")),
     false
   );
+  assert.equal(isPublicProductSceneSearchEntry({
+    id: "assembly-explorer",
+    path: "content/scenes/archie/assembly_explorer.json",
+  }), false);
+});
+
+test("Website Statistics is an Archie Operations utility, not a product application", () => {
+  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  const applicationCategoryScenes = applicationsScene.scene.children.map((child) =>
+    JSON.parse(readRepoFile(child.scenePath))
+  );
+  const projectScene = JSON.parse(readRepoFile("content/scenes/archie/project.json"));
+  const operationsScene = JSON.parse(readRepoFile("content/scenes/archie/operations.json"));
+
+  assert.equal(
+    applicationCategoryScenes.some((scene) =>
+      scene.scene.children.some((child) => child.nodeId === "website_stats")
+    ),
+    false
+  );
+  assert.equal(
+    applicationCategoryScenes.some((scene) =>
+      scene.objects.some((object) => object.id === "website_stats")
+    ),
+    false
+  );
+  assert.equal(
+    projectScene.scene.children.some(
+      (child) =>
+        child.nodeId === "operations" &&
+        child.scenePath === "content/scenes/archie/operations.json"
+    ),
+    true
+  );
+  assert.equal(
+    projectScene.scene.children.some((child) => child.nodeId === "website_stats"),
+    false
+  );
+  assert.equal(operationsScene.scene.id, "archie__operations");
+  assert.equal(operationsScene.scene.title, "Archie Operations");
+  assert.equal(
+    operationsScene.scene.children.some(
+      (child) =>
+        child.nodeId === "website_stats" &&
+        child.scenePath === "content/scenes/archie/website_stats.json"
+    ),
+    true
+  );
+  assert.equal(
+    operationsScene.objects.some(
+      (object) =>
+        object.id === "website_stats" &&
+        object.labelSubtitle === "Public operations utility"
+    ),
+    true
+  );
 });
 
 test("Applications scene exposes Equation Mapping as a standalone app scene", () => {
@@ -428,18 +616,25 @@ test("Braid Search keeps its direct developer route without public Applications 
     "braid-search.html"
   );
   assert.equal(
-    isPublicStandaloneAppSearchEntry({
+    isPublicProductSceneSearchEntry({
       id: "braid-search",
       path: "content/scenes/archie/braid_search.json",
     }),
     false,
   );
   assert.equal(
-    isPublicStandaloneAppSearchEntry({
+    isPublicProductSceneSearchEntry({
       id: "equation-mapping",
       path: "content/scenes/archie/equation_mapping.json",
     }),
     true,
+  );
+  assert.equal(
+    isPublicProductSceneSearchEntry({
+      id: "archie__website_stats",
+      path: "content/scenes/archie/website_stats.json",
+    }),
+    false,
   );
 });
 
@@ -484,7 +679,7 @@ test("Molecule scene ids and paths resolve to the standalone app path", () => {
   );
 });
 
-test("Website Stats scene resolves to the standalone app path", () => {
+test("Website Statistics keeps its direct operations route without public search discovery", () => {
   assert.equal(getStandaloneAppPathForScene("archie__website_stats"), "website-stats.html");
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/website_stats.json"),
@@ -496,6 +691,13 @@ test("Website Stats scene resolves to the standalone app path", () => {
       "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fwebsite_stats.json"
     ),
     "http://127.0.0.1:5173/website-stats.html"
+  );
+  assert.equal(
+    isPublicProductSceneSearchEntry({
+      id: "archie__website_stats",
+      path: "content/scenes/archie/website_stats.json",
+    }),
+    false
   );
 });
 

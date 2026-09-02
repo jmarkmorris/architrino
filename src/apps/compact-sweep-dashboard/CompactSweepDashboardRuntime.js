@@ -17,6 +17,14 @@ import {
   validateCompactSweepDashboardData,
 } from "./CompactSweepDashboardData.js";
 import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
+import {
+  buildBorgLibraryHref,
+  buildBorgWorkbenchHref,
+} from "../shared/BorgSelectionNavigation.mjs";
+import {
+  persistBraidSearchRouteState,
+  readBraidSearchRouteState,
+} from "./BraidSearchRouteState.mjs";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const DEFAULT_VIEW_ID = "overview";
@@ -1548,7 +1556,7 @@ function formatCoordinateValue(value) {
   }).join(" · ");
 }
 
-function renderCaseDetail(row) {
+function renderCaseDetail(row, state) {
   const wrapper = element("div", "compact-dashboard-case-detail");
   if (!row) {
     wrapper.appendChild(
@@ -1583,6 +1591,42 @@ function renderCaseDetail(row) {
         : "null early exit",
     ),
   );
+
+  const returnTo = persistBraidSearchRouteState(
+    state,
+    state.locationLike,
+    state.historyLike,
+  );
+  const borgActions = element("div", "compact-dashboard-borg-actions");
+  const workbenchLink = element(
+    "a",
+    "compact-dashboard-button",
+    "Inspect related assembly in Borg",
+  );
+  workbenchLink.href = buildBorgWorkbenchHref({
+    selection: row.borgSelection,
+    returnTo,
+  });
+  const libraryLink = element(
+    "a",
+    "compact-dashboard-button",
+    "Find braid in Borg Library",
+  );
+  libraryLink.href = buildBorgLibraryHref({
+    selection: row.borgSelection,
+    returnTo,
+  });
+  append(
+    borgActions,
+    workbenchLink,
+    libraryLink,
+    element(
+      "p",
+      "compact-dashboard-note",
+      `Borg handoff: ${row.borgSelection.braidId} · ${row.assemblyId} · model revision ${row.modelRevisionSha256}.`,
+    ),
+  );
+  wrapper.appendChild(borgActions);
 
   const residualTable = table(["Field", "Exact value", "Meaning"]);
   [
@@ -1955,7 +1999,7 @@ function renderCases(state) {
     description:
       "One retained row, its measured compact diagnostics, declared numerical thresholds, sampled coordinates, and source identities.",
   });
-  detailPanel.body.appendChild(renderCaseDetail(selected));
+  detailPanel.body.appendChild(renderCaseDetail(selected, state));
   append(layout, listPanel.wrapper, detailPanel.wrapper);
   view.appendChild(layout);
   return view;
@@ -2021,6 +2065,11 @@ function renderView(state) {
   };
   const renderer = renderers[state.viewId] ?? renderers[DEFAULT_VIEW_ID];
   state.viewContainer.appendChild(renderer(state));
+  persistBraidSearchRouteState(
+    state,
+    state.locationLike,
+    state.historyLike,
+  );
 }
 
 function mountShell(root, state) {
@@ -2197,11 +2246,18 @@ function refreshFilters(state) {
 function loadData(state, rawData) {
   const data = validateCompactSweepDashboardData(rawData);
   state.data = data;
-  state.filters = {
-    candidateDisposition: "all",
-    assemblyId: "all",
-    sourceSlug: "all",
-  };
+  if (!["all", ACTIVE_CANDIDATE_DISPOSITION, DEPRECATED_CONTROL_DISPOSITION]
+    .includes(state.filters.candidateDisposition)) {
+    state.filters.candidateDisposition = "all";
+  }
+  if (state.filters.assemblyId !== "all" &&
+      !data.rows.some((row) => row.assemblyId === state.filters.assemblyId)) {
+    state.filters.assemblyId = "all";
+  }
+  if (state.selectedCaseKey !== null &&
+      !data.rows.some((row) => row.rowKey === state.selectedCaseKey)) {
+    state.selectedCaseKey = null;
+  }
   refreshFilters(state);
   state.main.replaceChildren(state.viewContainer, renderBoundary(data));
   renderView(state);
@@ -2210,32 +2266,33 @@ function loadData(state, rawData) {
 export async function renderCompactSweepDashboardApp({
   root = document.getElementById("compact-sweep-dashboard-app"),
   defaultDataPath =
-    "./.local-data/braid-analysis/compact-monte-carlo/configuration-sweep-v2/compact-sweep-dashboard.v2.json",
+    "./.local-data/braid-analysis/compact-monte-carlo/configuration-sweep-v2/compact-sweep-dashboard.v3.json",
   fetchImpl = globalThis.fetch,
   documentLike = globalThis.document,
   windowLike = globalThis.window,
 } = {}) {
   if (!root) throw new Error("compact sweep dashboard root is required.");
+  const routeState = readBraidSearchRouteState(windowLike?.location?.search ?? "");
   const state = {
-    casePage: 0,
-    caseConfigurationId: "all",
-    caseQuery: "",
-    caseSampleOrdinal: "all",
+    casePage: routeState.casePage,
+    caseConfigurationId: routeState.caseConfigurationId,
+    caseQuery: routeState.caseQuery,
+    caseSampleOrdinal: routeState.caseSampleOrdinal,
     data: null,
     defaultDataPath,
-    filters: {
-      candidateDisposition: "all",
-      assemblyId: "all",
-      sourceSlug: "all",
-    },
+    filters: { ...routeState.filters },
+    historyLike: windowLike?.history,
+    locationLike: windowLike?.location,
     metricGroup: "sourceSlug",
     metricId: "externalExposureFraction",
     parameterId: "geometryScale",
     parameterMetricId: "externalExposureFraction",
     performanceValue: "wallSeconds",
-    selectedCaseKey: null,
+    selectedCaseKey: routeState.selectedCaseKey,
     tabs: new Map(),
-    viewId: DEFAULT_VIEW_ID,
+    viewId: VIEW_DEFINITIONS.some((view) => view.id === routeState.viewId)
+      ? routeState.viewId
+      : DEFAULT_VIEW_ID,
   };
   mountShell(root, state);
   const navigationRuntime = createStandaloneAppNavigationRuntime({

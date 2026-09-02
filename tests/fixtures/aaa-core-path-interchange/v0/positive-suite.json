@@ -229,7 +229,7 @@
           "payload": {
             "productId": "potential-map-synthetic-001", "productKind": "potential_map_product/v1", "sourceBindings": [{"pathSetId": "synthetic-path-set-001", "manifestSha256": "b8ac11b26df17c3c902ccabba6c119846ba1d9a2c1b0c363c52f6a13a16aa164"}], "viewManifestId": "potential-view-001",
             "coverage": {"startT": 0, "endT": 2, "acceptedThroughT": 2, "complete": true}, "completeness": "sealed",
-            "codec": {"capabilityId": "potential_fixture_map_json/v1", "provider": "app-potential", "representationProfile": "precision_bounded_analysis"},
+            "codec": {"capabilityId": "potential_fixture_map_json/v1", "provider": "aaa-core", "representationProfile": "precision_bounded_analysis"},
             "provenance": {"producer": "Potential", "producerVersion": "synthetic_fixture/v1", "sourceRecords": [{"sourceId": "potential-derived-grid-001", "sourceSha256": "6666666666666666666666666666666666666666666666666666666666666666"}], "transforms": ["potential-synthetic-grid/v1"]},
             "authority": {"level": "derived_analysis", "scientificOwner": "test-fixture-only", "continuationPermitted": false, "evidenceUse": "derived synthetic map only"}
           }

@@ -1279,7 +1279,7 @@ export function mountIdealBraid(options = {}) {
     lastFrameTime: getIdealBraidRuntimeNowMs(windowLike),
     dragging: false,
     lastPointer: { x: 0, y: 0 },
-    surfaceRange: { min: 0, max: 0, maxAbs: 1 },
+    surfaceRange: null,
   };
   let runtimeDestroyed = false;
   let surfaceSolverError = null;
@@ -1548,29 +1548,30 @@ export function mountIdealBraid(options = {}) {
 
   function updateSurface() {
     if (!state.surfaceVisible) {
+      surfacePoints.visible = false;
       return;
     }
     const snapshot = getCurrentSurfaceSolverSnapshot();
     scheduleSurfaceSolverSnapshot();
+    if (!snapshot) {
+      surfacePoints.visible = false;
+      return;
+    }
+    surfacePoints.visible = true;
     if (
       snapshot === lastAppliedSurfaceSnapshot &&
       Math.abs(lastAppliedSurfaceRadius - state.radius) <= 1e-12
     ) {
       return;
     }
-    const potentials = snapshot?.surfacePotentials ??
-      Array.from({ length: surfaceSamples.length }, () => 0);
+    const potentials = snapshot.surfacePotentials;
     surfaceSamples.forEach((sample, sampleIndex) => {
       const position = sample.unit.clone().multiplyScalar(state.radius);
       surfacePositions[sampleIndex * 3] = position.x;
       surfacePositions[sampleIndex * 3 + 1] = position.y;
       surfacePositions[sampleIndex * 3 + 2] = position.z;
     });
-    const surfaceRange = snapshot?.surfaceRange ?? {
-      min: Math.min(...potentials),
-      max: Math.max(...potentials),
-      maxAbs: Math.max(0.0001, ...potentials.map((value) => Math.abs(value))),
-    };
+    const surfaceRange = snapshot.surfaceRange;
     potentials.forEach((potential, index) => {
       const color = colorForPotential(Three, potential, surfaceRange.maxAbs);
       surfaceColors[index * 3] = color.r;
@@ -1750,7 +1751,7 @@ export function mountIdealBraid(options = {}) {
 
   function updateVisibility() {
     pathGroup.visible = state.pathsVisible;
-    surfacePoints.visible = state.surfaceVisible;
+    surfacePoints.visible = state.surfaceVisible && !!getCurrentSurfaceSolverSnapshot();
     axisReferenceGroup.visible = state.axesVisible;
   }
 

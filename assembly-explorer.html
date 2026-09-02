@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
     <meta http-equiv="refresh" content="0; url=./borg-library.html">
-    <title>Assembly Explorer moved to Borg</title>
+    <link rel="canonical" href="./borg-library.html">
+    <title>Assembly Explorer moved to Borg Library</title>
     <style>
       :root { color-scheme: dark; font-family: system-ui, sans-serif; }
       body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #07110d; color: #e9f5ee; }
@@ -13,14 +15,16 @@
     </style>
     <script>
       const target = new URL("./borg-library.html", window.location.href);
+      target.search = window.location.search;
+      target.hash = window.location.hash;
       window.location.replace(target.href);
     </script>
   </head>
   <body>
     <main>
-      <h1>Assembly Explorer moved to Borg</h1>
-      <p>The source-owned assembly browser and exact-record inspector now live in the Borg Assembly Library.</p>
-      <p><a href="./borg-library.html">Open the Borg Assembly Library</a></p>
+      <h1>Assembly Explorer moved to Borg Library</h1>
+      <p>The catalogue and exact-record inspector now live in Borg Library.</p>
+      <p><a href="./borg-library.html">Open Borg Library</a></p>
     </main>
   </body>
 </html>

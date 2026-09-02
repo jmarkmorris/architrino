@@ -3,7 +3,7 @@
   "kind": "architrino.websiteStatsAggregate",
   "mode": "unconnected",
   "generatedAt": "2026-06-29T12:00:00-04:00",
-  "sourceStatus": "No live analytics source connected",
+  "sourceStatus": "No client analytics collector connected",
   "period": {
     "label": "No live data"
   },

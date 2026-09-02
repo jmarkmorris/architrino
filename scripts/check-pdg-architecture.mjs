@@ -34,10 +34,7 @@ function getLineNumber(source, searchValue) {
 export function auditPdgArchitecture() {
   const issues = [];
 
-  const archivedStandaloneEntrypoints = [
-    ["pdgedit", "./pdgedit.html"],
-    ["animator", "./animator.html"],
-  ];
+  const archivedStandaloneEntrypoints = [["pdgedit", "./pdgedit.html"]];
   archivedStandaloneEntrypoints.forEach(([sceneId, expectedPath]) => {
     const actualPath = getStandaloneAppPathForScene(sceneId);
     if (actualPath !== null) {
@@ -52,6 +49,44 @@ export function auditPdgArchitecture() {
 
   if (getStandaloneAppPathForScene("pdgsolve") !== null) {
     issues.push("Standalone launcher unexpectedly exposes 'pdgsolve'; pdgsolve intentionally has no UI.");
+  }
+
+  const reviewPagePath = "pdgedit-review.html";
+  for (const reviewToken of ["pdgedit-review", reviewPagePath]) {
+    if (getStandaloneAppPathForScene(reviewToken) !== null) {
+      issues.push(`Product-app launcher unexpectedly exposes the PDG Edit Review token '${reviewToken}'.`);
+    }
+  }
+  if (!repoFileExists(reviewPagePath)) {
+    issues.push(`Expected controlled review entrypoint '${reviewPagePath}' does not exist.`);
+  } else {
+    const reviewPageSource = readRepoFile(reviewPagePath);
+    const requiredMetadata = [
+      ['name="architrino-surface-class" content="review-artifact"', "review-artifact classification"],
+      ['name="architrino-workflow-owner" content="pdgedit-editing-workflow"', "PDG editing workflow owner"],
+      ['name="architrino-product-application" content="false"', "non-product classification"],
+    ];
+    requiredMetadata.forEach(([token, label]) => {
+      if (!reviewPageSource.includes(token)) {
+        issues.push(`PDG Edit Review is missing its ${label} metadata.`);
+      }
+    });
+  }
+
+  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  applicationsScene.scene.children.forEach((child) => {
+    const categorySource = readRepoFile(child.scenePath);
+    if (/pdgedit-review|PDG Edit Review/iu.test(categorySource)) {
+      issues.push(`Product Applications category '${child.scenePath}' exposes PDG Edit Review.`);
+    }
+  });
+
+  if (!repoFileExists("scripts/export-pdgedit-review.mjs")) {
+    issues.push("PDG Edit Review exporter is missing.");
+  }
+  const reviewRuntimeSource = readRepoFile("src/apps/pdgedit/review/main.js");
+  if (/animator/iu.test(reviewRuntimeSource)) {
+    issues.push("PDG Edit Review runtime is coupled to Animator.");
   }
 
   const forbiddenPaths = [

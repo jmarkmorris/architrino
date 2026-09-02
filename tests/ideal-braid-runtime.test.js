@@ -9,10 +9,11 @@ import {
   solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis,
 } from "../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js";
 import {
-  computePotentialSamplesWithPrescribedPathAnalysis,
-  createIdealBraidPotentialSamplesRunRequest,
-  IDEAL_BRAID_POTENTIAL_SOFTENING,
-} from "../src/apps/ideal-braid/IdealBraidAnalysisAdapters.js";
+  AAA_CORE_POTENTIAL_API_ID,
+  AAA_CORE_POTENTIAL_SOFTENING,
+  computePotentialSamples,
+  createPotentialSamplesRunRequest,
+} from "../src/aaa-core/potential-v1.mjs";
 import {
   IDEAL_BRAID_SURFACE_SOLVER_FAILURE_BACKOFF_MS,
   createIdealBraidSurfaceSolverScheduler,
@@ -100,31 +101,28 @@ test("full potential is the prescribed-path analysis six-emission superposition"
   const model = createIdealBraidModel({ THREE });
   const samplePoint = new THREE.Vector3(1.8, -0.4, 0.65);
   const observationTime = 1.35;
-  const runRequest = createIdealBraidPotentialSamplesRunRequest(
-    [samplePoint],
+  const potentialRequest = {
+    consumerId: "ideal-braid",
+    samplePoints: [samplePoint],
     model,
     observationTime,
-    {
-      fieldSpeed: model.fieldSpeed,
-      requestId: "ideal_potential_samples_request",
-      runId: "ideal_potential_samples_run",
-      datasetId: "ideal_potential_samples_dataset",
-    }
-  );
+    fieldSpeed: model.fieldSpeed,
+    requestId: "ideal_potential_samples_request",
+    runId: "ideal_potential_samples_run",
+    datasetId: "ideal_potential_samples_dataset",
+  };
+  const runRequest = createPotentialSamplesRunRequest(potentialRequest);
   const expectedPotentials = model.architrinos.map((architrino, index) =>
     architrino.q * (index + 1) * 0.25
   );
   runRequest.config.geometryRequest.delayedPotentials.forEach((row) => {
     assert.equal(row.fieldSpeed, model.fieldSpeed);
-    assert.equal(row.softening, IDEAL_BRAID_POTENTIAL_SOFTENING);
+    assert.equal(row.softening, AAA_CORE_POTENTIAL_SOFTENING);
   });
   const manualTotal = expectedPotentials.reduce((sum, potential) => sum + potential, 0);
-  const snapshot = await computePotentialSamplesWithPrescribedPathAnalysis(
-    [samplePoint],
-    model,
-    observationTime,
+  const snapshot = await computePotentialSamples(
+    {...potentialRequest, runRequest},
     {
-      runRequest,
       async runPrescribedPathAnalysis(request) {
         assert.equal(request.requestId, "ideal_potential_samples_request");
         assert.equal(request.config.geometryRequest.delayedPotentials.length, 6);
@@ -134,6 +132,7 @@ test("full potential is the prescribed-path analysis six-emission superposition"
   );
 
   assert.equal(snapshot.analysisId, "prescribed-path-analysis");
+  assert.equal(snapshot.apiId, AAA_CORE_POTENTIAL_API_ID);
   assert.equal(snapshot.runId, "ideal_potential_samples_run");
   assert.ok(Math.abs(snapshot.samplePotentials[0] - manualTotal) < 1e-12);
   assert.equal(snapshot.contributionsBySample[0].length, 6);
@@ -304,7 +303,7 @@ test("surface scheduler uses the model field speed, documented softening, and no
   assert.equal(requests[0].config.geometryRequest.delayedPotentials.length, 12);
   requests[0].config.geometryRequest.delayedPotentials.forEach((row) => {
     assert.equal(row.fieldSpeed, model.fieldSpeed);
-    assert.equal(row.softening, IDEAL_BRAID_POTENTIAL_SOFTENING);
+    assert.equal(row.softening, AAA_CORE_POTENTIAL_SOFTENING);
   });
   assert.equal(snapshots.length, 1);
   assert.equal(snapshots[0].surfacePotentials.length, samplePoints.length);

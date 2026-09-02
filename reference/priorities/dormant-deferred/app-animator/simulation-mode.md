@@ -91,7 +91,7 @@ Each implementation step should follow the same loop:
 
 ## Related Priorities
 
-- [app-simulation](../../app-simulation/priorities.md)
+- [simulation protocol routing index](../../../op/simulation-protocol-routing-index.md)
 - [app-animator](priorities.md)
 
 ## Related AAA Notes

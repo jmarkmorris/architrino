@@ -40,13 +40,14 @@ test("Braid Search is a focused standalone app with configured local data", () =
   assert.doesNotMatch(runtime, /STANDALONE_APP_HOME_HREF/u);
   assert.match(
     runtime,
-    /\.\/\.local-data\/braid-analysis\/compact-monte-carlo\/configuration-sweep-v2\/compact-sweep-dashboard\.v2\.json/u,
+    /\.\/\.local-data\/braid-analysis\/compact-monte-carlo\/configuration-sweep-v2\/compact-sweep-dashboard\.v3\.json/u,
   );
   assert.match(runtime, /role", "tablist"/u);
   assert.match(runtime, /Configuration-by-gate heatmap/u);
   assert.match(runtime, /Active candidates/u);
   assert.match(runtime, /Deprecated controls/u);
-  assert.match(runtime, /candidateDisposition: "all"/u);
+  assert.match(runtime, /readBraidSearchRouteState/u);
+  assert.match(runtime, /filters: \{ \.\.\.routeState\.filters \}/u);
   assert.match(runtime, /Assembly \$\{range\.assemblyId\}/u);
   assert.match(
     runtime,

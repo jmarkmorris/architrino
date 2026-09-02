@@ -6,7 +6,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const CONTRACT_PATH = "reference/priorities/app-potential/potential-consumer-publication-contract.v1.json";
+const CONTRACT_PATH = "reference/priorities/app-aaa-core/potential/potential-product-contract.v1.json";
 
 class ContractError extends Error {
   constructor(code, message) {

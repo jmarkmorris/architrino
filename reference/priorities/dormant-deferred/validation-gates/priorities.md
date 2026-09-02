@@ -103,7 +103,7 @@ is nonempty. Local sector success is therefore not mature until at least one sha
 - [mapping-strong-field](../../mapping-strong-field/priorities.md)
 - [mapping-cosmology](../mapping-cosmology/priorities.md)
 - mass-map
-- [app-simulation](../../app-simulation/priorities.md)
+- [simulation protocol routing index](../../../op/simulation-protocol-routing-index.md)
 
 ## Related AAA Notes
 

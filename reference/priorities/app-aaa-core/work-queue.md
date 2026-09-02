@@ -59,6 +59,13 @@ No rows.
 
 ## Verified
 
+### CORE-010 — AAA Core Potential API
+
+- **Status:** Verified on 2026-09-02.
+- **Priority object:** `aaa_core_potential_v1`
+- **Result:** The accepted [AAA Core Potential v1](potential-v1.md), machine contract, headless implementation, Topo consumer module, migrated Lorentz Geometry scheduler, and focused tests establish one supported Potential calculation and product boundary behind consuming applications.
+- **Claim boundary:** This is prescribed-path software integration and fail-closed output conformance only. It does not independently validate the delayed-Potential kernel, establish a physical Potential result, add a standalone application, or grant EOM authority.
+
 ### CORE-008 — Application client SDK
 
 - **Status:** Verified on 2026-09-02.

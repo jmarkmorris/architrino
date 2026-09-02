@@ -13,7 +13,7 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
-const CONTRACT_PATH = "reference/priorities/app-potential/potential-consumer-publication-contract.v1.json";
+const CONTRACT_PATH = "reference/priorities/app-aaa-core/potential/potential-product-contract.v1.json";
 const contract = readJson(CONTRACT_PATH);
 const positive = readJson(contract.fixtures.positive);
 

@@ -796,7 +796,7 @@ These rows are benchmark contracts. They do not say that Planck, DESI, SH0ES, Pa
 - [mapping-strong-field](../../mapping-strong-field/priorities.md)
 - [strong-field brainstorming](../../mapping-strong-field/brainstorming.md)
 - [dark-sector](../dark-sector/priorities.md)
-- [app-simulation](../../app-simulation/priorities.md)
+- [simulation protocol routing index](../../../op/simulation-protocol-routing-index.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

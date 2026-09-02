@@ -20,7 +20,7 @@ Plainly: this contract defines how accepted EOM history moves through Core witho
 sequenceDiagram
     participant EOM as EOM solver
     participant Core as AAA Core broker
-    participant Potential as Potential consumer
+    participant Potential as Core Potential pipeline
     participant Audit as History-audit consumer
 
     EOM->>Core: Commit immutable accepted chunk
@@ -95,7 +95,7 @@ Plainly: two clients reach the same stream boundary by separate bookkeeping rout
 
 The sealed fixture contains three hash-valid `aaa_core_path_interchange/v0` chunks over normalized $T=0$ through $T=3$ with $c_f=1$. It exercises two subscriptions, one exact duplicate, a one-chunk audit buffer, backpressure entry and release, audit-client disconnect, cursor-bound replay of two retained chunks, full acknowledgement, seal, and deterministic replay into the same two receipt identities.
 
-The halt fixture accepts and acknowledges the first chunk, disconnects the audit client, records the EOM halt before sequence 1, delivers that halt to Potential, reconnects the audit client, and requires byte-for-byte field equality of both terminal payloads. Twelve negative controls cover a missing sequence, broken predecessor, conflicting duplicate, noncontiguous time, source rebinding, a unique chunk at pressure, an oversized chunk, out-of-order acknowledgement, stale reconnect cursor, premature seal, changed halt expectation, and a producer event after terminal state.
+The halt fixture accepts and acknowledges the first chunk, disconnects the audit client, records the EOM halt before sequence 1, delivers that halt to the Core Potential pipeline, reconnects the audit client, and requires byte-for-byte field equality of both terminal payloads. Twelve negative controls cover a missing sequence, broken predecessor, conflicting duplicate, noncontiguous time, source rebinding, a unique chunk at pressure, an oversized chunk, out-of-order acknowledgement, stale reconnect cursor, premature seal, changed halt expectation, and a producer event after terminal state.
 
 Plainly: the small stream completes once and fails once. Both paths are replayable and every named corruption or resource-boundary violation has an executable refusal.
 

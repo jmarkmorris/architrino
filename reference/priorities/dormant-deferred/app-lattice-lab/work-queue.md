@@ -2,6 +2,19 @@
 
 This is the canonical execution ledger for the exploratory display-only workstream. [priorities.md](priorities.md) owns the app purpose and claim boundary.
 
+## Current Status
+
+| Status | Count |
+| --- | ---: |
+| Queued/requested | 58 |
+| In progress | 4 |
+| Awaiting verification | 1 |
+| Explicitly deferred/blocked | 1 |
+| **Unresolved total** | **64** |
+| Verified historical entries | 28 |
+
+The 2026-09-02 low-risk reconciliation closed eight rows as one consolidated historical entry because their requested behavior was already present in the canonical app and is now covered by the completed focused suite and fresh all-case operator-viewport evidence. This bounded pass does not reopen the dormant-deferred implementation lane generally.
+
 ## Ranked Next Objects
 
 1. LAT-015 — Increasing-strength compression coordinate.
@@ -66,42 +79,12 @@ Plainly: this object studies one repeating lattice with different red/blue popul
 
 Plainly: adjacent cells in this gallery meet through the same architrinos. The ledger must show both reuse and omission explicitly, so a beautiful cell overlay cannot hide duplicated or unused lattice sites.
 
-### LAT-031 — Remove `currently shown` from Polarity count copy
-
-- **Status:** Requested; implementation has not started or been reported
-- **Request:** In `Shared Display Conventions` under `Polarity count`, remove `currently shown` so the sentence begins exactly `Every configuration in this curated gallery has equal numbers`. Retain the existing electrino/positrino species wording that completes the sentence.
-- **Claim boundary:** Equal species counts are a configuration fact for the current curated gallery, not acceleration cancellation or balance. The copy must not imply that future random finite configurations inherit the same population rule.
-- **Acceptance:** The old `currently shown` wording is absent, the new sentence prefix is exact, and the existing species wording and claim-boundary copy remain intact. Focused copy/accessibility checks must confirm one readable `Polarity count` statement and preserved accessible structure; operator-viewport browser verification must confirm the revised sentence renders completely without truncation, duplication, or changed meaning.
-- **Scope:** Copy edit only. Do not change shared-panel contents, population data, calculations, gallery membership, styling, or evidence authority.
-
-### LAT-032 — Use the selected gallery title for the Active Case Record heading
-
-- **Status:** Requested; implementation has not started or been reported
-- **Request:** Replace the static `Active Case Record` heading with the currently selected gallery item's title, updating it whenever the selected case changes. For example, the simple-cubic checkerboard case displays `Simple Cubic Checkerboard` as the heading.
-- **Heading treatment:** The dynamic title must match the established comparable subpanel-heading treatment exactly: all-caps light purple with the same font size, weight, letter spacing, and casing behavior. Preserve one accessible heading/label for the panel and do not render a duplicate visible or accessible title.
-- **Acceptance:** Focused case-switch checks must select representative gallery cases and confirm that the heading always matches the active gallery item, changes immediately with the case, and never retains a stale or static `Active Case Record` label. Accessibility checks must confirm one nonduplicate panel label whose accessible name follows the selected case. Style-parity checks must compare the computed color, font size, weight, letter spacing, and casing treatment with the established subpanel heading. Operator-viewport browser verification must confirm the dynamic headings are legible, correctly styled, complete, and free of duplication or layout regression across case switches.
-- **Scope:** Heading copy, synchronization, style, and accessible labeling only. Do not change gallery titles, case data, selection behavior, panel contents, geometry, calculations, or evidence authority.
-
-### LAT-033 — Match the Uniaxial Deformation heading to subpanel typography
-
-- **Status:** Requested; implementation has not started or been reported
-- **Request:** Style the existing `Uniaxial Deformation` title with the exact established all-caps light-purple subpanel-heading treatment.
-- **Acceptance:** Preserve the approved visible wording `Uniaxial Deformation` and render exactly one visible and accessible title. Focused style-parity checks must confirm the same computed light-purple color, font size, weight, letter spacing, and casing treatment as comparable subpanel headings. Accessibility checks must confirm a single nonduplicate control-region label. Operator-viewport browser verification must confirm the title is legible, correctly styled, and free of duplication or layout regression.
-- **Scope:** Heading presentation and accessible labeling only. Do not change LAT-029's approved title wording, deformation paragraph, `β=0` undeformed and `β=1` maximum-supported-deformation semantics, β-only readout, clipping prerequisite, static-geometry boundary, or any broader behavior or claim.
-
 ### LAT-043 — Distinguish the Simple Cubic lattice name from its Checkerboard pattern
 
 - **Status:** In progress; the Lattice Primer `Simple Cubic` subtitle and corrected 14px `What You Are Seeing` title are implemented and operator-accepted with fresh 1280×720 evidence, but a completed post-edit focused cross-panel/accessibility suite has not yet been reported
 - **Request:** In `What You Are Seeing`, retain the exact visible polarity-pattern description `Simple Cubic Checkerboard` and restore its original smaller text size; copy normalization must not enlarge it. In the Lattice Primer, use the exact official lattice name `Simple Cubic` only, with neither the white dot nor `Checkerboard`. Retain `Checkerboard` as the polarity-pattern description where appropriate, not as part of the official lattice name.
 - **Acceptance:** Focused cross-panel copy checks must confirm exact `Simple Cubic Checkerboard` text in `What You Are Seeing`, exact `Simple Cubic` text in the Lattice Primer, and absence there of `Simple Cubic · Checkerboard`, the white-dot separator, and `Checkerboard`. Focused typography checks must confirm the `What You Are Seeing` text has its original smaller computed font size and has not inherited an enlarged title treatment. Accessibility checks must preserve the established title/label structure and the same selected-case semantic identity without duplicate or conflicting accessible text. Operator-viewport verification must confirm both locations show their respective exact copy with the intended typography, spacing, and layout, without truncation or regression. Operator acceptance is recorded for both the Lattice Primer's exact `Simple Cubic` subtitle and the corrected original smaller `What You Are Seeing` title. The implementation worker's fresh 1280×720 recheck reports the title at 14px after correcting the CSS cascade; verification remains evidence-gated until the completed focused cross-panel/accessibility checks are reported.
 - **Scope:** Cross-panel lattice-name and polarity-pattern copy consistency only. Preserve accessibility, semantic case identity, gallery ordering and selection behavior, established surrounding typography, geometry, calculations, and evidence authority.
-
-### LAT-044 — Clarify the Main display shape viewing-crop copy
-
-- **Status:** In progress; the live copy is implemented and operator-accepted, but focused copy/accessibility and operator-viewport validation evidence has not yet been reported
-- **Request:** In `Shared Display Conventions` under `Main display shape`, replace the confusing `calculation exhaustion rule` wording with the operator-accepted display-only language: `The sphere is a viewing crop of the shown configuration, not a physical boundary.`
-- **Acceptance:** The obsolete `calculation exhaustion rule` wording is absent and the replacement sentence is exact. The copy must present the sphere only as a visualization crop and must not imply that the crop makes a curated periodic result uncertain or incomplete. Focused copy and accessibility checks must confirm one readable `Main display shape` statement with preserved accessible structure. Operator-viewport verification must confirm the sentence renders completely without truncation, duplication, or changed meaning. Operator acceptance of the visible replacement text is recorded; verification remains evidence-gated until those focused and viewport checks are reported.
-- **Scope:** Shared-conventions copy only. Preserve the curated periodic calculation and result, the display geometry, crop behavior, panel structure and styling, and all finite-versus-periodic and evidence boundaries stated elsewhere.
 
 ### LAT-045 — Clarify the What You Are Seeing local-shell acceleration copy
 
@@ -130,13 +113,6 @@ Plainly: adjacent cells in this gallery meet through the same architrinos. The l
 - **Request:** In the Lattice Primer, change the sentence opening `The geometric density...` to exact `Geometric density...`, with a capital `G`.
 - **Acceptance:** The sentence begins exactly `Geometric density`, and the obsolete opening `The geometric density` is absent. The remainder of the sentence and surrounding Primer content must remain unchanged. Focused copy and accessibility checks must confirm the exact opening, preserved sentence content, readable structure, and absence of duplicate or stale text. Operator-viewport verification must confirm the revised sentence renders completely with its established typography, spacing, and layout and without truncation or regression. Operator acceptance and the exact rendered sentence are recorded; verification remains evidence-gated until the completed focused copy/accessibility checks are reported.
 - **Scope:** Copy edit only. Preserve the rest of the sentence, all other Primer content, typography, accessibility, semantic identity, case data, calculations, geometry, evidence authority, and unrelated UI copy.
-
-### LAT-050 — Clarify the random finite-case nonzero-acceleration alert
-
-- **Status:** Requested; implementation has not started or been reported
-- **Request:** Replace the ambiguous red alert `Non-zero in this finite configuration` with the exact text `Non-zero acceleration in this configuration.`
-- **Acceptance:** Focused copy and accessibility checks must confirm the exact alert text and punctuation for a calculated nonzero random configuration, absence of the superseded wording, correct red-alert state, and no stale or duplicate accessible result text. Selector/case-switch checks must confirm the revised alert belongs only to the applicable random finite calculation state. Operator-viewport verification must confirm the alert renders completely without truncation, duplication, or layout regression.
-- **Scope:** Visible result copy only. Preserve the finite included-row calculation, residual, provenance, and evidence boundary elsewhere. The alert establishes only nonzero calculated acceleration in the shown configuration; it must not imply later motion, stability, conservation, energy, or any broader physical claim. The repeat-cell presentation's disappearance or not-applicable state remains existing expected behavior for the nonperiodic random case.
 
 ### LAT-051 — Add a polarity-colored selection circle to the random calculation target
 
@@ -250,13 +226,6 @@ Plainly: adjacent cells in this gallery meet through the same architrinos. The l
 - **Acceptance:** Produce a case-by-case canonical-source and rendered-DOM comparison matrix covering exact title text and count, computed typography/color/casing, landmark and heading association, child structure and order, visible and accessible copy, and panel bounds/layout. Classify every difference as required by case authority, intentionally shared, or accidental drift, with the owning source path and an operator-checkable reason. Random 50/50 must retain accurate finite/nonperiodic language and must not inherit repeating-pattern or all-space wording; deterministic periodic cases must not inherit finite-crop calculation authority. Repeated facts may be called identical only when their text, semantics, order, accessibility, and rendered treatment actually match. Focused structural/copy/style measurements and fresh clean-console operator-viewport evidence across every selector entry are required. Record findings and any proposed correction as a separately authorized follow-up; this audit itself must not modify the UI.
 - **Scope:** Measurement and diagnosis of Shared Display Conventions consistency only. Preserve all current copy, title treatment, structure, accessibility, layout, case-specific finite/periodic boundaries, calculations, gallery behavior, and unrelated queue items during the audit. Keep this independent of LAT-063 periodic calculation/certificate work.
 
-### LAT-068 — Rename user-visible Site Ledger nomenclature to Ledger
-
-- **Status:** Requested; implementation and validation evidence have not yet been reported
-- **Request:** Across the complete Lattice Lab application, replace every user-visible panel title, label, or proper-name use of `Site Ledger` with exact title-case `Ledger`. Replace every sentence-medial prose or row reference using `Site Ledger` or `site ledger` with lowercase `ledger`. Apply the correction consistently across all gallery cases, calculation states, disclosures, explanatory panels, controls, status copy, and accessibility text while retaining title/label capitalization for actual headings and accessible names.
-- **Acceptance:** A focused canonical-source and rendered-state audit must cover every selector case and applicable certified, finite-zero, finite-nonzero, not-established, selected, recalculated, open-disclosure, reset, and reload state. No stale user-visible or accessibility string may contain `Site Ledger` or `site ledger`; actual panel headings and accessible labels must read exact `Ledger`, while sentence-medial references must read lowercase `ledger`. Preserve a single nonduplicate heading, all `aria-labelledby`/`aria-describedby` and landmark associations, control names and relationships, disclosure semantics, reading order, typography, layout, and calculation/status meaning. Internal code identifiers, DOM IDs, schema fields, and historical/reference prose need not be renamed unless their value is exposed to the user or assistive technology. Focused copy, structural, and accessibility tests plus fresh operator-viewport verification across every gallery case/state must confirm clean wrapping, no truncation, collision, duplicate title, stale accessible name, blank gap, or console error. Do not mark Verified until implementation evidence, completed validation, and operator acceptance are recorded.
-- **Scope:** Application-wide user-visible and accessibility nomenclature only. Preserve calculations, periodic and finite evidence boundaries, data and selection identities, controls and behavior, status semantics, styling except unavoidable text reflow, layout structure, and all unrelated queue items. Keep this independent of LAT-063 calculation/certificate work.
-
 ### LAT-069 — Remove `finite` only from user-visible spherical-display phrases
 
 - **Status:** Requested; implementation and validation evidence have not yet been reported
@@ -270,13 +239,6 @@ Plainly: adjacent cells in this gallery meet through the same architrinos. The l
 - **Request:** In Random 50/50's `What You Are Seeing` description, make the opening sentence begin by stating that the case has equal electrino and positrino populations on simple-cubic site geometry. Do not begin the description with selected-site or calculation-target language; selection information may follow after the case itself has been introduced.
 - **Acceptance:** Focused copy and structure checks must confirm that the first rendered and accessible sentence introduces the random 50/50 equal electrino/positrino populations and simple-cubic site geometry before any selected-site language. The remaining description must retain the facts that the configuration is random and nonperiodic, has no applicable repeat cell, and uses a finite included-row calculation boundary. Equal counts must remain explicitly a configuration fact rather than evidence of acceleration balance or cancellation. Preserve selected-site identity and ledger linkage where subsequently described, along with heading association, reading order, typography, accessibility, and layout. Fresh operator-viewport verification must confirm the revised description is complete and readable without truncation, duplication, blank space, collision, or stale accessible copy. Do not mark Verified until implementation evidence, completed focused checks, and operator acceptance are recorded.
 - **Scope:** Random 50/50 `What You Are Seeing` description order and emphasis only. Preserve all case data, geometry, randomization and provenance, selection behavior, calculation and residual, finite/nonperiodic evidence boundaries, repeat-cell not-applicable behavior, claim limits, other gallery descriptions, and unrelated queue items.
-
-### LAT-071 — Normalize curated case-gallery names to consistent title case
-
-- **Status:** Requested; implementation and validation evidence have not yet been reported
-- **Request:** Normalize every curated case-gallery selector entry to consistent title case. The random entry must read exact `Simple Cubic Random 50/50`, and the alternating-plane entry must read exact `Simple Cubic Alternating Planes`. Audit every other gallery case name and every user-visible or assistive-technology context that presents a case name as a title, selector option, selected-case label, or equivalent proper name, and apply the same canonical title-case treatment where appropriate.
-- **Acceptance:** Focused copy, selector-order, semantic-identity, and accessibility checks must compare the complete ordered gallery-name list and confirm consistent canonical capitalization, including the two exact required strings. The same case must not expose conflicting capitalization or stale prior names across the selector, selected-case title, accessible option/name, case-record heading, or other proper-name context. Preserve the existing selector order and exact underlying case identifiers, selection/reload behavior, title/option associations, typography, layout, and accessibility semantics. Random's finite/nonperiodic calculation, provenance, no-repeat-cell, and equal-count/non-balance boundaries remain unchanged; name normalization must not alter calculations or claims. Fresh operator-viewport verification must inspect every gallery entry and selected case for readable, untruncated, nonduplicated names and a clean console. Do not mark Verified until implementation evidence, completed validation, and operator acceptance are recorded.
-- **Scope:** Curated case-gallery proper-name capitalization only. Do not title-case ordinary sentence prose, technical labels, calculation rows, or unrelated panel copy. Preserve selector order, finite/randomization, calculation, no-repeat-cell, provenance, and evidence requirements.
 
 ### LAT-072 — Map the HCP Ledger state to periodic-certificate authority across β
 
@@ -482,13 +444,6 @@ Plainly: adjacent cells in this gallery meet through the same architrinos. The l
 - **Acceptance:** A targeted canonical-source, rendered-DOM and accessibility/ARIA audit must confirm exact `Hexagonal Close-Packed` once in each required naming context across initial load, case switching, reset, reload and supported β states. Prove bare `HCP` and any legacy name are absent from those visible and accessible option/title/subtitle names, with preserved heading/landmark associations, while confirming allowed ordinary explanatory `HCP` and required ABAB stacking content remain unchanged. Preserve selector order, semantic case identity, internal IDs, selection and target linkage, HCP geometry and polarity data, relationships, periodic certificate state across β, calculations, controls, focus and reading order, typography, wrapping, layout and behavior. Fresh operator-viewport verification must confirm the three exact exposed names without stale label, duplicate, truncation, collision, blank gap or console error; `git diff --check` is required. Do not mark Verified until implementation evidence, completed targeted checks and operator acceptance are recorded.
 - **Scope:** HCP selector/gallery entry, second-panel subtitle and third left-subpanel title only. Do not rename internal contracts, remove allowed explanatory `HCP`, alter LAT-079's ABAB stacking terminology, or change geometry, data, calculations, certificates, IDs, controls, layout, behavior, other cases or unrelated queue items.
 
-### LAT-102 — Remove the spelled-out Boundary treatment radius parenthetical
-
-- **Status:** Requested; implementation and validation evidence have not yet been reported
-- **Request:** In every visible and accessible presentation of the shared `Shared Display Conventions` `Boundary treatment` statement, delete exact parenthetical `(two and three-quarters times d)` with no replacement. Retain exact lowercase `2.75d` and every other word, number, punctuation mark and ordering in the surrounding radius statement.
-- **Acceptance:** Focused all-case canonical-source, rendered-DOM and accessibility/ARIA checks must prove the complete parenthetical and every fragment of `two and three-quarters times d` are absent from source templates, visible text, hidden accessible content, labels and descriptions. Compare the before/after statement and prove the parenthetical deletion is the only scoped copy change, with exact lowercase `2.75d` retained and no doubled space, orphan parenthesis or punctuation defect. Preserve LAT-082's actual `2.75d` site-center crop and framing authority, LAT-083's one shared Boundary treatment row, deterministic display-only periodic boundaries, Random 50/50's finite/nonperiodic scope and rebuilt Ledger authority, heading/region associations, focus and reading order, typography, wrapping, layout and behavior. Fresh operator-viewport verification must cover every gallery case, case switching, reset/reload and responsive layout with no stale copy, duplicate, truncation, collision, blank gap or console error; `git diff --check` is required. Do not mark Verified until implementation evidence, completed all-case checks and operator acceptance are recorded.
-- **Scope:** One shared Boundary treatment parenthetical deletion only. Do not change the radius, crop membership, framing, calculations, certificates, evidence boundaries, controls, accessibility structure, layout behavior, other copy or unrelated queue items.
-
 ### LAT-103 — Standardize Diamond Cubic naming and remove sublattice terminology
 
 - **Status:** Requested; implementation and validation evidence have not yet been reported
@@ -548,6 +503,14 @@ Plainly: adjacent cells in this gallery meet through the same architrinos. The l
 - **Scope:** Certified outcome copy only. Preserve the finite calculation boundary, residual and scope content, outcome hierarchy and typography, accessible labeling, and exclusions of force, later motion, stability, conservation, energy, or broader physical claims.
 
 ## Verified
+
+### LAT-031, LAT-032, LAT-033, LAT-044, LAT-050, LAT-068, LAT-071, and LAT-102 — Low-risk copy and heading reconciliation
+
+- **Status:** Verified on 2026-09-02 from the canonical implementation, completed focused suite, and fresh operator-viewport evidence
+- **Verified result:** `Polarity counts` begins `Every configuration in this curated gallery`; the selected case title is the single accessible case-region heading and follows all seven gallery selections; `Uniaxial Deformation`, the case title, and `Shared Display Conventions` share the exact established kicker treatment; `Main display shape` uses the exact viewing-crop sentence; Random 50/50 reports exact `Non-zero acceleration in this configuration.`; the single panel name is `Ledger`; all seven selector and case titles use their canonical title case; and the shared boundary statement retains exact lowercase `2.75d` with no spelled-out parenthetical.
+- **Validation:** The five focused Lattice Lab test files passed `72/72`. A fresh `1280 × 720` browser pass selected all seven cases, confirmed exact selector/title synchronization and one `aria-labelledby` case region per case, measured matching heading styles (`rgb(189, 174, 255)`, `10px`, weight `780`, `0.8px` tracking, uppercase), confirmed the Random finite-nonperiodic red-alert copy, and found no stale `currently shown`, `Active Case Record`, `calculation exhaustion rule`, `Site Ledger`, or `two and three-quarters times d` presentation. A second all-case pass at `800 × 900` confirmed the canonical titles and exact `2.75d` sentence remained visible with no rail or app horizontal overflow. The console was clean.
+- **Scope:** Copy, heading synchronization, heading presentation, and accessible naming only. Geometry, selections, calculations, certificates, finite-versus-periodic authority, and all broader claim boundaries are unchanged.
+- **Completion:** Satisfied.
 
 ### LAT-054 — Use the polarity-colored selection circle for every gallery item
 

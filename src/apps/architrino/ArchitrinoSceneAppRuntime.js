@@ -132,7 +132,7 @@ import {
   isStandardModelScene,
 } from "../../services/SceneCapabilitiesService.js";
 import {
-  isPublicStandaloneAppSearchEntry,
+  isPublicProductSceneSearchEntry,
   resolveStandaloneAppHrefForScene,
 } from "../navigator/StandaloneAppLaunchRuntime.js";
 import {
@@ -8980,7 +8980,7 @@ const sceneSearchRuntime = createSceneSearchRuntime({
   navigationStack,
   searchBackStack,
   jumpToScene,
-  isSearchEntryVisible: isPublicStandaloneAppSearchEntry,
+  isSearchEntryVisible: isPublicProductSceneSearchEntry,
   onOpenChange: (isOpen) => {
     topDynamicControlBarRuntime.update({ search: { expanded: isOpen } });
   },

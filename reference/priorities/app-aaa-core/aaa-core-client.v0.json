@@ -42,7 +42,7 @@
     "copies": "return_defensive_copies_of_results_and_operation_state"
   },
   "consumerConformance": [
-    {"applicationId": "Potential", "requiredOperations": ["validateManifest", "prepareQuery", "streamAction", "inspectStream", "publish", "retrieve"]},
+    {"applicationId": "Topo", "requiredOperations": ["validateManifest", "prepareQuery", "streamAction", "inspectStream", "publish", "retrieve"]},
     {"applicationId": "Equation Mapping", "requiredOperations": ["validateManifest", "prepareQuery", "streamAction", "inspectStream", "retrieve"]}
   ],
   "conformance": {

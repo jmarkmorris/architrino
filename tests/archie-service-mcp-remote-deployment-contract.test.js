@@ -19,6 +19,12 @@ test("remote deployment contract is valid but deliberately not remote-ready", ()
   assert.equal(contract.remoteReady, false);
   assert.equal(contract.publicDeploymentAuthorized, false);
   assert.equal(contract.host, null);
+  assert.equal(contract.serviceBoundary.classification, "archie_service_protocol_adapter");
+  assert.equal(contract.serviceBoundary.userFacingApplication, false);
+  assert.equal(contract.serviceBoundary.staticBrowserSurfaceAllowed, false);
+  assert.equal(contract.capabilityBoundary.localToolAccessAllowed, false);
+  assert.equal(contract.capabilityBoundary.repositoryStateAccessAllowed, false);
+  assert.equal(contract.capabilityBoundary.credentialAccessAllowed, false);
 });
 
 test("remote deployment negative fixtures fail with their named gate", () => {

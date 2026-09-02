@@ -85,8 +85,8 @@
     {
       "sourceId": "source.priority-mcp-contract",
       "title": "Architrino MCP Source Index Snapshot V1",
-      "route": "reference/priorities/dormant-deferred/app-mcp/source-index-snapshot-v1.md",
-      "sourcePath": "reference/priorities/dormant-deferred/app-mcp/source-index-snapshot-v1.md",
+      "route": "reference/priorities/dormant-deferred/archie/mcp/source-index-snapshot-v1.md",
+      "sourcePath": "reference/priorities/dormant-deferred/archie/mcp/source-index-snapshot-v1.md",
       "sectionAnchor": null,
       "sourceClass": "priority_material",
       "authorityStatus": "priority_only",

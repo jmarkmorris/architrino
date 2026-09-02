@@ -63,6 +63,13 @@ test("accepted observability contract keeps client analytics disabled", () => {
   assert.equal(policy.analytics.crossSiteTracking, false);
   assert.equal(policy.analytics.deviceFingerprinting, false);
   assert.equal(policy.analytics.saleOrAdvertisingUse, false);
+  assert.deepEqual(policy.websiteStatisticsUtility, {
+    classification: "public_static_operations_utility",
+    productApplicationCatalogue: false,
+    publicSearchDiscovery: false,
+    accessControl: "none",
+    route: "website-stats.html",
+  });
 });
 
 test("authored app sources contain no client collector or hidden-send primitives", () => {
@@ -107,11 +114,23 @@ test("authored app HTML does not load remote executable or media resources", () 
 test("Website Statistics is an unconnected zero-data display", () => {
   const data = readJson(WEBSITE_STATS_DATA_PATH);
   assert.equal(data.mode, "unconnected");
-  assert.match(data.sourceStatus, /No live analytics source connected/u);
+  assert.match(data.sourceStatus, /No client analytics collector connected/u);
   assert.ok(Object.values(data.totals).every((value) => value === 0));
   for (const field of ["daily", "topPages", "referrers", "devices", "trafficChannels", "events"]) {
     assert.deepEqual(data[field], []);
   }
+});
+
+test("Website Statistics states its public operations and no-access-control boundary", () => {
+  const runtimeSource = fs.readFileSync(
+    path.join(ROOT, "src/apps/website-stats/WebsiteStatsRuntime.js"),
+    "utf8"
+  );
+  assert.match(runtimeSource, /Public static operations utility\./u);
+  assert.match(runtimeSource, /This route has no access control and is not a private dashboard\./u);
+  assert.match(runtimeSource, /No client analytics collector is connected\./u);
+  assert.match(runtimeSource, /content%2Fscenes%2Farchie%2Foperations\.json/u);
+  assert.doesNotMatch(runtimeSource, /content%2Fscenes%2Farchie%2Fapplications\.json/u);
 });
 
 test("PubChem is activated only by the disclosed molecule-form submission", () => {

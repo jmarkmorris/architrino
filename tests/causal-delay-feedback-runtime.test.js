@@ -4400,10 +4400,60 @@ test("causal delay feedback page and direct runtime share one default learner mo
     document: new FakeDocument(),
     window: fakeWindow,
   });
+  const rootsRuntime = createCausalDelayFeedbackRuntimeForPage({
+    location: { href: "http://localhost/causal-delay-feedback.html?mode=roots" },
+  });
 
   assert.equal(pageRuntime.learnerState.mode, "story");
   assert.equal(directRuntime.learnerState.mode, "story");
   assert.equal(defaultRuntime.learnerState.mode, "story");
+  assert.equal(rootsRuntime.learnerState.mode, "roots");
+});
+
+test("causal delay feedback mode history restores Roots without replacing the app runtime", () => {
+  const location = {
+    href: "http://localhost/causal-delay-feedback.html?replay=mock",
+  };
+  const historyCalls = [];
+  const windowLike = {
+    location,
+    history: {
+      state: { app: "causal-delay-feedback" },
+      pushState(state, _title, href) {
+        historyCalls.push({ state, href });
+        location.href = href;
+      },
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: windowLike,
+    autoLoadReplay: false,
+  });
+  runtime.render = () => {};
+  runtime.modeController = {
+    render() {},
+    setMode(mode) {
+      runtime.handleLearnerModeChange(mode);
+      return true;
+    },
+  };
+  const learnerState = runtime.learnerState;
+
+  assert.equal(runtime.setLearnerMode("roots"), true);
+  assert.equal(runtime.learnerState, learnerState);
+  assert.equal(runtime.learnerState.mode, "roots");
+  assert.equal(
+    location.href,
+    "http://localhost/causal-delay-feedback.html?replay=mock&mode=roots",
+  );
+  assert.equal(historyCalls.length, 1);
+
+  location.href = "http://localhost/causal-delay-feedback.html?replay=mock";
+  assert.equal(runtime.restoreLearnerModeFromLocation(), true);
+  assert.equal(runtime.learnerState, learnerState);
+  assert.equal(runtime.learnerState.mode, "story");
+  assert.equal(historyCalls.length, 1);
 });
 
 test("causal delay feedback page leaves absent replay request options unset", () => {

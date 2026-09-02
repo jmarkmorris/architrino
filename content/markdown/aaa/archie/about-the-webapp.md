@@ -66,6 +66,8 @@ The authored application hierarchy rooted at `content/scenes/archie/applications
 
 These include display-only lessons, diagnostic workbenches, content-navigation surfaces, and application-specific runtimes. Inclusion in the index is not an evidence or proof grade.
 
+AAA Core is not part of this reader-facing hierarchy. It is the shared headless application platform used through versioned service contracts; it has no public scene, launch control, or browser interface of its own. Applications may expose Core-backed capabilities inside their own bounded user experiences, but they do not treat a Core interface as a product surface.
+
 ## Information Architecture Claim
 
 The webapp uses scenes rather than directories as the reader-facing hierarchy and network.

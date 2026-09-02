@@ -49,7 +49,7 @@ OPS-005 is closed by the dated [hosting alternatives survey](hosting-alternative
 
 ## Observability And Analytics Baseline
 
-OPS-008 is closed by the accepted [observability and analytics policy](observability-and-analytics-policy.md) and its [versioned contract](observability-policy.v1.json). Client analytics are disabled with zero raw and aggregate retention; the Website Statistics page remains an unconnected zero-data display, and the browser opt-out is an additional veto rather than consent. Automated negative controls scan authored app sources for common hidden-send paths and keep PubChem limited to a disclosed molecule-form submission; shared molecule links load locally without contacting the external service.
+OPS-008 is closed by the accepted [observability and analytics policy](observability-and-analytics-policy.md) and its [versioned contract](observability-policy.v1.json). Client analytics are disabled with zero raw and aggregate retention; Website Statistics remains an unconnected zero-data public static operations utility under Archie Operations, outside the product-application catalogue and public scene search. Its route has no access control, and the browser opt-out is an additional veto rather than consent. Automated negative controls scan authored app sources for common hidden-send paths and keep PubChem limited to a disclosed molecule-form submission; shared molecule links load locally without contacting the external service.
 
 ## Incident And Rollback Readiness
 
