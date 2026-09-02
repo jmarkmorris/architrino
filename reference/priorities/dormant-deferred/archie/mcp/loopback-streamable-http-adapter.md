@@ -14,7 +14,7 @@
 
 This adapter implements the HTTP-facing behavior defined by [Remote Transport and Deployment Hardening V1](remote-transport-deployment-hardening-v1.md) without changing the existing stdio launchers or saved stdio connection.
 
-It is a production-shaped local test surface, not a deployment. It starts an HTTP server only on the IPv4 loopback address, requires a local bearer credential, reads validated snapshots at startup, serves the unchanged four read-only tools from memory, and performs no model call, repository write, durable user-state write, or external action.
+It is a production-shaped local protocol-adapter test surface, not a deployment or user-facing application. It starts an HTTP server only on the IPv4 loopback address, requires a local bearer credential, reads validated snapshots at startup, serves the five current read-only tools from memory, and performs no model call, repository write, durable user-state write, or external action.
 
 ## Artifacts
 

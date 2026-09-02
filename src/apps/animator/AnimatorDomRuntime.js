@@ -53,48 +53,21 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorViewAuthoredButton: getElementById(documentLike, "animator-view-authored-button"),
     animatorViewPlanarButton: getElementById(documentLike, "animator-view-planar-button"),
     animatorSceneButton: getElementById(documentLike, "animator-scene-button"),
-    animatorRunSimulationButton: getElementById(documentLike, "animator-run-simulation-button"),
-    animatorSimulationPanel: getElementById(documentLike, "animator-simulation-panel"),
-    animatorSimulationModeSelect: getElementById(documentLike, "animator-simulation-mode"),
-    animatorSimulationDurationInput: getElementById(documentLike, "animator-simulation-duration"),
-    animatorSimulationLoopInput: getElementById(documentLike, "animator-simulation-loop"),
-    animatorSimulationDatasetIdInput: getElementById(documentLike, "animator-simulation-dataset-id"),
-    animatorSimulationStepsInput: getElementById(documentLike, "animator-simulation-steps"),
-    animatorSimulationDtInput: getElementById(documentLike, "animator-simulation-dt"),
-    animatorSimulationStrideInput: getElementById(documentLike, "animator-simulation-stride"),
-    animatorSimulationFieldSpeedInput: getElementById(
+    animatorLoadEomRecordButton: getElementById(documentLike, "animator-load-eom-record-button"),
+    animatorRecordedOutputPanel: getElementById(documentLike, "animator-recorded-output-panel"),
+    animatorEomRecordFileInput: getElementById(documentLike, "animator-eom-record-file-input"),
+    animatorRecordedOutputLoadButton: getElementById(
       documentLike,
-      "animator-simulation-field-speed"
+      "animator-recorded-output-load"
     ),
-    animatorSimulationKappaInput: getElementById(documentLike, "animator-simulation-kappa"),
-    animatorSimulationClaimLevelInput: getElementById(
+    animatorRecordedOutputDiagnostics: getElementById(
       documentLike,
-      "animator-simulation-claim-level"
+      "animator-recorded-output-diagnostics"
     ),
-    animatorSimulationHistoryModeSelect: getElementById(
+    animatorRecordedOutputStatus: getElementById(
       documentLike,
-      "animator-simulation-history-mode"
+      "animator-recorded-output-status"
     ),
-    animatorSimulationRootHaltPolicySelect: getElementById(
-      documentLike,
-      "animator-simulation-root-halt-policy"
-    ),
-    animatorSimulationParticlesInput: getElementById(documentLike, "animator-simulation-particles"),
-    animatorSimulationRadiusInput: getElementById(documentLike, "animator-simulation-radius"),
-    animatorSimulationRadialSpeedInput: getElementById(
-      documentLike,
-      "animator-simulation-radial-speed"
-    ),
-    animatorSimulationTangentialSpeedInput: getElementById(
-      documentLike,
-      "animator-simulation-tangential-speed"
-    ),
-    animatorSimulationDriftXInput: getElementById(documentLike, "animator-simulation-drift-x"),
-    animatorSimulationDriftYInput: getElementById(documentLike, "animator-simulation-drift-y"),
-    animatorSimulationApplyButton: getElementById(documentLike, "animator-simulation-apply"),
-    animatorSimulationRunButton: getElementById(documentLike, "animator-simulation-run"),
-    animatorSimulationDiagnostics: getElementById(documentLike, "animator-simulation-diagnostics"),
-    animatorSimulationCacheStatus: getElementById(documentLike, "animator-simulation-cache-status"),
     animatorClearButton: getElementById(documentLike, "animator-clear-button"),
     animatorSaveButton: getElementById(documentLike, "animator-save-button"),
     animatorDocsButton: getElementById(documentLike, "animator-docs-button"),
@@ -180,7 +153,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
       {
         button: animatorHudSolverMotionToggle,
         key: "showSolverMotion",
-        label: "Solver Motion",
+        label: "Recorded Motion",
       },
       {
         button: animatorHudAuthoredMotionToggle,

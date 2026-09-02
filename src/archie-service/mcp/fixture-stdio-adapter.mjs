@@ -140,7 +140,7 @@ export function createStatelessMcpHandler({
     name: MCP_FULL_CORPUS_SERVER_NAME,
     title: "Architrino Full Corpus MCP",
     version: MCP_FULL_CORPUS_SERVER_VERSION,
-    description: "Read-only local MCP adapter over one validated full-corpus Architrino snapshot.",
+    description: "Read-only local Archie-service MCP protocol adapter over one validated full-corpus Architrino snapshot.",
   },
   expectedVisibilityPolicyVersion = null,
 }) {
@@ -175,7 +175,7 @@ export function createMcpSession({
     name: MCP_FIXTURE_SERVER_NAME,
     title: "Architrino Fixture MCP",
     version: MCP_FIXTURE_SERVER_VERSION,
-    description: "Read-only local MCP adapter over one validated Architrino fixture snapshot.",
+    description: "Read-only local Archie-service MCP protocol adapter over one validated Architrino fixture snapshot.",
   },
   expectedVisibilityPolicyVersion = null,
 }) {

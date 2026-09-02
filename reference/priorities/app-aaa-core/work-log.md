@@ -7,7 +7,7 @@ This file is the chronological work log for `app-aaa-core`. Use [priorities.md](
 ### 2026-09-02 — AAA Core Classified As The Shared Headless Application Platform
 
 - Classified AAA Core as shared headless application infrastructure rather than an end-user product, while retaining the `app-aaa-core` compatibility path and every accepted `aaa_core_*` schema, capability, class, and refusal interface.
-- Inventoried the six current `src/aaa-core/` modules, their in-process `AAAClientService`/`AAAClient` composition root and headless Potential API, accepted schemas and fixtures, representative consumers, and focused tests.
+- Inventoried the six current `src/aaa-core/` modules, their in-process `AAAClientService`/`AAAClient` composition root and headless Potential API, accepted schemas and Core-owned product fixtures, representative consumers, and focused tests.
 - Measured with repository import, route, and scene scans that no consumer imports a Core UI. Lorentz Geometry calls the headless Potential API from its own surface scheduler, Topo has a tested thin Potential consumer not yet composed into its browser root, Topo and Equation Mapping share the synthetic client-conformance surface, and Equation Mapping's existing browser runtime remains independent. A Core DOM import, public scene, or standalone route would falsify this result.
 - Removed the design-level assignment of a Study Pipeline Workbench UI to Core. A separately owned consuming application may present those capabilities through Core contracts.
 - Kept Core outside the public Applications hierarchy and standalone launch routing, separated it from other unranked owners in the priority inventory, and added a focused regression assertion for catalogue and search exclusion.

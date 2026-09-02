@@ -160,7 +160,7 @@ export function validateCodecRegistry(registry) {
       fail("unsupported_profile", `no provider for ${profileId}`);
     }
   }
-  for (const providerClass of ["core", "application", "experimental"]) {
+  for (const providerClass of ["core", "experimental"]) {
     if (!providers.some((provider) => provider.providerClass === providerClass)) {
       fail("capability_mismatch", `no ${providerClass} provider`);
     }
@@ -528,7 +528,7 @@ function runPositiveCase(registry, pathContract, pathSuite, fixtureCase) {
     const envelope = encodePotentialMapFixture(registry, request, source);
     const decoded = decodePotentialMapFixture(registry, request, envelope);
     if (!sameValue(decoded, source)) fail("semantic_round_trip_failure", fixtureCase.caseId);
-    return {caseId: fixtureCase.caseId, providerClass: "application", roundTrip: "semantic_exact", status: "passed"};
+    return {caseId: fixtureCase.caseId, providerClass: "core", roundTrip: "semantic_exact", status: "passed"};
   }
   if (fixtureCase.capabilityId === "experiment.synthetic-track-csv-decoder/v0") {
     const decoded = decodeExperimentalTrackCsv(registry, request, fixtureCase.sourceNative, fixtureCase.recordTemplate);

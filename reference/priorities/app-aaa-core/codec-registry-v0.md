@@ -131,7 +131,7 @@ node --test tests/aaa-core-codec-registry-v0.test.js
 node scripts/check-potential-consumer-publication-contract.mjs
 ```
 
-The positive suite covers exact Core authoritative-history and precision-bounded-analysis JSON round trips, the Core quantized display layout, the application-owned Potential map fixture, and the experimental decoder's source-byte round trip. The negative suite covers eleven distinct refusals: unknown capability, incompatible version, unsupported profile, unsupported access, forbidden display continuation, corrupt payload, exceeded display error, lost event, stale experimental source identity, lost uncertainty, and unknown source schema.
+The positive suite covers exact Core authoritative-history and precision-bounded-analysis JSON round trips, the Core quantized display layout, the Core-owned Potential map fixture, and the experimental decoder's source-byte round trip. The negative suite covers eleven distinct refusals: unknown capability, incompatible version, unsupported profile, unsupported access, forbidden display continuation, corrupt payload, exceeded display error, lost event, stale experimental source identity, lost uncertainty, and unknown source schema.
 
 The round-trip fixtures establish deterministic implementation conformance. They do not independently validate a compression algorithm's scientific suitability, a Potential kernel, an experimental reconstruction, or a workload cost. Those claims require independent references and measured workload evidence under their owning lanes.
 

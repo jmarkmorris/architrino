@@ -12,7 +12,7 @@
 
 The shared local MCP adapter exposes five bounded Architrino tools through a process-spawned stdio surface: the four primitive retrieval tools plus the later `walk` extension. The fixture launcher retains the six-source regression bundle. The separate [Full-Corpus Local MCP V1](full-corpus-local-v1.md) launcher consumes the complete immutable local snapshot through the same request core.
 
-This is a local test server, not a production service. It contains no model calls, HTTP listener, remote network request, repository write, action handoff, provider credential, payment path, durable storage, authentication scheme, or public deployment configuration.
+This is a local Archie-service protocol-adapter test server, not a user-facing application or production service. It contains no model calls, HTTP listener, remote network request, repository write, action handoff, provider credential, payment path, durable storage, authentication scheme, or public deployment configuration.
 
 ## Current Protocol Basis
 
@@ -53,7 +53,7 @@ tests/archie-service/fixtures/source-index/source-index-snapshot.v1.json
 
 It verifies the enclosing snapshot hash, all four view hashes, exact-content hashes, source/search/content linkage, graph endpoints and evidence ids, metadata sources, schema compatibility, and fresh state. After startup, every request uses the in-memory snapshot. Tool calls do not read authored Markdown, scene files, generated graph files, priority files, or any other repository source.
 
-The current local adapter is public-scope only. It does not expose the operator/developer visibility path because that requires an authentication decision. Priority material therefore remains unavailable through this server.
+The current local adapter is public-corpus-scope only. That label describes which source records it may return; it does not authorize public network or static-browser exposure. It does not expose the operator/developer visibility path because that requires an authentication decision. Priority material therefore remains unavailable through this server.
 
 ## MCP Tool Mapping
 

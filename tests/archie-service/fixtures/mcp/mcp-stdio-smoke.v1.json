@@ -36,7 +36,7 @@
             "name": "architrino-fixture-mcp",
             "title": "Architrino Fixture MCP",
             "version": "0.2.0",
-            "description": "Read-only local MCP adapter over one validated Architrino fixture snapshot."
+            "description": "Read-only local Archie-service MCP protocol adapter over one validated Architrino fixture snapshot."
           },
           "instructions": "Use search to locate sources, read to retrieve exact bounded content, topics to enumerate addressable records, neighbors only for declared direct graph edges, and walk only for bounded multi-hop traversal of declared edges. Source authority fields are mandatory context; retrieval and graph reachability are not proof."
         }

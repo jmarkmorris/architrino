@@ -144,7 +144,7 @@
         "maximumOutputAuthority": "display_only",
         "continuationEligible": false
       },
-      "permittedConsumers": ["application rendering"],
+      "permittedConsumers": ["AAA Core Potential", "application rendering"],
       "compatibility": {
         "registrySchema": "aaa_core_codec_registry/v0",
         "logicalSchema": "aaa_core_path_interchange/v0",

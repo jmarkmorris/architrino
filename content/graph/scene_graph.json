@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 611,
-      "edges": 1379,
+      "edges": 1380,
       "scenes": 394,
       "markdownIndexes": 0,
       "markdownDocs": 200,
@@ -188,12 +188,6 @@
       "id": "archie",
       "name": "Archie",
       "path": "content/scenes/archie/archie.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "assembly-explorer",
-      "name": "Assembly Configuration Explorer",
-      "path": "content/scenes/archie/assembly_explorer.json",
       "nodeType": "scene"
     },
     {
@@ -449,12 +443,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "archie__ui_guidelines",
-      "name": "UI Guidelines",
-      "path": "content/scenes/archie/ui_guidelines.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json",
@@ -464,12 +452,6 @@
       "id": "archie__values",
       "name": "Values",
       "path": "content/scenes/archie/values.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "archie__website_stats",
-      "name": "Website Stats",
-      "path": "content/scenes/archie/website_stats.json",
       "nodeType": "scene"
     },
     {
@@ -2453,12 +2435,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "archie__brand_visual_identity",
-      "name": "Brand Visual Identity Guide",
-      "path": "content/scenes/archie/brand_visual_identity.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "archie__branding_and_marketing_overview",
       "name": "Branding & Marketing Overview",
       "path": "content/scenes/archie/branding_and_marketing_overview.json",
@@ -2504,6 +2480,12 @@
       "id": "noether_braid__zero_axial_offset_three_binary_dynamics_and_interpretation",
       "name": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
       "path": "content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__operations",
+      "name": "Archie Operations",
+      "path": "content/scenes/archie/operations.json",
       "nodeType": "scene"
     },
     {
@@ -3808,15 +3790,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/assembly_explorer.json",
-      "nodeType": "scene",
-      "id": "assembly-explorer",
-      "name": "Assembly Configuration Explorer",
-      "path": "content/scenes/archie/assembly_explorer.json",
-      "searchTarget": "content/scenes/archie/assembly_explorer.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/archie/borg.json",
       "nodeType": "scene",
       "id": "borg",
@@ -4147,6 +4120,15 @@
       "name": "Molecule Visualization",
       "path": "content/scenes/archie/molecule.json",
       "searchTarget": "content/scenes/archie/molecule.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/operations.json",
+      "nodeType": "scene",
+      "id": "archie__operations",
+      "name": "Archie Operations",
+      "path": "content/scenes/archie/operations.json",
+      "searchTarget": "content/scenes/archie/operations.json",
       "implicit": false
     },
     {
@@ -9581,6 +9563,13 @@
       "field": "scene.children[4]"
     },
     {
+      "from": "scene:content/scenes/archie/operations.json",
+      "to": "scene:content/scenes/archie/website_stats.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/operations.json",
+      "field": "scene.children[0]"
+    },
+    {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/aaa_journey.json",
       "edgeType": "subscene",
@@ -9617,6 +9606,13 @@
     },
     {
       "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/operations.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/people.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
@@ -9642,13 +9638,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
       "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/archie/project.json",
-      "to": "scene:content/scenes/archie/website_stats.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/project.json",
-      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/system_card.json",

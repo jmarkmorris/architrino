@@ -225,7 +225,7 @@
           "recordType": "derived_product_manifest",
           "recordId": "record.potential.product",
           "version": 0,
-          "contentSha256": "35ef5e348be90dbd98672982cbb122bef7a07a4525040ce33afa69c4fcdd5b30",
+          "contentSha256": "8b396736ee5d0236c2d168769c4dfb40e03542dcda0bbfce66876877ddb8e97d",
           "payload": {
             "productId": "potential-map-synthetic-001", "productKind": "potential_map_product/v1", "sourceBindings": [{"pathSetId": "synthetic-path-set-001", "manifestSha256": "b8ac11b26df17c3c902ccabba6c119846ba1d9a2c1b0c363c52f6a13a16aa164"}], "viewManifestId": "potential-view-001",
             "coverage": {"startT": 0, "endT": 2, "acceptedThroughT": 2, "complete": true}, "completeness": "sealed",

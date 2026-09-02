@@ -52,7 +52,7 @@ Plainly: Core moves and processes path information; it does not decide what natu
 | Module | Current responsibility | Composition role |
 | --- | --- | --- |
 | `src/aaa-core/path-interchange-v0.mjs` | Canonical record identity, logical path-bundle validation, fixture mutation, and contract conformance | Foundational validator used by the codec, stream, query/publication, and client layers |
-| `src/aaa-core/codec-registry-v0.mjs` | Provider-shape validation, capability negotiation, Core codecs, registered fixture providers, and codec conformance | Headless codec service over the path validator |
+| `src/aaa-core/codec-registry-v0.mjs` | Provider-shape validation, capability negotiation, Core codecs including the Core-owned Potential fixture codec, registered experimental adapters, and codec conformance | Headless codec service over the path validator |
 | `src/aaa-core/accepted-history-stream-v0.mjs` | Bounded in-process broker, ordered subscriptions, replay, backpressure, sealing, halt propagation, and stream conformance | Headless stream service over accepted path bundles |
 | `src/aaa-core/query-transform-publication-v0.mjs` | Query normalization and identity, source closure, publication construction, sealing, validation, and receipt-bound retrieval | Headless query/publication service over path and codec contracts |
 | `src/aaa-core/client-v0.mjs` | Defensive-copy operation envelopes and one shared facade across validation, codec, stream, query, publication, and retrieval | Current in-process Core composition root through `AAAClientService` and per-consumer `AAAClient` instances |
@@ -424,9 +424,9 @@ Plainly: people can build and keep their own studies in the cloud, share them wh
 
 AAA Core is excluded from the application portfolio and public catalogue because it has no end-user problem, scene, launch route, or browser composition root of its own. The application relationships below are consumer relationships, not peer-product listings.
 
-The intended first application relationships are:
+The current Core-owned product service and intended application relationships are:
 
-- **AAA Core Potential:** is the sole shared product route from selected path histories to declared Potential products. It dispatches versioned sampling and publishes exportable samples, spatial or timespace maps, volumes, and progressive views. Applications may render or query those products, but do not independently recreate the path-to-Potential conversion.
+- **AAA Core Potential service:** is the sole shared Core route from selected path histories to declared Potential products. It dispatches versioned sampling and publishes exportable samples, spatial or timespace maps, volumes, and progressive views. Lorentz Geometry and Topo may render or query those products, but do not independently recreate the path-to-Potential conversion. This service is not a standalone application.
 - **Borg:** consumes EOM runs and sealed assembly records without reconstructing missing physics.
 - **Photon:** consumes shared path/history analysis while retaining its candidate and diagnostic boundaries.
 - **Future Path Studio:** constructs, imports, inspects, filters, transforms, and exports path products.

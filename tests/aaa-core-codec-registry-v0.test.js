@@ -46,13 +46,13 @@ test("AAA Core codec registry passes all positive and fail-closed fixtures", () 
   assert.equal(result.status, "passed");
   assert.equal(result.positive.length, 5);
   assert.equal(result.negative.length, 11);
-  assert.deepEqual(new Set(result.positive.map((candidate) => candidate.providerClass)), new Set(["core", "application", "experimental"]));
+  assert.deepEqual(new Set(result.positive.map((candidate) => candidate.providerClass)), new Set(["core", "experimental"]));
 });
 
 test("registry descriptors cover every accepted profile and provider boundary", () => {
   const registry = validateCodecRegistry(structuredClone(REGISTRY));
   assert.deepEqual(registry.profiles.map((profile) => profile.id).sort(), ["authoritative_history", "display_stream", "precision_bounded_analysis"]);
-  assert.deepEqual(new Set(registry.providers.map((provider) => provider.providerClass)), new Set(["core", "application", "experimental"]));
+  assert.deepEqual(new Set(registry.providers.map((provider) => provider.providerClass)), new Set(["core", "experimental"]));
   for (const provider of registry.providers) {
     assert.ok(provider.logicalInputTypes.length > 0);
     assert.ok(provider.logicalOutputTypes.length > 0);
@@ -90,7 +90,7 @@ test("Core display codec preserves grid-aligned samples and exact event boundari
   assert.equal(decoded.payload.authority.continuationPermitted, false);
 });
 
-test("Potential app-owned map codec round-trips its existing contract fixture", () => {
+test("Core-owned Potential map codec round-trips its existing contract fixture", () => {
   const candidate = fixtureCase("potential-map-canonical-json");
   const source = readJson(candidate.sourceFile);
   const request = requestFor(candidate);

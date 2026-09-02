@@ -248,16 +248,11 @@ import {
   sampleAnimatorSimulationParticleAtTime,
   sampleAnimatorSimulationParticleTrail,
 } from "../animator/AnimatorSimulationPlaybackRuntime.js";
+import { summarizeAnimatorRecordedPlayback } from "../animator/AnimatorRecordedPlaybackRuntime.js";
 import {
-  applyAnimatorSimulationAuthoringDraftToDocument,
-  buildAnimatorSimulationAuthoringWorkerPayload,
-  createAnimatorSimulationAuthoringDraft,
-  summarizeAnimatorSimulationAuthoringDataset,
-} from "../animator/AnimatorSimulationAuthoringRuntime.js";
-import {
-  createAnimatorSimulationWorkerClient,
-  mergeAnimatorSimulationDatasetIntoDocument,
-} from "../animator/AnimatorSimulationWorkerRuntime.js";
+  createAnimatorRecordedPlaybackWorkerClient,
+  mergeAnimatorRecordedPlaybackIntoDocument,
+} from "../animator/AnimatorRecordedPlaybackWorkerRuntime.js";
 
 const appMode = getAnimatorAppMode(globalThis.window);
 const isStandaloneAnimatorApp = isStandaloneAnimatorAppMode(appMode);
@@ -402,30 +397,12 @@ const {
   animatorViewAuthoredButton,
   animatorViewPlanarButton,
   animatorSceneButton,
-  animatorRunSimulationButton,
-  animatorSimulationPanel,
-  animatorSimulationModeSelect,
-  animatorSimulationDurationInput,
-  animatorSimulationLoopInput,
-  animatorSimulationDatasetIdInput,
-  animatorSimulationStepsInput,
-  animatorSimulationDtInput,
-  animatorSimulationStrideInput,
-  animatorSimulationFieldSpeedInput,
-  animatorSimulationKappaInput,
-  animatorSimulationClaimLevelInput,
-  animatorSimulationHistoryModeSelect,
-  animatorSimulationRootHaltPolicySelect,
-  animatorSimulationParticlesInput,
-  animatorSimulationRadiusInput,
-  animatorSimulationRadialSpeedInput,
-  animatorSimulationTangentialSpeedInput,
-  animatorSimulationDriftXInput,
-  animatorSimulationDriftYInput,
-  animatorSimulationApplyButton,
-  animatorSimulationRunButton,
-  animatorSimulationDiagnostics,
-  animatorSimulationCacheStatus,
+  animatorLoadEomRecordButton,
+  animatorRecordedOutputPanel,
+  animatorEomRecordFileInput,
+  animatorRecordedOutputLoadButton,
+  animatorRecordedOutputDiagnostics,
+  animatorRecordedOutputStatus,
   animatorClearButton,
   animatorSaveButton,
   animatorDocsButton,
@@ -5117,7 +5094,7 @@ function updateAnimatorViewportFromDocument(documentData) {
     updateAnimatorViewportModeButtons();
   }
   updateAnimatorMotionSourcePill(documentData);
-  renderAnimatorSimulationAuthoringPanel(documentData);
+  renderAnimatorRecordedPlaybackPanel(documentData);
   if (!animatorViewportGroup || !animatorPathGeometry) {
     return;
   }
@@ -6110,7 +6087,7 @@ const animatorDocumentWorkspaceRuntime = createAnimatorDocumentWorkspaceRuntime(
     setCurrentDocument: (documentData) => {
       animatorCurrentDocument = documentData;
       updateAnimatorMotionSourcePill(documentData);
-      renderAnimatorSimulationAuthoringPanel(documentData);
+      renderAnimatorRecordedPlaybackPanel(documentData);
     },
   },
 });
