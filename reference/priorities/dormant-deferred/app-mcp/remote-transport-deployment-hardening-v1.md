@@ -19,11 +19,11 @@ The plain-language rule is: the local four-tool query engine may be wrapped in a
 
 | Artifact | Responsibility |
 | --- | --- |
-| [Positive contract fixture](../../../tests/archie-service/fixtures/mcp/mcp-remote-deployment-contract.v1.json) | Records the complete target boundary and the deliberately blocked current deployment state. |
-| [Negative suite](../../../tests/archie-service/fixtures/mcp/mcp-remote-deployment-negative-suite.v1.json) | Mutates one boundary at a time and names the verification failed error that must result. |
-| [Contract validator](../../../src/archie-service/mcp/remote-deployment-contract-v1.mjs) | Applies cross-field transport, security, limit, snapshot, rollback, and capability invariants. |
-| [Executable checker](../../../scripts/archie-service/validate-mcp-remote-deployment-contract.mjs) | Loads the fixtures and current full-corpus candidate, then exercises every positive and negative case without network or writes. |
-| [Focused tests](../../../tests/archie-service-mcp-remote-deployment-contract.test.js) | Check fixture-only state, all negative cases, and candidate snapshot identity enforcement. |
+| [Positive contract fixture](../../../../tests/archie-service/fixtures/mcp/mcp-remote-deployment-contract.v1.json) | Records the complete target boundary and the deliberately blocked current deployment state. |
+| [Negative suite](../../../../tests/archie-service/fixtures/mcp/mcp-remote-deployment-negative-suite.v1.json) | Mutates one boundary at a time and names the verification failed error that must result. |
+| [Contract validator](../../../../src/archie-service/mcp/remote-deployment-contract-v1.mjs) | Applies cross-field transport, security, limit, snapshot, rollback, and capability invariants. |
+| [Executable checker](../../../../scripts/archie-service/validate-mcp-remote-deployment-contract.mjs) | Loads the fixtures and current full-corpus candidate, then exercises every positive and negative case without network or writes. |
+| [Focused tests](../../../../tests/archie-service-mcp-remote-deployment-contract.test.js) | Check fixture-only state, all negative cases, and candidate snapshot identity enforcement. |
 | [Loopback implementation](loopback-streamable-http-adapter.md) | Exercises the transport contract locally without promoting the fixture to remote-ready or public-deployment status. |
 
 ## Protocol Basis

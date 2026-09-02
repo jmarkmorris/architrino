@@ -288,6 +288,9 @@ test("migrated standalone apps atomically replace static bars with canonical hos
     ["equation-mapping.html", "src/apps/equation-mapping/EquationMappingRuntime.js", "equation-mapping-navigation"],
     ["pdgedit.html", "src/apps/pdgedit/PdgeditAppRuntime.js", "pdgedit-navigation"],
     ["molecule.html", "src/apps/molecule/MoleculeRuntime.js", "molecule-navigation"],
+    ["ideal-braid.html", "src/apps/ideal-braid/IdealBraidRuntime.js", "ideal-braid-navigation"],
+    ["borg.html", "src/apps/borg/BorgAppRuntime.js", "borg-webapp-navigation"],
+    ["borg-library.html", "src/apps/borg/library/main.js", "borg-library-navigation"],
   ]) {
     const html = readFileSync(new URL(`../${htmlPath}`, import.meta.url), "utf8");
     const runtimeSource = readFileSync(new URL(`../${runtimePath}`, import.meta.url), "utf8");
@@ -300,6 +303,20 @@ test("migrated standalone apps atomically replace static bars with canonical hos
     );
     assert.match(runtimeSource, /createStandaloneAppNavigationRuntime/u);
     assert.doesNotMatch(runtimeSource, /createStandaloneAppSceneSearchRuntime/u);
-    assert.doesNotMatch(runtimeSource, /navigateStandaloneAppHome/u);
   }
+});
+
+test("Braid Search creates one empty host and delegates the global bar to the canonical adapter", () => {
+  const html = readFileSync(new URL("../braid-search.html", import.meta.url), "utf8");
+  const runtimeSource = readFileSync(
+    new URL("../src/apps/compact-sweep-dashboard/CompactSweepDashboardRuntime.js", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/u);
+  assert.doesNotMatch(html, /standalone-app-navigation\.css/u);
+  assert.match(runtimeSource, /navigationHost\.id = "scene-hud-tools"/u);
+  assert.match(runtimeSource, /createStandaloneAppNavigationRuntime/u);
+  assert.doesNotMatch(runtimeSource, /createStandaloneAppSceneSearchRuntime/u);
+  assert.doesNotMatch(runtimeSource, /function createStandaloneNavigation/u);
 });

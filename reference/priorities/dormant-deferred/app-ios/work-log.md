@@ -6,6 +6,11 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Priority owner archived
+
+- Moved the complete `app-ios` priority packet under `dormant-deferred` at operator direction. Existing reader and packaging capabilities remain available, but the six preserved queue rows are not executable until explicit reactivation.
+- This archive action does not establish physical-device QA, a signed archive, App Review acceptance, or publication.
+
 ### 2026-08-27 — On-demand packaging and release deferral
 
 - Operator report: the reader has been tested some on the operator's devices and basically works. This is preliminary firsthand feedback, not a complete physical-device QA receipt or App Store readiness claim.

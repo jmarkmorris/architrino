@@ -154,7 +154,7 @@ To become more than a preserved idea, this packet needs at least one of the foll
 
 1. Define the first candidate assembly family: choose whether the middle-nested packet, synchronized tri-planar packet, or redshift-triggered branch-transition packet is the least incoherent starting point.
 2. Write the minimal state vector and event ledger for that family.
-3. Route the packet through residual-routing-event-ledger and [radiation](../../../content/markdown/aaa/reactions/radiation.md).
+3. Route the packet through residual-routing-event-ledger and [radiation](../../../../content/markdown/aaa/reactions/radiation.md).
 4. Build a one-page LRD discriminant table: ordinary AGN / dense cocoon, direct-collapse black hole, low-spin halo, supermassive-star shell, and dark-sector photon-like mode.
 5. Keep the CMB connection parked until there is a transfer-function sketch that survives the blackbody and BBN gates.
 

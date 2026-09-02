@@ -6,4 +6,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-09-02 — Priority owner archived
+
+- Moved the complete `dark-sector` priority packet under `dormant-deferred` at operator direction. Its five candidate rows remain preserved as deferred/blocked comparison and assembly work.
+- No candidate, release channel, transport law, event ledger, or observable was promoted by the move.

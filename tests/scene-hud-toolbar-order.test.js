@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 test("main and Animator mount one generated bar while reading controls stay panel-local", () => {
@@ -61,28 +61,20 @@ test("main scene shell uses the favored brand purple as its first-paint backgrou
   assert.match(css, /--scene-background: var\(--ui-brand-purple\);/u);
 });
 
-test("canonical and migrating standalone TOC lozenges retain one typography", () => {
+test("canonical TOC lozenge retains its typography after the legacy stylesheet is removed", () => {
   const sharedCss = readFileSync(
     new URL("../src/runtime/top-dynamic-control-bar.css", import.meta.url),
     "utf8",
   );
-  const sharedNavigationCss = readFileSync(
-    new URL("../src/apps/navigator/standalone-app-navigation.css", import.meta.url),
-    "utf8",
-  );
-
   const canonicalRule =
     sharedCss.match(/\.top-dynamic-control-bar-action\.is-toc\s*\{(?<body>[^}]*)\}/u)?.groups?.body ?? "";
 
-  const tocRule =
-    sharedNavigationCss.match(
-      /\.standalone-app-toc-button\s*\{(?<body>[^}]*)\}/u,
-    )?.groups?.body ?? "";
-  for (const rule of [canonicalRule, tocRule]) {
-    assert.match(rule, /font-size:\s*12px/u);
-    assert.match(rule, /font-weight:\s*700/u);
-    assert.match(rule, /line-height:\s*1/u);
-  }
+  assert.match(canonicalRule, /font-size:\s*12px/u);
+  assert.match(canonicalRule, /font-weight:\s*700/u);
+  assert.match(canonicalRule, /line-height:\s*1/u);
   assert.match(sharedCss, /\.top-dynamic-control-bar-action\s*\{[\s\S]*?font:\s*inherit/u);
-  assert.match(tocRule, /font:\s*inherit/u);
+  assert.equal(
+    existsSync(new URL("../src/apps/navigator/standalone-app-navigation.css", import.meta.url)),
+    false,
+  );
 });

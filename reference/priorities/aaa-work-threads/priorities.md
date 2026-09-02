@@ -55,20 +55,14 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 8 | Workstream | [`mapping-strong-field`](../mapping-strong-field/priorities.md) | `observer_predictions` from one source-bound embedded horizon-interface record | 6.0 | 1.20 | -56 | 1.56 | 0.85 | 7 | 1.20 | 11.46 | 6 | 6 | 6 | 7 | 6.2 | 1.85 |
 | 9 | Candidate | [`mapping-nuclear-atomic-molecular`](../mapping-nuclear-atomic-molecular/priorities.md) | `iron_group_binding_cusp_recovery` with an accepted nucleon branch-interface ledger | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 5 | 6 | 6 | 6 | 5.8 | 1.59 |
 | 10 | Candidate | [`mapping-benchmarks`](../mapping-benchmarks/priorities.md) | `lorentz_preferred_frame` on one accepted moving branch with clock/ruler export and an independent leakage instrument | 7.5 | 1.35 | -56 | 1.56 | 0.40 | 6 | 1.10 | 6.95 | 4 | 4 | 5 | 6 | 4.6 | 1.51 |
-| 11 | App | [`app-animator`](../dormant-deferred/app-animator/priorities.md) | `runtime_cutover` from shared scene-shell behavior to the Animator-owned runtime | 7.0 | 1.20 | 0 | 1.00 | 0.85 | 4 | 0.90 | 6.43 | 5 | 4 | 4 | 4 | 4.3 | 1.50 |
-| 12 | Shared packet | `residual-routing-event-ledger` | One concrete EOM-evolved transition with a closed event ledger | 9.5 | 1.70 | -23 | 1.23 | 0.25 | 6 | 1.10 | 5.46 | 4 | 4 | 4 | 5 | 4.2 | 1.30 |
-| 13 | Workstream | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
-| 14 | Engine | [`app-solver`](../app-solver/priorities.md) | `eom_application_surface`: bounded-population run and inspection surface with canonical history, progress, cancellation, checkpoint, diagnostics, and provenance | 6.0 | 1.30 | -56 | 1.56 | 0.20 | 2 | 0.70 | 1.70 | 4 | 2 | 4 | 4 | 3.3 | 0.52 |
-| 15 | Workstream | [`mapping-cosmology`](../mapping-cosmology/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
-| 16 | App | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance`: ephemeral Codex and supported ChatGPT loopback verification | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.06 | 3 | 2 | 3 | 4 | 2.9 | 0.37 |
-| 17 | App | [`app-photon`](../app-photon/priorities.md) | `local_c_parameterization`: source-bound Noether sea state-to-$c_\gamma,c_{\mathrm{sig}}$ mapping with bounded no-catch-up and stale-root diagnostics | 5.0 | 1.15 | -24 | 1.24 | 0.35 | 3 | 0.80 | 2.00 | 4 | 8 | 8 | 6 | 6.6 | 0.30 |
-| 18 | Design | [`archie`](../dormant-deferred/archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
-| 19 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
-| 20 | Op queue | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
-| 21 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standalone_app_home_search_settings_migration` through the canonical runtime | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
-| 22 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
-| 23 | App | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab`: one source-carried coordinate morph teaching packet | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.46 | 5 | 4 | 7 | 5 | 5.1 | 0.09 |
-| 24 | Candidate | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
+| 11 | Shared packet | `residual-routing-event-ledger` | One concrete EOM-evolved transition with a closed event ledger | 9.5 | 1.70 | -23 | 1.23 | 0.25 | 6 | 1.10 | 5.46 | 4 | 4 | 4 | 5 | 4.2 | 1.30 |
+| 12 | Workstream | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
+| 13 | Engine | [`app-solver`](../app-solver/priorities.md) | `eom_application_surface`: bounded-population run and inspection surface with canonical history, progress, cancellation, checkpoint, diagnostics, and provenance | 6.0 | 1.30 | -56 | 1.56 | 0.20 | 2 | 0.70 | 1.70 | 4 | 2 | 4 | 4 | 3.3 | 0.52 |
+| 14 | Workstream | [`mapping-cosmology`](../mapping-cosmology/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
+| 15 | App | [`app-photon`](../app-photon/priorities.md) | `local_c_parameterization`: source-bound Noether sea state-to-$c_\gamma,c_{\mathrm{sig}}$ mapping with bounded no-catch-up and stale-root diagnostics | 5.0 | 1.15 | -24 | 1.24 | 0.35 | 3 | 0.80 | 2.00 | 4 | 8 | 8 | 6 | 6.6 | 0.30 |
+| 16 | Op queue | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
+| 17 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standalone_app_home_search_settings_migration` through the canonical runtime | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
+| 18 | App | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab`: one source-carried coordinate morph teaching packet | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.46 | 5 | 4 | 7 | 5 | 5.1 | 0.09 |
 
 ## Active-Only Rerank Movement — 2026-07-26
 
@@ -146,6 +140,12 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 - The local rank-1 object is now `eom_application_surface`. Its score is rebuilt as a bounded app and integration artifact: lower foundational equation leverage and Eureka potential, moderate cross-consumer value, and remaining implementation/validation work. `app-solver` moves from rank `1` to rank `15`; rows formerly ranked `2` through `15` move up one without score changes.
 - This changes inferred execution attention only. It does not change EOM mathematical acceptance, any physical claim, or the closure score.
 
+## Dormant-Deferred Routing — 2026-09-02
+
+- At operator direction, `app-ios`, `app-mcp`, and `dark-sector` moved under `dormant-deferred`; their queues and evidence remain preserved but are no longer executable or scored while parked.
+- The same archive-policy correction removes the stale `app-animator`, `archie`, and `aaa-futures` rows that were still present in the numeric table despite already living under `dormant-deferred`.
+- The remaining 14 active owners and four shared packets retain their component scores and are renumbered contiguously. This is attention routing only; it does not complete MCP-001, iOS release acceptance, any dark-sector candidate, or any scientific claim.
+
 ## Current Focus
 
 - **Operator-selected learning:** [QC-013 — Hilbert space and braid mapping](../mapping-quantum/work-queue.md#qc-013--hilbert-space-and-effective-state-vector-contract) is in progress in [mapping-hilbert/](../mapping-quantum/mapping-hilbert/README.md), with an academic synthesis maintained as dialogue develops. Bring it back at the next operator priority review or quantum learning session. Begin with ordinary vectors and build toward the braid mapping; no prior Hilbert-space understanding is assumed. This selected learning task does not change the physical-recovery ranking.
@@ -157,7 +157,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 ## Operator Burden Triage
 
-The likely long numerical or proof campaigns are ranks `1-6`, `8-11`, `13-14`, `16`, and `20`. Lower-cost inspection, app, and coordination surfaces are led by ranks `7`, `12`, `15`, `17-19`, and `21-24`. A lower-cost row may produce visible progress sooner, but it does not outrank the derivation spine unless a concrete upstream result is ready for it to inspect, validate, or publish.
+The likely long numerical or proof campaigns remain concentrated in the theory and recovery rows; lower-cost app and coordination work remains lower in the table. A lower-cost row may produce visible progress sooner, but it does not outrank the derivation spine unless a concrete upstream result is ready for it to inspect, validate, or publish.
 
 The `dormant-deferred` archive and all of its children are unscored.
 

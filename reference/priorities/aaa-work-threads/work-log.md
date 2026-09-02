@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — iOS, MCP, and Dark Sector archived
+
+- Moved `app-ios`, `app-mcp`, and `dark-sector` under `dormant-deferred` at operator direction. Their documents, queues, and evidence remain preserved, but no parked row is executable or scored.
+- Removed those three rows and the stale archived `app-animator`, `archie`, and `aaa-futures` rows from the numeric table, then renumbered the remaining 14 active owners and four shared packets without changing component scores.
+- Updated archive inventory counts and incoming authored links. MCP-001 remains unfinished at the direct ChatGPT tool-call boundary; archive placement is not a completion claim.
+
+Plainly: the three requested areas are parked, not deleted or declared finished.
+
 ### 2026-09-02 — Open Problems Paper-Shell Object Closed
 
 - Closed `mapping-open-problems` OP-003 after verifying exact agreement between all 46 public chapter classifications and the accepted claim-level audit, preserving one resolution-test field per chapter, and confirming the 16 strongest chapters retain the accepted specified-but-unexecuted test contracts.

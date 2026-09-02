@@ -33,7 +33,7 @@ Plainly: package only when an iOS session needs current textbook content, and ve
 
 ## Release Boundary
 
-App Store release work is deferred until theory closure and an explicit operator decision to resume it. The release-preparation instructions below preserve the process; they are not an active submission request. Informal device testing is not full release acceptance. The dated operator report and deferred release tasks are retained in the [iOS work log](../../../reference/priorities/app-ios/work-log.md) and [work queue](../../../reference/priorities/app-ios/work-queue.md).
+App Store release work is deferred until theory closure and an explicit operator decision to resume it. The release-preparation instructions below preserve the process; they are not an active submission request. Informal device testing is not full release acceptance. The dated operator report and deferred release tasks are retained in the [iOS work log](../../../reference/priorities/dormant-deferred/app-ios/work-log.md) and [work queue](../../../reference/priorities/dormant-deferred/app-ios/work-queue.md).
 
 ## Ticket Mapping
 

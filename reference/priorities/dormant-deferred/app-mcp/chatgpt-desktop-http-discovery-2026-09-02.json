@@ -1,0 +1,34 @@
+{
+  "schema": "archie-mcp-chatgpt-desktop-http-discovery/v1",
+  "recordId": "chatgpt_desktop_http_discovery_2026_09_02",
+  "measuredAt": "2026-09-02T16:35:00Z",
+  "surface": {
+    "name": "ChatGPT desktop",
+    "version": "26.831.20005",
+    "build": "7524"
+  },
+  "configuration": {
+    "serverName": "architrino_full_http_test",
+    "transport": "streamable_http",
+    "networkScope": "IPv4 loopback only",
+    "snapshotId": "source_snapshot_full_corpus_v1_6ab8e3d3608d946ccde0",
+    "authentication": "test-only unauthenticated authorizer",
+    "persistentEntryRemovedAfterAttempt": true,
+    "workingStdioEntryPreserved": true
+  },
+  "observations": {
+    "connectionDiscovery": "passed",
+    "initialize": "passed",
+    "initializedNotification": "accepted",
+    "toolsList": "passed",
+    "toolCalls": "not measured",
+    "missingSource": "not measured"
+  },
+  "result": "discovery_pass_tool_conformance_incomplete",
+  "boundaries": {
+    "clientAttribution": "Only ChatGPT desktop loaded the temporary shared entry against this test server; no Codex client was run against the test endpoint.",
+    "whyIncomplete": "No prompt was submitted from the ChatGPT surface, so discovery does not establish any named tool call or typed missing-source behavior.",
+    "authentication": "This attempt did not test bearer-token handling.",
+    "cleanup": "The temporary shared HTTP entry was removed and the loopback server was stopped."
+  }
+}

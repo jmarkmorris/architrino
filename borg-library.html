@@ -6,13 +6,14 @@
   <title>architrino · borg assembly library</title>
   <link rel="icon" href="data:," />
   <link rel="stylesheet" href="./ui-tokens.css" />
+  <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
   <link rel="stylesheet" href="./src/apps/borg/library/library.css" />
 </head>
 <body>
   <header class="library-header">
     <a class="brand" href="./borg-library.html"><span class="brand-mark" aria-hidden="true"></span><strong>Borg</strong><span>Assembly discovery</span></a>
     <nav class="library-header-actions" aria-label="Borg entry actions">
-      <a class="applications-link" href="./index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json">Applications</a>
+      <div id="scene-hud-tools" class="borg-library-navigation"></div>
       <a class="workbench-link" href="./borg.html">Start random simulation <span aria-hidden="true">↗</span></a>
     </nav>
   </header>

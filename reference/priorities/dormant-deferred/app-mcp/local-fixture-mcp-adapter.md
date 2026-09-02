@@ -34,14 +34,14 @@ The repository has no root Node package manifest or lockfile. The adapter theref
 
 | Artifact | Role |
 | --- | --- |
-| [Fixture stdio adapter](../../../src/archie-service/mcp/fixture-stdio-adapter.mjs) | Owns lifecycle state, tool definitions, request normalization, JSON-RPC routing, snapshot-only tool calls, and bundle-integrity checks. |
-| [Local launcher](../../../scripts/archie-service/run-fixture-mcp-server.mjs) | Loads exactly one fixture snapshot at startup, then reads and writes newline-delimited MCP messages over stdin/stdout. |
-| [Protocol smoke checker](../../../scripts/archie-service/check-fixture-mcp-server.mjs) | Spawns the launcher, replays the transcript, compares every response, checks the four calls, and enforces static no-network/no-write boundaries. |
-| [Protocol transcript](../../../tests/archie-service/fixtures/mcp/mcp-stdio-smoke.v1.json) | Stores initialization, initialized notification, tool discovery, all four tool calls, missing-source behavior, unknown-tool rejection, and ping. |
-| [Focused tests](../../../tests/archie-service-fixture-mcp-server.test.js) | Checks in-memory snapshot tamper rejection, lifecycle ordering, and the subprocess smoke. |
-| [Official SDK conformance runner](../../../scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs) | Uses an independently installed official SDK client to negotiate, discover, call all four tools, check a missing source, ping, and close. |
-| [Full-corpus launcher](../../../scripts/archie-service/run-full-corpus-mcp-server.mjs) | Loads and validates the complete local snapshot once, with a distinct server identity and no per-request repository access. |
-| [Full-corpus smoke checker](../../../scripts/archie-service/check-full-corpus-mcp-server.mjs) | Launches from `/tmp` and checks all four tools, metadata, pagination, public visibility, errors, response ceilings, and no-write boundaries. |
+| [Fixture stdio adapter](../../../../src/archie-service/mcp/fixture-stdio-adapter.mjs) | Owns lifecycle state, tool definitions, request normalization, JSON-RPC routing, snapshot-only tool calls, and bundle-integrity checks. |
+| [Local launcher](../../../../scripts/archie-service/run-fixture-mcp-server.mjs) | Loads exactly one fixture snapshot at startup, then reads and writes newline-delimited MCP messages over stdin/stdout. |
+| [Protocol smoke checker](../../../../scripts/archie-service/check-fixture-mcp-server.mjs) | Spawns the launcher, replays the transcript, compares every response, checks the four calls, and enforces static no-network/no-write boundaries. |
+| [Protocol transcript](../../../../tests/archie-service/fixtures/mcp/mcp-stdio-smoke.v1.json) | Stores initialization, initialized notification, tool discovery, all four tool calls, missing-source behavior, unknown-tool rejection, and ping. |
+| [Focused tests](../../../../tests/archie-service-fixture-mcp-server.test.js) | Checks in-memory snapshot tamper rejection, lifecycle ordering, and the subprocess smoke. |
+| [Official SDK conformance runner](../../../../scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs) | Uses an independently installed official SDK client to negotiate, discover, call all four tools, check a missing source, ping, and close. |
+| [Full-corpus launcher](../../../../scripts/archie-service/run-full-corpus-mcp-server.mjs) | Loads and validates the complete local snapshot once, with a distinct server identity and no per-request repository access. |
+| [Full-corpus smoke checker](../../../../scripts/archie-service/check-full-corpus-mcp-server.mjs) | Launches from `/tmp` and checks all four tools, metadata, pagination, public visibility, errors, response ceilings, and no-write boundaries. |
 
 ## Runtime Boundary
 

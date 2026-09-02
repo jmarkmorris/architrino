@@ -7,15 +7,7 @@ import {
   renderDeclaredInlineMath,
   renderInlineMathText,
 } from "../../runtime/InlineMathRuntime.js";
-import {
-  navigateStandaloneAppHome,
-  resolveStandaloneSiteHomeHref,
-} from "../navigator/StandaloneAppHomeRuntime.js";
-import {
-  createStandaloneAppSceneSearchRuntime,
-  resolveStandaloneGlobalSceneHref,
-  TEXTBOOK_TOC_SCENE_PATH,
-} from "../navigator/StandaloneAppSceneSearchRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import {
   BORG_APP_SURFACE_DESIGN_V1,
   BORG_DATASET_MANIFEST_V1,
@@ -233,13 +225,25 @@ export function mountBorgApp(options = {}) {
   let activeStartingGeometryId = options.braidRecordNavigation?.selectedRecordId ??
     (replayActive ? activeReplayEntry?.sourceId : null) ?? "random";
   const simulationWorkspaceSnapshots = new Map();
+  const navigationRuntime = createStandaloneAppNavigationRuntime({
+    host: queryRequiredElement(documentLike, "#scene-hud-tools"),
+    document: documentLike,
+    window: windowLike,
+    extensionActions: [{
+      kind: "edit",
+      iconKind: "diagnostics",
+      id: "borg-diagnostics-toggle",
+      label: "Show diagnostics",
+      title: "Show diagnostics",
+      controls: "borg-diagnostics-panel",
+      pressed: false,
+      className: "borg-diagnostics-toggle",
+      onActivate() {},
+    }],
+  }).init();
 
   const dom = {
     app: queryRequiredElement(documentLike, "#borg-app"),
-    tocButton: queryRequiredElement(documentLike, "#textbook-toc-button"),
-    backButton: queryRequiredElement(documentLike, "#nav-up"),
-    forwardButton: queryRequiredElement(documentLike, "#nav-forward"),
-    homeButton: queryRequiredElement(documentLike, "#home-button"),
     diagnosticsPanel: queryRequiredElement(documentLike, "#borg-diagnostics-panel"),
     diagnosticsToggle: queryRequiredElement(documentLike, "#borg-diagnostics-toggle"),
     solverBanner: documentLike.querySelector?.("#borg-solver-banner") ?? null,
@@ -380,10 +384,6 @@ export function mountBorgApp(options = {}) {
   );
   const interpolatedFrameSetScratch = { frameIndex: 0, time: 0, frames: [] };
   const boundEventListeners = [];
-  const sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
-    document: documentLike,
-    window: windowLike,
-  }).init();
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
@@ -2006,35 +2006,6 @@ export function mountBorgApp(options = {}) {
   }
 
   function bindEvents() {
-    listen(dom.tocButton, "click", () => {
-      navigateStandaloneAppHome(
-        windowLike?.location,
-        resolveStandaloneGlobalSceneHref(
-          TEXTBOOK_TOC_SCENE_PATH,
-          windowLike?.location?.href,
-        ),
-        {
-          windowLike,
-          returnHref: windowLike?.location?.href,
-        },
-      );
-    });
-    listen(dom.backButton, "click", () => {
-      windowLike?.history?.back?.();
-    });
-    listen(dom.forwardButton, "click", () => {
-      windowLike?.history?.forward?.();
-    });
-    listen(dom.homeButton, "click", () => {
-      navigateStandaloneAppHome(
-        windowLike?.location,
-        resolveStandaloneSiteHomeHref(windowLike?.location?.href),
-        {
-          windowLike,
-          returnHref: windowLike?.location?.href,
-        },
-      );
-    });
     listen(dom.timelineRange, "input", () => {
       const requestedFrameIndex = Number(dom.timelineRange.value);
       stopPlayback();
@@ -2707,8 +2678,8 @@ export function mountBorgApp(options = {}) {
     }
     state.resizeObserver?.disconnect?.();
     boundEventListeners.splice(0).forEach((remove) => remove());
-    sceneSearchRuntime.destroy();
     diagnosticsPanelController.dispose();
+    navigationRuntime.destroy();
     prescribedAnalysisCoordinator.dispose();
     prescribedAnalysisScene.dispose();
     assemblyViewControls?.dispose?.();

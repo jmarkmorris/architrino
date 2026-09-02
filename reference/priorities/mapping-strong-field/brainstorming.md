@@ -14,7 +14,7 @@ The `4:2:1` family remains a registry hypothesis. Candidate choices of baseline,
 
 ## Dark-Sector Photon-Like Release
 
-A strong-field event may hypothetically release a photon-channel-adjacent mode that is initially weakly visible and later converts, thermalizes, or re-enters visible channels. The focused [dark-sector packet](../dark-sector/dark-sector-photon-like-mode.md) owns the assembly registry, transport hypotheses, CMB implications, and high-redshift compact-source controls.
+A strong-field event may hypothetically release a photon-channel-adjacent mode that is initially weakly visible and later converts, thermalizes, or re-enters visible channels. The focused [dark-sector packet](../dormant-deferred/dark-sector/dark-sector-photon-like-mode.md) owns the assembly registry, transport hypotheses, CMB implications, and high-redshift compact-source controls.
 
 The hypothesis requires one source event ledger, a release-channel law, radiation Gate C, a medium-dependent transport or conversion rule, and a discriminating observable that survives ordinary AGN, dust, dense-gas, and star-formation explanations.
 

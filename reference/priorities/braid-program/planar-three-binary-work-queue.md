@@ -14,7 +14,7 @@ The queue excludes other circular-path inventories, the orthogonal-plane weave, 
 
 | Foundation | Grade and exact boundary | Durable owner |
 | --- | --- | --- |
-| Equal-radius regular-phase ladder | Computer-assisted derived completeness in every ordinary topology cell T00 through T200, including exactly one simple inward-radial zero in each even cell T02 through T200; no completeness claim in T201 or later cells | [bounded ladder evidence](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md) and [T200 finite-ladder certificate](evidence/2026-09-01-planar-three-binary-t200-finite-ladder-certificate.md) |
+| Equal-radius regular-phase ladder | Computer-assisted derived completeness in every ordinary topology cell: exactly one simple inward-radial zero in each even cell T02, T04, and onward, with no zero in T00 or any odd cell | [bounded ladder evidence](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md), [T200 finite-ladder certificate](evidence/2026-09-01-planar-three-binary-t200-finite-ladder-certificate.md), and [global-tail theorem](evidence/2026-09-02-planar-three-binary-global-tail-calculus-reduction.md) |
 | Root topology and asymptotic laws | Derived root-count, fold-sign, spacing, and radius laws on the fixed equal-radius regular-phase circular chart | [planar common-center three-binary constraint circular-path balance-ladder evidence](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md) |
 | Exact circular continuation | Derived exact periodic solution for each exact complete-simple-ledger balance; no nearby-history uniqueness or perturbation stability | [Exact circular-solution theorem](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md#exact-circular-solution-theorem) |
 | T04 past-only release | Measured accepted prefix through $T=0.0029296875$; no full-cycle return and no retention or stability verdict | [T04 release prefix](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md#t04-past-only-release-prefix) |
@@ -27,23 +27,32 @@ The queue excludes other circular-path inventories, the orthogonal-plane weave, 
 | Bounded axial-translation-speed chart | Computer-assisted derived no-nonzero-speed result for the eighteen interval-certified branches T02 through T36 on $-0.9\leq u\leq0.9$; no completeness above $\beta_f=20$ | [Axial-translation-speed chart](evidence/2026-09-01-planar-three-binary-axial-translation-speed-chart.md) |
 | Documentation synthesis | The tracked evidence packet and reader-facing AP-STEM explanation are complete; no active writer task remains | [Work-log entry](work-log.md#2026-08-29--planar-common-center-three-binary-constraint-circular-path-balance-ladder-durably-synthesized) |
 
-Plainly: exact prescribed circles, the complete finite T02-through-T200 ladder, their checked T04 numerical input, short-time local uniqueness, and the declared low-order axial-translation chart are established at their stated grades. The infinite tail, full-cycle release, perturbation return, higher-order translated balance, generalized planar geometry, and energy remain separate open questions.
+Plainly: exact prescribed circles, the complete infinite equal-radius ladder, their checked T04 numerical input, short-time local uniqueness, and the declared low-order axial-translation chart are established at their stated grades. Higher-order ladder corrections, full-cycle release, perturbation return, higher-order translated balance, generalized planar geometry, and energy remain separate open questions.
 
 ## Ranked Next Objects
 
-1. `global_equal_radius_ladder_theorem` — [global equal-radius ladder theorem task](#global-equal-radius-ladder-theorem). Status: `Queued`.
+1. `higher_order_ladder_asymptotics` — [higher-order ladder asymptotics task](#higher-order-ladder-asymptotics). Status: `Queued`.
 2. `t04_one_cycle_eom_reproduction` — [T04 one-cycle EOM reproduction task](#t04-one-cycle-eom-reproduction). Status: `Deferred / blocked`.
 3. `nearby_history_return_map` — [nearby-history return map and stability task](#nearby-history-return-map-and-stability). Status: `Deferred / blocked`.
 4. `same_record_action_energy_ledger` — [same-record action and energy ledger task](#same-record-action-and-energy-ledger). Status: `Deferred / blocked`.
 5. `mode_transition_ledger` — [mode-transition ledger task](#mode-transition-ledger). Status: `Deferred / blocked`.
-6. `higher_order_ladder_asymptotics` — [higher-order ladder asymptotics task](#higher-order-ladder-asymptotics). Status: `Deferred / blocked`.
-7. `full_ladder_action_energy_evaluation` — [full-ladder action and energy evaluation task](#full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
+6. `full_ladder_action_energy_evaluation` — [full-ladder action and energy evaluation task](#full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
 
 ## In progress
 
 No rows.
 
 ## Completed
+
+### Global equal-radius ladder theorem
+
+- **Status:** Completed
+- **Closure goal:** Extend the complete finite T02-through-T200 ladder into a proof or falsification of the entire infinite equal-radius regular-phase ladder.
+- **Result:** The [global-tail theorem](evidence/2026-09-02-planar-three-binary-global-tail-calculus-reduction.md) maps every post-T200 cell to one fixed fold coordinate and rewrites the old background as an exact shifted endpoint lattice. The [outward-rounded shape certificate](evidence/2026-09-02-planar-three-binary-global-tail-shape-certificate.v1.json) proves $Q_\beta>0$, $\partial_XQ_\beta>0$, $-\partial_\beta D_\beta>0$, and $\partial_X(-\partial_\beta D_\beta)>0$ on the complete old-root domain. Those inequalities give $B_q>1.43$, while the already proved right-edge bound is below $0.01$ and the endpoint derivative comparison retains ten-percent slack. Joining this uniform tail proof to the finite T200 certificate establishes no zero in every odd ordinary topology cell and exactly one simple zero in every even cell.
+- **Boundary:** This is a computer-assisted derived zero census only on the prescribed equal-radius, regular-phase, common-center, common-circulation circular chart with $c_f=1$. Higher-order errors for $\beta_n$, $\Delta\beta_n$, and $R_n/R_*$ remain the separately queued asymptotics task. The theorem establishes no nonsymmetric full-vector census, evolution, retention, stability, binding, physical identity, score, or scientific acceptance.
+- **Falsifier:** A gap in the three-chart interval cover, non-outward arithmetic, a nonpositive admitted kernel or symmetric kernel pair, a missing even-cell zero, an extra zero, or a failure of the finite T200 certificate overturns the corresponding conclusion.
+
+Plainly: the complete prescribed equal-radius ladder alternates forever: one balance in every even cell and none in every odd cell. This is a zero-count theorem, not a stability or release result.
 
 ### Combined general planar continuation
 
@@ -118,15 +127,15 @@ Plainly: the finite discovery sweep has been replaced by a continuous-domain pro
 
 ## Queued
 
-### Global equal-radius ladder theorem
+### Higher-order ladder asymptotics
 
 - **Status:** Queued
-- **Closure goal:** Extend the complete finite T02-through-T200 ladder into a proof or falsification of the entire infinite equal-radius regular-phase ladder.
-- **Request / acceptance:** Partition the high-speed domain by analytic fold cells, map every cell to a fixed reference interval, subtract the derived leading asymptotic terms, and obtain remainder and derivative bounds uniform in the topology index. Use endpoint signs plus a fixed-sign derivative or an interval Newton/Krawczyk contraction to prove exactly one simple balance in every parity-admissible cell and none in every intervening cell beyond an explicit finite threshold. Discharge the finite transition cells independently.
-- **Evidence / blocker:** The [T200 finite-ladder certificate](evidence/2026-09-01-planar-three-binary-t200-finite-ladder-certificate.md) separately closes the remainder of T36 and every ordinary cell T37 through T200, upgrading all one hundred tracked modes to finite interval-certified completeness. The [global-tail calculus reduction](evidence/2026-09-02-planar-three-binary-global-tail-calculus-reduction.md) maps every later cell exactly to $\varepsilon=M(\beta_f)-q\pi/6\in(0,\pi/6)$ and reindexes the six fixed descending levels into an exact shifted endpoint lattice. That identity extracts $3/2$ as the exact alternating-square term, proves the polarity-free newborn pair strictly positive and strictly decreasing throughout the full post-T200 tail, bounds it below $0.01$ at every right edge, proves monotonicity of the six terminal descending derivative terms, and proves the quantitative endpoint derivative comparison with ten-percent slack. The only remaining blocker on this route is the uniform shifted-endpoint shape lemma for $Q_\beta$ and $-\partial_{\beta_f}D_\beta$ on the old-root range. A direct Euler-Boole remainder remains the fallback if a shape condition fails; another finite extension would not complete the global theorem.
-- **Completion:** A global theorem joins the existing bounded certificate and a uniform tail proof, with explicit errors for $\beta_n$, $\Delta\beta_n$, and $R_n/R_*$. A missing predicted zero, an extra zero, an uncontrolled turning point, or failure of the uniform remainder bound falsifies the proposed theorem.
+- **Closure goal:** Determine the exact correction pattern beyond the accepted leading planar common-center three-binary constraint ladder spacing and radius laws.
+- **Request / acceptance:** Starting from the global equal-radius ladder theorem's uniform tail domain, derive the next nonvanishing terms in $\beta_n$, $\Delta\beta_n$, and $R_n/R_*$ directly from the circular causal-root ledger. Test whether the expansion is a pure inverse-power series or necessarily contains logarithmic, parity-dependent, or other terms. Curve fits may propose coefficients but cannot decide whether factors such as $\pi$, $\sqrt{3}$, or $\log 2$ survive exact summation.
+- **Evidence / blocker:** The global tail theorem now supplies the required uniform domain and removes the prior blocker. The leading constants are derived, while finite-window fit numerators remain discovery provenance and do not establish the exact higher-order sequence.
+- **Completion:** Exact higher-order coefficients and a controlled remainder are derived, or a proof shows that the proposed inverse-power pattern is incomplete. Failure of a derived coefficient or remainder bound on an independently checked high-topology cell falsifies the expansion.
 
-Plainly: all one hundred displayed modes are now the complete finite answer through T200. This task decides whether the same alternating one-mode pattern continues forever after that certified boundary.
+Plainly: the complete zero pattern is known. This task asks for the progressively smaller location, spacing, and radius corrections and whether their apparent numerical pattern reflects exact mathematics or only a finite fit.
 
 ## Deferred / blocked
 
@@ -166,16 +175,6 @@ Plainly: the familiar words “potential energy” and “kinetic energy” do n
 - **Evidence / blocker:** No retained stable mode neighborhood, native energy difference, transition mechanism, preparation measure, or probability law currently exists. The present “quantum-like” description refers only to emergent discreteness of prescribed balance modes.
 - **Completion:** One accepted transition or a bounded no-transition result is reproduced independently under the declared history and account. Quantum-probability or observer-level quantum-recovery claims remain separate later obligations.
 
-### Higher-order ladder asymptotics
-
-- **Status:** Deferred / blocked
-- **Closure goal:** Determine the exact correction pattern beyond the accepted leading planar common-center three-binary constraint ladder spacing and radius laws.
-- **Request / acceptance:** After global equal-radius ladder theorem task supplies a uniform tail domain, derive the next nonvanishing terms in $\beta_n$, $\Delta\beta_n$, and $R_n/R_*$ directly from the circular causal-root ledger. Test whether the expansion is a pure inverse-power series or necessarily contains logarithmic, parity-dependent, or other terms. Curve fits may propose coefficients but cannot decide whether factors such as $\pi$, $\sqrt{3}$, or $\log 2$ survive exact summation.
-- **Evidence / blocker:** Blocked on the uniform tail control in global equal-radius ladder theorem task. The leading constants are derived, while finite-window fit numerators remain discovery provenance and do not establish the exact higher-order sequence.
-- **Completion:** Exact higher-order coefficients and a controlled remainder are derived, or a proof shows that the proposed inverse-power pattern is incomplete. Failure of a derived coefficient or remainder bound on an independently checked high-topology cell falsifies the expansion.
-
-Plainly: the leading formula tells us where the high modes go first. This task asks what the progressively smaller corrections are and whether their apparent numerical pattern reflects exact mathematics or only a finite fit.
-
 ### Full-ladder action and energy evaluation
 
 - **Status:** Deferred / blocked
@@ -202,7 +201,7 @@ The former task-scoped obligations are fully transferred to durable queue rows. 
 | Investigation lane | Durable queue coverage | First executable successor |
 | --- | --- | --- |
 | Circular prehistory, exact continuation, numerical reproduction, and stability | completed T04 exact-reference-to-solver handoff, completed local history-flow well-posedness task, T04 one-cycle EOM reproduction task, and nearby-history return map and stability task | the exact-reference receipt and local uniqueness theorem are accepted; next complete one full-cycle conformance check, and only then perturbation stability |
-| Equal-radius velocity ladder | global equal-radius ladder theorem task and higher-order ladder asymptotics task | starting after the certified T200 right fold, prove one root in every later admissible fold cell and none in every intervening cell; treat higher-order coefficients as a separate follow-on |
+| Equal-radius velocity ladder | completed global equal-radius ladder theorem and higher-order ladder asymptotics task | the complete alternating zero census is proved; derive the exact higher-order location, spacing, and radius corrections as a separate follow-on |
 | Axial translation | completed axial-translation-speed chart and fixed axial-translation interval certificate | closed on $-0.9\leq u\leq0.9$ for T02 through T36; the new T38-through-T200 stationary brackets make a separately predeclared higher-topology extension executable but do not alter the completed low-order claim |
 
 Plainly: archiving the user-visible tasks removes no work. The repository queues now own the remaining questions, their order, their evidence requirements, and their falsifiers.
@@ -212,7 +211,7 @@ Plainly: archiving the user-visible tasks removes no work. The repository queues
 | Investigation lane | Detailed rows | Queue lane is complete when |
 | --- | --- | --- |
 | Circular prehistory and numerical release | T04 exact-reference-to-solver handoff task, local history-flow well-posedness task, T04 one-cycle EOM reproduction task | the exact-reference handoff, local uniqueness disposition, and one-cycle numerical reproduction each have a durable accepted or explicit negative result; perturbation stability may continue separately under nearby-history return map and stability task |
-| Equal-radius velocity ladder | global equal-radius ladder theorem task, higher-order ladder asymptotics task | the global tail theorem is proved or falsified with an explicit finite boundary and independently checkable artifact; higher-order asymptotics may close separately or remain explicitly deferred |
+| Equal-radius velocity ladder | completed global equal-radius ladder theorem, higher-order ladder asymptotics task | the global zero census is closed; higher-order asymptotics may close separately or remain explicitly deferred without weakening that theorem |
 | Axial translation | completed axial-translation-speed chart and fixed axial-translation interval certificate | closed on the declared T02-through-T36, $-0.9\leq u\leq0.9$ chart; no surviving nonzero-speed branch requires a full-vector follow-up |
 | Investigation writing | no active row | closed: the evidence packet is tracked and the writer thread is archived |
 

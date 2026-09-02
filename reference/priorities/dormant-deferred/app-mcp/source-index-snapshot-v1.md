@@ -17,17 +17,17 @@ The six-source fixture remains the small negative and regression surface. The me
 
 | Artifact | Role |
 | --- | --- |
-| [Archie service schema](../../../src/archie-service/contracts/v1/schema.json) | Defines the build-input, snapshot, search-view, graph-view, metadata-view, and negative-suite shapes. |
-| [Snapshot implementation](../../../src/archie-service/source-index/snapshot-v1.mjs) | Builds canonical views, computes hashes, enforces authority rules, and validates snapshots. |
-| [Build input fixture](../../../tests/archie-service/fixtures/source-index/source-index-build-input.v1.json) | Declares six representative source records, two explicit graph edges, one equation, one figure, and the live generated-artifact inputs. |
-| [Generated snapshot fixture](../../../tests/archie-service/fixtures/source-index/source-index-snapshot.v1.json) | Stores the expected normalized snapshot and its hashes. |
-| [Negative suite](../../../tests/archie-service/fixtures/source-index/source-index-negative-suite.v1.json) | Declares failures for missing paths, duplicate ids, invalid parents, authority inflation, visibility leakage, false metadata provenance, and stale hashes. |
-| [Builder and checker](../../../scripts/archie-service/build-source-index.mjs) | Writes the review fixture in `--write` mode and performs deterministic, provenance, authority, route, and negative checks in `--check` mode. |
-| [Focused tests](../../../tests/archie-service-source-index-snapshot.test.js) | Rebuilds the fixture, tests input-order invariance, and confirms tampering and priority-authority inflation are rejected. |
-| [Full-corpus enumerator](../../../src/archie-service/source-index/full-corpus-v1.mjs) | Discovers declared authored documents and sections, eligible reading copies and scenes, exact metadata, typed structural edges, and local source-state provenance. |
-| [Full-corpus builder](../../../scripts/archie-service/build-full-corpus-source-index.mjs) | Atomically writes or check-only verifies the complete local snapshot. |
-| [Full-corpus snapshot](../../../content/generated/source-index/local-full-corpus-snapshot.v1.json) | Supplies the exact-content, search, graph, and metadata views used by the full-corpus launcher. |
-| [Full-corpus focused tests](../../../tests/archie-service-full-corpus-source-index.test.js) | Independently checks declared-document coverage, extraction, parents, visibility, determinism, Unicode continuation, and tamper rejection. |
+| [Archie service schema](../../../../src/archie-service/contracts/v1/schema.json) | Defines the build-input, snapshot, search-view, graph-view, metadata-view, and negative-suite shapes. |
+| [Snapshot implementation](../../../../src/archie-service/source-index/snapshot-v1.mjs) | Builds canonical views, computes hashes, enforces authority rules, and validates snapshots. |
+| [Build input fixture](../../../../tests/archie-service/fixtures/source-index/source-index-build-input.v1.json) | Declares six representative source records, two explicit graph edges, one equation, one figure, and the live generated-artifact inputs. |
+| [Generated snapshot fixture](../../../../tests/archie-service/fixtures/source-index/source-index-snapshot.v1.json) | Stores the expected normalized snapshot and its hashes. |
+| [Negative suite](../../../../tests/archie-service/fixtures/source-index/source-index-negative-suite.v1.json) | Declares failures for missing paths, duplicate ids, invalid parents, authority inflation, visibility leakage, false metadata provenance, and stale hashes. |
+| [Builder and checker](../../../../scripts/archie-service/build-source-index.mjs) | Writes the review fixture in `--write` mode and performs deterministic, provenance, authority, route, and negative checks in `--check` mode. |
+| [Focused tests](../../../../tests/archie-service-source-index-snapshot.test.js) | Rebuilds the fixture, tests input-order invariance, and confirms tampering and priority-authority inflation are rejected. |
+| [Full-corpus enumerator](../../../../src/archie-service/source-index/full-corpus-v1.mjs) | Discovers declared authored documents and sections, eligible reading copies and scenes, exact metadata, typed structural edges, and local source-state provenance. |
+| [Full-corpus builder](../../../../scripts/archie-service/build-full-corpus-source-index.mjs) | Atomically writes or check-only verifies the complete local snapshot. |
+| [Full-corpus snapshot](../../../../content/generated/source-index/local-full-corpus-snapshot.v1.json) | Supplies the exact-content, search, graph, and metadata views used by the full-corpus launcher. |
+| [Full-corpus focused tests](../../../../tests/archie-service-full-corpus-source-index.test.js) | Independently checks declared-document coverage, extraction, parents, visibility, determinism, Unicode continuation, and tamper rejection. |
 
 ## Snapshot Contents
 

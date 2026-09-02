@@ -18,12 +18,12 @@ The contract is implemented as a pure query engine over one validated immutable 
 
 | Artifact | Role |
 | --- | --- |
-| [Archie service schema](../../../src/archie-service/contracts/v1/schema.json) | Defines typed request, response, result, page, source-chip, error, contract-suite, and negative-suite shapes. |
-| [Pure query engine](../../../src/archie-service/mcp/tool-contract-v1.mjs) | Applies deterministic search, exact-content reads, topic enumeration, direct-edge traversal, visibility policy, pagination, and verification failed errors over an accepted snapshot. |
-| [Positive contract fixture](../../../tests/archie-service/fixtures/mcp/mcp-tool-contract.v1.json) | Stores seven complete request/response pairs spanning all four tools, truncation, missing sources, and public/operator visibility. |
-| [Negative suite](../../../tests/archie-service/fixtures/mcp/mcp-tool-negative-suite.v1.json) | Stores eight invalid or unauthorized cases for limits, snapshot identity, visibility, cursors, freshness, edge types, and duplicate filters. |
-| [Checker](../../../scripts/archie-service/validate-mcp-tool-contracts.mjs) | Recomputes every expected response, checks negative dispositions, and follows the first pagination cursor for all four tools. |
-| [Focused tests](../../../tests/archie-service-mcp-tool-contract.test.js) | Checks fixture parity, canonical-source ranking, exact-content continuation, response bytes, and priority visibility. |
+| [Archie service schema](../../../../src/archie-service/contracts/v1/schema.json) | Defines typed request, response, result, page, source-chip, error, contract-suite, and negative-suite shapes. |
+| [Pure query engine](../../../../src/archie-service/mcp/tool-contract-v1.mjs) | Applies deterministic search, exact-content reads, topic enumeration, direct-edge traversal, visibility policy, pagination, and verification failed errors over an accepted snapshot. |
+| [Positive contract fixture](../../../../tests/archie-service/fixtures/mcp/mcp-tool-contract.v1.json) | Stores seven complete request/response pairs spanning all four tools, truncation, missing sources, and public/operator visibility. |
+| [Negative suite](../../../../tests/archie-service/fixtures/mcp/mcp-tool-negative-suite.v1.json) | Stores eight invalid or unauthorized cases for limits, snapshot identity, visibility, cursors, freshness, edge types, and duplicate filters. |
+| [Checker](../../../../scripts/archie-service/validate-mcp-tool-contracts.mjs) | Recomputes every expected response, checks negative dispositions, and follows the first pagination cursor for all four tools. |
+| [Focused tests](../../../../tests/archie-service-mcp-tool-contract.test.js) | Checks fixture parity, canonical-source ranking, exact-content continuation, response bytes, and priority visibility. |
 
 ## Shared Envelope
 

@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `17`
+- Rank: `15`
 - Value: `2.00`
 - Cost: `6.6`
 - ROI: `0.30`

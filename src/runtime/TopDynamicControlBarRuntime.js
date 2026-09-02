@@ -26,6 +26,7 @@ const ACTION_ICON_MARKUP = Object.freeze({
   print: '<path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z"></path>',
   settings: '<circle cx="12" cy="12" r="3"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"></path>',
   edit: '<path d="M5 19h4L19 9l-4-4L5 15v4zM13.5 6.5l4 4"></path>',
+  diagnostics: '<path class="borg-panel-icon-pane" d="M15 5h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3z"></path><rect x="4" y="5" width="16" height="14" rx="2" fill="none"></rect><line x1="15" y1="5" x2="15" y2="19"></line>',
   close: '<path d="M6 6l12 12M18 6 6 18"></path>',
 });
 
@@ -58,6 +59,10 @@ function normalizeActions(actions) {
     if (typeof action.onActivate !== "function") {
       throw new Error(`Action ${kind} is missing onActivate.`);
     }
+    const iconKind = String(action.iconKind ?? kind).trim();
+    if (kind !== "toc" && !ACTION_ICON_MARKUP[iconKind]) {
+      throw new Error(`Unknown top dynamic control bar icon kind: ${iconKind || "(empty)"}.`);
+    }
     const order = SHARED_ACTION_ORDER.indexOf(kind);
     if (order <= previousOrder) {
       throw new Error(`Action ${kind} violates the accepted top dynamic control bar order.`);
@@ -65,7 +70,7 @@ function normalizeActions(actions) {
     previousOrder = order;
     seenKinds.add(kind);
     seenIds.add(id);
-    return { ...action, kind, id, label };
+    return { ...action, kind, id, label, iconKind };
   });
 }
 
@@ -88,7 +93,7 @@ function setPopoverPresentation(entry, isOpen) {
   entry.panel.inert = !isOpen;
 }
 
-function appendActionIcon(button, kind, documentRef) {
+function appendActionIcon(button, kind, iconKind, documentRef) {
   if (kind === "toc") {
     button.textContent = "TOC";
     return;
@@ -96,7 +101,7 @@ function appendActionIcon(button, kind, documentRef) {
   const svg = documentRef.createElement("svg");
   svg.setAttribute("viewBox", "0 0 24 24");
   svg.setAttribute("aria-hidden", "true");
-  svg.innerHTML = ACTION_ICON_MARKUP[kind] ?? "";
+  svg.innerHTML = ACTION_ICON_MARKUP[iconKind];
   button.appendChild(svg);
 }
 
@@ -178,7 +183,7 @@ export function createTopDynamicControlBar({
     setBooleanAttribute(button, "aria-expanded", action.expanded);
     button.disabled = Boolean(action.disabled);
     button.classList.toggle("is-hidden", Boolean(action.hidden));
-    appendActionIcon(button, action.kind, documentRef);
+    appendActionIcon(button, action.kind, action.iconKind, documentRef);
 
     const popoverParts = buildPopover(action, button, documentRef);
     const entry = {

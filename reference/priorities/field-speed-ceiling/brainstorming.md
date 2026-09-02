@@ -18,6 +18,51 @@ For every positive waiting time in the declared local class, a braking continuat
 
 Plainly: the proposed restart admits more than one local future. A new selection principle would be needed to choose among them.
 
+## Strict-Inequality Variant: An Open Domain Is Not a Braking Law
+
+Consider replacing the proposed closed domain by the strict open ball
+
+$$
+\mathcal B_{c_f}^{\circ}
+=
+\left\{\mathbf V:\|\mathbf V\|<c_f\right\}.
+$$
+
+Every admitted velocity is then an interior point. Its tangent cone is $\mathbb R^3$ and its Euclidean normal cone is $\{\mathbf0\}$. Therefore the current normal-cone construction would return the complete ordinary acceleration unchanged at every admitted state. If an ordinary mirror approach has a positive speed-increasing acceleration and reaches $\|\mathbf V\|=c_f$ in finite time, the strict inequality supplies neither a braking contribution nor a boundary state on which to define one; the proposed evolution simply leaves its admissible domain.
+
+Plainly: “less than $c_f$” states which speeds are forbidden, but there is no greatest allowed speed immediately below $c_f$ and no boundary point inside the model where a reaction can switch on. A separate response law is required.
+
+A fixed regulator $\|\mathbf V\|\le c_f-\varepsilon$ with $\varepsilon>0$ would be a different closed-domain model. Under the same least-change response, a purely speed-increasing collinear ledger is canceled only at $c_f-\varepsilon$, so the mirror partners coast at that sub-field speed and still reach coordinate coincidence. Taking $\varepsilon\downarrow0$ approaches the closed-ceiling cap geometry; it does not create braking or select turnaround.
+
+The prescribed post-coincidence constant-speed test also shows why a sub-field passage does not automatically repair the event. In normalized units $c_f=1$, let the separating trial be $X_1(t)=ut$ and $X_2(t)=-ut$ with $0<u<1$, and let $K>0$ denote the attractive normalized partner coupling. Its unique post-event partner root is
+
+$$
+s(t)=\frac{1-u}{1+u}\,t,
+\qquad
+r(t)=\frac{2u}{1+u}\,t,
+\qquad
+D_t=1+u,
+\qquad
+D_r=1-u.
+$$
+
+The ordinary partner contribution points opposite the separating velocity, but its magnitude scales as
+
+$$
+\frac{K}{r(t)^2D_t}
+=
+\frac{K(1+u)}{4u^2t^2}.
+$$
+
+Its accumulated variation diverges at $t=0$. This prescribed trace therefore exhibits a singular immediate-braking obstruction, not a finite continuous turnaround solution. A lawful turnaround would need a separately declared pre-boundary response or event law and a proof that its net speed-reducing acceleration is locally integrable and sufficient to reduce each inward speed to zero before or at a classified event.
+
+Plainly: a sub-field wake can catch a particle after passage and point backward, but in the simplest constant-speed trial it does so with a nonintegrable near-coincidence contribution. That does not prove rebound; it shows that the proposed passage is not a regular solution.
+
+- **Claim level:** `derived` for the open-ball tangent/normal-cone consequence and the prescribed constant-sub-field root calculation; `inferred obstruction` for the absence of an absolutely continuous passage on that trial; `speculation` for any soft-barrier or pre-boundary turnaround law.
+- **Assumptions and proof burden:** retain normalized $c_f=1$, declare whether the strict inequality is merely admissibility or comes with a new response, classify the coincidence limit, and prove existence, uniqueness, local integrability, and a complete root census before asserting braking or turnaround.
+- **Promotion target:** the Field-Speed Ceiling mathematics packet only if the operator selects a strict-domain alternative for formal comparison; no canonical or proposed-law replacement is made here.
+- **Next artifact:** a strict-domain viability packet comparing the bare open ball, the closed regulators $\|\mathbf V\|\le1-\varepsilon$, and one explicitly stated soft-barrier law, with threshold reachability, coincidence time, root census, accumulated acceleration, and turnaround criteria.
+
 ## Uniform Field-Speed Geometry
 
 For a prescribed straight path

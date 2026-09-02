@@ -8,13 +8,8 @@ import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js"
 import {
   STANDALONE_APP_HOME_HREF,
   navigateStandaloneAppHome,
-  resolveStandaloneSiteHomeHref,
 } from "../navigator/StandaloneAppHomeRuntime.js";
-import {
-  createStandaloneAppSceneSearchRuntime,
-  resolveStandaloneGlobalSceneHref,
-  TEXTBOOK_TOC_SCENE_PATH,
-} from "../navigator/StandaloneAppSceneSearchRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
 import {
@@ -1137,6 +1132,11 @@ export function mountIdealBraid(options = {}) {
   }
   const listenerController = new AbortControllerCtor();
   const listenerOptions = { signal: listenerController.signal };
+  const navigationRuntime = createStandaloneAppNavigationRuntime({
+    host: queryRequiredElement(documentLike, "#scene-hud-tools"),
+    document: documentLike,
+    window: windowLike,
+  }).init();
   const canvas = queryRequiredElement(documentLike, "#ideal-braid-canvas");
   const model = createIdealBraidModel({ THREE: Three });
   const createRenderer =
@@ -1214,10 +1214,6 @@ export function mountIdealBraid(options = {}) {
   sphereContents.add(axisReferenceGroup);
 
   const dom = {
-    tocButton: queryRequiredElement(documentLike, "#textbook-toc-button"),
-    backButton: queryRequiredElement(documentLike, "#nav-up"),
-    forwardButton: queryRequiredElement(documentLike, "#nav-forward"),
-    homeButton: queryRequiredElement(documentLike, "#home-button"),
     pathToggle: queryRequiredElement(documentLike, "#ideal-braid-path-toggle"),
     surfaceToggle: queryRequiredElement(documentLike, "#ideal-braid-surface-toggle"),
     axesToggle: queryRequiredElement(documentLike, "#ideal-braid-axes-toggle"),
@@ -1259,10 +1255,6 @@ export function mountIdealBraid(options = {}) {
     markdownLayoutToggle: queryRequiredElement(documentLike, "#markdown-layout-toggle"),
     markdownPdfButton: queryRequiredElement(documentLike, "#markdown-pdf-button"),
   };
-  const sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
-    document: documentLike,
-    window: windowLike,
-  }).init();
   const stripContext = dom.stripCanvas.getContext("2d");
   const markdownRuntime = createIdealBraidMarkdownRuntime({
     documentLike,
@@ -1840,35 +1832,6 @@ export function mountIdealBraid(options = {}) {
     state.speed = Number(dom.speedInput.value) || state.speed;
     syncControls();
   }, listenerOptions);
-  dom.tocButton.addEventListener("click", () => {
-    navigateStandaloneAppHome(
-      windowLike?.location,
-      resolveStandaloneGlobalSceneHref(
-        TEXTBOOK_TOC_SCENE_PATH,
-        windowLike?.location?.href,
-      ),
-      {
-        windowLike,
-        returnHref: windowLike?.location?.href,
-      },
-    );
-  }, listenerOptions);
-  dom.backButton.addEventListener("click", () => {
-    windowLike?.history?.back?.();
-  }, listenerOptions);
-  dom.forwardButton.addEventListener("click", () => {
-    windowLike?.history?.forward?.();
-  }, listenerOptions);
-  dom.homeButton.addEventListener("click", () => {
-    navigateStandaloneAppHome(
-      windowLike?.location,
-      resolveStandaloneSiteHomeHref(windowLike?.location?.href),
-      {
-        windowLike,
-        returnHref: windowLike?.location?.href,
-      },
-    );
-  }, listenerOptions);
   dom.returnCycleDocButton.addEventListener("click", () => {
     markdownRuntime.showMarkdownPanel(IDEAL_BRAID_DOCS.returnCycle);
   }, listenerOptions);
@@ -1973,7 +1936,7 @@ export function mountIdealBraid(options = {}) {
       }
       runtimeDestroyed = true;
       listenerController.abort();
-      sceneSearchRuntime.destroy();
+      navigationRuntime.destroy();
       surfaceSolver.destroy();
       resizeObserver.disconnect();
       if (animationFrameId && typeof windowLike.cancelAnimationFrame === "function") {

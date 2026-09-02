@@ -3,16 +3,14 @@
 ## Workstream Metadata
 
 - Kind: `priority-app-candidate`
-- Rank: `16`
-- Value: `1.06`
-- Cost: `2.9`
-- ROI: `0.37`
-- Status: `active-client-conformance`
+- Rank: `unranked / dormant-deferred`
+- Archived attention score: Value `1.06`; Cost `2.9`; ROI `0.37`
+- Status: `dormant-deferred`
 - Claim level: `priority-only`
 
 ## Current
 
-This folder owns the proposed Model Context Protocol (MCP) access layer for the Architrino knowledge system.
+This folder preserves the proposed Model Context Protocol (MCP) access layer for the Architrino knowledge system. It is parked under `dormant-deferred`; its unfinished client-conformance work is retained but is not executable until the operator explicitly reactivates the lane.
 
 The target is a read-only, source-grounded protocol surface over versioned indexes built from the repository's accepted `main` snapshot. The repository remains authoritative. Generated indexes and MCP responses remain derived routing and retrieval artifacts; they do not promote theory claims or replace authored corpus sources.
 
@@ -28,7 +26,7 @@ The locally ranked execution order, lifecycle states, and acceptance boundaries 
 
 ## Current Blocker
 
-No blocker remains for the loopback HTTP implementation, official SDK conformance, Codex fixture HTTP conformance, or the checked-in deployment-contract identity. Current full-corpus Codex HTTP remains unmeasured because the generated source index is stale. ChatGPT desktop HTTP remains unmeasured because it requires a fresh ChatGPT surface after connection discovery or restart. Remote readiness separately remains false because TLS ingress, a trusted proxy, exact deployment origins, an authorization server, an accepted-`main` snapshot, and a real prior rollback snapshot do not exist yet.
+No blocker remains for the loopback HTTP implementation, official SDK conformance, current full-corpus source freshness, deployment-contract identity, or Codex fixture and full-corpus HTTP conformance. ChatGPT desktop now has measured HTTP initialization and tool discovery, but direct calls to the four tools and the typed missing-source result remain unmeasured. Remote readiness separately remains false because TLS ingress, a trusted proxy, exact deployment origins, an authorization server, an accepted-`main` snapshot, and a real prior rollback snapshot do not exist yet.
 
 ## Boundaries
 
@@ -43,11 +41,11 @@ No blocker remains for the loopback HTTP implementation, official SDK conformanc
 
 ## Related Work
 
-- [Archie service source ingestion and retrieval context](../dormant-deferred/archie/source-ingestion-retrieval-context-contract.md)
-- [Archie manifest-driven service architecture](../dormant-deferred/archie/manifest-driven-service-architecture.md)
-- [Archie service deployment architecture](../dormant-deferred/archie/service-deployment-architecture.md)
-- [Archie service scaffolding and fixtures](../dormant-deferred/archie/service-scaffolding-and-fixtures.md)
-- [Archie interface product plan](../dormant-deferred/archie/interface-product-plan.md)
+- [Archie service source ingestion and retrieval context](../archie/source-ingestion-retrieval-context-contract.md)
+- [Archie manifest-driven service architecture](../archie/manifest-driven-service-architecture.md)
+- [Archie service deployment architecture](../archie/service-deployment-architecture.md)
+- [Archie service scaffolding and fixtures](../archie/service-scaffolding-and-fixtures.md)
+- [Archie interface product plan](../archie/interface-product-plan.md)
 
 ## Promotion Map
 

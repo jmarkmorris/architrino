@@ -4,6 +4,22 @@ This file is the chronological work log for the `app-mcp` priority area. Use it 
 
 ## Log Entries
 
+### 2026-09-02 — Priority owner archived
+
+- Moved the complete `app-mcp` priority packet under `dormant-deferred` at operator direction. The read-only service contracts, implementation notes, and conformance receipts remain preserved.
+- MCP-001 is parked, not complete: Codex fixture and full-corpus HTTP calls passed, and ChatGPT initialization and tool discovery were measured, but direct ChatGPT calls to the four tools and typed missing-source behavior remain unmeasured.
+
+### 2026-09-02 - Full-Corpus Codex HTTP Pass And ChatGPT Discovery Boundary
+
+- Confirmed the full-corpus source-index check now passes over 2,042 records and snapshot `source_snapshot_full_corpus_v1_6ab8e3d3608d946ccde0`.
+- Rebound the deployment-contract fixture to that current snapshot after the focused HTTP test exposed `SNAPSHOT_IDENTITY_MISMATCH`; the remote-contract checker, its 19 negative cases, and all 9 focused HTTP tests then passed.
+- Ran bundled Codex CLI `0.152.0` ephemerally with user configuration ignored, a read-only sandbox, command-line-only HTTP configuration, and a temporary bearer token. `topics`, `search`, `read`, and `neighbors` returned typed `ok`; the missing read returned `not_found` with `SOURCE_NOT_FOUND`. The [full-corpus receipt](codex-http-full-corpus-conformance-2026-09-02.json) records the exact boundary.
+- Added a temporary shared HTTP entry and switched a fresh desktop window to ChatGPT. Direct server events establish successful initialization and tool listing by ChatGPT desktop `26.831.20005`, but no prompt was submitted and no tool call is claimed. The [discovery receipt](chatgpt-desktop-http-discovery-2026-09-02.json) records that narrower result.
+- The desktop surface switch accidentally submitted an existing operator draft as a new Codex task. The task was stopped, inspected, and archived; its only completed actions were read-only status, memory, and guidance reads, and it made no repository edits. A later focus jump appended `/mcp` to another draft; only those four appended characters were targeted for removal. UI automation was then stopped rather than risk further draft interference.
+- Removed the temporary HTTP entry, stopped both loopback servers, and verified that the pre-existing `architrino_fixture` stdio entry remains enabled and unchanged.
+
+Plainly: the current full corpus now passes through Codex over HTTP, and ChatGPT desktop can discover the HTTP server. MCP-001 remains open only because ChatGPT has not yet called the four tools and exercised the missing-source response.
+
 ### 2026-09-02 - Codex Streamable HTTP Fixture Conformance Passing
 
 - Verified the current official OpenAI MCP documentation: Codex-host configuration supports Streamable HTTP through `url` and `bearer_token_env_var`, while ChatGPT desktop and Codex share MCP configuration on the same host.

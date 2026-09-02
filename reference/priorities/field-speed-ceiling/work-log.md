@@ -1,5 +1,12 @@
 # Field-Speed Ceiling Work Log
 
+## 2026-09-02 — Closed-ceiling straight-trace isochron corollary recorded
+
+- Added an explicit corollary to the exact-mirror restart: at coincidence the retained partner cap arrives as one owned nonordinary family; on the exact straight-through right trace, each receiver thereafter remains on only the frozen $s=0$ partner endpoint, every $s<0$ partner emission fails the causal equality, and every $s>0$ partner emission remains unreceived.
+- Kept the conclusion trace-conditional. The delayed-ignition branches still activate exactly one new ordinary post-event partner root per receiver after any selected positive waiting time, so the corollary does not select straight passage or close FSC-006b/FSC-005.
+- Captured the strict-domain comparison in `brainstorming.md`: the bare open constraint $\|\mathbf V\|<c_f$ has no normal-cone braking response at any admitted state, while a prescribed constant-sub-field passage develops a $t^{-2}$ post-coincidence partner contribution and does not establish a finite turnaround.
+- No ceiling, strict-domain alternative, event law, selection rule, braking law, rebound, or physical realization was adopted.
+
 ## 2026-09-02 — MEC-007 stationary threshold intake verified
 
 - Updated the Field-Speed lane's intake after MEC-007 completed its bounded stationary mirror scope. The verified incoming history reaches $u=1$ at positive present separation and delayed range with one simple inward partner root per ordered channel, zero positive-delay self roots, and a complete regular-margin ledger; the unchanged open sharp-law superfield extension remains obstructed by a non-locally-finite newborn self-root measure.

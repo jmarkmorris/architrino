@@ -208,8 +208,22 @@ test("shared runtime rejects duplicate, unknown, unlabeled, unwired, and misorde
   assert.throws(() => create([action("play")]), /Unknown.*play/u);
   assert.throws(() => create([action("home", { label: "" })]), /accessible label/u);
   assert.throws(() => create([action("home", { onActivate: null })]), /onActivate/u);
+  assert.throws(() => create([action("edit", { iconKind: "unknown" })]), /Unknown.*icon/u);
   assert.throws(() => create([action("home"), action("back")]), /accepted.*order/u);
   assert.equal(SHARED_ACTION_ORDER.includes("play"), false);
+});
+
+test("app-mode extensions may use a centrally owned icon without changing action semantics", () => {
+  const { runtime } = createFixture([
+    action("edit", {
+      id: "borg-diagnostics-toggle",
+      label: "Show diagnostics",
+      iconKind: "diagnostics",
+    }),
+  ]);
+
+  assert.match(runtime.getElement("edit").children[0].innerHTML, /borg-panel-icon-pane/u);
+  assert.equal(runtime.getElement("edit").classList.contains("is-edit"), true);
 });
 
 test("state updates own disabled, hidden, pressed, label, and popover presentation", () => {

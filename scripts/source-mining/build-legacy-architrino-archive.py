@@ -387,7 +387,7 @@ TOPICS = [
             "content/markdown/aaa/cosmology",
             "content/markdown/aaa/spacetime",
             "reference/priorities/mapping-cosmology",
-            "reference/priorities/dark-sector",
+            "reference/priorities/dormant-deferred/dark-sector",
         ],
         "claim_bucket": "effective summary",
         "priority": 8,

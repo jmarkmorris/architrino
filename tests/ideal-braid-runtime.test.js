@@ -604,6 +604,7 @@ function createFakeElement(id = "") {
   const element = {
     id,
     attributes,
+    children: [],
     classList: createFakeClassList(),
     dataset: {},
     inert: false,
@@ -664,9 +665,16 @@ function createFakeElement(id = "") {
     querySelectorAll() {
       return [];
     },
-    appendChild() {},
-    contains() {
-      return false;
+    appendChild(child) {
+      element.children.push(child);
+      return child;
+    },
+    replaceChildren(...children) {
+      element.children = [];
+      children.forEach((child) => element.appendChild(child));
+    },
+    contains(target) {
+      return target === element || element.children.some((child) => child.contains?.(target));
     },
     setPointerCapture() {},
     releasePointerCapture() {},
@@ -877,21 +885,15 @@ test("Lorentz Geometry selector text matches the Controls heading size", () => {
   );
 });
 
-test("Lorentz Geometry uses the shared standalone navigation strip and no panel home button", () => {
+test("Lorentz Geometry uses the canonical navigation runtime and no panel home button", () => {
   const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
-  const causalHtml = readFileSync(
-    `${repoRoot}/causal-delay-feedback.html`,
-    "utf8",
-  );
   const runtime = readFileSync(
     `${repoRoot}/src/apps/ideal-braid/IdealBraidRuntime.js`,
     "utf8",
   );
-  const sharedStylesheet =
-    "./src/apps/navigator/standalone-app-navigation.css";
 
-  assert.match(html, new RegExp(sharedStylesheet.replaceAll(".", "\\.")));
-  assert.match(causalHtml, new RegExp(sharedStylesheet.replaceAll(".", "\\.")));
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/);
+  assert.match(html, /<div id="scene-hud-tools" class="ideal-braid-navigation"><\/div>/);
   for (const id of [
     "textbook-toc-button",
     "nav-up",
@@ -902,7 +904,7 @@ test("Lorentz Geometry uses the shared standalone navigation strip and no panel 
     "scene-search-input",
     "scene-search-results",
   ]) {
-    assert.match(html, new RegExp(`id="${id}"`));
+    assert.doesNotMatch(html, new RegExp(`id="${id}"`));
   }
   assert.doesNotMatch(html, /id="ideal-braid-home-button"/);
   const controlsPanel = html.match(
@@ -910,8 +912,7 @@ test("Lorentz Geometry uses the shared standalone navigation strip and no panel 
   )?.[0];
   assert.ok(controlsPanel);
   assert.doesNotMatch(controlsPanel, /aria-label="Go to home"/);
-  assert.match(runtime, /createStandaloneAppSceneSearchRuntime/);
-  assert.match(runtime, /TEXTBOOK_TOC_SCENE_PATH/);
-  assert.match(runtime, /windowLike\?\.history\?\.back\?\.\(\)/);
-  assert.match(runtime, /windowLike\?\.history\?\.forward\?\.\(\)/);
+  assert.match(runtime, /createStandaloneAppNavigationRuntime/);
+  assert.doesNotMatch(runtime, /createStandaloneAppSceneSearchRuntime/);
+  assert.doesNotMatch(runtime, /TEXTBOOK_TOC_SCENE_PATH/);
 });

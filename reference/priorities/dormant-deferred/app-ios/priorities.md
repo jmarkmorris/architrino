@@ -3,11 +3,9 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `19`
-- Value: `0.92`
-- Cost: `3.4`
-- ROI: `0.27`
-- Status: `deferred`
+- Rank: `unranked / dormant-deferred`
+- Archived attention score: Value `0.92`; Cost `3.4`; ROI `0.27`
+- Status: `dormant-deferred`
 
 ## Purpose
 
@@ -23,7 +21,7 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 
 1. The first iOS prototype belongs in this repo.
 2. The first textbook content package ships inside the app bundle only. Downloadable content updates can come later.
-3. The first post-v1 visualization candidate is Molecule Visualization, reusing the existing [Molecule scene](../../../content/scenes/archie/molecule.json) and [Molecule runtime](../../../src/apps/molecule/MoleculeRuntime.js) as the eventual starting surface.
+3. The first post-v1 visualization candidate is Molecule Visualization, reusing the existing [Molecule scene](../../../../content/scenes/archie/molecule.json) and [Molecule runtime](../../../../src/apps/molecule/MoleculeRuntime.js) as the eventual starting surface.
 4. The app scope is limited to reading and visualization; there is no separate memorization or review feature in the first product plan.
 5. The first minimum deployment target is iOS 18.0 and iPadOS 18.0, built with the current Xcode SDK available at implementation time.
 6. The v1 milestone intentionally ships textbook-only; visualization work is deferred to a later milestone and does not block v1 completion.
@@ -36,9 +34,9 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 13. Glossary access is provided through an explicit reader action and opens as a bundled in-app reference document when included in the textbook package.
 14. Reader-facing UI text and notices avoid equation-style symbols; keep labels and helper copy as plain words.
 15. The first public release target is Unlisted App Store distribution. The app still ships through App Store Connect and ordinary App Review, but the post-approval install path is a direct App Store link rather than App Store search, categories, recommendations, charts, or other listings.
-16. [Causal Delay Feedback App](../dormant-deferred/app-causal-delay-feedback/priorities.md) is a post-v1 visualization candidate. Its iPhone/iPad integration should adapt to landscape and portrait orientation while preserving the one-pair causal-delay scene state.
+16. [Causal Delay Feedback App](../app-causal-delay-feedback/priorities.md) is a post-v1 visualization candidate. Its iPhone/iPad integration should adapt to landscape and portrait orientation while preserving the one-pair causal-delay scene state.
 17. iPadOS is a first-release quality target, not an opportunistic compatibility target. The first release must be usable on iPad with the same textbook content package, reader controls, search, bookmarks, and local-only persistence as iPhone.
-18. Retain the iOS reader, schema, exporter, and [on-demand packaging procedure](../../../apps/ios/ArchitrinoReader/README.md#on-demand-textbook-packaging). Do not regenerate or freshness-gate the saved iOS package for routine corpus changes, PRs, or full web-content regeneration. Requested iOS package/build work still requires strict package validation.
+18. Retain the iOS reader, schema, exporter, and [on-demand packaging procedure](../../../../apps/ios/ArchitrinoReader/README.md#on-demand-textbook-packaging). Do not regenerate or freshness-gate the saved iOS package for routine corpus changes, PRs, or full web-content regeneration. Requested iOS package/build work still requires strict package validation.
 19. Defer App Store release until theory closure and an explicit operator release decision. Keep release requirements for that future checkpoint without treating them as active work now.
 
 ## Design Thesis
@@ -59,10 +57,10 @@ The app should consume generated artifacts rather than infer reading order from 
 
 | Source | Role |
 | --- | --- |
-| [textbook_toc.json](../../../content/graph/textbook_toc.json) | Canonical textbook reading order, scene titles, markdown paths, and section anchors. |
-| [toc.md](../../../content/generated/markdown/textbook/toc.md) | Human-readable generated table of contents. |
-| [architrino-textbook.md](../../../content/generated/markdown/textbook/reading-copies/architrino-textbook.md) | Full text export target (not required for v1 app runtime loading). |
-| [foundations.md](../../../content/generated/markdown/textbook/reading-copies/foundations.md) and sibling chapter reading copies | Chapter-level reading-copy markdown bundles used by the app runtime, referenced from TOC. |
+| [textbook_toc.json](../../../../content/graph/textbook_toc.json) | Canonical textbook reading order, scene titles, markdown paths, and section anchors. |
+| [toc.md](../../../../content/generated/markdown/textbook/toc.md) | Human-readable generated table of contents. |
+| [architrino-textbook.md](../../../../content/generated/markdown/textbook/reading-copies/architrino-textbook.md) | Full text export target (not required for v1 app runtime loading). |
+| [foundations.md](../../../../content/generated/markdown/textbook/reading-copies/foundations.md) and sibling chapter reading copies | Chapter-level reading-copy markdown bundles used by the app runtime, referenced from TOC. |
 
 The app package should be generated after the existing scene graph and textbook reading-copy checks pass, then copied into the app bundle for the first prototype. The iOS app should not become a new canonical source for textbook prose.
 

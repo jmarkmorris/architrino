@@ -36,7 +36,7 @@ Release-channel accounting consumes the shared residual-routing event-ledger the
 | [observer-level-strong-field-projection-contract.md](observer-level-strong-field-projection-contract.md) | SF-002 observer projection contract with a gated six-component prediction vector, instrument records, same-record residuals, and falsifiers. | Supplies structural constraints and consumer gates only; numerical prediction remains blocked on an accepted source-bound horizon-interface carrier. |
 | [horizon-interface-label-entropy-enumerator-contract.md](horizon-interface-label-entropy-enumerator-contract.md) | SF-003 admitted quotient ensemble, extendable block-label family, exact area-coefficient reduction, terminal-enumerator output, and Page/identification falsifiers. | Supplies a derived counting contract only; no label enumeration, coefficient, thermal limit, or Page curve is established. |
 | [EQ-07C black-hole horizon-interface map](../mapping-equations/eq-07c-black-hole-horizon-interface-noether-braid-map.md) | Working black-hole-proper carrier contract that keeps terminal alignment, light-ring/null-orbit recovery, and planar-photon recovery separate until one source-backed carrier derives coincidence. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [general-relativity](../../../content/markdown/aaa/spacetime/general-relativity.md) |
-| [dark-sector-photon-like-mode.md](../dark-sector/dark-sector-photon-like-mode.md) | Detailed watchlist packet for candidate dark-sector photon-like release, redshift, reaction, and visible-channel re-entry. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
+| [dark-sector-photon-like-mode.md](../dormant-deferred/dark-sector/dark-sector-photon-like-mode.md) | Detailed watchlist packet for candidate dark-sector photon-like release, redshift, reaction, and visible-channel re-entry. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
 | [high-energy-astrophysics/priorities.md](high-energy-astrophysics/priorities.md) | Event-scale routing for compact objects, mergers, jets, explosive transients, and source/sink families. | Equation Mapping and Strong-Field Closure; CMB/redshift consequences remain linked into Cosmology Closure. |
 
 ## Promotion Map
@@ -511,7 +511,7 @@ Failure modes to retain:
 
 - [master-equation-closure](../master-equation-closure/priorities.md)
 - braid
-- [dark-sector](../dark-sector/priorities.md)
+- [dark-sector](../dormant-deferred/dark-sector/priorities.md)
 - [mapping-cosmology](../mapping-cosmology/priorities.md)
 - [app-simulation](../app-simulation/priorities.md)
 

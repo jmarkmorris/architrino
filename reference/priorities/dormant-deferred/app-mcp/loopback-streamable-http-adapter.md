@@ -20,11 +20,11 @@ It is a production-shaped local test surface, not a deployment. It starts an HTT
 
 | Artifact | Responsibility |
 | --- | --- |
-| [Loopback adapter](../../../src/archie-service/mcp/loopback-streamable-http-adapter.mjs) | Owns loopback binding, HTTP routing, origin and protocol gates, authorization hook, limits, safe events, health, immutable active-snapshot selection, and rollback. |
-| [Full-corpus launcher](../../../scripts/archie-service/run-loopback-mcp-http-server.mjs) | Loads the full-corpus snapshot, requires a bearer token from the environment, starts on loopback, emits a safe startup event and 30-second heartbeat, and closes on `SIGINT` or `SIGTERM`. |
-| [HTTP smoke fixture](../../../tests/archie-service/fixtures/mcp/mcp-loopback-http-smoke.v1.json) | Declares 21 lifecycle, tool, health, method, origin, authorization, protocol, media-type, JSON, query-string, and body-size requests with expected HTTP or JSON-RPC results. |
-| [Focused tests](../../../tests/archie-service-mcp-loopback-http.test.js) | Exercise the fixture through real HTTP, rate and concurrency gates, safe logging, atomic activation/rollback, bind refusal, snapshot no-write behavior, and outside-repository launcher startup. |
-| [Official SDK runner](../../../scripts/archie-service/check-loopback-mcp-http-sdk-conformance.mjs) | Starts the full-corpus loopback adapter and drives it with the official TypeScript SDK Streamable HTTP client without changing persistent client configuration. |
+| [Loopback adapter](../../../../src/archie-service/mcp/loopback-streamable-http-adapter.mjs) | Owns loopback binding, HTTP routing, origin and protocol gates, authorization hook, limits, safe events, health, immutable active-snapshot selection, and rollback. |
+| [Full-corpus launcher](../../../../scripts/archie-service/run-loopback-mcp-http-server.mjs) | Loads the full-corpus snapshot, requires a bearer token from the environment, starts on loopback, emits a safe startup event and 30-second heartbeat, and closes on `SIGINT` or `SIGTERM`. |
+| [HTTP smoke fixture](../../../../tests/archie-service/fixtures/mcp/mcp-loopback-http-smoke.v1.json) | Declares 21 lifecycle, tool, health, method, origin, authorization, protocol, media-type, JSON, query-string, and body-size requests with expected HTTP or JSON-RPC results. |
+| [Focused tests](../../../../tests/archie-service-mcp-loopback-http.test.js) | Exercise the fixture through real HTTP, rate and concurrency gates, safe logging, atomic activation/rollback, bind refusal, snapshot no-write behavior, and outside-repository launcher startup. |
+| [Official SDK runner](../../../../scripts/archie-service/check-loopback-mcp-http-sdk-conformance.mjs) | Starts the full-corpus loopback adapter and drives it with the official TypeScript SDK Streamable HTTP client without changing persistent client configuration. |
 
 ## Request Path
 

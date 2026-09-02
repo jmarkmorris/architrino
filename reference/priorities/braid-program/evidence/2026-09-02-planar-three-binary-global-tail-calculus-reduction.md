@@ -1,14 +1,14 @@
 # Planar Three-Binary Global Tail Calculus Reduction
 
-Status: derived exact reduction; global theorem remains open
+Status: computer-assisted derived global equal-radius ladder theorem
 
-Claim grade: derived identities and sufficient-condition theorem route
+Claim grade: derived identities plus outward-rounded uniform kernel certificate
 
 ## Decision
 
-The infinite equal-radius regular-phase ladder is not closed by extending the finite interval census. Its remaining proof can be stated on one fixed fold-cell coordinate. Exact shifted-endpoint reindexing extracts the $3/2$ background term, proves that the newborn pair decreases throughout every post-T200 cell, and bounds that pair below $0.01$ at every right edge. The unresolved proof is now a uniform shape bound for the regularized old-root lattice followed by a quantitative endpoint derivative comparison. This packet states those remaining sufficient inequalities without claiming that they have been proved uniformly.
+The infinite equal-radius regular-phase ladder is closed by joining the finite T200 certificate to a uniform post-T200 theorem, not by extending the finite census. Exact shifted-endpoint reindexing extracts the $3/2$ background term, proves that the newborn pair decreases throughout every post-T200 cell, and bounds that pair below $0.01$ at every right edge. The remaining regularized-lattice shape inequalities are now proved by an exact scaled-kernel reduction and an outward-rounded three-chart certificate. Together with the already proved endpoint derivative comparison, they give $B_q>1.43$, strict newborn derivative dominance, no zero in every later odd topology cell, and exactly one simple zero in every later even topology cell.
 
-Plainly: every later topology cell now has the same mathematical coordinate system. The newborn sign and far-edge size are settled; the missing work is a genuine all-index bound on the older roots, not another finite run.
+Plainly: the finite certificate reaches T200, and one uniform proof now handles every cell after it. The equal-radius regular-phase ladder has exactly one balance in every even cell and none in every odd cell for the complete ordinary topology sequence.
 
 ## Integer-level ledger
 
@@ -319,9 +319,161 @@ $$
 +\partial_\beta A_{+,\beta}((q+5)h).
 $$
 
-This is a sufficient reduction, not yet a proof that the required shape inequalities hold uniformly for every $q\geq200$.
+This is a sufficient reduction of the global tail to the two regularized-lattice shape inequalities. The following theorem proves those inequalities uniformly for every $q\geq200$.
 
 Plainly: a full Euler-Boole expansion is no longer the only route. If the regularized endpoint sequences have the stated monotone shapes, elementary alternating pairing bounds the entire old lattice by its last term, proves the old background exceeds $1.43$, and reduces derivative dominance to the final shifted levels.
+
+## Uniform regularized-lattice shape theorem
+
+The remaining shapes admit one scale-free kernel. Put
+
+$$
+w=\frac1\beta,
+\qquad
+t=wX,
+\qquad
+\lambda=\sigma w,
+$$
+
+and let $\theta(\lambda,t)$ be the increasing root of
+
+$$
+\sin\theta+\lambda\theta=t.
+$$
+
+On this branch $J=\cos\theta+\lambda>0$. Define the fixed-$t$ derivative and fixed-$\lambda$ level derivative by
+
+$$
+\mathcal D_\lambda
+=
+\partial_\lambda
+-\frac{\theta}{J}\partial_\theta,
+\qquad
+\mathcal D_t
+=
+\frac1J\partial_\theta.
+$$
+
+Plainly: $w$ removes the unbounded cell index. The interpolation coordinate $\lambda$ moves continuously between the minus and plus endpoint equations while $t$ keeps the old-root level fixed.
+
+Introduce
+
+$$
+a(\lambda,t)
+=
+\frac{\cos\theta}{\sin^2\theta\,(\cos\theta+\lambda)},
+\qquad
+b(\lambda,t)
+=
+\frac{\cos^3\theta+\lambda}
+{4\sin^2\theta\,(\cos\theta+\lambda)^3},
+$$
+
+and the cleared regularizing kernel
+
+$$
+g(\lambda,t)
+=
+\frac1{t^2}-\mathcal D_\lambda a(\lambda,t).
+$$
+
+The endpoint and parameter-derivative formulas become
+
+$$
+A_{\sigma,\beta}(X)=\frac{w}{4}a(\sigma w,wX),
+\qquad
+\partial_\beta A_{\sigma,\beta}(X)=w^2b(\sigma w,wX).
+$$
+
+Therefore the fundamental theorem of calculus gives the exact identities
+
+$$
+Q_\beta(X)
+=
+\frac{w^2}{4}
+\int_{-1}^{1}g(wr,t)\,dr,
+$$
+
+$$
+\partial_XQ_\beta(X)
+=
+\frac{w^3}{4}
+\int_{-1}^{1}\mathcal D_tg(wr,t)\,dr,
+$$
+
+$$
+-\partial_\beta D_\beta(X)
+=
+w^2\int_{-w}^{w}\mathcal D_\lambda b(\lambda,t)\,d\lambda,
+$$
+
+and
+
+$$
+\partial_X\!\left[-\partial_\beta D_\beta(X)\right]
+=
+w^3\int_0^w
+\left[
+\mathcal D_t\mathcal D_\lambda b(\lambda,t)
++
+\mathcal D_t\mathcal D_\lambda b(-\lambda,t)
+\right]d\lambda.
+$$
+
+Plainly: the two requested shape statements follow from four local signs. Three are pointwise signs of $g$, its level derivative, and $b$'s interpolation derivative. The fourth is a symmetric pair sign; neither endpoint is required to have that sign by itself near the fold.
+
+For every $0<w<0.01$, every old-root level
+
+$$
+h\leq X\leq M(1/w)-h,
+$$
+
+and every $|\lambda|\leq w$, the [outward-rounded shape oracle](../../../../scripts/equation-mapping/certify_planar_three_binary_global_tail_shapes.py) and its [certificate receipt](2026-09-02-planar-three-binary-global-tail-shape-certificate.v1.json) prove
+
+$$
+g(\lambda,t)>0,
+\qquad
+\mathcal D_tg(\lambda,t)>0,
+\qquad
+\mathcal D_\lambda b(\lambda,t)>0,
+$$
+
+and, for $0\leq\lambda\leq w$,
+
+$$
+\mathcal D_t\mathcal D_\lambda b(\lambda,t)
++
+\mathcal D_t\mathcal D_\lambda b(-\lambda,t)
+>0.
+$$
+
+The certificate uses exact SymPy differentiation only to construct the displayed kernels, then evaluates their cleared numerators with Arb outward balls at 60 decimal digits. Its low-angle chart covers $0\leq\theta\leq0.25$ after the exact substitutions $\lambda=\pm r\theta$, $\sin\theta=P_{11}(\theta)+\theta^{13}E_s$, and $\cos\theta=P_{12}(\theta)+\theta^{14}E_c$, with $0\leq E_s\leq1/13!$ and $-1/14!\leq E_c\leq0$. The source lower bound $t\geq h|\lambda|$ gives $r<3.7$ on the plus side and $r<1.92$ on the minus side. All four normalized numerators are positive on 800 initial balls without subdivision.
+
+The bulk chart covers $0.2\leq\theta\leq1.4$. Centered mean-value forms prove the three pointwise kernels on 51,786 processed balls to depth eight. Writing the two equal-$t$ roots as $a-d$ and $a+d$ gives the exact relation $\lambda=\cos a\sin d/a$; 639,224 balls to depth eighteen prove the symmetric derivative kernel for $0.2\leq a\leq1.4$. The constraints $|\lambda|\leq0.01$ and $a\leq1.4$ give $d<0.09$, so the cover contains every admitted midpoint pair.
+
+The fold chart puts $c=\cos\theta$ and $\lambda=\pm rc^2$, removes the common factor $c^2$ from every pointwise numerator, and proves the three required pointwise signs on 3,200 unsubdivided balls. For the symmetric derivative pair, put $a=\arccos c$ and $d=pc$. A separate normalized-domain exclusion proves every admitted pair has $p<0.56$; 1,600 further unsubdivided balls prove the paired sign on $0\leq p\leq0.56$. The low, bulk, and fold charts overlap, and every skipped ball is excluded only by $|\lambda|>0.01$, the old-level ceiling, or loss of the increasing-root Jacobian.
+
+Plainly: the certificate does not sample topology indices. It proves stronger local kernel signs on three overlapping compact charts, with the small-angle and fold singularities removed before interval evaluation. The resulting strict inequalities hold uniformly for the entire post-T200 tail.
+
+Substitution in the four integral identities proves the two requested shapes:
+
+$$
+Q_\beta(X)>0,
+\qquad
+\partial_XQ_\beta(X)>0,
+$$
+
+and
+
+$$
+-\partial_\beta D_\beta(X)>0,
+\qquad
+\partial_X\!\left[-\partial_\beta D_\beta(X)\right]>0.
+$$
+
+These statements are strict on the admitted open root chart and therefore imply the nonnegative, nondecreasing lattice hypotheses used above.
+
+Plainly: both regularized-lattice inequalities are proved, not merely supported by a longer finite run. Their falsifier is an independently checked admitted point at which one displayed kernel or paired kernel is nonpositive, or a failure of the outward enclosure or chart coverage recorded in the receipt.
 
 ## Global newborn derivative sign
 
@@ -409,9 +561,9 @@ $$
 <0
 $$
 
-for every admitted fold cell with $\beta\geq8$, in particular for the entire unresolved post-T200 tail.
+for every admitted fold cell with $\beta\geq8$, in particular for the entire post-T200 tail.
 
-Plainly: the newborn pair always weakens as speed moves away from its fold. This sign is now proved globally, not inferred from the first two hundred cells; only the quantitative comparison with the old-background derivative remains open.
+Plainly: the newborn pair always weakens as speed moves away from its fold. This sign is proved globally rather than inferred from the first two hundred cells, and the uniform shape theorem supplies the old-background comparison used below.
 
 ## Uniform right-edge clearance
 
@@ -536,7 +688,7 @@ the positive magnitude of the same-level pair derivative at deficit $\delta$. In
 
 $$
 K_\beta(\varepsilon+h)
-+partial_\beta A_{+,\beta}(M(\beta)-(\varepsilon+h)).
++\partial_\beta A_{+,\beta}(M(\beta)-(\varepsilon+h)).
 $$
 
 The last term lies $\pi+\varepsilon+h=\varepsilon+7h$ below the maximum of the plus branch.
@@ -636,17 +788,17 @@ H_-(s;\beta)=\int_0^sF_\beta'(\xi-r)\,dr,
 H_+(t;\beta)=\int_0^t-F_\beta'(\xi+r)\,dr.
 $$
 
-Because $\varepsilon\in(0,h)$ and $\beta\geq\beta_{200}$ on the unresolved tail, these formulas confine both fold offsets to a uniformly small neighborhood of $\xi$. Taylor bounds may therefore be applied with explicit remainders on one fixed $z$ domain rather than separately fitted in every topology cell.
+Because $\varepsilon\in(0,h)$ and $\beta\geq\beta_{200}$ on the post-T200 tail, these formulas confine both fold offsets to a uniformly small neighborhood of $\xi$. Taylor bounds may therefore be applied with explicit remainders on one fixed $z$ domain rather than separately fitted in every topology cell.
 
 Plainly: the square-root fold behavior can be bounded from exact integrals over one small angular interval. The cell index appears only through the large parameter $\beta_q$.
 
-## Sufficient uniform inequalities
+## Uniform inequalities and global join
 
-The following estimate package, when completed for every $q\geq200$ and every $\beta\in(\beta_q,\beta_{q+1})$, proves the alternating zero count:
+The completed estimate package holds for every $q\geq200$ and every $\beta\in(\beta_q,\beta_{q+1})$:
 
-1. **Positive old background:** find an explicit $b_0>0$ such that $B_q(\beta)\geq b_0$.
-2. **Right-edge clearance:** find $b_1<b_0$ such that $P_q(\beta_{q+1}^-):=P_{\beta_{q+1}}(qh)\leq b_1$. The uniform right-edge argument below proves $b_1=0.01$; it remains to prove $b_0>0.01$.
-3. **Odd-fold derivative dominance:** for odd $q$, the global newborn derivative argument below proves $\partial_\beta P_\beta(qh)<0$. It remains to prove the quantitative inequality
+1. **Positive old background:** the proved $Q_\beta$ shape and alternating estimate give $B_q(\beta)>1.43=:b_0$.
+2. **Right-edge clearance:** the uniform right-edge argument gives $P_q(\beta_{q+1}^-):=P_{\beta_{q+1}}(qh)<0.01=:b_1<b_0$.
+3. **Odd-fold derivative dominance:** for odd $q$, the global newborn derivative sign, the proved $-\partial_\beta D_\beta$ shape, terminal monotonicity, and the endpoint comparison give
 
 $$
 -\partial_\beta P_\beta(qh)
@@ -656,16 +808,14 @@ $$
 
 For even $q$, $N_q=P_\beta(qh)>0$, so the first inequality gives $S_{q+1}>0$ and no zero in the intervening odd topology cell. For odd $q$, the newborn term is negative and diverges at the left fold, the first two inequalities make $S_{q+1}$ positive at the right edge, and derivative dominance makes $S_{q+1}$ strictly increasing. Hence exactly one simple zero occurs in the even topology cell.
 
-Plainly: background positivity settles every no-zero cell. In each one-zero cell, the negative newborn spike is now known to rise and to finish below $0.01$ in magnitude; the remaining derivative bound must prove that the complete ledger rises without turning back.
+Plainly: background positivity settles every no-zero cell. In each one-zero cell, the negative newborn spike rises strictly and finishes below one hundredth in magnitude, while the old background cannot reverse that rise.
 
-## First remaining lemma
+The finite T200 certificate supplies completeness through T200. The uniform argument above supplies no zero in T201, exactly one simple zero in T202, and the same alternating conclusion in every later ordinary topology cell. Hence the complete equal-radius regular-phase ladder has exactly one simple balance in every even cell $\mathrm T_{2n}$ for $n\geq1$ and none in every odd cell or T00.
 
-The next proof object is the remaining uniform shifted-endpoint shape lemma. On every cell $q\geq200$, it must establish the declared nonnegativity and monotonicity of $Q_\beta$ and $-\partial_\beta D_\beta$ on $h\leq X\leq(q-1)h$. Terminal monotonicity of $\partial_\beta A_{+,\beta}$, the endpoint-size bounds, and the quantitative endpoint derivative inequality are already proved. The first remaining shape statement then gives $B_q>1.43>0.01$, and the second turns the proved endpoint slack into strict newborn derivative dominance. A direct Euler-Boole remainder with explicit endpoint terms remains a valid fallback if either remaining monotonicity statement is false; nonuniform endpoint expansions must still retain their remainders rather than fit away logarithmic corrections.
-
-Plainly: the remaining global burden is now a small set of uniform one-variable shape inequalities plus one endpoint comparison. Proving them closes the all-later-cells sign argument; finding one certified violation falsifies this simplified route without disturbing the exact shifted-lattice identity or the finite T200 theorem.
+Plainly: the finite and uniform pieces meet without a gap. The theorem establishes the complete zero census of the prescribed equal-radius regular-phase chart; it does not establish release, retention, stability, or a higher-order asymptotic error expansion.
 
 ## Boundary and falsifier
 
-This packet derives the fixed-cell map, pair-derivative identities, shifted-endpoint lattice, exact extraction of the $3/2$ term, exact ledger decomposition, and sufficient-condition routes. It does not prove the uniform shape, background, or derivative bounds, does not establish any zero count in T201 or later, and does not enlarge the accepted finite ladder. A failed implicit derivative, incorrect index shift, incorrect sign or multiplicity in the decomposition, invalid fixed-cell mapping, or a later certified ledger that violates the stated sufficient-condition logic falsifies the corresponding derived reduction.
+This packet proves the complete ordinary-cell zero census only on the prescribed equal-radius, regular-phase, common-center, common-circulation circular chart with $c_f=1$. It does not prove a full-vector balance away from that symmetry chart, a release or retained-history result, perturbation stability, binding, energy quantization, physical identity, or the higher-order error terms in $\beta_n$, $\Delta\beta_n$, or $R_n/R_*$. A failed implicit derivative, incorrect index shift, incorrect sign or multiplicity, gap in a declared interval chart, non-outward arithmetic operation, nonpositive certified kernel at an admitted point, missing even-cell zero, or extra zero overturns the corresponding conclusion.
 
-Closure goal: prove or falsify the uniform shifted-endpoint shape lemma and endpoint derivative inequality, then join the resulting explicit bounds to the accepted T02-through-T200 finite certificate.
+Closure goal: preserve the complete equal-radius regular-phase zero census and derive controlled higher-order ladder errors without importing them into this theorem.

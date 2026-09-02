@@ -15,6 +15,8 @@ test("Borg launches into visual assembly discovery", () => {
 test("Borg discovery keeps random simulation separate from exact assemblies", () => {
   const html = read("borg-library.html");
   assert.match(html, /BORG ASSEMBLY DISCOVERY/);
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/);
+  assert.match(html, /<div id="scene-hud-tools" class="borg-library-navigation"><\/div>/);
   assert.match(html, /href="\.\/borg\.html">Start random simulation/);
   assert.match(html, /id="filter-drawer-toggle"[^>]*type="checkbox"/);
   assert.match(html, /id="open-record"[^>]*>Open in workbench/);

@@ -3,6 +3,7 @@ import { libraryVariantSetLabel } from "./BorgLibraryVariants.mjs";
 import { createSpherePreview } from "./BorgSpherePreview.js";
 import { renderBorgScientificStatus } from "../BorgScientificStatusView.mjs";
 import { renderBorgPlatonicRelationships } from "../BorgPlatonicRelationshipsView.mjs";
+import { createStandaloneAppNavigationRuntime } from "../../navigator/StandaloneAppNavigationRuntime.js";
 
 const $ = (id) => document.getElementById(id);
 const element = (tag, text, className) => { const node = document.createElement(tag); if (text != null) node.textContent = text; if (className) node.className = className; return node; };
@@ -11,6 +12,8 @@ const state = { params: new URLSearchParams(location.search), version: 0, contro
 const previewCache = new Map();
 const api = "/api/borg/library";
 let searchTimer;
+
+createStandaloneAppNavigationRuntime({ host: $("scene-hud-tools") }).init();
 
 function facetLabel(key, value) {
   if (key === "circleOccupancy" && value === "mixed") return "Both occupancy types";
