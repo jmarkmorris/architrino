@@ -147,4 +147,4 @@ Those functions belong to adjacent Archie documents with narrower purposes.
 
 ## Contact
 
-For project contact, use [architrino@gmail.com](mailto:architrino@gmail.com).
+For a reproducible public webapp problem, use the [privacy-safe feedback page](../../../../feedback.html). It creates a visible browser, device, and public-manifest summary locally before opening the public GitHub issue form. For other project contact, use [architrino@gmail.com](mailto:architrino@gmail.com).

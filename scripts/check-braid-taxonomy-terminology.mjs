@@ -18,7 +18,6 @@ const BORG_READER_SURFACES = Object.freeze([
 ]);
 const CERTIFICATION_READER_SURFACES = Object.freeze([
   "src/apps/borg/BorgAssemblyViewControls.js",
-  "src/apps/assembly-explorer/AssemblyConfigurationExplorerRuntime.js",
 ]);
 const LORENTZ_GEOMETRY_PUBLIC_DISPLAY_SURFACES = Object.freeze([
   "README.md",

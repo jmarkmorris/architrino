@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `9`
+- Rank: `7`
 - Value: `9.24`
 - Cost: `3.7`
 - ROI: `2.50`
@@ -36,12 +36,15 @@ The current app implements:
 - default `Absolute history` mode that translates source and Virtual Observer histories at $c_\gamma$ and uses a shared solver-layer moving-circular absolute-history run facade as the first moving-apparatus solver path;
 - a three-cycle Electric Field plot based on causal-root branch sums;
 - absolute-history source-scan diagnostics for no-catch-up sources, stale windows, near misses, and root-cap hits;
+- a machine-readable `photon-moving-apparatus-delta-x.v1` record that makes absolute history authoritative for $\Delta x$, marks co-moving output comparison-only, and classifies retained-root age in declared reference-cycle bands;
 - a transverse polarization inset derived from a reference-frequency fit over the slowest enabled layer's common period, with optional raw common-period branch-sum points behind the fit;
+- a machine-readable `photon-substrate-mapping-refinement.v1` record that partitions every sampled transverse field into I/M/O contributions, fits the same reference harmonic per layer and in total, and reports algebraic-closure, fit, root-solve, and coverage diagnostics;
 - formula and diagnostic panels with quality words where the readout has a useful direction;
 - shared-geometry same-transmitter self-hit span diagnostics for enabled leading/trailing Inner/Middle/Outer binaries, using the vector sum of photon-channel speed and transverse orbital speed as the solver speed ratio;
 - first-pass helical same-transmitter root results for individual architrino transmitter histories, with transmitter phase-at-hit, receiver phase-at-hit, and phase-family grouping by role, layer, charge, and transmitter cycle;
+- fail-closed helical self-hit admission rows that distinguish regular candidates from singular roots, small-Jacobian failures, and uncertified transversality records;
 - a named preset dropdown that can load a complete photon settings state and reset back to the last loaded preset;
-- a bounded `Search configurations` workflow that samples representative configuration families, includes derived local-$c$ speed-mode candidates, generates session-local scored settings, compares top co-moving and absolute-history diagnostics when the solver path is available, defers the expensive same-transmitter self-hit sweep to its dedicated workflow, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
+- a bounded `Search configurations` workflow plus a scheduled `Deep compare` path that evaluates the full constructed candidate pool, yields between candidates, applies local-$c$ and measured phase-family filters, attaches co-moving and absolute-history summaries to every retained deep row, preserves explicit UI-independence and scientific-oracle-independence labels through JSON export/import, and supports preview/load/play, rename/delete, and promotion into session presets;
 - and in-app Markdown viewing for the user-facing guide and the two supporting corpus bridges.
 
 ## Candidate Model
@@ -208,32 +211,36 @@ $$
 and source velocity $\mathbf v_i(\tau_{i,k})$, compute
 
 $$
-D_{s,i,k}
+D_{t,i,k}
 =
 c_{\mathrm{sig}}-\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k},
 \qquad
-D_{T,i,k}
+D_{r,i,k}
 =
 c_{\mathrm{sig}}-\mathbf v_{\mathrm{VO}}(t)\cdot\mathbf n_{i,k}.
 $$
 
-The Virtual Observer acceleration is the radial sum of transmitter-side causal-hit contributions for a unit positive receiver:
+The Virtual Observer acceleration is the radial sum of transmitter-side causal-hit contributions for a unit positive receiver. The receiver-side factor $D_r$ remains signed root-playback data and does not multiply the instantaneous acceleration:
 
 $$
 \mathbf a_{\mathrm{VO}}(t)
 =
 g\sum_i\sum_k
 q_i
-\left|\frac{D_{T,i,k}}{D_{s,i,k}}\right|
+\frac{c_{\mathrm{sig}}}{|D_{t,i,k}|}
 \frac{\mathbf n_{i,k}}
-{R_{i,k}^2},
+{R_{\mathrm{display},i,k}^2},
 \qquad
 R_{i,k}
 =
 \left\|
 \mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})
-\right\|.
+\right\|,
+\qquad
+R_{\mathrm{display},i,k}=\max(R_{i,k},0.08).
 $$
+
+The $0.08$ floor is a display regularization, not a derived short-distance rule. The exact I/M/O grouping, harmonic projection, residuals, and falsifiers are recorded in the [PHO-005 substrate-mapping refinement](substrate-mapping-refinement.md).
 
 The displayed electric readout is the transverse observer reconstruction from that receiver acceleration:
 
@@ -248,10 +255,10 @@ $$
 For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, the magnetic field is recoverable from the displayed electric field:
 
 $$
-\mathbf B(t)=\frac{1}{c_f}\hat{\mathbf x}\times\mathbf E(t),
+\mathbf B(t)=\frac{1}{c_{\mathrm{sig}}}\hat{\mathbf x}\times\mathbf E(t),
 $$
 
-so $B_y=-E_z/c_f$ and $B_z=E_y/c_f$. The app should not draw $\mathbf B$ as a separate graph unless a later diagnostic explicitly needs to compare a non-plane-wave magnetic reconstruction.
+so $B_y=-E_z/c_{\mathrm{sig}}$ and $B_z=E_y/c_{\mathrm{sig}}$. This is an ideal plane-wave comparison only, not an imported magnetic input or a branch-local substrate derivation. The app should not draw $\mathbf B$ as a separate graph unless a later diagnostic explicitly needs to compare a non-plane-wave magnetic reconstruction.
 
 ### Absolute-History Solver Burden
 
@@ -443,13 +450,15 @@ $$
 
 ### Configuration Search Design
 
-The configuration search is a guided exploration tool for finding photon settings worth inspecting. It is visible in the UI as a `Search configurations` action near the preset controls, with results shown in a compact session list.
+The configuration search is a guided exploration tool for finding photon settings worth inspecting. It is visible in the UI as a short `Search configurations` action and a larger `Deep compare` action near the preset controls, with results shown in a compact session list.
 
 Current implementation scope:
 
 - start each run from the current app settings;
 - search bounded nearby and systematic variants of enabled binaries, Inner/Middle/Outer frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, and Analyzer angle;
 - use the current branch-sum diagnostics and, when available, attach a compact co-moving versus absolute-history comparison for top results;
+- let deep comparison evaluate both history modes for every candidate in the full constructed pool, yielding to the browser between candidates and reporting progress;
+- filter the deep pool by normalized direct or Lorentz-factor local-$c$ mode before evaluation and by measured stable, candidate, singular, absent, or any phase-family class after evaluation;
 - keep results session-local by default;
 - support selected/all JSON export and JSON import.
 
@@ -463,6 +472,7 @@ Each search result should store a complete settings snapshot, not only the chang
 - polarization summary;
 - diagnostic summary;
 - co-moving versus absolute-history comparison status, mode summaries, and deltas when the solver path can compute them;
+- for deep rows, a versioned provenance record that states the producing path, analysis identity, normalized-state-snapshot boundary, UI independence after dispatch, lack of an independent scientific oracle, evaluated history modes, and filters;
 - small plot or sample summary;
 - and a short note explaining why the result is interesting.
 
@@ -490,6 +500,8 @@ The search should flag a configuration as interesting when one or more of these 
 - and diversity: the result set should prefer representative examples from different pattern families over many tiny variations of the same case.
 
 Suspect numerical cases should be labeled as suspect, not good. Missed roots, very small Jacobian values, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be presented as clean polarization evidence.
+
+The detailed execution and export boundary is recorded in [configuration-search-deep-comparison.md](configuration-search-deep-comparison.md). Deep comparison is independently scheduled from later UI mutation, but it reuses the same prescribed-path analysis and therefore is not an independent numerical oracle or physical certificate.
 
 ## Work Queue
 

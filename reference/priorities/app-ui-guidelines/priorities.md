@@ -11,26 +11,24 @@
 ## Workstream Metadata
 
 - Kind: `priority-ui`
-- Rank: `24`
+- Rank: `21`
 - Value: `0.76`
 - Cost: `3.5`
 - ROI: `0.22`
-- Status: `audit-and-standard`
+- Status: `standalone-migration-in-progress-eligible-non-borg-non-braid-complete`
 
 ## Current
 
-The repo has several mature UI surfaces, but their top controls have grown independently:
+The top dynamic control-bar standard is accepted. The live audit now distinguishes structurally conforming full bars, near or partial migrations, lightweight headers, exempt content, and retired redirects.
 
-- the main scene webapp uses a top-right scene HUD with history, home, search, and markdown controls;
-- the standalone Animator page carries a forked scene HUD;
-- Equation Mapping has a compact top-right icon group;
-- Molecule has a top floating title block with a single Applications button;
-- Photon and Ideal Braid keep Home and document controls inside app-specific side panels;
-- Causal Delay Feedback has a floating replay toolbar with settings but no Home or Search;
-- PDG Edit uses a document-picker top band with Home;
-- Borg, Website Stats, Solver GPU Harness, PDG Edit Review, generated reading copies, iOS reader shells, and children's-book review pages all use separate page patterns.
+- The main webapp and Animator now consume the canonical shared runtime and stylesheet; the same generated bar moves between their headers without duplicated IDs or listeners.
+- Lattice Lab and Wake Topography now consume the canonical shared runtime through the standalone adapter; their domain controls remain locally owned.
+- Photon, Causal Delay Feedback, and Equation Mapping now consume the same standalone adapter while their document, lesson, replay, equation-search, editing, settings, and scientific controls remain locally owned. Ideal Braid, Borg, and Braid Search carry the accepted full navigation structure but still use the pre-runtime standalone composition path pending migration.
+- Greek Letter Match, PDG Edit, and Molecule now consume the canonical standalone adapter while their game, pronunciation, reaction-picker, filter, editing, molecule-session, and preset controls remain local. Borg Library remains a partial migration.
+- Website Stats, public feedback, Brand Visual Identity, and Solver GPU Harness conform to their accepted lightweight policies. The brand page retains its existing explicit project-return identity link, and the harness now exposes a compact Applications action beside live status.
+- PDG Edit Review, generated reading copies, iOS reader mounts, and local children's-book review pages remain explicitly exempt; Assembly Explorer is a retired redirect.
 
-The next opportunity is to define one top dynamic control bar that can be reused across the webapp and standalone apps without flattening specialized workbench controls into global navigation.
+The [accepted runtime design](top-dynamic-control-bar-runtime-design-v1.md) is implemented by `TopDynamicControlBarRuntime.js`, its canonical stylesheet, and the thin standalone adapter. The main webapp and Animator were the first migrated surfaces, and the main reader matches Photon and Ideal Braid by keeping full-document, layout, print/PDF, and Close actions in its reading-surface header. The [UI-007 browser receipt](evidence/ui-007-top-dynamic-control-bar-browser-captures.2026-09-02.json) binds current desktop/mobile captures for those first two surfaces. UI-005 browser receipts bind [Lattice Lab and Wake Topography](evidence/ui-005-batch-1-lattice-topo-browser-captures.2026-09-02.json), [Photon](evidence/ui-005-batch-2-photon-browser-captures.2026-09-02.json), [Causal Delay Feedback](evidence/ui-005-batch-3-causal-delay-feedback-browser-captures.2026-09-02.json), the [two lightweight headers](evidence/ui-005-batch-4-lightweight-headers-browser-captures.2026-09-02.json), [Greek Letter Match](evidence/ui-005-batch-5-greek-letter-match-browser-captures.2026-09-02.json), [Equation Mapping](evidence/ui-005-batch-6-equation-mapping-browser-captures.2026-09-02.json), [PDG Edit](evidence/ui-005-batch-7-pdgedit-browser-captures.2026-09-02.json), and [Molecule](evidence/ui-005-batch-8-molecule-browser-captures.2026-09-02.json). UI-005 remains active only for Ideal Braid, Braid Search, Borg, and Borg Library; those surfaces are excluded from this workstream's current operator scope because their queues are active elsewhere.
 
 Local playback surfaces now share the accepted [transport-control standard](transport-controls.md) and icon runtime. This does not move those controls into the top dynamic control bar.
 
@@ -38,7 +36,7 @@ Local playback surfaces now share the accepted [transport-control standard](tran
 
 Standardize top-right navigation and document controls across the webapp, standalone apps, markdown displays, and page-like utilities.
 
-The first useful standard should define:
+The accepted standard defines:
 
 - which controls belong in the shared top dynamic control bar;
 - which controls remain local to a canvas, timeline, editor, or panel;
@@ -57,10 +55,10 @@ It has three action groups:
 | Group | Controls | Rule |
 | --- | --- | --- |
 | Navigation | `Home`, optional `Back`, optional `Forward` | Always preserve browser history. Standalone apps route `Home` to the Applications scene; the main webapp routes `Home` to the root scene. |
-| Discovery and documents | `Search`, optional `Notes` / `Documents`, optional `Layout`, optional `Print` / `PDF`, optional `Close` | Show only controls that the current surface can honor. Markdown controls should live with the reading surface when practical. |
+| Discovery and documents | global `Search` and optional reading-surface entry; panel-local `Full document`, `Layout`, `Print` / `PDF`, and `Close` when applicable | Show only controls that the current surface can honor. Once a reading surface is open, its document operations belong in that surface's header rather than global chrome. |
 | App mode | optional `Settings`, optional `Edit`, optional app-specific mode entry | Use icon buttons for mode entry. Keep play, scrub, reset, solver, timeline, and canvas-local toggles near the affected work surface. |
 
-The detailed standard and audit live in [top-dynamic-control-bar.md](top-dynamic-control-bar.md).
+The detailed accepted standard and refreshed audit live in [top-dynamic-control-bar.md](top-dynamic-control-bar.md).
 
 ## Product Boundaries
 
@@ -79,6 +77,7 @@ The locally ranked standardization tasks, dependencies, and acceptance boundarie
 | File | Role | Primary targets |
 | --- | --- | --- |
 | [top-dynamic-control-bar.md](top-dynamic-control-bar.md) | Candidate control-bar standard, current surface inventory, non-conformer migration plan, and validation expectations. | `index.html`, standalone app HTML entrypoints, app runtimes under `src/apps/`, and markdown display controls. |
+| [top-dynamic-control-bar-runtime-design-v1.md](top-dynamic-control-bar-runtime-design-v1.md) | Accepted canonical runtime, stylesheet, adapter, extension, focus, migration, and verification design. | `src/runtime/`, `src/apps/navigator/`, main scene and standalone composition roots. |
 | [transport-controls.md](transport-controls.md) | Accepted transport semantics, canonical glyph set, shared implementation path, and migration record. | Borg, Animator, Causal Delay Feedback, Ideal Braid, Photon, and `src/runtime/TransportControlIcons.js`. |
 
 ## Related Guidance

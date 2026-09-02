@@ -30,6 +30,7 @@ test("animator app runtime wires animator ui and controls through the app layer"
   const animatorTabs = [];
   const animatorPanels = [];
   let wireCount = 0;
+  const topBarModes = [];
 
   const runtime = createAnimatorAppRuntime({
     ui: {
@@ -59,6 +60,9 @@ test("animator app runtime wires animator ui and controls through the app layer"
       jumpToScene() {},
       setAnimatorStatus() {},
       setAnimatorNeedsResize() {},
+      setTopDynamicControlBarMode(isAnimatorMode) {
+        topBarModes.push(isAnimatorMode);
+      },
     },
     controls: {
       animatorTabs,
@@ -100,7 +104,10 @@ test("animator app runtime wires animator ui and controls through the app layer"
   };
 
   runtime.wireListeners();
+  runtime.animatorUiRuntime.updateAnimatorOverlay({ sceneId: "animator" });
+  runtime.animatorUiRuntime.updateAnimatorOverlay({ sceneId: "home" });
 
   assert.equal(typeof runtime.animatorUiRuntime.setAnimatorPanel, "function");
   assert.equal(wireCount, 1);
+  assert.deepEqual(topBarModes, [true, false]);
 });

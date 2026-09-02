@@ -43,6 +43,28 @@ const PHOTON_SEARCH_COMPARISON_OPTIONS = Object.freeze({
   skipSelfHitDiagnostics: true,
 });
 const PHOTON_SEARCH_COMPARISON_CANDIDATE_LIMIT = 3;
+const PHOTON_DEEP_COMPARISON_SCHEMA = "photon-configuration-deep-comparison.v1";
+const PHOTON_DEEP_SEARCH_SUMMARY_OPTIONS = Object.freeze({
+  polarizationSampleCount: 72,
+  minimumPolarizationSampleCount: 24,
+  analyzerSampleCount: 24,
+  minimumAnalyzerSampleCount: 12,
+  skipSelfHitDiagnostics: false,
+});
+const PHOTON_DEEP_SEARCH_PERTURB_OPTIONS = Object.freeze({
+  polarizationSampleCount: 36,
+  minimumPolarizationSampleCount: 16,
+  analyzerSampleCount: 16,
+  minimumAnalyzerSampleCount: 8,
+  skipSelfHitDiagnostics: true,
+});
+const PHOTON_DEEP_SEARCH_COMPARISON_OPTIONS = Object.freeze({
+  polarizationSampleCount: 48,
+  minimumPolarizationSampleCount: 24,
+  analyzerSampleCount: 18,
+  minimumAnalyzerSampleCount: 8,
+  skipSelfHitDiagnostics: false,
+});
 const PHOTON_SEARCH_EXPORT_KIND = "photon-configuration-search-results";
 const PHOTON_SEARCH_EXPORT_VERSION = 1;
 const PHOTON_SEARCH_IMPORT_RESULT_LIMIT = 100;
@@ -516,6 +538,9 @@ function createPhotonSearchSolverOptions(options, defaults, overrideKey) {
     comparisonCandidateLimit: _comparisonCandidateLimit,
     candidateIndex: _candidateIndex,
     yieldToEventLoop: _yieldToEventLoop,
+    filters: _filters,
+    onProgress: _onProgress,
+    shouldCancel: _shouldCancel,
     ...solverOptions
   } = options && typeof options === "object" ? options : {};
   const overrides = overrideKey === "comparison"
@@ -933,6 +958,119 @@ export async function createPhotonConfigurationSearchResultsWithPrescribedPathAn
   );
 }
 
+function normalizePhotonDeepComparisonFilters(filters = {}) {
+  const speedMode = ["any", "direct", "lorentz_factor"].includes(filters.speedMode)
+    ? filters.speedMode
+    : "any";
+  const phaseFamily = ["any", "stable", "candidate", "singular", "none"].includes(
+    filters.phaseFamily
+  )
+    ? filters.phaseFamily
+    : "any";
+  return { speedMode, phaseFamily };
+}
+
+function photonCandidateMatchesLocalCFilter(candidate, filters) {
+  if (filters.speedMode === "any") {
+    return true;
+  }
+  return candidate?.state?.pair?.speedMode === filters.speedMode;
+}
+
+function photonResultMatchesPhaseFamilyFilter(result, filters) {
+  if (filters.phaseFamily === "any") {
+    return true;
+  }
+  const summaries = [result?.diagnostics, result?.comparison?.absoluteHistory].filter(Boolean);
+  if (filters.phaseFamily === "stable") {
+    return summaries.some((summary) => (summary.helicalStablePhaseLockFamilyCount ?? 0) > 0);
+  }
+  if (filters.phaseFamily === "candidate") {
+    return summaries.some((summary) => (summary.helicalCandidatePhaseLockFamilyCount ?? 0) > 0);
+  }
+  if (filters.phaseFamily === "singular") {
+    return summaries.some((summary) => (summary.helicalSingularCandidateFamilyCount ?? 0) > 0);
+  }
+  return summaries.every((summary) => (summary.helicalPhaseFamilyCount ?? 0) === 0);
+}
+
+function attachPhotonDeepComparisonProvenance(result, filters) {
+  return {
+    ...result,
+    deepComparison: {
+      schema: PHOTON_DEEP_COMPARISON_SCHEMA,
+      producer: "photon-headless-deep-comparison",
+      analysisId: "prescribed-path-analysis",
+      normalizedStateSnapshot: true,
+      uiIndependentAfterDispatch: true,
+      scientificOracleIndependent: false,
+      historyModesEvaluated: ["co_moving", "absolute_history"],
+      filters,
+    },
+  };
+}
+
+export async function createPhotonDeepComparisonResultsWithPrescribedPathAnalysis(
+  baseState,
+  options = {}
+) {
+  const filters = normalizePhotonDeepComparisonFilters(options.filters);
+  const candidates = selectPhotonSearchCandidatePool(
+    buildPhotonSearchCandidates(baseState).filter((candidate) =>
+      photonCandidateMatchesLocalCFilter(candidate, filters)
+    ),
+    options.maxCandidates ?? Number.POSITIVE_INFINITY
+  );
+  const yieldToEventLoop = typeof options.yieldToEventLoop === "function"
+    ? options.yieldToEventLoop
+    : () => new Promise((resolve) => setTimeout(resolve, 0));
+  const onProgress = typeof options.onProgress === "function" ? options.onProgress : () => {};
+  const shouldCancel = typeof options.shouldCancel === "function" ? options.shouldCancel : () => false;
+  const deepOptions = {
+    ...options,
+    comparisonCandidateLimit: Number.POSITIVE_INFINITY,
+    summaryOptions: {
+      ...PHOTON_DEEP_SEARCH_SUMMARY_OPTIONS,
+      ...(options.summaryOptions ?? {}),
+    },
+    perturbOptions: {
+      ...PHOTON_DEEP_SEARCH_PERTURB_OPTIONS,
+      ...(options.perturbOptions ?? {}),
+    },
+    comparisonOptions: {
+      ...PHOTON_DEEP_SEARCH_COMPARISON_OPTIONS,
+      ...(options.comparisonOptions ?? {}),
+    },
+  };
+  const evaluated = [];
+  onProgress({ completed: 0, total: candidates.length, retained: 0 });
+  for (let index = 0; index < candidates.length; index += 1) {
+    if (shouldCancel()) {
+      break;
+    }
+    const result = await evaluatePhotonSearchCandidateWithPrescribedPathAnalysis(
+      candidates[index],
+      index,
+      deepOptions
+    );
+    if (photonResultMatchesPhaseFamilyFilter(result, filters)) {
+      evaluated.push(attachPhotonDeepComparisonProvenance(result, filters));
+    }
+    onProgress({
+      completed: index + 1,
+      total: candidates.length,
+      retained: evaluated.length,
+    });
+    if (index + 1 < candidates.length && !shouldCancel()) {
+      await yieldToEventLoop();
+    }
+  }
+  return selectDiversePhotonSearchResults(
+    evaluated,
+    options.limit ?? PHOTON_SEARCH_RESULT_LIMIT
+  );
+}
+
 function serializePhotonSearchResult(result) {
   return {
     id: result.id,
@@ -948,6 +1086,7 @@ function serializePhotonSearchResult(result) {
     polarization: result.polarization ?? {},
     diagnostics: result.diagnostics ?? {},
     comparison: result.comparison ?? {},
+    deepComparison: result.deepComparison ?? null,
     plot: result.plot ?? {},
   };
 }

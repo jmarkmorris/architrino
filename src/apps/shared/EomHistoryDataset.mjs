@@ -20,6 +20,9 @@
 import {
   evaluateEomCubicHistoryAtTime,
 } from "./EomCubicHistoryEvaluation.mjs";
+import {
+  validateAssemblyViewRecordCarriers,
+} from "./AssemblyViewRecordCarriers.mjs";
 
 export const EOM_EVOLUTION_CONTRACT_ID = "eom_evolution_contract/v0";
 export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
@@ -55,6 +58,14 @@ export function createEomHistoryDataset(record, options = {}) {
   if (isAssemblyViewRecord) {
     validateAssemblyViewMetadata(record);
   }
+  const recordCarriers = isAssemblyViewRecord
+    ? validateAssemblyViewRecordCarriers(record)
+    : Object.freeze({
+      available: false,
+      frame: null,
+      vectorOverlays: Object.freeze([]),
+      reason: "The EOM evolution contract does not carry assembly-view record-frame metadata.",
+    });
   const duplicateWorldlineId = firstDuplicate(worldlines.map((worldline) => worldline.id));
   if (isAssemblyViewRecord && duplicateWorldlineId != null) {
     throw new TypeError(
@@ -157,6 +168,7 @@ export function createEomHistoryDataset(record, options = {}) {
         ? { ...record.navigation }
         : {},
     ),
+    recordCarriers,
     evaluateWorldline,
     createFrameSamples,
     createTrailSamples,

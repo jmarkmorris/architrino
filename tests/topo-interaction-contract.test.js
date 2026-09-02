@@ -1517,9 +1517,9 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
   const tokens = readRepoFile("ui-tokens.css");
 
   assert.match(runtime, /createPanelCollapseIconSvg/u);
-  assert.match(runtime, /navigateStandaloneAppHome/u);
-  assert.match(runtime, /resolveStandaloneAppHomeHref/u);
-  assert.match(runtime, /createStandaloneAppSceneSearchRuntime/u);
+  assert.match(runtime, /createStandaloneAppNavigationRuntime/u);
+  assert.doesNotMatch(runtime, /navigateStandaloneAppHome/u);
+  assert.doesNotMatch(runtime, /createStandaloneAppSceneSearchRuntime/u);
   assert.match(runtime, /panelContent\.inert = collapsed/u);
   assert.match(runtime, /getContext\("webgl"/u);
   assert.match(runtime, /createTopoSyntheticContourRenderPlan/u);
@@ -1740,7 +1740,15 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     runtime,
     /signed contributions are summed before drawing equal-value topographic contours/u,
   );
-  assert.match(html, /id="home-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="scene-search"/u);
+  assert.match(html, /<div id="scene-hud-tools" class="topo-navigation"><\/div>/u);
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/u);
+  assert.doesNotMatch(html, /src\/apps\/navigator\/standalone-app-navigation\.css/u);
+  assert.doesNotMatch(
+    html,
+    /id="(?:textbook-toc-button|home-button|nav-up|nav-forward|scene-search-toggle)"/u,
+  );
+  assert.match(runtime, /createStandaloneAppNavigationRuntime/u);
+  assert.doesNotMatch(runtime, /createStandaloneAppSceneSearchRuntime/u);
 
   assert.match(css, /\.topo-range-note/u);
   assert.doesNotMatch(css, /topo-advanced-display|topo-heatmap-mode|topo-view/u);

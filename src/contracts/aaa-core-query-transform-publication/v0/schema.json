@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.com/contracts/aaa-core-query-transform-publication/v0/schema.json",
+  "title": "AAA Core Query Transform Publication v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "status", "owner", "dependencies", "requestSchema", "normalization", "identities", "transformRules", "publicationRules", "authorityCaps", "refusalCodes", "conformance", "claimBoundary"],
+  "properties": {
+    "schema": {"const": "aaa_core_query_transform_publication/v0"},
+    "version": {"const": 0},
+    "status": {"const": "accepted"},
+    "owner": {"const": "AAA Core"},
+    "dependencies": {"$ref": "#/$defs/nonemptyObject"},
+    "requestSchema": {"const": "aaa_core_query_request/v0"},
+    "normalization": {"$ref": "#/$defs/nonemptyObject"},
+    "identities": {"$ref": "#/$defs/nonemptyObject"},
+    "transformRules": {"$ref": "#/$defs/nonemptyObject"},
+    "publicationRules": {"$ref": "#/$defs/nonemptyObject"},
+    "authorityCaps": {"type": "object", "minProperties": 4},
+    "refusalCodes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "conformance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "validator", "positiveFixtures", "negativeFixtures", "tests"],
+      "properties": {
+        "schema": {"type": "string", "minLength": 1},
+        "validator": {"type": "string", "minLength": 1},
+        "positiveFixtures": {"type": "string", "minLength": 1},
+        "negativeFixtures": {"type": "string", "minLength": 1},
+        "tests": {"type": "string", "minLength": 1}
+      }
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "nonemptyObject": {"type": "object", "minProperties": 1}
+  }
+}

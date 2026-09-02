@@ -2,8 +2,13 @@
 #include "architrino/eom/History.hpp"
 
 #include <algorithm>
+#include <bit>
 #include <cmath>
+#include <cstdint>
+#include <iomanip>
 #include <limits>
+#include <locale>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -24,6 +29,81 @@ double outward_sum(double left, double right) {
 
 double radius_about(const Interval& value, double center) {
   return std::max(center - value.lower(), value.upper() - center);
+}
+
+void fingerprint_token(std::uint64_t& state, const std::string& token) {
+  const auto mix = [&](unsigned char value) {
+    state ^= value;
+    state *= UINT64_C(1099511628211);
+  };
+  for (const char value : std::to_string(token.size())) {
+    mix(static_cast<unsigned char>(value));
+  }
+  mix(static_cast<unsigned char>(':'));
+  for (const char value : token) {
+    mix(static_cast<unsigned char>(value));
+  }
+}
+
+void fingerprint_double(std::uint64_t& state, double value) {
+  fingerprint_token(
+      state, std::to_string(std::bit_cast<std::uint64_t>(value)));
+}
+
+std::string joint_history_fingerprint(
+    const std::string& path_id,
+    const std::vector<std::string>& symbol_registry,
+    const std::vector<JointAffineCubicSegment>& segments,
+    const std::optional<JointAffineEndpointOverride>& endpoint_override) {
+  std::uint64_t state = UINT64_C(14695981039346656037);
+  fingerprint_token(state, "eom_joint_affine_history/v1");
+  fingerprint_token(state, path_id);
+  fingerprint_token(state, std::to_string(symbol_registry.size()));
+  for (const auto& symbol : symbol_registry) {
+    fingerprint_token(state, symbol);
+  }
+  fingerprint_token(state, std::to_string(segments.size()));
+  for (const auto& segment : segments) {
+    fingerprint_double(state, segment.start_time);
+    fingerprint_double(state, segment.end_time);
+    for (const auto& axis : segment.position_coefficients) {
+      for (const auto& degree : axis) {
+        fingerprint_token(state, std::to_string(degree.size()));
+        for (const double coefficient : degree) {
+          fingerprint_double(state, coefficient);
+        }
+      }
+    }
+    for (const double radius : segment.position_remainder_radii) {
+      fingerprint_double(state, radius);
+    }
+    for (const double radius : segment.velocity_remainder_radii) {
+      fingerprint_double(state, radius);
+    }
+  }
+  fingerprint_token(state, endpoint_override.has_value() ? "1" : "0");
+  if (endpoint_override.has_value()) {
+    fingerprint_double(state, endpoint_override->time);
+    for (const auto& coefficient :
+         endpoint_override->position_shared_symbol_coefficients) {
+      for (const double value : coefficient) fingerprint_double(state, value);
+    }
+    for (const auto& coefficient :
+         endpoint_override->velocity_shared_symbol_coefficients) {
+      for (const double value : coefficient) fingerprint_double(state, value);
+    }
+    for (const double radius : endpoint_override->position_remainder_radii) {
+      fingerprint_double(state, radius);
+    }
+    for (const double radius : endpoint_override->velocity_remainder_radii) {
+      fingerprint_double(state, radius);
+    }
+  }
+  std::ostringstream stream;
+  stream.imbue(std::locale::classic());
+  stream << "fnv1a64-joint-v1:" << std::hex << std::setw(16)
+         << std::setfill('0') << state;
+  return stream.str();
 }
 
 void validate_segment(
@@ -277,6 +357,8 @@ JointAffineRetainedHistory::JointAffineRetainedHistory(
           "endpoint velocity remainder radius");
     }
   }
+  provenance_fingerprint_ = joint_history_fingerprint(
+      path_id_, symbol_registry_, segments_, endpoint_override_);
 }
 
 bool JointAffineRetainedHistory::covers(double time) const noexcept {

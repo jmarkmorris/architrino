@@ -15,6 +15,22 @@
 
 The two `fail-closed` labels above are retained binding values. In current human-facing terminology, verification is incomplete for both unresolved singular-event classes and their disposition is not advanced.
 
+## Source Snapshot Ownership and Refresh Procedure
+
+The App Solver owner owns the digest field in this binding. The canonical Master Equation owner owns the source document. A source edit does not authorize an automatic digest refresh: App Solver must first inspect the exact source diff and decide whether the binding remains semantically accurate, needs a contract revision, or must stay failed closed.
+
+For an accepted source state, the refresh procedure is:
+
+1. finish and review the canonical [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md) source edit under its own authority;
+2. compute the SHA-256 of the exact file bytes with `shasum -a 256 content/markdown/aaa/dynamics/master-equation.md` from the repository root;
+3. compare every binding statement and machine field below with the changed source rather than copying the digest merely to satisfy a test;
+4. if the binding remains valid, replace only the `Source snapshot SHA-256` value in an App Solver-owned change; if it does not, revise and independently review the affected contract before refreshing the digest;
+5. run `node --test tests/borg-*.test.js`, `git diff --check`, and the standard strict content and scene-graph checks before closing the refresh.
+
+The test named `Borg live contract and certified-budget records match the runtime identities` recomputes the source digest from current bytes and fails closed on drift. The test enforces synchronization; it does not perform the semantic review and cannot promote solver evidence.
+
+Plainly: The hash changes only after someone checks that the contract still says what the source says. A green hash comparison proves that the bytes match the recorded snapshot, not that the equation is physically correct.
+
 ## Scope
 
 This binding defines the current acceleration multiplier, causal-root equation, retained-history obligation, signed root grading, root-completeness proof, and signed root-playback derivative.

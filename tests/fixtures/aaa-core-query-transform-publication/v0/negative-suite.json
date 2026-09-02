@@ -1,0 +1,20 @@
+{
+  "schema": "aaa_core_query_transform_publication_negative_suite/v0",
+  "cases": [
+    {"id": "invalid-contract", "operation": "invalid_contract", "mutation": {"path": "status", "value": "draft"}, "expectedCode": "invalid_contract"},
+    {"id": "missing-output", "operation": "normalize_request", "mutation": {"path": "output", "delete": true}, "expectedCode": "missing_required_field"},
+    {"id": "unsupported-query-field", "operation": "normalize_request", "mutation": {"path": "query.spatialBounds", "value": []}, "expectedCode": "unsupported_query_field"},
+    {"id": "duplicate-source", "operation": "normalize_request", "mutation": {"path": "sourceBindings.1", "value": {"pathSetId": "prescribed-history-001", "manifestSha256": "68e6628bdeba094438743e97b730e464ce3922cc20aab0372110630c8e8ff698"}}, "expectedCode": "duplicate_source_binding"},
+    {"id": "missing-source", "operation": "build_complete", "mutation": {"path": "sourceBindings.0.manifestSha256", "value": "0000000000000000000000000000000000000000000000000000000000000000"}, "expectedCode": "missing_source_binding"},
+    {"id": "cache-identity-mismatch", "operation": "validate_publication", "mutation": {"path": "identities.cacheIdentity", "value": "0000000000000000000000000000000000000000000000000000000000000000"}, "expectedCode": "cache_identity_mismatch"},
+    {"id": "transform-order-identity-mismatch", "operation": "validate_publication", "mutation": {"path": "identities.transformPipelineIdentity", "value": "0000000000000000000000000000000000000000000000000000000000000000"}, "expectedCode": "transform_order_collision"},
+    {"id": "unsupported-transform", "operation": "normalize_request", "mutation": {"path": "transforms.0.transformId", "value": "unknown-transform/v0"}, "expectedCode": "unsupported_transform"},
+    {"id": "unregistered-codec", "operation": "build_complete", "mutation": {"path": "output.codecCapabilityId", "value": "unknown-codec/v0"}, "expectedCode": "unregistered_codec"},
+    {"id": "incomplete-source-seal", "operation": "build_incomplete_sealed", "expectedCode": "incomplete_seal"},
+    {"id": "authority-escalation", "operation": "validate_publication", "mutation": {"path": "product.payload.authority.level", "value": "accepted_history"}, "expectedCode": "authority_escalation"},
+    {"id": "source-closure-mismatch", "operation": "validate_publication", "mutation": {"path": "product.payload.sourceBindings.0.manifestSha256", "value": "0000000000000000000000000000000000000000000000000000000000000000"}, "expectedCode": "source_closure_mismatch"},
+    {"id": "mutable-sealed-publication", "operation": "validate_publication", "mutation": {"path": "receipt.immutable", "value": false}, "expectedCode": "mutable_publication"},
+    {"id": "forbidden-consumer", "operation": "retrieve", "consumer": "Unlisted application", "expectedCode": "forbidden_consumer"},
+    {"id": "publication-identity-mismatch", "operation": "validate_publication", "mutation": {"path": "receipt.receiptSha256", "value": "0000000000000000000000000000000000000000000000000000000000000000"}, "expectedCode": "publication_identity_mismatch"}
+  ]
+}

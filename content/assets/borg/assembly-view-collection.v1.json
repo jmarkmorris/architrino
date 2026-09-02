@@ -1,0 +1,1023 @@
+{
+  "schema": "assembly-view-collection.v1",
+  "collectionId": "borg-prescribed-catalog.2026-09-01.v1",
+  "title": "Borg sealed prescribed-record collection",
+  "authorityBoundary": "External record navigation and comparison intake only; loading, replay, grouping, and display create no scientific evidence.",
+  "records": [
+    {
+      "sourceId": "three-axis-circular-coincident-midpoints-v1",
+      "assemblyId": "asm-0153fdc7276d1a064d8794a423bd775b",
+      "modelRevisionSha256": "0153fdc7276d1a064d8794a423bd775b9dd14f0d70cf489c80848aa383f1987c",
+      "recordSha256": "6948c10b05bc9459b16dc566546aef7ab9e7d9564a1a807878ffc725f5ac6c03",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-coincident-midpoints.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-83p769835383720229-v1",
+      "assemblyId": "asm-01cf3ddc0f293a457ddf5b2784aa4b96",
+      "modelRevisionSha256": "01cf3ddc0f293a457ddf5b2784aa4b96da77eca7cfd1bde3874a2bacb3633958",
+      "recordSha256": "d1cfa1540fd17b6d75e346110bd8316d8b65c6546a6a1bf9ba097970748b9493",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-83p769835383720229.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-67p013182104104307-v1",
+      "assemblyId": "asm-0205348ae8e10eda9cf913657778dc28",
+      "modelRevisionSha256": "0205348ae8e10eda9cf913657778dc289bf5a09290050c27a6f1b73839c4c679",
+      "recordSha256": "bf7a13ffa0005fc65697bfcb0fc2a2a4e103c007b3814aeefe8d6ae600ccd0de",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-67p013182104104307.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "all-axial-three-binary-boundary-v1",
+      "assemblyId": "asm-02d73c88ccf8244e6873d2ee2cd58973",
+      "modelRevisionSha256": "02d73c88ccf8244e6873d2ee2cd58973dc35d2475df102173726563210a39c27",
+      "recordSha256": "b51e963c4f22e6bfcbd038f4f32cbb4305bc301ecd5d87e1283134b16be3fb89",
+      "recordUrl": "content/assets/borg/records/all-axial-three-binary-boundary.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-13p576746118826813-v1",
+      "assemblyId": "asm-03abc6c21303a11714f5d99e13b0a631",
+      "modelRevisionSha256": "03abc6c21303a11714f5d99e13b0a631555d4e8660867bc9b0a80291df763032",
+      "recordSha256": "0637b20e924489f2340178311a6e2bc24aa6eb1069042b13bdcb6090ab3de585",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-13p576746118826813.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-33p495394582469053-v1",
+      "assemblyId": "asm-052244a26d672d121b394bc4d7444c66",
+      "modelRevisionSha256": "052244a26d672d121b394bc4d7444c66e3d8aeb3d888535be2602bb7d9409b1c",
+      "recordSha256": "fe069fa14b4fe54c46233e7b61bc9a9f57fd06331a57a4fca7b524b4b82b95b2",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-33p495394582469053.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-63p871222424633888-v1",
+      "assemblyId": "asm-05bf31141c87624201b17f1176c93896",
+      "modelRevisionSha256": "05bf31141c87624201b17f1176c938960af06e1245630429f5a8fe87dbf6f260",
+      "recordSha256": "089f26a7e93928e2469a77dd816ce6c2953f7d07b6b004d40c9ce48bf7af3562",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-63p871222424633888.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-axially-separated-common-frequency-v1",
+      "assemblyId": "asm-0782139749ad443a7d7a39f8e76dbfb4",
+      "modelRevisionSha256": "0782139749ad443a7d7a39f8e76dbfb4a29fc2db62bbc9a41445008e95aa3461",
+      "recordSha256": "82637840cb19d556a38f809f160ec207b0e1b814d19f951b2c58c279028aba0d",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-axially-separated-common-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-08-v1",
+      "assemblyId": "asm-08c6fe0fae6410c0d21f061bdfcd6e72",
+      "modelRevisionSha256": "08c6fe0fae6410c0d21f061bdfcd6e7276d3eb5c5bdac4427d72ec641e627c55",
+      "recordSha256": "48a430fc9fa5b5337b9ca3f7bbd41dc43607d82f24f1d0ce6c43dc393a34f490",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-08.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-25p112831966756425-v1",
+      "assemblyId": "asm-0a2b8f2d7505ccfb757009af0d21f753",
+      "modelRevisionSha256": "0a2b8f2d7505ccfb757009af0d21f753acbe8d8e4083097b07eb94b112e423ae",
+      "recordSha256": "6af8147409ee35a8c715dcf7033c4195e0c8484ee2d53cec715c0294e549c179",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-25p112831966756425.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "co-spherical-scoped-negative-circular-control-v1",
+      "assemblyId": "asm-0b8ebf36be00b06978c8a58dee6604fb",
+      "modelRevisionSha256": "0b8ebf36be00b06978c8a58dee6604fb280200374047fae2734d82623e7f2ffe",
+      "recordSha256": "c100d2bdaefdca201cb50c3be9ba5c6559b31da82fd5b293b89e0a55de5871a9",
+      "recordUrl": "content/assets/borg/records/co-spherical-scoped-negative-circular-control.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-73p297007058067216-v1",
+      "assemblyId": "asm-0d582dc3ab0273610225345ab9c94598",
+      "modelRevisionSha256": "0d582dc3ab0273610225345ab9c9459829b32b34319faed7deb3c805ccd33b10",
+      "recordSha256": "2a3adf1a82fe0ab75976341d8c90c93f9bb9115ae1278ff6d68f2ca795fe06e6",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-73p297007058067216.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-28p256639541935977-v1",
+      "assemblyId": "asm-0de6c24fb2d8a326e52ce2416ae70c9d",
+      "modelRevisionSha256": "0de6c24fb2d8a326e52ce2416ae70c9d8f7193241fbf19fec582bd5a68fbe438",
+      "recordSha256": "8d0f2673b739eba0e9ea141d713ae04ed15083cb75d716351414b1da76fe0280",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-28p256639541935977.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-85p864376083339099-v1",
+      "assemblyId": "asm-0e81eec675aeaded0a73df84c2b2c913",
+      "modelRevisionSha256": "0e81eec675aeaded0a73df84c2b2c913b4895b282bf15321ab743654c6dfc6c5",
+      "recordSha256": "2436d091e15bdcbefbf999cf84d492a32f1d1b12123a3e6e8d4e404f46c061b5",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-85p864376083339099.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-81p675287216030059-v1",
+      "assemblyId": "asm-0ec60b7473b044107983efd8bdf814aa",
+      "modelRevisionSha256": "0ec60b7473b044107983efd8bdf814aae85a32ef5207c82af5459673c78c51c3",
+      "recordSha256": "44d43d333279f41146a0c76d756d918e6f0d305c683ade23c414df795ed3d6c9",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-81p675287216030059.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-79p580730990514674-v1",
+      "assemblyId": "asm-0f9de47f6276f343a61ed280a1a0404a",
+      "modelRevisionSha256": "0f9de47f6276f343a61ed280a1a0404a9ea882af17f17c3a92de09e0bdbf5c11",
+      "recordSha256": "d61bc7a63b3da5ac6fc6f682a16230f284c26c16e7035bf2a1151e0ca6fd10ba",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-79p580730990514674.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-104p714980265737977-v1",
+      "assemblyId": "asm-1071c7783fd0e5887ea13dde8a69245f",
+      "modelRevisionSha256": "1071c7783fd0e5887ea13dde8a69245fa1635e3cfa10dcde577d91e43733851e",
+      "recordSha256": "baada037573c72c6db30b387135e4a8d0f5c37b598f43aeba9d34a489b197ccd",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-104p714980265737977.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-50p255533413582784-v1",
+      "assemblyId": "asm-1105e0b4f0b78c9095ef70b1e72c2c5d",
+      "modelRevisionSha256": "1105e0b4f0b78c9095ef70b1e72c2c5ddbadc3149ab73798fbe26c9e8f29e864",
+      "recordSha256": "27195df40d319a42783bcbca2535a327531dcb944710cd7660889c0a161dae02",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-50p255533413582784.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-101p573239922936769-v1",
+      "assemblyId": "asm-127bb2b6038fe00f12710943b8649a17",
+      "modelRevisionSha256": "127bb2b6038fe00f12710943b8649a17a8b1845f6e44bc853de9846b41f6c2f5",
+      "recordSha256": "a3aa887a79115112b71b7704295e843e6f40d08c5ddc32566fca5cc8f3304b64",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-101p573239922936769.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-54p445089183484964-v1",
+      "assemblyId": "asm-148473c68a49537ecc3d7d42d258b4e1",
+      "modelRevisionSha256": "148473c68a49537ecc3d7d42d258b4e1cfc005c90ae9c7bd695bf05b7ce994ad",
+      "recordSha256": "f221be5d4c285a93191224e97e5247b44d04f6326476f8a5af2f5cff68839abf",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-54p445089183484964.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-55p492460061528907-v1",
+      "assemblyId": "asm-1851e315ca5c5c932f0117628466ba3a",
+      "modelRevisionSha256": "1851e315ca5c5c932f0117628466ba3ae424d8321f86f70de1cd501228071347",
+      "recordSha256": "02dde3c6b62b94c4e0cf4e9e4e116cdf7c7e80fc32708d633069ecc52a38b950",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-55p492460061528907.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-18p822994759766129-v1",
+      "assemblyId": "asm-194956dd136c8711728f7889f3c82fb0",
+      "modelRevisionSha256": "194956dd136c8711728f7889f3c82fb020298b966c5df6eb638d714f34299936",
+      "recordSha256": "9e09f14abee82a867bf4c8faa151d9798adb3e783aa4df780539e727aa564e43",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-18p822994759766129.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-coincident-midpoints-equal-radius-common-frequency-v1",
+      "assemblyId": "asm-1a42771b28b0a549e67b06a4663a8e11",
+      "modelRevisionSha256": "1a42771b28b0a549e67b06a4663a8e11a33b5ef88b3a2f6872523bc6fe37b7ee",
+      "recordSha256": "1a26d254eb35c2cc0b6b08bc9d9ffedf1e39493089c7dc44c5e1ff05bc492312",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-30p352256241477595-v1",
+      "assemblyId": "asm-1b7f1560dd948f7844d71a5750779efb",
+      "modelRevisionSha256": "1b7f1560dd948f7844d71a5750779efb4c8775374b26dffdeb1705e2b6d2508f",
+      "recordSha256": "2f5e29e86a597da95177170e99c271276e4227f86cf1af0a092216a50a7d1ea6",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-30p352256241477595.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-53p397711504995870-v1",
+      "assemblyId": "asm-1e0254536fc38940bd97d925a0f3f6d6",
+      "modelRevisionSha256": "1e0254536fc38940bd97d925a0f3f6d6664a8cec554cabee136808032f1bbda7",
+      "recordSha256": "4c4c0d007819a9df97e478282f2988ad7b0b56f04ec5524c49abedb3b89e0108",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-53p397711504995870.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "stella-octangula-static-assembly-v1",
+      "assemblyId": "asm-242282e6154b97b00ac9d8e5123cde46",
+      "modelRevisionSha256": "242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8",
+      "recordSha256": "24ee746af69bf49276f32f3800d082cec0c66db5d97e1029119f1fd17ae91918",
+      "recordUrl": "content/assets/borg/records/stella-octangula-static-assembly.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-97p384237975213210-v1",
+      "assemblyId": "asm-26b635746f0a6f419531f774646f507c",
+      "modelRevisionSha256": "26b635746f0a6f419531f774646f507c0a40e5e647e017a44c4682e526c86b28",
+      "recordSha256": "2c9052e063f241e8f24e4d2c388d9e9deafb28d1071281de7ccb79277a9084fb",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-97p384237975213210.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-35p590668422319914-v1",
+      "assemblyId": "asm-27e25baa62480ed04bef758e4fac892a",
+      "modelRevisionSha256": "27e25baa62480ed04bef758e4fac892a7376609421f515892055b6419e2dffca",
+      "recordSha256": "8b6f692b3eb65ecc9ea266684422bb555f045ccd2dc6cc19e63bf887178a42e4",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-35p590668422319914.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-coincident-midpoints-common-frequency-v1",
+      "assemblyId": "asm-2a289a6fe32f64922ab71bae973acc80",
+      "modelRevisionSha256": "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6",
+      "recordSha256": "dc360b62bebd27da31cf715b9b9e906f301234b9fb532c051735069294400e07",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-coincident-midpoints-common-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-12p526462307704469-v1",
+      "assemblyId": "asm-2b7963e95c414d9524d35554c30ca0a5",
+      "modelRevisionSha256": "2b7963e95c414d9524d35554c30ca0a5d291ef9785f57e4f3319073d88c98f1d",
+      "recordSha256": "1e40ab7c48152a5e8169ffe1f5d397f7dac06913f89eef574b6a999c8a9c1276",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-12p526462307704469.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-96p336984610910147-v1",
+      "assemblyId": "asm-2d88ee561a7edd17d429602cc93797d9",
+      "modelRevisionSha256": "2d88ee561a7edd17d429602cc93797d9d8ec827877ae5d137fb3ba59c086f0cb",
+      "recordSha256": "9153ffbb95ce26f343666703cd736926ef60b1d93938fb6321b0e59a47bfcc96",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-96p336984610910147.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-05-v1",
+      "assemblyId": "asm-2ffe441f1ef2c2694979bd91c33aea4c",
+      "modelRevisionSha256": "2ffe441f1ef2c2694979bd91c33aea4c22433efecaeb2a6a5e46c8c27853aec0",
+      "recordSha256": "fedad8da98075ac46058602834d8b9aadcfb2f5031bf7479292168a1a24ecb72",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-05.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-91p100698540340551-v1",
+      "assemblyId": "asm-325ad9da0632b47573df7de9c9c8c8b4",
+      "modelRevisionSha256": "325ad9da0632b47573df7de9c9c8c8b492021864abf56b27a198815df019f260",
+      "recordSha256": "6b0bd6e315ff5b821352dde7b8091e3c318661771e86c27bb7d1e45ffc45beea",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-91p100698540340551.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-48p160705571565552-v1",
+      "assemblyId": "asm-34ca3fe7356cad04647a59e2f7119b41",
+      "modelRevisionSha256": "34ca3fe7356cad04647a59e2f7119b41a23b3991e7bac49ecf57b5f095195336",
+      "recordSha256": "15e055b593daecc1ca8fdef5cde0633f5e9d88fdcdf62022c8ef962b91f1fa8e",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-48p160705571565552.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-49p208124098882148-v1",
+      "assemblyId": "asm-36ba2216c3b42c93cac010c0dc1dd7f0",
+      "modelRevisionSha256": "36ba2216c3b42c93cac010c0dc1dd7f060d9f2f9815ac0b3352bd4456768fab6",
+      "recordSha256": "e2477f78a16964974f5b122e2ba302fb856240858215c414fc3b5ecb1f45f219",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-49p208124098882148.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-phase-compensated-symmetric-v1",
+      "assemblyId": "asm-36bc71c0fb5a32b1410d00eceedb1776",
+      "modelRevisionSha256": "36bc71c0fb5a32b1410d00eceedb177649e71db029497b7023ec666722d032cc",
+      "recordSha256": "d8108fc4f63fb9dd543bb1b568f31864a53c66efb9bcf0e8a12dfdc2289728cf",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-phase-compensated-symmetric.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-41p875962212703161-v1",
+      "assemblyId": "asm-37a57770b992d21854a42b4cb42e0383",
+      "modelRevisionSha256": "37a57770b992d21854a42b4cb42e0383cbf977e752723812ec8379b69c136bcd",
+      "recordSha256": "3bc5bb355e341977211dd6a1bd8bef024e1910870a27f6dc71fe7b23eb8d6025",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-41p875962212703161.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-17p774230245157778-v1",
+      "assemblyId": "asm-3af2b1d870e4b6452613c30d314b426d",
+      "modelRevisionSha256": "3af2b1d870e4b6452613c30d314b426d4528b76ca86bac85b55ab02596b57e32",
+      "recordSha256": "b54c42ee8bfb29b10cd9a3c4777674e47c6bcefdecbcd8e7d36b6082f608bc3c",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-17p774230245157778.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-99p478741178267227-v1",
+      "assemblyId": "asm-3b503c115ebfab1422d20385e1ab1c84",
+      "modelRevisionSha256": "3b503c115ebfab1422d20385e1ab1c844f3041208e2bc50e1325574184eb9527",
+      "recordSha256": "a656f93b33c99e40b0e2a1d9d5db5ed0b1e935c2dbfefa44292f7138b2c62455",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-99p478741178267227.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-23p016623838413938-v1",
+      "assemblyId": "asm-3e39907d6381258bedb7ad175f790735",
+      "modelRevisionSha256": "3e39907d6381258bedb7ad175f7907351eafe6ead2db768b6aa40196052e23a4",
+      "recordSha256": "d011c53d099705f3f773bf20b6a959e0c685a65eaea02a4bdf61d20d937543c3",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-23p016623838413938.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "axial-transverse-three-binary-interior-v1",
+      "assemblyId": "asm-3e9d646d95041634d7ee5fe7eed862d6",
+      "modelRevisionSha256": "3e9d646d95041634d7ee5fe7eed862d679c8f9f93518ebca7c98f549d352ec8f",
+      "recordSha256": "eb074e260c48f4de64ee9507eaad26586107130bd27aab57ccd6592994373d64",
+      "recordUrl": "content/assets/borg/records/axial-transverse-three-binary-interior.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "coaxial-separated-two-component-circular-co-rotating-v1",
+      "assemblyId": "asm-4026f72b5d0fd6a58ef7c021dcca5271",
+      "modelRevisionSha256": "4026f72b5d0fd6a58ef7c021dcca52719bf209a5f92f23aa1ceb355171bea1f0",
+      "recordSha256": "37939a030231c9a1152cdd72b545d65b4fb9ebb683079496c4f9514ee51d98f6",
+      "recordUrl": "content/assets/borg/records/coaxial-separated-two-component-circular-co-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "coaxial-separated-two-planar-braid-counter-rotating-v1",
+      "assemblyId": "asm-40aa1d27a3e84b66c92d054b61956b80",
+      "modelRevisionSha256": "40aa1d27a3e84b66c92d054b61956b80492f5373c367da27e78d45251919fc38",
+      "recordSha256": "020cdd6ed11506424c23ed11025f118b018836437a081b039b976ec0507c23a7",
+      "recordUrl": "content/assets/borg/records/coaxial-separated-two-planar-braid-counter-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-8p317491541162603-v1",
+      "assemblyId": "asm-444fa620ff03b903cb5168c61303580f",
+      "modelRevisionSha256": "444fa620ff03b903cb5168c61303580f4bed9b8f4d81f2bfb5347b986107c82e",
+      "recordSha256": "c59aa4ae00a25538dcafcafe762777dd33b54c0d669c5ee6d4567c704fde63f9",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-8p317491541162603.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-78p533449654566948-v1",
+      "assemblyId": "asm-4d6dd00956c4b4d31eb27c91153cdb57",
+      "modelRevisionSha256": "4d6dd00956c4b4d31eb27c91153cdb5751cb3d9ecaf379d48103a2e533a76921",
+      "recordSha256": "637074359df9492c4fad8c23edaee8233ba7f09840dfaddd25c34fa8e88921f9",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-78p533449654566948.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-12-v1",
+      "assemblyId": "asm-4dff653c168f5c2d523c22f001255d2b",
+      "modelRevisionSha256": "4dff653c168f5c2d523c22f001255d2be42fee1dd7b450e2feb81766007889c9",
+      "recordSha256": "8eba68920488829ff64110b004134547bd06722d5c8e9f5fc85a218e3f156142",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-12.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-65p965866096091200-v1",
+      "assemblyId": "asm-4f6d12f6972bf4e0bfc29a495f793667",
+      "modelRevisionSha256": "4f6d12f6972bf4e0bfc29a495f793667d642a8700dd9e1bb860a293c1b9c9a99",
+      "recordSha256": "ea9e5e426d6fc69d291aaccdac5aa88bc83c16c05b8245b3e81508518e8eab2e",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-65p965866096091200.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "phase-varying-prescribed-display-history-v1",
+      "assemblyId": "asm-5221daa4bd010d9a791e208c08fe20e8",
+      "modelRevisionSha256": "5221daa4bd010d9a791e208c08fe20e88604aebe6163d01f38de832df86b1e7f",
+      "recordSha256": "beb7d32874faff9eb4e26ae7bd435fbb813405b8c8992b17be7dc7c78bc41017",
+      "recordUrl": "content/assets/borg/records/phase-varying-prescribed-display-history.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-27p208760586808622-v1",
+      "assemblyId": "asm-54890e63d51bf39f1f9b943311619afa",
+      "modelRevisionSha256": "54890e63d51bf39f1f9b943311619afa314ac865bab6e50cb5e00d0ebbbbf20d",
+      "recordSha256": "6e6ee847e4aaec8ab1f8ddae992ae950236a1cd7d24c54e2cca783119aa72e73",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-27p208760586808622.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "coincident-center-two-component-circular-counter-rotating-v1",
+      "assemblyId": "asm-564682f8b12f9a2e9d1ed520a5adef7b",
+      "modelRevisionSha256": "564682f8b12f9a2e9d1ed520a5adef7b3c2eb397276b825f4523382357433a71",
+      "recordSha256": "47277a18060033f83970e3ae550ba29760ebb6e226120bf94863b7e9787b3460",
+      "recordUrl": "content/assets/borg/records/coincident-center-two-component-circular-counter-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-4p066086233305358-v1",
+      "assemblyId": "asm-5656e031e4fb6734ca8332e7d1e33995",
+      "modelRevisionSha256": "5656e031e4fb6734ca8332e7d1e339955897c1a6d8739dcb560f55bad6a036c5",
+      "recordSha256": "2882dab243d540228df8b863113a3b06b96230b8ef5378784d938fe366301bb5",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-4p066086233305358.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-5p138808174344557-v1",
+      "assemblyId": "asm-56f53eba08438b229f0d67d69ce4a7b4",
+      "modelRevisionSha256": "56f53eba08438b229f0d67d69ce4a7b4845ed5669ea3a8967cba0810e136ee02",
+      "recordSha256": "8d00901abcb9f9f360c0f194f4c165b51438b5de3c1a1af5f4991b5238c40bc3",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-5p138808174344557.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-80p628010149754472-v1",
+      "assemblyId": "asm-5730a44958fbf91be176d4ac2ae88170",
+      "modelRevisionSha256": "5730a44958fbf91be176d4ac2ae88170bf0e1052da68edd36e10b2f56d141db0",
+      "recordSha256": "268fdcc6094aa8ed11064d704d52bb72f4b0cdd56181f0df1bb36b3106bdcb2d",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-80p628010149754472.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-9p371441912067647-v1",
+      "assemblyId": "asm-58dd120ab5b68fc729987c94ca648869",
+      "modelRevisionSha256": "58dd120ab5b68fc729987c94ca6488698090f9edc13fbedfd228289a27f79bfb",
+      "recordSha256": "3c76b251491bd13667a4aebe97860efec2cdc64c1a25523cd98d40f9def88ff8",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-9p371441912067647.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-07-v1",
+      "assemblyId": "asm-5dc9e8c8b6807ed719b872df1f1f0896",
+      "modelRevisionSha256": "5dc9e8c8b6807ed719b872df1f1f0896b4475ea144360c7d75da548c340ea9ed",
+      "recordSha256": "9ac14f6de683bcefe9801b75b999872df9610bf1e145e115e48ec9d4463c8601",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-07.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-92p147958466852960-v1",
+      "assemblyId": "asm-5e4103d1f4c57a729562769fe13fabb8",
+      "modelRevisionSha256": "5e4103d1f4c57a729562769fe13fabb8c2e96fa24376aceb618c99367824baf6",
+      "recordSha256": "a9eb124d8d97c597bc6e67c574c5e6d1640ca245f921e56926f5fbff666d64d3",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-92p147958466852960.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-7p261566125492824-v1",
+      "assemblyId": "asm-5f6bfca424554d69fc4282a535087cc4",
+      "modelRevisionSha256": "5f6bfca424554d69fc4282a535087cc43aaa19ba0d58c2ead2028a25dea0b380",
+      "recordSha256": "d30767721d6461e182a4cc0923c51030204fdfcf118b04a25f82539711cd8298",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-7p261566125492824.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-87p958909848455519-v1",
+      "assemblyId": "asm-604a93216190310114a778bf8900670e",
+      "modelRevisionSha256": "604a93216190310114a778bf8900670e2f89231213009209dd30a3614f1b5e0b",
+      "recordSha256": "9cd6e928e8b5876b04cef20eba43cfc7a1d2ab07e00864e718046a9084032bce",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-87p958909848455519.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "high-axial-three-binary-interior-v1",
+      "assemblyId": "asm-62623e5eeef817994217a8c56c9f0cca",
+      "modelRevisionSha256": "62623e5eeef817994217a8c56c9f0cca23b42de571bb3eb185a30c9226caf112",
+      "recordSha256": "c234d169a75d919ea85706def8d0dfe9b0661fab0db08c5eed381a05e77d32f2",
+      "recordUrl": "content/assets/borg/records/high-axial-three-binary-interior.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-93p195216991441594-v1",
+      "assemblyId": "asm-6293dfc90062a79e6a50e8417ad2a63b",
+      "modelRevisionSha256": "6293dfc90062a79e6a50e8417ad2a63b8c0563043a50ea5c7bbf02c79dcb5c34",
+      "recordSha256": "dc951f8d17b6e3051b1c07f9d43dadadc7ae263e456d106e2770a5975e3d6484",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-93p195216991441594.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "rotating-octahedron-vertex-set-v1",
+      "assemblyId": "asm-6605678b2d37950a861d9ecba54beffb",
+      "modelRevisionSha256": "6605678b2d37950a861d9ecba54beffb46cb70ad13bb45029aae786382a8dd2b",
+      "recordSha256": "a71c991ff736fc88ce1422f2b435014543fb8827eb00437684c0d619b6d1f056",
+      "recordUrl": "content/assets/borg/records/rotating-octahedron-vertex-set.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-31p400003419329044-v1",
+      "assemblyId": "asm-69507d6ddb79c5877d55c01ddc506133",
+      "modelRevisionSha256": "69507d6ddb79c5877d55c01ddc506133dc2b3278bca4f505bdf19c8df869b568",
+      "recordSha256": "302c4eaf7383a1da89b932886ea242743e2abe520152ed4a4f515334dd893426",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-31p400003419329044.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "rotating-cube-vertex-set-v1",
+      "assemblyId": "asm-6b9cb9397450575add281f03b1a1e583",
+      "modelRevisionSha256": "6b9cb9397450575add281f03b1a1e58334c2c9f13327586cfa1445b325f37ff8",
+      "recordSha256": "c70b6af1a09483a616ca5202e2844181624c19ed471b4339b72d76f64f8a0788",
+      "recordUrl": "content/assets/borg/records/rotating-cube-vertex-set.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-76p438880094620429-v1",
+      "assemblyId": "asm-6d2669c7492a5dd47c46e25abedbb96d",
+      "modelRevisionSha256": "6d2669c7492a5dd47c46e25abedbb96d3d05158efe6ce049b45ca02c53776256",
+      "recordSha256": "4541498cdd5ee5f217b1a7b0a63deb30de4555f7bd6c0050e90b4978f4b273df",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-76p438880094620429.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "coaxial-separated-two-component-circular-counter-rotating-v1",
+      "assemblyId": "asm-6db8e29ee5ae51d39221d7f2d36f7bcb",
+      "modelRevisionSha256": "6db8e29ee5ae51d39221d7f2d36f7bcb0798ae2502558523fd3c30fc0faa11f6",
+      "recordSha256": "87c8051a312eb3aaca25245068c233df471a2d9fae17fd633ef76083d5503d44",
+      "recordUrl": "content/assets/borg/records/coaxial-separated-two-component-circular-counter-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-70p155108905664498-v1",
+      "assemblyId": "asm-6e3dfd262fbbacce0c2770240baa16c3",
+      "modelRevisionSha256": "6e3dfd262fbbacce0c2770240baa16c395532ed87c7436d7beab339151a8b2b1",
+      "recordSha256": "acb2b6d53925d275419009f9b422ab0883e4d01a16afd87c624e0ec5148256ef",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-70p155108905664498.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-10p424022006485144-v1",
+      "assemblyId": "asm-6ec1325824f09b774340b93e6bbb8b7d",
+      "modelRevisionSha256": "6ec1325824f09b774340b93e6bbb8b7dbc625da6f61d2f7fd2578633080bc095",
+      "recordSha256": "1c3905662fb3423e0db330fbf2e6974a2a0d512d18d8dc727f3ba146f6f41901",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-10p424022006485144.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-52p350326617761682-v1",
+      "assemblyId": "asm-73f78b03b49bf1680138a5c563a96bde",
+      "modelRevisionSha256": "73f78b03b49bf1680138a5c563a96bded7ecdeeeb8e96f45aebf6368d0fef5a4",
+      "recordSha256": "f5d0b97fbeb79b4399881d0f8aab33866c187038af30b4eb62a69706384c7495",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-52p350326617761682.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-34p543044832421618-v1",
+      "assemblyId": "asm-7b84be002d05683324a034eaba6bfdd9",
+      "modelRevisionSha256": "7b84be002d05683324a034eaba6bfdd91e38c383eaaa3ae06eeaa32d06eb3bd0",
+      "recordSha256": "b78af1b7dd5da832ef40c73de50a4cd3eb82469514442970914191239f8ff5d9",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-34p543044832421618.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-95p289730019756061-v1",
+      "assemblyId": "asm-7c0be023906a827207f1bdfdd4ac2d7f",
+      "modelRevisionSha256": "7c0be023906a827207f1bdfdd4ac2d7f28baff5cba4248d69e4cea99c5f633cb",
+      "recordSha256": "41ffd34f13f7301b57965f75a7c9ea3063494ccff72bb07091cdb3f3cf267110",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-95p289730019756061.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-61p776561894980346-v1",
+      "assemblyId": "asm-7e80f39002679364d3b431441c700a3f",
+      "modelRevisionSha256": "7e80f39002679364d3b431441c700a3f86bb377e47bb08fc9f806f7fb47d878f",
+      "recordSha256": "75045b86db9366cbd2ae35c122e67840e6d2f9e48ca9086151d430ea315d9416",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-61p776561894980346.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-58p634535538203443-v1",
+      "assemblyId": "asm-8143d2a500a9a724fe39700ddda02f4a",
+      "modelRevisionSha256": "8143d2a500a9a724fe39700ddda02f4a5a91b6af5d339975e54442bbcf6af324",
+      "recordSha256": "e2b6f8861aa986e68ba0243312c84d9166ec099eb8374d661e92285eb07f995a",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-58p634535538203443.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "rotating-tetrahedron-vertex-set-v1",
+      "assemblyId": "asm-89dfdf44bc72c7f399640967b6888dff",
+      "modelRevisionSha256": "89dfdf44bc72c7f399640967b6888dff8a600e8a60489beef4452d77c3e5734f",
+      "recordSha256": "1d8b57fe7a2e21e010f61bfab656c7f3fe44af047408fda66323ba061550bf7f",
+      "recordUrl": "content/assets/borg/records/rotating-tetrahedron-vertex-set.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-42p923451130575306-v1",
+      "assemblyId": "asm-8baa23f489516e4261e3990be006d768",
+      "modelRevisionSha256": "8baa23f489516e4261e3990be006d768d05e43a01dc6cac51dfaeb9990317044",
+      "recordSha256": "56e231db1cfd4ba9b6ef3bb9bd907ea6f102c14abf7cf58b2c24e4e77b69fa32",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-42p923451130575306.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-axially-separated-3-2-1-frequency-v1",
+      "assemblyId": "asm-8d55504a0d3d60e14fcdfe43cf60d03f",
+      "modelRevisionSha256": "8d55504a0d3d60e14fcdfe43cf60d03f6a65024de7ef931eef1858521f16268e",
+      "recordSha256": "bc82fcff86bd07bd4d830508e888425474bca030292dccfca60f8490cd227d4e",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-axially-separated-3-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-coincident-midpoints-3-2-1-frequency-v1",
+      "assemblyId": "asm-8d642fda81c6155f03660eef94013ff7",
+      "modelRevisionSha256": "8d642fda81c6155f03660eef94013ff7c8c1feb1a2eaca7d71d801142ae3a0e2",
+      "recordSha256": "4cfb1499e2bb125f02292e297ed56a0ad1cc1d4e45aadbc9ab4c8119ba588274",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-coincident-midpoints-3-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "rotating-icosahedron-vertex-set-v1",
+      "assemblyId": "asm-911cf685cdf21ead658c2d06f8337a65",
+      "modelRevisionSha256": "911cf685cdf21ead658c2d06f8337a65949d5c14ee6fb924a10a33997622e1e2",
+      "recordSha256": "2fecf073057cd7ff59b658ec5bd65465c0ab5869af07aa3aeca2bec04524ab1f",
+      "recordUrl": "content/assets/borg/records/rotating-icosahedron-vertex-set.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-11-v1",
+      "assemblyId": "asm-92f8b090b43b52cd32e0d29a315c9b66",
+      "modelRevisionSha256": "92f8b090b43b52cd32e0d29a315c9b663465901c00d3f2c6a12f878fd444e6c3",
+      "recordSha256": "2b586b334b97e8fb9b34c104bd6c0bb1a6fb6efc8b05388c8338c32c29fd2f7b",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-11.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-2p974307176117293-v1",
+      "assemblyId": "asm-9bd1bae10105dadba6428d6425ab1515",
+      "modelRevisionSha256": "9bd1bae10105dadba6428d6425ab1515d7438643309b9b23271eeb9c892fec7e",
+      "recordSha256": "402f94f4f6d356de874470de4604424323932607d7c1a119e6dc150e8f9dd3bc",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-2p974307176117293.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-68p060494466159749-v1",
+      "assemblyId": "asm-9c8fe398f5c5dad84b18be16f0243b8c",
+      "modelRevisionSha256": "9c8fe398f5c5dad84b18be16f0243b8cc364aeff534554a7d8e24c78ed75fd88",
+      "recordSha256": "e1ebd30798e57e6e1b2d4479aabfe689d49dd484774f864115cf646704acce4d",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-68p060494466159749.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-06-v1",
+      "assemblyId": "asm-9d69ae05cb9b243014e4eaa73c1f1325",
+      "modelRevisionSha256": "9d69ae05cb9b243014e4eaa73c1f132553636a58936075f3e73d0cb1d8999812",
+      "recordSha256": "75c28c209209cee2072f4976281318b84255c234c1fe2c09b6fe4ad563c8ea35",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-06.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-11p475611802175340-v1",
+      "assemblyId": "asm-9fe1f070074d02c8aef1f88105a7e214",
+      "modelRevisionSha256": "9fe1f070074d02c8aef1f88105a7e21455aff029abfd67396f2375f2fffcc700",
+      "recordSha256": "32dd769f5a51da4e25e362e11bc3538f936e32571f3ed5e0b6f0ab755d8d3619",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-11p475611802175340.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-39p780938332188685-v1",
+      "assemblyId": "asm-a36431d1644e585f8ce2579cd3eebcf7",
+      "modelRevisionSha256": "a36431d1644e585f8ce2579cd3eebcf7ee47f699b833ef19461272b51b346d7e",
+      "recordSha256": "9770d66ebe04b2082b51e241da1cc3cc31f3494d2d45179989249cbecf0c9246",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-39p780938332188685.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-59p681882731688155-v1",
+      "assemblyId": "asm-a5975657fd701e91b61b1740e80d9d99",
+      "modelRevisionSha256": "a5975657fd701e91b61b1740e80d9d99f33454695a0195d869c3ac1667f92f7e",
+      "recordSha256": "55eeaf8ca160ebd833f1221423a7c668252e4460c86fb6426eaeba132b573d53",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-59p681882731688155.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-02-v1",
+      "assemblyId": "asm-a5e6224ceab56b11b02df75228f389f7",
+      "modelRevisionSha256": "a5e6224ceab56b11b02df75228f389f74e715ad4aaee6bf1b410225ad4db5775",
+      "recordSha256": "5491042a0d83fc5763351a070ed9a1d3797f2e3f0fdcc1912b68c444e8a2bf51",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-02.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-32p447715088035526-v1",
+      "assemblyId": "asm-a6077c806a3166133889f36cf528e1c6",
+      "modelRevisionSha256": "a6077c806a3166133889f36cf528e1c6e2c8be62c3ee5912f904aa003b4c29c6",
+      "recordSha256": "3035e32725f6895d976c6a75193bb0930dee7b6e139cc1f68f21e9f245916e4f",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-32p447715088035526.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-51p302934080123090-v1",
+      "assemblyId": "asm-a6a94c0cb11e5a861737ea7fad5642fd",
+      "modelRevisionSha256": "a6a94c0cb11e5a861737ea7fad5642fdd429606114c0c6841b9501f520c32674",
+      "recordSha256": "9d1fdcadf7ddab78e23105e3f57c9b550f5558a6872493aeb48d9740b372604d",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-51p302934080123090.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "rotating-dodecahedron-vertex-set-v1",
+      "assemblyId": "asm-aadc63a0362d72229c1f20574c138588",
+      "modelRevisionSha256": "aadc63a0362d72229c1f20574c1385882db27c6e7baa7f760e019e00c1127464",
+      "recordSha256": "ba76bcf9864c7f0033bdc14b518625022a7994eb9488a43c7ea89e44e4bbcb4f",
+      "recordUrl": "content/assets/borg/records/rotating-dodecahedron-vertex-set.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-38p733400877661225-v1",
+      "assemblyId": "asm-ab9eaccb68eb16873c0f2136082f5bf3",
+      "modelRevisionSha256": "ab9eaccb68eb16873c0f2136082f5bf31cc40900b54619a7907adc74f0d51441",
+      "recordSha256": "7e98effbbd98f0979cdecfea65e8c502e0cb602b1dac1c3676e0e1ab930135d3",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-38p733400877661225.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-45p018388280902633-v1",
+      "assemblyId": "asm-acf80133ddc82e7f6b33db0b6630dc14",
+      "modelRevisionSha256": "acf80133ddc82e7f6b33db0b6630dc14094aa1b3d6a89b2da30607e1a7d435c7",
+      "recordSha256": "dc958994f681913075aa96ab2ff4eae48dad27b9785680103e0c877cf73fe6c1",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-45p018388280902633.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-62p823894372495216-v1",
+      "assemblyId": "asm-aff6d15013901881b5df480dc694a973",
+      "modelRevisionSha256": "aff6d15013901881b5df480dc694a973b47ce2cff5de9567adf62fbfde298827",
+      "recordSha256": "2f60c6affcc45ab8e676d5fb20a9200778c9be12766e577508ad84620bddb919",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-62p823894372495216.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-15p676071159345868-v1",
+      "assemblyId": "asm-b3d1787f90da2e4aa20566df62a22153",
+      "modelRevisionSha256": "b3d1787f90da2e4aa20566df62a221532069abedf666607a77da4c47d3547293",
+      "recordSha256": "e5a917fb7ed2cac59106e748ead22ea52729855b41d6fb6c31dda11c81e24053",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-15p676071159345868.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-1p826430964654678-v1",
+      "assemblyId": "asm-b7c1fb35ebf77a59aa4d023d10dd415a",
+      "modelRevisionSha256": "b7c1fb35ebf77a59aa4d023d10dd415a6373ab8b910bc0bcc77ede2028e6a269",
+      "recordSha256": "dc1afae857399c9c5ce3d3a72fd592f526498ab1e584d4a108f797408b3205eb",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-1p826430964654678.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253-v1",
+      "assemblyId": "asm-b7fdeb1b3f9aa074cacbab3c593a2273",
+      "modelRevisionSha256": "b7fdeb1b3f9aa074cacbab3c593a227332178e7b97f50409f759f420cec4cb34",
+      "recordSha256": "9ca31672f55869f2d4e4e2b17cf7865c3ef2024456709083a6cf0cddd3e3c465",
+      "recordUrl": "content/assets/borg/records/orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-102p620487708693755-v1",
+      "assemblyId": "asm-bc9e72fd141e5ad611bf6f72321bb5a6",
+      "modelRevisionSha256": "bc9e72fd141e5ad611bf6f72321bb5a6c8339d5f5daff337f2957c87d92cf824",
+      "recordSha256": "06998c8d7b518db4f439dcc51d492782c3208570f3b23ba3d2c577c3343d5fd3",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-102p620487708693755.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-94p242474160847358-v1",
+      "assemblyId": "asm-be197df17074a9bff965b075d723fe78",
+      "modelRevisionSha256": "be197df17074a9bff965b075d723fe7858763ef0d2a30b4ff6a9fbb04c150f2f",
+      "recordSha256": "3806e53da482cf6765775dbe95d7fd827869af6bc9c91abc981047316bcc65ae",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-94p242474160847358.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-20p920052031568546-v1",
+      "assemblyId": "asm-be82dec24be7a0e14bd278abd88f0665",
+      "modelRevisionSha256": "be82dec24be7a0e14bd278abd88f06650a1fe377c5ebd53a5215eef40b95dcf8",
+      "recordSha256": "86c7a05c4bd294d96a0b850d0ebfc676ceebf4f7871aa5bb6de99dc67edfcfab",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-20p920052031568546.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-01-v1",
+      "assemblyId": "asm-c0fd5d90aab6386dadb80f9d5a32807b",
+      "modelRevisionSha256": "c0fd5d90aab6386dadb80f9d5a32807b8016130a12fc9d9fce7943e8f6f834d8",
+      "recordSha256": "197018e2830361a2d86ee1b494c04cda7e8744c3fed7620f46a63414ad57f7dd",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-01.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-69p107803348049980-v1",
+      "assemblyId": "asm-c14a95d580e4ed9bdf3aa76f49b16812",
+      "modelRevisionSha256": "c14a95d580e4ed9bdf3aa76f49b16812cd469d8e240127c0bef50ca66d5e6ce4",
+      "recordSha256": "5e6c8c366e504010ded86cfd1b5109993173e0b8f1f13988571e4309c1b1fe75",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-69p107803348049980.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-64p918546265625878-v1",
+      "assemblyId": "asm-c2e97fa5cd4afa86b9fec8613f552310",
+      "modelRevisionSha256": "c2e97fa5cd4afa86b9fec8613f5523106e7f532e56a9be242fcbcb6c9bf6dbae",
+      "recordSha256": "fef9601acd54f75d54cbe0298130dcb7351e2e817ed189d8c579c0cf343f182a",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-64p918546265625878.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-21p968389913715301-v1",
+      "assemblyId": "asm-c5340303fc70d9d3e9442e9dafa46b59",
+      "modelRevisionSha256": "c5340303fc70d9d3e9442e9dafa46b59f507c112aea187800f717cbc0ea5fb4e",
+      "recordSha256": "c24d3cf1f1fb23eab9adf2c5f0a6bf2feb91575553933c27713eddc22ec94f41",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-21p968389913715301.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-10-v1",
+      "assemblyId": "asm-c58bdeab092bcb8033d5e774ac9ed7d1",
+      "modelRevisionSha256": "c58bdeab092bcb8033d5e774ac9ed7d17014fc7c64b4b6d0fd00da0b2a8ca6e7",
+      "recordSha256": "9c65bcf9834fc3c9a217b28db34f152e0ff1102fc38d7b8b1974110f0b4df8c9",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-10.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "coincident-center-two-component-circular-co-rotating-v1",
+      "assemblyId": "asm-c65c54f58f828be4cc25fb0ac9fddfaa",
+      "modelRevisionSha256": "c65c54f58f828be4cc25fb0ac9fddfaa1ecf5dbd816072be0215018acb06fffb",
+      "recordSha256": "26d9f8058c01582944ca6577484d4756456d8ad71e2fa4661692bb539e18ea7d",
+      "recordUrl": "content/assets/borg/records/coincident-center-two-component-circular-co-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-14p626585878372042-v1",
+      "assemblyId": "asm-c6b027aeecd5e7282fb29a5d08e87511",
+      "modelRevisionSha256": "c6b027aeecd5e7282fb29a5d08e875119e9dc0f1ae3f28b1f95e29add027db4e",
+      "recordSha256": "49fa3ef7b5d88b02c6f185cd393ad94e04f963b028eec142217cb0652f88ad9e",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-14p626585878372042.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-98p431490151827827-v1",
+      "assemblyId": "asm-c714a8c1586abd7f4c11ae8822ba964f",
+      "modelRevisionSha256": "c714a8c1586abd7f4c11ae8822ba964f4f9617e2e7c734177a8a9a696beb7cda",
+      "recordSha256": "474f530e22e09fd6b5bfa20c13b6f3f270d28c6717b476d4243cabfc3ebb6a01",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-98p431490151827827.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-16p725268924157812-v1",
+      "assemblyId": "asm-c9e4fac76b8b9bc050d9609a9ed3f3ef",
+      "modelRevisionSha256": "c9e4fac76b8b9bc050d9609a9ed3f3efbebcd7fb5f9c020a4b8577666ddaf091",
+      "recordSha256": "dcca9f3e2ab6d9992a7588d5b2e66d1c9fa7afe7dc5df9453fe84fef5a3c1a3f",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-16p725268924157812.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "small-asymmetric-counter-breathing-history-v1",
+      "assemblyId": "asm-c9eaeb2874337049a542bb15e5623d92",
+      "modelRevisionSha256": "c9eaeb2874337049a542bb15e5623d924085407eb3b686faa8020c946ab2a5c5",
+      "recordSha256": "dde2a694f6769c70176f939049481dcf6f8a7cf513eb3ac6ab62b5b2f6748bf0",
+      "recordUrl": "content/assets/borg/records/small-asymmetric-counter-breathing-history.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-89p006174283579767-v1",
+      "assemblyId": "asm-ca5603a1edf948790bb008d1d330a763",
+      "modelRevisionSha256": "ca5603a1edf948790bb008d1d330a7631edb9793c5d5956d944bc17c701f7599",
+      "recordSha256": "eb4c7d9601fd609292f0dfb330e6be9287ff6c3214a942d41269fdd576a111ba",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-89p006174283579767.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-105p762225096727972-v1",
+      "assemblyId": "asm-cc595956717761e7f3684feb959aae83",
+      "modelRevisionSha256": "cc595956717761e7f3684feb959aae8396792569d8cf399e2870e2872e7986f6",
+      "recordSha256": "578c6d71799fc0c19ea2ad9453607e71deaac17cacc52e480e9df73148e4f413",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-105p762225096727972.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-103p667734479475967-v1",
+      "assemblyId": "asm-cdbb7fdc42c73b767f02be5317c07c76",
+      "modelRevisionSha256": "cdbb7fdc42c73b767f02be5317c07c76bdcba301a47f26328c3879a3a7b5288f",
+      "recordSha256": "ad5e5d3b71e77cd09db7bc8f5a5a3463b7d9069670426ed3ba0aedc4c3fa611d",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-103p667734479475967.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-axially-separated-v1",
+      "assemblyId": "asm-cf2ac3be564112ff1347867d04593bc6",
+      "modelRevisionSha256": "cf2ac3be564112ff1347867d04593bc6af77233fffb5754c0bc0f7220e496966",
+      "recordSha256": "f43281dc3adc1fd12d684a12aafff400c9aae8dec4296e1d122e377b25cd2518",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-axially-separated.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "planar-three-binary-common-center-reference-v1",
+      "assemblyId": "asm-d114b0f2284e4eb8d79c1643a9610b80",
+      "modelRevisionSha256": "d114b0f2284e4eb8d79c1643a9610b80ff4f662b519d33a2f56da537b957f101",
+      "recordSha256": "3f422e684f99e98d7291618cad194ead6f2aef46023c1e2ed1faed38ba8c8498",
+      "recordUrl": "content/assets/borg/records/planar-three-binary-common-center-reference.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-04-v1",
+      "assemblyId": "asm-d296a9a2a2e9870f4407b5a1f29bd96f",
+      "modelRevisionSha256": "d296a9a2a2e9870f4407b5a1f29bd96f7a8de3ade56acb5503759d74ecd80173",
+      "recordSha256": "9af47d30c7ea93e349bbea75c830c2ff05b05c3a1136063457bcbdff25e01157",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-04.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-74p344300703627483-v1",
+      "assemblyId": "asm-d2ee3bc3829154fc5419132065b24c88",
+      "modelRevisionSha256": "d2ee3bc3829154fc5419132065b24c885ed5b03f236a0fc9ac35e6702620e872",
+      "recordSha256": "5e9ee761584ac5f8457c25206de37588d39d68a982694cf03ed00ec5372d5d90",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-74p344300703627483.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-axially-separated-equal-radius-common-frequency-v1",
+      "assemblyId": "asm-d4a1624c08684a36149a0217714607fc",
+      "modelRevisionSha256": "d4a1624c08684a36149a0217714607fccf37fa916d88b4cb45aaf91db4bbf76b",
+      "recordSha256": "6217f75a5408e3c4d53bcbd5981c8bd22e402f7dccab5ef26d4d2fcfc30be4c4",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-axially-separated-equal-radius-common-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-82p722562268843461-v1",
+      "assemblyId": "asm-d63c291d237d22b6d5a09ca3bd015f8d",
+      "modelRevisionSha256": "d63c291d237d22b6d5a09ca3bd015f8d67868c3ca34a2b89ea42d88285dd1578",
+      "recordSha256": "432c9e9c4e1884eda27fcf6d769d388a6b9f9a7dc225d79218caf30e25c42432",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-82p722562268843461.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-coincident-midpoints-4-2-1-frequency-v1",
+      "assemblyId": "asm-d8bb2d00210eba7ab7c052b8e8b37d21",
+      "modelRevisionSha256": "d8bb2d00210eba7ab7c052b8e8b37d218fd23e5593052d5749e799b4abfb1ec7",
+      "recordSha256": "079c70af6b23a27f30b3d4ee026d8af5ca069dad3a107adf7cde9d74e775c012",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-coincident-midpoints-4-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "co-spherical-two-planar-braid-counter-rotating-v1",
+      "assemblyId": "asm-d9dc5a90da03b2a44237f2563820fdad",
+      "modelRevisionSha256": "d9dc5a90da03b2a44237f2563820fdad7dfe2ec379ec27260876eab3bb707898",
+      "recordSha256": "a99414287d53d018f33bfdec8deb5f00cb3bd85f07d5141b3f80a2367585bad2",
+      "recordUrl": "content/assets/borg/records/co-spherical-two-planar-braid-counter-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-60p729224763076163-v1",
+      "assemblyId": "asm-da04b33d98f171b20e87d24d8ec53dcc",
+      "modelRevisionSha256": "da04b33d98f171b20e87d24d8ec53dcc899f3a6af0dc2bacb4d9a82773fda76c",
+      "recordSha256": "77a2f69fbbebed45e88f847645c351aed61540b7d355c4dd7e197a470a577571",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-60p729224763076163.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-72p249710626417708-v1",
+      "assemblyId": "asm-db344f69094ce6026f2e2987dd3f4935",
+      "modelRevisionSha256": "db344f69094ce6026f2e2987dd3f493548f726e5948d71631f718416997576ee",
+      "recordSha256": "85e17861768452e74ee81cee078267da0c0d3bc45f05d1a9cfc4801abb9ea3c5",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-72p249710626417708.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-71p202411285718429-v1",
+      "assemblyId": "asm-dd0b16c075ca9baadc23f95afe6e9fa8",
+      "modelRevisionSha256": "dd0b16c075ca9baadc23f95afe6e9fa8511db39aacf09e7e9689fac4a1da1206",
+      "recordSha256": "0246f544cabacfc26c9c5e138a2f7f2971a12f48a93c44f0c2eed603f6961a52",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-71p202411285718429.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-24p064767412772655-v1",
+      "assemblyId": "asm-ddeb5a55fdc22b1d2948053dfbc7a047",
+      "modelRevisionSha256": "ddeb5a55fdc22b1d2948053dfbc7a0476e2c78efce2f8166022e36e9ef1ed19f",
+      "recordSha256": "02301b675454c6d8ff6d60cdf2a2917d26fceea03c24e5536219176894311f7d",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-24p064767412772655.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-56p539824517159986-v1",
+      "assemblyId": "asm-dea14e6790c559a7d2f12d094a270fa5",
+      "modelRevisionSha256": "dea14e6790c559a7d2f12d094a270fa5e52f9db21b1a43b8db2ca8be052669ac",
+      "recordSha256": "c872bd1c7c43be362af39569a292937e526e8ffb1c08c690a9f76dd57f7a7f29",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-56p539824517159986.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-46p065838364422408-v1",
+      "assemblyId": "asm-e05ea077d6d3afc6d2001a0a77fdf26d",
+      "modelRevisionSha256": "e05ea077d6d3afc6d2001a0a77fdf26dafb6af4acda4342526a07922c6b26f81",
+      "recordSha256": "81caed8fab8d1753ec127d4052c64f399f65799143d89a9627825e349aa94d56",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-46p065838364422408.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-57p587182900896897-v1",
+      "assemblyId": "asm-e6a7f63df43445edbe1d7c8546b9e314",
+      "modelRevisionSha256": "e6a7f63df43445edbe1d7c8546b9e31420a51299ec2c63380b3b98bd888c54e0",
+      "recordSha256": "1093a49cc3e5a1c006aaed0690661eb8adb3cd99339d4cdd2d4142207b2f3965",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-57p587182900896897.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-84p817106632455005-v1",
+      "assemblyId": "asm-e8819943f80c71d0da8f9596bc6390d7",
+      "modelRevisionSha256": "e8819943f80c71d0da8f9596bc6390d7b5ff85bdc6891e68f20f43ed0e3cddb1",
+      "recordSha256": "72ac1fbe1e1691489d6e7fe372a9a60b1ebbc6ca324d7c3de99cdd6263270308",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-84p817106632455005.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-100p525991090481211-v1",
+      "assemblyId": "asm-e9747fa68304c93a5e8cc7f510804472",
+      "modelRevisionSha256": "e9747fa68304c93a5e8cc7f510804472387abf5bbb50bb5106b9f0ed18cc5275",
+      "recordSha256": "63e9e5bad3413e53c4bd0a2a6779a8d06459dd88b7858aaa5fc7877e8f6bc01a",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-100p525991090481211.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-77p486166053639156-v1",
+      "assemblyId": "asm-ea0e6293c4cb9f503c5b597b651b3e77",
+      "modelRevisionSha256": "ea0e6293c4cb9f503c5b597b651b3e77eb42adb6e2a83cce8abe99961133ad08",
+      "recordSha256": "534263739412b0061f978eec559c5e52f9bf708a4130391703ca1c629543148b",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-77p486166053639156.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-29p304469741973809-v1",
+      "assemblyId": "asm-eaccb97cc48458549c2f076935fd897f",
+      "modelRevisionSha256": "eaccb97cc48458549c2f076935fd897f65bf566ee0a77e197edd05aaa1e6a8f0",
+      "recordSha256": "abf213e2f6dbe0c52c1277d84bc6e182651d08fc70968fb927d4386fb508aa10",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-29p304469741973809.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-37p685844521272952-v1",
+      "assemblyId": "asm-eafc3aae4a87c5d276d918d763d65849",
+      "modelRevisionSha256": "eafc3aae4a87c5d276d918d763d65849f45982d46359db0abaebe7a09d69fe03",
+      "recordSha256": "86f48d9aa55e5fceb1da839aca6c7ddf70b475bee3f7306001bb531f2c9cb3f1",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-37p685844521272952.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "coaxial-separated-two-planar-braid-co-rotating-v1",
+      "assemblyId": "asm-ebc963eea7e9104f8f826e86dd4287bc",
+      "modelRevisionSha256": "ebc963eea7e9104f8f826e86dd4287bce8818c853a7c3315deafce7729c10807",
+      "recordSha256": "385d12ebdad81083b8b02dd2a36691235aa9aa50da0f2b7efa31a5dbf9e1f440",
+      "recordUrl": "content/assets/borg/records/coaxial-separated-two-planar-braid-co-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-86p911643801371621-v1",
+      "assemblyId": "asm-ebce18f25acfaaa7d6a037be567672a5",
+      "modelRevisionSha256": "ebce18f25acfaaa7d6a037be567672a5ad6a625572f455c9226405aa99e092b5",
+      "recordSha256": "e0b4bfa82b7cd64ce7383907becd0705f8e45499fc3b74da8555ce45e0f47ce9",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-86p911643801371621.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-36p638267640675611-v1",
+      "assemblyId": "asm-ec7d9b5b6cd1589240f882e6fa830283",
+      "modelRevisionSha256": "ec7d9b5b6cd1589240f882e6fa8302830758d2184345544ea2d152e78eb439e0",
+      "recordSha256": "be6cdf818245308e3d27403e3eab644ea0df548fbd55323fef0c3c651f45dd1e",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-36p638267640675611.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "three-axis-circular-axially-separated-4-2-1-frequency-v1",
+      "assemblyId": "asm-effe9ef5527b7eb5162d3611ec11cc08",
+      "modelRevisionSha256": "effe9ef5527b7eb5162d3611ec11cc0878147e0d98d8b6ca4a18be3dad6f033a",
+      "recordSha256": "217aa279fb589b2bb074566e00c576e5896cb8db747f1cb6b6303c5a84db6e38",
+      "recordUrl": "content/assets/borg/records/three-axis-circular-axially-separated-4-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-43p970926163422079-v1",
+      "assemblyId": "asm-f24d2f09669cf2db296783ee12c2237b",
+      "modelRevisionSha256": "f24d2f09669cf2db296783ee12c2237bda5514671600f3449ac99aa6b4b1ec07",
+      "recordSha256": "097d33821e61c5f19f4ac94dfc7220620c1d7daa5b8c06cb6b4dc343b20cc099",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-43p970926163422079.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "octahedron-antipodal-sum-edge-excluded-v1",
+      "assemblyId": "asm-f2b855b4d9be64b49ece29e9bc770c12",
+      "modelRevisionSha256": "f2b855b4d9be64b49ece29e9bc770c12ae98fef8005c53259bce63b960a09b2b",
+      "recordSha256": "02191ad0183933f07160ac16789e94cff9b3e351fcc0f43ca476a218187b37ef",
+      "recordUrl": "content/assets/borg/records/octahedron-antipodal-sum-edge-excluded.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-90p053437162988852-v1",
+      "assemblyId": "asm-f6376b890e9ca7c5560a847a95fc71d2",
+      "modelRevisionSha256": "f6376b890e9ca7c5560a847a95fc71d2dcc061f0fc3d227be40df062b82a7327",
+      "recordSha256": "a17c5e13a56c2c4c0fb97e073683ba06a028bb50f26337fc938e787dc21052c1",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-90p053437162988852.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-26p160827010717754-v1",
+      "assemblyId": "asm-f86ca208a2de1dd90fdbd9402f446037",
+      "modelRevisionSha256": "f86ca208a2de1dd90fdbd9402f446037ad2752de3b9baeb60d0202d5338b1ace",
+      "recordSha256": "c7104a19cdbc0ad5ad0c524a76c10e57b02029a99b93ceda2ab32be72fb0e15a",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-26p160827010717754.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "alternating-circular-ring-09-v1",
+      "assemblyId": "asm-fa28de06dbc5a5a8427ddba774aed0f7",
+      "modelRevisionSha256": "fa28de06dbc5a5a8427ddba774aed0f79275e6a907bce5364431ebe364bcf816",
+      "recordSha256": "2b2f87f48d721d7d85195749ecdae6d5fc575ddef062392051e14b18a010a682",
+      "recordUrl": "content/assets/borg/records/alternating-circular-ring-09.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-6p202638876028293-v1",
+      "assemblyId": "asm-fb44c3c84d0ee20309f40f1fae18cd4d",
+      "modelRevisionSha256": "fb44c3c84d0ee20309f40f1fae18cd4d3f749102f9277d6375d8e3fc455f8175",
+      "recordSha256": "b023f5037c09de3c5d415905762515a3186e1d7fed41634da3bb3c6a249f6949",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-6p202638876028293.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-19p871593704659003-v1",
+      "assemblyId": "asm-fb8987d197f17ab3f09e8e5ab6f4ff8a",
+      "modelRevisionSha256": "fb8987d197f17ab3f09e8e5ab6f4ff8a9c140f8155e432cd16ffa38138698eff",
+      "recordSha256": "69693295b77810e74b08d870b14959081cbeca448b6b692f82317ca793257b6e",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-19p871593704659003.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "co-spherical-two-planar-braid-co-rotating-v1",
+      "assemblyId": "asm-fbe88c602415275bc562c8825a501bf1",
+      "modelRevisionSha256": "fbe88c602415275bc562c8825a501bf16d2ff5fb5e2d865028917d6fd08052d2",
+      "recordSha256": "5641918e7e975105651b214b847292e2c43128f0a465e4aa180b88b6a2c2ad9c",
+      "recordUrl": "content/assets/borg/records/co-spherical-two-planar-braid-co-rotating.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-75p391591679224977-v1",
+      "assemblyId": "asm-fd58d1ab9230fe89e812677490133a07",
+      "modelRevisionSha256": "fd58d1ab9230fe89e812677490133a07e6a471f1b198456f2be4f25379bc2cfe",
+      "recordSha256": "2d8bceed3029b5ab9e376f2041e92c74425840cf96d1acd0877c1a2ceedff1dd",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-75p391591679224977.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-47p113277216952376-v1",
+      "assemblyId": "asm-ff5cc7037c0dd1e34302dd37049ace11",
+      "modelRevisionSha256": "ff5cc7037c0dd1e34302dd37049ace11d6b4fd0ba61d1791c613c0dd1d4727b0",
+      "recordSha256": "16cc7d0dc2a5c18b8d9f06fb5efeb7e64ff5fcc7c4d3b8738e4d2f5852feeaa8",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-47p113277216952376.assembly-view-record.v0.json"
+    },
+    {
+      "sourceId": "equal-radius-planar-three-binary-balance-beta-40p828458340560103-v1",
+      "assemblyId": "asm-ffce0802f613efbb970d767d21ab6eff",
+      "modelRevisionSha256": "ffce0802f613efbb970d767d21ab6eff311d22e5664cef327c1930bf938a0e48",
+      "recordSha256": "92f4533d7c753293987a620379a3d29b3584995bd9f24283b1c5dd98ce828a19",
+      "recordUrl": "content/assets/borg/records/equal-radius-planar-three-binary-balance-beta-40p828458340560103.assembly-view-record.v0.json"
+    }
+  ]
+}

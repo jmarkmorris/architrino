@@ -2,11 +2,40 @@
 
 ## Status
 
-- Stage: `initial-priority-design`
+- Stage: `consumer-live-and-core-query-publication-contracts-accepted`
 - Implementation: `not-started`
 - Application authority: display and analysis consumer
 - Forward-evolution authority: EOM solver only
-- Shared interchange: [AAA Core architecture v0](../app-aaa-core/architecture-v0.md), proposed and awaiting verification
+- Shared interchange: [AAA Core Path Interchange v0](../app-aaa-core/path-interchange-v0.md), accepted at logical-contract and fixture-conformance grade
+- Shared codec registry: [AAA Core Codec Registry v0](../app-aaa-core/codec-registry-v0.md), accepted at registry-contract and synthetic-conformance grade
+- Shared query and publication: [AAA Core Query, Transform, And Publication v0](../app-aaa-core/query-transform-publication-v0.md), accepted at behavior-contract and synthetic-conformance grade
+- Shared client: [AAA Core Client v0](../app-aaa-core/client-v0.md), accepted at synchronous in-process conformance grade
+
+## Accepted Contract Baseline
+
+The app-side [Potential consumer and publication contract v1](potential-consumer-publication-contract.v1.json) is accepted and executable. It consumes the accepted logical `aaa_core_path_interchange/v0` envelope and `aaa_core_codec_registry/v0` registry, and it binds source path-set identity, history coverage, coordinates, normalized scale map, numeric and interpolation policy, provenance, observable and kernel version, map geometry, sampling, error/display grade, output view, completeness, codec registration, and publication identity. The current Potential map codec is registered at fixture-conformance grade only; no production map or tile representation is selected.
+
+Plainly: this closes what Potential must receive and return and maps those fields to accepted Core records and registry entries. It does not claim that a production codec, broker, cache, or catalog already exists.
+
+The positive fixture publishes an eight-cell synthetic fixed-$T$ spatial volume while retaining only a hash-bound source-history reference. The checker also fixes the axis semantics for a two-space-plus-time volume and a full three-space-plus-time product, and it rejects missing history, incompatible scale maps or $c_f\ne1$, unsupported precision, incomplete sealed publication, unknown observable versions, geometry mismatches, source rebinding, unregistered codecs, source-history leakage, and stale identities.
+
+Plainly: a map can be small or synthetic and still prove the bookkeeping. It cannot hide a gap, change its source, or gain solver authority merely because it was published.
+
+The app-side [Potential live timespace pipeline contract v1](potential-live-timespace-pipeline-contract.v1.json) and its [readable state-machine and sequence specification](potential-live-timespace-pipeline-contract-v1.md) are also accepted and executable. They consume the accepted [AAA Core Accepted-History Stream v0](../app-aaa-core/accepted-history-stream-v0.md) semantics without defining the Core envelope or production transport. The synthetic fixture admits three contiguous accepted chunks, treats one exact duplicate as an idempotent no-op, enters and releases bounded backpressure, exposes two provisional snapshots, seals complete map coverage, and reproduces the same sealed product identity under duplicate-free replay.
+
+Plainly: Potential now has a tested rulebook for keeping up with a live accepted history. Production transport and a production potential calculation are still separate unfinished dependencies.
+
+The shared [AAA Core Query, Transform, And Publication v0](../app-aaa-core/query-transform-publication-v0.md) contract adds canonical equivalent-request and cache identities, order-sensitive transform identities, exact source closure, non-escalating authority, provisional-versus-sealed rules, and receipt-bound retrieval. Its sealed positive fixture uses Potential's registered fixture codec and is retrieved by Equation Mapping as an explicitly permitted second consumer.
+
+Plainly: the app no longer needs private rules for deciding whether two requests are equivalent or whether another application received the exact published product. The fixture remains bookkeeping evidence, not a potential calculation.
+
+The shared [AAA Core Client v0](../app-aaa-core/client-v0.md) drives Potential and Equation Mapping through the same validation, query, stream, publication, retrieval, progress, and failure interface. Potential-specific observable and map semantics remain in this application contract.
+
+Plainly: the apps share a client, not scientific meaning. Potential still owns what its map represents and must pass an independent reference calculation before the first surface is accepted.
+
+The negative suite refuses candidate EOM output, missing or broken predecessors, changed duplicates, buffer overflow, out-of-order map completion, premature sealing, source rebinding, exact producer halt, and post-seal mutation. These are software-conformance results only; they do not establish production transport performance, kernel correctness, or physical acceptance.
+
+Plainly: every named failure stops the map rather than turning absent data into a value or a completed-looking picture.
 
 ## Product Definition
 
@@ -171,7 +200,7 @@ A reaction workspace can combine an initial history, an EOM-produced evolution, 
 
 ## Open Decisions
 
-1. Ratification of `aaa_core_path_interchange/v0` and its concrete codec-family boundary.
+1. Ratification of the concrete `aaa_core_codec_registry/v0` provider and codec-family boundary against accepted `aaa_core_path_interchange/v0` records.
 2. Home of shared path libraries, Core codec providers, and the Potential-owned registered map/tile provider.
 3. Ownership of production potential-query kernels within the AAA Core kernel-registry boundary.
 4. Initial app deployment target and GPU API.

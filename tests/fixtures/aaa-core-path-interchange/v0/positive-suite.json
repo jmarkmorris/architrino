@@ -1,0 +1,280 @@
+{
+  "suiteSchema": "aaa_core_path_interchange_positive_suite/v0",
+  "cases": [
+    {
+      "caseId": "eom-produced-history",
+      "records": [
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_chunk",
+          "recordId": "record.eom.chunk.0",
+          "version": 0,
+          "contentSha256": "9e8a078a4f1f3abc4bd22aef314aec2beb850af7bc6ebce95479df2fed2659c0",
+          "payload": {
+            "chunkId": "eom-chunk-0",
+            "pathSetId": "eom-history-001",
+            "sourceManifestId": "record.eom.manifest",
+            "sequence": 0,
+            "predecessorChunkSha256": null,
+            "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+            "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+            "numericPolicy": {"representationProfile": "authoritative_history", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+            "samples": [
+              {"pathId": "eom-path-a", "T": 0, "position": [-1, 0, 0]},
+              {"pathId": "eom-path-b", "T": 0, "position": [1, 0, 0]},
+              {"pathId": "eom-path-a", "T": 1, "position": [-0.9, 0.1, 0]},
+              {"pathId": "eom-path-b", "T": 1, "position": [0.9, -0.1, 0]}
+            ],
+            "eventMarkers": [{"eventId": "accepted-step-1", "T": 1, "kind": "accepted_step_boundary", "boundary": true}],
+            "provenance": {"producer": "EOM solver", "producerVersion": "fixture-eom/v1", "sourceRecords": [{"sourceId": "fixture-eom-run-001", "sourceSha256": "1111111111111111111111111111111111111111111111111111111111111111"}], "transforms": []},
+            "authority": {"level": "accepted_history", "scientificOwner": "EOM solver", "continuationPermitted": true, "evidenceUse": "synthetic contract conformance only"}
+          }
+        },
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_set_manifest",
+          "recordId": "record.eom.manifest",
+          "version": 0,
+          "contentSha256": "67cab043f59b3dfa69ad07c5576d8bfb8c9e645e3dd8c8089c4e9c42aa0bf6f9",
+          "payload": {
+            "pathSetId": "eom-history-001",
+            "historyKind": "eom_accepted_history",
+            "membership": [{"pathId": "eom-path-a", "role": "receiver_or_transmitter"}, {"pathId": "eom-path-b", "role": "receiver_or_transmitter"}],
+            "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+            "coordinateFrame": {"frameId": "euclidean-void-frame-001", "axes": ["X1", "X2", "X3"], "handedness": "right"},
+            "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+            "numericPolicy": {"representationProfile": "authoritative_history", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+            "interpolation": {"basis": "piecewise_cubic_eom_fixture", "maximumPositionError": 0, "eventBoundaryBehavior": "split_chunk"},
+            "provenance": {"producer": "EOM solver", "producerVersion": "fixture-eom/v1", "sourceRecords": [{"sourceId": "fixture-eom-run-001", "sourceSha256": "1111111111111111111111111111111111111111111111111111111111111111"}], "transforms": []},
+            "authority": {"level": "accepted_history", "scientificOwner": "EOM solver", "continuationPermitted": true, "evidenceUse": "synthetic contract conformance only"},
+            "chunks": [{"chunkId": "eom-chunk-0", "contentSha256": "9e8a078a4f1f3abc4bd22aef314aec2beb850af7bc6ebce95479df2fed2659c0", "sequence": 0}]
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "prescribed-paths",
+      "records": [
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_chunk",
+          "recordId": "record.prescribed.chunk.0",
+          "version": 0,
+          "contentSha256": "8bbc748d6f0082fa4215d28ebf51c6bd060436f6402a34b46a35e134730d25d0",
+          "payload": {
+            "chunkId": "prescribed-chunk-0",
+            "pathSetId": "prescribed-history-001",
+            "sourceManifestId": "record.prescribed.manifest",
+            "sequence": 0,
+            "predecessorChunkSha256": null,
+            "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+            "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+            "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 1e-12},
+            "samples": [{"pathId": "prescribed-path-a", "T": 0, "position": [1, 0, 0]}, {"pathId": "prescribed-path-a", "T": 1, "position": [0, 1, 0]}],
+            "eventMarkers": [],
+            "provenance": {"producer": "synthetic prescribed-path fixture", "producerVersion": "v1", "sourceRecords": [{"sourceId": "fixture-prescription-001", "sourceSha256": "2222222222222222222222222222222222222222222222222222222222222222"}], "transforms": ["analytic circle sample"]},
+            "authority": {"level": "prescribed_path", "scientificOwner": "fixture author", "continuationPermitted": false, "evidenceUse": "prescribed geometry only"}
+          }
+        },
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_set_manifest",
+          "recordId": "record.prescribed.manifest",
+          "version": 0,
+          "contentSha256": "68e6628bdeba094438743e97b730e464ce3922cc20aab0372110630c8e8ff698",
+          "payload": {
+            "pathSetId": "prescribed-history-001",
+            "historyKind": "prescribed_history",
+            "membership": [{"pathId": "prescribed-path-a", "role": "prescribed_geometry"}],
+            "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+            "coordinateFrame": {"frameId": "euclidean-void-frame-001", "axes": ["X1", "X2", "X3"], "handedness": "right"},
+            "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+            "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 1e-12},
+            "interpolation": {"basis": "analytic_circle_fixture", "maximumPositionError": 1e-12, "eventBoundaryBehavior": "split_chunk"},
+            "provenance": {"producer": "synthetic prescribed-path fixture", "producerVersion": "v1", "sourceRecords": [{"sourceId": "fixture-prescription-001", "sourceSha256": "2222222222222222222222222222222222222222222222222222222222222222"}], "transforms": ["analytic circle sample"]},
+            "authority": {"level": "prescribed_path", "scientificOwner": "fixture author", "continuationPermitted": false, "evidenceUse": "prescribed geometry only"},
+            "chunks": [{"chunkId": "prescribed-chunk-0", "contentSha256": "8bbc748d6f0082fa4215d28ebf51c6bd060436f6402a34b46a35e134730d25d0", "sequence": 0}]
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "live-accepted-stream",
+      "records": [
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_chunk",
+          "recordId": "record.live.chunk.0",
+          "version": 0,
+          "contentSha256": "716340123ff5ecc8fcd5013bf992c8a57eb870ecee928a16ef1118a84beec423",
+          "payload": {
+            "chunkId": "live-chunk-0", "pathSetId": "live-history-001", "sourceManifestId": "record.live.manifest", "sequence": 0, "predecessorChunkSha256": null,
+            "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+            "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+            "numericPolicy": {"representationProfile": "authoritative_history", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+            "samples": [{"pathId": "live-path-a", "T": 0, "position": [0, 0, 0]}, {"pathId": "live-path-a", "T": 1, "position": [1, 0, 0]}],
+            "eventMarkers": [{"eventId": "live-accept-1", "T": 1, "kind": "accepted_step_boundary", "boundary": true}],
+            "provenance": {"producer": "EOM solver", "producerVersion": "fixture-stream/v1", "sourceRecords": [{"sourceId": "fixture-live-run-001", "sourceSha256": "3333333333333333333333333333333333333333333333333333333333333333"}], "transforms": []},
+            "authority": {"level": "accepted_history", "scientificOwner": "EOM solver", "continuationPermitted": true, "evidenceUse": "synthetic live-stream conformance only"}
+          }
+        },
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_chunk",
+          "recordId": "record.live.chunk.1",
+          "version": 0,
+          "contentSha256": "51d3bf6961a796dac4d8ca744c839345bc54cba922c6ac8b1c0592cdaf3bdb9e",
+          "payload": {
+            "chunkId": "live-chunk-1", "pathSetId": "live-history-001", "sourceManifestId": "record.live.manifest", "sequence": 1, "predecessorChunkSha256": "716340123ff5ecc8fcd5013bf992c8a57eb870ecee928a16ef1118a84beec423",
+            "coverage": {"startT": 1, "endT": 2, "acceptedThroughT": 2, "complete": true},
+            "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+            "numericPolicy": {"representationProfile": "authoritative_history", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+            "samples": [{"pathId": "live-path-a", "T": 1, "position": [1, 0, 0]}, {"pathId": "live-path-a", "T": 2, "position": [2, 0, 0]}],
+            "eventMarkers": [{"eventId": "live-accept-2", "T": 2, "kind": "accepted_step_boundary", "boundary": true}],
+            "provenance": {"producer": "EOM solver", "producerVersion": "fixture-stream/v1", "sourceRecords": [{"sourceId": "fixture-live-run-001", "sourceSha256": "3333333333333333333333333333333333333333333333333333333333333333"}], "transforms": []},
+            "authority": {"level": "accepted_history", "scientificOwner": "EOM solver", "continuationPermitted": true, "evidenceUse": "synthetic live-stream conformance only"}
+          }
+        },
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_set_manifest",
+          "recordId": "record.live.manifest",
+          "version": 0,
+          "contentSha256": "2807541f7fe79f4be603c747f2663a81693759c78cf8deeffaaf786f6b039161",
+          "payload": {
+            "pathSetId": "live-history-001", "historyKind": "eom_accepted_history", "membership": [{"pathId": "live-path-a", "role": "receiver_or_transmitter"}],
+            "coverage": {"startT": 0, "endT": 3, "acceptedThroughT": 2, "complete": false},
+            "coordinateFrame": {"frameId": "euclidean-void-frame-001", "axes": ["X1", "X2", "X3"], "handedness": "right"},
+            "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+            "numericPolicy": {"representationProfile": "authoritative_history", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+            "interpolation": {"basis": "piecewise_cubic_eom_fixture", "maximumPositionError": 0, "eventBoundaryBehavior": "split_chunk"},
+            "provenance": {"producer": "EOM solver", "producerVersion": "fixture-stream/v1", "sourceRecords": [{"sourceId": "fixture-live-run-001", "sourceSha256": "3333333333333333333333333333333333333333333333333333333333333333"}], "transforms": []},
+            "authority": {"level": "accepted_history", "scientificOwner": "EOM solver", "continuationPermitted": true, "evidenceUse": "synthetic live-stream conformance only"},
+            "chunks": [{"chunkId": "live-chunk-0", "contentSha256": "716340123ff5ecc8fcd5013bf992c8a57eb870ecee928a16ef1118a84beec423", "sequence": 0}, {"chunkId": "live-chunk-1", "contentSha256": "51d3bf6961a796dac4d8ca744c839345bc54cba922c6ac8b1c0592cdaf3bdb9e", "sequence": 1}]
+          }
+        },
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "stream_envelope",
+          "recordId": "record.live.stream",
+          "version": 0,
+          "contentSha256": "e22f1665f30c0fc3ee764396d53c6e0954a94ef7695b5c272dd296235ef25b2f",
+          "payload": {
+            "streamId": "live-stream-001", "pathSetId": "live-history-001", "sourceManifestSha256": "2807541f7fe79f4be603c747f2663a81693759c78cf8deeffaaf786f6b039161", "state": "open", "sequenceBase": 0, "nextSequence": 2, "acceptedThroughT": 2,
+            "chunkRefs": [{"chunkId": "live-chunk-0", "contentSha256": "716340123ff5ecc8fcd5013bf992c8a57eb870ecee928a16ef1118a84beec423", "sequence": 0}, {"chunkId": "live-chunk-1", "contentSha256": "51d3bf6961a796dac4d8ca744c839345bc54cba922c6ac8b1c0592cdaf3bdb9e", "sequence": 1}],
+            "halt": null
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "potential-map-product",
+      "records": [
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_chunk",
+          "recordId": "record.potential.chunk.0",
+          "version": 0,
+          "contentSha256": "81a9bcc7037cbab77ee3beabe354e39d25cd358aebf15e7fac0ac9f7f4ffc003",
+          "payload": {
+            "chunkId": "potential-source-chunk-0", "pathSetId": "synthetic-path-set-001", "sourceManifestId": "record.potential.manifest", "sequence": 0, "predecessorChunkSha256": null,
+            "coverage": {"startT": 0, "endT": 2, "acceptedThroughT": 2, "complete": true},
+            "units": {"wakeSpeed": 1, "lengthScale": "synthetic_length_unit", "timeScale": "synthetic_time_unit", "scaleMapId": "synthetic-scale-map-001"},
+            "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+            "samples": [{"pathId": "potential-source-a", "T": 0, "position": [0, 0, 0]}, {"pathId": "potential-source-a", "T": 2, "position": [1, 1, 0]}],
+            "eventMarkers": [],
+            "provenance": {"producer": "POT-001 synthetic fixture", "producerVersion": "v1", "sourceRecords": [{"sourceId": "potential-source-fixture-001", "sourceSha256": "4444444444444444444444444444444444444444444444444444444444444444"}], "transforms": []},
+            "authority": {"level": "prescribed_path", "scientificOwner": "test-fixture-only", "continuationPermitted": false, "evidenceUse": "Potential contract conformance only"}
+          }
+        },
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_set_manifest",
+          "recordId": "record.potential.manifest",
+          "version": 0,
+          "contentSha256": "b8ac11b26df17c3c902ccabba6c119846ba1d9a2c1b0c363c52f6a13a16aa164",
+          "payload": {
+            "pathSetId": "synthetic-path-set-001", "historyKind": "prescribed_history", "membership": [{"pathId": "potential-source-a", "role": "prescribed_geometry"}],
+            "coverage": {"startT": 0, "endT": 2, "acceptedThroughT": 2, "complete": true},
+            "coordinateFrame": {"frameId": "synthetic-euclidean-frame", "axes": ["X1", "X2", "X3"], "handedness": "right"},
+            "units": {"wakeSpeed": 1, "lengthScale": "synthetic_length_unit", "timeScale": "synthetic_time_unit", "scaleMapId": "synthetic-scale-map-001"},
+            "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+            "interpolation": {"basis": "piecewise_linear_fixture", "maximumPositionError": 0, "eventBoundaryBehavior": "split_chunk"},
+            "provenance": {"producer": "POT-001 synthetic fixture", "producerVersion": "v1", "sourceRecords": [{"sourceId": "potential-source-fixture-001", "sourceSha256": "4444444444444444444444444444444444444444444444444444444444444444"}], "transforms": []},
+            "authority": {"level": "prescribed_path", "scientificOwner": "test-fixture-only", "continuationPermitted": false, "evidenceUse": "Potential contract conformance only"},
+            "chunks": [{"chunkId": "potential-source-chunk-0", "contentSha256": "81a9bcc7037cbab77ee3beabe354e39d25cd358aebf15e7fac0ac9f7f4ffc003", "sequence": 0}]
+          }
+        },
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "view_manifest",
+          "recordId": "record.potential.view",
+          "version": 0,
+          "contentSha256": "a3c8261a29d42f8f5ff0bfa44fa621a9024cdbc0e89b8271e456350ad3cfa089",
+          "payload": {
+            "viewId": "potential-view-001", "sourceBindings": [{"pathSetId": "synthetic-path-set-001", "manifestSha256": "b8ac11b26df17c3c902ccabba6c119846ba1d9a2c1b0c363c52f6a13a16aa164"}],
+            "query": {"fixedT": 1, "axes": ["X1", "X2", "X3"]},
+            "transforms": [{"transformId": "potential-synthetic-grid/v1", "parameters": {"shape": [2, 2, 2]}}],
+            "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "mark_unavailable", "maximumAbsoluteError": 0},
+            "provenance": {"producer": "Potential", "producerVersion": "synthetic_fixture/v1", "sourceRecords": [{"sourceId": "potential-contract-request-001", "sourceSha256": "5555555555555555555555555555555555555555555555555555555555555555"}], "transforms": ["potential-synthetic-grid/v1"]},
+            "authority": {"level": "derived_analysis", "scientificOwner": "test-fixture-only", "continuationPermitted": false, "evidenceUse": "derived synthetic map request only"}
+          }
+        },
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "derived_product_manifest",
+          "recordId": "record.potential.product",
+          "version": 0,
+          "contentSha256": "35ef5e348be90dbd98672982cbb122bef7a07a4525040ce33afa69c4fcdd5b30",
+          "payload": {
+            "productId": "potential-map-synthetic-001", "productKind": "potential_map_product/v1", "sourceBindings": [{"pathSetId": "synthetic-path-set-001", "manifestSha256": "b8ac11b26df17c3c902ccabba6c119846ba1d9a2c1b0c363c52f6a13a16aa164"}], "viewManifestId": "potential-view-001",
+            "coverage": {"startT": 0, "endT": 2, "acceptedThroughT": 2, "complete": true}, "completeness": "sealed",
+            "codec": {"capabilityId": "potential_fixture_map_json/v1", "provider": "app-potential", "representationProfile": "precision_bounded_analysis"},
+            "provenance": {"producer": "Potential", "producerVersion": "synthetic_fixture/v1", "sourceRecords": [{"sourceId": "potential-derived-grid-001", "sourceSha256": "6666666666666666666666666666666666666666666666666666666666666666"}], "transforms": ["potential-synthetic-grid/v1"]},
+            "authority": {"level": "derived_analysis", "scientificOwner": "test-fixture-only", "continuationPermitted": false, "evidenceUse": "derived synthetic map only"}
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "experimental-import",
+      "records": [
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_chunk",
+          "recordId": "record.experiment.chunk.0",
+          "version": 0,
+          "contentSha256": "8e037fd19740a40bfb3e208d0e4bd7e386e8fc3dd954ed1071dd1e7b398837ea",
+          "payload": {
+            "chunkId": "experiment-chunk-0", "pathSetId": "experimental-paths-001", "sourceManifestId": "record.experiment.manifest", "sequence": 0, "predecessorChunkSha256": null,
+            "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+            "units": {"wakeSpeed": 1, "lengthScale": "calibrated_detector_length", "timeScale": "calibrated_detector_time", "scaleMapId": "detector-to-normalized-001"},
+            "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "mark_unavailable", "maximumAbsoluteError": 0.01},
+            "samples": [{"pathId": "observed-track-a", "T": 0, "position": [0, 0, 0], "positionUncertainty": 0.01}, {"pathId": "observed-track-a", "T": 1, "position": [0.5, 0.2, 0.1], "positionUncertainty": 0.01}],
+            "eventMarkers": [],
+            "provenance": {"producer": "synthetic experimental decoder", "producerVersion": "v1", "sourceRecords": [{"sourceId": "immutable-detector-payload-001", "sourceSha256": "7777777777777777777777777777777777777777777777777777777777777777"}], "transforms": ["calibration-v1", "coordinate-map-v1"]},
+            "authority": {"level": "observer_measurement", "scientificOwner": "synthetic instrument owner", "continuationPermitted": false, "evidenceUse": "observer-level comparison fixture only"}
+          }
+        },
+        {
+          "schema": "aaa_core_path_interchange/v0",
+          "recordType": "path_set_manifest",
+          "recordId": "record.experiment.manifest",
+          "version": 0,
+          "contentSha256": "e96f11616ab08ce6532355d05347b70176ebb28f92d73bd8eda04e3208f6315d",
+          "payload": {
+            "pathSetId": "experimental-paths-001", "historyKind": "experimental_observer_path", "membership": [{"pathId": "observed-track-a", "role": "observer_reconstruction"}],
+            "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+            "coordinateFrame": {"frameId": "detector-frame-001", "axes": ["X1", "X2", "X3"], "handedness": "right"},
+            "units": {"wakeSpeed": 1, "lengthScale": "calibrated_detector_length", "timeScale": "calibrated_detector_time", "scaleMapId": "detector-to-normalized-001"},
+            "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "mark_unavailable", "maximumAbsoluteError": 0.01},
+            "interpolation": {"basis": "piecewise_linear_observer_reconstruction", "maximumPositionError": 0.01, "eventBoundaryBehavior": "split_chunk"},
+            "provenance": {"producer": "synthetic experimental decoder", "producerVersion": "v1", "sourceRecords": [{"sourceId": "immutable-detector-payload-001", "sourceSha256": "7777777777777777777777777777777777777777777777777777777777777777"}], "transforms": ["calibration-v1", "coordinate-map-v1"]},
+            "authority": {"level": "observer_measurement", "scientificOwner": "synthetic instrument owner", "continuationPermitted": false, "evidenceUse": "observer-level comparison fixture only"},
+            "chunks": [{"chunkId": "experiment-chunk-0", "contentSha256": "8e037fd19740a40bfb3e208d0e4bd7e386e8fc3dd954ed1071dd1e7b398837ea", "sequence": 0}]
+          }
+        }
+      ]
+    }
+  ]
+}

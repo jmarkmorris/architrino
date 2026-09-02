@@ -6,12 +6,8 @@ This is the canonical execution ledger for remaining Photon work. [priorities.md
 
 1. `reusable_absolute_history_solver` — [PHO-001](#pho-001--reusable-absolute-history-solver). Status: `In progress`.
 2. `local_c_parameterization` — [PHO-002](#pho-002--local-c-parameterization). Status: `In progress`.
-3. `moving_apparatus_delta_x_mapping` — [PHO-003](#pho-003--moving-apparatus-delta-x-mapping). Status: `In progress`.
-4. `absolute_source_history_self_hit` — [PHO-004](#pho-004--absolute-source-history-self-hit). Status: `In progress`.
-5. `substrate_mapping_refinement` — [PHO-005](#pho-005--substrate-mapping-refinement). Status: `Queued`.
-6. `configuration_search_absolute_history_comparison` — [PHO-006](#pho-006--configuration-search-comparison). Status: `In progress`.
-7. `shared_visual_extraction` — [PHO-007](#pho-007--shared-visual-extraction). Status: `Deferred / blocked`.
-8. `runtime_module_decomposition` — [PHO-008](#pho-008--runtime-module-decomposition). Status: `Deferred / blocked`.
+3. `shared_visual_extraction` — [PHO-007](#pho-007--shared-visual-extraction). Status: `Deferred / blocked`.
+4. `runtime_module_decomposition` — [PHO-008](#pho-008--runtime-module-decomposition). Status: `Deferred / blocked`.
 
 ## In progress
 
@@ -31,39 +27,9 @@ This is the canonical execution ledger for remaining Photon work. [priorities.md
 - **Evidence / blocker:** Blocked on a source-bound local-$c$ theory input for final authority.
 - **Completion:** Inputs, mapping, diagnostics, and claim boundary are explicit and focused tests pass.
 
-### PHO-003 — Moving-apparatus delta-x mapping
-
-- **Status:** In progress
-- **Priority object:** `moving_apparatus_delta_x_mapping`
-- **Request / acceptance:** Make absolute-history translation the authoritative $\Delta x$ diagnostic and define clearer stale-root aging thresholds.
-- **Evidence / blocker:** Current mode and diagnostic summaries exist.
-- **Completion:** One authoritative mapping path and threshold contract pass focused tests.
-
-### PHO-004 — Absolute-source-history self-hit
-
-- **Status:** In progress
-- **Priority object:** `absolute_source_history_self_hit`
-- **Request / acceptance:** Deepen rejected-root reasons and extend sweeps only when new transmitter-history families are introduced.
-- **Evidence / blocker:** The [compact sweep receipt](helical-self-hit-phase-lock-sweep.receipt.v1.json) records that the 756-case sweep found no stable phase-lock family; the full case rows are retained in ignored analytical storage because no runtime or test consumed the tracked raw file. The result remains diagnostic.
-- **Completion:** Rejected roots are classified through singular-root, Jacobian, and transversality boundaries without promoting diagnostic output.
-
-### PHO-006 — Configuration Search comparison
-
-- **Status:** In progress
-- **Priority object:** `configuration_search_absolute_history_comparison`
-- **Request / acceptance:** Add a background deep-comparison path, local-$c$/phase-family filters, and independently produced summaries for export.
-- **Evidence / blocker:** UI-bound search already carries compact comparisons.
-- **Completion:** Background work stays responsive and exported rows retain provenance and authority labels.
-
 ## Queued
 
-### PHO-005 — Substrate mapping refinement
-
-- **Status:** Queued
-- **Priority object:** `substrate_mapping_refinement`
-- **Request / acceptance:** Refine I/M/O branch-sum mapping to transverse observer-field amplitudes while separating co-moving diagnostics from absolute-history results.
-- **Evidence / blocker:** Requires the relevant source-bound field mapping.
-- **Completion:** The mapping has declared inputs, residuals, and falsifiers.
+No rows.
 
 ## Deferred / blocked
 
@@ -89,7 +55,37 @@ No rows.
 
 ## Verified
 
-No rows.
+### PHO-006 — Configuration Search comparison
+
+- **Status:** Verified
+- **Priority object:** `configuration_search_absolute_history_comparison`
+- **Request / acceptance:** Add a background deep-comparison path, local-$c$/phase-family filters, and independently produced summaries for export.
+- **Evidence:** The [deep-comparison contract](configuration-search-deep-comparison.md) defines the shared-engine execution boundary, pre-evaluation local-$c$ filter, post-evaluation phase-family filter, responsive yield and progress behavior, and versioned export provenance. `PhotonSearchRuntime.js` evaluates both co-moving and absolute-history modes for every deep candidate, `PhotonRuntime.js` dispatches from a cloned normalized state, and the controls expose both filters.
+- **Completion:** Verified 2026-09-02. `node --test tests/photon-runtime.test.js tests/photon-runtime-orchestration.test.js` passed 62/62, including candidate filtering, progress, event-loop yields, both history modes, and export/import provenance retention. The UI-independent state snapshot is not an independent scientific oracle; no physical-photon, phase-lock-retention, stability, helicity, or Malus-law claim follows.
+
+### PHO-003 — Moving-apparatus delta-x mapping
+
+- **Status:** Verified
+- **Priority object:** `moving_apparatus_delta_x_mapping`
+- **Request / acceptance:** Make absolute-history translation the authoritative $\Delta x$ diagnostic and define clearer stale-root aging thresholds.
+- **Evidence:** The [moving-apparatus $\Delta x$ packet](moving-apparatus-delta-x-mapping.md) declares absolute history authoritative, co-moving output comparison-only, exact braid-center offsets, and retained-root age bands of fresh through one, aging above one through two, and stale above two reference cycles. `PhotonFormulaRuntime.js` emits `photon-moving-apparatus-delta-x.v1`; the diagnostics panel exposes authority, age counts, and oldest retained-root age while preserving separate bounded no-catch-up and stale-window classifications.
+- **Completion:** Verified 2026-09-02. `node --test tests/photon-runtime.test.js tests/photon-runtime-orchestration.test.js` passed 60/60. The result remains display-only-visualization evidence and supplies no photon retention, stability, physical-separation, or constitutive-law result.
+
+### PHO-005 — Substrate mapping refinement
+
+- **Status:** Verified
+- **Priority object:** `substrate_mapping_refinement`
+- **Request / acceptance:** Refine I/M/O branch-sum mapping to transverse observer-field amplitudes while separating co-moving diagnostics from absolute-history results.
+- **Evidence:** The [source-bound mapping packet](substrate-mapping-refinement.md) fixes $W^{\mathrm{acc}}=c_{\mathrm{sig}}/|D_t|$, keeps $D_r/D_t$ as root-playback data, defines exact I/M/O sample and harmonic ledgers, declares both mode identities and all inputs, and supplies algebraic, fit, root-solve, and coverage residuals with operator-checkable falsifiers. `PhotonFormulaRuntime.js` emits `photon-substrate-mapping-refinement.v1`; focused tests cover both modes, the I/M/O partition, coefficient-level closure, and fail-closed causal-factor rows.
+- **Completion:** Verified 2026-09-02. `node --test tests/photon-runtime.test.js` passed 54/54. This is display-only-visualization evidence and supplies no photon retention, stability, physical-field, helicity, Malus-law, or Noether sea constitutive result.
+
+### PHO-004 — Absolute-source-history self-hit
+
+- **Status:** Verified
+- **Priority object:** `absolute_source_history_self_hit`
+- **Request / acceptance:** Deepen rejected-root reasons and extend sweeps only when new transmitter-history families are introduced.
+- **Evidence:** The [self-hit admission packet](absolute-source-history-self-hit-admission.md) gives every numerical helical root candidate an ordered disposition: `singular_root`, `jacobian_floor_failure`, `transversality_not_certified`, or `admitted_regular_root`. Runtime and sweep summaries expose candidate, admitted, rejected, and reason counts; phase families retain singular candidates only as non-promotable diagnostics. No new transmitter-history family was introduced, so the provenance-bound [756-case receipt](helical-self-hit-phase-lock-sweep.receipt.v1.json) was not regenerated or expanded.
+- **Completion:** Verified 2026-09-02. `node --test tests/photon-runtime.test.js tests/photon-runtime-orchestration.test.js` passed 61/61, including a twelve-row boundary fixture with three roots in each disposition and sweep count closure. No self-interaction, phase-lock, stability, retention, or physical-photon result follows.
 
 ## Superseded / withdrawn
 

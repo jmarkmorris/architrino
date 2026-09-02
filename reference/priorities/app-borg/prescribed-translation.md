@@ -6,7 +6,7 @@ Extend Borg's existing assembly-view replay mode with a record-derived analysis 
 
 ## Packet Status
 
-Status: `queued`; owner: Borg; queue row: [BORG-006](work-queue.md#borg-006--prescribed-translation-and-causal-history-tubes).
+Status: `verified` on 2026-09-01; owner: Borg; durable verification: [BORG-006 work-log entry](work-log.md#2026-09-01---borg-006-prescribed-translation-and-causal-history-tubes-verified) and [browser-performance receipt](evidence/borg-006-browser-performance.2026-09-01.json).
 
 The completed feature should let a user:
 

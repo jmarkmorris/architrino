@@ -1023,6 +1023,7 @@
 
       .borg-drawer-content {
         margin-top: 7px;
+        min-width: 0;
       }
 
       .borg-drawer-content > * + * {
@@ -1091,7 +1092,11 @@
 
       .borg-table-scroll {
         margin-top: 8px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
         overflow-x: auto;
+        contain: inline-size;
       }
 
       .borg-binary-table {
@@ -1138,6 +1143,7 @@
       .borg-prescribed-controls {
         display: grid;
         gap: 8px;
+        min-width: 0;
       }
 
       .borg-prescribed-controls input[type="range"] {
@@ -1205,6 +1211,18 @@
         outline: 1px solid rgba(152, 220, 186, 0.66);
         outline-offset: -1px;
         background: rgba(111, 181, 147, 0.08);
+      }
+
+      @media (max-width: 680px) {
+        .borg-analysis-table {
+          min-width: 0;
+          table-layout: fixed;
+        }
+
+        .borg-analysis-table th,
+        .borg-analysis-table td {
+          overflow-wrap: anywhere;
+        }
       }
 
       .borg-root-branch-plot {

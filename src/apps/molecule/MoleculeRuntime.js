@@ -10,11 +10,13 @@ import {
   calculateMoleculeLedger,
   formatLedgerNumber,
 } from "./MoleculeLedgerRuntime.js";
+import { APPLICATIONS_SCENE_PATH } from "../navigator/StandaloneAppHomeRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import {
-  APPLICATIONS_SCENE_PATH,
-  navigateStandaloneAppHome,
-  resolveStandaloneAppHomeHref,
-} from "../navigator/StandaloneAppHomeRuntime.js";
+  PUBCHEM_BASE_URL,
+  PUBCHEM_EXPLICIT_FORM_SUBMIT,
+  shouldQueryPubChem,
+} from "./MoleculeExternalLookupPolicy.js";
 
 const DEFAULT_PRESET_ID = "water";
 const BOND_RADIUS = 0.055;
@@ -34,7 +36,6 @@ const FORMULA_SEPARATOR_PATTERN = /[.\u00b7\u2022]/gu;
 const FORMULA_LETTER_PATTERN = /^[A-Za-z]$/u;
 const FORMULA_DIGIT_PATTERN = /^\d$/u;
 const SUPPORTED_FORMULA_ELEMENTS = new Set(SUPPORTED_MOLECULE_LEDGER_ELEMENTS);
-const PUBCHEM_BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound";
 const PUBCHEM_LOOKUP_CID_LIMIT = 12;
 const PUBCHEM_FETCH_TIMEOUT_MS = 6500;
 const PUBCHEM_PROPERTY_FIELDS = "Title,IUPACName,MolecularFormula";
@@ -569,7 +570,7 @@ export function createMoleculeRuntime(options = {}) {
     sessionStatus: queryMoleculeElement(documentLike, "#molecule-session-status"),
     sessionList: queryMoleculeElement(documentLike, "#molecule-session-list"),
     presetList: queryMoleculeElement(documentLike, "#molecule-preset-list"),
-    homeButton: queryMoleculeElement(documentLike, "#molecule-home-button"),
+    navigationHost: queryMoleculeElement(documentLike, "#scene-hud-tools"),
   };
 
   const renderer = new THREE.WebGLRenderer({
@@ -591,6 +592,7 @@ export function createMoleculeRuntime(options = {}) {
   const presetButtons = new Map();
   const sessionMolecules = [];
   const sessionById = new Map();
+  let navigationRuntime = null;
 
   const state = {
     activePreset: null,
@@ -1168,6 +1170,7 @@ export function createMoleculeRuntime(options = {}) {
     nameInput = "",
     pendingMessage = "Looking up molecule...",
     presetMatchPrefix = "Matched preset",
+    externalLookupActivation = "",
   }) {
     const parsedFormula = parseFormulaInput(formulaInput);
     if (!parsedFormula.ok) {
@@ -1190,6 +1193,17 @@ export function createMoleculeRuntime(options = {}) {
       );
       dom.sessionFormulaInput.value = "";
       dom.sessionNameInput.value = "";
+      return true;
+    }
+
+    if (!shouldQueryPubChem(externalLookupActivation)) {
+      const localMolecule = createSessionMolecule({
+        name: requestedName,
+        formula: parsedFormula.formula,
+        counts: parsedFormula.counts,
+      });
+      addSessionMolecule(localMolecule, { shareName: requestedName });
+      setSessionStatus(`Loaded locally without an external lookup: ${localMolecule.name}.`);
       return true;
     }
 
@@ -1259,6 +1273,7 @@ export function createMoleculeRuntime(options = {}) {
     await resolveSessionMoleculeRequest({
       formulaInput: dom.sessionFormulaInput.value,
       nameInput: dom.sessionNameInput.value,
+      externalLookupActivation: PUBCHEM_EXPLICIT_FORM_SUBMIT,
     });
   }
 
@@ -1497,22 +1512,17 @@ export function createMoleculeRuntime(options = {}) {
     }
   }
 
-  function navigateHome() {
-    navigateStandaloneAppHome(
-      windowLike.location,
-      resolveStandaloneAppHomeHref(windowLike?.location?.href),
-      {
-        windowLike,
-      }
-    );
-  }
-
   function init() {
     if (!presets.length) {
       throw new Error("Molecule app requires at least one preset.");
     }
     presetButtons.clear();
     renderPresetButtons();
+    navigationRuntime = createStandaloneAppNavigationRuntime({
+      host: dom.navigationHost,
+      document: documentLike,
+      window: windowLike,
+    }).init();
     dom.canvas.style.cursor = "grab";
     dom.canvas.addEventListener("pointerdown", handlePointerDown);
     dom.canvas.addEventListener("pointermove", handlePointerMove);
@@ -1520,7 +1530,6 @@ export function createMoleculeRuntime(options = {}) {
     dom.canvas.addEventListener("pointercancel", handlePointerUp);
     dom.canvas.addEventListener("pointerleave", handlePointerLeave);
     dom.canvas.addEventListener("wheel", handleWheel, { passive: false });
-    dom.homeButton.addEventListener("click", navigateHome);
     dom.sessionForm.addEventListener("submit", handleSessionSubmit);
     windowLike.addEventListener("resize", resize);
     resize();
@@ -1539,6 +1548,8 @@ export function createMoleculeRuntime(options = {}) {
     dom.canvas.removeEventListener("pointerleave", handlePointerLeave);
     dom.canvas.removeEventListener("wheel", handleWheel);
     dom.sessionForm.removeEventListener("submit", handleSessionSubmit);
+    navigationRuntime?.destroy?.();
+    navigationRuntime = null;
     clearMolecule();
     renderer.dispose();
   }

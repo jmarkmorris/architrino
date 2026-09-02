@@ -41,6 +41,50 @@ def oracle_history(
     return PiecewisePolynomialHistory.from_segments((segment,), history_id=history_id)
 
 
+def oracle_post_event_histories(
+    end: str,
+) -> dict[str, PiecewisePolynomialHistory]:
+    receiver = CubicHistorySegment.from_decimal_tokens(
+        t_start="0",
+        t_end=end,
+        coefficients=(
+            ("0", "0", "0", "0"),
+            ("0", "0", "0", "0"),
+            ("0", "0", "0", "0"),
+        ),
+        precision=PRECISION,
+    )
+    source_fold = CubicHistorySegment.from_decimal_tokens(
+        t_start="0",
+        t_end="2",
+        coefficients=(
+            ("5", "-4", "1", "0"),
+            ("0", "0", "0", "0"),
+            ("0", "0", "0", "0"),
+        ),
+        precision=PRECISION,
+    )
+    source_constant = CubicHistorySegment.from_decimal_tokens(
+        t_start="2",
+        t_end=end,
+        coefficients=(
+            ("1", "0", "0", "0"),
+            ("0", "0", "0", "0"),
+            ("0", "0", "0", "0"),
+        ),
+        precision=PRECISION,
+    )
+    return {
+        "receiver": PiecewisePolynomialHistory.from_segments(
+            (receiver,), history_id="post-event-receiver-oracle"
+        ),
+        "source": PiecewisePolynomialHistory.from_segments(
+            (source_fold, source_constant),
+            history_id="post-event-source-oracle",
+        ),
+    }
+
+
 def oracle_request(
     run_id: str,
     histories: dict[str, PiecewisePolynomialHistory],
@@ -135,6 +179,12 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         )
         cls.binary = cls.build / "eom_native_evolution_fixture_cli"
         cls.packet = cls._run_fixture()
+        cls.long_horizon_packet = cls._run_fixture_mode(
+            "bounded-population-long-horizon"
+        )
+        cls.finite_width_post_event_packet = cls._run_fixture_mode(
+            "finite-width-post-event"
+        )
 
     @classmethod
     def tearDownClass(cls) -> None:
@@ -142,8 +192,12 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
 
     @classmethod
     def _run_fixture(cls) -> dict[str, object]:
+        return cls._run_fixture_mode("all")
+
+    @classmethod
+    def _run_fixture_mode(cls, mode: str) -> dict[str, object]:
         completed = subprocess.run(
-            [str(cls.binary), "all"],
+            [str(cls.binary), mode],
             check=True,
             cwd=ROOT,
             capture_output=True,
@@ -304,6 +358,115 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         )
         self.assertTrue(checkpoint["joint_fallback_resume_applied"])
 
+    def test_joint_precision_controls_cover_live_sum_full_corrector_and_retention(self) -> None:
+        controls = self.packet["joint_precision_controls"]
+
+        live = controls["live_snapshot"]
+        self.assertEqual(
+            live["reference"], "analytic_static_six_path_master_eom_sum"
+        )
+        self.assertEqual(live["consumed_sharp_rows"], 30)
+        self.assertEqual(live["fallback_rows"], 0)
+        positions = [Decimal(str(value)) for value in live["positions"]]
+        self.assertEqual(len(positions), 6)
+        self.assertEqual(len(live["receivers"]), 6)
+        for receiver_index, receiver in enumerate(live["receivers"]):
+            expected = Decimal(0)
+            for transmitter_index, transmitter in enumerate(positions):
+                if transmitter_index == receiver_index:
+                    continue
+                displacement = positions[receiver_index] - transmitter
+                expected += displacement / (abs(displacement) ** 3)
+            center = Decimal(str(receiver["center"][0]))
+            projection = Decimal(str(receiver["projection"][0]))
+            self.assertLessEqual(center - projection, expected)
+            self.assertGreaterEqual(center + projection, expected)
+            self.assertEqual(
+                [Decimal(str(value))
+                 for value in receiver["common_translation_coefficient"]],
+                [Decimal(0), Decimal(0), Decimal(0)],
+            )
+            for axis in (1, 2):
+                transverse_center = Decimal(str(receiver["center"][axis]))
+                transverse_projection = Decimal(
+                    str(receiver["projection"][axis])
+                )
+                self.assertLessEqual(
+                    transverse_center - transverse_projection, Decimal(0)
+                )
+                self.assertGreaterEqual(
+                    transverse_center + transverse_projection, Decimal(0)
+                )
+
+        corrector = controls["endpoint_corrector"]
+        self.assertEqual(
+            corrector["reference"], "independent_decimal_linear_solve"
+        )
+        self.assertEqual(corrector["dimension"], 18)
+        self.assertTrue(corrector["certified"])
+        self.assertGreater(Decimal(str(corrector["minimum_margin"])), 0)
+        self.assertEqual(
+            corrector["negative_failure_code"],
+            "krawczyk_image_not_strictly_interior",
+        )
+
+        dimension = 18
+        matrix = [[Decimal(0) for _ in range(dimension)]
+                  for _ in range(dimension)]
+        for row in range(dimension):
+            matrix[row][row] = Decimal("0.8")
+            matrix[row][(row + 1) % dimension] = Decimal("-0.03")
+            matrix[row][(row - 1) % dimension] = Decimal("0.01")
+        right_hand_side = [
+            Decimal(str(value)) for value in corrector["evaluated_centers"]
+        ]
+        augmented = [matrix[row] + [right_hand_side[row]]
+                     for row in range(dimension)]
+        for column in range(dimension):
+            pivot = max(
+                range(column, dimension),
+                key=lambda row: abs(augmented[row][column]),
+            )
+            self.assertNotEqual(augmented[pivot][column], 0)
+            augmented[column], augmented[pivot] = (
+                augmented[pivot], augmented[column]
+            )
+            pivot_value = augmented[column][column]
+            augmented[column] = [
+                value / pivot_value for value in augmented[column]
+            ]
+            for row in range(dimension):
+                if row == column:
+                    continue
+                factor = augmented[row][column]
+                if factor == 0:
+                    continue
+                augmented[row] = [
+                    value - factor * pivot_value
+                    for value, pivot_value in zip(
+                        augmented[row], augmented[column]
+                    )
+                ]
+        oracle_root = [row[-1] for row in augmented]
+        self.assertEqual(len(corrector["image"]), dimension)
+        for image, root in zip(corrector["image"], oracle_root):
+            assert_contains(self, image, root)
+            lower, upper = interval_bounds(image)
+            self.assertGreater(lower, Decimal("-0.001"))
+            self.assertLess(upper, Decimal("0.001"))
+
+        retention = controls["history_retention"]
+        self.assertTrue(retention["append_changed_identity"])
+        self.assertTrue(retention["checkpoint_preserved_identity"])
+        self.assertTrue(retention["resume_matches_direct_identity"])
+        self.assertGreater(retention["reused_joint_start_snapshot_count"], 0)
+        self.assertEqual(
+            Decimal(str(retention["retained_coefficient"])),
+            Decimal("0.0005"),
+        )
+        self.assertAlmostEqual(retention["position_remainder"], 2e-6)
+        self.assertAlmostEqual(retention["velocity_remainder"], 5e-6)
+
     def test_adaptive_checkpoint_restores_exact_growth_decisions_at_three_cuts(self) -> None:
         # Independent two-success state-machine expectation, fixed before the
         # repair: at cuts 1/2/4 the next proposed widths are .01/.02/.04.
@@ -346,8 +509,8 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
                 self.assertEqual(cut["checkpoint_step"], prefix["controller_step_size"])
                 self.assertEqual(prefix["accepted_end_time"], direct["steps"][count - 1]["accepted_time"])
                 self.assertEqual(resumed["status"], "completed")
-                self.assertEqual(prefix["accepted_step_count"] + resumed["accepted_step_count"], direct["accepted_step_count"])
-                self.assertEqual(prefix["rejected_step_count"] + resumed["rejected_step_count"], 0)
+                self.assertEqual(resumed["accepted_step_count"], direct["accepted_step_count"])
+                self.assertEqual(resumed["rejected_step_count"], direct["rejected_step_count"])
                 self.assertEqual(resumed["controller_consecutive_growth_headroom_steps"], direct["controller_consecutive_growth_headroom_steps"])
                 self.assertEqual(resumed["controller_step_size"], direct["controller_step_size"])
                 timeline = prefix["steps"] + resumed["steps"]
@@ -355,9 +518,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
                 for index, (actual, uninterrupted) in enumerate(zip(timeline, direct["steps"], strict=True)):
                     self.assertEqual({key: actual[key] for key in decision_fields},
                                      {key: uninterrupted[key] for key in decision_fields})
-                    # Resume indices are local; do not relabel their origin.
-                    offset = 0 if index < count else count
-                    self.assertEqual(actual["step_index"] + offset, uninterrupted["step_index"])
+                    self.assertEqual(actual["step_index"], uninterrupted["step_index"])
                     self.assertEqual(actual["root_time_pressure_ratio"], 0)
 
     def test_adaptive_checkpoint_preserves_every_history_token_not_only_endpoint(self) -> None:
@@ -375,8 +536,74 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
 
     def test_adaptive_checkpoint_rejects_incomplete_legacy_format_and_tampering(self) -> None:
         control = self.packet["adaptive_checkpoint"]
-        for field in ("old_schema_rejected", "old_magic_rejected", "memory_tamper_rejected"):
+        for field in (
+            "old_schema_rejected",
+            "old_magic_rejected",
+            "memory_tamper_rejected",
+            "rejected_boundary_checkpoint_rejected",
+        ):
             self.assertTrue(control[field], field)
+
+    def test_adaptive_checkpoint_honors_cumulative_run_limits_and_callbacks(self) -> None:
+        control = self.packet["adaptive_checkpoint"]
+        direct = control["bounded_run_direct"]
+        prefix = control["bounded_run_prefix"]
+        resumed = control["bounded_run_resumed"]
+        self.assertEqual(direct["status"], "completed")
+        self.assertEqual(direct["accepted_step_count"], 5)
+        self.assertEqual(prefix["accepted_step_count"], 2)
+        self.assertEqual(resumed["status"], "completed")
+        self.assertEqual(resumed["accepted_step_count"], 5)
+        self.assertEqual(resumed["rejected_step_count"], 0)
+        self.assertEqual(control["bounded_run_resume_callback_counts"], [3, 4, 5])
+        timeline = prefix["steps"] + resumed["steps"]
+        self.assertEqual(
+            [
+                {key: value for key, value in step.items()
+                 if key != "reused_start_snapshot_count"}
+                for step in timeline
+            ],
+            [
+                {key: value for key, value in step.items()
+                 if key != "reused_start_snapshot_count"}
+                for step in direct["steps"]
+            ],
+        )
+
+    def test_adaptive_restart_counters_reject_run_limit_overflow(self) -> None:
+        control = self.packet["adaptive_checkpoint"]
+        for field in (
+            "accepted_counter_overflow_rejected",
+            "rejected_counter_overflow_rejected",
+            "total_counter_overflow_rejected",
+        ):
+            self.assertTrue(control[field], field)
+
+    def test_cooperative_cancellation_stops_only_at_resumable_boundary(self) -> None:
+        control = self.packet["adaptive_checkpoint"]
+        stopped = control["cancelled_run"]
+        resumed = control["cancelled_run_resumed"]
+        direct = control["bounded_run_direct"]
+        self.assertEqual(stopped["status"], "halted")
+        self.assertEqual(stopped["halt_code"], "cancelled_at_accepted_boundary")
+        self.assertEqual(stopped["accepted_step_count"], 2)
+        self.assertEqual(stopped["rejected_step_count"], 0)
+        self.assertEqual(stopped["steps"][-1]["status"], "accepted")
+        self.assertEqual(resumed["status"], "completed")
+        self.assertEqual(resumed["accepted_step_count"], 5)
+        timeline = stopped["steps"] + resumed["steps"]
+        self.assertEqual(
+            [
+                {key: value for key, value in step.items()
+                 if key != "reused_start_snapshot_count"}
+                for step in timeline
+            ],
+            [
+                {key: value for key, value in step.items()
+                 if key != "reused_start_snapshot_count"}
+                for step in direct["steps"]
+            ],
+        )
 
     def test_adaptive_restart_memory_rejects_invalid_modes_and_overflow(self) -> None:
         control = self.packet["adaptive_checkpoint"]
@@ -390,9 +617,12 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         stopped = control["unstarted"]
         self.assertEqual(stopped["halt_code"], "memory_budget_exhausted")
         self.assertEqual(stopped["steps"], [])
-        self.assertEqual(stopped["accepted_step_count"], 0)
+        self.assertEqual(stopped["accepted_step_count"], 7)
+        self.assertEqual(stopped["rejected_step_count"], 3)
         self.assertEqual(stopped["controller_consecutive_growth_headroom_steps"], 1)
         self.assertEqual(control["unstarted_checkpoint_memory"], 1)
+        self.assertEqual(control["unstarted_checkpoint_accepted_steps"], 7)
+        self.assertEqual(control["unstarted_checkpoint_rejected_steps"], 3)
 
     def test_adaptive_restart_preserves_capped_counts_without_saturation(self) -> None:
         control = self.packet["adaptive_checkpoint"]
@@ -589,6 +819,250 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertGreater(interval_bounds(native_histories["a"]["position"][0])[1], 0)
         self.assertLess(interval_bounds(native_histories["b"]["position"][0])[0], 2)
 
+    def test_bounded_population_long_horizon_packet_crosses_transit_and_refines(self) -> None:
+        packet = self.long_horizon_packet
+        self.assertEqual(packet["schema"], "eom_bounded_population_long_horizon/v1")
+        self.assertEqual(packet["field_speed"], "1")
+        self.assertEqual(packet["post_transit_margin"], "0.2")
+
+        run_names = (
+            "coarse",
+            "medium",
+            "fine",
+            "fine_repeat",
+            "fine_single_thread",
+        )
+        for run_name in run_names:
+            with self.subTest(run_name=run_name):
+                run = packet[run_name]
+                self.assertEqual(run["status"], "completed", run)
+                self.assertEqual(run["accepted_end_time"], "6.2")
+                self.assertEqual(run["rejected_step_count"], 0)
+                self.assertTrue(run["all_steps_atomic"])
+                self.assertGreater(run["accepted_step_count"], 10)
+                for step in run["steps"]:
+                    self.assertEqual(step["status"], "accepted", step)
+                    self.assertTrue(step["publication_atomic"])
+                    self.assertEqual(step["accepted_ordered_pairs"], 4)
+                    self.assertEqual(step["traversal_unresolved_pairs"], 0)
+
+        fine = packet["fine"]
+        final_step = fine["steps"][-1]
+        self.assertEqual(final_step["post_initial_history_root_count"], 2)
+        self.assertGreater(Decimal(str(final_step["maximum_root_upper"])), Decimal("5"))
+
+        self.assertEqual(fine["histories"], packet["fine_repeat"]["histories"])
+        self.assertEqual(fine["steps"], packet["fine_repeat"]["steps"])
+        self.assertEqual(fine["histories"], packet["fine_single_thread"]["histories"])
+        self.assertEqual(fine["steps"], packet["fine_single_thread"]["steps"])
+
+        def endpoint_midpoints(run: dict[str, object]) -> tuple[Decimal, ...]:
+            values: list[Decimal] = []
+            for path in run["histories"]:
+                for quantity in ("position", "velocity"):
+                    lower, upper = interval_bounds(path[quantity][0])
+                    values.append((lower + upper) / 2)
+            return tuple(values)
+
+        coarse_values = endpoint_midpoints(packet["coarse"])
+        medium_values = endpoint_midpoints(packet["medium"])
+        fine_values = endpoint_midpoints(fine)
+        coarse_medium_delta = max(
+            abs(coarse - medium)
+            for coarse, medium in zip(coarse_values, medium_values)
+        )
+        medium_fine_delta = max(
+            abs(medium - fine_value)
+            for medium, fine_value in zip(medium_values, fine_values)
+        )
+        self.assertGreater(coarse_medium_delta, 0)
+        self.assertGreater(medium_fine_delta, 0)
+        self.assertLess(medium_fine_delta, coarse_medium_delta)
+
+        histories = {
+            "a": oracle_history("bounded-long-horizon-a", "5", ("0", "0", "0", "0")),
+            "b": oracle_history("bounded-long-horizon-b", "5", ("1", "0", "0", "0")),
+        }
+        oracle = evolve_coupled_histories(
+            oracle_request(
+                "bounded-long-horizon-fine-oracle",
+                histories,
+                {"a": "1", "b": "-1"},
+                "5",
+                "6.2",
+                "0.02",
+                "0.02",
+                "1e-4",
+                "1e-4",
+                "1e-8",
+                "0.001",
+            )
+        )
+        self.assertEqual(oracle.status, "completed")
+        self.assertEqual(oracle.accepted_end_time, Decimal("6.2"))
+        self.assertTrue(oracle.all_steps_atomic)
+        native_by_path = {path["path_id"]: path for path in fine["histories"]}
+        for path_id, oracle_history_result in oracle.histories:
+            oracle_position, oracle_velocity = (
+                oracle_history_result.segments[-1].nominal_state(Decimal("6.2"))
+            )
+            for axis in range(3):
+                assert_contains(
+                    self,
+                    native_by_path[path_id]["position"][axis],
+                    oracle_position[axis],
+                )
+                assert_contains(
+                    self,
+                    native_by_path[path_id]["velocity"][axis],
+                    oracle_velocity[axis],
+                )
+
+    def test_bounded_population_thread_benchmark_modes_are_byte_identical(self) -> None:
+        outputs: dict[str, bytes] = {}
+        for mode in (
+            "bounded-population-fine-thread-1",
+            "bounded-population-fine-thread-4",
+        ):
+            completed = subprocess.run(
+                [str(self.binary), mode],
+                check=True,
+                cwd=ROOT,
+                capture_output=True,
+            )
+            outputs[mode] = completed.stdout
+            packet = json.loads(completed.stdout)
+            self.assertEqual(packet["status"], "completed")
+            self.assertEqual(packet["accepted_end_time"], "6.2")
+
+        self.assertEqual(
+            outputs["bounded-population-fine-thread-1"],
+            outputs["bounded-population-fine-thread-4"],
+        )
+
+    def test_finite_width_event_continues_into_generated_history(self) -> None:
+        packet = self.finite_width_post_event_packet
+        self.assertEqual(packet["schema"], "eom_finite_width_post_event/v1")
+        self.assertEqual(packet["field_speed"], "1")
+        self.assertEqual(packet["fold_reception_time"], "2.75")
+
+        run_names = (
+            "coarse",
+            "medium",
+            "fine",
+            "fine_repeat",
+            "fine_single_thread",
+            "fine_mpfr",
+        )
+        for run_name in run_names:
+            with self.subTest(run_name=run_name):
+                run = packet[run_name]
+                self.assertEqual(run["status"], "completed", run)
+                self.assertEqual(run["accepted_end_time"], "3.903")
+                self.assertEqual(run["rejected_step_count"], 0)
+                self.assertTrue(run["all_steps_atomic"])
+                self.assertGreater(run["accepted_step_count"], 10)
+                self.assertTrue(
+                    any(step["event_impulse_count"] > 0 for step in run["steps"])
+                )
+                for step in run["steps"]:
+                    self.assertEqual(step["status"], "accepted", step)
+                    self.assertTrue(step["publication_atomic"])
+                    self.assertEqual(step["accepted_ordered_pairs"], 4)
+                    self.assertEqual(step["traversal_unresolved_pairs"], 0)
+
+        fine = packet["fine"]
+        final_step = fine["steps"][-1]
+        self.assertEqual(final_step["post_initial_history_root_count"], 2)
+        self.assertGreater(
+            Decimal(str(final_step["maximum_root_upper"])), Decimal("2.703")
+        )
+        self.assertEqual(fine["histories"], packet["fine_repeat"]["histories"])
+        self.assertEqual(fine["steps"], packet["fine_repeat"]["steps"])
+        self.assertEqual(fine["histories"], packet["fine_single_thread"]["histories"])
+        self.assertEqual(fine["steps"], packet["fine_single_thread"]["steps"])
+        self.assertEqual(fine["histories"], packet["fine_mpfr"]["histories"])
+        self.assertTrue(
+            any(
+                step["event_precision_escalated_count"] > 0
+                and step["maximum_event_precision_bits"] >= 128
+                for step in packet["fine_mpfr"]["steps"]
+            )
+        )
+
+        event_steps = packet["event_steps"]
+        self.assertEqual(len(event_steps), 1)
+        event_step = event_steps[0]
+        self.assertEqual(event_step["status"], "accepted")
+        self.assertGreater(event_step["event_impulse_count"], 0)
+        self.assertEqual(
+            event_step["event_impulse_count"],
+            event_step["regulator_certificate_count"],
+        )
+        self.assertTrue(event_step["finite_width_state_certificates"])
+        for state in event_step["finite_width_state_certificates"]:
+            self.assertEqual(state["status"], "certified_complete", state)
+            self.assertTrue(state["endpoint_reconstruction_passed"])
+            self.assertTrue(state["common_domain_chart_overlap_passed"])
+            self.assertTrue(state["exit_passed"])
+
+        def endpoint_midpoints(run: dict[str, object]) -> tuple[Decimal, ...]:
+            values: list[Decimal] = []
+            for path in run["histories"]:
+                for quantity in ("position", "velocity"):
+                    lower, upper = interval_bounds(path[quantity][0])
+                    values.append((lower + upper) / 2)
+            return tuple(values)
+
+        coarse_values = endpoint_midpoints(packet["coarse"])
+        medium_values = endpoint_midpoints(packet["medium"])
+        fine_values = endpoint_midpoints(fine)
+        coarse_medium_delta = max(
+            abs(coarse - medium)
+            for coarse, medium in zip(coarse_values, medium_values)
+        )
+        medium_fine_delta = max(
+            abs(medium - fine_value)
+            for medium, fine_value in zip(medium_values, fine_values)
+        )
+        self.assertGreater(coarse_medium_delta, 0)
+        self.assertGreater(medium_fine_delta, 0)
+        self.assertLess(medium_fine_delta, coarse_medium_delta)
+
+        oracle_histories = oracle_post_event_histories("3.903")
+        for native_event in event_step["event_impulses"]:
+            self.assertEqual(native_event["receiver_path_id"], "receiver")
+            self.assertEqual(native_event["transmitter_path_id"], "source")
+            oracle_event = certify_fold_caustic_impulse(
+                EventImpulseRequest.from_decimal_tokens(
+                    receiver_path_id="receiver",
+                    transmitter_path_id="source",
+                    receiver_history=oracle_histories["receiver"],
+                    transmitter_history=oracle_histories["source"],
+                    receiver_charge="1",
+                    transmitter_charge="1",
+                    reception_lower=native_event["reception_lower"],
+                    reception_upper=native_event["reception_upper"],
+                    search_lower="0",
+                    field_speed="1",
+                    coupling="1e-30",
+                    causal_width="0.25",
+                    core_scale="0.2",
+                    impulse_tolerance="0.08",
+                    max_depth=24,
+                    max_cells=200000,
+                )
+            )
+            self.assertEqual(oracle_event.status, "certified_complete")
+            for native_component, oracle_component in zip(
+                native_event["impulse"], oracle_event.impulse
+            ):
+                assert_overlaps(self, native_component, oracle_component)
+            for native_component, oracle_component in zip(
+                native_event["position_moment"], oracle_event.position_moment
+            ):
+                assert_overlaps(self, native_component, oracle_component)
+
     def test_coupled_snapshot_consumes_certified_traversal_exclusions(self) -> None:
         native = self.evolution("traversal-exclusion-coupled-step")
         self.assertEqual(
@@ -709,6 +1183,11 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             "unsupported_caustic_or_singular_chart",
         )
         self.assertTrue(rejected["publication_atomic"])
+        self.assertTrue(rejected["input_joint_fingerprints"])
+        self.assertEqual(
+            rejected["input_joint_fingerprints"],
+            rejected["published_joint_fingerprints"],
+        )
         self.assertEqual(
             self.packet["joint_event_halt_code"],
             "caustic_transit_uncertified",

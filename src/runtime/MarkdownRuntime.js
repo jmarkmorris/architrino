@@ -39,8 +39,6 @@ export function createMarkdownRuntime(deps) {
   let previousDocumentTitle = null;
   const textbookTocMarkdownPath = "content/generated/markdown/textbook/toc.md";
   const archieComicsMarkdownPath = "content/markdown/aaa/archie/comics.md";
-  const supportResearchMarkdownPath = "content/markdown/aaa/archie/support-architrino-research.md";
-  const liberapayWidgetScriptSrc = "https://liberapay.com/Architrino/widgets/button.js";
   const mathTypesetRetryDelayMs = 120;
   const mathTypesetRetryLimit = 20;
   const markdownMathDelimiters = [
@@ -315,10 +313,6 @@ export function createMarkdownRuntime(deps) {
     return normalizeRepoPath(markdownPath) === archieComicsMarkdownPath;
   }
 
-  function isSupportResearchPath(markdownPath) {
-    return normalizeRepoPath(markdownPath) === supportResearchMarkdownPath;
-  }
-
   function setMarkdownKind(markdownPath) {
     if (!markdownPanel) {
       return;
@@ -367,39 +361,6 @@ export function createMarkdownRuntime(deps) {
     };
 
     markListLevel(topLevelList, 1);
-  }
-
-  function decorateSupportResearch() {
-    if (!markdownBody || !isSupportResearchPath(activeMarkdownSourcePath)) {
-      return;
-    }
-
-    const monthlyHeading = [...markdownBody.querySelectorAll("h3")].find(
-      (heading) => heading.textContent.trim().toLowerCase() === "monthly support"
-    );
-    if (!monthlyHeading) {
-      return;
-    }
-
-    const existingWidget = markdownBody.querySelector(".liberapay-donation-widget");
-    if (existingWidget) {
-      return;
-    }
-
-    const insertionTarget =
-      monthlyHeading.nextElementSibling?.tagName === "P"
-        ? monthlyHeading.nextElementSibling
-        : monthlyHeading;
-
-    const widget = document.createElement("div");
-    widget.className = "liberapay-donation-widget";
-    widget.setAttribute("aria-label", "Liberapay donation button");
-
-    const script = document.createElement("script");
-    script.src = liberapayWidgetScriptSrc;
-    widget.appendChild(script);
-
-    insertionTarget.insertAdjacentElement("afterend", widget);
   }
 
   function getBrowserWindow() {
@@ -798,7 +759,6 @@ export function createMarkdownRuntime(deps) {
     decorateLocalAssetLinks();
     equationMapRuntime.decorate(markdownPath, sectionKey);
     decorateTextbookToc();
-    decorateSupportResearch();
     applyMarkdownLayout();
     typesetMarkdownWithRetry(startTypesetRetryCycle());
     void mermaidRuntime.renderDiagrams().then(() => {

@@ -1,0 +1,21 @@
+{
+  "schema": "aaa_core_client_consumer_suite/v0",
+  "pathFixtureSuite": "tests/fixtures/aaa-core-path-interchange/v0/positive-suite.json",
+  "streamFixtureSuite": "tests/fixtures/aaa-core-accepted-history-stream/v0/positive-suite.json",
+  "queryFixtureSuite": "tests/fixtures/aaa-core-query-transform-publication/v0/positive-suite.json",
+  "sourceCaseId": "prescribed-paths",
+  "streamCaseId": "sealed-dual-consumer-reconnect",
+  "queryCaseId": "complete-equivalent-and-ordered",
+  "clients": [
+    {"clientId": "potential-client", "applicationId": "Potential"},
+    {"clientId": "equation-mapping-client", "applicationId": "Equation Mapping"}
+  ],
+  "expected": {
+    "sharedClass": "AAAClient",
+    "firstPublicationCacheStatus": "miss",
+    "equivalentPublicationCacheStatus": "hit",
+    "streamState": "sealed",
+    "sourceAcceptedThroughT": 3,
+    "failureCode": "missing_required_field"
+  }
+}

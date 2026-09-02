@@ -1,0 +1,17 @@
+{
+  "suiteSchema": "aaa_core_accepted_history_stream_negative_suite/v0",
+  "cases": [
+    {"id": "missing-sequence", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "missing_predecessor", "expectedCode": "missing_predecessor"},
+    {"id": "broken-predecessor", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "broken_predecessor_chain", "expectedCode": "broken_predecessor_chain"},
+    {"id": "conflicting-duplicate", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "conflicting_duplicate", "expectedCode": "conflicting_duplicate"},
+    {"id": "noncontiguous-time", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "noncontiguous_accepted_time", "expectedCode": "noncontiguous_accepted_time"},
+    {"id": "source-binding-change", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "source_binding_mismatch", "expectedCode": "source_binding_mismatch"},
+    {"id": "unique-at-backpressure-limit", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "backpressure_active", "expectedCode": "backpressure_active"},
+    {"id": "buffer-byte-overflow", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "buffer_limit_exceeded", "expectedCode": "buffer_limit_exceeded"},
+    {"id": "out-of-order-acknowledgement", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "acknowledgement_out_of_order", "expectedCode": "acknowledgement_out_of_order"},
+    {"id": "stale-reconnect-cursor", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "invalid_reconnect_cursor", "expectedCode": "invalid_reconnect_cursor"},
+    {"id": "premature-seal", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "incomplete_seal", "expectedCode": "incomplete_seal"},
+    {"id": "changed-halt-expectation", "baseCaseId": "halt-propagates-across-disconnect", "operation": "halt_identity_mismatch", "expectedCode": "halt_identity_mismatch"},
+    {"id": "publish-after-terminal", "baseCaseId": "sealed-dual-consumer-reconnect", "operation": "terminal_stream_immutable", "expectedCode": "terminal_stream_immutable"}
+  ]
+}

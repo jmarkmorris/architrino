@@ -516,6 +516,16 @@ std::vector<NativeHistoryFingerprint> fingerprints(
   return result;
 }
 
+std::vector<NativeHistoryFingerprint> joint_fingerprints(
+    const std::map<std::string, JointAffineRetainedHistory>& histories) {
+  std::vector<NativeHistoryFingerprint> result;
+  result.reserve(histories.size());
+  for (const auto& [path_id, history] : histories) {
+    result.push_back({path_id, history.provenance_fingerprint()});
+  }
+  return result;
+}
+
 bool same_history_segment_record(
     const CubicHistorySegment& left,
     const CubicHistorySegment& right) {
@@ -553,6 +563,45 @@ bool publication_extension_is_atomic(
           published.history.segments().pin(segment_index);
       if (!same_history_segment_record(
               *input_segment, *published_segment)) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+bool same_joint_history_segment_record(
+    const JointAffineCubicSegment& left,
+    const JointAffineCubicSegment& right) {
+  return left.start_time == right.start_time &&
+      left.end_time == right.end_time &&
+      left.position_coefficients == right.position_coefficients &&
+      left.position_remainder_radii == right.position_remainder_radii &&
+      left.velocity_remainder_radii == right.velocity_remainder_radii;
+}
+
+bool joint_publication_extension_is_atomic(
+    const std::map<std::string, JointAffineRetainedHistory>& input_histories,
+    const std::map<std::string, JointAffineRetainedHistory>&
+        published_histories,
+    const std::string& accepted_time) {
+  if (input_histories.empty()) return published_histories.empty();
+  if (input_histories.size() != published_histories.size()) return false;
+  const double accepted = scalar_token(accepted_time);
+  for (const auto& [path_id, input] : input_histories) {
+    const auto published_found = published_histories.find(path_id);
+    if (published_found == published_histories.end()) return false;
+    const auto& published = published_found->second;
+    if (input.path_id() != published.path_id() ||
+        input.symbol_registry() != published.symbol_registry() ||
+        published.segments().size() < input.segments().size() ||
+        published.segments().back().end_time != accepted) {
+      return false;
+    }
+    for (std::size_t segment = 0U;
+         segment < input.segments().size(); ++segment) {
+      if (!same_joint_history_segment_record(
+              input.segments()[segment], published.segments()[segment])) {
         return false;
       }
     }
@@ -4207,6 +4256,13 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
     throw std::invalid_argument(
         "coupled evolution resource limits must be positive");
   }
+  if (request.initial_accepted_step_count > request.max_step_attempts ||
+      request.initial_rejected_step_count > request.max_rejected_steps ||
+      request.initial_rejected_step_count >
+          request.max_step_attempts - request.initial_accepted_step_count) {
+    throw std::invalid_argument(
+        "coupled evolution restart counters exceed run resource limits");
+  }
 }
 
 void validate_step_inputs(
@@ -4251,8 +4307,13 @@ NativeAtomicStepCertificate rejected_step(
     std::optional<NativeAccelerationSnapshotCertificate>
         recertification_snapshot = std::nullopt) {
   const auto input_fingerprints = fingerprints(input_histories);
-  const bool publication_atomic = publication_extension_is_atomic(
-      input_histories, input_histories, start_time);
+  const auto input_joint_fingerprints = joint_fingerprints(
+      request.joint_histories);
+  const bool publication_atomic =
+      publication_extension_is_atomic(
+          input_histories, input_histories, start_time) &&
+      joint_publication_extension_is_atomic(
+          request.joint_histories, request.joint_histories, start_time);
   std::optional<double> correction_residual;
   if (failure_code == "coupled_correction_failed") {
     for (auto substep = substeps.rbegin(); substep != substeps.rend();
@@ -4274,8 +4335,10 @@ NativeAtomicStepCertificate rejected_step(
       .attempted_end = end_time,
       .accepted_time = start_time,
       .input_history_fingerprints = input_fingerprints,
+      .input_joint_history_fingerprints = input_joint_fingerprints,
       .published_histories = input_histories,
       .published_joint_histories = request.joint_histories,
+      .published_joint_history_fingerprints = input_joint_fingerprints,
       .diagnostic_candidate_histories =
           request.retain_diagnostic_candidate_histories &&
                   candidate_histories.has_value()
@@ -7070,6 +7133,8 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
 
   std::vector<NativeHistoryFingerprint> input_fingerprints;
   std::vector<NativeHistoryFingerprint> candidate_fingerprints;
+  std::vector<NativeHistoryFingerprint> input_joint_fingerprints;
+  std::vector<NativeHistoryFingerprint> published_joint_fingerprints;
   bool publication_atomic = false;
   measure_history_phase(
       &timing->history, &timing->history_copy_hash_wall_seconds,
@@ -7078,8 +7143,14 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       [&] {
         input_fingerprints = fingerprints(histories);
         candidate_fingerprints = fingerprints(accepted_histories);
+        input_joint_fingerprints = joint_fingerprints(request.joint_histories);
+        published_joint_fingerprints = joint_fingerprints(
+            accepted_joint_histories);
         publication_atomic = publication_extension_is_atomic(
-            histories, accepted_histories, end_time);
+            histories, accepted_histories, end_time) &&
+            joint_publication_extension_is_atomic(
+                request.joint_histories, accepted_joint_histories,
+                end_time);
       });
   // Acceptance moves accepted_histories directly into the published field;
   // atomicity is structural rather than a same-vector replay comparison.
@@ -7092,8 +7163,11 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       .attempted_end = end_time,
       .accepted_time = end_time,
       .input_history_fingerprints = input_fingerprints,
+      .input_joint_history_fingerprints = input_joint_fingerprints,
       .published_histories = std::move(accepted_histories),
       .published_joint_histories = std::move(accepted_joint_histories),
+      .published_joint_history_fingerprints =
+          published_joint_fingerprints,
       .diagnostic_candidate_histories = std::nullopt,
       .candidate_history_fingerprints = candidate_fingerprints,
       .substeps = std::move(substeps),
@@ -7343,10 +7417,14 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
         .accepted_end_time = request.start_time,
         .histories = std::move(histories),
         .joint_histories = std::move(joint_histories),
+        .joint_state_fallback_applied =
+            request.joint_state_fallback_already_applied,
         .steps = {},
-        .accepted_step_count = 0U,
-        .rejected_step_count = 0U,
+        .accepted_step_count = request.initial_accepted_step_count,
+        .rejected_step_count = request.initial_rejected_step_count,
         .controller_step_size = request.initial_step,
+        .controller_certificate_cost_cooldown_remaining =
+            request.certificate_cost_initial_cooldown_steps,
         .controller_consecutive_growth_headroom_steps =
             request.initial_consecutive_growth_headroom_steps,
         .halt_code = "memory_budget_exhausted",
@@ -7365,8 +7443,14 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       ? step_size
       : scalar_token(request.maximum_step);
   std::vector<NativeAtomicStepCertificate> steps;
-  std::size_t accepted_count = 0;
-  std::size_t rejected_count = 0;
+  const std::size_t initial_accepted_count =
+      request.initial_accepted_step_count;
+  const std::size_t initial_rejected_count =
+      request.initial_rejected_step_count;
+  const std::size_t initial_attempt_count =
+      initial_accepted_count + initial_rejected_count;
+  std::size_t accepted_count = initial_accepted_count;
+  std::size_t rejected_count = initial_rejected_count;
   std::string halt_code;
   std::string current_time_token = request.start_time;
   std::size_t consecutive_growth_headroom_steps =
@@ -7389,8 +7473,18 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
 
   while (current_time < requested_end &&
          (request.diagnostic_maximum_accepted_steps == 0U ||
-          accepted_count < request.diagnostic_maximum_accepted_steps)) {
-    if (steps.size() >= request.max_step_attempts) {
+          accepted_count - initial_accepted_count <
+              request.diagnostic_maximum_accepted_steps)) {
+    const bool at_resumable_accepted_boundary =
+        steps.empty() || steps.back().status == "accepted";
+    if (at_resumable_accepted_boundary &&
+        request.cancellation_requested &&
+        request.cancellation_requested()) {
+      halt_code = "cancelled_at_accepted_boundary";
+      break;
+    }
+    if (steps.size() >=
+        request.max_step_attempts - initial_attempt_count) {
       halt_code = "numeric_resource_limit_exhausted";
       break;
     }
@@ -7440,7 +7534,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
         adjudicated_finite_width_pairs.begin(),
         adjudicated_finite_width_pairs.end());
     auto step = certify_native_atomic_coupled_step(
-        step_request, histories, steps.size(), current_time_token, attempted_end,
+        step_request, histories, initial_attempt_count + steps.size(),
+        current_time_token, attempted_end,
         reusable_start_snapshot, certificate_cost_probe);
     const CertificateCostSignal cost_signal = certificate_cost_signal(step);
     step.certificate_cost_probe = certificate_cost_probe;
@@ -7652,7 +7747,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   const bool completed = current_time == requested_end;
   const bool diagnostic_step_limit_reached =
       !completed && request.diagnostic_maximum_accepted_steps > 0U &&
-      accepted_count >= request.diagnostic_maximum_accepted_steps;
+      accepted_count - initial_accepted_count >=
+          request.diagnostic_maximum_accepted_steps;
   if (diagnostic_step_limit_reached) {
     halt_code = "diagnostic_accepted_step_limit_reached";
   }

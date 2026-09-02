@@ -6,6 +6,60 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — NAM-009 CPD photorepair record bridge closed
+
+- Selected cis-syn thymine CPD photorepair as the first DNA damage/repair event and added [CPD Photolyase Record-Integrity Ledger](cpd-photolyase-record-integrity-ledger.md).
+- Source-bound the event to time-resolved serial femtosecond crystallography with 18 snapshots, a $50^\circ$ bent lesion-bound photolyase complex, and independent T7 polymerase lesion-block structures.
+- Defined the preserved local DNA record as base identities, strand order, complementary-pairing records, backbone continuity/orientation, and lesion status; separated binding/flip-out, photon/FAD initiation, single-bond intermediate, complete cleavage, enzyme recovery/product release, and duplex reannealing.
+- Added photon, cofactor, molecule, solvent/Noether sea, apparatus, and provenance accounts; a preregistered integrity residual; dark, enzyme-reset, and withheld polymerase controls; and explicit failure rows.
+- Removed NAM-009 from the live queue. No queued NAM rows remain; NAM-002 is still in progress and the remaining NAM rows are dependency-blocked scientific derivations.
+- Claim boundary: this closes source selection and record-ledger design only. The native carrier remains `blocked_missing_native_cpd_photorepair_record`; no repair mechanism, transition, information preservation, enzyme reset, polymerase response, or corpus-recovery claim advanced.
+- Verification: `git diff --check`, `node scripts/validate-priority-ranking.mjs`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+
+Plainly: The completed packet says exactly what molecular information must survive repair and how another physical reader can test that restoration. It does not claim that the lower-level dynamics have repaired DNA.
+
+Closure goal: derive one CPD-photorepair history that restores the same TT duplex record while closing every molecular, photon, cofactor, environment, and apparatus account.
+
+### 2026-09-02 — NAM-008 carbonic-anhydrase-II bridge closed
+
+- Selected human carbonic anhydrase II as the first enzyme mechanism and added [Human Carbonic Anhydrase II Event Ledger](carbonic-anhydrase-ii-event-ledger.md).
+- Source-bound the active-site geometry, zinc-bound solvent, ordered waters, dual His64 conformation, pH-conditioned histidine-position response, $^{18}\mathrm O$ exchange, and H64A negative control to three primary crystallographic, kinetic, mass-spectrometric, and mutagenesis studies.
+- Separated carbon capture/conversion, bicarbonate release/solvent reload, and proton shuttle/reset into linked event families; defined one molecular carrier, action-path interface, complete account identity, mutant controls, and a preregistered multi-turnover catalyst-return condition.
+- Removed NAM-008 from the live queue and left NAM-009 as the next queued biomolecular bridge.
+- Claim boundary: this closes source selection and mechanism-ledger design only. The native carrier remains `blocked_missing_native_hcaii_turnover_record`; no catalytic path, rate, proton transfer, energy routing, catalyst stability, or corpus-recovery claim advanced.
+- Verification: `git diff --check`, `node scripts/validate-priority-ranking.mjs`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+
+Plainly: The completed packet converts a generic enzyme idea into a mechanism that can fail against independent structure and mutant data. It does not claim that the lower-level dynamics have produced a catalytic turnover.
+
+Closure goal: derive one reusable carbonic-anhydrase-II turnover record that preserves the measured separation between carbon conversion and proton reset.
+
+### 2026-09-02 — NAM-005 H2 molecular bridge closed
+
+- Selected molecular hydrogen as the smallest neutral molecular target and added [H2 Molecular Bond and Event Ledger](h2-molecular-bond-event-ledger.md).
+- Source-bound the $X\,{}^1\Sigma_g^+$ ground-state geometry and rovibrational constants to NIST Chemistry WebBook SRD 69 and the $4.4781\,\mathrm{eV}$ dissociation benchmark to the NIST-hosted 2010 CODATA review.
+- Defined one candidate carrier containing two proton assemblies, two electron assemblies, retained causal histories, exclusion envelope, Noether sea record, bond branch, event ledger, observation window, and detector response.
+- Added explicit ground-state, vibration, rotation, formation, dissociation, and withheld-isotopologue rows with same-record inputs, required outputs, claim grades, and falsifiers; added a complete assembly-level energy-momentum-angular-momentum event-account contract.
+- Removed NAM-005 from the live queue and moved NAM-008 and NAM-009 from deferred to queued because their sole listed dependency is now complete.
+- Claim boundary: this closes source selection and benchmark design only. The native H₂ carrier remains `blocked_missing_native_h2_bond_carrier`; no bond, rovibrational, dissociation, isotope, or corpus-recovery claim advanced.
+- Verification: `git diff --check`, `node scripts/validate-priority-ranking.mjs`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+
+Plainly: The queue now has one concrete molecule and one testable ledger instead of a generic instruction to discuss bonding. Passing the ledger still requires an actual retained four-assembly history.
+
+Closure goal: build one retained H₂ history that predicts equilibrium geometry, rovibrational structure, and dissociation from the same assembly and Noether sea record.
+
+### 2026-09-02 — NAM-004 atomic-orbital bridge closed
+
+- Added [Atomic-Orbital Structure and Spectra Bridge](atomic-orbital-structure-spectra-bridge.md) with canonical $(n,\ell,m_\ell,m_s)$ notation, the central-envelope comparison equations, an explicit measured/derived/inferred/guessed claim split, a candidate native projection interface, and same-record acceptance and falsifier rows.
+- Kept the merged [Electron Orbitals](../dormant-deferred/electron-orbitals/priorities.md) note in `dormant-deferred` as historical input. Its private `EOC` compression and digit patterns are definition-driven and noncanonical; they were not promoted into the corpus.
+- Confirmed that the existing Atomic Structure, Atomic Spectra, Wavefunction Ontology, and Angular Momentum and Spin material already owns the reader-facing effective equations and the separation between atomic orbital angular momentum and internal assembly spin. No reader-facing rewrite was needed.
+- Removed NAM-004 from the live queue, renumbered following objects, and cleared NAM-005's queue dependency.
+- Claim boundary: this closes triage and bridge design only. It is not evidence for a native orbital carrier, orbital or spectral recovery, exclusion, the Born rule, an electron trajectory, or a physical probability-cloud ontology.
+- Verification: `git diff --check`, `node scripts/validate-priority-ranking.mjs`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+
+Plainly: The completed item now says exactly which standard facts must be recovered and which native record would have to recover them. It does not treat a notation scheme or a drawn orbital shape as a physical derivation.
+
+Closure goal: derive one same-record native atomic carrier that predicts orbital labels, spectral transitions, and detector records without importing them as substrate premises.
+
 ### 2026-09-01 — NAM-003 ownership audit closed
 
 - Audited the nuclear benchmark ladder, effective $V_{NN}$ consumer, first reduced corridor-overlap row, Standard Model confinement packets, and their corpus promotion destinations.

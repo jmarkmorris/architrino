@@ -6,12 +6,8 @@ This is the canonical execution ledger for nuclear-to-molecular recovery work.
 
 1. `iron_group_binding_cusp_recovery` — Status: `Deferred / blocked`.
 2. `nuclear_radiation_worked_examples` — Status: `In progress`.
-3. `atomic_orbital_import` — Status: `Queued`.
-4. `molecular_bonding_bridge` — Status: `Queued`.
-5. `hydrogen_gamma_n_record_extraction` — Status: `Deferred / blocked`.
-6. `no_open_color_finite_tail_route` — Status: `Deferred / blocked`.
-7. `enzyme_active_site_bridge` — Status: `Deferred / blocked`.
-8. `dna_record_integrity_bridge` — Status: `Deferred / blocked`.
+3. `hydrogen_gamma_n_record_extraction` — Status: `Deferred / blocked`.
+4. `no_open_color_finite_tail_route` — Status: `Deferred / blocked`.
 
 ## In progress
 
@@ -19,16 +15,13 @@ This is the canonical execution ledger for nuclear-to-molecular recovery work.
 
 ## Queued
 
-- **NAM-004 — `atomic_orbital_import`.** Reframe the deferred orbital note as an atomic-structure and spectra bridge with claim levels and standard notation. **Completion:** the packet distinguishes observed orbital mathematics from candidate assembly interpretation.
-- **NAM-005 — `molecular_bonding_bridge`.** Choose one simple molecule and define its first bond/event ledger from atomic, envelope, Noether sea, and reaction-provenance rows. **Depends on:** NAM-004. **Completion:** one source-bound molecular target has explicit state, transition, and falsifier rows.
+No rows.
 
 ## Deferred / blocked
 
 - **NAM-001 — `iron_group_binding_cusp_recovery`.** Test one shared reduced model for the Fe/Ni binding-per-nucleon maximum without per-element tuning. **Depends on:** accepted nucleon branch-interface ledgers. **Completion:** the same parameters satisfy the declared benchmark ladder or return a no-go.
 - **NAM-006 — `hydrogen_gamma_n_record_extraction`.** Replace scaffolded $\Gamma_N$ inputs with same-ledger native hydrogen spectral-channel rows at two resolutions and two transitions. **Depends on:** accepted hydrogen branch/interface and shared constitutive response. **Completion:** the source-bound rows survive refinement.
 - **NAM-007 — `no_open_color_finite_tail_route`.** Derive $\lim_{R\to\infty}\mathcal N_{\mathrm{open}}(R)=0$ from finite-range residual, color-singlet closure, and same-record no-open-color audit before retuning nuclear coefficients. **Depends on:** accepted branch-interface source rows. **Completion:** one proof or decisive counterexample closes the finite-tail route.
-- **NAM-008 — `enzyme_active_site_bridge`.** Select one enzyme mechanism and restate it as molecular geometry, action-path selection, energy routing, and record-state stability. **Depends on:** NAM-005. **Completion:** one source-bound mechanism has explicit event-ledger and failure rows.
-- **NAM-009 — `dna_record_integrity_bridge`.** Select one DNA/RNA motif or damage/repair event and express it as information-bearing molecular geometry plus event-ledger integrity. **Depends on:** NAM-005. **Completion:** one source-bound record defines preserved state, transition, and failure.
 
 ## Awaiting verification
 

@@ -29,30 +29,21 @@ test("Photon keeps its inspector left of the canvas while preserving compact sta
   );
 });
 
-test("Photon uses the shared Causal Delay Feedback webapp navigation controls", () => {
+test("Photon mounts the canonical standalone navigation runtime", () => {
   assert.match(
     PHOTON_HTML_SOURCE,
-    /href="\.\/src\/apps\/navigator\/standalone-app-navigation\.css"/
+    /href="\.\/src\/runtime\/top-dynamic-control-bar\.css"/
   );
-  for (const id of [
-    "scene-hud-tools",
-    "textbook-toc-button",
-    "nav-up",
-    "nav-forward",
-    "home-button",
-    "scene-search-toggle",
-    "scene-search-panel",
-    "scene-search-input",
-    "scene-search-results",
-  ]) {
-    assert.match(PHOTON_HTML_SOURCE, new RegExp(`id="${id}"`));
-  }
+  assert.match(PHOTON_HTML_SOURCE, /<div id="scene-hud-tools" class="photon-navigation"><\/div>/);
+  assert.doesNotMatch(PHOTON_HTML_SOURCE, /src\/apps\/navigator\/standalone-app-navigation\.css/);
+  assert.doesNotMatch(
+    PHOTON_HTML_SOURCE,
+    /id="(?:textbook-toc-button|nav-up|nav-forward|home-button|scene-search-toggle)"/,
+  );
   assert.doesNotMatch(PHOTON_HTML_SOURCE, /id="photon-home-button"/);
-  assert.match(PHOTON_RUNTIME_SOURCE, /createStandaloneAppSceneSearchRuntime/);
-  assert.match(PHOTON_RUNTIME_SOURCE, /TEXTBOOK_TOC_SCENE_PATH/);
-  assert.match(PHOTON_RUNTIME_SOURCE, /windowLike\.history\?\.back\?\.\(\)/);
-  assert.match(PHOTON_RUNTIME_SOURCE, /windowLike\.history\?\.forward\?\.\(\)/);
-  assert.match(PHOTON_RUNTIME_SOURCE, /resolveStandaloneSiteHomeHref/);
+  assert.match(PHOTON_RUNTIME_SOURCE, /createStandaloneAppNavigationRuntime/);
+  assert.doesNotMatch(PHOTON_RUNTIME_SOURCE, /createStandaloneAppSceneSearchRuntime/);
+  assert.doesNotMatch(PHOTON_RUNTIME_SOURCE, /navigateStandaloneAppHome/);
 });
 
 class FakeEventTarget {
@@ -227,6 +218,14 @@ class FakeElement extends FakeEventTarget {
     return child;
   }
 
+  replaceChildren(...children) {
+    this.children.forEach((child) => {
+      child.parentElement = null;
+    });
+    this.children = [];
+    this.append(...children);
+  }
+
   setAttribute(name, value) {
     this.attributes.set(name, String(value));
   }
@@ -295,6 +294,7 @@ class FakeDocument extends FakeEventTarget {
       ["#photon-controls", "div"],
       ["#photon-diagnostics", "div"],
       ["#photon-formulas", "div"],
+      ["#scene-hud-tools", "div"],
       ["#textbook-toc-button", "button"],
       ["#nav-up", "button"],
       ["#nav-forward", "button"],

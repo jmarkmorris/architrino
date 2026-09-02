@@ -1,0 +1,191 @@
+{
+  "schema": "architrino.browser-performance-evidence.v1",
+  "status": "passed_pre_release",
+  "productionMutation": false,
+  "measuredAtUtc": "2026-09-02T03:58:18.414Z",
+  "environment": {
+    "browser": "Chrome 152.0.0.0 through the Codex in-app browser",
+    "platform": "macOS",
+    "server": "scripts/dev/start-local-dev.mjs with EOM_BORG_SHADOW=0 and one fresh loopback port per cold profile",
+    "cacheBoundary": "Cold values use the first app load on a new loopback origin. Warm values use an identical same-origin reload with the development server's HTTP validation behavior retained.",
+    "claimBoundary": "These are local pre-release measurements on one browser and host. They establish current regression budgets, not global user latency, network transfer, exact per-page GPU allocation, production performance, or hosting cost."
+  },
+  "instrumentSources": [
+    {
+      "path": "scripts/dev/browser-performance-probe.html",
+      "bytes": 1072,
+      "sha256": "ca6f5918726b09d888e04dfa079a7f1696d6867ced38f5247ed7ca765b14b3a0"
+    },
+    {
+      "path": "scripts/dev/BrowserPerformanceProbe.js",
+      "bytes": 10278,
+      "sha256": "bc34feadd39845a33bd2f1f5f03e674a8415920068dca4d7744080e61735d6f4"
+    }
+  ],
+  "profiles": {
+    "public-feedback-interaction": {
+      "status": "passed",
+      "route": "/feedback.html",
+      "viewport": {
+        "cssWidth": 1440,
+        "cssHeight": 900,
+        "devicePixelRatio": 1
+      },
+      "launch": {
+        "cold": {
+          "originWasFresh": true,
+          "loadEventEndMs": 12.900000005960464,
+          "transferBytes": 831413,
+          "encodedBytes": 829313,
+          "resourceCount": 6
+        },
+        "warm": {
+          "sameOriginReload": true,
+          "loadEventEndMs": 16.5,
+          "transferBytes": 813202,
+          "encodedBytes": 815641,
+          "resourceCount": 6
+        }
+      },
+      "interaction": {
+        "id": "refresh-public-manifest",
+        "status": "passed",
+        "nextPaintMs": 31.69999998807907
+      },
+      "frameTiming": {
+        "samples": 180,
+        "p95Ms": 18,
+        "medianFps": 59.88023952095874,
+        "intervalsOver33_34Ms": 0
+      },
+      "heap": {
+        "supported": true,
+        "warmAfterFramesUsedBytes": 39974550,
+        "frameWindowGrowthBytes": 38172
+      },
+      "storage": {
+        "supported": true,
+        "originUsageBytes": 0,
+        "originQuotaBytes": 10737418240
+      }
+    },
+    "photon-4k-visual": {
+      "status": "passed",
+      "route": "/photon.html",
+      "viewport": {
+        "cssWidth": 3840,
+        "cssHeight": 2160,
+        "devicePixelRatio": 1
+      },
+      "launch": {
+        "cold": {
+          "originWasFresh": true,
+          "loadEventEndMs": 327.09999999403954,
+          "transferBytes": 4504805,
+          "encodedBytes": 4494005,
+          "resourceCount": 35
+        },
+        "warm": {
+          "sameOriginReload": true,
+          "loadEventEndMs": 241.19999998807907,
+          "transferBytes": 10800,
+          "encodedBytes": 519144,
+          "resourceCount": 35
+        }
+      },
+      "frameTiming": {
+        "samples": 360,
+        "p95Ms": 18.199999999999818,
+        "medianFps": 59.88023952095874,
+        "intervalsOver33_34Ms": 0
+      },
+      "heap": {
+        "supported": true,
+        "warmAfterFramesUsedBytes": 150088154,
+        "frameWindowGrowthBytes": 17129304
+      },
+      "gpuSurfaceProxy": {
+        "method": "canvas backing-store lower bound; excludes textures, geometry, driver allocation, compositor copies, and shared GPU-process memory",
+        "surfaceCount": 3,
+        "minimumSurfaceBytes": 28888248
+      },
+      "storage": {
+        "supported": true,
+        "originUsageBytes": 0,
+        "originQuotaBytes": 10737418240
+      }
+    }
+  },
+  "gpuProcess": {
+    "method": "macOS ps RSS samples of the identified Codex GPU process before and during the foreground 4K profile",
+    "sharedProcessBoundaryAcknowledged": true,
+    "processIdAtMeasurement": 62246,
+    "samples": 2,
+    "baselineResidentBytes": 155582464,
+    "activeResidentBytes": [
+      157253632,
+      190218240
+    ],
+    "peakResidentBytes": 190218240,
+    "peakGrowthBytes": 34635776
+  },
+  "sourceClosures": {
+    "public-feedback-interaction": {
+      "files": 7,
+      "bytes": 829313,
+      "sha256": "22a58a727c66e8cc098e2bd8be9c25a8ca68639942f9fe516057afd09ed5f698",
+      "paths": [
+        "feedback.html",
+        "src/apps/feedback/feedback.css",
+        "src/apps/feedback/main.js",
+        "src/apps/feedback/FeedbackManifestRuntime.js",
+        "content/scenes/scenes_index.json",
+        "content/markdown/markdown_index.json",
+        "content/graph/scene_graph.json"
+      ]
+    },
+    "photon-4k-visual": {
+      "files": 36,
+      "bytes": 4494005,
+      "sha256": "b9c199a0f9f8248e038ad647acc6025b6a66ec0073aeccf0415e2cc8c4fc10b8",
+      "paths": [
+        "photon.html",
+        "src/apps/navigator/standalone-app-navigation.css",
+        "src/runtime/markdown-mermaid.css",
+        "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css",
+        "src/apps/photon/main.js",
+        "vendor/markdown-it/markdown-it.min.js",
+        "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js",
+        "vendor/mermaid/mermaid.min.js",
+        "ui-tokens.css",
+        "src/apps/photon/PhotonRuntime.js",
+        "src/apps/photon/PhotonStateRuntime.js",
+        "src/apps/photon/PhotonPresetRuntime.js",
+        "src/runtime/MarkdownRuntime.js",
+        "src/apps/photon/PhotonSearchRuntime.js",
+        "src/services/MarkdownPolicyService.js",
+        "src/apps/photon/PhotonControlsRuntime.js",
+        "src/apps/photon/PhotonDiagnosticsRuntime.js",
+        "src/apps/photon/PhotonBraidVisualRuntime.js",
+        "src/apps/photon/PhotonFormulaRuntime.js",
+        "src/prescribed-path-analysis/PrescribedPathAnalysis.mjs",
+        "src/apps/navigator/StandaloneAppHomeRuntime.js",
+        "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+        "src/runtime/MermaidMarkdownRuntime.js",
+        "src/runtime/MarkdownColumnPaginationRuntime.js",
+        "src/runtime/MarkdownEquationMapRuntime.js",
+        "src/runtime/TransportControlIcons.js",
+        "src/apps/photon/PhotonTransmitterHistoryRuntime.js",
+        "src/prescribed-path-analysis/PrescribedOrbitCausalRoots.mjs",
+        "src/runtime/SceneSearchRuntime.js",
+        "src/runtime/SceneSearchUiRuntime.js",
+        "src/services/SceneIndexService.js",
+        "src/services/SceneSearchCoordinatorService.js",
+        "src/apps/navigator/StandaloneAppLaunchRuntime.js",
+        "src/runtime/EquationMappingNavigation.js",
+        "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/fonts/KaTeX_Main-Regular.woff2",
+        "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/fonts/KaTeX_Math-Italic.woff2"
+      ]
+    }
+  }
+}

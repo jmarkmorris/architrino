@@ -544,6 +544,15 @@ test("pdgedit standalone surface keeps the link overlay transparent while preser
   assert.equal(runtimeSource.includes('hitPath.setAttribute("pointer-events", "stroke")'), true);
 });
 
+test("pdgedit keeps its fixed-width reaction strip inside the surface scroller", () => {
+  const htmlSource = fs.readFileSync(new URL("../pdgedit.html", import.meta.url), "utf8");
+
+  assert.doesNotMatch(htmlSource, /body\s*\{[\s\S]*?min-width:\s*1648px;/u);
+  assert.match(htmlSource, /#pdgedit-surface-region\s*\{[\s\S]*?overflow-x:\s*auto;/u);
+  assert.match(htmlSource, /\.pdgedit-strip-wrap\s*\{[\s\S]*?min-width:\s*1600px;/u);
+  assert.match(htmlSource, /#pdgedit-surface-strip\s*\{[\s\S]*?flex:\s*0 0 1600px;/u);
+});
+
 test("pdgedit document picker keeps a dedicated touch-scroll option list", () => {
   const htmlSource = fs.readFileSync(new URL("../pdgedit.html", import.meta.url), "utf8");
   const runtimeSource = fs.readFileSync(new URL("../src/apps/pdgedit/PdgeditAppRuntime.js", import.meta.url), "utf8");

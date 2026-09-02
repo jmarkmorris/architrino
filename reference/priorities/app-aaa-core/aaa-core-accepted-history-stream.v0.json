@@ -1,0 +1,97 @@
+{
+  "schema": "aaa_core_accepted_history_stream/v0",
+  "version": 0,
+  "status": "accepted",
+  "owner": "AAA Core",
+  "producerAuthority": "EOM solver",
+  "logicalContract": "aaa_core_path_interchange/v0",
+  "codecRegistry": "aaa_core_codec_registry/v0",
+  "eventTypes": ["stream_open", "accepted_chunk", "stream_seal", "stream_halt"],
+  "producerRules": {
+    "acceptedChunksOnly": true,
+    "sequenceBase": 0,
+    "sequenceRule": "contiguous_integer_prefix",
+    "predecessorRule": "exact_prior_chunk_sha256",
+    "coverageRule": "contiguous_nonempty_absolute_time_intervals",
+    "watermarkRule": "acceptedThroughT_equals_highest_contiguous_chunk_end",
+    "duplicateRule": "same_sequence_and_content_hash_is_idempotent",
+    "conflictRule": "same_sequence_with_changed_identity_fails",
+    "backpressureRule": "a_unique_chunk_is_refused_while_any_connected_required_consumer_is_at_its_declared_limit",
+    "terminalRule": "seal_or_halt_is_immutable_and_no_later_producer_event_is_admitted"
+  },
+  "subscriptionRules": {
+    "sourceBindingRequired": true,
+    "limits": ["maxBufferedChunks", "maxBufferedBytes"],
+    "silentDropPermitted": false,
+    "acknowledgementRule": "head_of_queue_in_sequence_only",
+    "disconnectRule": "unacknowledged_delivery_is_discarded_from_the_connection_but_retained_by_the_broker",
+    "reconnectCursor": ["acknowledgedSequence", "acknowledgedChunkSha256"],
+    "replayRule": "resume_from_the_first_sequence_after_the_validated_cursor",
+    "terminalDeliveryRule": "seal_or_halt_is_available_after_the_consumer_has_acknowledged_the_retained_prefix",
+    "disconnectedRetentionRule": "fixture_broker_retains_the_complete_stream_until_terminal_receipts_are_formed"
+  },
+  "watermarks": {
+    "producerAcceptedThroughT": "highest contiguous EOM-accepted chunk end committed by Core",
+    "consumerDeliveredThroughT": "highest contiguous chunk delivered into that consumer's bounded queue",
+    "consumerAcknowledgedThroughT": "highest contiguous chunk acknowledged and independently checked by that consumer",
+    "lagT": "producerAcceptedThroughT_minus_consumerAcknowledgedThroughT"
+  },
+  "backpressure": {
+    "entry": "queue count or buffered bytes reaches its declared limit",
+    "release": "ordered acknowledgement reduces both limits below their thresholds and no retained replay backlog immediately refills them",
+    "duplicateAtLimit": "idempotent_no_op",
+    "uniqueAtLimit": "backpressure_active",
+    "dropOrOverwrite": "forbidden"
+  },
+  "sealing": {
+    "requiresCompleteManifest": true,
+    "requiresEveryManifestChunk": true,
+    "requiresExactFinalSequenceAndWatermark": true,
+    "consumerReceiptRequiresAcknowledgedPrefix": true,
+    "receiptIdentity": "canonical_sha256_over_source_binding_ordered_acknowledged_chunks_terminal_event_and_consumer_id"
+  },
+  "halting": {
+    "requiredFields": ["code", "detail", "failedSequence", "acceptedThroughT"],
+    "propagation": "exact_same_terminal_payload_to_every_subscriber_including_after_reconnect",
+    "acceptedPrefixPreserved": true,
+    "sealAfterHaltForbidden": true
+  },
+  "consumerConformance": [
+    {
+      "consumerId": "potential-consumer",
+      "implementation": "watermark_and_source_binding_observer",
+      "independentCheck": "sequence_predecessor_and_accepted_time_prefix"
+    },
+    {
+      "consumerId": "history-audit-consumer",
+      "implementation": "ordered_digest_ledger_observer",
+      "independentCheck": "record_identity_predecessor_and_ordered_digest"
+    }
+  ],
+  "refusalCodes": [
+    "invalid_contract",
+    "source_binding_mismatch",
+    "unaccepted_chunk",
+    "missing_predecessor",
+    "broken_predecessor_chain",
+    "conflicting_duplicate",
+    "noncontiguous_accepted_time",
+    "backpressure_active",
+    "buffer_limit_exceeded",
+    "unknown_consumer",
+    "acknowledgement_out_of_order",
+    "invalid_reconnect_cursor",
+    "incomplete_seal",
+    "halt_identity_mismatch",
+    "terminal_stream_immutable",
+    "receipt_identity_mismatch"
+  ],
+  "conformance": {
+    "schema": "src/contracts/aaa-core-accepted-history-stream/v0/schema.json",
+    "validator": "src/aaa-core/accepted-history-stream-v0.mjs",
+    "positiveFixtures": "tests/fixtures/aaa-core-accepted-history-stream/v0/positive-suite.json",
+    "negativeFixtures": "tests/fixtures/aaa-core-accepted-history-stream/v0/negative-suite.json",
+    "tests": "tests/aaa-core-accepted-history-stream-v0.test.js"
+  },
+  "claimBoundary": "Synthetic in-process broker and independent-consumer conformance only. No network transport, production persistence, throughput, latency, EOM integration, scientific kernel, or application release is accepted."
+}

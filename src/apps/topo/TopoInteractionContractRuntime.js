@@ -75,13 +75,7 @@ import {
   topoCircularBinarySourcePosition,
   topoCircularBinaryWorldPointForCanvasPixel,
 } from "./TopoCircularBinaryScenario.js";
-import {
-  navigateStandaloneAppHome,
-  resolveStandaloneAppHomeHref,
-} from "../navigator/StandaloneAppHomeRuntime.js";
-import {
-  createStandaloneAppSceneSearchRuntime,
-} from "../navigator/StandaloneAppSceneSearchRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import { PHOTON_CHARGE_COLORS } from "../photon/PhotonStateRuntime.js";
 import {
   WHITE,
@@ -781,6 +775,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
   renderDeclaredInlineMath(documentLike, { documentLike, windowLike });
+  const navigationRuntime = options.navigationRuntime ??
+    createStandaloneAppNavigationRuntime({
+      host: requireElement(documentLike, "#scene-hud-tools"),
+      document: documentLike,
+      window: windowLike,
+    });
+  navigationRuntime.init?.();
   const dom = {
     app: requireElement(documentLike, "#topo-app"),
     panelContent: requireElement(documentLike, "#topo-panel-content"),
@@ -844,9 +845,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     binaryPlay: requireElement(documentLike, "#topo-binary-play"),
     binaryTimeline: requireElement(documentLike, "#topo-binary-timeline"),
     binaryReplay: requireElement(documentLike, "#topo-binary-replay"),
-    home: requireElement(documentLike, "#home-button"),
-    back: requireElement(documentLike, "#nav-up"),
-    forward: requireElement(documentLike, "#nav-forward"),
   };
 
   const context = dom.canvas.getContext("2d", { alpha: false });
@@ -859,10 +857,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   const listeners = [];
-  const sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
-    document: documentLike,
-    window: windowLike,
-  }).init();
   let renderRequest = 0;
   let finalRenderTimer = 0;
   let renderWatchdogTimer = 0;
@@ -5433,18 +5427,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
   listen(dom.contourCount, "input", scheduleContourChange);
   listen(dom.shadingSpread, "input", scheduleFrameChange);
   listen(dom.contourVisibility, "input", scheduleContourChange);
-  listen(dom.home, "click", () => {
-    navigateStandaloneAppHome(
-      windowLike.location,
-      resolveStandaloneAppHomeHref(windowLike.location?.href),
-      {
-        windowLike,
-        returnHref: windowLike.location?.href,
-      },
-    );
-  });
-  listen(dom.back, "click", () => windowLike.history?.back?.());
-  listen(dom.forward, "click", () => windowLike.history?.forward?.());
 
   if (typeof windowLike.ResizeObserver === "function") {
     resizeObserver = new windowLike.ResizeObserver(() => render());
@@ -5476,7 +5458,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         fieldGl.deleteFramebuffer(topoPassTwoDiagnosticTarget.framebuffer);
         fieldGl.deleteTexture(topoPassTwoDiagnosticTarget.texture);
       }
-      sceneSearchRuntime.destroy();
+      navigationRuntime.destroy?.();
     },
     render,
   });

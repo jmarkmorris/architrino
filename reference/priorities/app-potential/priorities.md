@@ -12,7 +12,7 @@
 - Exploratory notes: [brainstorming](brainstorming.md)
 - Chronological record: [work log](work-log.md)
 - Shared platform: [AAA Core](../app-aaa-core/priorities.md)
-- Ranking: pending the AAA Core contract and representative workload estimate
+- Ranking: pending the scientific reference sampler and measured representative workload estimates
 
 ## Objective
 
@@ -41,7 +41,25 @@ The application must remain a consumer of path histories and declared potential-
 
 ## First Blocker
 
-[AAA Core](../app-aaa-core/priorities.md) now owns the shared path and interchange boundary. Its first [architecture draft](../app-aaa-core/architecture-v0.md) is not yet a fixture-backed contract, so `app-potential` must continue to avoid inventing an app-local schema or an unregistered interchange codec.
+[AAA Core](../app-aaa-core/priorities.md) owns the shared path, stream, query, and publication boundary. The accepted [AAA Core Path Interchange v0](../app-aaa-core/path-interchange-v0.md) supplies Potential's fixture-backed logical records, the accepted [AAA Core Codec Registry v0](../app-aaa-core/codec-registry-v0.md) registers Potential's synthetic map codec at fixture-conformance grade, the accepted [AAA Core Accepted-History Stream v0](../app-aaa-core/accepted-history-stream-v0.md) supplies duplicate-tolerant bounded subscription and replay semantics, the accepted [Query, Transform, And Publication v0](../app-aaa-core/query-transform-publication-v0.md) fixes stable cache and receipt identity, and the accepted [AAA Core Client v0](../app-aaa-core/client-v0.md) exposes those contracts to Potential and Equation Mapping without application-local path logic. POT-001 and POT-002 fix Potential's app-side loading, live-consumer, and publication behavior. POT-003 now waits on an independently defined analytical potential case plus a declared shared or EOM-owned sampling capability.
+
+Plainly: Potential and Core now agree on source paths, codec identity, live delivery, query identity, and publication receipts. Potential still cannot build the reference slice until a scientific owner supplies a checkable potential calculation.
+
+## Consumer And Publication Contract V1
+
+POT-001 is closed by the accepted [versioned contract](potential-consumer-publication-contract.v1.json), its [small synthetic fixture](fixtures/potential-consumer-publication.synthetic.v1.json), the [five-case negative suite](fixtures/potential-consumer-publication-negative.v1.json), and the executable checker. The contract enumerates every required upstream path-history field; keeps immutable source-history references separate from derived map cells; defines fixed-$T$ spatial volumes, two-space-plus-time volumes, and full three-space-plus-time products; and registers the synthetic map codec as a fixture-only `app-potential` provider of the accepted AAA Core codec registry rather than as a competing interchange schema.
+
+Plainly: the app can ask for a specific map and publish it without copying or replacing the paths that produced it. A missing history, scale mismatch, unsupported precision, incomplete sealed map, or unknown observable version now stops the request with a named reason.
+
+## Live Timespace Pipeline Contract V1
+
+POT-002 is closed by the accepted [Potential-side live pipeline contract](potential-live-timespace-pipeline-contract.v1.json), its [state-machine and sequence specification](potential-live-timespace-pipeline-contract-v1.md), the [three-chunk synthetic stream](fixtures/potential-live-timespace-pipeline.synthetic.v1.json), the [ten-case negative suite](fixtures/potential-live-timespace-pipeline-negative.v1.json), and the executable checker. The contract exposes source, consumer, and map-completion watermarks; exact lag; queue depth and buffered bytes; missing tiles; bounded backpressure; duplicate idempotency; predecessor-chain failures; source halt; provisional snapshots; and immutable sealing.
+
+Plainly: the app can fall behind without hiding it, receive the same chunk twice without double-counting it, and stop safely when a chunk is missing or changed. A complete product appears only after all three synthetic chunks and their map tiles are accounted for.
+
+The fixture envelope is explicitly test-only. The contract consumes accepted `aaa_core_accepted_history_stream/v0` semantics while leaving the shared envelope and production transport with AAA Core. Deterministic replay of the accepted prefix, with the harmless duplicate removed, reproduces the same sealed product hash.
+
+Plainly: the test proves Potential's bookkeeping, not a production stream service, production latency, or a physical potential result.
 
 ## Promotion Boundary
 

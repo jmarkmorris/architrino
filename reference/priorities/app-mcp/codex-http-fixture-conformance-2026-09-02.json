@@ -1,0 +1,87 @@
+{
+  "schema": "archie-mcp-named-client-conformance/v1",
+  "recordId": "codex_http_fixture_conformance_2026_09_02",
+  "measuredAt": "2026-09-02T11:40:59Z",
+  "surface": {
+    "name": "Codex CLI",
+    "version": "0.152.0",
+    "distribution": "bundled with the installed ChatGPT desktop app"
+  },
+  "execution": {
+    "sessionMode": "ephemeral",
+    "userConfigurationLoaded": false,
+    "configurationMode": "command-line overrides only",
+    "sandboxMode": "read-only",
+    "persistentMcpConfigurationChanged": false
+  },
+  "transport": {
+    "kind": "streamable_http",
+    "networkScope": "IPv4 loopback only",
+    "authentication": "temporary bearer token supplied through an environment variable",
+    "serverPersistence": "stopped after the run"
+  },
+  "snapshot": {
+    "scope": "six-source fixture",
+    "snapshotId": "source_snapshot_fixture_001",
+    "snapshotSha256": "941a6ecec4dbfcb4ffc68a0df9c107ccfdc841fd7977df471d3702e798a7fd27",
+    "repositoryRef": "fixture-ref",
+    "currentCheckoutFreshness": "passed",
+    "buildMode": "built in memory from the current source-selection input without writing generated repository artifacts",
+    "systemCardRoute": "content/markdown/aaa/archie/system-card.md#understanding-the-evidence"
+  },
+  "calls": [
+    {
+      "tool": "topics",
+      "arguments": {
+        "limit": 1
+      },
+      "structuredStatus": "ok",
+      "transportError": null
+    },
+    {
+      "tool": "search",
+      "arguments": {
+        "query": "ontology",
+        "limit": 1
+      },
+      "structuredStatus": "ok",
+      "transportError": null
+    },
+    {
+      "tool": "read",
+      "arguments": {
+        "topicOrRoute": "source.ontology-purpose",
+        "maxContentChars": 256
+      },
+      "structuredStatus": "ok",
+      "transportError": null
+    },
+    {
+      "tool": "neighbors",
+      "arguments": {
+        "topicOrRoute": "source.ontology-purpose",
+        "limit": 1
+      },
+      "structuredStatus": "ok",
+      "transportError": null
+    },
+    {
+      "tool": "read",
+      "arguments": {
+        "topicOrRoute": "source.missing-conformance-record"
+      },
+      "structuredStatus": "not_found",
+      "structuredErrorCode": "SOURCE_NOT_FOUND",
+      "inventedContentReturned": false,
+      "transportError": null
+    }
+  ],
+  "result": "pass_current_source_fixture",
+  "boundaries": {
+    "fixtureSourceFreshness": "passed; the current System Card evidence section and moved dormant Archie priority route were resolved before the in-memory snapshot was built",
+    "focusedHttpRegression": "passed 9 of 9 tests; the full-corpus launcher starts against the correctly identity-bound checked-in snapshot",
+    "fullCorpusHttpConformance": "not measured; the deployment contract now matches the checked-in full-corpus snapshot, but build-full-corpus-source-index.mjs --check still reports generated drift",
+    "chatgptDesktopHttpConformance": "not measured; requires a fresh ChatGPT desktop surface after connection discovery or restart",
+    "officialDocumentation": "https://learn.chatgpt.com/docs/extend/mcp?surface=cli"
+  }
+}

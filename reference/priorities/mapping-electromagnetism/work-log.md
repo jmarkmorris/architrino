@@ -6,6 +6,12 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 
 ## Log Entries
 
+### 2026-09-02 — EMAP-001 common-axis source/moment/field matrix
+
+Completed the report-only [Common-Axis Source, Moment, and Field Matrix](common-axis-source-moment-field-matrix.md). The packet defines separate exposed-charge, polarity-weighted circulation, group-translation, and raw exposed-current-moment rows; binds `EQ-13` and `EQ-27` projections to one source, wake, sea, boundary, and observation record; and gives the six required axis-null, circulation-reversal, polarity-conjugation, translation-reversal, proper-rotation, and neutral-far-field comparisons.
+
+Each row now has an observer-level parity prediction, an independent analytic Maxwell comparison, and an exact falsifier. Direct, sea-mediated, and mixed diagnostic shares remain separate so total-field cancellation cannot hide a failed carrier. The packet is constraint design only: it changes no retained-braid claim, magnetic-moment claim, Maxwell recovery, equation score, simulation, generated artifact, or reader-facing corpus.
+
 ### 2026-08-27 — General requirements and candidate geometry ownership split
 
 Moved the general inference packet to Equation Mapping and the candidate-adjudication, asymmetric counter-breathing representative, and three-binary packets to the Braid Program at operator request. The table maps the former files under `reference/priorities/mapping-electromagnetism/` to their current owners. Existing dated entries remain in this log; their navigational links point to the relocated files.

@@ -6,41 +6,14 @@ Every batch applies the [About Architrino reference policy](../../../content/mar
 
 ## Ranked Next Objects
 
-1. `mine_source_material` — [SM-001](#sm-001--mine-source-material). Status: `Queued`.
-2. `recover_legacy_insights` — [SM-002](#sm-002--recover-legacy-insights). Status: `Queued`.
-3. `solving_the_crisis_source_refresh` — [SM-003](#sm-003--solving-the-crisis-source-refresh). Status: `Deferred / blocked`.
-4. `neoclassical_repo_cleanup` — [SM-004](#sm-004--neoclassical-repository-cleanup). Status: `Deferred / blocked`.
-5. `neoclassical_domain_disposition` — [SM-005](#sm-005--neoclassical-domain-disposition). Status: `Deferred / blocked`.
+1. `neoclassical_repo_cleanup` — [SM-004](#sm-004--neoclassical-repository-cleanup). Status: `Deferred / blocked`.
+2. `neoclassical_domain_disposition` — [SM-005](#sm-005--neoclassical-domain-disposition). Status: `Deferred / blocked`.
 
 ## Queued
 
-### SM-001 — Mine source material
-
-- **Status:** Queued
-- **Priority object:** `mine_source_material`
-- **Request / acceptance:** Acquire and mine one declared source batch until every relevant signal is edited, converted to a mathematical target, staged for discussion, deferred with a blocker, or rejected.
-- **Evidence / blocker:** A queue row requires a named source batch; generic browsing is not completion.
-- **Completion:** The batch yields at least one concrete mathematical or corpus artifact and a traceable mining-history entry.
-
-Current source-family order: PIRSA, KITP, IAS/Cornell/Simons, and CERN public detector videos first; explanatory interviews remain source-lead material rather than closure evidence.
-
-### SM-002 — Recover legacy insights
-
-- **Status:** Queued
-- **Priority object:** `recover_legacy_insights`
-- **Request / acceptance:** Mine deferred product, outlook, and operational notes only when they can yield concrete corpus or owner-queue material.
-- **Evidence / blocker:** Low-value history and duplicate ideas should be rejected, not promoted.
-- **Completion:** Every selected legacy item has a current terminology mapping and disposition.
+No rows.
 
 ## Deferred / blocked
-
-### SM-003 — Solving the Crisis source refresh
-
-- **Status:** Deferred / blocked
-- **Priority object:** `solving_the_crisis_source_refresh`
-- **Request / acceptance:** Replace public-list orientation with primary papers, reviews, data releases, or experiment documentation for chapters retained by the Open Problems audit.
-- **Evidence / blocker:** Depends on `mapping-open-problems/claim_level_audit`.
-- **Completion:** Every retained chapter has current primary-source grounding recorded in mining history.
 
 ### SM-004 — Neoclassical repository cleanup
 
@@ -64,4 +37,9 @@ No rows.
 
 ## Verified
 
-No rows.
+### SM-003 — Solving the Crisis source refresh
+
+- **Status:** Verified
+- **Priority object:** `solving_the_crisis_source_refresh`
+- **Evidence:** The [source-refresh packet](solving-the-crisis-source-refresh-2026-09-02.md) records one qualifying primary paper, review, data release, or experiment source for each of the 44 chapters retained by the Open Problems audit, with exact source identity, local role, and import boundary. Chapters 45–46 remain excluded.
+- **Completion:** Direct comparison against the claim-level audit found an exact, duplicate-free chapter-title and number match for rows 1–44. Source-mining history records the completed family; no reader-facing citation was added merely to satisfy coverage.

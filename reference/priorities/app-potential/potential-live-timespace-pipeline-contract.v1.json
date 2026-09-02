@@ -1,0 +1,135 @@
+{
+  "schema": "architrino.potential-live-timespace-pipeline-contract.v1",
+  "status": "accepted",
+  "version": 1,
+  "authority": "Potential-side accepted-history consumer state machine; no EOM acceptance, shared transport, or scientific-kernel authority",
+  "upstreamContracts": {
+    "eomEvolution": {
+      "schema": "eom_evolution_contract/v1",
+      "usage": "only EOM-accepted immutable history chunks may enter the authoritative pipeline"
+    },
+    "pathInterchange": {
+      "schema": "aaa_core_path_interchange/v0",
+      "status": "accepted",
+      "usage": "typed immutable source reference only; this contract does not define a Core payload"
+    },
+    "acceptedHistoryStream": {
+      "schema": "aaa_core_accepted_history_stream/v0",
+      "status": "accepted",
+      "usage": "shared sequencing and subscription semantics; AAA Core retains stream-envelope and production transport ownership"
+    },
+    "publication": {
+      "schema": "architrino.potential-consumer-publication-contract.v1",
+      "status": "accepted",
+      "usage": "sealed and provisional products remain source-bound derived products"
+    },
+    "queryTransformPublication": {
+      "schema": "aaa_core_query_transform_publication/v0",
+      "status": "accepted",
+      "usage": "shared cache, ordered-transform, source-closure, authority, sealing, and receipt behavior above the Potential-owned live consumer state machine"
+    }
+  },
+  "ownershipBoundary": {
+    "definesPotentialConsumerStateMachine": true,
+    "definesSharedStreamEnvelope": false,
+    "definesTransport": false,
+    "acceptsCandidateEomSteps": false,
+    "repairsMissingHistory": false,
+    "raisesSourceAuthority": false,
+    "fixtureEnvelopeIsProductionInterchange": false
+  },
+  "requiredStreamSemantics": [
+    "streamId",
+    "sourcePathSetId",
+    "sourceManifestSha256",
+    "sequence",
+    "chunkId",
+    "contentSha256",
+    "predecessorChunkSha256",
+    "acceptedStartT",
+    "acceptedEndT",
+    "acceptedThroughT",
+    "acceptance",
+    "byteLength",
+    "completionOrHaltState"
+  ],
+  "stateMachine": {
+    "version": "potential_live_pipeline_state_machine/v1",
+    "initial": "awaiting_stream",
+    "states": [
+      "awaiting_stream",
+      "consuming",
+      "backpressured",
+      "source_sealed",
+      "sealed",
+      "halted",
+      "failed"
+    ],
+    "terminal": ["sealed", "halted", "failed"],
+    "transitions": [
+      {"from": "awaiting_stream", "event": "stream_open", "to": "consuming"},
+      {"from": "consuming", "event": "accepted_chunk", "to": "consuming_or_backpressured"},
+      {"from": "backpressured", "event": "map_complete", "to": "consuming_or_backpressured"},
+      {"from": "consuming", "event": "source_seal", "to": "source_sealed"},
+      {"from": "source_sealed", "event": "publish_sealed", "to": "sealed"},
+      {"from": "consuming_or_backpressured", "event": "source_halt", "to": "halted"},
+      {"from": "nonterminal", "event": "contract_failure", "to": "failed"}
+    ]
+  },
+  "watermarkRules": {
+    "sourceAcceptedThroughT": "highest contiguous accepted EOM chunk end",
+    "appConsumedThroughT": "highest contiguous chunk validated and admitted by Potential",
+    "mapCompletedThroughT": "highest contiguous admitted chunk with all declared map updates complete",
+    "lagT": "sourceAcceptedThroughT - mapCompletedThroughT",
+    "missingPredecessorHaltsDependentAdvancement": true,
+    "candidateStepsCannotAdvanceWatermarks": true,
+    "lateDataCannotMutateSealedProducts": true
+  },
+  "duplicateRules": {
+    "sameSequenceAndContentHash": "idempotent_no_op",
+    "sameSequenceDifferentContentHash": "conflicting_duplicate",
+    "sequenceAboveNextExpected": "missing_predecessor",
+    "predecessorHashMismatch": "broken_predecessor_chain"
+  },
+  "backpressureRules": {
+    "limitsAreConsumerProfileInputs": true,
+    "queueDepthAndBufferedBytesAreReported": true,
+    "enterAtDeclaredLimit": true,
+    "uniqueChunkBeyondDeclaredLimit": "backpressure_limit_exceeded",
+    "duplicateAtLimitRemainsIdempotent": true,
+    "silentDropPermitted": false
+  },
+  "publicationRules": {
+    "provisionalSnapshotsExposeAllWatermarks": true,
+    "provisionalSnapshotsExposeMissingTiles": true,
+    "sealedRequiresSourceSeal": true,
+    "sealedRequiresEmptyQueue": true,
+    "sealedRequiresCompleteContiguousMapCoverage": true,
+    "sealedIdentityUsesOrderedChunkAndTileHashes": true,
+    "deterministicReplayRequiresSameSealedIdentity": true,
+    "solverContinuationPermitted": false
+  },
+  "refusalCodes": [
+    "invalid_fixture",
+    "source_binding_mismatch",
+    "unaccepted_history_chunk",
+    "missing_predecessor",
+    "broken_predecessor_chain",
+    "conflicting_duplicate",
+    "noncontiguous_accepted_time",
+    "backpressure_limit_exceeded",
+    "map_completion_out_of_order",
+    "unknown_map_chunk",
+    "snapshot_mismatch",
+    "source_halted",
+    "incomplete_seal",
+    "sealed_state_immutable",
+    "identity_mismatch"
+  ],
+  "fixtures": {
+    "positive": "reference/priorities/app-potential/fixtures/potential-live-timespace-pipeline.synthetic.v1.json",
+    "negative": "reference/priorities/app-potential/fixtures/potential-live-timespace-pipeline-negative.v1.json",
+    "fixtureEnvelope": "potential_live_pipeline_fixture_event/v1",
+    "fixtureEnvelopePurpose": "executable in-repository harness only; not a Core interchange or transport schema"
+  }
+}

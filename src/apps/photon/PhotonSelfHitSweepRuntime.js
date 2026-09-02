@@ -146,6 +146,10 @@ function summarizeSweepCases(caseResults, config) {
   let stablePhaseLockCaseCount = 0;
   let candidatePhaseLockCaseCount = 0;
   let singularCandidateCaseCount = 0;
+  let totalHelicalCandidateRoots = 0;
+  let totalHelicalAdmittedRoots = 0;
+  let totalHelicalRejectedRoots = 0;
+  const rejectedRootReasonCounts = {};
 
   caseResults.forEach((caseResult) => {
     totalPhaseFamilies += caseResult.helicalPhaseFamilyCount;
@@ -153,6 +157,12 @@ function summarizeSweepCases(caseResults, config) {
     totalStablePhaseLockFamilies += caseResult.helicalStablePhaseLockFamilyCount;
     totalCandidatePhaseLockFamilies += caseResult.helicalCandidatePhaseLockFamilyCount;
     totalSingularCandidateFamilies += caseResult.helicalSingularCandidateFamilyCount;
+    totalHelicalCandidateRoots += caseResult.helicalCandidateRootCount;
+    totalHelicalAdmittedRoots += caseResult.helicalAdmittedRootCount;
+    totalHelicalRejectedRoots += caseResult.helicalRejectedRootCount;
+    Object.entries(caseResult.helicalRejectedRootReasonCounts ?? {}).forEach(([reason, count]) => {
+      incrementCount(rejectedRootReasonCounts, reason, Number(count) || 0);
+    });
     if (caseResult.helicalStablePhaseLockFamilyCount > 0) {
       stablePhaseLockCaseCount += 1;
     }
@@ -199,6 +209,10 @@ function summarizeSweepCases(caseResults, config) {
     totalStablePhaseLockFamilies,
     totalCandidatePhaseLockFamilies,
     totalSingularCandidateFamilies,
+    totalHelicalCandidateRoots,
+    totalHelicalAdmittedRoots,
+    totalHelicalRejectedRoots,
+    rejectedRootReasonCounts,
     classificationCounts,
     speedFamilyCounts,
     bestStableCase: bestStableCase ? compactSweepCase(bestStableCase) : null,
@@ -216,6 +230,10 @@ function compactSweepCase(caseResult) {
     observationProgress: caseResult.observationProgress,
     observationTime: caseResult.observationTime,
     helicalRootFoundCount: caseResult.helicalRootFoundCount,
+    helicalCandidateRootCount: caseResult.helicalCandidateRootCount,
+    helicalAdmittedRootCount: caseResult.helicalAdmittedRootCount,
+    helicalRejectedRootCount: caseResult.helicalRejectedRootCount,
+    helicalRejectedRootReasonCounts: caseResult.helicalRejectedRootReasonCounts,
     helicalPhaseFamilyCount: caseResult.helicalPhaseFamilyCount,
     helicalStablePhaseLockFamilyCount: caseResult.helicalStablePhaseLockFamilyCount,
     helicalCandidatePhaseLockFamilyCount: caseResult.helicalCandidatePhaseLockFamilyCount,
@@ -242,6 +260,10 @@ async function evaluateSweepCase(sweepCase, config, options = {}) {
     status: diagnostics.status,
     helicalRecordCount: diagnostics.helicalRecordCount,
     helicalRootFoundCount: diagnostics.helicalRootFoundCount,
+    helicalCandidateRootCount: diagnostics.helicalCandidateRootCount,
+    helicalAdmittedRootCount: diagnostics.helicalAdmittedRootCount,
+    helicalRejectedRootCount: diagnostics.helicalRejectedRootCount,
+    helicalRejectedRootReasonCounts: diagnostics.helicalRejectedRootReasonCounts,
     helicalPhaseFamilyCount: diagnostics.helicalPhaseFamilyCount,
     helicalStablePhaseLockFamilyCount: diagnostics.helicalStablePhaseLockFamilyCount,
     helicalCandidatePhaseLockFamilyCount: diagnostics.helicalCandidatePhaseLockFamilyCount,

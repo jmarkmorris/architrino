@@ -54,15 +54,7 @@ import {
 import {
   createCausalDelayFeedbackModeController,
 } from "./CausalDelayFeedbackModeController.js";
-import {
-  navigateStandaloneAppHome,
-  resolveStandaloneSiteHomeHref,
-} from "../navigator/StandaloneAppHomeRuntime.js";
-import {
-  createStandaloneAppSceneSearchRuntime,
-  resolveStandaloneGlobalSceneHref,
-  TEXTBOOK_TOC_SCENE_PATH,
-} from "../navigator/StandaloneAppSceneSearchRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import {
   DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
   normalizeCausalDelayFeedbackMode,
@@ -321,6 +313,31 @@ class CausalDelayFeedbackRuntime {
     this.updateNowControl();
     this.updateReplayStatus();
     this.bindEvents();
+    this.navigationRuntime = createStandaloneAppNavigationRuntime({
+      host: queryRequiredElement(this.document, "#scene-hud-tools"),
+      document: this.document,
+      window: this.window,
+      label: "App and lesson navigation",
+      back: {
+        label: "Previous lesson",
+        title: "Previous lesson",
+        historyLabel: "Lesson sequence",
+        onActivate: () => this.modeController?.goBack(),
+      },
+      forward: {
+        label: "Next lesson",
+        title: "Next lesson",
+        onActivate: () => this.modeController?.goNext(),
+      },
+      search: {
+        onOpenChange: (isOpen) => {
+          this.modeController?.dom?.journey?.classList.toggle(
+            "is-global-search-open",
+            isOpen,
+          );
+        },
+      },
+    }).init();
     this.modeController = createCausalDelayFeedbackModeController({
       document: this.document,
       window: this.window,
@@ -336,39 +353,6 @@ class CausalDelayFeedbackRuntime {
       },
       onReplay: () => {
         this.resetStoryScenarioPlayback();
-      },
-      onHome: () => {
-        navigateStandaloneAppHome(
-          this.window?.location,
-          resolveStandaloneSiteHomeHref(this.window?.location?.href),
-          {
-            windowLike: this.window,
-            returnHref: this.window?.location?.href,
-          },
-        );
-      },
-      onTableOfContents: () => {
-        navigateStandaloneAppHome(
-          this.window?.location,
-          resolveStandaloneGlobalSceneHref(
-            TEXTBOOK_TOC_SCENE_PATH,
-            this.window?.location?.href,
-          ),
-          {
-            windowLike: this.window,
-            returnHref: this.window?.location?.href,
-          },
-        );
-      },
-    }).init();
-    this.sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
-      document: this.document,
-      window: this.window,
-      onOpenChange: (isOpen) => {
-        this.modeController.dom.journey.classList.toggle(
-          "is-global-search-open",
-          isOpen,
-        );
       },
     }).init();
     if (this.learnerState.mode === "story") {
@@ -1643,7 +1627,8 @@ class CausalDelayFeedbackRuntime {
     this.eventListeners = [];
     this.dragState = null;
     this.clearBackgroundPointers();
-    this.sceneSearchRuntime?.destroy?.();
+    this.navigationRuntime?.destroy?.();
+    this.navigationRuntime = null;
     this.modeController?.destroy();
   }
 

@@ -205,8 +205,8 @@ function renderOptOutControl({ storage = globalThis.localStorage } = {}) {
 
   function syncStatus() {
     status.textContent = input.checked
-      ? "This browser will not send analytics events."
-      : "This browser can send analytics events when tracking is connected.";
+      ? "This browser records an explicit analytics opt-out."
+      : "Analytics are disabled; a reviewed collector and consent step are required before events can be sent.";
   }
 
   input.addEventListener("change", () => {

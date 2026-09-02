@@ -27,10 +27,7 @@ import {
   createEquationMapSemanticId,
   resolveEquationMapDocumentId,
 } from "./EquationMappingRegistry.js";
-import {
-  navigateStandaloneAppHome,
-  resolveStandaloneAppHomeHref,
-} from "../navigator/StandaloneAppHomeRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import { createPanelCollapseIconSvg } from "../../runtime/PanelCollapseIcons.js";
 import { resolveEquationMappingReturnHref } from "../../runtime/EquationMappingNavigation.js";
 import { createEquationMappingSymbolTooltip } from "./EquationMappingSymbolTooltip.js";
@@ -670,10 +667,6 @@ export function createSidePointerLineGeometry(stageRect, targetRect, commentRect
   };
 }
 
-export function createEquationMappingHomeHref(windowLike = globalThis.window) {
-  return resolveStandaloneAppHomeHref(windowLike?.location?.href);
-}
-
 function renderMath(windowLike, element, tex, { displayMode = false } = {}) {
   const katex = windowLike?.katex;
   if (katex && typeof katex.render === "function") {
@@ -767,8 +760,6 @@ function replaceLocationHashForDocument(windowLike, document) {
 
 function createIconSvg(name) {
   switch (name) {
-    case "home":
-      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5M5.5 10.5V20h5v-5h3v5h5v-9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     case "search":
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
     case "settings":
@@ -863,7 +854,12 @@ export class EquationMappingRuntime {
       options.commentFontSize ??
         (savedSizeSettingsAreCurrent ? savedSettings.commentFontSize : DEFAULT_COMMENT_FONT_SIZE)
     );
-    this.indexCollapsed = Boolean(options.indexCollapsed ?? savedSettings.indexCollapsed ?? false);
+    const compactViewportDefault = Boolean(
+      this.window?.matchMedia?.("(max-width: 760px)")?.matches
+    );
+    this.indexCollapsed = Boolean(
+      options.indexCollapsed ?? (compactViewportDefault ? true : savedSettings.indexCollapsed ?? false)
+    );
     this.expandedSubjectIds = normalizeExpandedSubjectIds(
       options.expandedSubjectIds ?? savedSettings.expandedSubjectIds
     );
@@ -879,6 +875,7 @@ export class EquationMappingRuntime {
     this.settingsOpen = false;
     this.editorOpen = false;
     this.referencePanelOpen = false;
+    this.globalSearchOpen = false;
     this.activeSymbolId = this.activeDocument.symbols[0]?.id ?? "";
     this.searchQuery = "";
     this.anchorElements = new Map();
@@ -888,6 +885,7 @@ export class EquationMappingRuntime {
     this.equationElement = null;
     this.equationTitleElement = null;
     this.handleKeyDown = null;
+    this.navigationRuntime = null;
   }
 
   get activeDocument() {
@@ -909,6 +907,25 @@ export class EquationMappingRuntime {
     if (!this.root) {
       throw new Error("Missing #equation-mapping-app");
     }
+    const navigationHost = this.document.getElementById("scene-hud-tools");
+    if (!navigationHost) {
+      throw new Error("Missing #scene-hud-tools");
+    }
+    this.navigationRuntime = createStandaloneAppNavigationRuntime({
+      host: navigationHost,
+      document: this.document,
+      window: this.window,
+      search: {
+        onOpenChange: (isOpen) => {
+          this.globalSearchOpen = isOpen;
+          if (isOpen) {
+            this.settingsOpen = false;
+            this.editorOpen = false;
+          }
+          this.render();
+        },
+      },
+    }).init();
     this.handleResize = () => {
       this.symbolTooltip?.hide();
       this.scheduleEquationLayout();
@@ -927,6 +944,8 @@ export class EquationMappingRuntime {
     this.window?.removeEventListener?.("resize", this.handleResize);
     this.window?.removeEventListener?.("keydown", this.handleKeyDown);
     this.window?.removeEventListener?.("hashchange", this.handleHashChange);
+    this.navigationRuntime?.destroy?.();
+    this.navigationRuntime = null;
   }
 
   persistSettings() {
@@ -1269,16 +1288,8 @@ export class EquationMappingRuntime {
 
   renderControls() {
     const controls = createElement(this.document, "div", "equation-mapping-controls");
+    controls.hidden = this.globalSearchOpen;
     controls.append(
-      this.renderIconButton("home", "Go to home", () => {
-        navigateStandaloneAppHome(
-          this.window?.location,
-          createEquationMappingHomeHref(this.window),
-          {
-            windowLike: this.window,
-          }
-        );
-      }),
       this.renderIconButton("search", "Search equations", () => {
         this.indexCollapsed = false;
         this.settingsOpen = false;

@@ -4,20 +4,19 @@ This is the canonical execution ledger for accepted benchmark mappings. Each row
 
 ## Ranked Next Objects
 
-1. `redshift_clock_transport` — Status: `Queued`.
-2. `lorentz_preferred_frame` — Status: `Deferred / blocked`.
-3. `rotating_moving_media` — Status: `Deferred / blocked`.
-4. `weak_field_metric_ppn` — Status: `Deferred / blocked`.
-5. `radiation_gravity_waves` — Status: `Deferred / blocked`.
-6. `thermal_statistical_radiative_qed` — Status: `Deferred / blocked`.
-7. `quantum_phase_measure` — Status: `Deferred / blocked`.
-8. `spin_bell_measurement` — Status: `Deferred / blocked`.
-9. `topological_transport_statistical_emergence` — Status: `Deferred / blocked`.
-10. `collider_reconstruction_provenance` — Status: `Deferred / blocked`.
+1. `lorentz_preferred_frame` — Status: `Deferred / blocked`.
+2. `rotating_moving_media` — Status: `Deferred / blocked`.
+3. `weak_field_metric_ppn` — Status: `Deferred / blocked`.
+4. `radiation_gravity_waves` — Status: `Deferred / blocked`.
+5. `thermal_statistical_radiative_qed` — Status: `Deferred / blocked`.
+6. `quantum_phase_measure` — Status: `Deferred / blocked`.
+7. `spin_bell_measurement` — Status: `Deferred / blocked`.
+8. `topological_transport_statistical_emergence` — Status: `Deferred / blocked`.
+9. `collider_reconstruction_provenance` — Status: `Deferred / blocked`.
 
 ## Queued
 
-- **XTM-001 — `redshift_clock_transport`.** Map redshift observations into explicit clock-rate, transport, and Noether sea evolution gates. **Native carrier requirement:** a declared clock-rate comparison, source/path/receiver transfer record, and Noether sea evolution record on one benchmark support. **Completion:** one benchmark packet names source data, native carrier, acceptance residual, and failure predicate.
+No rows.
 
 ## Deferred / blocked
 

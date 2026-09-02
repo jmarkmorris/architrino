@@ -113,9 +113,9 @@
   },
   "snapshotPublication": {
     "candidatePath": "content/generated/source-index/local-full-corpus-snapshot.v1.json",
-    "candidateSnapshotId": "source_snapshot_full_corpus_v1_5c4e4fca61a177b7e432",
-    "candidateSnapshotSha256": "592d130a8349e9dde6273a549bf8a6ef1da2d4ba34cca18c525ecc4df01bae26",
-    "candidateRepositoryRef": "local-source-state:5c4e4fca61a177b7e432f14ae7c0b9cc19c522f84cd1d0aa640c5c65d9ecbeb9",
+    "candidateSnapshotId": "source_snapshot_full_corpus_v1_1618a8d8921dd31c3792",
+    "candidateSnapshotSha256": "0534dec657b1b5da7f33407256be27583fd3a3c6bcf121ff69cd64e79b9d3acd",
+    "candidateRepositoryRef": "local-source-state:1618a8d8921dd31c379226f07d740efd6567d727c9b44345cfc0c404eb85fe96",
     "acceptedMainRequiredForRemote": true,
     "candidateIsAcceptedMain": false,
     "loadMode": "startup_once",

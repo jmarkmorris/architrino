@@ -44,13 +44,13 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `1`
-- Value: `63.47`
-- Cost: `4.7`
-- ROI: `13.50`
-- Status: `active-bounded-population-long-horizon-evolution`
+- Rank: `15`
+- Value: `1.70`
+- Cost: `3.3`
+- ROI: `0.52`
+- Status: `active-eom-application-surface`
 - Claim level: `priority-design`
-- Implementation status: `independent-oracle-phase-4-complete-reference; native-moving-history-traversal-connected-to-atomic-coupled-evolution; persistent-borg-worker-and-run-controls-executable; borg-accepted-initial-history-promotion-complete`
+- Implementation status: `independent-oracle-phase-4-complete-reference; bounded-population-coupled-kernel-accepted; bounded-population-checkpoint-and-campaign-driver-accepted; bounded-population-precision-policy-accepted; bounded-cpu-threading-accepted; representative-simd-specialization-not-promoted; persistent-borg-worker-and-run-controls-executable; borg-accepted-initial-history-promotion-complete`
 - Endorsed solver: `EOM`
 
 ## Working Files
@@ -59,7 +59,7 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 - [evolution-contract-v1.md](./contracts/evolution-contract-v1.md) is the frozen versioned requirement contract for requests, accepted-step semantics, output evidence, failures, validation, and the first binary-outcome gate.
 - [evolution-contract-v1-amendment-1-million-path-scale.md](./contracts/evolution-contract-v1-amendment-1-million-path-scale.md) is the frozen scale amendment requiring million-path manifests, complete compact pair accounting, certified sparse evolution, and dense-workload handling requiring verification before advancement.
 - [million-path-certified-execution-architecture.md](./contracts/million-path-certified-execution-architecture.md) defines certified block exclusion, exact surviving-pair fallback, distributed retained-history ownership, heterogeneous batching, streamed output, and the million-path benchmark ladder.
-- [master-eom-binding-v1.md](./contracts/master-eom-binding-v1.md) is the current mathematical contract for transmitter-factor acceleration, signed root playback, finite-width folds, coincident same-transmitter failure, and undeclared singular-event failure.
+- [master-eom-binding-v1.md](./contracts/master-eom-binding-v1.md) is the current mathematical contract for transmitter-factor acceleration, signed root playback, finite-width folds, coincident same-transmitter failure, and undeclared singular-event failure; it includes the App Solver-owned source-snapshot refresh and semantic-review procedure enforced by the live digest test.
 - [far-field-contribution-enclosure.md](./contracts/far-field-contribution-enclosure.md) defines the certified per-pair contribution bound, declared acceleration-budget slice, pre-root classification, and complete enclosed-pair ledger route.
 - [precision-dynamic-range-and-certification-contract.md](./contracts/precision-dynamic-range-and-certification-contract.md) is the frozen numeric acceptance contract for scale maps, split time, error budgets, certified decisions, precision escalation, heterogeneous execution, and failure behavior.
 - [certified-error-budget-ledger.md](./contracts/certified-error-budget-ledger.md) defines the ratified dimensionally coherent Interactive and Research certified-budget records, including ordinary-state propagation, receiver-total event allocation, provenance, and the no-independent-overlap result.
@@ -70,6 +70,11 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 - [evidence/borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md](evidence/borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md) isolates the V7 root-width mechanisms, records the V8 per-axis/shared-endpoint ablation, and establishes the measured lower bound that makes a new root-time budget derivation eligible but not ratified.
 - [evidence/borg-fixed-budget-ten-minute-endurance-adjudication-apple-m3-2026-07-18.md](evidence/borg-fixed-budget-ten-minute-endurance-adjudication-apple-m3-2026-07-18.md) removes the first avoidable far-field width source, records exact-fallback/root-contraction/refined-publication effects, tests both fixed presets across seeds 0–3, and fails the literal ten-minute gate without changing any allocation.
 - [independent-dynamical-acceptance-oracle.md](./contracts/independent-dynamical-acceptance-oracle.md) records the completed reference oracle: equation reference, certified root completeness, acceleration reconstruction, atomic coupled evolution, Phase 4 event and continuation controls, checkpoint/restart, refinement ladders, and the acceptance matrix.
+- [evidence/eom-bounded-population-sharp-post-transit-2026-09-02.md](evidence/eom-bounded-population-sharp-post-transit-2026-09-02.md) records the regular sharp-chart component that crosses the initial causal transit, consumes solver-generated history, refines, replays across worker counts, and encloses the independent oracle endpoint.
+- [evidence/eom-bounded-population-coupled-acceptance-2026-09-02.md](evidence/eom-bounded-population-coupled-acceptance-2026-09-02.md) binds the sharp component to finite-width fold passage, post-event generated-history consumption, regulator/common-domain exit, refinement, forced 128-bit event precision, deterministic replay, and independent Phase 4 event comparison; it closes EOM-002 at bounded-population base-kernel grade.
+- [evidence/eom-long-run-checkpoint-campaign-driver-2026-09-02.md](evidence/eom-long-run-checkpoint-campaign-driver-2026-09-02.md) records the complete continuation-state inventory, cumulative run accounting, accepted-boundary cancellation, crash-generation manifest bindings, deterministic new-process resume, and launcher acceptance that close EOM-003 at bounded-population operational grade.
+- [evidence/eom-precision-convergence-and-failure-policy-2026-09-02.md](evidence/eom-precision-convergence-and-failure-policy-2026-09-02.md) records the live six-path row sum, independently solved 18-component endpoint inclusion, joint coefficient/remainder retention, content identities, and fail-closed atomic publication that close EOM-004 at bounded-population numerical-policy grade.
+- [evidence/eom-deterministic-cpu-and-simd-2026-09-02.md](evidence/eom-deterministic-cpu-and-simd-2026-09-02.md) records the representative one/four-worker speed and CPU-cost comparison, exact replay, compiler auto-vectorization evidence, flat SIMD result, bounded engineering disposition, and falsifiers that close EOM-005.
 - [language-and-numeric-architecture.md](./contracts/language-and-numeric-architecture.md) defines the precision architecture and the evidence required to select the production language and accelerator stack.
 - [../../architectural-decisions/eom-cpp-production-host.md](../../architectural-decisions/eom-cpp-production-host.md) records the operator-selected C++20 production host and MPFR/GMP difficult-row route.
 - [performance-architecture-survey-and-baseline.md](./campaigns/performance-architecture-survey-and-baseline.md) records the executable Apple M3 CPU, Metal, oracle, storage, stationary block-exclusion, thread-scaling, and million-path projection baseline plus the evidence still missing for an architecture decision.
@@ -109,6 +114,8 @@ EOM is not ready for migration merely because it emits paths. The first accepted
 - no result claims EOM authority when the run used a prescribed analytic path, a constrained replay, or a display interpolation.
 
 The million-path profile has its own later acceptance boundary in `eom_evolution_contract/v1/amendment-1`. It is required before claiming million-path capability, not before accepting a bounded-population run or migrating a bounded-population consumer.
+
+The [2026-09-02 bounded-population coupled acceptance packet](evidence/eom-bounded-population-coupled-acceptance-2026-09-02.md) passes this base-kernel boundary. Consumer-specific critical decisions still require the validations applicable to their own declared envelope, and the result does not establish a physical branch or million-path capability.
 
 ## Promotion Boundary
 

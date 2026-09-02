@@ -1,0 +1,203 @@
+{
+  "schema": "borg-velocity-sampling-result.v1",
+  "resultId": "borg-velocity-sampling-result.2026-09-01.v1",
+  "protocolId": "borg-velocity-sampling-protocol.v1",
+  "policyId": "stratified-empirical-magnitude-and-patch.v1",
+  "claimGrade": "measured-bounded-eom-run-sampling-evidence",
+  "implementation": {
+    "script": "scripts/eom/run-borg-velocity-sampling-campaign.mjs",
+    "scriptSha256": "5278209822963e0dc24e27c1480826b51e03fd2b26c1c153ec8f6e7f8e4d931f",
+    "binary": ".tmp/eom-native-dev/eom_borg_shadow_cli",
+    "binarySha256": "e4ec879d28674a58a0f7b92d1101b4defbabc273c7c36973adc1000a49b46dcd",
+    "eomProtocol": "EOM_BORG_NATIVE_V11",
+    "node": "v26.3.0",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "declaredRange": {
+    "minimumSpeed": 0.2,
+    "maximumSpeed": 0.8,
+    "fieldSpeed": 1,
+    "normalization": "c_f=1",
+    "speedBinEdges": [
+      0.2,
+      0.30000000000000004,
+      0.4,
+      0.5,
+      0.6000000000000001,
+      0.7000000000000002,
+      0.8
+    ],
+    "tailThreshold": 0.7
+  },
+  "split": {
+    "calibrationSeeds": [
+      101,
+      202,
+      303
+    ],
+    "holdoutSeeds": [
+      404,
+      505
+    ],
+    "pathsPerSeed": 6,
+    "calibrationCrossingRows": 18,
+    "holdoutCrossingRows": 12
+  },
+  "eomRuns": [
+    {
+      "seed": 101,
+      "runId": "borg-velocity-sampling-101",
+      "scientificProductSha256": "9f41f82e664c6c0ac01e9c47c0bc575bbccc361823bba4cf22078d0e0f63b63d",
+      "status": "completed",
+      "acceptedEndTime": "5.001",
+      "acceptedStepCount": 2,
+      "rejectedStepCount": 1,
+      "haltCode": "",
+      "coverageStatus": "boundary-shell-complete",
+      "unresolvedSegmentCount": 0,
+      "crossingCount": 6,
+      "influenceCount": 6,
+      "nativeResidualStatuses": [
+        "passed",
+        "passed",
+        "passed"
+      ],
+      "speedMinimum": 0.20374150318093598,
+      "speedMaximum": 0.747236596932635
+    },
+    {
+      "seed": 202,
+      "runId": "borg-velocity-sampling-202",
+      "scientificProductSha256": "193ed27abd6db3b3d20b4cb509465c2796606979a0602f2d373ae80668ef2287",
+      "status": "completed",
+      "acceptedEndTime": "5.001",
+      "acceptedStepCount": 4,
+      "rejectedStepCount": 2,
+      "haltCode": "",
+      "coverageStatus": "boundary-shell-complete",
+      "unresolvedSegmentCount": 0,
+      "crossingCount": 6,
+      "influenceCount": 6,
+      "nativeResidualStatuses": [
+        "passed",
+        "passed",
+        "passed"
+      ],
+      "speedMinimum": 0.20748300636187195,
+      "speedMaximum": 0.7832769735716285
+    },
+    {
+      "seed": 303,
+      "runId": "borg-velocity-sampling-303",
+      "scientificProductSha256": "644d251c3a807531e4e35bcde07825860bbeb2d81a5ea173b0d022056f8fed4a",
+      "status": "completed",
+      "acceptedEndTime": "5.001",
+      "acceptedStepCount": 4,
+      "rejectedStepCount": 2,
+      "haltCode": "",
+      "coverageStatus": "boundary-shell-complete",
+      "unresolvedSegmentCount": 0,
+      "crossingCount": 6,
+      "influenceCount": 6,
+      "nativeResidualStatuses": [
+        "passed",
+        "passed",
+        "passed"
+      ],
+      "speedMinimum": 0.21078285980038347,
+      "speedMaximum": 0.7809980768710376
+    },
+    {
+      "seed": 404,
+      "runId": "borg-velocity-sampling-404",
+      "scientificProductSha256": "aefbfcf77a2f9d9f28acac26e21e00754641cdae1c2f3348163174fa7c0b15d1",
+      "status": "completed",
+      "acceptedEndTime": "5.001",
+      "acceptedStepCount": 4,
+      "rejectedStepCount": 2,
+      "haltCode": "",
+      "coverageStatus": "boundary-shell-complete",
+      "unresolvedSegmentCount": 0,
+      "crossingCount": 6,
+      "influenceCount": 6,
+      "nativeResidualStatuses": [
+        "passed",
+        "passed",
+        "passed"
+      ],
+      "speedMinimum": 0.21496601733379067,
+      "speedMaximum": 0.7247741858009249
+    },
+    {
+      "seed": 505,
+      "runId": "borg-velocity-sampling-505",
+      "scientificProductSha256": "c231b1179bb103f70fe9dde88168f35fdc81b563dd9fe5e5f8e17d3e48c72c3a",
+      "status": "completed",
+      "acceptedEndTime": "5.001",
+      "acceptedStepCount": 2,
+      "rejectedStepCount": 1,
+      "haltCode": "",
+      "coverageStatus": "boundary-shell-complete",
+      "unresolvedSegmentCount": 0,
+      "crossingCount": 6,
+      "influenceCount": 6,
+      "nativeResidualStatuses": [
+        "passed",
+        "passed",
+        "passed"
+      ],
+      "speedMinimum": 0.2184122973121703,
+      "speedMaximum": 0.7519718726631255
+    }
+  ],
+  "policy": {
+    "source": "complete calibration shell-crossing rows only",
+    "generatedRowCount": 12,
+    "sourceTraceabilityComplete": true,
+    "inventedVelocityCount": 0,
+    "sameRecordIdentityReuse": false
+  },
+  "checks": {
+    "velocityDistributionResidual": {
+      "value": 0.32444284226089354,
+      "limit": 0.2,
+      "status": "failed"
+    },
+    "tailMassResidual": {
+      "value": 0.08333333333333334,
+      "limit": 0.1,
+      "status": "passed"
+    },
+    "correlationResidual": {
+      "value": 0,
+      "limit": 0.15,
+      "status": "passed"
+    },
+    "seedVarianceResidual": {
+      "value": 0.0858980338670346,
+      "limit": 0.12,
+      "status": "passed"
+    },
+    "patchReplayResidual": {
+      "value": 0,
+      "limit": 0.25,
+      "status": "passed"
+    },
+    "centralContributionResidual": {
+      "value": 0.03802281448384705,
+      "limit": 0.001,
+      "status": "failed"
+    }
+  },
+  "decision": {
+    "eomRowsReady": true,
+    "velocitySamplingResearchStatus": "precision-insufficient",
+    "velocitySamplingHoldoutStatus": "failed",
+    "velocitySamplingSelectedPolicyId": null,
+    "benignNoiseStatus": "fail-closed-residual",
+    "affectedValueAuthority": "fail-closed-value"
+  },
+  "independenceBoundary": "Holdout seeds are excluded from the calibration pool, but all rows use the same EOM executable and shell extractor; this is not an independent EOM-correctness oracle.",
+  "claimBoundary": "Measured bounded sampling-policy evidence over the declared EOM-run fixture range only. It establishes no unbounded constitutive distribution, retained dynamics, stability, binding, physical benign noise, or scientific acceptance."
+}

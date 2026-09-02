@@ -23,6 +23,9 @@ import {
 import {
   deriveAssemblyScientificIdentity,
 } from "../../src/prescribed-geometry/AssemblyScientificIdentity.mjs";
+import {
+  createNormalizedAssemblyViewRecordCarriers,
+} from "../../src/apps/shared/AssemblyViewRecordCarriers.mjs";
 
 export const PRESCRIBED_BRAID_SPEC_SCHEMA = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
 export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA_ID = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
@@ -172,6 +175,10 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
     const derived = deriveNeutralPairDisplayGeometry(materialized, pair);
     return derived ? { ...derived, binaryIndex: pair.display?.binaryIndex ?? index + 1 } : null;
   }).filter(Boolean);
+  const recordCarriers = createNormalizedAssemblyViewRecordCarriers({
+    fieldSpeed: spec.constraints.speedGuard.normalizedFieldSpeed,
+    vectors: createSourceVectorOverlays(materialized, binaries, start),
+  });
   const ansatz = materialized.worldlines.map((row) => ({
     id: `${row.id}-prescribed-path`,
     worldlineId: row.id,
@@ -221,12 +228,53 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
         coordinates: createParameterVector(materialized),
       },
     },
+    recordFrame: recordCarriers.frame,
+    vectorOverlays: recordCarriers.vectorOverlays,
     window: { start, end, delayHorizon, sampleInterval: actualStep },
     worldlines,
     binaries,
     ...(structuralEdges.length > 0 ? { structuralEdges } : {}),
     ansatz,
     events: [],
+  };
+}
+
+function createSourceVectorOverlays(materialized, binaries, epochTime) {
+  const worldlineById = new Map(materialized.worldlines.map((row) => [row.id, row]));
+  return binaries.flatMap((binary) => {
+    const members = binary.members.map((id) => worldlineById.get(id));
+    if (members.some((row) => !row)) return [];
+    const positive = members.find((row) => row.constituent.polarity === 1);
+    const negative = members.find((row) => row.constituent.polarity === -1);
+    if (!positive || !negative) return [];
+    const positivePosition = evaluateMaterializedWorldline(positive, epochTime).position;
+    const negativePosition = evaluateMaterializedWorldline(negative, epochTime).position;
+    const normal = binary.planeOrientation?.normal;
+    if (!normal) return [];
+    return [
+      {
+        id: `${binary.id}:kinematic-spin`,
+        kind: "kinematic-spin",
+        worldlineIds: [...binary.members],
+        vector: scaleObjectVector(normal, binary.angularFrequency),
+        source: "prescribed neutral-pair plane normal multiplied by declared angular velocity",
+      },
+      {
+        id: `${binary.id}:polarity-dipole`,
+        kind: "polarity-dipole",
+        worldlineIds: [negative.id, positive.id],
+        vector: objectVector(positivePosition.map((value, axis) => value - negativePosition[axis])),
+        source: "prescribed epoch position from negative-polarity member to positive-polarity member",
+      },
+    ];
+  });
+}
+
+function scaleObjectVector(vector, scalar) {
+  return {
+    x: Number(vector.x) * scalar,
+    y: Number(vector.y) * scalar,
+    z: Number(vector.z) * scalar,
   };
 }
 

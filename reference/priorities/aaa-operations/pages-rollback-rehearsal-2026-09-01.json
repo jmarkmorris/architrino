@@ -1,0 +1,77 @@
+{
+  "schema": "architrino.pages-rollback-rehearsal.v1",
+  "measuredAt": "2026-09-02T02:55:27Z",
+  "status": "source_rebuild_pass_live_redeploy_unverified",
+  "productionMutation": false,
+  "liveState": {
+    "pagesStatus": "built",
+    "buildType": "workflow",
+    "cname": "www.architrino.com",
+    "httpsEnforced": true,
+    "deploymentVariable": "ARCHITRINO_PAGES_DEPLOY_ENABLED",
+    "deploymentVariableValue": "true"
+  },
+  "lastKnownGood": {
+    "runId": 33415523618,
+    "runUrl": "https://github.com/jmarkmorris/architrino/actions/runs/33415523618",
+    "event": "push",
+    "branch": "main",
+    "commit": "8df1d08fe913e5b3b2fba09c50bda7588d437637",
+    "conclusion": "success",
+    "historicalFileCount": 4011,
+    "historicalByteCount": 415238878,
+    "historicalArtifactDigest": "sha256:8b7a91feb7ca4806acdcc69ecd8cf0e0ff64789bb77370ca004fd09683bc5e3c"
+  },
+  "rehearsal": {
+    "isolation": "temporary_shared_clone_detached_at_exact_commit",
+    "contentIntegrity": {
+      "command": "node scripts/check-content-integrity.mjs",
+      "status": "passed",
+      "wallSeconds": 35.8
+    },
+    "firstBuild": {
+      "command": "node scripts/build-static-site.mjs --out .tmp/site",
+      "status": "passed",
+      "fileCount": 4011,
+      "runtimeAssetCount": 46,
+      "byteCount": 415238969,
+      "retainedImages": 48,
+      "excludedImages": 338,
+      "excludedImageBytes": 518457347
+    },
+    "secondBuild": {
+      "command": "node scripts/build-static-site.mjs --out .tmp/site2",
+      "status": "passed",
+      "fileCount": 4011,
+      "runtimeAssetCount": 46,
+      "byteCount": 415238969
+    },
+    "sameEnvironmentComparison": {
+      "command": "diff -qr .tmp/site .tmp/site2",
+      "status": "byte_identical"
+    },
+    "historicalComparison": {
+      "status": "not_byte_identical",
+      "byteDelta": 91,
+      "checkedReceiptPaths": 123,
+      "mismatchedPaths": 40,
+      "mismatchFamily": "generated_borg_records_only",
+      "unmatchedNonBorgPaths": 0,
+      "claimBoundary": "source selection and same-environment reconstruction pass; cross-environment generated-record parity does not"
+    },
+    "liveRerun": {
+      "status": "not_run",
+      "reason": "would publish to production and requires an explicit live rollback or controlled deployment decision"
+    },
+    "communicationDrill": {
+      "status": "template_fields_verified_by_test",
+      "externalMessageSent": false
+    }
+  },
+  "remainingVerification": [
+    "run the full selected GitHub Actions workflow at its original SHA and ref",
+    "verify the new run attempt succeeds through deploy",
+    "verify public route status and content identity after deployment",
+    "resolve or explicitly accept cross-environment Borg generated-record drift"
+  ]
+}

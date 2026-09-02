@@ -1,0 +1,90 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-005",
+  "batch": "8-molecule",
+  "date": "2026-09-02",
+  "subject": "canonical global navigation on Molecule",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+    "search_adapter": "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "page_composition": "src/apps/molecule/MoleculeRuntime.js",
+    "page": "molecule.html",
+    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-005-batch-8",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open Molecule at the declared viewport. Confirm the title and desktop preset list clear the canonical bar, open global Search, dismiss it with Escape, and activate Applications Home.",
+    "routes": ["/molecule.html"]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-8/molecule-desktop-1440x900-search.png",
+      "sha256": "153e0436fbb58dcace88d13f3d9354f1363e64ea7892528bd5521611ba7e3c6b",
+      "bytes": 89039,
+      "route": "/molecule.html",
+      "viewport": [1440, 900],
+      "state": "global-search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "popover_rect_px": [1149.84, 60, 274.16, 278],
+      "title_rect_px": [16, 16, 117.89, 93.34],
+      "first_preset_rect_px": [1111, 60, 155.5, 58],
+      "closed_bar_title_overlap_px2": 0,
+      "closed_bar_first_preset_overlap_px2": 0,
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-8/molecule-mobile-390x844-closed.png",
+      "sha256": "743c210eacea1a1f2021f126932f59cd038e16ebf51b4071e95869e3b15b0c5c",
+      "bytes": 33261,
+      "route": "/molecule.html",
+      "viewport": [390, 844],
+      "state": "search-closed",
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "title_rect_px": [10, 56, 370, 93.34],
+      "bar_title_vertical_clearance_px": 12,
+      "stage_rect_px": [0, 0, 390, 489.52],
+      "canvas_size_px": [390, 490],
+      "preset_count": 26,
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-8/molecule-mobile-390x844-search.png",
+      "sha256": "a9177cd8d51144faaf7698937716dd3c65937d653a104533bea574251fe97234",
+      "bytes": 42673,
+      "route": "/molecule.html",
+      "viewport": [390, 844],
+      "state": "global-search-open",
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "popover_rect_px": [103.84, 56, 274.16, 278],
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    }
+  ],
+  "interaction_checks": {
+    "canonical_stylesheet_count": 1,
+    "legacy_stylesheet_count": 0,
+    "escape_closes_search": true,
+    "escape_restores_focus_to": "scene-search-toggle",
+    "home_destination": "index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json",
+    "boot_error": null
+  },
+  "visual_inspection": {
+    "desktop": "The title remains on the molecule stage, the preset list reserves the canonical bar row, and molecule readouts, presets, and session controls remain local.",
+    "mobile": "The canonical bar occupies the first row, the title begins 12px below it, the molecule canvas and readout remain visible, and the Search popover stays inside the viewport."
+  },
+  "claim_boundary": "This receipt verifies UI-005 batch 8 navigation ownership, focus, routing, and responsive bar clearance on Molecule only. It does not validate molecule geometry, ledger values, PubChem data, external-lookup policy, or scientific interpretation."
+}

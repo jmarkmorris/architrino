@@ -1492,14 +1492,22 @@ test("XYZ key uses centered symmetric unit axes with labels beyond positive endp
   );
 });
 
-test("Lattice Lab page keeps the shared standalone navigation strip without Borg diagnostics", () => {
+test("Lattice Lab mounts the canonical standalone navigation runtime without Borg diagnostics", () => {
   const html = readRepoFile("lattice-lab.html");
   const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
+  const navigationRuntimeSource = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   assert.match(
     html,
-    /id="scene-hud-tools"[\s\S]*id="textbook-toc-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="home-button"[\s\S]*id="scene-search-toggle"/u,
+    /<div id="scene-hud-tools" class="lattice-lab-navigation"><\/div>/u,
   );
-  assert.match(html, /src\/apps\/navigator\/standalone-app-navigation\.css/u);
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/u);
+  assert.doesNotMatch(html, /src\/apps\/navigator\/standalone-app-navigation\.css/u);
+  assert.doesNotMatch(
+    html,
+    /id="(?:textbook-toc-button|nav-up|nav-forward|home-button|scene-search-toggle)"/u,
+  );
+  assert.match(navigationRuntimeSource, /createStandaloneAppNavigationRuntime/u);
+  assert.doesNotMatch(navigationRuntimeSource, /createStandaloneAppSceneSearchRuntime/u);
   assert.equal(html.includes("diagnostics-toggle"), false);
   assert.equal(/\bPlay\b/u.test(html), false);
   assert.equal(html.includes("data-lattice-view"), false);

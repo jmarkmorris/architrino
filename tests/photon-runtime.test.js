@@ -70,6 +70,7 @@ import {
 } from "../src/apps/photon/PhotonDiagnosticsRuntime.js";
 import {
   createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis,
+  createPhotonDeepComparisonResultsWithPrescribedPathAnalysis,
   parsePhotonSearchResultsJson,
   serializePhotonSearchResults,
 } from "../src/apps/photon/PhotonSearchRuntime.js";
@@ -719,6 +720,65 @@ test("absolute-history contributions stay paired with root identities after dela
   assert.equal(field.electric.y, 33);
 });
 
+test("absolute-history Delta x diagnostic classifies root age in reference cycles", async () => {
+  const state = createDefaultPhotonState();
+  const observationTime = 2;
+  const delays = [0.4, 0.75, 1.25];
+  const field = await computePhotonObserverFieldWithPrescribedPathAnalysis(
+    state,
+    observationTime,
+    {
+      async solveMovingCircularAbsoluteHistoryRun(request) {
+        const transmitterRef = request.transmitterRootRequests[0].transmitterRef;
+        return {
+          transmitterRootResponses: [
+            {
+              requestIndex: 0,
+              transmitterRef,
+              roots: delays.map((delay) => ({
+                emissionTime: observationTime - delay,
+                hitTime: observationTime,
+                delay,
+                distance: delay,
+                residual: 0,
+                transmitterPoint: { x: -delay, y: 0, z: 0 },
+                receiverPoint: { x: 0, y: 0, z: 0 },
+              })),
+              status: { code: "ok", severity: "ok" },
+            },
+          ],
+          observerField: {
+            schema: "prescribed-path-analysis/moving-circular-observer-field.v2",
+            contributions: delays.map((delay, transmitterRootIndex) => ({
+              transmitterRootRequestIndex: 0,
+              transmitterRootIndex,
+              electric: { x: 0, y: delay, z: 0 },
+              comparisonB: { x: 0, y: 0, z: delay },
+            })),
+            averageDelay: delays.reduce((sum, delay) => sum + delay, 0) / delays.length,
+            delaySolveGapMax: 0,
+            maxTransmitterSpeedRatio: 0,
+            jacobianAbsMin: 1,
+            unstableContributionCount: 0,
+            nearestTransmitterDistance: Math.min(...delays),
+          },
+        };
+      },
+    }
+  );
+
+  assert.deepEqual(field.rootAgeCounts, { fresh: 1, aging: 1, stale: 1 });
+  assertNear(field.oldestRootAgeReferenceCycles, 2.5, 1e-12);
+  assert.equal(field.deltaXDiagnostic.schema, "photon-moving-apparatus-delta-x.v1");
+  assert.equal(field.deltaXDiagnostic.authority, "authoritative_delta_x_diagnostic");
+  assert.deepEqual(field.deltaXDiagnostic.rootAgeThresholds, {
+    unit: "reference_cycles",
+    agingAbove: 1,
+    staleAbove: 2,
+  });
+  assert.deepEqual(field.deltaXDiagnostic.rootAgeCounts, { fresh: 1, aging: 1, stale: 1 });
+});
+
 test("Photon helical same-transmitter roots route through the moving-circular prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   let sameTransmitterCalls = 0;
@@ -812,6 +872,57 @@ test("Photon self-hit diagnostics use prescribed span analysis when circular-tra
   ));
 });
 
+test("Photon self-hit roots fail closed across singular, Jacobian, and transversality boundaries", async () => {
+  const state = createDefaultPhotonState();
+  let callIndex = 0;
+  const diagnostics = await computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, {
+    skipSpanSelfHitDiagnostics: true,
+    async solveMovingCircularSameTransmitterRoots(request) {
+      const classificationIndex = callIndex % 4;
+      callIndex += 1;
+      const factor = [1, 5e-5, 0, undefined][classificationIndex];
+      const root = {
+        rootId: 0,
+        emissionTime: request.hitTime - 0.2,
+        hitTime: request.hitTime,
+        delay: 0.2,
+        distance: 0.2,
+        residual: 0,
+      };
+      if (factor !== undefined) {
+        root.transmitterFactor = factor;
+        root.jacobian = factor;
+        root.causalFactorStatusCode = factor === 0 ? 14 : 0;
+      } else {
+        root.causalFactorStatusCode = 25;
+      }
+      return {
+        roots: [root],
+        status: { code: "ok", severity: "ok" },
+      };
+    },
+  });
+
+  assert.equal(diagnostics.helicalCandidateRootCount, 12);
+  assert.equal(diagnostics.helicalAdmittedRootCount, 3);
+  assert.equal(diagnostics.helicalRejectedRootCount, 9);
+  assert.deepEqual(diagnostics.helicalRejectedRootReasonCounts, {
+    jacobian_floor_failure: 3,
+    singular_root: 3,
+    transversality_not_certified: 3,
+  });
+  assert.ok(diagnostics.helicalRecords.every((record) =>
+    record.roots.every((root) =>
+      [
+        "admitted_regular_root",
+        "jacobian_floor_failure",
+        "singular_root",
+        "transversality_not_certified",
+      ].includes(root.admission.reason)
+    )
+  ));
+});
+
 test("Photon helical self-hit phase-lock sweep summarizes sampled cases", async () => {
   const cases = createPhotonSelfHitPhaseLockSweepCases({
     presetIds: ["balanced_contra_rotating_pair"],
@@ -838,6 +949,11 @@ test("Photon helical self-hit phase-lock sweep summarizes sampled cases", async 
   assert.equal(sweep.cases.length, 4);
   assert.equal(typeof sweep.summary.stablePhaseLockFound, "boolean");
   assert.ok(sweep.summary.totalPhaseFamilies >= 0);
+  assert.equal(
+    sweep.summary.totalHelicalCandidateRoots,
+    sweep.summary.totalHelicalAdmittedRoots + sweep.summary.totalHelicalRejectedRoots
+  );
+  assert.equal(typeof sweep.summary.rejectedRootReasonCounts, "object");
   assert.ok(sweep.cases.every((caseResult) =>
     caseResult.caseId &&
     Number.isFinite(caseResult.helicalPhaseFamilyCount) &&
@@ -1018,6 +1134,7 @@ test("physical co-moving field pipeline pins a nonzero transverse value", async 
   assertNear(field.electric.z, -0.10630283496211346, 1e-10);
   assertNear(field.electric.magnitude, 0.5359985120613151, 1e-10);
   assert.ok(field.contributions.every((row) => row.causalFactorEvidenceStatus === "ok"));
+  assert.equal(field.deltaXDiagnostic.authority, "comparison_only");
 });
 
 test("Photon formula and plot APIs expose central prescribed-path analysis results", async () => {
@@ -1458,6 +1575,96 @@ test("configuration search compares co-moving and absolute-history analysis resu
   assert.equal(imported[0].comparison.status, "ok");
 });
 
+test("deep configuration comparison filters candidates, yields progress, and exports provenance", async () => {
+  const state = createDefaultPhotonState();
+  const bridge = createPhotonCircularTransmitterBridgeStub();
+  const progress = [];
+  let yieldCount = 0;
+  const results = await createPhotonDeepComparisonResultsWithPrescribedPathAnalysis(state, {
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
+    limit: 2,
+    maxCandidates: 2,
+    filters: {
+      speedMode: "lorentz_factor",
+      phaseFamily: "none",
+    },
+    summaryOptions: {
+      polarizationSampleCount: 6,
+      minimumPolarizationSampleCount: 4,
+      analyzerSampleCount: 3,
+      minimumAnalyzerSampleCount: 2,
+      skipSelfHitDiagnostics: true,
+    },
+    perturbOptions: {
+      polarizationSampleCount: 4,
+      minimumPolarizationSampleCount: 3,
+      analyzerSampleCount: 2,
+      minimumAnalyzerSampleCount: 1,
+      skipSelfHitDiagnostics: true,
+    },
+    comparisonOptions: {
+      polarizationSampleCount: 4,
+      minimumPolarizationSampleCount: 3,
+      analyzerSampleCount: 2,
+      minimumAnalyzerSampleCount: 1,
+      maxDelay: 0.25,
+      skipSelfHitDiagnostics: true,
+    },
+    onProgress: (entry) => progress.push(entry),
+    yieldToEventLoop: async () => {
+      yieldCount += 1;
+    },
+  });
+
+  assert.equal(results.length, 2);
+  assert.equal(yieldCount, 1);
+  assert.deepEqual(progress[0], { completed: 0, total: 2, retained: 0 });
+  assert.deepEqual(progress.at(-1), { completed: 2, total: 2, retained: 2 });
+  results.forEach((result) => {
+    assert.equal(result.state.pair.speedMode, "lorentz_factor");
+    assert.equal(result.comparison.status, "ok");
+    assert.equal(result.deepComparison.schema, "photon-configuration-deep-comparison.v1");
+    assert.equal(result.deepComparison.normalizedStateSnapshot, true);
+    assert.equal(result.deepComparison.uiIndependentAfterDispatch, true);
+    assert.equal(result.deepComparison.scientificOracleIndependent, false);
+    assert.deepEqual(result.deepComparison.historyModesEvaluated, [
+      "co_moving",
+      "absolute_history",
+    ]);
+    assert.deepEqual(result.deepComparison.filters, {
+      speedMode: "lorentz_factor",
+      phaseFamily: "none",
+    });
+  });
+
+  const imported = parsePhotonSearchResultsJson(serializePhotonSearchResults(results));
+  assert.deepEqual(imported[0].deepComparison, results[0].deepComparison);
+
+  const stableOnly = await createPhotonDeepComparisonResultsWithPrescribedPathAnalysis(state, {
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
+    limit: 1,
+    maxCandidates: 1,
+    filters: { speedMode: "direct", phaseFamily: "stable" },
+    summaryOptions: {
+      polarizationSampleCount: 4,
+      analyzerSampleCount: 2,
+      skipSelfHitDiagnostics: true,
+    },
+    perturbOptions: {
+      polarizationSampleCount: 4,
+      analyzerSampleCount: 2,
+      skipSelfHitDiagnostics: true,
+    },
+    comparisonOptions: {
+      polarizationSampleCount: 4,
+      analyzerSampleCount: 2,
+      skipSelfHitDiagnostics: true,
+    },
+    yieldToEventLoop: async () => {},
+  });
+  assert.deepEqual(stableOnly, []);
+});
+
 test("Photon diagnostics expose the active prescribed-path analysis library", async () => {
   const state = createDefaultPhotonState();
   const bridge = createPhotonCircularTransmitterBridgeStub();
@@ -1476,6 +1683,8 @@ test("Photon diagnostics expose the active prescribed-path analysis library", as
   assert.equal(rows.get("Span self-hit roots"), "6 / 6");
   assert.equal(rows.get("Span self-hit max v/c_sig"), "1.56");
   assert.equal(rows.get("Helical self-hit roots"), "12 / 12");
+  assert.match(rows.get("Helical regular roots"), /^\d+ \/ \d+$/);
+  assert.match(rows.get("Helical rejected roots"), /^singular \d+, small-J \d+, uncertified \d+$/);
   assert.equal(rows.get("Helical self-hit max v/c_sig"), "1.56");
   assert.equal(rows.get("Helical speed regimes"), "sub 0 / 0, edge 0 / 0, self 12 / 12");
   assert.match(rows.get("Helical self-hit phase spread"), / deg$/);
@@ -1488,6 +1697,9 @@ test("Photon diagnostics expose the active prescribed-path analysis library", as
   assert.equal(rows.get("Near misses"), "0");
   assert.equal(rows.get("Root cap hits"), "0");
   assert.equal(rows.get("Delay status"), "catch-up limited");
+  assert.equal(rows.get("Delta x authority"), "absolute history");
+  assert.match(rows.get("Root ages"), /^fresh \d+, aging \d+, stale \d+$/);
+  assert.match(rows.get("Oldest root age"), / ref cycles$/);
   assert.match(rows.get("Left 120-deg spacing error"), / deg$/);
   assert.match(rows.get("Right 120-deg spacing error"), / deg$/);
   assert.match(rows.get("Trailing hit phase spread"), / deg$/);
@@ -1604,6 +1816,61 @@ test("formula summary reports a derived prescribed-path-analysis polarization fi
   assert.ok(Number.isFinite(summary.fitResidual));
   assert.ok(summary.fitResidual >= 0);
   assert.ok(Number.isFinite(summary.analyzerResidual));
+  assert.equal(
+    summary.polarization.substrateMapping.schema,
+    "photon-substrate-mapping-refinement.v1"
+  );
+  assert.equal(
+    summary.polarization.substrateMapping.inputs.transmitterHistoryMode,
+    "absolute_history"
+  );
+  assert.deepEqual(
+    Object.keys(summary.polarization.substrateMapping.layerFits),
+    ["I", "M", "O"]
+  );
+  assert.ok(summary.polarization.substrateMapping.algebraicClosurePass);
+  assert.ok(
+    summary.polarization.substrateMapping.residuals.branchSumResidual <= 1e-12
+  );
+  assert.ok(
+    summary.polarization.substrateMapping.residuals.harmonicClosureResidual <= 1e-12
+  );
+});
+
+test("I/M/O branch sums close to the co-moving transverse harmonic ledger", async () => {
+  const state = createDefaultPhotonState();
+  state.measurement.transmitterHistoryMode = "co_moving";
+  const trace = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(
+    state,
+    0.5,
+    24,
+    {
+      minimumPolarizationSampleCount: 24,
+    }
+  );
+  const mapping = trace.substrateMapping;
+
+  assert.equal(mapping.inputs.transmitterHistoryMode, "co_moving");
+  assert.equal(mapping.inputs.transmitterMode, "prescribed_path_circular_transmitter_branch_sum");
+  assert.equal(mapping.inputs.sampleCount, 24);
+  assert.deepEqual(mapping.inputs.activeTransmitterCountByLayer, { I: 4, M: 4, O: 4 });
+  assert.equal(mapping.coverage.status, "complete_for_declared_samples");
+  assert.equal(mapping.coverage.unresolvedTransmitterCountMax, 0);
+  assert.equal(mapping.coverage.unstableTransmitterCountMax, 0);
+  assert.ok(mapping.algebraicClosurePass);
+  assert.ok(mapping.residuals.branchSumResidual <= 1e-12);
+  assert.ok(mapping.residuals.harmonicClosureResidual <= 1e-12);
+
+  ["y", "z"].forEach((axis) => {
+    ["dc", "cosCoefficient", "sinCoefficient"].forEach((coefficientKey) => {
+      const layerSum = ["I", "M", "O"].reduce(
+        (sum, layerId) =>
+          sum + mapping.layerFits[layerId].components[axis][coefficientKey],
+        0
+      );
+      assertNear(layerSum, trace.components[axis][coefficientKey], 1e-10);
+    });
+  });
 });
 
 test("polarization fitter classifies a one-axis signal as linear", () => {

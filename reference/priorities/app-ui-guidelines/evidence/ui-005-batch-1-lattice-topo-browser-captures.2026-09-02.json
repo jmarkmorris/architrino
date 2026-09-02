@@ -1,0 +1,127 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-005",
+  "batch": "1-lattice-lab-topo",
+  "date": "2026-09-02",
+  "subject": "canonical top dynamic control bar on Lattice Lab and Wake Topography",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+    "search_adapter": "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "lattice_composition": "src/apps/lattice-lab/LatticeLabRuntime.js",
+    "topo_composition": "src/apps/topo/TopoInteractionContractRuntime.js",
+    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-005-batch-1",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open each route at the declared viewport, activate Search scenes, wait for ten populated results, and capture the viewport. For the expanded Topo capture, dismiss Search and expand Wake Topography controls before capture.",
+    "routes": [
+      "/lattice-lab.html",
+      "/topo.html"
+    ]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-1/lattice-lab-desktop-1440x900-search.png",
+      "sha256": "475f0bff7cc7a8b40f29d9f4d6eeeca647208d50278695bb814fce1c8869edb8",
+      "bytes": 140082,
+      "route": "/lattice-lab.html",
+      "viewport": [1440, 900],
+      "state": "search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "popover_rect_px": [1149.84, 60, 274.16, 278],
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-1/lattice-lab-mobile-390x844-search.png",
+      "sha256": "3455115ada847b024d250ff800f7a3e6376a3461e3ceac0485f3abfae12ed256",
+      "bytes": 63734,
+      "route": "/lattice-lab.html",
+      "viewport": [390, 844],
+      "state": "search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [300, 12, 78, 112],
+      "popover_rect_px": [103.84, 136, 274.16, 278],
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-1/topo-desktop-1440x900-search.png",
+      "sha256": "b37afb7a0b74c56ecf4674dda34ebb33cf58c512e84f6ec09be9e237a751a2e7",
+      "bytes": 95063,
+      "route": "/topo.html",
+      "viewport": [1440, 900],
+      "state": "search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "popover_rect_px": [1149.84, 60, 274.16, 278],
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-1/topo-mobile-390x844-search.png",
+      "sha256": "a46c3b8c505752bc6283381efd19bff4a84e76e968dcb4c9d1446c569368a818",
+      "bytes": 32165,
+      "route": "/topo.html",
+      "viewport": [390, 844],
+      "state": "controls-collapsed-search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "rail_rect_px": [0, 0, 58, 844],
+      "popover_rect_px": [103.84, 56, 274.16, 278],
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false,
+      "bar_rail_overlap_px": 0
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-1/topo-mobile-expanded-390x844.png",
+      "sha256": "609caf5f94ef3bd5af393a50f253de2bc689e28d870510629f9b8d2239902965",
+      "bytes": 46296,
+      "route": "/topo.html",
+      "viewport": [390, 844],
+      "state": "controls-expanded-search-closed",
+      "bar_rect_px": [337.44, 12, 51.56, 192],
+      "rail_rect_px": [0, 0, 336, 844],
+      "scenario_controls_visible": true,
+      "speed_control_visible": true,
+      "horizontal_overflow": false,
+      "bar_rail_overlap_px": 0,
+      "bar_rail_clearance_px": 1.44,
+      "bar_z_index": 9
+    }
+  ],
+  "interaction_checks": {
+    "canonical_stylesheet_count_per_page": 1,
+    "legacy_stylesheet_loaded": false,
+    "escape_closes_search": true,
+    "escape_restores_focus_to": "scene-search-toggle",
+    "lattice_home_destination": "index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json",
+    "browser_log_entries": 0
+  },
+  "visual_inspection": {
+    "lattice_mobile": "The wrapped three-row bar and scene-search popover remain fully visible above the Lattice Lab content and drawing surface.",
+    "topo_mobile": "The collapsed bar clears the rail; the expanded rail preserves visible scenario and speed controls while the vertical bar clears the rail and viewport edge."
+  },
+  "claim_boundary": "This receipt verifies UI-005 batch 1 on Lattice Lab and Wake Topography only. It does not establish migration or rendered conformance for any other standalone page, nor a browser-independent pixel threshold."
+}

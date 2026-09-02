@@ -19,6 +19,7 @@ import {
   getPhotonLayerAngleRadians,
   getPhotonCommonFitWindowBounds,
   getPhotonReferenceFrequency,
+  getPhotonSeparationReferenceRadius,
   getPhotonRunDuration,
   getPhotonMiddleCycleBounds,
   wrapPhotonTime,
@@ -38,6 +39,8 @@ const ROOT_SCAN_MIN_STEPS = 48;
 const ROOT_SCAN_MAX_STEPS = 720;
 const ROOT_SCAN_STEPS_PER_CYCLE = 40;
 const DEFAULT_ABSOLUTE_HISTORY_CYCLES = 2;
+const PHOTON_ROOT_AGE_AGING_REFERENCE_CYCLES = 1;
+const PHOTON_ROOT_AGE_STALE_REFERENCE_CYCLES = 2;
 const DEFAULT_SELF_HIT_TOLERANCE = 1e-12;
 const DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE = 0.015;
 const DEFAULT_SELF_HIT_SOLVE_ITERATIONS = 28;
@@ -59,6 +62,8 @@ const POLARIZATION_LINEAR_S3_TOLERANCE = 0.12;
 const POLARIZATION_CIRCULAR_S3_MIN = 0.82;
 const POLARIZATION_CIRCULAR_TRANSVERSE_TOLERANCE = 0.35;
 const POLARIZATION_SINGLE_AXIS_RATIO = 0.08;
+const PHOTON_SUBSTRATE_MAPPING_SCHEMA = "photon-substrate-mapping-refinement.v1";
+const PHOTON_SUBSTRATE_MAPPING_RESIDUAL_TOLERANCE = 1e-9;
 const X_HAT = Object.freeze({ x: 1, y: 0, z: 0 });
 const PHOTON_CHARGE_TYPES = Object.freeze(["positrino", "electrino"]);
 const PHOTON_CHARGE_SIGN = Object.freeze({
@@ -137,6 +142,7 @@ export function resolvePhotonMeasurementParameters(state) {
     photonSpeedCf,
     speedMode: speedSettings.speedMode,
     localLorentzFactor: speedSettings.localLorentzFactor,
+    referenceFrequencyHz: getPhotonReferenceFrequency(state),
     transmitterHistoryMode: state?.measurement?.transmitterHistoryMode === "absolute_history"
       ? "absolute_history"
       : "co_moving",
@@ -976,6 +982,24 @@ function summarizePhotonSelfHitRecords(records = [], status = "ok", message = ""
     (record) => (Number(record.fieldSpeedRatio) || 0) > 1 + DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE
   ).length;
   const helicalRootFoundCount = safeHelicalRecords.filter((record) => record.rootFound === true).length;
+  const helicalCandidateRootCount = safeHelicalRecords.reduce(
+    (sum, record) => sum + (Number(record.rootCount) || 0),
+    0
+  );
+  const helicalAdmittedRootCount = safeHelicalRecords.reduce(
+    (sum, record) => sum + (Number(record.admittedRootCount) || 0),
+    0
+  );
+  const helicalRejectedRootCount = safeHelicalRecords.reduce(
+    (sum, record) => sum + (Number(record.rejectedRootCount) || 0),
+    0
+  );
+  const helicalRejectedRootReasonCounts = safeHelicalRecords.reduce((counts, record) => {
+    Object.entries(record.rejectedRootReasonCounts ?? {}).forEach(([reason, count]) => {
+      counts[reason] = (counts[reason] ?? 0) + (Number(count) || 0);
+    });
+    return counts;
+  }, {});
   const helicalCandidateCount = safeHelicalRecords.filter(
     (record) => (Number(record.fieldSpeedRatio) || 0) > 1 + DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE
   ).length;
@@ -997,6 +1021,10 @@ function summarizePhotonSelfHitRecords(records = [], status = "ok", message = ""
     helicalRecordCount: safeHelicalRecords.length,
     helicalCandidateCount,
     helicalRootFoundCount,
+    helicalCandidateRootCount,
+    helicalAdmittedRootCount,
+    helicalRejectedRootCount,
+    helicalRejectedRootReasonCounts,
     helicalMaxFieldSpeedRatio,
     helicalSpeedRegimeSummary,
     helicalPhaseFamilies: helicalPhaseFamilies.families,
@@ -1066,6 +1094,64 @@ function getPhotonSelfHitRegime(fieldSpeedRatio) {
   return "field_speed";
 }
 
+function classifyPhotonSelfHitRootAdmission(root = {}) {
+  const transmitterFactor = Number.isFinite(Number(root.transmitterFactor))
+    ? Number(root.transmitterFactor)
+    : Number.isFinite(Number(root.jacobian)) ? Number(root.jacobian) : null;
+  const causalFactorStatusCode = Number.isFinite(Number(root.causalFactorStatusCode))
+    ? Number(root.causalFactorStatusCode)
+    : 0;
+  if (transmitterFactor === null) {
+    return {
+      status: "rejected",
+      reason: "transversality_not_certified",
+      transmitterFactor: null,
+      jacobianAbs: null,
+      transversalityFloor: JACOBIAN_FLOOR,
+      transversalityMargin: null,
+    };
+  }
+  const jacobianAbs = Math.abs(transmitterFactor);
+  if (jacobianAbs <= EPSILON) {
+    return {
+      status: "rejected",
+      reason: "singular_root",
+      transmitterFactor,
+      jacobianAbs,
+      transversalityFloor: JACOBIAN_FLOOR,
+      transversalityMargin: jacobianAbs - JACOBIAN_FLOOR,
+    };
+  }
+  if (jacobianAbs <= JACOBIAN_FLOOR) {
+    return {
+      status: "rejected",
+      reason: "jacobian_floor_failure",
+      transmitterFactor,
+      jacobianAbs,
+      transversalityFloor: JACOBIAN_FLOOR,
+      transversalityMargin: jacobianAbs - JACOBIAN_FLOOR,
+    };
+  }
+  if (causalFactorStatusCode !== 0) {
+    return {
+      status: "rejected",
+      reason: "transversality_not_certified",
+      transmitterFactor,
+      jacobianAbs,
+      transversalityFloor: JACOBIAN_FLOOR,
+      transversalityMargin: jacobianAbs - JACOBIAN_FLOOR,
+    };
+  }
+  return {
+    status: "admitted",
+    reason: "admitted_regular_root",
+    transmitterFactor,
+    jacobianAbs,
+    transversalityFloor: JACOBIAN_FLOOR,
+    transversalityMargin: jacobianAbs - JACOBIAN_FLOOR,
+  };
+}
+
 async function createPhotonHelicalSelfHitRecord(state, descriptor, chargeType, itemIndex, measurement, options = {}) {
   const transmitterRef = {
     braidId: descriptor.braidId,
@@ -1082,6 +1168,7 @@ async function createPhotonHelicalSelfHitRecord(state, descriptor, chargeType, i
   const roots = (Array.isArray(response?.roots) ? response.roots : [])
     .map((root) => ({
       ...root,
+      admission: classifyPhotonSelfHitRootAdmission(root),
       phaseAtHit: createPhotonSelfHitPhaseAtHitRecord(
         state,
         transmitterRef,
@@ -1093,6 +1180,13 @@ async function createPhotonHelicalSelfHitRecord(state, descriptor, chargeType, i
     }))
     .sort((a, b) => a.delay - b.delay);
   const firstRoot = roots[0] ?? null;
+  const admittedRoots = roots.filter((root) => root.admission.status === "admitted");
+  const rejectedRoots = roots.filter((root) => root.admission.status !== "admitted");
+  const rejectedRootReasonCounts = rejectedRoots.reduce((counts, root) => {
+    const reason = root.admission.reason || "unknown";
+    counts[reason] = (counts[reason] ?? 0) + 1;
+    return counts;
+  }, {});
   return {
     analysisId: PHOTON_ANALYSIS_ID,
     itemIndex,
@@ -1110,6 +1204,10 @@ async function createPhotonHelicalSelfHitRecord(state, descriptor, chargeType, i
     statusCode: firstRoot ? 0 : -1,
     rootFound: Boolean(firstRoot),
     rootCount: roots.length,
+    admittedRootCount: admittedRoots.length,
+    rejectedRootCount: rejectedRoots.length,
+    rejectedRootReasonCounts,
+    regularRootFound: admittedRoots.length > 0,
     roots,
     delay: Number(firstRoot?.delay) || 0,
     residual: Number.isFinite(Number(firstRoot?.residual)) ? Number(firstRoot.residual) : 0,
@@ -1504,6 +1602,28 @@ function resolvePhotonCausalFactorRecord(root = {}, signalSpeed = 1) {
   };
 }
 
+function createPhotonRootAgeRecord(root = {}, measurement = {}) {
+  const delay = Math.max(0, Number(root.delay) || 0);
+  const referenceFrequencyHz = Math.max(
+    EPSILON,
+    Number(measurement.referenceFrequencyHz) || 0
+  );
+  const referenceCycles = delay * referenceFrequencyHz;
+  const status = referenceCycles > PHOTON_ROOT_AGE_STALE_REFERENCE_CYCLES
+    ? "stale"
+    : referenceCycles > PHOTON_ROOT_AGE_AGING_REFERENCE_CYCLES
+      ? "aging"
+      : "fresh";
+  return {
+    delay,
+    referenceFrequencyHz,
+    referenceCycles,
+    agingThresholdCycles: PHOTON_ROOT_AGE_AGING_REFERENCE_CYCLES,
+    staleThresholdCycles: PHOTON_ROOT_AGE_STALE_REFERENCE_CYCLES,
+    status,
+  };
+}
+
 function computePhotonDelayedContribution(root, measurement) {
   const n = root.direction;
   const signalSpeed = Math.max(EPSILON, measurement.emissionSpeedCf);
@@ -1549,6 +1669,7 @@ function computePhotonDelayedContribution(root, measurement) {
       : evidenceStatus === "ok" ? 0 : -1,
     causalFactorEvidenceStatus: evidenceStatus,
     transmitterSpeedRatio,
+    rootAge: createPhotonRootAgeRecord(root, measurement),
     receiverAcceleration,
     electric,
     comparisonB,
@@ -1606,16 +1727,22 @@ function createPhotonAbsoluteObserverFieldContributionsFromSolverResponse(
         : [];
     })
   );
-  const contributions = roots.map((root, index) => ({
-    ...root,
-    ...(
-      contributionByRoot.get(
-        `${Number(root.transmitterRootRequestIndex)}:${Number(root.transmitterRootIndex)}`
-      ) ??
-      solverContributions[index] ??
-      computePhotonDelayedContribution(root, measurement)
-    ),
-  }));
+  const contributions = roots.map((root, index) => {
+    const contribution = {
+      ...root,
+      ...(
+        contributionByRoot.get(
+          `${Number(root.transmitterRootRequestIndex)}:${Number(root.transmitterRootIndex)}`
+        ) ??
+        solverContributions[index] ??
+        computePhotonDelayedContribution(root, measurement)
+      ),
+    };
+    return {
+      ...contribution,
+      rootAge: createPhotonRootAgeRecord(contribution, measurement),
+    };
+  });
   return {
     transmitterMode: "prescribed_path_absolute_history_transmitter_acceleration_sum",
     transmitterHistoryProviderId: PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID,
@@ -1920,6 +2047,21 @@ function createPhotonDelayedEmissionFieldResult(fieldSum, rootSets, transmitterR
   const contributions = fieldSum.contributions;
   const unresolvedTransmitterCount = rootSets.filter((rootSet) => rootSet.roots.length === 0).length;
   const rootDiagnostics = summarizePhotonRootDiagnostics(rootSets);
+  const rootAgeCounts = contributions.reduce(
+    (counts, contribution) => {
+      const status = contribution?.rootAge?.status;
+      if (Object.hasOwn(counts, status)) {
+        counts[status] += 1;
+      }
+      return counts;
+    },
+    { fresh: 0, aging: 0, stale: 0 }
+  );
+  const oldestRootAgeReferenceCycles = contributions.reduce(
+    (maximum, contribution) =>
+      Math.max(maximum, Number(contribution?.rootAge?.referenceCycles) || 0),
+    0
+  );
 
   return {
     transmitterMode: fieldSum.transmitterMode,
@@ -1944,11 +2086,45 @@ function createPhotonDelayedEmissionFieldResult(fieldSum, rootSets, transmitterR
     nearMissTransmitterCount: rootDiagnostics.nearMissTransmitterCount,
     rootLimitReachedCount: rootDiagnostics.rootLimitReachedCount,
     closestMissResidual: rootDiagnostics.closestMissResidual,
+    rootAgeCounts,
+    oldestRootAgeReferenceCycles,
     nearestTransmitterDistance: Number.isFinite(fieldSum.nearestTransmitterDistance)
       ? fieldSum.nearestTransmitterDistance
       : 0,
     electric: fieldSum.electric,
     comparisonB: fieldSum.comparisonB,
+  };
+}
+
+function createPhotonDeltaXDiagnostic(state, delayedField) {
+  const pairSeparation = Math.max(0, Number(state?.pair?.pairSeparation) || 0);
+  const referenceRadius = Math.max(EPSILON, getPhotonSeparationReferenceRadius(state));
+  const transmitterHistoryMode = delayedField?.measurement?.transmitterHistoryMode ?? "co_moving";
+  return {
+    schema: "photon-moving-apparatus-delta-x.v1",
+    claimGrade: "display-only-visualization",
+    authority: transmitterHistoryMode === "absolute_history"
+      ? "authoritative_delta_x_diagnostic"
+      : "comparison_only",
+    transmitterHistoryMode,
+    transmitterMode: delayedField?.transmitterMode ?? "",
+    pairSeparation,
+    separationReferenceRadius: referenceRadius,
+    separationRatio: pairSeparation / referenceRadius,
+    centerOffsets: {
+      trailing: -pairSeparation / 2,
+      leading: pairSeparation / 2,
+    },
+    rootAgeThresholds: {
+      unit: "reference_cycles",
+      agingAbove: PHOTON_ROOT_AGE_AGING_REFERENCE_CYCLES,
+      staleAbove: PHOTON_ROOT_AGE_STALE_REFERENCE_CYCLES,
+    },
+    rootAgeCounts: { ...(delayedField?.rootAgeCounts ?? { fresh: 0, aging: 0, stale: 0 }) },
+    oldestRootAgeReferenceCycles: Number(delayedField?.oldestRootAgeReferenceCycles) || 0,
+    unresolvedTransmitterCount: Number(delayedField?.unresolvedTransmitterCount) || 0,
+    noCatchUpTransmitterCount: Number(delayedField?.noCatchUpTransmitterCount) || 0,
+    staleHistoryWindowCount: Number(delayedField?.staleHistoryTransmitterCount) || 0,
   };
 }
 
@@ -2172,6 +2348,7 @@ export async function computePhotonObserverFieldWithPrescribedPathAnalysis(state
   const projection = ey * analyzerY + ez * analyzerZ;
   const fieldNormSquared = ey * ey + ez * ez;
   const analyzerFraction = projection * projection / (fieldNormSquared + EPSILON);
+  const deltaXDiagnostic = createPhotonDeltaXDiagnostic(state, delayedField);
   return {
     timeSeconds,
     referenceFrequency,
@@ -2198,6 +2375,9 @@ export async function computePhotonObserverFieldWithPrescribedPathAnalysis(state
     rootLimitReachedCount: delayedField.rootLimitReachedCount,
     closestMissResidual: delayedField.closestMissResidual,
     nearestTransmitterDistance: delayedField.nearestTransmitterDistance,
+    rootAgeCounts: delayedField.rootAgeCounts,
+    oldestRootAgeReferenceCycles: delayedField.oldestRootAgeReferenceCycles,
+    deltaXDiagnostic,
     contributions: delayedField.contributions,
     receiverAcceleration: delayedField.electric,
     electric: { y: ey, z: ez, magnitude: Math.sqrt(fieldNormSquared) },
@@ -2402,6 +2582,150 @@ export function fitPhotonPolarizationFromSamples(samples, analyzerAngleRadians =
   };
 }
 
+function createPhotonLayerElectricLedger(field = {}) {
+  const ledger = Object.fromEntries(
+    PHOTON_LAYER_ORDER.map((layerId) => [layerId, { y: 0, z: 0 }])
+  );
+  (Array.isArray(field.contributions) ? field.contributions : []).forEach((contribution) => {
+    const layerId = contribution?.kinematics?.layerId ?? contribution?.phaseAtHit?.transmitterLayerId;
+    if (!Object.hasOwn(ledger, layerId)) {
+      return;
+    }
+    ledger[layerId].y += Number(contribution?.electric?.y) || 0;
+    ledger[layerId].z += Number(contribution?.electric?.z) || 0;
+  });
+  return ledger;
+}
+
+function computePhotonLayerBranchSumResidual(samples = []) {
+  const totals = samples.reduce(
+    (sum, sample) => {
+      const layerSum = PHOTON_LAYER_ORDER.reduce(
+        (value, layerId) => ({
+          y: value.y + (Number(sample?.layerElectric?.[layerId]?.y) || 0),
+          z: value.z + (Number(sample?.layerElectric?.[layerId]?.z) || 0),
+        }),
+        { y: 0, z: 0 }
+      );
+      const errorY = (Number(sample?.ey) || 0) - layerSum.y;
+      const errorZ = (Number(sample?.ez) || 0) - layerSum.z;
+      const fieldY = Number(sample?.ey) || 0;
+      const fieldZ = Number(sample?.ez) || 0;
+      return {
+        errorPower: sum.errorPower + errorY * errorY + errorZ * errorZ,
+        signalPower: sum.signalPower + fieldY * fieldY + fieldZ * fieldZ,
+      };
+    },
+    { errorPower: 0, signalPower: 0 }
+  );
+  return Math.sqrt(totals.errorPower / Math.max(EPSILON, totals.signalPower));
+}
+
+function computePhotonLayerHarmonicClosureResidual(totalFit, layerFits = {}) {
+  const coefficientKeys = ["dc", "cosCoefficient", "sinCoefficient"];
+  let errorPower = 0;
+  let signalPower = 0;
+  ["y", "z"].forEach((axis) => {
+    coefficientKeys.forEach((coefficientKey) => {
+      const total = Number(totalFit?.components?.[axis]?.[coefficientKey]) || 0;
+      const layerSum = PHOTON_LAYER_ORDER.reduce(
+        (sum, layerId) =>
+          sum + (Number(layerFits?.[layerId]?.components?.[axis]?.[coefficientKey]) || 0),
+        0
+      );
+      const error = total - layerSum;
+      errorPower += error * error;
+      signalPower += total * total;
+    });
+  });
+  return Math.sqrt(errorPower / Math.max(EPSILON, signalPower));
+}
+
+function createPhotonSubstrateMappingRecord({
+  state,
+  currentField,
+  fit,
+  fitWindow,
+  rawSamples,
+  referenceFrequency,
+  sampleCount,
+  analyzerAngle,
+}) {
+  const layerFits = Object.fromEntries(
+    PHOTON_LAYER_ORDER.map((layerId) => {
+      const samples = rawSamples.map((sample) => ({
+        t: sample.t,
+        progress: sample.progress,
+        phase: sample.phase,
+        ey: Number(sample?.layerElectric?.[layerId]?.y) || 0,
+        ez: Number(sample?.layerElectric?.[layerId]?.z) || 0,
+      }));
+      return [layerId, fitPhotonPolarizationFromSamples(samples, analyzerAngle)];
+    })
+  );
+  const branchSumResidual = computePhotonLayerBranchSumResidual(rawSamples);
+  const harmonicClosureResidual = computePhotonLayerHarmonicClosureResidual(fit, layerFits);
+  const unresolvedTransmitterCountMax = rawSamples.reduce(
+    (maximum, sample) => Math.max(maximum, Number(sample.unresolvedTransmitterCount) || 0),
+    0
+  );
+  const unstableTransmitterCountMax = rawSamples.reduce(
+    (maximum, sample) => Math.max(maximum, Number(sample.unstableTransmitterCount) || 0),
+    0
+  );
+  const delaySolveGapMax = rawSamples.reduce(
+    (maximum, sample) => Math.max(maximum, Number(sample.delaySolveGapMax) || 0),
+    0
+  );
+  const finiteJacobians = rawSamples
+    .map((sample) => Number(sample.jacobianAbsMin))
+    .filter(Number.isFinite);
+  const jacobianAbsMin = finiteJacobians.length > 0 ? Math.min(...finiteJacobians) : 0;
+  const algebraicClosurePass =
+    branchSumResidual <= PHOTON_SUBSTRATE_MAPPING_RESIDUAL_TOLERANCE &&
+    harmonicClosureResidual <= PHOTON_SUBSTRATE_MAPPING_RESIDUAL_TOLERANCE;
+  const coverageStatus = unresolvedTransmitterCountMax > 0 || unstableTransmitterCountMax > 0
+    ? "partial_retained_root_sum"
+    : "complete_for_declared_samples";
+
+  return {
+    schema: PHOTON_SUBSTRATE_MAPPING_SCHEMA,
+    claimGrade: "display-only-visualization",
+    inputs: {
+      transmitterHistoryMode: currentField?.measurement?.transmitterHistoryMode ?? "co_moving",
+      transmitterMode: currentField?.transmitterMode ?? "",
+      signalSpeedCf: Number(currentField?.measurement?.signalSpeedCf) || 0,
+      photonSpeedCf: Number(currentField?.measurement?.photonSpeedCf) || 0,
+      virtualObserver: { ...(currentField?.measurement?.virtualObserver ?? {}) },
+      referenceFrequency,
+      fitWindow: { ...fitWindow },
+      sampleCount,
+      activeTransmitterCountByLayer: Object.fromEntries(
+        PHOTON_LAYER_ORDER.map((layerId) => [
+          layerId,
+          buildPhotonArchitrinoTransmitterRefs(state).filter(
+            (transmitterRef) => transmitterRef.layerId === layerId
+          ).length,
+        ])
+      ),
+    },
+    layerFits,
+    residuals: {
+      branchSumResidual,
+      harmonicClosureResidual,
+      totalFitResidual: fit.fitResidual,
+      delaySolveGapMax,
+    },
+    coverage: {
+      status: coverageStatus,
+      unresolvedTransmitterCountMax,
+      unstableTransmitterCountMax,
+      jacobianAbsMin,
+    },
+    algebraicClosurePass,
+  };
+}
+
 export async function buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(
   state,
   timeSeconds,
@@ -2433,6 +2757,11 @@ export async function buildPhotonDerivedPolarizationTraceWithPrescribedPathAnaly
         phase,
         ey: field.electric.y,
         ez: field.electric.z,
+        layerElectric: createPhotonLayerElectricLedger(field),
+        unresolvedTransmitterCount: field.unresolvedTransmitterCount,
+        unstableTransmitterCount: field.unstableTransmitterCount,
+        delaySolveGapMax: field.delaySolveGapMax,
+        jacobianAbsMin: field.jacobianAbsMin,
       };
     })
   );
@@ -2473,6 +2802,16 @@ export async function buildPhotonDerivedPolarizationTraceWithPrescribedPathAnaly
   };
   const current = fittedCurrent;
   const projection = current.ey * fit.analyzer.y + current.ez * fit.analyzer.z;
+  const substrateMapping = createPhotonSubstrateMappingRecord({
+    state,
+    currentField,
+    fit,
+    fitWindow,
+    rawSamples,
+    referenceFrequency,
+    sampleCount: count,
+    analyzerAngle,
+  });
   const scale = Math.max(
     1e-9,
     ...samples.flatMap((sample) => [Math.abs(sample.ey), Math.abs(sample.ez)]),
@@ -2489,6 +2828,7 @@ export async function buildPhotonDerivedPolarizationTraceWithPrescribedPathAnaly
     transmitterHistoryProviderId: currentField.transmitterHistoryProviderId ?? "",
     fieldReconstructionOwner: currentField.fieldReconstructionOwner ?? "",
     rootPlaybackOwner: currentField.rootPlaybackOwner ?? "",
+    substrateMapping,
     referenceFrequency,
     cycleDuration,
     fitCycleStart,

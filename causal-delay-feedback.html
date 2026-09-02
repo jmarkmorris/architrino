@@ -11,7 +11,7 @@
     />
     <script defer src="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"></script>
     <link rel="stylesheet" href="./ui-tokens.css" />
-    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
+    <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -1070,66 +1070,7 @@
       ></canvas>
 
       <section id="causal-delay-feedback-journey" class="causal-journey" aria-label="Causal delay learning journey">
-        <div id="scene-hud-tools" class="standalone-app-navigation" aria-label="App and lesson navigation">
-          <button
-            id="textbook-toc-button"
-            class="standalone-app-toc-button"
-            type="button"
-            aria-label="Open textbook table of contents"
-            title="Table of Contents"
-          >TOC</button>
-          <div id="scene-nav-history" class="standalone-app-nav-history" role="group" aria-label="Lesson sequence">
-            <button id="nav-up" class="standalone-app-nav-icon-button" type="button" data-guided-action="back" aria-label="Previous lesson" title="Previous lesson">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <polyline points="15 5 8 12 15 19"></polyline>
-              </svg>
-            </button>
-            <button id="nav-forward" class="standalone-app-nav-icon-button" type="button" data-guided-action="next" aria-label="Next lesson" title="Next lesson">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <polyline points="9 5 16 12 9 19"></polyline>
-              </svg>
-            </button>
-          </div>
-          <button id="home-button" class="standalone-app-nav-icon-button" type="button" aria-label="Go to home" title="Home">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
-                stroke="currentColor"
-                stroke-width="2"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-            </svg>
-          </button>
-          <div id="scene-search" class="standalone-app-scene-search">
-            <button
-              id="scene-search-toggle"
-              class="standalone-app-nav-icon-button standalone-app-scene-search-toggle"
-              type="button"
-              aria-label="Search scenes"
-              aria-controls="scene-search-panel"
-              aria-expanded="false"
-              title="Search"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="11" cy="11" r="6.5"></circle>
-                <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
-              </svg>
-            </button>
-            <div id="scene-search-panel" class="standalone-app-scene-search-panel" aria-hidden="true" inert>
-              <input
-                id="scene-search-input"
-                class="standalone-app-scene-search-input"
-                type="search"
-                placeholder="Search scenes"
-                autocomplete="off"
-                aria-label="Search scenes"
-              />
-              <div id="scene-search-results" class="standalone-app-scene-search-results"></div>
-            </div>
-          </div>
-        </div>
+        <div id="scene-hud-tools" class="causal-navigation"></div>
         <nav id="causal-delay-feedback-mode-tabs" class="causal-mode-tabs" aria-label="Lesson table of contents"></nav>
         <section id="causal-delay-feedback-lesson-panel" class="causal-lesson-panel" aria-labelledby="causal-delay-feedback-lesson-title">
           <div id="causal-delay-feedback-lesson-meta" class="causal-lesson-meta"></div>

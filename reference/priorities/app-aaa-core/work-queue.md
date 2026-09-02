@@ -11,63 +11,21 @@ This is the canonical execution ledger for accepted AAA Core work. [priorities.m
 
 ## Next real work
 
-Review and fixture `aaa_core_path_interchange/v0` from the first architecture draft.
+No Core row is executable without new measured workload, external dataset, or accelerator evidence. Preserve the accepted logical contracts and client while those inputs are acquired.
 
 ## Ranked Next Objects
 
-1. `aaa_core_path_interchange_v0` — [CORE-001](#core-001--aaa-core-path-interchange-v0). Status: `Awaiting verification`.
-2. `representative_path_workload_matrix` — [CORE-002](#core-002--representative-path-workload-matrix). Status: `Queued`.
-3. `path_codec_profile_contracts` — [CORE-003](#core-003--path-codec-profile-contracts). Status: `Queued`.
-4. `accepted_history_stream_contract` — [CORE-004](#core-004--accepted-history-stream-contract). Status: `Queued`.
-5. `query_transform_and_publication_contract` — [CORE-005](#core-005--query-transform-and-publication-contract). Status: `Queued`.
-6. `heterogeneous_path_compute_architecture` — [CORE-006](#core-006--heterogeneous-path-compute-architecture). Status: `Deferred / blocked`.
-7. `experimental_path_import_profile` — [CORE-007](#core-007--experimental-path-import-profile). Status: `Deferred / blocked`.
-8. `application_client_sdk` — [CORE-008](#core-008--application-client-sdk). Status: `Deferred / blocked`.
-9. `root_accelerator_benchmark_and_operating_decision` — [CORE-009](#core-009--root-accelerator-benchmark-and-operating-decision). Status: `Deferred / blocked`.
+1. `heterogeneous_path_compute_architecture` — [CORE-006](#core-006--heterogeneous-path-compute-architecture). Status: `Deferred / blocked`.
+2. `experimental_path_import_profile` — [CORE-007](#core-007--experimental-path-import-profile). Status: `Deferred / blocked`.
+3. `root_accelerator_benchmark_and_operating_decision` — [CORE-009](#core-009--root-accelerator-benchmark-and-operating-decision). Status: `Deferred / blocked`.
 
 ## Awaiting verification
 
-### CORE-001 — AAA Core path interchange v0
-
-- **Status:** Awaiting verification
-- **Priority object:** `aaa_core_path_interchange_v0`
-- **Request / acceptance:** Review and turn [architecture-v0.md](architecture-v0.md) into a versioned logical contract for path sets, chunks, manifests, streams, views, derived products, numeric policies, provenance, and authority.
-- **Evidence / blocker:** The first architecture draft exists. It has no schemas, example records, compatibility tests, or application conformance evidence yet.
-- **Completion:** Positive fixtures cover EOM-produced history, prescribed paths, a live accepted stream, a Potential map product, and an observer-level experimental import; negative fixtures reject missing coverage, incompatible scales, broken predecessor chains, unsupported precision, unknown versions, and authority escalation.
+No rows.
 
 ## Queued
 
-### CORE-002 — Representative path workload matrix
-
-- **Status:** Queued
-- **Priority object:** `representative_path_workload_matrix`
-- **Request / acceptance:** Define representative workloads across path count, history depth, scale span, smoothness, event density, random-access pattern, consumer observable, latency, precision, storage, and accelerator posture.
-- **Evidence / blocker:** No measured workload packet currently selects among path encodings or service deployment modes.
-- **Completion:** The matrix contains at least one EOM continuation, Potential live map, reaction study, optimization sweep, and collider-import workload with explicit correctness and resource metrics.
-
-### CORE-003 — Path codec profile contracts
-
-- **Status:** Queued
-- **Priority object:** `path_codec_profile_contracts`
-- **Request / acceptance:** Specify certification-preserving, precision-bounded analysis, and display-stream codec profiles behind the same logical path model, plus the Core-owned codec registry and the provider boundary for solver-, application-, and experiment-specific encoders and decoders.
-- **Evidence / blocker:** Candidate mechanisms exist only as design ideas; no representation has been benchmarked across the workload matrix.
-- **Completion:** Each profile and provider declares permitted consumers, logical input/output types, encoding and decoding rules, error and authority semantics, event/branch preservation, random access, chunking, GPU layout, deterministic version, compatibility, and failure behavior. Conformance fixtures cover one Core codec, one app-owned codec, and one experimental decoder with round-trip and purpose-specific error tests.
-
-### CORE-004 — Accepted-history stream contract
-
-- **Status:** Queued
-- **Priority object:** `accepted_history_stream_contract`
-- **Request / acceptance:** Define immutable accepted-chunk sequencing, subscriptions, accepted-through watermarks, replay, idempotency, backpressure, reconnect, halt, and sealing behavior between EOM, AAA Core, and applications.
-- **Evidence / blocker:** EOM permits streamed accepted outputs and Potential requires live ingestion, but the shared envelope is not specified.
-- **Completion:** A synthetic producer and two independent consumers demonstrate omission detection, duplicate tolerance, deterministic replay, bounded buffering, reconnect, and exact halt propagation.
-
-### CORE-005 — Query, transform, and publication contract
-
-- **Status:** Queued
-- **Priority object:** `query_transform_and_publication_contract`
-- **Request / acceptance:** Define immutable filter/query manifests, reproducible shaping pipelines, derived-product caching, source binding, publication state, and authority propagation.
-- **Evidence / blocker:** Potential has the first concrete consumer need; cross-app behavior is not yet formalized.
-- **Completion:** Equivalent requests have stable cache identity, transform order is explicit, derived products retain source closure, incomplete products cannot be sealed, and authority cannot increase through transformation.
+No rows.
 
 ## Deferred / blocked
 
@@ -76,7 +34,7 @@ Review and fixture `aaa_core_path_interchange/v0` from the first architecture dr
 - **Status:** Deferred / blocked
 - **Priority object:** `heterogeneous_path_compute_architecture`
 - **Request / acceptance:** Implement staged candidate screening, compaction, bracket isolation, conditioning buckets, branch-preserving refinement queues, difficult-row return, stricter CPU or precision services, deterministic or bounded reductions, device-resident decoding, and measured end-to-end scheduling without moving EOM root authority into Core.
-- **Evidence / blocker:** Depends on CORE-001 through CORE-003 and representative profiles. The [dated options packet](root-gpu-and-operations-options-2026-08-02.md) establishes a benchmark plan, not GPU suitability or a purchase result.
+- **Evidence / blocker:** CORE-001 through CORE-003 now fix logical records, representative workloads, codec profiles, and provider/device-layout declarations. Every representative workload remains unmeasured, so the [dated options packet](root-gpu-and-operations-options-2026-08-02.md) remains a benchmark plan rather than GPU suitability or a purchase result.
 - **Completion:** CPU-reference and accelerator runs agree within declared discrete and continuous obligations, and profiles include decoding, indexing, transfer, divergence, fallback, reduction, and publication.
 
 ### CORE-007 — Experimental path import profile
@@ -84,16 +42,8 @@ Review and fixture `aaa_core_path_interchange/v0` from the first architecture dr
 - **Status:** Deferred / blocked
 - **Priority object:** `experimental_path_import_profile`
 - **Request / acceptance:** Define import adapters for observer-level experimental paths, beginning with a synthetic collider-track record carrying its unchanged source-native measurement payload, coordinate transforms, time basis, calibration, uncertainty, reconstruction provenance, selection history, and separately identified decoded or normalized path variants.
-- **Evidence / blocker:** A public dataset and its scientific comparison mapping have not been selected.
+- **Evidence / blocker:** The path-interchange observer fixture and codec-registry CSV decoder preserve immutable source identity, source-native bytes, ordered transforms, per-sample uncertainty, and observer-only authority. A public dataset, production decoder, and scientific comparison mapping have not been selected.
 - **Completion:** Imported records round-trip without losing uncertainty or provenance and cannot be mistaken for EOM-produced architrino histories.
-
-### CORE-008 — Application client SDK
-
-- **Status:** Deferred / blocked
-- **Priority object:** `application_client_sdk`
-- **Request / acceptance:** Provide thin clients for manifest validation, streaming subscriptions, queries, publication, caching, and progress/failure state after the contracts stabilize.
-- **Evidence / blocker:** Building an SDK before contract fixtures would harden draft interfaces prematurely.
-- **Completion:** Potential and one independent second application consume the same client contracts without application-specific path logic or a compatibility fork.
 
 ### CORE-009 — Root accelerator benchmark and operating decision
 
@@ -109,7 +59,40 @@ No rows.
 
 ## Verified
 
-No rows.
+### CORE-008 — Application client SDK
+
+- **Status:** Verified on 2026-09-02.
+- **Priority object:** `application_client_sdk`
+- **Result:** The accepted [AAA Core Client v0](client-v0.md), machine control record, schema, thin service/client implementation, two-application fixture, and focused tests expose manifest validation, codec negotiation, query identity, explicit stream subscriptions and progress, sealed publication caching, exact retrieval, and source failure state through one shared interface.
+- **Claim boundary:** This is synchronous in-process client conformance only. It supplies no network API, durable service or cache, authentication, production retry, workload measurement, scientific kernel, EOM evolution, or application release.
+
+### CORE-005 — Query, transform, and publication contract
+
+- **Status:** Verified on 2026-09-02.
+- **Priority object:** `query_transform_and_publication_contract`
+- **Result:** The accepted [query, transform, and publication contract v0](query-transform-publication-v0.md), machine control record, schema, executable builder and validator, two positive fixtures, and fifteen negative controls close stable query/cache identity, explicit transform order, source closure, provisional/sealed state, authority propagation, and exact cross-application retrieval.
+- **Claim boundary:** This is synthetic contract conformance only. It validates no transform scientifically, publishes no production product, deploys no cache or catalog, measures no workload, and grants no EOM or scientific authority.
+
+### CORE-004 — Accepted-history stream contract
+
+- **Status:** Verified on 2026-09-02.
+- **Priority object:** `accepted_history_stream_contract`
+- **Result:** The accepted [stream contract v0](accepted-history-stream-v0.md), machine control record, schema, in-process broker, three-chunk accepted path bundle, two separately implemented consumers, reconnect/replay and halt scenarios, and twelve negative controls close the shared sequencing and subscription contract.
+- **Claim boundary:** This is synthetic in-process broker and consumer conformance only. It supplies no production network transport, durable service, measured performance, live EOM integration, scientific kernel, or application release.
+
+### CORE-003 — Path codec profile contracts
+
+- **Status:** Verified on 2026-09-02.
+- **Priority object:** `path_codec_profile_contracts`
+- **Result:** The accepted [codec registry v0](codec-registry-v0.md), machine control record, JSON Schema, executable negotiation and conformance layer, four provider capabilities, five positive cases, and eleven negative controls close the registry and provider-profile contract.
+- **Claim boundary:** This is registry and synthetic conformance only. No provider is selected for production, no representative workload is measured, and no codec result grants EOM, scientific, experimental-interpretation, storage, transport, or accelerator authority.
+
+### CORE-001 — AAA Core path interchange v0
+
+- **Status:** Verified on 2026-09-02.
+- **Priority object:** `aaa_core_path_interchange_v0`
+- **Result:** The accepted [path-interchange v0 contract](path-interchange-v0.md), JSON control record, record schema, executable validator, five positive fixture families, ten negative controls, and Potential field-compatibility test close the logical interchange requirement.
+- **Claim boundary:** This is contract and fixture conformance only. It supplies no production storage, transport, codec, scientific kernel, forward evolution, experimental interpretation, or accepted derived product.
 
 ## Superseded / withdrawn
 

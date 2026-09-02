@@ -673,6 +673,11 @@ NativeEvolutionCheckpoint create_native_evolution_checkpoint(
     throw std::invalid_argument(
         "checkpoint source is not an atomic result for the request");
   }
+  if (!certificate.steps.empty() &&
+      certificate.steps.back().status != "accepted") {
+    throw std::invalid_argument(
+        "checkpoint source does not end at an accepted atomic boundary");
+  }
   if (!request.joint_root_point_states.empty()) {
     throw std::invalid_argument(
         "checkpoint does not support pending joint root point states");
@@ -931,6 +936,8 @@ NativeCoupledEvolutionCertificate resume_native_coupled_histories(
   resumed.start_time = checkpoint.accepted_time;
   resumed.end_time = requested_end_time;
   resumed.initial_step = checkpoint.controller_step_size;
+  resumed.initial_accepted_step_count = checkpoint.accepted_step_count;
+  resumed.initial_rejected_step_count = checkpoint.rejected_step_count;
   resumed.certificate_cost_initial_cooldown_steps =
       checkpoint.controller_certificate_cost_cooldown_remaining;
   resumed.initial_consecutive_growth_headroom_steps =

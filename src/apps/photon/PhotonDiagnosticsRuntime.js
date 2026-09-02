@@ -204,6 +204,14 @@ function formatSelfHitSpeedRegimeSummary(summary = {}) {
   ].join(", ");
 }
 
+function formatSelfHitRejectionSummary(counts = {}) {
+  return [
+    `singular ${Number(counts.singular_root ?? 0)}`,
+    `small-J ${Number(counts.jacobian_floor_failure ?? 0)}`,
+    `uncertified ${Number(counts.transversality_not_certified ?? 0)}`,
+  ].join(", ");
+}
+
 function formatPhaseLockClassSummary(diagnostics = {}) {
   return [
     `stable ${Number(diagnostics.helicalStablePhaseLockFamilyCount ?? 0)}`,
@@ -249,6 +257,9 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     unresolvedTransmitterCount: formula.field.unresolvedTransmitterCount,
     noCatchUpTransmitterCount: formula.field.noCatchUpTransmitterCount ?? 0,
     staleHistoryTransmitterCount: formula.field.staleHistoryTransmitterCount ?? 0,
+    deltaXDiagnostic: formula.field.deltaXDiagnostic ?? null,
+    rootAgeCounts: formula.field.rootAgeCounts ?? { fresh: 0, aging: 0, stale: 0 },
+    oldestRootAgeReferenceCycles: formula.field.oldestRootAgeReferenceCycles ?? 0,
     nearMissTransmitterCount: formula.field.nearMissTransmitterCount ?? 0,
     rootLimitReachedCount: formula.field.rootLimitReachedCount ?? 0,
     closestMissResidual: formula.field.closestMissResidual ?? 0,
@@ -265,6 +276,10 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     helicalSelfHitRecordCount: formula.selfHitDiagnostics?.helicalRecordCount ?? 0,
     helicalSelfHitCandidateCount: formula.selfHitDiagnostics?.helicalCandidateCount ?? 0,
     helicalSelfHitRootFoundCount: formula.selfHitDiagnostics?.helicalRootFoundCount ?? 0,
+    helicalCandidateRootCount: formula.selfHitDiagnostics?.helicalCandidateRootCount ?? 0,
+    helicalAdmittedRootCount: formula.selfHitDiagnostics?.helicalAdmittedRootCount ?? 0,
+    helicalRejectedRootCount: formula.selfHitDiagnostics?.helicalRejectedRootCount ?? 0,
+    helicalRejectedRootReasonCounts: formula.selfHitDiagnostics?.helicalRejectedRootReasonCounts ?? {},
     helicalSelfHitMaxFieldSpeedRatio: formula.selfHitDiagnostics?.helicalMaxFieldSpeedRatio ?? 0,
     helicalSpeedRegimeSummary: formula.selfHitDiagnostics?.helicalSpeedRegimeSummary ?? null,
     helicalPhaseFamilyCount: formula.selfHitDiagnostics?.helicalPhaseFamilyCount ?? 0,
@@ -306,6 +321,25 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
     ["Mean delay", formatPhotonFixed(diagnostics.averageDelay, 3), "info"],
     ["Transmitter count", String(diagnostics.transmitterCount), "info"],
     ["Root count", String(diagnostics.rootCount), "info"],
+    [
+      "Delta x authority",
+      diagnostics.deltaXDiagnostic?.authority === "authoritative_delta_x_diagnostic"
+        ? "absolute history"
+        : "comparison only",
+      diagnostics.deltaXDiagnostic?.authority === "authoritative_delta_x_diagnostic" ? "good" : "info",
+    ],
+    [
+      "Root ages",
+      `fresh ${diagnostics.rootAgeCounts.fresh}, aging ${diagnostics.rootAgeCounts.aging}, stale ${diagnostics.rootAgeCounts.stale}`,
+      diagnostics.rootAgeCounts.stale > 0 ? "poor" : diagnostics.rootAgeCounts.aging > 0 ? "info" : "good",
+    ],
+    [
+      "Oldest root age",
+      `${formatPhotonFixed(diagnostics.oldestRootAgeReferenceCycles, 2)} ref cycles`,
+      diagnostics.oldestRootAgeReferenceCycles > 2
+        ? "poor"
+        : diagnostics.oldestRootAgeReferenceCycles > 1 ? "info" : "good",
+    ],
     [
       "Motion history",
       diagnostics.transmitterHistoryProviderId ? "Photon constrained" : "unavailable",
@@ -350,6 +384,16 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       "Helical self-hit roots",
       `${diagnostics.helicalSelfHitRootFoundCount} / ${diagnostics.helicalSelfHitRecordCount}`,
       diagnostics.helicalSelfHitRootFoundCount > 0 ? "info" : "poor",
+    ],
+    [
+      "Helical regular roots",
+      `${diagnostics.helicalAdmittedRootCount} / ${diagnostics.helicalCandidateRootCount}`,
+      diagnostics.helicalRejectedRootCount > 0 ? "info" : "good",
+    ],
+    [
+      "Helical rejected roots",
+      formatSelfHitRejectionSummary(diagnostics.helicalRejectedRootReasonCounts),
+      diagnostics.helicalRejectedRootCount > 0 ? "info" : "good",
     ],
     [
       "Helical self-hit max v/c_sig",
@@ -444,6 +488,8 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       "Span self-hit roots",
       "Span self-hit max v/c_sig",
       "Helical self-hit roots",
+      "Helical regular roots",
+      "Helical rejected roots",
       "Helical self-hit max v/c_sig",
       "Helical speed regimes",
       "Helical self-hit min |J|",

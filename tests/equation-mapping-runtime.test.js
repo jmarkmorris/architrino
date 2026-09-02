@@ -22,7 +22,6 @@ import {
 } from "../src/apps/equation-mapping/EquationMappingEditor.js";
 import {
   calculateEquationAutoFit,
-  createEquationMappingHomeHref,
   createPointerLineGeometry,
   createSidePointerLineGeometry,
   EquationMappingRuntime,
@@ -1251,19 +1250,17 @@ test("equation mapping settings omit the global section-line control", () => {
   assert.equal(requirements.includes("section-line placement: above or below formula section"), false);
 });
 
-test("equation mapping home button targets the Applications scene without replacing history", () => {
+test("equation mapping delegates global navigation to the canonical bar and keeps equation tools local", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
-  assert.equal(
-    createEquationMappingHomeHref({
-      location: {
-        href: "http://127.0.0.1:5173/equation-mapping.html",
-      },
-    }),
-    "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json"
-  );
-  assert.equal(runtime.includes('assign?.("./index.html")'), false);
-  assert.equal(runtime.includes("location?.replace"), false);
-  assert.equal(runtime.includes("createEquationMappingHomeHref(this.window)"), true);
+  assert.equal(runtime.includes("createStandaloneAppNavigationRuntime"), true);
+  assert.equal(runtime.includes("onOpenChange: (isOpen)"), true);
+  assert.equal(runtime.includes("controls.hidden = this.globalSearchOpen"), true);
+  assert.equal(runtime.includes("navigateStandaloneAppHome"), false);
+  assert.equal(runtime.includes('case "home":'), false);
+  assert.equal(runtime.includes('this.renderIconButton("home"'), false);
+  assert.equal(runtime.includes('this.renderIconButton("search", "Search equations"'), true);
+  assert.equal(runtime.includes('this.renderIconButton("settings", "Canvas settings"'), true);
+  assert.equal(runtime.includes('this.renderIconButton("edit", "Edit map"'), true);
 });
 
 test("equation mapping arrow keys navigate through the visible equation list", () => {
@@ -1448,6 +1445,26 @@ test("equation mapping subject selector defaults to folded groups", () => {
     html,
     /\.equation-mapping-index-group\[data-expanded="false"\] > \.equation-mapping-index-items \{[\s\S]*?display: none;/u
   );
+});
+
+test("equation mapping starts with its index collapsed on a compact screen", () => {
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      matchMedia(query) {
+        return { matches: query === "(max-width: 760px)" };
+      },
+      localStorage: {
+        getItem(key) {
+          return key === "architrino.equationMapping.settings.v7"
+            ? JSON.stringify({ indexCollapsed: false })
+            : null;
+        },
+      },
+    },
+  });
+
+  assert.equal(runtime.indexCollapsed, true);
 });
 
 test("equation mapping resets stale saved sizing into the new medium defaults", () => {

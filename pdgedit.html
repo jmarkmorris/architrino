@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0b0e1a" />
     <title>pdgedit</title>
+    <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -19,10 +20,6 @@
         background: #0b0e1a;
         color: #f5f7ff;
         font-family: "Helvetica Neue", Arial, sans-serif;
-      }
-
-      body {
-        min-width: 1648px;
       }
 
       #pdgedit-app {
@@ -45,7 +42,7 @@
         justify-content: space-between;
         align-items: flex-start;
         gap: 16px;
-        padding: 16px;
+        padding: 16px max(244px, calc(env(safe-area-inset-right) + 244px)) 16px 16px;
       }
 
       .pdgedit-top-heading {
@@ -66,10 +63,21 @@
       }
 
       .pdgedit-top-tools {
-        position: relative;
+        position: fixed;
+        top: max(60px, calc(env(safe-area-inset-top) + 48px));
+        right: max(16px, env(safe-area-inset-right));
+        z-index: 10;
         display: inline-flex;
         align-items: flex-start;
         gap: 8px;
+      }
+
+      .pdgedit-top-tools[hidden] {
+        display: none;
+      }
+
+      .pdgedit-navigation.top-dynamic-control-bar.is-standalone {
+        position: fixed;
       }
 
       .pdgedit-top-band-summary {
@@ -153,29 +161,12 @@
         color: rgba(245, 247, 255, 0.72);
       }
 
-      #pdgedit-home-button,
       #pdgedit-document-trigger {
         min-height: 32px;
         border: 1px solid rgba(160, 170, 220, 0.25);
         background: rgba(8, 10, 18, 0.75);
         color: #f5f7ff;
         backdrop-filter: blur(6px);
-      }
-
-      #pdgedit-home-button {
-        width: 32px;
-        height: 32px;
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        padding: 0;
-      }
-
-      #pdgedit-home-button svg {
-        width: 18px;
-        height: 18px;
       }
 
       #pdgedit-document-trigger {
@@ -196,9 +187,7 @@
       }
 
       #pdgedit-document-trigger:hover,
-      #pdgedit-document-trigger:focus-visible,
-      #pdgedit-home-button:hover,
-      #pdgedit-home-button:focus-visible {
+      #pdgedit-document-trigger:focus-visible {
         border-color: rgba(213, 220, 255, 0.6);
       }
 
@@ -350,11 +339,12 @@
         position: absolute;
         inset: 160px 0 0;
         overflow-y: auto;
-        overflow-x: hidden;
+        overflow-x: auto;
       }
 
       .pdgedit-strip-wrap {
         width: 100%;
+        min-width: 1600px;
         min-height: 100%;
         display: flex;
         justify-content: center;
@@ -363,6 +353,7 @@
 
       #pdgedit-surface-strip {
         position: relative;
+        flex: 0 0 1600px;
         width: 1600px;
         min-height: 160px;
       }
@@ -575,6 +566,7 @@
     </style>
   </head>
   <body>
+    <div id="scene-hud-tools" class="pdgedit-navigation"></div>
     <div id="pdgedit-app">
       <div class="pdgedit-top-band pdgedit-top-band-header">
         <div class="pdgedit-top-heading">
@@ -620,7 +612,6 @@
               </button>
             </div>
           </div>
-          <button id="pdgedit-home-button" type="button" aria-label="Go to home"></button>
         </div>
       </div>
       <div class="pdgedit-top-band pdgedit-top-band-summary">

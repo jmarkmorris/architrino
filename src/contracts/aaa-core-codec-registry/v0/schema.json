@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.com/contracts/aaa-core-codec-registry/v0/schema.json",
+  "title": "AAA Core Codec Registry v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "status", "registryAuthority", "logicalContract", "profiles", "providers", "refusalCodes", "conformance", "claimBoundary"],
+  "properties": {
+    "schema": {"const": "aaa_core_codec_registry/v0"},
+    "version": {"const": 0},
+    "status": {"const": "accepted"},
+    "registryAuthority": {"const": "AAA Core"},
+    "logicalContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "controlRecord"],
+      "properties": {
+        "schema": {"const": "aaa_core_path_interchange/v0"},
+        "controlRecord": {"type": "string", "minLength": 1}
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"$ref": "#/$defs/profile"}
+    },
+    "providers": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"$ref": "#/$defs/provider"}
+    },
+    "refusalCodes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "conformance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "validator", "positiveFixtures", "negativeFixtures", "tests"],
+      "properties": {
+        "schema": {"type": "string", "minLength": 1},
+        "validator": {"type": "string", "minLength": 1},
+        "positiveFixtures": {"type": "string", "minLength": 1},
+        "negativeFixtures": {"type": "string", "minLength": 1},
+        "tests": {"type": "string", "minLength": 1}
+      }
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "purpose", "numericRule", "errorRule", "authorityEffect", "eventAndBranchRule", "continuationRule", "requiredAccess", "requiredDevicePosture"],
+      "properties": {
+        "id": {"enum": ["authoritative_history", "precision_bounded_analysis", "display_stream"]},
+        "purpose": {"type": "string", "minLength": 1},
+        "numericRule": {"type": "string", "minLength": 1},
+        "errorRule": {"type": "string", "minLength": 1},
+        "authorityEffect": {"type": "string", "minLength": 1},
+        "eventAndBranchRule": {"const": "preserve_exact"},
+        "continuationRule": {"type": "string", "minLength": 1},
+        "requiredAccess": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "requiredDevicePosture": {"type": "string", "minLength": 1}
+      }
+    },
+    "provider": {
+      "type": "object",
+      "required": ["capabilityId", "providerId", "providerClass", "status", "deterministicVersion", "directions", "logicalInputTypes", "logicalOutputTypes", "profiles", "encoding", "numericAndError", "preservation", "access", "deviceLayout", "authority", "permittedConsumers", "compatibility", "failures"],
+      "properties": {
+        "capabilityId": {"type": "string", "minLength": 1},
+        "providerId": {"type": "string", "minLength": 1},
+        "providerClass": {"enum": ["core", "application", "experimental"]},
+        "status": {"enum": ["conformance_accepted", "conformance_accepted_fixture_only"]},
+        "deterministicVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "directions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["encode", "decode"]}},
+        "logicalInputTypes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "logicalOutputTypes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "profiles": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["authoritative_history", "precision_bounded_analysis", "display_stream"]}},
+        "encoding": {"type": "object"},
+        "numericAndError": {"type": "object"},
+        "preservation": {"type": "object"},
+        "access": {"type": "object"},
+        "deviceLayout": {"type": "object"},
+        "authority": {"type": "object"},
+        "permittedConsumers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "compatibility": {"type": "object"},
+        "sourceRoundTrip": {"type": "object"},
+        "failures": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/failure"}}
+      }
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "condition", "fallback"],
+      "properties": {
+        "code": {"type": "string", "minLength": 1},
+        "condition": {"type": "string", "minLength": 1},
+        "fallback": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

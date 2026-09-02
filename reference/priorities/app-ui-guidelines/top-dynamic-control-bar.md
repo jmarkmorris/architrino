@@ -2,9 +2,15 @@
 
 ## Purpose
 
-This note defines a candidate standard for the top dynamic control bar and records the current migration audit across the main webapp, standalone apps, markdown displays, and page-like utilities.
+This note defines the accepted standard for the top dynamic control bar and records the current migration audit across the main webapp, standalone apps, markdown displays, and page-like utilities.
 
 The standard is intentionally implementation-facing. Canonical user-facing UI preferences remain in [../../../content/markdown/aaa/archie/ui-guidelines.md](../../../content/markdown/aaa/archie/ui-guidelines.md), while this file tracks what needs to move in code.
+
+## Acceptance
+
+The standard and exception policy were accepted on 2026-09-02. Acceptance fixes the control semantics, order, dimensions, responsive behavior, and page classes below. It does not claim that every current page conforms, and it does not authorize moving app-local transport, solver, editor, timeline, filter, or viewport controls into global chrome.
+
+Plainly: the shared strip now has one rulebook. The audit still identifies the pages that need migration.
 
 ## Control-Bar Definition
 
@@ -24,14 +30,14 @@ It should answer four questions without the user learning a new app-specific pat
 - Place the bar at the top-right safe area for canvas-first apps.
 - Place the bar in the right side of a sticky page header for document or utility pages.
 - Keep the active scene/page title outside the action buttons, usually at top-left or in a compact title block.
-- On mobile, wrap or collapse secondary groups before shrinking icon hit targets below the standard size.
+- On mobile, wrap or collapse optional secondary groups before shrinking the accepted `32px` icon shell. Preserve the safe-area inset, visible focus, and the relative order of every control that remains visible.
 
 ### Visual Standard
 
 - Use icon buttons for shared controls.
 - Use a single shell style per surface: dark translucent fill, thin border, currentColor SVG icon, visible focus state, and no text label inside the button.
 - Use `Helvetica Neue`, then `Arial, sans-serif`, for labels, popovers, and page headers.
-- Keep buttons visually compact and stable: target `32px`-`36px` square buttons, `6px`-`8px` radius for standalone app bars, and the existing circular main-scene shell until the main scene HUD is migrated intentionally.
+- Keep shared icon buttons at `32px` square with the accepted circular shell in both the main scene and standalone full-standard bars. Text-bearing page-header actions and local app controls may retain their separately owned compact geometry.
 - Use `aria-label`, `title` where helpful, `aria-expanded` for popovers, and `aria-pressed` for stateful toggles.
 - Do not use emoji or text glyphs for shared icons.
 
@@ -39,16 +45,17 @@ It should answer four questions without the user learning a new app-specific pat
 
 Use this order when the controls exist:
 
-1. `Home`
+1. `TOC`
 2. `Back`
 3. `Forward`
-4. `Search`
-5. `Notes` or `Documents`
-6. `Layout`
-7. `Print` or `PDF`
-8. `Settings`
-9. `Edit` or app-specific mode entry
-10. `Close`, only when the bar is inside a panel header
+4. `Home`
+5. `Search`
+6. `Notes` or `Documents`
+7. `Layout`
+8. `Print` or `PDF`
+9. `Settings`
+10. `Edit` or app-specific mode entry
+11. `Close`, only when the bar is inside a panel header
 
 The bar is dynamic, so not every surface shows every action. The visible order should remain stable among the actions that are present.
 
@@ -62,15 +69,15 @@ The bar is dynamic, so not every surface shows every action. The visible order s
 ### Search
 
 - Main webapp: `Search` opens scene search.
-- Standalone apps: `Search` opens the app's local search when the app has searchable local content.
-- If an app has no useful local search, omit Search rather than showing a dead control.
+- Standalone apps: the full-standard `Search` opens global scene search. A specialized app search, such as equation, molecule, document, or collection search, remains local to the surface it filters and does not silently replace global search.
+- If a page class is exempt from global scene search or an app has not yet adopted the full bar, omit the global control rather than showing a dead control.
 - Search popovers should clear the query and focus the input on open, close on `Escape`, and close on outside interaction when safe.
 
 ### Documents And Markdown Displays
 
 - Document-entry controls can appear in the top bar when they open app-wide notes or guides.
 - Reading-surface controls should prefer a panel header when a markdown panel is open: `Layout`, `Print` / `PDF`, and `Close`.
-- The main webapp currently keeps markdown controls in global chrome; this should be reviewed against Photon and Ideal Braid, where markdown overlays already have local panel headers.
+- The main webapp, Photon, and Ideal Braid keep reading-only controls in their markdown-panel headers rather than global chrome.
 
 ### Settings
 
@@ -87,18 +94,25 @@ The bar is dynamic, so not every surface shows every action. The visible order s
 
 | Surface | Current top-control shape | Conformance | Migration note |
 | --- | --- | --- | --- |
-| [index.html](../../../index.html) | Main scene HUD with TOC, full document, PDF, layout, Back, Forward, Home, and Search in top-right chrome. | Partial | Strongest base for shared scene navigation, but markdown controls are global rather than reading-surface-local. |
-| [animator.html](../../../animator.html) | Forked scene HUD with Back, Forward, Home, scene notes, Search, markdown document, layout, and Archie ring controls. | Partial | Needs unification with `index.html`; current ordering and available markdown controls diverge. |
-| Equation Mapping | Runtime-built top-right Home, Search, Edit, Settings icon group. | Near | Good pilot for standalone app bar; should use shared icon/button primitives once they exist. |
-| [molecule.html](../../../molecule.html) | Top title block with one Applications/Home icon button. | Partial | Add standard bar wrapper; Search and Settings can remain omitted until local features exist. |
-| [photon.html](../../../photon.html) | Home inside inspector header; document buttons in inspector row; markdown overlay has Layout, Print, Close header. | Partial | Move Home and future Search/Settings toward shared top bar; preserve markdown panel header pattern. |
-| [ideal-braid.html](../../../ideal-braid.html) | Home inside upper-right control panel; document buttons in control stack; markdown overlay has Layout, Print, Close header. | Partial | Move Home to shared top bar or make the upper-right panel header use the standard bar contract. |
-| [causal-delay-feedback.html](../../../causal-delay-feedback.html) | Floating replay toolbar with title, wake switches, play/pause/reset, scrubber, settings, and legend. No Home or Search. | Non-conforming | Add Home to shared bar; keep replay controls in the replay toolbar; Search can remain omitted. |
-| [assembly-explorer.html](../../../assembly-explorer.html) | Runtime-built page header with title and text `Home` button. | Non-conforming | Replace text Home with standard icon bar. Add Search only if branch/package search is useful. |
-| [pdgedit.html](../../../pdgedit.html) | Top band with document picker/search/filter and Home button. | Partial | Keep document picker local, but make Home and any app-level settings/search use standard icon styling. |
-| [borg.html](../../../borg.html) | Side rails, viewport controls, and timeline controls; no Home or Search. | Non-conforming | Add shared Home; keep viewport/timeline controls local. Search likely omitted until datasets are searchable. |
-| [website-stats.html](../../../website-stats.html) | Sticky page header with text links and opt-out control. | Lightweight header | Replace the text Home/Archie links with a compact shared Home/project action; keep analytics opt-out as a page-local control. |
-| [solver-gpu-harness.html](../../../solver-gpu-harness.html) | Utility page header with status pill and benchmark controls. | Lightweight header | Provide compact Home navigation when the harness is reachable from app navigation; keep benchmark controls local and omit scene Search, Documents, and Settings. |
+| [index.html](../../../index.html) | Runtime-built TOC, Back, Forward, Home, and global Search bar; reading actions remain panel-local. | Full — canonical runtime | UI-003 removed the static button/SVG copy and migrated state, search, focus, and responsive presentation to the canonical runtime. |
+| [animator.html](../../../animator.html) | The same runtime-built bar moves into the Animator header while Animator viewport, scene, solver, library, docs, and Exit controls remain local. | Full — canonical runtime | UI-003 removed the forked scene-HUD copy and verified Applications Home routing plus desktop/mobile app-content clearance. |
+| [equation-mapping.html](../../../equation-mapping.html) | Runtime-built TOC, Back, Forward, Home, and global Search bar above a separate equation Search, optional Edit, and Settings group. | Full — canonical runtime | UI-005 batch 6 removed the duplicate local Home path, preserved the three local tools, prevents simultaneous global/local search layers, and collapses the equation index by default on compact screens. |
+| [molecule.html](../../../molecule.html) | Runtime-built TOC, Back, Forward, Home, and global Search bar; molecule preset and session controls remain local. | Full — canonical runtime | UI-005 batch 8 removed the copied Home button and runtime path, reserved the desktop preset-list row for the bar, and placed the compact title below it. |
+| [photon.html](../../../photon.html) | Runtime-built TOC, Back, Forward, Home, and global Search bar; markdown overlay owns Layout, Print, and Close. | Full — canonical runtime | UI-005 batch 2 removed the repeated static shell; Photon configuration, playback, diagnostics, plots, document entry, and markdown actions remain local. |
+| [ideal-braid.html](../../../ideal-braid.html) | Shared TOC, Back, Forward, Home, and Search bar; markdown overlay owns Layout, Print, and Close. | Full | Structurally conforms; preserve braid controls in the app panels. |
+| [causal-delay-feedback.html](../../../causal-delay-feedback.html) | Runtime-built TOC, lesson Previous/Next, Home, and global Search bar plus a separate replay toolbar. | Full — canonical runtime | UI-005 batch 3 preserved lesson sequence semantics and local replay/wake controls while removing the repeated static shell. |
+| [assembly-explorer.html](../../../assembly-explorer.html) | Compatibility redirect to the Borg Assembly Library. | Retired | No independent app chrome remains. |
+| [pdgedit.html](../../../pdgedit.html) | Runtime-built TOC, Back, Forward, Home, and global Search bar above a separate document picker with reaction search and filters. | Full — canonical runtime | UI-005 batch 7 removed the copied Home path, kept document work local, and confined the fixed-width reaction strip to an internal horizontal scroller so both chrome rows remain viewport-reachable. |
+| [borg.html](../../../borg.html) | Shared TOC, Back, Forward, Home, Search, and Diagnostics bar; viewport and timeline controls remain local. | Full | Structurally conforms; Diagnostics is the permitted app-mode entry after Search. |
+| [borg-library.html](../../../borg-library.html) | Custom catalog header with text Applications and Workbench links plus local collection search. | Partial | Adopt the full bar while retaining collection search, filters, grouping, and playback locally. |
+| [topo.html](../../../topo.html) | Runtime-built TOC, Back, Forward, Home, and global Search bar; the collapsible scenario panel remains local. | Full — canonical runtime | UI-005 batch 1 removed the repeated static shell and aligned the accepted order without moving scenario, playback, or map controls. |
+| [lattice-lab.html](../../../lattice-lab.html) | Runtime-built TOC, Back, Forward, Home, and global Search bar; gallery and lattice controls remain local. | Full — canonical runtime | UI-005 batch 1 removed the repeated static shell and verified the narrow mobile wrap and unobstructed search popover. |
+| [braid-search.html](../../../braid-search.html) | Runtime-built shared TOC, Back, Forward, Home, and Search bar. | Full | Structurally conforms; dashboard filters and views remain local. |
+| [greek-letter-match.html](../../../greek-letter-match.html) | Runtime-built TOC, Back, Forward, Home, and global Search bar above the app title and game surface. | Full — canonical runtime | UI-005 batch 5 removed the local text-only Applications button; game setup, answers, session results, and pronunciation remain local. |
+| [brand-visual-identity.html](../../../brand-visual-identity.html) | Public reference header with an explicit project-return identity link and local section navigation. | Lightweight header — conforming | The existing `42px` identity link is the accepted project action; adding a second Home link would duplicate its responsibility. |
+| [feedback.html](../../../feedback.html) | Public-utility header with a compact `Return to Applications` action. | Lightweight header | Conforms to the lightweight utility policy; feedback form controls remain local. |
+| [website-stats.html](../../../website-stats.html) | Sticky utility header with compact Home and Archie actions plus analytics opt-out. | Lightweight header | Conforms to the lightweight utility policy; analytics controls remain local. |
+| [solver-gpu-harness.html](../../../solver-gpu-harness.html) | Developer-harness header with compact Applications action and live GPU status. | Lightweight header — conforming | Batch 4 added the missing action; benchmark controls remain local and Search, Documents, and Settings remain omitted. |
 | [pdgedit-review.html](../../../pdgedit-review.html) | Static review page header and form controls. | Exempt — static review | Keep the review header and controls without product chrome unless an explicit productization decision promotes the page. |
 | Generated reading-copy HTML | Content-only generated HTML files under `apps/ios/.../GeneratedTextbookPackage/reading-copies/`. | Exempt — generated content | Do not manually add chrome to generated content-only files. The owning reader shell supplies navigation. |
 | iOS reader shells | `ReaderShell.html` and `SearchSnippetShell.html` mount native reader content. | Native-shell parity | Native SwiftUI owns navigation and top controls; the web content mounts stay minimal. |
@@ -110,7 +124,8 @@ All public interactive app and workbench surfaces not named below target the ful
 
 | Surface class | Disposition | Required control ownership | Current named surfaces | Promotion trigger |
 | --- | --- | --- | --- | --- |
-| Public utility | Lightweight header | Show the page title and a compact Home/project action. Keep utility-specific controls local; omit Search, Documents, and Settings unless the utility actually implements them. | [website-stats.html](../../../website-stats.html) | Adopt the full standard only if the utility becomes an interactive app or workbench with app-level navigation, search, documents, or settings. |
+| Public utility | Lightweight header | Show the page title and a compact Home/project action. Keep utility-specific controls local; omit Search, Documents, and Settings unless the utility actually implements them. | [website-stats.html](../../../website-stats.html), [feedback.html](../../../feedback.html) | Adopt the full standard only if the utility becomes an interactive app or workbench with app-level navigation, search, documents, or settings. |
+| Public reference page | Lightweight header | Show the reference title, compact project/Home navigation, and local section navigation where useful. | [brand-visual-identity.html](../../../brand-visual-identity.html) | Adopt the full standard only if the reference becomes an interactive app or workbench. |
 | Developer harness | Lightweight header | Show the harness title/status and compact Home navigation when reachable from app navigation. Keep benchmark and diagnostic controls local. | [solver-gpu-harness.html](../../../solver-gpu-harness.html) | Adopt the full standard only after an explicit decision to make the harness a public app surface with shared app-level actions. |
 | Static review artifact | Exempt | The review page owns only its review title, metadata, and review controls. | [pdgedit-review.html](../../../pdgedit-review.html) | Reclassify before public product navigation or app-level behavior is added. |
 | Generated reading content | Exempt | The generator emits content only; its owning reader shell supplies navigation. Never patch generated copies to add shared chrome. | `apps/ios/ArchitrinoReader/GeneratedTextbookPackage/reading-copies/*.html` | Change the canonical generator or owning shell only when the reader contract changes. |
@@ -121,7 +136,7 @@ All public interactive app and workbench surfaces not named below target the ful
 
 | Surface | Current controls | Migration note |
 | --- | --- | --- |
-| Main webapp markdown panel | Panel has content only; `Full document`, `PDF`, and `Layout` live in global top chrome; close behavior is wired through `#markdown-close` but no visible close button appears in the shipped panel. | Decide whether to add a visible reading-surface header matching Photon and Ideal Braid. |
+| Main webapp markdown panel | Panel-local `Full document` when a section has a parent document, `Layout`, `Print` / `PDF`, and `Close` icon buttons in a visible header. | Conforming; UI-004 moved the actions out of global chrome and passed desktop/mobile rendered checks. |
 | Photon markdown panel | Panel-local `Layout`, `Print`, and `Close` icon buttons. | Good reference for reading-surface-local markdown actions. |
 | Ideal Braid markdown panel | Panel-local `Layout`, `Print`, and `Close` icon buttons. | Good reference for reading-surface-local markdown actions. |
 | iOS ReaderShell | Native-shell content mount with no web top controls. | Treat as native reader parity, not webapp chrome. |
@@ -129,12 +144,12 @@ All public interactive app and workbench surfaces not named below target the ful
 
 ## Migration Plan
 
-### Phase 1: Accept The Standard
+### Phase 1: Accepted Standard — Complete
 
-- Confirm the action order.
-- Confirm whether standalone app buttons should settle on `32px`, `36px`, or a responsive range.
-- Confirm whether main-webapp markdown controls move into a reading-surface header.
-- Confirm page exception classes: generated, native-shell, static review, developer harness, and public utility.
+- Use `32px` circular shared icon controls.
+- Use `TOC`, Back, Forward, Home, Search, document actions, Settings, and mode entry in that relative order when present.
+- Keep full-document, layout, print/PDF, and Close actions in the reading-surface header.
+- Preserve the accepted generated, native-shell, static/local review, developer-harness, public-utility, and public-reference page classes.
 
 ### Phase 2: Build Shared Primitives
 
@@ -154,28 +169,32 @@ Candidate homes:
 
 ### Phase 3: Pilot Migrations
 
-1. Equation Mapping: keep current control set, replace local icon/button rendering with shared primitives.
-2. Assembly Explorer: replace text Home with shared Home icon and add the standard bar wrapper.
-3. Molecule: wrap the existing Applications button in the shared bar contract.
-4. Main webapp plus Animator: deduplicate the scene HUD and align button order.
+1. Equation Mapping: complete; the canonical global bar coexists with explicitly local equation Search, Edit, and Settings controls, with browser evidence bound by the [UI-005 batch-6 receipt](evidence/ui-005-batch-6-equation-mapping-browser-captures.2026-09-02.json).
+2. Molecule: complete; the canonical global bar replaces the copied Applications button while preset, session-formula, and visualization controls remain local. Evidence is bound by the [UI-005 batch-8 receipt](evidence/ui-005-batch-8-molecule-browser-captures.2026-09-02.json).
+3. Main webapp plus Animator: complete; one generated bar moves between the scene and Animator headers.
+4. Lattice Lab plus Wake Topography: complete; both consume the standalone adapter and canonical runtime, with browser evidence bound by the [UI-005 batch-1 receipt](evidence/ui-005-batch-1-lattice-topo-browser-captures.2026-09-02.json).
 
 ### Phase 4: Panel-Heavy Apps
 
-1. Photon: standardize Home and app-level controls while preserving document buttons and markdown panel actions.
+1. Photon: complete; canonical Applications Home and global Search are live while document buttons and markdown-panel actions remain local. Evidence is bound by the [UI-005 batch-2 receipt](evidence/ui-005-batch-2-photon-browser-captures.2026-09-02.json).
 2. Ideal Braid: separate global Home/Search/Settings from local simulation controls.
-3. PDG Edit: standardize Home and possibly top-right app settings; keep document picker/filter local.
+3. PDG Edit: complete; canonical Applications Home and global Search are live while the document picker, reaction search, filters, and editing surface remain local. Evidence is bound by the [UI-005 batch-7 receipt](evidence/ui-005-batch-7-pdgedit-browser-captures.2026-09-02.json).
 4. Borg: add Home; leave viewport and timeline controls local.
-5. Causal Delay Feedback: add Home and keep replay toolbar focused on replay controls.
+5. Causal Delay Feedback: complete; canonical Applications Home and global Search are live, lesson Previous/Next preserve their declared sequence, and replay controls remain local. Evidence is bound by the [UI-005 batch-3 receipt](evidence/ui-005-batch-3-causal-delay-feedback-browser-captures.2026-09-02.json).
 
 ### Phase 5: Page Policy
 
 - Website Stats: use the lightweight public-utility header with a compact Home/project action and page-local analytics controls.
-- Solver GPU Harness: use the lightweight developer-harness header when reachable from app navigation; keep benchmark controls local.
+- Solver GPU Harness: complete; the lightweight header exposes Applications beside live status and keeps benchmark controls local. Evidence is bound by the [UI-005 batch-4 receipt](evidence/ui-005-batch-4-lightweight-headers-browser-captures.2026-09-02.json).
 - PDG Edit Review and children's-book review pages: remain exempt review artifacts unless explicitly productized.
 - Generated reading-copy HTML: remains exempt; never manually patch generated chrome.
 - iOS reader shells: follow native-shell parity, with SwiftUI owning navigation and embedded HTML remaining content-only.
 
 ## Validation Expectations
+
+The current representative-surface evidence is bound by the [UI-007 browser-capture receipt](evidence/ui-007-top-dynamic-control-bar-browser-captures.2026-09-02.json) and the UI-005 receipts for [batch 1](evidence/ui-005-batch-1-lattice-topo-browser-captures.2026-09-02.json), [batch 2](evidence/ui-005-batch-2-photon-browser-captures.2026-09-02.json), [batch 3](evidence/ui-005-batch-3-causal-delay-feedback-browser-captures.2026-09-02.json), [batch 4](evidence/ui-005-batch-4-lightweight-headers-browser-captures.2026-09-02.json), [batch 5](evidence/ui-005-batch-5-greek-letter-match-browser-captures.2026-09-02.json), [batch 6](evidence/ui-005-batch-6-equation-mapping-browser-captures.2026-09-02.json), [batch 7](evidence/ui-005-batch-7-pdgedit-browser-captures.2026-09-02.json), and [batch 8](evidence/ui-005-batch-8-molecule-browser-captures.2026-09-02.json). Their ignored PNGs cover ten full-bar surfaces plus the two lightweight headers at `1440x900` and `390x844`. The receipts record control dimensions and order where applicable, viewport-bounded popovers, horizontal-overflow absence, internal wide-surface scrolling, and surface-specific content clearance.
+
+Plainly: the tracked receipts say exactly what the current pictures prove and where to reproduce them; they do not turn these nine surfaces into evidence for pages that have not migrated.
 
 For migration implementation:
 
@@ -192,8 +211,10 @@ For audit-only edits to this priority folder:
 - `node scripts/validate-content.mjs --check --strict`;
 - `node scripts/build-scene-graph.mjs --check --strict`.
 
-## Open Decisions
+## Accepted Decisions
 
-1. Should the main scene HUD move from circular `32px` buttons to the standalone app `36px` rounded-square shell, or should shared primitives support both shells?
-2. Should `Search` always mean scene search, or should standalone apps use local search under the same icon when scene search is unavailable?
-3. Should `Notes` and document-guide buttons appear as one document menu in the top bar, or stay as explicit document buttons inside app panels?
+1. The full-standard shared icon shell is circular and `32px` square across main-scene and standalone bars.
+2. The full-standard Search action means global scene search. Specialized searches remain local and explicitly named.
+3. Reading-surface actions remain explicit in the reading panel rather than being merged into one global document menu.
+4. Back and Forward preserve real browser or declared lesson history. Home uses ordinary history-preserving navigation to the root scene in the main webapp and the Applications scene in standalone apps.
+5. The exception classes above reduce shared chrome but never waive accessible names, keyboard access, visible focus, or usable control targets.

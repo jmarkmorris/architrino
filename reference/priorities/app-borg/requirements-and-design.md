@@ -172,7 +172,7 @@ Parameter variations remain source-defined. A change to labeled member radii, ca
 
 The active planar boundary record and the all-axial boundary control reuse the tilted three-binary chart's declared radii, angular frequency, phases, polarity assignments, record interval, and frame. The planar record changes only the three declared cap angles to $0$; the all-axial control changes only those angles to $\pi/2$. These are controlled boundary constructions, not a hierarchy of configuration families.
 
-`assembly-view-record.v0` currently lacks declared comparison time/unit transforms, an external multi-record collection carrier, a required field-speed carrier, and spin/polarity-dipole vector carriers. Borg therefore rejects synchronized comparison and presents the other affected fields as unavailable. These are instrument-gate contract blockers, not authority for the app to define substitute fields.
+Current sealed assembly-view records carry the ratified `assembly-view-record-frame.v1` and `assembly-view-vector-overlays.v1` contracts, and `assembly-view-collection.v1` supplies the external ordered collection. Comparison requires explicit clock/ruler transforms into one named frame and transformed $c_f$ agreement; circular neutral-pair vectors remain source-owned display rows rather than intrinsic angular momentum or a standard-physics dipole law. Legacy or external records that lack any required carrier still fail closed and never receive substitute app-defined values.
 
 ### Taxonomy Selection Canvas
 

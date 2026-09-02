@@ -134,6 +134,26 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
       std::cout << ',';
     }
     const auto& step = steps[index];
+    std::size_t certified_root_count = 0U;
+    std::size_t post_initial_history_root_count = 0U;
+    std::optional<double> maximum_root_upper;
+    if (step.accepted_snapshot.has_value()) {
+      for (const auto& root_row : step.accepted_snapshot->root_certificates) {
+        for (const auto& root : root_row.certificate.roots) {
+          ++certified_root_count;
+          if (std::any_of(
+                  root.transmitter_segment_indices.begin(),
+                  root.transmitter_segment_indices.end(),
+                  [](std::size_t segment_index) { return segment_index > 0U; })) {
+            ++post_initial_history_root_count;
+          }
+          const double upper = std::stod(root.upper);
+          maximum_root_upper = maximum_root_upper.has_value()
+              ? std::max(*maximum_root_upper, upper)
+              : upper;
+        }
+      }
+    }
     std::cout << "{\"status\":\"" << step.status
               << "\",\"step_index\":" << step.step_index
               << ",\"root_time_pressure_ratio\":" << step.root_time_pressure_ratio
@@ -168,6 +188,16 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
               << (step.accepted_snapshot.has_value()
                       ? step.accepted_snapshot->traversal_unresolved_pairs
                       : 0U)
+              << ",\"certified_root_count\":" << certified_root_count
+              << ",\"post_initial_history_root_count\":"
+              << post_initial_history_root_count
+              << ",\"maximum_root_upper\":";
+    if (maximum_root_upper.has_value()) {
+      std::cout << *maximum_root_upper;
+    } else {
+      std::cout << "null";
+    }
+    std::cout
               << ",\"enclosed_error_width_total\":"
               << (step.accepted_snapshot.has_value()
                       ? step.accepted_snapshot->enclosed_error_width_total
@@ -221,10 +251,19 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
     }
     std::size_t event_impulse_count = 0;
     std::size_t regulator_certificate_count = 0;
+    std::size_t event_precision_escalated_count = 0;
+    unsigned maximum_event_precision_bits = 0U;
     for (const auto& substep : step.substeps) {
       event_impulse_count += substep.event_impulses.size();
       regulator_certificate_count +=
           substep.regulator_convergence_certificates.size();
+      for (const auto& event_impulse : substep.event_impulses) {
+        maximum_event_precision_bits = std::max(
+            maximum_event_precision_bits, event_impulse.precision_bits);
+        if (event_impulse.precision_bits > 53U) {
+          ++event_precision_escalated_count;
+        }
+      }
     }
     std::cout << "]"
               << ",\"multirate_coarse_path_count\":"
@@ -232,6 +271,10 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
               << ",\"event_impulse_count\":" << event_impulse_count
               << ",\"regulator_certificate_count\":"
               << regulator_certificate_count
+              << ",\"event_precision_escalated_count\":"
+              << event_precision_escalated_count
+              << ",\"maximum_event_precision_bits\":"
+              << maximum_event_precision_bits
               << ",\"local_errors\":[";
     for (std::size_t error_index = 0;
          error_index < step.local_errors.size(); ++error_index) {
@@ -313,6 +356,9 @@ void print_history_tokens(const std::vector<eom::NativePublishedPath>& paths) {
   std::cout << ']';
 }
 
+void print_event(
+    const eom::NativeFoldCausticImpulseCertificate& certificate);
+
 void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
   const eom::NativeCausalPrefixExclusionCertificate* history_window =
       !certificate.substeps.empty()
@@ -360,6 +406,25 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
     const auto& path = certificate.published_histories[index];
     std::cout << "[\"" << path.path_id << "\",\""
               << path.history.provenance_fingerprint() << "\"]";
+  }
+  std::cout << "],\"input_joint_fingerprints\":[";
+  for (std::size_t index = 0;
+       index < certificate.input_joint_history_fingerprints.size(); ++index) {
+    if (index > 0) std::cout << ',';
+    const auto& fingerprint =
+        certificate.input_joint_history_fingerprints[index];
+    std::cout << "[\"" << fingerprint.path_id << "\",\""
+              << fingerprint.fingerprint << "\"]";
+  }
+  std::cout << "],\"published_joint_fingerprints\":[";
+  for (std::size_t index = 0;
+       index < certificate.published_joint_history_fingerprints.size();
+       ++index) {
+    if (index > 0) std::cout << ',';
+    const auto& fingerprint =
+        certificate.published_joint_history_fingerprints[index];
+    std::cout << "[\"" << fingerprint.path_id << "\",\""
+              << fingerprint.fingerprint << "\"]";
   }
   std::cout << "],\"candidate_fingerprint_count\":"
             << certificate.candidate_history_fingerprints.size()
@@ -469,6 +534,17 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
               << "\",\"position_error\":" << error.position_error
               << ",\"velocity_error\":" << error.velocity_error << '}';
   }
+  std::cout << "],\"event_impulses\":[";
+  bool first_event_impulse = true;
+  for (const auto& substep : certificate.substeps) {
+    for (const auto& event_impulse : substep.event_impulses) {
+      if (!first_event_impulse) {
+        std::cout << ',';
+      }
+      first_event_impulse = false;
+      print_event(event_impulse);
+    }
+  }
   std::cout << "],\"pinned_fold_temporal_certificates\":[";
   bool first_certificate = true;
   for (const auto& substep : certificate.substeps) {
@@ -508,6 +584,16 @@ void print_event(
     const eom::NativeFoldCausticImpulseCertificate& certificate) {
   std::cout << "{\"schema\":\"" << certificate.schema
             << "\",\"status\":\"" << certificate.status
+            << "\",\"receiver_path_id\":\""
+            << certificate.receiver_path_id
+            << "\",\"transmitter_path_id\":\""
+            << certificate.transmitter_path_id
+            << "\",\"reception_lower\":\""
+            << certificate.reception_lower
+            << "\",\"reception_upper\":\""
+            << certificate.reception_upper
+            << "\",\"causal_width\":\"" << certificate.causal_width
+            << "\",\"core_scale\":\"" << certificate.core_scale
             << "\",\"failure_code\":\"" << certificate.failure_code
             << "\",\"visited_cells\":" << certificate.visited_cells
             << ",\"joint_displacement_cells\":"
@@ -780,6 +866,164 @@ eom::NativeCoupledEvolutionRequest make_dispersed_boundary_request(
   return result;
 }
 
+eom::NativeCoupledEvolutionRequest make_bounded_long_horizon_request(
+    const std::string& run_id,
+    const std::string& step,
+    std::size_t thread_count = 4U) {
+  auto result = request(
+      run_id,
+      {{"a", "1", history("bounded-long-horizon-a", "5", {"0", "0", "0", "0"})},
+       {"b", "-1", history("bounded-long-horizon-b", "5", {"1", "0", "0", "0"})}},
+      "5", "6.2", step, step, "1e-4", "1e-4", "1e-8", "0.001",
+      12, thread_count);
+  return result;
+}
+
+void print_bounded_population_long_horizon() {
+  std::cout << std::setprecision(17);
+  const auto coarse = eom::evolve_native_coupled_histories(
+      make_bounded_long_horizon_request("bounded-long-horizon-coarse", "0.08"));
+  const auto medium = eom::evolve_native_coupled_histories(
+      make_bounded_long_horizon_request("bounded-long-horizon-medium", "0.04"));
+  const auto fine = eom::evolve_native_coupled_histories(
+      make_bounded_long_horizon_request("bounded-long-horizon-fine", "0.02"));
+  const auto fine_repeat = eom::evolve_native_coupled_histories(
+      make_bounded_long_horizon_request("bounded-long-horizon-fine-repeat", "0.02"));
+  const auto fine_single_thread = eom::evolve_native_coupled_histories(
+      make_bounded_long_horizon_request(
+          "bounded-long-horizon-fine-single-thread", "0.02", 1U));
+
+  std::cout << "{\"schema\":\"eom_bounded_population_long_horizon/v1\""
+            << ",\"field_speed\":\"1\""
+            << ",\"start_time\":\"5\""
+            << ",\"end_time\":\"6.2\""
+            << ",\"initial_separation\":\"1\""
+            << ",\"post_transit_margin\":\"0.2\""
+            << ",\"coupling\":\"0.001\""
+            << ",\"coarse\":";
+  print_evolution(coarse);
+  std::cout << ",\"medium\":";
+  print_evolution(medium);
+  std::cout << ",\"fine\":";
+  print_evolution(fine);
+  std::cout << ",\"fine_repeat\":";
+  print_evolution(fine_repeat);
+  std::cout << ",\"fine_single_thread\":";
+  print_evolution(fine_single_thread);
+  std::cout << "}\n";
+}
+
+void print_bounded_population_fine(std::size_t thread_count) {
+  std::cout << std::setprecision(17);
+  const auto fine = eom::evolve_native_coupled_histories(
+      make_bounded_long_horizon_request(
+          "bounded-long-horizon-fine", "0.02", thread_count));
+  print_evolution(fine);
+  std::cout << '\n';
+}
+
+eom::NativeCoupledEvolutionRequest make_finite_width_post_event_request(
+    const std::string& run_id,
+    const std::string& step,
+    std::size_t thread_count = 4U) {
+  const auto source_history = eom::RetainedHistory(
+      "post-event-source",
+      {eom::CubicHistorySegment(
+           "0", "2",
+           eom::CubicCoefficientTokens{
+               std::array<std::string, 4>{"5", "-4", "1", "0"},
+               std::array<std::string, 4>{"0", "0", "0", "0"},
+               std::array<std::string, 4>{"0", "0", "0", "0"}}),
+       eom::CubicHistorySegment(
+           "2", "2.703",
+           eom::CubicCoefficientTokens{
+               std::array<std::string, 4>{"1", "0", "0", "0"},
+               std::array<std::string, 4>{"0", "0", "0", "0"},
+               std::array<std::string, 4>{"0", "0", "0", "0"}})});
+  auto result = request(
+      run_id,
+      {{"receiver", "1", history("post-event-receiver", "2.703", {"0", "0", "0", "0"})},
+       {"source", "1", source_history}},
+      "2.703", "3.903", step, step, "1", "1", "1e-7", "1e-30", 12,
+      thread_count);
+  result.chart_policy = "sharp_with_finite_width_fallback";
+  result.causal_width = "0.25";
+  result.core_scale = "0.2";
+  result.acceleration_tolerance = "5e-3";
+  result.quadrature_tolerance = "5e-3";
+  result.event_impulse_tolerance = "0.08";
+  result.regulator_convergence_tolerance = "0.08";
+  result.regulator_refinement_levels = 3;
+  result.quadrature_max_depth = 28;
+  result.quadrature_max_cells = 200000;
+  result.event_max_depth = 24;
+  result.event_max_cells = 200000;
+  return result;
+}
+
+void print_finite_width_post_event() {
+  std::cout << std::setprecision(17);
+  const auto coarse = eom::evolve_native_coupled_histories(
+      make_finite_width_post_event_request(
+          "finite-width-post-event-coarse", "0.1"));
+  const auto medium = eom::evolve_native_coupled_histories(
+      make_finite_width_post_event_request(
+          "finite-width-post-event-medium", "0.05"));
+  const auto fine = eom::evolve_native_coupled_histories(
+      make_finite_width_post_event_request(
+          "finite-width-post-event-fine", "0.025"));
+  const auto fine_repeat = eom::evolve_native_coupled_histories(
+      make_finite_width_post_event_request(
+          "finite-width-post-event-fine-repeat", "0.025"));
+  const auto fine_single_thread = eom::evolve_native_coupled_histories(
+      make_finite_width_post_event_request(
+          "finite-width-post-event-fine-single-thread", "0.025", 1U));
+  auto fine_mpfr_request = make_finite_width_post_event_request(
+      "finite-width-post-event-fine-mpfr", "0.025");
+  fine_mpfr_request.force_event_precision_escalation = true;
+  const auto fine_mpfr =
+      eom::evolve_native_coupled_histories(fine_mpfr_request);
+  std::cout << "{\"schema\":\"eom_finite_width_post_event/v1\""
+            << ",\"field_speed\":\"1\""
+            << ",\"start_time\":\"2.703\""
+            << ",\"end_time\":\"3.903\""
+            << ",\"fold_reception_time\":\"2.75\""
+            << ",\"causal_width\":\"0.25\""
+            << ",\"core_scale\":\"0.2\""
+            << ",\"coupling\":\"1e-30\""
+            << ",\"coarse\":";
+  print_evolution(coarse);
+  std::cout << ",\"medium\":";
+  print_evolution(medium);
+  std::cout << ",\"fine\":";
+  print_evolution(fine);
+  std::cout << ",\"fine_repeat\":";
+  print_evolution(fine_repeat);
+  std::cout << ",\"fine_single_thread\":";
+  print_evolution(fine_single_thread);
+  std::cout << ",\"fine_mpfr\":";
+  print_evolution(fine_mpfr);
+  std::cout << ",\"event_steps\":[";
+  bool first_event_step = true;
+  for (const auto& step : fine.steps) {
+    const bool has_event = std::any_of(
+        step.substeps.begin(), step.substeps.end(),
+        [](const eom::NativeCorrectedSubstepCertificate& substep) {
+          return !substep.event_impulses.empty();
+        });
+    if (!has_event) {
+      continue;
+    }
+    if (!first_event_step) {
+      std::cout << ',';
+    }
+    first_event_step = false;
+    print_atomic(step);
+  }
+  std::cout << ']';
+  std::cout << "}\n";
+}
+
 void print_all() {
   const auto uncertain_static_history = [](const std::string& id,
                                            const std::string& x) {
@@ -813,6 +1057,10 @@ void print_all() {
       joint_a_segment.position_coefficients[axis][degree] = {0.0};
       joint_b_segment.position_coefficients[axis][degree] = {0.0};
     }
+    joint_a_segment.position_remainder_radii[axis] = 1e-6;
+    joint_b_segment.position_remainder_radii[axis] = 1e-6;
+    joint_a_segment.velocity_remainder_radii[axis] = 1e-6;
+    joint_b_segment.velocity_remainder_radii[axis] = 1e-6;
   }
   joint_a_segment.position_coefficients[0][0] = {0.0005};
   joint_b_segment.position_coefficients[0][0] = {0.0005};
@@ -833,48 +1081,135 @@ void print_all() {
         "joint acceleration snapshot control failed: " +
         joint_snapshot.failure_code);
   }
+
+  const std::array<std::string, 6> live_sum_positions{
+      "-0.75", "-0.45", "-0.15", "0.15", "0.45", "0.75"};
+  std::vector<eom::NativeCoupledPathInput> live_sum_paths;
+  std::map<std::string, eom::JointAffineRetainedHistory>
+      live_sum_joint_histories;
+  for (std::size_t path = 0U; path < live_sum_positions.size(); ++path) {
+    const std::string path_id = "live-sum-" + std::to_string(path);
+    live_sum_paths.push_back({
+        path_id, "1",
+        uncertain_static_history(path_id, live_sum_positions[path])});
+    eom::JointAffineCubicSegment segment;
+    segment.start_time = 0.0;
+    segment.end_time = 2.0;
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      for (std::size_t degree = 0U; degree < 4U; ++degree) {
+        segment.position_coefficients[axis][degree] = {0.0};
+      }
+    }
+    segment.position_coefficients[0][0] = {0.0005};
+    live_sum_joint_histories.emplace(
+        path_id, eom::JointAffineRetainedHistory(
+            path_id, {"common-translation"}, {segment}));
+  }
+  auto live_sum_request = request(
+      "joint-live-row-sum", std::move(live_sum_paths),
+      "2", "2.01", "0.01", "0.01");
+  live_sum_request.root_tolerance = "0.01";
+  live_sum_request.acceleration_tolerance = "1000";
+  std::vector<eom::NativePublishedPath> live_sum_ordinary_histories;
+  for (const auto& path : live_sum_request.paths) {
+    live_sum_ordinary_histories.push_back({path.path_id, path.history});
+  }
+  const auto live_sum_native_snapshot =
+      eom::certify_native_acceleration_snapshot(
+          live_sum_request, live_sum_ordinary_histories, "2");
+  const auto live_sum_joint_snapshot =
+      eom::certify_joint_acceleration_snapshot(
+          eom::Interval::point(1.0), live_sum_native_snapshot,
+          live_sum_ordinary_histories, live_sum_joint_histories);
+  if (!live_sum_joint_snapshot.certified ||
+      live_sum_joint_snapshot.receivers.size() != 6U ||
+      live_sum_joint_snapshot.consumed_sharp_rows != 30U ||
+      live_sum_joint_snapshot.accepted_acceleration_fallback_rows != 0U) {
+    std::string root_detail;
+    for (const auto& row : live_sum_native_snapshot.root_certificates) {
+      if (row.certificate.status != "certified_complete") {
+        root_detail = "/row=" + row.receiver_path_id + ":" +
+            row.transmitter_path_id + "/" +
+            row.certificate.failure_code;
+        break;
+      }
+    }
+    throw std::runtime_error(
+        "live joint acceleration row-sum control failed: " +
+        live_sum_joint_snapshot.failure_code + "/native=" +
+        live_sum_native_snapshot.status + "/" +
+        live_sum_native_snapshot.failure_code + root_detail);
+  }
+
   eom::JointAccelerationSnapshotCertificate corrector_snapshot;
   corrector_snapshot.certified = true;
-  corrector_snapshot.shared_symbol_count = 7U;
-  for (const std::string path_id : {"corrector-a", "corrector-b"}) {
+  constexpr std::size_t corrector_path_count = 6U;
+  constexpr std::size_t corrector_dimension = 3U * corrector_path_count;
+  constexpr std::size_t retained_corrector_symbol_count = 1U;
+  constexpr double corrector_radius = 1e-3;
+  corrector_snapshot.shared_symbol_count =
+      retained_corrector_symbol_count + corrector_dimension;
+  std::vector<std::string> corrector_path_ids;
+  std::map<std::string, std::array<double, 3>> corrector_endpoint_centers;
+  std::map<std::string, std::vector<std::array<double, 3>>>
+      corrector_endpoint_coefficients;
+  const std::vector<std::array<double, 3>> retained_endpoint_coefficients{
+      std::array<double, 3>{0.0002, 0.0002, 0.0002}};
+  for (std::size_t path = 0U; path < corrector_path_count; ++path) {
+    const std::string path_id = "corrector-" + std::to_string(path);
+    corrector_path_ids.push_back(path_id);
+    corrector_endpoint_centers.emplace(
+        path_id, std::array<double, 3>{0.0, 0.0, 0.0});
+    corrector_endpoint_coefficients.emplace(
+        path_id, retained_endpoint_coefficients);
     eom::JointReceiverAccelerationState receiver;
     receiver.path_id = path_id;
-    receiver.shared_symbol_coefficients.resize(7U);
+    receiver.shared_symbol_coefficients.resize(
+        corrector_snapshot.shared_symbol_count);
     receiver.shared_symbol_coefficient_enclosures.assign(
-        7U, eom::IntervalVector{
+        corrector_snapshot.shared_symbol_count, eom::IntervalVector{
                 eom::Interval::point(0.0), eom::Interval::point(0.0),
                 eom::Interval::point(0.0)});
-    const std::size_t path_offset = path_id == "corrector-a" ? 0U : 3U;
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const std::size_t row = 3U * path + axis;
+      receiver.center[axis] =
+          (row % 2U == 0U ? 1.0 : -1.0) *
+          static_cast<double>(row + 1U) * 1e-7;
       receiver.shared_symbol_coefficients[0U][axis] = 0.0002;
       receiver.shared_symbol_coefficient_enclosures[0U][axis] =
           eom::Interval::point(0.0002);
-      receiver.independent_remainder_radii[axis] = 1e-6;
-      for (std::size_t column = 0U; column < 6U; ++column) {
-        const double derivative = column == path_offset + axis
+      receiver.independent_remainder_radii[axis] = 1e-12;
+      for (std::size_t column = 0U;
+           column < corrector_dimension; ++column) {
+        const double derivative = column == row
             ? 0.2
-            : (column == ((path_offset + axis + 3U) % 6U) ? 0.05 : 0.0);
+            : (column == ((row + 1U) % corrector_dimension)
+                   ? 0.03
+                   : (column ==
+                              ((row + corrector_dimension - 1U) %
+                               corrector_dimension)
+                          ? -0.01
+                          : 0.0));
+        receiver.shared_symbol_coefficients[
+            retained_corrector_symbol_count + column][axis] =
+            derivative * corrector_radius;
         receiver.shared_symbol_coefficient_enclosures[1U + column][axis] =
-            eom::Interval::point(derivative * 1e-3);
+            eom::Interval::point(derivative * corrector_radius);
       }
     }
     corrector_snapshot.receivers.push_back(std::move(receiver));
   }
-  const std::vector<std::array<double, 3>> retained_endpoint_coefficients{
-      std::array<double, 3>{0.0002, 0.0002, 0.0002}};
   const auto corrector = eom::certify_joint_endpoint_corrector({
-      .path_ids = {"corrector-a", "corrector-b"},
-      .endpoint_centers = {
-          {"corrector-a", {0.0, 0.0, 0.0}},
-          {"corrector-b", {0.0, 0.0, 0.0}}},
-      .endpoint_shared_coefficients = {
-          {"corrector-a", retained_endpoint_coefficients},
-          {"corrector-b", retained_endpoint_coefficients}},
+      .path_ids = corrector_path_ids,
+      .endpoint_centers = corrector_endpoint_centers,
+      .endpoint_shared_coefficients = corrector_endpoint_coefficients,
       .evaluated_snapshot = corrector_snapshot,
-      .retained_symbol_count = 1U,
-      .corrector_variable_radii = std::vector<double>(6U, 1e-3),
+      .retained_symbol_count = retained_corrector_symbol_count,
+      .corrector_variable_radii = std::vector<double>(
+          corrector_dimension, corrector_radius),
   });
-  if (!corrector.certified || corrector.dimension != 6U ||
+  if (!corrector.certified ||
+      corrector.dimension != corrector_dimension ||
       !(corrector.krawczyk.minimum_containment_margin > 0.0)) {
     throw std::runtime_error(
         "joint endpoint corrector control failed: " +
@@ -884,16 +1219,13 @@ void print_all() {
   failing_corrector_snapshot.receivers.front()
       .independent_remainder_radii[0] = 0.01;
   const auto failing_corrector = eom::certify_joint_endpoint_corrector({
-      .path_ids = {"corrector-a", "corrector-b"},
-      .endpoint_centers = {
-          {"corrector-a", {0.0, 0.0, 0.0}},
-          {"corrector-b", {0.0, 0.0, 0.0}}},
-      .endpoint_shared_coefficients = {
-          {"corrector-a", retained_endpoint_coefficients},
-          {"corrector-b", retained_endpoint_coefficients}},
+      .path_ids = corrector_path_ids,
+      .endpoint_centers = corrector_endpoint_centers,
+      .endpoint_shared_coefficients = corrector_endpoint_coefficients,
       .evaluated_snapshot = failing_corrector_snapshot,
-      .retained_symbol_count = 1U,
-      .corrector_variable_radii = std::vector<double>(6U, 1e-3),
+      .retained_symbol_count = retained_corrector_symbol_count,
+      .corrector_variable_radii = std::vector<double>(
+          corrector_dimension, corrector_radius),
   });
   if (failing_corrector.certified) {
     throw std::runtime_error(
@@ -939,6 +1271,76 @@ void print_all() {
     throw std::runtime_error(
         "joint checkpoint continuation did not preserve joint histories");
   }
+  const auto joint_history_fingerprints = [](const auto& histories) {
+    std::vector<std::pair<std::string, std::string>> result;
+    result.reserve(histories.size());
+    for (const auto& [path_id, retained] : histories) {
+      result.emplace_back(path_id, retained.provenance_fingerprint());
+    }
+    return result;
+  };
+  const auto partial_joint_fingerprints =
+      joint_history_fingerprints(joint_evolution.joint_histories);
+  const auto checkpoint_joint_fingerprints =
+      joint_history_fingerprints(joint_checkpoint_roundtrip.joint_histories);
+  const auto resumed_joint_fingerprints =
+      joint_history_fingerprints(joint_checkpoint_resumed.joint_histories);
+  const auto direct_joint_fingerprints =
+      joint_history_fingerprints(joint_checkpoint_direct.joint_histories);
+  eom::JointAffineCubicSegment append_retention_segment;
+  append_retention_segment.start_time = 2.0;
+  append_retention_segment.end_time = 2.1;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    for (std::size_t degree = 0U; degree < 4U; ++degree) {
+      append_retention_segment.position_coefficients[axis][degree] = {0.0};
+    }
+    append_retention_segment.position_remainder_radii[axis] =
+        static_cast<double>(axis + 2U) * 1e-6;
+    append_retention_segment.velocity_remainder_radii[axis] =
+        static_cast<double>(axis + 5U) * 1e-6;
+  }
+  append_retention_segment.position_coefficients[0][0][0] = 0.0005;
+  append_retention_segment.position_coefficients[0][1][0] = 0.0002;
+  const auto append_retention_history =
+      joint_snapshot_histories.at("joint-a").appended(
+          std::move(append_retention_segment));
+  std::size_t joint_reused_start_snapshot_count = 0U;
+  for (const auto& step : joint_evolution.steps) {
+    for (const auto& substep : step.substeps) {
+      joint_reused_start_snapshot_count +=
+          substep.timing.reused_joint_start_snapshot_count;
+    }
+  }
+  const auto& appended_joint_segment =
+      append_retention_history.segments().back();
+  const bool joint_append_changed_identity =
+      append_retention_history.provenance_fingerprint() !=
+      joint_snapshot_histories.at("joint-a").provenance_fingerprint();
+  const bool joint_checkpoint_preserved_identity =
+      partial_joint_fingerprints == checkpoint_joint_fingerprints;
+  const bool joint_resume_matches_direct_identity =
+      resumed_joint_fingerprints == direct_joint_fingerprints;
+  if (!joint_append_changed_identity ||
+      !joint_checkpoint_preserved_identity ||
+      !joint_resume_matches_direct_identity ||
+      joint_reused_start_snapshot_count == 0U ||
+      appended_joint_segment.position_coefficients[0][0].size() != 1U ||
+      appended_joint_segment.position_coefficients[0][0][0] != 0.0005 ||
+      !(appended_joint_segment.position_remainder_radii[0] > 0.0) ||
+      !(appended_joint_segment.velocity_remainder_radii[0] > 0.0)) {
+    throw std::runtime_error(
+        "joint append, checkpoint, or cache identity control failed/append=" +
+        std::to_string(joint_append_changed_identity) + "/checkpoint=" +
+        std::to_string(joint_checkpoint_preserved_identity) + "/resume=" +
+        std::to_string(joint_resume_matches_direct_identity) + "/reuse=" +
+        std::to_string(joint_reused_start_snapshot_count) + "/coefficient=" +
+        std::to_string(
+            appended_joint_segment.position_coefficients[0][0][0]) +
+        "/position_remainder=" + std::to_string(
+            appended_joint_segment.position_remainder_radii[0]) +
+        "/velocity_remainder=" + std::to_string(
+            appended_joint_segment.velocity_remainder_radii[0]));
+  }
   const auto static_request = request(
       "static-multistep",
       {{"p", "1", history("static-self-history", "2", {"0", "0", "0", "0"})}},
@@ -981,6 +1383,73 @@ void print_all() {
         static_growth_request, growth_checkpoints.back(),
         static_growth_request.end_time));
   }
+  auto bounded_growth_request = static_growth_request;
+  bounded_growth_request.run_id = "static-adaptive-growth-bounded-run";
+  bounded_growth_request.max_step_attempts = 5U;
+  const auto bounded_growth_direct =
+      eom::evolve_native_coupled_histories(bounded_growth_request);
+  auto bounded_growth_prefix_request = bounded_growth_request;
+  bounded_growth_prefix_request.diagnostic_maximum_accepted_steps = 2U;
+  const auto bounded_growth_prefix =
+      eom::evolve_native_coupled_histories(bounded_growth_prefix_request);
+  const auto bounded_growth_checkpoint =
+      eom::create_native_evolution_checkpoint(
+          bounded_growth_prefix_request, bounded_growth_prefix);
+  std::vector<std::size_t> bounded_growth_resume_callback_counts;
+  auto bounded_growth_resume_template = bounded_growth_request;
+  bounded_growth_resume_template.accepted_step_callback =
+      [&bounded_growth_resume_callback_counts](
+          std::size_t accepted_count, const std::string&) {
+        bounded_growth_resume_callback_counts.push_back(accepted_count);
+      };
+  const auto bounded_growth_resumed = eom::resume_native_coupled_histories(
+      bounded_growth_resume_template, bounded_growth_checkpoint,
+      bounded_growth_request.end_time);
+  bool bounded_growth_cancel_requested = false;
+  auto cancelled_growth_request = bounded_growth_request;
+  cancelled_growth_request.accepted_step_callback =
+      [&bounded_growth_cancel_requested](
+          std::size_t accepted_count, const std::string&) {
+        bounded_growth_cancel_requested = accepted_count >= 2U;
+      };
+  cancelled_growth_request.cancellation_requested =
+      [&bounded_growth_cancel_requested]() {
+        return bounded_growth_cancel_requested;
+      };
+  const auto cancelled_growth =
+      eom::evolve_native_coupled_histories(cancelled_growth_request);
+  const auto cancelled_growth_checkpoint =
+      eom::create_native_evolution_checkpoint(
+          cancelled_growth_request, cancelled_growth);
+  const auto cancelled_growth_resumed = eom::resume_native_coupled_histories(
+      bounded_growth_request, cancelled_growth_checkpoint,
+      bounded_growth_request.end_time);
+  const auto invalid_restart_counters = [](
+      const eom::NativeCoupledEvolutionRequest& bad) {
+    try {
+      static_cast<void>(eom::evolve_native_coupled_histories(bad));
+    } catch (const std::invalid_argument& error) {
+      return std::string(error.what()) ==
+          "coupled evolution restart counters exceed run resource limits";
+    }
+    return false;
+  };
+  auto accepted_counter_overflow_request = static_request;
+  accepted_counter_overflow_request.initial_accepted_step_count =
+      accepted_counter_overflow_request.max_step_attempts + 1U;
+  auto rejected_counter_overflow_request = static_request;
+  rejected_counter_overflow_request.initial_rejected_step_count =
+      rejected_counter_overflow_request.max_rejected_steps + 1U;
+  auto total_counter_overflow_request = static_request;
+  total_counter_overflow_request.initial_accepted_step_count =
+      total_counter_overflow_request.max_step_attempts;
+  total_counter_overflow_request.initial_rejected_step_count = 1U;
+  const bool accepted_counter_overflow_rejected =
+      invalid_restart_counters(accepted_counter_overflow_request);
+  const bool rejected_counter_overflow_rejected =
+      invalid_restart_counters(rejected_counter_overflow_request);
+  const bool total_counter_overflow_rejected =
+      invalid_restart_counters(total_counter_overflow_request);
   const auto invalid_growth_memory = [](
       const eom::NativeCoupledEvolutionRequest& bad) {
     try {
@@ -1002,6 +1471,8 @@ void print_all() {
   const bool overflowing_memory_rejected = invalid_growth_memory(overflowing_memory_request);
   auto unstarted_growth_request = static_growth_request;
   unstarted_growth_request.initial_consecutive_growth_headroom_steps = 1U;
+  unstarted_growth_request.initial_accepted_step_count = 7U;
+  unstarted_growth_request.initial_rejected_step_count = 3U;
   unstarted_growth_request.memory_budget_bytes = 1U;
   const auto unstarted_growth = eom::evolve_native_coupled_histories(unstarted_growth_request);
   const auto unstarted_checkpoint = eom::deserialize_native_evolution_checkpoint(
@@ -1306,6 +1777,15 @@ void print_all() {
   rejected_growth_request.use_adaptive_step_growth = true;
   rejected_growth_request.initial_consecutive_growth_headroom_steps = 1U;
   const auto rejected_growth = eom::evolve_native_coupled_histories(rejected_growth_request);
+  bool rejected_boundary_checkpoint_rejected = false;
+  try {
+    static_cast<void>(eom::create_native_evolution_checkpoint(
+        rejected_growth_request, rejected_growth));
+  } catch (const std::invalid_argument& error) {
+    rejected_boundary_checkpoint_rejected =
+        std::string(error.what()) ==
+        "checkpoint source does not end at an accepted atomic boundary";
+  }
 
   const auto memory_request = request(
       "memory-rejection",
@@ -1838,7 +2318,79 @@ void print_all() {
   print_histories(
       joint_checkpoint_resumed.histories,
       joint_checkpoint_resumed.accepted_end_time);
-  std::cout << "},\"adaptive_checkpoint\":{\"cuts\":[";
+  std::cout << "},\"joint_precision_controls\":{";
+  std::cout << "\"live_snapshot\":{\"reference\":"
+            << "\"analytic_static_six_path_master_eom_sum\""
+            << ",\"consumed_sharp_rows\":"
+            << live_sum_joint_snapshot.consumed_sharp_rows
+            << ",\"fallback_rows\":"
+            << live_sum_joint_snapshot.accepted_acceleration_fallback_rows
+            << ",\"positions\":[";
+  for (std::size_t index = 0U; index < live_sum_positions.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    std::cout << live_sum_positions[index];
+  }
+  std::cout << "],\"receivers\":[";
+  for (std::size_t index = 0U;
+       index < live_sum_joint_snapshot.receivers.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    const auto& receiver = live_sum_joint_snapshot.receivers[index];
+    std::cout << "{\"path_id\":\"" << receiver.path_id
+              << "\",\"center\":[";
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      if (axis > 0U) std::cout << ',';
+      std::cout << receiver.center[axis];
+    }
+    std::cout << "],\"projection\":[";
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      if (axis > 0U) std::cout << ',';
+      std::cout << receiver.projection_radii_upper[axis];
+    }
+    std::cout << "],\"common_translation_coefficient\":[";
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      if (axis > 0U) std::cout << ',';
+      std::cout << receiver.shared_symbol_coefficients.front()[axis];
+    }
+    std::cout << "]}";
+  }
+  std::cout << "]},\"endpoint_corrector\":{"
+            << "\"reference\":\"independent_decimal_linear_solve\""
+            << ",\"dimension\":" << corrector.dimension
+            << ",\"certified\":"
+            << (corrector.certified ? "true" : "false")
+            << ",\"minimum_margin\":"
+            << corrector.krawczyk.minimum_containment_margin
+            << ",\"negative_failure_code\":\""
+            << failing_corrector.failure_code
+            << "\",\"evaluated_centers\":[";
+  for (std::size_t path = 0U; path < corrector_path_count; ++path) {
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      if (path > 0U || axis > 0U) std::cout << ',';
+      std::cout << corrector_snapshot.receivers[path].center[axis];
+    }
+  }
+  std::cout << "],\"image\":[";
+  for (std::size_t index = 0U;
+       index < corrector.krawczyk.image.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    print_interval(corrector.krawczyk.image[index]);
+  }
+  std::cout << "]},\"history_retention\":{"
+            << "\"append_changed_identity\":"
+            << (joint_append_changed_identity ? "true" : "false")
+            << ",\"checkpoint_preserved_identity\":"
+            << (joint_checkpoint_preserved_identity ? "true" : "false")
+            << ",\"resume_matches_direct_identity\":"
+            << (joint_resume_matches_direct_identity ? "true" : "false")
+            << ",\"reused_joint_start_snapshot_count\":"
+            << joint_reused_start_snapshot_count
+            << ",\"retained_coefficient\":"
+            << appended_joint_segment.position_coefficients[0][0][0]
+            << ",\"position_remainder\":"
+            << appended_joint_segment.position_remainder_radii[0]
+            << ",\"velocity_remainder\":"
+            << appended_joint_segment.velocity_remainder_radii[0]
+            << "}},\"adaptive_checkpoint\":{\"cuts\":[";
   for (std::size_t i = 0; i < growth_cut_counts.size(); ++i) {
     if (i) std::cout << ',';
     std::cout << "{\"cut_count\":" << growth_cut_counts[i]
@@ -1859,10 +2411,31 @@ void print_all() {
   }
   std::cout << "],\"direct_tokens\":";
   print_history_tokens(static_growth_result.histories);
+  std::cout << ",\"bounded_run_direct\":";
+  print_evolution(bounded_growth_direct);
+  std::cout << ",\"bounded_run_prefix\":";
+  print_evolution(bounded_growth_prefix);
+  std::cout << ",\"bounded_run_resumed\":";
+  print_evolution(bounded_growth_resumed);
+  std::cout << ",\"bounded_run_resume_callback_counts\":[";
+  for (std::size_t index = 0U;
+       index < bounded_growth_resume_callback_counts.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    std::cout << bounded_growth_resume_callback_counts[index];
+  }
+  std::cout << ']';
+  std::cout << ",\"cancelled_run\":";
+  print_evolution(cancelled_growth);
+  std::cout << ",\"cancelled_run_resumed\":";
+  print_evolution(cancelled_growth_resumed);
   std::cout << ",\"unstarted\":";
   print_evolution(unstarted_growth);
   std::cout << ",\"unstarted_checkpoint_memory\":"
             << unstarted_checkpoint.controller_consecutive_growth_headroom_steps
+            << ",\"unstarted_checkpoint_accepted_steps\":"
+            << unstarted_checkpoint.accepted_step_count
+            << ",\"unstarted_checkpoint_rejected_steps\":"
+            << unstarted_checkpoint.rejected_step_count
             << ",\"overflow_boundary_input\":"
             << boundary_memory_request.initial_consecutive_growth_headroom_steps
             << ",\"overflow_boundary_returned\":"
@@ -1875,10 +2448,14 @@ void print_all() {
   print_evolution(headroom_reset);
   std::cout << ",\"rejected_reset\":";
   print_evolution(rejected_growth);
-  for (const auto& [name, value] : std::array<std::pair<const char*, bool>, 6>{{
+  for (const auto& [name, value] : std::array<std::pair<const char*, bool>, 10>{{
            {"disabled_memory_rejected", disabled_memory_rejected},
            {"continuous_memory_rejected", continuous_memory_rejected},
            {"overflowing_memory_rejected", overflowing_memory_rejected},
+           {"accepted_counter_overflow_rejected", accepted_counter_overflow_rejected},
+           {"rejected_counter_overflow_rejected", rejected_counter_overflow_rejected},
+           {"total_counter_overflow_rejected", total_counter_overflow_rejected},
+           {"rejected_boundary_checkpoint_rejected", rejected_boundary_checkpoint_rejected},
            {"memory_tamper_rejected", growth_memory_tamper_rejected},
            {"old_schema_rejected", old_growth_schema_rejected},
            {"old_magic_rejected", old_growth_magic_rejected}}}) {
@@ -2101,15 +2678,33 @@ int main(int argc, char** argv) {
     if (argc != 2 ||
         (std::string(argv[1]) != "all" &&
          std::string(argv[1]) != "far-field-dispersal" &&
+         std::string(argv[1]) != "bounded-population-long-horizon" &&
+         std::string(argv[1]) != "bounded-population-fine-thread-1" &&
+         std::string(argv[1]) != "bounded-population-fine-thread-4" &&
+         std::string(argv[1]) != "finite-width-post-event" &&
          std::string(argv[1]) != "certified-correction-retry")) {
       std::cerr << "usage: eom_native_evolution_fixture_cli "
-                   "all|far-field-dispersal|certified-correction-retry\n";
+                   "all|far-field-dispersal|bounded-population-long-horizon|"
+                   "bounded-population-fine-thread-1|"
+                   "bounded-population-fine-thread-4|"
+                   "finite-width-post-event|"
+                   "certified-correction-retry\n";
       return EXIT_FAILURE;
     }
     if (std::string(argv[1]) == "all") {
       print_all();
     } else if (std::string(argv[1]) == "far-field-dispersal") {
       print_far_field_dispersal_timing();
+    } else if (std::string(argv[1]) == "bounded-population-long-horizon") {
+      print_bounded_population_long_horizon();
+    } else if (std::string(argv[1]) ==
+               "bounded-population-fine-thread-1") {
+      print_bounded_population_fine(1U);
+    } else if (std::string(argv[1]) ==
+               "bounded-population-fine-thread-4") {
+      print_bounded_population_fine(4U);
+    } else if (std::string(argv[1]) == "finite-width-post-event") {
+      print_finite_width_post_event();
     } else {
       print_certified_correction_retry();
     }

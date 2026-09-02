@@ -46,7 +46,7 @@ function createSessionStorageMock() {
 }
 
 test("standalone app scene mappings resolve to standalone app paths", () => {
-  assert.equal(getStandaloneAppPathForScene("assembly-explorer"), "assembly-explorer.html");
+  assert.equal(getStandaloneAppPathForScene("assembly-explorer"), "borg-library.html");
   assert.equal(getStandaloneAppPathForScene("causal-delay-feedback"), "causal-delay-feedback.html");
   assert.equal(getStandaloneAppPathForScene("equation-mapping"), "equation-mapping.html");
   assert.equal(getStandaloneAppPathForScene("greek-letter-match"), "greek-letter-match.html");
@@ -61,7 +61,7 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
   );
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/assembly_explorer.json"),
-    "assembly-explorer.html"
+    "borg-library.html"
   );
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/causal_delay_feedback.json"),
@@ -98,7 +98,7 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
       "content/scenes/archie/assembly_explorer.json",
       "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fassembly_explorer.json"
     ),
-    "http://127.0.0.1:5173/assembly-explorer.html"
+    "http://127.0.0.1:5173/borg-library.html"
   );
   assert.equal(
     resolveStandaloneAppHrefForScene(
@@ -310,7 +310,6 @@ test("standalone app home return storage rejects cross-origin hrefs", () => {
 
 test("standalone app home controls avoid bare index navigation", () => {
   const appRuntimes = [
-    "src/apps/assembly-explorer/AssemblyConfigurationExplorerRuntime.js",
     "src/apps/equation-mapping/EquationMappingRuntime.js",
     "src/apps/photon/PhotonRuntime.js",
     "src/apps/molecule/MoleculeRuntime.js",

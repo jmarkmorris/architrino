@@ -64,6 +64,9 @@ class JointAffineRetainedHistory {
   }
   [[nodiscard]] const std::optional<JointAffineEndpointOverride>&
   endpoint_override() const noexcept { return endpoint_override_; }
+  [[nodiscard]] const std::string& provenance_fingerprint() const noexcept {
+    return provenance_fingerprint_;
+  }
   [[nodiscard]] bool covers(double time) const noexcept;
 
   [[nodiscard]] JointAffinePointEvaluation evaluate(
@@ -92,6 +95,7 @@ class JointAffineRetainedHistory {
   std::vector<std::string> symbol_registry_;
   std::vector<JointAffineCubicSegment> segments_;
   std::optional<JointAffineEndpointOverride> endpoint_override_;
+  std::string provenance_fingerprint_;
 };
 
 // Encloses receiver minus transmitter position while retaining cancellation

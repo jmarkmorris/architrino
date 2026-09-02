@@ -36,6 +36,16 @@ function checkpointProjection(record) {
   }));
 }
 
+function manifestHistoryProjection(rows) {
+  return rows.map((row) => ({
+    id: row.pathId,
+    fingerprint: row.historyFingerprint,
+    segmentCount: row.segmentCount,
+    coverageStart: row.coverageStart,
+    coverageEnd: row.coverageEnd,
+  }));
+}
+
 const [uninterruptedDirectory, resumedDirectory, dumpTool] =
   process.argv.slice(2);
 if (!uninterruptedDirectory || !resumedDirectory || !dumpTool) {
@@ -97,6 +107,24 @@ for (const manifest of [uninterruptedManifest, resumedManifest]) {
   assert.notEqual(manifest.engineBuildId, "unspecified");
   assert.notEqual(manifest.generatingSpec, "unspecified");
   assert.notEqual(manifest.recordDate, "unspecified");
+  assert.match(
+    manifest.checkpointFingerprint,
+    /^fnv1a64:[0-9a-f]{16}$/,
+  );
+  assert.match(
+    manifest.initialHistoryFingerprint,
+    /^fnv1a64-history-manifest-v1:[0-9a-f]{16}$/,
+  );
+  assert.match(
+    manifest.acceptedHistoryFingerprint,
+    /^fnv1a64-history-manifest-v1:[0-9a-f]{16}$/,
+  );
+  assert.equal(
+    manifest.historyProvenance.schema,
+    "eom_campaign_history_provenance/v1",
+  );
+  assert.equal(manifest.historyProvenance.initial.length, 2);
+  assert.equal(manifest.historyProvenance.accepted.length, 2);
 }
 assert.equal(uninterruptedManifest.resumeCount, 0);
 assert.equal(resumedManifest.resumeCount, 1);
@@ -106,6 +134,22 @@ assert.equal(resumedManifest.modelFingerprint,
 assert.equal(
   resumedManifest.resumeConfigurationFingerprint,
   uninterruptedManifest.resumeConfigurationFingerprint,
+);
+assert.equal(
+  resumedManifest.checkpointFingerprint,
+  uninterruptedManifest.checkpointFingerprint,
+);
+assert.equal(
+  resumedManifest.initialHistoryFingerprint,
+  uninterruptedManifest.initialHistoryFingerprint,
+);
+assert.equal(
+  resumedManifest.acceptedHistoryFingerprint,
+  uninterruptedManifest.acceptedHistoryFingerprint,
+);
+assert.deepEqual(
+  resumedManifest.historyProvenance,
+  uninterruptedManifest.historyProvenance,
 );
 assert.match(
   resumedManifest.resumeConfigurationFingerprint,
@@ -148,6 +192,22 @@ const checkpointDump = JSON.parse(
     { encoding: "utf8" },
   ),
 );
+assert.equal(
+  resumedManifest.checkpointFingerprint,
+  checkpointDump.checkpointFingerprint,
+  "manifest checkpoint identity differs from checkpoint content",
+);
+assert.deepEqual(
+  manifestHistoryProjection(resumedManifest.historyProvenance.accepted),
+  record.worldlines.map((worldline) => ({
+    id: worldline.id,
+    fingerprint: worldline.historyFingerprint,
+    segmentCount: worldline.segments.length,
+    coverageStart: worldline.coverageStart,
+    coverageEnd: worldline.coverageEnd,
+  })),
+  "manifest accepted-history provenance differs from the evolved record",
+);
 assert.deepEqual(
   checkpointProjection(record),
   checkpointDump.paths,
@@ -158,13 +218,15 @@ process.stdout.write(`${JSON.stringify({
   schema: "eom_attractor_resume_gate_validation/v1",
   status: "passed",
   claimBoundary:
-    "deterministic resume, cumulative accounting, release clearance, " +
-    "and checkpoint-record serialization parity only",
+    "deterministic resume, cumulative accounting, complete manifest/history " +
+    "provenance, release clearance, and checkpoint-record serialization parity only",
   checkpointByteIdentical: true,
   streamedFramesByteIdentical: true,
   assemblyRecordByteIdentical: true,
   deterministicCensusProjectionEqual: true,
   checkpointRecordTokenParity: true,
+  checkpointManifestIdentity: true,
+  completeManifestHistoryProvenance: true,
   checkpointSha256: sha256(resumedCheckpoint),
   framesSha256: sha256(
     readFileSync(artifact(resumedDirectory, "frames.jsonl")),

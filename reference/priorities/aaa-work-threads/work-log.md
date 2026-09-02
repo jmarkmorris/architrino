@@ -6,6 +6,15 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Open Problems Paper-Shell Object Closed
+
+- Closed `mapping-open-problems` OP-003 after verifying exact agreement between all 46 public chapter classifications and the accepted claim-level audit, preserving one resolution-test field per chapter, and confirming the 16 strongest chapters retain the accepted specified-but-unexecuted test contracts.
+- Removed five redundant public `Unresolved residue` paragraphs while preserving each chapter's mechanism, evidence route, comparison surface, falsifier, and single claim level.
+- Removed the completed owner from the numeric table, moved it to the unranked active inventory, shifted lower ranks contiguously without changing component scores, and synchronized affected tracker metadata. The one-line Borg rank mirror is routing metadata only; no Borg or Braid queue item changed.
+- Claim grade: editorial verification and inferred attention allocation. No theorem, simulation, observational comparison, assembly status, or closure score changed.
+
+Plainly: a finished paper-maintenance check no longer consumes a live priority rank; later revisions must enter as a specific new task.
+
 ### 2026-08-27 — Flat mapping directory family
 
 - Renamed six domain-recovery and theory-bridge directories to `mapping-standard-model`, `mapping-quantum`, `mapping-cosmology`, `mapping-strong-field`, `mapping-nuclear-atomic-molecular`, and `mapping-one-nature-many-theories`. The existing `mapping-equations`, `mapping-benchmarks`, and `mapping-electromagnetism` directories remain unchanged. The [priority README](../README.md#mapping-workstreams) owns the flat naming convention; no umbrella directory or parent queue was introduced.

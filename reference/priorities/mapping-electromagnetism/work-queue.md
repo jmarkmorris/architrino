@@ -6,16 +6,13 @@ The report-only [Inferring Braid Requirements](../mapping-equations/inferring-br
 
 ## Ranked Next Objects
 
-1. `common_axis_source_moment_field_matrix` — Status: `Queued`.
-2. `maxwell_four_equation_recovery_matrix` — Status: `Deferred / blocked`.
-3. `electron_positron_magnetic_moment_map` — Status: `Deferred / blocked`.
-4. `noether_sea_electromagnetic_constitutive_map` — Status: `Deferred / blocked`.
+No executable scientific object. The overall action-symbology task remains discussion-scoped; the remaining electromagnetic recovery objects are deferred behind accepted native carriers.
 
 ## Cross-Cutting Terminology Tasks
 
 ### Overall action symbology
 
-- **Status:** Queued; requires a terminology-policy review before editing the controlled Archie references.
+- **Status:** Discussion-scoped; requires a terminology-policy review before editing the controlled Archie references.
 - **Current gap:** [Mathematical Terminology](../../../content/markdown/aaa/archie/mathematics-terminology.md) does not yet provide an overall action-symbol system distinguishing the acceleration-first Master Equation, an off-shell variational action functional, an action-like retained-branch statistic, a Poincare-Cartan orbit integral, the candidate retained action period $h_\vartheta$ and its reduced form $\hbar_\vartheta$, and the observer-level Planck constants $h$ and $\hbar$. The policy must also resolve the existing canonical use of bare $h$ as a candidate branch carrier index.
 - **Required decision:** Establish the symbol, layer, authority, and allowed equality statements for each action object before propagating notation changes through the corpus. In particular, notation must not define $h_\vartheta=h$ before the same-record recovery test closes.
 - **Completion:** The controlled terminology guide records the accepted action symbols without collisions, the Master Equation and causal-action documents use those symbols consistently, and priority packets identify provisional versus recovered Planck-action notation explicitly.
@@ -28,14 +25,7 @@ The report-only [Inferring Braid Requirements](../mapping-equations/inferring-br
 
 ## Queued
 
-### EMAP-001 — Common-axis source/moment/field matrix
-
-- **Status:** Queued
-- **Priority object:** common_axis_source_moment_field_matrix
-- **Request / acceptance:** Build one report-only six-case matrix for a candidate common-axis braid. Each row must name net exposed charge, internal polarity-weighted circulation, assembly group velocity, intrinsic exposed-current moment, expected observer-level magnetic parity, required same-record bindings, independent Maxwell comparison, and falsifier.
-- **Cases:** axis-only null, circulation reversal, polarity conjugation, translation reversal, rigid axis rotation, and neutral far-field multipole.
-- **Evidence / blocker:** Prescribed B1 common-axis geometry may define the candidate coordinates but cannot count as retained branch evidence. Equation Mapping supplies the current EQ-13 and EQ-27 row contracts; neither their attempt fixtures nor priority prose supplies accepted source evidence.
-- **Completion:** A focused matrix packet separates internal rotation axis, exposed-current magnetic moment, observer-level magnetic projection, and its direct-wake versus sea-response provenance; all six cases have explicit parity predictions, same-record requirements, and failure conditions; no Maxwell or electron-structure claim is promoted.
+No executable scientific rows.
 
 ## Deferred / blocked
 

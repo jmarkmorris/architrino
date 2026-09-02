@@ -6,6 +6,7 @@ import {
   setWebsiteAnalyticsOptOut,
   shouldSendWebsiteAnalytics,
   WEBSITE_ANALYTICS_OPT_OUT_STORAGE_KEY,
+  WEBSITE_ANALYTICS_POLICY_MODE,
 } from "../src/apps/website-stats/WebsiteAnalyticsOptOutRuntime.js";
 
 function createMemoryStorage() {
@@ -27,17 +28,32 @@ test("website analytics opt-out persists in local storage", () => {
   const storage = createMemoryStorage();
 
   assert.equal(isWebsiteAnalyticsOptedOut(storage), false);
-  assert.equal(shouldSendWebsiteAnalytics(storage), true);
+  assert.equal(WEBSITE_ANALYTICS_POLICY_MODE, "disabled");
+  assert.equal(shouldSendWebsiteAnalytics(storage), false);
+  assert.equal(
+    shouldSendWebsiteAnalytics(storage, {
+      collectorConnected: true,
+      consentGranted: true,
+    }),
+    false
+  );
 
   assert.equal(setWebsiteAnalyticsOptOut(true, storage), true);
   assert.equal(storage.getItem(WEBSITE_ANALYTICS_OPT_OUT_STORAGE_KEY), "true");
   assert.equal(isWebsiteAnalyticsOptedOut(storage), true);
   assert.equal(shouldSendWebsiteAnalytics(storage), false);
+  assert.equal(
+    shouldSendWebsiteAnalytics(storage, {
+      collectorConnected: true,
+      consentGranted: true,
+    }),
+    false
+  );
 
   assert.equal(setWebsiteAnalyticsOptOut(false, storage), true);
   assert.equal(storage.getItem(WEBSITE_ANALYTICS_OPT_OUT_STORAGE_KEY), null);
   assert.equal(isWebsiteAnalyticsOptedOut(storage), false);
-  assert.equal(shouldSendWebsiteAnalytics(storage), true);
+  assert.equal(shouldSendWebsiteAnalytics(storage), false);
 });
 
 test("website analytics opt-out treats unavailable storage as no saved opt-out", () => {
@@ -54,6 +70,13 @@ test("website analytics opt-out treats unavailable storage as no saved opt-out",
   };
 
   assert.equal(isWebsiteAnalyticsOptedOut(brokenStorage), false);
-  assert.equal(shouldSendWebsiteAnalytics(brokenStorage), true);
+  assert.equal(shouldSendWebsiteAnalytics(brokenStorage), false);
+  assert.equal(
+    shouldSendWebsiteAnalytics(brokenStorage, {
+      collectorConnected: true,
+      consentGranted: true,
+    }),
+    false
+  );
   assert.equal(setWebsiteAnalyticsOptOut(true, brokenStorage), false);
 });

@@ -1,0 +1,55 @@
+{
+  "schema": "aaa_core_client/v0",
+  "version": 0,
+  "status": "accepted",
+  "owner": "AAA Core",
+  "dependencies": {
+    "pathInterchange": "aaa_core_path_interchange/v0",
+    "codecRegistry": "aaa_core_codec_registry/v0",
+    "acceptedHistoryStream": "aaa_core_accepted_history_stream/v0",
+    "queryTransformPublication": "aaa_core_query_transform_publication/v0"
+  },
+  "operations": [
+    "validateManifest",
+    "negotiateCodec",
+    "prepareQuery",
+    "openStream",
+    "streamAction",
+    "inspectStream",
+    "publish",
+    "retrieve",
+    "inspectOperation"
+  ],
+  "operationEnvelope": {
+    "schema": "aaa_core_client_operation/v0",
+    "states": ["succeeded", "failed"],
+    "progressFields": ["phase", "completedUnits", "totalUnits"],
+    "failureFields": ["source", "code", "message"],
+    "rule": "Every service call returns one terminal operation envelope; source refusal codes are preserved exactly. This synchronous fixture surface does not claim asynchronous production progress."
+  },
+  "cache": {
+    "key": "aaa_core_query_transform_publication/v0 cacheIdentity",
+    "eligibleState": "sealed",
+    "equivalentRequestRule": "return_the_same_immutable_publication_for_the_same_publisher_policy_and_cache_identity",
+    "provisionalRule": "never_reuse_as_a_completed_cache_hit",
+    "storage": "in_memory_conformance_only"
+  },
+  "clientBoundary": {
+    "oneImplementation": "AAAClient",
+    "applicationConfiguration": ["clientId", "applicationId"],
+    "applicationPathLogic": "forbidden",
+    "sourceErrors": "preserve_name_code_and_message",
+    "copies": "return_defensive_copies_of_results_and_operation_state"
+  },
+  "consumerConformance": [
+    {"applicationId": "Potential", "requiredOperations": ["validateManifest", "prepareQuery", "streamAction", "inspectStream", "publish", "retrieve"]},
+    {"applicationId": "Equation Mapping", "requiredOperations": ["validateManifest", "prepareQuery", "streamAction", "inspectStream", "retrieve"]}
+  ],
+  "conformance": {
+    "schema": "src/contracts/aaa-core-client/v0/schema.json",
+    "implementation": "src/aaa-core/client-v0.mjs",
+    "fixtures": "tests/fixtures/aaa-core-client/v0/consumer-suite.json",
+    "tests": "tests/aaa-core-client-v0.test.js"
+  },
+  "claimBoundary": "Thin synchronous in-process client, immutable cache, operation-envelope, and two-consumer synthetic conformance only. No network API, durable catalog, authentication, authorization, production retry, workload measurement, scientific kernel, EOM evolution, or application release is accepted."
+}

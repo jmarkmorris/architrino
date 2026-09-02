@@ -21,6 +21,9 @@
 //     [--engine-id eom-solver] [--generating-spec <path-or-id>] [--delay-horizon <h>]
 
 import fs from "node:fs";
+import {
+  validateAssemblyViewRecordCarriers,
+} from "../../src/apps/shared/AssemblyViewRecordCarriers.mjs";
 
 export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
 export const ASSEMBLY_VIEW_CONVERTER_ID =
@@ -71,7 +74,7 @@ export function convertBorgTrajectoryToAssemblyViewRecord(trajectory, options = 
     .map(([pathKey, pathRows]) => createWorldlineFromRows(pathKey, pathRows));
   const start = Math.max(...worldlines.map((worldline) => Number(worldline.coverageStart)));
   const end = Math.min(...worldlines.map((worldline) => Number(worldline.coverageEnd)));
-  return {
+  const record = {
     schema: ASSEMBLY_VIEW_RECORD_SCHEMA,
     provenance: {
       engineId: options.engineId ?? "eom-solver",
@@ -90,6 +93,8 @@ export function convertBorgTrajectoryToAssemblyViewRecord(trajectory, options = 
         interpolation: "piecewise-cubic-hermite/v0",
       },
     },
+    recordFrame: structuredClone(options.recordFrame ?? trajectory.recordFrame),
+    vectorOverlays: structuredClone(options.vectorOverlays ?? trajectory.vectorOverlays),
     window: {
       start,
       end,
@@ -101,6 +106,8 @@ export function convertBorgTrajectoryToAssemblyViewRecord(trajectory, options = 
     ansatz: [],
     events: [],
   };
+  validateAssemblyViewRecordCarriers(record, { required: true });
+  return record;
 }
 
 function createWorldlineFromRows(pathKey, rows) {

@@ -25,6 +25,7 @@
       }
     </style>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <link rel="stylesheet" href="./src/runtime/markdown-mermaid.css" />
     <link
       rel="stylesheet"
@@ -49,111 +50,7 @@
               <div id="scene-label"></div>
             </div>
             <div id="scene-hud-right">
-              <div id="scene-hud-tools">
-                <button
-                  id="textbook-toc-button"
-                  type="button"
-                  aria-label="Open textbook table of contents"
-                >
-                  TOC
-                </button>
-                <button
-                  id="markdown-doc-button"
-                  type="button"
-                  aria-label="Open full document"
-                  class="is-hidden"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M7 4h7l4 4v12H7V4zm7 0v4h4"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linejoin="round"
-                      stroke-linecap="round"
-                    ></path>
-                  </svg>
-                </button>
-                <button
-                  id="markdown-pdf-button"
-                  type="button"
-                  aria-label="Save markdown as PDF"
-                  class="is-hidden"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M7 8V4h10v4M6 17H5a2 2 0 0 1-2-2v-3a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v3a2 2 0 0 1-2 2h-1M7 14h10v6H7zM17 11.5h.01"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linejoin="round"
-                      stroke-linecap="round"
-                    ></path>
-                  </svg>
-                </button>
-                <button
-                  id="markdown-layout-toggle"
-                  type="button"
-                  aria-label="Switch to single column"
-                  class="is-hidden"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="5" y="5" width="14" height="14" rx="2" fill="none"></rect>
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="7.5" y1="8.5" x2="9.5" y2="8.5"></line>
-                    <line x1="14.5" y1="8.5" x2="16.5" y2="8.5"></line>
-                    <line x1="7.5" y1="12" x2="9.5" y2="12"></line>
-                    <line x1="14.5" y1="12" x2="16.5" y2="12"></line>
-                    <line x1="7.5" y1="15.5" x2="9.5" y2="15.5"></line>
-                    <line x1="14.5" y1="15.5" x2="16.5" y2="15.5"></line>
-                  </svg>
-                </button>
-                <div id="scene-nav-history" role="group" aria-label="Scene history">
-                  <button id="nav-up" type="button" aria-label="Go back">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <polyline points="15 5 8 12 15 19"></polyline>
-                    </svg>
-                  </button>
-                  <button id="nav-forward" type="button" aria-label="Go forward">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <polyline points="9 5 16 12 9 19"></polyline>
-                    </svg>
-                  </button>
-                </div>
-                <button id="home-button" type="button" aria-label="Go to home">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </button>
-                <div id="scene-search">
-                  <button
-                    id="scene-search-toggle"
-                    type="button"
-                    aria-label="Search scenes"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <circle cx="11" cy="11" r="6.5"></circle>
-                      <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
-                    </svg>
-                  </button>
-                  <div id="scene-search-panel" aria-hidden="true">
-                    <input
-                      id="scene-search-input"
-                      type="text"
-                      placeholder="Search scenes"
-                      autocomplete="off"
-                    />
-                    <div id="scene-search-results"></div>
-                  </div>
-                </div>
-              </div>
+              <div id="scene-hud-tools"></div>
             </div>
           </div>
           <div id="element-nav-overlay" aria-hidden="true">
@@ -208,9 +105,84 @@
           </svg>
         </button>
       </div>
-      <div id="markdown-panel" aria-hidden="true" class="two-columns">
+      <div id="markdown-panel" aria-hidden="true" class="two-columns" inert>
+        <header class="markdown-panel-header">
+          <div id="markdown-title"></div>
+          <div class="markdown-panel-actions" role="group" aria-label="Document actions">
+            <button
+              id="markdown-doc-button"
+              class="markdown-panel-action is-hidden"
+              type="button"
+              aria-label="Open full document"
+              title="Full document"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7 4h7l4 4v12H7V4zm7 0v4h4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                ></path>
+              </svg>
+            </button>
+            <button
+              id="markdown-layout-toggle"
+              class="markdown-panel-action is-hidden"
+              type="button"
+              aria-label="Switch to single column"
+              title="Layout"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="5" width="14" height="14" rx="2" fill="none"></rect>
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="7.5" y1="8.5" x2="9.5" y2="8.5"></line>
+                <line x1="14.5" y1="8.5" x2="16.5" y2="8.5"></line>
+                <line x1="7.5" y1="12" x2="9.5" y2="12"></line>
+                <line x1="14.5" y1="12" x2="16.5" y2="12"></line>
+                <line x1="7.5" y1="15.5" x2="9.5" y2="15.5"></line>
+                <line x1="14.5" y1="15.5" x2="16.5" y2="15.5"></line>
+              </svg>
+            </button>
+            <button
+              id="markdown-pdf-button"
+              class="markdown-panel-action is-hidden"
+              type="button"
+              aria-label="Save markdown as PDF"
+              title="Save markdown as PDF"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7 8V4h10v4M6 17H5a2 2 0 0 1-2-2v-3a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v3a2 2 0 0 1-2 2h-1M7 14h10v6H7zM17 11.5h.01"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                ></path>
+              </svg>
+            </button>
+            <button
+              id="markdown-close"
+              class="markdown-panel-action"
+              type="button"
+              aria-label="Close document"
+              title="Close"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </header>
         <main id="markdown-content" tabindex="-1" aria-labelledby="markdown-title">
-          <div id="markdown-title" class="visually-hidden"></div>
           <article id="markdown-body" class="markdown-article"></article>
         </main>
       </div>
@@ -259,6 +231,7 @@
               Exit
             </button>
           </div>
+          <div id="animator-top-dynamic-control-bar-mount"></div>
         </div>
         <div class="animator-workspace">
           <main class="animator-main">

@@ -113,30 +113,6 @@ label {
   white-space: nowrap;
 }
 
-.greek-match-home {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  min-height: 38px;
-  padding: 0 14px;
-  border: 1px solid rgba(229, 219, 255, 0.3);
-  border-radius: 9px;
-  background: rgba(45, 23, 70, 0.78);
-  color: rgba(250, 248, 255, 0.9);
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 760;
-  text-decoration: none;
-}
-
-.greek-match-home:hover,
-.greek-match-home:focus-visible {
-  border-color: rgba(255, 238, 174, 0.76);
-  color: #ffffff;
-  outline: none;
-}
-
 .greek-match-workspace {
   display: grid;
   grid-template-columns: var(--panel-width) minmax(0, 1fr) var(--panel-width);
@@ -1026,7 +1002,8 @@ label {
 
 @media (max-width: 620px) {
   .greek-match-header {
-    min-height: 58px;
+    min-height: 104px;
+    padding-top: max(56px, calc(env(safe-area-inset-top) + 48px));
   }
 
   .greek-match-heading p {
@@ -1037,11 +1014,6 @@ label {
     width: 36px;
     height: 36px;
     font-size: 13px;
-  }
-
-  .greek-match-home {
-    min-height: 34px;
-    padding: 0 10px;
   }
 
   .greek-match-workspace {

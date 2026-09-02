@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#6d28d9" />
     <title>Molecule Visualization</title>
+    <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -128,50 +129,6 @@
         border: 1px solid rgba(255, 255, 255, 0.48);
         border-radius: 50%;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
-      }
-
-      .molecule-toolbar {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        pointer-events: auto;
-      }
-
-      .molecule-button {
-        min-height: 32px;
-        padding: 0 10px;
-        border: 1px solid rgba(42, 64, 49, 0.18);
-        border-radius: 6px;
-        background: rgba(255, 255, 255, 0.86);
-        color: #1c2b20;
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 1;
-        cursor: pointer;
-      }
-
-      .molecule-icon-button {
-        width: 32px;
-        height: 32px;
-        padding: 0;
-        display: inline-grid;
-        place-items: center;
-      }
-
-      .molecule-icon-button svg {
-        width: 17px;
-        height: 17px;
-        stroke-width: 2.2;
-      }
-
-      .molecule-button:hover,
-      .molecule-button:focus-visible {
-        border-color: rgba(15, 118, 110, 0.58);
-        outline: none;
-      }
-
-      .molecule-button:active {
-        transform: translateY(1px);
       }
 
       .molecule-readout {
@@ -374,6 +331,12 @@
         gap: 8px;
       }
 
+      @media (min-width: 861px) {
+        .molecule-preset-list {
+          padding-top: 60px;
+        }
+      }
+
       .molecule-preset-button {
         width: 100%;
         min-height: 58px;
@@ -469,24 +432,12 @@
         .molecule-stage-topbar {
           left: 10px;
           right: 10px;
-          top: 10px;
+          top: 56px;
           flex-direction: column;
         }
 
         .molecule-title-block {
           width: 100%;
-        }
-
-        .molecule-toolbar {
-          width: 100%;
-        }
-
-        .molecule-button {
-          flex: 1 1 0;
-        }
-
-        .molecule-icon-button {
-          flex: 0 0 32px;
         }
 
         .molecule-readout {
@@ -514,6 +465,7 @@
     </style>
   </head>
   <body>
+    <div id="scene-hud-tools" class="molecule-navigation"></div>
     <main id="molecule-app">
       <section class="molecule-stage" aria-label="molecule viewer">
         <canvas id="molecule-canvas"></canvas>
@@ -523,20 +475,6 @@
             <h1 id="molecule-title">Molecule</h1>
             <p id="molecule-subtitle">Preset molecule catalog</p>
             <div id="molecule-atom-legend" class="molecule-atom-legend" aria-label="atom color legend"></div>
-          </div>
-          <div class="molecule-toolbar">
-            <button
-              id="molecule-home-button"
-              type="button"
-              class="molecule-button molecule-icon-button"
-              aria-label="Applications"
-              title="Applications"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m3 10.8 9-7.2 9 7.2" />
-                <path d="M5.2 9.6V20h4.9v-5.6h3.8V20h4.9V9.6" />
-              </svg>
-            </button>
           </div>
         </div>
         <div class="molecule-readout" aria-live="polite">
@@ -603,7 +541,7 @@
             />
             <button class="molecule-session-add" type="submit">Add</button>
           </form>
-          <div id="molecule-formula-hint" class="molecule-session-hint">Examples: H2O, so2, NaCl, C2.H10.O7 · use O, not 0</div>
+          <div id="molecule-formula-hint" class="molecule-session-hint">Examples: H2O, so2, NaCl, C2.H10.O7 · use O, not 0. If the formula is not built in, pressing Add sends only the formula to PubChem; the optional name stays in this browser. Shared links load locally without contacting PubChem.</div>
           <div id="molecule-session-status" class="molecule-session-status" aria-live="polite"></div>
           <div id="molecule-session-list" class="molecule-session-list"></div>
         </section>

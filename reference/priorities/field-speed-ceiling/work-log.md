@@ -1,5 +1,36 @@
 # Field-Speed Ceiling Work Log
 
+## 2026-09-02 — FSC-013 circular-binary census-stability neighborhood completed
+
+- Added [Circular-Binary Census-Stability Neighborhood](circular-binary-census-stability-neighborhood.md) under packet identifier `fsc_circular_binary_census_stability_neighborhood/v1`.
+- Defined a dimensionless $W^{2,\infty}$ history norm around the equal-speed FSC-010 circle and intersected its ball with the ceiling-admissible path class, avoiding super-ceiling histories that a generic open norm ball would include.
+- Derived one explicit sufficient radius from front/back causal-gap signs, minimum base range, received-direction perturbation, root-factor floors, and nonzero-curvature margin. Its normalized diagnostic value is approximately $0.06825864457559688$.
+- Proved one partner root per ordered channel, delay bracket $[R_\ast D,3R_\ast D]$, range floor $R_\ast\cos(3D/2)$, $D_t,D_r\ge[1+\sin(D/2)]/2$, a root-displacement bound, and equal-time collision exclusion throughout the tube.
+- Proved structural self-root exclusion: ceiling equality on a self channel requires a straight unit-speed chord, while every history in the declared acceleration tube retains nonzero curvature.
+- Removed FSC-013 from the live queue and updated FSC-011: FSC-010 and FSC-013 are complete, but the history-to-ledger Lipschitz and coupled contraction theorem remains open through FSC-007 or a specialized proof.
+- Validation passed on 2026-09-02: priority ranking alignment (30 active owners and 26 ranked rows), strict content validation (0 errors and 0 warnings), strict scene-graph checking (0 errors and 0 warnings), and `git diff --check`.
+- This is a local root-census theorem only. It proves no coupled delayed-history solution, continuation, retention, capture, perturbation stability, conservation, physical binary, ceiling adoption, or closure-score advancement.
+
+## 2026-09-02 — FSC-015 circular-binary secondary theorem bundle completed
+
+- Added [Circular-Binary Secondary Theorems](circular-binary-secondary-theorems.md) under packet identifier `fsc_circular_binary_secondary_theorems/v1`.
+- Proved that no strictly interior-speed all-past antipodal two-label uniform circle closes because the complete unprojected partner row has a strictly positive forward component.
+- Proved that orthogonal-axis translation is the only rigid uniform translation preserving constant label speeds, then combined that exhaustiveness lemma with the existing negative axial residual to exclude every nonzero rigid uniformly translating constant-boundary-speed circular pair.
+- Derived $\xi_\lambda=\lambda-\lambda^3/2+13\lambda^5/24+O(\lambda^7)$ and $R_{\ast,\lambda}=K(1-\lambda^2/2+7\lambda^4/8+O(\lambda^6))/(4c_a^2)$.
+- Proved the exact chord-exchange condition that forces $D_t=D_r$, while retaining equality as a necessary diagnostic rather than a sufficient symmetry proof.
+- Put the general-$\lambda$ scalar root into interval-Newton-ready form: the exact first image from $[0,\lambda]$ is strictly interior and a directed-rounding implementation must verify that inclusion at declared precision; the Jacobian floor is one, root sensitivity lies in $(0,1)$, the circular $D_t,D_r$ factors stay uniformly positive, and the inverse root-angle parameterization avoids repeated root solves.
+- Independent normalized diagnostics reproduced the $O(\lambda^6)$ series remainder and the helical $r^2D_t$ invariant at four drift values. These diagnostics check the formulas but do not independently establish the proposed response law.
+- Removed FSC-015 from the ranked queue and renumbered following items. No coupled delayed-history solution, capture, stability, conservation, action, physical binary, field-speed ceiling, or closure-score advancement was claimed.
+
+## 2026-09-02 — FSC-016 Sections 12--14 independent review completed
+
+- Added [Independent Review of Sections 12--14](sections-12-14-independent-review-2026-09-02.md) under identifier `FSC-016-PPAI-2026-09-02`; the reviewed mathematics manuscript was not edited.
+- Independently verified the proposed-response braid criterion, winding/radius and phase arithmetic, homothetic scale selection, normalized Dottie-derived binary values, raw cycle diagnostic, and the conditional action/energy boundary.
+- Recorded two required specification repairs: separate the exact field-speed equality from inequality margins and state one- versus two-sided tangents; state the nonlinear-return-map hypotheses and correct the local-stability consequence of a reduced spectral radius below one.
+- Recorded the first mandatory infinite-sea obligation: local finiteness does not control an inverse-square three-dimensional tail, so a Noether-sea construction needs a declared exhaustion, far-field cancellation estimate, convergence mode, and boundary/order-independence proof.
+- Corrected the inverse-problem count from an ambiguous twelve conditions to six scalar inequalities plus twelve scalar perpendicular-residual components before symmetry reduction.
+- Removed FSC-016 from the ranked live queue and marked its review prerequisite complete. FSC-017 remains blocked on FSC-011; a verified-numerics route also consumes FSC-014. No ceiling, response law, event law, braid, action unit, energy account, stability result, Noether-sea model, or physical claim was adopted.
+
 ## 2026-07-30 — Workstream created
 
 - The operator requested a separate behind-the-scenes investigation of a primitive field-speed ceiling after the MEC-007 post-threshold sharp-law obstruction review.

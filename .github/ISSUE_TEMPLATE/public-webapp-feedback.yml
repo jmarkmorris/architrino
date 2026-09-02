@@ -1,0 +1,67 @@
+name: Public webapp feedback
+description: Report a reproducible problem on the public Architrino webapp without exposing private workflow.
+title: "[Webapp feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for making the problem reproducible. This issue will be public. Do not include private prompts, unpublished files, account details, personal contact information, URL query strings, URL fragments, cookies, browser-storage values, or local file names.
+  - type: dropdown
+    id: feedback_type
+    attributes:
+      label: Feedback type
+      options:
+        - Something is broken
+        - Content is hard to read or navigate
+        - Accessibility problem
+        - Performance problem
+        - Other public webapp problem
+    validations:
+      required: true
+  - type: input
+    id: public_page_path
+    attributes:
+      label: Public page path
+      description: Give only the pathname, without a query string or fragment.
+      placeholder: /molecule.html
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the visible problem without including private material.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: List the shortest sequence that produces the problem from a fresh page load.
+      placeholder: |
+        1. Open …
+        2. Select …
+        3. Observe …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: sanitized_manifest
+    attributes:
+      label: Sanitized reproducibility manifest
+      description: Paste the reviewed output from https://www.architrino.com/feedback.html. If copying is unavailable, state the browser family and major version, device class, operating-system family, and whether each public manifest was available.
+      render: json
+    validations:
+      required: true
+  - type: checkboxes
+    id: public_confirmation
+    attributes:
+      label: Public-data confirmation
+      options:
+        - label: I reviewed this report and removed private workflow, account details, query strings, fragments, browser-storage values, and local file information.
+          required: true

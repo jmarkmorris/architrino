@@ -1,0 +1,79 @@
+{
+  "schema": "architrino.potential-live-timespace-pipeline-negative-suite.v1",
+  "cases": [
+    {
+      "id": "candidate-eom-step",
+      "mutation": {"path": "events.1.acceptance", "value": "candidate"},
+      "expectedCode": "unaccepted_history_chunk"
+    },
+    {
+      "id": "missing-sequence",
+      "mutation": {"path": "events.4.sequence", "value": 2},
+      "expectedCode": "missing_predecessor"
+    },
+    {
+      "id": "conflicting-duplicate",
+      "mutation": {"path": "events.5.contentSha256", "value": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},
+      "expectedCode": "conflicting_duplicate"
+    },
+    {
+      "id": "broken-predecessor-chain",
+      "mutation": {"path": "events.6.predecessorChunkSha256", "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"},
+      "expectedCode": "broken_predecessor_chain"
+    },
+    {
+      "id": "buffer-limit-overflow",
+      "mutation": {"path": "consumerProfile.maxBufferedChunks", "value": 1},
+      "expectedCode": "backpressure_limit_exceeded"
+    },
+    {
+      "id": "map-completion-out-of-order",
+      "mutation": {"path": "events.8.sequence", "value": 2},
+      "expectedCode": "map_completion_out_of_order"
+    },
+    {
+      "id": "premature-source-seal",
+      "mutation": {"path": "events.10.acceptedThroughT", "value": 2},
+      "expectedCode": "incomplete_seal"
+    },
+    {
+      "id": "source-binding-change",
+      "mutation": {"path": "events.1.sourceManifestSha256", "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"},
+      "expectedCode": "source_binding_mismatch"
+    },
+    {
+      "id": "source-halt-propagates",
+      "mutation": {
+        "path": "events.4",
+        "value": {
+          "type": "source_halt",
+          "streamId": "synthetic-eom-stream-001",
+          "code": "eom_fixture_halt",
+          "detail": "synthetic producer halted before sequence 1"
+        }
+      },
+      "expectedCode": "source_halted"
+    },
+    {
+      "id": "post-seal-mutation",
+      "mutation": {
+        "action": "append",
+        "path": "events",
+        "value": {
+          "type": "accepted_chunk",
+          "sequence": 3,
+          "chunkId": "accepted-chunk-003",
+          "contentSha256": "9999999999999999999999999999999999999999999999999999999999999999",
+          "predecessorChunkSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "sourceManifestSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "acceptedStartT": 3,
+          "acceptedEndT": 4,
+          "acceptedThroughT": 4,
+          "acceptance": "accepted",
+          "byteLength": 128
+        }
+      },
+      "expectedCode": "sealed_state_immutable"
+    }
+  ]
+}

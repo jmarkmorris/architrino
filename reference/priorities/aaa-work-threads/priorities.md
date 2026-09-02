@@ -45,32 +45,30 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 | Rank | Kind | Slug or packet | Bucket #1 next unresolved evidence object | Base | Cascade | MinDelta | Pressure | Engine | Eureka | EWeight | Value | Exec | Intuition | Deps | Valid | Cost | ROI |
 | ---: | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 1 | Engine | [`app-solver`](../app-solver/priorities.md) | `coupled_retained_history_integrator`: claim-ready bounded-population long-horizon kernel | 10.0 | 1.75 | -56 | 1.56 | 1.55 | 10 | 1.50 | 63.47 | 5 | 3 | 5 | 7 | 4.7 | 13.50 |
-| 2 | Program | [`braid-program`](../braid-program/priorities.md) | `binary_subfield_fate`: Campaign 1 opposite-polarity binary fate packet | 10.0 | 1.75 | -56 | 1.56 | 1.35 | 10 | 1.50 | 55.28 | 5 | 3 | 4 | 6 | 4.3 | 12.86 |
-| 3 | Workstream | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law`: one independently evolving wake state with declared causal updates and a regular transmitter-side reduction | 10.0 | 1.70 | -56 | 1.56 | 1.45 | 9 | 1.40 | 53.84 | 6 | 6 | 5 | 7 | 6.0 | 8.97 |
-| 4 | Shared packet | [`transfer-operator-basin-measure`](../mapping-quantum/transfer-operator-basin-measure.md) | Explicit transfer operator and invariant measure on one persistent accepted assembly state | 9.0 | 1.70 | -56 | 1.56 | 0.90 | 9 | 1.40 | 30.07 | 5 | 7 | 5 | 7 | 6.1 | 4.93 |
-| 5 | Shared packet | [`pressure-dependent-noether-sea-constitutive-response`](../master-equation-closure/pressure-dependent-noether-sea-constitutive-response.md) | `pressure_dependent_noether_sea_constitutive_response/v0` on one accepted transmitter-side branch with causal wake accounts | 8.8 | 1.50 | -45 | 1.45 | 0.95 | 8 | 1.30 | 23.64 | 4 | 5 | 5 | 5 | 4.8 | 4.93 |
-| 6 | Workstream | [`mapping-equations`](../mapping-equations/priorities.md) | `lorentz_envelope_closure`: source-backed positive-width `S_eq` retained-domain carrier | 8.5 | 1.50 | -45 | 1.45 | 0.85 | 8 | 1.30 | 20.43 | 5 | 5 | 5 | 6 | 5.2 | 3.93 |
-| 7 | App | [`app-borg`](../app-borg/priorities.md) | `assembly_viewer_record_contract_carriers` for Borg sealed-record replay | 7.2 | 1.35 | -56 | 1.56 | 0.90 | 7 | 1.20 | 16.38 | 5 | 3 | 5 | 5 | 4.3 | 3.81 |
-| 8 | Workstream | [`mapping-standard-model`](../mapping-standard-model/priorities.md) | `quark_mass_predictions`: first geometry-derived row without observed-mass fitting | 8.5 | 1.30 | -56 | 1.56 | 0.95 | 8 | 1.30 | 21.29 | 6 | 6 | 6 | 7 | 6.2 | 3.43 |
-| 9 | App | [`app-photon`](../app-photon/priorities.md) | `reusable_absolute_history_solver` generalized beyond Photon circular histories | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 4 | 3 | 4 | 4 | 3.7 | 2.50 |
-| 10 | Shared packet | `exposure-quotient-theorem` | One accepted branch-to-sector exposure quotient with a null-sector bound | 9.5 | 1.65 | -45 | 1.45 | 0.35 | 6 | 1.10 | 8.75 | 4 | 4 | 4 | 5 | 4.2 | 2.08 |
-| 11 | Workstream | [`mapping-strong-field`](../mapping-strong-field/priorities.md) | `embedded_boundary_conditions` for one Noether sea horizon-interface case | 6.0 | 1.20 | -56 | 1.56 | 0.85 | 7 | 1.20 | 11.46 | 6 | 6 | 6 | 7 | 6.2 | 1.85 |
-| 12 | Candidate | [`mapping-nuclear-atomic-molecular`](../mapping-nuclear-atomic-molecular/priorities.md) | `iron_group_binding_cusp_recovery` with an accepted nucleon branch-interface ledger | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 5 | 6 | 6 | 6 | 5.8 | 1.59 |
-| 13 | Candidate | [`mapping-benchmarks`](../mapping-benchmarks/priorities.md) | `redshift_clock_transport` benchmark mapped to explicit acceptance and failure gates | 7.5 | 1.35 | -56 | 1.56 | 0.40 | 6 | 1.10 | 6.95 | 4 | 4 | 5 | 6 | 4.6 | 1.51 |
-| 14 | App | [`app-animator`](../dormant-deferred/app-animator/priorities.md) | `runtime_cutover` from shared scene-shell behavior to the Animator-owned runtime | 7.0 | 1.20 | 0 | 1.00 | 0.85 | 4 | 0.90 | 6.43 | 5 | 4 | 4 | 4 | 4.3 | 1.50 |
-| 15 | Shared packet | `residual-routing-event-ledger` | One concrete EOM-evolved transition with a closed event ledger | 9.5 | 1.70 | -23 | 1.23 | 0.25 | 6 | 1.10 | 5.46 | 4 | 4 | 4 | 5 | 4.2 | 1.30 |
-| 16 | Workstream | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
-| 17 | Candidate | [`mapping-open-problems`](../mapping-open-problems/priorities.md) | `claim_level_audit` of every Solving the Crisis chapter | 5.0 | 1.25 | -56 | 1.56 | 0.25 | 5 | 1.00 | 2.44 | 4 | 4 | 5 | 5 | 4.4 | 0.55 |
-| 18 | Op queue | [`source-mining`](../source-mining/priorities.md) | `mine_source_material`: one batch yielding a concrete mathematical artifact | 4.0 | 1.10 | 0 | 1.00 | 0.35 | 3 | 0.80 | 1.23 | 4 | 2 | 3 | 2 | 2.7 | 0.46 |
-| 19 | Workstream | [`mapping-cosmology`](../mapping-cosmology/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
-| 20 | App | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance`: ephemeral Codex and supported ChatGPT loopback verification | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.06 | 3 | 2 | 3 | 4 | 2.9 | 0.37 |
-| 21 | Design | [`archie`](../dormant-deferred/archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
-| 22 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
-| 23 | Op queue | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
-| 24 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
-| 25 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
-| 26 | Candidate | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
+| 1 | Program | [`braid-program`](../braid-program/priorities.md) | `binary_subfield_fate`: Campaign 1 opposite-polarity binary fate packet | 10.0 | 1.75 | -56 | 1.56 | 1.35 | 10 | 1.50 | 55.28 | 5 | 3 | 4 | 6 | 4.3 | 12.86 |
+| 2 | Workstream | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law`: one independently evolving wake state with declared causal updates and a regular transmitter-side reduction | 10.0 | 1.70 | -56 | 1.56 | 1.45 | 9 | 1.40 | 53.84 | 6 | 6 | 5 | 7 | 6.0 | 8.97 |
+| 3 | Shared packet | [`transfer-operator-basin-measure`](../mapping-quantum/transfer-operator-basin-measure.md) | Explicit transfer operator and invariant measure on one persistent accepted assembly state | 9.0 | 1.70 | -56 | 1.56 | 0.90 | 9 | 1.40 | 30.07 | 5 | 7 | 5 | 7 | 6.1 | 4.93 |
+| 4 | Shared packet | [`pressure-dependent-noether-sea-constitutive-response`](../master-equation-closure/pressure-dependent-noether-sea-constitutive-response.md) | `pressure_dependent_noether_sea_constitutive_response/v0` on one accepted transmitter-side branch with causal wake accounts | 8.8 | 1.50 | -45 | 1.45 | 0.95 | 8 | 1.30 | 23.64 | 4 | 5 | 5 | 5 | 4.8 | 4.93 |
+| 5 | Workstream | [`mapping-equations`](../mapping-equations/priorities.md) | `lorentz_envelope_closure`: source-backed positive-width `S_eq` retained-domain carrier | 8.5 | 1.50 | -45 | 1.45 | 0.85 | 8 | 1.30 | 20.43 | 5 | 5 | 5 | 6 | 5.2 | 3.93 |
+| 6 | Workstream | [`mapping-standard-model`](../mapping-standard-model/priorities.md) | `quark_mass_predictions`: first geometry-derived row without observed-mass fitting | 8.5 | 1.30 | -56 | 1.56 | 0.95 | 8 | 1.30 | 21.29 | 6 | 6 | 6 | 7 | 6.2 | 3.43 |
+| 7 | App | [`app-photon`](../app-photon/priorities.md) | `reusable_absolute_history_solver` generalized beyond Photon circular histories | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 4 | 3 | 4 | 4 | 3.7 | 2.50 |
+| 8 | Shared packet | `exposure-quotient-theorem` | One accepted branch-to-sector exposure quotient with a null-sector bound | 9.5 | 1.65 | -45 | 1.45 | 0.35 | 6 | 1.10 | 8.75 | 4 | 4 | 4 | 5 | 4.2 | 2.08 |
+| 9 | Workstream | [`mapping-strong-field`](../mapping-strong-field/priorities.md) | `observer_predictions` from one source-bound embedded horizon-interface record | 6.0 | 1.20 | -56 | 1.56 | 0.85 | 7 | 1.20 | 11.46 | 6 | 6 | 6 | 7 | 6.2 | 1.85 |
+| 10 | Candidate | [`mapping-nuclear-atomic-molecular`](../mapping-nuclear-atomic-molecular/priorities.md) | `iron_group_binding_cusp_recovery` with an accepted nucleon branch-interface ledger | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 5 | 6 | 6 | 6 | 5.8 | 1.59 |
+| 11 | Candidate | [`mapping-benchmarks`](../mapping-benchmarks/priorities.md) | `lorentz_preferred_frame` on one accepted moving branch with clock/ruler export and an independent leakage instrument | 7.5 | 1.35 | -56 | 1.56 | 0.40 | 6 | 1.10 | 6.95 | 4 | 4 | 5 | 6 | 4.6 | 1.51 |
+| 12 | App | [`app-animator`](../dormant-deferred/app-animator/priorities.md) | `runtime_cutover` from shared scene-shell behavior to the Animator-owned runtime | 7.0 | 1.20 | 0 | 1.00 | 0.85 | 4 | 0.90 | 6.43 | 5 | 4 | 4 | 4 | 4.3 | 1.50 |
+| 13 | Shared packet | `residual-routing-event-ledger` | One concrete EOM-evolved transition with a closed event ledger | 9.5 | 1.70 | -23 | 1.23 | 0.25 | 6 | 1.10 | 5.46 | 4 | 4 | 4 | 5 | 4.2 | 1.30 |
+| 14 | Workstream | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
+| 15 | Engine | [`app-solver`](../app-solver/priorities.md) | `eom_application_surface`: bounded-population run and inspection surface with canonical history, progress, cancellation, checkpoint, diagnostics, and provenance | 6.0 | 1.30 | -56 | 1.56 | 0.20 | 2 | 0.70 | 1.70 | 4 | 2 | 4 | 4 | 3.3 | 0.52 |
+| 16 | Workstream | [`mapping-cosmology`](../mapping-cosmology/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
+| 17 | App | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance`: ephemeral Codex and supported ChatGPT loopback verification | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.06 | 3 | 2 | 3 | 4 | 2.9 | 0.37 |
+| 18 | Design | [`archie`](../dormant-deferred/archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
+| 19 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
+| 20 | Op queue | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
+| 21 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standalone_app_home_search_settings_migration` through the canonical runtime | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
+| 22 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
+| 23 | App | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab`: one source-carried coordinate morph teaching packet | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.46 | 5 | 4 | 7 | 5 | 5.1 | 0.09 |
+| 24 | Candidate | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
 
 ## Active-Only Rerank Movement — 2026-07-26
 
@@ -111,10 +109,47 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 - `review_packet_export` is deferred until an operator-selected local editor draft exists. Because the lane now has no executable next object, `app-equation-mapping` leaves the numeric ranking and becomes an unranked active owner.
 - `aaa-operations`, `app-ui-guidelines`, `dark-sector`, and the retained historical `aaa-futures` row each move up one rank without score changes. This changes attention routing only; it does not change any equation claim, proof status, corpus authority, or equation-mapping score.
 
+## Open Problems Paper-Shell Closure — 2026-09-02
+
+- `mapping-open-problems` completed `paper_skeleton`: all 46 deployed chapters match the accepted single-level classification ledger, and all 16 `architecture-ready` chapters retain their specified-but-unexecuted four-part test contracts.
+- The lane now has no executable object and becomes an unranked active owner. `source-mining` through `app-borg`, plus the retained historical `archie` and `aaa-futures` rows, each move up one rank without score changes.
+- This is editorial and attention-routing closure only. It does not execute any test contract, close a scientific proof, classify an assembly, or alter a Borg or Braid queue object.
+
+## UI Control-Bar Standard Acceptance — 2026-09-02
+
+- `app-ui-guidelines` completed `standard_acceptance_pass` with fixed semantics, dimensions, action order, responsive behavior, page exceptions, and a live structural audit.
+- It then completed `shared_bar_runtime_design` and `markdown_control_relocation`, followed by `main_webapp_and_animator_hud_unification`: the canonical runtime and stylesheet now generate one bar that moves between the two headers and passed desktop/mobile interaction checks.
+- Its local rank-1 object is now `standalone_app_home_search_settings_migration`. The row retains its prior component scores and rank because the remaining multi-page migration has the same bounded support-surface value and cost envelope. This changes the scored object only; it does not claim that standalone pages already consume the canonical runtime.
+
+## Solving The Crisis Source Refresh Closure — 2026-09-02
+
+- `source-mining` completed `solving_the_crisis_source_refresh` with an exact 44-row primary/review/data/experiment source map for every retained Open Problems chapter; excluded chapters 45–46 remain outside the source program.
+- The lane now has no executable object because its remaining repository-cleanup and domain-disposition rows require explicit external authority. It becomes an unranked active owner.
+- Rows formerly below `source-mining` move up one rank without score changes. This is attention-routing maintenance only; the refresh does not close any scientific claim or change a Borg or Braid queue object.
+
+## Borg Four-Item Closure Rerank — 2026-09-01
+
+- Borg completed `prescribed_translation_and_causal_history_tubes`, `assembly_viewer_record_contract_carriers`, `assembly_explorer_disposition`, and `velocity_scale_sampling_evidence`. Those completed objects no longer receive remaining-value credit.
+- Borg's local rank-1 object is now the deferred `borg_taxonomy_morph_lab`: one source-carried coordinate morph teaching packet. Its conservative support-surface score reflects optional local value, no direct closure-score pressure, low equation leverage, and unresolved source-packet dependencies.
+- `app-borg` moves to rank `25`; rows formerly below rank `7` shift up one without score changes. This changes inferred execution attention only. The measured velocity sampler remains precision-insufficient and fail-closed, and no scientific claim or closure score advances.
+
+## EOM Precision-Policy Closure Rerank — 2026-09-02
+
+- `app-solver` completed `precision_convergence_and_failure_policy`; its live row now scores only `deterministic_cpu_multithreading_and_simd`.
+- The new row retains global rank 1 because the bounded, implementation-known SIMD and replay object directly affects every EOM consumer and has low remaining conceptual burden. Its value falls from `40.54` to `34.53`, cost from `3.0` to `2.6`, and ROI from `13.51` to `13.28`.
+- This is an inferred attention score, not a speed result. EOM-005 must still supply instruction-level SIMD evidence, matched wall-time measurements, deterministic replay, and independent-oracle agreement.
+
+## EOM Deterministic CPU And SIMD Disposition Rerank — 2026-09-02
+
+- `app-solver` completed `deterministic_cpu_multithreading_and_simd` with a mixed measured disposition. Four workers reduced the matched fine long-horizon median from `0.37` to `0.28` seconds with byte-identical single-worker replay; matched vector-enabled and vector-disabled long-horizon builds both measured a `1.07`-second median.
+- The compiler confirms auto-vectorized loops, but the representative workload falsifies a useful SIMD speedup. Compiler-default vectorization remains enabled; no manual SIMD, structure-of-arrays, or cache-layout specialization is promoted without a measured benefit.
+- The local rank-1 object is now `eom_application_surface`. Its score is rebuilt as a bounded app and integration artifact: lower foundational equation leverage and Eureka potential, moderate cross-consumer value, and remaining implementation/validation work. `app-solver` moves from rank `1` to rank `15`; rows formerly ranked `2` through `15` move up one without score changes.
+- This changes inferred execution attention only. It does not change EOM mathematical acceptance, any physical claim, or the closure score.
+
 ## Current Focus
 
 - **Operator-selected learning:** [QC-013 — Hilbert space and braid mapping](../mapping-quantum/work-queue.md#qc-013--hilbert-space-and-effective-state-vector-contract) is in progress in [mapping-hilbert/](../mapping-quantum/mapping-hilbert/README.md), with an academic synthesis maintained as dialogue develops. Bring it back at the next operator priority review or quantum learning session. Begin with ordinary vectors and build toward the braid mapping; no prior Hilbert-space understanding is assumed. This selected learning task does not change the physical-recovery ranking.
-- **Measured/derived:** `app-solver` has the live production kernel, independent acceptance oracle, persistent worker foundations, exact checkpoint-backed record emission, deterministic thread replay, and measured recursive block-exclusion ladders. **Inferred rank claim:** it is first because completing long-horizon bounded evolution and precision/refinement acceptance unlocks every physical campaign. **Falsifier:** demote it if the live EOM queue becomes maintenance-only or a different active lane can produce accepted dynamics without further EOM work.
+- **Measured/derived:** `app-solver` has the live production kernel, independent acceptance oracle, bounded-population precision and checkpoint/campaign-driver acceptance, exact checkpoint-backed record emission, a measured `1.321x` four-worker wall-latency gain, deterministic single-worker replay, compiler-confirmed auto-vectorization, and no representative SIMD speedup. **Inferred rank claim:** its next object is now the bounded application surface, which remains useful but cannot outrank the upstream derivation and physical-result lanes merely by packaging accepted capabilities. **Falsifier:** raise it if a consumer-ready surface becomes the immediate blocker for an accepted upstream result, or lower it if the canonical solver-only route cannot be exposed without unresolved EOM capabilities.
 - **Measured/derived:** `braid-program` has a ratified charter and instrument gate, a fully constructed 243-row Campaign 1 workload, one diagnostic transverse inward-to-outward reversal, and no booked physics fate. **Inferred rank claim:** it is second because completing the first opposite-polarity binary fate remains the shortest route to a real assembly object or a decisive no-go. **Falsifier:** demote it if Campaign 1 cannot run under a source-frozen EOM/instrument contract or another lane obtains a shorter accepted route to a persistent assembly.
 - **Measured/inferred:** the former attractor-search lane has a checkpointed harness, deterministic resume, native assembly-view records, and a measured small-population cost model. Those instrument capabilities now belong to EOM, while Braid Program owns the first statistical campaign. **Falsifier:** reopen a separate rank only if multiple non-braid scientific programs require an independent instrument roadmap and acceptance boundary.
 - **Derived target:** `master-equation-closure` owns the causal wake update law, the finite coincident same-transmitter transition, and energy, momentum, and angular momentum accounts on that same update. Certified-braid construction and observer-level recovery remain downstream. **Falsifier:** demote it if no declared wake-state update reduces to the transmitter-side acceleration law on regular charts while crossing coincident same-transmitter birth finitely and closing the conserved accounts.
@@ -122,7 +157,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 ## Operator Burden Triage
 
-The likely long numerical or proof campaigns are ranks `1-6`, `8`, `10-13`, `15-16`, and `20`. Lower-cost inspection, app, and coordination surfaces are led by ranks `7`, `9`, `14`, `17-19`, and `21-26`. A lower-cost row may produce visible progress sooner, but it does not outrank the derivation spine unless a concrete upstream result is ready for it to inspect, validate, or publish.
+The likely long numerical or proof campaigns are ranks `1-6`, `8-11`, `13-14`, `16`, and `20`. Lower-cost inspection, app, and coordination surfaces are led by ranks `7`, `12`, `15`, `17-19`, and `21-24`. A lower-cost row may produce visible progress sooner, but it does not outrank the derivation spine unless a concrete upstream result is ready for it to inspect, validate, or publish.
 
 The `dormant-deferred` archive and all of its children are unscored.
 

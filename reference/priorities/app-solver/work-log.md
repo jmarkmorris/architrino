@@ -1,6 +1,98 @@
 # EOM Work Log
 
+## 2026-09-02 — EOM-005 deterministic CPU and SIMD disposition accepted
+
+- Added benchmark-only fine long-horizon fixture modes for one and four workers. Eleven alternating Apple M3 trials measured median wall times of `0.37` and `0.28` seconds respectively, a `1.321x` four-worker speedup, while median process CPU cost rose from `0.36` to `0.54` seconds.
+- The complete one-worker and four-worker outputs are byte-identical at 90,368 bytes with SHA-256 `fd4e3c1977ddefc8293077fec4390be136d03cee84f391fa498c325c9b7c2ff9`. The regression checks completed horizon and exact output parity.
+- Eleven matched vector-enabled/vector-disabled long-horizon trials both measured a `1.07`-second median. All outputs were byte-identical at 339,882 bytes with SHA-256 `6dac1e6dc41e48d35504ac3f08ca32594882c3c59634981f200cbf13d315e620`.
+- Apple clang reported width-two auto-vectorization in the joint endpoint corrector and joint retained-history construction/condensation loops. A one-second sampling profile placed interval outward rounding, interval arithmetic, finite checks, multiprecision work, and worker waiting above those loops in top-of-stack counts.
+- Accepted the measured bounded-thread wall-latency gain and exact single-worker replay. Retained compiler-default auto-vectorization, but did not promote a representative SIMD speedup, manual vector path, structure-of-arrays conversion, or cache-layout specialization because the matched workload showed no gain.
+- Independent controls remain in force: the full coupled-evolution suite encloses the separately authored arbitrary-precision Phase 4 endpoint, and cancellation stops only at a resumable accepted boundary. Validation passed: native CTest `7/7` in 82.71 seconds and the complete coupled-evolution Python suite `43/43` in 92.413 seconds.
+- Removed EOM-005 from the live queue. EOM-007 is now the local rank-1 actionable object. The [evidence packet](evidence/eom-deterministic-cpu-and-simd-2026-09-02.md) records exact commands, measurements, claim boundaries, disposition, and falsifiers.
+- Claim boundary: measured local bounded-population engineering evidence only. No million-path, GPU, distributed, physical-branch, Borg, Braid, stability, or closure-score claim follows.
+
+Plainly: four workers finish this accepted small run sooner but use more total CPU. The compiler does issue vector instructions, yet they do not make the representative run faster, so no extra SIMD implementation is justified by this evidence.
+
+Closure goal: complete the solver-owned bounded-population run and inspection surface without introducing an app-local solver path.
+
+## 2026-09-02 — EOM-004 precision convergence and failure policy accepted
+
+- Added content-addressed identities for joint affine retained histories, covering ordered symbols, every cubic coefficient, position and velocity remainders, and endpoint overrides. Atomic-step certificates now expose input and published joint identities.
+- Extended atomic publication checks to the joint segment chain. Accepted publication preserves all input segments and ends at the accepted time; rejection returns the unchanged input identities.
+- Added a live six-path snapshot control that consumes 30 certified sharp partner rows with no fallback. Every receiver total encloses the independent analytic static Master-EOM sum, and the common-translation coefficient cancels exactly.
+- Replaced the six-dimensional endpoint fixture with the full six-path, 18-component Krawczyk corrector. An independently authored 80-digit Decimal solve lies inside all 18 images; an oversized remainder fails with `krawczyk_image_not_strictly_interior`.
+- Verified coefficient and remainder append, joint start-snapshot reuse, checkpoint identity preservation, uninterrupted-versus-resumed final identity, and unchanged rejected joint-history fingerprints.
+- Validation passed: native CTest 7/7 in 87.87 seconds and the complete coupled-evolution Python suite 42/42 in 92.969 seconds.
+- Removed EOM-004 from the live queue. EOM-005 is now the local rank-1 object. The [acceptance packet](evidence/eom-precision-convergence-and-failure-policy-2026-09-02.md) records the controls and exact claim boundary.
+- Claim boundary: bounded-population numerical-policy acceptance only. No physical branch, Borg or Braid fate, stability, SIMD performance, distributed execution, or million-path claim follows.
+
+Plainly: EOM now carries one checkable correlated-history identity through live summation, full-dimensional correction, storage, reuse, and atomic acceptance or rejection. The controls certify numerical handling, not a scientific outcome.
+
+Closure goal: measure and certify deterministic CPU/SIMD execution without weakening the accepted numerical or identity chain.
+
+## 2026-09-02 — EOM-003 long-run checkpoint and campaign driver accepted
+
+- Audited continuation-critical state against the accepted bounded-population kernel. Resume now restores cumulative accepted and rejected counts as well as exact retained histories, accepted time, controller step, certificate-cost cooldown, adaptive-growth headroom, joint histories, and permanent ordinary-history fallback state.
+- Restricted checkpoints to resumable accepted atomic boundaries. A certificate ending in a rejected attempt is refused because its pending retry state is not serialized.
+- Added cooperative `cancelled_at_accepted_boundary` handling to the EOM solver and `SIGINT`/`SIGTERM` handling to the reusable campaign host. A live signal stopped after cumulative accepted step 286 at `T=2.6899999999999995`; a new process resumed through step 298 at `T=2.75`.
+- Corrected the campaign hosts to consume cumulative engine counters without double-counting resumed chunks. Each chunk now verifies its count deltas against the complete invocation-local step records.
+- Extended the crash-surviving manifest with checkpoint identity, aggregate initial and accepted history identities, and per-path charge, history fingerprint, segment count, and coverage. Resume binds those fields, the model and run identity, the cumulative counters, and the accepted time to the checkpoint before evolution.
+- Measured an uninterrupted-versus-new-process two-chunk gate: ten accepted steps, zero rejected steps, 22 frames, exact checkpoint/frame/evolved-record bytes, equal deterministic census projections, and exact manifest/checkpoint/record history parity. The 41-test coupled-evolution suite and all 15 launcher cases pass.
+- Removed EOM-003 from the live queue. EOM-004 is the next local object. The [acceptance packet](evidence/eom-long-run-checkpoint-campaign-driver-2026-09-02.md) records the inventory, measurements, claim boundary, and falsifiers.
+- Claim boundary: bounded-population operational continuation only. No physical branch, persistence, stability, Braid or Borg fate, independent numerical promotion, distributed restart, million-path capability, or closure-score change follows.
+
+Plainly: long EOM runs can now stop, save, and continue without resetting hidden controller state or mixing mismatched generations. The result proves safe operation of the run machinery, not a scientific outcome.
+
+Closure goal: carry the same fail-closed discipline into EOM-004 precision convergence and difficult-row certification.
+
+## 2026-09-02 — EOM-002 bounded-population coupled kernel accepted
+
+- Added the `eom_finite_width_post_event/v1` fixture around a generic two-path retained-history control. The source keeps the quadratic segment that creates the fold at reception time $T=2.75$ and then joins $C^1$ to a constant past-history segment through the evolution start $T=2.703$, removing an unrelated super-$c_f$ same-transmitter boundary birth without prescribing any future state.
+- Measured successful finite-width continuation through $T=3.903$ at steps $0.1$, $0.05$, and $0.025`: 12, 24, and 48 accepted attempts, no rejection, atomic publication, all four ordered relationships present, and zero unresolved traversal pairs. The finest final snapshot contains four certified roots; two partner roots use generated post-event segments and reach $S=2.903000051473164$.
+- The maximum endpoint-midpoint difference fell from $1.1335519289885407\times10^{-29}$ to $1.247883686159884\times10^{-31}$ across the two refinements. Repeated four-worker and one-worker finest records are identical. A forced 128-bit MPFR event run also produces identical final histories.
+- The event step passes endpoint reconstruction, common-domain chart overlap, regulator convergence, and chart exit. The independently authored Python Phase 4 integrator overlaps both production event-impulse and position-moment records on their exact reception windows.
+- Bound that finite-width control to the earlier regular sharp-chart packet, whose finest long-horizon endpoint is independently checked by the Python coupled-evolution oracle. The combined focused suite passes 38 tests in 97.263 seconds and supplies root-completeness, regulator/common-domain, refinement, precision, deterministic-replay, and independent-reference rows.
+- Removed EOM-002 from the live queue. EOM-003 is now the local and global rank-1 object; it must audit all continuation-critical state against the accepted packet and complete the crash-surviving reusable campaign driver.
+- Claim boundary: bounded-population base-kernel acceptance only. No physical branch, retained assembly, stability, consumer-critical decision, Borg or Braid result, million-path capability, or closure-score change follows.
+- Evidence: [bounded-population coupled acceptance](evidence/eom-bounded-population-coupled-acceptance-2026-09-02.md).
+
+## 2026-09-02 — Generic sharp-chart post-transit refinement packet
+
+- Added the `eom_bounded_population_long_horizon/v1` fixture mode for a generic two-path, non-Borg, non-Braid EOM run from $T=5$ to $T=6.2$ with $c_f=1$, initial separation $1$, coupling $0.001$, and exact-halving steps $0.08$, $0.04$, and $0.02$.
+- Measured complete atomic publication with all four ordered relationships and zero unresolved pairs. The finest final snapshot has two partner roots on solver-generated transmitter segments and a maximum root upper endpoint of $5.2007403560318899$, so the run crosses the initial causal transit rather than remaining confined to supplied history.
+- Measured decreasing endpoint differences: $2.861502530152743\times10^{-10}$ from coarse to medium and $7.279167199558678\times10^{-11}$ from medium to fine. The finest repeated four-worker record and one-worker record are identical.
+- Added an independent exact-decimal Python-oracle comparison at the finest step. All production endpoint position and velocity enclosures contain the oracle values on all axes. The complete focused suite passes 37 tests.
+- At this component stage EOM-002 remained `In progress`. The later bounded-population coupled acceptance packet supplied the finite-width post-event continuation and closed the item at base-kernel grade.
+- Evidence: [bounded-population sharp post-transit receipt](evidence/eom-bounded-population-sharp-post-transit-2026-09-02.md).
+
 This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep strategy and status in [priorities.md](priorities.md), accepted executable tasks in [work-queue.md](work-queue.md), provisional ideas in [brainstorming.md](brainstorming.md), and the defining contract in [application-and-engine-contract.md](./contracts/application-and-engine-contract.md).
+
+## 2026-09-02 — EOM-003 Circular-Root Launcher Contract Reconciled
+
+- **Derived implementation:** the captured bootstrap now starts a source-bound root-group sidecar in a separately schedulable process group before it accepts the bootstrap-start command. The sidecar authenticates through the launcher's live control channel and may cancel the runner group only while the runner remains its actual parent. Reparenting removes that signal authority, so no historical or reused PID is promoted into a cleanup target.
+- **Inspection-loss boundary:** authenticated target gates and the root sidecar cancel their own current groups when process-table inspection fails. The launcher records only bounded recorded-PID absence after that route, keeps `processesClosed: false`, labels the observation as non-census evidence, and cannot accept the run. A complete final process census remains independently distinguishable from unresolved callback closure.
+- **Deadline boundary:** a callback that ignores its abort signal leaves the outer deadline guard armed through the original completion boundary. The regression runs that case in a disposable launcher host and confirms that the host is terminated while the already completed child-process census remains preserved in the rejection receipt.
+- **Identity repair:** completed or reused historical group identities retire permanently when no exact retained member remains. A changed leader birth that coexists with an exact retained old member still fails as ambiguous rather than granting signal authority.
+- **Measured validation:** `node --test tests/subfield-circular-root-launcher.test.js` passed 15/15 cases in 21.58 seconds. Five additional consecutive isolated parent-exit repetitions passed, and the three inspection-loss positions passed in focused runs. All executables were synthetic Node actors; no EOM calculation, geometry, candidate campaign, or scientific admission ran.
+- **Falsifier and remaining work:** any surviving owned synthetic process, signal to the unrelated control, accepted inspection-loss receipt, historical identity regaining authority, or failure of the 15-case gate overturns this repair. General continuation-state sufficiency, crash-surviving orchestration, and long-horizon campaign execution remain open under EOM-003 and depend on EOM-002.
+
+Plainly: every synthetic runner and target now has a live control path that can stop its own current process group even if the main runner is blocked. A failed process census still rejects the run; the repair prevents process leaks and does not turn operational cleanup into scientific evidence.
+
+Closure goal: preserve complete, scoped cancellation and honest rejection semantics while EOM-003 advances toward general crash-surviving campaign execution.
+
+## 2026-09-02 — EOM-001 Master-Equation Binding Drift Closed
+
+- Recomputed the exact SHA-256 of `content/markdown/aaa/dynamics/master-equation.md` as `ccff8f702e9c2b3919a20186f05e804d11c7b829575850cae1b7844c3c963513` and confirmed that [Master EOM Binding v1](contracts/master-eom-binding-v1.md) records the same digest.
+- Added an explicit ownership and refresh procedure: the canonical document owner completes the source edit, App Solver reviews semantic compatibility, computes the exact-byte digest, revises the contract when necessary, and refreshes the pin only after that review.
+- Preserved the existing fail-closed integration test that recomputes the digest; clarified that byte identity enforces provenance synchronization but is not evidence that the equation or solver output is physically accepted.
+- Ran the current expanded `node --test tests/borg-*.test.js` family: 251 tests passed, 0 failed. This exceeds the stale 165-test count named by the original queue record and satisfies its live integration requirement.
+- Removed EOM-001 from the App Solver queue and renumbered following rows. No Borg queue or runtime file changed.
+- Claim boundary: this closes source-binding provenance drift only. It does not change the Master Equation, solver behavior, retained-history acceptance, singular-event status, Borg runtime, or scientific evidence.
+- Verification: the fresh canonical SHA-256 matched the pinned binding; the current Borg integration suite passed 251/251 tests; `git diff --check`, priority ranking, strict content validation, and strict scene-graph validation all passed.
+
+Plainly: The source bytes and recorded hash agree, and the repository says exactly who must review and refresh that identity after future source edits. The hash does not certify the physics.
+
+Closure goal: keep every EOM source binding synchronized through an owner-reviewed, fail-closed procedure without confusing byte identity with scientific acceptance.
 
 ## 2026-08-27 — Adaptive growth-memory checkpoint repair
 

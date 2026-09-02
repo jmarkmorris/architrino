@@ -70,16 +70,16 @@
     },
     {
       "sourceId": "source.system-card",
-      "title": "System Card: Answering Posture",
-      "route": "content/markdown/aaa/archie/system-card.md#answering-posture",
+      "title": "System Card: Understanding the Evidence",
+      "route": "content/markdown/aaa/archie/system-card.md#understanding-the-evidence",
       "sourcePath": "content/markdown/aaa/archie/system-card.md",
-      "sectionAnchor": "answering-posture",
+      "sectionAnchor": "understanding-the-evidence",
       "sourceClass": "archie_reference",
       "authorityStatus": "primary",
       "visibility": "public",
       "canonicalParent": null,
       "claimLabelFloor": "AAA-native stance",
-      "aliases": ["answering posture"],
+      "aliases": ["evidence posture"],
       "keywords": ["claim status", "source authority", "System Card"]
     },
     {

@@ -1,0 +1,169 @@
+{
+  "suiteSchema": "aaa_core_codec_registry_positive_suite/v0",
+  "pathInterchangeFixtureSuite": "tests/fixtures/aaa-core-path-interchange/v0/positive-suite.json",
+  "cases": [
+    {
+      "caseId": "core-authoritative-canonical-json",
+      "capabilityId": "aaa-core.canonical-json-path-record/v0",
+      "profile": "authoritative_history",
+      "consumer": "EOM solver",
+      "sourceFixture": {"caseId": "eom-produced-history", "recordId": "record.eom.chunk.0"},
+      "requestedAccess": "whole_record",
+      "expectedRoundTrip": "semantic_exact"
+    },
+    {
+      "caseId": "core-analysis-canonical-json",
+      "capabilityId": "aaa-core.canonical-json-path-record/v0",
+      "profile": "precision_bounded_analysis",
+      "consumer": "analysis services",
+      "sourceFixture": {"caseId": "prescribed-paths", "recordId": "record.prescribed.chunk.0"},
+      "requestedAccess": "whole_record",
+      "expectedRoundTrip": "semantic_exact"
+    },
+    {
+      "caseId": "core-display-int16le",
+      "capabilityId": "aaa-core.quantized-path-display-int16le/v0",
+      "profile": "display_stream",
+      "consumer": "Potential display",
+      "requestedAccess": "sample_range",
+      "expectedRoundTrip": "semantic_exact_for_grid_aligned_display_records",
+      "logicalBundle": {
+        "caseId": "potential-display-codec-source",
+        "records": [
+          {
+            "schema": "aaa_core_path_interchange/v0",
+            "recordType": "path_chunk",
+            "recordId": "record.display.chunk.0",
+            "version": 0,
+            "contentSha256": "ed2ed8e7a94fddf1a08833ccdcd6a6b3b94e24be0cb2f17d5374d266cdf1aa6d",
+            "payload": {
+              "chunkId": "potential-display-chunk-0",
+              "pathSetId": "display-history-001",
+              "sourceManifestId": "record.display.manifest",
+              "sequence": 0,
+              "predecessorChunkSha256": null,
+              "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+              "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+              "numericPolicy": {"representationProfile": "display_stream", "representation": "quantized_integer", "precisionBits": 16, "rounding": "declared_quantizer", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0.0005},
+              "samples": [
+                {"pathId": "display-path-a", "T": 0, "position": [-1, 0, 1]},
+                {"pathId": "display-path-a", "T": 0.5, "position": [-0.5, 0.25, 0.75]},
+                {"pathId": "display-path-a", "T": 1, "position": [0, 0.5, 0.5]}
+              ],
+              "eventMarkers": [{"eventId": "display-event-1", "T": 1, "kind": "display_boundary", "boundary": true}],
+              "provenance": {"producer": "Potential codec fixture", "producerVersion": "v0", "sourceRecords": [{"sourceId": "display-source-001", "sourceSha256": "8888888888888888888888888888888888888888888888888888888888888888"}], "transforms": ["display-quantization-v0"]},
+              "authority": {"level": "prescribed_path", "scientificOwner": "fixture author", "continuationPermitted": false, "evidenceUse": "display-only codec conformance"}
+            }
+          },
+          {
+            "schema": "aaa_core_path_interchange/v0",
+            "recordType": "path_set_manifest",
+            "recordId": "record.display.manifest",
+            "version": 0,
+            "contentSha256": "1cbde8cf6c01fbb669fc15d1cbf7cf6b4ed2e24d85aa49cc46f6e47251b78457",
+            "payload": {
+              "pathSetId": "display-history-001",
+              "historyKind": "prescribed_history",
+              "membership": [{"pathId": "display-path-a", "role": "display_geometry"}],
+              "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+              "coordinateFrame": {"frameId": "euclidean-void-frame-001", "axes": ["X1", "X2", "X3"], "handedness": "right"},
+              "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+              "numericPolicy": {"representationProfile": "display_stream", "representation": "quantized_integer", "precisionBits": 16, "rounding": "declared_quantizer", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0.0005},
+              "interpolation": {"basis": "piecewise_linear_display_fixture", "maximumPositionError": 0.0005, "eventBoundaryBehavior": "split_chunk"},
+              "provenance": {"producer": "Potential codec fixture", "producerVersion": "v0", "sourceRecords": [{"sourceId": "display-source-001", "sourceSha256": "8888888888888888888888888888888888888888888888888888888888888888"}], "transforms": ["display-quantization-v0"]},
+              "authority": {"level": "prescribed_path", "scientificOwner": "fixture author", "continuationPermitted": false, "evidenceUse": "display-only codec conformance"},
+              "chunks": [{"chunkId": "potential-display-chunk-0", "contentSha256": "ed2ed8e7a94fddf1a08833ccdcd6a6b3b94e24be0cb2f17d5374d266cdf1aa6d", "sequence": 0}]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "potential-map-canonical-json",
+      "capabilityId": "potential_fixture_map_json/v1",
+      "profile": "precision_bounded_analysis",
+      "consumer": "Potential publication",
+      "requestedAccess": "whole_record",
+      "expectedRoundTrip": "semantic_exact",
+      "sourceFile": "reference/priorities/app-potential/fixtures/potential-consumer-publication.synthetic.v1.json"
+    },
+    {
+      "caseId": "experimental-source-csv-decode",
+      "capabilityId": "experiment.synthetic-track-csv-decoder/v0",
+      "profile": "precision_bounded_analysis",
+      "consumer": "experimental import adapter",
+      "requestedAccess": "whole_record",
+      "expectedRoundTrip": "source_native_exact_bytes",
+      "sourceNative": {
+        "schema": "synthetic_track_csv/v0",
+        "mediaType": "text/csv",
+        "contentSha256": "bc93391fb16b9bfde821745e712b3aa5f2cd2d591150e5e9552d1afc51f381e5",
+        "text": "schema,synthetic_track_csv/v0\npath_id,T,X1,X2,X3,position_uncertainty,event_id,event_kind,event_boundary\nobserved-track-a,0,0,0,0,0.01,,,\nobserved-track-a,1,0.5,0.2,0.1,0.01,detector-crossing-1,detector_crossing,true\n"
+      },
+      "recordTemplate": {
+        "schema": "aaa_core_path_interchange/v0",
+        "recordType": "path_chunk",
+        "recordId": "record.codec-experiment.chunk.0",
+        "version": 0,
+        "payload": {
+          "chunkId": "codec-experiment-chunk-0",
+          "pathSetId": "codec-experimental-paths-001",
+          "sourceManifestId": "record.codec-experiment.manifest",
+          "sequence": 0,
+          "predecessorChunkSha256": null,
+          "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+          "units": {"wakeSpeed": 1, "lengthScale": "calibrated_detector_length", "timeScale": "calibrated_detector_time", "scaleMapId": "detector-to-normalized-001"},
+          "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "mark_unavailable", "maximumAbsoluteError": 0.01},
+          "provenance": {"producer": "synthetic experimental codec fixture", "producerVersion": "v0", "sourceRecords": [{"sourceId": "codec-source-native-001", "sourceSha256": "bc93391fb16b9bfde821745e712b3aa5f2cd2d591150e5e9552d1afc51f381e5"}], "transforms": ["decimal-parse-v0"]},
+          "authority": {"level": "observer_measurement", "scientificOwner": "synthetic instrument owner", "continuationPermitted": false, "evidenceUse": "observer-level codec conformance only"}
+        }
+      },
+      "expectedBundle": {
+        "caseId": "experimental-codec-output",
+        "records": [
+          {
+            "schema": "aaa_core_path_interchange/v0",
+            "recordType": "path_chunk",
+            "recordId": "record.codec-experiment.chunk.0",
+            "version": 0,
+            "contentSha256": "70cc18069d09f1f0b0ee3c015894282428cf9e5197b1c94b8c642de43aa87e52",
+            "payload": {
+              "chunkId": "codec-experiment-chunk-0",
+              "pathSetId": "codec-experimental-paths-001",
+              "sourceManifestId": "record.codec-experiment.manifest",
+              "sequence": 0,
+              "predecessorChunkSha256": null,
+              "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+              "units": {"wakeSpeed": 1, "lengthScale": "calibrated_detector_length", "timeScale": "calibrated_detector_time", "scaleMapId": "detector-to-normalized-001"},
+              "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "mark_unavailable", "maximumAbsoluteError": 0.01},
+              "samples": [{"pathId": "observed-track-a", "T": 0, "position": [0, 0, 0], "positionUncertainty": 0.01}, {"pathId": "observed-track-a", "T": 1, "position": [0.5, 0.2, 0.1], "positionUncertainty": 0.01}],
+              "eventMarkers": [{"eventId": "detector-crossing-1", "T": 1, "kind": "detector_crossing", "boundary": true}],
+              "provenance": {"producer": "synthetic experimental codec fixture", "producerVersion": "v0", "sourceRecords": [{"sourceId": "codec-source-native-001", "sourceSha256": "bc93391fb16b9bfde821745e712b3aa5f2cd2d591150e5e9552d1afc51f381e5"}], "transforms": ["decimal-parse-v0"]},
+              "authority": {"level": "observer_measurement", "scientificOwner": "synthetic instrument owner", "continuationPermitted": false, "evidenceUse": "observer-level codec conformance only"}
+            }
+          },
+          {
+            "schema": "aaa_core_path_interchange/v0",
+            "recordType": "path_set_manifest",
+            "recordId": "record.codec-experiment.manifest",
+            "version": 0,
+            "contentSha256": "93c9cac9599560f3b04f42e05539f78c02f257cce027fe7072e681287f9dbf94",
+            "payload": {
+              "pathSetId": "codec-experimental-paths-001",
+              "historyKind": "experimental_observer_path",
+              "membership": [{"pathId": "observed-track-a", "role": "observer_reconstruction"}],
+              "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+              "coordinateFrame": {"frameId": "detector-frame-codec-001", "axes": ["X1", "X2", "X3"], "handedness": "right"},
+              "units": {"wakeSpeed": 1, "lengthScale": "calibrated_detector_length", "timeScale": "calibrated_detector_time", "scaleMapId": "detector-to-normalized-001"},
+              "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "mark_unavailable", "maximumAbsoluteError": 0.01},
+              "interpolation": {"basis": "piecewise_linear_observer_reconstruction", "maximumPositionError": 0.01, "eventBoundaryBehavior": "split_chunk"},
+              "provenance": {"producer": "synthetic experimental codec fixture", "producerVersion": "v0", "sourceRecords": [{"sourceId": "codec-source-native-001", "sourceSha256": "bc93391fb16b9bfde821745e712b3aa5f2cd2d591150e5e9552d1afc51f381e5"}], "transforms": ["decimal-parse-v0"]},
+              "authority": {"level": "observer_measurement", "scientificOwner": "synthetic instrument owner", "continuationPermitted": false, "evidenceUse": "observer-level codec conformance only"},
+              "chunks": [{"chunkId": "codec-experiment-chunk-0", "contentSha256": "70cc18069d09f1f0b0ee3c015894282428cf9e5197b1c94b8c642de43aa87e52", "sequence": 0}]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

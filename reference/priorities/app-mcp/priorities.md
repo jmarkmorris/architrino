@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-app-candidate`
-- Rank: `20`
+- Rank: `17`
 - Value: `1.06`
 - Cost: `2.9`
 - ROI: `0.37`
@@ -28,7 +28,7 @@ The locally ranked execution order, lifecycle states, and acceptance boundaries 
 
 ## Current Blocker
 
-No blocker remains for the loopback HTTP implementation or official SDK conformance. Named Codex and ChatGPT HTTP conformance remains unmeasured. Remote readiness separately remains false because TLS ingress, a trusted proxy, exact deployment origins, an authorization server, an accepted-`main` snapshot, and a real prior rollback snapshot do not exist yet.
+No blocker remains for the loopback HTTP implementation, official SDK conformance, Codex fixture HTTP conformance, or the checked-in deployment-contract identity. Current full-corpus Codex HTTP remains unmeasured because the generated source index is stale. ChatGPT desktop HTTP remains unmeasured because it requires a fresh ChatGPT surface after connection discovery or restart. Remote readiness separately remains false because TLS ingress, a trusted proxy, exact deployment origins, an authorization server, an accepted-`main` snapshot, and a real prior rollback snapshot do not exist yet.
 
 ## Boundaries
 

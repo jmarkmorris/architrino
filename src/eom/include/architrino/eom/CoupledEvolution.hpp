@@ -114,6 +114,11 @@ struct NativeCoupledEvolutionRequest {
   std::uint64_t memory_budget_bytes =
       std::numeric_limits<std::uint64_t>::max();
   bool use_adaptive_step_growth = false;
+  // Dynamic restart counters. These are zero for a new run and restored from
+  // a checkpoint so attempt identities, progress, and run-level limits remain
+  // cumulative across continuation invocations.
+  std::size_t initial_accepted_step_count = 0;
+  std::size_t initial_rejected_step_count = 0;
   // Dynamic restart memory for the two-success growth rule, normally zero
   // for a new run and restored exactly from a checkpoint on continuation.
   std::size_t initial_consecutive_growth_headroom_steps = 0;
@@ -173,6 +178,10 @@ struct NativeCoupledEvolutionRequest {
   // Diagnostics only: invoked after an accepted step is atomically published.
   std::function<void(std::size_t, const std::string&)>
       accepted_step_callback;
+  // Cooperative run control.  Cancellation is observed only before the first
+  // attempt or after an atomically accepted step, so the returned histories
+  // and controller state always form a resumable accepted boundary.
+  std::function<bool()> cancellation_requested;
   // Diagnostics only: invoked before a failed corrected-substep candidate is
   // discarded.  The callback cannot alter publication; rejected steps still
   // publish their input histories only.
@@ -557,9 +566,11 @@ struct NativeAtomicStepCertificate {
   std::string attempted_end;
   std::string accepted_time;
   std::vector<NativeHistoryFingerprint> input_history_fingerprints;
+  std::vector<NativeHistoryFingerprint> input_joint_history_fingerprints;
   std::vector<NativePublishedPath> published_histories;
   std::map<std::string, JointAffineRetainedHistory>
       published_joint_histories;
+  std::vector<NativeHistoryFingerprint> published_joint_history_fingerprints;
   std::optional<std::vector<NativePublishedPath>>
       diagnostic_candidate_histories;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;

@@ -5,7 +5,7 @@ For the overall program and the distinction between benchmark, equation, and dom
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `13`
+- Rank: `11`
 - Value: `6.95`
 - Cost: `4.6`
 - ROI: `1.51`
@@ -14,6 +14,10 @@ For the overall program and the distinction between benchmark, equation, and dom
 ## Work Queue
 
 The locally ranked benchmark mappings, dependencies, and acceptance boundaries live in [work-queue.md](work-queue.md).
+
+## Current
+
+XTM-001 is complete at benchmark-specification grade in [Gravitational Redshift And Clock Tests](gravitational-redshift-clock-tests.md). The source-bound NIST optical-clock packet names the measured record, required native carrier, normalized residual, controls, and failure predicates; its current physical result is `blocked_missing_native_clock_transport_record`. The remaining queue objects are deferred behind their named native carriers.
 
 ## Scope
 

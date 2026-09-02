@@ -3,9 +3,9 @@
 ## Status
 
 - Architecture id: `aaa_core/v0`
-- Stage: `first-draft`
-- Implementation authority: none
-- Contract status: proposed
+- Stage: `accepted logical architecture; service implementation incomplete`
+- Implementation authority: path-interchange, codec-registry, accepted-history stream, query/transform/publication, and thin-client validators and synthetic fixtures only
+- Contract status: [`aaa_core_path_interchange/v0`](path-interchange-v0.md), [`aaa_core_codec_registry/v0`](codec-registry-v0.md), [`aaa_core_accepted_history_stream/v0`](accepted-history-stream-v0.md), [`aaa_core_query_transform_publication/v0`](query-transform-publication-v0.md), and [`aaa_core_client/v0`](client-v0.md) accepted; production service orchestration remains open
 - Primary consumer: [Potential](../app-potential/priorities.md)
 - Forward solver: [EOM solver](../app-solver/priorities.md)
 
@@ -102,7 +102,7 @@ Plainly: authored path history reaches the EOM solver before evolution begins. T
 
 ## Logical Product Family
 
-The first contract should define these conceptual product classes. Names are provisional until `aaa_core_path_interchange/v0` is ratified.
+The accepted `aaa_core_path_interchange/v0` contract defines the five logical record classes below, and the accepted `aaa_core_codec_registry/v0` contract defines codec capabilities. Kernel requests and resource profiles remain later contracts.
 
 | Product | Purpose |
 | --- | --- |
@@ -257,6 +257,14 @@ Equivalent requests should have stable cache identity. Reordering noncommuting t
 
 Plainly: an experiment can ask for exactly the part of a signal it needs, and another researcher can reproduce the selection and shaping from the saved manifest.
 
+The accepted [`aaa_core_query_transform_publication/v0`](query-transform-publication-v0.md) contract makes this behavior executable. Set-like source, path, and event selections normalize canonically; request ids do not enter computation identity; transform order remains semantic; numeric and output contracts enter the cache key; and a sealed receipt binds the exact view, product, source manifests, authority, completeness, codec, publisher, and permitted consumers. An incomplete source can yield a provisional product but cannot seal.
+
+Plainly: the design rule now has a tested identity and refusal model. Production storage, catalog, authorization, and transform execution remain later service work.
+
+The accepted [`aaa_core_client/v0`](client-v0.md) exposes these contracts without another data model. Potential and Equation Mapping use the same methods for validation, query identity, shared stream subscription and progress, sealed-publication reuse, exact retrieval, and failure inspection. Each operation preserves the originating contract's refusal code and returns defensive copies.
+
+Plainly: apps now share one local loading-dock client. A network service, durable cache, and real workload remain unbuilt and unmeasured.
+
 ## Study Pipeline Workbench
 
 AAA Core must eventually provide a study-workbench user interface for designing and inspecting a study pipeline. The workbench composes declared source products, queries, transforms, codec or representation choices, kernel requests, resource profiles, publications, and optional EOM requests without embedding their private semantics in the interface.
@@ -384,12 +392,12 @@ Plainly: the first build should prove that one trustworthy path can travel throu
 
 ## Open Decisions
 
-1. Exact schema language and binary envelope.
-2. Canonical source-code homes for the logical model, Core codec registry and common providers, domain-owned codec providers, service orchestration, and accelerator kernels.
-3. Whether the first transport is in-process, memory-mapped, or streamed over a local service boundary.
-4. First common and domain-specific codec providers for each representation profile.
+1. Production transport envelope and binary representations beyond the accepted conformance payloads.
+2. Canonical source-code homes for service orchestration, production domain-owned providers, and accelerator kernels beyond the accepted logical-model and registry modules.
+3. Whether the first production transport is in-process, memory-mapped, or streamed over a local service boundary; the accepted stream and publication conformance harnesses are in-process only.
+4. Production provider selection and workload acceptance beyond the conformance-only Core, Potential, and experimental fixture capabilities.
 5. Kernel plug-in and versioning mechanism.
-6. Cache and retention policy for authoritative versus derived products.
+6. Retention and eviction policy for authoritative versus derived products; computation and publication identities are fixed by the accepted v0 contract.
 7. Authentication and authorization requirements once services leave one trusted local machine.
 8. First real experimental dataset and observer-to-model comparison mapping.
 9. Measured latency, throughput, memory, storage, and energy/cost targets for each representative workload.

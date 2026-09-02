@@ -2,6 +2,10 @@ import {
   ASSEMBLY_VIEW_RECORD_SCHEMA,
   createEomHistoryDataset,
 } from "../shared/EomHistoryDataset.mjs";
+import {
+  assessAssemblyViewRecordFrameCompatibility,
+  validateAssemblyViewCollectionManifest,
+} from "../shared/AssemblyViewRecordCarriers.mjs";
 import { borgAssemblyRecordLabel } from "./BorgAssemblyRecordCatalog.js";
 
 export const BORG_ASSEMBLY_VIEW_SESSION_SCHEMA = "borg-assembly-view-session.v1";
@@ -10,16 +14,43 @@ export const BORG_SIMULATION_WORKSPACE_MODE = "simulation-workspace";
 
 export const BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS = Object.freeze({
   collectionCarrier:
-    "assembly-view-record.v0 has no ratified multi-record carrier; direct records may be held in memory, but packet, manifest, and local-file collection intake remain unavailable.",
+    "External intake requires a valid assembly-view-collection.v1 manifest and exact matching sealed records.",
   comparisonTransforms:
-    "assembly-view-record.v0 has no ratified declared time-transform and unit-transform fields, so synchronized comparison must not advance.",
+    "Synchronized comparison requires assembly-view-record-frame.v1 on both sealed records; Borg does not assume an identity transform.",
   fieldSpeed:
-    "assembly-view-record.v0 has no required source-carried field-speed value, so speed relative to c_f is unavailable unless the schema authority adds that carrier.",
+    "Speed relative to c_f requires recordFrame.fieldSpeed; Borg does not derive it from recorded motion.",
   spinDipole:
-    "assembly-view-record.v0 has no ratified spin-vector or polarity-dipole-vector fields, so those glyphs remain unavailable.",
+    "Kinematic-spin and polarity-dipole glyphs require source-owned vectorOverlays rows; an empty carrier remains visibly unavailable.",
   navigationMetadata:
     "assembly-view-record.v0 does not ratify collection filter rows or a permutation-canonical key field; optional source-carried values may be displayed but cannot be required from v0 records.",
 });
+
+export function createBorgAssemblyViewSessionFromManifest(manifest, records) {
+  const collection = validateAssemblyViewCollectionManifest(manifest);
+  if (!Array.isArray(records)) {
+    throw new TypeError("Borg external collection intake requires loaded sealed records.");
+  }
+  const bySourceId = new Map(records.map((record) => [
+    String(record?.sourceId ?? record?.provenance?.runId ?? ""),
+    record,
+  ]));
+  const ordered = collection.records.map((row) => {
+    const record = bySourceId.get(row.sourceId);
+    if (!record) {
+      throw new TypeError(`assembly-view collection record ${row.sourceId} was not loaded.`);
+    }
+    if (record.assemblyId !== row.assemblyId ||
+        record.modelRevisionSha256 !== row.modelRevisionSha256) {
+      throw new TypeError(`assembly-view collection record ${row.sourceId} exact identity mismatch.`);
+    }
+    return record;
+  });
+  const session = createBorgAssemblyViewSession(ordered);
+  return Object.freeze({
+    ...session,
+    collection,
+  });
+}
 
 const FILTER_FIELDS = Object.freeze([
   "claimGrade",
@@ -167,13 +198,25 @@ export function assessBorgAssemblyViewComparison(left, right) {
   if (!left || !right) {
     throw new TypeError("Borg assembly-view comparison requires two parsed records.");
   }
+  const result = assessAssemblyViewRecordFrameCompatibility(left.dataset, right.dataset);
+  const leftWindow = left.dataset.window;
+  const rightWindow = right.dataset.window;
+  const overlap = result.compatible
+    ? comparisonOverlap(leftWindow, result.leftTransform, rightWindow, result.rightTransform)
+    : null;
   return Object.freeze({
-    compatible: false,
-    code: "missing-ratified-comparison-transforms",
-    field: "assembly-view-record.v0.timeTransform/unitTransform",
-    message: BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS.comparisonTransforms,
+    ...result,
+    compatible: Boolean(result.compatible && overlap),
+    code: result.compatible && !overlap ? "comparison-window-disjoint" : result.code,
+    field: "assembly-view-record.v0.recordFrame",
+    message: result.compatible
+      ? (overlap
+        ? "Both records declare compatible transforms into one comparison frame."
+        : "The declared comparison-frame coverage windows do not overlap.")
+      : BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS.comparisonTransforms,
     leftSourceId: left.sourceId,
     rightSourceId: right.sourceId,
+    overlap,
   });
 }
 
@@ -240,12 +283,27 @@ export function createBorgAssemblyViewPresentation(entry, { time } = {}) {
     eventRows: Object.freeze(eventRows),
     sourceStatuses,
     ansatz: dataset.ansatz,
-    fieldSpeed: null,
-    fieldSpeedStatus: BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS.fieldSpeed,
-    spinDipoleStatus: BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS.spinDipole,
+    fieldSpeed: dataset.recordCarriers.frame?.fieldSpeed ?? null,
+    fieldSpeedStatus: dataset.recordCarriers.frame
+      ? "Source-carried field speed."
+      : BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS.fieldSpeed,
+    vectorOverlays: dataset.recordCarriers.vectorOverlays,
+    spinDipoleStatus: dataset.recordCarriers.vectorOverlays.length > 0
+      ? "Source-owned kinematic vector overlays available."
+      : BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS.spinDipole,
     authorityNotice:
       "Record-only display. Viewing and replay create no evidence and do not independently verify this record.",
   });
+}
+
+function comparisonOverlap(leftWindow, leftTransform, rightWindow, rightTransform) {
+  const leftStart = leftWindow.start * leftTransform.timeScale + leftTransform.timeOffset;
+  const leftEnd = leftWindow.end * leftTransform.timeScale + leftTransform.timeOffset;
+  const rightStart = rightWindow.start * rightTransform.timeScale + rightTransform.timeOffset;
+  const rightEnd = rightWindow.end * rightTransform.timeScale + rightTransform.timeOffset;
+  const start = Math.max(leftStart, rightStart);
+  const end = Math.min(leftEnd, rightEnd);
+  return end >= start ? Object.freeze({ start, end }) : null;
 }
 
 function resolveSourcePeriod(entry) {

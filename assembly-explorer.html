@@ -1,236 +1,26 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#07100f" />
-    <title>Assembly Explorer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="0; url=./borg-library.html">
+    <title>Assembly Explorer moved to Borg</title>
     <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background: #07100f;
-        color: #eef6f2;
-        font-family: "Helvetica Neue", Arial, sans-serif;
-      }
-
-      button,
-      input {
-        font: inherit;
-      }
-
-      #assembly-explorer-app {
-        width: 100%;
-        height: 100%;
-      }
-
-      .assembly-explorer-shell {
-        display: grid;
-        grid-template-rows: auto minmax(0, 1fr);
-        width: 100%;
-        height: 100%;
-        background:
-          linear-gradient(180deg, rgba(19, 42, 36, 0.96), rgba(7, 16, 15, 1)),
-          #07100f;
-      }
-
-      .assembly-explorer-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 14px 18px;
-        border-bottom: 1px solid rgba(181, 197, 187, 0.18);
-        background: rgba(5, 12, 11, 0.72);
-      }
-
-      .assembly-explorer-title h1 {
-        margin: 0;
-        font-size: 18px;
-        letter-spacing: 0;
-      }
-
-      .assembly-explorer-title p {
-        margin: 2px 0 0;
-        color: rgba(223, 236, 229, 0.7);
-        font-size: 12px;
-      }
-
-      .assembly-explorer-icon-button {
-        width: 34px;
-        height: 34px;
-        border: 1px solid rgba(181, 197, 187, 0.26);
-        border-radius: 6px;
-        background: rgba(12, 24, 22, 0.92);
-        color: #eef6f2;
-        cursor: pointer;
-      }
-
-      .assembly-explorer-icon-button:hover,
-      .assembly-explorer-icon-button:focus-visible {
-        border-color: rgba(245, 188, 83, 0.72);
-        outline: none;
-      }
-
-      .assembly-explorer-main {
-        min-height: 0;
-        display: grid;
-        grid-template-columns: 280px minmax(420px, 1fr) 360px;
-        gap: 12px;
-        padding: 12px;
-      }
-
-      .assembly-explorer-panel {
-        min-width: 0;
-        min-height: 0;
-        overflow: auto;
-        border: 1px solid rgba(181, 197, 187, 0.18);
-        border-radius: 8px;
-        background: rgba(7, 16, 15, 0.76);
-      }
-
-      .assembly-explorer-panel h2 {
-        margin: 0;
-        padding: 12px;
-        border-bottom: 1px solid rgba(181, 197, 187, 0.14);
-        font-size: 13px;
-        letter-spacing: 0;
-      }
-
-      .assembly-explorer-toggle {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 12px;
-        color: rgba(223, 236, 229, 0.78);
-        font-size: 12px;
-      }
-
-      .assembly-explorer-branch-list {
-        display: grid;
-        gap: 8px;
-        padding: 0 12px 12px;
-      }
-
-      .assembly-explorer-branch-button {
-        display: grid;
-        gap: 3px;
-        width: 100%;
-        min-height: 52px;
-        padding: 9px;
-        border: 1px solid rgba(181, 197, 187, 0.18);
-        border-radius: 6px;
-        background: rgba(13, 28, 25, 0.82);
-        color: #eef6f2;
-        text-align: left;
-        cursor: pointer;
-      }
-
-      .assembly-explorer-branch-button small {
-        color: rgba(223, 236, 229, 0.62);
-      }
-
-      .assembly-explorer-branch-button.is-active {
-        border-color: rgba(245, 188, 83, 0.74);
-        background: rgba(42, 35, 20, 0.78);
-      }
-
-      .assembly-explorer-summary-grid {
-        display: grid;
-        grid-template-columns: 120px minmax(0, 1fr);
-        gap: 8px 12px;
-        padding: 12px;
-        border-bottom: 1px solid rgba(181, 197, 187, 0.12);
-      }
-
-      .assembly-explorer-summary-label {
-        color: rgba(223, 236, 229, 0.62);
-        font-size: 12px;
-      }
-
-      .assembly-explorer-summary-grid strong {
-        min-width: 0;
-        overflow-wrap: anywhere;
-        font-size: 12px;
-      }
-
-      .assembly-explorer-table {
-        width: calc(100% - 24px);
-        margin: 12px;
-        border-collapse: collapse;
-        font-size: 12px;
-      }
-
-      .assembly-explorer-table th,
-      .assembly-explorer-table td {
-        padding: 8px;
-        border-bottom: 1px solid rgba(181, 197, 187, 0.12);
-        text-align: left;
-      }
-
-      .assembly-explorer-table th {
-        color: rgba(223, 236, 229, 0.68);
-        font-weight: 700;
-      }
-
-      .assembly-explorer-differentials {
-        padding: 0 12px 12px;
-      }
-
-      .assembly-explorer-differentials h3 {
-        margin: 0 0 8px;
-        color: rgba(223, 236, 229, 0.72);
-        font-size: 12px;
-      }
-
-      .assembly-explorer-differential-row,
-      .assembly-explorer-facts span {
-        display: block;
-        padding: 6px 0;
-        color: rgba(238, 246, 242, 0.86);
-        font-size: 12px;
-      }
-
-      .assembly-explorer-facts {
-        padding: 12px;
-        border-bottom: 1px solid rgba(181, 197, 187, 0.12);
-      }
-
-      .assembly-explorer-json {
-        margin: 0;
-        padding: 12px;
-        overflow: auto;
-        color: rgba(238, 246, 242, 0.84);
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      @media (max-width: 920px) {
-        html,
-        body {
-          overflow: auto;
-        }
-
-        .assembly-explorer-shell {
-          min-height: 100%;
-          height: auto;
-        }
-
-        .assembly-explorer-main {
-          grid-template-columns: 1fr;
-        }
-      }
+      :root { color-scheme: dark; font-family: system-ui, sans-serif; }
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #07110d; color: #e9f5ee; }
+      main { width: min(34rem, calc(100% - 2rem)); padding: 1.5rem; border: 1px solid #315446; border-radius: 0.8rem; background: #0d1d16; }
+      a { color: #8ee3b7; }
     </style>
+    <script>
+      const target = new URL("./borg-library.html", window.location.href);
+      window.location.replace(target.href);
+    </script>
   </head>
   <body>
-    <div id="assembly-explorer-app"></div>
-    <script type="module" src="./src/apps/assembly-explorer/main.js"></script>
+    <main>
+      <h1>Assembly Explorer moved to Borg</h1>
+      <p>The source-owned assembly browser and exact-record inspector now live in the Borg Assembly Library.</p>
+      <p><a href="./borg-library.html">Open the Borg Assembly Library</a></p>
+    </main>
   </body>
 </html>

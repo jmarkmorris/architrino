@@ -5,7 +5,7 @@ Status: RATIFIED by the operator (2026-07-24; drafted 2026-07-15). One page, rew
 ## Workstream Metadata
 
 - Kind: `priority-program`
-- Rank: `2`
+- Rank: `1`
 - Value: `55.28`
 - Cost: `4.3`
 - ROI: `12.86`

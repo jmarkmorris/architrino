@@ -1,0 +1,66 @@
+{
+  "schema": "aaa_core_query_transform_publication_positive_suite/v0",
+  "pathInterchangeFixtureSuite": "tests/fixtures/aaa-core-path-interchange/v0/positive-suite.json",
+  "cases": [
+    {
+      "caseId": "complete-equivalent-and-ordered",
+      "sourceCaseId": "prescribed-paths",
+      "publisher": "Potential publication",
+      "permittedConsumers": ["Potential", "Equation Mapping"],
+      "retrievalConsumer": "Equation Mapping",
+      "state": "sealed",
+      "request": {
+        "schema": "aaa_core_query_request/v0",
+        "requestId": "request-complete-a",
+        "sourceBindings": [{"pathSetId": "prescribed-history-001", "manifestSha256": "68e6628bdeba094438743e97b730e464ce3922cc20aab0372110630c8e8ff698"}],
+        "query": {"pathIds": ["prescribed-path-a"], "timeRange": {"startT": 0, "endT": 1}, "eventKinds": ["sample"], "minimumAuthority": "prescribed_path"},
+        "transforms": [
+          {"transformId": "aaa-core.translate/v0", "version": "0.1.0", "parameters": {"offset": [1, 0, 0]}, "authorityEffect": "cap_derived_analysis", "maximumAddedAbsoluteError": 0, "coverageEffect": "preserve"},
+          {"transformId": "aaa-core.scale/v0", "version": "0.1.0", "parameters": {"factor": 2}, "authorityEffect": "preserve", "maximumAddedAbsoluteError": 0, "coverageEffect": "preserve"}
+        ],
+        "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 1e-12},
+        "output": {"productKind": "potential_map_product/v1", "representationProfile": "precision_bounded_analysis", "codecCapabilityId": "potential_fixture_map_json/v1", "codecProvider": "app-potential"}
+      },
+      "equivalentRequest": {
+        "output": {"codecProvider": "app-potential", "codecCapabilityId": "potential_fixture_map_json/v1", "representationProfile": "precision_bounded_analysis", "productKind": "potential_map_product/v1"},
+        "numericPolicy": {"maximumAbsoluteError": 1e-12, "nonfiniteBehavior": "reject", "rounding": "nearest_ties_even", "precisionBits": 53, "representation": "binary64", "representationProfile": "precision_bounded_analysis"},
+        "transforms": [
+          {"coverageEffect": "preserve", "maximumAddedAbsoluteError": 0, "authorityEffect": "cap_derived_analysis", "parameters": {"offset": [1, 0, 0]}, "version": "0.1.0", "transformId": "aaa-core.translate/v0"},
+          {"coverageEffect": "preserve", "maximumAddedAbsoluteError": 0, "authorityEffect": "preserve", "parameters": {"factor": 2}, "version": "0.1.0", "transformId": "aaa-core.scale/v0"}
+        ],
+        "query": {"minimumAuthority": "prescribed_path", "eventKinds": ["sample"], "timeRange": {"endT": 1, "startT": 0}, "pathIds": ["prescribed-path-a"]},
+        "sourceBindings": [{"manifestSha256": "68e6628bdeba094438743e97b730e464ce3922cc20aab0372110630c8e8ff698", "pathSetId": "prescribed-history-001"}],
+        "requestId": "request-complete-b",
+        "schema": "aaa_core_query_request/v0"
+      },
+      "reorderedRequest": {
+        "schema": "aaa_core_query_request/v0",
+        "requestId": "request-complete-reordered",
+        "sourceBindings": [{"pathSetId": "prescribed-history-001", "manifestSha256": "68e6628bdeba094438743e97b730e464ce3922cc20aab0372110630c8e8ff698"}],
+        "query": {"pathIds": ["prescribed-path-a"], "timeRange": {"startT": 0, "endT": 1}, "eventKinds": ["sample"], "minimumAuthority": "prescribed_path"},
+        "transforms": [
+          {"transformId": "aaa-core.scale/v0", "version": "0.1.0", "parameters": {"factor": 2}, "authorityEffect": "preserve", "maximumAddedAbsoluteError": 0, "coverageEffect": "preserve"},
+          {"transformId": "aaa-core.translate/v0", "version": "0.1.0", "parameters": {"offset": [1, 0, 0]}, "authorityEffect": "cap_derived_analysis", "maximumAddedAbsoluteError": 0, "coverageEffect": "preserve"}
+        ],
+        "numericPolicy": {"representationProfile": "precision_bounded_analysis", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 1e-12},
+        "output": {"productKind": "potential_map_product/v1", "representationProfile": "precision_bounded_analysis", "codecCapabilityId": "potential_fixture_map_json/v1", "codecProvider": "app-potential"}
+      }
+    },
+    {
+      "caseId": "incomplete-provisional",
+      "sourceCaseId": "live-accepted-stream",
+      "publisher": "Potential display",
+      "permittedConsumers": ["Potential"],
+      "state": "provisional",
+      "request": {
+        "schema": "aaa_core_query_request/v0",
+        "requestId": "request-live-provisional",
+        "sourceBindings": [{"pathSetId": "live-history-001", "manifestSha256": "2807541f7fe79f4be603c747f2663a81693759c78cf8deeffaaf786f6b039161"}],
+        "query": {"pathIds": ["live-path-a"], "timeRange": {"startT": 0, "endT": 3}, "eventKinds": ["accepted_step_boundary"], "minimumAuthority": "accepted_history"},
+        "transforms": [{"transformId": "aaa-core.select/v0", "version": "0.1.0", "parameters": {"stride": 1}, "authorityEffect": "cap_display_only", "maximumAddedAbsoluteError": 0.0005, "coverageEffect": "subset"}],
+        "numericPolicy": {"representationProfile": "display_stream", "representation": "quantized_integer", "precisionBits": 16, "rounding": "declared_quantizer", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0.0005},
+        "output": {"productKind": "path_display_product/v0", "representationProfile": "display_stream", "codecCapabilityId": "aaa-core.quantized-path-display-int16le/v0", "codecProvider": "aaa-core"}
+      }
+    }
+  ]
+}

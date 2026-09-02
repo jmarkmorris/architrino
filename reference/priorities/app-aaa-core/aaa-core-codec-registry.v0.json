@@ -1,0 +1,300 @@
+{
+  "schema": "aaa_core_codec_registry/v0",
+  "version": 0,
+  "status": "accepted",
+  "registryAuthority": "AAA Core",
+  "logicalContract": {
+    "schema": "aaa_core_path_interchange/v0",
+    "controlRecord": "reference/priorities/app-aaa-core/aaa-core-path-interchange.v0.json"
+  },
+  "profiles": [
+    {
+      "id": "authoritative_history",
+      "purpose": "Certification-preserving path-history interchange",
+      "numericRule": "Preserve every declared logical number and enclosure exactly; no downcast, quantization, interpolation change, or event movement is permitted.",
+      "errorRule": "decoded_logical_record_identical",
+      "authorityEffect": "preserve_source",
+      "eventAndBranchRule": "preserve_exact",
+      "continuationRule": "Eligible only when the source record independently permits EOM continuation.",
+      "requiredAccess": ["whole_record", "chunk_sequence"],
+      "requiredDevicePosture": "cpu_reference_required"
+    },
+    {
+      "id": "precision_bounded_analysis",
+      "purpose": "Analysis interchange with an explicit finite error or enclosure contract",
+      "numericRule": "Any representation change must remain inside the declared purpose-specific bound and retain the source numeric policy and transform provenance.",
+      "errorRule": "declared_bound_required",
+      "authorityEffect": "preserve_or_lower",
+      "eventAndBranchRule": "preserve_exact",
+      "continuationRule": "Forbidden.",
+      "requiredAccess": ["whole_record"],
+      "requiredDevicePosture": "cpu_reference_required"
+    },
+    {
+      "id": "display_stream",
+      "purpose": "Low-latency display interchange with declared quantization and no solver authority",
+      "numericRule": "Decoded display coordinates must remain within the declared maximum absolute error; unavailable values stay unavailable and event or branch boundaries remain exact.",
+      "errorRule": "measured_against_logical_display_record",
+      "authorityEffect": "cap_display_only",
+      "eventAndBranchRule": "preserve_exact",
+      "continuationRule": "Forbidden.",
+      "requiredAccess": ["whole_record", "sample_range"],
+      "requiredDevicePosture": "gpu_layout_declared"
+    }
+  ],
+  "providers": [
+    {
+      "capabilityId": "aaa-core.canonical-json-path-record/v0",
+      "providerId": "aaa-core",
+      "providerClass": "core",
+      "status": "conformance_accepted",
+      "deterministicVersion": "0.1.0",
+      "directions": ["encode", "decode"],
+      "logicalInputTypes": ["path_chunk", "path_set_manifest", "stream_envelope", "view_manifest", "derived_product_manifest"],
+      "logicalOutputTypes": ["path_chunk", "path_set_manifest", "stream_envelope", "view_manifest", "derived_product_manifest"],
+      "profiles": ["authoritative_history", "precision_bounded_analysis"],
+      "encoding": {
+        "mediaType": "application/vnd.architrino.path-record+json",
+        "format": "canonical_json_utf8",
+        "byteOrder": "not_applicable",
+        "reconstruction": "semantic_exact"
+      },
+      "numericAndError": {
+        "numericChange": "none",
+        "maximumAddedAbsoluteError": 0,
+        "verification": "decoded_logical_record_identical"
+      },
+      "preservation": {
+        "events": "exact",
+        "branches": "exact",
+        "coverage": "exact",
+        "provenance": "exact",
+        "uncertainty": "exact"
+      },
+      "access": {
+        "randomAccess": ["whole_record"],
+        "streaming": "one_record_per_envelope",
+        "chunking": "preserve_source_chunk_boundaries"
+      },
+      "deviceLayout": {
+        "cpu": "utf8_bytes",
+        "gpu": "none",
+        "deviceResidentDecode": false
+      },
+      "authority": {
+        "effect": "preserve_source",
+        "maximumOutputAuthority": "source_authority",
+        "continuationEligible": "source_and_profile_gate"
+      },
+      "permittedConsumers": ["AAA Core validation", "EOM solver", "analysis services", "application services"],
+      "compatibility": {
+        "registrySchema": "aaa_core_codec_registry/v0",
+        "logicalSchema": "aaa_core_path_interchange/v0",
+        "minimumReaderVersion": "0.1.0",
+        "unknownFieldBehavior": "reject"
+      },
+      "failures": [
+        {"code": "payload_integrity_mismatch", "condition": "Encoded bytes do not match the envelope hash.", "fallback": "none"},
+        {"code": "semantic_round_trip_failure", "condition": "Decoded logical content differs from the encoded record.", "fallback": "none"},
+        {"code": "unsupported_profile", "condition": "The record profile is not listed by this capability.", "fallback": "negotiate_another_registered_capability"}
+      ]
+    },
+    {
+      "capabilityId": "aaa-core.quantized-path-display-int16le/v0",
+      "providerId": "aaa-core",
+      "providerClass": "core",
+      "status": "conformance_accepted",
+      "deterministicVersion": "0.1.0",
+      "directions": ["encode", "decode"],
+      "logicalInputTypes": ["path_chunk"],
+      "logicalOutputTypes": ["path_chunk"],
+      "profiles": ["display_stream"],
+      "encoding": {
+        "mediaType": "application/vnd.architrino.path-display+json",
+        "format": "int16le_positions_int32le_time_with_canonical_metadata",
+        "byteOrder": "little_endian",
+        "reconstruction": "semantic_exact_for_grid_aligned_display_records"
+      },
+      "numericAndError": {
+        "numericChange": "declared_quantization",
+        "timeQuantum": 0.001,
+        "positionQuantum": 0.001,
+        "maximumAddedAbsoluteError": 0.0005,
+        "verification": "decoded_coordinates_against_logical_display_record"
+      },
+      "preservation": {
+        "events": "exact_metadata",
+        "branches": "exact_metadata",
+        "coverage": "exact_metadata",
+        "provenance": "exact_metadata",
+        "uncertainty": "exact_metadata"
+      },
+      "access": {
+        "randomAccess": ["whole_record", "sample_range"],
+        "streaming": "one_path_chunk_per_envelope",
+        "chunking": "preserve_source_chunk_boundaries"
+      },
+      "deviceLayout": {
+        "cpu": "structure_of_arrays",
+        "gpu": "int16_position_triplets_plus_int32_time_offsets",
+        "deviceResidentDecode": true
+      },
+      "authority": {
+        "effect": "cap_display_only",
+        "maximumOutputAuthority": "display_only",
+        "continuationEligible": false
+      },
+      "permittedConsumers": ["Potential display", "application rendering"],
+      "compatibility": {
+        "registrySchema": "aaa_core_codec_registry/v0",
+        "logicalSchema": "aaa_core_path_interchange/v0",
+        "minimumReaderVersion": "0.1.0",
+        "unknownFieldBehavior": "reject"
+      },
+      "failures": [
+        {"code": "error_budget_exceeded", "condition": "A time or position cannot be represented within the declared display error.", "fallback": "negotiate_a_finer_registered_display_capability"},
+        {"code": "event_preservation_failure", "condition": "An event or branch marker changes or crosses a source chunk boundary.", "fallback": "canonical_json_path_record"},
+        {"code": "forbidden_consumer", "condition": "A continuation or scientific-acceptance consumer requests the display payload.", "fallback": "authoritative_history_capability_required"}
+      ]
+    },
+    {
+      "capabilityId": "potential_fixture_map_json/v1",
+      "providerId": "app-potential",
+      "providerClass": "application",
+      "status": "conformance_accepted_fixture_only",
+      "deterministicVersion": "1.0.0",
+      "directions": ["encode", "decode"],
+      "logicalInputTypes": ["potential_sample_grid/v1"],
+      "logicalOutputTypes": ["potential_map_product/v1"],
+      "profiles": ["precision_bounded_analysis", "display_stream"],
+      "encoding": {
+        "mediaType": "application/vnd.architrino.potential-map+json",
+        "format": "canonical_json_utf8",
+        "byteOrder": "not_applicable",
+        "reconstruction": "semantic_exact"
+      },
+      "numericAndError": {
+        "numericChange": "none",
+        "maximumAddedAbsoluteError": 0,
+        "verification": "decoded_product_identical_and_app_contract_valid"
+      },
+      "preservation": {
+        "events": "not_applicable_to_fixture_map",
+        "branches": "not_applicable_to_fixture_map",
+        "coverage": "exact",
+        "provenance": "exact",
+        "uncertainty": "exact"
+      },
+      "access": {
+        "randomAccess": ["whole_record"],
+        "streaming": "not_supported",
+        "chunking": "one_fixture_map_per_envelope"
+      },
+      "deviceLayout": {
+        "cpu": "utf8_bytes",
+        "gpu": "none",
+        "deviceResidentDecode": false
+      },
+      "authority": {
+        "effect": "preserve_derived_product_grade",
+        "maximumOutputAuthority": "derived_analysis",
+        "continuationEligible": false
+      },
+      "permittedConsumers": ["Potential publication", "application services"],
+      "compatibility": {
+        "registrySchema": "aaa_core_codec_registry/v0",
+        "logicalSchema": "aaa_core_path_interchange/v0",
+        "minimumReaderVersion": "1.0.0",
+        "unknownFieldBehavior": "reject"
+      },
+      "failures": [
+        {"code": "unsupported_profile", "condition": "The requested product profile is not precision-bounded analysis or display stream.", "fallback": "none"},
+        {"code": "payload_integrity_mismatch", "condition": "Encoded map bytes do not match the envelope hash.", "fallback": "none"},
+        {"code": "semantic_round_trip_failure", "condition": "Decoded publication differs from the app-contract-valid source document.", "fallback": "none"}
+      ]
+    },
+    {
+      "capabilityId": "experiment.synthetic-track-csv-decoder/v0",
+      "providerId": "synthetic-experiment-adapter",
+      "providerClass": "experimental",
+      "status": "conformance_accepted_fixture_only",
+      "deterministicVersion": "0.1.0",
+      "directions": ["decode"],
+      "logicalInputTypes": ["source_native_measurement_csv"],
+      "logicalOutputTypes": ["path_chunk"],
+      "profiles": ["precision_bounded_analysis"],
+      "encoding": {
+        "mediaType": "text/csv",
+        "format": "synthetic_track_csv_v0",
+        "byteOrder": "utf8",
+        "reconstruction": "source_bytes_retained_outside_derived_path"
+      },
+      "numericAndError": {
+        "numericChange": "decimal_parse_with_source_uncertainty",
+        "maximumAddedAbsoluteError": 0,
+        "verification": "source_hash_and_per_sample_uncertainty_preserved"
+      },
+      "preservation": {
+        "events": "exact_from_source_columns",
+        "branches": "exact_from_source_columns",
+        "coverage": "derived_and_declared",
+        "provenance": "source_sha256_required",
+        "uncertainty": "per_sample_required"
+      },
+      "access": {
+        "randomAccess": ["whole_record"],
+        "streaming": "not_supported",
+        "chunking": "one_fixture_source_record_to_one_path_chunk"
+      },
+      "deviceLayout": {
+        "cpu": "parsed_rows",
+        "gpu": "none",
+        "deviceResidentDecode": false
+      },
+      "authority": {
+        "effect": "observer_measurement_only",
+        "maximumOutputAuthority": "observer_measurement",
+        "continuationEligible": false
+      },
+      "permittedConsumers": ["experimental import adapter", "observer-level comparison"],
+      "compatibility": {
+        "registrySchema": "aaa_core_codec_registry/v0",
+        "logicalSchema": "aaa_core_path_interchange/v0",
+        "minimumReaderVersion": "0.1.0",
+        "unknownFieldBehavior": "reject"
+      },
+      "sourceRoundTrip": {
+        "mode": "exact_bytes",
+        "rule": "The adapter re-emits the retained source-native bytes; it does not reconstruct them from decoded coordinates."
+      },
+      "failures": [
+        {"code": "source_identity_mismatch", "condition": "Source-native bytes do not match the declared SHA-256 identity.", "fallback": "none"},
+        {"code": "uncertainty_loss", "condition": "A decoded sample omits or weakens its source uncertainty.", "fallback": "none"},
+        {"code": "unsupported_source_schema", "condition": "CSV columns or version do not match the registered fixture schema.", "fallback": "negotiate_an_experiment_owned_decoder"}
+      ]
+    }
+  ],
+  "refusalCodes": [
+    "missing_required_field",
+    "unknown_capability",
+    "incompatible_version",
+    "unsupported_profile",
+    "capability_mismatch",
+    "forbidden_consumer",
+    "payload_integrity_mismatch",
+    "semantic_round_trip_failure",
+    "error_budget_exceeded",
+    "event_preservation_failure",
+    "source_identity_mismatch",
+    "uncertainty_loss",
+    "unsupported_source_schema"
+  ],
+  "conformance": {
+    "schema": "src/contracts/aaa-core-codec-registry/v0/schema.json",
+    "validator": "src/aaa-core/codec-registry-v0.mjs",
+    "positiveFixtures": "tests/fixtures/aaa-core-codec-registry/v0/positive-suite.json",
+    "negativeFixtures": "tests/fixtures/aaa-core-codec-registry/v0/negative-suite.json",
+    "tests": "tests/aaa-core-codec-registry-v0.test.js"
+  },
+  "claimBoundary": "Registry and synthetic conformance only. No provider is selected for production, no workload is measured, and no codec result supplies scientific, EOM, experimental-interpretation, storage, transport, or accelerator authority."
+}

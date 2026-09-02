@@ -11,21 +11,17 @@ This is the canonical execution ledger for accepted Borg work. `priorities.md` o
 
 ## Next real work
 
-`BORG-002` — assembly-viewer record-contract carriers.
+No active row. The remaining accepted Borg rows are intentionally parked under `Deferred / blocked`.
 
 ## Ranked Next Objects
 
-1. `assembly_viewer_record_contract_carriers` — [BORG-002](#borg-002--assembly-viewer-record-contract-carriers). Status: `Queued`.
-2. `velocity_scale_sampling_evidence` — [BORG-003](#borg-003--velocity-scale-sampling-evidence). Status: `Queued`.
-3. `assembly_explorer_disposition` — [BORG-004](#borg-004--assembly-explorer-disposition). Status: `Queued`.
-4. `borg_prescribed_translation_tubes` — [BORG-006](#borg-006--prescribed-translation-and-causal-history-tubes). Status: `Queued`.
-5. `borg_taxonomy_morph_lab` — [BORG-007](#borg-007--taxonomy-morph-lab). Status: `Deferred / blocked`.
-6. `borg_braid_harmonics_studio` — [BORG-008](#borg-008--braid-harmonics-studio). Status: `Deferred / blocked`.
-7. `borg_orthogonal_axis_three_binary_exclusion_geometry` — [BORG-009](#borg-009--orthogonal-axis-three-binary-exclusion-geometry). Status: `Deferred / blocked`.
-8. `borg_gell_mann_pattern_atlas` — [BORG-010](#borg-010--gell-mann-pattern-atlas). Status: `Deferred / blocked`.
-9. `borg_polarity_ledger_builder` — [BORG-011](#borg-011--polarity-ledger-builder). Status: `Deferred / blocked`.
-10. `borg_conservation_flow_board` — [BORG-012](#borg-012--conservation-flow-board). Status: `Deferred / blocked`.
-11. `borg_material_surface_routing` — [BORG-013](#borg-013--material-surface-routing). Status: `Deferred / blocked`.
+1. `borg_taxonomy_morph_lab` — [BORG-007](#borg-007--taxonomy-morph-lab). Status: `Deferred / blocked`.
+2. `borg_braid_harmonics_studio` — [BORG-008](#borg-008--braid-harmonics-studio). Status: `Deferred / blocked`.
+3. `borg_orthogonal_axis_three_binary_exclusion_geometry` — [BORG-009](#borg-009--orthogonal-axis-three-binary-exclusion-geometry). Status: `Deferred / blocked`.
+4. `borg_gell_mann_pattern_atlas` — [BORG-010](#borg-010--gell-mann-pattern-atlas). Status: `Deferred / blocked`.
+5. `borg_polarity_ledger_builder` — [BORG-011](#borg-011--polarity-ledger-builder). Status: `Deferred / blocked`.
+6. `borg_conservation_flow_board` — [BORG-012](#borg-012--conservation-flow-board). Status: `Deferred / blocked`.
+7. `borg_material_surface_routing` — [BORG-013](#borg-013--material-surface-routing). Status: `Deferred / blocked`.
 
 ## Awaiting verification
 
@@ -44,16 +40,8 @@ No rows.
 - **Request / acceptance:** Extend the EOM contracts and native implementation so Borg receives retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics. The app must consume these as EOM-owned data; no app-local physics or visual tuning may replace missing rows.
 - **Implemented:** `EOM_BORG_NATIVE_V11` preserves the 60-field evolution request and adds typed shell-envelope, oriented equal-area partition, time-bin, replay-source, residual-specification, and paired interval-sample records before `END`. The EOM process extracts and brackets retained cubic-history crossings, certifies inbound or outbound direction from the interval normal projection, accounts for every patch/time cell as accepted or certified empty, binds path-derived influence rows to accepted acceleration contributions, preserves replay-source identity, and computes all three declared relative weighted-$L^2$ residual intervals. Borg validates the same request and response identities without recalculating dynamics.
 - **Verification:** The exact two-path native fixture certifies one outbound crossing, eight complete patch/time coverage cells, one path-derived influence row, one replay-source row, and passing `shell_self_similarity`, `shell_replay_residual`, and `boundary_to_central_residual` decisions. The full EOM process suite passes 27/27; focused EOM/Borg/transport tests pass 44/44; CTest protocol and independent acceleration fixtures pass 2/2; `git diff --check` passes. The larger Borg migration suite passes 87/88, with its sole failure caused by an unrelated live Braid Program bootstrap-dependency addition.
-- **Evidence boundary:** Verification establishes software transport, native extraction, complete accounting, interval comparison, and fail-closed validation. The fixture values are engineering inputs, not evidence that a production replay policy is physically adequate. BORG-003 still owns measured velocity-scale calibration and holdout evidence; missing or non-passing production inputs remain fail-closed.
+- **Evidence boundary:** Verification establishes software transport, native extraction, complete accounting, interval comparison, and fail-closed validation. The fixture values are engineering inputs, not evidence that a production replay policy is physically adequate. The completed velocity-scale campaign measured the first candidate policy as precision-insufficient, so missing or non-passing production inputs remain fail-closed.
 - **Completion:** Contract, native implementation, bridge schema, focused validation fixtures, and Borg consumer coverage pass; any learner/operator surface requiring these values is verified against current EOM output.
-
-### BORG-002 — Assembly-viewer record-contract carriers
-
-- **Status:** Queued
-- **Priority source:** [Ranked Next Objects item 2](priorities.md#ranked-next-objects)
-- **Request / acceptance:** Close the remaining record-contract carriers needed for Borg’s record-only assembly-view replay: ratified comparison time/unit transforms, an external collection carrier, required field-speed carrier, and spin/polarity-dipole vectors. Borg must consume sealed records and must not invent missing carriers.
-- **Evidence / blocker:** Blocked on the Braid Program instrument-gate schema action.
-- **Completion:** Required carriers are ratified and available in sealed records; record-only replay preserves its no-run/no-mutation boundary and passes focused/browser checks.
 
 ### BORG-014 — Assembly registry, durable identity, and taxonomy browser
 
@@ -182,30 +170,6 @@ No rows.
 - **Completion:** A versioned descriptor and independently authored assignment verifier cover every current registry row, focused tests pass positive and adversarial near-match cases, workbench and Library filtering agree at exact identity/revision scope, and source-unavailable rows fail closed without borrowed classifications.
 
 Plainly: Borg may say that a record uses the vertices of an octahedron, but it may call that record an octahedral braid only after the Braid Program has supplied the missing braid history and qualification.
-
-### BORG-003 — Velocity-scale sampling evidence
-
-- **Status:** Queued
-- **Priority source:** [Ranked Next Objects item 6](priorities.md#ranked-next-objects)
-- **Request / acceptance:** Produce measured velocity-scale-aware boundary-shell replay sampling evidence across the declared range using EOM-run rows, under the existing velocity-sampling protocol.
-- **Evidence / blocker:** Depends on BORG-001 retained wake/history and residual rows. Affected boundary replay output remains display-only or fail-closed until measured evidence exists.
-- **Completion:** Declared calibration and holdout evidence is produced with the protocol’s residual, tail-mass, correlation, seed-variance, patch-replay, and central-ball contribution checks.
-
-### BORG-004 — Assembly Explorer disposition
-
-- **Status:** Queued
-- **Priority source:** [Ranked Next Objects item 7](priorities.md#ranked-next-objects)
-- **Request / acceptance:** Decide whether the standalone Assembly Explorer can be retired or redirected after Borg replay reaches the declared parity for raw-record navigation, source ordering, optional source-carried $S_3$ grouping, and source-carried search diagnostics.
-- **Evidence / blocker:** Depends on BORG-002.
-- **Completion:** A documented disposition is accepted and any authorized retirement or redirect work is verified without losing the required replay capabilities.
-
-### BORG-006 — Prescribed translation and causal-history tubes
-
-- **Status:** Queued
-- **Source:** [Prescribed Translation and Causal-History Tubes](prescribed-translation.md)
-- **Request / acceptance:** Add fixed/co-translating display transforms, finite path-history tubes, receiver selection, and source-matched prescribed-analysis overlays without app-local causal-root solving.
-- **Evidence / blocker:** Borg must consume sealed prescribed records and canonical evaluator output; missing translation or analytical carriers remain unavailable.
-- **Completion:** Switching display frames preserves record identity and analytical values, every overlay is provenance-bound, and no replay view implies evolution, stability, retention, or physical realization.
 
 ## Deferred / blocked
 

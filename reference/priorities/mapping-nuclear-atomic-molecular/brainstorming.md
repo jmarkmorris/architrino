@@ -34,13 +34,13 @@ Hydrogen and helium provide the cleanest initial boundary cases. Periodic famili
 
 A molecular state combines participating nuclei, electron-envelope records, bond geometry, path selection, local Noether sea or material response, and conserved accounts. Bond formation and reaction pathways are event-ledger transitions; catalysts change geometric and response conditions on admissible paths rather than acting as unexplained reaction causes.
 
-The first simple-molecule selection and its completion condition already belong to NAM-005 in [work-queue.md](work-queue.md). Editorial synthesis does not advance that task.
+The completed first simple-molecule selection and its explicit state, transition, account, control, and falsifier rows live in [H2 Molecular Bond and Event Ledger](h2-molecular-bond-event-ledger.md). Native execution remains open; this synthesis does not advance the source-bound packet into a bond-recovery claim.
 
 ## Biomolecular Records
 
-Enzyme active sites, conformational switches, allosteric pathways, and DNA or RNA motifs remain molecular assembly problems. A biomolecular record becomes meaningful only when a selected geometry, retained state, transition path, account ledger, and failure condition are source-bound.
+Enzyme active sites, conformational switches, allosteric pathways, and DNA or RNA motifs remain molecular assembly problems. A biomolecular record becomes meaningful only when a selected geometry, retained state, transition path, account ledger, and failure condition are source-bound. The completed first enzyme selection and its carbon-conversion, proton-reset, mutant-control, and catalyst-return rows live in [Human Carbonic Anhydrase II Event Ledger](carbonic-anhydrase-ii-event-ledger.md); the completed first DNA repair selection and its preserved-state, time-ordered transition, polymerase-control, and integrity rows live in [CPD Photolyase Record-Integrity Ledger](cpd-photolyase-record-integrity-ledger.md). Native execution remains open for both.
 
-Enzyme and DNA/RNA bridge selections already belong to NAM-008 and NAM-009. The broader idea that biology uses information-bearing molecular geometry does not establish a separate biological ontology.
+The broader idea that biology uses information-bearing molecular geometry does not establish a separate biological ontology. The two focused packets above provide bounded execution contracts rather than promoting that broader idea as a physical result.
 
 ## Assessment and Promotion Boundary
 

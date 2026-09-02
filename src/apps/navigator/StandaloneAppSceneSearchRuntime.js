@@ -35,6 +35,8 @@ export function createStandaloneAppSceneSearchRuntime({
   fetchImpl = (...args) => windowLike.fetch(...args),
   sceneGraphManifestPath = GLOBAL_SCENE_GRAPH_MANIFEST_PATH,
   onOpenChange,
+  topDynamicControlBarRuntime = null,
+  topBarOwnsPopover = Boolean(topDynamicControlBarRuntime),
 } = {}) {
   const AbortControllerCtor =
     windowLike?.AbortController ?? globalThis.AbortController;
@@ -42,11 +44,21 @@ export function createStandaloneAppSceneSearchRuntime({
     typeof AbortControllerCtor === "function"
       ? new AbortControllerCtor()
       : null;
-  const sceneSearch = documentLike.querySelector("#scene-search");
-  const sceneSearchToggle = documentLike.querySelector("#scene-search-toggle");
-  const sceneSearchPanel = documentLike.querySelector("#scene-search-panel");
-  const sceneSearchInput = documentLike.querySelector("#scene-search-input");
-  const sceneSearchResults = documentLike.querySelector("#scene-search-results");
+  const sceneSearch =
+    topDynamicControlBarRuntime?.actions?.get("search")?.wrapper ??
+    documentLike.querySelector("#scene-search");
+  const sceneSearchToggle =
+    topDynamicControlBarRuntime?.getElement?.("search") ??
+    documentLike.querySelector("#scene-search-toggle");
+  const sceneSearchPanel =
+    topDynamicControlBarRuntime?.getPopoverElement?.("search") ??
+    documentLike.querySelector("#scene-search-panel");
+  const sceneSearchInput =
+    topDynamicControlBarRuntime?.getPopoverInput?.("search") ??
+    documentLike.querySelector("#scene-search-input");
+  const sceneSearchResults =
+    topDynamicControlBarRuntime?.getPopoverResults?.("search") ??
+    documentLike.querySelector("#scene-search-results");
   if (
     !sceneSearch ||
     !sceneSearchToggle ||
@@ -96,6 +108,7 @@ export function createStandaloneAppSceneSearchRuntime({
     documentRef: documentLike,
     windowRef: windowLike,
     eventSignal: listenerController?.signal,
+    topBarOwnsPopover,
   });
 
   return {

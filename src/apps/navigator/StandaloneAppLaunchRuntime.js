@@ -1,5 +1,5 @@
 const standaloneAppPathBySceneToken = Object.freeze({
-  "assembly-explorer": "assembly-explorer.html",
+  "assembly-explorer": "borg-library.html",
   "causal-delay-feedback": "causal-delay-feedback.html",
   "equation-mapping": "equation-mapping.html",
   "greek-letter-match": "greek-letter-match.html",
@@ -13,7 +13,7 @@ const standaloneAppPathBySceneToken = Object.freeze({
   "braid-search": "braid-search.html",
   borg: "borg-library.html",
   "content/scenes/archie/animator.json": "animator.html",
-  "content/scenes/archie/assembly_explorer.json": "assembly-explorer.html",
+  "content/scenes/archie/assembly_explorer.json": "borg-library.html",
   "content/scenes/archie/borg.json": "borg-library.html",
   "content/scenes/archie/braid_search.json": "braid-search.html",
   "content/scenes/archie/causal_delay_feedback.json": "causal-delay-feedback.html",

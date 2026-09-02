@@ -4,6 +4,17 @@ This file is the chronological work log for the `app-mcp` priority area. Use it 
 
 ## Log Entries
 
+### 2026-09-02 - Codex Streamable HTTP Fixture Conformance Passing
+
+- Verified the current official OpenAI MCP documentation: Codex-host configuration supports Streamable HTTP through `url` and `bearer_token_env_var`, while ChatGPT desktop and Codex share MCP configuration on the same host.
+- Launched the repository's six-source immutable HTTP fixture on IPv4 loopback with a temporary bearer token, then ran bundled Codex CLI `0.152.0` in an ephemeral read-only session with user configuration ignored and command-line-only MCP overrides.
+- Measured typed `ok` responses for `topics`, `search`, `read`, and `neighbors`; the missing-source read returned structured `SOURCE_NOT_FOUND` with no invented content and no transport error. Retained the exact boundary in [the machine-readable receipt](codex-http-fixture-conformance-2026-09-02.json), then stopped the server.
+- Repaired the fixture input from the removed System Card `answering-posture` anchor to `understanding-the-evidence`, updated the moved dormant Archie priority route, and rebound the deployment contract to the checked-in full-corpus snapshot identity. The focused HTTP suite then passed 9/9, including the outside-repository launcher, and the deployment fixture validator passed all 19 negative cases.
+- Repeated the Codex run against a six-source snapshot built in memory from the repaired current source input. Snapshot `941a6ecec4dbfcb4ffc68a0df9c107ccfdc841fd7977df471d3702e798a7fd27` returned typed `ok` for all four tools and `SOURCE_NOT_FOUND` for the missing source. The loopback server was stopped after the run; no generated repository artifact or persistent client configuration was written.
+- MCP-001 remains in progress: `build-full-corpus-source-index.mjs --check` still reports generated drift, current full-corpus Codex HTTP remains unmeasured, and ChatGPT desktop HTTP requires a fresh ChatGPT surface.
+
+Plainly: Codex now passes against a fixture built from current source input. The current full corpus and ChatGPT desktop remain separate, visible gaps.
+
 ### 2026-07-20 - Priority Packet Seeded
 
 - Created the `app-mcp` priority packet from the operator-provided Architrino MCP architecture proposal.

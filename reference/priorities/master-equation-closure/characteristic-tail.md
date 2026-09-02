@@ -1209,7 +1209,7 @@ $$
 
 Plainly: a scalar depending only on relative endpoint geometry has equal and opposite spatial gradients at its two endpoints. If one endpoint gradient generates a delayed receiver acceleration, the other endpoint gradient appears when the earlier transmitter point is varied.
 
-With a one-sided ordered interaction domain $s<t$, the first gradient is retarded for the receiver and the second is advanced for the transmitter. Pair symmetrization, an overall coefficient, a different smooth regulator, or a characteristic homogeneous term can rescale or redistribute both occurrences but cannot delete only the advanced interior coefficient while preserving the receiver gradient.
+With a one-sided ordered interaction domain $s<t$, the first gradient is delayed for the receiver and the second is future-directed for the transmitter. Pair symmetrization, an overall coefficient, a different smooth regulator, or a characteristic homogeneous term can rescale or redistribute both occurrences but cannot delete only the future-directed interior coefficient while preserving the receiver gradient.
 
 Plainly: this no-go covers the frozen worldline-only characteristic-tail family and any endpoint-clear scalar variant with the same relative-endpoint structure. It does not rule out an independently evolving wake state, because that would add variables whose variation and causal update are not equivalent to this reduced worldline action.
 

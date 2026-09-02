@@ -3,15 +3,21 @@
 ## Workstream Metadata
 
 - Kind: `priority-platform`
-- Status: `first-draft-awaiting-verification`
-- Claim level: `priority-design`
+- Status: `logical-service-contracts-and-client-v0-accepted; measured-workloads-blocked`
+- Claim level: `priority-contract-and-design`
 - Platform name: `AAA Core`
 - Priority directory: `app-aaa-core`
 - Architecture draft: [AAA Core architecture v0](architecture-v0.md)
+- Accepted path interchange: [AAA Core Path Interchange v0](path-interchange-v0.md)
+- Accepted codec registry: [AAA Core Codec Registry v0](codec-registry-v0.md)
+- Accepted history stream: [AAA Core Accepted-History Stream v0](accepted-history-stream-v0.md)
+- Accepted query and publication contract: [AAA Core Query, Transform, And Publication v0](query-transform-publication-v0.md)
+- Accepted application client: [AAA Core Client v0](client-v0.md)
 - Execution ledger: [work queue](work-queue.md)
 - Exploratory notes: [brainstorming](brainstorming.md)
 - Chronological record: [work log](work-log.md)
-- Ranking: pending contract review and representative workload estimate
+- Representative workload contract: [path workload matrix](representative-path-workload-matrix.md)
+- Ranking: pending measured representative workload estimates and external dataset or accelerator access
 
 ## Objective
 
@@ -36,9 +42,21 @@ AAA Core is not one monolithic runtime. It is a collection of focused services b
 13. Root acceleration uses staged regular queues, candidate compaction, conditioning buckets, explicit difficult-row return, and deterministic accounting; the scientific owner retains the root equation and completeness rules.
 14. The initial operating posture is hybrid and benchmark-gated: local Apple hardware may serve development, operations, display, decoding, and bulk preprocessing, while cloud FP64-capable GPUs are rented for measured root campaigns before any accelerator purchase decision.
 
-## First Blocker
+## Current Blocker
 
-The first draft [AAA Core architecture v0](architecture-v0.md) needs review and a concrete `aaa_core_path_interchange/v0` contract with fixtures. Its codec-provider interface and capability declaration are now part of that blocker. Until the contract is ratified, no application should create a competing local path schema or unregistered interchange codec.
+The accepted [`aaa_core_path_interchange/v0`](path-interchange-v0.md) contract now fixes the logical path-set, chunk, stream-envelope, view, and derived-product records with normalized units, numeric profiles, immutable identity, provenance, authority, source closure, and fail-closed fixtures. No application should create a competing local path schema.
+
+The accepted [`aaa_core_codec_registry/v0`](codec-registry-v0.md) contract now fixes capability negotiation and concrete conformance examples for authoritative-history, precision-bounded-analysis, and display-stream profiles. It registers Core canonical JSON and quantized display capabilities, Potential's existing fixture-map codec, and a source-preserving experimental fixture decoder. These are registry and synthetic conformance results, not production representation selections or performance evidence.
+
+The accepted [`aaa_core_accepted_history_stream/v0`](accepted-history-stream-v0.md) contract now fixes producer sequencing, two bounded subscriptions, idempotent duplicates, acknowledgement, backpressure, disconnect/reconnect cursors, retained replay, sealing, exact halt propagation, and deterministic consumer receipts over a three-chunk synthetic path bundle. This is in-process conformance, not a deployed transport or performance result.
+
+The accepted [`aaa_core_query_transform_publication/v0`](query-transform-publication-v0.md) contract now fixes equivalent request normalization, order-sensitive transform and reusable cache identities, exact source closure, provisional versus sealed state, non-escalating authority, and receipt-bound cross-application retrieval. Its conformance fixtures use complete and incomplete path-interchange sources and cover all fifteen named refusal codes. This is synthetic software conformance, not a production query, cache, catalog, transport, kernel, or scientific result.
+
+The accepted [`aaa_core_client/v0`](client-v0.md) now exposes the four contracts through one defensive-copy operation surface. Potential and Equation Mapping validate and query the same fixture records, subscribe through one shared accepted-history session, inspect the same progress, reuse one equivalent sealed publication, and retrieve it by exact receipt without application-local path logic. This is synchronous in-process client conformance, not a network SDK or production service.
+
+No executable Core row remains. CORE-006 and CORE-009 require measured local and rented-accelerator workloads, while CORE-007 requires a selected public experimental dataset and scientific comparison mapping. Production transport, persistence, authentication, and retention choices remain open but are not independently accepted queue objects.
+
+The [representative path workload matrix](representative-path-workload-matrix.md) is accepted as the shared benchmark definition for EOM continuation, Potential live maps, reaction studies, optimization sweeps, and collider imports. All five workloads remain unmeasured; the matrix selects no representation, deployment, or accelerator posture.
 
 ## Promotion Boundary
 

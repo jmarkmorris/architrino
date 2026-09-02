@@ -63,6 +63,7 @@ import { createScenePanelUiRuntime } from "../../runtime/ScenePanelUiRuntime.js"
 import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
 import { createSceneHudTooltipRuntime } from "../../runtime/SceneHudTooltipRuntime.js";
+import { createTopDynamicControlBar } from "../../runtime/TopDynamicControlBarRuntime.js";
 import { createSceneImageGalleryRuntime } from "../../runtime/SceneImageGalleryRuntime.js?v=2026-06-29-gallery-overlay-hide-scene";
 import { createTextbookPageNavigationRuntime } from "../../runtime/TextbookPageNavigationRuntime.js";
 import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
@@ -258,26 +259,105 @@ import {
   mergeAnimatorSimulationDatasetIntoDocument,
 } from "../animator/AnimatorSimulationWorkerRuntime.js";
 
+const appMode = getAnimatorAppMode(globalThis.window);
+const isStandaloneAnimatorApp = isStandaloneAnimatorAppMode(appMode);
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
-const navUpButton = document.getElementById("nav-up");
-const navForwardButton = document.getElementById("nav-forward");
 const sceneLabel = document.getElementById("scene-label");
 const sceneHudTools = document.getElementById("scene-hud-tools");
+const sceneTopDynamicControlBarMount = document.getElementById("scene-hud-right");
+const animatorTopDynamicControlBarMount = document.getElementById("animator-top-dynamic-control-bar-mount");
+const topDynamicControlBarRuntime = createTopDynamicControlBar({
+  host: sceneHudTools,
+  label: "Scene controls",
+  actions: [
+    {
+      kind: "toc",
+      id: "textbook-toc-button",
+      label: "Open textbook table of contents",
+      onActivate: () => toggleTextbookToc(),
+    },
+    {
+      kind: "back",
+      id: "nav-up",
+      label: "Go back",
+      onActivate: async () => {
+        periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+        await appDirector?.goBack();
+      },
+    },
+    {
+      kind: "forward",
+      id: "nav-forward",
+      label: "Go forward",
+      onActivate: async () => {
+        periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+        await appDirector?.goForward();
+      },
+    },
+    {
+      kind: "home",
+      id: "home-button",
+      label: isStandaloneAnimatorApp ? "Go to Applications" : "Go to home",
+      onActivate: async () => {
+        periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+        if (
+          isStandaloneAnimatorApp &&
+          navigateStandaloneAnimatorHome(
+            globalThis.window?.location,
+            STANDALONE_ANIMATOR_NAVIGATOR_HREF,
+            { windowLike: globalThis.window },
+          )
+        ) {
+          return;
+        }
+        await appDirector?.resetHome();
+      },
+    },
+    {
+      kind: "search",
+      id: "scene-search-toggle",
+      label: "Search scenes",
+      onActivate: async ({ expanded }) => {
+        if (expanded) {
+          await sceneSearchCoordinator.ensureSceneIndex();
+          sceneSearchRuntime.setSearchOpen(true);
+          return;
+        }
+        sceneSearchCoordinator.closeSearchPanel();
+      },
+      popover: {
+        containerId: "scene-search",
+        id: "scene-search-panel",
+        input: {
+          id: "scene-search-input",
+          label: "Search scenes",
+          placeholder: "Search scenes",
+          autocomplete: "off",
+        },
+        resultsId: "scene-search-results",
+      },
+    },
+  ],
+  document: globalThis.document,
+  window: globalThis.window,
+});
+const navUpButton = topDynamicControlBarRuntime.getElement("back");
+const navForwardButton = topDynamicControlBarRuntime.getElement("forward");
 const sceneFocusSphere = document.getElementById("scene-focus-sphere");
-const sceneSearch = document.getElementById("scene-search");
-const sceneSearchToggle = document.getElementById("scene-search-toggle");
-const sceneSearchPanel = document.getElementById("scene-search-panel");
-const sceneSearchInput = document.getElementById("scene-search-input");
-const sceneSearchResults = document.getElementById("scene-search-results");
+const sceneSearch = topDynamicControlBarRuntime.actions.get("search")?.wrapper ?? null;
+const sceneSearchToggle = topDynamicControlBarRuntime.getElement("search");
+const sceneSearchPanel = topDynamicControlBarRuntime.getPopoverElement("search");
+const sceneSearchInput = topDynamicControlBarRuntime.getPopoverInput("search");
+const sceneSearchResults = topDynamicControlBarRuntime.getPopoverResults("search");
 const hoverTooltip = document.getElementById("hover-tooltip");
 const zoomToast = document.getElementById("zoom-toast");
 const detailPanel = document.getElementById("detail-panel");
 const detailTitle = document.getElementById("detail-title");
 const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
-const homeButton = document.getElementById("home-button");
-const textbookTocButton = document.getElementById("textbook-toc-button");
+const homeButton = topDynamicControlBarRuntime.getElement("home");
+const textbookTocButton = topDynamicControlBarRuntime.getElement("toc");
 const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
   ? Array.from(elementLegend.querySelectorAll(".legend-pill"))
@@ -306,6 +386,16 @@ const elementNavUpButton = document.getElementById("element-nav-up");
 const elementNavDownButton = document.getElementById("element-nav-down");
 const elementNavLeftButton = document.getElementById("element-nav-left");
 const elementNavRightButton = document.getElementById("element-nav-right");
+
+function setTopDynamicControlBarMode(isAnimatorMode) {
+  const targetMount = isAnimatorMode
+    ? animatorTopDynamicControlBarMount
+    : sceneTopDynamicControlBarMount;
+  if (targetMount && sceneHudTools.parentElement !== targetMount) {
+    targetMount.appendChild(sceneHudTools);
+  }
+  sceneHudTools.classList.toggle("is-animator-mode", Boolean(isAnimatorMode));
+}
 const {
   animatorOverlay,
   animatorViewDesignButton,
@@ -5367,8 +5457,6 @@ const animatorPreviewSceneId = "animator_preview";
 const animatorPreviewScenePath = "__animator_preview__";
 const animatorDocsPath =
   "reference/priorities/app-animator/priorities.md";
-const appMode = getAnimatorAppMode(globalThis.window);
-const isStandaloneAnimatorApp = isStandaloneAnimatorAppMode(appMode);
 const standaloneNavigatorHref = STANDALONE_ANIMATOR_NAVIGATOR_HREF;
 
 function isAnimatorOverlaySceneId(sceneId = "") {
@@ -8550,24 +8638,20 @@ function maybeAutoWarp(now) {
 function updateNavButton() {
   textbookPageNavigationRuntime.setTransitionActive(transitionState.active);
   if (transitionState.active) {
-    if (navUpButton) {
-      navUpButton.disabled = true;
-    }
-    if (navForwardButton) {
-      navForwardButton.disabled = true;
-    }
+    topDynamicControlBarRuntime.update({
+      back: { disabled: true },
+      forward: { disabled: true },
+    });
     appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
       textbookTocScenePath,
       transitionActive: transitionState.active,
     });
     return;
   }
-  if (navUpButton) {
-    navUpButton.disabled = browserBackStack.length === 0;
-  }
-  if (navForwardButton) {
-    navForwardButton.disabled = browserForwardStack.length === 0;
-  }
+  topDynamicControlBarRuntime.update({
+    back: { disabled: browserBackStack.length === 0 },
+    forward: { disabled: browserForwardStack.length === 0 },
+  });
   const canReopenInfo = isElementSceneLevel();
   appSceneChromeRuntime.updateSceneInfoTrigger(canReopenInfo);
   appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
@@ -8671,6 +8755,7 @@ const animatorAppRuntime = createAnimatorAppRuntime({
     setAnimatorNeedsResize: (value) => {
       animatorNeedsResize = value;
     },
+    setTopDynamicControlBarMode,
   },
   controls: {
     animatorTabs,
@@ -8768,6 +8853,7 @@ const appSceneChromeRuntime = createAppSceneChromeRuntime({
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
+  topDynamicControlBarRuntime,
 });
 const elementNavigationChromeRuntime = createElementNavigationChromeRuntime({
   elementNavOverlay,
@@ -8895,6 +8981,9 @@ const sceneSearchRuntime = createSceneSearchRuntime({
   searchBackStack,
   jumpToScene,
   isSearchEntryVisible: isPublicStandaloneAppSearchEntry,
+  onOpenChange: (isOpen) => {
+    topDynamicControlBarRuntime.update({ search: { expanded: isOpen } });
+  },
 });
 const sceneSearchCoordinator = createSceneSearchCoordinatorService({
   sceneIndexService,
@@ -8908,9 +8997,10 @@ const sceneSearchUiRuntime = createSceneSearchUiRuntime({
   sceneSearchResults,
   sceneSearchRuntime,
   sceneSearchCoordinator,
+  topBarOwnsPopover: true,
 });
 const scenePanelUiRuntime = createScenePanelUiRuntime({
-  textbookTocButton,
+  textbookTocButton: null,
   detailClose,
   markdownClose,
   markdownPanel,
@@ -9350,9 +9440,9 @@ const appShellUiRuntime = createAppShellUiRuntime({
   onResize,
   hideHoverTooltip,
   sceneLabel,
-  navUpButton,
-  navForwardButton,
-  homeButton,
+  navUpButton: null,
+  navForwardButton: null,
+  homeButton: null,
   periodicOverlayRuntime,
   appDirector,
 });

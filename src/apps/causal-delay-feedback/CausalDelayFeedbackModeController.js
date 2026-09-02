@@ -88,8 +88,6 @@ export class CausalDelayFeedbackModeController {
     onStateChange,
     onPlayToggle,
     onReplay,
-    onHome,
-    onTableOfContents,
   } = {}) {
     this.document = document ?? globalThis.document;
     this.window = window ?? this.document?.defaultView ?? globalThis.window;
@@ -98,8 +96,6 @@ export class CausalDelayFeedbackModeController {
     this.onStateChange = onStateChange;
     this.onPlayToggle = onPlayToggle;
     this.onReplay = onReplay;
-    this.onHome = onHome;
-    this.onTableOfContents = onTableOfContents;
     this.boundClick = (event) => this.handleClick(event);
   }
 
@@ -119,18 +115,12 @@ export class CausalDelayFeedbackModeController {
       next: this.document.querySelector("#nav-forward"),
       firstFrame: this.document.querySelector("#causal-delay-feedback-guided-first-frame"),
       lastFrame: this.document.querySelector("#causal-delay-feedback-guided-last-frame"),
-      tocToggle: this.document.querySelector("#textbook-toc-button"),
-      home: this.document.querySelector("#home-button"),
       summary: this.document.querySelector("#causal-delay-feedback-canvas-summary"),
     };
     if (Object.values(this.dom).some((element) => !element)) {
       throw new Error("Missing Causal Delay Feedback learner-journey elements.");
     }
     this.dom.journey.addEventListener("click", this.boundClick);
-    this.dom.tocToggle.addEventListener("click", () => {
-      this.onTableOfContents?.();
-    });
-    this.dom.home.addEventListener("click", () => this.onHome?.());
     this.render();
     return this;
   }

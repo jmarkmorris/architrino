@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/aaa-core-path-interchange/v0/schema.json",
+  "title": "AAA Core Path Interchange v0",
+  "type": "object",
+  "required": ["schema", "recordType", "recordId", "version", "contentSha256", "payload"],
+  "properties": {
+    "schema": {"const": "aaa_core_path_interchange/v0"},
+    "recordType": {
+      "enum": ["path_set_manifest", "path_chunk", "stream_envelope", "view_manifest", "derived_product_manifest"]
+    },
+    "recordId": {"type": "string", "minLength": 1},
+    "version": {"const": 0},
+    "contentSha256": {"$ref": "#/$defs/sha256"},
+    "payload": {"type": "object"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"recordType": {"const": "path_set_manifest"}}},
+      "then": {"properties": {"payload": {"$ref": "#/$defs/pathSetManifest"}}}
+    },
+    {
+      "if": {"properties": {"recordType": {"const": "path_chunk"}}},
+      "then": {"properties": {"payload": {"$ref": "#/$defs/pathChunk"}}}
+    },
+    {
+      "if": {"properties": {"recordType": {"const": "stream_envelope"}}},
+      "then": {"properties": {"payload": {"$ref": "#/$defs/streamEnvelope"}}}
+    },
+    {
+      "if": {"properties": {"recordType": {"const": "view_manifest"}}},
+      "then": {"properties": {"payload": {"$ref": "#/$defs/viewManifest"}}}
+    },
+    {
+      "if": {"properties": {"recordType": {"const": "derived_product_manifest"}}},
+      "then": {"properties": {"payload": {"$ref": "#/$defs/derivedProductManifest"}}}
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["startT", "endT", "acceptedThroughT", "complete"],
+      "properties": {
+        "startT": {"type": "number"},
+        "endT": {"type": "number"},
+        "acceptedThroughT": {"type": "number"},
+        "complete": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "coordinateFrame": {
+      "type": "object",
+      "required": ["frameId", "axes", "handedness"],
+      "properties": {
+        "frameId": {"type": "string", "minLength": 1},
+        "axes": {
+          "type": "array",
+          "prefixItems": [{"const": "X1"}, {"const": "X2"}, {"const": "X3"}],
+          "items": false
+        },
+        "handedness": {"const": "right"}
+      },
+      "additionalProperties": false
+    },
+    "units": {
+      "type": "object",
+      "required": ["wakeSpeed", "lengthScale", "timeScale", "scaleMapId"],
+      "properties": {
+        "wakeSpeed": {"const": 1},
+        "lengthScale": {"type": "string", "minLength": 1},
+        "timeScale": {"type": "string", "minLength": 1},
+        "scaleMapId": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "numericPolicy": {
+      "type": "object",
+      "required": ["representationProfile", "representation", "precisionBits", "rounding", "nonfiniteBehavior", "maximumAbsoluteError"],
+      "properties": {
+        "representationProfile": {
+          "enum": ["authoritative_history", "precision_bounded_analysis", "display_stream"]
+        },
+        "representation": {
+          "enum": ["binary16", "binary32", "binary64", "decimal_string", "interval_decimal", "quantized_integer"]
+        },
+        "precisionBits": {"type": "integer", "minimum": 1, "maximum": 256},
+        "rounding": {"enum": ["nearest_ties_even", "directed_interval", "exact_decimal", "declared_quantizer"]},
+        "nonfiniteBehavior": {"enum": ["reject", "mark_unavailable"]},
+        "maximumAbsoluteError": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["producer", "producerVersion", "sourceRecords", "transforms"],
+      "properties": {
+        "producer": {"type": "string", "minLength": 1},
+        "producerVersion": {"type": "string", "minLength": 1},
+        "sourceRecords": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["sourceId", "sourceSha256"],
+            "properties": {
+              "sourceId": {"type": "string", "minLength": 1},
+              "sourceSha256": {"$ref": "#/$defs/sha256"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "transforms": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "required": ["level", "scientificOwner", "continuationPermitted", "evidenceUse"],
+      "properties": {
+        "level": {
+          "enum": ["untrusted_import", "display_only", "diagnostic", "derived_analysis", "prescribed_path", "observer_measurement", "accepted_history"]
+        },
+        "scientificOwner": {"type": "string", "minLength": 1},
+        "continuationPermitted": {"type": "boolean"},
+        "evidenceUse": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "sourceBinding": {
+      "type": "object",
+      "required": ["pathSetId", "manifestSha256"],
+      "properties": {
+        "pathSetId": {"type": "string", "minLength": 1},
+        "manifestSha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "chunkReference": {
+      "type": "object",
+      "required": ["chunkId", "contentSha256", "sequence"],
+      "properties": {
+        "chunkId": {"type": "string", "minLength": 1},
+        "contentSha256": {"$ref": "#/$defs/sha256"},
+        "sequence": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "pathSetManifest": {
+      "type": "object",
+      "required": ["pathSetId", "historyKind", "membership", "coverage", "coordinateFrame", "units", "numericPolicy", "interpolation", "provenance", "authority", "chunks"],
+      "properties": {
+        "pathSetId": {"type": "string", "minLength": 1},
+        "historyKind": {"enum": ["eom_accepted_history", "prescribed_history", "experimental_observer_path"]},
+        "membership": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["pathId", "role"],
+            "properties": {
+              "pathId": {"type": "string", "minLength": 1},
+              "role": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          }
+        },
+        "coverage": {"$ref": "#/$defs/coverage"},
+        "coordinateFrame": {"$ref": "#/$defs/coordinateFrame"},
+        "units": {"$ref": "#/$defs/units"},
+        "numericPolicy": {"$ref": "#/$defs/numericPolicy"},
+        "interpolation": {
+          "type": "object",
+          "required": ["basis", "maximumPositionError", "eventBoundaryBehavior"],
+          "properties": {
+            "basis": {"type": "string", "minLength": 1},
+            "maximumPositionError": {"type": "number", "minimum": 0},
+            "eventBoundaryBehavior": {"const": "split_chunk"}
+          },
+          "additionalProperties": false
+        },
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "authority": {"$ref": "#/$defs/authority"},
+        "chunks": {"type": "array", "items": {"$ref": "#/$defs/chunkReference"}}
+      },
+      "additionalProperties": false
+    },
+    "pathChunk": {
+      "type": "object",
+      "required": ["chunkId", "pathSetId", "sourceManifestId", "sequence", "predecessorChunkSha256", "coverage", "units", "numericPolicy", "samples", "eventMarkers", "provenance", "authority"],
+      "properties": {
+        "chunkId": {"type": "string", "minLength": 1},
+        "pathSetId": {"type": "string", "minLength": 1},
+        "sourceManifestId": {"type": "string", "minLength": 1},
+        "sequence": {"type": "integer", "minimum": 0},
+        "predecessorChunkSha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "coverage": {"$ref": "#/$defs/coverage"},
+        "units": {"$ref": "#/$defs/units"},
+        "numericPolicy": {"$ref": "#/$defs/numericPolicy"},
+        "samples": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["pathId", "T", "position"],
+            "properties": {
+              "pathId": {"type": "string", "minLength": 1},
+              "T": {"type": "number"},
+              "position": {
+                "type": "array",
+                "prefixItems": [{"type": "number"}, {"type": "number"}, {"type": "number"}],
+                "items": false
+              },
+              "positionUncertainty": {"type": "number", "minimum": 0}
+            },
+            "additionalProperties": false
+          }
+        },
+        "eventMarkers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["eventId", "T", "kind", "boundary"],
+            "properties": {
+              "eventId": {"type": "string", "minLength": 1},
+              "T": {"type": "number"},
+              "kind": {"type": "string", "minLength": 1},
+              "boundary": {"const": true}
+            },
+            "additionalProperties": false
+          }
+        },
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "authority": {"$ref": "#/$defs/authority"}
+      },
+      "additionalProperties": false
+    },
+    "streamEnvelope": {
+      "type": "object",
+      "required": ["streamId", "pathSetId", "sourceManifestSha256", "state", "sequenceBase", "nextSequence", "acceptedThroughT", "chunkRefs", "halt"],
+      "properties": {
+        "streamId": {"type": "string", "minLength": 1},
+        "pathSetId": {"type": "string", "minLength": 1},
+        "sourceManifestSha256": {"$ref": "#/$defs/sha256"},
+        "state": {"enum": ["open", "halted", "sealed"]},
+        "sequenceBase": {"type": "integer", "minimum": 0},
+        "nextSequence": {"type": "integer", "minimum": 0},
+        "acceptedThroughT": {"type": "number"},
+        "chunkRefs": {"type": "array", "items": {"$ref": "#/$defs/chunkReference"}},
+        "halt": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "required": ["code", "message"],
+              "properties": {
+                "code": {"type": "string", "minLength": 1},
+                "message": {"type": "string", "minLength": 1}
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "viewManifest": {
+      "type": "object",
+      "required": ["viewId", "sourceBindings", "query", "transforms", "numericPolicy", "provenance", "authority"],
+      "properties": {
+        "viewId": {"type": "string", "minLength": 1},
+        "sourceBindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sourceBinding"}},
+        "query": {"type": "object"},
+        "transforms": {"type": "array", "items": {"type": "object"}},
+        "numericPolicy": {"$ref": "#/$defs/numericPolicy"},
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "authority": {"$ref": "#/$defs/authority"}
+      },
+      "additionalProperties": false
+    },
+    "derivedProductManifest": {
+      "type": "object",
+      "required": ["productId", "productKind", "sourceBindings", "viewManifestId", "coverage", "completeness", "codec", "provenance", "authority"],
+      "properties": {
+        "productId": {"type": "string", "minLength": 1},
+        "productKind": {"type": "string", "minLength": 1},
+        "sourceBindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sourceBinding"}},
+        "viewManifestId": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "coverage": {"$ref": "#/$defs/coverage"},
+        "completeness": {"enum": ["provisional", "sealed", "halted"]},
+        "codec": {
+          "type": "object",
+          "required": ["capabilityId", "provider", "representationProfile"],
+          "properties": {
+            "capabilityId": {"type": "string", "minLength": 1},
+            "provider": {"type": "string", "minLength": 1},
+            "representationProfile": {"enum": ["precision_bounded_analysis", "display_stream"]}
+          },
+          "additionalProperties": false
+        },
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "authority": {"$ref": "#/$defs/authority"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

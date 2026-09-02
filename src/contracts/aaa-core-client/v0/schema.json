@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.com/contracts/aaa-core-client/v0/schema.json",
+  "title": "AAA Core Client v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "status", "owner", "dependencies", "operations", "operationEnvelope", "cache", "clientBoundary", "consumerConformance", "conformance", "claimBoundary"],
+  "properties": {
+    "schema": {"const": "aaa_core_client/v0"},
+    "version": {"const": 0},
+    "status": {"const": "accepted"},
+    "owner": {"const": "AAA Core"},
+    "dependencies": {"type": "object", "minProperties": 4},
+    "operations": {"type": "array", "minItems": 9, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "operationEnvelope": {"type": "object", "minProperties": 4},
+    "cache": {"type": "object", "minProperties": 4},
+    "clientBoundary": {"type": "object", "minProperties": 4},
+    "consumerConformance": {"type": "array", "minItems": 2, "items": {"type": "object"}},
+    "conformance": {"type": "object", "minProperties": 4},
+    "claimBoundary": {"type": "string", "minLength": 1}
+  }
+}

@@ -20,6 +20,7 @@ export function createAnimatorUiRuntime(deps) {
     applyAnimatorSceneDocument,
     jumpToScene,
     setAnimatorStatus,
+    setTopDynamicControlBarMode,
   } = deps;
 
   let animatorActivePanel = "tree";
@@ -66,6 +67,7 @@ export function createAnimatorUiRuntime(deps) {
     if (app) {
       app.classList.toggle("animator-mode", !!isOverlayScene);
     }
+    setTopDynamicControlBarMode?.(isOverlayScene);
     if (isAnimatorScene) {
       initAnimatorCanvas();
       deps.setAnimatorNeedsResize(true);
