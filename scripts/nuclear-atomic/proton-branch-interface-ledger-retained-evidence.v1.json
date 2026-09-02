@@ -16,7 +16,7 @@
     "sourceTargetId": "accepted_proton_branch_interface_ledger_target_0001",
     "protonBranchLabel": "p",
     "sourceTargetPath": "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json",
-    "priorityContextPath": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
+    "priorityContextPath": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
   },
   "protonBranchInterfaceLedger": {
     "rowId": "L_BI_p_0001",

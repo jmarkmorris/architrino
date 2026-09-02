@@ -1,0 +1,199 @@
+{
+  "schema": "aaa_core_representative_path_workload_matrix/v1",
+  "status": "accepted_benchmark_definition_unmeasured",
+  "authority": "AAA Core workload and measurement contract only; no EOM, scientific-kernel, imported-data, or publication authority",
+  "nativeNumericPolicy": {
+    "wakeSpeed": 1,
+    "wakeSpeedSymbol": "c_f",
+    "observerImportsPreserveSourceNativeUnits": true,
+    "normalizedObserverDerivedProductsAreSeparate": true
+  },
+  "requiredDimensions": [
+    "pathCount",
+    "historyDepth",
+    "scaleSpan",
+    "smoothnessClass",
+    "eventDensity",
+    "randomAccessPattern",
+    "consumerObservable",
+    "latencyClass",
+    "precisionPolicy",
+    "storagePosture",
+    "acceleratorPosture",
+    "sourceAuthority",
+    "coverage"
+  ],
+  "requiredCorrectnessMetricFamilies": [
+    "source_coverage",
+    "discrete_identity",
+    "independent_continuous_reference",
+    "provenance_uncertainty_authority",
+    "deterministic_replay",
+    "consumer_completion_or_halt"
+  ],
+  "requiredResourceMetrics": [
+    "wallTimeSeconds",
+    "throughputPerSecond",
+    "latencyP50Seconds",
+    "latencyP95Seconds",
+    "cpuTimeSeconds",
+    "peakResidentBytes",
+    "peakDeviceBytes",
+    "bytesRead",
+    "bytesWritten",
+    "hostDeviceTransferBytes",
+    "networkTransferBytes",
+    "sealedStorageBytes",
+    "workingStorageBytes",
+    "fallbackOrEscalationFraction",
+    "failureCount",
+    "energyJoules",
+    "costUsd"
+  ],
+  "missingResourceValueRule": "null_with_reason_never_zero",
+  "correctnessBeforeResourceComparison": true,
+  "compositeScoreDefined": false,
+  "workloads": [
+    {
+      "id": "eom_continuation_6p_long_history_v1",
+      "consumer": "EOM solver through AAA Core accepted-history interfaces",
+      "sourceAuthority": "accepted_eom_history",
+      "dimensions": {
+        "pathCount": 6,
+        "historyDepth": { "samplesPerPath": 262144 },
+        "scaleSpan": 10000,
+        "smoothnessClass": "piecewise_smooth_with_frozen_branch_and_event_markers",
+        "eventDensity": { "markerCount": 24, "domain": "whole_workload" },
+        "randomAccessPattern": "sequential_append_pairwise_causal_lookback_and_event_neighborhood",
+        "consumerObservable": "accepted_history_root_event_identity_and_continuation_state",
+        "latencyClass": "bounded_batch",
+        "precisionPolicy": "adaptive_up_to_128_bits",
+        "storagePosture": "authoritative_immutable_history_and_indices",
+        "acceleratorPosture": "cpu_reference_then_bounded_cpu_or_accelerator_with_explicit_difficult_row_return",
+        "coverage": "complete_declared_input_and_continuation_interval"
+      },
+      "correctnessMetrics": [
+        { "id": "inputCoverageGapCount", "acceptance": "equals_0" },
+        { "id": "branchEventIdentityMismatchCount", "reference": "separately_authored_analytical_or_certified_root_oracle", "acceptance": "equals_0" },
+        { "id": "stateEnclosureResidual", "acceptance": "within_frozen_tolerance" },
+        { "id": "haltPropagationMismatchCount", "acceptance": "equals_0" },
+        { "id": "deterministicReplayIdentity", "acceptance": "exact_match_replay_only" }
+      ]
+    },
+    {
+      "id": "potential_live_map_64p_v1",
+      "consumer": "Potential live map",
+      "sourceAuthority": "accepted_eom_history_stream",
+      "dimensions": {
+        "pathCount": 64,
+        "historyDepth": { "samplesPerPath": 16384, "chunkCount": 64 },
+        "scaleSpan": 1000,
+        "smoothnessClass": "mixed_smooth_segments_with_declared_event_markers",
+        "eventDensity": { "markerCount": 16, "domain": "whole_workload" },
+        "randomAccessPattern": "sequential_stream_time_window_replay_and_tile_random_access",
+        "consumerObservable": "provisional_and_sealed_128x128x64_timespace_map",
+        "latencyClass": "interactive_progressive",
+        "precisionPolicy": "64_bit_sampling_with_declared_error_bound",
+        "storagePosture": "authoritative_source_plus_provisional_and_sealed_tiles",
+        "acceleratorPosture": "single_thread_cpu_reference_bounded_cpu_and_gpu_tile_candidate",
+        "coverage": "64_contiguous_source_chunks_and_all_map_tiles"
+      },
+      "correctnessMetrics": [
+        { "id": "sourceChunkGapCount", "acceptance": "equals_0" },
+        { "id": "mapTileGapCount", "acceptance": "equals_0" },
+        { "id": "sourceProductWatermarkResidual", "acceptance": "equals_0_at_seal" },
+        { "id": "sampleAbsoluteRelativeResidual", "reference": "separately_authored_analytical_sampler", "acceptance": "within_frozen_tolerance" },
+        { "id": "duplicateReplaySealedIdentity", "acceptance": "exact_match_replay_only" }
+      ]
+    },
+    {
+      "id": "reaction_keyhole_12p_v1",
+      "consumer": "bounded reaction study",
+      "sourceAuthority": "accepted_or_prescribed_input_with_separately_labeled_eom_outputs",
+      "dimensions": {
+        "pathCount": 12,
+        "historyDepth": { "samplesPerPath": 65536 },
+        "scaleSpan": 100000,
+        "smoothnessClass": "piecewise_smooth_with_dense_event_neighborhood",
+        "eventDensity": { "markerCount": 8, "accountChannelCount": 5 },
+        "randomAccessPattern": "dense_event_neighborhood_and_predecessor_successor_history",
+        "consumerObservable": "product_records_and_energy_momentum_angular_momentum_event_ledger",
+        "latencyClass": "interactive_keyhole_analysis",
+        "precisionPolicy": "64_bit_bulk_with_128_bit_event_neighborhood",
+        "storagePosture": "authoritative_history_plus_event_and_product_indices",
+        "acceleratorPosture": "cpu_reference_then_hybrid_bulk_history_with_strict_event_return",
+        "coverage": "complete_pre_event_event_and_post_event_window"
+      },
+      "correctnessMetrics": [
+        { "id": "missingIdentityOrEventOwnerCount", "acceptance": "equals_0" },
+        { "id": "prePostCoverageGapCount", "acceptance": "equals_0" },
+        { "id": "eventLedgerResidual", "acceptance": "within_frozen_tolerance" },
+        { "id": "productAndEventOrderMismatchCount", "reference": "independent_product_and_event_order_reconstruction", "acceptance": "equals_0" },
+        { "id": "deterministicReplayIdentity", "acceptance": "exact_match_replay_only" }
+      ]
+    },
+    {
+      "id": "optimization_sweep_1024x6p_v1",
+      "consumer": "no_retune_optimization_sweep",
+      "sourceAuthority": "prescribed_candidate_histories_with_separately_labeled_eom_outputs_when_present",
+      "dimensions": {
+        "pathCount": 6,
+        "candidateCount": 1024,
+        "historyDepth": { "samplesPerPathPerCandidate": 4096 },
+        "scaleSpan": 10000,
+        "smoothnessClass": "mixed_candidate_family_with_frozen_invalid_and_event_cases",
+        "eventDensity": { "frozenInvalidOrEventCaseCount": 32 },
+        "randomAccessPattern": "batch_sequential_scan_sparse_candidate_event_retrieval_and_held_out_evaluation",
+        "consumerObservable": "admissible_set_held_out_objective_and_selected_candidate_identity",
+        "latencyClass": "throughput_batch",
+        "precisionPolicy": "64_bit_screen_with_128_bit_escalation",
+        "storagePosture": "immutable_candidate_manifest_compact_results_and_strict_escalation_records",
+        "acceleratorPosture": "single_thread_cpu_reference_bounded_cpu_and_staged_accelerator_screening",
+        "coverage": "all_1024_candidates_and_all_frozen_control_cases"
+      },
+      "correctnessMetrics": [
+        { "id": "invalidControlAcceptanceCount", "acceptance": "equals_0" },
+        { "id": "acceptedCandidateCoverageGapCount", "acceptance": "equals_0" },
+        { "id": "heldOutObjectiveResidual", "reference": "separately_authored_evaluator", "acceptance": "within_frozen_tolerance" },
+        { "id": "selectedIdentityOrTieMismatchCount", "acceptance": "equals_0" },
+        { "id": "deterministicReplayIdentity", "acceptance": "exact_match_replay_only" }
+      ]
+    },
+    {
+      "id": "collider_import_100k_tracks_v1",
+      "consumer": "observer_level_collider_track_import",
+      "sourceAuthority": "observer_level_experimental_reconstruction",
+      "dimensions": {
+        "pathCount": 100000,
+        "historyDepth": { "maximumSamplesPerTrack": 512 },
+        "scaleSpan": "source_declared",
+        "smoothnessClass": "source_native_reconstructed_tracks_with_covariance",
+        "eventDensity": { "domain": "source_declared_events_and_selection_history" },
+        "randomAccessPattern": "column_event_and_track_random_access_plus_source_native_round_trip",
+        "consumerObservable": "source_native_track_collection_and_separately_identified_derived_comparison_view",
+        "latencyClass": "bounded_import_and_interactive_query",
+        "precisionPolicy": "preserve_source_native_payload_uncertainty_and_calibration",
+        "storagePosture": "immutable_source_native_payload_plus_separate_derived_products",
+        "acceleratorPosture": "cpu_import_reference_then_vector_or_accelerator_decode_candidate",
+        "coverage": "all_tracks_samples_covariances_calibration_selection_and_reconstruction_provenance"
+      },
+      "correctnessMetrics": [
+        { "id": "sourceNativePayloadHashMismatchCount", "acceptance": "equals_0" },
+        { "id": "uncertaintyProvenanceSelectionGapCount", "acceptance": "equals_0" },
+        { "id": "coordinateTransformResidual", "reference": "separately_specified_independent_transform_oracle", "acceptance": "within_source_uncertainty_and_frozen_tolerance" },
+        { "id": "authorityEscalationCount", "acceptance": "equals_0" },
+        { "id": "deterministicSourceNativeRoundTripIdentity", "acceptance": "exact_match_replay_only" }
+      ]
+    }
+  ],
+  "resultState": "unmeasured",
+  "refusalStates": [
+    "input_version_mismatch",
+    "missing_source_coverage",
+    "independent_reference_unavailable",
+    "unsupported_precision",
+    "instrument_cannot_distinguish_missing_from_zero",
+    "logical_workload_changed",
+    "not_comparable"
+  ]
+}

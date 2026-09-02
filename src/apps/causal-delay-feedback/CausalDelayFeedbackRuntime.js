@@ -54,17 +54,11 @@ import {
 import {
   createCausalDelayFeedbackModeController,
 } from "./CausalDelayFeedbackModeController.js";
-import {
-  navigateStandaloneAppHome,
-  resolveStandaloneSiteHomeHref,
-} from "../navigator/StandaloneAppHomeRuntime.js";
-import {
-  createStandaloneAppSceneSearchRuntime,
-  resolveStandaloneGlobalSceneHref,
-  TEXTBOOK_TOC_SCENE_PATH,
-} from "../navigator/StandaloneAppSceneSearchRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import {
   DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
+  createCausalDelayFeedbackModeHref,
+  getCausalDelayFeedbackModeFromHref,
   normalizeCausalDelayFeedbackMode,
 } from "./CausalDelayFeedbackModes.js";
 import {
@@ -275,6 +269,7 @@ class CausalDelayFeedbackRuntime {
     this.replayLoadSequence = 0;
     this.replayLoadState = "idle";
     this.replayLoadError = null;
+    this.suppressModeHistoryUpdate = false;
     this.dataset = this.createFallbackReplay();
     this.updateWakeLinkGeometry();
     this.learnerState = createCanonicalLearnerState(this.dataset, {
@@ -321,6 +316,31 @@ class CausalDelayFeedbackRuntime {
     this.updateNowControl();
     this.updateReplayStatus();
     this.bindEvents();
+    this.navigationRuntime = createStandaloneAppNavigationRuntime({
+      host: queryRequiredElement(this.document, "#scene-hud-tools"),
+      document: this.document,
+      window: this.window,
+      label: "App and learning navigation",
+      back: {
+        label: "Previous view",
+        title: "Previous view",
+        historyLabel: "Learning sequence",
+        onActivate: () => this.modeController?.goBack(),
+      },
+      forward: {
+        label: "Next view",
+        title: "Next view",
+        onActivate: () => this.modeController?.goNext(),
+      },
+      search: {
+        onOpenChange: (isOpen) => {
+          this.modeController?.dom?.journey?.classList.toggle(
+            "is-global-search-open",
+            isOpen,
+          );
+        },
+      },
+    }).init();
     this.modeController = createCausalDelayFeedbackModeController({
       document: this.document,
       window: this.window,
@@ -336,39 +356,6 @@ class CausalDelayFeedbackRuntime {
       },
       onReplay: () => {
         this.resetStoryScenarioPlayback();
-      },
-      onHome: () => {
-        navigateStandaloneAppHome(
-          this.window?.location,
-          resolveStandaloneSiteHomeHref(this.window?.location?.href),
-          {
-            windowLike: this.window,
-            returnHref: this.window?.location?.href,
-          },
-        );
-      },
-      onTableOfContents: () => {
-        navigateStandaloneAppHome(
-          this.window?.location,
-          resolveStandaloneGlobalSceneHref(
-            TEXTBOOK_TOC_SCENE_PATH,
-            this.window?.location?.href,
-          ),
-          {
-            windowLike: this.window,
-            returnHref: this.window?.location?.href,
-          },
-        );
-      },
-    }).init();
-    this.sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
-      document: this.document,
-      window: this.window,
-      onOpenChange: (isOpen) => {
-        this.modeController.dom.journey.classList.toggle(
-          "is-global-search-open",
-          isOpen,
-        );
       },
     }).init();
     if (this.learnerState.mode === "story") {
@@ -453,6 +440,8 @@ class CausalDelayFeedbackRuntime {
     this.listen(this.window, "resize", this.boundResize);
     this.boundKeyDown = (event) => this.handleKeyDown(event);
     this.listen(this.document, "keydown", this.boundKeyDown);
+    this.boundModePopState = () => this.restoreLearnerModeFromLocation();
+    this.listen(this.window, "popstate", this.boundModePopState);
 
     this.listen(this.dom.playButton, "click", () => {
       this.setPlaying(!this.isPlaying);
@@ -633,8 +622,40 @@ class CausalDelayFeedbackRuntime {
     return this.modeController?.setMode(mode) ?? false;
   }
 
+  restoreLearnerModeFromLocation() {
+    const mode = getCausalDelayFeedbackModeFromHref(this.window?.location?.href);
+    if (mode === this.learnerState?.mode) {
+      return false;
+    }
+    this.suppressModeHistoryUpdate = true;
+    try {
+      return this.setLearnerMode(mode);
+    } finally {
+      this.suppressModeHistoryUpdate = false;
+    }
+  }
+
+  pushLearnerModeHistory(mode) {
+    if (this.suppressModeHistoryUpdate) {
+      return false;
+    }
+    const currentHref = this.window?.location?.href;
+    const nextHref = createCausalDelayFeedbackModeHref(currentHref, mode);
+    const historyLike = this.window?.history;
+    if (
+      !nextHref ||
+      nextHref === currentHref ||
+      typeof historyLike?.pushState !== "function"
+    ) {
+      return false;
+    }
+    historyLike.pushState(historyLike.state ?? null, "", nextHref);
+    return true;
+  }
+
   handleLearnerModeChange(mode) {
     this.learnerState.mode = mode;
+    this.pushLearnerModeHistory(mode);
     this.selectedItem = null;
     this.updateReplayStatus();
     if (mode === "story") {
@@ -1643,7 +1664,8 @@ class CausalDelayFeedbackRuntime {
     this.eventListeners = [];
     this.dragState = null;
     this.clearBackgroundPointers();
-    this.sceneSearchRuntime?.destroy?.();
+    this.navigationRuntime?.destroy?.();
+    this.navigationRuntime = null;
     this.modeController?.destroy();
   }
 

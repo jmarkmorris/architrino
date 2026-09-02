@@ -1,4 +1,4 @@
-# Topo Prescribed Circular Binary v1
+# Wake Topography Prescribed Circular Binary v1
 
 ## Status And Authority
 
@@ -64,11 +64,11 @@ $$
 
 and the displayed replay parameter $p\in[0,1]$ maps to reception time $T=T_0+2Pp$. Because $T_0$ contains an integer number of orbits, both sources remain at the declared replay-start positions. Because $T_0\geq D_{\max}$, the retained-history endpoint brackets a root from both sources at every visible off-source location. At $\beta=0$, both histories are stationary and $T_0=D_{\max}$; progress is fixed at zero, and play and replay are disabled.
 
-Plainly: Topo silently adds however many complete earlier orbits the current window needs, then starts the visible two-rotation replay at exactly the same source positions. A wider view or smaller, faster orbit can add history, but it cannot rotate or move the opening frame.
+Plainly: Wake Topography silently adds however many complete earlier orbits the current window needs, then starts the visible two-rotation replay at exactly the same source positions. A wider view or smaller, faster orbit can add history, but it cannot rotate or move the opening frame.
 
 ## Per-Source Causal Root
 
-For each source $s\in\{-,+\}$, sample point $\mathbf x$, and reception time $T$, Topo solves the ordinary positive-delay equation directly:
+For each source $s\in\{-,+\}$, sample point $\mathbf x$, and reception time $T$, Wake Topography solves the ordinary positive-delay equation directly:
 
 $$
 g_s(\tau)
@@ -101,7 +101,7 @@ Plainly: below wake speed, the residual can cross zero only once. The bisection 
 
 At $\beta=1$, the bound becomes $g_s'(\tau)\leq0$, so the code uses a separate endpoint classification. It retains an ordinary result only when the same finite interval brackets a positive root and the direct circular residual converges. For a nondegenerate circle, equality in the derivative bound can occur only at isolated tangencies because the velocity direction rotates; it cannot create a positive-length constant residual interval. The source point is classified `nonordinary:endpoint_source`. A missing bracket or failed residual check remains unavailable or unresolved.
 
-Plainly: the endpoint is not treated as an ordinary sub-wake-speed case. Topo may display a directly bracketed circular root, but it fails closed whenever the finite history does not supply one.
+Plainly: the endpoint is not treated as an ordinary sub-wake-speed case. Wake Topography may display a directly bracketed circular root, but it fails closed whenever the finite history does not supply one.
 
 ## Signed Equal-Wake-Intensity Product
 
@@ -120,7 +120,7 @@ W(\mathbf x,T)
 \kappa=0.04.
 $$
 
-Both contributions must be present. One missing source root makes the complete sample unavailable; Topo never displays a partial one-source sum. The name of $W$ is `signed equal-wake intensity`. It is not a scalar potential. A potential name becomes available only if the $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus establishes a separately versioned potential product with the required scientific kernel.
+Both contributions must be present. One missing source root makes the complete sample unavailable; Wake Topography never displays a partial one-source sum. The name of $W$ is `signed equal-wake intensity`. It is not a scalar potential. A potential name becomes available only if the $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus establishes a separately versioned potential product with the required scientific kernel.
 
 Plainly: blue and red contributions are added with opposite signs after both travel times are solved. The result is an intensity comparison, not potential energy or an acceleration quantity.
 
@@ -139,7 +139,7 @@ Plainly: the orders-of-magnitude color mapping is applied once, directly to the 
 
 ## View And Controls
 
-The binary view contains only the heatmap, two source markers governed by the shared Topo half-size contract, an optional thin solid circular orbit guide, orbit progress, the orbital-radius and direction controls, and the shared play, pause, and replay controls. The solid circle is a prescribed reference path at the selected $R$, not an equal-intensity contour or a dynamical claim. Playback lasts sixteen wall-clock seconds for usability; that wall time is only the rate at which the prescribed replay parameter is viewed.
+The binary view contains only the heatmap, two source markers governed by the shared Wake Topography half-size contract, an optional thin solid circular orbit guide, orbit progress, the orbital-radius and direction controls, and the shared play, pause, and replay controls. The solid circle is a prescribed reference path at the selected $R$, not an equal-intensity contour or a dynamical claim. Playback lasts sixteen wall-clock seconds for usability; that wall time is only the rate at which the prescribed replay parameter is viewed.
 
 Plainly: the screen does not pretend to offer contour controls that do nothing. The smaller moving dots identify the prescribed sources, and the optional solid circle shows only where those authored paths run.
 
@@ -155,4 +155,4 @@ Plainly: the implementation is checked both against simple cases with known answ
 
 Reject the display implementation if any selected CPU root differs beyond the declared tolerance; a returned root does not satisfy the direct circular residual; the markers cease to be antipodal; the slider changes tangential $\beta$ or fails to update period and guide radius; one replay does not close after $2\pi$; a partial source ledger produces a finite color; the binary path applies a second nonlinear display transform; the background control changes raw data; the marker radius is not half its predecessor; the guide is dashed or treated as a field contour; or contour geometry appears while the binary scenario is selected.
 
-Plainly: each failure is directly inspectable in the focused test output or in the live Topo frame. None of these checks upgrades the scenario to dynamics, stability, binding, conservation, potential, or acceptance evidence.
+Plainly: each failure is directly inspectable in the focused test output or in the live Wake Topography frame. None of these checks upgrades the scenario to dynamics, stability, binding, conservation, potential, or acceptance evidence.

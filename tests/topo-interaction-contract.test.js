@@ -1517,9 +1517,9 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
   const tokens = readRepoFile("ui-tokens.css");
 
   assert.match(runtime, /createPanelCollapseIconSvg/u);
-  assert.match(runtime, /navigateStandaloneAppHome/u);
-  assert.match(runtime, /resolveStandaloneAppHomeHref/u);
-  assert.match(runtime, /createStandaloneAppSceneSearchRuntime/u);
+  assert.match(runtime, /createStandaloneAppNavigationRuntime/u);
+  assert.doesNotMatch(runtime, /navigateStandaloneAppHome/u);
+  assert.doesNotMatch(runtime, /createStandaloneAppSceneSearchRuntime/u);
   assert.match(runtime, /panelContent\.inert = collapsed/u);
   assert.match(runtime, /getContext\("webgl"/u);
   assert.match(runtime, /createTopoSyntheticContourRenderPlan/u);
@@ -1666,7 +1666,7 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     html,
     /<input\b[^>]*id="topo-beta"[^>]*aria-label="Speed divided by wake speed \(beta\)"/u,
   );
-  assert.match(html, /<span>Topo count<\/span>/u);
+  assert.match(html, /<span>Contour count<\/span>/u);
   assert.doesNotMatch(html, /Contour reach|topo-contour-reach/iu);
   assert.doesNotMatch(runtime, /steps outward|genuine levels reaching|per sign reaching/iu);
   assert.match(html, /<span>Shading<\/span>/u);
@@ -1678,11 +1678,11 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     html,
     /topo-shading-spread-output|% · broad|% · balanced|% · tight/u,
   );
-  assert.match(html, /<span>Topo fade<\/span>/u);
+  assert.match(html, /<span>Contour fade<\/span>/u);
   assert.match(html, /<span>Scale<\/span>/u);
   assert.doesNotMatch(
     html,
-    /<span>(?:Prescribed speed|Contour count|Shading spread|Contour strength|Display scale · visible extent)<\/span>/u,
+    /<span>(?:Prescribed speed|Shading spread|Contour strength|Display scale · visible extent)<\/span>/u,
   );
   assert.doesNotMatch(html, /topo-contour-visibility-output|>75%<\/output>/u);
   assert.doesNotMatch(html, /topo-display-scale-output|1\.00× · 1\.00 high/u);
@@ -1740,7 +1740,15 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     runtime,
     /signed contributions are summed before drawing equal-value topographic contours/u,
   );
-  assert.match(html, /id="home-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="scene-search"/u);
+  assert.match(html, /<div id="scene-hud-tools" class="topo-navigation"><\/div>/u);
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/u);
+  assert.doesNotMatch(html, /src\/apps\/navigator\/standalone-app-navigation\.css/u);
+  assert.doesNotMatch(
+    html,
+    /id="(?:textbook-toc-button|home-button|nav-up|nav-forward|scene-search-toggle)"/u,
+  );
+  assert.match(runtime, /createStandaloneAppNavigationRuntime/u);
+  assert.doesNotMatch(runtime, /createStandaloneAppSceneSearchRuntime/u);
 
   assert.match(css, /\.topo-range-note/u);
   assert.doesNotMatch(css, /topo-advanced-display|topo-heatmap-mode|topo-view/u);
@@ -1763,7 +1771,11 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/u);
   assert.match(css, /input::-webkit-slider-runnable-track \{[\s\S]*height: 5px;/u);
   assert.match(css, /input:focus-visible::-webkit-slider-thumb/u);
-  assert.match(tokens, /--ui-color-electric-purple: #8f00ff;/u);
+  assert.match(tokens, /--ui-brand-purple-electric: #8f00ff;/u);
+  assert.match(
+    tokens,
+    /--ui-color-electric-purple: var\(--ui-brand-purple-electric\);/u,
+  );
   assert.match(tokens, /--ui-data-zero: var\(--ui-color-electric-purple\);/u);
 });
 
@@ -1873,37 +1885,25 @@ test("ordinary binary rendering presents the scalar texture and bypasses coarse 
   assert.match(runtime, /circularBinaryScalarPresentationRenderer && topoScalarFramebuffer\.available/u);
 });
 
-test("Applications retains four category scenes and all fourteen public app routes", () => {
+test("Applications retains one ordered scene with all fourteen public app routes", () => {
   const applications = JSON.parse(
     readRepoFile("content/scenes/archie/applications.json"),
   );
-  const categories = [
-    ["learn_reference", "applications_learn_reference.json", [
-      "atom", "causal_delay_feedback", "greek_letter_match",
-      "hyde_periodic_table", "periodic_table", "standard_model",
-    ]],
-    ["explore_models", "applications_explore_models.json", [
-      "lattice_lab", "ideal_braid", "molecule", "photon", "topo",
-    ]],
-    ["analyze_evidence", "applications_analyze_evidence.json", ["equation_mapping"]],
-    ["build_simulate", "applications_build_simulate.json", ["animator", "borg"]],
+  const expectedIds = [
+    "animator", "greek_letter_match", "molecule", "periodic_table",
+    "hyde_periodic_table", "atom", "standard_model", "causal_delay_feedback",
+    "borg", "topo", "ideal_braid", "lattice_lab", "photon", "equation_mapping",
   ];
   assert.deepEqual(
     applications.scene.children.map(({ nodeId }) => nodeId),
-    categories.map(([categoryId]) => categoryId),
+    expectedIds,
   );
-  const appIds = [];
-  for (const [categoryId, fileName, expectedIds] of categories) {
-    const category = JSON.parse(readRepoFile("content/scenes/archie/" + fileName));
-    assert.equal(
-      applications.scene.children.find(({ nodeId }) => nodeId === categoryId)?.scenePath,
-      "content/scenes/archie/" + fileName,
-    );
-    assert.deepEqual(category.scene.children.map(({ nodeId }) => nodeId), expectedIds);
-    appIds.push(...expectedIds);
-  }
-  assert.equal(appIds.length, 14);
-  assert.equal(new Set(appIds).size, 14);
+  assert.deepEqual(applications.objects.map(({ id }) => id), expectedIds);
+  assert.equal(new Set(expectedIds).size, 14);
+  assert.equal(
+    applications.objects.find(({ id }) => id === "topo")?.labelTitle,
+    "Wake Topography",
+  );
   assert.equal(getStandaloneAppPathForScene("topo"), "topo.html");
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/topo.json"),

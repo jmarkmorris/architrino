@@ -5,6 +5,11 @@
   "remoteReady": false,
   "publicDeploymentAuthorized": false,
   "host": null,
+  "serviceBoundary": {
+    "classification": "archie_service_protocol_adapter",
+    "userFacingApplication": false,
+    "staticBrowserSurfaceAllowed": false
+  },
   "protocol": {
     "revision": "2025-11-25",
     "transport": "streamable_http",
@@ -113,9 +118,9 @@
   },
   "snapshotPublication": {
     "candidatePath": "content/generated/source-index/local-full-corpus-snapshot.v1.json",
-    "candidateSnapshotId": "source_snapshot_full_corpus_v1_5c4e4fca61a177b7e432",
-    "candidateSnapshotSha256": "592d130a8349e9dde6273a549bf8a6ef1da2d4ba34cca18c525ecc4df01bae26",
-    "candidateRepositoryRef": "local-source-state:5c4e4fca61a177b7e432f14ae7c0b9cc19c522f84cd1d0aa640c5c65d9ecbeb9",
+    "candidateSnapshotId": "source_snapshot_full_corpus_v1_35fdbcb0bd692109565a",
+    "candidateSnapshotSha256": "6b69f25b5f595e0235227a4f2dad3f136c08088844b0603b4f844debb6e5ce41",
+    "candidateRepositoryRef": "local-source-state:35fdbcb0bd692109565a3294af36de019d2706b4426ef77fcd96d6ce6e41df67",
     "acceptedMainRequiredForRemote": true,
     "candidateIsAcceptedMain": false,
     "loadMode": "startup_once",
@@ -137,13 +142,17 @@
       "search",
       "read",
       "topics",
-      "neighbors"
+      "neighbors",
+      "walk"
     ],
     "resourcesEnabled": false,
     "promptsEnabled": false,
     "modelCallsAllowed": false,
     "repositoryWritesAllowed": false,
     "externalActionsAllowed": false,
-    "durableUserStateAllowed": false
+    "durableUserStateAllowed": false,
+    "localToolAccessAllowed": false,
+    "repositoryStateAccessAllowed": false,
+    "credentialAccessAllowed": false
   }
 }

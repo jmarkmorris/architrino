@@ -1,10 +1,19 @@
-# App Simulation Work Log
+# Legacy Simulation Protocol Routing Work Log
 
-This file is the chronological work log for the `app-simulation` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
+This file is the chronological history at the stable `app-simulation` compatibility path. The canonical ownership declaration is the operations [Simulation Protocol Routing Index](../../op/simulation-protocol-routing-index.md); this log is not an application tracker or routing authority.
 
 Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text when this priority area has one. Use `priorities.md` for strategy, status, blockers, and promotion routing, and use `work-queue.md` for accepted executable tasks and their local order. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
 
 ## Log Entries
+
+### 2026-09-02 — Routing authority classified as operations documentation
+
+- Moved the single routing declaration to `reference/op/simulation-protocol-routing-index.md` and retained `priorities.md` as a compatibility anchor.
+- Removed the compatibility directory from the priority-owner and product-application inventories while preserving `simulations.md`, `brainstorming.md`, this log, and their stable links.
+- Routed current owner references to the operations index, retained historical references as provenance, and changed the archive source-mining generator so its next explicit regeneration emits the operations destination.
+- Excluded this compatibility directory from the priority-ranking checker's owner scan. This changes classification only; it does not execute a protocol or promote a scientific claim.
+
+Plainly: agents still have one place to learn where simulation work belongs, while visitors and priority tooling no longer count that place as an application or owner.
 
 ### 2026-07-16 — Independent workstream retired
 

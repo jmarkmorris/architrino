@@ -1,29 +1,52 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
-test("markdown toolbar controls grow left of persistent scene controls", () => {
+test("main and Animator mount one generated bar while reading controls stay panel-local", () => {
   const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  const animatorHtml = readFileSync(new URL("../animator.html", import.meta.url), "utf8");
+  const runtimeSource = readFileSync(
+    new URL("../src/apps/architrino/ArchitrinoSceneAppRuntime.js", import.meta.url),
+    "utf8",
+  );
 
+  const sceneHudToolsIndex = html.indexOf('id="scene-hud-tools"');
   const markdownDocButtonIndex = html.indexOf('id="markdown-doc-button"');
   const markdownPdfButtonIndex = html.indexOf('id="markdown-pdf-button"');
   const markdownLayoutToggleIndex = html.indexOf('id="markdown-layout-toggle"');
-  const sceneNavHistoryIndex = html.indexOf('id="scene-nav-history"');
-  const navUpButtonIndex = html.indexOf('id="nav-up"');
-  const navForwardButtonIndex = html.indexOf('id="nav-forward"');
+  const markdownCloseIndex = html.indexOf('id="markdown-close"');
+  const markdownPanelIndex = html.indexOf('id="markdown-panel"');
 
+  assert.ok(sceneHudToolsIndex > -1);
   assert.ok(markdownDocButtonIndex > -1);
   assert.ok(markdownPdfButtonIndex > -1);
   assert.ok(markdownLayoutToggleIndex > -1);
-  assert.ok(sceneNavHistoryIndex > -1);
-  assert.ok(navUpButtonIndex > -1);
-  assert.ok(navForwardButtonIndex > -1);
+  assert.ok(markdownCloseIndex > -1);
+  assert.ok(markdownPanelIndex > -1);
+  assert.match(html, /<div id="scene-hud-tools"><\/div>/u);
+  assert.match(animatorHtml, /<div id="scene-hud-tools"><\/div>/u);
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/u);
+  assert.match(animatorHtml, /src\/runtime\/top-dynamic-control-bar\.css/u);
+  assert.match(html, /id="animator-top-dynamic-control-bar-mount"/u);
+  assert.match(animatorHtml, /id="animator-top-dynamic-control-bar-mount"/u);
+  for (const staticHtml of [html, animatorHtml]) {
+    assert.doesNotMatch(staticHtml, /id="(?:textbook-toc-button|scene-nav-history|nav-up|nav-forward|home-button|scene-search-toggle)"/u);
+  }
 
-  assert.ok(markdownDocButtonIndex < markdownPdfButtonIndex);
-  assert.ok(markdownPdfButtonIndex < markdownLayoutToggleIndex);
-  assert.ok(markdownLayoutToggleIndex < sceneNavHistoryIndex);
-  assert.ok(sceneNavHistoryIndex < navUpButtonIndex);
-  assert.ok(navUpButtonIndex < navForwardButtonIndex);
+  const actionBlock = runtimeSource.match(
+    /const topDynamicControlBarRuntime = createTopDynamicControlBar\(\{[\s\S]*?document: globalThis\.document/u,
+  )?.[0] ?? "";
+  const actionIndexes = ["toc", "back", "forward", "home", "search"].map((kind) =>
+    actionBlock.indexOf(`kind: "${kind}"`),
+  );
+  assert.ok(actionIndexes.every((index) => index > -1));
+  assert.deepEqual(actionIndexes, [...actionIndexes].sort((a, b) => a - b));
+
+  assert.ok(sceneHudToolsIndex < markdownPanelIndex);
+  assert.ok(markdownPanelIndex < markdownDocButtonIndex);
+  assert.ok(markdownDocButtonIndex < markdownLayoutToggleIndex);
+  assert.ok(markdownLayoutToggleIndex < markdownPdfButtonIndex);
+  assert.ok(markdownPdfButtonIndex < markdownCloseIndex);
 });
 
 test("main scene shell uses the favored brand purple as its first-paint background", () => {
@@ -38,24 +61,22 @@ test("main scene shell uses the favored brand purple as its first-paint backgrou
   assert.match(css, /--scene-background: var\(--ui-brand-purple\);/u);
 });
 
-test("standalone TOC lozenges retain the Home TOC typography", () => {
-  const homeCss = readFileSync(new URL("../style.css", import.meta.url), "utf8");
-  const sharedNavigationCss = readFileSync(
-    new URL("../src/apps/navigator/standalone-app-navigation.css", import.meta.url),
+test("canonical TOC lozenge retains its typography after the legacy stylesheet is removed", () => {
+  const sharedCss = readFileSync(
+    new URL("../src/runtime/top-dynamic-control-bar.css", import.meta.url),
     "utf8",
   );
+  const canonicalRule =
+    sharedCss.match(/\.top-dynamic-control-bar-action\.is-toc\s*\{(?<body>[^}]*)\}/u)?.groups?.body ?? "";
 
-  const homeRule =
-    homeCss.match(/#textbook-toc-button\s*\{(?<body>[^}]*)\}/u)?.groups?.body ?? "";
-
-  const tocRule =
-    sharedNavigationCss.match(
-      /\.standalone-app-toc-button\s*\{(?<body>[^}]*)\}/u,
-    )?.groups?.body ?? "";
-  for (const rule of [homeRule, tocRule]) {
-    assert.match(rule, /font:\s*inherit/u);
-    assert.match(rule, /font-size:\s*12px/u);
-    assert.match(rule, /font-weight:\s*700/u);
-    assert.match(rule, /line-height:\s*1/u);
-  }
+  assert.match(canonicalRule, /font-size:\s*12px/u);
+  assert.match(canonicalRule, /font-weight:\s*700/u);
+  assert.match(canonicalRule, /line-height:\s*1/u);
+  assert.match(sharedCss, /\.top-dynamic-control-bar-action\s*\{[\s\S]*?box-sizing:\s*border-box/u);
+  assert.match(sharedCss, /\.top-dynamic-control-bar-action\s*\{[\s\S]*?min-height:\s*32px/u);
+  assert.match(sharedCss, /\.top-dynamic-control-bar-action\s*\{[\s\S]*?font:\s*inherit/u);
+  assert.equal(
+    existsSync(new URL("../src/apps/navigator/standalone-app-navigation.css", import.meta.url)),
+    false,
+  );
 });

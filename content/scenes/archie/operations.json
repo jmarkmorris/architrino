@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__operations",
+    "title": "Archie Operations",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "website_stats",
+        "scenePath": "content/scenes/archie/website_stats.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "website_stats",
+      "title": "Website Statistics",
+      "radius": 2.2,
+      "color": "#0f766e",
+      "labelTitle": "Website Statistics",
+      "labelSubtitle": "Public operations utility",
+      "labelBadge": "stats"
+    }
+  ]
+}

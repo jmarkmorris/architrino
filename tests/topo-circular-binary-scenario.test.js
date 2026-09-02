@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 import {
@@ -65,23 +66,33 @@ function createIndependentSourceRecord(
       : 1) * beta / radius,
     angularAcceleration: 0,
   };
+  const history = { start: 0, end: observationTime };
+  const sources = [
+    {
+      id: "electrino",
+      charge: -1,
+      trajectory: { ...commonTrajectory, phaseAtEpoch: Math.PI },
+    },
+    {
+      id: "positrino",
+      charge: 1,
+      trajectory: { ...commonTrajectory, phaseAtEpoch: 0 },
+    },
+  ].filter((source) => source.id === sourceId);
+  const modelRevisionSha256 = createHash("sha256").update(JSON.stringify({
+    history,
+    sources,
+    fieldSpeed: 1,
+    sourceLaw: "default uncapped emission-site acceleration law",
+  })).digest("hex");
   return {
     schema: "prescribed-path-analysis/exact-source-record.v1",
+    assemblyId: `asm-${modelRevisionSha256.slice(0, 32)}`,
+    modelRevisionSha256,
     recordId: "topo-circular-binary-independent-reference",
     engineId: "prescribed-geometry",
-    history: { start: 0, end: observationTime },
-    sources: [
-      {
-        id: "electrino",
-        charge: -1,
-        trajectory: { ...commonTrajectory, phaseAtEpoch: Math.PI },
-      },
-      {
-        id: "positrino",
-        charge: 1,
-        trajectory: { ...commonTrajectory, phaseAtEpoch: 0 },
-      },
-    ].filter((source) => source.id === sourceId),
+    history,
+    sources,
   };
 }
 
@@ -658,5 +669,9 @@ test("binary UI removes no-op contours and preserves accessible shared transport
   assert.match(runtime, /event\.preventDefault\(\);[\s\S]*toggleBinaryPlayback/u);
   assert.match(runtime, /--ui-color-electric-purple/u);
   assert.doesNotMatch(scenario, /asinh|arsinh|constant.velocity/iu);
-  assert.match(tokens, /--ui-color-electric-purple: #8f00ff;/u);
+  assert.match(tokens, /--ui-brand-purple-electric: #8f00ff;/u);
+  assert.match(
+    tokens,
+    /--ui-color-electric-purple: var\(--ui-brand-purple-electric\);/u,
+  );
 });

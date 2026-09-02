@@ -25,7 +25,7 @@
     "sameRecordSupportJoinPath": "scripts/nuclear-atomic/same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-retained-evidence.v1.json",
     "openColorProjectionSupportPath": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json",
     "sameRecordAuditBlockerPath": "scripts/nuclear-atomic/same-record-no-open-color-audit-source-acquisition-blocker.v1.json",
-    "priorityContextPath": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+    "priorityContextPath": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
   },
   "acceptedInputRows": {
     "accepted_proton_branch_interface_ledger": "scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json",

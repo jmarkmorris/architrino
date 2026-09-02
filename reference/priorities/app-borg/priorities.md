@@ -3,11 +3,11 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `7`
-- Value: `16.38`
-- Cost: `4.3`
-- ROI: `3.81`
-- Status: `design-open`
+- Rank: `15`
+- Value: `0.46`
+- Cost: `5.1`
+- ROI: `0.09`
+- Status: `deferred`
 - Claim level: `priority-design`
 - Execution ledger: [work queue](work-queue.md)
 - Design packet: [requirements-and-design](requirements-and-design.md)

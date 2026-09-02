@@ -101,9 +101,9 @@ is nonempty. Local sector success is therefore not mature until at least one sha
 - [mapping-quantum](../../mapping-quantum/priorities.md)
 - [mapping-standard-model](../../mapping-standard-model/priorities.md)
 - [mapping-strong-field](../../mapping-strong-field/priorities.md)
-- [mapping-cosmology](../../mapping-cosmology/priorities.md)
+- [mapping-cosmology](../mapping-cosmology/priorities.md)
 - mass-map
-- [app-simulation](../../app-simulation/priorities.md)
+- [simulation protocol routing index](../../../op/simulation-protocol-routing-index.md)
 
 ## Related AAA Notes
 

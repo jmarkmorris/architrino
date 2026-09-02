@@ -4,12 +4,26 @@ export function createAppSceneChromeRuntime({
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
+  topDynamicControlBarRuntime,
 }) {
   function updateTextbookTocButton(currentLevel, options = {}) {
     if (!textbookTocButton) {
       return;
     }
     const isTextbookToc = currentLevel?.id === options.textbookTocScenePath;
+    if (topDynamicControlBarRuntime) {
+      topDynamicControlBarRuntime.update({
+        toc: {
+          hidden: false,
+          pressed: isTextbookToc,
+          label: isTextbookToc
+            ? "Return from textbook table of contents"
+            : "Open textbook table of contents",
+          disabled: !!options.transitionActive || !currentLevel,
+        },
+      });
+      return;
+    }
     textbookTocButton.classList.remove("is-hidden");
     textbookTocButton.classList.toggle("is-active", isTextbookToc);
     textbookTocButton.setAttribute(

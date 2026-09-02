@@ -10,12 +10,15 @@ import { fileURLToPath } from "node:url";
 // test runner but hard-fails module loading in the browser, leaving the app
 // with a blank canvas. This exact failure shipped when the
 // prescribed-path-analysis barrel (index.mjs) grew campaign/database exports
-// that import node:crypto and the A1 Lorentz Geometry and Photon runtimes
+// that import node:crypto and the Lorentz Geometry and Photon runtimes
 // imported the barrel.
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const BROWSER_ENTRY_MODULES = [
+  "src/apps/borg/main.js",
+  "src/apps/borg/library/main.js",
+  "src/apps/braid-search/main.js",
   "src/apps/ideal-braid/main.js",
   "src/apps/photon/main.js",
 ];

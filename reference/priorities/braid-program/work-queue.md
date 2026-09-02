@@ -13,10 +13,10 @@ The detailed planar common-center three-binary constraint investigation is maint
 3. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
 4. `coincident_midpoint_421_coaxial_two_planar_braid_v2_adjudication` — [BP-007](#bp-007--421-coincident-midpoint--co-rotating-two-planar-braid-adjudication). Status: `Deferred / blocked`.
 5. `asymmetric_counter_breathing_member_acceleration` — [BP-010](#bp-010--asymmetric-counter-breathing-representative-normalized-member-acceleration-predeclaration). Status: `Full conditional cover independently verified; one-cell acceleration range accepted, full M05/M06 quadrature and three-rung measurement outstanding`.
-6. `planar_common_center_three_binary_investigation` — [BP-011](#bp-011--planar-common-center-three-binary-constraint-investigation). Status: `Queued`; detailed status lives in the [planar common-center three-binary constraint work queue](planar-three-binary-work-queue.md).
-7. `circular_path_regular_polarity_completion` — [BP-012](#bp-012--circular-path-regular-polarity-completion). Status: `Queued`.
-8. `circular_path_nonuniform_phase_census` — [BP-013](#bp-013--circular-path-nonuniform-phase-census). Status: `Queued`.
-9. `circular_path_large_n_law` — [BP-014](#bp-014--circular-path-large-n-law). Status: `Queued`.
+6. `planar_common_center_three_binary_investigation` — [BP-011](#bp-011--planar-common-center-three-binary-constraint-investigation). Status: `In progress`; higher-order ladder asymptotics is the live subordinate object.
+7. `circular_path_regular_polarity_completion` — [BP-012](#bp-012--circular-path-regular-polarity-completion). Status: `In progress`.
+8. `circular_path_nonuniform_phase_census` — [BP-013](#bp-013--circular-path-nonuniform-phase-census). Status: `In progress`.
+9. `circular_path_large_n_law` — [BP-014](#bp-014--circular-path-large-n-law). Status: `In progress`.
 10. `platonic_braid_qualification_and_prescribed_history` — [BP-016](#bp-016--platonic-braid-qualification-and-prescribed-history-program). Status: `Queued`.
 11. `packed_platonic_assembly_histories` — [BP-017](#bp-017--packed-platonic-assembly-history-program). Status: `Queued`.
 
@@ -43,7 +43,7 @@ The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evalua
 | `coincident-axis three-binary configuration` | `STASIS` | Chart ratified; no executable slice queued | nominate one frozen executable point before any measured claim; a locus-wide claim separately requires coverage certification over the ratified coordinate domain |
 | `axial-transverse coincident-axis three-binary interior configuration` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed; the obsolete score-free compatibility packet was withdrawn with zero roots evaluated and zero scores computed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; any local-landscape center pilot requires a fresh current exact-identity freeze |
 | `high-axial coincident-axis three-binary interior configuration` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
-| `planar common-center three-binary constraint` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed; the [T04 exact-reference handoff](evidence/2026-09-01-planar-three-binary-t04-exact-reference-handoff.md) and bounded [axial-translation-speed chart](evidence/2026-09-01-planar-three-binary-axial-translation-speed-chart.md) are accepted, while the earlier past-only release accepted only a short finite prefix before `root_completeness_not_certified` and no full-cycle return exists; detailed investigation is queued under [BP-011](#bp-011--planar-common-center-three-binary-constraint-investigation) | execute the ranked objects in the [planar common-center three-binary constraint work queue](planar-three-binary-work-queue.md), beginning with the global equal-radius ladder theorem; no score, retention, or stability promotion |
+| `planar common-center three-binary constraint` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed; the [T04 exact-reference handoff](evidence/2026-09-01-planar-three-binary-t04-exact-reference-handoff.md), bounded [axial-translation-speed chart](evidence/2026-09-01-planar-three-binary-axial-translation-speed-chart.md), and [global equal-radius ladder theorem](evidence/2026-09-02-planar-three-binary-global-tail-calculus-reduction.md) are accepted, while the earlier past-only release accepted only a short finite prefix before `root_completeness_not_certified` and no full-cycle return exists; detailed investigation is in progress under [BP-011](#bp-011--planar-common-center-three-binary-constraint-investigation) | execute the ranked objects in the [planar common-center three-binary constraint work queue](planar-three-binary-work-queue.md), beginning with higher-order ladder asymptotics; no score, retention, or stability promotion |
 | `coincident-center co-rotating two-component circular configuration`--`coaxial-separated counter-rotating two-component circular configuration` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
 | `coaxial-separated co-rotating two-planar-braid configuration`, `coaxial-separated counter-rotating two-planar-braid configuration` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; `coaxial-separated co-rotating two-planar-braid configuration` has no remaining direct H2 dependency on `BP-007`; no score or retention promotion |
 | `F1`, `F2` | `STASIS` | executable-representation proposals available; operator selection required | ratify the proposed F1 circulation/sign sheet and F2 component-relation sheet before creating executable JSON; polarity is already declared or derived |
@@ -84,48 +84,50 @@ This register owns every deferred action from the [Neutral-Braid Configuration A
 
 Plainly: atlas mathematics remains available within its declared history scope. Physical fate stays with the candidate-specific rows, and the Gaussian-tail question keeps its two-owner handoff.
 
-## Queued
+## In progress
 
 ### BP-011 — planar common-center three-binary constraint investigation
 
-- **Status:** Queued
+- **Status:** In progress
 - **Priority object:** `planar_common_center_three_binary_investigation`
 - **Request / acceptance:** Execute the accepted mathematical, numerical-release, axial-translation, generalized-planar, stability, and same-record action objects in the subordinate [planar common-center three-binary constraint work queue](planar-three-binary-work-queue.md). Preserve the separate grades of prescribed balance, exact continuation, numerical reproduction, nearby-history retention, perturbation stability, translated balance, action/energy, and quantum-recovery comparison.
-- **Evidence / blocker:** The [tracked evidence packet](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md) closes the accepted foundation and names the numerical-release boundary. Individual dependencies and falsifiers live only in the subordinate queue. Reusable EOM-solver capability and delayed-action closure remain owned by their existing workstreams.
+- **Evidence / blocker:** The prescribed equal-radius zero census is globally complete. Higher-order ladder asymptotics is now the live unblocked subordinate object; individual dependencies and falsifiers for the remaining numerical-release, stability, and action rows live only in the subordinate queue. Reusable EOM-solver capability and delayed-action closure remain owned by their existing workstreams.
 - **Completion:** No planar common-center three-binary constraint detailed object remains `Queued`, `In progress`, or `Awaiting verification`; every completed result has durable evidence, and every remaining object is explicitly withdrawn, superseded, or dependency-blocked. Completion grants no automatic score, retention, stability, binding, physical identity, energy-spectrum, transition, or scientific-acceptance promotion.
 
 ### BP-012 — Circular-path regular-polarity completion
 
-- **Status:** Queued
+- **Status:** In progress
 - **Priority object:** `circular_path_regular_polarity_completion`
 - **Closure goal:** Complete the bounded regular-ring polarity-word landscape for the inventories whose alternating rows alone have been tested.
-- **Request / acceptance:** For each regular neutral $N{:}N$ ring with $7\leq N\leq12$, enumerate every polarity-word orbit modulo cyclic rotation, global polarity conjugation, and the already checked reflection-with-circulation action. Search each representative on the existing $0.05\leq\beta_f\leq20$ domain with complete prescribed-path root ledgers, explicit topology-boundary probes, residual refinement, and an unchanged independent evaluator. Preserve the distinction between a measured bounded-search negative and an interval-certified no-zero result.
-- **Evidence / blocker:** Every regular polarity orbit is already enumerated and searched through $N=6$; for $N=7$ through $N=12$, only the alternating word has been tested. The accepted alternating candidates therefore establish existence in one class per inventory, not polarity completeness.
+- **Request / acceptance:** Source-bind the exact orbit manifest and the shared circular-kernel reduction, then search every regular neutral $N{:}N$ polarity representative for $7\leq N\leq12$ on $0.05\leq\beta_f\leq20$ with complete root ledgers, explicit topology-boundary probes, residual refinement, and unchanged independent evaluators. Preserve the distinction between a measured bounded-search negative and an interval-certified no-zero result.
+- **Evidence / blocker:** The [orbit and shared-kernel reduction](evidence/2026-09-02-bp012-regular-polarity-orbit-reduction.md) derives exactly 85, 257, 765, 2,518, 8,359, and 28,968 symmetry-distinct balanced words for $N=7$ through $N=12$, totaling 40,952. Causal geometry depends only on phase separation, so one root kernel per $(N,\beta_f)$ can be projected through every polarity word by circular convolution. The remaining blocker is a source-bound manifest, shared-kernel implementation, regular-only sharded producer, and completeness reducer; launching the old serial runner would redundantly recompute the same polarity-independent roots.
 - **Completion:** Every symmetry-distinct regular polarity word for $N=7$ through $N=12$ has a source-bound ledger, an independently checked balanced candidate or bounded negative disposition, and an explicit falsifier. Completion grants no nonregular-phase, evolution, retention, stability, binding, or physical-ranking conclusion.
 
-Plainly: the larger regular rings currently have one tested plus-minus pattern each. This object checks the other distinct ways to place equal numbers of the two polarities around the same regular polygon.
+Plainly: all distinct plus-minus patterns are now counted exactly. The active implementation must reuse one geometric root ledger per ring and speed before evaluating the 40,952 polarity combinations.
 
 ### BP-013 — Circular-path nonuniform-phase census
 
-- **Status:** Queued
+- **Status:** In progress
 - **Priority object:** `circular_path_nonuniform_phase_census`
 - **Closure goal:** Determine whether fixed unequal angular gaps add prescribed acceleration balances beyond the accepted regular circular-path rows.
-- **Request / acceptance:** Freeze a staged sequence of compact collision-free phase-gap domains for neutral circular-path inventories, quotient only the checked global phase, polarity-conjugation, and reflection-with-circulation symmetries, and evaluate the complete receiver-by-receiver vector residual without importing regular-polygon cancellations. Begin with the already enumerated $2\leq N\leq6$ polarity representatives, then extend only through separately declared domains. The subordinate planar queue has completed one local six-member T04 equal-radius phase box; BP-013 owns the broader phase-domain census and must not duplicate that accepted local box.
-- **Evidence / blocker:** The local T04 phase-box certificate establishes one isolated regular balance only on $|\delta_2|,|\delta_3|,|\beta_f-\beta_{\mathrm{T04}}|\leq9\times10^{-6}$. Existing wider nonuniform searches found no additional solution but did not cover their multidimensional phase domains. Regular balances and one local isolation box do not establish the larger fixed-phase census.
+- **Request / acceptance:** Begin with the alternating $2{:}2$ word on the declared $D_4$ gap chamber with $g_i\geq0.01$ and $0.05\leq\beta_f\leq20$. Certify the complete causal-root topology and all seven independent full-vector rows over that four-dimensional compact domain, isolate the accepted regular square or any additional nonregular zeros, and only then advance to `++--` or larger inventories. The subordinate planar queue's local six-member T04 box is accepted and must not be duplicated.
+- **Evidence / blocker:** The [first nonuniform-phase census reduction](evidence/2026-09-02-bp013-first-nonuniform-phase-census-reduction.md) derives an exact $D_4$ fundamental chamber and the seven-row balance obligation. A measured four-row Jacobian determinant of about $-1.60005222148\times10^5$ nominates the regular square for interval Newton but does not prove a continuous census. The remaining blocker is a fold-separated outward-rounded cover of the entire gap chamber with complete root ownership and complementary-delay exclusion.
 - **Completion:** Each declared phase domain has an independently checked zero census or an explicit fold, collision, or coverage boundary. A global nonregular-phase claim requires coverage of the stated collision-free quotient domain; a finite sample remains discovery evidence only.
 
-Plainly: this object moves the sites away from equal angular spacing while keeping them on one common circle. It asks whether exact balance is tied to a regular polygon or also occurs in lopsided fixed arrangements.
+Plainly: the first complete shape domain is now fixed. The active proof must either show that the alternating four-member square is the only balance in that domain or isolate a genuine lopsided balance.
 
 ### BP-014 — Circular-path large-N law
 
-- **Status:** Queued
+- **Status:** In progress
 - **Priority object:** `circular_path_large_n_law`
 - **Closure goal:** Prove or falsify an asymptotic speed-and-radius law for the regular alternating circular-path branch as member count grows.
-- **Request / acceptance:** Derive the large-$N$ causal-root equation for the regular alternating $2N$-gon, separate the even- and odd-$N$ antipodal-polarity cases, identify the topology branch followed by the accepted $N=2$ through $N=12$ rows, and obtain controlled existence, speed, compatible-radius, and remainder statements. Numerical regression may guide conjectures but cannot establish exact constants or branch uniqueness.
-- **Evidence / blocker:** Measured candidates exist through $N=12$ and their scales suggest a pattern, but the finite inventory does not prove persistence, uniqueness, parity independence, or an asymptotic law.
+- **Request / acceptance:** Derive the limiting tangential kernel for the coherent first-birth branch in scaled coordinates $x=N^{2/3}(\beta_f-1)$ and $h=1/N$, separately for even and odd $N$. Prove a unique limiting zero with a controlled uniform remainder, then derive the compatible-radius order. Numerical regression may guide conjectures but cannot establish exact constants or branch uniqueness.
+- **Evidence / blocker:** The [large-$N$ fold-scaling reduction](evidence/2026-09-02-bp014-large-n-fold-scaling-reduction.md) proves that fixed post-birth topology forces $\beta_f-1=O(N^{-2/3})$. The accepted ledgers also falsify a single branch through $N=2$ through $N=12$: $N=7$ has $4N$ roots per receiver, while $N=8$ through $N=12$ lie on the $2N+2$ first-birth topology. The speed exponent is derived from causal-root geometry; the limiting balance constant, uniqueness, parity dependence, uniform remainder, and radius order remain open.
 - **Completion:** A derivation with explicit hypotheses and error bounds proves one declared large-$N$ branch and its speed/radius scaling, or a certified counterexample or branch change falsifies the proposed law. No stability or physical-spectrum conclusion follows from geometric scaling.
 
-Plainly: the current table shows how the first several balanced regular rings grow. This object decides whether those rows follow one mathematical rule or merely resemble one over a short finite range.
+Plainly: the finite table does not follow one branch. The active theorem now targets the coherent low-speed branch and must derive its balance constant before interpreting the radius data.
+
+## Queued
 
 ### BP-016 — Platonic braid qualification and prescribed-history program
 

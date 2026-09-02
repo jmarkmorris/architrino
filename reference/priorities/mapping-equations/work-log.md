@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 EQM-010 solved-wave inverse-clue audit complete
+
+Completed the bounded [Solved-Wave Inverse-Clue Audit](solved-wave-inverse-clue-audit.md) from already available comparison material. Six retained clues—causal Green-function support, plane/eikonal dispersion, boundary-mode counting, scattering flux/phase consistency, Klein-Gordon mode-gap dispersion, and Schrödinger Gaussian density/current flow—now each map to an existing equation row and an existing failure control or operator-checkable residual. The moving-source Green-function example makes the reverse constraint concrete by requiring complete causal roots, source identity, transversality, and zero pre-arrival support before an `EQ-13` field comparison can count.
+
+No external source was newly acquired or inspected, no source-history row was added, and no checker, requirement, equation score, accepted carrier, or reader-facing claim changed. Generic bound-state spectra, nonlinear solitons, carrier-level wavefunction ontology, and phase-only scattering fits were rejected because they lack an existing row/falsifier pair or bypass same-record native provenance. `EQM-010` was removed from the live queue and following rows were renumbered.
+
+Plainly: solved equations now have a bounded role as tests of existing carriers. They do not stand in for those carriers or strengthen any physics claim by themselves.
+
 ### 2026-08-27 General theory-to-braid requirement inference relocated
 
 Moved [Inferring Braid Requirements](inferring-braid-requirements.md) intact from Mapping Electromagnetism, rebased its relative references, and made Equation Mapping the general inference owner under the [shared architecture](../mapping/mapping-method.md). Its electromagnetic material remains a domain application. Candidate adjudication and focused asymmetric counter-breathing representative/three-binary geometry now live in the Braid Program. The [relocation record](../mapping-electromagnetism/work-log.md#2026-08-27--general-requirements-and-candidate-geometry-ownership-split) lists all nine moved files and the preserved source-provenance boundary. Existing derivations, section anchors, evidence grades, equation scores, and queue states are unchanged.

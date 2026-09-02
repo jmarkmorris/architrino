@@ -35,6 +35,6 @@ The lane is priority-only. It does not change the claim level of any $\mathbb{A}
 
 ## Related Priorities
 
-- [mapping-cosmology](../../mapping-cosmology/priorities.md)
+- [mapping-cosmology](../mapping-cosmology/priorities.md)
 - [source-mining](../../source-mining/priorities.md)
 - [media-videos](../media-videos/priorities.md)

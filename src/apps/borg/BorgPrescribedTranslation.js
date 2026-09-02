@@ -23,28 +23,30 @@ export function resolveBorgPrescribedTranslation(entry) {
       "The selected record is not a prescribed-geometry record.",
     );
   }
-  const group = provenance.prescribedGeometry?.coordinates?.group;
-  if (!group || typeof group !== "object" || Array.isArray(group)) {
+  const assemblyPlacement = provenance.prescribedGeometry?.coordinates?.geometry
+    ?.assemblyPlacement;
+  if (!assemblyPlacement || typeof assemblyPlacement !== "object" ||
+      Array.isArray(assemblyPlacement)) {
     return unavailable(
       recordId,
-      "missing-group-translation",
-      "Missing carrier: provenance.prescribedGeometry.coordinates.group.",
+      "missing-assembly-placement",
+      "Missing carrier: provenance.prescribedGeometry.coordinates.geometry.assemblyPlacement.",
     );
   }
-  const centerAtEpoch = readVectorArray(group.centerAtEpoch);
+  const centerAtEpoch = readVectorArray(assemblyPlacement.centerAtEpoch);
   if (!centerAtEpoch) {
     return unavailable(
       recordId,
-      "missing-group-center-at-epoch",
-      "Missing carrier: provenance.prescribedGeometry.coordinates.group.centerAtEpoch.",
+      "missing-assembly-placement-center-at-epoch",
+      "Missing carrier: provenance.prescribedGeometry.coordinates.geometry.assemblyPlacement.centerAtEpoch.",
     );
   }
-  const velocity = readVectorArray(group.velocity);
+  const velocity = readVectorArray(assemblyPlacement.velocity);
   if (!velocity) {
     return unavailable(
       recordId,
-      "missing-group-translation-velocity",
-      "Missing carrier: provenance.prescribedGeometry.coordinates.group.velocity.",
+      "missing-assembly-placement-velocity",
+      "Missing carrier: provenance.prescribedGeometry.coordinates.geometry.assemblyPlacement.velocity.",
     );
   }
   const speed = Math.hypot(velocity.x, velocity.y, velocity.z);
@@ -57,7 +59,7 @@ export function resolveBorgPrescribedTranslation(entry) {
     speed,
     stationary: speed === 0,
     source:
-      "provenance.prescribedGeometry.coordinates.group.centerAtEpoch/velocity",
+      "provenance.prescribedGeometry.coordinates.geometry.assemblyPlacement.centerAtEpoch/velocity",
     message: speed === 0
       ? "The source carries a zero common translation; fixed and co-translating views coincide."
       : "The co-translating view subtracts only the source-carried common translation.",

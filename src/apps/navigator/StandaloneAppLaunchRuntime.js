@@ -1,5 +1,5 @@
 const standaloneAppPathBySceneToken = Object.freeze({
-  "assembly-explorer": "assembly-explorer.html",
+  "assembly-explorer": "borg-library.html",
   "causal-delay-feedback": "causal-delay-feedback.html",
   "equation-mapping": "equation-mapping.html",
   "greek-letter-match": "greek-letter-match.html",
@@ -13,7 +13,7 @@ const standaloneAppPathBySceneToken = Object.freeze({
   "braid-search": "braid-search.html",
   borg: "borg-library.html",
   "content/scenes/archie/animator.json": "animator.html",
-  "content/scenes/archie/assembly_explorer.json": "assembly-explorer.html",
+  "content/scenes/archie/assembly_explorer.json": "borg-library.html",
   "content/scenes/archie/borg.json": "borg-library.html",
   "content/scenes/archie/braid_search.json": "braid-search.html",
   "content/scenes/archie/causal_delay_feedback.json": "causal-delay-feedback.html",
@@ -28,9 +28,25 @@ const standaloneAppPathBySceneToken = Object.freeze({
   molecule: "molecule.html",
 });
 
-const internalStandaloneAppSceneTokens = new Set([
+// Direct-route resolution is transport, not product classification. These
+// operational or developer surfaces remain launchable without entering the
+// reader-facing product search catalogue.
+const nonProductSceneTokens = new Set([
+  "assembly-explorer",
+  "content/scenes/archie/assembly_explorer.json",
+  "aaa-core",
+  "aaa_core",
+  "app-aaa-core",
+  "archie__aaa_core",
+  "content/scenes/archie/aaa_core.json",
   "braid-search",
   "content/scenes/archie/braid_search.json",
+  "archie__website_stats",
+  "content/scenes/archie/website_stats.json",
+  "archie__brand_visual_identity",
+  "content/scenes/archie/brand_visual_identity.json",
+  "archie__ui_guidelines",
+  "content/scenes/archie/ui_guidelines.json",
 ]);
 
 export function getStandaloneAppPathForScene(sceneToken = "") {
@@ -38,11 +54,11 @@ export function getStandaloneAppPathForScene(sceneToken = "") {
   return standaloneAppPathBySceneToken[normalizedSceneToken] ?? null;
 }
 
-export function isPublicStandaloneAppSearchEntry(entry = {}) {
+export function isPublicProductSceneSearchEntry(entry = {}) {
   const tokens = [entry?.id, entry?.path]
     .map((token) => String(token ?? "").trim())
     .filter(Boolean);
-  return tokens.every((token) => !internalStandaloneAppSceneTokens.has(token));
+  return tokens.every((token) => !nonProductSceneTokens.has(token));
 }
 
 export function resolveStandaloneAppHrefForScene(sceneToken = "", currentHref = "") {

@@ -1,0 +1,90 @@
+{
+  "schema": "archie-mcp-named-client-conformance/v1",
+  "recordId": "chatgpt_desktop_http_full_corpus_conformance_2026_09_02",
+  "capturedAt": "2026-09-02T18:02:15Z",
+  "surface": {
+    "name": "ChatGPT mode in the unified ChatGPT desktop app",
+    "version": "26.831.20005",
+    "build": "7524"
+  },
+  "evidence": {
+    "clientResult": "operator-supplied ChatGPT response retained in the closing Codex task",
+    "serverTelemetry": "five consecutive tool requests from one pseudonymous principal in the loopback server log",
+    "grade": "operator-supplied client result corroborated by measured server telemetry"
+  },
+  "configuration": {
+    "serverName": "architrino_full_http_test",
+    "transport": "streamable_http",
+    "url": "http://127.0.0.1:52348/mcp",
+    "networkScope": "IPv4 loopback only",
+    "authentication": "test-only unauthenticated authorizer",
+    "workingStdioEntryPreserved": true
+  },
+  "snapshot": {
+    "scope": "current full corpus",
+    "records": 2042,
+    "snapshotId": "source_snapshot_full_corpus_v1_6ab8e3d3608d946ccde0",
+    "snapshotSha256": "ce98a3682daa8b0196253a6919c6fc3fa62f334875899f5620f3978f93647913"
+  },
+  "calls": [
+    {
+      "tool": "topics",
+      "arguments": { "limit": 1 },
+      "structuredStatus": "ok",
+      "returnedSourceId": "source.published-corpus.content.markdown.aaa.validation.architrino.si.base.units",
+      "serverRequestId": "2d4136a9-ddf8-4ed6-a2c2-f6b7b58e7ca4",
+      "serverHttpStatus": 200
+    },
+    {
+      "tool": "search",
+      "arguments": { "query": "ontology", "limit": 1 },
+      "structuredStatus": "ok",
+      "returnedSourceId": "source.published-corpus.content.markdown.aaa.foundations.ontology",
+      "serverRequestId": "ebae41b6-d091-4e9a-acec-0e4da0d33c45",
+      "serverHttpStatus": 200
+    },
+    {
+      "tool": "read",
+      "arguments": {
+        "topicOrRoute": "source.published-corpus.content.markdown.aaa.foundations.ontology",
+        "maxContentChars": 256
+      },
+      "structuredStatus": "ok",
+      "returnedSourceId": "source.published-corpus.content.markdown.aaa.foundations.ontology",
+      "serverRequestId": "e34c40fc-c18f-4c04-91ae-6a8f4a1c12ef",
+      "serverHttpStatus": 200
+    },
+    {
+      "tool": "neighbors",
+      "arguments": {
+        "topicOrRoute": "source.published-corpus.content.markdown.aaa.foundations.ontology",
+        "edgeTypes": ["contains"],
+        "limit": 1
+      },
+      "structuredStatus": "ok",
+      "originSourceId": "source.published-corpus.content.markdown.aaa.foundations.ontology",
+      "returnedSourceId": "source.published-corpus.content.markdown.aaa.foundations.ontology.section.open-questions-and-validation-routing",
+      "serverRequestId": "ee2eafb5-d73f-4aa6-bd04-6909702f6cad",
+      "serverHttpStatus": 200
+    },
+    {
+      "tool": "read",
+      "arguments": { "topicOrRoute": "source.missing-full-corpus-conformance" },
+      "structuredStatus": "not_found",
+      "structuredErrorCode": "SOURCE_NOT_FOUND",
+      "returnedSourceId": null,
+      "inventedContentReturned": false,
+      "serverRequestId": "772316f4-abba-463d-a880-40688ce08b0d",
+      "serverHttpStatus": 200
+    }
+  ],
+  "result": "pass_current_full_corpus_named_chatgpt_surface",
+  "boundaries": {
+    "clientAttribution": "The operator submitted the five-case prompt in ChatGPT mode and pasted the structured result into the closing Codex task in the same unified desktop application.",
+    "telemetryScope": "Server telemetry independently corroborates the tool order, one client principal, HTTP success, and snapshot identity. It does not retain tool arguments or structured response bodies, so those fields remain operator-supplied client evidence.",
+    "typedNotFound": "SOURCE_NOT_FOUND is a successful HTTP transport carrying a typed application-level not_found result.",
+    "authentication": "Bearer-token handling was not tested by this manual connection.",
+    "remoteDeployment": "TLS ingress, trusted-proxy handling, deployed authorization, accepted-main publication, hosting, availability, and rollback remain unmeasured and are outside MCP-001.",
+    "theoryAuthority": "Retrieval conformance does not promote or validate any theory claim."
+  }
+}

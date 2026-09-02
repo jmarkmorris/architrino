@@ -5,14 +5,14 @@
 - Kind: `priority`
 - Queue item: `MEC-006`
 - Priority object: `receiver_wake_gradient_closure`
-- Claim level: `priority-only derivation and proof design`
+- Claim level: `complete at bounded regular-domain derivative scope; singular boundaries terminally quarantined`
 - Workstream: [master-equation-closure](priorities.md)
 - Related queue items: [MEC-001 characteristic-tail action adjudication](work-queue.md#mec-001--characteristic-tail-action-adjudication), [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md), and [MEC-007 mirror close-approach causal-root boundary](mirror-close-approach-causal-root-boundary.md)
 - Routed research input: [wake reception, transfer, and maturity](../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) invokes MEC-006 only when a reception candidate actually consumes a receiver/self acceleration-gradient row; it is not a blanket gate on allocation research.
 - External review evidence: operator-supplied independent mathematical audit of the regular fixed-reception Jacobian and singular-boundary extension problem, received 2026-07-29. No public source identity or durable external artifact was supplied.
 - Finite-width review input: operator-supplied mathematical review of constant-time emission and causal-defect mollification, received 2026-07-29. Its nonuniqueness argument is incorporated below with corrected regular-domain and coincident-boundary scope.
-- Current disposition: `INCOMPLETE`
-- Promotion status: not promoted
+- Current disposition: `COMPLETE AT BOUNDED SCOPE`
+- Promotion status: the regular moving-simple-root result is incorporated in the Master Equation; no singular-boundary value is promoted
 
 ## Finding
 
@@ -20,7 +20,7 @@ The canonical regular partner-root acceleration operator already contains the ar
 
 The regular partner-root receiver gradient is closed analytically under fixed reception time, fixed retained transmitter history, positive separation, and a nonzero transmitter factor. The external audit independently rederived that open-domain tensor. The separately structured numerical verifier [`verify-receiver-wake-gradient.mjs`](../../../scripts/equation-mapping/verify-receiver-wake-gradient.mjs) also accepts static, constant-velocity, and uniform-circular three-dimensional controls without importing the analytic tensor scaffold or the EOM solver sensitivity implementation.
 
-The same instantaneous receiver formula applies to one positive-delay same-history root only when the past transmitter point is held fixed and the root has certified separation and transmitter-factor floors. It does not define the trivial self diagonal, a fold, a coincident same-transmitter birth, or the full functional derivative in which current and past points belong to one varied history. Without a predeclared core or diagonal rule, no uniform receiver/self gradient exists for the exhibited positive-delay family as it approaches the diagonal. The external audit also proves that the open-domain mathematics does not select a unique fold, coincident-birth, or self-diagonal boundary extension.
+The same instantaneous receiver formula applies to one positive-delay same-history root only when the past transmitter point is held fixed and the root has certified separation and transmitter-factor floors. It does not define the trivial self diagonal, a fold, a coincident same-transmitter birth, or the full functional derivative in which current and past points belong to one varied history. Without a predeclared core or diagonal rule, no uniform receiver/self gradient exists for the exhibited positive-delay family as it approaches the diagonal. The external audit also proves that the open-domain mathematics does not select a unique fold, coincident-birth, or self-diagonal boundary extension. MEC-006 therefore closes at the exact boundary of that theorem: the verified regular tensor is accepted, while every singular derivative row is terminally `quarantined_unresolved` and returns `Not advanced` rather than a numerical value.
 
 Plainly: the ordinary partner-root derivative can be written completely. It includes the fact that moving the receiver changes which past emission time is selected. Independent analytic and numerical checks now support that regular result. They do not repair the unresolved self diagonal or turn a scalar wake picture into an accepted action.
 
@@ -35,11 +35,11 @@ This packet derives one fixed-reception spatial derivative and designs its small
 - stability, binding, retention, rebound, or a physical energy account;
 - an EOM solver acceptance result;
 - a finite fold or coincident same-transmitter continuation; or
-- closure of MEC-001, MEC-005, or MEC-007.
+- closure of MEC-001 or MEC-005, or any enlargement of completed MEC-007.
 
-The stationary mirror first-boundary theorem, complete pre-boundary root and singularity ledger, same-event root-admission question, and unchanged sharp-law post-threshold obstruction are owned separately by [MEC-007](mirror-close-approach-causal-root-boundary.md). They are not MEC-006 verification or completion evidence.
+The stationary mirror first-boundary theorem, complete pre-boundary root and singularity ledger, exact same-event exclusion, and unchanged sharp-law post-threshold obstruction are completed separately by [MEC-007](mirror-close-approach-causal-root-boundary.md). They are not MEC-006 verification or completion evidence.
 
-MEC-005 may use this result only as an acceleration-operator readiness obligation. Its two-body conservation interpretation remains gated on an accepted MEC-006 receiver/self gradient, the separate MEC-001 action adjudication where that route is invoked, and the independently derived wake and boundary accounts already required by MEC-002 and MEC-004.
+MEC-005 may use the accepted regular rows only as an acceleration-operator readiness input. A calculation that requires a singular derivative row remains consumer-ineligible under the terminal quarantine. Its two-body conservation interpretation remains gated on a separately accepted MEC-002/MEC-003 boundary update and the independently derived wake and boundary accounts required by MEC-004.
 
 Plainly: this work checks how one legal acceleration row changes under a small receiver displacement. It does not say what account that row carries or whether a two-body encounter conserves anything.
 
@@ -760,7 +760,7 @@ No option in this table is selected or accepted. The table records the new assum
 
 | Candidate treatment | New assumption | Regular-domain compatibility | Pointwise evolution value | Regulator dependence and verification obligation | MEC-005 provenance consequence | MEC-004 signed-account consequence | Acceptance condition and falsifier |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Unresolved boundary quarantine | The declared operator domain excludes folds, coincident births, and the self diagonal. | Exact on every admitted regular root. | No boundary value. | No regulator; every excluded evaluation must return `Not advanced`. | Preserve the unresolved boundary event and all incident root identities; do not record a zero row. | No signed-account row can be claimed across the unresolved event. | Accepted only as the current operational restriction, not closure; falsified by silent zeroing, branch deletion, or finite-part substitution. |
+| Unresolved boundary quarantine | The declared operator domain excludes folds, coincident births, and the self diagonal. | Exact on every admitted regular root. | No boundary value. | No regulator; every excluded evaluation must return `Not advanced`. | Preserve the unresolved boundary event and all incident root identities; do not record a zero row. | No signed-account row can be claimed across the unresolved event. | Accepted as the terminal boundary of MEC-006's bounded derivative scope, not as singular continuation or complete Master Equation closure; falsified by silent zeroing, branch deletion, finite-part substitution, or consumption of a quarantined row. |
 | Fixed spatial core | A core radius, interior acceleration profile, and matching rule are primitive additions. | Compatible only outside the declared core and only if the exterior row is unchanged. | Potentially, if the interior profile is complete. | Depends on radius, shape, and matching order; verify continuity class, scale sensitivity, and the zero-core limit without fitting to the target row. | Core entry, interior update, and exit need unique owners; incident regular roots remain visible. | Requires separately derived core-account maps on the same update; a residual cannot supply them. | Accept only with a derived or explicitly authorized profile and independent checks; falsified by regulator-shape dependence outside the declared core or duplicate event ownership. |
 | Fold-factor smoothing | A scale and profile replace $|D|^{-1}$ near $D=0$. | Modifies a neighborhood of the fold unless a compact matching construction is declared. | Finite for a fixed nonzero scale. | Profile and scale dependent; compare at least two inequivalent regulators and verify any claimed limit. | Both incident root cells remain recorded and one fold-boundary row owns the smoothing transition. | Requires a new signed fold-account row; smoothing alone derives no account value. | Accept only if the scale/profile is independently fixed and the result is regulator invariant at the claimed grade; falsified by the demonstrated regulator disagreement. |
 | Finite causal-defect width | A normalized profile, positive width, support convention, and matching rule replace the sharp causal constraint. | Recovers the canonical row as $w\to0^+$ on a controlled simple-root chart; generally modifies regular rows at fixed $w$. | May soften a fold for fixed $w$ but does not by itself define $r=0$ or guarantee a finite encounter impulse. | Scale, profile, and profile moments are free; verify convergence order, fold coefficients, coincident behavior, and any claimed impulse across inequivalent profiles and scales. | Every incident sharp root remains identifiable outside the support; an overlapping support interval and boundary transition require one declared owner. | A regulated acceleration or finite impulse supplies no signed account map. | Remains an unselected regulator unless a separate wake-state derivation fixes its scale and profile; falsified as derived by two admissible profiles with the same sharp limit and different boundary values. |
@@ -772,7 +772,7 @@ No option in this table is selected or accepted. The table records the new assum
 | Remove all self roots | Same-history roots are excluded by definition. | Changes the live self-hit inclusion rule even where a self root is regular. | Defines absence, not the missing boundary value. | No numerical regulator, but requires a new operator-level exclusion proof and regression over all self rows. | Omits the self-root bundle rather than accounting for it. | Cannot establish a closed account for an encounter class removed by declaration. | Rejected without explicit operator revision; falsified by any admitted positive-delay self root under the live rule. |
 | Derived wake-state or core transition | A new state and update law is derived that reduces to the regular operator outside the boundary region. | Potentially compatible if exact regular reduction is proved. | Potentially, if the update is complete. | Must derive its scale and be regulator invariant at the claimed grade; requires an independent oracle and boundary-crossing tests. | Emission, reception, root transfer, and boundary-state ownership must be unique and exhaustive. | MEC-004 maps must be separately derived on the identical state update and cannot be inferred from closure residuals. | The only listed research class capable in principle of meeting all requirements; it remains unselected and falsifies if regular reduction, unique provenance, or regulator independence fails. |
 
-Plainly: the current mathematics selects none of these treatments. Boundary quarantine is the only authorized operational behavior, but it records an unresolved row rather than closing it. A derived wake-state or core transition could in principle close the pointwise update, but it still needs a separate derivation and independent evidence.
+Plainly: the current mathematics selects no finite boundary treatment. Boundary quarantine is therefore terminal for MEC-006: it closes the derivative theorem at its proved domain while leaving the boundary row unresolved and unusable. A derived wake-state or core transition could in principle close the pointwise update, but that is a separate MEC-002/MEC-003 construction requiring independent evidence.
 
 ## Minimal Symmetric Two-Body Protocol
 
@@ -911,7 +911,7 @@ The existing independent Decimal test checks one one-dimensional sharp-root sens
 
 The new standalone verifier is independent of this EOM solver code path. Its regular controls support the same tensor without reusing the implementation, while its fold comparison deliberately declines to produce a boundary value.
 
-Plainly: the live code contains all regular chain-rule pieces, and the new standalone comparison checks them without importing that code. This closes the regular numerical sub-obligation but does not close MEC-006's boundary obligation or grant EOM solver acceptance.
+Plainly: the live code contains all regular chain-rule pieces, and the new standalone comparison checks them without importing that code. This closes the regular numerical sub-obligation; MEC-006's singular boundary is closed only by terminal quarantine, not by assigning a boundary value or granting EOM solver acceptance.
 
 ## Acceptance And Falsifiers
 
@@ -924,15 +924,25 @@ The regular fixed-reception partner-root sub-obligation is independently verifie
 5. the distinction between fixed-reception spatial differentiation, receiver-time playback, and whole-history variation; and
 6. an explicit fold-regulator disagreement.
 
-Overall MEC-006 completion still requires an explicitly authorized boundary candidate that:
+MEC-006 is complete at bounded scope under the terminal quarantine. The accepted disposition:
 
-1. defines whether its output is a pointwise update, an event map, or only a distribution;
-2. preserves the canonical regular acceleration operator on its declared open domain;
-3. records all incident root and boundary provenance exactly once under MEC-005;
-4. supplies independently derived MEC-004 signed-account maps if any account claim is later attempted;
-5. passes its option-specific regulator, path, and boundary-crossing tests;
-6. rejects or explains the exhibited positive-delay self family; and
-7. returns `Not advanced` outside its proved domain.
+1. preserves the verified tensor on every declared regular root chart;
+2. admits the instantaneous same-history specialization only with positive separation and transmitter-factor floors;
+3. records the self diagonal, fold, and coincident-birth derivative rows as `quarantined_unresolved`;
+4. returns `Not advanced` whenever a calculation requires one of those rows; and
+5. assigns no zero, finite part, event map, continuation, or signed account at the boundary.
+
+Plainly: completion means the derivative is known exactly where its hypotheses hold and is refused where they fail. It does not mean that singular evolution has been solved.
+
+Any future boundary candidate belongs to the separately owned causal-update and transition program and must:
+
+1. define whether its output is a pointwise update, an event map, or only a distribution;
+2. preserve the canonical regular acceleration operator on its declared open domain;
+3. record all incident root and boundary provenance exactly once under MEC-005;
+4. supply independently derived MEC-004 signed-account maps if any account claim is later attempted;
+5. pass its option-specific regulator, path, and boundary-crossing tests;
+6. reject or explain the exhibited positive-delay self family; and
+7. return `Not advanced` outside its proved domain.
 
 A finite-width candidate must additionally:
 
@@ -945,7 +955,7 @@ A finite-width candidate must additionally:
 
 The derivation is falsified if any accepted regular control shows that the boxed tensor omits a root-time, direction, inverse-square, transmitter-factor, or delayed-transmitter-acceleration term. The universal self-compatible claim is falsified by any admitted approach to the diagonal for which the proposed gradient lacks a uniform bound or depends on an undeclared regulator path.
 
-Plainly: the regular tensor has now passed independent analytic and numerical review. MEC-006 remains incomplete because every boundary value in the option matrix either changes the operator, depends on an unchosen scale or prescription, or fails to define a pointwise update.
+Plainly: the regular tensor has passed independent analytic and numerical review. Every proposed finite boundary value either changes the operator, depends on an unchosen scale or prescription, or fails to define a pointwise update, so none is silently included in MEC-006.
 
 ## Dependency And Conclusion
 
@@ -953,18 +963,20 @@ The exact conclusion is:
 
 - **Regular partner-root receiver gradient:** `INDEPENDENTLY VERIFIED` on the declared fixed-reception open domain, at evidence-only authority.
 - **Positive-delay same-history instantaneous receiver gradient:** `CONDITIONAL`, valid only under a frozen self convention and positive separation and transmitter-factor floors.
-- **Trivial diagonal, fold, and coincident same-transmitter gradient:** `BLOCKED`; the simple-root expression does not apply and the mathematics does not select a unique extension.
+- **Trivial self diagonal:** `EXCLUDED`; it is not an admitted sharp causal root, so no acceleration row or receiver-gradient value exists there.
+- **Ordinary-fold receiver gradient:** `NOT DEFINED POINTWISE`; the simple-root expression diverges, while the separately proved finite accumulated-velocity result remains an evolution statement rather than a boundary derivative.
+- **Coincident same-transmitter birth gradient:** `NOT ADVANCED`; the unchanged sharp law has no uniformly finite self-inclusive extension.
 - **Complete self-compatible receiver/whole-history gradient:** `INCOMPLETE`; no boundary option is selected, derived, or accepted.
 - **Finite wake width from constant-time continuous emission:** `NOT DERIVED`; causal-defect mollification adds a scale and profile, and it does not by itself close the coincident boundary.
 - **Pure scalar $1/r$ or $1/r^2$ replacement:** `REFUTED` as a complete route under the distinctions above.
-- **MEC-006 overall:** `INCOMPLETE`.
+- **MEC-006 overall:** `COMPLETE AT BOUNDED SCOPE`; singular derivative rows remain terminally `quarantined_unresolved` and consumer-ineligible.
 
-MEC-006 sharpens MEC-001 rather than replacing it. MEC-001 owns the complete receiver-plus-transmitter variation and the finite self-diagonal definition of the characteristic-tail candidate. MEC-006 owns the fixed-reception spatial sensitivity of the canonical acceleration row and its self-root admissibility boundary.
+MEC-006 sharpens the negatively completed MEC-001 result rather than replacing it. MEC-001 owns the complete receiver-plus-transmitter variation and proves that the frozen self-inclusive characteristic-tail candidate has no finite self-diagonal action. MEC-006 owns the fixed-reception spatial sensitivity of the canonical acceleration row and its self-root admissibility boundary.
 
 MEC-006 also sharpens MEC-005 rather than replacing it. MEC-005 owns root enumeration, multiplicity, provenance, and boundary attribution. MEC-006 owns the derivative of each admitted regular acceleration row. Any future boundary derivative rule must retain both incident root identities, give the derivative boundary transition a single owner, and prohibit duplicate booking as both a root row and a boundary row.
 
-MEC-007 separately owns the mirror close-approach event geometry, incoming first-boundary theorems, same-event measure test, and unchanged-law post-threshold obstruction. MEC-006 applies to that program only if a calculation consumes a receiver/self acceleration-gradient row.
+Completed MEC-007 separately owns the mirror close-approach event geometry, incoming first-boundary theorems, same-event measure disposition, and unchanged-law post-threshold obstruction. MEC-006 applies to that record only if a calculation consumes a receiver/self acceleration-gradient row.
 
-MEC-004 remains separate. No boundary acceleration-gradient prescription supplies a signed account value. If a future boundary update is accepted, MEC-004 must derive its signed maps on that identical update rather than constructing them from a residual. MEC-005's two-body conservation interpretation remains gated on MEC-007's unresolved encounter boundary, on an accepted MEC-006 self-compatible derivative disposition wherever such rows are consumed, and on the separately required account closure on the same encounter record.
+MEC-004 remains separate. No boundary acceleration-gradient prescription supplies a signed account value. If a future boundary update is accepted, MEC-004 must derive its signed maps on that identical update rather than constructing them from a residual. MEC-007's encounter boundary is disposed as an unchanged-law obstruction. MEC-005 may consume the completed MEC-006 regular rows, but any two-body interpretation that needs a singular derivative remains blocked by the terminal quarantine and by the missing MEC-002/MEC-003 boundary update and same-update account closure.
 
-Plainly: the regular mathematical derivative is now independently checked term by term. The unresolved problem is confined to singular-boundary semantics. Choosing among the listed options would add a new assumption, so this evidence-only pass does not make that choice.
+Plainly: the regular mathematical derivative is independently checked term by term. The singular-boundary problem is deliberately handed to the update and transition owners because choosing a finite value would add a new assumption rather than finish this derivative calculation.

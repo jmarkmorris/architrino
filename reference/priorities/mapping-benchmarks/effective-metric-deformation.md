@@ -1,6 +1,6 @@
 # Cross-Theory Source Packet: Ellipsoidal Deformation and the Effective Metric
 
-Status note: this source packet is a candidate deformation map, not a completed physical theorem and not a separate priority lane. Any usable result must be routed through the current master-equation, Lorentz/GR bridge, Noether sea constitutive-closure, or [Ideal Braid Guide](../../../content/markdown/aaa/archie/ideal-braid-guide.md) app-inspection targets before being promoted into corpus prose.
+Status note: this source packet is a candidate deformation map, not a completed physical theorem and not a separate priority lane. Any usable result must be routed through the current master-equation, Lorentz/GR bridge, Noether sea constitutive-closure, or [Lorentz Geometry Guide](../../../content/markdown/aaa/archie/ideal-braid-guide.md) app-inspection targets before being promoted into corpus prose.
 
 ## Motivation
 
@@ -159,7 +159,7 @@ The reader-facing Noether sea pro/anti coupling chapter should state the provisi
 ## Related Priorities
 
 - [app-animator](../dormant-deferred/app-animator/priorities.md)
-- [app-simulation](../app-simulation/priorities.md)
+- [simulation protocol routing index](../../op/simulation-protocol-routing-index.md)
 - [mapping-strong-field](../mapping-strong-field/priorities.md)
 
 ## Related AAA Notes

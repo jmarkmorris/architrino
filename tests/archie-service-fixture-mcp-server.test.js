@@ -44,7 +44,7 @@ test("fixture MCP lifecycle blocks tools until initialized notification", () => 
     method: "tools/list",
     params: { _meta: { progressToken: "codex-list" } },
   });
-  assert.deepEqual(afterNotification.result.tools.map((tool) => tool.name), ["search", "read", "topics", "neighbors"]);
+  assert.deepEqual(afterNotification.result.tools.map((tool) => tool.name), ["search", "read", "topics", "neighbors", "walk"]);
 
   const toolCallWithMetadata = session.handle({
     jsonrpc: "2.0",
@@ -116,7 +116,7 @@ test("fixture MCP launcher resolves its snapshot outside the repository working 
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
   const responses = result.stdout.trim().split("\n").map((line) => JSON.parse(line));
   assert.equal(responses[0].result.protocolVersion, MCP_PROTOCOL_VERSION);
-  assert.deepEqual(responses[1].result.tools.map((tool) => tool.name), ["search", "read", "topics", "neighbors"]);
+  assert.deepEqual(responses[1].result.tools.map((tool) => tool.name), ["search", "read", "topics", "neighbors", "walk"]);
 });
 
 function readJson(relativePath) {

@@ -1,6 +1,6 @@
 # UI Guidelines
 
-This document is the contributor-facing reference for reader-facing UI standards in the Architrino webapp. Its purpose is to provide one place where interface preferences can be recorded deliberately instead of being scattered across code, scenes, and ad hoc decisions.
+This document is the contributor-facing reference for reader-facing UI standards across Architrino applications and application-like surfaces. Its purpose is to provide one place where interface preferences can be recorded deliberately instead of being scattered across code, scenes, and ad hoc decisions.
 
 Interface rules are part of explanation. A reader who is wrestling with unfamiliar physics should not also have to decode inconsistent controls, unclear navigation, or mixed visual language.
 
@@ -10,9 +10,12 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 
 ## Document Role
 
-This document is the canonical UI preference reference. It may also carry a short implementation-audit ledger, but the two roles should remain separate.
+This document is the canonical UI preference reference. It governs applications; it is not itself a product application. Its scene entry is an intentional documentation route, not an Applications-list entry or standalone-app launch target. It may also carry a short implementation-audit ledger, but the two roles should remain separate.
 
 - [Branding and Marketing](branding-and-marketing.md) owns the favored brand palette, logo treatment, public visual identity, contact card, and marketing presentation. This guide owns how that identity is applied inside the webapp.
+- [Navigation and Controls](navigation-and-controls.md) explains accepted controls from the reader's perspective. This guide owns the shared standards those controls implement.
+- Reusable implementation values belong in `ui-tokens.css`, and reusable behavior belongs in shared runtime modules. Applications consume those shared owners and keep only genuinely application-specific presentation or behavior local.
+- Scene views, rendered references, generated manifests, and examples may expose or demonstrate this guide, but they do not replace it or become competing standards authorities.
 - The `Preference` column states durable policy.
 - The `Current Non-Matching Uses` column records known implementation drift that should eventually move into issues, priority notes, or code-review tasks when it becomes active work.
 - Blank preference cells mean the policy has not been decided yet; they should not be treated as silent approval of current behavior.
@@ -28,8 +31,8 @@ When an audit item becomes broad or long-lived, promote it out of this guide int
 | Sphere ring action signal | Use the brand action-halo purple defined in [Branding and Marketing](branding-and-marketing.md) only for actionable spheres: child-scene navigation, markdown/file opens, image-gallery opens, and animator-panel opens. Non-clickable spheres that render a ring use a black ring. |  |
 | App title treatment         | Browser page titles use lowercase `architrino` unless it is a use case where capitalization is typical, optionally followed by a lowercase feature suffix                                 |                                                                                                                  |
 | animator header             | Timestamp-only                                                                                                                                                                            |                                                                                                                  |
-| Global navigation buttons   | Include textbook TOC, `Back`, `Forward`, `Home`, `Search`, and the contextual document/PDF/layout controls, using 32x32 circular dark-shell icon buttons in the main scene chrome | animator action controls use text buttons instead of 32x32 circular icon buttons |
-| Search affordance           | Magnifier icon button opens an anchored search popover, clears the query, and focuses the input on open                                                                                   |                                                                                                                  |
+| Global navigation buttons   | Use 32x32 circular dark-shell icon buttons in the stable order TOC, `Back`, `Forward`, `Home`, `Search`, then optional document-entry, Settings, and mode-entry actions. Keep operations for an open document in its reading-surface header. Omit unavailable actions rather than showing dead controls. | Wake Topography, Molecule, PDG Edit, Borg Library, Greek Letter Match, and Equation Mapping remain partial or near migrations. |
+| Search affordance           | The full-bar magnifier opens global scene search, clears the query, and focuses the input on open. App-specific equation, molecule, document, or collection searches stay local and are named for the content they filter. | Equation Mapping currently uses its top-bar magnifier for local equation search while it remains a near migration. |
 | Full-document control | The document icon opens the complete source behind the current section when that route exists. | |
 | Detail affordance | Element detail is opened by the element interaction that owns it. No global circle-i control is shipped. | A future global detail trigger remains an unbuilt preference, not current behavior. |
 | Archie entry                | Archie is a top-level sphere on the root scene rather than a persistent global chrome button                                                                                              |                                                                                                                  |
@@ -49,14 +52,14 @@ When an audit item becomes broad or long-lived, promote it out of this guide int
 
 | UI Element | Preference | Current Non-Matching Uses |
 | --- | --- | --- |
-| Markdown layout toggle | Layout icon button toggles between one column and the scene's preferred multi-column count, updating its `aria-label` accordingly | The control lives in global chrome rather than in a dedicated markdown-panel header |
+| Markdown layout toggle | A panel-local Layout icon button toggles between one column and the scene's preferred multi-column count, updating its `aria-label` accordingly |  |
 | Markdown column canon | Treat `view.columns` as an authored reading-surface override, not a historical default. Keep an explicit value only when the document or section has a clear reading-surface reason for that opening mode; remove unexplained values and let runtime defaults apply. | Existing scene `view.columns` values need audit because not all may be deliberate authored choices |
 | One-column reading mode | Use for all section views and for any markdown document or section containing equations or TeX/KaTeX math. Multi-column markdown still collapses to one column below `980px`. |  |
 | Two-column reading mode | Default preferred reading mode for full documents when no scene override is set and the source has no TeX/KaTeX math. Use explicit `view.columns: 2` only for a deliberate full-document reading-surface choice that should survive alternate entry paths. |  |
 | Two-column page direction | Fill the left column and then the right column within one visible spread; stack subsequent spreads below so wheel, trackpad, keyboard, and scrollbar movement advance vertically rather than paging horizontally. |  |
 | Three-column reading mode | Reserve for TOC/catalog/index surfaces only. Do not use 3-column mode for ordinary documents, section views, or sources containing TeX/KaTeX math. | Runtime supports up to 3 preferred columns; existing 3-column scenes must be confirmed as TOC/catalog/index surfaces |
-| Full-document button | Document icon appears only when a section view has a corresponding full document, and opens that full document view | The control lives in global chrome rather than in a dedicated markdown-panel header |
-| Close behavior | Search closes on `Escape`, outside pointerdown, or focus leaving the panel; detail closes with an explicit close button; animator menus close on outside pointerdown. The main markdown panel has no dedicated close control. | |
+| Full-document button | A panel-local Document icon appears only when a section view has a corresponding full document and opens that full document view. Layout, print/PDF, and Close follow it in the reading-surface header. |  |
+| Close behavior | Search closes on `Escape`, outside pointerdown, or focus leaving the panel; markdown and detail surfaces provide explicit Close buttons; animator menus close on outside pointerdown. | |
 | Heading hierarchy in rendered markdown | Render markdown body at `16px / 1.8`; size major headings at `22px`, `20px`, and `18px` for `h1`/`h2`/`h3`; hide the first visible `h1` in-panel |  |
 | Treatment of long technical openings | Do not open cold on a divider, `##`, or dense technical block; begin with an orienting overview before the first major section |  |
 

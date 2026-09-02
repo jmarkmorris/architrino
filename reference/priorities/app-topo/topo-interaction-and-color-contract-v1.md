@@ -90,9 +90,9 @@ Plainly: a wide screen reveals more world space left and right; it does not stre
 | Scenario | Left panel, first control | `Electrostatic: single electrino`; `Electrostatic: single positrino`; changing it reverses polarity only. Beta, contour range, and contour visibility remain unchanged, and the same analytic geometry is immediately restyled with the new polarity color. |
 | Perspective | Unified left Scenario panel; pair scenarios only | Native radios `Electrino` and `Positrino`. The selected architrino is the observer. Its self-wake is excluded before any field, contour, shading, cache, or diagnostic calculation; only the partner source remains. Both body markers stay visible. |
 | `Speed` ($\beta=v/c_f$) | Left panel below scenario | Range $0\leq\beta\leq1$, step $0.01$, keyboard-operable, with visible numeric output and `aria-valuetext`; changing it creates a fresh raw-frame identity. |
-| `Topo count` | Unified left Scenario panel | Integer $4$ through $25$, step $1$, default $13$. It selects genuine equal-wake thresholds across the fixed raw range. Pair perspectives retain only thresholds with the partner source's sign. |
+| `Contour count` | Unified left Scenario panel | Integer $4$ through $25$, step $1$, default $13$. It selects genuine equal-wake thresholds across the fixed raw range. Pair perspectives retain only thresholds with the partner source's sign. |
 | `Shading` | Unified left Scenario panel | Percent range $0$ through $100$, step $1$, default $50$. It adjusts only the characteristic reach of the bounded $1/r$-like color transfer from $0.25$ through $4$ times the default. It has no visible numeric output and changes neither raw wake values nor contours. |
-| `Topo fade` | Unified left Scenario panel | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; changes opacity only. Nonzero decade lines have equal width and opacity with one adaptive high-contrast family-colored stroke; zero is slightly thicker. Device-pixel scaling preserves apparent width. |
+| `Contour fade` | Unified left Scenario panel | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; changes opacity only. Nonzero decade lines have equal width and opacity with one adaptive high-contrast family-colored stroke; zero is slightly thicker. Device-pixel scaling preserves apparent width. |
 | `Scale` | Unified left Scenario panel | Range $0.5$ through $2$, step $0.25$, default $1$; changes the visible coordinate window while preserving the wake law and raw contour values. |
 | Legend | Left panel near display controls | Always visible while the panel is open. It is headed `Shading scale` and states that signed contributions are summed before drawing equal-value topographic contours. The Perspective note and canvas accessible name identify the observer, retained partner source, and self-exclusion rule in pair scenarios. |
 | Panel toggle | Persistent left rail | Uses `PanelCollapseIcons.js`, updates name and `aria-expanded`, preserves the reopen control, and makes closed content hidden and inert. |
@@ -151,7 +151,7 @@ $$
 (u+\beta T)^2+w^2=T^2.
 $$
 
-For a single synthetic source, Topo draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with physical radius $T$ on the linear chart. Pair scenarios calculate a sampled partner-only raw field and extract contours from that same field. The retained partner's singular point is masked; the selected observer's position remains an ordinary sample whenever the partner wake admits one.
+For a single synthetic source, Wake Topography draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with physical radius $T$ on the linear chart. Pair scenarios calculate a sampled partner-only raw field and extract contours from that same field. The retained partner's singular point is masked; the selected observer's position remains an ordinary sample whenever the partner wake admits one.
 
 Contour styling is uniform around every nonzero level: equal width and opacity with one adaptive high-contrast family-colored stroke. The explicit zero contour is slightly thicker. Its color changes continuously from pale lavender on Electric Purple to Electric Purple on White, following the same background slider. Visibility is the only opacity gain, and range only filters fixed level identities. No level sign, polarity, draw order, cache timing, or range interaction perturbs existing radii or topology.
 
@@ -200,7 +200,7 @@ Plainly: the endpoint void and numeric zero share a neutral display color, while
 
 - The user-facing header is `Wake Topography`; internal TOPO work-item/version labels do not appear in that header.
 - The first information card is titled `About this view` and says exactly: `Explore wake topography for source and superposition views around prescribed what if path scenarios.` Internal preview, validation, and work-item language does not appear in the visible card.
-- The stage and shell consume the shared semantic tokens from `ui-tokens.css`; Topo adds no app-local shell palette.
+- The stage and shell consume the shared semantic tokens from `ui-tokens.css`; Wake Topography adds no app-local shell palette.
 - The left panel opens at a desktop width near $360$ pixels and collapses to a persistent $58$-pixel rail.
 - Below $820$ pixels, the panel begins collapsed and expands as an overlay over the stage. The shared top-right controls retain $32\times32$ hit targets.
 - The single compact source marker remains anchored at normalized $(2/3,1/2)$ in every viewport. It reuses the repository's standard solid blue electrino and solid red positrino semantics with the same thin centered white circular stroke and small centered white origin dot as the Causal Delay Feedback marker treatment. No backing shape, glow, shadow, inset, or direction ornament is permitted; direction is reported in the scenario facts.

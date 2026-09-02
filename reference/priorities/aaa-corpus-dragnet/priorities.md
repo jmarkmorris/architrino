@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Rank: `unranked / supporting`
-- Status: `queued`
+- Status: `idle-no-executable-object`
 - Default execution mode: `read-only correlation pass`
 - Default economical worker: `Codex Luna`, with explicit bounded prompts
 
@@ -29,3 +29,7 @@ Maintain a durable, reviewable inventory of possible corpus connections, duplica
 ## Triage Route
 
 Record findings in [recommendations.md](recommendations.md). A human or authorized integrator may set the finding's disposition and route an accepted action to its owning priority lane. The detailed execution order lives in [work-queue.md](work-queue.md).
+
+## Current
+
+CD-002 completed the first bounded correlation pass and retained one untriaged terminology finding with exact paths and a bounded owner route. No inspected corpus or owner file changed. The lane now has no executable queue item; a later pass requires a newly accepted scope.

@@ -396,18 +396,57 @@ function resolveCausalFactorRecord(branch = {}, signalSpeed = 1) {
   };
 }
 
-export function computeMovingCircularObserverField(request = {}) {
+function finiteVectorRecord(value) {
+  return value && typeof value === "object" &&
+    [value.x, value.y, value.z].every((component) => Number.isFinite(Number(component)));
+}
+
+function classifyObserverFieldBranch(branch, normal, directionMagnitude, rawDistance, chargeSign) {
+  if (branch?.admission?.status === "rejected") {
+    return branch.admission.reason || "root_not_admitted";
+  }
+  if (normal.evidenceStatus !== "ok") {
+    return normal.evidenceStatus;
+  }
+  if (!finiteVectorRecord(branch?.direction) || directionMagnitude <= EPSILON) {
+    return "direction_record_invalid";
+  }
+  if (Math.abs(directionMagnitude - 1) > 1e-9) {
+    return "direction_not_unit";
+  }
+  if (!Number.isFinite(rawDistance) || rawDistance <= EPSILON) {
+    return "distance_record_invalid";
+  }
+  if (!Number.isFinite(chargeSign) || chargeSign === 0) {
+    return "charge_record_invalid";
+  }
+  return "admitted";
+}
+
+export function computePrescribedObserverField(request = {}) {
   const signalSpeed = Math.max(EPSILON, finiteNumber(request.signalSpeed, 1));
   const minimumDistance = Math.max(EPSILON, finiteNumber(request.minimumDistance, EPSILON));
   const branches = Array.isArray(request.branches) ? request.branches : [];
   const contributions = branches.map((branch, branchIndex) => {
     const direction = vector(branch.direction);
+    const directionMagnitude = magnitude(direction);
     const transmitterVelocity = vector(branch.transmitterVelocity);
-    const distance = Math.max(minimumDistance, finiteNumber(branch.distance));
+    const rawDistance = Number(branch.distance);
+    const distance = Math.max(minimumDistance, finiteNumber(rawDistance));
+    const chargeSign = Number(branch.chargeSign);
     const normal = resolveCausalFactorRecord(branch, signalSpeed);
+    const fieldContributionReason = classifyObserverFieldBranch(
+      branch,
+      normal,
+      directionMagnitude,
+      rawDistance,
+      chargeSign
+    );
+    const fieldContributionStatus = fieldContributionReason === "admitted" ? "admitted" : "rejected";
+    const accelerationWeight = fieldContributionStatus === "admitted" ? normal.accelerationWeight : 0;
     const electric = scale(
       direction,
-      finiteNumber(branch.chargeSign) * normal.accelerationWeight / (distance * distance)
+      finiteNumber(chargeSign) * accelerationWeight / (distance * distance)
     );
     return labelRecord({
       branchIndex,
@@ -423,6 +462,10 @@ export function computeMovingCircularObserverField(request = {}) {
       jacobian: normal.transmitterFactor,
       jacobianAbs: Math.abs(normal.transmitterFactor),
       ...normal,
+      accelerationWeight,
+      directionMagnitude,
+      fieldContributionStatus,
+      fieldContributionReason,
       transmitterRadialSpeedAtEmission: finiteNumber(branch.transmitterRadialSpeedAtEmission, dot(transmitterVelocity, direction)),
       receiverRadialSpeedAtReception: finiteNumber(branch.receiverRadialSpeedAtReception),
       receiverCrossingRatio: finiteNumber(branch.receiverCrossingRatio),
@@ -446,23 +489,33 @@ export function computeMovingCircularObserverField(request = {}) {
     (sum, contribution) => add(sum, contribution.comparisonB),
     { x: 0, y: 0, z: 0 }
   );
-  const missingReceiverNormalCount = contributions.filter(
-    (contribution) => contribution.causalFactorEvidenceStatus !== "ok"
+  const rejectedContributionReasonCounts = contributions.reduce((counts, contribution) => {
+    if (contribution.fieldContributionStatus === "rejected") {
+      counts[contribution.fieldContributionReason] =
+        (counts[contribution.fieldContributionReason] ?? 0) + 1;
+    }
+    return counts;
+  }, {});
+  const rejectedContributionCount = contributions.filter(
+    (contribution) => contribution.fieldContributionStatus === "rejected"
   ).length;
   const delaySum = contributions.reduce((sum, contribution) => sum + contribution.delay, 0);
-  const status = missingReceiverNormalCount > 0
+  const status = rejectedContributionCount > 0
     ? createStatus(
-        contributions.find((row) => row.causalFactorEvidenceStatus !== "ok")
-          ?.causalFactorEvidenceStatus ?? "causal_factor_record_missing",
+        contributions.find((row) => row.fieldContributionStatus === "rejected")
+          ?.fieldContributionReason ?? "field_branch_record_invalid",
         "warn",
-        "prescribed observer-field branches are missing receiver-side root-playback records"
+        "one or more prescribed observer-field branches were rejected"
       )
-    : createStatus("ok", "ok", "prescribed moving-circular observer field computed");
+    : createStatus("ok", "ok", "prescribed observer field computed");
   return labelRecord({
-    schema: "prescribed-path-analysis/moving-circular-observer-field.v2",
-    transmitterHistoryKind: "moving-circular-transmitter",
+    schema: "prescribed-path-analysis/observer-field.v1",
+    transmitterHistoryKind: request.transmitterHistoryKind ?? "prescribed-transmitter",
     branchCount: branches.length,
     contributionCount: contributions.length,
+    admittedContributionCount: contributions.length - rejectedContributionCount,
+    rejectedContributionCount,
+    rejectedContributionReasonCounts,
     contributions,
     averageDelay: contributions.length > 0 ? delaySum / contributions.length : 0,
     delaySolveGapMax: contributions.reduce(
@@ -494,6 +547,18 @@ export function computeMovingCircularObserverField(request = {}) {
   });
 }
 
+export function computeMovingCircularObserverField(request = {}) {
+  const response = computePrescribedObserverField({
+    ...request,
+    transmitterHistoryKind: request.transmitterHistoryKind ?? "moving-circular-transmitter",
+  });
+  return labelRecord({
+    ...response,
+    schema: "prescribed-path-analysis/moving-circular-observer-field.v2",
+    transmitterHistoryKind: "moving-circular-transmitter",
+  });
+}
+
 function createObserverFieldBranch(root, rootResponse, requestIndex, rootIndex) {
   const transmitterPoint = vector(root.transmitterPoint);
   const receiverPoint = vector(root.receiverPoint);
@@ -519,31 +584,280 @@ function createObserverFieldBranch(root, rootResponse, requestIndex, rootIndex) 
     rootPlayback: root.rootPlayback,
     causalFactorStatusCode: root.causalFactorStatusCode,
     transmitterHistoryKind: root.transmitterHistoryKind,
+    admission: root.admission ?? null,
+    phaseAtHit: root.phaseAtHit ?? null,
   });
 }
 
-export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
-  const transmitterRootRequests = Array.isArray(request.transmitterRootRequests)
-    ? request.transmitterRootRequests
-    : [];
-  const transmitterRootResponses = transmitterRootRequests.map((transmitterRootRequest, requestIndex) =>
-    labelRecord({
-      ...solveMovingCircularTransmitterCausalRoots(transmitterRootRequest),
+function resolveAbsoluteHistoryKind(rootRequest = {}) {
+  const kind = rootRequest.historyKind ?? rootRequest.transmitterHistoryKind ?? rootRequest.transmitter?.kind;
+  if (kind === "moving-circular-transmitter" || kind === "moving-circular.v1") {
+    return "moving-circular-transmitter";
+  }
+  if (kind === "moving-circular-same-transmitter") {
+    return "moving-circular-same-transmitter";
+  }
+  if (kind === "linear-prescribed-transmitter" || kind === "linear-transmitter" || kind === "linear.v1") {
+    return "linear-prescribed-transmitter";
+  }
+  throw new TypeError(`Unsupported prescribed absolute-history kind: ${kind ?? "missing"}`);
+}
+
+function solveAbsoluteHistoryRootRequest(rootRequest = {}) {
+  const historyKind = resolveAbsoluteHistoryKind(rootRequest);
+  if (historyKind === "moving-circular-transmitter") {
+    return { historyKind, response: solveMovingCircularTransmitterCausalRoots(rootRequest) };
+  }
+  if (historyKind === "moving-circular-same-transmitter") {
+    return { historyKind, response: solveMovingCircularSameTransmitterCausalRoots(rootRequest) };
+  }
+  return { historyKind, response: solveLinearPrescribedPathCausalRoots(rootRequest) };
+}
+
+function phaseComponentRecord(phase, availableStatus = "available") {
+  const rawRadians = Number(phase?.rawRadians);
+  const radians = Number(phase?.radians);
+  const degrees = Number(phase?.degrees);
+  const cycleIndex = Number(phase?.cycleIndex);
+  if (![rawRadians, radians, degrees, cycleIndex].every(Number.isFinite)) {
+    return {
+      status: availableStatus === "available" ? "not_available" : availableStatus,
+      rawRadians: null,
+      radians: null,
+      degrees: null,
+      cycleIndex: null,
+    };
+  }
+  return { status: "available", rawRadians, radians, degrees, cycleIndex };
+}
+
+function cyclePhaseComponentRecord(phase, cycleIndex, availableStatus = "available") {
+  if (phase == null || cycleIndex == null) {
+    return phaseComponentRecord(null, availableStatus);
+  }
+  const cyclePhase = Number(phase);
+  const safeCycleIndex = Number(cycleIndex);
+  if (!Number.isFinite(cyclePhase) || !Number.isFinite(safeCycleIndex)) {
+    return phaseComponentRecord(null, availableStatus);
+  }
+  const radians = cyclePhase * Math.PI * 2;
+  return {
+    status: "available",
+    rawRadians: (safeCycleIndex + cyclePhase) * Math.PI * 2,
+    radians,
+    degrees: cyclePhase * 360,
+    cycleIndex: safeCycleIndex,
+  };
+}
+
+function createAbsoluteHistoryPhaseRecord(root, rootRequest, requestIndex, rootIndex) {
+  const rootKind = root.rootKind ??
+    (resolveAbsoluteHistoryKind(rootRequest) === "moving-circular-same-transmitter"
+      ? "same-transmitter"
+      : "partner");
+  const phaseClocks = rootRequest.phaseClocks && typeof rootRequest.phaseClocks === "object"
+    ? rootRequest.phaseClocks
+    : null;
+  const hasTransmitterClock = phaseClocks?.transmitterClock &&
+    typeof phaseClocks.transmitterClock === "object";
+  const hasReceiverClock = phaseClocks?.receiverClock &&
+    typeof phaseClocks.receiverClock === "object";
+  const computed = hasTransmitterClock || hasReceiverClock
+    ? computePhaseAtHits({
+        roots: [root],
+        transmitterClock: phaseClocks.transmitterClock,
+        receiverClock: phaseClocks.receiverClock,
+        metadata: [{}],
+      }).records[0]
+    : null;
+  const transmitter = root.transmitterPhase
+    ? phaseComponentRecord(root.transmitterPhase)
+    : cyclePhaseComponentRecord(
+        hasTransmitterClock ? computed?.transmitterPhase : null,
+        hasTransmitterClock ? computed?.transmitterCycleIndex : null,
+        "not_available"
+      );
+  const receiverStatus = rootRequest.receiverPhaseStatus ??
+    (rootRequest.receiverHistoryKind === "moving-linear-virtual-observer"
+      ? "not_applicable"
+      : "not_available");
+  const receiver = root.receiverPhase
+    ? phaseComponentRecord(root.receiverPhase)
+    : cyclePhaseComponentRecord(
+        hasReceiverClock ? computed?.receiverPhase : null,
+        hasReceiverClock ? computed?.receiverCycleIndex : null,
+        receiverStatus
+      );
+  const metadata = rootRequest.phaseMetadata ?? {};
+  return labelRecord({
+    schema: "prescribed-path-analysis/absolute-history-phase-at-hit.v1",
+    transmitterRootRequestIndex: requestIndex,
+    transmitterRootIndex: rootIndex,
+    rootId: root.rootId ?? rootIndex,
+    rootKind,
+    emissionTime: finiteNumber(root.emissionTime),
+    hitTime: finiteNumber(root.hitTime),
+    transmitterRef: rootRequest.transmitterRef ?? null,
+    transmitterRole: metadata.transmitterRole ?? rootRequest.transmitterRef?.role ?? rootRequest.transmitterRef?.braidId ?? null,
+    transmitterLayerId: metadata.transmitterLayerId ?? rootRequest.transmitterRef?.layerId ?? null,
+    transmitterChargeSign: Number.isFinite(Number(metadata.transmitterChargeSign))
+      ? Number(metadata.transmitterChargeSign)
+      : finiteNumber(rootRequest.branchChargeSign),
+    receiverRole: metadata.receiverRole ?? null,
+    receiverLayerId: metadata.receiverLayerId ?? null,
+    receiverChargeSign: Number.isFinite(Number(metadata.receiverChargeSign))
+      ? Number(metadata.receiverChargeSign)
+      : null,
+    transmitter,
+    receiver,
+    phaseDeltaCycles: hasTransmitterClock && hasReceiverClock && Number.isFinite(Number(computed?.phaseDelta))
+      ? Number(computed.phaseDelta)
+      : null,
+  });
+}
+
+function circularPhaseSpreadDegrees(values = []) {
+  const phases = values
+    .map((value) => Number(value))
+    .filter(Number.isFinite)
+    .map((value) => ((value % 360) + 360) % 360)
+    .sort((left, right) => left - right);
+  if (phases.length <= 1) return 0;
+  let largestGap = 0;
+  for (let index = 0; index < phases.length; index += 1) {
+    const next = index === phases.length - 1 ? phases[0] + 360 : phases[index + 1];
+    largestGap = Math.max(largestGap, next - phases[index]);
+  }
+  return 360 - largestGap;
+}
+
+function summarizeAbsoluteHistoryPhaseRecords(records = []) {
+  const groups = new Map();
+  records.forEach((record) => {
+    const keyFields = [
+      record.transmitterLayerId ?? "n/a",
+      record.transmitterRole ?? "n/a",
+      record.transmitterChargeSign ?? "n/a",
+      record.rootKind ?? "n/a",
+      record.transmitter.cycleIndex ?? "n/a",
+    ];
+    const key = keyFields.join("|");
+    const group = groups.get(key) ?? {
+      key,
+      transmitterLayerId: record.transmitterLayerId,
+      transmitterRole: record.transmitterRole,
+      transmitterChargeSign: record.transmitterChargeSign,
+      rootKind: record.rootKind,
+      transmitterCycleIndex: record.transmitter.cycleIndex,
+      transmitterDegrees: [],
+      receiverDegrees: [],
+      phaseDeltaDegrees: [],
+      recordCount: 0,
+      missingReceiverPhaseCount: 0,
+      notApplicableReceiverPhaseCount: 0,
+    };
+    group.recordCount += 1;
+    if (record.transmitter.status === "available") group.transmitterDegrees.push(record.transmitter.degrees);
+    if (record.receiver.status === "available") group.receiverDegrees.push(record.receiver.degrees);
+    else if (record.receiver.status === "not_applicable") group.notApplicableReceiverPhaseCount += 1;
+    else group.missingReceiverPhaseCount += 1;
+    if (Number.isFinite(record.phaseDeltaCycles)) group.phaseDeltaDegrees.push(record.phaseDeltaCycles * 360);
+    groups.set(key, group);
+  });
+  const families = [...groups.values()].map((group) => labelRecord({
+    schema: "prescribed-path-analysis/absolute-history-phase-spread-family.v1",
+    key: group.key,
+    transmitterLayerId: group.transmitterLayerId,
+    transmitterRole: group.transmitterRole,
+    transmitterChargeSign: group.transmitterChargeSign,
+    rootKind: group.rootKind,
+    transmitterCycleIndex: group.transmitterCycleIndex,
+    recordCount: group.recordCount,
+    transmitterPhaseRecordCount: group.transmitterDegrees.length,
+    receiverPhaseRecordCount: group.receiverDegrees.length,
+    missingReceiverPhaseCount: group.missingReceiverPhaseCount,
+    notApplicableReceiverPhaseCount: group.notApplicableReceiverPhaseCount,
+    transmitterPhaseSpreadDegrees: circularPhaseSpreadDegrees(group.transmitterDegrees),
+    receiverPhaseSpreadDegrees: circularPhaseSpreadDegrees(group.receiverDegrees),
+    phaseDeltaSpreadDegrees: circularPhaseSpreadDegrees(group.phaseDeltaDegrees),
+  }));
+  return labelRecord({
+    schema: "prescribed-path-analysis/absolute-history-phase-spread-summary.v1",
+    recordCount: records.length,
+    familyCount: families.length,
+    receiverPhaseAvailableCount: records.filter((record) => record.receiver.status === "available").length,
+    receiverPhaseNotApplicableCount: records.filter((record) => record.receiver.status === "not_applicable").length,
+    receiverPhaseMissingCount: records.filter((record) => !["available", "not_applicable"].includes(record.receiver.status)).length,
+    families,
+  });
+}
+
+function classifyAbsoluteHistoryRoot(root = {}, rootRequest = {}, jacobianFloor = 1e-4) {
+  const statusCode = Number(root.statusCode);
+  const causalFactorStatusCode = Number(root.causalFactorStatusCode);
+  const transmitterFactor = Number(root.transmitterFactor ?? root.jacobian);
+  const residual = Math.abs(Number(root.residual));
+  const tolerance = positiveNumber(rootRequest.rootTolerance, 1e-12);
+  if (statusCode === STATUS_ROOT_UNRESOLVED || !Number.isFinite(residual) || residual > tolerance * 10) {
+    return { status: "rejected", reason: "root_unresolved" };
+  }
+  if (!Number.isFinite(transmitterFactor) || !Number.isFinite(causalFactorStatusCode)) {
+    return { status: "rejected", reason: "transversality_not_certified" };
+  }
+  const jacobianAbs = Math.abs(transmitterFactor);
+  if (jacobianAbs <= EPSILON) {
+    return { status: "rejected", reason: "singular_root" };
+  }
+  if (statusCode === STATUS_SMALL_JACOBIAN || jacobianAbs <= jacobianFloor) {
+    return { status: "rejected", reason: "jacobian_floor_failure" };
+  }
+  if (causalFactorStatusCode !== STATUS_OK) {
+    return { status: "rejected", reason: "transversality_not_certified" };
+  }
+  return { status: "admitted", reason: "admitted_regular_root" };
+}
+
+export function solvePrescribedAbsoluteHistoryRun(request = {}) {
+  const transmitterRootRequests = Array.isArray(request.rootRequests)
+    ? request.rootRequests
+    : Array.isArray(request.transmitterRootRequests) ? request.transmitterRootRequests : [];
+  const jacobianFloor = positiveNumber(request.admissibilityPolicy?.jacobianFloor, 1e-4);
+  const transmitterRootResponses = transmitterRootRequests.map((transmitterRootRequest, requestIndex) => {
+    const solved = solveAbsoluteHistoryRootRequest(transmitterRootRequest);
+    return labelRecord({
+      ...solved.response,
+      request: labelRecord(transmitterRootRequest),
       requestIndex,
+      historyKind: solved.historyKind,
       transmitterRef: transmitterRootRequest.transmitterRef ?? null,
       branchChargeSign: finiteNumber(transmitterRootRequest.branchChargeSign),
+      includeInObserverField: transmitterRootRequest.includeInObserverField !== false &&
+        solved.historyKind !== "moving-circular-same-transmitter",
+    });
+  });
+  const roots = transmitterRootResponses.flatMap((response, requestIndex) =>
+    response.roots.map((root, transmitterRootIndex) => {
+      const phaseAtHit = createAbsoluteHistoryPhaseRecord(
+        root,
+        transmitterRootRequests[requestIndex],
+        requestIndex,
+        transmitterRootIndex
+      );
+      return labelRecord({
+        ...root,
+        transmitterRootRequestIndex: requestIndex,
+        transmitterRootIndex,
+        transmitterRef: response.transmitterRef,
+        branchChargeSign: response.branchChargeSign,
+        historyKind: response.historyKind,
+        phaseAtHit,
+        admission: classifyAbsoluteHistoryRoot(root, transmitterRootRequests[requestIndex], jacobianFloor),
+      });
     })
   );
-  const roots = transmitterRootResponses.flatMap((response, requestIndex) =>
-    response.roots.map((root, transmitterRootIndex) => labelRecord({
-      ...root,
-      transmitterRootRequestIndex: requestIndex,
-      transmitterRootIndex,
-      transmitterRef: response.transmitterRef,
-      branchChargeSign: response.branchChargeSign,
-    }))
-  );
-  const branches = roots.map((root) =>
+  const branches = roots.filter((root) =>
+    transmitterRootResponses[root.transmitterRootRequestIndex].includeInObserverField
+  ).map((root) =>
     createObserverFieldBranch(
       root,
       transmitterRootResponses[root.transmitterRootRequestIndex],
@@ -551,8 +865,10 @@ export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
       root.transmitterRootIndex
     )
   );
-  const observerField = computeMovingCircularObserverField({
+  const historyKinds = [...new Set(transmitterRootResponses.map((response) => response.historyKind))];
+  const observerField = computePrescribedObserverField({
     ...(request.observerFieldRequest ?? {}),
+    transmitterHistoryKind: historyKinds.length === 1 ? historyKinds[0] : "mixed-prescribed-transmitters",
     signalSpeed:
       request.observerFieldRequest?.signalSpeed ??
       request.signalSpeed ??
@@ -560,13 +876,49 @@ export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
       1,
     branches,
   });
+  const receiverPhaseRecords = roots.map((root) => labelRecord({
+    transmitterRootRequestIndex: root.transmitterRootRequestIndex,
+    transmitterRootIndex: root.transmitterRootIndex,
+    rootId: root.rootId,
+    receiverRole: root.phaseAtHit.receiverRole,
+    receiverLayerId: root.phaseAtHit.receiverLayerId,
+    receiverChargeSign: root.phaseAtHit.receiverChargeSign,
+    ...root.phaseAtHit.receiver,
+  }));
+  const phaseSpreadDiagnostics = summarizeAbsoluteHistoryPhaseRecords(
+    roots.map((root) => root.phaseAtHit)
+  );
+  const rejectedRootReasonCounts = roots.reduce((counts, root) => {
+    if (root.admission.status === "rejected") {
+      counts[root.admission.reason] = (counts[root.admission.reason] ?? 0) + 1;
+    }
+    return counts;
+  }, {});
+  const rejectedRequestReasonCounts = transmitterRootResponses.reduce((counts, response) => {
+    if (response.roots.length === 0) {
+      const reason = response.rejectedReason || response.status?.code || "no_roots";
+      counts[reason] = (counts[reason] ?? 0) + 1;
+    }
+    return counts;
+  }, {});
+  const rejectedRootCount = roots.filter((root) => root.admission.status === "rejected").length;
+  const unresolvedTransmitterCount = transmitterRootResponses.filter((response) => response.roots.length === 0).length;
+  const partial = unresolvedTransmitterCount > 0 || rejectedRootCount > 0 || observerField.rejectedContributionCount > 0;
   const status = createStatus(
-    "ok",
-    "ok",
-    "prescribed moving-circular roots and observer field computed"
+    partial ? "partial" : "ok",
+    partial ? "warn" : "ok",
+    partial
+      ? "prescribed absolute-history run completed with unresolved or rejected rows"
+      : "prescribed absolute-history roots and observer field computed"
   );
   return labelRecord({
-    schema: "prescribed-path-analysis/moving-circular-absolute-history-run.v2",
+    schema: "prescribed-path-analysis/absolute-history-run.v1",
+    supportedHistoryKinds: [
+      "linear-prescribed-transmitter",
+      "moving-circular-transmitter",
+      "moving-circular-same-transmitter",
+    ],
+    historyKinds,
     transmitterHistoryProvider: request.transmitterHistoryProvider ?? null,
     analysisBoundary: request.solverBoundary ?? request.analysisBoundary ?? null,
     transmitterRootRequests: labelRecords(transmitterRootRequests),
@@ -574,16 +926,48 @@ export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
     roots,
     branches,
     observerField,
+    receiverPhaseRecords,
+    phaseSpreadDiagnostics,
+    rejectedRootDiagnostics: labelRecord({
+      candidateRootCount: roots.length,
+      admittedRootCount: roots.length - rejectedRootCount,
+      rejectedRootCount,
+      rejectedRootReasonCounts,
+      unresolvedRequestCount: unresolvedTransmitterCount,
+      rejectedRequestReasonCounts,
+    }),
     rootCount: roots.length,
     transmitterRootRequestCount: transmitterRootRequests.length,
-    unresolvedTransmitterCount: transmitterRootResponses.filter((response) => response.roots.length === 0).length,
+    unresolvedTransmitterCount,
     rowProductionOwner: PRESCRIBED_PATH_ANALYSIS_ID,
     status,
     statuses: [status, ...transmitterRootResponses.flatMap((response) => response.statuses ?? [])],
   });
 }
 
-export function computeDelayedPotential(request = {}, itemIndex = 0) {
+export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
+  const transmitterRootRequests = Array.isArray(request.transmitterRootRequests)
+    ? request.transmitterRootRequests.map((rootRequest) => ({
+        ...rootRequest,
+        historyKind: "moving-circular-transmitter",
+      }))
+    : [];
+  const response = solvePrescribedAbsoluteHistoryRun({
+    ...request,
+    transmitterRootRequests,
+  });
+  return labelRecord({
+    ...response,
+    schema: "prescribed-path-analysis/moving-circular-absolute-history-run.v2",
+    observerField: labelRecord({
+      ...response.observerField,
+      schema: "prescribed-path-analysis/moving-circular-observer-field.v2",
+      transmitterHistoryKind: "moving-circular-transmitter",
+    }),
+  });
+}
+
+function computeDelayedPotential(request = {}, itemIndex = 0) {
   const transmitter = request.transmitter ?? {};
   const samplePoint = vector(request.samplePoint);
   const observationTime = finiteNumber(request.observationTime);
@@ -632,7 +1016,7 @@ export function computeDelayedPotential(request = {}, itemIndex = 0) {
   });
 }
 
-export function computeDelayedPotentials(requests = []) {
+function computeDelayedPotentials(requests = []) {
   return labelRecords(requests.map((request, index) => computeDelayedPotential(request, index)));
 }
 

@@ -1,0 +1,140 @@
+{
+  "schema": "architrino.webapp-release-gate-evidence.v1",
+  "profileId": "public-feedback",
+  "measuredAt": "2026-09-02T03:38:38Z",
+  "status": "passed_pre_release",
+  "productionMutation": false,
+  "sourceHead": "897fe1aa79be7ae1e77144d52ef396d209645323",
+  "sourceFiles": [
+    {
+      "path": "feedback.html",
+      "bytes": 4539,
+      "sha256": "830e486aecfa496be162bd811d52c32232ed791e0952a3c82123c066da350633"
+    },
+    {
+      "path": "src/apps/feedback/FeedbackManifestRuntime.js",
+      "bytes": 8816,
+      "sha256": "6ea9f51eaef849d4fdec13261ec4585d3c069c023920be19b7f4da336da3024d"
+    },
+    {
+      "path": "src/apps/feedback/feedback.css",
+      "bytes": 4756,
+      "sha256": "52201353259fd5fbc7fe49e9a134a5275e1c505b9f2e23b8d28c7e6d97b974ef"
+    },
+    {
+      "path": "src/apps/feedback/main.js",
+      "bytes": 100,
+      "sha256": "70935bd2795d2add85b87ed9a6a7e8319f1b76017fa6e98481c5dc65ad50edbb"
+    }
+  ],
+  "checks": {
+    "content": {
+      "status": "passed",
+      "commands": [
+        "node scripts/validate-content.mjs --check --strict",
+        "node --test tests/public-feedback-intake.test.js tests/webapp-release-gate.test.js"
+      ],
+      "strictContentErrors": 0,
+      "strictContentWarnings": 0,
+      "inlineExecutableBlocks": 0,
+      "remoteLoadResources": 0
+    },
+    "graph": {
+      "status": "passed",
+      "command": "node scripts/build-scene-graph.mjs --check --strict",
+      "errors": 0,
+      "warnings": 0,
+      "nodes": 611,
+      "edges": 1379,
+      "searchEntries": 593
+    },
+    "size": {
+      "status": "passed",
+      "resourceFiles": 4,
+      "uncompressedBytes": 18211,
+      "maximumUncompressedBytes": 32768
+    },
+    "visual": {
+      "status": "passed",
+      "method": "Current in-app browser viewport captures inspected without retaining generated image artifacts.",
+      "viewports": [
+        {
+          "id": "desktop",
+          "width": 1440,
+          "height": 900,
+          "overflowXCssPx": 0,
+          "visuallyInspected": true,
+          "observed": "Sticky title and Applications action remain clear; the introduction uses two columns; all cards, controls, and text remain legible without overlap or clipping."
+        },
+        {
+          "id": "mobile",
+          "width": 390,
+          "height": 844,
+          "overflowXCssPx": 0,
+          "visuallyInspected": true,
+          "observed": "Header and introduction stack cleanly; cards and actions remain inside the viewport; long manifest text stays inside the textarea; the public issue action remains visible."
+        }
+      ]
+    },
+    "browser": {
+      "status": "passed",
+      "origin": "http://127.0.0.1:5173",
+      "route": "/feedback.html?page=%2Fmolecule.html%3Fformula%3Dprivate%23result",
+      "consoleMessageCount": 0,
+      "requiredInteractionsPassed": true,
+      "expectedSchema": "architrino.public-feedback-manifest.v1",
+      "sanitizedPath": "/molecule.html",
+      "copyStatus": "Sanitized manifest copied. Paste it into the required issue field.",
+      "issueNavigation": {
+        "visible": true,
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "submittedAutomatically": false
+      },
+      "publicManifests": [
+        {
+          "id": "scene-index",
+          "status": "available",
+          "scenes": 394
+        },
+        {
+          "id": "markdown-index",
+          "status": "available",
+          "files": 199
+        },
+        {
+          "id": "scene-graph",
+          "status": "available",
+          "nodes": 611,
+          "edges": 1379,
+          "searchEntries": 593
+        }
+      ]
+    },
+    "accessibility": {
+      "status": "passed",
+      "unnamedControlCount": 0,
+      "duplicateIdCount": 0,
+      "minimumControlHeightCssPx": 42,
+      "focusableControlCount": 6,
+      "headingAndMainLandmarksPassed": true,
+      "h1Count": 1,
+      "mainCount": 1,
+      "repairMade": "The readonly manifest textarea now uses feedback-manifest-title as its accessible name."
+    },
+    "preview": {
+      "status": "passed",
+      "isolatedCleanCheckoutBuild": true,
+      "isolation": "temporary clone at sourceHead plus the four exact profile source files staged only in the temporary index",
+      "buildStatus": "passed",
+      "buildCommand": "node scripts/build-static-site.mjs --out .tmp/site2",
+      "fileCount": 4288,
+      "runtimeAssetCount": 147,
+      "siteByteCount": 482213021,
+      "entrypointIncluded": true,
+      "profileResourceFilesIncluded": 4,
+      "profileResourceBytes": 18211,
+      "localRouteStatus": 200
+    }
+  }
+}

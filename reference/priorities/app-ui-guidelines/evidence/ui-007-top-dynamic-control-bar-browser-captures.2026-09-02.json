@@ -1,0 +1,98 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-007",
+  "date": "2026-09-02",
+  "subject": "canonical top dynamic control bar on the main webapp and Animator",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-007",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG",
+    "line_count": null
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open each route at the declared viewport, activate the Search scenes button, wait for the populated popover, and capture the current viewport.",
+    "routes": [
+      "/index.html",
+      "/animator.html"
+    ]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-007/main-desktop-1440x900-search.png",
+      "sha256": "819919b8f6bde03e3a79cf6738ce2d875b2a1a620cb3b561bc05247e15ce2146",
+      "bytes": 115056,
+      "route": "/index.html",
+      "viewport": [1440, 900],
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "popover_rect_px": [1149.84, 60, 274.16, 278],
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false,
+      "bar_overlap": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-007/main-mobile-390x844-search.png",
+      "sha256": "31082e90a2f47748c0064acb2b54364aa83260b27efa34b31574c3073fdef67d",
+      "bytes": 39060,
+      "route": "/index.html",
+      "viewport": [390, 844],
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [162.44, 67, 211.56, 32],
+      "popover_rect_px": [99.84, 111, 274.16, 278],
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false,
+      "bar_overlap": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-007/animator-desktop-1440x900-search.png",
+      "sha256": "27439edf3b59b9adf1390402ab573fe9e98f0e7c5a2baecff90b0cfec3889c74",
+      "bytes": 103733,
+      "route": "/animator.html",
+      "viewport": [1440, 900],
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 10, 211.56, 32],
+      "local_actions_rect_px": [591.31, 11, 609.13, 30],
+      "workspace_top_px": 52,
+      "popover_rect_px": [1149.84, 54, 274.16, 278],
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false,
+      "bar_overlap": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-007/animator-mobile-390x844-search.png",
+      "sha256": "78fe35cd86d6889cc07ccef8feb792c423742dbb85b980bdd33dd7e349da5e60",
+      "bytes": 56029,
+      "route": "/animator.html",
+      "viewport": [390, 844],
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [162.44, 124, 211.56, 32],
+      "local_actions_rect_px": [16, 46, 358, 66],
+      "workspace_top_px": 166,
+      "popover_rect_px": [99.84, 168, 274.16, 278],
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false,
+      "bar_overlap": false
+    }
+  ],
+  "browser_log_entries": 0,
+  "visual_inspection": {
+    "desktop": "Control order, focused search, popover anchoring, and app-content clearance are visible on both surfaces.",
+    "mobile": "The main bar occupies a second header row; the Animator bar follows its local actions in a third row, and both popovers remain inside the viewport."
+  },
+  "claim_boundary": "These captures verify the current main-webapp and Animator representative surfaces only. They do not establish standalone-page migration, pixel-identical rendering on another browser or host, or a general visual-regression threshold."
+}

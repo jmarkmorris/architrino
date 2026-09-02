@@ -21,7 +21,7 @@ const activeSnapshot = readJson(smoke.activeSnapshotFixture);
 const rollbackSnapshot = buildRollbackSnapshot();
 const fixtureToken = "loopback-fixture-token-v1";
 
-test("loopback HTTP fixture exercises lifecycle, four tools, failures, safe logs, and rollback", async () => {
+test("loopback HTTP fixture exercises lifecycle, five tools, failures, safe logs, and rollback", async () => {
   let now = 0;
   const events = [];
   const contract = contractForSnapshot(activeSnapshot);
@@ -310,7 +310,7 @@ function assertFixtureSpecificResult(fixtureCase, body) {
     assert.equal(body.result.protocolVersion, "2025-11-25");
   }
   if (fixtureCase.caseId === "http-tools-list-001") {
-    assert.deepEqual(body.result.tools.map((tool) => tool.name), ["search", "read", "topics", "neighbors"]);
+    assert.deepEqual(body.result.tools.map((tool) => tool.name), ["search", "read", "topics", "neighbors", "walk"]);
   }
   if (fixtureCase.caseId.includes("-call-")) {
     assert.equal(body.result.structuredContent.schema, "archie-mcp-tool-response/v1");

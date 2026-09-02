@@ -7,10 +7,18 @@ import { spawn } from "node:child_process";
 export const DEFAULT_PDGEDIT_REVIEW_BROWSER_PATH =
   "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge";
 export const DEFAULT_PDGEDIT_REVIEW_PAGE_PATH = "pdgedit-review.html";
+export const PDGEDIT_REVIEW_SURFACE_METADATA = Object.freeze({
+  id: "pdgedit-review",
+  title: "PDG Edit Review",
+  surfaceClass: "review-artifact",
+  workflowOwner: "pdgedit-editing-workflow",
+  productApplication: false,
+  pagePath: DEFAULT_PDGEDIT_REVIEW_PAGE_PATH,
+});
 export const DEFAULT_PDGEDIT_REVIEW_WIDTH = 1600;
 export const DEFAULT_PDGEDIT_REVIEW_HEIGHT = 9000;
 export const DEFAULT_PDGEDIT_REVIEW_BUDGET_MS = 12000;
-const DEFAULT_PDGEDIT_REVIEW_EXPORT_TIMEOUT_MS = 30000;
+const DEFAULT_PDGEDIT_REVIEW_EXPORT_TIMEOUT_MS = 120000;
 
 function resolvePositiveNumericFlag(rawValue, flagName) {
   const value = Number.parseInt(String(rawValue ?? "").trim(), 10);

@@ -226,6 +226,33 @@
       "expectedRpcErrorCode": null
     },
     {
+      "caseId": "http-walk-call-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "method": "tools/call",
+        "params": {
+          "name": "walk",
+          "arguments": {
+            "topicOrRoute": "source.ontology-purpose",
+            "maxDepth": 2,
+            "limit": 2
+          }
+        }
+      },
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": null
+    },
+    {
       "caseId": "http-get-mcp-405-001",
       "method": "GET",
       "path": "/mcp",

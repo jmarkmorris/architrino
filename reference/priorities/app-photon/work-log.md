@@ -6,6 +6,46 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 PHO-001 Reusable Absolute-History Facade Closure
+
+Closed PHO-001 with [reusable-absolute-history-facade.md](reusable-absolute-history-facade.md). `solvePrescribedAbsoluteHistoryRun` now composes the existing linearly prescribed transmitter, moving-circular transmitter, and moving-circular same-transmitter root contracts without importing Photon state. It emits explicit receiver-phase records, circular phase-spread families grouped by layer, role, charge, root kind, and cycle, and separate rejected-root and unresolved-request reason counts.
+
+Observer-field reconstruction now rejects incomplete causal factors, invalid/nonunit directions, invalid distance or charge records, and roots that fail admission. Rejected rows remain inspectable but contribute the zero vector. The existing Photon moving-circular entrypoint remains a compatibility wrapper, and arbitrary histories plus production authority remain with App Solver and the EOM solver bridge.
+
+Independent focused fixtures at $c_f=1$ pin a stationary linear root and field to $t_e=1$, delay $2$, and $\mathbf E=(1/4,0,0)$; exercise an exact bounded no-root case; verify same-transmitter receiver-phase exposure; and require invalid field geometry and unsupported history kinds to fail closed. Focused validation passed 66/66 tests. The result remains display-only-visualization evidence and establishes no photon branch, phase locking, retention, stability, helicity, Malus-law recovery, or constitutive law.
+
+### 2026-09-02 PHO-006 Deep Configuration Comparison Closure
+
+Closed PHO-006 with [configuration-search-deep-comparison.md](configuration-search-deep-comparison.md). The Photon configuration search now has a scheduled deep path over the full constructed candidate pool, with a pre-evaluation local-$c$ filter, a post-evaluation measured phase-family filter, progress updates, and event-loop yields between candidates. Both short and deep searches reuse the same candidate builder, prescribed-path analysis, scoring, and serializer.
+
+Every retained deep result records `photon-configuration-deep-comparison.v1` provenance: producing path, analysis identity, normalized-state snapshot, UI independence after dispatch, explicit lack of an independent scientific oracle, both evaluated history modes, and normalized filters. JSON export and import preserve this record alongside the existing diagnostics and mode comparisons.
+
+Focused validation passed 62/62 tests. The result establishes workflow behavior and provenance retention only; it does not establish phase-lock retention, stability, a physical photon branch, helicity recovery, or Malus-law recovery.
+
+### 2026-09-02 PHO-004 Self-Hit Admission Closure
+
+Closed PHO-004 with [absolute-source-history-self-hit-admission.md](absolute-source-history-self-hit-admission.md). Every numerical helical same-transmitter root now carries an ordered admission record with $D_t$, $|D_t|$, the $10^{-4}$ transversality floor, signed margin, and one of four dispositions: admitted regular root, singular root, Jacobian-floor failure, or uncertified transversality.
+
+Runtime and sweep summaries now close candidate roots into admitted plus rejected counts and aggregate exact rejection reasons. The diagnostics panel distinguishes records with numerical candidates from regular roots and rejected roots. Singular candidates remain inspectable but cannot become phase-lock candidates or physical evidence.
+
+No new transmitter-history family was added, so the existing provenance-bound 756-case sweep was intentionally not expanded or regenerated. Focused validation passed 61/61 tests, including a twelve-row fixture with three roots in each disposition and a sweep-summary count identity. The result remains display-only-visualization evidence.
+
+### 2026-09-02 PHO-003 Moving-Apparatus Delta-X Closure
+
+Closed PHO-003 with [moving-apparatus-delta-x-mapping.md](moving-apparatus-delta-x-mapping.md). `PhotonFormulaRuntime.js` now emits `photon-moving-apparatus-delta-x.v1`, labels absolute history as the authoritative $\Delta x$ diagnostic, labels co-moving output comparison-only, and records the normalized separation, reference radius, ratio, and braid-center offsets.
+
+Every retained source root now carries an age in declared reference cycles: fresh through one cycle, aging above one through two, and stale above two. The diagnostics panel reports the three counts and oldest age while retaining `stale_history_window` and `no_catch_up_root` as separate bounded scan outcomes. The age bands are display-review thresholds rather than physical lifetimes.
+
+Focused validation: `node --test tests/photon-runtime.test.js tests/photon-runtime-orchestration.test.js` passed 60/60. The threshold fixture exercised ages $0.8$, $1.5$, and $2.5$ reference cycles, while existing tests preserved co-moving/absolute-history separation and $\Delta x$ geometry. No photon retention, stability, physical-separation, or Noether sea constitutive claim follows.
+
+### 2026-09-02 PHO-005 Source-Bound I/M/O Mapping Closure
+
+Closed PHO-005 with [substrate-mapping-refinement.md](substrate-mapping-refinement.md). Corrected the stale priority-level observer acceleration formula from a receiver-playback ratio to the canonical transmitter-side weight $c_{\mathrm{sig}}/|D_t|$, retained $D_r/D_t$ solely as signed root-playback data, and aligned the ideal plane-wave comparison with the selected $c_{\mathrm{sig}}$.
+
+`PhotonFormulaRuntime.js` now emits `photon-substrate-mapping-refinement.v1`. The record declares co-moving versus absolute-history identity, speed and observer inputs, common-period fit inputs, and active I/M/O transmitter counts; partitions every sampled field into I/M/O contributions; fits the same reference harmonic per layer and in total; and reports branch-sum, harmonic-closure, total-fit, root-solve, and coverage diagnostics. Incomplete root coverage remains visibly partial and cannot be mistaken for algebraic closure.
+
+Focused validation: `node --test tests/photon-runtime.test.js` passed 54/54, including exact I/M/O sample closure, coefficient-level harmonic closure, distinct mode labels, and existing fail-closed causal-factor checks. The result remains measured only at display-only-visualization grade and supplies no physical photon or constitutive-law evidence.
+
 ### 2026-07-02 Moving-Circular Row Production
 
 Resumed the paused Photon #1 row work after the priority-directory split and kept the live tracker concise. Current branch state carries the fourth-pass implementation: Photon is the app-level constrained source-history provider, and the shared analysis facades produce moving-circular source-root rows, source velocity rows, source phase-at-hit rows, observer-field contribution rows, and observer-field summary rows.

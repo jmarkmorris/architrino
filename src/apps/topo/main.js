@@ -12,7 +12,7 @@ function reportTopoBootstrapError(
   console.error(error);
   const status = documentLike?.querySelector?.("#topo-status");
   if (status) {
-    status.textContent = "Topo interaction preview failed to initialize: " + message;
+    status.textContent = "Wake Topography interaction preview failed to initialize: " + message;
   }
 }
 

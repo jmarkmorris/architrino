@@ -54,6 +54,54 @@ function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
 
+function canonicalSitePair(leftId, rightId) {
+  return [leftId, rightId].sort().join("|");
+}
+
+function independentlyEnumerateNeighborPairs(sites, distance) {
+  const pairs = [];
+  sites.forEach((left, leftIndex) => {
+    sites.slice(leftIndex + 1).forEach((right) => {
+      const separation = Math.hypot(...right.position.map(
+        (value, axis) => value - left.position[axis],
+      ));
+      if (Math.abs(separation - distance) < 1e-9) {
+        pairs.push(canonicalSitePair(left.id, right.id));
+      }
+    });
+  });
+  return pairs.sort();
+}
+
+function rotateVectorByQuaternion(vector, quaternion) {
+  const [x, y, z] = vector;
+  const [qx, qy, qz, qw] = quaternion;
+  const tx = 2 * (qy * z - qz * y);
+  const ty = 2 * (qz * x - qx * z);
+  const tz = 2 * (qx * y - qy * x);
+  return [
+    x + qw * tx + qy * tz - qz * ty,
+    y + qw * ty + qz * tx - qx * tz,
+    z + qw * tz + qx * ty - qy * tx,
+  ];
+}
+
+function projectedOrthographicLengthPx(
+  start,
+  end,
+  quaternion,
+  viewportHeight,
+  viewHalfHeight,
+  displayScale = 1,
+) {
+  const rotated = rotateVectorByQuaternion(
+    end.map((value, axis) => value - start[axis]),
+    quaternion,
+  );
+  return Math.hypot(rotated[0], rotated[1]) * displayScale *
+    viewportHeight / (2 * viewHalfHeight);
+}
+
 test("every gallery crop uses 2.75d while apparent diameter stays fixed", () => {
   assert.equal(LATTICE_LAB_DISPLAY_RADIUS, 2.75);
   assert.equal(LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS, 2.75);
@@ -339,6 +387,70 @@ test("maximum deformation aggregates coincident columns and partitions lines", (
   assert.match(source, /endpointRepeatHighlightEdgeIdentities/u);
   assert.doesNotMatch(source, /repeat-cell-endpoint-aggregate-highlight/u);
   assert.doesNotMatch(source, /repeat-cell-endpoint-edge-bundle/u);
+});
+
+test("HCP endpoint aggregation preserves every source identity and exact edge partition", () => {
+  const hcp = createLatticeLabCaseGallery().find(
+    ({ id }) => id === "hcp-abab-layers-v1",
+  );
+  const visibility = createMainDisplayVisibility(hcp);
+  const deformationFactor = xAxisScaleFromDeformationBeta(1);
+  const operatorViewportHeight = 720;
+  const renderedMarkerDiameterPx = 16;
+  const markerDiameterWorld = renderedMarkerDiameterPx * (
+    2 * defaultViewHalfHeightForDisplayRadius(hcp.displayRadius) /
+      operatorViewportHeight
+  );
+  const aggregation = createEndpointVisualAggregation(
+    visibility.visibleSites.map((site) => ({
+      id: site.id,
+      position: createUniaxialDeformedPosition(site.position, {
+        axis: "x",
+        factor: deformationFactor,
+      }),
+    })),
+    visibility.visibleEdges.map((edge) => ({
+      ...edge,
+      id: canonicalSitePair(edge.fromSiteId, edge.toSiteId),
+    })),
+    markerDiameterWorld + 1e-9,
+  );
+
+  assert.equal(deformationFactor, 0.01);
+  assert.equal(visibility.visibleSites.length, 116);
+  assert.equal(visibility.visibleEdges.length, 509);
+  assert.equal(aggregation.groups.length, 30);
+  assert.equal(aggregation.collapsedGroups.length, 30);
+  assert.deepEqual(
+    Object.fromEntries(
+      aggregation.groups.reduce((histogram, group) => {
+        histogram.set(
+          group.memberIds.length,
+          (histogram.get(group.memberIds.length) ?? 0) + 1,
+        );
+        return histogram;
+      }, new Map()),
+    ),
+    { 2: 4, 3: 6, 4: 10, 5: 10 },
+  );
+  assert.deepEqual(
+    aggregation.groups.flatMap(({ memberIds }) => memberIds).sort(),
+    visibility.visibleSites.map(({ id }) => id).sort(),
+  );
+  assert.equal(aggregation.internalEdgeIds.length, 86);
+  assert.equal(aggregation.externalEdges.length, 71);
+  assert.equal(aggregation.redundantExternalEdgeIds.length, 352);
+  assert.equal(
+    aggregation.internalEdgeIds.length +
+      aggregation.externalEdges.length +
+      aggregation.redundantExternalEdgeIds.length,
+    visibility.visibleEdges.length,
+  );
+  assert.ok(
+    aggregation.groupBySiteId.get(hcp.defaultSiteId)?.memberIds.includes(
+      hcp.defaultSiteId,
+    ),
+  );
 });
 
 test("every deformation status uses the concise beta endpoint wording", () => {
@@ -775,6 +887,163 @@ test("trackball drag permits full 3D rotation and tilts the projected Y axis", (
     2 * (qy * qz + qw * qx),
   ];
   assert.ok(Math.abs(yAxis[0]) > 0.05, "projected Y axis must be able to tilt");
+});
+
+test("Diamond nearest-neighbor geometry is independently reconstructed", () => {
+  const diamond = createLatticeLabCaseGallery().find(
+    ({ id }) => id === "diamond-cubic-two-sublattice-v1",
+  );
+  const independentlyEnumerated = independentlyEnumerateNeighborPairs(
+    diamond.sites,
+    1,
+  );
+  const rendered = createNearestNeighborEdges(diamond).map(
+    ({ fromSiteId, toSiteId }) => canonicalSitePair(fromSiteId, toSiteId),
+  ).sort();
+  assert.equal(independentlyEnumerated.length, 79);
+  assert.deepEqual(rendered, independentlyEnumerated);
+
+  const nextShellDistance = 4 / Math.sqrt(6);
+  for (let basisIndex = 0; basisIndex < 8; basisIndex += 1) {
+    const receiver = diamond.idealSites.find(({ grid }) =>
+      grid[0] === 0 && grid[1] === 0 && grid[2] === 0 &&
+      grid[3] === basisIndex
+    );
+    const nearest = diamond.idealSites.filter((site) =>
+      site.id !== receiver.id &&
+      Math.abs(Math.hypot(...site.position.map(
+        (value, axis) => value - receiver.position[axis],
+      )) - 1) < 1e-9
+    );
+    const nextShell = diamond.idealSites.filter((site) =>
+      site.id !== receiver.id &&
+      Math.abs(Math.hypot(...site.position.map(
+        (value, axis) => value - receiver.position[axis],
+      )) - nextShellDistance) < 1e-9
+    );
+    assert.equal(nearest.length, 4, `Diamond basis orbit ${basisIndex}`);
+    assert.equal(nextShell.length, 12, `Diamond next shell ${basisIndex}`);
+    assert.equal(
+      nearest.every(({ polarity }) => polarity !== receiver.polarity),
+      true,
+      `Diamond polarity topology ${basisIndex}`,
+    );
+  }
+
+  const repeatNetwork = createRepeatCellNearestNeighborNetwork(diamond);
+  assert.equal(repeatNetwork.relationshipCount, 8);
+  diamond.repeatCell.sites.forEach((ownedSite) => {
+    const relationships = repeatNetwork.relationships.filter(
+      ({ fromSiteId }) => fromSiteId === ownedSite.id,
+    );
+    assert.equal(relationships.length, 4, ownedSite.id);
+    relationships.forEach((relationship) => {
+      const separation = Math.hypot(...relationship.toPosition.map(
+        (value, axis) => value - relationship.fromPosition[axis],
+      ));
+      assert.ok(Math.abs(separation - 1) < 1e-9);
+      assert.notEqual(relationship.toPolarity, ownedSite.polarity);
+      assert.ok(Math.abs(separation - nextShellDistance) > 1e-3);
+    });
+  });
+  assert.equal(repeatNetwork.edges.length, 7);
+  assert.equal(
+    diamond.unpolarizedLatticePattern.relationshipSegments.length,
+    16,
+  );
+  diamond.unpolarizedLatticePattern.relationshipSegments.forEach((edge) => {
+    const separation = Math.hypot(...edge.end.map(
+      (value, axis) => value - edge.start[axis],
+    ));
+    assert.ok(Math.abs(separation - 1) < 1e-9, edge.id);
+  });
+});
+
+test("default orthographic projection changes apparent length, not world spacing", () => {
+  const quaternion = createDefaultOrientationQuaternion();
+  const mainViewportHeight = 720;
+  const mainViewHalfHeight = defaultViewHalfHeightForDisplayRadius(2.75);
+  const miniatureViewportHeight = 190;
+  const miniatureViewHalfHeight = 2.45;
+  const expectedMiniatureScale = new Map([
+    ["simple-cubic-checkerboard-v1", 1.3],
+    ["bcc-two-sublattice-v1", 1.3],
+    ["fcc-alternating-planes-v1", 1.3],
+    ["hcp-abab-layers-v1", 1.35099963],
+    ["simple-cubic-alternating-planes-v1", 1.3],
+    ["diamond-cubic-two-sublattice-v1", 1.549702858],
+  ]);
+
+  createLatticeLabCaseGallery().filter(({ repeatCell }) => repeatCell)
+    .forEach((caseRecord) => {
+      const siteById = new Map(caseRecord.sites.map((site) => [site.id, site]));
+      const mainLengths = createMainDisplayVisibility(caseRecord)
+        .visibleEdges.map((edge) => {
+        const start = siteById.get(edge.fromSiteId).position;
+        const end = siteById.get(edge.toSiteId).position;
+        const worldLength = Math.hypot(...end.map(
+          (value, axis) => value - start[axis],
+        ));
+        assert.ok(Math.abs(worldLength - 1) < 1e-9, caseRecord.id);
+        return projectedOrthographicLengthPx(
+          start,
+          end,
+          quaternion,
+          mainViewportHeight,
+          mainViewHalfHeight,
+        );
+      });
+      assert.ok(Math.min(...mainLengths) > 0, caseRecord.id);
+      assert.ok(
+        Math.max(...mainLengths) <=
+          mainViewportHeight / (2 * mainViewHalfHeight) + 1e-9,
+        caseRecord.id,
+      );
+
+      const scale = expectedMiniatureScale.get(caseRecord.id);
+      const repeatLengths = createRepeatCellDisplayGraph(caseRecord)
+        .edges.map(({ edge: { start, end } }) => {
+          const worldLength = Math.hypot(...end.map(
+            (value, axis) => value - start[axis],
+          ));
+          assert.ok(Math.abs(worldLength - 1) < 1e-9, caseRecord.id);
+          return projectedOrthographicLengthPx(
+            start,
+            end,
+            quaternion,
+            miniatureViewportHeight,
+            miniatureViewHalfHeight,
+            scale,
+          );
+        });
+      assert.ok(Math.min(...repeatLengths) > 0, caseRecord.id);
+      assert.ok(
+        Math.max(...repeatLengths) <=
+          scale * miniatureViewportHeight / (2 * miniatureViewHalfHeight) +
+            1e-9,
+        caseRecord.id,
+      );
+    });
+});
+
+test("case entry, reset, and reload share one synchronized camera contract", () => {
+  const runtime = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
+  assert.equal(
+    runtime.match(
+      /rootGroup\.quaternion\.set\(\.\.\.createDefaultOrientationQuaternion\(\)\)/gu,
+    ).length,
+    3,
+  );
+  assert.match(runtime, /unpolarizedRoot\.quaternion\.copy\(rootGroup\.quaternion\)/u);
+  assert.match(runtime, /miniatureRoot\.quaternion\.copy\(rootGroup\.quaternion\)/u);
+  assert.match(
+    runtime,
+    /function selectCase\(caseId\) \{[\s\S]*cameraViewHalfHeight = defaultViewHalfHeightForDisplayRadius\([\s\S]*rootGroup\.position\.set\(0, 0, 0\);[\s\S]*rootGroup\.quaternion\.set\(\.\.\.createDefaultOrientationQuaternion\(\)\)/u,
+  );
+  assert.match(
+    runtime,
+    /function resetCase\(\) \{[\s\S]*cameraViewHalfHeight = defaultViewHalfHeightForDisplayRadius\([\s\S]*rootGroup\.position\.set\(0, 0, 0\);[\s\S]*rootGroup\.quaternion\.set\(\.\.\.createDefaultOrientationQuaternion\(\)\)/u,
+  );
 });
 
 test("default display orientation is Z-up without remapping model axes", () => {
@@ -1492,14 +1761,22 @@ test("XYZ key uses centered symmetric unit axes with labels beyond positive endp
   );
 });
 
-test("Lattice Lab page keeps the shared standalone navigation strip without Borg diagnostics", () => {
+test("Lattice Lab mounts the canonical standalone navigation runtime without Borg diagnostics", () => {
   const html = readRepoFile("lattice-lab.html");
   const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
+  const navigationRuntimeSource = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   assert.match(
     html,
-    /id="scene-hud-tools"[\s\S]*id="textbook-toc-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="home-button"[\s\S]*id="scene-search-toggle"/u,
+    /<div id="scene-hud-tools" class="lattice-lab-navigation"><\/div>/u,
   );
-  assert.match(html, /src\/apps\/navigator\/standalone-app-navigation\.css/u);
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/u);
+  assert.doesNotMatch(html, /src\/apps\/navigator\/standalone-app-navigation\.css/u);
+  assert.doesNotMatch(
+    html,
+    /id="(?:textbook-toc-button|nav-up|nav-forward|home-button|scene-search-toggle)"/u,
+  );
+  assert.match(navigationRuntimeSource, /createStandaloneAppNavigationRuntime/u);
+  assert.doesNotMatch(navigationRuntimeSource, /createStandaloneAppSceneSearchRuntime/u);
   assert.equal(html.includes("diagnostics-toggle"), false);
   assert.equal(/\bPlay\b/u.test(html), false);
   assert.equal(html.includes("data-lattice-view"), false);
@@ -2044,50 +2321,31 @@ test("shared panel collapse icon preserves the established open and closed treat
   assert.match(equationRuntime, /createPanelCollapseIconSvg\(this\.indexCollapsed\)/u);
 });
 
-test("Applications groups fifteen apps and keeps Explore Models catalog-alphabetical", () => {
+test("Applications keeps the operator-selected fourteen-app sequence", () => {
   const applications = JSON.parse(
     readRepoFile("content/scenes/archie/applications.json"),
   );
-  const exploreModels = JSON.parse(
-    readRepoFile("content/scenes/archie/applications_explore_models.json"),
-  );
-  const expectedCategories = [
-    "learn_reference",
-    "explore_models",
-    "analyze_evidence",
-    "build_simulate",
-  ];
-  const expectedExploreOrder = [
-    "lattice_lab",
-    "ideal_braid",
-    "molecule",
-    "photon",
-    "topo",
+  const expectedOrder = [
+    "animator", "greek_letter_match", "molecule", "periodic_table",
+    "hyde_periodic_table", "atom", "standard_model", "causal_delay_feedback",
+    "borg", "topo", "ideal_braid", "lattice_lab", "photon", "equation_mapping",
   ];
 
   assert.equal(applications.scene.layout.type, "rings");
   assert.equal(applications.scene.layout.order, "objects");
-  assert.equal(applications.scene.children.length, 4);
-  assert.equal(applications.objects.length, 4);
+  assert.equal(applications.scene.children.length, 14);
+  assert.equal(applications.objects.length, 14);
   assert.deepEqual(
     applications.scene.children.map((entry) => entry.nodeId),
-    expectedCategories,
+    expectedOrder,
   );
   assert.deepEqual(
     applications.objects.map((entry) => entry.id),
-    expectedCategories,
-  );
-  assert.deepEqual(
-    exploreModels.scene.children.map((entry) => entry.nodeId),
-    expectedExploreOrder,
-  );
-  assert.deepEqual(
-    exploreModels.objects.map((entry) => entry.id),
-    expectedExploreOrder,
+    expectedOrder,
   );
   assert.equal(
-    exploreModels.objects.find((entry) => entry.id === "lattice_lab")?.labelTitle,
-    "Lattice Lab",
+    applications.objects.find((entry) => entry.id === "topo")?.labelTitle,
+    "Wake Topography",
   );
 });
 

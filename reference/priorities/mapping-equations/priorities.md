@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `6`
+- Rank: `5`
 - Value: `20.43`
 - Cost: `5.2`
 - ROI: `3.93`
@@ -112,4 +112,4 @@ The locally ranked equation objects, live blockers, and completion boundaries li
 - Effective metric, Noether sea, and cosmology packets: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md), [EQ-11/20 Gravity And Dark-Energy Packet](eq-11-20-gravity-dark-energy-packet.md), [EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-map.md), [EQ-17 Theta-Transfer Source-Field Map](eq-17-theta-transfer-source-field-map.md), [EQ-18 And EQ-19 Theta-Cos Source-Field Map](eq-18-19-theta-cos-source-field-map.md), [EQ-24 Theta-Sea Rho-NS Source-Field Map](eq-24-theta-sea-rho-ns-source-field-map.md), [EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md), and [EQ-21/EQ-22/EQ-23 Theta-Src Source-Field Map](eq-21-22-23-theta-src-source-field-map.md).
 - Photon, statistical, and source-carrier maps: [EQ-12 Theta-Gamma Packet Source Shell](eq-12-theta-gamma-packet-source-shell.md), [EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](eq-13-28-e-gamma-e0-gate-a-source-field-map.md), [EQ-14/EQ-30/EQ-31 Finite-Window W Source-Field Map](eq-14-30-31-finite-window-w-source-field-map.md), and [EQ-29 Radiation Source Carrier Source-Field Map](eq-29-radiation-source-carrier-source-field-map.md).
 - High-energy suffix packets: [EQ-07A Compact-Star Support And Collapse Scale Residual](eq-07a-compact-star-support-collapse-scale-residual.md), [EQ-07B Black-Hole Accretion, Jet Release, And Horizon Thermodynamics](eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md), [EQ-07C Black-Hole Horizon-Interface Noether Braid Map](eq-07c-black-hole-horizon-interface-noether-braid-map.md), [EQ-11A Gravitational-Wave Source Recovery](eq-11a-gravitational-wave-source-recovery.md), [EQ-22B Recombination And Acoustic Transfer](eq-22b-recombination-acoustic-transfer.md), [EQ-23A Stellar Explosive Nucleosynthesis And Shock-Driven Reaction Networks](eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md), and [EQ-28A Path-Frequency Exchange](eq-28a-path-frequency-exchange.md).
-- Cross-workstream consumers: Equation-Map Bearing On Braid Configuration Search, [Mapping Benchmarks Priority Candidates](../mapping-benchmarks/priorities.md), [Cosmology Transfer-Function Closure](../mapping-cosmology/priorities.md), Noether-Core Stability and First Mass Map, Braid, and Geometry Bridge.
+- Cross-workstream consumers: Equation-Map Bearing On Braid Configuration Search, [Mapping Benchmarks Priority Candidates](../mapping-benchmarks/priorities.md), [Cosmology Transfer-Function Closure](../dormant-deferred/mapping-cosmology/priorities.md), Noether-Core Stability and First Mass Map, Braid, and Geometry Bridge.

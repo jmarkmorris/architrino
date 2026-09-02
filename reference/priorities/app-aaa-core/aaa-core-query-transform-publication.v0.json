@@ -1,0 +1,80 @@
+{
+  "schema": "aaa_core_query_transform_publication/v0",
+  "version": 0,
+  "status": "accepted",
+  "owner": "AAA Core",
+  "dependencies": {
+    "pathInterchange": "aaa_core_path_interchange/v0",
+    "codecRegistry": "aaa_core_codec_registry/v0",
+    "acceptedHistoryStream": "aaa_core_accepted_history_stream/v0"
+  },
+  "requestSchema": "aaa_core_query_request/v0",
+  "normalization": {
+    "objectKeys": "recursive_lexicographic_order",
+    "sourceBindings": "unique_then_sort_by_pathSetId_and_manifestSha256",
+    "pathIds": "unique_then_lexicographic_order",
+    "eventKinds": "unique_then_lexicographic_order",
+    "transformOrder": "preserve_exactly",
+    "requestId": "excluded_from_computation_identity",
+    "unknownFields": "reject"
+  },
+  "identities": {
+    "queryIdentity": "canonical_sha256_over_normalized_source_bindings_and_query",
+    "transformPipelineIdentity": "canonical_sha256_over_ordered_transform_list",
+    "cacheIdentity": "canonical_sha256_over_contract_version_query_identity_transform_pipeline_identity_numeric_policy_and_output_contract",
+    "viewIdentity": "aaa_core_path_interchange_record_identity",
+    "productIdentity": "aaa_core_path_interchange_record_identity",
+    "publicationReceiptIdentity": "canonical_sha256_over_complete_receipt_without_receiptSha256"
+  },
+  "transformRules": {
+    "requiredFields": ["transformId", "version", "parameters", "authorityEffect", "maximumAddedAbsoluteError", "coverageEffect"],
+    "orderIsSemantic": true,
+    "noncommutingReorderChangesCacheIdentity": true,
+    "maximumAddedAbsoluteErrorIsFiniteAndNonnegative": true,
+    "authorityEffects": ["preserve", "cap_derived_analysis", "cap_diagnostic", "cap_display_only"],
+    "coverageEffects": ["preserve", "subset"]
+  },
+  "publicationRules": {
+    "states": ["provisional", "sealed", "halted"],
+    "sourceBindingsMustMatchRequestAndRecords": true,
+    "sealedRequiresEverySourceComplete": true,
+    "sealedRequiresOutputCoverageComplete": true,
+    "sealedRequiresImmutableReceipt": true,
+    "codecCapabilityMustBeRegistered": true,
+    "outputAuthorityCannotExceedWeakestSourceOrTransformCap": true,
+    "solverContinuationPermitted": false,
+    "permittedConsumersAreExplicit": true,
+    "retrievalRequiresExactReceiptAndProductIdentity": true
+  },
+  "authorityCaps": {
+    "preserve": null,
+    "cap_derived_analysis": "derived_analysis",
+    "cap_diagnostic": "diagnostic",
+    "cap_display_only": "display_only"
+  },
+  "refusalCodes": [
+    "invalid_contract",
+    "missing_required_field",
+    "unsupported_query_field",
+    "duplicate_source_binding",
+    "missing_source_binding",
+    "cache_identity_mismatch",
+    "transform_order_collision",
+    "unsupported_transform",
+    "unregistered_codec",
+    "incomplete_seal",
+    "authority_escalation",
+    "source_closure_mismatch",
+    "mutable_publication",
+    "forbidden_consumer",
+    "publication_identity_mismatch"
+  ],
+  "conformance": {
+    "schema": "src/contracts/aaa-core-query-transform-publication/v0/schema.json",
+    "validator": "src/aaa-core/query-transform-publication-v0.mjs",
+    "positiveFixtures": "tests/fixtures/aaa-core-query-transform-publication/v0/positive-suite.json",
+    "negativeFixtures": "tests/fixtures/aaa-core-query-transform-publication/v0/negative-suite.json",
+    "tests": "tests/aaa-core-query-transform-publication-v0.test.js"
+  },
+  "claimBoundary": "Query normalization, ordered transform identity, cache identity, source closure, authority propagation, and synthetic publication conformance only. No transform is scientifically validated, no product is production-published, and no cache, database, transport, or kernel performance is accepted."
+}

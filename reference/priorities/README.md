@@ -11,6 +11,8 @@ For top-six workstream sessions, begin from the current minimum evidence-object 
 
 Use `aaa-operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
 
+Use the operations [Simulation Protocol Routing Index](../op/simulation-protocol-routing-index.md) to assign preserved simulation definitions to EOM, scientific-campaign, and proof-acceptance owners. The legacy `app-simulation/` directory is a compatibility location outside the priority-owner and product-application inventories.
+
 Use `dormant-deferred/aaa-journey/priorities.md` for priority-stage reconstruction of the legacy Architrino archive's ideation sequence, origin-history notes, historical perspective-commentary staging, seminal realization clusters, promotion routing, and legacy-to-current terminology migrations.
 
 ## Mapping Workstreams

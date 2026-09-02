@@ -1,0 +1,84 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-005",
+  "batch": "4-lightweight-headers",
+  "date": "2026-09-02",
+  "subject": "accepted lightweight project and Applications actions on Brand Visual Identity and Solver GPU Harness",
+  "source_identity": {
+    "policy": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar.md",
+    "brand_page": "brand-visual-identity.html",
+    "brand_stylesheet": "src/apps/brand-visual-identity/brand-visual-identity.css",
+    "solver_page": "solver-gpu-harness.html"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-005-batch-4",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open each route at the declared viewport, wait for page initialization, inspect the lightweight header action and local controls, and capture the viewport.",
+    "routes": ["/brand-visual-identity.html", "/solver-gpu-harness.html"]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-4/brand-visual-identity-desktop-1440x900.png",
+      "sha256": "3da96ee149598666237719f6164f2a27acd06e9104c28f8608c5f815dab46291",
+      "bytes": 104415,
+      "route": "/brand-visual-identity.html",
+      "viewport": [1440, 900],
+      "header_rect_px": [0, 0, 1440, 68.59],
+      "project_action_rect_px": [130, 12.8, 158.8, 42],
+      "project_action_label": "Return to Branding and Marketing in Archie",
+      "section_nav_rect_px": [985.88, 24.44, 324.13, 18.72],
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-4/brand-visual-identity-mobile-390x844.png",
+      "sha256": "f5f5edaa9bc1b92e613d7f7be88cb9473d1b629cdb4de6128226561ef7bd6fdc",
+      "bytes": 49793,
+      "route": "/brand-visual-identity.html",
+      "viewport": [390, 844],
+      "header_rect_px": [0, 0, 390, 65.38],
+      "project_action_rect_px": [16, 11.19, 135.58, 42],
+      "section_nav_rect_px": [254.53, 11.19, 119.47, 25.11],
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-4/solver-gpu-harness-desktop-1440x900.png",
+      "sha256": "dcde8094eb2064d18d6e027af4eddffd63809a271ae336e9a34f28c1ad4beae6",
+      "bytes": 69112,
+      "route": "/solver-gpu-harness.html",
+      "viewport": [1440, 900],
+      "header_rect_px": [0, 0, 1440, 131.38],
+      "applications_action_rect_px": [1073, 44.19, 107, 42],
+      "status_rect_px": [1190, 44.19, 230, 42],
+      "status_text": "WebGPU ready",
+      "benchmark_controls_visible": true,
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-4/solver-gpu-harness-mobile-390x844.png",
+      "sha256": "8df4f4278294957f65c3ab907685df605c734b4588eb4f81b3f2922f913d2f91",
+      "bytes": 37920,
+      "route": "/solver-gpu-harness.html",
+      "viewport": [390, 844],
+      "header_rect_px": [0, 0, 390, 218.55],
+      "applications_action_rect_px": [20, 157.55, 107, 42],
+      "status_rect_px": [140, 157.55, 230, 42],
+      "benchmark_controls_visible": true,
+      "horizontal_overflow": false
+    }
+  ],
+  "interaction_checks": {
+    "brand_project_destination": "index.html#scene=content%2Fscenes%2Farchie%2Fbranding_and_marketing.json",
+    "solver_applications_destination": "index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json",
+    "browser_log_entries": 0
+  },
+  "visual_inspection": {
+    "brand": "The existing identity link functions as the compact project-return action while the responsive section navigation remains local.",
+    "solver": "The new Applications action and live GPU status share the header at desktop and mobile without obscuring benchmark controls."
+  },
+  "claim_boundary": "This receipt verifies the accepted lightweight-header policy on two named pages. It does not claim either page implements the full dynamic control bar or validate benchmark/scientific results."
+}

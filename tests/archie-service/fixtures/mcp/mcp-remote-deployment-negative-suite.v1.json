@@ -10,6 +10,18 @@
       "expectedCode": "PUBLIC_DEPLOYMENT_FORBIDDEN"
     },
     {
+      "caseId": "remote-user-facing-application-negative-001",
+      "path": "serviceBoundary.userFacingApplication",
+      "value": true,
+      "expectedCode": "SERVICE_BOUNDARY_VIOLATION"
+    },
+    {
+      "caseId": "remote-static-browser-surface-negative-001",
+      "path": "serviceBoundary.staticBrowserSurfaceAllowed",
+      "value": true,
+      "expectedCode": "SERVICE_BOUNDARY_VIOLATION"
+    },
+    {
       "caseId": "remote-ready-with-open-gates-negative-001",
       "path": "remoteReady",
       "value": true,
@@ -116,6 +128,24 @@
     {
       "caseId": "remote-model-call-negative-001",
       "path": "capabilityBoundary.modelCallsAllowed",
+      "value": true,
+      "expectedCode": "CAPABILITY_BOUNDARY_VIOLATION"
+    },
+    {
+      "caseId": "remote-local-tool-access-negative-001",
+      "path": "capabilityBoundary.localToolAccessAllowed",
+      "value": true,
+      "expectedCode": "CAPABILITY_BOUNDARY_VIOLATION"
+    },
+    {
+      "caseId": "remote-repository-state-access-negative-001",
+      "path": "capabilityBoundary.repositoryStateAccessAllowed",
+      "value": true,
+      "expectedCode": "CAPABILITY_BOUNDARY_VIOLATION"
+    },
+    {
+      "caseId": "remote-credential-access-negative-001",
+      "path": "capabilityBoundary.credentialAccessAllowed",
       "value": true,
       "expectedCode": "CAPABILITY_BOUNDARY_VIOLATION"
     },

@@ -254,6 +254,16 @@ Since $\mathcal P_{\mathbf V}(\mathbf0)=\mathbf0$, the displayed straight trace 
 
 Claim grade: `derived exact right-trace compatibility under the proposed event completion`. This proves that straight passage is a solution of the declared isolated restart problem. It does not select that solution uniquely.
 
+### Closed-ceiling straight-trace isochron corollary
+
+Under the proposed closed path-speed domain $\|\mathbf V\|\le c_f$ and the exact straight-through trace, the partner-wake incidence has the following complete right-hand description. At coincidence, the whole retained partner cap $s\in[-L,0)$ arrives as one nonordinary event family and is booked once. For every receiver time $T>0$, the only partner root inherited from at or before coincidence is the endpoint $s=0$. It has $D_t=2c_f$ and $D_r=0$, remains frozen on the receiver, and contributes no repeated ordinary row under clause 4. Every older partner emission $s<0$ fails the causal equality, while every new partner emission $0<s<T$ has $g(T,s)=2c_fs>0$ and remains unreceived.
+
+Thus the straight-through receiver rides the partner's coincidence-time wakefront but receives no other partner wakefront on that trace. This is a trace-conditional isochron statement, not a unique-continuation theorem: the delayed-ignition branches below share the same event data and straight history through an arbitrary $u_*>0$, then activate exactly one new ordinary post-event partner root per receiver.
+
+Claim grade: `derived corollary under the proposed closed-domain event completion and prescribed exact straight trace`. It is falsified by an admitted partner emission other than $s=0$ satisfying the causal equality on that straight trace, by a nonzero repeated ordinary contribution from the frozen endpoint under clause 4, or by treating the conclusion as applying to the separately proved delayed-braking branches.
+
+Plainly: on the straight branch, each passerby remains on the one wakefront emitted by its partner at coincidence, while all older and newer partner fronts miss it. Other permitted branches can later acquire one new partner front, so this geometry does not select straight passage.
+
 ### Trailing-front activation boundary
 
 On the straight trace, a post-event partner emission $s>0$ has the inactive margin

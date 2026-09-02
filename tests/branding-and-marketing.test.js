@@ -9,7 +9,7 @@ import {
   classifyContrast,
   contrastRatio,
   relativeLuminance,
-} from "../src/apps/brand-visual-identity/BrandVisualIdentityRuntime.js";
+} from "../src/documentation/brand-visual-identity/BrandVisualIdentityRuntime.js";
 
 const repoFile = (path) => new URL(`../${path}`, import.meta.url);
 
@@ -113,14 +113,16 @@ test("shared UI tokens implement the complete visual identity palette", async ()
   }
 });
 
-test("visual identity page uses approved assets and live token-driven examples", async () => {
+test("visual identity reference uses approved assets and live token-driven examples", async () => {
   const html = await readText("brand-visual-identity.html");
-  const css = await readText("src/apps/brand-visual-identity/brand-visual-identity.css");
+  const css = await readText("src/documentation/brand-visual-identity/brand-visual-identity.css");
+  const guide = await readText("content/markdown/aaa/archie/branding-and-marketing.md");
   const scene = await readJson("content/scenes/archie/brand_visual_identity.json");
 
   assert.equal(scene.scene.id, "archie__brand_visual_identity");
   assert.equal(scene.scene.type, "Scene-Diagram");
-  for (const id of ["palette", "fades", "contrast", "marks", "applications"]) {
+
+  for (const id of ["palette", "fades", "contrast", "marks", "examples"]) {
     assert.match(html, new RegExp(`id="${id}"`, "u"));
   }
   for (const { token } of BRAND_TOKEN_ROLES) {
@@ -135,11 +137,21 @@ test("visual identity page uses approved assets and live token-driven examples",
   ]) {
     assert.match(html, new RegExp(asset.replaceAll(".", "\\."), "u"));
   }
+  assert.match(html, /<title>Architrino — Brand Visual Reference<\/title>/u);
+  assert.match(html, /supporting visual reference for the canonical Architrino Branding and Marketing guide/iu);
+  assert.match(html, /aria-label="Return to Branding and Marketing in Archie"/u);
+  assert.match(html, />Return to Branding &amp; Marketing<\/a>/u);
+  assert.match(guide, /\[Brand Visual Identity Reference\]\(\.\.\/\.\.\/\.\.\/\.\.\/brand-visual-identity\.html\)/u);
   assert.match(html, /BrandVisualIdentityRuntime\.js/u);
+  assert.match(html, /src\/documentation\/brand-visual-identity/u);
+  assert.doesNotMatch(html, /src\/apps\/brand-visual-identity/u);
   assert.match(css, /@import url\("\.\.\/\.\.\/\.\.\/ui-tokens\.css"\);/u);
   assert.match(css, /var\(--ui-brand-red\)/u);
   assert.match(css, /var\(--ui-brand-blue\)/u);
   assert.match(css, /var\(--ui-brand-purple\)/u);
+  assert.match(css, /\.site-header \{[\s\S]*?flex-wrap: wrap;/u);
+  assert.match(css, /\.site-header nav \{[\s\S]*?width: 100%;/u);
+  assert.doesNotMatch(css, /\.site-header nav a:nth-child\([^)]*\)[\s\S]*?display: none;/u);
   assert.match(html, /data-symmetric-blends/u);
   assert.doesNotMatch(html, /data-purple-spectrum|one-degree|360°|240°|pure-color/iu);
 });

@@ -501,7 +501,7 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 - [algorithmic-resonance-and-pilot-wave](algorithmic-resonance-and-pilot-wave.md)
 - doubling-frequency-lock
 - angular-momentum-spin
-- [app-simulation](../app-simulation/priorities.md)
+- [simulation protocol routing index](../../op/simulation-protocol-routing-index.md)
 - [validation-gates](../dormant-deferred/validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

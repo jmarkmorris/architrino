@@ -43,8 +43,8 @@
         "scenePath": "content/scenes/archie/legal_terms.json"
       },
       {
-        "nodeId": "website_stats",
-        "scenePath": "content/scenes/archie/website_stats.json"
+        "nodeId": "operations",
+        "scenePath": "content/scenes/archie/operations.json"
       },
       {
         "nodeId": "software_architecture_and_maintenance",
@@ -118,12 +118,12 @@
       "labelBadge": "doc"
     },
     {
-      "id": "website_stats",
-      "title": "Website Stats",
+      "id": "operations",
+      "title": "Operations",
       "radius": 2.2,
       "color": "#0f766e",
-      "labelTitle": "Website Stats",
-      "labelBadge": "stats"
+      "labelTitle": "Operations",
+      "labelBadge": "ops"
     },
     {
       "id": "software_architecture_and_maintenance",

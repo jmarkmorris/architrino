@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `16`
+- Rank: `11`
 - Value: `7.08`
 - Cost: `7.3`
 - ROI: `0.97`
@@ -194,7 +194,7 @@ Preserved quantum side questions have been moved to [brainstorming.md](brainstor
 
 - [master-equation-closure](../master-equation-closure/priorities.md)
 - angular-momentum-spin
-- [app-simulation](../app-simulation/priorities.md)
+- [simulation protocol routing index](../../op/simulation-protocol-routing-index.md)
 - mass-map
 - [mapping-standard-model](../mapping-standard-model/priorities.md)
 - [validation-gates](../dormant-deferred/validation-gates/priorities.md)

@@ -293,7 +293,12 @@ function prescribedDataset({ group }) {
     provenance: {
       engineId: "prescribed-geometry",
       prescribedGeometry: {
-        coordinates: { ...(group == null ? {} : { group }), worldlines: [{ id: "worldline-0", operator: { kind: "inertial.v1" } }] },
+        coordinates: {
+          ...(group == null
+            ? {}
+            : { geometry: { assemblyPlacement: group } }),
+          worldlines: [{ id: "worldline-0", operator: { kind: "inertial.v1" } }],
+        },
       },
     },
     window: {

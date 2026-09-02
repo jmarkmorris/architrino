@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
     />
+    <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <script defer src="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"></script>
     <style>
       * {
@@ -40,7 +41,7 @@
 
       .equation-mapping-shell {
         --index-width: 276px;
-        --control-top: max(18px, env(safe-area-inset-top));
+        --control-top: max(62px, calc(env(safe-area-inset-top) + 48px));
         --control-right: max(18px, env(safe-area-inset-right));
         --equation-ink: #4b0082;
         --line-ink: #4b0082;
@@ -1199,6 +1200,7 @@
     </style>
   </head>
   <body>
+    <div id="scene-hud-tools" class="equation-mapping-navigation"></div>
     <div id="equation-mapping-app"></div>
     <script type="module" src="./src/apps/equation-mapping/main.js"></script>
   </body>

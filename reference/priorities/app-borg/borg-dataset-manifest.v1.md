@@ -34,12 +34,12 @@ Every manifest must identify the EOM solver contract used to produce the dataset
 
 Required native-solver rule: the manifest may report gaps, projections, or display-only values, but it must not define an app-local production solver or promote JavaScript-only reference behavior to production behavior.
 
-### Current EOM Capability Gaps
+### Current EOM Capability Status
 
 | Capability | Current disposition | Canonical execution owner |
 | --- | --- | --- |
-| Retained wake/interaction rows, row-conservation counts, boundary-shell crossing and influence rows, boundary-to-central residuals, and required acceleration-contribution rows | Not emitted as accepted Borg EOM products; affected consumers remain fail-closed or display-only. | [BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals) |
-| Velocity-scale-aware sampling across the declared boundary-shell range | Protocol is designed, but measured calibration and holdout evidence do not exist. | [BORG-003](work-queue.md#borg-003--velocity-scale-sampling-evidence), dependent on BORG-001 |
+| Retained wake/interaction rows, row-conservation counts, boundary-shell crossing and influence rows, boundary-to-central residuals, and required acceleration-contribution rows | Implemented by the accepted V11 EOM contract and verified on the focused fixture. | [BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals) |
+| Velocity-scale-aware sampling across the declared boundary-shell range | The [frozen protocol](velocity-sampling-protocol.md) has measured calibration and holdout evidence. The [result](evidence/borg-velocity-sampling-result.2026-09-01.json) is `precision-insufficient`: the candidate policy remains unselected and replay-affected values remain fail-closed. | EOM-run campaign completed; no active queue owner |
 
 The former bridge audit's other rows are not open capability owners: EOM stepping, current-state frames, path-history streaming, manifest and screen-spec objects, 3D camera controls, layer visibility, and render metadata have live implementation paths. Their presence does not establish wake-history, boundary-shell, residual, or solver acceptance.
 
@@ -248,7 +248,7 @@ Boundary-shell replay is reduced-model boundary input. Boundary-generated inboun
 | `retainedLocalEvidenceStatus` | Status for same-record local path and wake evidence. |
 | `boundaryGeneratedEvidenceStatus` | Status for boundary-generated architrinos and reconstructed wake history. |
 
-Boundary-shell replay may not replace retained local wake rows, repair missing same-record path history, or serve as branch evidence. The first time-map policy may use only observed boundary-shell patch-input samples or resampled observed bins with traceability to recorded path-derived boundary-shell patch data. Invented synthetic boundary input may be shown only as display-only visualization and must not influence receiver acceleration, wake-background diagnostics, central-ball residuals, or experimental output. Velocity-scale-aware sampling is research-open until the manifest reports a measured policy, declared velocity scale range, and replay error budget. Boundary-shell patch influence values are authoritative only through native path streams and `borg-boundary-shell-influence-model.v1`; per-point boundary-shell patch projection caches are display/debug artifacts and must not become source evidence. A boundary shell replay becomes `benign noise` only when the manifest reports `benignNoiseStatus = measured-reduced-pass`.
+Boundary-shell replay may not replace retained local wake rows, repair missing same-record path history, or serve as branch evidence. The first time-map policy may use only observed boundary-shell patch-input samples or resampled observed bins with traceability to recorded path-derived boundary-shell patch data. Invented synthetic boundary input may be shown only as display-only visualization and must not influence receiver acceleration, wake-background diagnostics, central-ball residuals, or experimental output. The measured v1 velocity-sampling candidate is `precision-insufficient`; its selected policy id is null, holdout status is `failed`, and replay-affected values remain `fail-closed-value`. Boundary-shell patch influence values are authoritative only through native path streams and `borg-boundary-shell-influence-model.v1`; per-point boundary-shell patch projection caches are display/debug artifacts and must not become source evidence. A boundary shell replay becomes `benign noise` only when the manifest reports `benignNoiseStatus = measured-reduced-pass`.
 
 ## Boundary-To-Central Residual
 

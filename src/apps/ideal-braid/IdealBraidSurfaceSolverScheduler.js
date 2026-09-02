@@ -1,8 +1,8 @@
 import {
-  IDEAL_BRAID_POTENTIAL_SOFTENING,
-  computePotentialSamplesWithPrescribedPathAnalysis,
-  createIdealBraidPotentialSamplesRunRequest,
-} from "./IdealBraidAnalysisAdapters.js";
+  AAA_CORE_POTENTIAL_SOFTENING,
+  computePotentialSamples,
+  createPotentialSamplesRunRequest,
+} from "../../aaa-core/potential-v1.mjs";
 
 export const IDEAL_BRAID_SURFACE_SOLVER_TIME_QUANTUM_SECONDS = 1 / 8;
 export const IDEAL_BRAID_SURFACE_SOLVER_MIN_INTERVAL_MS = 180;
@@ -99,15 +99,17 @@ export function createIdealBraidSurfaceSolverScheduler({
     const samplePoints = getSamplePoints();
     const requestOptions = {
       fieldSpeed: model.fieldSpeed,
-      softening: IDEAL_BRAID_POTENTIAL_SOFTENING,
+      softening: AAA_CORE_POTENTIAL_SOFTENING,
       memoryBudgetBytes,
     };
-    const runRequest = createIdealBraidPotentialSamplesRunRequest(
+    const potentialRequest = {
+      consumerId: "ideal-braid",
       samplePoints,
       model,
-      solveTime,
-      requestOptions
-    );
+      observationTime: solveTime,
+      ...requestOptions,
+    };
+    const runRequest = createPotentialSamplesRunRequest(potentialRequest);
     lastRequestAtMs = requestStartedAtMs;
     interactiveUpdatePending = false;
     if (error) {
@@ -115,15 +117,9 @@ export function createIdealBraidSurfaceSolverScheduler({
       onErrorCleared();
     }
 
-    pendingPromise = computePotentialSamplesWithPrescribedPathAnalysis(
-      samplePoints,
-      model,
-      solveTime,
-      {
-        ...prescribedPathAnalysisOptions,
-        ...requestOptions,
-        runRequest,
-      }
+    pendingPromise = computePotentialSamples(
+      {...potentialRequest, runRequest},
+      prescribedPathAnalysisOptions,
     );
     pendingPromise
       .then((nextSnapshot) => {

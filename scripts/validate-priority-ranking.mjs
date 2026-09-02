@@ -9,6 +9,7 @@ const RANKING_PATH = path.join(
   "reference/priorities/aaa-work-threads/priorities.md"
 );
 const PRIORITIES_DIR = path.join(ROOT_DIR, "reference/priorities");
+const PRIORITY_COMPATIBILITY_DIRECTORIES = new Set(["app-simulation"]);
 const LEGACY_TASK_HEADING =
   /^##+ (Task Queue|Immediate Priority Queue|Open Work Queue|Detailed Task Inventory|Ranked Next Objects|Next Actions|Recommended Build Order|Candidate Discussion Prompts|Implementation Tickets|Release Gates)\s*$/m;
 
@@ -45,6 +46,7 @@ const activeOwnerDirectories = fs
     (entry) =>
       entry.isDirectory() &&
       entry.name !== "dormant-deferred" &&
+      !PRIORITY_COMPATIBILITY_DIRECTORIES.has(entry.name) &&
       fs.existsSync(path.join(PRIORITIES_DIR, entry.name, "priorities.md"))
   )
   .map((entry) => entry.name)

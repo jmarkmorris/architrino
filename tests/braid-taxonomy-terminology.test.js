@@ -112,7 +112,7 @@ test("Lorentz-geometry public-display scanner rejects opaque prose labels withou
 
 test("Lorentz-geometry public display surfaces use the facts-first name", () => {
   const result = scanLorentzGeometryPublicDisplayTerminology();
-  assert.equal(result.files.length, 12);
+  assert.equal(result.files.length, 11);
   assert.deepEqual(result.findings, []);
 });
 

@@ -4,7 +4,7 @@
 
 - Kind: priority
 - Rank: unranked integration packet
-- Status: queued
+- Status: discussion-scoped; no executable scientific object
 - Created: 2026-08-18
 - Claim level: observer-level recovery and derivation targets with explicitly marked speculative geometry.
 
@@ -31,7 +31,7 @@ Produce same-record electromagnetic recovery maps whose rows name:
 5. the regime, tolerance, and exact falsifier; and
 6. the owning prerequisite for every missing native carrier.
 
-The first target is the common-axis source/moment/field discriminator in [work-queue.md](work-queue.md). It separates an assembly's internal rotation axis, its polarity-weighted exposed-current moment, and the surrounding observer-level magnetic readout.
+The completed [Common-Axis Source, Moment, and Field Matrix](common-axis-source-moment-field-matrix.md) separates an assembly's internal rotation axis, exposed charge, polarity-weighted circulation, group translation, raw exposed-current moment, and surrounding observer-level magnetic readout across six independent comparison cases. It is a report-only constraint artifact and supplies no retained source evidence.
 
 The current focused constitutive packet is the [Fine-Structure Coupling Map](fine-structure.md). It develops the factorization $\alpha(\mu;\theta_{\mathrm{sea}})=\alpha_{\mathrm{ref}} \mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)$ as an application of `EMAP-004` without changing that object's blocked status, the workstream rank, or the `EQ-26A` score.
 

@@ -63,6 +63,7 @@ import { createScenePanelUiRuntime } from "../../runtime/ScenePanelUiRuntime.js"
 import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
 import { createSceneHudTooltipRuntime } from "../../runtime/SceneHudTooltipRuntime.js";
+import { createTopDynamicControlBar } from "../../runtime/TopDynamicControlBarRuntime.js";
 import { createSceneImageGalleryRuntime } from "../../runtime/SceneImageGalleryRuntime.js?v=2026-06-29-gallery-overlay-hide-scene";
 import { createTextbookPageNavigationRuntime } from "../../runtime/TextbookPageNavigationRuntime.js";
 import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
@@ -131,7 +132,7 @@ import {
   isStandardModelScene,
 } from "../../services/SceneCapabilitiesService.js";
 import {
-  isPublicStandaloneAppSearchEntry,
+  isPublicProductSceneSearchEntry,
   resolveStandaloneAppHrefForScene,
 } from "../navigator/StandaloneAppLaunchRuntime.js";
 import {
@@ -247,37 +248,113 @@ import {
   sampleAnimatorSimulationParticleAtTime,
   sampleAnimatorSimulationParticleTrail,
 } from "../animator/AnimatorSimulationPlaybackRuntime.js";
+import { summarizeAnimatorRecordedPlayback } from "../animator/AnimatorRecordedPlaybackRuntime.js";
 import {
-  applyAnimatorSimulationAuthoringDraftToDocument,
-  buildAnimatorSimulationAuthoringWorkerPayload,
-  createAnimatorSimulationAuthoringDraft,
-  summarizeAnimatorSimulationAuthoringDataset,
-} from "../animator/AnimatorSimulationAuthoringRuntime.js";
-import {
-  createAnimatorSimulationWorkerClient,
-  mergeAnimatorSimulationDatasetIntoDocument,
-} from "../animator/AnimatorSimulationWorkerRuntime.js";
+  createAnimatorRecordedPlaybackWorkerClient,
+  mergeAnimatorRecordedPlaybackIntoDocument,
+} from "../animator/AnimatorRecordedPlaybackWorkerRuntime.js";
+import { createAnimatorPrescribedSceneHandoff } from "../shared/AnimatorPrescribedSceneHandoff.mjs";
+import { openAnimatorPrescribedSceneInBorg } from "../shared/AnimatorBorgHandoffTransport.mjs";
 
+const appMode = getAnimatorAppMode(globalThis.window);
+const isStandaloneAnimatorApp = isStandaloneAnimatorAppMode(appMode);
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
-const navUpButton = document.getElementById("nav-up");
-const navForwardButton = document.getElementById("nav-forward");
 const sceneLabel = document.getElementById("scene-label");
 const sceneHudTools = document.getElementById("scene-hud-tools");
+const sceneTopDynamicControlBarMount = document.getElementById("scene-hud-right");
+const animatorTopDynamicControlBarMount = document.getElementById("animator-top-dynamic-control-bar-mount");
+const topDynamicControlBarRuntime = createTopDynamicControlBar({
+  host: sceneHudTools,
+  label: "Scene controls",
+  actions: [
+    {
+      kind: "toc",
+      id: "textbook-toc-button",
+      label: "Open textbook table of contents",
+      onActivate: () => toggleTextbookToc(),
+    },
+    {
+      kind: "back",
+      id: "nav-up",
+      label: "Go back",
+      onActivate: async () => {
+        periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+        await appDirector?.goBack();
+      },
+    },
+    {
+      kind: "forward",
+      id: "nav-forward",
+      label: "Go forward",
+      onActivate: async () => {
+        periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+        await appDirector?.goForward();
+      },
+    },
+    {
+      kind: "home",
+      id: "home-button",
+      label: isStandaloneAnimatorApp ? "Go to Applications" : "Go to home",
+      onActivate: async () => {
+        periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+        if (
+          isStandaloneAnimatorApp &&
+          navigateStandaloneAnimatorHome(
+            globalThis.window?.location,
+            STANDALONE_ANIMATOR_NAVIGATOR_HREF,
+            { windowLike: globalThis.window },
+          )
+        ) {
+          return;
+        }
+        await appDirector?.resetHome();
+      },
+    },
+    {
+      kind: "search",
+      id: "scene-search-toggle",
+      label: "Search scenes",
+      onActivate: async ({ expanded }) => {
+        if (expanded) {
+          await sceneSearchCoordinator.ensureSceneIndex();
+          sceneSearchRuntime.setSearchOpen(true);
+          return;
+        }
+        sceneSearchCoordinator.closeSearchPanel();
+      },
+      popover: {
+        containerId: "scene-search",
+        id: "scene-search-panel",
+        input: {
+          id: "scene-search-input",
+          label: "Search scenes",
+          placeholder: "Search scenes",
+          autocomplete: "off",
+        },
+        resultsId: "scene-search-results",
+      },
+    },
+  ],
+  document: globalThis.document,
+  window: globalThis.window,
+});
+const navUpButton = topDynamicControlBarRuntime.getElement("back");
+const navForwardButton = topDynamicControlBarRuntime.getElement("forward");
 const sceneFocusSphere = document.getElementById("scene-focus-sphere");
-const sceneSearch = document.getElementById("scene-search");
-const sceneSearchToggle = document.getElementById("scene-search-toggle");
-const sceneSearchPanel = document.getElementById("scene-search-panel");
-const sceneSearchInput = document.getElementById("scene-search-input");
-const sceneSearchResults = document.getElementById("scene-search-results");
+const sceneSearch = topDynamicControlBarRuntime.actions.get("search")?.wrapper ?? null;
+const sceneSearchToggle = topDynamicControlBarRuntime.getElement("search");
+const sceneSearchPanel = topDynamicControlBarRuntime.getPopoverElement("search");
+const sceneSearchInput = topDynamicControlBarRuntime.getPopoverInput("search");
+const sceneSearchResults = topDynamicControlBarRuntime.getPopoverResults("search");
 const hoverTooltip = document.getElementById("hover-tooltip");
 const zoomToast = document.getElementById("zoom-toast");
 const detailPanel = document.getElementById("detail-panel");
 const detailTitle = document.getElementById("detail-title");
 const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
-const homeButton = document.getElementById("home-button");
-const textbookTocButton = document.getElementById("textbook-toc-button");
+const homeButton = topDynamicControlBarRuntime.getElement("home");
+const textbookTocButton = topDynamicControlBarRuntime.getElement("toc");
 const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
   ? Array.from(elementLegend.querySelectorAll(".legend-pill"))
@@ -306,36 +383,29 @@ const elementNavUpButton = document.getElementById("element-nav-up");
 const elementNavDownButton = document.getElementById("element-nav-down");
 const elementNavLeftButton = document.getElementById("element-nav-left");
 const elementNavRightButton = document.getElementById("element-nav-right");
+
+function setTopDynamicControlBarMode(isAnimatorMode) {
+  const targetMount = isAnimatorMode
+    ? animatorTopDynamicControlBarMount
+    : sceneTopDynamicControlBarMount;
+  if (targetMount && sceneHudTools.parentElement !== targetMount) {
+    targetMount.appendChild(sceneHudTools);
+  }
+  sceneHudTools.classList.toggle("is-animator-mode", Boolean(isAnimatorMode));
+}
 const {
   animatorOverlay,
   animatorViewDesignButton,
   animatorViewAuthoredButton,
   animatorViewPlanarButton,
   animatorSceneButton,
-  animatorRunSimulationButton,
-  animatorSimulationPanel,
-  animatorSimulationModeSelect,
-  animatorSimulationDurationInput,
-  animatorSimulationLoopInput,
-  animatorSimulationDatasetIdInput,
-  animatorSimulationStepsInput,
-  animatorSimulationDtInput,
-  animatorSimulationStrideInput,
-  animatorSimulationFieldSpeedInput,
-  animatorSimulationKappaInput,
-  animatorSimulationClaimLevelInput,
-  animatorSimulationHistoryModeSelect,
-  animatorSimulationRootHaltPolicySelect,
-  animatorSimulationParticlesInput,
-  animatorSimulationRadiusInput,
-  animatorSimulationRadialSpeedInput,
-  animatorSimulationTangentialSpeedInput,
-  animatorSimulationDriftXInput,
-  animatorSimulationDriftYInput,
-  animatorSimulationApplyButton,
-  animatorSimulationRunButton,
-  animatorSimulationDiagnostics,
-  animatorSimulationCacheStatus,
+  animatorLoadEomRecordButton,
+  animatorOpenBorgButton,
+  animatorRecordedOutputPanel,
+  animatorEomRecordFileInput,
+  animatorRecordedOutputLoadButton,
+  animatorRecordedOutputDiagnostics,
+  animatorRecordedOutputStatus,
   animatorClearButton,
   animatorSaveButton,
   animatorDocsButton,
@@ -5027,7 +5097,7 @@ function updateAnimatorViewportFromDocument(documentData) {
     updateAnimatorViewportModeButtons();
   }
   updateAnimatorMotionSourcePill(documentData);
-  renderAnimatorSimulationAuthoringPanel(documentData);
+  renderAnimatorRecordedPlaybackPanel(documentData);
   if (!animatorViewportGroup || !animatorPathGeometry) {
     return;
   }
@@ -5367,8 +5437,6 @@ const animatorPreviewSceneId = "animator_preview";
 const animatorPreviewScenePath = "__animator_preview__";
 const animatorDocsPath =
   "reference/priorities/app-animator/priorities.md";
-const appMode = getAnimatorAppMode(globalThis.window);
-const isStandaloneAnimatorApp = isStandaloneAnimatorAppMode(appMode);
 const standaloneNavigatorHref = STANDALONE_ANIMATOR_NAVIGATOR_HREF;
 
 function isAnimatorOverlaySceneId(sceneId = "") {
@@ -5901,37 +5969,19 @@ const animatorPlaybackState = {
   lastTickMs: 0,
 };
 let animatorSupplementalDraftState = {};
-const defaultAnimatorWorkerSimulationConfig = Object.freeze({
-  steps: 120,
-  dt: 0.01,
-  stride: 6,
-  particles: 2,
-  radius: 1,
-  radialSpeed: 0,
-  tangentialSpeed: 0.08,
-  kappa: 0.002,
-  shellK: 0,
-  rootHaltPolicy: "partner",
+const animatorRecordedPlaybackWorkerClient = createAnimatorRecordedPlaybackWorkerClient({
+  workerUrl: new URL("../animator/AnimatorRecordedPlaybackWorker.js", import.meta.url),
 });
-const animatorSimulationWorkerClient = createAnimatorSimulationWorkerClient({
-  workerUrl: new URL("../animator/AnimatorSimulationWorker.js", import.meta.url),
-});
-let animatorSimulationWorkerRunActive = false;
-const animatorRunSimulationButtonLabel = animatorRunSimulationButton?.textContent ?? "Run Solver";
-const animatorSimulationRunButtonLabel = animatorSimulationRunButton?.textContent ?? "Run Solver";
+let animatorRecordedPlaybackLoadActive = false;
 
-function setAnimatorSimulationWorkerRunActive(isActive) {
-  animatorSimulationWorkerRunActive = Boolean(isActive);
-  [
-    [animatorRunSimulationButton, animatorRunSimulationButtonLabel],
-    [animatorSimulationRunButton, animatorSimulationRunButtonLabel],
-  ].forEach(([button, label]) => {
+function setAnimatorRecordedPlaybackLoadActive(isActive) {
+  animatorRecordedPlaybackLoadActive = Boolean(isActive);
+  [animatorLoadEomRecordButton, animatorRecordedOutputLoadButton].forEach((button) => {
     if (!button) {
       return;
     }
-    button.disabled = animatorSimulationWorkerRunActive;
-    button.setAttribute("aria-busy", animatorSimulationWorkerRunActive ? "true" : "false");
-    button.textContent = animatorSimulationWorkerRunActive ? "Running..." : label;
+    button.disabled = animatorRecordedPlaybackLoadActive;
+    button.setAttribute("aria-busy", animatorRecordedPlaybackLoadActive ? "true" : "false");
   });
 }
 
@@ -6022,7 +6072,7 @@ const animatorDocumentWorkspaceRuntime = createAnimatorDocumentWorkspaceRuntime(
     setCurrentDocument: (documentData) => {
       animatorCurrentDocument = documentData;
       updateAnimatorMotionSourcePill(documentData);
-      renderAnimatorSimulationAuthoringPanel(documentData);
+      renderAnimatorRecordedPlaybackPanel(documentData);
     },
   },
 });
@@ -6043,49 +6093,11 @@ const {
   renderAnimatorJsonPreview,
 } = animatorDocumentWorkspaceRuntime;
 
-function setAnimatorSimulationInputValue(input, value) {
-  if (!input) {
+function renderAnimatorRecordedPlaybackDiagnosticsRows(rows = []) {
+  if (!animatorRecordedOutputDiagnostics) {
     return;
   }
-  input.value = String(value ?? "");
-}
-
-function setAnimatorSimulationSelectValue(select, value) {
-  if (!select) {
-    return;
-  }
-  const nextValue = String(value ?? "");
-  const hasOption = Array.from(select.options ?? []).some((option) => option.value === nextValue);
-  select.value = hasOption ? nextValue : select.options?.[0]?.value ?? "";
-}
-
-function readAnimatorSimulationAuthoringDraftFromDom() {
-  return {
-    duration: animatorSimulationDurationInput?.value,
-    loop: animatorSimulationLoopInput?.checked === true,
-    steps: animatorSimulationStepsInput?.value,
-    dt: animatorSimulationDtInput?.value,
-    stride: animatorSimulationStrideInput?.value,
-    particles: animatorSimulationParticlesInput?.value,
-    radius: animatorSimulationRadiusInput?.value,
-    radialSpeed: animatorSimulationRadialSpeedInput?.value,
-    tangentialSpeed: animatorSimulationTangentialSpeedInput?.value,
-    driftX: animatorSimulationDriftXInput?.value,
-    driftY: animatorSimulationDriftYInput?.value,
-    cf: animatorSimulationFieldSpeedInput?.value,
-    kappa: animatorSimulationKappaInput?.value,
-    historyMode: animatorSimulationHistoryModeSelect?.value,
-    rootHaltPolicy: animatorSimulationRootHaltPolicySelect?.value,
-    claimLevel: animatorSimulationClaimLevelInput?.value,
-    datasetId: animatorSimulationDatasetIdInput?.value,
-  };
-}
-
-function renderAnimatorSimulationDiagnosticsRows(rows = []) {
-  if (!animatorSimulationDiagnostics) {
-    return;
-  }
-  animatorSimulationDiagnostics.replaceChildren();
+  animatorRecordedOutputDiagnostics.replaceChildren();
   rows.forEach(([label, value]) => {
     const row = document.createElement("div");
     row.className = "animator-simulation-diagnostic-row";
@@ -6096,125 +6108,38 @@ function renderAnimatorSimulationDiagnosticsRows(rows = []) {
     valueElement.className = "animator-simulation-diagnostic-value";
     valueElement.textContent = value;
     row.append(labelElement, valueElement);
-    animatorSimulationDiagnostics.appendChild(row);
+    animatorRecordedOutputDiagnostics.appendChild(row);
   });
 }
 
-function renderAnimatorSimulationAuthoringPanel(documentData = animatorCurrentDocument) {
-  if (!animatorSimulationPanel || !documentData) {
+function renderAnimatorRecordedPlaybackPanel(documentData = animatorCurrentDocument) {
+  if (!animatorRecordedOutputPanel || !documentData) {
     return;
   }
-  const draft = createAnimatorSimulationAuthoringDraft(documentData);
-  setAnimatorSimulationSelectValue(animatorSimulationModeSelect, "planar-2d");
-  setAnimatorSimulationInputValue(animatorSimulationDurationInput, draft.duration);
-  if (animatorSimulationLoopInput) {
-    animatorSimulationLoopInput.checked = draft.loop;
+  const summary = summarizeAnimatorRecordedPlayback(documentData);
+  const outputRow = summary.rows.find(([label]) => label === "Recorded output");
+  const statusRow = summary.rows.find(([label]) => label === "Status");
+  if (animatorRecordedOutputStatus) {
+    animatorRecordedOutputStatus.textContent = summary.hasDataset
+      ? `Record: ${outputRow?.[1] ?? "loaded"} (${statusRow?.[1] ?? "unknown"})`
+      : "Record: none loaded";
   }
-  setAnimatorSimulationInputValue(animatorSimulationDatasetIdInput, draft.datasetId);
-  setAnimatorSimulationInputValue(animatorSimulationStepsInput, draft.steps);
-  setAnimatorSimulationInputValue(animatorSimulationDtInput, draft.dt);
-  setAnimatorSimulationInputValue(animatorSimulationStrideInput, draft.stride);
-  setAnimatorSimulationInputValue(animatorSimulationFieldSpeedInput, draft.cf);
-  setAnimatorSimulationInputValue(animatorSimulationKappaInput, draft.kappa);
-  setAnimatorSimulationInputValue(animatorSimulationClaimLevelInput, draft.claimLevel);
-  setAnimatorSimulationSelectValue(animatorSimulationHistoryModeSelect, draft.historyMode);
-  setAnimatorSimulationSelectValue(animatorSimulationRootHaltPolicySelect, draft.rootHaltPolicy);
-  setAnimatorSimulationInputValue(animatorSimulationParticlesInput, draft.particles);
-  setAnimatorSimulationInputValue(animatorSimulationRadiusInput, draft.radius);
-  setAnimatorSimulationInputValue(animatorSimulationRadialSpeedInput, draft.radialSpeed);
-  setAnimatorSimulationInputValue(animatorSimulationTangentialSpeedInput, draft.tangentialSpeed);
-  setAnimatorSimulationInputValue(animatorSimulationDriftXInput, draft.driftX);
-  setAnimatorSimulationInputValue(animatorSimulationDriftYInput, draft.driftY);
-
-  if (animatorSceneDurationInput) {
-    animatorSceneDurationInput.value = String(draft.duration);
-  }
-  if (animatorSceneLoopInput) {
-    animatorSceneLoopInput.checked = draft.loop;
-  }
-
-  const summary = summarizeAnimatorSimulationAuthoringDataset(documentData);
-  const datasetRow = summary.rows.find(([label]) => label === "Dataset");
-  const haltRow = summary.rows.find(([label]) => label === "Halt" || label === "Last Run");
-  if (animatorSimulationCacheStatus) {
-    animatorSimulationCacheStatus.textContent = summary.hasDataset
-      ? `Dataset: ${datasetRow?.[1] ?? "loaded"} (${haltRow?.[1] ?? "unknown"})`
-      : `Dataset: ${haltRow?.[1] ?? "not run"}`;
-  }
-  renderAnimatorSimulationDiagnosticsRows(summary.rows);
+  renderAnimatorRecordedPlaybackDiagnosticsRows(summary.rows);
 }
 
-function applyAnimatorSimulationAuthoringDraftFromDom(options = {}) {
+async function loadAnimatorRecordedEomHandoff(handoff, options = {}) {
   const baseDocument =
     options.baseDocument ??
     animatorCurrentDocument ??
     buildAnimatorDocumentData(readAnimatorDraftState());
-  if (!baseDocument) {
-    return null;
-  }
+  setAnimatorStatus("Validating recorded EOM output...");
+  const result = await animatorRecordedPlaybackWorkerClient.load(handoff, {
+    datasetOptions: options.datasetOptions,
+    playbackOptions: options.playbackOptions,
+  });
   const nextDocument = normalizeAnimatorSceneDocument(
-    applyAnimatorSimulationAuthoringDraftToDocument(
-      baseDocument,
-      readAnimatorSimulationAuthoringDraftFromDom()
-    )
-  );
-  updateAnimatorViewportFromDocument(nextDocument);
-  if (animatorJsonPreview) {
-    animatorJsonPreview.textContent = JSON.stringify(nextDocument, null, 2);
-  }
-  if (options.status !== false) {
-    setAnimatorStatus("Simulation settings applied.");
-  }
-  return nextDocument;
-}
-
-function getAnimatorWorkerSimulationConfig(documentData = animatorCurrentDocument, inputConfig = null) {
-  if (inputConfig && typeof inputConfig === "object") {
-    return { ...inputConfig };
-  }
-  const metadataConfig =
-    documentData?.metadata?.simulationWorker?.config ??
-    documentData?.metadata?.simulationRun?.config;
-  if (metadataConfig && typeof metadataConfig === "object") {
-    return { ...metadataConfig };
-  }
-  const timeWindow = getAnimatorSceneTimeWindow(documentData);
-  const sceneDuration = Math.max(0, Number(timeWindow.end ?? 0) - Number(timeWindow.start ?? 0));
-  const dt = Number(defaultAnimatorWorkerSimulationConfig.dt) || 0.01;
-  const durationSteps = sceneDuration > 0 ? Math.ceil(sceneDuration / dt) : 0;
-  return {
-    ...defaultAnimatorWorkerSimulationConfig,
-    steps: Math.max(defaultAnimatorWorkerSimulationConfig.steps, durationSteps),
-  };
-}
-
-function getAnimatorWorkerDatasetOptions(documentData = animatorCurrentDocument, options = {}) {
-  const sceneId = String(documentData?.scene?.id ?? "animator_scene").trim() || "animator_scene";
-  const metadataOptions =
-    documentData?.metadata?.simulationWorker?.datasetOptions ??
-    documentData?.metadata?.simulationRun?.datasetOptions;
-  return {
-    id: `${sceneId}_worker_dataset`,
-    claimLevel: "solver-derived-diagnostic",
-    ...(metadataOptions && typeof metadataOptions === "object" ? metadataOptions : {}),
-    ...(options.datasetOptions && typeof options.datasetOptions === "object"
-      ? options.datasetOptions
-      : {}),
-  };
-}
-
-async function runAnimatorSimulationWorkerFromCurrentDocument(inputConfig = null, options = {}) {
-  const baseDocument =
-    options.baseDocument ??
-    animatorCurrentDocument ??
-    buildAnimatorDocumentData(readAnimatorDraftState());
-  const config = getAnimatorWorkerSimulationConfig(baseDocument, inputConfig);
-  const datasetOptions = getAnimatorWorkerDatasetOptions(baseDocument, options);
-  setAnimatorStatus("Running solver in worker...");
-  const result = await animatorSimulationWorkerClient.run(config, { datasetOptions });
-  const nextDocument = normalizeAnimatorSceneDocument(
-    mergeAnimatorSimulationDatasetIntoDocument(baseDocument, result.dataset, {
-      updateSceneTime: options.updateSceneTime === true,
+    mergeAnimatorRecordedPlaybackIntoDocument(baseDocument, result.dataset, {
+      updateSceneTime: options.updateSceneTime !== false,
     })
   );
   updateAnimatorViewportFromDocument(nextDocument);
@@ -6223,9 +6148,8 @@ async function runAnimatorSimulationWorkerFromCurrentDocument(inputConfig = null
   }
   const frameCount = Array.isArray(result.dataset?.frames) ? result.dataset.frames.length : 0;
   const status = result.dataset?.simulation?.halt?.status ?? "unknown";
-  const byteLength = result.frameBufferSummary?.byteLength ?? 0;
   setAnimatorStatus(
-    `Worker simulation ${status}; ${frameCount} frame(s), ${byteLength} typed-buffer byte(s).`
+    `Recorded EOM output ${status}; ${frameCount} frame(s) accepted for playback.`
   );
   return {
     ...result,
@@ -6233,51 +6157,39 @@ async function runAnimatorSimulationWorkerFromCurrentDocument(inputConfig = null
   };
 }
 
-async function runAnimatorSimulationWorkerFromAuthoringPanel() {
-  const baseDocument = applyAnimatorSimulationAuthoringDraftFromDom({ status: false });
-  const payload = buildAnimatorSimulationAuthoringWorkerPayload(
-    readAnimatorSimulationAuthoringDraftFromDom(),
-    baseDocument
-  );
-  return runAnimatorSimulationWorkerFromCurrentDocument(payload.config, {
-    baseDocument,
-    datasetOptions: payload.datasetOptions,
-  });
-}
-
 if (typeof window !== "undefined") {
-  window.runAnimatorSimulationWorker = runAnimatorSimulationWorkerFromCurrentDocument;
+  window.loadAnimatorRecordedEomHandoff = loadAnimatorRecordedEomHandoff;
 }
 
-function bindAnimatorSimulationRunButton(button) {
+function bindAnimatorRecordedOutputLoadButton(button) {
   if (!button || button.dataset.bound) {
     return;
   }
-  button.addEventListener("click", async () => {
-    if (animatorSimulationWorkerRunActive) {
-      return;
-    }
-    setAnimatorSimulationWorkerRunActive(true);
-    try {
-      await runAnimatorSimulationWorkerFromAuthoringPanel();
-    } catch (error) {
-      console.error("animator worker simulation failed.", error);
-      setAnimatorStatus(`Worker simulation failed: ${error?.message ?? error}`);
-    } finally {
-      setAnimatorSimulationWorkerRunActive(false);
-    }
-  });
+  button.addEventListener("click", () => animatorEomRecordFileInput?.click());
   button.dataset.bound = "true";
 }
 
-bindAnimatorSimulationRunButton(animatorRunSimulationButton);
-bindAnimatorSimulationRunButton(animatorSimulationRunButton);
+bindAnimatorRecordedOutputLoadButton(animatorLoadEomRecordButton);
+bindAnimatorRecordedOutputLoadButton(animatorRecordedOutputLoadButton);
 
-if (animatorSimulationApplyButton && !animatorSimulationApplyButton.dataset.bound) {
-  animatorSimulationApplyButton.addEventListener("click", () => {
-    applyAnimatorSimulationAuthoringDraftFromDom();
+if (animatorEomRecordFileInput && !animatorEomRecordFileInput.dataset.bound) {
+  animatorEomRecordFileInput.addEventListener("change", async () => {
+    const file = animatorEomRecordFileInput.files?.[0];
+    if (!file || animatorRecordedPlaybackLoadActive) {
+      return;
+    }
+    setAnimatorRecordedPlaybackLoadActive(true);
+    try {
+      await loadAnimatorRecordedEomHandoff(JSON.parse(await file.text()));
+    } catch (error) {
+      console.error("Animator recorded EOM output load failed.", error);
+      setAnimatorStatus(`Recorded EOM output rejected: ${error?.message ?? error}`);
+    } finally {
+      animatorEomRecordFileInput.value = "";
+      setAnimatorRecordedPlaybackLoadActive(false);
+    }
   });
-  animatorSimulationApplyButton.dataset.bound = "true";
+  animatorEomRecordFileInput.dataset.bound = "true";
 }
 
 if (animatorHudShellOpacityInput && !animatorHudShellOpacityInput.dataset.bound) {
@@ -8550,24 +8462,20 @@ function maybeAutoWarp(now) {
 function updateNavButton() {
   textbookPageNavigationRuntime.setTransitionActive(transitionState.active);
   if (transitionState.active) {
-    if (navUpButton) {
-      navUpButton.disabled = true;
-    }
-    if (navForwardButton) {
-      navForwardButton.disabled = true;
-    }
+    topDynamicControlBarRuntime.update({
+      back: { disabled: true },
+      forward: { disabled: true },
+    });
     appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
       textbookTocScenePath,
       transitionActive: transitionState.active,
     });
     return;
   }
-  if (navUpButton) {
-    navUpButton.disabled = browserBackStack.length === 0;
-  }
-  if (navForwardButton) {
-    navForwardButton.disabled = browserForwardStack.length === 0;
-  }
+  topDynamicControlBarRuntime.update({
+    back: { disabled: browserBackStack.length === 0 },
+    forward: { disabled: browserForwardStack.length === 0 },
+  });
   const canReopenInfo = isElementSceneLevel();
   appSceneChromeRuntime.updateSceneInfoTrigger(canReopenInfo);
   appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
@@ -8671,6 +8579,10 @@ const animatorAppRuntime = createAnimatorAppRuntime({
     setAnimatorNeedsResize: (value) => {
       animatorNeedsResize = value;
     },
+    setTopDynamicControlBarMode,
+    createPrescribedSceneHandoff: createAnimatorPrescribedSceneHandoff,
+    openPrescribedSceneInBorg: openAnimatorPrescribedSceneInBorg,
+    animatorOpenBorgButton,
   },
   controls: {
     animatorTabs,
@@ -8682,6 +8594,7 @@ const animatorAppRuntime = createAnimatorAppRuntime({
     animatorViewAuthoredButton,
     animatorViewPlanarButton,
     animatorExportButton,
+    animatorOpenBorgButton,
     animatorLibrarySaveButton,
     animatorRepoSaveButton,
     animatorLibrarySelect,
@@ -8768,6 +8681,7 @@ const appSceneChromeRuntime = createAppSceneChromeRuntime({
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
+  topDynamicControlBarRuntime,
 });
 const elementNavigationChromeRuntime = createElementNavigationChromeRuntime({
   elementNavOverlay,
@@ -8894,7 +8808,10 @@ const sceneSearchRuntime = createSceneSearchRuntime({
   navigationStack,
   searchBackStack,
   jumpToScene,
-  isSearchEntryVisible: isPublicStandaloneAppSearchEntry,
+  isSearchEntryVisible: isPublicProductSceneSearchEntry,
+  onOpenChange: (isOpen) => {
+    topDynamicControlBarRuntime.update({ search: { expanded: isOpen } });
+  },
 });
 const sceneSearchCoordinator = createSceneSearchCoordinatorService({
   sceneIndexService,
@@ -8908,9 +8825,10 @@ const sceneSearchUiRuntime = createSceneSearchUiRuntime({
   sceneSearchResults,
   sceneSearchRuntime,
   sceneSearchCoordinator,
+  topBarOwnsPopover: true,
 });
 const scenePanelUiRuntime = createScenePanelUiRuntime({
-  textbookTocButton,
+  textbookTocButton: null,
   detailClose,
   markdownClose,
   markdownPanel,
@@ -9350,9 +9268,9 @@ const appShellUiRuntime = createAppShellUiRuntime({
   onResize,
   hideHoverTooltip,
   sceneLabel,
-  navUpButton,
-  navForwardButton,
-  homeButton,
+  navUpButton: null,
+  navForwardButton: null,
+  homeButton: null,
   periodicOverlayRuntime,
   appDirector,
 });

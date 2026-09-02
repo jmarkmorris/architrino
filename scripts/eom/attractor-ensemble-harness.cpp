@@ -43,6 +43,7 @@
 #include <array>
 #include <chrono>
 #include <cerrno>
+#include <csignal>
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
@@ -74,6 +75,12 @@
 namespace eom = architrino::eom;
 
 namespace {
+
+volatile std::sig_atomic_t g_campaign_cancel_requested = 0;
+
+void request_campaign_cancel(int) {
+  g_campaign_cancel_requested = 1;
+}
 
 // Preparation alone uses exclusive, descriptor-relative publication. These
 // helpers do not remove failed files and never fall back to replacing rename.
@@ -1389,6 +1396,26 @@ std::string harness_resume_fingerprint(
   return result.str();
 }
 
+template <typename PathRow>
+std::string history_manifest_fingerprint(
+    const std::vector<PathRow>& paths) {
+  std::uint64_t state = UINT64_C(14695981039346656037);
+  hash_resume_token(state, "eom_history_manifest/v1");
+  hash_resume_token(state, std::to_string(paths.size()));
+  for (const auto& path : paths) {
+    hash_resume_token(state, path.path_id);
+    hash_resume_token(state, path.charge);
+    hash_resume_token(state, path.history.provenance_fingerprint());
+    hash_resume_token(state, std::to_string(path.history.segments().size()));
+    hash_resume_token(state, path.history.segments().front().t_start_token());
+    hash_resume_token(state, path.history.segments().back().t_end_token());
+  }
+  std::ostringstream result;
+  result << "fnv1a64-history-manifest-v1:" << std::hex << std::setfill('0')
+         << std::setw(16) << state;
+  return result.str();
+}
+
 eom::NativeCoupledEvolutionRequest build_request(
     const Options& options,
     const std::vector<eom::NativeCoupledPathInput>& paths) {
@@ -2001,6 +2028,9 @@ struct ResumeAccounting {
   std::string seed_family;
   std::string model_fingerprint;
   std::string resume_configuration_fingerprint;
+  std::string checkpoint_fingerprint;
+  std::string initial_history_fingerprint;
+  std::string accepted_history_fingerprint;
   std::string release_root_clearance;
   std::string accepted_end_time;
   std::size_t chunks_completed = 0;
@@ -2027,6 +2057,12 @@ ResumeAccounting read_resume_accounting(
       .model_fingerprint = manifest_string(manifest, "modelFingerprint"),
       .resume_configuration_fingerprint =
           manifest_string(manifest, "resumeConfigurationFingerprint"),
+      .checkpoint_fingerprint =
+          manifest_string(manifest, "checkpointFingerprint"),
+      .initial_history_fingerprint =
+          manifest_string(manifest, "initialHistoryFingerprint"),
+      .accepted_history_fingerprint =
+          manifest_string(manifest, "acceptedHistoryFingerprint"),
       .release_root_clearance =
           manifest_string(manifest, "releaseRootClearance"),
       .accepted_end_time = manifest_string(manifest, "acceptedEndTime"),
@@ -2048,6 +2084,12 @@ void write_census_row(
     const CensusAccumulator& accumulator,
     const eom::NativeCoupledEvolutionCertificate& chunk,
     double cumulative_wall_seconds) {
+  const std::size_t invocation_accepted_steps =
+      static_cast<std::size_t>(std::count_if(
+          chunk.steps.begin(), chunk.steps.end(),
+          [](const auto& step) { return step.status == "accepted"; }));
+  const std::size_t invocation_rejected_steps =
+      chunk.steps.size() - invocation_accepted_steps;
   const auto labels = cluster_labels(states, options.link_distance);
   Vector3 centroid{};
   for (const auto& state : states) {
@@ -2224,8 +2266,8 @@ void write_census_row(
   write_json_string(output, chunk.status);
   output << ",\"haltCode\":";
   write_json_string(output, chunk.halt_code);
-  output << ",\"acceptedSteps\":" << chunk.accepted_step_count
-         << ",\"rejectedSteps\":" << chunk.rejected_step_count
+  output << ",\"acceptedSteps\":" << invocation_accepted_steps
+         << ",\"rejectedSteps\":" << invocation_rejected_steps
          << ",\"mpfrPairs\":" << chunk.timing.root_mpfr_pair_count
          << ",\"maximumRootTimePressureRatio\":"
          << maximum_root_time_pressure_ratio
@@ -2256,6 +2298,8 @@ void write_census_row(
 void write_manifest(
     const std::filesystem::path& path, const Options& options,
     const std::vector<SeedRow>& rows, const std::string& model_fingerprint,
+    const std::vector<eom::NativeCoupledPathInput>& initial_paths,
+    const eom::NativeEvolutionCheckpoint* checkpoint,
     const std::string& root_clearance_status,
     std::size_t chunks_completed, const std::string& accepted_end,
     std::size_t accepted_steps, std::size_t rejected_steps,
@@ -2272,6 +2316,29 @@ void write_manifest(
     throw std::runtime_error(
         "failed to open run manifest temporary file");
   }
+  const auto write_history_rows = [&output](const auto& path_rows) {
+    output << '[';
+    for (std::size_t index = 0U; index < path_rows.size(); ++index) {
+      if (index > 0U) output << ',';
+      const auto& path_row = path_rows[index];
+      output << "{\"pathId\":";
+      write_json_string(output, path_row.path_id);
+      output << ",\"charge\":";
+      write_json_string(output, path_row.charge);
+      output << ",\"historyFingerprint\":";
+      write_json_string(output, path_row.history.provenance_fingerprint());
+      output << ",\"segmentCount\":"
+             << path_row.history.segments().size()
+             << ",\"coverageStart\":";
+      write_json_string(
+          output, path_row.history.segments().front().t_start_token());
+      output << ",\"coverageEnd\":";
+      write_json_string(
+          output, path_row.history.segments().back().t_end_token());
+      output << '}';
+    }
+    output << ']';
+  };
   output << std::setprecision(17)
          << "{\"schema\":\"eom_attractor_ensemble_run_manifest/v1\""
          << ",\"resumeAccountingSchema\":"
@@ -2314,6 +2381,30 @@ void write_manifest(
   write_json_string(output, options.generating_spec);
   output << ",\"recordDate\":";
   write_json_string(output, options.record_date);
+  output << ",\"initialHistoryFingerprint\":";
+  write_json_string(output, history_manifest_fingerprint(initial_paths));
+  output << ",\"acceptedHistoryFingerprint\":";
+  if (checkpoint) {
+    write_json_string(output, history_manifest_fingerprint(checkpoint->paths));
+  } else {
+    write_json_string(output, history_manifest_fingerprint(initial_paths));
+  }
+  output << ",\"checkpointFingerprint\":";
+  if (checkpoint) {
+    write_json_string(output, checkpoint->checkpoint_fingerprint);
+  } else {
+    output << "null";
+  }
+  output << ",\"historyProvenance\":{\"schema\":"
+            "\"eom_campaign_history_provenance/v1\",\"initial\":";
+  write_history_rows(initial_paths);
+  output << ",\"accepted\":";
+  if (checkpoint) {
+    write_history_rows(checkpoint->paths);
+  } else {
+    write_history_rows(initial_paths);
+  }
+  output << '}';
   output << ",\"releaseRootClearance\":";
   write_json_string(output, root_clearance_status);
   output << ",\"chunksCompleted\":" << chunks_completed
@@ -2568,6 +2659,10 @@ void write_replay_wrapper(
 
 int main(int argc, char** argv) {
   try {
+    if (std::signal(SIGINT, request_campaign_cancel) == SIG_ERR ||
+        std::signal(SIGTERM, request_campaign_cancel) == SIG_ERR) {
+      throw std::runtime_error("failed to install campaign cancellation handlers");
+    }
     Options options;
     options.seed_family = option_string(
         argc, argv, "seed-family", options.seed_family);
@@ -3052,7 +3147,10 @@ int main(int argc, char** argv) {
               << " maximum_seed_speed=" << maximum_seed_speed
               << " off_pin=" << (maximum_seed_speed < 1.0) << '\n';
 
-    const auto request_template = build_request(options, paths);
+    auto request_template = build_request(options, paths);
+    request_template.cancellation_requested = [] {
+      return g_campaign_cancel_requested != 0;
+    };
     const std::string model_fingerprint =
         eom::native_evolution_model_fingerprint(request_template);
     std::vector<std::size_t> declared_segment_counts;
@@ -3072,7 +3170,8 @@ int main(int argc, char** argv) {
           declared_segment_counts, model_fingerprint, "0", "prepared-only",
           &*preparation_directory);
       write_manifest(
-          manifest_path, options, rows, model_fingerprint, "not_checked",
+          manifest_path, options, rows, model_fingerprint, paths, nullptr,
+          "not_checked",
           0, "0", 0, 0, 0, 0, 0.0, "prepared-only", &*preparation_directory);
       preparation_directory->finish();
       std::cout << "ensemble_preparation run_id=" << options.run_id
@@ -3103,7 +3202,15 @@ int main(int argc, char** argv) {
           prior.model_fingerprint != model_fingerprint ||
           prior.resume_configuration_fingerprint !=
               harness_resume_fingerprint(options, model_fingerprint) ||
-          prior.accepted_end_time != checkpoint->accepted_time) {
+          prior.checkpoint_fingerprint !=
+              checkpoint->checkpoint_fingerprint ||
+          prior.initial_history_fingerprint !=
+              history_manifest_fingerprint(paths) ||
+          prior.accepted_history_fingerprint !=
+              history_manifest_fingerprint(checkpoint->paths) ||
+          prior.accepted_end_time != checkpoint->accepted_time ||
+          prior.accepted_steps != checkpoint->accepted_step_count ||
+          prior.rejected_steps != checkpoint->rejected_step_count) {
         throw std::runtime_error(
             "resume manifest identity does not match the checkpoint or request");
       }
@@ -3190,7 +3297,7 @@ int main(int argc, char** argv) {
             declared_segment_counts, model_fingerprint, "0",
             "blocked_release_root_clearance");
         write_manifest(
-            manifest_path, options, rows, model_fingerprint,
+            manifest_path, options, rows, model_fingerprint, paths, nullptr,
             root_clearance_status, 0, "0", 0, 0, 0, 0, 0.0,
             "blocked_release_root_clearance");
         return 2;
@@ -3248,12 +3355,36 @@ int main(int argc, char** argv) {
         return eom::resume_native_coupled_histories(
             request, *checkpoint, token(chunk_target));
       }();
+      const std::size_t prior_accepted_steps = checkpoint.has_value()
+          ? checkpoint->accepted_step_count
+          : 0U;
+      const std::size_t prior_rejected_steps = checkpoint.has_value()
+          ? checkpoint->rejected_step_count
+          : 0U;
+      if (chunk.accepted_step_count < prior_accepted_steps ||
+          chunk.rejected_step_count < prior_rejected_steps) {
+        throw std::runtime_error(
+            "engine cumulative step counters regressed across a chunk");
+      }
+      const std::size_t accepted_in_chunk =
+          chunk.accepted_step_count - prior_accepted_steps;
+      const std::size_t rejected_in_chunk =
+          chunk.rejected_step_count - prior_rejected_steps;
+      const std::size_t recorded_accepted_in_chunk =
+          static_cast<std::size_t>(std::count_if(
+              chunk.steps.begin(), chunk.steps.end(),
+              [](const auto& step) { return step.status == "accepted"; }));
+      if (accepted_in_chunk != recorded_accepted_in_chunk ||
+          rejected_in_chunk != chunk.steps.size() - recorded_accepted_in_chunk) {
+        throw std::runtime_error(
+            "engine cumulative step counters do not match chunk records");
+      }
       cumulative_wall_seconds += chunk.timing.total_wall_seconds;
-      accepted_steps += chunk.accepted_step_count;
-      rejected_steps += chunk.rejected_step_count;
+      accepted_steps = chunk.accepted_step_count;
+      rejected_steps = chunk.rejected_step_count;
       log_halt_detail(chunk);
 
-      if (chunk.accepted_step_count == 0) {
+      if (accepted_in_chunk == 0U) {
         std::cerr << "chunk=" << chunks_completed
                   << " made no progress: status=" << chunk.status
                   << " halt=" << chunk.halt_code << '\n';
@@ -3266,12 +3397,12 @@ int main(int argc, char** argv) {
       // chunk-boundary census from the last sampled states.
       CensusAccumulator accumulator;
       std::vector<SampledState> boundary_states(options.population);
-      std::size_t accepted_in_chunk = 0;
+      std::size_t accepted_frame_steps_in_chunk = 0;
       for (const auto& step_row : chunk.steps) {
         if (step_row.status != "accepted") continue;
-        ++accepted_in_chunk;
+        ++accepted_frame_steps_in_chunk;
         const bool sampled =
-            accepted_in_chunk % options.sample_every == 0 ||
+            accepted_frame_steps_in_chunk % options.sample_every == 0 ||
             step_row.accepted_time == chunk.accepted_end_time;
         if (!sampled) continue;
         std::vector<SampledState> states(options.population);
@@ -3329,7 +3460,8 @@ int main(int argc, char** argv) {
                 << accumulator.minimum_pair_distance << '\n';
 
       write_manifest(
-          manifest_path, options, rows, model_fingerprint,
+          manifest_path, options, rows, model_fingerprint, paths,
+          &*checkpoint,
           root_clearance_status, chunks_completed, accepted_end,
           accepted_steps, rejected_steps, frame_count, resume_count,
           cumulative_wall_seconds, "running");
@@ -3355,7 +3487,8 @@ int main(int argc, char** argv) {
           declared_segment_counts, model_fingerprint, "0", final_status);
     }
     write_manifest(
-        manifest_path, options, rows, model_fingerprint,
+        manifest_path, options, rows, model_fingerprint, paths,
+        checkpoint.has_value() ? &*checkpoint : nullptr,
         root_clearance_status, chunks_completed, accepted_end,
         accepted_steps, rejected_steps, frame_count, resume_count,
         cumulative_wall_seconds, final_status);

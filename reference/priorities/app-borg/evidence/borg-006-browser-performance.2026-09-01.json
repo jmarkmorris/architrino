@@ -1,0 +1,48 @@
+{
+  "schema": "borg-prescribed-translation-browser-performance.v1",
+  "measuredAt": "2026-09-01",
+  "instrument": "Codex in-app browser Performance API and requestAnimationFrame probe",
+  "fixture": {
+    "recordId": "axial-transverse-three-binary-interior",
+    "assemblyId": "asm-3e9d646d95041634d7ee5fe7eed862d6",
+    "modelRevisionSha256": "3e9d646d95041634d7ee5fe7eed862d679c8f9f93518ebca7c98f549d352ec8f",
+    "recordFileSha256AtMeasurement": "a2db676c9249dd8006af5310cb7dac6644aa4790ac21f2b5721e7a9af61cc081",
+    "currentPresentationSuccessorSha256": "eb074e260c48f4de64ee9507eaad26586107130bd27aab57ccd6592994373d64",
+    "presentationSuccessorBoundary": "BORG-002 added source-carried frame, field-speed, and vector-overlay carriers without changing assemblyId or modelRevisionSha256. Functional tests cover the successor bytes; this performance sample was not relabeled as a new measurement.",
+    "analysisProjectionSha256": "34a59e7718304b1f15430d517c2a6a4499b5547363d678d8e9602fdb450efb0f",
+    "receiverTime": 4,
+    "receiverPolarity": 1,
+    "analyticalRows": 6
+  },
+  "pageLoad": {
+    "domContentLoadedMs": 46.099999994039536,
+    "loadEventMs": 47.29999998211861,
+    "transferBytes": 64398,
+    "decodedBodyBytes": 64098
+  },
+  "rendering": {
+    "sampleCount": 120,
+    "frameMedianMs": 16.700000000000017,
+    "frameP95Ms": 16.800000000000182,
+    "frameMaximumMs": 83.30000000000001,
+    "timelineScrubMs": 33.30000001192093
+  },
+  "memory": {
+    "heapUsedBytes": 61702065,
+    "heapTotalBytes": 71873873
+  },
+  "interactionChecks": {
+    "fixedFrame": "pass",
+    "coTranslatingFrame": "pass-zero-source-translation",
+    "pathHistoryDepth": "pass-1.5T",
+    "displayTubeControls": "pass",
+    "sourceMatchedAnalysis": "pass",
+    "receiverPolaritySwitch": "pass",
+    "accelerationContributionVectors": "pass",
+    "viewport": "390x844",
+    "documentScrollWidthPx": 390,
+    "browserWarnings": 0,
+    "browserErrors": 0
+  },
+  "claimBoundary": "Measured browser and display behavior for the named record byte revision and one source-matched precomputed analytical projection. A later presentation-only carrier regeneration retained the scientific identity but was not performance-remeasured. This establishes no EOM evolution, acceleration balance, root completeness beyond the supplied evaluator result, retention, stability, binding, physical identity, or scientific acceptance."
+}

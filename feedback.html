@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#4b0082" />
+    <meta name="description" content="Create a privacy-safe reproducibility manifest before reporting a public Architrino webapp issue." />
+    <title>Webapp Feedback — Architrino</title>
+    <link rel="stylesheet" href="./src/apps/feedback/feedback.css" />
+  </head>
+  <body>
+    <header class="feedback-header">
+      <div>
+        <p class="feedback-eyebrow">Architrino operations</p>
+        <h1>Public webapp feedback</h1>
+      </div>
+      <a class="feedback-home" href="./index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json">Return to Applications</a>
+    </header>
+
+    <main class="feedback-main">
+      <section class="feedback-intro" aria-labelledby="feedback-intro-title">
+        <div>
+          <h2 id="feedback-intro-title">Make the problem reproducible without exposing private workflow</h2>
+          <p>This page builds a small diagnostic manifest in your browser. Nothing is sent automatically. Review the manifest, copy it if you choose, then open the public GitHub issue form and paste it there.</p>
+        </div>
+        <aside class="feedback-public-notice" aria-label="Public issue notice">
+          <strong>GitHub issues are public.</strong>
+          <span>Do not include private prompts, unpublished files, account details, query strings, URL fragments, or personal contact information.</span>
+        </aside>
+      </section>
+
+      <section class="feedback-card" aria-labelledby="feedback-page-title">
+        <div class="feedback-card-heading">
+          <span class="feedback-step">1</span>
+          <div>
+            <h2 id="feedback-page-title">Identify the affected public page</h2>
+            <p>Use only the pathname, such as <code>/molecule.html</code>. Query strings and fragments are removed.</p>
+          </div>
+        </div>
+        <label for="feedback-page-path">Public page path</label>
+        <input id="feedback-page-path" name="feedback-page-path" type="text" inputmode="url" autocomplete="off" placeholder="/index.html" />
+      </section>
+
+      <section class="feedback-card" aria-labelledby="feedback-manifest-title">
+        <div class="feedback-card-heading">
+          <span class="feedback-step">2</span>
+          <div>
+            <h2 id="feedback-manifest-title">Review the sanitized manifest</h2>
+            <p>It contains coarse browser and device categories plus public scene, markdown, and graph manifest counts. It deliberately omits the raw user agent and fingerprinting data.</p>
+          </div>
+        </div>
+        <textarea id="feedback-manifest" rows="20" readonly aria-labelledby="feedback-manifest-title" aria-describedby="feedback-status"></textarea>
+        <div class="feedback-actions">
+          <button id="feedback-refresh" type="button">Refresh manifest</button>
+          <button id="feedback-copy" class="feedback-primary" type="button">Copy sanitized manifest</button>
+        </div>
+        <p id="feedback-status" class="feedback-status" role="status" aria-live="polite">Preparing manifest…</p>
+      </section>
+
+      <section class="feedback-card" aria-labelledby="feedback-submit-title">
+        <div class="feedback-card-heading">
+          <span class="feedback-step">3</span>
+          <div>
+            <h2 id="feedback-submit-title">Open the public issue form</h2>
+            <p>The issue form asks for what happened, how to reproduce it, what you expected, and the manifest you reviewed above. Opening the form does not submit it.</p>
+          </div>
+        </div>
+        <a id="feedback-open-issue" class="feedback-issue-link" href="https://github.com/jmarkmorris/architrino/issues/new?template=public-webapp-feedback.yml" target="_blank" rel="noopener noreferrer">Open public GitHub issue form</a>
+      </section>
+
+      <section class="feedback-omissions" aria-labelledby="feedback-omissions-title">
+        <h2 id="feedback-omissions-title">Omitted by design</h2>
+        <ul>
+          <li>raw user-agent string and WebGL renderer</li>
+          <li>query strings, fragments, cookies, and browser storage</li>
+          <li>clipboard contents, local file names, and local file contents</li>
+          <li>account identifiers and private workflow material</li>
+        </ul>
+      </section>
+    </main>
+
+    <script type="module" src="./src/apps/feedback/main.js"></script>
+  </body>
+</html>

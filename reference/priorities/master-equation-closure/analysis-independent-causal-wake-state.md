@@ -366,6 +366,40 @@ Plainly: the strict allocation object is ruled out, not MEC-002 as a whole. Prog
 
 Claim grade: **derived no-go theorem on the stated allocation class**. Its independent reference is the exact stationary prescribed-history control above; no implementation output enters the proof. The theorem is falsified by a finite nonnegative receiver-independent account and positive point-debit rule that obey the finite-sum bound for every compatible finite receiver set while retaining the unchanged regular canonical source-to-receiver row, or by an accepted $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation that forbids the arbitrarily large finite receiver controls used in the proof. MEC-002 remains `In progress`: allocation by universal positive point debit is closed negatively, while the replacement account, reception transfer, maturity, emission law, boundary flux, and one-sided uniqueness remain open.
 
+### 2.4 Present-shell selection is not source reconstruction
+
+For the fixed-center kinematic wake, the present receiver at $\mathbf x$ intersects the emission label $s$ when
+
+$$
+F_{ij}(s;T,\mathbf x)
+=
+\|\mathbf x-\mathbf X_j(s)\|-c_f(T-s)
+=0.
+$$
+
+The transmitter history is retained data. Solving this equation asks which already-emitted surface reaches the receiver now; it does not infer or rewrite the transmitter's past. At fixed reception time, fixed retained transmitter history, and one isolated simple root, a counterfactual receiver displacement gives
+
+$$
+D_t\,\delta s
++
+\mathbf n\cdot\delta\mathbf x
+=0,
+\qquad
+\delta s
+=
+-\frac{\mathbf n\cdot\delta\mathbf x}{D_t}.
+$$
+
+Plainly: moving the receiver selects a different member of the already-stored family of expanding surfaces. It does not back-calculate an unknown source history.
+
+This derivative is a diagnostic, not a step performed by the physical update. The actual update solves only for the actual present receiver. The counterfactual calculation is admissible when checking a proposed action, regular-state sensitivity, or numerical conditioning because it freezes the complete transmitter history and follows the same named root. It cannot reconstruct an unknown transmitter path, select a physical outgoing branch, determine a maturity rule, inspect a future receiver state, or add the sensitivity tensor to the acceleration.
+
+The distinction fails exactly where the regular-root assumptions fail. At a fold $D_t=0$, at coincident root birth, or when the perturbed root ceases to be isolated, the displayed derivative does not exist and a fresh root census is required. A small receiver displacement can then change the number of roots rather than smoothly move one root.
+
+Plainly: on an ordinary isolated root, re-solving is a local lookup. At a fold or birth, it really is a new branch problem, and MEC-006 assigns no derivative there.
+
+Claim grade: **derived local simple-root lemma and scope boundary**. The lemma is falsified by a certified isolated simple-root history for which direct differentiation of $F=0$ disagrees with the displayed $\delta s$, while the scope boundary is falsified by a separately proved singular continuation chart that supplies a unique derivative through $D_t=0$ or root birth. This result licenses no physical back-calculation and no singular value.
+
 ## 3. Coincident-birth requirement
 
 On
@@ -417,6 +451,30 @@ $$
 $$
 
 Plainly: the approved playback leg closes analytically on the quadratic control. It checks the local identity only; it supplies no wake account, birth continuation, or conserved branch.
+
+### 3.1 Exact regularity and finite birth are incompatible under a point-only exception
+
+Every row with $\tau>0$ in the quadratic control is a positive-delay, noncoincident simple root, however close it lies to birth. Suppose a multiplicative coupling $M(\tau)$ is required to preserve the sharp canonical row at every such root. Then
+
+$$
+M(\tau)=1
+\qquad
+\text{for every }\tau>0.
+$$
+
+Finite accumulated self-acceleration would simultaneously require
+
+$$
+\int_0^\epsilon M(\tau)\tau^{-3}\,d\tau<\infty.
+$$
+
+These conditions are incompatible because $\int_0^\epsilon\tau^{-3}\,d\tau$ diverges. Assigning zero acceleration only at the exact $r=0$ point changes no positive-measure neighborhood and cannot repair the divergence.
+
+Plainly: the problem is not the single coincident instant. It is the entire one-sided family of ordinary-looking self roots that piles up immediately after that instant.
+
+Therefore any finite coincident-birth construction must modify an open one-sided neighborhood of positive-delay roots, exclude that neighborhood by a separately derived domain rule, or change the near-origin acceleration kernel. Each option is a new constitutive boundary or core prescription. It does not follow from the unchanged sharp Master Equation.
+
+Claim grade: **derived conditional no-go theorem**. It assumes exact agreement with the sharp row on every positive-delay simple root of the quadratic birth family and finite accumulated self-acceleration through birth. It is falsified by a construction satisfying both assumptions, or by a proof that these positive-delay rows are not admitted regular rows.
 
 Because $z=|g'(T_c)|\tau/c_f$ is linear in $\tau$, conditions written in $z$ and $\tau$ are equivalent on this control. That equivalence is not yet proved for generic higher-order controls.
 
@@ -539,6 +597,79 @@ Plainly: both laws are finite and match the regular value at the same declared t
 
 Smooth perturbations supported inside $(0,z_0)$ preserve weighted integrability and endpoint matching while changing the accumulated acceleration. These functions are counterexamples, not candidate laws selected by $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+### 3.2 Receiver-sensitivity strengthening
+
+The completed MEC-006 quadratic chart gives the sharp near-birth scalings
+
+$$
+\left|\partial_{\parallel}\mathbf A_{\mathrm{sharp}}\right|
+\asymp \tau^{-5},
+\qquad
+\left|\partial_{\perp}\mathbf A_{\mathrm{sharp}}\right|
+\asymp \tau^{-4}.
+$$
+
+For a scalar maturity $M(\tau)$ with no receiver-coordinate dependence, integrability of every receiver-coordinate sensitivity therefore requires the worst-direction condition
+
+$$
+\int_0^L M(\tau)\tau^{-5}\,d\tau<\infty.
+$$
+
+Thus $M(\tau)\sim\tau^p$ requires $p>4$ for this sensitivity test, although finite acceleration impulse alone requires only $p>2$. Within an analytic reception-age class, cubic and quartic leading orders pass the impulse test but fail this stronger test; the first possible nonzero degree is five.
+
+Plainly: making the birth acceleration have finite area is not enough if arbitrarily small state changes still produce a nonintegrable change in that acceleration.
+
+For state- or geometry-dependent maturity, the complete derivative is
+
+$$
+\nabla_{\mathbf x}\left(M\mathbf A_{\mathrm{sharp}}\right)
+=
+M\nabla_{\mathbf x}\mathbf A_{\mathrm{sharp}}
++
+\mathbf A_{\mathrm{sharp}}\otimes\nabla_{\mathbf x}M.
+$$
+
+No cancellation between these terms may be assumed. It must be derived from the declared update and survive independent perturbations. Even the strengthened integral does not select one formula: after nondimensionalizing by $L$, for example, $M(\tau)=(\tau/L)^4/\log^2(eL/\tau)$ passes the $\tau^{-5}$ weighted test near zero but is not a quintic law.
+
+Claim grade: **derived necessary condition for the receiver-independent scalar-maturity class**. It is falsified by a member of that class whose complete receiver sensitivity is integrable while the displayed weighted integral diverges. It does not establish that receiver sensitivity is a physical acceleration or that this condition alone supplies unique continuation.
+
+### 3.3 Higher-order birth histories defeat every fixed reception-age power
+
+For every odd integer $k\ge1$, consider the normalized prescribed collinear history
+
+$$
+v_k(t)=1+a t^k,
+\qquad
+x_k(t)=t+\frac{a}{k+1}t^{k+1},
+\qquad a>0.
+$$
+
+At reception time $t=\tau>0$, the positive-delay self root at emission time $s=-\tau$ satisfies exactly
+
+$$
+r=2\tau,
+\qquad
+D_t=a\tau^k,
+\qquad
+\left\|\mathbf A_{\mathrm{sharp}}\right\|
+=
+\frac{|C|}{4a}\tau^{-(k+2)}.
+$$
+
+Consequently a reception-age power $M(\tau)\sim\tau^p$ has finite acceleration impulse exactly when $p>k+1$, while integrable longitudinal receiver sensitivity requires $p>2k+2$. No fixed finite power of reception age works on a declared history class containing arbitrary odd-order crossings.
+
+Plainly: a very flat crossing can make the singular neighborhood much worse than the quadratic example. Choosing “cubic” or even “quintic” in elapsed time before declaring the allowed history class is not a general solution.
+
+If instead $z=|D_t|/c_f$ is used as the local variable, then $r\asymp z^{1/k}$ and the impulse condition becomes
+
+$$
+\int M(z)z^{-2-1/k}\,dz<\infty.
+$$
+
+For $M(z)\sim z^m$, longitudinal receiver-sensitivity control requires $m>2+2/k$. A fifth-order function of $z$ passes these local power tests for every finite odd $k$, but the current primitives do not select it, and it would also modify ordinary small-$|D_t|$ folds unless a separately derived same-history near-diagonal state distinguishes birth from a fold. Infinitely flat crossings show that the admitted normal-form and phase-space classes must still be declared.
+
+Claim grade: **derived prescribed-history counterexample family**. These histories are not claimed to be Master-Equation-generated trajectories. The result is falsified by an algebraic error in the displayed exact root family or by an accepted history class with a proved uniform crossing-order bound that excludes the counterexamples.
+
 Claim grade: **derived necessity and underdetermination**. A finite accepted transition with $M$ failing the displayed integrability condition would falsify the necessity claim. An allowed native functional equation that uniquely fixes the complete law and scale would falsify the underdetermination claim.
 
 ## 4. Conservation equations expose missing information
@@ -611,7 +742,100 @@ At fixed causal geometry $\Delta\mathbf V_r$ is fixed while $\mathbf V_r$ can va
 
 Plainly: the account may need to know the receiver's present motion even though the acceleration law must remain receiver-velocity independent.
 
-### 4.1 Angular booking and finite-increment scope
+The first-order statement has a finite-increment strengthening. Let $h:\mathbb R^3\to\mathbb R$ be a differentiable rotationally invariant motion-energy account on a connected open velocity domain. Suppose that for every allowed increment $\mathbf w$ in an open neighborhood, the finite change
+
+$$
+h(\mathbf V+\mathbf w)-h(\mathbf V)
+$$
+
+depends on $\mathbf w$ but not on the base velocity $\mathbf V$ whenever both arguments remain in the domain. Differentiation with respect to $\mathbf V$ gives
+
+$$
+\nabla h(\mathbf V+\mathbf w)=\nabla h(\mathbf V).
+$$
+
+The open increment set and connectedness make $\nabla h$ constant. Rotational invariance then forces that constant vector to vanish, so $h$ is constant. With the conventional zero-account normalization $h(\mathbf0)=0$, one obtains $h\equiv0$.
+
+Plainly: if the same velocity change always costs the same account amount regardless of the receiver's starting motion, the only rotationally symmetric differentiable possibility is a trivial constant account. Every nontrivial isotropic motion-energy account must let its transfer rule read the receiver's present motion or another independently derived state variable.
+
+Claim grade: **derived conditional finite-increment rigidity theorem**. It is falsified by a differentiable nonconstant rotationally invariant $h$ whose finite increments are independent of base velocity on the declared open increment domain.
+
+### 4.1 Frozen account-candidate adjudication
+
+Five account classes were frozen before testing against nonsymmetric histories, arbitrary finite receiver count, origin translation, unchanged regular acceleration, coincident-birth integrability, and non-residual independence:
+
+| Candidate class | Result |
+| --- | --- |
+| Null transparent account | Reject: it supplies only $0=0$ and leaves the sharp birth divergence unchanged. |
+| Finite nonnegative point depletion | Reject by the finite universal point-allocation no-go. |
+| Finite angular-patch depletion | Reject under point-Architrino primitives: no patch scale or overlap rule is selected, while duplication, receiver-set repartition, or order-dependent depletion violates a required condition. |
+| Signed reception-event account | Formally closes all three accounts but reject as the exact negative motion residual, with no independent source or capacity. |
+| Regular scalar-root history account | Retain one exact regular energy decomposition; reject as an account-complete construction because momentum, angular momentum, folds, birth, and boundary transport remain absent. |
+
+For the signed reception-event class, conditionally set
+
+$$
+\mathbf p=a\mathbf V,
+\qquad
+K=\frac a2\|\mathbf V\|^2.
+$$
+
+Assigning
+
+$$
+d\boldsymbol\Pi_{\mathcal W}
+=-a\mathbf A_h\,dT,
+\qquad
+dE_{\mathcal W}
+=-a\mathbf V_r\cdot\mathbf A_h\,dT,
+\qquad
+d\mathbf J_{\mathcal W}
+=-\mathbf X_r\times a\mathbf A_h\,dT
+$$
+
+at each reception makes the motion-plus-wake differentials cancel algebraically. This identity holds for any acceleration rule whatsoever. For $N$ identical receivers, the total variation of the momentum booking grows as $N|a|\|\mathbf A_h\|dT$. The construction therefore has no independent finite source-capacity bound, and its universal cancellation has no dynamics-specific falsifier.
+
+Plainly: this candidate balances the books by writing down the opposite of whatever just happened. Freezing that rule before a numerical run does not turn it into a derived explanation.
+
+The scalar-root class yields a more informative identity. On one connected fixed-sign simple-root chart, define
+
+$$
+\Phi_h
+=
+C_h\frac{\operatorname{sgn}(D_t)}{r_h},
+\qquad
+-\nabla_{\mathbf X_r}\Phi_h=\mathbf A_h.
+$$
+
+With $dT_t/dT=D_r/D_t$ and $dr/dT=1-D_r/D_t$, direct differentiation gives
+
+$$
+\frac{d\Phi_h}{dT}
+=
+-\mathbf A_h\cdot
+\left(
+\mathbf V_r-\mathbf V_t(T_t)
+\right).
+$$
+
+For the conditional quadratic motion account,
+
+$$
+\frac{d}{dT}
+\left(
+K_r+a\Phi_h
+\right)
+=
+a\mathbf A_h\cdot\mathbf V_t(T_t).
+$$
+
+Plainly: the receiver's account change and the changing root scalar leave one explicit transmitter-history term. This is a real constraint on a future wake account, not a complete conservation law.
+
+A causal running scalar could cancel the final transmitter-history term, but the present construction derives no corresponding momentum or angular account, no fold or birth value, and no account-bearing boundary transport. Promoting the same relative-endpoint scalar to a complete worldline action also restores the future-transmitter variation that closed `CT-FH-1` negatively.
+
+Claim grade: **derived formal balance identity and derived regular single-root energy identity; bounded negative account adjudication**. The signed-event rejection is falsified by an independent emission and capacity theorem that derives and bounds the same account before comparison with motion. The scalar identity is falsified by a certified fixed-sign simple-root history on which its direct derivative disagrees with the displayed decomposition. Neither identity establishes conservation.
+
+### 4.2 Angular booking and finite-increment scope
 
 Let $\Delta\mathbf p_r$ be the receiver momentum-account increment and let the wake debit be $-\Delta\mathbf p_r$. Under same-reception-point booking,
 
@@ -667,6 +891,22 @@ If $\mathbf0\in D$ and $\mathbf p(\mathbf0)=\mathbf0$, or if proper-rotation equ
 Plainly: the linear form follows from the all-pairs or separately proved triangle-connected increment condition. It does not follow from radial acceleration alone or from one realized trajectory.
 
 This theorem is conditional on emission-center booking, event-wise angular closure, and the stated richness of admissible increments. The coefficient $a$ is an undetermined account scale, not primitive architrino mass. None of these booking identities derives physical conservation or selects a momentum account.
+
+There is also an origin-shift identity that every consistently booked orbital ledger must satisfy. Let $\mathcal B_P$ be the complete momentum-account residual, including motion, wake, and boundary rows, and let $\mathcal B_J(\mathbf O)$ be the corresponding angular-account residual about origin $\mathbf O$. If the origin is shifted by $\mathbf a$ while the same physical rows are retained, every orbital moment changes by minus $\mathbf a$ crossed with its momentum row. Hence
+
+$$
+\mathcal B_J(\mathbf O+\mathbf a)
+=
+\mathcal B_J(\mathbf O)
+-
+\mathbf a\times\mathcal B_P.
+$$
+
+Therefore $\mathcal B_P=\mathbf0$ makes the angular residual origin-independent. Conversely, if $\mathcal B_J$ vanishes for every origin, then $\mathbf a\times\mathcal B_P=\mathbf0$ for every $\mathbf a$, which forces $\mathcal B_P=\mathbf0$.
+
+Plainly: a momentum-account error reappears as a different angular-account error when the coordinate origin moves. An angular pass at one specially chosen origin cannot hide a momentum failure.
+
+Claim grade: **derived algebraic necessary condition for consistently booked orbital and boundary accounts**. It is falsified by one same-record ledger whose direct origin translation violates the displayed identity. The identity supplies no account values and establishes no conservation law.
 
 ## 5. Regular-law and conservation trilemma
 

@@ -1,0 +1,114 @@
+{
+  "schema": "architrino.potential-consumer-publication-contract.v1",
+  "status": "accepted",
+  "version": 1,
+  "authority": "AAA Core Potential product and derived-product publication contract; no forward-evolution or scientific-kernel authority",
+  "upstreamContracts": {
+    "pathInterchange": {
+      "schema": "aaa_core_path_interchange/v0",
+      "status": "accepted",
+      "usage": "typed immutable upstream reference; this contract consumes but does not define or replace the AAA Core interchange envelope"
+    },
+    "codecRegistry": {
+      "schema": "aaa_core_codec_registry/v0",
+      "status": "accepted",
+      "usage": "The synthetic fixture map codec is registered at fixture-conformance grade; production published codecs must register here, while transient renderer buffers remain private"
+    },
+    "queryTransformPublication": {
+      "schema": "aaa_core_query_transform_publication/v0",
+      "status": "accepted",
+      "usage": "Shared equivalent-request, ordered-transform, cache, source-closure, authority, sealing, and receipt identity; the declared scientific owner retains observable semantics"
+    }
+  },
+  "requiredUpstreamFields": [
+    "sourceHistory.pathSetId",
+    "sourceHistory.manifestSchema",
+    "sourceHistory.manifestSha256",
+    "sourceHistory.historyKind",
+    "sourceHistory.authority",
+    "sourceHistory.coverage.startT",
+    "sourceHistory.coverage.endT",
+    "sourceHistory.coverage.acceptedThroughT",
+    "sourceHistory.coverage.complete",
+    "sourceHistory.coordinateFrame.frameId",
+    "sourceHistory.coordinateFrame.axes",
+    "sourceHistory.units.wakeSpeed",
+    "sourceHistory.units.lengthScale",
+    "sourceHistory.units.timeScale",
+    "sourceHistory.units.scaleMapId",
+    "sourceHistory.numeric.representation",
+    "sourceHistory.numeric.precisionBits",
+    "sourceHistory.numeric.nonfiniteBehavior",
+    "sourceHistory.interpolation.basis",
+    "sourceHistory.interpolation.maximumPositionError",
+    "sourceHistory.provenance.producer",
+    "sourceHistory.provenance.sourceSha256"
+  ],
+  "productKinds": {
+    "fixed_t_spatial_volume": {
+      "axes": ["X1", "X2", "X3"],
+      "timeMode": "fixed",
+      "description": "Three spatial axes over a declared region at one absolute time T."
+    },
+    "timespace_volume": {
+      "axes": ["u", "v", "T"],
+      "timeMode": "interval",
+      "description": "Two declared spatial or chart axes plus absolute time over a declared interval."
+    },
+    "full_timespace_product": {
+      "axes": ["X1", "X2", "X3", "T"],
+      "timeMode": "interval",
+      "description": "Three spatial axes plus absolute time, exchanged as indexed chunks or tiles."
+    }
+  },
+  "observableRegistry": [
+    {
+      "id": "synthetic_scalar_potential",
+      "version": "synthetic_scalar_potential/v1",
+      "kernelVersion": "synthetic_fixture_kernel/v1",
+      "scientificOwner": "test-fixture-only",
+      "permittedHistoryKinds": ["prescribed_history"],
+      "maximumPrecisionBits": 64
+    }
+  ],
+  "codecCapabilities": [
+    {
+      "provider": "aaa-core",
+      "capabilityId": "potential_fixture_map_json/v1",
+      "registry": "aaa_core_codec_registry/v0",
+      "logicalInput": "potential_sample_grid/v1",
+      "logicalOutput": "potential_map_product/v1",
+      "representationProfiles": ["display_stream", "precision_bounded_analysis"],
+      "maximumPrecisionBits": 64,
+      "randomAccess": "whole synthetic fixture only",
+      "streaming": false,
+      "authorityEffect": "never raises source or kernel authority",
+      "refusalCases": ["unsupported_precision", "incomplete_publication", "unknown_observable_version"]
+    }
+  ],
+  "publicationRules": {
+    "sourceAndDerivedDataRemainSeparate": true,
+    "sourceHistoryPayloadForbiddenInPublication": true,
+    "sealedRequiresCompleteCoverage": true,
+    "missingOrUnresolvedCellsRemainExplicit": true,
+    "mapCannotServeAsSolverContinuation": true,
+    "publishedCodecMustBeRegistered": true
+  },
+  "refusalCodes": [
+    "missing_required_field",
+    "missing_history",
+    "incompatible_scales",
+    "unsupported_precision",
+    "incomplete_publication",
+    "unknown_observable_version",
+    "unsupported_product_geometry",
+    "source_binding_mismatch",
+    "unregistered_codec",
+    "source_history_leakage",
+    "identity_mismatch"
+  ],
+  "fixtures": {
+    "positive": "reference/priorities/app-aaa-core/potential/fixtures/potential-product.synthetic.v1.json",
+    "negative": "reference/priorities/app-aaa-core/potential/fixtures/potential-product-negative.v1.json"
+  }
+}

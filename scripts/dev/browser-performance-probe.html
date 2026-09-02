@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Browser Performance Probe</title>
+    <style>
+      html,
+      body,
+      iframe {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border: 0;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      #probe-result {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        display: none;
+        margin: 0;
+        padding: 16px;
+        overflow: auto;
+        color: #eff8ff;
+        background: #07131f;
+        white-space: pre-wrap;
+      }
+
+      body.is-complete #probe-frame {
+        display: none;
+      }
+
+      body.is-complete #probe-result {
+        display: block;
+      }
+    </style>
+    <script type="module" src="./BrowserPerformanceProbe.js"></script>
+  </head>
+  <body>
+    <iframe id="probe-frame" title="Measured webapp"></iframe>
+    <pre id="probe-result" role="status" aria-live="polite">Running browser performance probe…</pre>
+  </body>
+</html>

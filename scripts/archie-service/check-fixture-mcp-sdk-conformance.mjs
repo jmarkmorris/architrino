@@ -38,7 +38,7 @@ try {
   const listed = await client.listTools();
   const toolNames = listed.tools.map((tool) => tool.name);
   requireCondition(
-    JSON.stringify(toolNames) === JSON.stringify(["search", "read", "topics", "neighbors"]),
+    JSON.stringify(toolNames) === JSON.stringify(["search", "read", "topics", "neighbors", "walk"]),
     `SDK discovered unexpected tools: ${toolNames.join(", ")}`
   );
 
@@ -48,6 +48,7 @@ try {
   await call("search", { query: "Architrino" });
   await call("read", { topicOrRoute: firstTopic.sourceId });
   await call("neighbors", { topicOrRoute: firstTopic.sourceId });
+  await call("walk", { topicOrRoute: firstTopic.sourceId, maxDepth: 2 });
 
   const missing = await client.callTool({ name: "read", arguments: { topicOrRoute: "missing-sdk-topic" } });
   requireCondition(missing.isError === true, "missing read did not return a tool-level error");

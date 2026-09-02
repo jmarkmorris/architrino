@@ -158,7 +158,7 @@ test("alternating-planes Ledger keeps its periodic zero copy in the outcome", ()
 
   assert.equal(
     viewModel.outcomeLabel,
-    "Net acceleration is zero at every architrino.",
+    "In this ideal repeating pattern, net acceleration is zero at every architrino.",
   );
   assert.equal("statement" in viewModel, false);
 });

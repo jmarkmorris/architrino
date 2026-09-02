@@ -6,6 +6,100 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Browser-performance source closure after UI-005
+
+- Replaced the deleted `src/apps/navigator/standalone-app-navigation.css` identity in the accepted Photon source closure with `src/runtime/top-dynamic-control-bar.css` and added the newly loaded `src/runtime/TopDynamicControlBarRuntime.js` source.
+- Recomputed the complete 37-file, 4,545,046-byte closure to SHA-256 `955a6be672780e24e213e4c9cf81bbdb262c30f688964fa4e504141daaed7cf6`; the browser-performance checker and full Content Integrity can now fail on current UI sources rather than aborting on a deleted path.
+- Ran three isolated 3840-by-2160 checks against fresh loopback origins. They confirmed the current 37-resource, 4,562,057-byte cold transfer and 28,888,248-byte canvas-surface lower bound, but the in-app test surface repeatedly delivered a 30 Hz animation cadence. Those runs were not substituted for the accepted foreground 60 Hz performance profile or used to weaken its budgets.
+
+Plainly: the gate now watches the real shared control-bar files. The old 60 Hz performance requirement remains intact; the slower background/test-surface runs are recorded as rejected measurements, not passed evidence.
+
+### 2026-09-02 — OPS-001 deployment budget contract
+
+- Accepted [deployment-budget.v1](deployment-budget.v1.json) with Borg as the first consumer, added a source-bound browser probe, wired the checker into Content Integrity, and exposed the measured classes in Borg's deployment drawer.
+- Rebuilt the public site in an empty temporary directory: 4,347 files and 453,526,774 bytes, 27,971,992 bytes (5.81%) below the 2026-09-01 OPS-006 reconstruction. Generated equation, corpus-index, and Borg-record outputs totaled 177,611,810 bytes; the 145 Borg records accounted for 116,873,582 bytes.
+- Measured Borg's fresh 3840-by-2160 first screen at 2,513,867 encoded shell bytes, 42,712 encoded static-asset bytes, 12,138,288 used browser-heap bytes, a 26,429,760-byte canvas color-surface lower bound, and zero origin-storage use. The canvas value excludes depth, textures, geometry, driver allocation, compositor copies, and shared-process memory.
+- Estimated 2,556,579,000 monthly Pages bytes for an inferred scenario of 1,000 uncached first-screen visits. This is not observed traffic and excludes selected records and repeat-visit cache behavior.
+- Queried non-expired Actions artifacts at 2026-09-02T21:17:06Z. Two one-day Pages handoffs totaled 414,359,287 stored bytes, 14,359,287 bytes above the conservative 400,000,000-byte aggregate threshold used while the account allowance is unknown. The contract preserves that warning; it neither deletes artifacts nor blocks the existing guarded Pages path.
+- Kept EOM solver throughput as `reported-separately-not-measured`, owned by `app-solver`, with no dependency on the deployment verdict. No throughput number was inferred from browser, artifact, or site-size measurements.
+- Removed OPS-001 from the active queue. OPS-013 remains the local rank-1 object.
+
+Plainly: the deployment budget now has live numbers and an app consumer. It reports one actionable artifact-overlap warning and keeps solver speed in its own evidence lane.
+
+### 2026-09-02 — Pages recovery policy and Borg record byte identity
+
+- Removed OPS-009, its standing Pages reversal procedure, rehearsal receipt, and release-gate dependency at operator direction. If an earlier source state is needed, recovery now starts by inspecting repository branches and commits, selecting the source explicitly, validating it through the ordinary branch and PR process, and publishing only through the verified `main` workflow.
+- Reduced the general webapp release gate from eight categories to seven: content, graph, size, visual, browser, accessibility, and preview. No automatic target or special replay path remains in the contract or checker.
+- Reclassified the earlier 91-byte observation through a live [published Borg record byte-identity audit](pages-borg-record-byte-identity-audit-2026-09-02.md). Of 145 deployed records, 143 disagree with their deployed registry SHA-256 identities; the two static records match.
+- Isolated one representative mismatch to 66 tiny numeric differences and no non-numeric differences. The deployed file and same-source macOS reconstruction had equal byte counts, showing that the earlier 91-byte total was incidental decimal-length drift rather than truncation or missing data.
+- Queued OPS-013 because the Borg loader rejects a record whose bytes do not match the registry. No deployment, Pages setting, DNS record, or public byte was changed.
+- Implemented a duration-scaled $2\times10^{-11}$ position quantum with conservatively enlarged position/velocity residual bounds. The first grid version collapsed all 145 historical macOS/Ubuntu record pairs despite 51,051 numeric differences and zero non-numeric differences, but a fresh GitHub run correctly falsified it when runtime-dependent exponentiation produced 59 mismatches.
+- Replaced coefficient-grid exponentiation with repeated IEEE-754 multiplication in `assembly-view-record-position-grid.v2`. Fresh Node 22 and Node 26 generation then produced the same 145 records and registry hashes, totaling 116,875,800 bytes; focused positive, negative-tamper, and observed-runtime-difference tests passed.
+- GitHub Actions run `33685894947` independently passed the verifier 145-of-145 on Ubuntu 24.04 with Node 22.23.2. A later stale generated startup-orientation check from concurrent branch work stopped the overall job after the Borg pass, so no artifact was uploaded or deployed.
+- Added the verifier to Content Integrity and the Pages workflow before artifact upload. OPS-013 remains awaiting live verification; the next verified `main` deployment, live 145-of-145 hashes, and representative Borg loading remain.
+
+### 2026-09-02 — OPS-004 browser performance budget
+
+- Closed OPS-004 with the accepted [browser-performance budget](browser-performance-budget.v1.json), the source-bound [dated evidence receipt](browser-performance-baseline-2026-09-01.json), the repo-native development probe, and `scripts/check-browser-performance-budget.mjs`. The checker is wired into the full content-integrity runner.
+- Used two representative non-Borg, non-Braid profiles. Public Feedback owns an explicit refresh-to-next-paint interaction; Photon owns the animated 4K profile. Each cold launch used the first app load on a fresh loopback origin, and each warm launch used an identical same-origin reload with HTTP validation behavior retained.
+- Public Feedback measured 831,413 cold-transfer bytes, 813,202 warm-transfer bytes, 12.9- and 16.5-millisecond load events, a 31.7-millisecond interaction-to-next-paint result, 39,974,550 post-frame heap bytes, and zero origin-storage use.
+- Photon measured 4,504,805 cold-transfer bytes and 10,800 warm-transfer bytes. At 3840 by 2160 CSS pixels, 360 consecutive animation intervals produced 59.88 median frames per second, an 18.2-millisecond 95th-percentile interval, and zero intervals above 33.34 milliseconds. The measured post-frame heap was 150,088,154 bytes with 17,129,304 bytes of positive growth over that repeated frame window; the accepted thresholds allow 268,435,456 used bytes and 67,108,864 bytes of positive growth.
+- Kept GPU claims split. The page-level canvas backing-store lower bound was 28,888,248 bytes across three surfaces. The separately sampled shared Codex GPU-process envelope peaked at 190,218,240 resident bytes, 34,635,776 bytes over the 155,582,464-byte baseline. Neither value is exact per-page physical GPU allocation.
+- Added fail-closed tests for launch and transfer, interaction, frame cadence, heap, storage, GPU surface, shared GPU process, stale app identity, and stale instrument identity. A changed measured source must be re-profiled; the prior receipt cannot silently pass.
+- Claim boundary: these local Chrome 152 measurements establish current regression budgets on one host. They do not establish production-user latency, geographic network transfer, exact per-page GPU memory, monthly bandwidth, hosting cost, or scientific correctness.
+- Removed OPS-004 from the live operations queue. OPS-001 remains queued but its required first consumer is Borg, which is excluded from this workstream pass.
+
+### 2026-09-01 — OPS-003 webapp release gate
+
+- Closed OPS-003 with the accepted [webapp release-gate contract](webapp-release-gate.v1.json), executable `scripts/check-webapp-release-gate.mjs` checker, and source-bound [public-feedback evidence receipt](feedback-webapp-release-gate-2026-09-01.json). The gate is wired into the full content-integrity runner rather than remaining a standalone advisory.
+- Defined seven mandatory categories with explicit failure behavior: content, graph, size, visual, browser, accessibility, and preview. The checker recursively discovers the load-time HTML, CSS, and JavaScript closure, rejects undeclared local or remote resources, enforces the source-byte ceiling, and rejects stale byte counts or SHA-256 identities.
+- Passed the first consumer with four public-feedback source files totaling 18,211 uncompressed bytes against a 32,768-byte ceiling. Focused positive and negative tests cover the accepted baseline, undeclared resources, over-budget growth, stale hashes, and failed browser, accessibility, or preview evidence.
+- Used the in-app browser workflow at 1440 by 900 and 390 by 844 pixels. Both viewports had zero horizontal overflow; the mobile check found zero unnamed controls, zero duplicate identifiers, six focusable controls, and a 42-CSS-pixel minimum control height. The copy interaction and all three same-origin public-manifest reads passed with a clean console.
+- Repaired the readonly manifest textarea so its visible manifest heading supplies the accessible name. The change is included in the exact source hash recorded by the evidence receipt.
+- Passed an isolated static preview containing 4,288 files and 482,213,021 bytes; all four profile resources were present and the loopback route returned `200`. The active shared checkout was not used as build evidence because another task had removed an assembly-explorer runtime while working on its own scope.
+- Removed OPS-003 from the live operations queue. The result is `passed_pre_release`; it does not claim a production release.
+
+### 2026-09-01 — OPS-012 privacy-safe public feedback intake
+
+- Closed OPS-012 with the [privacy-safe feedback intake](privacy-safe-feedback-intake.md), [versioned policy](feedback-intake-policy.v1.json), public `feedback.html` generator, and dedicated GitHub public-webapp issue form.
+- Added `architrino.public-feedback-manifest.v1`, which records only a same-origin public pathname, browser family and major version, operating-system family, coarse device/viewport/pixel-ratio categories, browser language, and availability, last-modified headers, and entry counts for the public scene index, markdown index, and scene graph.
+- Excluded the raw user-agent string, query and fragment, cookies, local and session storage, clipboard contents, local file names and contents, WebGL renderer, and account identifiers. The page only writes the visible manifest after the Copy action and never reads clipboard contents.
+- Kept submission explicit: opening the local generator sends nothing to GitHub; the external issue form opens only after user selection and still requires review and submission. The form warns that issues are public and requires confirmation that private workflow and identifying material were removed.
+- Focused tests passed for path sanitization, coarse classification, same-origin fetches, omission boundaries, public submission, policy alignment, and the existing observability/security controls. An isolated clean-checkout Pages build published the feedback HTML, runtime, and CSS in a 4,284-file payload.
+- Used the in-app browser workflow to verify desktop and 390-pixel-wide layouts, zero horizontal overflow, sanitized `/molecule.html` capture from a query-bearing input, all three public manifest reads, visible issue-link routing, and explicit copy status. The temporary browser viewport was reset and the tab closed.
+- The active-checkout static build remains blocked by another thread's in-progress removal of `src/apps/assembly-explorer/AssemblyConfigurationExplorerRuntime.js`; the isolated build proves the feedback route independently but does not certify the combined ambient checkout.
+- Removed OPS-012 from the live operations queue.
+
+### 2026-09-01 — OPS-011 dependency and public-security review
+
+- Closed OPS-011 with the [dependency and public-security review](dependency-and-public-security-review-2026-09-01.md) and machine-checkable [public-security policy](public-security-policy.v1.json).
+- Audited the one exact npm dependency and 111-entry locked production graph. The first lockfile audit reported one moderate Mermaid vulnerability group covering five advisories in 11.16.0; after moving the manifest, lockfile, vendored runtime, provenance, and attribution to 11.16.1, the audit returned zero known vulnerabilities.
+- Added a moderate-or-higher npm audit to every content-integrity workflow run and weekly Dependabot review for npm and GitHub Actions. Replaced every movable external Action tag with its verified full 40-character commit identifier.
+- Found the Support Architrino Research renderer dynamically loading a Liberapay widget script, which the earlier HTML-only remote-resource scan did not cover. Removed the automatic executable load, retained the ordinary user-selected donation link, widened the source scan to shared runtimes, and prohibited dynamic script construction and remote executable JavaScript URLs.
+- Bound Mermaid, markdown-it, Three.js/CSS2DRenderer, KaTeX, and Periodic-Table-JSON snapshots to reviewed hashes and explicit update dispositions. Five upstream Mermaid trailing-space runs were normalized for the repository diff gate; both the upstream and repository hashes are recorded.
+- Recorded current public-domain dispositions: CSP routes to OPS-003 after inline-script and resource-directive proof; HSTS waits for response-header control; Pages account verification and DNSSEC require operator/provider action; CAA waits for a complete supported-issuer allowlist; SPF stays soft-fail pending sender inventory; DMARC stays at monitoring-only; and DKIM requires account plus delivered-message verification before stronger DMARC enforcement.
+- Claim boundary: no GitHub account setting, DNS record, certificate, mail setting, hosting provider, deployment, or production response changed. The zero-advisory result and public DNS/header observations are dated measurements, not permanent security guarantees.
+- Removed OPS-011 and renumbered the remaining operations queue.
+
+### 2026-09-01 — OPS-008 observability and analytics policy
+
+- Closed OPS-008 with the accepted [observability and analytics policy](observability-and-analytics-policy.md) and machine-checkable [versioned contract](observability-policy.v1.json).
+- Set the current client-analytics mode to disabled with no collector and zero raw or aggregate retention. Explicit future opt-in, bounded retention, provider/privacy/security review, revocation, deletion, and browser-network negatives are required before any event can be sent.
+- Audited 219 authored HTML, JavaScript, JavaScript-module, and Swift app sources. The negative controls found no known collector domain, beacon, cookie access, XHR, WebSocket, EventSource, or remote executable/media tag.
+- Confirmed Website Statistics is an unconnected zero-data display. Changed its dormant send decision from permissive-by-default to policy-bound and fail-closed; the existing browser opt-out remains an additional veto and unavailable storage cannot authorize sending.
+- Classified PubChem as an explicit external data lookup rather than analytics. The Molecule page now discloses that pressing Add sends only an unlisted formula; shared links construct locally and do not contact PubChem automatically.
+- Claim boundary: no analytics provider, endpoint, event, account, hosting configuration, DNS record, or public aggregate was created. The finite source scan does not prove absence of an unknown collection technique; browser-network inspection remains part of any future collector gate.
+- Removed OPS-008 and renumbered the following operations queue rows.
+
+### 2026-09-01 — OPS-005 hosting alternatives survey
+
+- Closed OPS-005 with the dated [hosting alternatives survey](hosting-alternatives-survey-2026-09-01.md), using official Cloudflare, Netlify, and Vercel limits and prices accessed on 2026-09-01.
+- Rebuilt the active-checkout Pages payload in an empty external temporary directory: 4,284 payload files totaling 482,203,515 bytes, with two files above Cloudflare Pages' 25 MiB asset limit and three files above Netlify's 10 MB large-file guidance.
+- Established that Cloudflare Pages alone and Vercel Hobby do not accept the unchanged payload; Cloudflare Pages plus R2 and Vercel Pro are technically plausible but add object-routing or paid-platform complexity without relieving a measured current constraint. Netlify introduces both large-file risk and credit metering.
+- Kept GitHub Pages as the current host and defined evidence-bearing review and migration triggers for payload size, measured monthly transfer, deployment reliability, large-object lifecycle, service-backed product requirements, and measured total operating cost.
+- Claim boundary: no hosting account, DNS record, deployment workflow, public route, generated source, application behavior, or provider configuration changed. OPS-004 still owns representative cold and warm transfer measurement.
+- Removed OPS-005 and renumbered the following operations queue rows.
+
 ### 2026-09-01 — OPS-010 domain, DNS, and certificate inventory
 
 - Closed OPS-010 with the dated [domain, DNS, and certificate inventory](domain-dns-and-certificate-inventory-2026-09-01.md), measured from the public network and cross-checked against the repository `CNAME`, Pages workflow, GitHub Pages API, authoritative DNS servers, Verisign RDAP, HTTP responses, and the served TLS chain.

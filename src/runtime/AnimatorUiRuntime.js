@@ -20,6 +20,10 @@ export function createAnimatorUiRuntime(deps) {
     applyAnimatorSceneDocument,
     jumpToScene,
     setAnimatorStatus,
+    setTopDynamicControlBarMode,
+    createPrescribedSceneHandoff,
+    openPrescribedSceneInBorg,
+    animatorOpenBorgButton,
   } = deps;
 
   let animatorActivePanel = "tree";
@@ -66,6 +70,7 @@ export function createAnimatorUiRuntime(deps) {
     if (app) {
       app.classList.toggle("animator-mode", !!isOverlayScene);
     }
+    setTopDynamicControlBarMode?.(isOverlayScene);
     if (isAnimatorScene) {
       initAnimatorCanvas();
       deps.setAnimatorNeedsResize(true);
@@ -146,6 +151,37 @@ export function createAnimatorUiRuntime(deps) {
     renderAnimatorJsonPreview();
   }
 
+  async function openAnimatorSceneInBorg() {
+    if (
+      typeof createPrescribedSceneHandoff !== "function" ||
+      typeof openPrescribedSceneInBorg !== "function"
+    ) {
+      setAnimatorStatus("Open in Borg is unavailable in this Animator build.");
+      return;
+    }
+    const draftState = readAnimatorDraftState();
+    const sceneDocument = buildAnimatorSceneDocument(draftState);
+    if (animatorOpenBorgButton) {
+      animatorOpenBorgButton.disabled = true;
+      animatorOpenBorgButton.setAttribute("aria-busy", "true");
+    }
+    try {
+      setAnimatorStatus("Validating and sealing the prescribed scene for Borg...");
+      const handoff = await createPrescribedSceneHandoff(sceneDocument);
+      await openPrescribedSceneInBorg(handoff);
+      setAnimatorStatus(
+        `Opened sealed prescribed scene in Borg (${handoff.recordSha256.slice(0, 12)}). Authored motion remains display-only.`,
+      );
+    } catch (error) {
+      setAnimatorStatus(`Open in Borg rejected: ${error?.message ?? String(error)}`);
+    } finally {
+      if (animatorOpenBorgButton) {
+        animatorOpenBorgButton.disabled = false;
+        animatorOpenBorgButton.removeAttribute("aria-busy");
+      }
+    }
+  }
+
   async function saveAnimatorSceneToRepoFile() {
     const draftState = readAnimatorDraftState();
     const sceneDocument = buildAnimatorSceneDocument(draftState);
@@ -199,6 +235,7 @@ export function createAnimatorUiRuntime(deps) {
     openAnimatorDocs,
     openAnimatorPreview,
     exportAnimatorScene,
+    openAnimatorSceneInBorg,
     saveAnimatorSceneToRepoFile,
   };
 }

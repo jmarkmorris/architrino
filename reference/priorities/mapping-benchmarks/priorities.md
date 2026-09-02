@@ -5,7 +5,7 @@ For the overall program and the distinction between benchmark, equation, and dom
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `13`
+- Rank: `9`
 - Value: `6.95`
 - Cost: `4.6`
 - ROI: `1.51`
@@ -14,6 +14,10 @@ For the overall program and the distinction between benchmark, equation, and dom
 ## Work Queue
 
 The locally ranked benchmark mappings, dependencies, and acceptance boundaries live in [work-queue.md](work-queue.md).
+
+## Current
+
+XTM-001 is complete at benchmark-specification grade in [Gravitational Redshift And Clock Tests](gravitational-redshift-clock-tests.md). The source-bound NIST optical-clock packet names the measured record, required native carrier, normalized residual, controls, and failure predicates; its current physical result is `blocked_missing_native_clock_transport_record`. The remaining queue objects are deferred behind their named native carriers.
 
 ## Scope
 
@@ -94,7 +98,7 @@ This projection is a provenance channel from detector signals to benchmark varia
 
 | Draft case family | Candidate promotion target | Promotion gate |
 | --- | --- | --- |
-| Redshift and cosmology | [mapping-cosmology](../mapping-cosmology/priorities.md), [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether sea variables without tired-light image or time-dilation failure. |
+| Redshift and cosmology | [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md), [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether sea variables without tired-light image or time-dilation failure. |
 | Lorentz, Sagnac, and Fizeau | braid, [master-equation-closure](../master-equation-closure/priorities.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
 | Weak-field metric | [validation-gates](../dormant-deferred/validation-gates/priorities.md), mass-map | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
 | Radiation and gravitational waves | [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [mapping-strong-field](../mapping-strong-field/priorities.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |
@@ -122,5 +126,5 @@ This projection is a provenance channel from detector signals to benchmark varia
 - mass-map
 - [mapping-quantum](../mapping-quantum/priorities.md)
 - angular-momentum-spin
-- [mapping-cosmology](../mapping-cosmology/priorities.md)
+- [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md)
 - [mapping-strong-field](../mapping-strong-field/priorities.md)

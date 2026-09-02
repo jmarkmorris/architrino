@@ -1,5 +1,4 @@
 import { PDGEDIT_APP_MODE } from "./PdgeditAppModeRuntime.js";
-import { STANDALONE_APP_HOME_HREF } from "../navigator/StandaloneAppHomeRuntime.js";
 import {
   DEFAULT_PDGEDIT_MANIFEST_URL,
   DEFAULT_PDGEDIT_TEMPLATE_CATALOG_URL,
@@ -13,7 +12,6 @@ export function bootstrapPdgeditApp({
   manifestUrl = DEFAULT_PDGEDIT_MANIFEST_URL,
   tileCatalogUrl = DEFAULT_PDGEDIT_TILE_CATALOG_URL,
   templateCatalogUrl = DEFAULT_PDGEDIT_TEMPLATE_CATALOG_URL,
-  homeHref = STANDALONE_APP_HOME_HREF,
 } = {}) {
   if (!documentLike) {
     throw new Error("pdgedit bootstrap requires document.");
@@ -33,13 +31,13 @@ export function bootstrapPdgeditApp({
     documentPanelElement: documentLike.getElementById("pdgedit-document-panel"),
     documentSearchInputElement: documentLike.getElementById("pdgedit-document-search"),
     documentSourceFilterElement: documentLike.getElementById("pdgedit-document-source-filter"),
-    homeButtonElement: documentLike.getElementById("pdgedit-home-button"),
+    navigationHostElement: documentLike.getElementById("scene-hud-tools"),
+    documentToolsElement: documentLike.querySelector(".pdgedit-top-tools"),
     createPickerElement: documentLike.getElementById("pdgedit-create-picker"),
     reactionSummaryElement: documentLike.getElementById("pdgedit-reaction-summary"),
     manifestUrl,
     tileCatalogUrl,
     templateCatalogUrl,
-    homeHref,
   });
   return runtime;
 }

@@ -1,0 +1,78 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-005",
+  "batch": "2-photon",
+  "date": "2026-09-02",
+  "subject": "canonical top dynamic control bar on Photon",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+    "search_adapter": "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "photon_composition": "src/apps/photon/PhotonRuntime.js",
+    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-005-batch-2",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open Photon at the declared viewport, activate Search scenes, wait for ten populated results, and capture the viewport.",
+    "routes": ["/photon.html"]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-2/photon-desktop-1440x900-search.png",
+      "sha256": "1c521fbe6783447a2e7f992817534452a1000b6184fba22230b5eeb70d548e70",
+      "bytes": 119236,
+      "route": "/photon.html",
+      "viewport": [1440, 900],
+      "state": "search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "popover_rect_px": [1149.84, 60, 274.16, 278],
+      "inspector_rect_px": [0, 0, 400, 900],
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-2/photon-mobile-390x844-search.png",
+      "sha256": "bcc4c4c10bbadc926ef17bc3395c075811908e11bc3e8fa28b59098a12adf146",
+      "bytes": 37722,
+      "route": "/photon.html",
+      "viewport": [390, 844],
+      "state": "search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "popover_rect_px": [103.84, 56, 274.16, 278],
+      "main_rect_px": [0, 0, 390, 820],
+      "inspector_top_px": 820,
+      "visible_document_button_count": 3,
+      "scientific_controls_visible": true,
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    }
+  ],
+  "interaction_checks": {
+    "canonical_stylesheet_count": 1,
+    "legacy_stylesheet_loaded": false,
+    "escape_closes_search": true,
+    "escape_restores_focus_to": "scene-search-toggle",
+    "home_destination": "index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json",
+    "browser_log_entries": 0
+  },
+  "visual_inspection": {
+    "desktop": "The canonical bar and popover clear the left inspector while Photon controls, braid stage, field plot, and polarization plot remain visible.",
+    "mobile": "The canonical bar and viewport-bounded popover occupy the canvas-first safe area; field and polarization plots remain visible and the inspector continues below the main stage."
+  },
+  "claim_boundary": "This receipt verifies UI-005 batch 2 on Photon only. It does not grade the Photon scientific model, establish migration for another standalone page, or define a browser-independent pixel threshold."
+}

@@ -23,12 +23,17 @@ import {
 import {
   deriveAssemblyScientificIdentity,
 } from "../../src/prescribed-geometry/AssemblyScientificIdentity.mjs";
+import {
+  createNormalizedAssemblyViewRecordCarriers,
+} from "../../src/apps/shared/AssemblyViewRecordCarriers.mjs";
 
 export const PRESCRIBED_BRAID_SPEC_SCHEMA = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
 export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA_ID = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
-export const PRESCRIBED_BRAID_EMITTER_ID = "prescribed-assembly-record-emitter.v3";
+export const PRESCRIBED_BRAID_EMITTER_ID = "prescribed-assembly-record-emitter.v5";
 export const PRESCRIBED_GEOMETRY_ENGINE_ID = "prescribed-geometry";
 export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
+export const ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM = 2e-11;
+export const ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID = "assembly-view-record-position-grid.v2";
 
 const STATE_FLAG_FOR_POLARITY = Object.freeze({ "1": 1, "-1": 2 });
 const SCRIPT_DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
@@ -172,6 +177,10 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
     const derived = deriveNeutralPairDisplayGeometry(materialized, pair);
     return derived ? { ...derived, binaryIndex: pair.display?.binaryIndex ?? index + 1 } : null;
   }).filter(Boolean);
+  const recordCarriers = createNormalizedAssemblyViewRecordCarriers({
+    fieldSpeed: spec.constraints.speedGuard.normalizedFieldSpeed,
+    vectors: createSourceVectorOverlays(materialized, binaries, start),
+  });
   const ansatz = materialized.worldlines.map((row) => ({
     id: `${row.id}-prescribed-path`,
     worldlineId: row.id,
@@ -190,7 +199,7 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
     start: positionByConstituent.get(edge.members[0]),
     end: positionByConstituent.get(edge.members[1]),
   }));
-  return {
+  return canonicalizePrescribedBraidRecord({
     schema: ASSEMBLY_VIEW_RECORD_SCHEMA,
     assemblyId: scientificIdentity.assemblyId,
     modelRevisionSha256: scientificIdentity.modelRevisionSha256,
@@ -219,14 +228,119 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
         prescribedReturnPeriod: spec.history.periodic ? spec.history.returnPeriod : null,
         description: spec.provenanceDescription,
         coordinates: createParameterVector(materialized),
+        numericCanonicalization: {
+          id: ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID,
+          positionQuantum: ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM,
+          coefficientRule: "coefficient k is the nearest multiple of positionQuantum / the repeated-product segmentDuration^k",
+          errorRule: "sampled residual bounds include coefficient-grid displacement and round upward",
+        },
       },
     },
+    recordFrame: recordCarriers.frame,
+    vectorOverlays: recordCarriers.vectorOverlays,
     window: { start, end, delayHorizon, sampleInterval: actualStep },
     worldlines,
     binaries,
     ...(structuralEdges.length > 0 ? { structuralEdges } : {}),
     ansatz,
     events: [],
+  });
+}
+
+export function canonicalizePrescribedBraidRecord(record) {
+  const canonical = structuredClone(record);
+  const positionQuantum = ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM;
+  for (const worldline of canonical.worldlines ?? []) {
+    for (const segment of worldline.segments ?? []) {
+      const duration = segment.endTime - segment.startTime;
+      if (!(duration > 0) || !Number.isFinite(duration)) {
+        throw new RangeError("record numeric canonicalization requires a positive finite segment duration.");
+      }
+      segment.coefficients = segment.coefficients.map((axis) => axis.map((value, power) =>
+        quantizeFiniteNumber(value, positionQuantum / repeatedIntegerPower(duration, power))));
+      segment.positionError = quantizeFiniteNumber(
+        segment.positionError + 2 * positionQuantum,
+        10 * positionQuantum,
+        "up",
+      );
+      segment.velocityError = quantizeFiniteNumber(
+        segment.velocityError + 3 * positionQuantum / duration,
+        10 * positionQuantum / duration,
+        "up",
+      );
+    }
+  }
+  for (const field of ["recordFrame", "vectorOverlays", "binaries", "structuralEdges", "ansatz"]) {
+    if (canonical[field] !== undefined) canonical[field] = canonicalizeNumericTree(canonical[field], positionQuantum);
+  }
+  return canonical;
+}
+
+function repeatedIntegerPower(value, power) {
+  if (!Number.isInteger(power) || power < 0) throw new RangeError("record coefficient power must be a nonnegative integer.");
+  let result = 1;
+  for (let index = 0; index < power; index += 1) result *= value;
+  return result;
+}
+
+function canonicalizeNumericTree(value, quantum) {
+  if (typeof value === "number") return Number.isInteger(value) ? value : quantizeFiniteNumber(value, quantum);
+  if (Array.isArray(value)) return value.map((item) => canonicalizeNumericTree(item, quantum));
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, canonicalizeNumericTree(item, quantum)]));
+  }
+  return value;
+}
+
+function quantizeFiniteNumber(value, quantum, mode = "nearest") {
+  if (!Number.isFinite(value) || !Number.isFinite(quantum) || !(quantum > 0)) {
+    throw new TypeError("record numeric canonicalization requires finite values and a positive finite quantum.");
+  }
+  const scaled = value / quantum;
+  const integer = mode === "up" ? Math.ceil(scaled) : Math.round(scaled);
+  if (!Number.isSafeInteger(integer)) {
+    throw new RangeError("record numeric canonicalization exceeded the safe integer grid.");
+  }
+  const result = integer * quantum;
+  return Object.is(result, -0) ? 0 : result;
+}
+
+function createSourceVectorOverlays(materialized, binaries, epochTime) {
+  const worldlineById = new Map(materialized.worldlines.map((row) => [row.id, row]));
+  return binaries.flatMap((binary) => {
+    const members = binary.members.map((id) => worldlineById.get(id));
+    if (members.some((row) => !row)) return [];
+    const positive = members.find((row) => row.constituent.polarity === 1);
+    const negative = members.find((row) => row.constituent.polarity === -1);
+    if (!positive || !negative) return [];
+    const positivePosition = evaluateMaterializedWorldline(positive, epochTime).position;
+    const negativePosition = evaluateMaterializedWorldline(negative, epochTime).position;
+    const normal = binary.planeOrientation?.normal;
+    if (!normal) return [];
+    return [
+      {
+        id: `${binary.id}:kinematic-spin`,
+        kind: "kinematic-spin",
+        worldlineIds: [...binary.members],
+        vector: scaleObjectVector(normal, binary.angularFrequency),
+        source: "prescribed neutral-pair plane normal multiplied by declared angular velocity",
+      },
+      {
+        id: `${binary.id}:polarity-dipole`,
+        kind: "polarity-dipole",
+        worldlineIds: [negative.id, positive.id],
+        vector: objectVector(positivePosition.map((value, axis) => value - negativePosition[axis])),
+        source: "prescribed epoch position from negative-polarity member to positive-polarity member",
+      },
+    ];
+  });
+}
+
+function scaleObjectVector(vector, scalar) {
+  return {
+    x: Number(vector.x) * scalar,
+    y: Number(vector.y) * scalar,
+    z: Number(vector.z) * scalar,
   };
 }
 

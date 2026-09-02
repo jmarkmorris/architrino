@@ -26,7 +26,7 @@
     "protonEnvelopeSupportPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
     "neutronEnvelopeSupportPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json",
     "sameSigmaEffDomainPath": "scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json",
-    "priorityContextPath": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+    "priorityContextPath": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
   },
   "acceptedInputRows": {
     "proton_color_singlet_closure": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",

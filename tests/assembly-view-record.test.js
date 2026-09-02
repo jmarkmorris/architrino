@@ -6,6 +6,9 @@ import {
   createEomHistoryDataset,
 } from "../src/apps/shared/EomHistoryDataset.mjs";
 import {
+  createNormalizedAssemblyViewRecordCarriers,
+} from "../src/apps/shared/AssemblyViewRecordCarriers.mjs";
+import {
   convertBorgTrajectoryToAssemblyViewRecord,
 } from "../scripts/eom/convert-borg-trajectory-to-assembly-view-record.mjs";
 import {
@@ -27,6 +30,7 @@ function inertialSegment(startTime, endTime, position, velocity) {
 }
 
 function createAssemblyViewRecordFixture(overrides = {}) {
+  const carriers = createNormalizedAssemblyViewRecordCarriers();
   return {
     schema: ASSEMBLY_VIEW_RECORD_SCHEMA,
     provenance: {
@@ -38,6 +42,8 @@ function createAssemblyViewRecordFixture(overrides = {}) {
       generatingSpec: "reference/priorities/braid-program/campaigns/example-campaign.md",
       date: "2026-07-16",
     },
+    recordFrame: carriers.frame,
+    vectorOverlays: carriers.vectorOverlays,
     window: { start: 0, end: 2, delayHorizon: 10, sampleInterval: 0.2 },
     worldlines: [
       {
@@ -98,6 +104,7 @@ function createBorgTrajectoryFixture() {
       stateFlags: 2,
     });
   });
+  const carriers = createNormalizedAssemblyViewRecordCarriers();
   return {
     schema: "borg-fixture-trajectory.v1",
     runId: "harness-demo-run",
@@ -108,6 +115,8 @@ function createBorgTrajectoryFixture() {
     sampleInterval: 0.5,
     historyStartTime: 0,
     historyEndTime: 1,
+    recordFrame: carriers.frame,
+    vectorOverlays: carriers.vectorOverlays,
     currentStateFrames: rows,
   };
 }
@@ -130,6 +139,8 @@ test("shared adapter ingests assembly-view-record.v0 with full provenance", () =
   assert.equal(dataset.worldlines[0].polarity, 1);
   assert.equal(dataset.worldlines[1].polarity, -1);
   assert.equal(dataset.events.length, 1);
+  assert.equal(dataset.recordCarriers.available, true);
+  assert.equal(dataset.recordCarriers.frame.fieldSpeed, 1);
   assert.equal(dataset.worldlines[0].samples.length, 1);
 
   const state = dataset.evaluateWorldline("1", 2);
@@ -191,6 +202,28 @@ test("assembly-view-record required provenance and finite values do not advance 
     () => createEomHistoryDataset(mismatchedCoverage),
     /declared coverage \[0, 1\] does not match retained segments \[0, 2\]/,
   );
+});
+
+test("record-frame carriers fail closed on invalid transforms and vectors", () => {
+  const invalidScale = createAssemblyViewRecordFixture();
+  invalidScale.recordFrame = {
+    ...invalidScale.recordFrame,
+    toComparison: { ...invalidScale.recordFrame.toComparison, timeScale: 0 },
+  };
+  assert.throws(() => createEomHistoryDataset(invalidScale), /timeScale must be positive/);
+
+  const foreignWorldline = createAssemblyViewRecordFixture();
+  foreignWorldline.vectorOverlays = {
+    schema: "assembly-view-vector-overlays.v1",
+    vectors: [{
+      id: "foreign",
+      kind: "polarity-dipole",
+      worldlineIds: ["missing"],
+      vector: { x: 1, y: 0, z: 0 },
+      source: "fixture",
+    }],
+  };
+  assert.throws(() => createEomHistoryDataset(foreignWorldline), /must reference declared worldlines/);
 });
 
 test("evolved records require retained-history provenance on every worldline", () => {

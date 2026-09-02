@@ -5,8 +5,9 @@ This document is the durable authority for the accepted Causal Delay Feedback le
 ## Status And Purpose
 
 - Route: `causal-delay-feedback.html`
+- Direct Roots link: `causal-delay-feedback.html?mode=roots`
 - Default learner mode: `story`
-- Live surface: eight ordered lessons followed by Laboratory
+- Live surface: eight ordered lessons followed by Roots and Laboratory
 - Product posture: canvas-first, low-control, public teaching surface
 - Implementation posture: one shared runtime, learner state, causal-root evaluator, timed-path sampler, and wake renderer
 - Evidence posture: display-only
@@ -41,8 +42,8 @@ Plainly: source, accessible summaries, tests, and browser-proof expectations mus
 
 ## Accepted Surface
 
-- Keep the persistent lesson list in the order above, followed by Laboratory.
-- Keep the standard top-right Home, Search, previous-lesson, and next-lesson controls.
+- Keep the persistent lesson-and-tools list in the order above, followed by Roots and Laboratory.
+- Keep the standard top-right Home, Search, previous-view, and next-view controls.
 - Keep one shared bottom timeline rail with First frame, Play/Pause, Last frame, and the scrubber.
 - Keep the timeline aligned to the chart’s time axis and clear of the chart, copy panel, and app controls at desktop and phone widths.
 - Keep one mutually exclusive `Arcs` or `Full` wake-display control. Selecting one turns the other off.
@@ -58,22 +59,26 @@ Plainly: source, accessible summaries, tests, and browser-proof expectations mus
 
 ## Architecture
 
-The live learner route has two modes only:
+The live learner route has three modes:
 
 1. `story` renders the eight lessons.
-2. `sandbox` renders Laboratory.
+2. `roots` renders the existing causal-root exploration through the shared learner state and evaluator.
+3. `sandbox` renders Laboratory.
 
 The implementation is organized around:
 
 - `main.js` for route bootstrap and replay-provider selection;
 - `CausalDelayFeedbackRuntime.js` for the single canvas runtime and interaction state;
-- `CausalDelayFeedbackModeController.js` for the ordered lesson/Laboratory surface;
+- `CausalDelayFeedbackModeController.js` for the ordered lesson/Roots/Laboratory surface;
 - `CausalDelayFeedbackStoryMode.js`, `CausalDelayFeedbackInverseSquareMode.js`, and `CausalDelayFeedbackSuperpositionMode.js` for declared lesson fixtures;
 - `CausalDelayFeedbackCausalHistory.js` for normalized causal-root evaluation and display authority;
+- `CausalDelayFeedbackRootsMode.js` for the Roots projection of that shared evaluation;
 - `CausalDelayFeedbackTimedPath.js` for the shared path sampler; and
 - `CausalDelayFeedbackWakeRenderer.js` for wake geometry and rendering.
 
-Do not create duplicate lesson routes, state stores, evaluators, path samplers, root finders, or wake renderers. Internal history/root helpers are not separate live learner modes and should not be documented as current navigation.
+The `mode` query selects a view without loading another application shell. Mode selections use browser history, browser Back/Forward restores the matching view in the same runtime, and unrelated replay parameters and URL fragments remain intact. The default `story` mode omits the query; the supported Roots direct link is `?mode=roots`.
+
+Do not create duplicate product routes, lesson routes, state stores, evaluators, path samplers, root finders, or wake renderers. Roots is a live mode of Causal Delay Feedback, while the other internal history and branch helpers are not separate live learner modes and should not be documented as current navigation.
 
 Plainly: every lesson and Laboratory should agree about paths, timing, root identity, and wake geometry because they use one coherent implementation.
 

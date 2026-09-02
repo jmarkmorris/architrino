@@ -8,6 +8,8 @@
     "maxItems": 20,
     "minReadContentChars": 256,
     "maxReadContentChars": 8000,
+    "maxWalkDepth": 3,
+    "maxWalkVisitedNodes": 256,
     "maxResponseBytes": 32768
   },
   "cases": [
@@ -37,7 +39,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
+          "snapshotSha256": "931c7883db98e620422482ed35e69c61155df13639dfb43c70119173b3d0d2ae",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -66,7 +68,7 @@
                 "visibility": "public",
                 "canonicalParent": null,
                 "claimLabelFloor": "published corpus",
-                "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+                "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
               },
               "teaser": "Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentall"
             }
@@ -109,7 +111,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
+          "snapshotSha256": "931c7883db98e620422482ed35e69c61155df13639dfb43c70119173b3d0d2ae",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -126,7 +128,7 @@
             "visibility": "public",
             "canonicalParent": null,
             "claimLabelFloor": "published corpus",
-            "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+            "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
           },
           "contentType": "markdown",
           "content": "## Purpose and Scope\n\nThis document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.\n\nIt defines six foundation routes:\n\n1.",
@@ -138,7 +140,7 @@
               "kind": "equation",
               "sourceId": "source.ontology-purpose",
               "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
-              "sourceSelectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721",
+              "sourceSelectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e",
               "tex": "$$\nS(T)\n\\xrightarrow{\\Pi_{\\mathrm{assembly}}}\n\\mathfrak B(T)\n\\xrightarrow{\\Pi_{\\mathrm{eff}}}\n\\big(A,B_{ij},g^{\\mathrm{eff}},\\Phi_{\\mathrm{eff}}\\big)\n\\xrightarrow{\\Pi_{\\mathrm{record}}}\n\\bar S(T).\n$$",
               "texSha256": "d553f0799da68ae1dedc68524a1d1ea3d50190df6bce58d575bbc038009be23c"
             }
@@ -181,7 +183,7 @@
         "status": "not_found",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
+          "snapshotSha256": "931c7883db98e620422482ed35e69c61155df13639dfb43c70119173b3d0d2ae",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -220,7 +222,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
+          "snapshotSha256": "931c7883db98e620422482ed35e69c61155df13639dfb43c70119173b3d0d2ae",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -238,7 +240,7 @@
               "visibility": "public",
               "canonicalParent": null,
               "claimLabelFloor": "published corpus",
-              "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+              "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
             }
           ]
         },
@@ -279,7 +281,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
+          "snapshotSha256": "931c7883db98e620422482ed35e69c61155df13639dfb43c70119173b3d0d2ae",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -296,7 +298,7 @@
             "visibility": "public",
             "canonicalParent": null,
             "claimLabelFloor": "published corpus",
-            "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+            "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
           },
           "records": [
             {
@@ -314,7 +316,7 @@
                 "visibility": "public",
                 "canonicalParent": "source.ontology-purpose",
                 "claimLabelFloor": "unsupported",
-                "selectionSha256": "06e8ff6e4576f2faf41b2a1be5a8b02eea41c48f633ed1836b309d8f496ad47f"
+                "selectionSha256": "ee3e46701a43bd8e28246d3850aac50f7122e29c6c88715536d9819ce6d3f394"
               }
             }
           ]
@@ -356,7 +358,7 @@
         "status": "excluded_visibility",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
+          "snapshotSha256": "931c7883db98e620422482ed35e69c61155df13639dfb43c70119173b3d0d2ae",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -394,7 +396,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
+          "snapshotSha256": "931c7883db98e620422482ed35e69c61155df13639dfb43c70119173b3d0d2ae",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -404,14 +406,14 @@
           "source": {
             "sourceId": "source.priority-mcp-contract",
             "title": "Architrino MCP Source Index Snapshot V1",
-            "route": "reference/priorities/app-mcp/source-index-snapshot-v1.md",
+            "route": "reference/priorities/dormant-deferred/archie/mcp/source-index-snapshot-v1.md",
             "sectionAnchor": null,
             "sourceClass": "priority_material",
             "authorityStatus": "priority_only",
             "visibility": "development_status",
             "canonicalParent": null,
             "claimLabelFloor": "priority-only",
-            "selectionSha256": "10cbf542daa5596b956d5ac193c07a0f2dd84007e3ea6bf9349154d857f36ff0"
+            "selectionSha256": "c9145f55abe5226e374edae0ec9eac5ff8e3c2df953b8de7966dd0b79b4c8bf8"
           },
           "contentType": "markdown",
           "content": "# Source Index Snapshot V1\n\n## Status\n\n- Kind: `priority-contract`\n- Claim level: `priority-only`\n- Status: `fixture-regression-and-local-full-corpus-passing`\n- Parent tracker: [Architrino MCP](priorities.md)\n\n## Purpose\n\n`archie-source-index-snapshot/v1` ",
@@ -427,6 +429,94 @@
           "truncated": true,
           "truncationReasons": [
             "content_char_limit"
+          ]
+        },
+        "error": null
+      }
+    },
+    {
+      "caseId": "mcp-walk-public-first-page-001",
+      "accessScope": "public",
+      "request": {
+        "schema": "archie-mcp-tool-request/v1",
+        "requestId": "request-walk-public-001",
+        "tool": "walk",
+        "snapshotId": "source_snapshot_fixture_001",
+        "visibilityScope": "public",
+        "arguments": {
+          "topicOrRoute": "source.ontology-purpose",
+          "edgeTypes": [],
+          "direction": "both",
+          "maxDepth": 2,
+          "limit": 1,
+          "cursor": null
+        }
+      },
+      "expectedResponse": {
+        "schema": "archie-mcp-tool-response/v1",
+        "requestId": "request-walk-public-001",
+        "tool": "walk",
+        "status": "ok",
+        "snapshot": {
+          "snapshotId": "source_snapshot_fixture_001",
+          "snapshotSha256": "931c7883db98e620422482ed35e69c61155df13639dfb43c70119173b3d0d2ae",
+          "repositoryRef": "fixture-ref",
+          "visibilityPolicyVersion": "visibility_fixture_v1",
+          "freshnessState": "fresh"
+        },
+        "result": {
+          "kind": "walk",
+          "origin": {
+            "sourceId": "source.ontology-purpose",
+            "title": "Ontology: Purpose and Scope",
+            "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+            "sectionAnchor": "purpose-and-scope",
+            "sourceClass": "published_corpus",
+            "authorityStatus": "primary",
+            "visibility": "public",
+            "canonicalParent": null,
+            "claimLabelFloor": "published corpus",
+            "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
+          },
+          "maxDepth": 2,
+          "traversalNodeLimit": 256,
+          "traversalComplete": true,
+          "records": [
+            {
+              "depth": 1,
+              "path": [
+                {
+                  "edgeId": "edge.generated-ontology-mirrors-source",
+                  "edgeType": "mirrors",
+                  "direction": "incoming",
+                  "fromSourceId": "source.ontology-purpose",
+                  "toSourceId": "source.generated-foundations-ontology",
+                  "evidenceSourceId": "source.generated-foundations-ontology"
+                }
+              ],
+              "source": {
+                "sourceId": "source.generated-foundations-ontology",
+                "title": "Generated Foundations Reading Copy: Ontology",
+                "route": "document-sphere:content/markdown/aaa/foundations/ontology.md",
+                "sectionAnchor": "ontology",
+                "sourceClass": "generated_reading_copy",
+                "authorityStatus": "routing_only",
+                "visibility": "public",
+                "canonicalParent": "source.ontology-purpose",
+                "claimLabelFloor": "unsupported",
+                "selectionSha256": "ee3e46701a43bd8e28246d3850aac50f7122e29c6c88715536d9819ce6d3f394"
+              }
+            }
+          ]
+        },
+        "page": {
+          "unit": "records",
+          "limit": 1,
+          "returned": 1,
+          "nextCursor": "eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNGRiYmQzNzFkOGExYTRiYzcxNmI5MzkxYzVhMTE5NmQyNjY4NjkzZGNiOGNlZmUzYWI4NzUxMjQzMGQzMTlkMiIsInNoYTI1NiI6ImNkZjUwNjFhMTEzNmFmODNiMWYwYjNhZTFkY2RmNjQyZjMyODRmOGRkZjQ0M2Y4YjM3M2Y3MDQzM2FjMzMzMjIiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6IndhbGsiLCJ2ZXJzaW9uIjoxLCJ2aXNpYmlsaXR5U2NvcGUiOiJwdWJsaWMifQ",
+          "truncated": true,
+          "truncationReasons": [
+            "record_limit"
           ]
         },
         "error": null

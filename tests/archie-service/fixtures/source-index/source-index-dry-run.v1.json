@@ -106,16 +106,16 @@
     {
       "caseId": "source-route-system-card-001",
       "mode": "Ask",
-      "requestedRoute": "content/markdown/aaa/archie/system-card.md#answering-posture",
+      "requestedRoute": "content/markdown/aaa/archie/system-card.md#understanding-the-evidence",
       "routeSurface": "system_card",
       "expectedDisposition": "resolved",
       "expectedSourceChip": {
-        "route": "content/markdown/aaa/archie/system-card.md#answering-posture",
+        "route": "content/markdown/aaa/archie/system-card.md#understanding-the-evidence",
         "label": "System Card",
         "sourceClass": "archie_reference",
         "authorityStatus": "primary",
         "visibility": "public",
-        "sectionId": "answering-posture",
+        "sectionId": "understanding-the-evidence",
         "freshnessState": "fresh"
       },
       "expectedSourceContextFragment": {
@@ -131,11 +131,11 @@
     {
       "caseId": "source-route-priority-excluded-001",
       "mode": "Ask",
-      "requestedRoute": "reference/priorities/archie/source-ingestion-retrieval-context-contract.md",
+      "requestedRoute": "reference/priorities/dormant-deferred/archie/source-ingestion-retrieval-context-contract.md",
       "routeSurface": "priority_packet",
       "expectedDisposition": "excluded_visibility",
       "expectedSourceChip": {
-        "route": "reference/priorities/archie/source-ingestion-retrieval-context-contract.md",
+        "route": "reference/priorities/dormant-deferred/archie/source-ingestion-retrieval-context-contract.md",
         "label": "Source ingestion priority packet",
         "sourceClass": "priority_material",
         "authorityStatus": "excluded",

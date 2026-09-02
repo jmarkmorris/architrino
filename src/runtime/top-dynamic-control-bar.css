@@ -1,0 +1,186 @@
+@import url("../../ui-tokens.css");
+
+.top-dynamic-control-bar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+  font-family: var(--ui-font-family);
+  pointer-events: auto;
+}
+
+.top-dynamic-control-bar-action {
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 999px;
+  background: rgba(8, 10, 18, 0.75);
+  color: #f5f7ff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.top-dynamic-control-bar-action svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.top-dynamic-control-bar-action.is-toc {
+  width: auto;
+  min-width: 48px;
+  flex-basis: auto;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.top-dynamic-control-bar-action:not(:disabled):hover,
+.top-dynamic-control-bar-action:not(:disabled):focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+  outline: none;
+}
+
+.top-dynamic-control-bar-action:focus-visible {
+  box-shadow: 0 0 0 2px rgba(176, 136, 255, 0.5);
+}
+
+.top-dynamic-control-bar-action.is-active {
+  border-color: rgba(176, 136, 255, 0.7);
+  background: rgba(92, 36, 164, 0.92);
+}
+
+.top-dynamic-control-bar-action:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.top-dynamic-control-bar-action.is-hidden {
+  display: none;
+}
+
+.top-dynamic-control-bar-history {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.top-dynamic-control-bar-popover-action {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.top-dynamic-control-bar-popover {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  z-index: 7;
+  display: none;
+  width: max-content;
+  min-width: 260px;
+  max-width: min(80vw, 420px);
+  padding: 8px 10px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 12px;
+  background: rgba(8, 10, 18, 0.94);
+  color: #f5f7ff;
+  backdrop-filter: blur(6px);
+}
+
+.top-dynamic-control-bar-popover.is-open {
+  display: block;
+}
+
+.top-dynamic-control-bar-popover-input {
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 6px;
+  outline: none;
+  background: rgba(15, 18, 32, 0.9);
+  color: #f5f7ff;
+  font: inherit;
+  font-size: 12px;
+}
+
+.top-dynamic-control-bar-popover-input:focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+}
+
+.top-dynamic-control-bar-popover-results {
+  display: flex;
+  max-height: 220px;
+  margin-top: 8px;
+  flex-direction: column;
+  gap: 6px;
+  overflow: auto;
+}
+
+.top-dynamic-control-bar .scene-search-item {
+  padding: 6px 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 8px;
+  background: rgba(15, 18, 32, 0.8);
+  color: #f5f7ff;
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-label-size);
+  font-weight: var(--ui-label-weight);
+  line-height: var(--ui-label-line-height);
+  text-align: left;
+  cursor: pointer;
+}
+
+.top-dynamic-control-bar .scene-search-item:hover,
+.top-dynamic-control-bar .scene-search-item:focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+  outline: none;
+}
+
+.top-dynamic-control-bar.is-standalone {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+  z-index: 6;
+}
+
+@media (max-width: 820px) {
+  .top-dynamic-control-bar {
+    flex-wrap: wrap;
+  }
+
+  .top-dynamic-control-bar.is-standalone {
+    top: max(12px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .top-dynamic-control-bar-action,
+  .top-dynamic-control-bar-popover {
+    transition: none;
+  }
+}

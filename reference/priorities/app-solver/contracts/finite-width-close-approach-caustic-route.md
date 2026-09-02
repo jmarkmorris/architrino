@@ -5,12 +5,14 @@
 - Packet id: `eom_finite_width_close_approach_caustic_route/v0`
 - Date opened: 2026-07-16
 - Claim level: `derived-design-and-certified-implementation`
-- Implementation status: `first-certified-finite-width-transit; demo-track-regulator-halt-accepted; post-transit-horizon-open`
+- Implementation status: `first-certified-finite-width-transit; generic-post-event-generated-history-horizon-certified; demo-track-regulator-halt-accepted`
 - Owning queue item: `coupled_retained_history_integrator`
 - Mathematical authority: [master-eom-binding-v1.md](./master-eom-binding-v1.md)
 - Common-domain matching: `amendment-1-bound-and-independently-certified`
 - Evolution authority: [evolution-contract-v1.md](./evolution-contract-v1.md)
-- Production authority: certified for the recorded first seed-0 transit; broader trajectory and encounter authority remains per-run and requires verification before advancement.
+- Production authority: certified for the recorded first seed-0 transit and the generic post-event bounded-population acceptance control; broader trajectory and encounter authority remains per-run and requires verification before advancement.
+
+The [2026-09-02 bounded-population coupled acceptance packet](../evidence/eom-bounded-population-coupled-acceptance-2026-09-02.md) carries a generic finite-width fold through state reconstruction, common-domain matching, exit, exact-halving refinement, forced 128-bit event evaluation, deterministic replay, and later causal roots on generated post-event histories. This closes the generic post-transit implementation horizon without certifying any physical encounter.
 
 ## Closure Target
 

@@ -1,7 +1,4 @@
-import {
-  navigateStandaloneAppHome,
-  resolveStandaloneAppHomeHref,
-} from "../navigator/StandaloneAppHomeRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 
 export const GREEK_LETTERS = Object.freeze([
   Object.freeze({ name: "alpha", upper: "Α", lower: "α", audioFile: "alpha.wav" }),
@@ -347,6 +344,11 @@ export class GreekLetterMatchRuntime {
       throw new Error("It's Greek to Me! requires a document and app root.");
     }
     this.buildInterface();
+    this.navigationRuntime = createStandaloneAppNavigationRuntime({
+      host: this.document.getElementById("scene-hud-tools"),
+      document: this.document,
+      window: this.window,
+    }).init();
     this.render();
     this.observeStageSize();
     return this;
@@ -386,16 +388,7 @@ export class GreekLetterMatchRuntime {
     );
     heading.append(mark, headingText);
 
-    const homeButton = createElement(this.document, "button", "greek-match-home", "Applications");
-    homeButton.type = "button";
-    homeButton.addEventListener("click", () => {
-      navigateStandaloneAppHome(
-        this.window?.location,
-        resolveStandaloneAppHomeHref(this.window?.location?.href),
-        { windowLike: this.window }
-      );
-    });
-    header.append(heading, homeButton);
+    header.append(heading);
     return header;
   }
 
@@ -1091,6 +1084,8 @@ export class GreekLetterMatchRuntime {
     if (this.fallbackResizeHandler) {
       this.window?.removeEventListener?.("resize", this.fallbackResizeHandler);
     }
+    this.navigationRuntime?.destroy?.();
+    this.navigationRuntime = null;
     this.root?.replaceChildren?.();
   }
 }

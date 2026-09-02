@@ -13,9 +13,12 @@ import {
 } from "../scripts/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.mjs";
 import {
   ACTIVE_PRESCRIBED_BRAID_TARGETS,
+  ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID,
+  ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM,
   CONTROL_PRESCRIBED_BRAID_TARGETS,
   PRESCRIBED_BRAID_TARGETS,
   createPrescribedBraidExactSourceRecord,
+  canonicalizePrescribedBraidRecord,
   generatePrescribedBraidRecord,
   materializePrescribedBraidSpec,
   serializePrescribedBraidRecord,
@@ -258,6 +261,8 @@ test("generated records remain sealed display-only inputs with no physics invoca
     assert.equal(generated.provenance.evidenceStatus, "display-only");
     assert.equal(generated.provenance.prescribedGeometry.physicsInvoked, false);
     assert.equal(generated.provenance.prescribedGeometry.sourceSchema, "prescribed-assembly-spec.v3");
+    assert.equal(generated.provenance.prescribedGeometry.numericCanonicalization.id, ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID);
+    assert.equal(generated.provenance.prescribedGeometry.numericCanonicalization.positionQuantum, ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM);
     const dataset = createEomHistoryDataset(generated);
     assert.equal(dataset.worldlines.length, spec.constituents.length);
     assert.equal(dataset.ansatz.length, dataset.worldlines.length);
@@ -268,6 +273,50 @@ test("generated records remain sealed display-only inputs with no physics invoca
       }
     }
   }
+});
+
+test("the position grid collapses observed platform drift and enlarges residual bounds", () => {
+  const startTime = 0.0014409388537221992;
+  const endTime = 0.001454158476233412;
+  const local = {
+    worldlines: [{ segments: [{
+      startTime,
+      endTime,
+      coefficients: [[0.2, -0.3, 0.4, 675923695.9599609], [0, 0, 0, 0], [0, 0, 0, 0]],
+      positionError: 3.789157353480838e-9,
+      velocityError: 0.0008733265024845404,
+    }] }],
+    ansatz: [{ points: [{ x: 0.1832922547316489, y: 0, z: 0 }] }],
+    binaries: [],
+    vectorOverlays: [],
+  };
+  const actions = structuredClone(local);
+  actions.worldlines[0].segments[0].coefficients[0][3] = 675923695.958374;
+  actions.worldlines[0].segments[0].velocityError = 0.0008733265023735838;
+  actions.ansatz[0].points[0].x = 0.18329225473168265;
+  const canonicalLocal = canonicalizePrescribedBraidRecord(local);
+  const canonicalActions = canonicalizePrescribedBraidRecord(actions);
+  assert.deepEqual(canonicalLocal, canonicalActions);
+  assert.ok(canonicalLocal.worldlines[0].segments[0].positionError >= local.worldlines[0].segments[0].positionError + 2 * ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM);
+  assert.ok(canonicalLocal.worldlines[0].segments[0].velocityError >= local.worldlines[0].segments[0].velocityError + 3 * ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM / (endTime - startTime));
+});
+
+test("the coefficient grid is stable across the observed Node 22 and Node 26 power result", () => {
+  const local = {
+    worldlines: [{ segments: [{
+      startTime: 0.1306582765870169,
+      endTime: 0.13343823991865555,
+      coefficients: [[0, 0, 0, -637.2814696614421]],
+      positionError: 0,
+      velocityError: 0,
+    }] }],
+  };
+  const node22 = structuredClone(local);
+  node22.worldlines[0].segments[0].coefficients[0][3] = -637.2814696614423;
+  assert.deepEqual(
+    canonicalizePrescribedBraidRecord(local),
+    canonicalizePrescribedBraidRecord(node22),
+  );
 });
 
 test("Hermite display segments reproduce exact endpoints and honor declared residual bounds", () => {
@@ -281,8 +330,21 @@ test("Hermite display segments reproduce exact endpoints and honor declared resi
         for (const time of [segment.startTime, segment.endTime]) {
           const exact = evaluateMaterializedWorldline(row, time);
           const actual = dataset.evaluateWorldline(row.id, time);
-          vectorNear([actual.position.x, actual.position.y, actual.position.z], exact.position, 3e-12);
-          vectorNear([actual.velocity.x, actual.velocity.y, actual.velocity.z], exact.velocity, 3e-12);
+          const positionDifference = Math.hypot(
+            actual.position.x - exact.position[0],
+            actual.position.y - exact.position[1],
+            actual.position.z - exact.position[2],
+          );
+          const velocityDifference = Math.hypot(
+            actual.velocity.x - exact.velocity[0],
+            actual.velocity.y - exact.velocity[1],
+            actual.velocity.z - exact.velocity[2],
+          );
+          const duration = segment.endTime - segment.startTime;
+          assert.ok(positionDifference <= 2 * Math.sqrt(3) * ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM + 2e-15);
+          assert.ok(velocityDifference <= 3 * Math.sqrt(3) * ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM / duration + 2e-15);
+          assert.ok(positionDifference <= segment.positionError + 2e-15);
+          assert.ok(velocityDifference <= segment.velocityError + 2e-15);
         }
         const time = (segment.startTime + segment.endTime) / 2;
         const exact = evaluateMaterializedWorldline(row, time);

@@ -14,10 +14,25 @@ export const PAGES_MAX_BYTES = 1_000_000_000;
 // exports instead. This is an operator-approved deployment-only exclusion.
 export const isPowerPointOriginal = (name) => /\.(?:ppt|pptx|pptm|pot|potx|potm|pps|ppsx|ppsm)$/i.test(name);
 export const WEB_KATEX_DIRECTORY = "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/";
+const INTERNAL_DEVELOPER_HARNESS_PATHS = [
+  "solver-gpu-harness.html",
+  "src/apps/solver-gpu-harness/",
+];
+const INTERNAL_SERVICE_PROTOCOL_PATHS = [
+  "src/archie-service/",
+  "scripts/archie-service/",
+  "tests/archie-service",
+  "reference/priorities/dormant-deferred/archie/mcp/",
+  "content/generated/source-index/",
+];
 
-// These files remain repository sources. The web apps share only the KaTeX
-// subtree with the iOS app, including its fonts and license at their current URLs.
+// Internal developer harnesses and authoring assets remain repository sources.
+// The web apps share only the KaTeX subtree with the iOS app, including its
+// fonts and license at their current URLs.
 export const isPagesDeploymentExcluded = (name) => isPowerPointOriginal(name) ||
+  INTERNAL_DEVELOPER_HARNESS_PATHS.some((internalPath) => name === internalPath ||
+    (internalPath.endsWith("/") && name.startsWith(internalPath))) ||
+  INTERNAL_SERVICE_PROTOCOL_PATHS.some((internalPath) => name === internalPath || name.startsWith(internalPath)) ||
   name.startsWith("reference/design/") ||
   (name.startsWith("apps/ios/") && !name.startsWith(WEB_KATEX_DIRECTORY));
 
@@ -35,7 +50,8 @@ export function buildStaticSite({ rootDir = ROOT, outputDir = path.join(rootDir,
   // Never recursively copy the checkout: it contains local runs and credentials.
   const publicPaths = tracked.filter((name) => !name.split("/").some((part) => part.startsWith(".")) &&
     !isGeneratedRuntimeAsset(name, families) && !isPagesDeploymentExcluded(name));
-  const candidates = [...new Set([...publicPaths, ...runtimeAssetPaths(rootDir)])];
+  const deployableRuntimeAssets = runtimeAssetPaths(rootDir).filter((name) => !isPagesDeploymentExcluded(name));
+  const candidates = [...new Set([...publicPaths, ...deployableRuntimeAssets])];
   // Validate every candidate before the dependency scanner reads any source.
   const candidatePayload = candidates.map((name) => {
     const source = path.resolve(rootDir, name);
@@ -61,7 +77,7 @@ export function buildStaticSite({ rootDir = ROOT, outputDir = path.join(rootDir,
     else fs.copyFileSync(source, target);
   }
   fs.writeFileSync(path.join(outputDir, ".nojekyll"), "");
-  return { outputDir, fileCount: payload.length, runtimeAssetCount: runtimeAssetPaths(rootDir).length, byteCount,
+  return { outputDir, fileCount: payload.length, runtimeAssetCount: deployableRuntimeAssets.length, byteCount,
     images: { retained: imageSelection.retainedPaths.length, excluded: excludedImages.size,
       excludedBytes: candidatePayload.filter(({ name }) => excludedImages.has(name)).reduce((sum, entry) => sum + entry.bytes, 0) } };
 }

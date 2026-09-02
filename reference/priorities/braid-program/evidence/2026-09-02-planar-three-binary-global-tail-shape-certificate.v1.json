@@ -1,0 +1,175 @@
+{
+  "accepted": true,
+  "charts": {
+    "bulkPairedKernel": {
+      "acceptedBoxes": 316367,
+      "admittedOffsetUpperBound": "[0.082462287071339142290502655985977617981812711506117945805317 +/- 2.38e-61]",
+      "excludedBoxes": 4145,
+      "maximumDepth": 18,
+      "midpointAngleRange": [
+        "0.2",
+        "1.4"
+      ],
+      "offsetRange": [
+        "0",
+        "0.09"
+      ],
+      "processedBoxes": 639224
+    },
+    "bulkPointKernels": [
+      {
+        "acceptedBoxes": 13408,
+        "angleRange": [
+          "0.2",
+          "1.4"
+        ],
+        "excludedBoxes": 0,
+        "maximumDepth": 8,
+        "processedBoxes": 25816,
+        "sign": -1
+      },
+      {
+        "acceptedBoxes": 13467,
+        "angleRange": [
+          "0.2",
+          "1.4"
+        ],
+        "excludedBoxes": 18,
+        "maximumDepth": 8,
+        "processedBoxes": 25970,
+        "sign": 1
+      }
+    ],
+    "highPairRatioCap": {
+      "acceptedBoxes": 1600,
+      "branchOffsetRatioUpperBound": "[1.00487849522270522358716376715269985853348876371738915132963 +/- 1.67e-60]",
+      "excludedOffsetRatioRange": [
+        "0.56",
+        "1.02"
+      ],
+      "maximumDepth": 0,
+      "processedBoxes": 1600
+    },
+    "highPairedKernel": {
+      "acceptedBoxes": 1600,
+      "cosineRange": [
+        "0",
+        "0.169967142900241026142495974377"
+      ],
+      "maximumDepth": 0,
+      "offsetRatioRange": [
+        "0",
+        "0.56"
+      ],
+      "processedBoxes": 1600
+    },
+    "highPointDomainCaps": {
+      "certifiedRadiusCaps": {
+        "minus": "1.023",
+        "plus": "0.153"
+      },
+      "minusRadiusExclusionMargin": "[0.02174715169321714851709637616427061649962884463629360209988 +/- 9.52e-61]",
+      "plusRadiusExclusionMargin": "[0.029448199928841700101696685462256302732478983248516855959203 +/- 6.09e-61]"
+    },
+    "highPointKernels": [
+      {
+        "acceptedBoxes": 1600,
+        "cosineRange": [
+          "0",
+          "0.169967142900241026142495974377"
+        ],
+        "excludedByLambdaCap": 0,
+        "maximumDepth": 0,
+        "processedBoxes": 1600,
+        "radiusMaximum": "0.153",
+        "sign": 1
+      },
+      {
+        "acceptedBoxes": 1341,
+        "cosineRange": [
+          "0",
+          "0.169967142900241026142495974377"
+        ],
+        "excludedByLambdaCap": 259,
+        "maximumDepth": 0,
+        "processedBoxes": 1600,
+        "radiusMaximum": "1.023",
+        "sign": -1
+      }
+    ],
+    "lowPairEndpointInclusion": {
+      "certifiedTaylorChartUpper": "0.25",
+      "endpointAngleUpperBound": "[0.202040679106239645192325682835094886764299348321159078524825 +/- 3.29e-61]",
+      "offsetUpperBound": "[0.00204067910623964519232568283509488676429934832115907852482473 +/- 3.82e-63]"
+    },
+    "lowPointKernels": [
+      {
+        "acceptedBoxes": 47,
+        "angleRange": [
+          "0",
+          "0.25"
+        ],
+        "excludedByLambdaCap": 353,
+        "maximumDepth": 0,
+        "processedBoxes": 400,
+        "radiusMaximum": "3.7",
+        "sign": 1
+      },
+      {
+        "acceptedBoxes": 59,
+        "angleRange": [
+          "0",
+          "0.25"
+        ],
+        "excludedByLambdaCap": 341,
+        "maximumDepth": 0,
+        "processedBoxes": 400,
+        "radiusMaximum": "1.92",
+        "sign": -1
+      }
+    ]
+  },
+  "claimBoundary": {
+    "physicalReleaseClaim": false,
+    "provesHigherOrderSpacingOrResidualAsymptotics": false,
+    "provesPostT200ZeroCensusWhenJoinedToBoundedTailReduction": true,
+    "provesUniformShapeInequalities": true,
+    "usesEomSolver": false
+  },
+  "claimGrade": "computer-assisted-derived-uniform-shape-theorem",
+  "conclusions": {
+    "pairedEndpointDerivative": "-partial_beta D_beta(X)>0 and partial_X(-partial_beta D_beta(X))>0",
+    "regularizedEndpointRemainder": "Q_beta(X)>0 and partial_X Q_beta(X)>0"
+  },
+  "domain": {
+    "betaLowerExclusive": "100",
+    "h": "pi/6",
+    "interpolationLambdaRange": "[-1/beta,1/beta]",
+    "oldLevelRange": "h <= X <= M(beta)-h"
+  },
+  "environment": {
+    "arbPrecisionDecimalDigits": 60,
+    "pythonFlint": "0.8.0",
+    "sympy": "1.14.0"
+  },
+  "normalizedFieldSpeed": "1",
+  "oracle": {
+    "path": "scripts/equation-mapping/certify_planar_three_binary_global_tail_shapes.py",
+    "sha256": "a35ccb5d3c0be13dd679ef7c2dba9cac7b2ba628a877b4c23cb21d998bf5530d"
+  },
+  "schema": "braid-program/planar-three-binary-global-tail-shape-certificate.v1",
+  "sourceBindings": [
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-09-02-planar-three-binary-global-tail-calculus-reduction.md",
+      "sha256": "08aa58e9f860fe3c95d10ca724e021a22e643173328444a85e0b78852ee1b5c1"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-09-01-planar-three-binary-t200-finite-ladder-certificate.md",
+      "sha256": "37fe24ba033e8a03ebfa6796ad6e4e327f0773a6f2fb114977360b7b96cf88ea"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md",
+      "sha256": "1669066391ac4ba783be843b7f77fa11d3d9c3332085d3cbea570b8cc2ae3e54"
+    }
+  ]
+}

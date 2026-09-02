@@ -17,6 +17,8 @@ import {
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackModeController.js";
 import {
   CAUSAL_DELAY_FEEDBACK_MODES,
+  createCausalDelayFeedbackModeHref,
+  getCausalDelayFeedbackModeFromHref,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackModes.js";
 import {
   SPACE_AXIS_TOP_Y,
@@ -629,7 +631,7 @@ test("representative paired paths stay gently wavy and converge monotonically", 
   assert.ok(countTurns("electrino") >= 4);
 });
 
-test("guided progression follows all lessons and ends in Laboratory", () => {
+test("guided progression keeps Roots between the lessons and Laboratory", () => {
   const state = createState();
   state.storyStep = 4;
   const controller = new CausalDelayFeedbackModeController({ state });
@@ -643,19 +645,48 @@ test("guided progression follows all lessons and ends in Laboratory", () => {
   assert.equal(state.mode, "story");
   assert.equal(state.storyStep, 7);
   controller.goNext();
+  assert.equal(state.mode, "roots");
+  controller.goNext();
   assert.equal(state.mode, "sandbox");
   assert.deepEqual(
     CAUSAL_DELAY_FEEDBACK_MODES.map((mode) => mode.id),
-    ["story", "sandbox"],
+    ["story", "roots", "sandbox"],
   );
+  controller.goBack();
+  assert.equal(state.mode, "roots");
   controller.goBack();
   assert.equal(state.mode, "story");
   assert.equal(state.storyStep, 7);
   assert.equal(controller.setMode("prediction"), false);
   assert.equal(controller.setMode("history"), false);
-  assert.equal(controller.setMode("roots"), false);
+  assert.equal(controller.setMode("roots"), true);
   assert.equal(controller.setMode("self-hit"), false);
   assert.equal(controller.setMode("branch-lab"), false);
+});
+
+test("Roots direct-mode links preserve unrelated route state", () => {
+  const startingHref =
+    "https://architrino.com/causal-delay-feedback.html?replay=mock#reception";
+  const rootsHref = createCausalDelayFeedbackModeHref(startingHref, "roots");
+  const laboratoryHref = createCausalDelayFeedbackModeHref(rootsHref, "sandbox");
+  const storyHref = createCausalDelayFeedbackModeHref(laboratoryHref, "story");
+
+  assert.equal(
+    rootsHref,
+    "https://architrino.com/causal-delay-feedback.html?replay=mock&mode=roots#reception",
+  );
+  assert.equal(getCausalDelayFeedbackModeFromHref(rootsHref), "roots");
+  assert.equal(getCausalDelayFeedbackModeFromHref(laboratoryHref), "sandbox");
+  assert.equal(
+    storyHref,
+    "https://architrino.com/causal-delay-feedback.html?replay=mock#reception",
+  );
+  assert.equal(
+    getCausalDelayFeedbackModeFromHref(
+      "https://architrino.com/causal-delay-feedback.html?mode=unknown",
+    ),
+    "story",
+  );
 });
 
 test("changing Story steps clears the prior scene's pause-resume presentation", () => {
@@ -918,17 +949,9 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
   for (const id of [
     "causal-delay-feedback-mode-tabs",
     "causal-delay-feedback-lesson-panel",
-    "nav-up",
     "causal-delay-feedback-guided-first-frame",
     "causal-delay-feedback-guided-play",
     "causal-delay-feedback-guided-last-frame",
-    "nav-forward",
-    "textbook-toc-button",
-    "home-button",
-    "scene-search-toggle",
-    "scene-search-panel",
-    "scene-search-input",
-    "scene-search-results",
     "causal-delay-feedback-canvas-summary",
   ]) {
     assert.match(html, new RegExp(`id="${id}"`, "u"));
@@ -937,12 +960,15 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
   assert.match(html, /@media \(prefers-reduced-motion: reduce\)/u);
   assert.match(html, /@media \(forced-colors: active\)/u);
   assert.match(html, /\.causal-journey\[data-mode="story"\] \.causal-lesson-panel/u);
-  assert.match(html, /aria-label="Lesson table of contents"/u);
+  assert.match(html, /aria-label="Causal Delay Feedback lessons and tools"/u);
   assert.doesNotMatch(html, /id="causal-delay-feedback-guided-replay"/u);
   assert.doesNotMatch(html, /causal-delay-feedback-journey-provenance/u);
   assert.doesNotMatch(html, /data-guided-action="sandbox"/u);
-  assert.match(html, /aria-label="Search scenes"/u);
-  assert.match(html, /placeholder="Search scenes"/u);
+  assert.match(html, /<div id="scene-hud-tools" class="causal-navigation"><\/div>/u);
+  assert.doesNotMatch(
+    html,
+    /id="(?:textbook-toc-button|nav-up|nav-forward|home-button|scene-search-toggle)"/u,
+  );
   assert.doesNotMatch(html, /Search lessons/u);
   assert.doesNotMatch(html, /causal-delay-feedback-lesson-search/u);
 });
@@ -972,10 +998,9 @@ test("lesson navigation fits twelve uniform entries before ordinary scrolling", 
     html,
     /@media \(max-width: 820px\)[\s\S]*?\.causal-mode-tabs\s*\{[\s\S]*?max-height:\s*min\(390px,\s*calc\(100vh - 104px\)\)[\s\S]*?\.causal-lesson-toc-list\s*\{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/u,
   );
-  assert.match(
-    controller,
-    /laboratoryItem\.append\([\s\S]*?className: "causal-mode-tab"[\s\S]*?list\.append\(laboratoryItem\)[\s\S]*?replaceChildren\(list\)/u,
-  );
+  assert.match(controller, /\.filter\(\(mode\) => mode\.id !== "story"\)/u);
+  assert.match(controller, /"data-causal-mode": mode\.id/u);
+  assert.match(controller, /"aria-controls": "causal-delay-feedback-lesson-panel"/u);
   assert.doesNotMatch(controller, /opens for inspection/u);
   assert.match(
     controller,
@@ -1008,17 +1033,11 @@ test("guided lesson header leaves sequence and replay provenance out of learner 
   assert.doesNotMatch(renderStory, /lessonMeta/u);
 });
 
-test("shared top-right shell keeps Search and the local lesson list persistent", async () => {
+test("canonical top-right shell keeps Search and the local lesson list persistent", async () => {
   const [html, sharedStyles, navigationStyles, uiTokens, runtime] = await Promise.all([
     readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
     readFile(new URL("style.css", REPO_ROOT), "utf8"),
-    readFile(
-      new URL(
-        "src/apps/navigator/standalone-app-navigation.css",
-        REPO_ROOT,
-      ),
-      "utf8",
-    ),
+    readFile(new URL("src/runtime/top-dynamic-control-bar.css", REPO_ROOT), "utf8"),
     readFile(new URL("ui-tokens.css", REPO_ROOT), "utf8"),
     readFile(
       new URL(
@@ -1028,8 +1047,9 @@ test("shared top-right shell keeps Search and the local lesson list persistent",
       "utf8",
     ),
   ]);
-  assert.match(html, /id="scene-hud-tools"/u);
-  assert.match(html, /id="scene-search-toggle"[\s\S]*aria-expanded="false"/u);
+  assert.match(html, /<div id="scene-hud-tools" class="causal-navigation"><\/div>/u);
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/u);
+  assert.doesNotMatch(html, /src\/apps\/navigator\/standalone-app-navigation\.css/u);
   assert.doesNotMatch(
     html,
     /\.causal-scene-search\.is-open\s+\.causal-scene-search-toggle\s*\{\s*display:\s*none/u,
@@ -1038,14 +1058,11 @@ test("shared top-right shell keeps Search and the local lesson list persistent",
     sharedStyles,
     /#scene-search\.is-open\s+#scene-search-toggle\s*\{\s*display:\s*none/u,
   );
-  assert.match(runtime, /createStandaloneAppSceneSearchRuntime/u);
-  assert.match(runtime, /resolveStandaloneSiteHomeHref/u);
-  assert.match(runtime, /TEXTBOOK_TOC_SCENE_PATH/u);
-  assert.match(html, /aria-label="Open textbook table of contents"/u);
-  assert.doesNotMatch(
-    html.match(/<button[\s\S]*?id="textbook-toc-button"[\s\S]*?<\/button>/u)?.[0] ?? "",
-    /aria-controls|aria-expanded/u,
-  );
+  assert.match(runtime, /createStandaloneAppNavigationRuntime/u);
+  assert.match(runtime, /label: "Previous view"/u);
+  assert.match(runtime, /label: "Next view"/u);
+  assert.doesNotMatch(runtime, /createStandaloneAppSceneSearchRuntime/u);
+  assert.doesNotMatch(runtime, /resolveStandaloneSiteHomeHref|TEXTBOOK_TOC_SCENE_PATH/u);
   assert.match(
     html,
     /\.causal-journey\.is-global-search-open \.causal-mode-tabs/u,
@@ -1056,15 +1073,13 @@ test("shared top-right shell keeps Search and the local lesson list persistent",
   assert.match(uiTokens, /--ui-label-size:\s*12px/u);
   assert.match(uiTokens, /--ui-label-weight:\s*700/u);
   assert.match(uiTokens, /--ui-label-line-height:\s*1\.25/u);
-  for (const styles of [sharedStyles, navigationStyles]) {
-    const searchItemRule = styles.match(/\.scene-search-item\s*\{(?<body>[^}]*)\}/u);
-    assert.ok(searchItemRule?.groups?.body);
-    assert.match(searchItemRule.groups.body, /font-family:\s*var\(--ui-font-family\)/u);
-    assert.match(searchItemRule.groups.body, /font-size:\s*var\(--ui-label-size\)/u);
-    assert.match(searchItemRule.groups.body, /font-weight:\s*var\(--ui-label-weight\)/u);
-    assert.match(searchItemRule.groups.body, /line-height:\s*var\(--ui-label-line-height\)/u);
-    assert.doesNotMatch(searchItemRule.groups.body, /--scene-label-/u);
-  }
+  const searchItemRule = navigationStyles.match(/\.scene-search-item\s*\{(?<body>[^}]*)\}/u);
+  assert.ok(searchItemRule?.groups?.body);
+  assert.match(searchItemRule.groups.body, /font-family:\s*var\(--ui-font-family\)/u);
+  assert.match(searchItemRule.groups.body, /font-size:\s*var\(--ui-label-size\)/u);
+  assert.match(searchItemRule.groups.body, /font-weight:\s*var\(--ui-label-weight\)/u);
+  assert.match(searchItemRule.groups.body, /line-height:\s*var\(--ui-label-line-height\)/u);
+  assert.doesNotMatch(searchItemRule.groups.body, /--scene-label-/u);
   const lessonListRule = html.match(
     /\.causal-mode-tab,\s*\.causal-guided-button,\s*\.causal-choice-button,\s*\.causal-ledger-button\s*\{(?<body>[^}]*)\}/u,
   );
@@ -1092,7 +1107,7 @@ test("Story canvas omits redundant headings and the retired learner surfaces", a
   assert.match(runtime, /drawStoryForwardWakeBuildup/u);
 });
 
-test("learner journey stays one app with no separate Roots route", async () => {
+test("learner journey exposes Roots inside one app with no separate product route", async () => {
   const [html, main, controller, modes] = await Promise.all([
     readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
     readFile(new URL("src/apps/causal-delay-feedback/main.js", REPO_ROOT), "utf8"),
@@ -1101,9 +1116,26 @@ test("learner journey stays one app with no separate Roots route", async () => {
   ]);
   assert.doesNotMatch(`${html}\n${main}\n${controller}\n${modes}`, /roots\.html/iu);
   assert.doesNotMatch(modes, /\{ id: "history"/u);
-  assert.doesNotMatch(modes, /\{ id: "roots"/u);
+  assert.match(modes, /\{ id: "roots", label: "Roots", renderMethod: "renderRoots" \}/u);
   assert.doesNotMatch(modes, /\{ id: "self-hit"/u);
   assert.match(modes, /\{ id: "sandbox", label: "Laboratory"/u);
+});
+
+test("Applications metadata keeps Roots under the single Causal Delay Feedback product", async () => {
+  const metadata = JSON.parse(await readFile(
+    new URL("content/scenes/archie/applications.json", REPO_ROOT),
+    "utf8",
+  ));
+  const causalDelayEntries = metadata.objects.filter(
+    (entry) => entry.id === "causal_delay_feedback",
+  );
+  const rootsEntries = metadata.objects.filter(
+    (entry) => /roots?/iu.test(`${entry.id} ${entry.title} ${entry.labelTitle}`),
+  );
+
+  assert.equal(causalDelayEntries.length, 1);
+  assert.equal(causalDelayEntries[0].title, "Causal Delay Feedback");
+  assert.deepEqual(rootsEntries, []);
 });
 
 test("new learner-facing copy remains acceleration-first", async () => {

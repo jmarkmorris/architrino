@@ -2,9 +2,13 @@
 
 This file preserves the chronological history of the Roots teaching packet inside the deferred Causal Delay Feedback priority area.
 
-Use [roots-brainstorming.md](roots-brainstorming.md) for provisional ideas, [roots-product-plan.md](roots-product-plan.md) for the focused packet, and [priorities.md](priorities.md) as the sole priority owner.
+Use [roots-brainstorming.md](roots-brainstorming.md) for provisional ideas, [roots-mode-plan.md](roots-mode-plan.md) for the focused packet, and [priorities.md](priorities.md) as the sole priority owner.
 
 ## Log Entries
+
+### 2026-09-02 Existing Mode Exposed Within Causal Delay Feedback
+
+Exposed the existing Roots implementation through `causal-delay-feedback.html?mode=roots`, added same-shell browser-history restoration, and kept a single Causal Delay Feedback application entry. The advanced synchronized linked-view proposal remains deferred; the priority owner was not reactivated and no scientific claim changed.
 
 ### 2026-07-19 Priority Area Opened
 

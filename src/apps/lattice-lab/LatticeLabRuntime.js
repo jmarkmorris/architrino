@@ -4,15 +4,7 @@ import {
   renderDeclaredInlineMath,
   renderInlineMathText,
 } from "../../runtime/InlineMathRuntime.js";
-import {
-  navigateStandaloneAppHome,
-  resolveStandaloneAppHomeHref,
-} from "../navigator/StandaloneAppHomeRuntime.js";
-import {
-  createStandaloneAppSceneSearchRuntime,
-  resolveStandaloneGlobalSceneHref,
-  TEXTBOOK_TOC_SCENE_PATH,
-} from "../navigator/StandaloneAppSceneSearchRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import {
   LATTICE_LAB_CASE_ID,
   LATTICE_LAB_POLARITY,
@@ -590,6 +582,13 @@ export function mountLatticeLab(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
   renderDeclaredInlineMath(documentLike, { documentLike, windowLike });
+  const navigationRuntime = options.navigationRuntime ??
+    createStandaloneAppNavigationRuntime({
+      host: queryRequiredElement(documentLike, "#scene-hud-tools"),
+      document: documentLike,
+      window: windowLike,
+    });
+  navigationRuntime.init?.();
   let caseRecords = [...(options.caseRecords ??
     (options.caseRecord
       ? Object.freeze([options.caseRecord])
@@ -665,10 +664,6 @@ export function mountLatticeLab(options = {}) {
       documentLike,
       "#lattice-lab-electrino-swatch",
     ),
-    tocButton: queryRequiredElement(documentLike, "#textbook-toc-button"),
-    backButton: queryRequiredElement(documentLike, "#nav-up"),
-    forwardButton: queryRequiredElement(documentLike, "#nav-forward"),
-    homeButton: queryRequiredElement(documentLike, "#home-button"),
   };
 
   let polarityBySiteId = createReferencePolarityState(caseRecord);
@@ -694,11 +689,6 @@ export function mountLatticeLab(options = {}) {
   let pointerTravel = 0;
   let layoutWorldOffsetX = 0;
   const listeners = [];
-
-  const sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
-    document: documentLike,
-    window: windowLike,
-  }).init();
 
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.05, 100);
@@ -1878,26 +1868,6 @@ export function mountLatticeLab(options = {}) {
     listen(dom.miniatureCanvas, "pointercancel", handlePointerCancel);
     listen(dom.miniatureCanvas, "wheel", handleWheel, { passive: false });
     listen(windowLike, "resize", resize);
-    listen(dom.tocButton, "click", () => {
-      windowLike.location?.assign?.(
-        resolveStandaloneGlobalSceneHref(
-          TEXTBOOK_TOC_SCENE_PATH,
-          windowLike.location?.href,
-        ),
-      );
-    });
-    listen(dom.backButton, "click", () => windowLike.history?.back?.());
-    listen(dom.forwardButton, "click", () => windowLike.history?.forward?.());
-    listen(dom.homeButton, "click", () => {
-      navigateStandaloneAppHome(
-        windowLike.location,
-        resolveStandaloneAppHomeHref(windowLike.location?.href),
-        {
-          windowLike,
-          returnHref: windowLike.location?.href,
-        },
-      );
-    });
   }
 
   function updateCollapsePresentation() {
@@ -3064,7 +3034,7 @@ export function mountLatticeLab(options = {}) {
   function dispose() {
     resizeObserver?.disconnect?.();
     listeners.splice(0).forEach((remove) => remove());
-    sceneSearchRuntime.destroy();
+    navigationRuntime.destroy?.();
     edgeLines.forEach((line) => line.geometry.dispose());
     guideGroup.traverse((object) => {
       object.geometry?.dispose?.();

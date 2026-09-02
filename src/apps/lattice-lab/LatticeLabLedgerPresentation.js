@@ -231,7 +231,9 @@ export function createLatticeLabLedgerViewModel({
     ? {
       icon: "✓",
       label: certifiedPeriodic
-        ? "Net acceleration is zero at every architrino."
+        ? caseRecord.id === "simple-cubic-alternating-planes-v1"
+          ? "In this ideal repeating pattern, net acceleration is zero at every architrino."
+          : "Net acceleration is zero at every architrino."
         : "Net acceleration is zero in this finite configuration.",
     }
     : outcome === "nonzero"

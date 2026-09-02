@@ -1,0 +1,159 @@
+{
+  "schema": "architrino.potential-live-timespace-pipeline-fixture.v1",
+  "fixtureTransport": {
+    "schema": "potential_live_pipeline_fixture_event/v1",
+    "purpose": "executable test harness only",
+    "productionInterchange": false
+  },
+  "source": {
+    "streamId": "synthetic-eom-stream-001",
+    "pathSetId": "synthetic-path-set-live-001",
+    "sourceManifestSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "authority": "synthetic_fixture_only",
+    "startT": 0,
+    "wakeSpeed": 1
+  },
+  "consumerProfile": {
+    "requestId": "potential-live-request-001",
+    "productId": "potential-live-product-001",
+    "targetStartT": 0,
+    "targetEndT": 3,
+    "maxBufferedChunks": 2,
+    "maxBufferedBytes": 256,
+    "tileIds": ["tile-t0-t1", "tile-t1-t2", "tile-t2-t3"]
+  },
+  "events": [
+    {
+      "type": "stream_open",
+      "streamId": "synthetic-eom-stream-001",
+      "sequenceBase": 0
+    },
+    {
+      "type": "accepted_chunk",
+      "sequence": 0,
+      "chunkId": "accepted-chunk-000",
+      "contentSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "predecessorChunkSha256": null,
+      "sourceManifestSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "acceptedStartT": 0,
+      "acceptedEndT": 1,
+      "acceptedThroughT": 1,
+      "acceptance": "accepted",
+      "byteLength": 128
+    },
+    {
+      "type": "map_complete",
+      "sequence": 0,
+      "tilePayload": {
+        "tileId": "tile-t0-t1",
+        "timeRange": [0, 1],
+        "values": [0, 1]
+      },
+      "mapCompletedThroughT": 1
+    },
+    {
+      "type": "snapshot",
+      "completeness": "provisional",
+      "sourceAcceptedThroughT": 1,
+      "coreConsumedThroughT": 1,
+      "mapCompletedThroughT": 1,
+      "lagT": 0,
+      "queueDepth": 0,
+      "bufferedBytes": 0,
+      "backpressure": false,
+      "missingTileIds": ["tile-t1-t2", "tile-t2-t3"]
+    },
+    {
+      "type": "accepted_chunk",
+      "sequence": 1,
+      "chunkId": "accepted-chunk-001",
+      "contentSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "predecessorChunkSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sourceManifestSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "acceptedStartT": 1,
+      "acceptedEndT": 2,
+      "acceptedThroughT": 2,
+      "acceptance": "accepted",
+      "byteLength": 128
+    },
+    {
+      "type": "accepted_chunk",
+      "sequence": 1,
+      "chunkId": "accepted-chunk-001",
+      "contentSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "predecessorChunkSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sourceManifestSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "acceptedStartT": 1,
+      "acceptedEndT": 2,
+      "acceptedThroughT": 2,
+      "acceptance": "accepted",
+      "byteLength": 128
+    },
+    {
+      "type": "accepted_chunk",
+      "sequence": 2,
+      "chunkId": "accepted-chunk-002",
+      "contentSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "predecessorChunkSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "sourceManifestSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "acceptedStartT": 2,
+      "acceptedEndT": 3,
+      "acceptedThroughT": 3,
+      "acceptance": "accepted",
+      "byteLength": 128
+    },
+    {
+      "type": "snapshot",
+      "completeness": "provisional",
+      "sourceAcceptedThroughT": 3,
+      "coreConsumedThroughT": 3,
+      "mapCompletedThroughT": 1,
+      "lagT": 2,
+      "queueDepth": 2,
+      "bufferedBytes": 256,
+      "backpressure": true,
+      "missingTileIds": ["tile-t1-t2", "tile-t2-t3"]
+    },
+    {
+      "type": "map_complete",
+      "sequence": 1,
+      "tilePayload": {
+        "tileId": "tile-t1-t2",
+        "timeRange": [1, 2],
+        "values": [1, 2]
+      },
+      "mapCompletedThroughT": 2
+    },
+    {
+      "type": "map_complete",
+      "sequence": 2,
+      "tilePayload": {
+        "tileId": "tile-t2-t3",
+        "timeRange": [2, 3],
+        "values": [2, 3]
+      },
+      "mapCompletedThroughT": 3
+    },
+    {
+      "type": "source_seal",
+      "streamId": "synthetic-eom-stream-001",
+      "finalSequence": 2,
+      "acceptedThroughT": 3,
+      "sourceManifestSha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    {
+      "type": "publish_sealed",
+      "productId": "potential-live-product-001"
+    }
+  ],
+  "expected": {
+    "finalState": "sealed",
+    "duplicatesIgnored": 1,
+    "backpressureEntries": 1,
+    "backpressureReleases": 1,
+    "sourceAcceptedThroughT": 3,
+    "coreConsumedThroughT": 3,
+    "mapCompletedThroughT": 3,
+    "sealedProductSha256": "e4809a330ef547e5d86c6e24beb0726857497e069c906e5827733f9e630696b4"
+  }
+}

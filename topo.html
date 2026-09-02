@@ -14,7 +14,7 @@
       href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
     />
     <script defer src="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"></script>
-    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
+    <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <link rel="stylesheet" href="./src/apps/topo/topo.css" />
   </head>
   <body>
@@ -140,7 +140,7 @@
             </fieldset>
             <div id="topo-contour-controls">
             <label class="topo-range-field" for="topo-contour-count">
-              <span>Topo count</span>
+              <span>Contour count</span>
               <span class="topo-range-row">
                 <input
                   id="topo-contour-count"
@@ -150,7 +150,7 @@
                   step="1"
                   value="13"
                   data-keyboard-step="1"
-                  aria-label="Topo count, number of genuine equal-wake contour levels"
+                  aria-label="Contour count, number of genuine equal-wake contour levels"
                 />
               </span>
             </label>
@@ -170,7 +170,7 @@
               </span>
             </label>
             <label class="topo-range-field" for="topo-contour-visibility">
-              <span>Topo fade</span>
+              <span>Contour fade</span>
               <span class="topo-range-row">
                 <input
                   id="topo-contour-visibility"
@@ -180,7 +180,7 @@
                   step="0.1"
                   value="75"
                   data-keyboard-step="1"
-                  aria-label="Topo fade, contour line display strength"
+                  aria-label="Contour fade, contour line display strength"
                 />
               </span>
             </label>
@@ -329,87 +329,7 @@
           ></button>
         </div>
 
-        <div
-          id="scene-hud-tools"
-          class="standalone-app-navigation topo-navigation"
-          aria-label="Webapp navigation"
-        >
-          <button
-            id="home-button"
-            class="standalone-app-nav-icon-button"
-            type="button"
-            aria-label="Go to Applications"
-            title="Applications"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"></path>
-            </svg>
-          </button>
-          <div
-            id="scene-nav-history"
-            class="standalone-app-nav-history"
-            role="group"
-            aria-label="Browser history"
-          >
-            <button
-              id="nav-up"
-              class="standalone-app-nav-icon-button"
-              type="button"
-              aria-label="Go back"
-              title="Back"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <polyline points="15 5 8 12 15 19"></polyline>
-              </svg>
-            </button>
-            <button
-              id="nav-forward"
-              class="standalone-app-nav-icon-button"
-              type="button"
-              aria-label="Go forward"
-              title="Forward"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <polyline points="9 5 16 12 9 19"></polyline>
-              </svg>
-            </button>
-          </div>
-          <div id="scene-search" class="standalone-app-scene-search">
-            <button
-              id="scene-search-toggle"
-              class="standalone-app-nav-icon-button standalone-app-scene-search-toggle"
-              type="button"
-              aria-label="Search scenes"
-              aria-controls="scene-search-panel"
-              aria-expanded="false"
-              title="Search"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="11" cy="11" r="6.5"></circle>
-                <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
-              </svg>
-            </button>
-            <div
-              id="scene-search-panel"
-              class="standalone-app-scene-search-panel"
-              aria-hidden="true"
-              inert
-            >
-              <input
-                id="scene-search-input"
-                class="standalone-app-scene-search-input"
-                type="search"
-                placeholder="Search scenes"
-                autocomplete="off"
-                aria-label="Search scenes"
-              />
-              <div
-                id="scene-search-results"
-                class="standalone-app-scene-search-results"
-              ></div>
-            </div>
-          </div>
-        </div>
+        <div id="scene-hud-tools" class="topo-navigation"></div>
 
         <p id="topo-status" class="topo-status" role="status" aria-live="polite">
           Preparing prescribed interaction frame.

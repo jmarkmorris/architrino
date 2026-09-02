@@ -1,0 +1,92 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-005",
+  "batch": "6-equation-mapping",
+  "date": "2026-09-02",
+  "subject": "canonical global navigation and separate equation tools on Equation Mapping",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+    "search_adapter": "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "page_composition": "src/apps/equation-mapping/EquationMappingRuntime.js",
+    "page": "equation-mapping.html",
+    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-005-batch-6",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open Equation Mapping at the declared viewport. Verify the global bar and local equation toolbar do not overlap, open global Search and confirm that the local toolbar is hidden, dismiss with Escape, then open Search equations and confirm focus enters the equation index without reopening global Search.",
+    "routes": ["/equation-mapping.html"]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-6/equation-mapping-desktop-1440x900-search.png",
+      "sha256": "c2ea57b71362581079ddea0c7c3996533e8cfc482896fd4f09782c633b89f114",
+      "bytes": 179181,
+      "route": "/equation-mapping.html",
+      "viewport": [1440, 900],
+      "state": "global-search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "local_toolbar_closed_rect_px": [1298, 62, 124, 36],
+      "closed_toolbar_overlap_px2": 0,
+      "local_toolbar_hidden_while_global_search_open": true,
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-6/equation-mapping-mobile-390x844-closed.png",
+      "sha256": "7f3e9b738c774dec9b8629299b42e35a6b6be181c34d29567b322917482097d6",
+      "bytes": 35788,
+      "route": "/equation-mapping.html",
+      "viewport": [390, 844],
+      "state": "search-closed",
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "local_toolbar_rect_px": [248, 62, 124, 36],
+      "index_rect_px": [0, 0, 72, 844],
+      "compact_index_collapsed": true,
+      "bar_local_toolbar_overlap_px2": 0,
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-6/equation-mapping-mobile-390x844-search.png",
+      "sha256": "5a896e21253b396e0323f7c8d2823967375271c00f537adb7680281dd44e0eed",
+      "bytes": 41619,
+      "route": "/equation-mapping.html",
+      "viewport": [390, 844],
+      "state": "global-search-open",
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "popover_rect_px": [103.84, 56, 274.16, 278],
+      "local_toolbar_hidden": true,
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    }
+  ],
+  "interaction_checks": {
+    "canonical_stylesheet_count": 1,
+    "legacy_stylesheet_count": 0,
+    "local_tool_labels": ["Search equations", "Edit map", "Canvas settings"],
+    "global_search_hides_local_toolbar": true,
+    "escape_closes_search": true,
+    "escape_restores_focus_to": "scene-search-toggle",
+    "local_search_focus_target": "Search all equations",
+    "local_search_does_not_open_global_search": true,
+    "home_destination": "index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json",
+    "boot_error": null
+  },
+  "visual_inspection": {
+    "desktop": "The canonical global bar clears the separate equation Search, Edit, and Settings toolbar; opening global Search removes the local toolbar from the popover region.",
+    "mobile": "The equation index starts collapsed at 72px, both closed toolbars clear each other, the global Search popover remains inside the viewport, and the local toolbar is hidden while that popover is open."
+  },
+  "claim_boundary": "This receipt verifies UI-005 batch 6 navigation ownership, search separation, focus, routing, and responsive toolbar layout on Equation Mapping only. It does not validate the mathematical content, equation-editor persistence, or another standalone page."
+}

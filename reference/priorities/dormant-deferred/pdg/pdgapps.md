@@ -29,6 +29,7 @@ It does not own:
 ## Deferred State
 
 - `pdgedit` remained the dedicated web runtime in this chain.
+- `pdgedit-review.html` remained a controlled review/export artifact owned by the `pdgedit` editing workflow, not another product application or an Animator mode.
 - `pdgfeed` and `pdgsolve` remained CLI-and-contract boundaries rather than browser runtimes.
 - The main Architrino web surface no longer routed archived PDG tools through the active launcher.
 - Shared contracts, examples, and tests remained the baseline seam between stages.
@@ -46,6 +47,8 @@ The PDG workstream should still be understood as one deferred chain with explici
 - and one shared contract surface between them.
 
 This is not a multi-product split. It is one deferred workstream preserved inside one repo.
+
+The directly addressable [PDG Edit Review surface](pdgedit.md#controlled-review-and-export-surface) is a review mode of the final authored-surface stage. Its exporter and reference-SVG checks remain available for production review, but the surface stays outside the public Applications inventory and product-app launcher.
 
 ### Main Web App Role
 
@@ -125,6 +128,8 @@ If the workstream is reactivated, protect the boundaries with:
 - contract validation for examples and manifests;
 - `pdgsolve` publication-contract tests;
 - `pdgedit` document validation and boot tests;
+- direct-route and export checks for the controlled PDG Edit Review surface;
+- committed reference-SVG drift checks at their deterministic-reproduction evidence grade;
 - and any targeted boundary checks that prove the stages still boot and exchange data independently.
 
 ## Reactivation Rule

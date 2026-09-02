@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#12130f" />
-    <title>Borg</title>
+    <title>architrino · borg workbench</title>
     <link
       rel="stylesheet"
       href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
     />
     <script defer src="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"></script>
-    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
+    <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -1023,6 +1023,7 @@
 
       .borg-drawer-content {
         margin-top: 7px;
+        min-width: 0;
       }
 
       .borg-drawer-content > * + * {
@@ -1091,7 +1092,11 @@
 
       .borg-table-scroll {
         margin-top: 8px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
         overflow-x: auto;
+        contain: inline-size;
       }
 
       .borg-binary-table {
@@ -1138,6 +1143,7 @@
       .borg-prescribed-controls {
         display: grid;
         gap: 8px;
+        min-width: 0;
       }
 
       .borg-prescribed-controls input[type="range"] {
@@ -1205,6 +1211,18 @@
         outline: 1px solid rgba(152, 220, 186, 0.66);
         outline-offset: -1px;
         background: rgba(111, 181, 147, 0.08);
+      }
+
+      @media (max-width: 680px) {
+        .borg-analysis-table {
+          min-width: 0;
+          table-layout: fixed;
+        }
+
+        .borg-analysis-table th,
+        .borg-analysis-table td {
+          overflow-wrap: anywhere;
+        }
       }
 
       .borg-root-branch-plot {
@@ -1486,6 +1504,7 @@
         .borg-side-rail.is-left {
           grid-row: 1;
           max-height: 360px;
+          padding-top: 56px;
           border: 0;
           border-top: 1px solid rgba(139, 164, 126, 0.24);
         }
@@ -1565,85 +1584,15 @@
     </style>
   </head>
   <body>
-    <div
-      id="scene-hud-tools"
-      class="standalone-app-navigation borg-webapp-navigation"
-      aria-label="Webapp navigation"
-    >
-      <button
-        id="textbook-toc-button"
-        class="standalone-app-toc-button"
-        type="button"
-        aria-label="Open textbook table of contents"
-        title="Table of Contents"
-      >TOC</button>
-      <div id="scene-nav-history" class="standalone-app-nav-history" role="group" aria-label="Browser history">
-        <button id="nav-up" class="standalone-app-nav-icon-button" type="button" aria-label="Go back" title="Back">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <polyline points="15 5 8 12 15 19"></polyline>
-          </svg>
-        </button>
-        <button id="nav-forward" class="standalone-app-nav-icon-button" type="button" aria-label="Go forward" title="Forward">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <polyline points="9 5 16 12 9 19"></polyline>
-          </svg>
-        </button>
-      </div>
-      <button id="home-button" class="standalone-app-nav-icon-button" type="button" aria-label="Go to home" title="Home">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"></path>
-        </svg>
-      </button>
-      <div id="scene-search" class="standalone-app-scene-search">
-        <button
-          id="scene-search-toggle"
-          class="standalone-app-nav-icon-button standalone-app-scene-search-toggle"
-          type="button"
-          aria-label="Search scenes"
-          aria-controls="scene-search-panel"
-          aria-expanded="false"
-          title="Search"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="6.5"></circle>
-            <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
-          </svg>
-        </button>
-        <div id="scene-search-panel" class="standalone-app-scene-search-panel" aria-hidden="true" inert>
-          <input
-            id="scene-search-input"
-            class="standalone-app-scene-search-input"
-            type="search"
-            placeholder="Search scenes"
-            autocomplete="off"
-            aria-label="Search scenes"
-          />
-          <div id="scene-search-results" class="standalone-app-scene-search-results"></div>
-        </div>
-      </div>
-      <button
-        id="borg-diagnostics-toggle"
-        class="standalone-app-nav-icon-button borg-diagnostics-toggle"
-        type="button"
-        aria-label="Show diagnostics"
-        aria-controls="borg-diagnostics-panel"
-        aria-pressed="false"
-        title="Show diagnostics"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path class="borg-panel-icon-pane" d="M15 5h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3z"></path>
-          <rect x="4" y="5" width="16" height="14" rx="2" fill="none"></rect>
-          <line x1="15" y1="5" x2="15" y2="19"></line>
-        </svg>
-      </button>
-    </div>
+    <div id="scene-hud-tools" class="borg-webapp-navigation"></div>
     <div id="borg-app">
       <aside class="borg-side-rail is-left" aria-label="Simulation envelope">
         <header class="borg-panel-header">
           <div class="borg-title">
-            <h1>Borg</h1>
-            <p>EOM simulation surface</p>
-            <a href="./borg-library.html">Browse assembly library</a>
+            <h1>Borg Workbench</h1>
+            <p>Simulation and prescribed replay</p>
+            <a id="borg-library-link" href="./borg-library.html">Back to Borg Library</a>
+            <a id="borg-return-to-search" hidden>Return to Braid Search</a>
           </div>
         </header>
 

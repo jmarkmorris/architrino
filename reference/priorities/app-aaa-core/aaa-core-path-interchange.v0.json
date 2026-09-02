@@ -1,0 +1,145 @@
+{
+  "schema": "aaa_core_path_interchange_contract/v0",
+  "interchangeSchema": "aaa_core_path_interchange/v0",
+  "status": "accepted",
+  "version": 0,
+  "authority": "shared logical path interchange only; no forward-evolution, scientific-kernel, experimental-interpretation, or publication-acceptance authority",
+  "recordSchemaPath": "src/contracts/aaa-core-path-interchange/v0/schema.json",
+  "recordTypes": [
+    "path_set_manifest",
+    "path_chunk",
+    "stream_envelope",
+    "view_manifest",
+    "derived_product_manifest"
+  ],
+  "historyKinds": [
+    "eom_accepted_history",
+    "prescribed_history",
+    "experimental_observer_path"
+  ],
+  "pathSetManifestRequiredFields": [
+    "pathSetId",
+    "historyKind",
+    "membership",
+    "coverage.startT",
+    "coverage.endT",
+    "coverage.acceptedThroughT",
+    "coverage.complete",
+    "coordinateFrame.frameId",
+    "coordinateFrame.axes",
+    "units.wakeSpeed",
+    "units.lengthScale",
+    "units.timeScale",
+    "units.scaleMapId",
+    "numericPolicy.representationProfile",
+    "numericPolicy.representation",
+    "numericPolicy.precisionBits",
+    "numericPolicy.nonfiniteBehavior",
+    "interpolation.basis",
+    "interpolation.maximumPositionError",
+    "provenance.producer",
+    "provenance.sourceRecords",
+    "authority.level",
+    "authority.scientificOwner",
+    "authority.continuationPermitted",
+    "chunks"
+  ],
+  "representationProfiles": {
+    "authoritative_history": {
+      "representations": ["binary64", "decimal_string", "interval_decimal"],
+      "minimumPrecisionBits": 53,
+      "maximumPrecisionBits": 256,
+      "continuationEligible": true,
+      "requiresZeroDeclaredApproximationError": true
+    },
+    "precision_bounded_analysis": {
+      "representations": ["binary32", "binary64", "decimal_string", "interval_decimal"],
+      "minimumPrecisionBits": 24,
+      "maximumPrecisionBits": 256,
+      "continuationEligible": false,
+      "requiresZeroDeclaredApproximationError": false
+    },
+    "display_stream": {
+      "representations": ["binary16", "binary32", "quantized_integer"],
+      "minimumPrecisionBits": 8,
+      "maximumPrecisionBits": 24,
+      "continuationEligible": false,
+      "requiresZeroDeclaredApproximationError": false
+    }
+  },
+  "authorityLevels": [
+    {
+      "id": "untrusted_import",
+      "rank": 0,
+      "continuationPermitted": false
+    },
+    {
+      "id": "display_only",
+      "rank": 1,
+      "continuationPermitted": false
+    },
+    {
+      "id": "diagnostic",
+      "rank": 2,
+      "continuationPermitted": false
+    },
+    {
+      "id": "derived_analysis",
+      "rank": 2,
+      "continuationPermitted": false
+    },
+    {
+      "id": "prescribed_path",
+      "rank": 3,
+      "continuationPermitted": false
+    },
+    {
+      "id": "observer_measurement",
+      "rank": 3,
+      "continuationPermitted": false
+    },
+    {
+      "id": "accepted_history",
+      "rank": 4,
+      "continuationPermitted": true
+    }
+  ],
+  "historyAuthority": {
+    "eom_accepted_history": "accepted_history",
+    "prescribed_history": "prescribed_path",
+    "experimental_observer_path": "observer_measurement"
+  },
+  "derivedProductAuthorityLevels": ["display_only", "diagnostic", "derived_analysis"],
+  "rules": {
+    "normalizedWakeSpeed": 1,
+    "recordIdentity": "sha256(canonical-json(record without contentSha256))",
+    "immutableRecords": true,
+    "chunkPredecessorClosureRequired": true,
+    "eventAndBranchMarkersMayNotBeSmeared": true,
+    "sealedProductsRequireCompleteSourceClosure": true,
+    "transformsMayNotIncreaseAuthority": true,
+    "experimentalSourcePayloadRemainsImmutable": true,
+    "unknownSchemaOrVersionFailsClosed": true
+  },
+  "refusalCodes": [
+    "missing_required_field",
+    "unknown_schema_version",
+    "duplicate_record_identity",
+    "identity_mismatch",
+    "missing_coverage",
+    "incompatible_scales",
+    "unsupported_precision",
+    "broken_predecessor_chain",
+    "missing_source_binding",
+    "authority_escalation",
+    "invalid_stream_state",
+    "incomplete_seal",
+    "invalid_experimental_provenance"
+  ],
+  "fixtures": {
+    "positive": "tests/fixtures/aaa-core-path-interchange/v0/positive-suite.json",
+    "negative": "tests/fixtures/aaa-core-path-interchange/v0/negative-suite.json"
+  },
+  "validator": "src/aaa-core/path-interchange-v0.mjs",
+  "tests": "tests/aaa-core-path-interchange-v0.test.js"
+}

@@ -21,7 +21,7 @@ Plainly: keep the mathematics and exact evidence, but make the live repository d
 ## Propagation And Verification
 
 - The shared Borg catalog has no `familyId`, `familyLabel`, or parent field; the same flat contract applies to all catalog consumers and future entries.
-- The workbench and Assembly Library use the same labels and exact record targets. Current selections resolve by `assemblyId + modelRevisionSha256`; an exact-byte pin additionally uses `recordSha256`.
+- Borg Workbench and Borg Library use the same labels and exact record targets. Current selections resolve by `assemblyId + modelRevisionSha256`; an exact-byte pin additionally uses `recordSha256`.
 - Canonical example-navigation tables omit family columns. Mathematical exposition may collect related constraints, but those collections are not catalog families.
 - Tests must cover catalog entries without family metadata, rejection of embedded parent/family fields, unchanged source geometry checks, one menu choice per record, source order, exact saved links, and rejection of obsolete routes and extra public record files.
 - Generated publication outputs remain governed by the repository's explicit-regeneration rule. On-demand iOS snapshots are regenerated only when separately requested.

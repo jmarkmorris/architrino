@@ -12,6 +12,7 @@ import {
 } from "./PhotonPresetRuntime.js";
 import {
   createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis,
+  createPhotonDeepComparisonResultsWithPrescribedPathAnalysis,
   parsePhotonSearchResultsJson,
   serializePhotonSearchResults,
 } from "./PhotonSearchRuntime.js";
@@ -30,15 +31,7 @@ import {
   drawPhotonBraidStage,
 } from "./PhotonBraidVisualRuntime.js";
 import { PRESCRIBED_PATH_ANALYSIS_ID } from "../../prescribed-path-analysis/PrescribedPathAnalysis.mjs";
-import {
-  navigateStandaloneAppHome,
-  resolveStandaloneSiteHomeHref,
-} from "../navigator/StandaloneAppHomeRuntime.js";
-import {
-  createStandaloneAppSceneSearchRuntime,
-  resolveStandaloneGlobalSceneHref,
-  TEXTBOOK_TOC_SCENE_PATH,
-} from "../navigator/StandaloneAppSceneSearchRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 
 const PHOTON_DOCS = {
   guide: {
@@ -101,6 +94,11 @@ const PHOTON_RUNTIME_SOLVER_SEARCH_OPTIONS = Object.freeze({
     minimumAnalyzerSampleCount: 8,
     maxDelay: 0.25,
   },
+});
+const PHOTON_RUNTIME_SOLVER_DEEP_SEARCH_OPTIONS = Object.freeze({
+  limit: 12,
+  maxCandidates: Number.POSITIVE_INFINITY,
+  comparisonCandidateLimit: Number.POSITIVE_INFINITY,
 });
 
 function queryPhotonElement(documentLike, selector) {
@@ -404,6 +402,8 @@ export function createPhotonRuntime({
   prescribedPathAnalysisOptions = {},
   configurationSearchFactory =
     createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis,
+  deepConfigurationSearchFactory =
+    createPhotonDeepComparisonResultsWithPrescribedPathAnalysis,
 } = {}) {
   const stageCanvas = queryPhotonElement(documentLike, "#photon-stage-canvas");
   const electricFieldCanvas = queryPhotonElement(documentLike, "#photon-electric-field-canvas");
@@ -411,10 +411,7 @@ export function createPhotonRuntime({
   const controlsElement = queryPhotonElement(documentLike, "#photon-controls");
   const diagnosticsElement = queryPhotonElement(documentLike, "#photon-diagnostics");
   const formulasElement = queryPhotonElement(documentLike, "#photon-formulas");
-  const tocButton = queryPhotonElement(documentLike, "#textbook-toc-button");
-  const backButton = queryPhotonElement(documentLike, "#nav-up");
-  const forwardButton = queryPhotonElement(documentLike, "#nav-forward");
-  const homeButton = queryPhotonElement(documentLike, "#home-button");
+  const navigationHost = queryPhotonElement(documentLike, "#scene-hud-tools");
   const guideDocButton = queryPhotonElement(documentLike, "#photon-guide-doc-button");
   const photonClosureDocButton = queryPhotonElement(
     documentLike,
@@ -447,7 +444,7 @@ export function createPhotonRuntime({
   let modelTime = 0;
   let lastFrame = 0;
   let controlsRuntime = null;
-  let sceneSearchRuntime = null;
+  let navigationRuntime = null;
   let animationFrame = 0;
   let solverSnapshot = null;
   let solverSnapshotPromise = null;
@@ -788,7 +785,7 @@ export function createPhotonRuntime({
     draw();
   }
 
-  function runConfigurationSearch() {
+  function runConfigurationSearch({ deep = false, filters = null } = {}) {
     if (searchInFlightPromise) {
       return searchInFlightPromise;
     }
@@ -799,15 +796,30 @@ export function createPhotonRuntime({
         : setTimeout;
     const stateForSearch = cloneRuntimePhotonState(state);
     const generation = ++searchGeneration;
-    searchStatus = "Searching configurations...";
+    const searchFactory = deep ? deepConfigurationSearchFactory : configurationSearchFactory;
+    searchStatus = deep ? "Preparing deep comparison..." : "Searching configurations...";
     searchInFlightPromise = new Promise((resolve) => schedule(resolve, 0))
       .then(async () => {
         try {
-          const found = await configurationSearchFactory(
+          const found = await searchFactory(
             stateForSearch,
             {
               ...prescribedPathAnalysisOptions,
-              ...PHOTON_RUNTIME_SOLVER_SEARCH_OPTIONS,
+              ...(deep
+                ? PHOTON_RUNTIME_SOLVER_DEEP_SEARCH_OPTIONS
+                : PHOTON_RUNTIME_SOLVER_SEARCH_OPTIONS),
+              ...(deep
+                ? {
+                    filters,
+                    onProgress: ({ completed, total, retained }) => {
+                      if (!runtimeDestroyed && generation === searchGeneration) {
+                        searchStatus = `Deep comparison ${completed}/${total}; ${retained} retained.`;
+                        syncControls();
+                      }
+                    },
+                    shouldCancel: () => runtimeDestroyed || generation !== searchGeneration,
+                  }
+                : {}),
               yieldToEventLoop: () => new Promise((resolve) => schedule(resolve, 0)),
             }
           );
@@ -816,7 +828,9 @@ export function createPhotonRuntime({
           }
           const runtimeResults = assignRuntimeSearchResultIds(found, "search");
           searchResults = [...runtimeResults, ...searchResults].slice(0, 100);
-          searchStatus = `${runtimeResults.length} configurations found.`;
+          searchStatus = deep
+            ? `Deep comparison complete: ${runtimeResults.length} configurations retained.`
+            : `${runtimeResults.length} configurations found.`;
           return runtimeResults;
         } catch (error) {
           if (generation === searchGeneration) {
@@ -1071,6 +1085,11 @@ export function createPhotonRuntime({
     runtimeDestroyed = false;
     lastFrame = 0;
     lastRenderedReadoutKey = "";
+    navigationRuntime = createStandaloneAppNavigationRuntime({
+      host: navigationHost,
+      document: documentLike,
+      window: windowLike,
+    }).init();
     controlsRuntime = createPhotonControlsRuntime({
       documentLike,
       container: controlsElement,
@@ -1089,6 +1108,7 @@ export function createPhotonRuntime({
       isSearchInFlight: () => Boolean(searchInFlightPromise),
       isPreviewingSearchResult: () => Boolean(searchPreviewSnapshot),
       onSearchConfigurations: runConfigurationSearch,
+      onDeepCompareConfigurations: (filters) => runConfigurationSearch({ deep: true, filters }),
       onRestoreSearchPreview: restoreSearchPreview,
       onPreviewSearchResult: previewSearchResult,
       onLoadSearchResult: loadSearchResult,
@@ -1100,39 +1120,6 @@ export function createPhotonRuntime({
       onExportSearchResults: () => exportSearchResults(searchResults),
       onExportSelectedSearchResults: exportSelectedSearchResults,
       onImportSearchResults: importSearchResults,
-    });
-    sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
-      document: documentLike,
-      window: windowLike,
-    }).init();
-    addRuntimeEventListener(tocButton, "click", () => {
-      navigateStandaloneAppHome(
-        windowLike.location,
-        resolveStandaloneGlobalSceneHref(
-          TEXTBOOK_TOC_SCENE_PATH,
-          windowLike.location?.href
-        ),
-        {
-          windowLike,
-          returnHref: windowLike.location?.href,
-        }
-      );
-    });
-    addRuntimeEventListener(backButton, "click", () => {
-      windowLike.history?.back?.();
-    });
-    addRuntimeEventListener(forwardButton, "click", () => {
-      windowLike.history?.forward?.();
-    });
-    addRuntimeEventListener(homeButton, "click", () => {
-      navigateStandaloneAppHome(
-        windowLike.location,
-        resolveStandaloneSiteHomeHref(windowLike.location?.href),
-        {
-          windowLike,
-          returnHref: windowLike.location?.href,
-        }
-      );
     });
     addRuntimeEventListener(guideDocButton, "click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.guide);
@@ -1183,8 +1170,8 @@ export function createPhotonRuntime({
     runtimeEventListeners = [];
     controlsRuntime?.destroy();
     controlsRuntime = null;
-    sceneSearchRuntime?.destroy?.();
-    sceneSearchRuntime = null;
+    navigationRuntime?.destroy?.();
+    navigationRuntime = null;
     markdownRuntime.hideMarkdownPanel();
   }
 
@@ -1199,6 +1186,7 @@ export function createPhotonRuntime({
     getPresetOptions,
     getSearchResults: () => searchResults,
     runConfigurationSearch,
+    runDeepComparison: (filters) => runConfigurationSearch({ deep: true, filters }),
     previewSearchResult,
     restoreSearchPreview,
     loadSearchResult,

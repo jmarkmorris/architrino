@@ -1,0 +1,97 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-005",
+  "batch": "5-greek-letter-match",
+  "date": "2026-09-02",
+  "subject": "canonical top dynamic control bar on Greek Letter Match",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+    "search_adapter": "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "page_composition": "src/apps/greek-letter-match/GreekLetterMatchRuntime.js",
+    "page_stylesheet": "src/apps/greek-letter-match/greek-letter-match.css",
+    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-005-batch-5",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open Greek Letter Match at the declared viewport. Capture desktop and mobile with Search scenes open and populated, then dismiss Search and capture the mobile header and game surface.",
+    "routes": ["/greek-letter-match.html"]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-5/greek-letter-match-desktop-1440x900-search.png",
+      "sha256": "700b4844bda8e3c5dfa1aeb84e34d29a34cf03b923f3cb336bb9beab46eba4d0",
+      "bytes": 101483,
+      "route": "/greek-letter-match.html",
+      "viewport": [1440, 900],
+      "state": "search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "popover_rect_px": [1149.84, 60, 274.16, 278],
+      "header_rect_px": [0, 0, 1440, 66],
+      "heading_bar_overlap_px2": 0,
+      "game_stage_rect_px": [290, 84, 860, 798],
+      "game_controls_visible": true,
+      "choice_count": 24,
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-5/greek-letter-match-mobile-390x844-search.png",
+      "sha256": "ce7649e9a58f64bc25e1d489061e47894fe670079e37f8ee84979b037b257bdb",
+      "bytes": 45091,
+      "route": "/greek-letter-match.html",
+      "viewport": [390, 844],
+      "state": "search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "popover_rect_px": [103.84, 56, 274.16, 278],
+      "header_rect_px": [0, 0, 390, 104],
+      "heading_bar_overlap_px2": 0,
+      "game_stage_rect_px": [6, 114, 378, 378],
+      "game_controls_visible": true,
+      "choice_count": 24,
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-5/greek-letter-match-mobile-390x844-closed.png",
+      "sha256": "0a7f12aea721dceb02b28adaae4ddae443ca62b31d123a865b5e26226c1a926e",
+      "bytes": 40397,
+      "route": "/greek-letter-match.html",
+      "viewport": [390, 844],
+      "state": "search-closed",
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "heading_rect_px": [16, 56.5, 183.55, 36],
+      "bar_heading_vertical_clearance_px": 12.5,
+      "title_text": "It's Greek to Me!",
+      "title_visible": true,
+      "horizontal_overflow": false
+    }
+  ],
+  "interaction_checks": {
+    "canonical_stylesheet_count": 1,
+    "escape_closes_search": true,
+    "escape_restores_focus_to": "scene-search-toggle",
+    "home_destination": "index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json",
+    "browser_log_entries": 0
+  },
+  "visual_inspection": {
+    "desktop": "The canonical bar clears the title and the full 24-choice ring; setup and session panels remain local.",
+    "mobile": "The bar occupies the first header row, the full title occupies the second row, the stage remains square, and the Search popover stays inside the viewport."
+  },
+  "claim_boundary": "This receipt verifies UI-005 batch 5 on Greek Letter Match only. It does not validate pronunciation correctness, learning efficacy, or another standalone page."
+}

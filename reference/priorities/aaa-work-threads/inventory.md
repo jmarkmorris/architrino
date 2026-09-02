@@ -1,47 +1,38 @@
 # Priorities Inventory
 
-Snapshot: 2026-09-01.
+Snapshot: 2026-09-02.
 
 This is the developer-facing ownership and routing inventory for [reference/priorities](../README.md). The canonical numeric order lives in [priorities.md](priorities.md); the repeated mathematical joins live in [closure-join-matrix.md](closure-join-matrix.md).
 
-The live filesystem contains 30 top-level workstream directories plus the `dormant-deferred` container. The workstreams comprise 19 ranked owners, 2 control/routing surfaces, and 9 unranked owners. The archive contains 22 child directories. The four separately ranked shared packets are not additional directory owners.
+The live filesystem contains 26 immediate top-level directories plus the `dormant-deferred` container: 23 priority inventory directories comprising 11 ranked owners, 1 control surface, 1 unranked shared headless platform, and 10 other unranked owners, plus the non-owner `mapping` overview, the `mapping-cronin-assembly-theory` packet, and the legacy `app-simulation` compatibility directory. The archive contains 26 child directories. The four separately ranked shared packets are not additional directory owners.
 
 ## Inclusion Rules
 
 - An immediate top-level directory with its own `priorities.md` is part of the active inventory unless it is explicitly a control or routing surface.
 - A top-level tracker may carry an internal `deferred` or `watchlist` status and still remain in the active inventory. Moving the directory under `dormant-deferred` is what removes it from active ranking.
 - Every child of `dormant-deferred` belongs in the archive inventory and is unscored by policy, even when its parked tracker or a stale unified-table row retains historical rank metadata.
-- `aaa-work-threads` is the ranking/control surface and `app-simulation` is a protocol-routing index; neither is a separately ranked owner.
+- `aaa-work-threads` is the ranking/control surface and is not a separately ranked owner.
+- `app-simulation` is a compatibility directory outside the priority-owner and product-application inventories. Its canonical [Simulation Protocol Routing Index](../../op/simulation-protocol-routing-index.md) is operations documentation.
 - Supporting subdirectories inherit their parent owner unless a shared theorem packet is explicitly ranked in the unified table.
 - Completed objects leave the live queue. The next local marginal winner then replaces the workstream's unified-table row and is rescored from scratch.
 
 ## Active Ranked Owners
 
-The rank column mirrors the current unified table for owners that remain directly under `reference/priorities/`. Ranks `4`, `5`, `10`, and `15` belong to shared theorem packets listed separately below.
-
-The unified table still contains archived `app-animator`, `archie`, and `aaa-futures` rows at ranks `14`, `21`, and `27`. Those entries contradict the archive policy and are excluded from the active inventory below. This inventory refresh does not rescore or renumber the unified table; its remaining archive cleanup is a separate ranking correction.
+The rank column mirrors the current unified table for owners that remain directly under `reference/priorities/`. Ranks `3`, `4`, `7`, and `10` belong to shared theorem packets listed separately below.
 
 | Rank | Owner | Local rank-1 object | Present role and ownership boundary | Execution queue and focused packet |
 | ---: | --- | --- | --- | --- |
-| 1 | [`app-solver`](../app-solver/priorities.md) | `coupled_retained_history_integrator` | Sole forward solver and reusable numerical-execution owner. | [Work queue](../app-solver/work-queue.md); [attractor-search instrument](../app-solver/campaigns/attractor-search-instrument.md). |
-| 2 | [`braid-program`](../braid-program/priorities.md) | `binary_subfield_fate` | Sole scientific owner for evolution-first assembly campaigns and fate classification. | [Work queue](../braid-program/work-queue.md). |
-| 3 | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law` | Owns the independently evolving wake-state derivation, causal accounts, and branch-certificate mathematics. | [Work queue](../master-equation-closure/work-queue.md); [causal wake-state packet](../master-equation-closure/independent-causal-wake-state-closure.md). |
-| 6 | [`mapping-equations`](../mapping-equations/priorities.md) | `lorentz_envelope_closure` | Maps source-backed carriers into explicit inherited-equation comparison and failure rows. | [Work queue](../mapping-equations/work-queue.md); [equation inventory](../mapping-equations/equation.md). |
-| 7 | [`app-borg`](../app-borg/priorities.md) | `assembly_viewer_record_contract_carriers` | EOM-backed simulation surface and record-only assembly replay; it does not certify displayed data. | [Execution queue](../app-borg/work-queue.md) and [assembly-viewer requirements](../app-borg/assembly-viewer-requirements.md). |
-| 8 | [`mapping-standard-model`](../mapping-standard-model/priorities.md) | `quark_mass_predictions` | Geometry-first quark, flavor, confinement, weak, and gauge recovery targets. | [Work queue](../mapping-standard-model/work-queue.md); [geometry-first program](../mapping-standard-model/geometry-first-program.md). |
-| 9 | [`app-photon`](../app-photon/priorities.md) | `reusable_absolute_history_solver` | Photon teaching and diagnostics consumer; general solver capability routes back to EOM. | [Work queue](../app-photon/work-queue.md); the tracker retains the app and evidence boundary. |
-| 11 | [`mapping-strong-field`](../mapping-strong-field/priorities.md) | `embedded_boundary_conditions` | Strong-field boundary data, observer predictions, entropy recovery, and release-channel selection. | [Execution queue](../mapping-strong-field/work-queue.md) and [high-energy routing](../mapping-strong-field/high-energy-astrophysics/priorities.md). |
-| 12 | [`mapping-nuclear-atomic-molecular`](../mapping-nuclear-atomic-molecular/priorities.md) | `iron_group_binding_cusp_recovery` | Hadronic-to-nuclear benchmark ladder and downstream atomic/molecular recovery. | [Work queue](../mapping-nuclear-atomic-molecular/work-queue.md); [nuclear binding closure](../mapping-nuclear-atomic-molecular/nuclear-binding-closure.md). |
-| 13 | [`mapping-benchmarks`](../mapping-benchmarks/priorities.md) | `redshift_clock_transport` | Observer-level benchmark cases mapped to explicit acceptance and failure predicates. | [Work queue](../mapping-benchmarks/work-queue.md); benchmark drafts remain sibling packets. |
-| 16 | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` | Deferred but top-level quantum recovery owner for measures, detector kernels, pair provenance, and Bell gates. | [Work queue](../mapping-quantum/work-queue.md); [transfer-operator packet](../mapping-quantum/transfer-operator-basin-measure.md). |
-| 17 | [`mapping-open-problems`](../mapping-open-problems/priorities.md) | `claim_level_audit` | Controls which open-problem chapters are strong enough for the deployed technical paper; scientific proof, instrument, and source work routes to its actual owner. | [Work queue](../mapping-open-problems/work-queue.md); [Solving the Crisis](../../../content/markdown/aaa/philosophy-history/solving-the-crisis.md). |
-| 18 | [`source-mining`](../source-mining/priorities.md) | `mine_source_material` | Source acquisition and convergence intake when a batch yields a concrete mathematical or corpus artifact. | [Work queue](../source-mining/work-queue.md); [mining history](../source-mining/source-mining-history.md). |
-| 19 | [`mapping-cosmology`](../mapping-cosmology/priorities.md) | `component_interfaces` | Deferred but top-level owner for the cosmology transfer-function and observer-interface pipeline. | [Work queue](../mapping-cosmology/work-queue.md); the tracker retains interfaces and promotion map. |
-| 20 | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance` | Read-only source-grounded MCP access; repository sources remain authoritative. | [Work queue](../app-mcp/work-queue.md); [client conformance](../app-mcp/client-conformance.md). |
-| 22 | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive` | iPhone/iPad release packaging and physical-device acceptance. | [Work queue](../app-ios/work-queue.md); the tracker retains completed package design. |
-| 23 | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract` | Repo-wide deployment, hosting, cost, reliability, and release operations. | [Work queue](../aaa-operations/work-queue.md); first consumer is Borg. |
-| 24 | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` | Shared implementation-facing control-bar and app-chrome standardization. | [Work queue](../app-ui-guidelines/work-queue.md); [top dynamic control bar](../app-ui-guidelines/top-dynamic-control-bar.md). |
-| 25 | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` | Speculative candidate-assembly and dark-visible re-entry watchlist. | [Work queue](../dark-sector/work-queue.md); [photon-like mode packet](../dark-sector/dark-sector-photon-like-mode.md). |
+| 1 | [`braid-program`](../braid-program/priorities.md) | `binary_subfield_fate` | Sole scientific owner for evolution-first assembly campaigns and fate classification. | [Work queue](../braid-program/work-queue.md). |
+| 2 | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law` | Owns the independently evolving wake-state derivation, causal accounts, and branch-certificate mathematics. | [Work queue](../master-equation-closure/work-queue.md); [causal wake-state packet](../master-equation-closure/independent-causal-wake-state-closure.md). |
+| 5 | [`mapping-equations`](../mapping-equations/priorities.md) | `lorentz_envelope_closure` | Maps source-backed carriers into explicit inherited-equation comparison and failure rows. | [Work queue](../mapping-equations/work-queue.md); [equation inventory](../mapping-equations/equation.md). |
+| 6 | [`mapping-standard-model`](../mapping-standard-model/priorities.md) | `quark_mass_predictions` | Geometry-first quark, flavor, confinement, weak, and gauge recovery targets. | [Work queue](../mapping-standard-model/work-queue.md); [geometry-first program](../mapping-standard-model/geometry-first-program.md). |
+| 8 | [`mapping-strong-field`](../mapping-strong-field/priorities.md) | `observer_predictions` | Strong-field boundary data, observer predictions, entropy recovery, and release-channel selection. | [Execution queue](../mapping-strong-field/work-queue.md) and [high-energy routing](../mapping-strong-field/high-energy-astrophysics/priorities.md). |
+| 9 | [`mapping-benchmarks`](../mapping-benchmarks/priorities.md) | `lorentz_preferred_frame` | Preferred-frame leakage and two-way synchronization benchmark on an accepted moving branch. | [Work queue](../mapping-benchmarks/work-queue.md); benchmark drafts remain sibling packets. |
+| 11 | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` | Deferred but top-level quantum recovery owner for measures, detector kernels, pair provenance, and Bell gates. | [Work queue](../mapping-quantum/work-queue.md); [transfer-operator packet](../mapping-quantum/transfer-operator-basin-measure.md). |
+| 12 | [`app-solver`](../app-solver/priorities.md) | `eom_application_surface` | Sole forward solver and reusable numerical-execution owner. | [Work queue](../app-solver/work-queue.md); [attractor-search instrument](../app-solver/campaigns/attractor-search-instrument.md). |
+| 13 | [`app-photon`](../app-photon/priorities.md) | `local_c_parameterization` | Photon teaching and diagnostics consumer; general solver capability routes back to EOM. | [Work queue](../app-photon/work-queue.md); the tracker retains the app and evidence boundary. |
+| 14 | [`aaa-operations`](../aaa-operations/priorities.md) | `borg_record_byte_identity` | Repo-wide deployment, hosting, cost, reliability, and release operations. | [Work queue](../aaa-operations/work-queue.md); current verification closes portable Borg publication identity. |
+| 15 | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab` | Deferred teaching packet for one source-carried coordinate morph; no scientific claim follows from display behavior. | [Execution queue](../app-borg/work-queue.md) and [assembly-viewer requirements](../app-borg/assembly-viewer-requirements.md). |
 
 Plainly: this table lists current top-level owners and copies their existing ranks. Gaps are shared-packet ranks or archived rows, not newly assigned priorities.
 
@@ -51,39 +42,67 @@ These rows multiply several owners and therefore retain their own numeric attent
 
 | Rank | Packet | Owning location | Next unresolved object |
 | ---: | --- | --- | --- |
-| 4 | `transfer-operator-basin-measure` | [Quantum Closure](../mapping-quantum/transfer-operator-basin-measure.md) | Explicit transfer operator and invariant measure on one persistent accepted assembly state. |
-| 5 | `pressure-dependent-noether-sea-constitutive-response` | [Master-Equation Closure](../master-equation-closure/pressure-dependent-noether-sea-constitutive-response.md) | One accepted-branch response record shared by clock, signal, inertia, metric, material, and cosmology consumers. |
-| 10 | `exposure-quotient-theorem` | Table-level shared contract in [closure-join-matrix.md](closure-join-matrix.md#exposure-quotient-contract) | One accepted branch-to-sector exposure quotient with a null-sector bound. |
-| 15 | `residual-routing-event-ledger` | Table-level shared contract in [closure-join-matrix.md](closure-join-matrix.md#residual-routing-contract) | One concrete EOM-evolved transition with a closed event ledger. |
+| 3 | `transfer-operator-basin-measure` | [Quantum Closure](../mapping-quantum/transfer-operator-basin-measure.md) | Explicit transfer operator and invariant measure on one persistent accepted assembly state. |
+| 4 | `pressure-dependent-noether-sea-constitutive-response` | [Master-Equation Closure](../master-equation-closure/pressure-dependent-noether-sea-constitutive-response.md) | One accepted-branch response record shared by clock, signal, inertia, metric, material, and cosmology consumers. |
+| 7 | `exposure-quotient-theorem` | Table-level shared contract in [closure-join-matrix.md](closure-join-matrix.md#exposure-quotient-contract) | One accepted branch-to-sector exposure quotient with a null-sector bound. |
+| 10 | `residual-routing-event-ledger` | Table-level shared contract in [closure-join-matrix.md](closure-join-matrix.md#residual-routing-contract) | One concrete EOM-evolved transition with a closed event ledger. |
 
-## Unranked Active Control And Routing Surfaces
+## Unranked Active Control Surface
 
 | Directory | Role | Rule |
 | --- | --- | --- |
 | [`aaa-work-threads`](priorities.md) | Canonical active ranking, inventory, join matrix, history, and [routing queue](work-queue.md). | Never score the control surface as its own workstream. |
-| [`app-simulation`](../app-simulation/priorities.md) | Preserved simulation-protocol routing index with a [no-local-owner queue](../app-simulation/work-queue.md). | EOM owns execution, the scientific lane owns campaigns, and the proof lane owns acceptance. |
 
-## Unranked Active Owners
+The former [`app-simulation`](../app-simulation/priorities.md) address remains a compatibility anchor for the operations [Simulation Protocol Routing Index](../../op/simulation-protocol-routing-index.md) and its preserved detail. It is not counted as a priority owner or application. The EOM solver owns reusable execution, the scientific lane owns campaigns, and the proof lane owns acceptance.
 
-These nine directories remain in the top-level inventory without a numeric rank. Their local status and ownership boundaries are preserved; inclusion here does not make a blocked task executable or reopen completed work.
+## Unranked Shared Headless Platform
+
+| Directory | Present role | Catalogue and execution boundary |
+| --- | --- | --- |
+| [`app-aaa-core`](../app-aaa-core/priorities.md) | Shared path, storage, query, codec, stream, publication, client, and Potential platform. | The compatibility directory name is retained for stable references, but AAA Core is not an end-user application and is excluded from the public Applications scene, standalone launch routing, and the product count. Logical path, workload, codec, stream, query/publication, thin-client, and Potential contracts are accepted; remaining rows require measured workloads or external inputs. |
+
+Plainly: AAA Core supplies shared machinery behind applications. A visitor does not launch it.
+
+## Other Unranked Active Owners
+
+These ten directories remain in the top-level inventory without a numeric rank. Their local status and ownership boundaries are preserved; inclusion here does not make a blocked task executable or reopen completed work.
 
 | Directory | Present role | Ranking or execution boundary |
 | --- | --- | --- |
-| [`app-aaa-core`](../app-aaa-core/priorities.md) | Shared path, storage, query, codec, and publication platform. | Ranking awaits contract review and a representative workload estimate. |
 | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | Interactive explanatory surface for stable-ID equation documents and canonical page links; it does not certify equation claims. | No executable object remains: carousel expansion requires a newly justified task, and review-packet export requires an operator-selected local draft. |
-| [`app-potential`](../app-potential/priorities.md) | Potential-observable reconstruction and display application. | Ranking awaits the AAA Core contract and a representative workload estimate; no separate forward solver. |
-| [`app-topo`](../app-topo/priorities.md) | Planar topographic display of prescribed potential products. | Ranking awaits a reference-surface estimate; consumes Potential and AAA Core services. |
+| [`app-topo`](../app-topo/priorities.md) | Planar topographic display of prescribed wake-intensity and declared Potential products. | Ranking awaits a reference-surface estimate; consumes AAA Core services and retains visualization ownership. |
+| [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | Shared implementation-facing control-bar and app-chrome standardization. | The accepted standard has no executable object; later migrations require a newly justified queue item. |
 | [`category-theory`](../category-theory/priorities.md) | Supporting mathematical structures for history composition, restrictions, and recovery interfaces. | Low-intensity support; physical realization and acceptance remain with the scientific owners. |
 | [`aaa-corpus-dragnet`](../aaa-corpus-dragnet/priorities.md) | Read-only inventory of possible corpus connections, duplication, terminology drift, and routing gaps. | Recommendations require owner or operator triage; no independent edit or promotion authority. |
 | [`field-speed-ceiling`](../field-speed-ceiling/priorities.md) | Bounded investigation of a proposed foundational speed constraint and its consequences. | No canonical adoption; the Master Equation and EOM solver contracts remain unchanged. |
 | [`mapping-electromagnetism`](../mapping-electromagnetism/priorities.md) | Integrates electromagnetic equations and benchmarks against one common assembly and sea record. | Unranked integration owner; source workstreams retain native derivation and evidence authority. |
 | [`mapping-one-nature-many-theories`](../mapping-one-nature-many-theories/priorities.md) | Cross-domain bridge assessment, editorial decisions, and promotion provenance. | Reader-facing promotion is complete; this inventory does not reopen its queue or assume ownership of domain mechanisms. |
+| [`mapping-open-problems`](../mapping-open-problems/priorities.md) | Audited control surface for the deployed Solving the Crisis paper. | No executable object remains after OP-003; future paper revision requires a new bounded task, while scientific and source work remain with their owners. |
+| [`source-mining`](../source-mining/priorities.md) | Source acquisition, source-to-corpus mapping, and completed-source provenance. | No executable object remains; SM-004 repository cleanup still requires explicit maintenance authority, while SM-005 domain disposition is closed by the operator's non-renewal decision. |
 
 Plainly: these folders have defined responsibilities but no global numeric rank. Their own queues still determine what work is actionable.
 
+## Zero-Row Owner Disposition — 2026-09-02
+
+The operator authorized review of the nine active directories whose ranked queues are empty. Each is retained unranked because it still owns a distinct route or reopening boundary. Retention does not create executable work.
+
+| Directory | Disposition | Retained responsibility | Reopening trigger |
+| --- | --- | --- | --- |
+| [`aaa-corpus-dragnet`](../aaa-corpus-dragnet/priorities.md) | Retain unranked. | Read-only correlation findings and owner triage. | A newly accepted bounded correlation pass. |
+| [`app-equation-mapping`](../app-equation-mapping/priorities.md) | Retain unranked. | Equation-page app, registry contract, and blocked review-export route. | An operator-selected local draft or a newly justified reader need. |
+| [`app-simulation`](../app-simulation/priorities.md) | Retain as a compatibility routing surface. | Stable legacy paths into the canonical simulation-protocol index. | Never as a local execution owner; work routes to the named scientific or proof owner. |
+| [`app-topo`](../app-topo/priorities.md) | Retain unranked. | Wake Topography app contract and scientific-input boundary. | A source-bound reference surface from the scientific owner. |
+| [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | Retain unranked. | Shared app-chrome standard and implementation ownership. | A newly accepted cross-app standard or migration defect. |
+| [`category-theory`](../category-theory/priorities.md) | Retain unranked. | Mathematical bridge and ownership boundaries for blocked categorical questions. | A named carrier or bridge not adequately handled by a simpler owner. |
+| [`mapping-electromagnetism`](../mapping-electromagnetism/priorities.md) | Retain unranked. | Cross-equation electromagnetic integration ownership. | An accepted common assembly and Noether sea record. |
+| [`mapping-one-nature-many-theories`](../mapping-one-nature-many-theories/priorities.md) | Retain unranked. | Completed bridge decisions, comparison boundaries, and promotion provenance. | A new operator-ratified cross-theory bridge decision. |
+| [`mapping-open-problems`](../mapping-open-problems/priorities.md) | Retain unranked. | Deployed-paper classification and future revision boundary. | A concrete bounded paper revision. |
+
+Plainly: these directories stay active as addresses and ownership boundaries, not as work waiting to be done. A later task must satisfy the stated trigger before entering any queue.
+
 ## Dormant-Deferred Archive
 
-The following 22 children are preserved as archived work. They are excluded from the active inventory, and archive policy excludes them from numeric ranking, the active discussion queue, and tracker-metadata synchronization. The three stale numeric-table exceptions are identified above; historical tracker metadata does not reactivate a directory.
+The following 26 children are preserved as archived work. They are excluded from the active inventory, and archive policy excludes them from numeric ranking, the active discussion queue, and tracker-metadata synchronization. Historical tracker metadata does not reactivate a directory. The Archie service MCP adapter is a component of the archived `archie` owner, not a separate application or inventory owner.
 
 | Archived child | Parked role |
 | --- | --- |
@@ -93,15 +112,19 @@ The following 22 children are preserved as archived work. They are excluded from
 | [`amplituhedron`](../dormant-deferred/amplituhedron/amplituhedron.md) | External-watch comparison of positive-geometry scattering methods; no active queue or score. |
 | [`app-animator`](../dormant-deferred/app-animator/priorities.md) | Parked Animator runtime, scene-authoring, and record-visualization program. |
 | [`app-causal-delay-feedback`](../dormant-deferred/app-causal-delay-feedback/priorities.md) | Completed learner app plus deferred advanced Roots and path-history teaching material. |
+| [`app-ios`](../dormant-deferred/app-ios/priorities.md) | Parked iPhone/iPad reader release and post-v1 app queue; release remains deferred until theory closure and an explicit operator decision. |
 | [`app-lattice-lab`](../dormant-deferred/app-lattice-lab/priorities.md) | Accepted Lattice Lab teaching app and its parked follow-on queue. |
 | [`app-lorentz-geometry`](../dormant-deferred/app-lorentz-geometry/priorities.md) | Deferred Lorentz-geometry teaching app. |
-| [`archie`](../dormant-deferred/archie/priorities.md) | Parked persona, interface product, and service-platform architecture. |
+| [`archie`](../dormant-deferred/archie/priorities.md) | Parked persona, interface product, service-platform architecture, and service-owned MCP protocol adapter. |
 | [`cosmic-civics`](../dormant-deferred/cosmic-civics/priorities.md) | Exploratory movement, map, and claims-registry concepts; no rights or implementation authority. |
+| [`dark-sector`](../dormant-deferred/dark-sector/priorities.md) | Parked speculative candidate-assembly and dark-visible re-entry watchlist. |
 | [`electrodynamics`](../dormant-deferred/electrodynamics/priorities.md) | Parked electrodynamics recovery and primitive-dyon brainstorm; no executable queue. |
 | [`electron-orbitals`](../dormant-deferred/electron-orbitals/priorities.md) | Deferred atomic/quantum note. |
 | [`epr-bell`](../dormant-deferred/epr-bell/priorities.md) | Bell-assumption evidence audit and route adjudication, deferred pending accepted braid source and analyzer-response records. |
 | [`information-relay-machines`](../dormant-deferred/information-relay-machines/priorities.md) | Deferred terminology and transduction-chain concept. |
 | [`lissajou`](../dormant-deferred/lissajou/priorities.md) | Deferred phase-closure candidate. |
+| [`mapping-cosmology`](../dormant-deferred/mapping-cosmology/priorities.md) | Parked cosmology transfer-function and observer-interface program; 14 unresolved rows preserved. |
+| [`mapping-nuclear-atomic-molecular`](../dormant-deferred/mapping-nuclear-atomic-molecular/priorities.md) | Parked nuclear-to-molecular recovery program; three unresolved rows and retained evidence preserved. |
 | [`media-comics`](../dormant-deferred/media-comics/priorities.md) | Deferred comic-production ideas. |
 | [`media-images`](../dormant-deferred/media-images/priorities.md) | Deferred image-production ideas. |
 | [`media-posts`](../dormant-deferred/media-posts/priorities.md) | Deferred short-form publication ideas. |
@@ -110,7 +133,7 @@ The following 22 children are preserved as archived work. They are excluded from
 | [`ruth-kastner`](../dormant-deferred/ruth-kastner/priorities.md) | Deferred source/interpretation packet. |
 | [`validation-gates`](../dormant-deferred/validation-gates/priorities.md) | Archived acceptance-intersection packet retained as reference, not a live ranked owner. |
 
-Plainly: all 22 folders are parked. An old active label or rank inside a parked file does not return it to the active inventory.
+Plainly: all 26 top-level folders are parked. The nested MCP adapter remains preserved with Archie service contracts and tests, but it is not a website application or a separate workstream owner. An old active label or rank inside a parked file does not return it to the active inventory.
 
 The pre-split monolith remains recoverable from Git history; it is not a live archive packet.
 

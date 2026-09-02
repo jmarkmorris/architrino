@@ -1,0 +1,158 @@
+{
+  "schema": "architrino.operations-public-security-policy.v1",
+  "status": "accepted",
+  "effectiveDate": "2026-09-01",
+  "scope": [
+    "public static web payload",
+    "repository dependency manifests and vendored browser libraries",
+    "GitHub Actions supply chain",
+    "architrino.com DNS, certificate, and mail-security boundaries"
+  ],
+  "dependencyPolicy": {
+    "manifest": "package.json",
+    "lockfile": "package-lock.json",
+    "lockfileVersion": 3,
+    "directDependencies": {
+      "mermaid": "11.16.1"
+    },
+    "lockedProductionEntries": 111,
+    "versionRule": "exact_direct_versions_and_lockfile_integrity",
+    "auditCommand": "npm audit --package-lock-only --audit-level=moderate --omit=dev",
+    "auditThreshold": "moderate",
+    "reviewAutomation": [
+      "weekly npm Dependabot review",
+      "content-integrity audit on every push and pull request"
+    ]
+  },
+  "vendoredAssets": [
+    {
+      "name": "Mermaid",
+      "version": "11.16.1",
+      "license": "MIT",
+      "path": "vendor/mermaid/mermaid.min.js",
+      "sha256": "14fdd79d3b02a877a6b98bf9fa8bfc7bacd7d6de3dde49fb95319c45cc7b1a34",
+      "provenance": "vendor/mermaid/SOURCE.md",
+      "disposition": "accepted_package_copy_with_trailing_whitespace_normalized_and_both_hashes_recorded"
+    },
+    {
+      "name": "markdown-it",
+      "version": "13.0.2",
+      "license": "MIT",
+      "path": "vendor/markdown-it/markdown-it.min.js",
+      "sha256": "819df17b405d089a653621d64caae6e80199c9d3f2df88c9299a8521ffbb848c",
+      "provenance": "embedded version and license header plus reader attribution",
+      "disposition": "accepted_frozen_legacy_byte; next update must add package-integrity provenance"
+    },
+    {
+      "name": "Three.js",
+      "version": "r161",
+      "license": "MIT",
+      "path": "vendor/three/three.module.js",
+      "sha256": "e7348ab8c7bf7a41f7afc5fe503c20a0ed090d9536aacf1ee975d7aaee24d394",
+      "provenance": "embedded revision and license header plus reader attribution",
+      "disposition": "accepted_frozen_legacy_byte; next update must add package-integrity provenance"
+    },
+    {
+      "name": "Three.js CSS2DRenderer",
+      "version": "r161-compatible",
+      "license": "MIT",
+      "path": "vendor/three/CSS2DRenderer.js",
+      "sha256": "a250b2c5a60986c17eae348412feb09ce0acf498c1a6d3300593bdbf2f797380",
+      "provenance": "co-bundled with Three.js r161 plus reader attribution",
+      "disposition": "accepted_frozen_legacy_byte; update only with the matching Three.js revision"
+    },
+    {
+      "name": "KaTeX",
+      "version": "0.16.11",
+      "license": "MIT",
+      "path": "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js",
+      "sha256": "e6bfe5deebd4c7ccd272055bab63bd3ab2c73b907b6e6a22d352740a81381fd4",
+      "provenance": "embedded version plus bundled license and reader attribution",
+      "disposition": "accepted_frozen_shared_web_and_reader_asset; next update must verify JavaScript, CSS, fonts, and license together"
+    },
+    {
+      "name": "Periodic-Table-JSON",
+      "version": "unversioned tracked snapshot",
+      "license": "CC BY-SA 3.0 with per-image attribution obligations",
+      "path": "vendor/periodic-table-json/periodic-table.json",
+      "sha256": "df2c43ec13e2be1c7ea07215057f3cddef224fd0f7dc6f0ad712d9ffdcfcc360",
+      "provenance": "reader attribution and per-element source metadata",
+      "disposition": "accepted_data_only_frozen_snapshot; preserve ShareAlike and per-image attribution on update"
+    }
+  ],
+  "thirdPartyRuntimePolicy": {
+    "automaticRemoteExecutableCode": "prohibited",
+    "dynamicScriptInjection": "prohibited",
+    "remoteExecutableAndMediaTags": "prohibited",
+    "explicitExternalNavigation": "allowed_after_user_selection",
+    "externalDataLookup": "allowed_only_by_the_versioned_observability_policy",
+    "currentException": "PubChem formula lookup after disclosed molecule-form submission; data response only, not executable code"
+  },
+  "githubActionsPolicy": {
+    "referenceRule": "full_length_commit_sha_with_major_version_comment",
+    "reviewAutomation": "weekly github-actions Dependabot review",
+    "pins": {
+      "actions/checkout": "11d5960a326750d5838078e36cf38b85af677262",
+      "actions/setup-node": "49933ea5288caeca8642d1e84afbd3f7d6820020",
+      "actions/upload-pages-artifact": "7b1f4a764d45c48632c6b24a0339c27f5614fb0b",
+      "actions/configure-pages": "983d7736d9b0ae728b81ab479565c72886d7745b",
+      "actions/deploy-pages": "d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e"
+    }
+  },
+  "publicControls": {
+    "contentSecurityPolicy": {
+      "observed": "absent_from_live_response",
+      "disposition": "required_release_gate_followup",
+      "owner": "OPS-003",
+      "preconditions": [
+        "inventory and remove remaining inline executable blocks",
+        "prove Mermaid, KaTeX, workers, fonts, images, and local data under the candidate directives",
+        "deploy as a real response header on a header-capable host or prove a static meta policy without weakening it"
+      ],
+      "currentCompensatingControl": "no automatically loaded remote executable code"
+    },
+    "strictTransportSecurity": {
+      "observed": "absent_from_live_response",
+      "disposition": "deferred_until_response_header_control",
+      "preconditions": [
+        "retain GitHub Pages HTTPS enforcement and HTTP-to-HTTPS redirects",
+        "prove every intended subdomain is HTTPS-ready before includeSubDomains",
+        "do not preload before mail and subdomain ownership are reviewed"
+      ]
+    },
+    "pagesDomainVerification": {
+      "observed": "public_verification_txt_absent",
+      "disposition": "operator_action_required",
+      "action": "verify architrino.com in the jmarkmorris GitHub account and retain the issued TXT record",
+      "verification": "GitHub account shows verified and the exact TXT record resolves publicly"
+    },
+    "dnssec": {
+      "observed": "no_parent_ds_record",
+      "disposition": "operator_action_recommended",
+      "action": "enable DNSSEC through IONOS only with provider-generated keys and a documented disable rollback",
+      "verification": "parent DS and authoritative DNSKEY validate from two independent resolvers"
+    },
+    "caa": {
+      "observed": "no_caa_record",
+      "disposition": "deferred_until_complete_ca_allowlist_is_confirmed",
+      "reason": "the current certificate is issued by Let's Encrypt, but constraining issuance from one observed certificate could break an unannounced GitHub Pages CA path",
+      "verification": "GitHub-supported issuer set is documented, the chosen CAA values authorize every required path, and renewal succeeds"
+    },
+    "mailSecurity": {
+      "spf": {
+        "observed": "v=spf1 include:_spf-us.ionos.com ~all",
+        "disposition": "accepted_softfail_pending_sender_inventory"
+      },
+      "dmarc": {
+        "observed": "IONOS-managed v=DMARC1; p=none; through _dmarc CNAME",
+        "disposition": "monitoring_only_pending_report_mailbox_and_sender_alignment",
+        "action": "inventory legitimate senders and a monitored report mailbox before moving to quarantine or reject"
+      },
+      "dkim": {
+        "observed": "s1-ionos and s2-ionos selectors resolve to public keys; s42582890 CNAME exists but its target key was not returned",
+        "disposition": "operator_account_and_live_message_verification_required",
+        "action": "confirm IONOS DKIM is active and inspect a delivered message for aligned DKIM before strengthening DMARC"
+      }
+    }
+  }
+}

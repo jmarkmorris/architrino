@@ -8,6 +8,8 @@ This guide is the canonical reader-facing source for Architrino brand identity a
 
 [UI Guidelines](ui-guidelines.md) owns the application of this identity inside controls, panels, navigation, focus states, data displays, and accessibility behavior. Brand assets implement this guide; they do not independently redefine it.
 
+The [Brand Visual Identity Reference](../../../../brand-visual-identity.html) is the supporting visual reference for these decisions. It demonstrates the palette, marks, fades, and public-facing examples while this guide remains the authority for brand identity and marketing presentation.
+
 ## Brand Position
 
 Architrino is an open, inspectable research environment for the Architrino Assembly Architecture. Its public presentation should communicate five qualities:
@@ -132,7 +134,7 @@ Plainly: the monthly review asks whether every public doorway still looks like A
 
 ## Related Guides
 
-- [Brand Visual Identity Guide](../../../../brand-visual-identity.html)
+- [Brand Visual Identity Reference](../../../../brand-visual-identity.html)
 - [UI Guidelines](ui-guidelines.md)
 - [About the Webapp](about-the-webapp.md)
 - [About Architrino](about-architrino.md)

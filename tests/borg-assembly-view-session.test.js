@@ -6,8 +6,13 @@ import {
   assessBorgAssemblyViewComparison,
   createBorgAssemblyViewPresentation,
   createBorgAssemblyViewSession,
+  createBorgAssemblyViewSessionFromManifest,
   resolveBorgAssemblyViewTrail,
 } from "../src/apps/borg/BorgAssemblyViewSession.js";
+import {
+  ASSEMBLY_VIEW_COLLECTION_SCHEMA,
+  createNormalizedAssemblyViewRecordCarriers,
+} from "../src/apps/shared/AssemblyViewRecordCarriers.mjs";
 
 function record(runId, overrides = {}) {
   const claimGrade = overrides.claimGrade ?? "chart-hypothesis";
@@ -31,6 +36,9 @@ function record(runId, overrides = {}) {
     worldline.evolvedSegmentCount = 1;
     worldline.historyFingerprint = `${runId}-fingerprint`;
   }
+  const carriers = createNormalizedAssemblyViewRecordCarriers({
+    vectors: overrides.vectors ?? [],
+  });
   return {
     schema: "assembly-view-record.v0",
     sourceId: overrides.sourceId ?? runId,
@@ -46,6 +54,10 @@ function record(runId, overrides = {}) {
       generatingSpec: "tests/borg-assembly-view-session.test.js",
       date: "2026-07-20",
     },
+    ...(!overrides.withoutCarriers && {
+      recordFrame: overrides.recordFrame ?? carriers.frame,
+      vectorOverlays: carriers.vectorOverlays,
+    }),
     window: overrides.window ??
       { start: 0, end: 2, delayHorizon: 0.75, sampleInterval: 0.25 },
     worldlines: [worldline],
@@ -104,13 +116,62 @@ test("collection filters consume only source-carried values and preserve source 
   assert.throws(() => session.setFilters({ computedResidual: "small" }), /not source-carried/);
 });
 
-test("comparison does not advance because v0 has no ratified time and unit transforms", () => {
-  const session = createBorgAssemblyViewSession([record("left"), record("right")]);
+test("comparison does not advance when either sealed record lacks ratified transforms", () => {
+  const session = createBorgAssemblyViewSession([
+    record("left"),
+    record("right", { withoutCarriers: true }),
+  ]);
   const result = session.assessComparison("right");
   assert.equal(result.compatible, false);
   assert.equal(result.code, "missing-ratified-comparison-transforms");
   assert.equal(result.message, BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS.comparisonTransforms);
   assert.deepEqual(result, assessBorgAssemblyViewComparison(session.records[0], session.records[1]));
+});
+
+test("comparison uses declared time and unit transforms and reports canonical overlap", () => {
+  const carriers = createNormalizedAssemblyViewRecordCarriers();
+  const shiftedFrame = {
+    ...carriers.frame,
+    toComparison: { timeScale: 2, timeOffset: -1, lengthScale: 2 },
+    fieldSpeed: 1,
+  };
+  const session = createBorgAssemblyViewSession([
+    record("left"),
+    record("right", { recordFrame: shiftedFrame, window: { start: 0.5, end: 1.5, delayHorizon: 0.75, sampleInterval: 0.25 } }),
+  ]);
+  const result = session.assessComparison("right");
+
+  assert.equal(result.compatible, true);
+  assert.equal(result.code, "declared-comparison-transform-compatible");
+  assert.deepEqual(result.overlap, { start: 0, end: 2 });
+});
+
+test("external collection manifest preserves declared source order and exact identities", () => {
+  const second = record("second", {
+    assemblyId: "asm-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    modelRevisionSha256: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  });
+  const first = record("first");
+  const manifest = {
+    schema: ASSEMBLY_VIEW_COLLECTION_SCHEMA,
+    collectionId: "collection-fixture",
+    title: "Collection fixture",
+    records: [second, first].map((row, sourceIndex) => ({
+      sourceId: row.sourceId,
+      assemblyId: row.assemblyId,
+      modelRevisionSha256: row.modelRevisionSha256,
+      recordSha256: `${sourceIndex + 1}`.repeat(64),
+      recordUrl: `records/${row.sourceId}.json`,
+    })),
+  };
+  const session = createBorgAssemblyViewSessionFromManifest(manifest, [first, second]);
+
+  assert.deepEqual(session.records.map((entry) => entry.sourceId), ["second", "first"]);
+  assert.equal(session.collection.collectionId, "collection-fixture");
+  assert.throws(
+    () => createBorgAssemblyViewSessionFromManifest(manifest, [first]),
+    /second was not loaded/,
+  );
 });
 
 test("presentation labels chart and evolved records distinctly without upgrading evidence", () => {
@@ -123,6 +184,23 @@ test("presentation labels chart and evolved records distinctly without upgrading
   assert.equal(evolvedPresentation.claimLabel, "Evolved record");
   assert.equal(evolvedPresentation.provenance.evidenceStatus, "canonical");
   assert.match(evolvedPresentation.authorityNotice, /create no evidence/);
+});
+
+test("presentation exposes source-owned field speed and kinematic vector rows", () => {
+  const entry = createBorgAssemblyViewSession([record("vectors", {
+    vectors: [{
+      id: "pair-1:kinematic-spin",
+      kind: "kinematic-spin",
+      worldlineIds: ["vectors-source"],
+      vector: { x: 0, y: 0, z: 1 },
+      source: "fixture declaration",
+    }],
+  })]).selected;
+  const presentation = createBorgAssemblyViewPresentation(entry);
+
+  assert.equal(presentation.fieldSpeed, 1);
+  assert.equal(presentation.vectorOverlays.length, 1);
+  assert.equal(presentation.vectorOverlays[0].kind, "kinematic-spin");
 });
 
 test("presentation exposes individual constituent and worldline identities for nonbinary prescribed records", () => {

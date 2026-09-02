@@ -32,7 +32,7 @@
     "localColorSingletClosureSupportPath": "scripts/nuclear-atomic/local-color-singlet-closure-support-retained-evidence.v1.json",
     "asymptoticFieldAuditPath": "scripts/nuclear-atomic/asymptotic-field-audit-retained-evidence.v1.json",
     "finiteRangeResidualPath": "scripts/nuclear-atomic/finite-range-residual-retained-evidence.v1.json",
-    "priorityContextPath": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+    "priorityContextPath": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
   },
   "acceptedInputRows": {
     "local_color_singlet_closure_support": "scripts/nuclear-atomic/local-color-singlet-closure-support-retained-evidence.v1.json",

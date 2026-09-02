@@ -1,0 +1,85 @@
+{
+  "schema": "architrino.operations-observability-policy.v1",
+  "status": "accepted",
+  "effectiveDate": "2026-09-02",
+  "scope": [
+    "public web applications",
+    "public static operations utilities",
+    "iOS reader application",
+    "public deployment diagnostics",
+    "future client analytics collectors"
+  ],
+  "analytics": {
+    "mode": "disabled_no_collector",
+    "collectors": [],
+    "consent": "explicit_opt_in_before_first_event",
+    "rawEventRetentionDays": 0,
+    "aggregateRetentionDays": 0,
+    "crossSiteTracking": false,
+    "deviceFingerprinting": false,
+    "saleOrAdvertisingUse": false
+  },
+  "websiteStatisticsUtility": {
+    "classification": "public_static_operations_utility",
+    "productApplicationCatalogue": false,
+    "publicSearchDiscovery": false,
+    "accessControl": "none",
+    "route": "website-stats.html"
+  },
+  "allowedOperationalEvidence": [
+    "GitHub Actions build and deployment logs",
+    "GitHub Pages service status and response checks",
+    "operator-run local browser performance profiles",
+    "source-bound aggregate deployment measurements"
+  ],
+  "prohibitedClientFields": [
+    "URL query strings",
+    "URL fragments",
+    "search text",
+    "molecule names or formulas",
+    "equation or document content",
+    "clipboard content",
+    "local file names or contents",
+    "local-storage or session-storage values",
+    "private prompts or media",
+    "account identifiers",
+    "full IP addresses",
+    "raw user-agent strings"
+  ],
+  "externalDataServices": [
+    {
+      "service": "PubChem PUG REST",
+      "origin": "https://pubchem.ncbi.nlm.nih.gov",
+      "classification": "explicit_external_data_lookup_not_analytics",
+      "activation": "explicit_form_submit",
+      "transmitted": [
+        "molecular formula"
+      ],
+      "prohibited": [
+        "optional molecule name",
+        "shared-link automatic lookup",
+        "analytics identifiers"
+      ]
+    }
+  ],
+  "negativeControls": [
+    "analytics sending defaults to false",
+    "unavailable preference storage fails closed",
+    "known analytics collectors, hidden-send APIs, dynamic scripts, and remote executable URLs are absent from authored app and shared runtime sources",
+    "remote executable and media tags are absent from authored app HTML",
+    "Website Statistics remains disconnected from a live collector",
+    "Website Statistics remains outside product-application catalogues and public scene search",
+    "shared molecule links do not activate PubChem",
+    "PubChem use requires the disclosed Add action"
+  ],
+  "futureCollectorGate": [
+    "accepted purpose and minimal event schema",
+    "provider and data-processing review",
+    "visible opt-in before the first event",
+    "working revocation and deletion behavior",
+    "explicit raw and aggregate retention periods",
+    "source scan and browser network negative tests",
+    "OPS-011 security disposition",
+    "operator approval of the provider and public disclosure"
+  ]
+}

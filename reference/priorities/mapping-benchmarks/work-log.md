@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — XTM-001 NIST finite-height optical-clock benchmark
+
+Completed XTM-001 in [Gravitational Redshift And Clock Tests](gravitational-redshift-clock-tests.md) with the source-bound 2010 Chou et al. NIST optical-clock record. The packet records the 33 cm apparatus displacement, $(4.1\pm1.6)\times10^{-17}$ measured fractional-frequency change, 75 m phase-stabilized link, measurement windows, and independently surveyed height comparison.
+
+The benchmark now names one required source/clock/path/receiver/Noether-sea record, defines the difference-in-differences prediction and normalized acceptance residual, freezes sign, zero-height, configuration-swap, and transport-control predicates, and fails closed as `blocked_missing_native_clock_transport_record`. No native clock carrier, gravitational-redshift recovery, effective-metric result, score change, generated artifact, or reader-facing corpus claim follows from completing the specification.
+
 ### 2026-08-22 Shared-record strong-field electromagnetic benchmark
 
 - Added a focused benchmark that binds photon--photon scattering, vacuum birefringence, amplitude-dependent polarization and propagation, electron--positron pair production, and pair backreaction to one versioned source, sea, boundary, photon, pair, detector, and provenance record.

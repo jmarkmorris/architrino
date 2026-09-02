@@ -1,5 +1,79 @@
 # Field-Speed Ceiling Work Log
 
+## 2026-09-02 — FSC-006b/FSC-005 independent complete-lobe review incorporated
+
+- Incorporated the [independent complete-lobe and returning-event review](independent-complete-lobe-returning-event-review-2026-09-02.md) without editing the independent artifact. The sufficient complete-lobe theorem, returning-event measure typing, prescribed-onset spatial two-cycle, and narrow selector exclusion survive.
+- Repaired the inward-cap partner-root proof, added the inactive same-transmitter cap family to the complete census, stated the post-turn continuation criterion, assigned the cap-start endpoint to the event carrier, and connected local integrability to the no-remainder-atom event guard.
+- Resolved the ceiling-exit self-family conflict in favor of the existing inactive-family rule. The earlier atom-delivery and atomic-projection account was withdrawn because no such event is declared.
+- Corrected the cap-duration reset to $u_{n+1}=L_{n+1}=G(K,u_n)$ and the two malformed $L_{\mathrm{out}}$ macros. Added the exact lobe period $P=2Ku/(K-2u)$ and proved that the shrinking reset sequence approaches zero over infinite absolute time rather than accumulating in finite time.
+- Calibrated $K\ge7u_*/2$ explicitly as a conservative sufficient bound, not a necessary or physical threshold. The review's lower-ratio integrations remain measured falsifier searches and do not strengthen the theorem's proved domain.
+- The next rigorous FSC-006b/FSC-005 object is the future-equivalence quotient theorem for permanently inactive owned records. No ceiling, autonomous onset, literal all-past periodic orbit, canonical law, or cross-lane promotion was adopted.
+
+## 2026-09-02 — FSC-006b/FSC-005 two-lobe return map and trigger audit
+
+- Added the [two-lobe return-map and autonomous-trigger audit](two-lobe-return-map-and-autonomous-trigger-audit.md). The minimal crossing state has no finite autonomous positive-onset transition because its received clocks and admission ledger stay frozen on the exact zero-ledger outgoing plateau.
+- Strengthened the supplied-onset result: $K\ge7u_*/2$ is sufficient for a complete brake--turn--inward-cap--coincidence lobe. The proof reaches inward ceiling at positive separation, verifies local integrability of the ordinary cap-approach row, and recovers the exact-mirror event geometry.
+- Derived the prescribed-onset return map. Repeating one onset gives a reflected spatial two-cycle returning position and velocity after two lobes, but it does not establish periodicity of the literal all-past retained state.
+- Tested the direct cap-duration reset $u_{n+1}=L_{n+1}=G(K,u_n)$. For $K/u_n\ge6$, the exact cap ratio lies strictly between zero and one, so the onset shrinks and has no positive fixed cycle.
+- Audited the existing FSC wake, boundary, event, and conditional action interfaces. None supplies a positive maturity balance or event functional $u=K\Phi(L/K)$, so the autonomous-onset route is closed negatively at current FSC authority while the multivalued prescribed-onset relation remains.
+- No autonomous trigger, selected continuation, full-state breather, field-speed ceiling, Master Equation change, wake law, action balance, conservation account, or physical realization was adopted or promoted.
+
+## 2026-09-02 — FSC-local autonomous braking and breather audit
+
+- Reconciled the older collinear-breather feasibility note with the later delayed-ignition theorem. The earlier no-breather claim is now limited to the minimal autonomous crossing state that forbids an inactive channel from bootstrapping its own first crossing.
+- Derived the first integral $2m-m^2/2=K(1/u_*-1/y)$ for the supplied-onset braking chart and proved the sufficient condition $K\ge3u_*$ for a smooth zero-speed turnaround at positive separation before the active root leaves the stored straight-source interval.
+- Recorded the conditional return argument: the attractive partner root reverses the pair and, absent an intervening untyped stratum, returns it to the next coincidence. Repeating an equal onset after the reflected event gives a formal spatial cycle but is not selected by the minimal autonomous wake state.
+- No onset trigger, autonomous breather, field-speed ceiling, Master Equation change, event law, conservation account, or physical realization was adopted or promoted.
+
+## 2026-09-02 — FSC-only scope restored
+
+- Removed the premature Field-Speed threshold-mechanism insertion from `master-equation-closure/brainstorming.md`.
+- Kept the emergent-bound and turnaround exploration only in this Field-Speed lane and made its status explicit: FSC-local comparison work, no MEC ownership, no Master Equation change, and no reader-facing or canonical promotion without a separate operator decision.
+- No queue status, scientific claim grade, or accepted law changed.
+
+## 2026-09-02 — Closed-ceiling straight-trace isochron corollary recorded
+
+- Added an explicit corollary to the exact-mirror restart: at coincidence the retained partner cap arrives as one owned nonordinary family; on the exact straight-through right trace, each receiver thereafter remains on only the frozen $s=0$ partner endpoint, every $s<0$ partner emission fails the causal equality, and every $s>0$ partner emission remains unreceived.
+- Kept the conclusion trace-conditional. The delayed-ignition branches still activate exactly one new ordinary post-event partner root per receiver after any selected positive waiting time, so the corollary does not select straight passage or close FSC-006b/FSC-005.
+- Captured the strict-domain comparison in `brainstorming.md`: the bare open constraint $\|\mathbf V\|<c_f$ has no normal-cone braking response at any admitted state, while a prescribed constant-sub-field passage develops a $t^{-2}$ post-coincidence partner contribution and does not establish a finite turnaround.
+- No ceiling, strict-domain alternative, event law, selection rule, braking law, rebound, or physical realization was adopted.
+
+## 2026-09-02 — MEC-007 stationary threshold intake verified
+
+- Updated the Field-Speed lane's intake after MEC-007 completed its bounded stationary mirror scope. The verified incoming history reaches $u=1$ at positive present separation and delayed range with one simple inward partner root per ordered channel, zero positive-delay self roots, and a complete regular-margin ledger; the unchanged open sharp-law superfield extension remains obstructed by a non-locally-finite newborn self-root measure.
+- FSC calculations may now consume this one verified activation history. The result does not derive or adopt a speed ceiling, select a boundary response, prove generic saturation, supply conservation, or remove FSC-006b/FSC-007 from the prerequisites for FSC-008.
+
+## 2026-09-02 — FSC-013 circular-binary census-stability neighborhood completed
+
+- Added [Circular-Binary Census-Stability Neighborhood](circular-binary-census-stability-neighborhood.md) under packet identifier `fsc_circular_binary_census_stability_neighborhood/v1`.
+- Defined a dimensionless $W^{2,\infty}$ history norm around the equal-speed FSC-010 circle and intersected its ball with the ceiling-admissible path class, avoiding super-ceiling histories that a generic open norm ball would include.
+- Derived one explicit sufficient radius from front/back causal-gap signs, minimum base range, received-direction perturbation, root-factor floors, and nonzero-curvature margin. Its normalized diagnostic value is approximately $0.06825864457559688$.
+- Proved one partner root per ordered channel, delay bracket $[R_\ast D,3R_\ast D]$, range floor $R_\ast\cos(3D/2)$, $D_t,D_r\ge[1+\sin(D/2)]/2$, a root-displacement bound, and equal-time collision exclusion throughout the tube.
+- Proved structural self-root exclusion: ceiling equality on a self channel requires a straight unit-speed chord, while every history in the declared acceleration tube retains nonzero curvature.
+- Removed FSC-013 from the live queue and updated FSC-011: FSC-010 and FSC-013 are complete, but the history-to-ledger Lipschitz and coupled contraction theorem remains open through FSC-007 or a specialized proof.
+- Validation passed on 2026-09-02: priority ranking alignment (30 active owners and 26 ranked rows), strict content validation (0 errors and 0 warnings), strict scene-graph checking (0 errors and 0 warnings), and `git diff --check`.
+- This is a local root-census theorem only. It proves no coupled delayed-history solution, continuation, retention, capture, perturbation stability, conservation, physical binary, ceiling adoption, or closure-score advancement.
+
+## 2026-09-02 — FSC-015 circular-binary secondary theorem bundle completed
+
+- Added [Circular-Binary Secondary Theorems](circular-binary-secondary-theorems.md) under packet identifier `fsc_circular_binary_secondary_theorems/v1`.
+- Proved that no strictly interior-speed all-past antipodal two-label uniform circle closes because the complete unprojected partner row has a strictly positive forward component.
+- Proved that orthogonal-axis translation is the only rigid uniform translation preserving constant label speeds, then combined that exhaustiveness lemma with the existing negative axial residual to exclude every nonzero rigid uniformly translating constant-boundary-speed circular pair.
+- Derived $\xi_\lambda=\lambda-\lambda^3/2+13\lambda^5/24+O(\lambda^7)$ and $R_{\ast,\lambda}=K(1-\lambda^2/2+7\lambda^4/8+O(\lambda^6))/(4c_a^2)$.
+- Proved the exact chord-exchange condition that forces $D_t=D_r$, while retaining equality as a necessary diagnostic rather than a sufficient symmetry proof.
+- Put the general-$\lambda$ scalar root into interval-Newton-ready form: the exact first image from $[0,\lambda]$ is strictly interior and a directed-rounding implementation must verify that inclusion at declared precision; the Jacobian floor is one, root sensitivity lies in $(0,1)$, the circular $D_t,D_r$ factors stay uniformly positive, and the inverse root-angle parameterization avoids repeated root solves.
+- Independent normalized diagnostics reproduced the $O(\lambda^6)$ series remainder and the helical $r^2D_t$ invariant at four drift values. These diagnostics check the formulas but do not independently establish the proposed response law.
+- Removed FSC-015 from the ranked queue and renumbered following items. No coupled delayed-history solution, capture, stability, conservation, action, physical binary, field-speed ceiling, or closure-score advancement was claimed.
+
+## 2026-09-02 — FSC-016 Sections 12--14 independent review completed
+
+- Added [Independent Review of Sections 12--14](sections-12-14-independent-review-2026-09-02.md) under identifier `FSC-016-PPAI-2026-09-02`; the reviewed mathematics manuscript was not edited.
+- Independently verified the proposed-response braid criterion, winding/radius and phase arithmetic, homothetic scale selection, normalized Dottie-derived binary values, raw cycle diagnostic, and the conditional action/energy boundary.
+- Recorded two required specification repairs: separate the exact field-speed equality from inequality margins and state one- versus two-sided tangents; state the nonlinear-return-map hypotheses and correct the local-stability consequence of a reduced spectral radius below one.
+- Recorded the first mandatory infinite-sea obligation: local finiteness does not control an inverse-square three-dimensional tail, so a Noether-sea construction needs a declared exhaustion, far-field cancellation estimate, convergence mode, and boundary/order-independence proof.
+- Corrected the inverse-problem count from an ambiguous twelve conditions to six scalar inequalities plus twelve scalar perpendicular-residual components before symmetry reduction.
+- Removed FSC-016 from the ranked live queue and marked its review prerequisite complete. FSC-017 remains blocked on FSC-011; a verified-numerics route also consumes FSC-014. No ceiling, response law, event law, braid, action unit, energy account, stability result, Noether-sea model, or physical claim was adopted.
+
 ## 2026-07-30 — Workstream created
 
 - The operator requested a separate behind-the-scenes investigation of a primitive field-speed ceiling after the MEC-007 post-threshold sharp-law obstruction review.

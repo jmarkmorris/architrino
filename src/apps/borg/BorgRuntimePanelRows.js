@@ -1,13 +1,20 @@
 export function createBorgDeploymentFieldRows({ manifest, state, retentionPolicy }) {
   const budget = state.liveRunBudget;
   const calibration = state.measuredRunPresetCalibration;
+  const deployment = manifest.deploymentBudget;
   return [
-    ["deploymentBudgetStatus", manifest.deploymentBudget.deploymentBudgetStatus],
-    ["bundleSizeBytes", manifest.deploymentBudget.bundleSizeBytes ?? "not-measured"],
-    ["staticAssetTransferBytes", manifest.deploymentBudget.staticAssetTransferBytes ?? "not-measured"],
-    ["browserHeapBudget", manifest.deploymentBudget.browserHeapBudget ?? "not-measured"],
-    ["gpuMemoryBudget", manifest.deploymentBudget.gpuMemoryBudget ?? "not-measured"],
-    ["eomSolverThroughput", "not-measured"],
+    ["deploymentBudgetStatus", deployment.deploymentBudgetStatus],
+    ["deploymentBudgetContract", deployment.contractId],
+    ["bundleSizeBytes", deployment.bundleSizeBytes.measuredBytes],
+    ["staticAssetTransferBytes", deployment.staticAssetTransferBytes.measuredBytes],
+    ["monthlyBandwidthEstimateBytes", deployment.githubPagesBandwidthEstimate.estimatedMonthlyBytes],
+    ["browserHeapBytes", deployment.browserHeapBudget.measuredBytes],
+    ["gpuSurfaceLowerBoundBytes", deployment.gpuMemoryBudget.measuredMinimumBytes],
+    ["browserStorageBytes", deployment.browserStorageBudget.measuredBytes],
+    ["actionsArtifactBytes", deployment.actionsArtifactBudget.measuredAggregateBytes],
+    ["actionsArtifactStatus", deployment.actionsArtifactBudget.status],
+    ["generatedSiteBytes", deployment.generatedOutputBudget.siteMeasuredBytes],
+    ["eomSolverThroughput", deployment.nativeSolverThroughput.status],
     ["liveRunBudget", budget.schema],
     ["liveBudgetStatus", budget.status],
     ["lastChunkMs", budget.lastChunkWallTimeMs ?? "not-measured"],

@@ -3,6 +3,12 @@ import { libraryVariantSetLabel } from "./BorgLibraryVariants.mjs";
 import { createSpherePreview } from "./BorgSpherePreview.js";
 import { renderBorgScientificStatus } from "../BorgScientificStatusView.mjs";
 import { renderBorgPlatonicRelationships } from "../BorgPlatonicRelationshipsView.mjs";
+import { createStandaloneAppNavigationRuntime } from "../../navigator/StandaloneAppNavigationRuntime.js";
+import {
+  BORG_SELECTION_SCHEMA,
+  buildBraidSearchAnalysisHref,
+  resolveBraidSearchReturnHref,
+} from "../../shared/BorgSelectionNavigation.mjs";
 
 const $ = (id) => document.getElementById(id);
 const element = (tag, text, className) => { const node = document.createElement(tag); if (text != null) node.textContent = text; if (className) node.className = className; return node; };
@@ -11,6 +17,48 @@ const state = { params: new URLSearchParams(location.search), version: 0, contro
 const previewCache = new Map();
 const api = "/api/borg/library";
 let searchTimer;
+
+const returnTo = resolveBraidSearchReturnHref(state.params.get("returnTo"), location);
+if (returnTo) {
+  $("borg-library-return-to-search").href = returnTo;
+  $("borg-library-return-to-search").hidden = false;
+} else {
+  state.params.delete("returnTo");
+}
+
+function currentLibraryHref() {
+  return `${location.pathname}${location.search}${location.hash}`;
+}
+
+function campaignReturnHref() {
+  const url = new URL(location.href);
+  url.searchParams.delete("returnTo");
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+function campaignSelection(row) {
+  return {
+    schema: BORG_SELECTION_SCHEMA,
+    braidId: row.braidId,
+    assemblyId: row.assemblyId,
+    modelRevisionSha256: row.modelRevisionSha256,
+  };
+}
+
+function updateCampaignAnalysisEntryHref() {
+  $("borg-campaign-analysis-entry").href = buildBraidSearchAnalysisHref({
+    returnTo: campaignReturnHref(),
+  });
+}
+
+function updateWorkbenchEntryHref() {
+  const params = new URLSearchParams({ libraryReturnTo: currentLibraryHref() });
+  if (returnTo) params.set("returnTo", returnTo);
+  $("borg-workbench-entry").href = `./borg.html?${params}`;
+}
+
+const navigationRuntime = createStandaloneAppNavigationRuntime({ host: $("scene-hud-tools") }).init();
+window.addEventListener("pagehide", () => navigationRuntime.destroy(), { once: true });
 
 function facetLabel(key, value) {
   if (key === "circleOccupancy" && value === "mixed") return "Both occupancy types";
@@ -46,19 +94,24 @@ function restoreControls() {
 function saveUrl(replace = false) {
   const query = state.params.toString();
   history[replace ? "replaceState" : "pushState"]({}, "", `${location.pathname}${query ? `?${query}` : ""}`);
+  updateWorkbenchEntryHref();
+  updateCampaignAnalysisEntryHref();
 }
 function changeQuery() {
   state.params.delete("cursor"); state.params.delete("assemblyId"); state.params.delete("modelRevisionSha256"); state.params.delete("recordSha256");
   saveUrl(); restoreControls(); loadResults();
 }
-function clearFilters() { state.params = new URLSearchParams(); changeQuery(); }
+function clearFilters() {
+  state.params = new URLSearchParams(returnTo ? { returnTo } : undefined);
+  changeQuery();
+}
 $("clear-filters").addEventListener("click", clearFilters);
 $("empty-reset").addEventListener("click", clearFilters);
 $("search").addEventListener("input", () => {
   clearTimeout(searchTimer); searchTimer = setTimeout(() => { state.params.set("q", $("search").value); changeQuery(); }, 200);
 });
 $("group-by").addEventListener("change", () => { state.params.set("groupBy", $("group-by").value); changeQuery(); });
-window.addEventListener("popstate", () => { state.params = new URLSearchParams(location.search); restoreControls(); loadResults(); });
+window.addEventListener("popstate", () => { state.params = new URLSearchParams(location.search); updateWorkbenchEntryHref(); restoreControls(); loadResults(); });
 
 function updatePlayback() {
   for (const id of ["play-pause", "detail-play"]) { $(id).textContent = state.playing ? "Pause previews" : "Play previews"; $(id).setAttribute("aria-pressed", String(state.playing)); }
@@ -162,6 +215,7 @@ async function loadResults() {
   $("result-count").textContent = "Loading catalog…";
   activeFilters();
   const params = new URLSearchParams(state.params); params.delete("assemblyId"); params.delete("modelRevisionSha256"); params.delete("recordSha256");
+  params.delete("returnTo");
   try {
     const data = await readJson(`${api}?${params}`); if (version !== state.version) return;
     state.response = data; renderCounts(data);
@@ -278,7 +332,14 @@ async function openInspector(row, persist = true) {
       $("inspector-facets").append(element("span", `${definition.label}: ${value}`));
       addDefinition($("facet-reasons"), `${definition.label}: ${value}`, row.reasons[key]);
     }
-    $("open-record").href = `./borg.html?${new URLSearchParams({ assemblyId: row.assemblyId, modelRevisionSha256: row.modelRevisionSha256, recordSha256: row.recordSha256 })}`;
+    const workbenchParams = new URLSearchParams({ assemblyId: row.assemblyId, modelRevisionSha256: row.modelRevisionSha256, recordSha256: row.recordSha256 });
+    if (returnTo) workbenchParams.set("returnTo", returnTo);
+    workbenchParams.set("libraryReturnTo", currentLibraryHref());
+    $("open-record").href = `./borg.html?${workbenchParams}`;
+    $("analyze-record").href = buildBraidSearchAnalysisHref({
+      selection: campaignSelection(row),
+      returnTo: campaignReturnHref(),
+    });
     $("raw-record").href = `./${row.recordUrl}`;
     if (!$("inspector").open) $("inspector").showModal();
     state.detail?.dispose(); state.detail = createSpherePreview($("inspector-canvas"), preview);
@@ -312,4 +373,4 @@ $("copy-selection").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(location.href); $("copy-status").textContent = "Exact selection link copied."; }
   catch { $("copy-status").textContent = "Copy is unavailable. The address bar contains the exact selection link."; }
 });
-restoreControls(); updatePlayback(); loadResults(); requestAnimationFrame(animate);
+restoreControls(); updateWorkbenchEntryHref(); updateCampaignAnalysisEntryHref(); updatePlayback(); loadResults(); requestAnimationFrame(animate);

@@ -5,7 +5,7 @@ import path from "node:path";
 import os from "node:os";
 import { runInNewContext } from "node:vm";
 import { spawnSync } from "node:child_process";
-import { buildStaticSite, WEB_KATEX_DIRECTORY } from "../scripts/build-static-site.mjs";
+import { buildStaticSite, isPagesDeploymentExcluded, WEB_KATEX_DIRECTORY } from "../scripts/build-static-site.mjs";
 import { runtimeAssetPaths, readRuntimeAssetFamilies } from "../scripts/prepare-runtime-assets.mjs";
 import { buildEquationMappingCorpus } from "../scripts/build-equation-mapping-corpus.mjs";
 import { PRESCRIBED_ASSEMBLY_TARGETS } from "../scripts/eom/generate-prescribed-braid-record.mjs";
@@ -38,7 +38,7 @@ test("runtime manifest enumerates all Borg records and both derived indexes", ()
   assert.equal(readRuntimeAssetFamilies().length, 3);
 });
 
-test("static build includes generated assets but never local ignored extras or git metadata", (t) => {
+test("static build includes deployable generated assets but never local service indexes, ignored extras, or git metadata", (t) => {
   const f = fixture(t);
   const result = buildStaticSite({ rootDir: f.source, outputDir: f.output,
     trackedPaths: ["index.html", "CNAME", ".git/config"],
@@ -47,8 +47,10 @@ test("static build includes generated assets but never local ignored extras or g
       f.write("content/assets/borg/records/unlisted-private.json", "private");
     },
   });
-  assert.equal(result.runtimeAssetCount, expectedRuntimeAssetCount);
-  for (const name of runtimeAssetPaths(f.source)) assert.equal(fs.readFileSync(path.join(f.output, name), "utf8"), "{}");
+  const deployableRuntimeAssets = runtimeAssetPaths(f.source).filter((name) => !isPagesDeploymentExcluded(name));
+  assert.equal(result.runtimeAssetCount, deployableRuntimeAssets.length);
+  for (const name of deployableRuntimeAssets) assert.equal(fs.readFileSync(path.join(f.output, name), "utf8"), "{}");
+  assert.equal(fs.existsSync(path.join(f.output, "content/generated/source-index/local-full-corpus-snapshot.v1.json")), false);
   assert.ok(fs.existsSync(path.join(f.output, ".nojekyll")));
   for (const name of [".git", ".local-data", "content/assets/borg/records/unlisted-private.json"]) assert.equal(fs.existsSync(path.join(f.output, name)), false);
 });
@@ -76,6 +78,45 @@ test("Pages excludes PowerPoint originals, preserves PDFs, and leaves repository
     assert.equal(fs.readFileSync(path.join(f.source, name), "utf8"), "authoring source");
   }
   assert.equal(fs.readFileSync(path.join(f.output, "slides/deck.pdf"), "utf8"), "published PDF");
+});
+
+test("Pages excludes the internal solver GPU harness while preserving its local sources", (t) => {
+  const f = fixture(t);
+  const harnessFiles = ["solver-gpu-harness.html", "src/apps/solver-gpu-harness/main.js"];
+  const similarlyNamedPublicFile = "solver-gpu-harness.html-notes";
+  for (const name of harnessFiles) f.write(name, `internal ${name}`);
+  f.write(similarlyNamedPublicFile, "public notes");
+  buildStaticSite({ rootDir: f.source, outputDir: f.output,
+    trackedPaths: ["index.html", ...harnessFiles, similarlyNamedPublicFile],
+    prepare: () => { for (const name of runtimeAssetPaths(f.source)) f.write(name, "{}"); },
+  });
+  for (const name of harnessFiles) {
+    assert.equal(fs.existsSync(path.join(f.output, name)), false, `internal harness published: ${name}`);
+    assert.equal(fs.readFileSync(path.join(f.source, name), "utf8"), `internal ${name}`);
+  }
+  assert.equal(fs.readFileSync(path.join(f.output, similarlyNamedPublicFile), "utf8"), "public notes");
+});
+
+test("Pages excludes Archie-service protocol code, tests, records, and local source indexes", (t) => {
+  const f = fixture(t);
+  const internalFiles = [
+    "src/archie-service/mcp/tool-contract-v1.mjs",
+    "scripts/archie-service/run-full-corpus-mcp-server.mjs",
+    "tests/archie-service/fixtures/mcp/mcp-tool-contract.v1.json",
+    "tests/archie-service-mcp-tool-contract.test.js",
+    "reference/priorities/dormant-deferred/archie/mcp/priorities.md",
+  ];
+  for (const name of internalFiles) f.write(name, `internal ${name}`);
+  f.write("content/markdown/aaa/archie/public-example.md", "public example");
+  buildStaticSite({ rootDir: f.source, outputDir: f.output,
+    trackedPaths: ["index.html", ...internalFiles, "content/markdown/aaa/archie/public-example.md"],
+    prepare: () => { for (const name of runtimeAssetPaths(f.source)) f.write(name, "{}"); },
+  });
+  for (const name of [...internalFiles, "content/generated/source-index/local-full-corpus-snapshot.v1.json"]) {
+    assert.equal(fs.existsSync(path.join(f.output, name)), false, `internal service artifact published: ${name}`);
+  }
+  for (const name of internalFiles) assert.equal(fs.readFileSync(path.join(f.source, name), "utf8"), `internal ${name}`);
+  assert.equal(fs.readFileSync(path.join(f.output, "content/markdown/aaa/archie/public-example.md"), "utf8"), "public example");
 });
 
 test("Pages excludes iOS and design sources but preserves all shared KaTeX assets and public artwork", (t) => {
@@ -127,6 +168,7 @@ test("artifact-only equation build rejects missing source links without editing 
 test("local, CI, service, and Pages entrypoints explicitly prepare runtime outputs", () => {
   assert.match(read("scripts/dev/start-local-dev.mjs"), /prepareRuntimeAssets\(\{ rootDir: REPO_ROOT \}\)/);
   assert.match(read("scripts/check-content-integrity.mjs"), /prepare-runtime-assets\.mjs/);
+  assert.match(read("scripts/check-content-integrity.mjs"), /verify-assembly-record-byte-identity\.mjs/);
   assert.match(read("scripts/pr-validation-receipt.mjs"), /prepare-runtime-assets\.mjs/);
   assert.match(read("scripts/archie-service/run-full-corpus-mcp-server.mjs"), /familyId: "full-corpus-index"/);
   const workflow = read(".github/workflows/pages.yml");
@@ -136,6 +178,8 @@ test("local, CI, service, and Pages entrypoints explicitly prepare runtime outpu
   assert.match(workflow, /github.event_name == 'push' \|\| github.event_name == 'workflow_dispatch'/);
   assert.match(workflow, /node --test tests\/runtime-asset-fresh-checkout.test.js/);
   assert.match(workflow, /build-static-site\.mjs --out \.tmp\/site/);
+  assert.match(workflow, /verify-assembly-record-byte-identity\.mjs --check/);
+  assert.ok(workflow.indexOf("verify-assembly-record-byte-identity.mjs --check") < workflow.indexOf("uses: actions/upload-pages-artifact@"));
   assert.match(workflow, /retention-days: 1/);
   assert.match(workflow, /needs: build/);
   assert.match(read(".github/workflows/content-integrity.yml"), /fetch-depth: 0/);

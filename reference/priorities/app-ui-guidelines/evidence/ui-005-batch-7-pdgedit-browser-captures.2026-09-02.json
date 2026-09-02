@@ -1,0 +1,111 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-005",
+  "batch": "7-pdgedit",
+  "date": "2026-09-02",
+  "subject": "canonical global navigation and viewport-reachable local document controls on PDG Edit",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+    "search_adapter": "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "page_composition": "src/apps/pdgedit/PdgeditAppRuntime.js",
+    "page": "pdgedit.html",
+    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-005-batch-7",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open PDG Edit at the declared viewport. Open and filter the local reaction picker, then open global Search and confirm the picker closes and its toolbar hides. Dismiss global Search with Escape and verify focus restoration and toolbar return. Confirm the wide reaction strip scrolls inside its surface rather than widening the document.",
+    "routes": ["/pdgedit.html"]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-7/pdgedit-desktop-1440x900-document-picker.png",
+      "sha256": "3f61564feb99486fbe93c21af231c35ae84f76040ce26981710617a362a193ca",
+      "bytes": 152181,
+      "route": "/pdgedit.html",
+      "viewport": [1440, 900],
+      "state": "local-document-picker-open",
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "local_toolbar_rect_px": [1164, 60, 260, 32],
+      "document_width_px": 1440,
+      "surface_client_width_px": 1440,
+      "surface_scroll_width_px": 1600,
+      "horizontal_document_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-7/pdgedit-desktop-1440x900-search.png",
+      "sha256": "c61361b1f18d4cc5bd0a1d6f754843fbce911d6d0dc0c58cc2380585b46d8d49",
+      "bytes": 151913,
+      "route": "/pdgedit.html",
+      "viewport": [1440, 900],
+      "state": "global-search-open",
+      "action_order": ["toc", "back", "forward", "home", "search"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "popover_rect_px": [1149.84, 60, 274.16, 278],
+      "local_toolbar_hidden": true,
+      "local_document_picker_closed": true,
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_document_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-7/pdgedit-mobile-390x844-closed.png",
+      "sha256": "653fbfe6428155dcf0cd96762686ee0653365067a2e9283fc5dc6a416428c8dd",
+      "bytes": 53493,
+      "route": "/pdgedit.html",
+      "viewport": [390, 844],
+      "state": "search-closed",
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "title_rect_px": [16, 16, 130, 32],
+      "local_toolbar_rect_px": [114, 60, 260, 32],
+      "surface_rect_px": [0, 160, 390, 684],
+      "reaction_strip_rect_px": [0, 160, 1600, 960],
+      "document_width_px": 390,
+      "surface_client_width_px": 390,
+      "surface_scroll_width_px": 1600,
+      "horizontal_document_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-7/pdgedit-mobile-390x844-search.png",
+      "sha256": "439dcd99c72045ec090afafdb0642c64f2e5be2c036679c507ea40e37ddffc7e",
+      "bytes": 58553,
+      "route": "/pdgedit.html",
+      "viewport": [390, 844],
+      "state": "global-search-open",
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "popover_rect_px": [103.84, 56, 274.16, 278],
+      "local_toolbar_hidden": true,
+      "local_document_picker_closed": true,
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "horizontal_document_overflow": false
+    }
+  ],
+  "interaction_checks": {
+    "canonical_stylesheet_count": 1,
+    "legacy_stylesheet_count": 0,
+    "local_document_search_label": "Search available reactions",
+    "local_document_filter_applied": true,
+    "global_search_closes_local_picker": true,
+    "global_search_hides_local_toolbar": true,
+    "escape_closes_search": true,
+    "escape_restores_focus_to": "scene-search-toggle",
+    "escape_restores_local_toolbar": true,
+    "home_destination": "index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json",
+    "boot_error": null
+  },
+  "visual_inspection": {
+    "desktop": "The title clears the canonical bar, the local document picker occupies its own row, and the reaction strip begins below both rows inside a horizontal surface scroller.",
+    "mobile": "The title, full canonical bar, and local document picker remain visible inside the 390px viewport while the 1600px reaction strip scrolls internally. The global Search popover remains viewport-bounded and hides the local picker row while open."
+  },
+  "claim_boundary": "This receipt verifies UI-005 batch 7 navigation ownership, local/global search separation, routing, focus, and responsive chrome on PDG Edit only. It does not validate particle-data content, editing correctness, or the scientific status of displayed reactions."
+}

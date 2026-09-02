@@ -24,6 +24,7 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 - Reference and source policy: [About Architrino](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution), with [source-checking disclosures](../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). Acquisition and review procedures apply this policy; they do not replace it.
 - Theory orientation for core geometry and corpus sessions: [theory-orientation.md](theory-orientation.md).
 - Long-running tests, simulations, rebuilds, and analytical campaigns: [long-running-test-heartbeats.md](long-running-test-heartbeats.md).
+- Simulation protocol ownership and handoff routing: [simulation-protocol-routing-index.md](simulation-protocol-routing-index.md). This is internal operations documentation, not a product application or evidence authority.
 - Retention of large generated and machine-readable records: [machine-artifact-retention.md](machine-artifact-retention.md).
 - Plain-language explanation in operator-facing output: [operator-explanation-standard.md](operator-explanation-standard.md).
 - Textbook reading-copy and PDF regeneration: [textbook-review-exports.md](textbook-review-exports.md).

@@ -3,15 +3,15 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `17`
-- Value: `2.44`
-- Cost: `4.4`
-- ROI: `0.55`
-- Status: `drafting`
+- Rank: `unranked`
+- Value: `not scored`
+- Cost: `not scored`
+- ROI: `not scored`
+- Status: `audited-paper-maintenance-complete`
 
 ## Work Queue
 
-The claim audit, test-contract, and paper-maintenance tasks live in [work-queue.md](work-queue.md).
+The completed chapter audit is recorded in [claim-level-audit-2026-09-01.md](claim-level-audit-2026-09-01.md), the architecture-ready test contracts are recorded in [test-contract-audit-2026-09-01.md](test-contract-audit-2026-09-01.md), and the closed execution record lives in [work-queue.md](work-queue.md). No executable paper-control object remains.
 
 ## Scope
 
@@ -58,25 +58,27 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
 | [solving-the-crisis.md](../../../content/markdown/aaa/philosophy-history/solving-the-crisis.md) | Deployed working paper draft with major sections, chapter candidates, $\mathbb{A}\mathbb{A}\mathbb{A}$ architectural answers, test advice, and claim levels. | Solving the Crisis scene, later paper manuscript, plus selected promotions into existing corpus and priority workstreams after claim-level audit. |
+| [claim-level-audit-2026-09-01.md](claim-level-audit-2026-09-01.md) | Complete 46-chapter claim-level and primary-owner ledger with one classification per chapter. | OP-002 test-contract review and continuing paper maintenance. |
+| [test-contract-audit-2026-09-01.md](test-contract-audit-2026-09-01.md) | Complete test-contract ledger for all 16 architecture-ready chapters, with recovery targets, evidence families, compared records, and failure conditions. | Scientific execution by the named owners and continuing paper maintenance. |
 
 ## Promotion Map
 
 | Candidate section | Primary priority route | Primary corpus route | Promotion gate |
 | --- | --- | --- | --- |
 | Foundations and spacetime | [master-equation-closure](../master-equation-closure/priorities.md), braid program, [mapping-benchmarks](../mapping-benchmarks/priorities.md) | Spacetime and dynamics corpus documents. | One effective metric and one path-history record recover known clock, ruler, null-path, and phase benchmarks. |
-| Strong-field gravity | [mapping-strong-field](../mapping-strong-field/priorities.md), [dark-sector](../dark-sector/priorities.md), [app-simulation](../app-simulation/priorities.md) | Black-hole, singularity, radiation, and nested shell braid documents. | Boundary conditions, entropy counts, event ledgers, and release channels are expressed without hidden singular sinks. |
-| Cosmology and large-scale structure | [mapping-cosmology](../mapping-cosmology/priorities.md), [dark-sector](../dark-sector/priorities.md), [mapping-benchmarks](../mapping-benchmarks/priorities.md) | Cosmology, CMB, BBN, structure, dark-sector, and redshift documents. | The same Noether sea variables support redshift, distance, growth, CMB, lensing, and structure records. |
+| Strong-field gravity | [mapping-strong-field](../mapping-strong-field/priorities.md), [dark-sector](../dormant-deferred/dark-sector/priorities.md), and the operations [simulation protocol routing index](../../op/simulation-protocol-routing-index.md) | Black-hole, singularity, radiation, and nested shell braid documents. | Boundary conditions, entropy counts, event ledgers, and release channels are expressed without hidden singular sinks. |
+| Cosmology and large-scale structure | [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md), [dark-sector](../dormant-deferred/dark-sector/priorities.md), [mapping-benchmarks](../mapping-benchmarks/priorities.md) | Cosmology, CMB, BBN, structure, dark-sector, and redshift documents. | The same Noether sea variables support redshift, distance, growth, CMB, lensing, and structure records. |
 | Quantum and statistical emergence | [mapping-quantum](../mapping-quantum/priorities.md), braid program, [mapping-benchmarks](../mapping-benchmarks/priorities.md) | Quantum, measurement, Bell, entropy, and radiation documents. | Basin measures, detector response, pair provenance, and path-history phase recover the benchmark probabilities without free collapse postulates. |
 | Standard Model and particle closure | [mapping-standard-model](../mapping-standard-model/priorities.md), braid program | Assemblies, fermions, bosons, gauge, mass, nuclear, and validation documents. | Branch geometry, exposure maps, mixing integrals, confinement energetics, and event provenance produce testable particle records. |
-| Astrophysical engines | [high-energy event routing](../mapping-strong-field/high-energy-astrophysics/priorities.md), [mapping-strong-field](../mapping-strong-field/priorities.md), [mapping-cosmology](../mapping-cosmology/priorities.md), [mapping-standard-model](../mapping-standard-model/priorities.md) | Radiation, reactions, compact-object, nucleosynthesis, and structure documents. | High-energy events close energy, momentum, angular momentum, composition, remnant, and medium-update ledgers before being read as native geometry evidence. |
+| Astrophysical engines | [high-energy event routing](../mapping-strong-field/high-energy-astrophysics/priorities.md), [mapping-strong-field](../mapping-strong-field/priorities.md), [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md), [mapping-standard-model](../mapping-standard-model/priorities.md) | Radiation, reactions, compact-object, nucleosynthesis, and structure documents. | High-energy events close energy, momentum, angular momentum, composition, remnant, and medium-update ledgers before being read as native geometry evidence. |
 
 ## Related Priorities
 
 - [mapping-benchmarks](../mapping-benchmarks/priorities.md)
 - [high-energy event routing](../mapping-strong-field/high-energy-astrophysics/priorities.md)
-- [mapping-cosmology](../mapping-cosmology/priorities.md)
+- [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md)
 - [mapping-strong-field](../mapping-strong-field/priorities.md)
 - [mapping-quantum](../mapping-quantum/priorities.md)
 - [mapping-standard-model](../mapping-standard-model/priorities.md)
 - braid program
-- [app-simulation](../app-simulation/priorities.md)
+- [simulation protocol routing index](../../op/simulation-protocol-routing-index.md)

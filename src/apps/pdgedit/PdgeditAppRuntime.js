@@ -1,4 +1,4 @@
-import { navigateStandalonePdgeditHome } from "./PdgeditAppModeRuntime.js";
+import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import { loadPdgeditContractBootstrapSeed } from "./PdgeditBootstrapRuntime.js";
 import { loadPdgeditDocument } from "./PdgeditDocumentRuntime.js";
 import {
@@ -226,22 +226,6 @@ export function buildPdgeditLinkRenderModels(document, getObjectByIdFromDocument
       }))
       .filter((entry) => entry.spline)
   );
-}
-
-function createHomeIconSvg(documentLike) {
-  const namespace = "http://www.w3.org/2000/svg";
-  const svg = documentLike.createElementNS(namespace, "svg");
-  svg.setAttribute("viewBox", "0 0 24 24");
-  svg.setAttribute("aria-hidden", "true");
-  const path = documentLike.createElementNS(namespace, "path");
-  path.setAttribute("d", "M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5");
-  path.setAttribute("stroke", "currentColor");
-  path.setAttribute("stroke-width", "2");
-  path.setAttribute("fill", "none");
-  path.setAttribute("stroke-linecap", "round");
-  path.setAttribute("stroke-linejoin", "round");
-  svg.append(path);
-  return svg;
 }
 
 function setPickerVisibility(element, isOpen) {
@@ -631,15 +615,15 @@ export function createPdgeditAppRuntime({
   documentPanelElement,
   documentSearchInputElement,
   documentSourceFilterElement,
-  homeButtonElement,
+  navigationHostElement,
+  documentToolsElement,
   createPickerElement,
   reactionSummaryElement,
   manifestUrl,
   tileCatalogUrl,
   templateCatalogUrl,
-  homeHref,
 } = {}) {
-  if (!documentLike || !appElement || !surfaceRegionElement || !surfaceStripElement) {
+  if (!documentLike || !appElement || !surfaceRegionElement || !surfaceStripElement || !navigationHostElement) {
     throw new Error("pdgedit app runtime requires the standalone app DOM.");
   }
 
@@ -664,6 +648,7 @@ export function createPdgeditAppRuntime({
     dragState: null,
     suppressObjectClickId: "",
   };
+  let navigationRuntime = null;
 
   function getRenderedDocument() {
     return state.previewDocument ?? state.document;
@@ -1171,12 +1156,21 @@ export function createPdgeditAppRuntime({
     state.selectedEntry = bootstrap.selectedEntry;
     state.document = bootstrap.document;
 
-    homeButtonElement.replaceChildren(createHomeIconSvg(documentLike));
-    homeButtonElement.addEventListener("click", () => {
-      navigateStandalonePdgeditHome(windowLike?.location, homeHref, {
-        windowLike,
-      });
-    });
+    navigationRuntime = createStandaloneAppNavigationRuntime({
+      host: navigationHostElement,
+      document: documentLike,
+      window: windowLike,
+      search: {
+        onOpenChange: (isOpen) => {
+          if (documentToolsElement) {
+            documentToolsElement.hidden = isOpen;
+          }
+          if (isOpen) {
+            closeDocumentPanel();
+          }
+        },
+      },
+    }).init();
 
     documentTriggerElement.addEventListener("click", (event) => {
       event.stopPropagation();
@@ -1412,6 +1406,10 @@ export function createPdgeditAppRuntime({
     init,
     render,
     loadSelectedEntry,
+    destroy() {
+      navigationRuntime?.destroy?.();
+      navigationRuntime = null;
+    },
     readCurrentDocument() {
       return getRenderedDocument();
     },

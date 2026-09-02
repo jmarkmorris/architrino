@@ -24,6 +24,9 @@ node_modules/
 # Local exact-state PR validation receipts
 /.local-data/pr-validation/
 
+# Reproducible UI browser captures; tracked receipts retain hashes and measurements.
+/.local-data/app-ui-guidelines/
+
 # Xcode per-user UI/session state
 **/xcuserdata/
 *.xcuserstate

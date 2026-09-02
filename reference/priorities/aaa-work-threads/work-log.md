@@ -6,6 +6,53 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Active queue hygiene and zero-row owner disposition
+
+- Removed 23 completed task records from the `Verified` sections of eight active queues: AAA Core, Equation Mapping app, Photon, UI Guidelines, Category Theory, Open Problems, Strong Field, and Source Mining. Their durable packets and work-log history remain in place; no open, blocked, or superseded record was removed.
+- Reviewed all nine active zero-row directories against their live ownership declarations. Retained each unranked as a distinct routing, compatibility, policy, app, or scientific-ownership address and recorded the exact trigger required to reopen executable work.
+
+Plainly: completed work no longer clutters active queues, while empty folders remain only where they still tell future work where to go.
+
+### 2026-09-02 — MCP reclassified under Archie service ownership
+
+- Reclassified MCP as an Archie-service protocol adapter for authorized software clients, not a user-facing application, and moved its preserved packet under the archived Archie service owner.
+- Removed the separate application-inventory row while preserving code under `src/archie-service/mcp`, fixtures and tests under `tests/archie-service`, all conformance receipts, and the deferred semantic-retrieval object.
+- Strengthened the remote deployment contract so static-browser exposure, local-tool access, live repository-state access, and credential access fail closed in addition to the existing authentication, origin, limit, snapshot, logging, and rollback gates.
+
+Plainly: MCP remains available as a controlled software integration boundary, but it is not a website app and cannot expose the local machine through a static page.
+
+### 2026-09-02 — Cosmology and nuclear-to-molecular owners archived
+
+- Moved `mapping-cosmology` and `mapping-nuclear-atomic-molecular` intact under `dormant-deferred` at operator direction.
+- Preserved all 17 unresolved queue rows, focused packets, work logs, and retained-evidence records; none is executable or globally scored while parked.
+- Removed the two owners from the active ranking, renumbered the 15 surviving rows without changing scores or relative order, updated archive inventory and incoming links, and redirected machine-readable priority-context paths.
+
+Plainly: the two programs are parked, not deleted or declared complete.
+
+### 2026-09-02 — MCP-001 closed after archive placement
+
+- Captured the operator-supplied ChatGPT-mode five-call result and corroborated its `topics`, `search`, `read`, `neighbors`, `read` sequence against the loopback server telemetry for the current 2,042-record full-corpus snapshot.
+- Closed MCP-001 at the named-client boundary. The then-separate MCP packet remained dormant-deferred, MCP-002 and MCP-003 remained parked, and no global score, active-owner count, remote-deployment status, or theory claim changed.
+
+Plainly: completing the one manual acceptance test removes the unfinished-client caveat without reactivating the archived MCP program.
+
+### 2026-09-02 — iOS, MCP, and Dark Sector archived
+
+- Moved `app-ios`, the then-separate MCP packet, and `dark-sector` under `dormant-deferred` at operator direction. Their documents, queues, and evidence remain preserved, but no parked row is executable or scored.
+- Removed those three rows and the stale archived `app-animator`, `archie`, and `aaa-futures` rows from the numeric table, then renumbered the remaining 14 active owners and four shared packets without changing component scores.
+- Updated archive inventory counts and incoming authored links. MCP-001 remains unfinished at the direct ChatGPT tool-call boundary; archive placement is not a completion claim.
+
+Plainly: the three requested areas are parked, not deleted or declared finished.
+
+### 2026-09-02 — Open Problems Paper-Shell Object Closed
+
+- Closed `mapping-open-problems` OP-003 after verifying exact agreement between all 46 public chapter classifications and the accepted claim-level audit, preserving one resolution-test field per chapter, and confirming the 16 strongest chapters retain the accepted specified-but-unexecuted test contracts.
+- Removed five redundant public `Unresolved residue` paragraphs while preserving each chapter's mechanism, evidence route, comparison surface, falsifier, and single claim level.
+- Removed the completed owner from the numeric table, moved it to the unranked active inventory, shifted lower ranks contiguously without changing component scores, and synchronized affected tracker metadata. The one-line Borg rank mirror is routing metadata only; no Borg or Braid queue item changed.
+- Claim grade: editorial verification and inferred attention allocation. No theorem, simulation, observational comparison, assembly status, or closure score changed.
+
+Plainly: a finished paper-maintenance check no longer consumes a live priority rank; later revisions must enter as a specific new task.
+
 ### 2026-08-27 — Flat mapping directory family
 
 - Renamed six domain-recovery and theory-bridge directories to `mapping-standard-model`, `mapping-quantum`, `mapping-cosmology`, `mapping-strong-field`, `mapping-nuclear-atomic-molecular`, and `mapping-one-nature-many-theories`. The existing `mapping-equations`, `mapping-benchmarks`, and `mapping-electromagnetism` directories remain unchanged. The [priority README](../README.md#mapping-workstreams) owns the flat naming convention; no umbrella directory or parent queue was introduced.
@@ -47,7 +94,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 - Rebuilt [inventory.md](inventory.md) from the live top-level directory tree: 23 ranked owners, four separately ranked shared packets, two unranked control/routing surfaces, and 15 children under `dormant-deferred`.
 - Removed all eight previously ranked `dormant-deferred` rows from the unified table and excluded dormant discussion items from the active discussion queue.
-- Added top-level `app-mcp` at rank `20` on the remaining `named_http_client_conformance` object. Completed service, fixture, and loopback work received no remaining value credit.
+- Added the then-separate MCP packet at rank `20` on the remaining `named_http_client_conformance` object. Completed service, fixture, and loopback work received no remaining value credit.
 - Preserved component scores for unchanged marginal objects, renumbered the active rows contiguously, and synchronized tracker metadata. The top ten did not move.
 - Made Borg and Strong-Field local winners machine-checkable, reopened App Ideas selection after Causal Delay Feedback was deferred, refreshed the top-six closure join, and repaired current archive routing.
 - Claim grade: inferred attention allocation and priority-only organization. No proof, campaign fate, branch, coefficient, app acceptance, or closure-score row was promoted.

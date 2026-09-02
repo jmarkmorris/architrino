@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.com/contracts/aaa-core-accepted-history-stream/v0/schema.json",
+  "title": "AAA Core Accepted History Stream v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "status", "owner", "producerAuthority", "logicalContract", "codecRegistry", "eventTypes", "producerRules", "subscriptionRules", "watermarks", "backpressure", "sealing", "halting", "consumerConformance", "refusalCodes", "conformance", "claimBoundary"],
+  "properties": {
+    "schema": {"const": "aaa_core_accepted_history_stream/v0"},
+    "version": {"const": 0},
+    "status": {"const": "accepted"},
+    "owner": {"const": "AAA Core"},
+    "producerAuthority": {"const": "EOM solver"},
+    "logicalContract": {"const": "aaa_core_path_interchange/v0"},
+    "codecRegistry": {"const": "aaa_core_codec_registry/v0"},
+    "eventTypes": {"type": "array", "minItems": 4, "uniqueItems": true, "items": {"enum": ["stream_open", "accepted_chunk", "stream_seal", "stream_halt"]}},
+    "producerRules": {"$ref": "#/$defs/nonemptyObject"},
+    "subscriptionRules": {"$ref": "#/$defs/nonemptyObject"},
+    "watermarks": {"$ref": "#/$defs/nonemptyObject"},
+    "backpressure": {"$ref": "#/$defs/nonemptyObject"},
+    "sealing": {"$ref": "#/$defs/nonemptyObject"},
+    "halting": {"$ref": "#/$defs/nonemptyObject"},
+    "consumerConformance": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["consumerId", "implementation", "independentCheck"],
+        "properties": {
+          "consumerId": {"type": "string", "minLength": 1},
+          "implementation": {"type": "string", "minLength": 1},
+          "independentCheck": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "refusalCodes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "conformance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "validator", "positiveFixtures", "negativeFixtures", "tests"],
+      "properties": {
+        "schema": {"type": "string", "minLength": 1},
+        "validator": {"type": "string", "minLength": 1},
+        "positiveFixtures": {"type": "string", "minLength": 1},
+        "negativeFixtures": {"type": "string", "minLength": 1},
+        "tests": {"type": "string", "minLength": 1}
+      }
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "nonemptyObject": {"type": "object", "minProperties": 1}
+  }
+}

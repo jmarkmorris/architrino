@@ -282,11 +282,11 @@
           "weak-channel source target check"
         ],
         "simulations": [
-          "assembly configuration explorer"
+          "Borg assembly-view replay"
         ],
         "applications": [
           "molecule app",
-          "assembly explorer",
+          "Borg Assembly Library",
           "PDG edit surfaces"
         ],
         "validation": [
@@ -312,13 +312,13 @@
         ],
         "simulations": [
           {
-            "command": "node --test tests/assembly-configuration-explorer-runtime.test.js",
+            "command": "node --test tests/borg-assembly-view-session.test.js",
             "reason": "Recheck inventory and assembly surfaces after polarity convention changes."
           }
         ],
         "applications": [
           {
-            "command": "node --test tests/assembly-configuration-explorer-runtime.test.js tests/pdgedit-contracts.test.js",
+            "command": "node --test tests/borg-assembly-view-session.test.js tests/pdgedit-contracts.test.js",
             "reason": "Recheck app surfaces that present polarity/inventory records."
           }
         ]
@@ -486,7 +486,7 @@
           "action-energy simulation family"
         ],
         "applications": [
-          "assembly explorer",
+          "Borg Assembly Library",
           "molecule app"
         ],
         "validation": [
@@ -503,7 +503,7 @@
         ],
         "applications": [
           {
-            "command": "node --test tests/assembly-configuration-explorer-runtime.test.js",
+            "command": "node --test tests/borg-assembly-view-session.test.js",
             "reason": "Recheck assembly-facing mass/action display assumptions."
           }
         ]

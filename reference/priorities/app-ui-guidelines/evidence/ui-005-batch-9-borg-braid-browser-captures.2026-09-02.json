@@ -1,0 +1,159 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-005",
+  "batch": "9-borg-braid-final",
+  "date": "2026-09-02",
+  "subject": "canonical global navigation on Lorentz Geometry, Braid Search, Borg, and Borg Library",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+    "search_adapter": "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "page_compositions": [
+      "src/apps/ideal-braid/IdealBraidRuntime.js",
+      "src/apps/compact-sweep-dashboard/CompactSweepDashboardRuntime.js",
+      "src/apps/borg/BorgAppRuntime.js",
+      "src/apps/borg/library/main.js"
+    ],
+    "pages": [
+      "ideal-braid.html",
+      "braid-search.html",
+      "borg.html",
+      "borg-library.html"
+    ],
+    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-005-batch-9",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open each route at 1440x900 and 390x844. Confirm canonical action order, app-content clearance, no document-level horizontal overflow, viewport-bounded Search, Escape focus restoration, and Applications Home routing. On Borg, also activate Diagnostics and confirm the app-owned panel opens.",
+    "routes": [
+      "/ideal-braid.html",
+      "/braid-search.html",
+      "/borg.html",
+      "/borg-library.html"
+    ]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-9/ideal-braid-1440x900.png",
+      "sha256": "07e0064ebaf9412357157f39a44dad3edec286a1a65a94b40cb0da4e7f840481",
+      "bytes": 111327,
+      "route": "/ideal-braid.html",
+      "viewport": [1440, 900],
+      "state": "search-closed",
+      "action_ids": ["textbook-toc-button", "nav-up", "nav-forward", "home-button", "scene-search-toggle"],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-9/ideal-braid-390x844.png",
+      "sha256": "d313751e8a8817542e95186d4d336925095f1a111aa13c7c402f4211eef12c85",
+      "bytes": 54579,
+      "route": "/ideal-braid.html",
+      "viewport": [390, 844],
+      "state": "global-search-open",
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "content_rect_px": [10, 56, 180, 582],
+      "popover_rect_px": [103.84, 56, 274.16, 278],
+      "closed_bar_content_overlap_px2": 0,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-9/braid-search-1440x900.png",
+      "sha256": "3577ca6a95dadbc1943af10f201d20230b67659fa77da378ceef7f69613c96ce",
+      "bytes": 60017,
+      "route": "/braid-search.html",
+      "viewport": [1440, 900],
+      "state": "search-closed",
+      "action_ids": ["textbook-toc-button", "nav-up", "nav-forward", "home-button", "scene-search-toggle"],
+      "bar_rect_px": [1210.44, 30.89, 211.56, 32],
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-9/braid-search-390x844.png",
+      "sha256": "714f6bb447b94c41ca9a4ac2a9b850e1c7eafae32b5cc31ab09e4f259258517a",
+      "bytes": 48209,
+      "route": "/braid-search.html",
+      "viewport": [390, 844],
+      "state": "global-search-open",
+      "bar_rect_px": [160.44, 87, 211.56, 32],
+      "popover_rect_px": [97.84, 131, 274.16, 278],
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-9/borg-1440x900.png",
+      "sha256": "489fc207a2bc618d5e179cfdb92f5ae5699152f5466f1acbf658516778715097",
+      "bytes": 89109,
+      "route": "/borg.html",
+      "viewport": [1440, 900],
+      "state": "search-closed",
+      "action_ids": ["textbook-toc-button", "nav-up", "nav-forward", "home-button", "scene-search-toggle", "borg-diagnostics-toggle"],
+      "bar_rect_px": [1172.44, 16, 251.56, 32],
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-9/borg-390x844.png",
+      "sha256": "89f9b7dc6d888ac146bd3af155a04573909544359ec7120c9369a827835bcde6",
+      "bytes": 42334,
+      "route": "/borg.html",
+      "viewport": [390, 844],
+      "state": "global-search-open",
+      "bar_rect_px": [126.44, 12, 251.56, 32],
+      "content_rect_px": [12, 57, 366, 24],
+      "popover_rect_px": [63.84, 56, 274.16, 278],
+      "closed_bar_content_overlap_px2": 0,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-9/borg-library-1440x900.png",
+      "sha256": "d344c2a59f3ade9f5c2a02d6bb5a2f93738a13f651b02c13f3d25ccde497c62c",
+      "bytes": 100215,
+      "route": "/borg-library.html",
+      "viewport": [1440, 900],
+      "state": "search-closed",
+      "action_ids": ["textbook-toc-button", "nav-up", "nav-forward", "home-button", "scene-search-toggle"],
+      "bar_rect_px": [1016.61, 20.5, 211.56, 34],
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-9/borg-library-390x844.png",
+      "sha256": "c7ea6bf0972d9aeaa54c34017a27f1e9aaa6298d4e4c01c9d5119d73e465fa48",
+      "bytes": 41632,
+      "route": "/borg-library.html",
+      "viewport": [390, 844],
+      "state": "global-search-open",
+      "bar_rect_px": [162.44, 64, 211.56, 34],
+      "popover_rect_px": [99.84, 108, 274.16, 278],
+      "header_height_px": 157,
+      "local_collection_search_visible": true,
+      "workbench_link_visible": true,
+      "focused_id": "scene-search-input",
+      "horizontal_overflow": false
+    }
+  ],
+  "interaction_checks": {
+    "canonical_stylesheet_count_per_page": 1,
+    "legacy_stylesheet_count_per_page": 0,
+    "legacy_stylesheet_deleted": true,
+    "escape_closes_search_on_all_routes": true,
+    "escape_restores_focus_to": "scene-search-toggle",
+    "home_destination_on_all_routes": "index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json",
+    "borg_diagnostics_pressed_after_activation": true,
+    "borg_diagnostics_panel_aria_hidden_after_activation": false,
+    "console_errors": []
+  },
+  "visual_inspection": {
+    "desktop": "All four pages show one canonical toolbar in the declared order without document-level horizontal overflow. Borg retains Diagnostics after Search; Borg Library retains its separate Workbench action and collection search.",
+    "mobile": "Lorentz Geometry and Borg reserve a clear row above app content, Braid Search keeps the bar inside its responsive header, and Borg Library right-aligns the wrapped bar so the Search popover remains viewport-bounded. All four global Search popovers remain inside 390x844."
+  },
+  "claim_boundary": "This receipt verifies UI-005 batch 9 navigation ownership, routing, focus, responsive clearance, and Borg Diagnostics integration on Lorentz Geometry, Braid Search, Borg, and Borg Library. It does not validate their scientific models, simulation results, campaign data, assembly classifications, or local domain-control correctness."
+}

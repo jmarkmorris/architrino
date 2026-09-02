@@ -18,6 +18,131 @@ For every positive waiting time in the declared local class, a braking continuat
 
 Plainly: the proposed restart admits more than one local future. A new selection principle would be needed to choose among them.
 
+## Strict-Inequality Variant: An Open Domain Is Not a Braking Law
+
+Consider replacing the proposed closed domain by the strict open ball
+
+$$
+\mathcal B_{c_f}^{\circ}
+=
+\left\{\mathbf V:\|\mathbf V\|<c_f\right\}.
+$$
+
+Every admitted velocity is then an interior point. Its tangent cone is $\mathbb R^3$ and its Euclidean normal cone is $\{\mathbf0\}$. Therefore the current normal-cone construction would return the complete ordinary acceleration unchanged at every admitted state. If an ordinary mirror approach has a positive speed-increasing acceleration and reaches $\|\mathbf V\|=c_f$ in finite time, the strict inequality supplies neither a braking contribution nor a boundary state on which to define one; the proposed evolution simply leaves its admissible domain.
+
+Plainly: “less than $c_f$” states which speeds are forbidden, but there is no greatest allowed speed immediately below $c_f$ and no boundary point inside the model where a reaction can switch on. A separate response law is required.
+
+A fixed regulator $\|\mathbf V\|\le c_f-\varepsilon$ with $\varepsilon>0$ would be a different closed-domain model. Under the same least-change response, a purely speed-increasing collinear ledger is canceled only at $c_f-\varepsilon$, so the mirror partners coast at that sub-field speed and still reach coordinate coincidence. Taking $\varepsilon\downarrow0$ approaches the closed-ceiling cap geometry; it does not create braking or select turnaround.
+
+The prescribed post-coincidence constant-speed test also shows why a sub-field passage does not automatically repair the event. In normalized units $c_f=1$, let the separating trial be $X_1(t)=ut$ and $X_2(t)=-ut$ with $0<u<1$, and let $K>0$ denote the attractive normalized partner coupling. Its unique post-event partner root is
+
+$$
+s(t)=\frac{1-u}{1+u}\,t,
+\qquad
+r(t)=\frac{2u}{1+u}\,t,
+\qquad
+D_t=1+u,
+\qquad
+D_r=1-u.
+$$
+
+The ordinary partner contribution points opposite the separating velocity, but its magnitude scales as
+
+$$
+\frac{K}{r(t)^2D_t}
+=
+\frac{K(1+u)}{4u^2t^2}.
+$$
+
+Its accumulated variation diverges at $t=0$. This prescribed trace therefore exhibits a singular immediate-braking obstruction, not a finite continuous turnaround solution. A lawful turnaround would need a separately declared pre-boundary response or event law and a proof that its net speed-reducing acceleration is locally integrable and sufficient to reduce each inward speed to zero before or at a classified event.
+
+Plainly: a sub-field wake can catch a particle after passage and point backward, but in the simplest constant-speed trial it does so with a nonintegrable near-coincidence contribution. That does not prove rebound; it shows that the proposed passage is not a regular solution.
+
+- **Claim level:** `derived` for the open-ball tangent/normal-cone consequence and the prescribed constant-sub-field root calculation; `inferred obstruction` for the absence of an absolutely continuous passage on that trial; `speculation` for any soft-barrier or pre-boundary turnaround law.
+- **Assumptions and proof burden:** retain normalized $c_f=1$, declare whether the strict inequality is merely admissibility or comes with a new response, classify the coincidence limit, and prove existence, uniqueness, local integrability, and a complete root census before asserting braking or turnaround.
+- **Promotion target:** the Field-Speed Ceiling mathematics packet only if the operator selects a strict-domain alternative for formal comparison; no canonical or proposed-law replacement is made here.
+- **Next artifact:** a strict-domain viability packet comparing the bare open ball, the closed regulators $\|\mathbf V\|\le1-\varepsilon$, and one explicitly stated soft-barrier law, with threshold reachability, coincidence time, root census, accumulated acceleration, and turnaround criteria.
+
+## Ceiling Negative: Reframe the Bound as an Emergent-Theorem Test
+
+The closed-ceiling and strict-inequality results jointly weigh against a primitive velocity constraint as the missing evolution law. The closed ball requires a separately proposed reaction and still leaves the exact-mirror continuation multivalued; the open ball supplies no reaction and terminates when the unchanged ordinary evolution reaches its excluded boundary. Inside this Field-Speed investigation only, the conservative alternative is to keep $c_f$ as the primitive causal-wake propagation speed and ask whether an FSC-local candidate update could make a path-speed bound emerge as a theorem. This question is not promoted or assigned to Master Equation Closure.
+
+Let
+
+$$
+b_i(T)=c_f^2-\|\mathbf V_i(T)\|^2.
+$$
+
+An update would establish strict nonattainment on a regular interval if it derived an integrable $C(T)$ such that
+
+$$
+\mathbf V_i\mathbin{\cdot}\mathbf A_i^{\mathrm{native}}
+\le
+C(T)b_i(T).
+$$
+
+Then $b_i'(T)\ge-2C(T)b_i(T)$ and Gronwall's inequality preserves $b_i(T)>0$ from strictly sub-field initial data. This would be a consequence of the candidate update rather than a projected boundary rule. The stationary-mirror evidence consumed by this packet fails the estimate under the unchanged sharp-root continuation: its partner contribution remains finite, inward, and speed-increasing while $b_i\downarrow0$.
+
+Plainly: the clean target is not “forbid $v>c_f$.” It is “derive an interaction law whose own acceleration makes the speed gap stay positive.” The current regular law does not do that.
+
+Even a derived nonattainment estimate would not prove turnaround. For a mirror half-separation $q(T)>0$ and inward signed speed $u(T)>0$, a turnaround additionally requires a finite time $T_{\mathrm{turn}}$ with $q(T_{\mathrm{turn}})>0$, $u(T_{\mathrm{turn}})=0$, and enough accumulated native speed-reducing acceleration to cancel the incoming speed. That condition must follow from the same wake update and complete ledger; it cannot be inferred from the speed-gap estimate.
+
+One FSC-local candidate mechanism family is an autonomous retained-history-plus-wake state with declared emission, propagation, reception, maturity, and boundary behavior. It could in principle make the singular root-birth accumulation change the candidate wake state and return a finite motion update. Within this lane it is only a comparison proposal: it is not an MEC-002 object or a Master Equation change. It is acceptable for further FSC analysis only if it reduces exactly to the packet's regular simple-root row, uses no future receiver history, deletes no admitted root, and introduces no fitted barrier profile or unexplained core scale.
+
+FSC-009's source-provenanced intersection or swept-reception measure remains useful but insufficient alone. It may derive the correct type of ordinary, frozen, and event contributions without an arbitrary cap, but retyping does not by itself make the consumed stationary-mirror input's infinite-total-variation newborn self-root measure finite.
+
+Plainly: the divergence is evidence that the transparent root-sampling rule is incomplete at root birth. A non-artificial repair must come from a derived wake update or action boundary law, not from an epsilon cap, a hand-shaped barrier, deletion of self roots, a fitted finite core, or a chosen rebound.
+
+- **Claim level:** `derived negative` for the bare closed- and open-domain formulations already analyzed; `FSC-local derivation target` for an emergent speed-gap theorem and finite turnaround under a candidate update; `speculation` for any specific maturity or wake-state mechanism not yet derived.
+- **Assumptions and proof burden:** within FSC, derive the candidate from source, wake, path-history, polarity, and absolute-time primitives; preserve the regular acceleration row; prove finite birth-neighborhood total variation, unique continuation, regulator independence, the speed-gap estimate, and a separate positive-separation turnaround criterion.
+- **Promotion target:** remain in `reference/priorities/field-speed-ceiling`. No Master Equation owner, canonical law, or reader-facing corpus claim receives this work without a separate explicit operator promotion decision.
+- **Next artifact:** inside the Field-Speed lane, test each FSC-local candidate update on the consumed stationary-mirror history against two predeclared obligations: an emergent gap inequality $\mathbf V\cdot\mathbf A^{\mathrm{candidate}}\le C(c_f^2-\|\mathbf V\|^2)$ and a finite positive-separation turnaround integral, while preserving the packet's regular partner row.
+
+## Autonomous Crossing-State Braking and Breather Audit
+
+The minimal FSC-local autonomous crossing state carries source labels, received-source clocks, and one-time event-family ownership. A clock advances only after an independently produced geometric crossing; a plateau does not use the acceleration of its still-inactive channel to create its own first crossing. On the exact isolated mirror restart this state selects the straight trace, so it produces no braking and no breather.
+
+The broader delayed-ignition relation nevertheless contains conditional braking branches. For a supplied onset $u_*>0$, the first-chart variables satisfy
+
+$$
+2m-\frac{m^2}{2}
+=
+K\left(\frac{1}{u_*}-\frac{1}{t-E/2}\right).
+$$
+
+The sufficient condition $K\ge3u_*$ keeps the zero-speed turnaround inside the stored straight-source segment and gives positive turnaround separation. The attractive row then reverses the motion; conditional on the declared ordinary/event census, the pair returns to coincidence. Choosing the same onset after the reflected return event produces a formal second lobe and spatial cycle, but the autonomous state does not select that repeated onset.
+
+Plainly: the candidate state fails to start braking, not because the available partner wake is too weak, but because no admitted state variable tells a plateaued channel when to activate. Once a sufficiently early activation is supplied, one brake-turn-return excursion is mathematically available. A repeatable breather still needs a derived reset-compatible trigger.
+
+- **Claim level:** `derived negative` for braking under the minimal autonomous crossing state; `derived conditional theorem` for first-chart turnaround when $K\ge3u_*$; `conditional return argument` for the next coincidence; `speculation` for an autonomous periodic breather.
+- **Assumptions and proof burden:** remain inside FSC; retain source labels, one-time event ownership, the proposed zero-impulse event completion, the complete ordinary root census, and normalized $c_f=1$; independently verify the post-turn root census and show that every future-relevant wake-state component is shift-periodic across two lobes.
+- **Promotion target:** remain in `reference/priorities/field-speed-ceiling`; no Master Equation or reader-facing promotion without a separate operator decision.
+- **Next artifact:** construct the complete two-lobe FSC return map with state variables $(x,v,S_{12},S_{21},\mathcal O_{\mathrm{evt}})$, prove or refute shift-periodicity, and require any proposed onset trigger to be derived from that state rather than inserted as a waiting-time constant.
+
+### Two-Lobe Return Map Result
+
+The [two-lobe return-map audit](two-lobe-return-map-and-autonomous-trigger-audit.md) completes the proposed next calculation. A prescribed onset satisfying $K\ge7u_*/2$ produces a brake--turn--inward-cap--coincidence lobe and resets the exact-mirror event geometry. Repeating the same onset gives a reflected spatial two-cycle. This is not an autonomous full-state breather because the minimal crossing state supplies no onset and literal all-past ownership records have not been placed in a proved shift-periodic state space.
+
+The most direct event-record trigger, $u_{n+1}=L_{n+1}=G(K,u_n)$ with $L_{n+1}$ the inward-cap duration arriving at the next event, fails in the analytically closed regime $K/u_n\ge6$. There the exact cap map is
+
+$$
+\frac{L_{n+1}}{u_n}
+=
+(1+\zeta_n^2)
+\left(1-\zeta_n\arctan\zeta_n\right),
+\qquad
+\zeta_n=\sqrt{\frac{2}{K/u_n-2}},
+$$
+
+and its value lies strictly between zero and one. The reset therefore shortens every later onset and has no positive fixed cycle.
+
+Plainly: a manually repeated alarm produces the requested spatial breathing motion, but the wake-crossing state does not set that alarm. Reusing the last cap duration is natural but does not repair the problem; it drives the cycle toward ever shorter waiting intervals.
+
+- **Claim level:** `derived sufficient theorem inside the proposed FSC model` for the complete lobe; `formal spatial two-cycle` for equal prescribed onsets; `derived negative` for the cap-duration reset at $K/u\ge6$; `open` for a full retained-state periodic orbit or another derived selector.
+- **Assumptions and proof burden:** proposed exact-mirror event completion and ceiling response, normalized $c_f=1$, complete one-root census through the open return chart, and one-time family ownership; derive any alternative trigger from an existing wake or action account and construct either a bi-infinite typed ledger or a future-equivalence quotient before claiming delay-state periodicity.
+- **Promotion target:** remain in `reference/priorities/field-speed-ceiling`; no Master Equation or reader-facing promotion without a separate operator decision.
+- **Next artifact:** independently review the complete-lobe and cap-map derivations, especially the cap-approach measure typing. No existing FSC wake or action account defines $\Phi$; a future selector proposal must supply that missing law explicitly and solve its cap-map fixed-point equation.
+
 ## Uniform Field-Speed Geometry
 
 For a prescribed straight path

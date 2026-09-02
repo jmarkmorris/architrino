@@ -1068,8 +1068,12 @@ void evolve_binary_to_physical_target(Options options) {
   std::string final_status = terminal_event.has_value()
       ? terminal_event->kind : "maximum_duration_reached";
   std::size_t chunks = 0U;
-  std::size_t cumulative_accepted = 0U;
-  std::size_t cumulative_rejected = 0U;
+  std::size_t cumulative_accepted = checkpoint.has_value()
+      ? checkpoint->accepted_step_count
+      : 0U;
+  std::size_t cumulative_rejected = checkpoint.has_value()
+      ? checkpoint->rejected_step_count
+      : 0U;
   const auto wall_start = std::chrono::steady_clock::now();
 
   while (!terminal_event.has_value() &&
@@ -1095,8 +1099,28 @@ void evolve_binary_to_physical_target(Options options) {
         ? eom::resume_native_coupled_histories(
               request, *checkpoint, token(chunk_target))
         : eom::evolve_native_coupled_histories(request);
-    cumulative_accepted += chunk.accepted_step_count;
-    cumulative_rejected += chunk.rejected_step_count;
+    const std::size_t prior_accepted = cumulative_accepted;
+    const std::size_t prior_rejected = cumulative_rejected;
+    if (chunk.accepted_step_count < prior_accepted ||
+        chunk.rejected_step_count < prior_rejected) {
+      throw std::runtime_error(
+          "engine cumulative step counters regressed across a chunk");
+    }
+    const std::size_t accepted_in_chunk =
+        chunk.accepted_step_count - prior_accepted;
+    const std::size_t rejected_in_chunk =
+        chunk.rejected_step_count - prior_rejected;
+    const std::size_t recorded_accepted_in_chunk =
+        static_cast<std::size_t>(std::count_if(
+            chunk.steps.begin(), chunk.steps.end(),
+            [](const auto& step) { return step.status == "accepted"; }));
+    if (accepted_in_chunk != recorded_accepted_in_chunk ||
+        rejected_in_chunk != chunk.steps.size() - recorded_accepted_in_chunk) {
+      throw std::runtime_error(
+          "engine cumulative step counters do not match chunk records");
+    }
+    cumulative_accepted = chunk.accepted_step_count;
+    cumulative_rejected = chunk.rejected_step_count;
 
     for (const auto& step_row : chunk.steps) {
       if (step_row.status != "accepted") continue;
@@ -1203,7 +1227,7 @@ void evolve_binary_to_physical_target(Options options) {
       }
     };
 
-    if (chunk.accepted_step_count == 0U) {
+    if (accepted_in_chunk == 0U) {
       report_root_failures();
       final_status = "halted_" +
           (chunk.halt_code.empty() ? chunk.status : chunk.halt_code);

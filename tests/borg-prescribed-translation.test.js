@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
+import { createEomHistoryDataset } from "../src/apps/shared/EomHistoryDataset.mjs";
+
 import {
   BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING,
   BORG_PRESCRIBED_DISPLAY_FRAME_FIXED,
@@ -58,8 +60,25 @@ test("source-carried translation maps fixed and co-translating positions without
   assert.equal(translation.epochTime, 0);
   assert.equal(
     translation.source,
-    "provenance.prescribedGeometry.coordinates.group.centerAtEpoch/velocity",
+    "provenance.prescribedGeometry.coordinates.geometry.assemblyPlacement.centerAtEpoch/velocity",
   );
+});
+
+test("current v3 prescribed records expose the canonical assembly-placement carrier", () => {
+  const rawRecord = JSON.parse(readFileSync(new URL(
+    "../content/assets/borg/records/axial-transverse-three-binary-interior.assembly-view-record.v0.json",
+    import.meta.url,
+  )));
+  const translation = resolveBorgPrescribedTranslation({
+    sourceId: rawRecord.sourceId,
+    rawRecord,
+    dataset: createEomHistoryDataset(rawRecord),
+  });
+
+  assert.equal(translation.available, true);
+  assert.equal(translation.stationary, true);
+  assert.deepEqual(translation.centerAtEpoch, { x: 0, y: 0, z: 0 });
+  assert.deepEqual(translation.velocity, { x: 0, y: 0, z: 0 });
 });
 
 test("co-translating velocity subtracts only the declared common velocity", () => {
@@ -111,7 +130,7 @@ test("co-translating display does not advance without a translation carrier", ()
   const translation = resolveBorgPrescribedTranslation(prescribedEntry(null));
 
   assert.equal(translation.available, false);
-  assert.equal(translation.code, "missing-group-translation");
+  assert.equal(translation.code, "missing-assembly-placement");
   assert.throws(
     () => applyBorgPrescribedDisplayFrame(
       { x: 0, y: 0, z: 0 },
@@ -123,14 +142,16 @@ test("co-translating display does not advance without a translation carrier", ()
   );
 });
 
-function prescribedEntry(group) {
+function prescribedEntry(assemblyPlacement) {
   return {
     sourceId: "translation-fixture",
     dataset: {
       provenance: {
         engineId: "prescribed-geometry",
         prescribedGeometry: {
-          coordinates: group == null ? {} : { group },
+          coordinates: assemblyPlacement == null
+            ? {}
+            : { geometry: { assemblyPlacement } },
         },
       },
     },

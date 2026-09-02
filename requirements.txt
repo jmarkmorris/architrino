@@ -1,4 +1,6 @@
 Pillow
 PyYAML
 pdg
+python-flint==0.8.0
 qrcode
+sympy==1.14.0

@@ -81,7 +81,7 @@
       "boundary": "The confinement-functional row states the no-open-color recovery target but remains target-required and priority-packet-only."
     },
     "nnCorridorOverlapSample": {
-      "candidatePath": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "candidatePath": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
       "usableFor": [
         "sample-level finite-tail pressure",
         "p+n versus p+p channel comparison",
@@ -325,7 +325,7 @@
       "sample_level_finite_tail",
       "target_only_no_open_color"
     ],
-    "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/brainstorming.md#branch-interface-aaa-capture"
+    "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/brainstorming.md#branch-interface-aaa-capture"
   },
   "localEvidenceBoundary": {
     "acceptedSourceRowsByThisPacket": [],

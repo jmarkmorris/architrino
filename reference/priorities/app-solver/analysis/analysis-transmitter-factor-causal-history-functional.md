@@ -105,7 +105,7 @@ $$
 \mathcal A_i^{(\eta,\epsilon_c)}[\boldsymbol\phi_T]
 $$
 
-is a retarded functional differential equation: its derivative now depends on a finite interval of state ending now. The local Lipschitz bound gives a unique local continuation from a compatible retained initial history by the usual fixed-point construction.
+is a finite-memory functional differential equation: its derivative now depends on a finite interval of state ending now. The local Lipschitz bound gives a unique local continuation from a compatible retained initial history by the usual fixed-point construction.
 
 Plain language: the state is a whole retained transmission line, not one instantaneous node. Once that line is supplied, the positive-width equation advances it without asking for future values.
 

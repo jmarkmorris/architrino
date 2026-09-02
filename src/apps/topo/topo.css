@@ -700,8 +700,13 @@ button {
   }
 
   #topo-app[data-panel-collapsed="false"] .topo-navigation,
-  #topo-app[data-panel-collapsed="false"] .standalone-app-nav-history {
+  #topo-app[data-panel-collapsed="false"] .top-dynamic-control-bar-history {
     flex-direction: column;
+  }
+
+  #topo-app[data-panel-collapsed="false"] .topo-navigation.top-dynamic-control-bar {
+    right: 1px;
+    z-index: 9;
   }
 
   .topo-binary-transport {
@@ -725,7 +730,7 @@ button {
 
 @media (prefers-reduced-motion: reduce) {
   #topo-app,
-  .standalone-app-navigation *,
+  .top-dynamic-control-bar *,
   .topo-loading-veil span {
     transition: none !important;
     animation: none !important;

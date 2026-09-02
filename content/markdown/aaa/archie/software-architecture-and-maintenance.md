@@ -67,6 +67,9 @@ The canonical paths are:
 - `index.html`, `app.js`, and `style.css`: root web shell and composition entry
 - `src/apps/architrino/`: scene-navigation application runtime
 - `src/apps/`: standalone application runtimes and focused app modules
+- `src/documentation/`: presentation-only code for supporting documentation pages; authored guides and shared CSS tokens remain the policy and implementation authorities
+- `src/aaa-core/`: shared headless application-platform modules; no visitor launch route or browser composition root
+- `src/archie-service/`: server-side and protocol-adapter contracts, including the MCP software-client boundary; these are not standalone applications or static browser surfaces
 - `src/runtime/`, `src/services/`, and `src/domain/`: shared rendering, service, and domain responsibilities
 - `content/markdown/aaa/`: authored reader-facing corpus
 - `content/scenes/`: authored scene hierarchy and application index
@@ -164,6 +167,8 @@ This discipline matters because the project already depends on generated indices
 ## Composition Roots and Local Modules
 
 Large top-level runtime files should remain composition roots and wiring layers as much as practical. They should not become the indefinite resting place for every new feature.
+
+AAA Core is composed headlessly. Its service/client composition roots may assemble versioned path, codec, stream, query, transform, and publication contracts, but they must not own DOM rendering, app chrome, public scenes, or standalone HTML entrypoints. A consuming application owns the browser composition root and presents only the Core-backed capabilities needed for its bounded user problem.
 
 When adding a new feature, prefer:
 

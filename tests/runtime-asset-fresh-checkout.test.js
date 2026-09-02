@@ -30,14 +30,17 @@ test("source-only checkout reconstructs all runtime outputs and a complete Pages
   console.log("[fresh-runtime] source-only export ready; generating ignored assets");
   execFileSync(process.execPath, ["scripts/prepare-runtime-assets.mjs", "--write"], { cwd: sourceRoot, stdio: "inherit" });
   execFileSync(process.execPath, ["scripts/prepare-runtime-assets.mjs", "--check"], { cwd: sourceRoot, stdio: "inherit" });
+  execFileSync(process.execPath, ["scripts/borg/verify-assembly-record-byte-identity.mjs", "--check"], { cwd: sourceRoot, stdio: "inherit" });
   for (const [name, expected] of sourceHashes) assert.equal(hash(path.join(sourceRoot, name)), expected, `source changed: ${name}`);
   const stamps = new Map(runtimeAssetPaths().map((name) => [name, fs.statSync(path.join(sourceRoot, name)).mtimeMs]));
   console.log("[fresh-runtime] sources unchanged; building isolated deployment payload");
   const result = buildStaticSite({ rootDir: sourceRoot, outputDir: path.join(temporary, "site"), trackedPaths: paths });
-  assert.equal(result.runtimeAssetCount, runtimeAssetPaths().length);
+  const deployableRuntimePaths = runtimeAssetPaths().filter((name) => !isPagesDeploymentExcluded(name));
+  assert.equal(result.runtimeAssetCount, deployableRuntimePaths.length);
   for (const [name, stamp] of stamps) {
     assert.equal(fs.statSync(path.join(sourceRoot, name)).mtimeMs, stamp, `unchanged output rewritten: ${name}`);
-    assert.equal(hash(path.join(sourceRoot, name)), hash(path.join(result.outputDir, name)));
+    if (isPagesDeploymentExcluded(name)) assert.equal(fs.existsSync(path.join(result.outputDir, name)), false, `internal runtime asset published: ${name}`);
+    else assert.equal(hash(path.join(sourceRoot, name)), hash(path.join(result.outputDir, name)));
   }
   assert.ok(fs.existsSync(path.join(result.outputDir, "borg.html")));
   assert.ok(fs.existsSync(path.join(result.outputDir, "equation-mapping.html")));

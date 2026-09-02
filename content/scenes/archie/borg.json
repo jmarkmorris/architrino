@@ -6,6 +6,12 @@
     "type": "Scene-Diagram",
     "units": "relative",
     "wrapLabels": true,
+    "application": {
+      "applicationId": "borg",
+      "eomWorkflow": "run-and-inspection",
+      "mayInitiateEomRuns": true,
+      "mayInspectRecordedRuns": true
+    },
     "layout": {
       "type": "static"
     }

@@ -11,7 +11,7 @@
   ],
   "nearestCandidateInputs": {
     "nnCorridorOverlapSample": {
-      "candidatePath": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "candidatePath": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
       "usableFor": [
         "sample-level p+n and p+p channel comparison",
         "orientation and mismatch table shape",

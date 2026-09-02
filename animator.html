@@ -24,6 +24,7 @@
       }
     </style>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <link rel="stylesheet" href="./src/runtime/markdown-mermaid.css" />
     <link
       rel="stylesheet"
@@ -48,113 +49,7 @@
               <div id="scene-label"></div>
             </div>
             <div id="scene-hud-right">
-              <div id="scene-hud-tools">
-                <div id="scene-nav-history" role="group" aria-label="Scene history">
-                  <button id="nav-up" type="button" aria-label="Go back">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <polyline points="15 5 8 12 15 19"></polyline>
-                    </svg>
-                  </button>
-                  <button id="nav-forward" type="button" aria-label="Go forward">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <polyline points="9 5 16 12 9 19"></polyline>
-                    </svg>
-                  </button>
-                </div>
-                <button id="home-button" type="button" aria-label="Go to home">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </button>
-                <button id="doc-button" type="button" aria-label="Open scene notes">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M7 4h7l4 4v12H7V4zm7 0v4h4"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linejoin="round"
-                      stroke-linecap="round"
-                    ></path>
-                  </svg>
-                </button>
-                <div id="scene-search">
-                  <button
-                    id="scene-search-toggle"
-                    type="button"
-                    aria-label="Search scenes"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <circle cx="11" cy="11" r="6.5"></circle>
-                      <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
-                    </svg>
-                  </button>
-                  <div id="scene-search-panel" aria-hidden="true">
-                    <input
-                      id="scene-search-input"
-                      type="text"
-                      placeholder="Search scenes"
-                      autocomplete="off"
-                    />
-                    <div id="scene-search-results"></div>
-                  </div>
-                </div>
-                <button
-                  id="markdown-doc-button"
-                  type="button"
-                  aria-label="Open full document"
-                  class="is-hidden"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M7 4h7l4 4v12H7V4zm7 0v4h4"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linejoin="round"
-                      stroke-linecap="round"
-                    ></path>
-                  </svg>
-                </button>
-                <button
-                  id="markdown-layout-toggle"
-                  type="button"
-                  aria-label="Switch to single column"
-                  class="is-hidden"
-                >
-                  <svg class="layout-icon-stack" viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="4" y="2.5" width="16" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="5.2" width="16" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="7.9" width="16" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="14.8" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="17.5" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="20.2" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="14" y="14.8" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="14" y="17.5" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="14" y="20.2" width="6" height="1.7" rx="0.85"></rect>
-                  </svg>
-                </button>
-                <button
-                  id="archie-button"
-                  type="button"
-                  aria-label="Open Archie ring"
-                  aria-pressed="false"
-                  onclick="window.openArchieRing ? window.openArchieRing() : document.getElementById('home-button')?.click()"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="7.5"></circle>
-                  <circle cx="12" cy="12" r="3.5"></circle>
-                  <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle>
-                </svg>
-                </button>
-              </div>
+              <div id="scene-hud-tools"></div>
             </div>
           </div>
           <div id="element-nav-overlay" aria-hidden="true">
@@ -187,10 +82,27 @@
       </div>
       <div id="hover-tooltip" role="tooltip" aria-hidden="true"></div>
       <div id="zoom-toast" aria-hidden="true" role="status">Click a sphere with a glow halo to zoom</div>
-      <div id="markdown-panel" aria-hidden="true" class="two-columns">
-        <div id="markdown-content">
-          <div id="markdown-body"></div>
-        </div>
+      <div id="markdown-panel" aria-hidden="true" class="two-columns" inert>
+        <header class="markdown-panel-header">
+          <div id="markdown-title"></div>
+          <div class="markdown-panel-actions" role="group" aria-label="Document actions">
+            <button id="markdown-doc-button" class="markdown-panel-action is-hidden" type="button" aria-label="Open full document" title="Full document">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h7l4 4v12H7V4zm7 0v4h4"></path></svg>
+            </button>
+            <button id="markdown-layout-toggle" class="markdown-panel-action is-hidden" type="button" aria-label="Switch to single column" title="Layout">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"></rect><line x1="12" y1="5" x2="12" y2="19"></line></svg>
+            </button>
+            <button id="markdown-pdf-button" class="markdown-panel-action is-hidden" type="button" aria-label="Save markdown as PDF" title="Save markdown as PDF">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M6 17H5a2 2 0 0 1-2-2v-3a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v3a2 2 0 0 1-2 2h-1M7 14h10v6H7z"></path></svg>
+            </button>
+            <button id="markdown-close" class="markdown-panel-action" type="button" aria-label="Close document" title="Close">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+            </button>
+          </div>
+        </header>
+        <main id="markdown-content" tabindex="-1" aria-labelledby="markdown-title">
+          <article id="markdown-body" class="markdown-article"></article>
+        </main>
       </div>
       <div id="animator-overlay" aria-hidden="true">
         <div class="animator-header">
@@ -227,8 +139,11 @@
             <button id="animator-scene-button" type="button" aria-label="Open scene controls">
               Scene
             </button>
-            <button id="animator-run-simulation-button" type="button" aria-label="Run solver simulation">
-              Run Solver
+            <button id="animator-load-eom-record-button" type="button" aria-label="Load accepted recorded EOM output">
+              Load EOM Record
+            </button>
+            <button id="animator-open-borg-button" type="button" aria-label="Validate and open a sealed prescribed scene in Borg">
+              Open in Borg
             </button>
             <button id="animator-clear-button" type="button" aria-label="Clear the current scene">
               Clear
@@ -248,6 +163,7 @@
               Exit
             </button>
           </div>
+          <div id="animator-top-dynamic-control-bar-mount"></div>
         </div>
         <div class="animator-workspace">
           <main class="animator-main">
@@ -338,7 +254,7 @@
                     />
                   </label>
                   <button id="animator-hud-solver-motion-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
-                    Solver Motion
+                    Recorded Motion
                   </button>
                   <button id="animator-hud-authored-motion-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Authored Motion
@@ -356,117 +272,23 @@
               ></div>
             </div>
           </main>
-          <aside id="animator-simulation-panel" class="animator-simulation-panel" aria-label="Simulation authoring">
+          <aside id="animator-recorded-output-panel" class="animator-simulation-panel" aria-label="Recorded EOM output playback">
             <div class="animator-simulation-panel-head">
               <div>
-                <h2>Simulation</h2>
-                <div id="animator-simulation-cache-status" class="animator-simulation-cache-status">Dataset: loading</div>
+                <h2>Recorded Output</h2>
+                <div id="animator-recorded-output-status" class="animator-simulation-cache-status">Record: none loaded</div>
               </div>
             </div>
-            <section class="animator-simulation-section" aria-label="Scene setup">
-              <h3>Scene</h3>
-              <div class="animator-form animator-form-grid">
-                <label class="animator-field">
-                  <span>Mode</span>
-                  <select id="animator-simulation-mode">
-                    <option value="planar-2d">Planar 2D</option>
-                  </select>
-                </label>
-                <label class="animator-field">
-                  <span>Duration</span>
-                  <input id="animator-simulation-duration" type="number" min="0.25" step="0.25" value="6" />
-                </label>
-                <label class="animator-field is-toggle-field animator-simulation-loop-field">
-                  <span>Loop</span>
-                  <input id="animator-simulation-loop" type="checkbox" />
-                </label>
-                <label class="animator-field">
-                  <span>Dataset Id</span>
-                  <input id="animator-simulation-dataset-id" type="text" value="animator_worker_dataset" />
-                </label>
-              </div>
-            </section>
-            <section class="animator-simulation-section" aria-label="Solver parameters">
-              <h3>Solver</h3>
-              <div class="animator-form animator-form-grid">
-                <label class="animator-field">
-                  <span>Steps</span>
-                  <input id="animator-simulation-steps" type="number" min="1" step="1" value="600" />
-                </label>
-                <label class="animator-field">
-                  <span>Solver dt</span>
-                  <input id="animator-simulation-dt" type="number" min="0.0001" step="0.001" value="0.01" />
-                </label>
-                <label class="animator-field">
-                  <span>Stride</span>
-                  <input id="animator-simulation-stride" type="number" min="1" step="1" value="10" />
-                </label>
-                <label class="animator-field">
-                  <span>Field Speed c_f</span>
-                  <input id="animator-simulation-field-speed" type="number" min="0.0001" step="0.01" value="1" />
-                </label>
-                <label class="animator-field">
-                  <span>Kappa</span>
-                  <input id="animator-simulation-kappa" type="number" step="0.001" value="0.02" />
-                </label>
-                <label class="animator-field">
-                  <span>Claim</span>
-                  <input id="animator-simulation-claim-level" type="text" value="solver-derived-diagnostic" />
-                </label>
-                <label class="animator-field">
-                  <span>History</span>
-                  <select id="animator-simulation-history-mode">
-                    <option value="adaptive">Adaptive</option>
-                    <option value="deep">Deep</option>
-                    <option value="fixed">Fixed</option>
-                  </select>
-                </label>
-                <label class="animator-field">
-                  <span>Root Halt</span>
-                  <select id="animator-simulation-root-halt-policy">
-                    <option value="all">All</option>
-                    <option value="partner">Partner</option>
-                    <option value="none">None</option>
-                  </select>
-                </label>
-              </div>
-            </section>
-            <section class="animator-simulation-section" aria-label="Particle setup">
-              <h3>Particles</h3>
-              <div class="animator-form animator-form-grid">
-                <label class="animator-field">
-                  <span>Count</span>
-                  <input id="animator-simulation-particles" type="number" min="1" step="1" value="6" />
-                </label>
-                <label class="animator-field">
-                  <span>Radius</span>
-                  <input id="animator-simulation-radius" type="number" min="0.0001" step="0.1" value="1" />
-                </label>
-                <label class="animator-field">
-                  <span>Radial Speed</span>
-                  <input id="animator-simulation-radial-speed" type="number" step="0.01" value="0" />
-                </label>
-                <label class="animator-field">
-                  <span>Tangent Speed</span>
-                  <input id="animator-simulation-tangential-speed" type="number" step="0.01" value="0.55" />
-                </label>
-                <label class="animator-field">
-                  <span>Scene Group Velocity X</span>
-                  <input id="animator-simulation-drift-x" type="number" step="0.001" value="0.035" />
-                </label>
-                <label class="animator-field">
-                  <span>Scene Group Velocity Y</span>
-                  <input id="animator-simulation-drift-y" type="number" step="0.001" value="-0.018" />
-                </label>
-              </div>
-            </section>
             <div class="animator-simulation-actions">
-              <button id="animator-simulation-apply" type="button" class="animator-simulation-action-button">Apply</button>
-              <button id="animator-simulation-run" type="button" class="animator-simulation-action-button is-primary">Run Solver</button>
+              <input id="animator-eom-record-file-input" type="file" accept="application/json,.json" hidden />
+              <button id="animator-recorded-output-load" type="button" class="animator-simulation-action-button is-primary">Choose Recorded Output</button>
             </div>
-            <section class="animator-simulation-section" aria-label="Simulation diagnostics">
+            <section class="animator-simulation-section" aria-label="Recorded output boundary">
+              <p>Animator displays accepted recorded EOM output. Start or inspect EOM runs in Borg.</p>
+            </section>
+            <section class="animator-simulation-section" aria-label="Recorded output diagnostics">
               <h3>Diagnostics</h3>
-              <div id="animator-simulation-diagnostics" class="animator-simulation-diagnostics"></div>
+              <div id="animator-recorded-output-diagnostics" class="animator-simulation-diagnostics"></div>
             </section>
           </aside>
           <div class="animator-store" hidden aria-hidden="true">

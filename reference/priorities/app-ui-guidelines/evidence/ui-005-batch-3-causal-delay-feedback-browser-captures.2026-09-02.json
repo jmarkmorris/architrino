@@ -1,0 +1,86 @@
+{
+  "schema": "app-ui-browser-capture-receipt.v1",
+  "task": "UI-005",
+  "batch": "3-causal-delay-feedback",
+  "date": "2026-09-02",
+  "subject": "canonical top dynamic control bar on Causal Delay Feedback",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+    "search_adapter": "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "page_composition": "src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js",
+    "lesson_controller": "src/apps/causal-delay-feedback/CausalDelayFeedbackModeController.js",
+    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+  },
+  "storage": {
+    "tracked": false,
+    "directory": ".local-data/app-ui-guidelines/ui-005-batch-3",
+    "ignore_rule": "/.local-data/app-ui-guidelines/",
+    "format": "PNG"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "procedure": "Open Causal Delay Feedback at the declared viewport, activate Search scenes, wait for ten populated results and the local lesson-list displacement, and capture the viewport.",
+    "routes": ["/causal-delay-feedback.html"]
+  },
+  "captures": [
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-3/causal-delay-feedback-desktop-1440x900-search.png",
+      "sha256": "350e632257c6f995a3e6aa65a2ae46479daac84035bc6dea0cdf690b772794b0",
+      "bytes": 86186,
+      "route": "/causal-delay-feedback.html",
+      "viewport": [1440, 900],
+      "state": "first-lesson-search-open",
+      "action_order": ["toc", "previous-lesson", "next-lesson", "home", "search"],
+      "action_labels": ["Open textbook table of contents", "Previous lesson", "Next lesson", "Go to Applications", "Search scenes"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [1212.44, 16, 211.56, 32],
+      "popover_rect_px": [1149.84, 60, 274.16, 278],
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "lesson_list_displaced_for_search": true,
+      "horizontal_overflow": false
+    },
+    {
+      "path": ".local-data/app-ui-guidelines/ui-005-batch-3/causal-delay-feedback-mobile-390x844-search.png",
+      "sha256": "b32e2697e03260d4cada109eed1a71604a9b297ce1deefaeb09662fcf5de8383",
+      "bytes": 60150,
+      "route": "/causal-delay-feedback.html",
+      "viewport": [390, 844],
+      "state": "first-lesson-search-open",
+      "action_order": ["toc", "previous-lesson", "next-lesson", "home", "search"],
+      "action_labels": ["Open textbook table of contents", "Previous lesson", "Next lesson", "Go to Applications", "Search scenes"],
+      "action_widths_px": [51.56, 32, 32, 32, 32],
+      "action_heights_px": [32, 32, 32, 32, 32],
+      "bar_rect_px": [166.44, 12, 211.56, 32],
+      "popover_rect_px": [103.84, 56, 274.16, 278],
+      "lesson_list_rect_px": [12, 354, 366, 250],
+      "lesson_panel_rect_px": [12, 492.19, 366, 247.81],
+      "replay_controls_rect_px": [40.75, 747, 309.78, 85],
+      "search_result_count": 10,
+      "focused_id": "scene-search-input",
+      "lesson_list_displaced_for_search": true,
+      "horizontal_overflow": false
+    }
+  ],
+  "interaction_checks": {
+    "canonical_stylesheet_count": 1,
+    "legacy_stylesheet_loaded": false,
+    "initial_lesson": "Meet the Electrino and Positrino Transceivers",
+    "initial_previous_disabled": true,
+    "next_lesson": "Wakes Received Now Were Transmitted in the Past",
+    "previous_enabled_after_next": true,
+    "escape_closes_search": true,
+    "escape_restores_focus_to": "scene-search-toggle",
+    "escape_restores_lesson_list_position": true,
+    "home_destination": "index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json",
+    "browser_log_entries": 0
+  },
+  "visual_inspection": {
+    "desktop": "The Search popover, displaced lesson list, lesson panel, causal chart, and replay rail remain distinct and usable.",
+    "mobile": "The Search popover stays within the viewport; the two-column lesson list, lesson panel, and replay controls remain visible below it."
+  },
+  "claim_boundary": "This receipt verifies UI-005 batch 3 and its navigation interactions on Causal Delay Feedback only. It does not certify the scientific content, replay dataset, or any other standalone page."
+}

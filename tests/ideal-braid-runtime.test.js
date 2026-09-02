@@ -9,10 +9,11 @@ import {
   solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis,
 } from "../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js";
 import {
-  computePotentialSamplesWithPrescribedPathAnalysis,
-  createIdealBraidPotentialSamplesRunRequest,
-  IDEAL_BRAID_POTENTIAL_SOFTENING,
-} from "../src/apps/ideal-braid/IdealBraidAnalysisAdapters.js";
+  AAA_CORE_POTENTIAL_API_ID,
+  AAA_CORE_POTENTIAL_SOFTENING,
+  computePotentialSamples,
+  createPotentialSamplesRunRequest,
+} from "../src/aaa-core/potential-v1.mjs";
 import {
   IDEAL_BRAID_SURFACE_SOLVER_FAILURE_BACKOFF_MS,
   createIdealBraidSurfaceSolverScheduler,
@@ -100,31 +101,28 @@ test("full potential is the prescribed-path analysis six-emission superposition"
   const model = createIdealBraidModel({ THREE });
   const samplePoint = new THREE.Vector3(1.8, -0.4, 0.65);
   const observationTime = 1.35;
-  const runRequest = createIdealBraidPotentialSamplesRunRequest(
-    [samplePoint],
+  const potentialRequest = {
+    consumerId: "ideal-braid",
+    samplePoints: [samplePoint],
     model,
     observationTime,
-    {
-      fieldSpeed: model.fieldSpeed,
-      requestId: "ideal_potential_samples_request",
-      runId: "ideal_potential_samples_run",
-      datasetId: "ideal_potential_samples_dataset",
-    }
-  );
+    fieldSpeed: model.fieldSpeed,
+    requestId: "ideal_potential_samples_request",
+    runId: "ideal_potential_samples_run",
+    datasetId: "ideal_potential_samples_dataset",
+  };
+  const runRequest = createPotentialSamplesRunRequest(potentialRequest);
   const expectedPotentials = model.architrinos.map((architrino, index) =>
     architrino.q * (index + 1) * 0.25
   );
   runRequest.config.geometryRequest.delayedPotentials.forEach((row) => {
     assert.equal(row.fieldSpeed, model.fieldSpeed);
-    assert.equal(row.softening, IDEAL_BRAID_POTENTIAL_SOFTENING);
+    assert.equal(row.softening, AAA_CORE_POTENTIAL_SOFTENING);
   });
   const manualTotal = expectedPotentials.reduce((sum, potential) => sum + potential, 0);
-  const snapshot = await computePotentialSamplesWithPrescribedPathAnalysis(
-    [samplePoint],
-    model,
-    observationTime,
+  const snapshot = await computePotentialSamples(
+    {...potentialRequest, runRequest},
     {
-      runRequest,
       async runPrescribedPathAnalysis(request) {
         assert.equal(request.requestId, "ideal_potential_samples_request");
         assert.equal(request.config.geometryRequest.delayedPotentials.length, 6);
@@ -134,6 +132,7 @@ test("full potential is the prescribed-path analysis six-emission superposition"
   );
 
   assert.equal(snapshot.analysisId, "prescribed-path-analysis");
+  assert.equal(snapshot.apiId, AAA_CORE_POTENTIAL_API_ID);
   assert.equal(snapshot.runId, "ideal_potential_samples_run");
   assert.ok(Math.abs(snapshot.samplePotentials[0] - manualTotal) < 1e-12);
   assert.equal(snapshot.contributionsBySample[0].length, 6);
@@ -304,7 +303,7 @@ test("surface scheduler uses the model field speed, documented softening, and no
   assert.equal(requests[0].config.geometryRequest.delayedPotentials.length, 12);
   requests[0].config.geometryRequest.delayedPotentials.forEach((row) => {
     assert.equal(row.fieldSpeed, model.fieldSpeed);
-    assert.equal(row.softening, IDEAL_BRAID_POTENTIAL_SOFTENING);
+    assert.equal(row.softening, AAA_CORE_POTENTIAL_SOFTENING);
   });
   assert.equal(snapshots.length, 1);
   assert.equal(snapshots[0].surfacePotentials.length, samplePoints.length);
@@ -604,6 +603,7 @@ function createFakeElement(id = "") {
   const element = {
     id,
     attributes,
+    children: [],
     classList: createFakeClassList(),
     dataset: {},
     inert: false,
@@ -664,9 +664,16 @@ function createFakeElement(id = "") {
     querySelectorAll() {
       return [];
     },
-    appendChild() {},
-    contains() {
-      return false;
+    appendChild(child) {
+      element.children.push(child);
+      return child;
+    },
+    replaceChildren(...children) {
+      element.children = [];
+      children.forEach((child) => element.appendChild(child));
+    },
+    contains(target) {
+      return target === element || element.children.some((child) => child.contains?.(target));
     },
     setPointerCapture() {},
     releasePointerCapture() {},
@@ -877,21 +884,15 @@ test("Lorentz Geometry selector text matches the Controls heading size", () => {
   );
 });
 
-test("Lorentz Geometry uses the shared standalone navigation strip and no panel home button", () => {
+test("Lorentz Geometry uses the canonical navigation runtime and no panel home button", () => {
   const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
-  const causalHtml = readFileSync(
-    `${repoRoot}/causal-delay-feedback.html`,
-    "utf8",
-  );
   const runtime = readFileSync(
     `${repoRoot}/src/apps/ideal-braid/IdealBraidRuntime.js`,
     "utf8",
   );
-  const sharedStylesheet =
-    "./src/apps/navigator/standalone-app-navigation.css";
 
-  assert.match(html, new RegExp(sharedStylesheet.replaceAll(".", "\\.")));
-  assert.match(causalHtml, new RegExp(sharedStylesheet.replaceAll(".", "\\.")));
+  assert.match(html, /src\/runtime\/top-dynamic-control-bar\.css/);
+  assert.match(html, /<div id="scene-hud-tools" class="ideal-braid-navigation"><\/div>/);
   for (const id of [
     "textbook-toc-button",
     "nav-up",
@@ -902,7 +903,7 @@ test("Lorentz Geometry uses the shared standalone navigation strip and no panel 
     "scene-search-input",
     "scene-search-results",
   ]) {
-    assert.match(html, new RegExp(`id="${id}"`));
+    assert.doesNotMatch(html, new RegExp(`id="${id}"`));
   }
   assert.doesNotMatch(html, /id="ideal-braid-home-button"/);
   const controlsPanel = html.match(
@@ -910,8 +911,7 @@ test("Lorentz Geometry uses the shared standalone navigation strip and no panel 
   )?.[0];
   assert.ok(controlsPanel);
   assert.doesNotMatch(controlsPanel, /aria-label="Go to home"/);
-  assert.match(runtime, /createStandaloneAppSceneSearchRuntime/);
-  assert.match(runtime, /TEXTBOOK_TOC_SCENE_PATH/);
-  assert.match(runtime, /windowLike\?\.history\?\.back\?\.\(\)/);
-  assert.match(runtime, /windowLike\?\.history\?\.forward\?\.\(\)/);
+  assert.match(runtime, /createStandaloneAppNavigationRuntime/);
+  assert.doesNotMatch(runtime, /createStandaloneAppSceneSearchRuntime/);
+  assert.doesNotMatch(runtime, /TEXTBOOK_TOC_SCENE_PATH/);
 });

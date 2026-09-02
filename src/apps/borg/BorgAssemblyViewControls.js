@@ -205,7 +205,9 @@ export function createBorgAssemblyViewControls({
     renderFieldRows(documentLike, dom.overlayFields, [
       ["Polarity", "source-carried per worldline"],
       ["Speed relative to c_f", {
-        text: "Unavailable in this record schema.",
+        text: presentation.fieldSpeed == null
+          ? "Unavailable in this sealed record."
+          : `c_f=${format(presentation.fieldSpeed)} · source-carried`,
         title: presentation.fieldSpeedStatus,
       }],
       ["Binary axes", axes.length === 0 ? "unavailable" : `${axes.length} source-carried axis rows`],
@@ -216,7 +218,9 @@ export function createBorgAssemblyViewControls({
       ["Topological charge", presentation.sourceStatuses.topologicalCharge ?? "unavailable"],
       ["Capture status", presentation.sourceStatuses.capture ?? "unavailable"],
       ["Spin / polarity dipole", {
-        text: "Unavailable in this record schema.",
+        text: presentation.vectorOverlays.length === 0
+          ? "Unavailable in this sealed record."
+          : `${presentation.vectorOverlays.length} source-owned kinematic vector rows`,
         title: presentation.spinDipoleStatus,
       }],
       ["Ansatz curves", presentation.ansatz.length || "unavailable"],

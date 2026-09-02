@@ -163,25 +163,25 @@ test("the shipped Mermaid dependency, browser asset, and license share one pinne
   const runtimeSha256 = createHash("sha256").update(mermaidAsset).digest("hex");
   const licenseSha256 = createHash("sha256").update(mermaidLicense).digest("hex");
 
-  assert.equal(packageJson.dependencies.mermaid, "11.16.0");
-  assert.equal(packageLock.packages["node_modules/mermaid"].version, "11.16.0");
+  assert.equal(packageJson.dependencies.mermaid, "11.16.1");
+  assert.equal(packageLock.packages["node_modules/mermaid"].version, "11.16.1");
   assert.equal(
     packageLock.packages["node_modules/mermaid"].integrity,
-    "sha512-Zvm3kbstgdpvIJPPItlL7fppIZ3kibvc1oZIGxdvk9t6UFz6flv+Jw7FtRGKwfcI8OckmH04LqG6LlS6X4B1pA=="
+    "sha512-TQsq6u22fAn3rek5VOubrhKPo1g5hwC3FXUN9hiyupTckcYiGuuKGkNQrKYwGJkXUxZdojwRG46gsSCFZMDp4g=="
   );
-  assert.match(mermaidAsset, /11\.16\.0/u);
+  assert.match(mermaidAsset, /11\.16\.1/u);
   assert.match(mermaidLicense, /Copyright \(c\) 2014 - 2022 Knut Sveidqvist/u);
   assert.match(
     mermaidSource,
-    /sha512-Zvm3kbstgdpvIJPPItlL7fppIZ3kibvc1oZIGxdvk9t6UFz6flv\+Jw7FtRGKwfcI8OckmH04LqG6LlS6X4B1pA==/u
+    /sha512-TQsq6u22fAn3rek5VOubrhKPo1g5hwC3FXUN9hiyupTckcYiGuuKGkNQrKYwGJkXUxZdojwRG46gsSCFZMDp4g==/u
   );
   assert.match(
     mermaidSource,
-    /74d7c46dabca328c2294733910a8aa1ed0c37451776e8d5295da38a2b758fb9b/u
+    /14fdd79d3b02a877a6b98bf9fa8bfc7bacd7d6de3dde49fb95319c45cc7b1a34/u
   );
-  assert.equal(runtimeSha256, "74d7c46dabca328c2294733910a8aa1ed0c37451776e8d5295da38a2b758fb9b");
+  assert.equal(runtimeSha256, "14fdd79d3b02a877a6b98bf9fa8bfc7bacd7d6de3dde49fb95319c45cc7b1a34");
   assert.equal(licenseSha256, "ec9fb67dcb25eccc416ed56e1aab819222c805a2a4bfe4cb19e7556bf2ffde80");
   assert.match(technologyAcknowledgement, /Mermaid for rendering diagrams authored in fenced Mermaid blocks/u);
-  assert.match(licenseAttribution, /Mermaid 11\.16\.0 diagram runtime: MIT License/u);
+  assert.match(licenseAttribution, /Mermaid 11\.16\.1 diagram runtime: MIT License/u);
   assert.match(licenseAttribution, /vendor\/mermaid\/SOURCE\.md/u);
 });

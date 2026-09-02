@@ -57,14 +57,11 @@ The Archie branch also includes reader-facing reference documents that explain t
 
 The webapp also includes non-document surfaces where interaction is primary.
 
-The authored application hierarchy rooted at `content/scenes/archie/applications.json` is the source of truth. It groups the current tools into four reader-facing categories:
-
-- **Learn & Reference:** Atom, Causal Delay Feedback, It’s Greek to Me!, Hyde Periodic Table, Periodic Table, and Standard Model.
-- **Explore Models:** Lattice Lab, Lorentz Geometry, Molecule Visualization, Photon and Polarization Visualization, and Topo.
-- **Analyze Evidence:** Equation Mapping.
-- **Build & Simulate:** Animator and Borg.
+The authored application scene rooted at `content/scenes/archie/applications.json` is the source of truth. It presents the current tools together in this deliberate reader-facing sequence: Animator; It’s Greek to Me!; Molecule Visualization; Periodic Table; Hyde Periodic Table; Atom; Standard Model; Causal Delay Feedback; Borg; Wake Topography; Lorentz Geometry; Lattice Lab; Photon and Polarization Visualization; and Equation Mapping. Borg starts and inspects EOM runs, while Animator authors visual scenes and replays accepted recorded EOM output.
 
 These include display-only lessons, diagnostic workbenches, content-navigation surfaces, and application-specific runtimes. Inclusion in the index is not an evidence or proof grade.
+
+AAA Core is not part of this reader-facing hierarchy. It is the shared headless application platform used through versioned service contracts; it has no public scene, launch control, or browser interface of its own. Applications may expose Core-backed capabilities inside their own bounded user experiences, but they do not treat a Core interface as a product surface.
 
 ## Information Architecture Claim
 
@@ -147,4 +144,4 @@ Those functions belong to adjacent Archie documents with narrower purposes.
 
 ## Contact
 
-For project contact, use [architrino@gmail.com](mailto:architrino@gmail.com).
+For a reproducible public webapp problem, use the [privacy-safe feedback page](../../../../feedback.html). It creates a visible browser, device, and public-manifest summary locally before opening the public GitHub issue form. For other project contact, use [architrino@gmail.com](mailto:architrino@gmail.com).

@@ -1,6 +1,6 @@
 # Assembly Viewer — Requirements
 
-Status: operator-ratified requirements owned by the Borg app lane. The Braid Program instrument gate has adopted the record schema below and remains its source of truth. The record-only core is implemented; full packet closure is blocked on the schema carriers listed below and remains open in [priorities.md](priorities.md).
+Status: operator-ratified requirements owned by the Borg app lane. The Braid Program instrument gate has adopted the record schema below and remains its source of truth. The record-only core and the 2026-09-01 comparison, collection, field-speed, and source-owned vector carriers are implemented.
 
 ## Purpose
 
@@ -51,14 +51,9 @@ The simulation workspace may request EOM solver execution through the existing B
 
 The implemented Borg path provides the visible mode boundary, catalog-backed prescribed-geometry selector, persistent provenance, strict record validation, retained-segment animation through exactly the declared delay horizon $h$ for evolved records, source-defined whole-period trail depth for prescribed charts, coverage-clamped playback and scrubbing, chart pose, source-carried ansatz curves, source-carried per-binary axis guides, co-rotating camera, display-only swept envelope, static image export, a disabled animation-export placeholder, raw source-order navigation, source-only filters, and optional source-carried $S_3$ grouping. Pressing Play from chart pose enters recorded-path playback before starting the timeline. Each exact configuration is identified by `assemblyId + modelRevisionSha256`; descriptive labels and selector facets are presentation metadata, not scientific identity or a parent-template hierarchy. Recorded-path playback animates only the prescribed analytical geometry and does not represent simulated evolution. `BorgAssemblyViewSession.js`, `BorgAssemblyViewControls.js`, and `BorgAssemblyViewScene.js` keep those policies focused while `BorgAppRuntime.js` remains the common scene and playback owner.
 
-The following requirements remain not advanced because `assembly-view-record.v0` does not ratify the required carrier:
+The [instrument gate](../braid-program/campaigns/instrument-gate.md#4-assembly-view-record-v0-adopted-schema) now ratifies `assembly-view-record-frame.v1`, `assembly-view-vector-overlays.v1`, and `assembly-view-collection.v1`. Borg compares only records with compatible declared transforms and overlapping transformed coverage, reads field speed only from the frame carrier, preserves manifest source order and exact identities, and renders only source-owned kinematic vectors. Legacy records without the carriers remain readable but unavailable for comparison. An empty vector list is an explicit unavailable state, not a record failure.
 
-- Synchronized compatible-record comparison needs declared time-transform and unit-transform fields. Borg accepts no guessed identity transform and performs no silent rescaling.
-- External multi-record collection intake needs a ratified packet or manifest carrier. Repeated exact `assemblyId + modelRevisionSha256` selections exercise the in-memory collection model without defining a new packet schema; local-file and packet intake remain part of the deferred general import workflow.
-- Speed relative to $c_f$ needs a required source-carried field-speed value. Source-declared crossing events may be shown, but Borg does not derive a speed regime without that carrier.
-- Spin and polarity-dipole glyphs need ratified vector fields. Borg shows them as unavailable rather than assigning meaning to unrelated metadata.
-
-These missing-contract states are viewer limitations, not record failures. The instrument gate remains the only authority that can add the carriers.
+Plainly: the four former schema blockers are closed. Borg still refuses to fill in a missing transform, field speed, collection identity, or vector from how a picture happens to look.
 
 ## Spherical Envelope Visual Contract
 

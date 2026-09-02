@@ -101,7 +101,9 @@ test("deterministic gallery calculations use periodic certificates, never displa
         assert.equal(view.outcome, "zero", caseId);
         assert.equal(
           view.outcomeLabel,
-          "Net acceleration is zero at every architrino.",
+          caseId === "simple-cubic-alternating-planes-v1"
+            ? "In this ideal repeating pattern, net acceleration is zero at every architrino."
+            : "Net acceleration is zero at every architrino.",
           caseId,
         );
         assert.equal(
@@ -189,7 +191,7 @@ test("HCP user-facing copy consistently describes ABAB stacking", () => {
   assert.equal(caseRecord.title, "Hexagonal Close-Packed");
   assert.equal(
     caseRecord.polarityRule,
-    "opposite polarities alternate between A and B stacking positions",
+    "opposite polarities alternate between A and B positions in ABAB stacking",
   );
   assert.doesNotMatch(
     [

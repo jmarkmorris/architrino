@@ -14,7 +14,6 @@ This is the canonical execution ledger for accepted Animator work. [priorities.m
 2. `observer_framing_ui` — [ANIM-002](#anim-002--observer-framing-ui). Status: `In progress`.
 3. `timeline_observer_audio` — [ANIM-003](#anim-003--timeline-observer-and-audio). Status: `Queued`.
 4. `canonical_structure_transforms` — [ANIM-004](#anim-004--canonical-structure-transforms). Status: `Queued`.
-5. `simulation_mode` — [ANIM-005](#anim-005--simulation-mode). Status: `Awaiting verification`.
 
 ## In progress
 
@@ -52,19 +51,15 @@ This is the canonical execution ledger for accepted Animator work. [priorities.m
 - **Evidence / blocker:** Depends on ANIM-001.
 - **Completion:** Targeted authoring flows no longer rely on animator-local structural mutations.
 
-## Awaiting verification
-
-### ANIM-005 — Simulation mode
-
-- **Status:** Awaiting verification
-- **Priority object:** `simulation_mode`
-- **Request / acceptance:** Close the Animator-owned simulation authoring surface, offline/cache workflow, provenance display, and production-solver cleanup in [simulation-mode.md](simulation-mode.md).
-- **Evidence / blocker:** Current review gate depends on ANIM-001.
-- **Completion:** Solver-derived scenes remain distinct from authored paths and the declared review checks pass.
-
 ## Verified
 
-No rows.
+### ANIM-005 — Recorded EOM playback
+
+- **Status:** Verified
+- **Priority object:** `simulation_mode`
+- **Request / acceptance:** Close the Animator recorded-output surface, provenance display, fail-closed handoff, and production-solver separation in [simulation-mode.md](simulation-mode.md).
+- **Evidence:** Animator has no solve controls or JavaScript production-solver bridge; the versioned handoff pins the record and validates EOM, model, engine, run, claim, evidence, and completion identity; focused positive and stale/incompatible tests pass.
+- **Completion:** Borg initiates or inspects supported runs, Animator displays accepted recorded output, and `src/eom` remains the sole production solver.
 
 ## Superseded / withdrawn
 

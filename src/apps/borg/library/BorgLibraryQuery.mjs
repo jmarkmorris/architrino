@@ -30,6 +30,7 @@ export function validateLibraryBrowseParams(params) {
     "modelRevisionSha256",
     "recordSha256",
     "variantSet",
+    "returnTo",
   ]);
   for (const key of validated.keys()) {
     if (!allowed.has(key)) throw new RangeError(`Unsupported Borg Library query key ${key}.`);
@@ -54,7 +55,7 @@ export function validateLibraryBrowseParams(params) {
 
 export function matchesLibraryFilters(row, params, omitFacet = null) {
   const query = (params.get("q") ?? "").trim().toLowerCase();
-  const textMatch = [row.label, row.assemblyId, row.description].join(" ").toLowerCase().includes(query);
+  const textMatch = [row.label, row.braidId, row.assemblyId, row.description].join(" ").toLowerCase().includes(query);
   const hashMatch = /^[a-f0-9]{8,64}$/.test(query) &&
     (row.recordSha256?.startsWith(query) || row.modelRevisionSha256?.startsWith(query));
   if (query && !textMatch && !hashMatch) return false;

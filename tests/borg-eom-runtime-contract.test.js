@@ -738,21 +738,17 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   );
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
   assert.doesNotMatch(htmlSource, /id="borg-playback-speed"/);
-  assert.match(
-    htmlSource,
-    /id="borg-diagnostics-toggle"[\s\S]*aria-label="Show diagnostics"[\s\S]*aria-pressed="false"/,
-  );
-  assert.match(
-    htmlSource,
-    /src\/apps\/navigator\/standalone-app-navigation\.css/,
-  );
-  assert.match(
-    htmlSource,
-    /id="scene-hud-tools"[^>]*class="standalone-app-navigation borg-webapp-navigation"[\s\S]*id="textbook-toc-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="home-button"[\s\S]*id="scene-search-toggle"[\s\S]*id="borg-diagnostics-toggle"/,
-  );
-  assert.match(runtimeSource, /createStandaloneAppSceneSearchRuntime/);
-  assert.match(runtimeSource, /TEXTBOOK_TOC_SCENE_PATH/);
-  assert.match(runtimeSource, /resolveStandaloneSiteHomeHref/);
+  assert.match(htmlSource, /src\/runtime\/top-dynamic-control-bar\.css/);
+  assert.match(htmlSource, /<div id="scene-hud-tools" class="borg-webapp-navigation"><\/div>/);
+  assert.doesNotMatch(htmlSource, /id="borg-diagnostics-toggle"/);
+  assert.match(runtimeSource, /createStandaloneAppNavigationRuntime/);
+  assert.match(runtimeSource, /id: "borg-diagnostics-toggle"/);
+  assert.match(runtimeSource, /iconKind: "diagnostics"/);
+  assert.match(runtimeSource, /label: "Show diagnostics"/);
+  assert.match(runtimeSource, /pressed: false/);
+  assert.doesNotMatch(runtimeSource, /createStandaloneAppSceneSearchRuntime/);
+  assert.doesNotMatch(runtimeSource, /TEXTBOOK_TOC_SCENE_PATH/);
+  assert.doesNotMatch(runtimeSource, /resolveStandaloneSiteHomeHref/);
   assert.match(
     htmlSource,
     /id="borg-diagnostics-panel"[\s\S]*aria-hidden="true"[\s\S]*inert/,
@@ -768,8 +764,7 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
     /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*id="borg-camera-drawer"[\s\S]*id="borg-reset-view-button"[\s\S]*class="borg-solver-banner-slot"[\s\S]*id="borg-solver-banner"/,
   );
   assert.match(runtimeSource, /layer\.layer === "path-history"[\s\S]*dom\.layerStrip\.append\(dom\.cameraDrawer\)/);
-  assert.match(runtimeSource, /windowLike\?\.history\?\.back\?\.\(\)/);
-  assert.match(runtimeSource, /windowLike\?\.history\?\.forward\?\.\(\)/);
+  assert.match(runtimeSource, /createStandaloneAppNavigationRuntime/);
   assert.match(
     runtimeSource,
     /HIDDEN_LAYER_BUTTONS = new Set\(\[[\s\S]*"wake-streams"/,

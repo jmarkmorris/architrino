@@ -755,6 +755,7 @@ function createSearchControl(
     isSearchInFlight = () => false,
     isPreviewingSearchResult = () => false,
     onSearchConfigurations,
+    onDeepCompareConfigurations,
     onRestoreSearchPreview,
     onPreviewSearchResult,
     onLoadSearchResult,
@@ -770,7 +771,9 @@ function createSearchControl(
 ) {
   const row = createElement(documentLike, "div", "photon-search-control");
   const toolbar = createElement(documentLike, "div", "photon-search-toolbar");
+  const filterGrid = createElement(documentLike, "div", "photon-search-filter-grid");
   const searchButton = createButton(documentLike, "Search configurations");
+  const deepCompareButton = createButton(documentLike, "Deep compare");
   const restoreButton = createButton(documentLike, "Restore preview");
   const importButton = createButton(documentLike, "Import");
   const exportSelectedButton = createButton(documentLike, "Export selected");
@@ -778,6 +781,28 @@ function createSearchControl(
   const fileInput = createElement(documentLike, "input", "photon-search-file-input");
   const status = createElement(documentLike, "p", "photon-search-status");
   const resultsList = createElement(documentLike, "div", "photon-search-results");
+  const speedFilter = createSelectControl(documentLike, {
+    label: "Deep local c",
+    value: "any",
+    options: [
+      { value: "any", label: "Any local c" },
+      { value: "direct", label: "Direct" },
+      { value: "lorentz_factor", label: "Lorentz factor" },
+    ],
+    onChange: () => {},
+  });
+  const phaseFilter = createSelectControl(documentLike, {
+    label: "Deep phase family",
+    value: "any",
+    options: [
+      { value: "any", label: "Any family" },
+      { value: "stable", label: "Stable lock" },
+      { value: "candidate", label: "Candidate lock" },
+      { value: "singular", label: "Singular candidate" },
+      { value: "none", label: "No family" },
+    ],
+    onChange: () => {},
+  });
 
   fileInput.type = "file";
   fileInput.accept = "application/json,.json";
@@ -785,6 +810,12 @@ function createSearchControl(
 
   searchButton.addEventListener("click", () => {
     onSearchConfigurations?.();
+  });
+  deepCompareButton.addEventListener("click", () => {
+    onDeepCompareConfigurations?.({
+      speedMode: speedFilter.select.value,
+      phaseFamily: phaseFilter.select.value,
+    });
   });
   restoreButton.addEventListener("click", () => {
     onRestoreSearchPreview?.();
@@ -806,8 +837,16 @@ function createSearchControl(
     onExportSearchResults?.();
   });
 
-  toolbar.append(searchButton, restoreButton, importButton, exportSelectedButton, exportAllButton);
-  row.append(toolbar, fileInput, status, resultsList);
+  filterGrid.append(speedFilter.row, phaseFilter.row);
+  toolbar.append(
+    searchButton,
+    deepCompareButton,
+    restoreButton,
+    importButton,
+    exportSelectedButton,
+    exportAllButton
+  );
+  row.append(filterGrid, toolbar, fileInput, status, resultsList);
 
   const sync = () => {
     const results = getSearchResults();
@@ -816,6 +855,10 @@ function createSearchControl(
     const searchInFlight = isSearchInFlight();
     searchButton.disabled = searchInFlight;
     searchButton.textContent = searchInFlight ? "Searching..." : "Search configurations";
+    deepCompareButton.disabled = searchInFlight;
+    deepCompareButton.textContent = searchInFlight ? "Working..." : "Deep compare";
+    speedFilter.select.disabled = searchInFlight;
+    phaseFilter.select.disabled = searchInFlight;
     restoreButton.hidden = !previewing;
     exportSelectedButton.disabled = selectedCount === 0;
     exportAllButton.disabled = results.length === 0;
@@ -953,6 +996,7 @@ export function createPhotonControlsRuntime({
   isSearchInFlight,
   isPreviewingSearchResult,
   onSearchConfigurations,
+  onDeepCompareConfigurations,
   onRestoreSearchPreview,
   onPreviewSearchResult,
   onLoadSearchResult,
@@ -1064,6 +1108,7 @@ export function createPhotonControlsRuntime({
     isSearchInFlight,
     isPreviewingSearchResult,
     onSearchConfigurations,
+    onDeepCompareConfigurations,
     onRestoreSearchPreview,
     onPreviewSearchResult,
     onLoadSearchResult,

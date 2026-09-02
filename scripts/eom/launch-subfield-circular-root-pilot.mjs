@@ -68,6 +68,44 @@ function finish(code,signal,error){
 }
 `;
 
+export const SUBFIELD_CIRCULAR_ROOT_GUARD_SOURCE = String.raw`
+const net=require('node:net');
+const data=JSON.parse(Buffer.from(process.argv[1],'base64').toString());
+let finished=false,armed=false,pending='';
+const connection=net.connect({host:'127.0.0.1',port:data.port});
+const timeout=setTimeout(cancel,data.registrationLimitMs);
+function cancel(){
+ if(finished)return;finished=true;clearTimeout(timeout);
+ // The live parent-child relationship proves the stored runner PID has not
+ // been reused. Reparenting means that runner is already gone, so no signal is
+ // authorized or needed.
+ if(process.ppid===data.runnerPid)try{process.kill(-data.runnerPid,'SIGKILL')}catch(error){if(error.code!=='ESRCH')process.exit(126)}
+ process.exit(125);
+}
+// This sidecar remains outside the runner group so it is schedulable when that
+// group is stopped. It signals only its still-live parent group, never a
+// historical or reparented PID.
+process.on('disconnect',cancel);
+connection.on('error',cancel);
+connection.on('close',cancel);
+for(const signal of ['SIGTERM','SIGINT'])process.on(signal,cancel);
+connection.on('connect',()=>connection.write(JSON.stringify({event:'register-root-guard',secret:data.secret,
+ pid:process.pid,runnerPid:data.runnerPid,sourceSha256:data.sourceSha256})+'\n'));
+connection.on('data',chunk=>{
+ pending+=chunk.toString();if(pending.length>65536){cancel();return;}
+ while(pending.includes('\n')){
+  const end=pending.indexOf('\n');let message;
+  try{message=JSON.parse(pending.slice(0,end))}catch{cancel();return;}
+  pending=pending.slice(end+1);
+  if(!armed&&message.event==='armed'&&message.pid===process.pid&&message.runnerPid===data.runnerPid&&message.secret===data.secret){
+   armed=true;clearTimeout(timeout);if(process.connected)process.send({event:'root-guard-armed',pid:process.pid,runnerPid:data.runnerPid});continue;
+  }
+  if(armed&&message.event==='cancel'&&message.pid===process.pid&&message.runnerPid===data.runnerPid&&message.secret===data.secret){cancel();return;}
+  cancel();return;
+ }
+});
+`;
+
 export const SUBFIELD_CIRCULAR_BOOTSTRAP_SOURCE = String.raw`
 const cp=require('node:child_process'),{registerHooks,syncBuiltinESMExports}=require('node:module');
 const{pathToFileURL}=require('node:url'),crypto=require('node:crypto'),path=require('node:path');
@@ -75,6 +113,11 @@ const data=JSON.parse(Buffer.from(process.argv[1],'base64').toString());
 const originalSpawn=cp.spawn;
 const entries=new Map(data.sources.map(record=>[pathToFileURL(path.resolve(data.root,record.path)).href,record]));
 for(const record of entries.values())if(crypto.createHash('sha256').update(Buffer.from(record.bytes,'base64')).digest('hex')!==record.sha256)throw Error('bootstrap source differs');
+if(crypto.createHash('sha256').update(data.rootGuardSource).digest('hex')!==data.rootGuardSourceSha256)throw Error('root guard source differs');
+const rootGuardData={port:data.port,secret:data.secret,runnerPid:process.pid,sourceSha256:data.rootGuardSourceSha256,
+ registrationLimitMs:Math.min(10000,data.limitMs)};
+const rootGuard=originalSpawn(process.execPath,['-e',data.rootGuardSource,Buffer.from(JSON.stringify(rootGuardData)).toString('base64')],
+ {cwd:data.root,detached:true,stdio:['ignore','ignore','ignore','ipc']});
 registerHooks({load(url,context,next){const record=entries.get(url);return record?{format:'module',source:Buffer.from(record.bytes,'base64'),shortCircuit:true}:next(url,context)}});
 cp.spawn=function(command,args,options){
  if(typeof command!=='string'||!Array.isArray(args)||args.some(value=>typeof value!=='string')||
@@ -86,13 +129,20 @@ cp.spawn=function(command,args,options){
   {...options,stdio:[...options.stdio,'ipc']});
 };
 syncBuiltinESMExports();
-process.once('message',async message=>{
- if(message?.event!=='bootstrap-start'||message.secret!==data.secret)process.exit(125);
- process.argv=[process.execPath,path.resolve(data.root,data.entry),...data.args];
- try{await import(pathToFileURL(process.argv[1]).href);if(process.connected)process.disconnect()}
- catch(error){console.error(error.stack);process.exitCode=1;if(process.connected)process.disconnect()}
+let armed=false;
+rootGuard.once('error',()=>process.exit(125));
+rootGuard.once('exit',()=>process.exit(125));
+rootGuard.once('message',guardMessage=>{
+ if(armed||guardMessage?.event!=='root-guard-armed'||guardMessage.runnerPid!==process.pid)process.exit(125);
+ armed=true;
+ process.once('message',async message=>{
+  if(message?.event!=='bootstrap-start'||message.secret!==data.secret)process.exit(125);
+  process.argv=[process.execPath,path.resolve(data.root,data.entry),...data.args];
+  try{await import(pathToFileURL(process.argv[1]).href);if(process.connected)process.disconnect()}
+  catch(error){console.error(error.stack);process.exitCode=1;if(process.connected)process.disconnect()}
+ });
+ process.send({event:'bootstrap-ready',pid:process.pid,rootGuardPid:rootGuard.pid});
 });
-process.send({event:'bootstrap-ready',pid:process.pid});
 setTimeout(()=>{if(process.connected)process.exit(125)},10000).unref();
 `;
 
@@ -125,14 +175,21 @@ export function descendantRecords(table, rootPid, enrolledGroups = []) {
 
 export function currentOwnedGroup(table, owner) {
   if (!owner?.identity) return [];
+  // Retirement is permanent: a later PID/PGID reuse must never recreate signal
+  // authority for a historical group.
+  if (owner.retired) return [];
   const identity = owner.identity, rows = table.filter(row => row.pgid === identity.pgid);
   const leader = table.find(row => row.pid === identity.pid), known = owner.knownMembers ?? [identity];
+  const retainedKnownRows = rows.filter(row => known.some(old => old.pid === row.pid &&
+    old.started === row.started && old.pgid === identity.pgid));
+  if (leader && leader.started !== identity.started && retainedKnownRows.length === 0) {
+    owner.retired = true;
+    return [];
+  }
   const moved = leader && leader.started === identity.started && leader.pgid !== identity.pgid;
   const reason = moved ? "original leader moved process group" :
-    rows.length && owner.retired ? "retired process group is live" :
     leader && leader.started !== identity.started ? "original leader birth changed" :
-    rows.length && !leader && !rows.some(row => known.some(old => old.pid === row.pid &&
-      old.started === row.started && old.pgid === identity.pgid)) ? "leaderless group has no retained member" : null;
+    rows.length && !leader && retainedKnownRows.length === 0 ? "leaderless group has no retained member" : null;
   if (reason) {
     // Retain actual affected rows, with one bounded diagnostic and no owner mutation.
     let bytes = 0, truncated = false, count = 0;
@@ -314,9 +371,11 @@ export async function superviseRegisteredPilot({ root, entry, args, sources, out
     inspectionAuthority: "explicit callback; its bounded probe lifetime and complete resource accounting require external review",
     spawnPlumbing: "captured-owned-bootstrap-intercepts-spawn; registered-gate-launches-original-command-in-owned-group",
     bootstrapSha256: sha(SUBFIELD_CIRCULAR_BOOTSTRAP_SOURCE), gateSha256: sha(SUBFIELD_CIRCULAR_GATE_SOURCE),
+    rootGuardSha256: sha(SUBFIELD_CIRCULAR_ROOT_GUARD_SOURCE),
     gates: [], snapshots: [], signals: signalEvents, processesClosed: false,
-    autonomousGateCancellation: "immutable self-owned behavior; no new reaction-time guarantee" };
+    autonomousGateCancellation: "immutable self-owned target and runner-group behavior; no new reaction-time guarantee" };
   let child, rootIdentity, rootOwner, rootClosed, rootDidClose = false, runnerStartMs;
+  let rootGuardRecord, rootGuardChannel, selfOwnedCancellationAttempted = false;
   let failure, stopPromise, heartbeat, guard, guardReady = false, guardExitObserved = false, guardTerminating = false;
   let guardExit, outFD, errFD, outCount = 0, errCount = 0, outDropped = 0, errDropped = 0;
   let snapshotBytes = 0, lastRows = [], serverClosed = false;
@@ -465,12 +524,37 @@ export async function superviseRegisteredPilot({ root, entry, args, sources, out
     signalEvents.push({ pgid, signal, original: { pid: owner.identity.pid, pgid: owner.identity.pgid,
       started: owner.identity.started }, elapsedMilliseconds: elapsed() });
   };
-  const cancelGateChannels = async () => {
+  const cancelSelfOwnedChannels = async () => {
+    selfOwnedCancellationAttempted = true;
+    if (rootGuardRecord?.acknowledged && rootGuardChannel && !rootGuardChannel.destroyed && rootGuardChannel.writable) {
+      await writeChannel(rootGuardChannel, { event: "cancel", pid: rootGuardRecord.identity.pid,
+        runnerPid: child.pid, secret }, true);
+      rootGuardRecord.selfGroupCancellationRequested = true;
+    }
     for (const [gate, connection] of gateChannels) {
       if (!gate.acknowledged || connection.destroyed || !connection.writable) continue;
-      await writeChannel(connection, { event: "cancel", pid: gate.identity.pid, secret }, true, gate);
+      // The live authenticated channel commands a gate that is itself a member
+      // of the group it cancels. No historical PID becomes signal authority.
+      await writeChannel(connection, { event: "cancel", pid: gate.identity.pid, secret }, true);
       gate.selfGroupCancellationRequested = true;
     }
+  };
+  const observeCancellationPids = async () => {
+    const pids = [...new Set([child?.pid, rootGuardRecord?.identity?.pid,
+      ...receipt.gates.flatMap(gate => [gate.identity?.pid, gate.target?.pid])].filter(Number.isSafeInteger))];
+    const present = () => pids.filter(pid => {
+      try { process.kill(pid, 0); return true; }
+      catch (error) { if (error.code === "ESRCH") return false; throw error; }
+    });
+    const until = Math.min(completionEnd, performance.now() + 2000);
+    let remainingPids = present();
+    while (remainingPids.length && performance.now() < until) {
+      await pause(true, Math.min(25, Math.max(1, until - performance.now())));
+      remainingPids = present();
+    }
+    receipt.cancellationObservedPidsAbsent = remainingPids.length === 0;
+    receipt.cancellationPidObservationAuthority = "recorded-PID absence only; not a complete process-table census and never acceptance";
+    if (remainingPids.length) receipt.cancellationUnverifiedPids = remainingPids;
   };
   const stop = () => stopPromise ??= (async () => {
     if (!child?.pid) { receipt.processesClosed = !receipt.firstOwnershipFailure && (!child || rootDidClose); return; }
@@ -480,7 +564,8 @@ export async function superviseRegisteredPilot({ root, entry, args, sources, out
       requireThat(rootOwner || rootDidClose && !table.some(row => row.pid === child.pid), "runner birth was never authenticated");
       for (let pass = 0, previous = ""; pass < 8; pass++) {
         const rows = ownedRows(table); remember("cleanup-owned-tree", rows);
-        for (const row of rows) if (!owners().some(owner => owner.identity.pgid === row.pgid)) {
+        for (const row of rows) if (row.pid !== rootGuardRecord?.identity?.pid &&
+          !owners().some(owner => owner.identity.pgid === row.pgid)) {
           const leader = rows.find(item => item.pid === row.pgid && item.pgid === row.pgid);
           requireThat(leader, "unregistered descendant group leader cannot be authenticated");
           enrolled.set(leader.pgid, { identity: { ...leader }, knownMembers: rows.filter(item => item.pgid === leader.pgid), cleanupOnly: true });
@@ -513,7 +598,8 @@ export async function superviseRegisteredPilot({ root, entry, args, sources, out
     } catch (error) {
       fail(error); receipt.cleanupFailure = String(error.message).slice(0, 4096); receipt.processesClosed = false;
       // Inspection failure never authorizes child.kill, a frozen group or a stale PID fallback.
-      try { await cancelGateChannels(); } catch (cause) { receipt.cancellationFailure = String(cause.message).slice(0, 4096); }
+      // Authenticated live sidecars may still cancel their own current groups.
+      try { await cancelSelfOwnedChannels(); } catch (cause) { receipt.cancellationFailure = String(cause.message).slice(0, 4096); }
       throw error;
     }
   })();
@@ -551,7 +637,7 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
   };
   server.on("error", fail);
   server.on("connection", connection => {
-    connections.add(connection); let pending = "", gate;
+    connections.add(connection); let pending = "", gate, channelRole;
     if (connections.size > 4096) { fail(new Error("gate channel count exceeds bound")); connection.destroy(); return; }
     connection.on("close", () => connections.delete(connection));
     connection.on("error", fail);
@@ -562,10 +648,36 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
         while (pending.includes("\n")) {
           clock(); const end = pending.indexOf("\n"), message = JSON.parse(pending.slice(0, end));
           pending = pending.slice(end + 1);
-          if (!gate) {
+          if (!gate && !channelRole) {
+            if (message.event === "register-root-guard") {
+              requireThat(message.secret === secret && message.sourceSha256 === receipt.rootGuardSha256 &&
+                message.runnerPid === child?.pid && Number.isSafeInteger(message.pid) && !rootGuardRecord,
+                "invalid root guard registration");
+              channelRole = "root-guard";
+              rootGuardRecord = { identity: null, acknowledged: false,
+                actualCommand: process.execPath, actualSourceSha256: receipt.rootGuardSha256,
+                registeredAtMilliseconds: elapsed() };
+              rootGuardChannel = connection; receipt.rootGuard = rootGuardRecord;
+              register((async () => {
+                const table = await inspect(false), runner = table.find(item => item.pid === child.pid),
+                  sidecar = table.find(item => item.pid === message.pid);
+                requireThat(runner && runner.ppid === process.pid && runner.pgid === child.pid &&
+                  sidecar && sidecar.ppid === child.pid && sidecar.pgid === sidecar.pid,
+                  "root guard does not own a live side group for the runner");
+                rootIdentity = { ...runner }; rootOwner = { identity: rootIdentity,
+                  knownMembers: [{ ...runner }] };
+                receipt.runner = rootIdentity; rootGuardRecord.identity = { ...sidecar };
+                remember("registered-root-guard", [runner, sidecar]); clock();
+                rootGuardRecord.acknowledged = true;
+                await writeChannel(connection, { event: "armed", pid: sidecar.pid,
+                  runnerPid: runner.pid, secret }, false);
+              })());
+              continue;
+            }
             requireThat(message.event === "register" && message.secret === secret &&
               message.gateSha256 === receipt.gateSha256 && message.parentPid === child?.pid &&
               Number.isSafeInteger(message.pid) && !enrolled.has(message.pid), "invalid child gate registration");
+            channelRole = "target-gate";
             requireThat(receipt.gates.length < 4096, "gate census exceeds bound");
             gate = { identity: null, requestedCommand: message.command, requestedArgs: message.args,
               actualGateCommand: process.execPath, actualGateSourceSha256: receipt.gateSha256,
@@ -582,7 +694,7 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
               gate.acknowledged = true;
               await writeChannel(connection, { event: "start", pid: row.pid, secret }, false);
             })());
-          } else {
+          } else if (channelRole === "target-gate") {
             requireThat(message.pid === gate.identity?.pid && gate.acknowledged, "unacknowledged gate event");
             if (message.event === "target-started" && !gate.target) gate.target = { pid: message.targetPid };
             else if (message.event === "measurement" && !gate.measurement) {
@@ -591,7 +703,7 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
                 Number.isSafeInteger(value) && value >= 0), "gate resource measurement malformed");
               gate.measurement = message;
             } else throw new Error("unknown or repeated gate event");
-          }
+          } else throw new Error("unknown or repeated root guard event");
         }
         clock();
       } catch (error) { fail(error); }
@@ -650,7 +762,8 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
     }, heartbeatMs);
     const data = { root, entry, args, sources: sources.map(record => ({ ...record,
       bytes: Buffer.from(record.bytes).toString("base64") })), port, secret, gateSource: SUBFIELD_CIRCULAR_GATE_SOURCE,
-      gateSha256: receipt.gateSha256, limitMs };
+      gateSha256: receipt.gateSha256, rootGuardSource: SUBFIELD_CIRCULAR_ROOT_GUARD_SOURCE,
+      rootGuardSourceSha256: receipt.rootGuardSha256, limitMs };
     clock(); requireThat(guardReady && !guardExitObserved, "deadline guard unavailable before target launch");
     child = spawn(process.execPath, ["-e", SUBFIELD_CIRCULAR_BOOTSTRAP_SOURCE, Buffer.from(JSON.stringify(data)).toString("base64")],
       { cwd: root, detached: true, stdio: ["ignore", "pipe", "pipe", "ipc"] });
@@ -677,11 +790,16 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
       child.once("close", (code, signal) => { rootDidClose = true; receipt.exit = { code, signal }; resolve(receipt.exit); });
     });
     child.once("message", message => register((async () => {
-      clock(); requireThat(message?.event === "bootstrap-ready" && message.pid === child.pid, "bootstrap identity differs");
+      clock(); requireThat(message?.event === "bootstrap-ready" && message.pid === child.pid &&
+        message.rootGuardPid === rootGuardRecord?.identity?.pid && rootGuardRecord.acknowledged && rootOwner,
+        "bootstrap/root guard identity differs");
       const table = await inspect(false), row = table.find(item => item.pid === child.pid);
-      requireThat(row && row.ppid === process.pid && row.pgid === child.pid, "owned runner group could not be identified");
-      rootIdentity = { ...row }; rootOwner = { identity: rootIdentity, knownMembers: [rootIdentity] };
-      receipt.runner = rootIdentity; remember("runner-before-bootstrap", [row]); clock(); runnerStartMs = performance.now();
+      const sidecar = table.find(item => item.pid === rootGuardRecord.identity.pid);
+      requireThat(row && row.ppid === process.pid && row.pgid === child.pid &&
+        sidecar && sidecar.ppid === child.pid && sidecar.pgid === sidecar.pid &&
+        currentOwnedGroup(table, rootOwner).some(item => item.pid === rootIdentity.pid),
+        "owned runner/root guard group could not be reidentified");
+      remember("runner-before-bootstrap", [row, sidecar]); clock(); runnerStartMs = performance.now();
       await bounded(() => new Promise((resolve, reject) => {
         clock(); child.send({ event: "bootstrap-start", secret }, error => error ? reject(error) : resolve());
       }), "bootstrap start callback");
@@ -740,7 +858,11 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
       receipt.accepted = !failure && !receipt.firstOwnershipFailure && !abort.signal.aborted && performance.now() < workEnd;
       process.off("SIGINT", onSignal); process.off("SIGTERM", onSignal);
     } catch (error) {
-      fail(error); receipt.accepted = false; receipt.processesClosed = false;
+      fail(error); receipt.accepted = false;
+      // Preserve an already completed final process census. A later callback,
+      // channel, descriptor or guard failure rejects the supervisor without
+      // retroactively changing what the process census established.
+      if (receipt.processesClosed !== true) receipt.processesClosed = false;
       receipt.finalizationFailure = String(error.message).slice(0, 4096);
       receipt.unresolved = { runner: rootIdentity ?? (child?.pid ? { pid: child.pid, birthUnobserved: true } : null),
         stickyOwnershipFailure: Boolean(receipt.firstOwnershipFailure),
@@ -749,6 +871,18 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
         pendingCallbacks: waits.size, connections: connections.size, serverClosed,
         descriptors: [outFD, errFD].filter(fd => fd !== undefined),
         uncertainDescriptorCloses: [...descriptorCloseAttempts].filter(fd => fd === outFD || fd === errFD), guardExitObserved };
+      if (selfOwnedCancellationAttempted && rootDidClose && !connections.size && serverClosed && !jobs.size && !waits.size &&
+        !receipt.firstOwnershipFailure && !guardExitObserved) {
+        try {
+          await observeCancellationPids();
+          await closeGuard(true);
+          receipt.guardClosed = true; receipt.guardRetainedForOriginalCompletion = false;
+          receipt.autonomousCancellationMayRemain = !receipt.cancellationObservedPidsAbsent;
+          process.off("SIGINT", onSignal); process.off("SIGTERM", onSignal);
+        } catch (fallbackError) {
+          receipt.fallbackFinalizationFailure = String(fallbackError.message).slice(0, 4096);
+        }
+      }
       // Stop only this invocation's owned handles, without any historical-PID signal.
       // An armed guard stays referenced through the original completion boundary.
       if (!guardExitObserved) {
@@ -761,7 +895,7 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
         outFD = undefined; errFD = undefined;
       }
       receipt.guardRetainedForOriginalCompletion = Boolean(guardReady && !guardExitObserved);
-      receipt.autonomousCancellationMayRemain = true;
+      receipt.autonomousCancellationMayRemain ??= true;
       if (!receipt.guardRetainedForOriginalCompletion) {
         process.off("SIGINT", onSignal); process.off("SIGTERM", onSignal);
         // No target exists on a pre-readiness startup rejection; otherwise the

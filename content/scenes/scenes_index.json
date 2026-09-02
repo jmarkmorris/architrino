@@ -36,11 +36,6 @@
       "path": "content/scenes/archie/archie.json"
     },
     {
-      "id": "assembly-explorer",
-      "name": "Assembly Configuration Explorer",
-      "path": "content/scenes/archie/assembly_explorer.json"
-    },
-    {
       "id": "borg",
       "name": "Borg App",
       "path": "content/scenes/archie/borg.json"
@@ -1896,28 +1891,8 @@
       "path": "content/scenes/archie/lattice_lab.json"
     },
     {
-      "id": "archie__applications__analyze_evidence",
-      "name": "Analyze Evidence",
-      "path": "content/scenes/archie/applications_analyze_evidence.json"
-    },
-    {
-      "id": "archie__applications__build_simulate",
-      "name": "Build & Simulate",
-      "path": "content/scenes/archie/applications_build_simulate.json"
-    },
-    {
-      "id": "archie__applications__explore_models",
-      "name": "Explore Models",
-      "path": "content/scenes/archie/applications_explore_models.json"
-    },
-    {
-      "id": "archie__applications__learn_reference",
-      "name": "Learn & Reference",
-      "path": "content/scenes/archie/applications_learn_reference.json"
-    },
-    {
       "id": "topo",
-      "name": "Topo",
+      "name": "Wake Topography",
       "path": "content/scenes/archie/topo.json"
     },
     {
@@ -1969,6 +1944,11 @@
       "id": "noether_braid__zero_axial_offset_three_binary_dynamics_and_interpretation",
       "name": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
       "path": "content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json"
+    },
+    {
+      "id": "archie__operations",
+      "name": "Archie Operations",
+      "path": "content/scenes/archie/operations.json"
     }
   ]
 }

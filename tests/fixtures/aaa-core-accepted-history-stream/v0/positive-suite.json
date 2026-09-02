@@ -1,0 +1,172 @@
+{
+  "suiteSchema": "aaa_core_accepted_history_stream_positive_suite/v0",
+  "cases": [
+    {
+      "caseId": "sealed-dual-consumer-reconnect",
+      "stream": {
+        "streamId": "core-accepted-stream-001",
+        "pathSetId": "accepted-stream-paths-001",
+        "sourceManifestId": "record.stream.manifest",
+        "producer": "EOM solver",
+        "sequenceBase": 0
+      },
+      "pathBundle": {
+        "caseId": "core-accepted-stream-path-bundle",
+        "records": [
+          {
+            "schema": "aaa_core_path_interchange/v0",
+            "recordType": "path_chunk",
+            "recordId": "record.stream.chunk.0",
+            "version": 0,
+            "contentSha256": "c035cbbaa309c4fae7dd8d16a459134913ea5defa1afeefc1db8947e23adf9cd",
+            "payload": {
+              "chunkId": "accepted-stream-chunk-000",
+              "pathSetId": "accepted-stream-paths-001",
+              "sourceManifestId": "record.stream.manifest",
+              "sequence": 0,
+              "predecessorChunkSha256": null,
+              "coverage": {"startT": 0, "endT": 1, "acceptedThroughT": 1, "complete": true},
+              "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+              "numericPolicy": {"representationProfile": "authoritative_history", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+              "samples": [{"pathId": "accepted-path-a", "T": 0, "position": [0, 0, 0]}, {"pathId": "accepted-path-a", "T": 1, "position": [1, 0, 0]}],
+              "eventMarkers": [{"eventId": "accepted-step-1", "T": 1, "kind": "accepted_step_boundary", "boundary": true}],
+              "provenance": {"producer": "EOM solver", "producerVersion": "stream-fixture/v0", "sourceRecords": [{"sourceId": "stream-fixture-run-001", "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}], "transforms": []},
+              "authority": {"level": "accepted_history", "scientificOwner": "EOM solver", "continuationPermitted": true, "evidenceUse": "synthetic stream conformance only"}
+            }
+          },
+          {
+            "schema": "aaa_core_path_interchange/v0",
+            "recordType": "path_chunk",
+            "recordId": "record.stream.chunk.1",
+            "version": 0,
+            "contentSha256": "e6ffcfe56b250776a73e5f6a50daa3d47b939d37690161bdb0eb057df815121a",
+            "payload": {
+              "chunkId": "accepted-stream-chunk-001",
+              "pathSetId": "accepted-stream-paths-001",
+              "sourceManifestId": "record.stream.manifest",
+              "sequence": 1,
+              "predecessorChunkSha256": "c035cbbaa309c4fae7dd8d16a459134913ea5defa1afeefc1db8947e23adf9cd",
+              "coverage": {"startT": 1, "endT": 2, "acceptedThroughT": 2, "complete": true},
+              "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+              "numericPolicy": {"representationProfile": "authoritative_history", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+              "samples": [{"pathId": "accepted-path-a", "T": 1, "position": [1, 0, 0]}, {"pathId": "accepted-path-a", "T": 2, "position": [2, 0, 0]}],
+              "eventMarkers": [{"eventId": "accepted-step-2", "T": 2, "kind": "accepted_step_boundary", "boundary": true}],
+              "provenance": {"producer": "EOM solver", "producerVersion": "stream-fixture/v0", "sourceRecords": [{"sourceId": "stream-fixture-run-001", "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}], "transforms": []},
+              "authority": {"level": "accepted_history", "scientificOwner": "EOM solver", "continuationPermitted": true, "evidenceUse": "synthetic stream conformance only"}
+            }
+          },
+          {
+            "schema": "aaa_core_path_interchange/v0",
+            "recordType": "path_chunk",
+            "recordId": "record.stream.chunk.2",
+            "version": 0,
+            "contentSha256": "cb15fca3c38486c13a3a249a581ab656ad31f891d91a6d5f03cdcc7d424edb40",
+            "payload": {
+              "chunkId": "accepted-stream-chunk-002",
+              "pathSetId": "accepted-stream-paths-001",
+              "sourceManifestId": "record.stream.manifest",
+              "sequence": 2,
+              "predecessorChunkSha256": "e6ffcfe56b250776a73e5f6a50daa3d47b939d37690161bdb0eb057df815121a",
+              "coverage": {"startT": 2, "endT": 3, "acceptedThroughT": 3, "complete": true},
+              "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+              "numericPolicy": {"representationProfile": "authoritative_history", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+              "samples": [{"pathId": "accepted-path-a", "T": 2, "position": [2, 0, 0]}, {"pathId": "accepted-path-a", "T": 3, "position": [3, 0, 0]}],
+              "eventMarkers": [{"eventId": "accepted-step-3", "T": 3, "kind": "accepted_step_boundary", "boundary": true}],
+              "provenance": {"producer": "EOM solver", "producerVersion": "stream-fixture/v0", "sourceRecords": [{"sourceId": "stream-fixture-run-001", "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}], "transforms": []},
+              "authority": {"level": "accepted_history", "scientificOwner": "EOM solver", "continuationPermitted": true, "evidenceUse": "synthetic stream conformance only"}
+            }
+          },
+          {
+            "schema": "aaa_core_path_interchange/v0",
+            "recordType": "path_set_manifest",
+            "recordId": "record.stream.manifest",
+            "version": 0,
+            "contentSha256": "91f1a4de2c2d8637f5d99bd9667ebd0fa97beb1620046e83ec4daea704b97e07",
+            "payload": {
+              "pathSetId": "accepted-stream-paths-001",
+              "historyKind": "eom_accepted_history",
+              "membership": [{"pathId": "accepted-path-a", "role": "receiver_or_transmitter"}],
+              "coverage": {"startT": 0, "endT": 3, "acceptedThroughT": 3, "complete": true},
+              "coordinateFrame": {"frameId": "euclidean-void-frame-001", "axes": ["X1", "X2", "X3"], "handedness": "right"},
+              "units": {"wakeSpeed": 1, "lengthScale": "fixture_length", "timeScale": "fixture_time", "scaleMapId": "scale-normalized-001"},
+              "numericPolicy": {"representationProfile": "authoritative_history", "representation": "binary64", "precisionBits": 53, "rounding": "nearest_ties_even", "nonfiniteBehavior": "reject", "maximumAbsoluteError": 0},
+              "interpolation": {"basis": "piecewise_cubic_eom_fixture", "maximumPositionError": 0, "eventBoundaryBehavior": "split_chunk"},
+              "provenance": {"producer": "EOM solver", "producerVersion": "stream-fixture/v0", "sourceRecords": [{"sourceId": "stream-fixture-run-001", "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}], "transforms": []},
+              "authority": {"level": "accepted_history", "scientificOwner": "EOM solver", "continuationPermitted": true, "evidenceUse": "synthetic stream conformance only"},
+              "chunks": [
+                {"chunkId": "accepted-stream-chunk-000", "contentSha256": "c035cbbaa309c4fae7dd8d16a459134913ea5defa1afeefc1db8947e23adf9cd", "sequence": 0},
+                {"chunkId": "accepted-stream-chunk-001", "contentSha256": "e6ffcfe56b250776a73e5f6a50daa3d47b939d37690161bdb0eb057df815121a", "sequence": 1},
+                {"chunkId": "accepted-stream-chunk-002", "contentSha256": "cb15fca3c38486c13a3a249a581ab656ad31f891d91a6d5f03cdcc7d424edb40", "sequence": 2}
+              ]
+            }
+          }
+        ]
+      },
+      "consumers": [
+        {"consumerId": "potential-consumer", "clientKind": "potential", "maxBufferedChunks": 2, "maxBufferedBytes": 512},
+        {"consumerId": "history-audit-consumer", "clientKind": "audit", "maxBufferedChunks": 1, "maxBufferedBytes": 256}
+      ],
+      "actions": [
+        {"type": "subscribe", "consumerId": "potential-consumer", "cursor": {"acknowledgedSequence": -1, "acknowledgedChunkSha256": null}},
+        {"type": "subscribe", "consumerId": "history-audit-consumer", "cursor": {"acknowledgedSequence": -1, "acknowledgedChunkSha256": null}},
+        {"type": "publish", "recordId": "record.stream.chunk.0", "byteLength": 128},
+        {"type": "publish", "recordId": "record.stream.chunk.0", "byteLength": 128},
+        {"type": "acknowledge", "consumerId": "history-audit-consumer", "sequence": 0},
+        {"type": "acknowledge", "consumerId": "potential-consumer", "sequence": 0},
+        {"type": "disconnect", "consumerId": "history-audit-consumer"},
+        {"type": "publish", "recordId": "record.stream.chunk.1", "byteLength": 128},
+        {"type": "acknowledge", "consumerId": "potential-consumer", "sequence": 1},
+        {"type": "publish", "recordId": "record.stream.chunk.2", "byteLength": 128},
+        {"type": "acknowledge", "consumerId": "potential-consumer", "sequence": 2},
+        {"type": "reconnect", "consumerId": "history-audit-consumer", "cursor": {"acknowledgedSequence": 0, "acknowledgedChunkSha256": "c035cbbaa309c4fae7dd8d16a459134913ea5defa1afeefc1db8947e23adf9cd"}},
+        {"type": "acknowledge", "consumerId": "history-audit-consumer", "sequence": 1},
+        {"type": "acknowledge", "consumerId": "history-audit-consumer", "sequence": 2},
+        {"type": "seal", "finalSequence": 2, "acceptedThroughT": 3},
+        {"type": "observe_terminal", "consumerId": "potential-consumer"},
+        {"type": "observe_terminal", "consumerId": "history-audit-consumer"}
+      ],
+      "expected": {
+        "producerState": "sealed",
+        "acceptedThroughT": 3,
+        "duplicatesIgnored": 1,
+        "potentialAcknowledgedSequence": 2,
+        "auditAcknowledgedSequence": 2,
+        "auditReconnects": 1,
+        "consumerReceiptEquality": false
+      }
+    },
+    {
+      "caseId": "halt-propagates-across-disconnect",
+      "sourceCaseId": "sealed-dual-consumer-reconnect",
+      "stream": {
+        "streamId": "core-accepted-stream-halt-001",
+        "pathSetId": "accepted-stream-paths-001",
+        "sourceManifestId": "record.stream.manifest",
+        "producer": "EOM solver",
+        "sequenceBase": 0
+      },
+      "consumers": [
+        {"consumerId": "potential-consumer", "clientKind": "potential", "maxBufferedChunks": 1, "maxBufferedBytes": 256},
+        {"consumerId": "history-audit-consumer", "clientKind": "audit", "maxBufferedChunks": 1, "maxBufferedBytes": 256}
+      ],
+      "actions": [
+        {"type": "subscribe", "consumerId": "potential-consumer", "cursor": {"acknowledgedSequence": -1, "acknowledgedChunkSha256": null}},
+        {"type": "subscribe", "consumerId": "history-audit-consumer", "cursor": {"acknowledgedSequence": -1, "acknowledgedChunkSha256": null}},
+        {"type": "publish", "recordId": "record.stream.chunk.0", "byteLength": 128},
+        {"type": "acknowledge", "consumerId": "potential-consumer", "sequence": 0},
+        {"type": "acknowledge", "consumerId": "history-audit-consumer", "sequence": 0},
+        {"type": "disconnect", "consumerId": "history-audit-consumer"},
+        {"type": "halt", "code": "eom.synthetic_stop", "detail": "synthetic producer stopped before sequence 1", "failedSequence": 1, "acceptedThroughT": 1},
+        {"type": "observe_terminal", "consumerId": "potential-consumer"},
+        {"type": "reconnect", "consumerId": "history-audit-consumer", "cursor": {"acknowledgedSequence": 0, "acknowledgedChunkSha256": "c035cbbaa309c4fae7dd8d16a459134913ea5defa1afeefc1db8947e23adf9cd"}},
+        {"type": "observe_terminal", "consumerId": "history-audit-consumer"}
+      ],
+      "expected": {
+        "producerState": "halted",
+        "acceptedThroughT": 1,
+        "halt": {"code": "eom.synthetic_stop", "detail": "synthetic producer stopped before sequence 1", "failedSequence": 1, "acceptedThroughT": 1},
+        "bothConsumersObservedExactHalt": true
+      }
+    }
+  ]
+}

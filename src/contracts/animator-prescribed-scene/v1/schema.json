@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "animator-prescribed-scene-handoff.v1",
+  "title": "Animator to Borg prescribed-scene handoff",
+  "type": "object",
+  "required": ["schema", "recordSha256", "identity", "record"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "animator-prescribed-scene-handoff.v1" },
+    "recordSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "identity": {
+      "type": "object",
+      "required": [
+        "sourceSceneId",
+        "sourceSceneSchemaVersion",
+        "sourceSceneSha256",
+        "assemblyId",
+        "modelRevisionSha256",
+        "motionAuthority",
+        "claimGrade",
+        "evidenceStatus"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "sourceSceneId": { "type": "string", "minLength": 1 },
+        "sourceSceneSchemaVersion": { "const": "0.1.0" },
+        "sourceSceneSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "assemblyId": { "type": "string", "pattern": "^asm-[a-f0-9]{32}$" },
+        "modelRevisionSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "motionAuthority": { "const": "authored-prescribed" },
+        "claimGrade": { "const": "chart-hypothesis" },
+        "evidenceStatus": { "const": "display-only" }
+      }
+    },
+    "record": {
+      "type": "object",
+      "required": [
+        "schema",
+        "sourceId",
+        "assemblyId",
+        "modelRevisionSha256",
+        "provenance",
+        "window",
+        "recordFrame",
+        "vectorOverlays",
+        "worldlines"
+      ],
+      "properties": {
+        "schema": { "const": "assembly-view-record.v0" },
+        "sourceId": { "type": "string", "minLength": 1 },
+        "assemblyId": { "type": "string", "pattern": "^asm-[a-f0-9]{32}$" },
+        "modelRevisionSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "provenance": {
+          "type": "object",
+          "required": [
+            "engineId",
+            "engineVersion",
+            "runId",
+            "claimGrade",
+            "evidenceStatus",
+            "generatingSpec",
+            "date",
+            "prescribedGeometry"
+          ],
+          "properties": {
+            "engineId": { "const": "prescribed-geometry" },
+            "engineVersion": { "const": "animator-prescribed-scene-emitter.v1" },
+            "claimGrade": { "const": "chart-hypothesis" },
+            "evidenceStatus": { "const": "display-only" },
+            "prescribedGeometry": {
+              "type": "object",
+              "required": [
+                "sourceApplication",
+                "sourceSceneId",
+                "sourceSceneSchemaVersion",
+                "sourceSceneSha256",
+                "motionAuthority",
+                "physicsInvoked",
+                "recordOnlyReplay"
+              ],
+              "properties": {
+                "sourceApplication": { "const": "animator" },
+                "sourceSceneSchemaVersion": { "const": "0.1.0" },
+                "sourceSceneSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+                "motionAuthority": { "const": "authored-prescribed" },
+                "physicsInvoked": { "const": false },
+                "recordOnlyReplay": { "const": true }
+              }
+            }
+          }
+        },
+        "worldlines": { "type": "array", "minItems": 1 }
+      }
+    }
+  }
+}

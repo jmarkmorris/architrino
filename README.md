@@ -76,9 +76,18 @@ Current application and application-like surfaces include:
 - Equation Mapping: `equation-mapping.html`
 - It's Greek to Me! — Alpha to Omega: `greek-letter-match.html`
 - Animator: `animator.html`
-- Borg App: `borg.html`
+- Borg Library: `borg-library.html`
+- Borg Workbench: `borg.html`
 - Molecule Visualization: `molecule.html`
 - Periodic Table, Hyde Periodic Table, Atom, and Standard Model scene surfaces
+
+UI Guidelines is intentionally absent from this product-app inventory. It governs shared application standards and remains available as documentation through `Archie` → `User Interface` → `UI Guidelines`; its scene route opens the canonical guide and is not a standalone-app launch target.
+
+`pdgedit-review.html` is intentionally absent from this product-app inventory. It remains a directly addressable, reproducible review/export artifact owned by the [PDG editing workflow](reference/priorities/dormant-deferred/pdg/pdgedit.md#controlled-review-and-export-surface), not a standalone product application or an Animator mode.
+
+The [Simulation Protocol Routing Index](reference/op/simulation-protocol-routing-index.md) is also outside this product-app inventory. It is internal operations documentation that assigns simulation work to the EOM solver and scientific or proof owners; it has no visitor launch surface.
+
+AAA Core is deliberately absent from this catalogue. It is the shared headless application platform: it has no visitor launch route, scene entry, or browser composition root. The retained `app-aaa-core` priority path and `aaa_core_*` contract identifiers are stable development and machine interfaces, not product-list membership.
 
 Standalone app launch routing lives in:
 
@@ -86,7 +95,7 @@ Standalone app launch routing lives in:
 src/apps/navigator/StandaloneAppLaunchRuntime.js
 ```
 
-App runtime code is under `src/apps/`. EOM under `src/eom/` is the endorsed solver and sole forward production target. New app and simulation work routes through its contracts and recorded datasets.
+App runtime code is under `src/apps/`; shared AAA Core modules are under `src/aaa-core/`. EOM under `src/eom/` is the endorsed solver and sole forward production target. New app and simulation work routes through its contracts and recorded datasets.
 
 ## Content Model
 
@@ -189,7 +198,7 @@ VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" <script>
 
 ## Deployment
 
-The public site is transitioning from branch publishing to the GitHub Pages workflow in `.github/workflows/pages.yml`. Keep the current custom-domain and HTTPS settings. Leave the repository Actions variable `ARCHITRINO_PAGES_DEPLOY_ENABLED` unset or `false` for the first merge, which retains the old publisher's generated files and still triggers the existing branch deployment. The new workflow only builds and tests until explicitly enabled. After merge verification, follow the [two-stage cutover and rollback procedure](reference/op/machine-artifact-retention.md#two-stage-pages-cutover) to switch Pages to **GitHub Actions**, enable deployment, and verify the live apps and generated data. Remove tracked runtime files only in a second PR after that live acceptance.
+The public site is published by the GitHub Pages workflow in `.github/workflows/pages.yml`. Keep the current custom-domain and HTTPS settings. Deployment requires GitHub Actions publishing and `ARCHITRINO_PAGES_DEPLOY_ENABLED=true`. If recovery requires an earlier source state, inspect the repository branches and commits, select that state explicitly, validate it through the ordinary branch and PR process, and publish it through the verified `main` workflow. There is no standing automated reversal mechanism or predeclared target.
 
 The workflow validates source, proves reconstruction in a source-only temporary checkout, builds an isolated site directory, and publishes that directory without committing its build output. Deployment requires `ARCHITRINO_PAGES_DEPLOY_ENABLED=true`, a push or manual run on `main`, a successful build, and a Pages publishing source of GitHub Actions. PRs validate and build but cannot publish. The transient Pages upload is retained for one day. Local equivalent: `node scripts/build-static-site.mjs --out .tmp/site` (the destination must be empty). The builder copies only tracked non-hidden files and declared generated runtime outputs; it never copies `.git`, ignored local runs, or unrelated files from the checkout.
 

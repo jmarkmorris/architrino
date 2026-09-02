@@ -1,0 +1,65 @@
+{
+  "suiteSchema": "aaa_core_path_interchange_negative_suite/v0",
+  "cases": [
+    {
+      "id": "missing-coverage",
+      "baseCaseId": "eom-produced-history",
+      "mutation": {"path": "records.1.payload.coverage.complete", "delete": true},
+      "expectedCode": "missing_coverage"
+    },
+    {
+      "id": "incompatible-scales",
+      "baseCaseId": "prescribed-paths",
+      "mutation": {"path": "records.0.payload.units.wakeSpeed", "value": 0.5},
+      "expectedCode": "incompatible_scales"
+    },
+    {
+      "id": "broken-predecessor-chain",
+      "baseCaseId": "live-accepted-stream",
+      "mutation": {"path": "records.1.payload.predecessorChunkSha256", "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"},
+      "expectedCode": "broken_predecessor_chain"
+    },
+    {
+      "id": "unsupported-precision",
+      "baseCaseId": "prescribed-paths",
+      "mutation": {"path": "records.0.payload.numericPolicy.precisionBits", "value": 12},
+      "expectedCode": "unsupported_precision"
+    },
+    {
+      "id": "unknown-version",
+      "baseCaseId": "eom-produced-history",
+      "mutation": {"path": "records.0.version", "value": 1},
+      "expectedCode": "unknown_schema_version"
+    },
+    {
+      "id": "authority-escalation",
+      "baseCaseId": "potential-map-product",
+      "mutation": {"path": "records.3.payload.authority.level", "value": "accepted_history"},
+      "expectedCode": "authority_escalation"
+    },
+    {
+      "id": "missing-source-binding",
+      "baseCaseId": "potential-map-product",
+      "mutation": {"path": "records.3.payload.sourceBindings.0.pathSetId", "value": "unknown-path-set"},
+      "expectedCode": "missing_source_binding"
+    },
+    {
+      "id": "incomplete-seal",
+      "baseCaseId": "potential-map-product",
+      "mutation": {"path": "records.3.payload.coverage.complete", "value": false},
+      "expectedCode": "incomplete_seal"
+    },
+    {
+      "id": "experimental-uncertainty-loss",
+      "baseCaseId": "experimental-import",
+      "mutation": {"path": "records.0.payload.samples.0.positionUncertainty", "delete": true},
+      "expectedCode": "invalid_experimental_provenance"
+    },
+    {
+      "id": "identity-mismatch",
+      "baseCaseId": "potential-map-product",
+      "mutation": {"path": "records.2.payload.query.fixedT", "value": 1.25},
+      "expectedCode": "identity_mismatch"
+    }
+  ]
+}

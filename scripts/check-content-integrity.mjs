@@ -13,6 +13,10 @@ const CHECKS = [
     args: ["scripts/prepare-runtime-assets.mjs", "--write"],
   },
   {
+    name: "Verify Borg registry and record byte identities",
+    args: ["scripts/borg/verify-assembly-record-byte-identity.mjs", "--check"],
+  },
+  {
     name: "Validate content indexes and references",
     args: ["scripts/validate-content.mjs", "--check", "--strict"],
   },
@@ -23,6 +27,26 @@ const CHECKS = [
   {
     name: "Validate generated scene graph manifest",
     args: ["scripts/build-scene-graph.mjs", "--check", "--strict"],
+  },
+  {
+    name: "Validate accepted webapp release profiles",
+    args: ["scripts/check-webapp-release-gate.mjs"],
+  },
+  {
+    name: "Validate accepted browser performance budgets",
+    args: ["scripts/check-browser-performance-budget.mjs"],
+  },
+  {
+    name: "Validate accepted deployment budget",
+    args: ["scripts/check-deployment-budget.mjs"],
+  },
+  {
+    name: "Validate Potential consumer and publication contract",
+    args: ["scripts/check-potential-consumer-publication-contract.mjs"],
+  },
+  {
+    name: "Validate Potential live timespace pipeline contract",
+    args: ["scripts/check-potential-live-timespace-pipeline-contract.mjs"],
   },
   {
     name: "Validate corpus equation links, source context, and symbol registry",

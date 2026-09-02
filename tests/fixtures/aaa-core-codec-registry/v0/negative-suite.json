@@ -1,0 +1,16 @@
+{
+  "suiteSchema": "aaa_core_codec_registry_negative_suite/v0",
+  "cases": [
+    {"id": "unknown-capability", "baseCaseId": "core-authoritative-canonical-json", "operation": "unknown_capability", "expectedCode": "unknown_capability"},
+    {"id": "incompatible-registry-version", "baseCaseId": "core-authoritative-canonical-json", "operation": "incompatible_version", "expectedCode": "incompatible_version"},
+    {"id": "unsupported-profile", "baseCaseId": "core-authoritative-canonical-json", "operation": "unsupported_profile", "expectedCode": "unsupported_profile"},
+    {"id": "unsupported-random-access", "baseCaseId": "core-authoritative-canonical-json", "operation": "unsupported_access", "expectedCode": "capability_mismatch"},
+    {"id": "display-continuation-consumer", "baseCaseId": "core-display-int16le", "operation": "forbidden_consumer", "expectedCode": "forbidden_consumer"},
+    {"id": "corrupt-encoded-payload", "baseCaseId": "core-authoritative-canonical-json", "operation": "payload_integrity_mismatch", "expectedCode": "payload_integrity_mismatch"},
+    {"id": "display-error-budget-exceeded", "baseCaseId": "core-display-int16le", "operation": "error_budget_exceeded", "expectedCode": "error_budget_exceeded"},
+    {"id": "display-event-loss", "baseCaseId": "core-display-int16le", "operation": "event_preservation_failure", "expectedCode": "event_preservation_failure"},
+    {"id": "experimental-source-identity-mismatch", "baseCaseId": "experimental-source-csv-decode", "operation": "source_identity_mismatch", "expectedCode": "source_identity_mismatch"},
+    {"id": "experimental-uncertainty-loss", "baseCaseId": "experimental-source-csv-decode", "operation": "uncertainty_loss", "expectedCode": "uncertainty_loss"},
+    {"id": "experimental-source-schema-mismatch", "baseCaseId": "experimental-source-csv-decode", "operation": "unsupported_source_schema", "expectedCode": "unsupported_source_schema"}
+  ]
+}

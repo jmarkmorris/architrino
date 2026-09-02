@@ -71,7 +71,9 @@ The Search configurations button looks for photon settings that are worth inspec
 
 The search generates a results list for the current session. The interactive search is intentionally bounded: it samples representative configuration families rather than trying every possible combination. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. When the absolute-history solver path is available, top results also record a compact comparison between the co-moving diagnostic and the absolute-history moving-apparatus diagnostic. Interactive search defers the expensive same-transmitter self-hit sweep; helical phase-family records remain available through the dedicated sweep workflow. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
 
-Useful results can be exported as JSON. Exported settings can later be reviewed and, when they are worth keeping, incorporated into the named preset set. Until a result is promoted that way, treat it as a session finding rather than a durable app preset.
+The Deep compare button runs the larger comparison path over the full constructed candidate pool. Its `Deep local c` filter can retain either direct-speed or Lorentz-factor candidates, and its `Deep phase family` filter can retain stable, candidate, singular, absent, or any helical phase-family classification. The app reports progress and yields between candidates so the page remains responsive. Every retained row computes both co-moving and absolute-history summaries.
+
+Useful results can be exported as JSON. Deep-comparison exports retain the analysis identity, normalized-state-snapshot boundary, evaluated history modes, and selected filters. The snapshot is independent of later control changes, but its two summaries use the same prescribed-path analysis and are not independent scientific confirmation. Exported settings can later be reviewed and, when they are worth keeping, incorporated into the named preset set. Until a result is promoted that way, treat it as a session finding rather than a durable app preset.
 
 The search should flag a configuration as interesting when it has one or more of these traits:
 
@@ -308,24 +310,29 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 | 5 | Mean&nbsp;delay | The average travel time from transmitter history roots to the Virtual Observer. |
 | 6 | Transmitter&nbsp;count | How many active architrino transmitters are included. Each enabled binary contributes two transmitters. |
 | 7 | Root&nbsp;count | How many causal roots were retained after solving transmitter histories. More than the transmitter count means at least one transmitter has multiple roots. |
-| 8 | Motion&nbsp;history | Names whether the photon-constrained transmitter-history provider supplied the paths. |
-| 9 | Field&nbsp;reconstruction | Names prescribed-path analysis as the owner of the displayed reconstruction when that provenance is present. |
-| 10 | Max&nbsp;transmitter&nbsp;v/c_f | The fastest active transmitter speed compared with field speed. Above `1` means super-field-speed transmitter motion is present; that is a regime indicator, not a delay-solve failure by itself. |
-| 11 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
-| 12 | Self-hit&nbsp;diagnostics | The interactive snapshot defers the heavier same-transmitter sweep so animation and control changes remain responsive. Dedicated sweep records retain those diagnostics outside the frame loop. |
-| 13 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
-| 14 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
-| 15 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
-| 16 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
-| 17 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
-| 18 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
-| 19 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
-| 20 | Left&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the left braid's three indexed phase gaps depart from equal 120-degree spacing. |
-| 21 | Right&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the right braid's three indexed phase gaps depart from equal 120-degree spacing. |
-| 22 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
-| 23 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 8 | Delta&nbsp;x&nbsp;authority | `absolute history` means the moving-apparatus path owns the separation diagnostic; `comparison only` means the co-moving picture is being shown only as a contrast. |
+| 9 | Root&nbsp;ages | Counts retained roots as fresh through one reference cycle, aging above one through two cycles, or stale above two cycles. These are display-age bands, not physical lifetimes. |
+| 10 | Oldest&nbsp;root&nbsp;age | Gives the oldest retained root delay in reference cycles. |
+| 11 | Motion&nbsp;history | Names whether the photon-constrained transmitter-history provider supplied the paths. |
+| 12 | Field&nbsp;reconstruction | Names prescribed-path analysis as the owner of the displayed reconstruction when that provenance is present. |
+| 13 | Max&nbsp;transmitter&nbsp;v/c_f | The fastest active transmitter speed compared with field speed. Above `1` means super-field-speed transmitter motion is present; that is a regime indicator, not a delay-solve failure by itself. |
+| 14 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
+| 15 | Self-hit&nbsp;diagnostics | The interactive snapshot defers the heavier same-transmitter sweep so animation and control changes remain responsive. Dedicated sweep records retain those diagnostics outside the frame loop. |
+| 16 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
+| 17 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
+| 18 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. This is distinct from a retained root whose age exceeds two reference cycles. |
+| 19 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
+| 20 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
+| 21 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
+| 22 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
+| 23 | Left&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the left braid's three indexed phase gaps depart from equal 120-degree spacing. |
+| 24 | Right&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the right braid's three indexed phase gaps depart from equal 120-degree spacing. |
+| 25 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 26 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
 
 When present, `Analysis library` names the analysis implementation that produced the formula summary. These provenance rows describe ownership and evidence grade; they do not promote the visualization into independent numerical evidence.
+
+Within the self-hit rows, `Helical self-hit roots` counts transmitter records with at least one numerical root candidate. `Helical regular roots` reports admitted roots over all candidates, and `Helical rejected roots` separates singular roots, small-Jacobian roots, and roots whose transversality record is not certified. A numerical root candidate is not a retained physical self-interaction merely because its delay equation closes.
 
 ## Formulas
 

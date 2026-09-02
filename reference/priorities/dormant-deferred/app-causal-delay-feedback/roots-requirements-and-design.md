@@ -4,7 +4,7 @@
 
 This deferred packet explores a linked-view lesson inside Causal Delay Feedback for the causal-root fold described in [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse): as a source's velocity component toward a receiver crosses $c_f$, the delay-map function $g$ develops a new pair of zero-crossings (causal roots), the wake surfaces emitted by the source visibly compress on the approach side, the active-root count steps by $\pm2$, and the per-hit acceleration spikes but integrates to a finite velocity change. The proposed design renders all four as one synchronized 2x2 grid driven by a small shared control set, so a reader can watch one fold appear simultaneously as an algebraic fact, a geometric picture, a counting ledger, and a bounded kinematic consequence.
 
-The challenge is not missing computation. It is teaching four coupled representations without overwhelming the learner or implying that a schematic view independently proves the Master EOM behavior. The current app already has a canonical causal-root evaluator and internal Roots view; this packet does not authorize another evaluator, route, runtime, or implementation pass.
+The challenge is not missing computation. It is teaching four coupled representations without overwhelming the learner or implying that a schematic view independently proves the Master EOM behavior. The current app already has a canonical causal-root evaluator and a live Roots mode within `causal-delay-feedback.html`; this packet does not authorize another evaluator, standalone product route, runtime, or implementation pass.
 
 **Notation.** This packet writes receiver time as $T_r$ and transmit (emission) time as $T_t$, rather than `master-equation.md`'s bare $T$ and $T_{\mathrm{em}}$, so every pane and control can name "receiver" and "transmit" explicitly. Fold instants carry the same subscript pattern: $T_{r,\ast}$ is the receiver-time instant of the fold, $T_{t,\ast}$ the paired transmit-time instant. Drop the `r`/`t` subscripts to recover the `master-equation.md` symbols.
 
@@ -53,7 +53,7 @@ Numeric readout strip (not a fifth pane, a compact status row): current $\beta$,
 
 ## Implementation Boundaries (for when this is scoped for a build)
 
-- Implement Roots as a Causal Delay Feedback mode; do not create a separate `roots.html` product by default.
+- Implement Roots as a Causal Delay Feedback mode; retain `causal-delay-feedback.html?mode=roots` as its direct link and do not create a separate `roots.html` product.
 - Put mode logic behind focused Causal Delay Feedback modules for the shared kinematics state, Pane A (delay-map), Pane B (wake scene), Pane C (root ledger), Pane D (impulse), and the shared control strip.
 - Reuse the app's canonical source, receiver, retained-history state, causal-root evaluator, and wake renderer.
 - Do not add new behavior to root `app.js`.

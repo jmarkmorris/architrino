@@ -11,6 +11,7 @@
 - Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
 - Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
 - Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)
+- MCP software-client protocol adapter: [mcp/priorities.md](mcp/priorities.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
