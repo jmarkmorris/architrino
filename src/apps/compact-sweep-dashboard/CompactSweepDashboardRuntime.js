@@ -19,7 +19,7 @@ import {
 import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import {
   buildBorgLibraryHref,
-  buildBorgWorkbenchHref,
+  resolveBorgLibraryReturnHref,
 } from "../shared/BorgSelectionNavigation.mjs";
 import {
   persistBraidSearchRouteState,
@@ -27,11 +27,10 @@ import {
 } from "./BraidSearchRouteState.mjs";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
-const DEFAULT_VIEW_ID = "overview";
+const DEFAULT_VIEW_ID = "funnel";
 const CASE_PAGE_SIZE = 50;
 
 const VIEW_DEFINITIONS = Object.freeze([
-  ["overview", "Overview"],
   ["funnel", "Evaluation funnel"],
   ["gates", "Gate heatmap"],
   ["metrics", "Metric distributions"],
@@ -128,17 +127,6 @@ function panel({
   return { wrapper, body, header };
 }
 
-function stat(label, value, detail) {
-  const card = element("article", "compact-dashboard-stat");
-  append(
-    card,
-    element("span", "compact-dashboard-label", label),
-    element("strong", "", value),
-    element("small", "", detail),
-  );
-  return card;
-}
-
 function insight(label, value, detail) {
   const card = element("article", "compact-dashboard-insight");
   append(
@@ -186,25 +174,42 @@ function emptyState(message) {
 }
 
 function filteredRows(state) {
-  return filterCompactSweepRows(state.data?.rows ?? [], state.filters);
+  const rows = filterCompactSweepRows(state.data?.rows ?? [], state.filters);
+  if (!state.filters.modelRevisionSha256) return rows;
+  return rows.filter((row) =>
+    row.modelRevisionSha256 === state.filters.modelRevisionSha256);
 }
 
-function assemblyOptions(data) {
+function assemblyOptions(data, selectedAssemblyId = "all") {
+  const assemblyIds = [...new Set(data.rows.map((row) => row.assemblyId))]
+    .sort();
+  if (selectedAssemblyId !== "all" &&
+      !assemblyIds.includes(selectedAssemblyId)) {
+    assemblyIds.unshift(selectedAssemblyId);
+  }
   return [
     { value: "all", label: "All assemblies" },
-    ...[...new Set(data.rows.map((row) => row.assemblyId))]
-      .sort()
-      .map((assemblyId) => ({
-        value: assemblyId,
-        label: `Assembly ${assemblyId}`,
-      })),
+    ...assemblyIds.map((assemblyId) => ({
+      value: assemblyId,
+      label: assemblyId === selectedAssemblyId &&
+        !data.rows.some((row) => row.assemblyId === assemblyId)
+        ? `Assembly ${assemblyId} · no campaign rows`
+        : `Assembly ${assemblyId}`,
+    })),
   ];
 }
 
-function configurationOptions(data, assemblyId, candidateDisposition) {
+function configurationOptions(
+  data,
+  assemblyId,
+  modelRevisionSha256,
+  candidateDisposition,
+) {
   const configurations = [...new Set(data.rows
     .filter((row) =>
       (assemblyId === "all" || row.assemblyId === assemblyId) &&
+      (!modelRevisionSha256 ||
+        row.modelRevisionSha256 === modelRevisionSha256) &&
       (candidateDisposition === "all" ||
         row.candidateDisposition === candidateDisposition))
     .map((row) => row.sourceSlug))]
@@ -228,152 +233,6 @@ function dispositionOptions() {
     },
     { value: "all", label: "All retained rows" },
   ];
-}
-
-function renderOverview(state) {
-  const rows = filteredRows(state);
-  const funnel = buildEvaluationFunnel(rows);
-  const retainedConfigurationCount = state.data.summary.configurations.length;
-  const drawsPerConfiguration = state.data.summary.configurationBalanced
-    ? state.data.summary.configurations[0]?.drawCount ?? null
-    : null;
-  const retainedArithmetic = drawsPerConfiguration === null
-    ? `${formatInteger(state.data.summary.drawn)} retained draws across ` +
-      `${retainedConfigurationCount} configurations`
-    : `${formatInteger(state.data.summary.drawn)} retained draws = ` +
-      `${retainedConfigurationCount} configurations × ${drawsPerConfiguration} draws`;
-  const dispositionArithmetic =
-    state.data.summary.deprecatedControls.drawn > 0
-      ? `The active comparison cohort is ` +
-        `${formatInteger(state.data.summary.activeCohort.drawn)} draws = ` +
-        `${state.data.summary.activeCohort.configurationCount} active configurations × ` +
-        `${drawsPerConfiguration ?? "their retained samples"}; the remaining ` +
-        `${state.data.summary.deprecatedControls.drawn} rows are preserved ` +
-        "deprecated controls."
-      : "This export contains only active candidates; no deprecated-control " +
-        "rows are present.";
-  const view = element("div", "compact-dashboard-view");
-  const stats = element("section", "compact-dashboard-stat-grid");
-  append(
-    stats,
-    stat(
-      "Campaigns",
-      new Set(rows.map((row) => row.campaignHash)).size,
-      `Distinct retained campaign hashes in this filter; ${state.data.summary.campaignCount} in the sealed sweep and never merged into one campaign.`,
-    ),
-    stat("Retained draws in view", funnel.drawn,
-      `${ratioText(funnel.drawn, state.data.summary.drawn)} of sealed rows in the current filter.`),
-    stat("Evaluated", funnel.evaluated,
-      `${ratioText(funnel.evaluated, funnel.drawn)} of filtered draws.`),
-    stat("Null score", funnel.drawnNotEvaluated,
-      `${ratioText(funnel.drawnNotEvaluated, funnel.drawn)} exited before compact scoring.`),
-    stat("Compact passed", funnel.compactPassed,
-      `${ratioText(funnel.compactPassed, funnel.evaluated)} evaluated rows.`),
-  );
-  view.appendChild(stats);
-
-  const composition = panel({
-    kicker: "Sampling composition",
-    title: "Loaded cohort and active comparison boundary",
-    description:
-      `${retainedArithmetic}. ${dispositionArithmetic}`,
-  });
-  const assemblyGrid = element("div", "compact-dashboard-assembly-grid");
-  state.data.summary.assemblies.forEach((assembly) => {
-    assemblyGrid.appendChild(insight(
-      `Assembly ${assembly.assemblyId}`,
-      `${formatInteger(assembly.activeDrawCount)} active draws`,
-      `${assembly.activeConfigurationCount} active configurations; ` +
-      `${formatInteger(assembly.drawCount)} rows retained in the loaded export.`,
-    ));
-  });
-  composition.body.appendChild(assemblyGrid);
-  view.appendChild(composition.wrapper);
-
-  const facts = panel({
-    kicker: "Sealed sweep facts",
-    title: "What the compact campaign actually shows",
-    description:
-      "These are descriptive facts from the retained database and terminal receipts. They do not upgrade the evidence grade.",
-  });
-  const factGrid = element("div", "compact-dashboard-insight-grid");
-  const a13Rows = rows.filter((row) => row.sourceSlug === "three-axis-circular-coincident-midpoints-4-2-1-frequency");
-  const radial = summarizeGate(
-    rows,
-    "surfaceQuadrature",
-    "radialExponent",
-  );
-  const signed = summarizeGate(
-    rows,
-    "surfaceQuadrature",
-    "signedEmissionReference",
-  );
-  const frequency = summarizeGate(
-    rows,
-    "surfaceQuadrature",
-    "frequencyResolvedWakeFlux",
-  );
-  const surface = summarizeGate(rows, "highLevel", "surfaceQuadrature");
-  const etaCorrelation = pearsonCorrelation(rows.map((row) => [
-    row.metrics.externalExposureFraction,
-    row.metrics.wakeFluxFraction,
-  ]));
-  append(
-    factGrid,
-    insight(
-      "three-axis-circular-coincident-midpoints-4-2-1-frequency early exits",
-      `${a13Rows.filter((row) =>
-        !row.evaluation.evaluated).length} null rows`,
-      "Count within the current candidate-disposition and assembly/configuration filters.",
-    ),
-    insight(
-      "Surface quadrature",
-      `${surface.passCount} / ${surface.denominator} passed`,
-      "Exact denominator within the current filter.",
-    ),
-    insight(
-      "Frequency wake flux",
-      `${frequency.passCount} / ${frequency.denominator}`,
-      "No evaluated row passes the frequency-resolved wake-flux subgate.",
-    ),
-    insight(
-      "Signed reference",
-      `${signed.passCount} / ${signed.denominator}`,
-      "Every evaluated row passes the signed-emission reference.",
-    ),
-    insight(
-      "Radial exponent",
-      `${radial.passCount} / ${radial.denominator}`,
-      state.data.summary.deprecatedControls.drawn > 0
-        ? "The all-rows view includes retained control rows; switch to Active candidates to exclude them from comparison."
-        : "The loaded export contains only active candidates.",
-    ),
-    insight(
-      "Deprecated control",
-      `${state.data.summary.deprecatedControls.drawn} rows retained`,
-      state.data.summary.deprecatedControls.drawn > 0
-        ? "Retained controls remain inspectable but are excluded from active metric distributions and comparative rankings."
-        : "No deprecated-control rows are present in this loaded export.",
-    ),
-    insight(
-      "Metric correlation",
-      `r = ${formatNumber(etaCorrelation, 3)}`,
-      "eta_ext and eta_W_flux correlation within the current filter.",
-    ),
-    insight(
-      "Combined score",
-      "None",
-      "Metrics retain their own directions; no combined candidate score exists.",
-    ),
-    insight(
-      "Campaign authority",
-      "Diagnostic only",
-      "Paths were prescribed; neither path evolution nor the EOM solver was invoked.",
-    ),
-  );
-  facts.body.appendChild(factGrid);
-  view.appendChild(facts.wrapper);
-  return view;
 }
 
 function funnelStep(label, count, denominator, detail, className = "") {
@@ -1598,19 +1457,10 @@ function renderCaseDetail(row, state) {
     state.historyLike,
   );
   const borgActions = element("div", "compact-dashboard-borg-actions");
-  const workbenchLink = element(
-    "a",
-    "compact-dashboard-button",
-    "Inspect related assembly in Borg",
-  );
-  workbenchLink.href = buildBorgWorkbenchHref({
-    selection: row.borgSelection,
-    returnTo,
-  });
   const libraryLink = element(
     "a",
     "compact-dashboard-button",
-    "Find braid in Borg Library",
+    "Open related record in Borg",
   );
   libraryLink.href = buildBorgLibraryHref({
     selection: row.borgSelection,
@@ -1618,13 +1468,7 @@ function renderCaseDetail(row, state) {
   });
   append(
     borgActions,
-    workbenchLink,
     libraryLink,
-    element(
-      "p",
-      "compact-dashboard-note",
-      `Borg handoff: ${row.borgSelection.braidId} · ${row.assemblyId} · model revision ${row.modelRevisionSha256}.`,
-    ),
   );
   wrapper.appendChild(borgActions);
 
@@ -1684,12 +1528,9 @@ function renderCaseDetail(row, state) {
   );
 
   const identities = element("dl", "compact-dashboard-detail-grid");
-  const sampledSpec = row.exactRerunInstruction?.sampledSpec;
   [
     ["Case ID", row.caseId],
     ["Candidate ID", row.candidateId],
-    ["Source claim grade", sampledSpec?.claimGrade],
-    ["Source evidence status", sampledSpec?.evidenceStatus],
     ["Campaign ID", row.campaignId],
     ["Wave", row.waveId],
     ["Sampling seed", row.samplingSeed],
@@ -2055,7 +1896,6 @@ function renderView(state) {
   if (!state.data) return;
   state.viewContainer.replaceChildren();
   const renderers = {
-    overview: renderOverview,
     funnel: renderFunnel,
     gates: renderGates,
     metrics: renderMetrics,
@@ -2079,18 +1919,28 @@ function mountShell(root, state) {
   const title = element("div", "compact-dashboard-title");
   append(
     title,
-    element("div", "compact-dashboard-kicker", "Read-only campaign explorer"),
+    element("div", "compact-dashboard-kicker", "Borg campaign analysis"),
     element("h1", "", "Braid Search"),
     element(
       "p",
       "",
-      "Prescribed-path compact campaign · diagnostic evidence only",
+      "Focused prescribed-path diagnostics · read-only evidence view",
     ),
   );
   const actions = element("div", "compact-dashboard-actions");
+  const borgReturn = element(
+    "a",
+    "compact-dashboard-button",
+    "Back to Borg Library",
+  );
+  borgReturn.id = "braid-search-return-to-borg";
+  borgReturn.href = resolveBorgLibraryReturnHref(
+    new URLSearchParams(state.locationLike?.search ?? "").get("returnTo"),
+    state.locationLike,
+  ) ?? "./borg-library.html";
   const navigationHost = element("div", "braid-search-navigation");
   navigationHost.id = "scene-hud-tools";
-  actions.appendChild(navigationHost);
+  append(actions, borgReturn, navigationHost);
   append(headerMain, title, actions);
 
   const filters = element("div", "compact-dashboard-filters");
@@ -2101,6 +1951,10 @@ function mountShell(root, state) {
     options: [{ value: "all", label: "All assemblies" }],
     onChange(value) {
       state.filters.assemblyId = value;
+      state.filters.modelRevisionSha256 = value === "all"
+        ? null
+        : state.data.rows.find((row) => row.assemblyId === value)
+          ?.modelRevisionSha256 ?? null;
       state.filters.sourceSlug = "all";
       refreshFilters(state);
       renderView(state);
@@ -2225,12 +2079,13 @@ function refreshFilters(state) {
   );
   replaceOptions(
     state.assemblySelect,
-    assemblyOptions(state.data),
+    assemblyOptions(state.data, state.filters.assemblyId),
     state.filters.assemblyId,
   );
   const options = configurationOptions(
     state.data,
     state.filters.assemblyId,
+    state.filters.modelRevisionSha256,
     state.filters.candidateDisposition,
   );
   if (!options.some((option) => option.value === state.filters.sourceSlug)) {
@@ -2250,9 +2105,11 @@ function loadData(state, rawData) {
     .includes(state.filters.candidateDisposition)) {
     state.filters.candidateDisposition = "all";
   }
-  if (state.filters.assemblyId !== "all" &&
-      !data.rows.some((row) => row.assemblyId === state.filters.assemblyId)) {
-    state.filters.assemblyId = "all";
+  if (state.filters.assemblyId === "all") {
+    state.filters.modelRevisionSha256 = null;
+  } else if (!state.filters.modelRevisionSha256) {
+    state.filters.modelRevisionSha256 = data.rows.find((row) =>
+      row.assemblyId === state.filters.assemblyId)?.modelRevisionSha256 ?? null;
   }
   if (state.selectedCaseKey !== null &&
       !data.rows.some((row) => row.rowKey === state.selectedCaseKey)) {

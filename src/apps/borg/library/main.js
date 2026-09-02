@@ -4,7 +4,11 @@ import { createSpherePreview } from "./BorgSpherePreview.js";
 import { renderBorgScientificStatus } from "../BorgScientificStatusView.mjs";
 import { renderBorgPlatonicRelationships } from "../BorgPlatonicRelationshipsView.mjs";
 import { createStandaloneAppNavigationRuntime } from "../../navigator/StandaloneAppNavigationRuntime.js";
-import { resolveBraidSearchReturnHref } from "../../shared/BorgSelectionNavigation.mjs";
+import {
+  BORG_SELECTION_SCHEMA,
+  buildBraidSearchAnalysisHref,
+  resolveBraidSearchReturnHref,
+} from "../../shared/BorgSelectionNavigation.mjs";
 
 const $ = (id) => document.getElementById(id);
 const element = (tag, text, className) => { const node = document.createElement(tag); if (text != null) node.textContent = text; if (className) node.className = className; return node; };
@@ -24,6 +28,27 @@ if (returnTo) {
 
 function currentLibraryHref() {
   return `${location.pathname}${location.search}${location.hash}`;
+}
+
+function campaignReturnHref() {
+  const url = new URL(location.href);
+  url.searchParams.delete("returnTo");
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+function campaignSelection(row) {
+  return {
+    schema: BORG_SELECTION_SCHEMA,
+    braidId: row.braidId,
+    assemblyId: row.assemblyId,
+    modelRevisionSha256: row.modelRevisionSha256,
+  };
+}
+
+function updateCampaignAnalysisEntryHref() {
+  $("borg-campaign-analysis-entry").href = buildBraidSearchAnalysisHref({
+    returnTo: campaignReturnHref(),
+  });
 }
 
 function updateWorkbenchEntryHref() {
@@ -70,6 +95,7 @@ function saveUrl(replace = false) {
   const query = state.params.toString();
   history[replace ? "replaceState" : "pushState"]({}, "", `${location.pathname}${query ? `?${query}` : ""}`);
   updateWorkbenchEntryHref();
+  updateCampaignAnalysisEntryHref();
 }
 function changeQuery() {
   state.params.delete("cursor"); state.params.delete("assemblyId"); state.params.delete("modelRevisionSha256"); state.params.delete("recordSha256");
@@ -310,6 +336,10 @@ async function openInspector(row, persist = true) {
     if (returnTo) workbenchParams.set("returnTo", returnTo);
     workbenchParams.set("libraryReturnTo", currentLibraryHref());
     $("open-record").href = `./borg.html?${workbenchParams}`;
+    $("analyze-record").href = buildBraidSearchAnalysisHref({
+      selection: campaignSelection(row),
+      returnTo: campaignReturnHref(),
+    });
     $("raw-record").href = `./${row.recordUrl}`;
     if (!$("inspector").open) $("inspector").showModal();
     state.detail?.dispose(); state.detail = createSpherePreview($("inspector-canvas"), preview);
@@ -343,4 +373,4 @@ $("copy-selection").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(location.href); $("copy-status").textContent = "Exact selection link copied."; }
   catch { $("copy-status").textContent = "Copy is unavailable. The address bar contains the exact selection link."; }
 });
-restoreControls(); updateWorkbenchEntryHref(); updatePlayback(); loadResults(); requestAnimationFrame(animate);
+restoreControls(); updateWorkbenchEntryHref(); updateCampaignAnalysisEntryHref(); updatePlayback(); loadResults(); requestAnimationFrame(animate);

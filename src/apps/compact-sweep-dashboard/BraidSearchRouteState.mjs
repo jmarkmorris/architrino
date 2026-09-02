@@ -2,6 +2,7 @@ const OWNED_KEYS = Object.freeze([
   "view",
   "candidateDisposition",
   "assemblyId",
+  "modelRevisionSha256",
   "sourceSlug",
   "caseConfiguration",
   "caseSample",
@@ -14,10 +15,11 @@ export function readBraidSearchRouteState(search = "") {
   const query = new URLSearchParams(search);
   const page = Number(query.get("casePage"));
   return Object.freeze({
-    viewId: query.get("view") ?? "overview",
+    viewId: query.get("view") ?? "funnel",
     filters: Object.freeze({
       candidateDisposition: query.get("candidateDisposition") ?? "all",
       assemblyId: query.get("assemblyId") ?? "all",
+      modelRevisionSha256: query.get("modelRevisionSha256"),
       sourceSlug: query.get("sourceSlug") ?? "all",
     }),
     caseConfigurationId: query.get("caseConfiguration") ?? "all",
@@ -34,7 +36,7 @@ export function buildBraidSearchRouteHref(
 ) {
   const url = new URL(locationLike?.href ?? "http://localhost/braid-search.html");
   OWNED_KEYS.forEach((key) => url.searchParams.delete(key));
-  setNondefault(url.searchParams, "view", state.viewId, "overview");
+  setNondefault(url.searchParams, "view", state.viewId, "funnel");
   setNondefault(
     url.searchParams,
     "candidateDisposition",
@@ -42,6 +44,12 @@ export function buildBraidSearchRouteHref(
     "all",
   );
   setNondefault(url.searchParams, "assemblyId", state.filters.assemblyId, "all");
+  setNondefault(
+    url.searchParams,
+    "modelRevisionSha256",
+    state.filters.modelRevisionSha256,
+    null,
+  );
   setNondefault(url.searchParams, "sourceSlug", state.filters.sourceSlug, "all");
   setNondefault(
     url.searchParams,

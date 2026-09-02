@@ -2,7 +2,7 @@
   "schema": "architrino.browser-performance-evidence.v1",
   "status": "passed_pre_release",
   "productionMutation": false,
-  "measuredAtUtc": "2026-09-02T20:31:01.378Z",
+  "measuredAtUtc": "2026-09-02T20:41:26.396Z",
   "measurementBoundary": "The public-feedback-interaction profile and its source closure were remeasured after the public scene indexes changed. The photon-4k-visual profile and shared GPU-process envelope retain their original 2026-09-02 measurement.",
   "environment": {
     "browser": "Chrome 152.0.0.0 through the Codex in-app browser",
@@ -27,7 +27,7 @@
     "public-feedback-interaction": {
       "status": "passed",
       "route": "/feedback.html",
-      "measuredAtUtc": "2026-09-02T20:31:01.378Z",
+      "measuredAtUtc": "2026-09-02T20:41:26.396Z",
       "viewport": {
         "cssWidth": 1440,
         "cssHeight": 900,
@@ -36,34 +36,34 @@
       "launch": {
         "cold": {
           "originWasFresh": true,
-          "loadEventEndMs": 94.60000002384186,
-          "transferBytes": 831069,
-          "encodedBytes": 828969,
+          "loadEventEndMs": 73.70000004768372,
+          "transferBytes": 826546,
+          "encodedBytes": 824446,
           "resourceCount": 6
         },
         "warm": {
           "sameOriginReload": true,
-          "loadEventEndMs": 28.30000001192093,
-          "transferBytes": 812858,
-          "encodedBytes": 815297,
+          "loadEventEndMs": 30.80000001192093,
+          "transferBytes": 808335,
+          "encodedBytes": 810774,
           "resourceCount": 6
         }
       },
       "interaction": {
         "id": "refresh-public-manifest",
         "status": "passed",
-        "nextPaintMs": 72.90000003576279
+        "nextPaintMs": 32.80000001192093
       },
       "frameTiming": {
         "samples": 180,
-        "p95Ms": 16.799999999999727,
+        "p95Ms": 16.799999999999955,
         "medianFps": 59.88023952095874,
         "intervalsOver33_34Ms": 0
       },
       "heap": {
         "supported": true,
-        "warmAfterFramesUsedBytes": 11905084,
-        "frameWindowGrowthBytes": 966884
+        "warmAfterFramesUsedBytes": 10116844,
+        "frameWindowGrowthBytes": 36556
       },
       "storage": {
         "supported": true,
@@ -134,8 +134,8 @@
   "sourceClosures": {
     "public-feedback-interaction": {
       "files": 7,
-      "bytes": 828969,
-      "sha256": "074ac3b0c9e4a7bec904ad497a83b69344ff170a025844247b916250ba641ff1",
+      "bytes": 824446,
+      "sha256": "83710d918f68a51a20fc9e5fae74322d25db4c96f436ffaac86dc9569133a4e5",
       "paths": [
         "feedback.html",
         "src/apps/feedback/feedback.css",

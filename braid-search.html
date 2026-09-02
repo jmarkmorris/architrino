@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta name="theme-color" content="#07111f" />
-    <title>Braid Search</title>
+    <title>Braid Search · Borg Campaign Analysis</title>
     <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <style>
       * {
@@ -301,7 +301,6 @@
       }
 
       .compact-dashboard-panel,
-      .compact-dashboard-stat,
       .compact-dashboard-insight {
         border: 1px solid var(--line);
         border-radius: 10px;
@@ -352,43 +351,6 @@
 
       .compact-dashboard-panel-body {
         padding: 16px;
-      }
-
-      .compact-dashboard-stat-grid {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .compact-dashboard-stat {
-        min-width: 0;
-        padding: 14px;
-      }
-
-      .compact-dashboard-stat strong {
-        display: block;
-        margin-top: 7px;
-        font-size: clamp(23px, 2.4vw, 34px);
-        line-height: 1;
-      }
-
-      .compact-dashboard-stat small {
-        display: block;
-        margin-top: 7px;
-        color: var(--muted);
-        font-size: 11px;
-        line-height: 1.35;
-      }
-
-      .compact-dashboard-family-grid,
-      .compact-dashboard-insight-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .compact-dashboard-insight-grid {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
       }
 
       .compact-dashboard-insight {
@@ -814,14 +776,6 @@
       }
 
       @media (max-width: 1120px) {
-        .compact-dashboard-stat-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .compact-dashboard-insight-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
         .compact-dashboard-funnel {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
@@ -863,9 +817,6 @@
           gap: 7px;
         }
 
-        .compact-dashboard-stat-grid,
-        .compact-dashboard-family-grid,
-        .compact-dashboard-insight-grid,
         .compact-dashboard-funnel,
         .compact-dashboard-reason-grid {
           grid-template-columns: 1fr 1fr;
@@ -881,9 +832,6 @@
       }
 
       @media (max-width: 480px) {
-        .compact-dashboard-stat-grid,
-        .compact-dashboard-family-grid,
-        .compact-dashboard-insight-grid,
         .compact-dashboard-funnel,
         .compact-dashboard-reason-grid,
         .compact-dashboard-filters {

@@ -12,6 +12,7 @@ import {
 import {
   BORG_SELECTION_SCHEMA,
   BORG_SELECTION_STATUS,
+  buildBraidSearchAnalysisHref,
   buildBorgLibraryHref,
   buildBorgWorkbenchHref,
   resolveBorgSelectionRequest,
@@ -62,6 +63,26 @@ test("shared navigation preserves permanent braid and exact assembly identities"
   assert.equal(library.pathname, "/borg-library.html");
   assert.equal(library.searchParams.get("q"), BRAID_ID);
   assert.equal(library.searchParams.get("returnTo"), returnTo);
+
+  const analysis = new URL(buildBraidSearchAnalysisHref({
+    selection: SELECTION,
+    returnTo: "/borg-library.html?q=selected",
+  }), "http://localhost");
+  assert.equal(analysis.pathname, "/braid-search.html");
+  assert.equal(analysis.searchParams.get("view"), "funnel");
+  assert.equal(
+    analysis.searchParams.get("candidateDisposition"),
+    "active-candidate",
+  );
+  assert.equal(analysis.searchParams.get("assemblyId"), ENTRY.assemblyId);
+  assert.equal(
+    analysis.searchParams.get("modelRevisionSha256"),
+    ENTRY.modelRevisionSha256,
+  );
+  assert.equal(
+    analysis.searchParams.get("returnTo"),
+    "/borg-library.html?q=selected",
+  );
 });
 
 test("Borg record selection distinguishes valid, missing, stale, and invalid identities", () => {
@@ -133,6 +154,22 @@ test("Braid Search owns its route state and Borg accepts only a same-origin retu
   assert.equal(route.searchParams.get("casePage"), "3");
   assert.equal(route.searchParams.get("selectedCase"), "row-2");
 
+  const exactState = readBraidSearchRouteState(
+    `?assemblyId=${ENTRY.assemblyId}&modelRevisionSha256=${ENTRY.modelRevisionSha256}`,
+  );
+  assert.equal(exactState.viewId, "funnel");
+  assert.equal(exactState.filters.assemblyId, ENTRY.assemblyId);
+  assert.equal(
+    exactState.filters.modelRevisionSha256,
+    ENTRY.modelRevisionSha256,
+  );
+  assert.equal(
+    new URL(buildBraidSearchRouteHref(exactState, {
+      href: "http://127.0.0.1:5173/braid-search.html",
+    }), "http://127.0.0.1:5173").searchParams.get("modelRevisionSha256"),
+    ENTRY.modelRevisionSha256,
+  );
+
   const locationLike = { href: "http://127.0.0.1:5173/borg.html" };
   assert.equal(
     resolveBraidSearchReturnHref(href, locationLike),
@@ -191,13 +228,18 @@ test("browser surfaces share navigation contracts without importing each other's
   ), "utf8");
   const braidHtml = readFileSync(new URL("../braid-search.html", import.meta.url), "utf8");
   const borgHtml = readFileSync(new URL("../borg.html", import.meta.url), "utf8");
+  const borgLibraryHtml = readFileSync(new URL("../borg-library.html", import.meta.url), "utf8");
 
-  assert.match(braidRuntime, /Inspect related assembly in Borg/u);
-  assert.match(braidRuntime, /Find braid in Borg Library/u);
+  assert.match(braidRuntime, /Back to Borg Library/u);
+  assert.match(braidRuntime, /Open related record in Borg/u);
+  assert.doesNotMatch(braidRuntime, /Inspect related assembly in Borg/u);
+  assert.doesNotMatch(braidRuntime, /Borg handoff:/u);
   assert.match(braidRuntime, /BorgSelectionNavigation\.mjs/u);
   assert.doesNotMatch(braidRuntime, /BorgAppRuntime/u);
   assert.doesNotMatch(borgBootstrap, /CompactSweepDashboardRuntime/u);
   assert.match(braidHtml, /compact-dashboard-borg-actions/u);
   assert.match(borgHtml, /id="borg-library-link"/u);
   assert.match(borgHtml, /id="borg-return-to-search"/u);
+  assert.match(borgLibraryHtml, /id="borg-campaign-analysis-entry"/u);
+  assert.match(borgLibraryHtml, /id="analyze-record"/u);
 });

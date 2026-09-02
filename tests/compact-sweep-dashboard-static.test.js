@@ -15,7 +15,7 @@ test("Braid Search is a focused standalone app with configured local data", () =
 
   assert.match(
     html,
-    /<title>Braid Search<\/title>/u,
+    /<title>Braid Search · Borg Campaign Analysis<\/title>/u,
   );
   assert.match(html, /id="compact-sweep-dashboard-app"/u);
   assert.match(
@@ -43,6 +43,11 @@ test("Braid Search is a focused standalone app with configured local data", () =
     /\.\/\.local-data\/braid-analysis\/compact-monte-carlo\/configuration-sweep-v2\/compact-sweep-dashboard\.v3\.json/u,
   );
   assert.match(runtime, /role", "tablist"/u);
+  assert.match(runtime, /const DEFAULT_VIEW_ID = "funnel"/u);
+  assert.doesNotMatch(runtime, /\["overview", "Overview"\]/u);
+  assert.doesNotMatch(runtime, /function renderOverview/u);
+  assert.match(runtime, /Borg campaign analysis/u);
+  assert.match(runtime, /Back to Borg Library/u);
   assert.match(runtime, /Configuration-by-gate heatmap/u);
   assert.match(runtime, /Active candidates/u);
   assert.match(runtime, /Deprecated controls/u);

@@ -15,6 +15,7 @@
     <nav class="library-header-actions" aria-label="Borg Library actions">
       <div id="scene-hud-tools" class="borg-library-navigation"></div>
       <a id="borg-library-return-to-search" class="workbench-link" hidden>Return to Braid Search</a>
+      <a id="borg-campaign-analysis-entry" class="workbench-link" href="./braid-search.html?view=funnel&amp;candidateDisposition=active-candidate">Campaign analysis</a>
       <a id="borg-workbench-entry" class="workbench-link" href="./borg.html">Start new simulation in Borg Workbench <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
@@ -35,7 +36,7 @@
       </aside>
     </div>
     <main>
-      <div class="page-heading"><div><p class="eyebrow">BORG PRODUCT</p><h1>Borg Library</h1><p class="intro">Explore the visual catalog, inspect an exact configuration, or continue to the Borg Workbench.</p></div><span class="demo-badge">Exact registry</span></div>
+      <div class="page-heading"><div><p class="eyebrow">BORG PRODUCT</p><h1>Borg Library</h1><p class="intro">Explore the visual catalog, inspect an exact configuration, analyze campaign evidence, or continue to the Borg Workbench.</p></div><span class="demo-badge">Exact registry</span></div>
       <div class="collection-toolbar">
         <div><strong id="result-count" role="status" aria-live="polite">Loading catalog…</strong><span id="result-context"></span></div>
         <label class="group-control">Group by <select id="group-by"><option value="none">Braids</option><option value="count">Architrino count</option><option value="braidCount">Braid count</option><option value="assemblySpan">Assembly span</option><option value="braidDimension">Braid dimensionality</option><option value="breathing">Breathing</option></select></label>
@@ -59,7 +60,7 @@
     <p id="inspector-description"></p><div id="inspector-facets" class="detail-facets"></div>
     <section id="scientific-status" aria-label="Scientific status"></section>
     <section id="platonic-relationships" aria-label="Platonic relationship"></section>
-    <div class="detail-actions"><a id="open-record" class="primary-action">Open in Borg Workbench ↗</a><button id="copy-selection">Copy exact link</button></div>
+    <div class="detail-actions"><a id="analyze-record" class="primary-action">Analyze campaign evidence ↗</a><a id="open-record" class="primary-action">Open in Borg Workbench ↗</a><button id="copy-selection">Copy exact link</button></div>
     <p id="copy-status" role="status"></p>
     <details><summary>Identity and source</summary><dl id="identity"></dl><a id="raw-record">View sealed JSON</a></details>
     <details><summary>Why these filters match</summary><dl id="facet-reasons"></dl></details>

@@ -123,6 +123,24 @@ export function buildBorgLibraryHref({
   return `${path}?${query}`;
 }
 
+export function buildBraidSearchAnalysisHref({
+  selection = null,
+  returnTo = null,
+  path = "./braid-search.html",
+} = {}) {
+  const query = new URLSearchParams({
+    view: "funnel",
+    candidateDisposition: "active-candidate",
+  });
+  if (selection) {
+    const exact = validateBorgSelection(selection);
+    query.set("assemblyId", exact.assemblyId);
+    query.set("modelRevisionSha256", exact.modelRevisionSha256);
+  }
+  if (returnTo) query.set("returnTo", String(returnTo));
+  return `${path}?${query}`;
+}
+
 export function resolveBraidSearchReturnHref(
   value,
   locationLike = globalThis.location,

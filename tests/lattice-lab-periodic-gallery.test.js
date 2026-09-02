@@ -101,7 +101,9 @@ test("deterministic gallery calculations use periodic certificates, never displa
         assert.equal(view.outcome, "zero", caseId);
         assert.equal(
           view.outcomeLabel,
-          "Net acceleration is zero at every architrino.",
+          caseId === "simple-cubic-alternating-planes-v1"
+            ? "In this ideal repeating pattern, net acceleration is zero at every architrino."
+            : "Net acceleration is zero at every architrino.",
           caseId,
         );
         assert.equal(
