@@ -34,6 +34,18 @@ Plainly: the original 91-byte total was incidental—some decimal spellings beca
 
 `src/apps/borg/BorgBootstrap.js` hashes a fetched record and rejects it when the digest differs from the registry's `recordSha256`. Therefore this packaging mismatch can prevent exact-record loading for the 143 mismatching entries. The loader behavior is a code-path fact; this audit did not interactively exercise all 143 records in a browser.
 
+## Implemented Resolution
+
+The candidate fix on `codex/malachite` advances the prescribed assembly record emitter to `prescribed-assembly-record-emitter.v4` and declares `assembly-view-record-position-grid.v1`. For each segment, coefficient $k$ is rounded to the nearest multiple of $2\times10^{-11}/\Delta T^k$. Position and velocity residual bounds are enlarged by the worst-case grid contribution and rounded upward. Derived display vectors and sampled ansatz points use the same $2\times10^{-11}$ position grid; source specifications and scientific identity inputs are not rewritten.
+
+Plainly: the rounding scale is defined by how much a coefficient can move the displayed path, not by how many digits happen to appear in a very large or very small coefficient.
+
+Applying the implemented canonicalizer to all 145 pairs of historical macOS-reconstructed and Ubuntu Actions-produced records collapsed 51,051 numeric differences to 145 byte-identical pairs; the input pairs had zero non-numeric differences. Current-branch regeneration produced 145 records totaling 116,873,582 bytes, and the new verifier reported 145-of-145 agreement across the source catalog, registry, assembly-view collection, record identities, and record SHA-256 values. A source-only reconstruction repeated the same 145-of-145 result before building a 4,359-file Pages payload.
+
+The Pages workflow now runs `scripts/borg/verify-assembly-record-byte-identity.mjs --check` before `actions/upload-pages-artifact`, and the full content-integrity runner performs the same check immediately after preparing runtime assets. The verifier fails closed on a missing record, omitted catalog identity, changed URL, record/registry identity disagreement, byte-hash disagreement, or collection/registry disagreement.
+
+This is measured local and historical cross-platform evidence. Current-branch execution on the GitHub Ubuntu runner and a post-deployment 145-of-145 public audit remain required before OPS-013 is closed.
+
 ## Required Resolution
 
 OPS-013 closes only when all four conditions hold:

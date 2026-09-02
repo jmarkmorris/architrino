@@ -2,7 +2,7 @@
 
 Date: 2026-09-02
 Compatibility identifier: `aaa-corpus-advancement`
-Status: exact manifest and completeness checks ready for independent integration review; shared root-kernel producer remains open
+Status: exact manifest and shared root-kernel implementation ready for independent integration review; sharded campaign remains open
 Queue owner: [BP-012 — Circular-Path Regular-Polarity Completion](../work-queue.md#bp-012--circular-path-regular-polarity-completion)
 
 ## Result
@@ -42,25 +42,35 @@ Plainly: the first check verifies the number of symmetry classes; the second ver
 
 ## Retained Artifact And Reproduction
 
-The ignored analytical manifest is:
+The current ignored analytical manifest is:
 
-`./.local-data/braid-analysis/bp012-regular-polarity-20260902/regular-polarity-orbit-manifest.v1.json`
+`./.local-data/braid-analysis/bp012-regular-polarity-20260902/regular-polarity-orbit-manifest.v2.json`
 
-It is 8,082,872 bytes with SHA-256 `2ddede04f9e50d8c8c00e217bce43c54e00560893e4bc15102d1b223c31662b5`. A second fresh output was byte-identical.
+It is 8,082,872 bytes with SHA-256 `2a16ebfc6784aaa85466d5569773feadf964b3cdeed5bd1a588e7d81652681a7`. A second fresh output was byte-identical. Version 2 binds the source generation containing the shared circular-root kernel; the earlier version remains historical and is not the campaign input.
 
 Reproduce without overwriting the retained file:
 
 ```sh
-node scripts/prescribed-path-analysis/build-regular-polarity-orbit-manifest.mjs --out .local-data/braid-analysis/bp012-regular-polarity-20260902/regular-polarity-orbit-manifest.reproduction.v1.json
+node scripts/prescribed-path-analysis/build-regular-polarity-orbit-manifest.mjs --out .local-data/braid-analysis/bp012-regular-polarity-20260902/regular-polarity-orbit-manifest.reproduction.v2.json
 node --test tests/regular-polarity-orbit-manifest.test.js
 ```
 
 The builder SHA-256 is `7886e5076f960fedb9e23418eb11dccd661d8a4ea1619d5c9ca425d07781fbd6`; the test SHA-256 is `d90213a5a3ff2e2b49eb79e92df13010dea0045c0dd6da7b1dd0eb87c7734ff1`. The three focused tests pass; the complete census test finishes in about 31.6 seconds on the measured host.
 
+## Shared Circular-Root Kernel
+
+`buildRegularCircularRootKernel` now evaluates the complete finite chord-domain ledger once for each regular phase separation at fixed $(N,\beta_f)`. `projectRegularPolarityKernel` applies the exact polarity-product convolution to every receiver row without another root solve. The kernel retains all roots, inactive gaps, fold events, topology counts, and root-quality summaries; the projection returns every receiver's radial, tangential, axial, compatible-scale, and full-vector residual rows.
+
+The focused parity test compares the shared projection with the pre-existing direct evaluator for three inventories, five speeds spanning both sides of field speed, and multiple balanced polarity words. All receiver coefficients, root counts, compatible scales, and maximum residuals agree within the declared floating tolerance. The broader unchanged root/reference suite also passes: 18 tests total. This parity verifies the implementation reduction; independent mathematical authority still comes from the finite chord-domain derivation and the unchanged generic/self-root checks at accepted campaign points.
+
+The source module SHA-256 is `8019529f25e72cee00e48329201d41cb85ec96ced59954ce7dc615d4621aefc7`; the shared-kernel test SHA-256 is `13796dec99a8db73287773621a51a19ff2a5c77f0de4b0dd21708c2e0bff776c`.
+
+Plainly: the expensive causal geometry is now computed once per ring and speed, while every polarity word only changes the signs in the final sums. Agreement with the older direct path checks the implementation reduction but does not turn a later finite scan into an interval proof.
+
 ## Boundary And Falsifier
 
-This is a derived finite-combinatorics and source-binding result. It does not calculate a causal root, topology cell, residual, balance, bounded negative, evolution, retention, stability, binding, or physical ranking. BP-012 still requires the shared circular-root kernel, regular-only sharded projection, topology-boundary probes, candidate refinement, completeness reducer, and unchanged independent full-evaluator checks.
+The manifest is a derived finite-combinatorics and source-binding result. The shared kernel is an implemented prescribed-path reduction, not a continuous speed-domain certificate. BP-012 still requires the regular-only sharded producer, topology-boundary probes, candidate refinement, completeness reducer, and unchanged independent full-evaluator checks. No balance, bounded negative, evolution, retention, stability, binding, or physical ranking is established here.
 
 A balanced word outside exactly one recorded orbit, a noncanonical row, a manifest/Burnside mismatch, an orbit-population/binomial mismatch, a failed source binding, or a disagreement with the pre-existing canonicalizer overturns the corresponding statement.
 
-Closure goal: independently admit the exact manifest, then implement one polarity-independent root kernel per $(N,\beta_f)$ and project the 40,952 rows through it without launching the redundant serial evaluator.
+Closure goal: independently admit the exact manifest and shared kernel, then build the regular-only sharded producer and completeness reducer without launching the redundant serial evaluator.

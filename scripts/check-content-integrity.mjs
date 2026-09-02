@@ -13,6 +13,10 @@ const CHECKS = [
     args: ["scripts/prepare-runtime-assets.mjs", "--write"],
   },
   {
+    name: "Verify Borg registry and record byte identities",
+    args: ["scripts/borg/verify-assembly-record-byte-identity.mjs", "--check"],
+  },
+  {
     name: "Validate content indexes and references",
     args: ["scripts/validate-content.mjs", "--check", "--strict"],
   },

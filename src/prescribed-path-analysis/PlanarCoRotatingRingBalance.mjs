@@ -379,6 +379,129 @@ export function regularRingPhases(n) {
   return Array.from({ length: 2 * n }, (_, index) => index * Math.PI / n);
 }
 
+export function buildRegularCircularRootKernel({
+  n,
+  beta,
+  circulationSense = 1,
+  rootTolerance = DEFAULT_ROOT_TOLERANCE,
+  foldTolerance = DEFAULT_FOLD_TOLERANCE,
+} = {}) {
+  const phases = regularRingPhases(n);
+  const receiverPhase = phases[0];
+  const radialBasis = [1, 0, 0];
+  const tangentialBasis = [0, circulationSense, 0];
+  const entries = phases.map((transmitterPhase, separationIndex) => {
+    const ledger = enumerateCircularPairRoots({
+      beta,
+      receiverPhase,
+      transmitterPhase,
+      sameTransmitter: separationIndex === 0,
+      circulationSense,
+      rootTolerance,
+      foldTolerance,
+    });
+    const roots = ledger.roots.map((root, rootOrdinal) => {
+      const contribution = rootContribution({
+        beta,
+        receiverPhase,
+        transmitterPhase,
+        polarityProduct: 1,
+        circulationSense,
+        root,
+      });
+      return {
+        ...contribution,
+        rootId: `kernel:${separationIndex}:lobe-${root.lobeIndex}:${root.branch}:${rootOrdinal}`,
+        separationIndex,
+      };
+    });
+    const project = (basis) => roots.reduce((sum, root) =>
+      sum + root.acceleration.reduce((inner, value, axis) => inner + value * basis[axis], 0), 0);
+    return {
+      separationIndex,
+      phaseDifference: ledger.phaseDifference,
+      rootCount: roots.length,
+      radial: project(radialBasis),
+      tangential: project(tangentialBasis),
+      axial: roots.reduce((sum, root) => sum + root.acceleration[2], 0),
+      roots,
+      foldEvents: ledger.foldEvents,
+      inactiveRootGaps: ledger.inactiveRootGaps,
+      completenessBasis: ledger.completenessBasis,
+    };
+  });
+  const roots = entries.flatMap((entry) => entry.roots);
+  const foldEvents = entries.flatMap((entry) => entry.foldEvents);
+  return {
+    schema: "prescribed-path-analysis/regular-circular-root-kernel.v1",
+    units: { c_f: 1, radius: 1, acceleration: "kappa*epsilon^2/R^2" },
+    n,
+    memberCount: phases.length,
+    beta,
+    circulationSense,
+    phases,
+    entries,
+    rootCountPerReceiver: roots.length,
+    rootTopologySignaturePerReceiver: entries.map((entry) => entry.rootCount).join(","),
+    rootCompleteness: {
+      complete: foldEvents.length === 0 && roots.every((root) => Number.isFinite(root.jacobianFloor)),
+      foldEvents,
+      minimumJacobianFloor: roots.length === 0 ? null : Math.min(...roots.map((root) => root.jacobianFloor)),
+      maximumRootEquationResidual: roots.length === 0 ? null : Math.max(...roots.map((root) => Math.abs(root.rootEquationResidual))),
+      maximumDirectChordResidual: roots.length === 0 ? null : Math.max(...roots.map((root) => Math.abs(root.directChordResidual))),
+      basis: "one complete finite chord-domain ledger for each regular phase separation",
+    },
+    claimBoundary: "polarity-independent prescribed circular causal geometry only",
+  };
+}
+
+export function projectRegularPolarityKernel({ kernel, polarities } = {}) {
+  if (kernel?.schema !== "prescribed-path-analysis/regular-circular-root-kernel.v1") {
+    throw new TypeError("a regular circular root kernel is required.");
+  }
+  if (!Array.isArray(polarities) || polarities.length !== kernel.memberCount ||
+      polarities.some((value) => value !== -1 && value !== 1)) {
+    throw new TypeError("polarities must contain one -1 or +1 value per kernel member.");
+  }
+  const receivers = polarities.map((receiverPolarity, receiverIndex) => {
+    let radialCoefficient = 0;
+    let tangentialCoefficient = 0;
+    let axialCoefficient = 0;
+    for (const entry of kernel.entries) {
+      const transmitterIndex = (receiverIndex + entry.separationIndex) % kernel.memberCount;
+      const product = receiverPolarity * polarities[transmitterIndex];
+      radialCoefficient += product * entry.radial;
+      tangentialCoefficient += product * entry.tangential;
+      axialCoefficient += product * entry.axial;
+    }
+    return { receiverIndex, radialCoefficient, tangentialCoefficient, axialCoefficient };
+  });
+  const meanRadial = receivers.reduce((sum, row) => sum + row.radialCoefficient, 0) / receivers.length;
+  const compatibleScale = meanRadial < 0 ? -meanRadial / (kernel.beta * kernel.beta) : null;
+  const residualRows = receivers.map((row) => {
+    const radial = compatibleScale == null ? row.radialCoefficient : row.radialCoefficient + kernel.beta * kernel.beta * compatibleScale;
+    const tangential = row.tangentialCoefficient;
+    const axial = row.axialCoefficient;
+    return { receiverIndex: row.receiverIndex, radial, tangential, axial, fullVector: Math.hypot(radial, tangential, axial) };
+  });
+  const maximum = (field) => Math.max(...residualRows.map((row) => Math.abs(row[field])));
+  return {
+    schema: "prescribed-path-analysis/regular-polarity-kernel-projection.v1",
+    kernel: { n: kernel.n, beta: kernel.beta, circulationSense: kernel.circulationSense },
+    polarities: [...polarities],
+    receivers,
+    compatibleScale,
+    residuals: {
+      receiverRows: residualRows,
+      maximumRadial: maximum("radial"),
+      maximumTangential: maximum("tangential"),
+      maximumAxial: maximum("axial"),
+      maximumFullVector: maximum("fullVector"),
+    },
+    claimBoundary: "prescribed regular-ring projection only; no continuous speed-domain or dynamical claim",
+  };
+}
+
 function polarityWord(polarities) {
   return polarities.map((value) => value > 0 ? "+" : "-").join("");
 }

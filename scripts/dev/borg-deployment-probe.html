@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Borg Deployment Probe</title>
+    <style>
+      html,
+      body,
+      iframe {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border: 0;
+      }
+
+      #probe-result {
+        display: none;
+        margin: 0;
+        padding: 16px;
+        white-space: pre-wrap;
+      }
+
+      body.is-complete #probe-frame {
+        display: none;
+      }
+
+      body.is-complete #probe-result {
+        display: block;
+      }
+    </style>
+    <script type="module" src="./BorgDeploymentProbe.js"></script>
+  </head>
+  <body>
+    <iframe id="probe-frame" title="Measured Borg app"></iframe>
+    <pre id="probe-result" role="status" aria-live="polite">Running Borg deployment probe…</pre>
+  </body>
+</html>

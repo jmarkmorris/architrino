@@ -13,6 +13,9 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 - Reclassified the earlier 91-byte observation through a live [published Borg record byte-identity audit](pages-borg-record-byte-identity-audit-2026-09-02.md). Of 145 deployed records, 143 disagree with their deployed registry SHA-256 identities; the two static records match.
 - Isolated one representative mismatch to 66 tiny numeric differences and no non-numeric differences. The deployed file and same-source macOS reconstruction had equal byte counts, showing that the earlier 91-byte total was incidental decimal-length drift rather than truncation or missing data.
 - Queued OPS-013 because the Borg loader rejects a record whose bytes do not match the registry. No deployment, Pages setting, DNS record, or public byte was changed.
+- Implemented `assembly-view-record-position-grid.v1` with a duration-scaled $2\times10^{-11}$ position quantum and conservatively enlarged position/velocity residual bounds. All 145 historical macOS/Ubuntu record pairs canonicalize to byte identity despite 51,051 pre-canonical numeric differences and zero non-numeric differences.
+- Regenerated the ignored 145-record set and the tracked registry and assembly-view collection. The new fail-closed verifier passed 145-of-145 records and 116,873,582 bytes locally, then passed again inside a source-only reconstruction before a 4,359-file Pages build.
+- Added the verifier to Content Integrity and the Pages workflow before artifact upload. OPS-013 moved to awaiting verification; GitHub Ubuntu execution, the next verified `main` deployment, live 145-of-145 hashes, and representative Borg loading remain.
 
 ### 2026-09-02 — OPS-004 browser performance budget
 

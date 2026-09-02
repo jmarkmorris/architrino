@@ -168,6 +168,7 @@ test("artifact-only equation build rejects missing source links without editing 
 test("local, CI, service, and Pages entrypoints explicitly prepare runtime outputs", () => {
   assert.match(read("scripts/dev/start-local-dev.mjs"), /prepareRuntimeAssets\(\{ rootDir: REPO_ROOT \}\)/);
   assert.match(read("scripts/check-content-integrity.mjs"), /prepare-runtime-assets\.mjs/);
+  assert.match(read("scripts/check-content-integrity.mjs"), /verify-assembly-record-byte-identity\.mjs/);
   assert.match(read("scripts/pr-validation-receipt.mjs"), /prepare-runtime-assets\.mjs/);
   assert.match(read("scripts/archie-service/run-full-corpus-mcp-server.mjs"), /familyId: "full-corpus-index"/);
   const workflow = read(".github/workflows/pages.yml");

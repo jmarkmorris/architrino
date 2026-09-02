@@ -171,6 +171,26 @@ $$
 
 uniformly for $x$ in a fixed compact interval. Thus the large-$N$ decision is reduced to one explicit remainder question: prove that the regularized alternating sum of $R_\beta'$ is $O(N^{4/3})$, or exhibit an order-$N^2$ term in it that cancels $1/6$.
 
+One sufficient shape inequality is now explicit. With $s=\sin z$, $c=\cos z$, $J=1+\beta c$, and $X=\beta s+z$, direct differentiation gives
+
+$$
+C_\beta''(X)
+=\frac{1+c^2+2\beta c^3}{s^3J^3}.
+$$
+
+Hence $R_\beta'$ is increasing precisely when
+
+$$
+\boxed{
+\frac{1+c^2+2\beta c^3}{s^3(1+\beta c)^3}
+>\frac{2(\beta+1)}{(\beta s+z)^3}
+}.
+$$
+
+If this inequality is certified on the increasing inverse branch for the declared first-birth $x$ interval, the alternating-sequence bound reduces the complete $R_\beta'$ sum to its last sample. At $X=\pi-\pi/(2N)$, writing $z=\pi-N^{-1/3}y$ gives the fold-separated cubic $y^3/6-xy=\pi/2+O(N^{-2/3})$, so that last sample is $O(N^{4/3})$. This would close the pre-phase remainder at the required subleading order.
+
+Plainly: the remaining sum-exchange problem is now one concrete shape sign plus one scaled endpoint estimate. Proving that sign would turn the observed $1/6$ obstruction into a uniform theorem for all sufficiently large rings.
+
 The leading part of the exact decomposition converges to the nonzero endpoint lattice
 
 $$

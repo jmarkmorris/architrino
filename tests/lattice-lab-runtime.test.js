@@ -913,7 +913,8 @@ test("default orthographic projection changes apparent length, not world spacing
   createLatticeLabCaseGallery().filter(({ repeatCell }) => repeatCell)
     .forEach((caseRecord) => {
       const siteById = new Map(caseRecord.sites.map((site) => [site.id, site]));
-      const mainLengths = createNearestNeighborEdges(caseRecord).map((edge) => {
+      const mainLengths = createMainDisplayVisibility(caseRecord)
+        .visibleEdges.map((edge) => {
         const start = siteById.get(edge.fromSiteId).position;
         const end = siteById.get(edge.toSiteId).position;
         const worldLength = Math.hypot(...end.map(
@@ -936,8 +937,8 @@ test("default orthographic projection changes apparent length, not world spacing
       );
 
       const scale = expectedMiniatureScale.get(caseRecord.id);
-      const repeatLengths = createRepeatCellNearestNeighborNetwork(caseRecord)
-        .edges.map(({ start, end }) => {
+      const repeatLengths = createRepeatCellDisplayGraph(caseRecord)
+        .edges.map(({ edge: { start, end } }) => {
           const worldLength = Math.hypot(...end.map(
             (value, axis) => value - start[axis],
           ));
