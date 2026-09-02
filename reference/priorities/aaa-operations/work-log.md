@@ -6,6 +6,18 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — OPS-001 deployment budget contract
+
+- Accepted [deployment-budget.v1](deployment-budget.v1.json) with Borg as the first consumer, added a source-bound browser probe, wired the checker into Content Integrity, and exposed the measured classes in Borg's deployment drawer.
+- Rebuilt the public site in an empty temporary directory: 4,347 files and 453,526,774 bytes, 27,971,992 bytes (5.81%) below the 2026-09-01 OPS-006 reconstruction. Generated equation, corpus-index, and Borg-record outputs totaled 177,611,810 bytes; the 145 Borg records accounted for 116,873,582 bytes.
+- Measured Borg's fresh 3840-by-2160 first screen at 2,513,867 encoded shell bytes, 42,712 encoded static-asset bytes, 12,138,288 used browser-heap bytes, a 26,429,760-byte canvas color-surface lower bound, and zero origin-storage use. The canvas value excludes depth, textures, geometry, driver allocation, compositor copies, and shared-process memory.
+- Estimated 2,556,579,000 monthly Pages bytes for an inferred scenario of 1,000 uncached first-screen visits. This is not observed traffic and excludes selected records and repeat-visit cache behavior.
+- Queried non-expired Actions artifacts at 2026-09-02T21:17:06Z. Two one-day Pages handoffs totaled 414,359,287 stored bytes, 14,359,287 bytes above the conservative 400,000,000-byte aggregate threshold used while the account allowance is unknown. The contract preserves that warning; it neither deletes artifacts nor blocks the existing guarded Pages path.
+- Kept EOM solver throughput as `reported-separately-not-measured`, owned by `app-solver`, with no dependency on the deployment verdict. No throughput number was inferred from browser, artifact, or site-size measurements.
+- Removed OPS-001 from the active queue. OPS-013 remains the local rank-1 object.
+
+Plainly: the deployment budget now has live numbers and an app consumer. It reports one actionable artifact-overlap warning and keeps solver speed in its own evidence lane.
+
 ### 2026-09-02 — Pages recovery policy and Borg record byte identity
 
 - Removed OPS-009, its standing Pages reversal procedure, rehearsal receipt, and release-gate dependency at operator direction. If an earlier source state is needed, recovery now starts by inspecting repository branches and commits, selecting the source explicitly, validating it through the ordinary branch and PR process, and publishing only through the verified `main` workflow.

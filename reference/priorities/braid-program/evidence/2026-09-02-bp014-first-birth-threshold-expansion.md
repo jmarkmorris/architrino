@@ -154,7 +154,15 @@ $$
 C_\beta(X)=\frac{\beta+1}{X}+R_\beta(X)
 $$
 
-therefore yields the exact finite decomposition
+is an exact subtraction with the positive closed form
+
+$$
+R_\beta(X)
+=\frac{z-\sin z}{\sin z\,(\beta\sin z+z)},
+\qquad z=z_\beta(X).
+$$
+
+This exact subtraction therefore yields the finite decomposition
 
 $$
 \sum_{k=1}^{2N-1}T_{k,N}^{\mathrm{pre}}

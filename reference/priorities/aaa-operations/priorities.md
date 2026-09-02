@@ -27,6 +27,12 @@ This workstream tracks operational discipline for the project as the public weba
 
 The locally ranked operational tasks, measurement requirements, and completion boundaries live in [work-queue.md](work-queue.md).
 
+## Deployment Budget Baseline
+
+OPS-001 is closed by the measured [deployment-budget.v1](deployment-budget.v1.json), its executable checker, and Borg's live manifest consumption. The fresh 4K first-screen profile measured 2,513,867 encoded shell bytes, 42,712 encoded static-asset bytes, 12,138,288 browser-heap bytes, a 26,429,760-byte canvas-surface lower bound, and zero origin-storage bytes. A fresh empty-directory Pages build measured 453,526,774 bytes, down 27,971,992 bytes from the 2026-09-01 OPS-006 reconstruction. Two non-expired Pages artifacts totaled 414,359,287 stored bytes, which is 14,359,287 bytes above the conservative 400,000,000-byte overlap threshold while the account allowance is unknown; the contract therefore reports a warning without blocking the existing guarded deployment path. The 1,000-visit bandwidth scenario is inferred from the measured initial-load bytes, not observed traffic. EOM solver throughput remains explicitly unmeasured and separately owned by `app-solver`; it does not enter the deployment verdict.
+
+Plainly: Borg now shows one measured hosting-and-browser budget, the recent storage reduction is reflected, and the only present warning is short-lived overlap between two Pages artifacts. The contract does not turn web-delivery measurements into a solver-speed claim.
+
 ## GitHub Pages Limits Baseline
 
 OPS-002 is closed by the dated [GitHub Pages and Actions limits record](github-pages-and-actions-limits-2026-09-01.md). The accepted live deployment is 415,238,878 bytes and the 2026-09-01 active-checkout reconstruction is 481,493,486 bytes, both below the builder's 1,000,000,000-byte ceiling. The source repository remains above the Pages-specific 1 GB recommendation, and representative per-visit transfer remains unmeasured.

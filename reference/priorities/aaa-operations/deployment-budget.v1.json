@@ -1,0 +1,110 @@
+{
+  "schema": "architrino.deployment-budget.v1",
+  "contractId": "deployment-budget.v1",
+  "status": "accepted-with-actions-overlap-warning",
+  "acceptedAtUtc": "2026-09-02T21:17:06Z",
+  "firstConsumer": {
+    "appId": "borg",
+    "manifestSchema": "borg-dataset-manifest.v1",
+    "manifestId": "borg-eom-app-manifest"
+  },
+  "measurementBoundary": "Measured locally from the 2026-09-02 active checkout and from the GitHub Actions artifact API. Browser values describe Borg's initial 4K app load without starting an EOM run or selecting a generated record. The monthly Pages estimate is an inferred planning scenario, not observed traffic. EOM solver throughput remains a separately owned, unmeasured field and cannot affect deployment status.",
+  "instrument": {
+    "browserProbe": {
+      "htmlPath": "scripts/dev/borg-deployment-probe.html",
+      "htmlBytes": 873,
+      "htmlSha256": "2b6bd4b84dfc5b964fc708e3dc02794bb566ed33555c087881f6fa026a9f2842",
+      "scriptPath": "scripts/dev/BorgDeploymentProbe.js",
+      "scriptBytes": 4355,
+      "scriptSha256": "ce3eff39ab3c543480608dd16e26fe5efa5b9f8ce400b068aeafe593ed3119fe"
+    },
+    "staticBuildCommand": "node scripts/build-static-site.mjs --out <empty-temporary-directory>/site",
+    "actionsQuery": "gh api repos/jmarkmorris/architrino/actions/artifacts --paginate"
+  },
+  "measurements": {
+    "bundleSizeBytes": {
+      "measuredBytes": 2513867,
+      "maximumBytes": 4194304,
+      "status": "passed",
+      "method": "Encoded HTML, JavaScript, CSS, and WASM bytes requested by the fresh Borg first-screen browser load."
+    },
+    "staticAssetTransferBytes": {
+      "measuredBytes": 42712,
+      "maximumBytes": 1048576,
+      "status": "passed",
+      "method": "Encoded non-shell bytes requested by the fresh Borg first-screen load; the two requested KaTeX fonts were the only such resources."
+    },
+    "githubPagesBandwidthEstimate": {
+      "monthlyVisits": 1000,
+      "bytesPerVisit": 2556579,
+      "estimatedMonthlyBytes": 2556579000,
+      "maximumMonthlyBytes": 100000000000,
+      "status": "passed",
+      "method": "Inferred planning scenario: 1,000 uncached first-screen visits multiplied by the measured encoded initial-load bytes. Record selection and repeat-visit cache behavior are excluded."
+    },
+    "browserHeapBudget": {
+      "measuredBytes": 12138288,
+      "maximumBytes": 268435456,
+      "status": "passed",
+      "method": "Chrome performance.memory used heap after initial Borg load and a two-second settlement interval."
+    },
+    "gpuMemoryBudget": {
+      "measuredMinimumBytes": 26429760,
+      "maximumMinimumBytes": 67108864,
+      "status": "passed",
+      "method": "Canvas color backing-store lower bound at 3840 by 2160 CSS pixels; excludes depth, textures, geometry, driver allocation, compositor copies, and shared GPU-process memory."
+    },
+    "browserStorageBudget": {
+      "measuredBytes": 0,
+      "maximumBytes": 67108864,
+      "status": "passed",
+      "method": "navigator.storage.estimate origin usage after the initial Borg load."
+    },
+    "actionsArtifactBudget": {
+      "measuredAtUtc": "2026-09-02T21:17:06Z",
+      "activeArtifactCount": 2,
+      "measuredAggregateBytes": 414359287,
+      "maximumAggregateBytes": 400000000,
+      "status": "warning",
+      "method": "Sum of non-expired GitHub Actions artifacts. The conservative aggregate threshold applies while the account allowance is unknown.",
+      "artifactIds": [9828942123, 9828811294]
+    },
+    "generatedOutputBudget": {
+      "siteFileCount": 4347,
+      "siteMeasuredBytes": 453526774,
+      "siteMaximumBytes": 1000000000,
+      "generatedRuntimeFileCount": 147,
+      "generatedRuntimeMeasuredBytes": 177611810,
+      "borgRecordFileCount": 145,
+      "borgRecordMeasuredBytes": 116873582,
+      "status": "passed",
+      "method": "Fresh empty-directory Pages build plus direct byte counts of the generated equation corpus, full corpus index, and Borg record set."
+    },
+    "browserProfile": {
+      "measuredAtUtc": "2026-09-02T21:21:09.609Z",
+      "route": "/borg.html",
+      "viewport": {
+        "cssWidth": 3840,
+        "cssHeight": 2160,
+        "devicePixelRatio": 1
+      },
+      "loadEventEndMs": 1111.899999976158,
+      "resourceCount": 78,
+      "transferBytes": 2580279,
+      "encodedBytes": 2556579,
+      "decodedBytes": 2556579,
+      "originStorageQuotaBytes": 10737418240
+    },
+    "nativeSolverThroughput": {
+      "status": "reported-separately-not-measured",
+      "owner": "app-solver",
+      "measurement": null,
+      "deploymentStatusDependency": false,
+      "reason": "Static hosting and browser deployment measurements cannot establish EOM solver steps, rows, candidates, or retained records per second."
+    }
+  },
+  "overallStatus": "warning",
+  "warningCodes": [
+    "ACTIONS_ARTIFACT_AGGREGATE_ABOVE_CONSERVATIVE_THRESHOLD"
+  ]
+}

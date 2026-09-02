@@ -58,7 +58,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 11 | Workstream | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
 | 12 | Engine | [`app-solver`](../app-solver/priorities.md) | `eom_application_surface`: bounded-population run and inspection surface with canonical history, progress, cancellation, checkpoint, diagnostics, and provenance | 6.0 | 1.30 | -56 | 1.56 | 0.20 | 2 | 0.70 | 1.70 | 4 | 2 | 4 | 4 | 3.3 | 0.52 |
 | 13 | App | [`app-photon`](../app-photon/priorities.md) | `local_c_parameterization`: source-bound Noether sea state-to-$c_\gamma,c_{\mathrm{sig}}$ mapping with bounded no-catch-up and stale-root diagnostics | 5.0 | 1.15 | -24 | 1.24 | 0.35 | 3 | 0.80 | 2.00 | 4 | 8 | 8 | 6 | 6.6 | 0.30 |
-| 14 | Op queue | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
+| 14 | Op queue | [`aaa-operations`](../aaa-operations/priorities.md) | `borg_record_byte_identity`: portable sealed bytes plus Ubuntu, deployed-hash, and representative live-load verification | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
 | 15 | App | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab`: one source-carried coordinate morph teaching packet | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.46 | 5 | 4 | 7 | 5 | 5.1 | 0.09 |
 
 ## Dormant-Deferred Routing — 2026-09-02

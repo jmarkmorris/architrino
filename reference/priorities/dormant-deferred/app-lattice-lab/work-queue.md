@@ -6,22 +6,22 @@ This is the canonical execution ledger for the exploratory display-only workstre
 
 | Status | Count |
 | --- | ---: |
-| Queued/requested | 19 |
-| In progress | 4 |
+| Queued/requested | 17 |
+| In progress | 1 |
 | Awaiting verification | 0 |
 | Explicitly deferred/blocked | 1 |
-| **Unresolved total** | **24** |
-| Verified historical entries | 31 |
+| **Unresolved total** | **19** |
+| Verified historical entries | 32 |
 
-The 2026-09-02 low-risk passes removed forty-eight unresolved rows: thirty-three verified rows are recorded in four consolidated entries, and fifteen removed-surface requests are recorded in one supersession entry backed by the Primer-removal audit. These bounded passes reactivate only presentation copy, naming, style, and already-implemented reconciliation; geometry, topology, calculation, certificate, control-behavior, and evidence-authority work remains unresolved.
+The 2026-09-02 low-risk passes removed fifty-three unresolved rows: thirty-eight verified rows are recorded in five consolidated entries, and fifteen removed-surface requests are recorded in one supersession entry backed by the Primer-removal audit. These bounded passes changed no geometry or evidence authority; geometry-changing, topology-changing, calculation, certificate, and evidence-authority work remains unresolved.
 
 ## Ranked Next Objects
 
-1. LAT-027 — Verify relationship-line retention when repeat-cell highlighting is enabled.
-2. LAT-028 — Verify highlighted-edge precedence over ordinary lines.
-3. LAT-030 — Verify unrestricted synchronized three-dimensional rotation.
-4. LAT-017 — Audit Diamond-cubic world-space and projected edge lengths without changing geometry unless a defect is established.
-5. LAT-066 — Audit on-screen nearest-neighbor spacing at default and reset views.
+1. LAT-082 — Complete the already-implemented `2.75d` crop's historical pixel-parity receipt.
+2. LAT-097 — Audit already-implemented main/repeat base marker and edge parity.
+3. LAT-100 — Audit the already-implemented unpolarized companion panel and its conventional-cell inventories.
+4. LAT-014 — Reconcile minimal owned-tile presentation without changing the accepted graph.
+5. LAT-094 — Reconcile state-aware zero-outcome copy against existing certificate authority.
 
 ## Queued
 
@@ -30,15 +30,6 @@ The 2026-09-02 low-risk passes removed forty-eight unresolved rows: thirty-three
 - **Status:** Next queued object after verified LAT-016; implementation not started
 - **Acceptance:** Replace the user-facing $\lambda$ slider with a dimensionless static display coordinate $0\leq\beta<1$, where $\beta=0$ is uncompressed and $\lambda=\sqrt{1-\beta^2}=1/\gamma$ is computed exactly once at the model boundary. Use a documented near-one interactive maximum so $\lambda$ never reaches zero. Preserve existing internal $\lambda$-based geometry, neighbor classification, cancellation semantics, and the implemented site-ledger evidence hierarchy.
 - **Checks:** Verify $\beta=0\mapsto\lambda=1$, monotone increasing compression, the near-one endpoint, and retained $\lambda$ outputs. The UI must not describe $\beta$ as physical motion or make an SR/GR claim.
-
-### LAT-017 — Diamond-cubic projected-edge visual audit
-
-- **Status:** Queued behind LAT-015; focused QA follow-up only
-- **Observed issue:** The operator reports that purple Diamond-cubic nearest-neighbor links can appear to have unequal screen lengths in the three-dimensional view.
-- **Implementation fact:** Both Lattice Lab views currently use orthographic cameras. The audit must therefore test view-direction foreshortening under orthographic projection rather than assume perspective scaling.
-- **Acceptance:** Independently enumerate the Diamond-cubic nearest-neighbor graph from coordinates and prove that every edge consumed by both renderers has world-space length exactly $d$, with coordination number four at every ideal interior site. Compare the canonical identities with the clipped/rendered identities and reject every longer edge, including the $4d/\sqrt6$ next shell. Then measure projected screen lengths across representative camera orbits and establish whether orientation-dependent foreshortening alone explains the visual variation.
-- **Polarity check:** Separately verify the declared two-sublattice polarity topology. A red site may be described as having blue nearest neighbors only where the coordinate-derived neighbor identities and polarity assignment establish that fact; do not infer it from the camera angle.
-- **Scope:** Do not change either camera or add learner-facing copy unless the audit finds a real geometry or rendering defect. Record focused tests, browser screenshots, exact edge counts/identities, fresh-reload console state, and the result for operator handoff.
 
 ### LAT-014 — Minimal owned-tile presentation
 
@@ -101,13 +92,6 @@ Plainly: adjacent cells in this gallery meet through the same architrinos. The l
 - **Request:** In the Face-Centered Cubic Alternating Planes `How This Pattern Repeats` view, retain the mathematically minimal two-site polarity cell and its canonical translation vectors while making ownership legible through the canonical cell boundary and structural/accessibility presentation. Retain the 18-site continuation relationship context so it supplies repeat connectivity without reading as additional owned cell sites. Under LAT-097, do not use marker size, dimness, opacity, material, brightness, or ordinary-edge color/width to distinguish owned from context sites.
 - **Acceptance:** Focused identity and hierarchy checks must establish exactly two owned cell-site identities with their canonical red/blue polarities, the unchanged canonical cell boundary and translation vectors, and exactly 18 distinct continuation-context site identities that are excluded from cell ownership. Every continuation marker must use its canonical electrino/positrino polarity and every context relationship line must retain its canonical endpoint identities; no third entity type, false relationship, missing relationship, duplicate site, or ownership ambiguity is allowed. Marker and ordinary-edge presentation must satisfy LAT-097's main-canvas parity, while the cell boundary and accessible structure carry the ownership distinction without changing controls or meaning. Fresh operator-viewport verification must inspect representative synchronized rotations and confirm the two-site owned cell is immediately legible from its boundary/structure, the 18-site network remains readable as continuation context, no context marker appears owned, and there is no collision, clipping, detached line, or layout regression. Do not mark Verified until implementation evidence, completed focused checks, and operator acceptance are recorded.
 - **Scope:** FCC Alternating Planes repeat-view visual hierarchy only. Preserve the two-site mathematical cell, translation vectors, all site and relationship identities, polarity assignments, geometry, repeat topology, controls, orientation synchronization, accessibility, calculations and evidence boundaries, main view, other repeat views, and unrelated queue items.
-
-### LAT-066 — Audit on-screen nearest-neighbor spacing at default and reset views
-
-- **Status:** Requested diagnostic; measurement and validation have not started or been reported, and no visual change is authorized
-- **Request:** Measure and diagnose the on-screen presentation of canonical nearest-neighbor spacing `d` for every current gallery case at the exact default, reset, and fresh-reload orientations in both the main canvas and the `How This Pattern Repeats` miniature where that miniature applies. This is a read-only visual/geometry audit; do not alter cameras, marker sizes, geometry, spacing, transforms, layout, controls, or rendering from this item.
-- **Acceptance:** First enumerate the canonical nearest-neighbor edge identities and establish their world-space length `d` independently for each gallery geometry and view. At the operator viewport, record the main-canvas and repeat-miniature camera/projection state, canvas dimensions, display scale, endpoint screen coordinates, and projected pixel length for every visible canonical nearest-neighbor edge at initial load, after an explicit reset, and after reload. Distinguish legitimate orientation-dependent orthographic foreshortening, clipping, and view scaling from a wrong world-space edge, inconsistent camera reset, or renderer-specific scale defect; do not treat unequal projected lengths alone as a geometry failure. Compare default/reset/reload determinism, both views' use of the same semantic orientation, and any case-specific outlier with an operator-checkable measurement and exact owning code path. Focused identity/geometry and reset-state checks plus fresh clean-console browser evidence are required. Record findings and any correction proposal as a separate later authorization; this diagnostic itself must not change the UI.
-- **Scope:** Measurement and diagnosis of on-screen canonical nearest-neighbor spacing only. Preserve all site and edge identities, world-space geometry and `d` definitions, cameras and controls, default/reset behavior, orientation synchronization, marker and line styling, accessibility, calculations and evidence boundaries, and every unrelated queue item. Keep this independent of LAT-063 periodic calculation authority, LAT-064 deformation-copy analysis, and LAT-065 FCC visual hierarchy.
 
 ### LAT-072 — Map the HCP Ledger state to periodic-certificate authority across β
 
@@ -190,36 +174,15 @@ Plainly: adjacent cells in this gallery meet through the same architrinos. The l
 - **Evidence required:** Focused tests must cover final-entry selector ordering directly after `Diamond Cubic`, seeded reproducibility, exact equal population, independent sampling verification, provenance/seed exposure, recalculate-new-configuration behavior, deterministic-case control absence, finite included-row calculation, stale-aggregate rejection, accessible control/state labeling, and reload behavior. Fresh operator-viewport browser verification must cover the selector order and entry, case-only title-row action, genuinely new recalculation, finite ledger, repeat-cell not-applicable state, clean console, and `git diff --check` before verification.
 - **Scope:** A nonzero residual means nonzero initial acceleration only under the displayed finite ledger. Do not infer population balance implies acceleration cancellation, an all-space result, later motion, stability, conservation, energy, or any broader physical claim. Do not animate motion.
 
-### LAT-027 — Keep relationship lines visible when repeat-cell highlight is enabled
-
-- **Status:** In progress; corrected combined rendering is operator-accepted, but fresh terminal validation evidence for the LAT-028 correction is not yet reported
-- **Request:** Make `Highlight repeat cell` additive without erasing the spherical-crop canvas's overall relationship network.
-- **Implemented result:** The ordinary spherical-crop relationship group is decoupled from checkbox state, so the same ordinary network remains visible when the violet overlay is enabled. The checkbox remains accessible, default-off, and `8px` inside the bounded repeat-image viewport; canonical highlight identities are unchanged.
-- **Operator failure:** Thin ordinary relationship strokes remain visible through the centers of the wider violet selected edges. The additive behavior is therefore not accepted as rendered.
-- **Corrected live result:** The operator confirms that the selected violet edges no longer contain the thin ordinary under-stroke while the overall relationship network remains visible elsewhere.
-- **Evidence required:** LAT-027 remains unfinished until the implementation worker reports fresh focused off/on identity-partition checks, live selected-edge inspection, clean console, and diff hygiene for the LAT-028 correction.
-- **Scope:** Geometry, clipping, edge enumeration, selected repeat-cell identity, checkbox semantics, LAT-019 placement, LAT-024 styling, and evidence claims remain unchanged.
-
-### LAT-028 — Give highlighted edges visual precedence over ordinary lines
-
-- **Status:** In progress; corrected rendering is visibly operator-accepted, but fresh terminal focused validation evidence is not yet reported
-- **Operator failure:** The earlier LAT-027 additive rendering left thin ordinary relationship strokes visible through the centers of the wider violet highlighted edges. That live result was rejected.
-- **Request:** When `Highlight repeat cell` is enabled, retain ordinary relationship lines on every nonselected edge but suppress the ordinary line on each selected highlighted edge, so no thin light-purple or white center line runs through the wider violet highlight.
-- **Current implementation evidence:** The implementation worker changed ordinary relationship rendering at the edge-identity level so selected ordinary segments are excluded while nonselected ordinary segments remain. The operator confirms the live selected violet edges no longer show the thin under-stroke.
-- **Operator acceptance:** The corrected highlighted-edge appearance is accepted.
-- **Verification required:** Fresh focused tests must verify the off/on identity partition and reject both missing nonselected lines and dual-rendered selected lines. The implementation worker must report live inspection of every selected edge, exact selected identities, retained control placement/default, clean console, and `git diff --check` before this item can be verified.
-- **Scope:** Draw precedence only. Geometry, clipping, edge enumeration, selected repeat-cell identity, checkbox semantics, LAT-019 placement, LAT-024 styling, and evidence claims remain unchanged.
-
-### LAT-030 — Restore unrestricted synchronized three-dimensional rotation
-
-- **Status:** In progress; trackball implementation is live and operator-accepted, but focused full-3D and browser validation evidence is not yet reported
-- **Operator-reported defect:** The prior main-view interaction used only two Euler angles with clamped pitch, constraining Y to remain screen-vertical; the synchronized lower-left key faithfully mirrored that restricted quaternion.
-- **Implemented correction:** Drag now uses an incremental quaternion trackball rotation shared by the main lattice, repeat view, and XYZ key. The operator confirms the new trackball rotation works.
-- **Operator acceptance:** The corrected unrestricted trackball interaction is accepted.
-- **Verification required:** Focused rotation/camera checks must exercise independent rotations that tilt each projected axis, include a demonstrably nonvertical Y case, verify quaternion/orientation equality across synchronized consumers, and reject restoration of the old Euler/pitch constraint. Fresh operator-viewport evidence must confirm Y tilt, label separation, retained key dimensions and lower-left anchor, working drag/selection/highlight/wheel controls, clean console, and `git diff --check` before this item can be verified.
-- **Scope:** Rotation and camera interaction only. Lattice geometry, axis identity, key labels, key styling, repeat-cell synchronization, compression mapping, and evidence claims are unchanged.
-
 ## Verified
+
+### LAT-017, LAT-027, LAT-028, LAT-030, and LAT-066 — Low-risk geometry and presentation verification
+
+- **Status:** Verified on 2026-09-02 from the unchanged canonical implementation, independently authored geometry/projection checks, and fresh operator-viewport evidence.
+- **Verified result:** Highlight-off ordinary identities partition exactly into retained ordinary and selected suppressed identities when highlighting is on; the suppressed set equals the canonical violet-highlight set, so nonselected relationships remain while selected edges have no ordinary under-stroke. Incremental quaternion trackball drag permits nonvertical projected Y and shared orientation across the main, unpolarized, polarized-repeat, and key consumers. Diamond has exactly four opposite-polarity nearest neighbors at world distance $d$ per ideal basis orbit; its $4d/\sqrt6$ next shell never enters the nearest graph. All cases retain exact world-space distance $d$ while their orthographic screen projections vary with edge orientation.
+- **Validation:** The five focused files passed `75/75`. The [low-risk geometry and presentation audit](low-risk-geometry-presentation-audit-2026-09-02.md) records the exact Diamond identities/counts, all-case projected pixel ranges, default/reset/reload camera contract, highlight identity partition, browser drag/wheel evidence, screenshots, and empty fresh warning/error log.
+- **Scope:** Verification and independent test coverage only. App geometry, topology, coordinates, polarity, cameras, rendering behavior, controls, calculations, certificates, and evidence authority are unchanged.
+- **Completion:** Satisfied.
 
 ### LAT-042, LAT-047, LAT-051, LAT-052, LAT-055, LAT-056, LAT-057, LAT-058, LAT-061, LAT-062, LAT-067, LAT-077, LAT-090, LAT-091, and LAT-092 — Fourth low-risk presentation completion
 

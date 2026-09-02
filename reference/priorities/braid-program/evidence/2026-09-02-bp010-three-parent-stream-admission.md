@@ -45,6 +45,10 @@ The registered outer clock was 67.493439042 seconds. The final caller wire stamp
 
 Plainly: the saved run ended cleanly and stayed within its declared local limits. Its runtime cannot be multiplied by 157 and presented as a measured campaign cost.
 
+The later shutdown-repair packet does not extend the scientific coverage. Its final seal, published at `2026-08-28T23:24:21.174Z`, binds five operational transport controls, reauthenticates the retained source and preservation inventory, records an absent lock, and explicitly reports `scientificIntervalsAdvanced: []`, `broaderGoalComplete: false`, and `longerWholeHistoryCampaign: "no-go"`. Its independent final review preserves accepted numerical coverage at original parents 0, 1, and 2 and names original parents 3, 4, and 5 at the loose setting as the next declared batch. The seal binds the tracked shutdown-repair handoff at SHA256 `1775ffb6745dcf4b4480aa327eddc01c019bc46eb14a8f70e8465a616b9c645b` and the independent review at SHA256 `a56d111f8d62e4a687bdb4fd80162f4284bd8f7b21c412fcdd271729c73127e3`.
+
+Plainly: later work repaired and checked the transport machinery, but it deliberately did not calculate another reception interval. The admitted scientific frontier therefore remains three parents, not a whole-history result.
+
 ## Current-Generation Replay Check
 
 The frozen independent numerical audit and input hashes still match their retained values, but a fresh audit against the current working tree fails closed at check 2,336 on a bound source-byte count. The first failure is the evolved launch-readiness evidence owner; additional bound evidence, executable, test, and system-tool generations have also changed or moved since the 2026-08-28 acceptance. This is expected behavior for a source-generation-bound historical audit. It does not overturn the contemporaneous acceptance, but it prevents presenting a current-tree rerun as if it consumed the original generation.
@@ -57,6 +61,6 @@ Plainly: the old result remains intact, but today's source tree is not byte-iden
 
 An internal hash mismatch, failed detached-acceptance binding, missing source identity, arithmetic disagreement under the frozen accepted generation, unclosed recorded process, or duplicate/missing parent coverage overturns the corresponding admitted fact. A later whole-history mismatch does not erase this partial calculation; it determines the stronger M05/M06 verdict.
 
-The next safe object is an independently checked continuation and bounded generic parent-refinement batch with exact historical-package routing, one aggregate deadline and quota, and no per-parent budget reset. Whole-history capacity must be measured before a complete three-setting campaign is launched.
+The next safe object is an independently checked continuation for original parents 3, 4, and 5 at the loose setting, with exact historical-package routing, one aggregate deadline and quota, and no per-parent budget reset. Whole-history capacity must be measured before a complete three-setting campaign is launched.
 
 Closure goal: preserve this admitted three-parent partial result, then make historical source routing and bounded batch transport explicit before measuring full-history capacity and precision.

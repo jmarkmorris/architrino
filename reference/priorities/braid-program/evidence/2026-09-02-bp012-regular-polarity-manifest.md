@@ -67,10 +67,20 @@ The source module SHA-256 is `8019529f25e72cee00e48329201d41cb85ec96ced59954ce7d
 
 Plainly: the expensive causal geometry is now computed once per ring and speed, while every polarity word only changes the signs in the final sums. Agreement with the older direct path checks the implementation reduction but does not turn a later finite scan into an interval proof.
 
+## Regular-Only Shard Producer And Reducer
+
+The tracked `run-regular-polarity-shard.mjs` now supplies three fail-closed modes. `kernel` writes one complete source-bound kernel artifact for fixed $(N,\beta_f)$. `project` assigns manifest representatives by index modulo the declared shard count and projects them through that bound kernel without solving another root. `reduce` requires every shard index exactly once, rejects source mismatches and duplicate or unknown class identifiers, recomputes every projection, and requires exact manifest coverage.
+
+A retained $N=7$, $\beta_f=3.070356625390253$ four-shard execution consumes the current 40,952-row manifest and one 39,653-byte kernel. The kernel has 28 roots per receiver, no fold event, minimum Jacobian floor $0.7071146280572445$, and maximum root-equation residual $8.24\times10^{-13}$. Its SHA-256 is `60fcc4f669e94569e85b40968220bf3fac9c97c3a0fded355caafba56ef1a4c3`. The four projection shards contain all 85 representatives exactly once; the reducer replays all 85 and reports zero missing or duplicate rows. The reduction receipt SHA-256 is `ab537a2e808a9aa4a3c94d47e3c73e8b2ff9b4b18257967cc94b5e7963481859`.
+
+The pipeline script SHA-256 is `b826d709c5f83ad610923de80be278b442d5020506484bea130d00514dedf778`; its focused end-to-end test SHA-256 is `f02106d4fc86ad1ea94bb1cce711b2d835c6c68b4f98d983bd096c4c2e051ab6`. The fixed-speed pipeline test and both shared-kernel tests pass.
+
+Plainly: the campaign now has a working nonredundant data path from manifest to one root kernel to independent shards to an exact completeness receipt. This one-speed demonstration is infrastructure evidence, not a search result across the declared speed interval.
+
 ## Boundary And Falsifier
 
-The manifest is a derived finite-combinatorics and source-binding result. The shared kernel is an implemented prescribed-path reduction, not a continuous speed-domain certificate. BP-012 still requires the regular-only sharded producer, topology-boundary probes, candidate refinement, completeness reducer, and unchanged independent full-evaluator checks. No balance, bounded negative, evolution, retention, stability, binding, or physical ranking is established here.
+The manifest is a derived finite-combinatorics and source-binding result. The shared kernel and sharded pipeline are implemented prescribed-path reductions, not a continuous speed-domain certificate. BP-012 still requires a declared speed/topology schedule, topology-boundary probes, candidate refinement, the full $N=7$ through $N=12$ campaign reduction, and unchanged independent full-evaluator checks at promoted candidates and negative controls. No balance, bounded negative, evolution, retention, stability, binding, or physical ranking is established here.
 
 A balanced word outside exactly one recorded orbit, a noncanonical row, a manifest/Burnside mismatch, an orbit-population/binomial mismatch, a failed source binding, or a disagreement with the pre-existing canonicalizer overturns the corresponding statement.
 
-Closure goal: independently admit the exact manifest and shared kernel, then build the regular-only sharded producer and completeness reducer without launching the redundant serial evaluator.
+Closure goal: independently admit the manifest, shared kernel, and fixed-speed shard pipeline, then freeze the speed/topology schedule and run the bounded $N=7$ through $N=12$ campaign without using the redundant serial evaluator.

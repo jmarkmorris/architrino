@@ -5,11 +5,10 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 ## Ranked Next Objects
 
 1. `borg_record_byte_identity` — Status: `Awaiting verification`.
-2. `deployment_budget_contract` — Status: `Queued`.
 
 ## Queued task records
 
-- **OPS-001 — `deployment_budget_contract`.** Define `deployment-budget.v1` for bundle, transfer, browser heap/GPU/storage, Actions artifacts, generated output, and separately reported EOM throughput; apply it first to Borg. **Completion:** one measured contract is consumed by Borg without merging hosting and solver budgets.
+No rows.
 
 ## In progress
 

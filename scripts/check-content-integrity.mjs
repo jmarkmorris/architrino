@@ -37,6 +37,10 @@ const CHECKS = [
     args: ["scripts/check-browser-performance-budget.mjs"],
   },
   {
+    name: "Validate accepted deployment budget",
+    args: ["scripts/check-deployment-budget.mjs"],
+  },
+  {
     name: "Validate Potential consumer and publication contract",
     args: ["scripts/check-potential-consumer-publication-contract.mjs"],
   },

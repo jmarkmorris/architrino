@@ -107,6 +107,8 @@ $$
 
 followed by exact removal of duplicates, impossible sheets, and zero-delay self roots. This is a finite source-bound fold atlas for all sixteen directed channels, including the four same-transmitter channels whose coincident zero root is excluded while nontrivial roots are retained.
 
+The tracked symbolic manifest [derive_bp013_affine_fold_atlas.py](../../../../scripts/equation-mapping/derive_bp013_affine_fold_atlas.py) performs the first two exact reductions. Positive difference forms can intersect only $\ell=1,\ldots,6$, negative forms only $\ell=0,\ldots,5$, and the zero form only $\ell=0,\ldots,5$ on $L(\beta_f)<12\pi$. The resulting manifest has 78 sign-feasible sheets before the gap-polytope and $D_4$ reductions. It preserves all sixteen directed owners, including the fourfold zero-form multiplicity.
+
 Plainly: the certificate no longer has to hunt for fold surfaces. It can enumerate a finite list, intersect each with the $D_4$ chamber, and then certify roots inside the resulting cells.
 
 ## Consequence for the continuous certificate
