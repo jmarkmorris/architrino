@@ -29,11 +29,11 @@ import {
 
 export const PRESCRIBED_BRAID_SPEC_SCHEMA = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
 export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA_ID = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
-export const PRESCRIBED_BRAID_EMITTER_ID = "prescribed-assembly-record-emitter.v4";
+export const PRESCRIBED_BRAID_EMITTER_ID = "prescribed-assembly-record-emitter.v5";
 export const PRESCRIBED_GEOMETRY_ENGINE_ID = "prescribed-geometry";
 export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
 export const ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM = 2e-11;
-export const ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID = "assembly-view-record-position-grid.v1";
+export const ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID = "assembly-view-record-position-grid.v2";
 
 const STATE_FLAG_FOR_POLARITY = Object.freeze({ "1": 1, "-1": 2 });
 const SCRIPT_DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
@@ -231,7 +231,7 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
         numericCanonicalization: {
           id: ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID,
           positionQuantum: ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM,
-          coefficientRule: "coefficient k is the nearest multiple of positionQuantum / segmentDuration^k",
+          coefficientRule: "coefficient k is the nearest multiple of positionQuantum / the repeated-product segmentDuration^k",
           errorRule: "sampled residual bounds include coefficient-grid displacement and round upward",
         },
       },
@@ -257,7 +257,7 @@ export function canonicalizePrescribedBraidRecord(record) {
         throw new RangeError("record numeric canonicalization requires a positive finite segment duration.");
       }
       segment.coefficients = segment.coefficients.map((axis) => axis.map((value, power) =>
-        quantizeFiniteNumber(value, positionQuantum / duration ** power)));
+        quantizeFiniteNumber(value, positionQuantum / repeatedIntegerPower(duration, power))));
       segment.positionError = quantizeFiniteNumber(
         segment.positionError + 2 * positionQuantum,
         10 * positionQuantum,
@@ -274,6 +274,13 @@ export function canonicalizePrescribedBraidRecord(record) {
     if (canonical[field] !== undefined) canonical[field] = canonicalizeNumericTree(canonical[field], positionQuantum);
   }
   return canonical;
+}
+
+function repeatedIntegerPower(value, power) {
+  if (!Number.isInteger(power) || power < 0) throw new RangeError("record coefficient power must be a nonnegative integer.");
+  let result = 1;
+  for (let index = 0; index < power; index += 1) result *= value;
+  return result;
 }
 
 function canonicalizeNumericTree(value, quantum) {

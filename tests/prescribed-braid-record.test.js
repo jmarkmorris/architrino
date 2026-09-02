@@ -301,6 +301,24 @@ test("the position grid collapses observed platform drift and enlarges residual 
   assert.ok(canonicalLocal.worldlines[0].segments[0].velocityError >= local.worldlines[0].segments[0].velocityError + 3 * ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM / (endTime - startTime));
 });
 
+test("the coefficient grid is stable across the observed Node 22 and Node 26 power result", () => {
+  const local = {
+    worldlines: [{ segments: [{
+      startTime: 0.1306582765870169,
+      endTime: 0.13343823991865555,
+      coefficients: [[0, 0, 0, -637.2814696614421]],
+      positionError: 0,
+      velocityError: 0,
+    }] }],
+  };
+  const node22 = structuredClone(local);
+  node22.worldlines[0].segments[0].coefficients[0][3] = -637.2814696614423;
+  assert.deepEqual(
+    canonicalizePrescribedBraidRecord(local),
+    canonicalizePrescribedBraidRecord(node22),
+  );
+});
+
 test("Hermite display segments reproduce exact endpoints and honor declared residual bounds", () => {
   for (const { spec } of availableFixtures) {
     const materialized = materializePrescribedBraidSpec(spec);
