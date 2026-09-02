@@ -68,4 +68,3 @@ Plainly: the audit stops where a solved family would force a new generic require
 ## Closure Boundary
 
 `EQM-010` is complete as an inverse-clue audit because every retained clue has an existing equation row and falsifier, and every ungrounded family has an explicit negative disposition. The audit does not advance `EQ-12`, `EQ-13`, `EQ-14`, `EQ-15`, or `EQ-22A`; does not change their scores; and does not weaken their source-backed carrier requirements.
-

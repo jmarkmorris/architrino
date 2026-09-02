@@ -1,8 +1,8 @@
 # EOM Bounded-Population Sharp Post-Transit Evidence
 
-Date: 2026-09-02  
-Subject: `EOM-002` / `coupled_retained_history_integrator`  
-Claim grade: measured implementation evidence  
+Date: 2026-09-02
+Subject: `EOM-002` / `coupled_retained_history_integrator`
+Claim grade: measured implementation evidence
 Disposition: sharp simple-root component passed and incorporated into the completed EOM-002 acceptance packet
 
 ## Scope

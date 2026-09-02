@@ -8990,7 +8990,7 @@ The falsifier is not merely failure to choose a numerical Planck scale. The fals
 
 ### Horizon Interface
 
-The horizon interface is the most important black-hole concept in the local dialect. It names the layer in which Noether braid assemblies are flattened into an alignment-locked sheet.
+The candidate horizon interface is the most important black-hole concept in the local dialect. It names the proposed layer in which Noether braid assemblies would be flattened into an alignment-locked sheet. Its existence and identification with an observer-level horizon remain closure targets.
 
 At this interface:
 
@@ -9005,7 +9005,7 @@ The alignment state may also silence assemblies geometrically, but the available
 
 #### Horizon-Adjacent Photon Channel
 
-The horizon interface is not modeled as a smooth geometric shell surrounding an otherwise empty interior. It is an active Noether sea regime in which ordinary volumetric assemblies, photon-channel packets, dark-sector photon-channel-adjacent modes, and terminally aligned Noether braid states can all be near the same symmetry-breaking threshold. The interface is therefore closer to a high-energy transport and selection layer than to a passive surface.
+In the candidate mechanism, the horizon interface is not modeled as a smooth geometric shell surrounding an otherwise empty interior. It would be an active Noether sea regime in which ordinary volumetric assemblies, photon-channel packets, speculative dark-sector photon-channel-adjacent modes, and terminally aligned Noether braid states can all approach the same symmetry-breaking threshold. The proposed interface is therefore a high-energy transport and selection target rather than an established passive or constitutive surface.
 
 The photon connection is especially sharp because the photon carrier is a coaxial contra-rotating polarity-conjugate planar pair. A photon is not a horizon, but it is a moving planar-pair record built from the same pro/anti flattening logic that the horizon exposes under strong-field alignment. Near a black-hole interface the question is therefore not only whether light is redshifted on escape. The stronger native question is which photon-channel or photon-channel-adjacent records enter, are blueshifted, are trapped, are converted, or are released by the same horizon-interface ledger.
 
@@ -9356,7 +9356,7 @@ A viable black-hole account in $\mathbb{A}\mathbb{A}\mathbb{A}$ must work at two
 
 For that reason, the framework treats horizon regularity under cosmological embedding as a non-negotiable structural requirement. If a proposed strong-field description becomes pathological precisely when one asks how the local object couples to the surrounding Noether sea, then it is not yet a closed black-hole model. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the regularity requirement is met not by postulating a passive background but by letting the local strong-field geometry and the ambient Noether sea state backreact on one another through the same constitutive variables.
 
-This point sharpens the role of the horizon interface. The interface is not just the place where local assembly geometry reaches terminal alignment. It is also the layer through which the compact object remains connected to the surrounding Noether sea without forcing a curvature blowup at the very location where the constitutive transition is most intense. In that sense, horizon regularity is not cosmetic. It is a closure test for whether the black-hole regime can genuinely communicate with cosmology.
+This point sharpens the proposed role of the horizon interface. In the candidate mechanism, the interface would be both the place where local assembly geometry reaches terminal alignment and the layer through which the compact object remains connected to the surrounding Noether sea without forcing a curvature blowup at the constitutive transition. Horizon regularity is therefore a closure test for whether this black-hole regime can communicate with cosmology, not evidence that the regime already exists.
 
 The strong-field closure should therefore be posed as a Noether sea boundary-condition problem, not as the direct importation of an isolated Schwarzschild or Kerr metric. The horizon-interface condition is the canonical closure problem stated in [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition), written here in shorthand as
 $$
@@ -9489,19 +9489,19 @@ Jets should remain in the black-hole story, but they should be placed at the cor
 
 For that reason, the framework uses a release-channel hierarchy:
 
-- **Constitutive claim:** infalling matter and radiation can be reprocessed into outward channels.
-- **Astrophysical channel claim:** some of those outward channels may become observable jets or winds.
-- **Dark-sector claim:** some channels may cross outward through the horizon interface as recycled dark-matter-like or dark-energy-like assemblies, or as dark-sector photon-channel-adjacent modes, before later converting into visible excitations, if they do so at all.
+- **Required constitutive result:** a retained event must show whether and how infalling matter and radiation are reprocessed into outward channels.
+- **Astrophysical channel possibility:** some derived outward channels may become observable jets or winds.
+- **Speculative dark-sector possibility:** a derived channel may cross outward through the horizon interface as a recycled dark-matter-like or dark-energy-like assembly, or as a dark-sector photon-channel-adjacent mode, before later converting into visible excitations.
 
 This hierarchy keeps the theory from overcommitting to a single morphology. A jet is evidence for organized outflow, not by itself proof that all recycling must emerge in collimated form.
 
 The same hierarchy also separates two recycling modes. A strong-field site may load the surrounding Noether sea diffusely without producing a narrow visible jet, or it may route part of the same processed content into a collimated assembly, photon-channel, or mixed-sector outflow. These are different channel records. The diffuse mode asks how the ambient Noether sea density, cadence, orientation, and delay-factor state are updated. The collimated mode asks how the horizon interface, disk or boundary layer, and environment select a directed outflow with definite energy, momentum, angular momentum, composition, and lifetime.
 
-The same distinction can be phrased as a sequence.
+The candidate ordering can be phrased as a sequence.
 
-1. Core processing compresses infalling content into maximum-curvature and alignment regimes.
-2. The horizon interface selects which modes remain trapped and which can move outward.
-3. The released content then appears as one or more observer-level channels: jets, broader winds, radiative outflow, or initially dark-sector escape.
+1. A retained core-processing record would compress infalling content into maximum-curvature and alignment regimes.
+2. A derived horizon-interface selector would determine which modes remain trapped and which can move outward.
+3. The released content would then appear as one or more observer-level channels: jets, broader winds, radiative outflow, or initially dark-sector escape.
 
 This ordering preserves your original intuition that jets may inject recycled matter or energy into the surrounding Noether sea while keeping the framework open to the possibility that some released content leaves the horizon interface in forms that are not immediately visible.
 
@@ -9800,7 +9800,7 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 
 ### Summary
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether sea regimes rather than ontic singularities or void defects. Their horizon is a terminal alignment interface, their interior is a maximum-curvature recycling regime, and their cosmological importance depends on whether that recycling measurably feeds the late-time Noether sea state. What remains strongest from standard black-hole theory is the observer-level phenomenology. What is reclassified is the underlying ontology: geometry becomes an effective summary of constitutive Noether sea behavior, and singularity language becomes a marker of failed extrapolation rather than the final story.
+The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ strong-field picture treats black holes as Noether sea regimes rather than ontic singularities or void defects. It proposes a terminal-alignment horizon interface and a maximum-curvature recycling interior; both remain closure targets, as does any measurable contribution of recycling to the late-time Noether sea state. What remains strongest from standard black-hole theory is the observer-level phenomenology. The proposed ontological reclassification treats geometry as an effective summary of constitutive Noether sea behavior and singularity language as a marker of failed extrapolation, but acceptance requires the retained histories, boundary conditions, ledgers, and observer recovery defined in this chapter.
 
 ## Singularity Resolution
 

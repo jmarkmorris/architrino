@@ -80,4 +80,3 @@ The no-specialization decision avoids adding a second numerical implementation w
 ## Falsifiers
 
 Reject the bounded-thread result if a rebuilt matched run loses byte identity, independent-oracle containment, accepted-horizon equality, or at least a 10% median wall improvement outside trial noise. Reopen the SIMD/cache disposition if a later representative EOM kernel shows at least a 10% median accepted-time throughput gain with unchanged discrete decisions, independent containment, failure behavior, and no material regression on the designated interactive control. Any worker-count-dependent root, branch, publication, cancellation, or checkpoint decision invalidates this packet immediately.
-

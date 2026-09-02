@@ -19090,7 +19090,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Resolution standard.** Resolution would require either direct identification of the dark component, or a cross-scale demonstration that a non-particle mechanism reproduces rotation curves, lensing, cluster dynamics, and CMB structure without hidden parameter rescue.
 
-**Claim level.** `architecture-ready` for the route, `direction-ready` for quantitative closure.
+**Claim level.** `architecture-ready`, because the native route and cross-scale test surface are explicit; quantitative closure remains the owner's unresolved proof burden.
 
 #### Galaxy Rotation And The Radial Acceleration Relation
 
@@ -19142,8 +19142,6 @@ Current physics already gets something important right here: the survey pipeline
 
 **Core non-closure.** Field-theoretic zero-point estimates overshoot the observed dark-energy scale by an enormous factor. The unresolved issue is why vacuum-energy bookkeeping in field theory fails so badly when coupled to gravity, and why the large-scale curvature source is tiny but nonzero instead of naturally huge or exactly absent.
 
-**Unresolved residue.** The unresolved issue is why vacuum-energy bookkeeping in field theory fails so badly when coupled to gravity, and why the effective large-scale curvature source is tiny but nonzero instead of naturally huge or exactly absent.
-
 **Standard repairs.** Supersymmetric cancellations, sequestering, unimodular gravity, anthropic landscape arguments, and modified-gravity decoupling schemes each reduce part of the pressure, but none is widely accepted as a clean mechanism rather than a relocation of the fine-tuning.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The architectural answer is level separation. Mode bookkeeping, continuum excess, boundary-sensitive effects, and observer-level vacuum language should not be promoted into a literal gravitating substrate energy density. The Noether sea response is a constitutive object, not a naive sum over field modes. The hierarchy becomes a quantitative shielding target: indexed binary structure must suppress effective large-scale exposure while preserving successful low-energy field calculations.
@@ -19154,7 +19152,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Resolution standard.** Resolution would require a theory that explains why vacuum contributions gravitate in exactly the suppressed way observed while still preserving the successful low-energy field theory calculations built on those same vacuum structures.
 
-**Claim level.** `architecture-ready` conceptually, `direction-ready` quantitatively.
+**Claim level.** `direction-ready`, because level separation is explicit but the native shielding and exposure mechanism is not yet quantitative.
 
 #### The Hubble Tension
 
@@ -19180,7 +19178,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Resolution standard.** Resolution would require convergence of the measurement pipelines after systematic control, or a new mechanism that raises one inference route while remaining consistent with BAO, CMB, BBN, and late-time structure data.
 
-**Claim level.** `architecture-ready` as a diagnostic route; quantitative status remains `direction-ready`.
+**Claim level.** `direction-ready`, because the diagnostic route is explicit but no shared transfer function yet closes the early- and late-time records.
 
 #### The $S_8$ Structure-Growth Tension
 
@@ -19193,8 +19191,6 @@ Current physics already gets something important right here: the survey pipeline
 **Where it appears.** The $S_8$ comparison joins weak lensing, galaxy clustering, galaxy-galaxy lensing, cluster counts, and CMB inference. Systematic uncertainties include shear calibration, photometric redshifts, intrinsic alignments, and baryonic feedback in small-scale modeling. Different surveys and projections do not return one invariant significance. Physics explanations range from massive neutrinos suppressing growth to modified gravity or dark matter interactions that slow clustering. Because $S_8$ is sensitive to both background expansion and growth, it provides a complementary diagnostic to the Hubble tension.
 
 **Core non-closure.** The missing closure is whether the discrepancy reflects subtle survey systematics, baryonic modeling errors, massive neutrinos, dark-sector interactions, or modified gravity.
-
-**Unresolved residue.** The missing closure is whether the discrepancy reflects subtle survey systematics, baryonic modeling errors, or real new physics in gravity, neutrino mass, or dark-sector interactions.
 
 **Standard repairs.** Standard repairs include improved lensing calibration, massive neutrinos, interacting or decaying dark matter, and modified-gravity growth suppression. They remain incomplete because the effect is modest, survey-sensitive, and tightly coupled to other cosmological constraints.
 
@@ -19244,7 +19240,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Resolution tests.** Use FIRAS blackbody limits, Planck/ACT/SPT spectra, polarization, lensing, damping tail, and cross-correlations. The test standard must remain severe even when the explanatory route is reader-friendly.
 
-**Claim level.** `architecture-ready` as a gate, `direction-ready` for the solution.
+**Claim level.** `direction-ready`, because the observational gate is explicit but the native transfer-function solution is not yet derived.
 
 #### BBN And The Lithium Problem
 
@@ -19282,7 +19278,7 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Resolution tests.** Use galaxy surveys, CMB lensing, weak lensing, Lyman-alpha forests, JWST high-redshift populations, quasar growth records, halo mass functions, and small-scale structure. Separate data revisions from stable anomalies.
 
-**Claim level.** `direction-ready`, with some `appendix-watch` material for rapidly changing high-redshift claims.
+**Claim level.** `direction-ready`; rapidly changing high-redshift claims remain evidence inputs rather than a second chapter classification.
 
 #### Cosmological Principle, Dipoles, And Large-Scale Flows
 
@@ -19370,7 +19366,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 **Resolution standard.** Resolution would require a framework that explains low-entropy initial structure and irreversible macroscopic behavior without simply restating one of them as an unexplained boundary condition.
 
-**Claim level.** `architecture-ready`, with low-entropy initial structure still `direction-ready`.
+**Claim level.** `architecture-ready`, because the basin, record-growth, and coarse-graining route has an explicit test surface; low-entropy initial structure remains the owner's unresolved burden.
 
 #### Photon Ontology And Electromagnetic Radiation
 
@@ -19408,7 +19404,7 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Resolution standard.** Resolution would require a derivation of finite high-frequency behavior from explicit microscopic degrees of freedom rather than from a formal rule inserted to repair a divergent continuum approximation.
 
-**Claim level.** `architecture-ready` as a cutoff lesson, `direction-ready` as a derivation.
+**Claim level.** `direction-ready`, because a geometric cutoff is only a proposed route until it derives the Planck spectrum and its saturation law.
 
 ### Standard Model And Particle Closure
 
@@ -19452,7 +19448,7 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Resolution standard.** Resolution would require either direct evidence for a protection mechanism or a deeper derivation showing why the Higgs scale is finite and stable without the symmetry-based rescue structures that naturalness originally predicted.
 
-**Claim level.** `architecture-ready` for the conceptual route, `direction-ready` for numerical closure.
+**Claim level.** `architecture-ready`, because the assembly-response route and precision test surface are explicit; numerical mass-map closure remains the owner's unresolved burden.
 
 #### Flavor Generations And CKM/PMNS Mixing
 
@@ -19504,7 +19500,7 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Resolution standard.** Resolution would require a consistent account of the mass scale and ordering together with decisive evidence about the Majorana or Dirac nature, most likely through neutrinoless double-beta decay, precision cosmology, or direct kinematic mass measurements. The same resolution should state how $\sum_i m_i$, the lightest-neutrino mass, and any sterile-branch evidence enter the near-photon Hamiltonian without separate flavor-specific fitting.
 
-**Claim level.** `architecture-ready` for oscillation routing, `direction-ready` for mass origin, Majorana status, and sterile status.
+**Claim level.** `direction-ready`, because the candidate oscillation route has not yet derived the measured transition law or the mass and provenance records.
 
 #### Matter-Antimatter Asymmetry
 
@@ -19517,8 +19513,6 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 **Where it appears.** The baryon asymmetry is quantified by the baryon-to-photon ratio measured in the CMB and BBN, a precise target for any mechanism. The Standard Model provides baryon number violation via sphalerons but lacks sufficient CP violation and a strong first-order electroweak phase transition. Leptogenesis via heavy Majorana neutrinos can convert a lepton asymmetry into a baryon asymmetry, while electroweak baryogenesis requires new particles to modify the Higgs potential. Searches for electric dipole moments, lepton flavor violation, and collider signatures are direct tests of the new CP sources such mechanisms require.
 
 **Core non-closure.** The unresolved point is the source of the extra CP violation and nonequilibrium history needed to produce the observed asymmetry without ruining precision data.
-
-**Unresolved residue.** The unresolved point is the source of the extra CP violation and baryon-number violating history needed to produce the observed baryon-to-photon ratio without ruining other precision data.
 
 **Standard repairs.** Electroweak baryogenesis, leptogenesis, Affleck-Dine scenarios, and other beyond-standard-model CP sources remain incomplete because the required ingredients have not been directly established.
 
@@ -19610,8 +19604,6 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Core non-closure.** The unresolved question is whether the apparent turnover of the Higgs potential is a real feature of nature or an extrapolation artifact tied to top-mass uncertainty, strong coupling, or missing ultraviolet physics.
 
-**Unresolved residue.** The unresolved question is whether the apparent turnover of the Higgs potential is a real feature of nature or an extrapolation artifact tied to uncertainties in the top mass, strong coupling, or missing ultraviolet physics.
-
 **Standard repairs.** Improved top-mass extraction, heavy stabilizing states, inflationary constraints on early Higgs excursions, and alternative ultraviolet completions remain open because the inference is sensitive to inputs.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Vacuum instability is treated as a warning against extrapolating a continuum Higgs potential beyond its validated domain. A candidate Noether sea account would have to derive bounded assembly energy density and a microphysical cutoff. Only then could an apparent negative high-energy effective potential be tested as a phase boundary between assembly configurations rather than a lower vacuum of the Euclidean void.
@@ -19651,8 +19643,6 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 **Where it appears.** The muon anomalous magnetic moment is computed from QED, electroweak, and hadronic contributions, with hadronic vacuum polarization and light-by-light terms dominating the theory uncertainty. Dispersive data from $e^+e^-\to\mathrm{hadrons}$ and lattice-QCD calculations still differ in ways that matter for the reference value. In parallel, LHCb, Belle II, and other flavor programs continue testing lepton universality, angular observables, and rare decays after the main $R_K$ and $R_{K^\ast}$ ratios returned to Standard Model consistency.
 
 **Core non-closure.** The unresolved issue is whether anomalies are telling us about new mediators or exposing underestimated hadronic and flavor-theory uncertainties in the background calculations.
-
-**Unresolved residue.** The unresolved issue is whether the anomalies are telling us about new mediators or are exposing underestimated hadronic and flavor-theory uncertainties in the background calculations.
 
 **Standard repairs.** Improved lattice and dispersive hadronic calculations, new vector bosons, leptoquarks, and flavor-sensitive beyond-standard-model sectors remain live but not decisive.
 
@@ -19768,7 +19758,7 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Resolution tests.** Include only if a case touches a core mechanism: radiation ledger, medium response, angular momentum, structure formation, or source provenance. Otherwise leave it out.
 
-**Claim level.** `appendix-watch` or `exclude-for-now`.
+**Claim level.** `exclude-for-now`, because the grouped cases do not share one native mechanism with a discriminating test surface.
 
 #### Fermi Paradox And Life-Distribution Questions
 

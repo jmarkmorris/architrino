@@ -55,4 +55,3 @@ No rows.
 ## Verified
 
 No rows. Completed records are retained in [work-log.md](work-log.md) and focused packets.
-

@@ -108,4 +108,3 @@ Preserve dark-sector photon-like release as a release-channel hypothesis gated o
 ## Verified
 
 No rows. Completed records are retained in [work-log.md](work-log.md) and focused packets.
-

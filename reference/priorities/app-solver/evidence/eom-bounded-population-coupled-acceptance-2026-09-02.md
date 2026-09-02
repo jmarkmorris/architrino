@@ -1,8 +1,8 @@
 # EOM Bounded-Population Coupled Acceptance
 
-Date: 2026-09-02  
-Subject: `EOM-002` / `coupled_retained_history_integrator`  
-Claim grade: measured implementation evidence with derived factorized-oracle acceptance  
+Date: 2026-09-02
+Subject: `EOM-002` / `coupled_retained_history_integrator`
+Claim grade: measured implementation evidence with derived factorized-oracle acceptance
 Disposition: verified at the bounded-population base-kernel boundary
 
 ## Accepted Boundary
