@@ -8,9 +8,11 @@ import { spawnSync } from "node:child_process";
 import { buildStaticSite, WEB_KATEX_DIRECTORY } from "../scripts/build-static-site.mjs";
 import { runtimeAssetPaths, readRuntimeAssetFamilies } from "../scripts/prepare-runtime-assets.mjs";
 import { buildEquationMappingCorpus } from "../scripts/build-equation-mapping-corpus.mjs";
+import { PRESCRIBED_ASSEMBLY_TARGETS } from "../scripts/eom/generate-prescribed-braid-record.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
+const expectedRuntimeAssetCount = PRESCRIBED_ASSEMBLY_TARGETS.length + 2;
 
 function fixture(t) {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "runtime-site-"));
@@ -30,7 +32,7 @@ function fixture(t) {
 
 test("runtime manifest enumerates all Borg records and both derived indexes", () => {
   const paths = runtimeAssetPaths();
-  assert.equal(paths.length, 46);
+  assert.equal(paths.length, expectedRuntimeAssetCount);
   assert.equal(new Set(paths).size, paths.length);
   assert.ok(paths.every((name) => !name.includes("..")));
   assert.equal(readRuntimeAssetFamilies().length, 3);
@@ -45,7 +47,7 @@ test("static build includes generated assets but never local ignored extras or g
       f.write("content/assets/borg/records/unlisted-private.json", "private");
     },
   });
-  assert.equal(result.runtimeAssetCount, 46);
+  assert.equal(result.runtimeAssetCount, expectedRuntimeAssetCount);
   for (const name of runtimeAssetPaths(f.source)) assert.equal(fs.readFileSync(path.join(f.output, name), "utf8"), "{}");
   assert.ok(fs.existsSync(path.join(f.output, ".nojekyll")));
   for (const name of [".git", ".local-data", "content/assets/borg/records/unlisted-private.json"]) assert.equal(fs.existsSync(path.join(f.output, name)), false);
