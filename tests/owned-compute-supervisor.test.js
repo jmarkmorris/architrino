@@ -48,6 +48,27 @@ test("foreground compute records exact ownership and closes its process group", 
   assert.equal(Number.isSafeInteger(closeout.checkedLeases), true);
 });
 
+test("an invalid command produces an immediate closed failure lease", { skip: process.platform === "win32" }, async () => {
+  const owner = `owned-compute-invalid-test-${process.pid}`;
+  const result = await invoke([
+    "run",
+    "--owner-task", owner,
+    "--deadline-seconds", "10",
+    "--heartbeat-seconds", "0.1",
+    "--termination-grace-seconds", "0.5",
+    "--",
+    "/definitely/not/an/executable",
+  ], { expectFailure: true });
+  assert.match(result.stderr, /ENOENT|ownership identity was recorded/u);
+  const leases = JSON.parse(await new Promise((resolve, reject) => {
+    execFile(process.execPath, [SUPERVISOR, "list"], { cwd: ROOT, encoding: "utf8" }, (error, stdout) => error ? reject(error) : resolve(stdout));
+  }));
+  const failed = leases.find((row) => row.lease.owner?.task === owner);
+  assert.equal(failed.classification, "terminal");
+  assert.equal(failed.lease.status, "failed");
+  assert.equal(failed.lease.processGroupClosed, true);
+});
+
 test("detached compute supports authenticated handoff and controlled stop", { skip: process.platform === "win32" }, async () => {
   const owner = `owned-compute-detached-test-${process.pid}`;
   const recipient = `${owner}-recipient`;

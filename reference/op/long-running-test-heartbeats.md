@@ -30,10 +30,13 @@ node scripts/dev/owned-compute-supervisor.mjs run --owner-task <task> --deadline
 node scripts/dev/owned-compute-supervisor.mjs start --owner-task <task> --owner-thread <thread-id> --deadline-seconds <seconds> -- <command> [args...]
 node scripts/dev/owned-compute-supervisor.mjs handoff --run-id <run-id> --to-task <task> --to-thread <thread-id>
 node scripts/dev/owned-compute-supervisor.mjs stop --run-id <run-id> --reason <reason>
+node scripts/dev/owned-compute-supervisor.mjs list --active
 node scripts/dev/owned-compute-supervisor.mjs reconcile
 ```
 
 `run` is the default for work that fits the active task. `start` returns only after the persistent sidecar and target group have registered. Detached runs survive the launching shell but cannot run beyond their declared deadline; the sidecar remains responsible for heartbeat and group cleanup. Terminal leases and logs remain local operational records and are not scientific evidence by themselves.
+
+Do not place credentials or private tokens in command-line arguments because the exact command is retained in the local lease. The source-inventory checker detects literal `detached: true` additions; the policy prohibition on shell backgrounding and computed detachment remains a review obligation rather than a closed-world source theorem.
 
 The procedure does not advance: silence is not progress unless a separately observed process state proves the job is still healthy.
 

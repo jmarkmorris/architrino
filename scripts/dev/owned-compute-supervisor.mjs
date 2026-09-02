@@ -230,6 +230,9 @@ async function sendControl(lease, request, timeoutMs = 3000) {
 
 async function classifyLease(lease) {
   if (TERMINAL_STATUSES.has(lease.status)) return { classification: "terminal", lease };
+  if (lease.status === "launching" && Date.parse(lease.deadlineAtUtc) >= Date.now()) {
+    return { classification: "launching", lease };
+  }
   try {
     const response = await sendControl(lease, { action: "status" }, 1000);
     return { classification: "authenticated_running", lease: response.lease };
@@ -479,12 +482,17 @@ async function runSidecar(runId) {
     server.listen(0, "127.0.0.1", resolve);
   });
   const port = server.address().port;
+  const sidecarIdentity = await waitForProcessIdentity(process.pid);
 
   const target = spawn(plan.command, plan.args, {
     cwd: plan.cwd,
     detached: true,
     stdio: ["ignore", "pipe", "pipe"],
     env: { ...process.env, ARCHITRINO_OWNED_COMPUTE_RUN_ID: runId },
+  });
+  const targetResult = new Promise((resolve) => {
+    target.once("error", (error) => resolve({ code: null, signal: null, error: error.message }));
+    target.once("close", (code, signal) => resolve({ code, signal, error: null }));
   });
   target.stdout.on("data", (chunk) => {
     stdoutBytes += chunk.length;
@@ -496,9 +504,42 @@ async function runSidecar(runId) {
     lastOutputAtUtc = new Date().toISOString();
     stderr.write(chunk);
   });
-  const targetIdentity = await waitForProcessIdentity(target.pid);
+  const launchOutcome = await Promise.race([
+    waitForProcessIdentity(target.pid).then((identity) => ({ identity })).catch((identityError) => ({ identityError })),
+    targetResult.then((earlyResult) => ({ earlyResult })),
+  ]);
+  let targetIdentity = launchOutcome.identity;
+  if (!targetIdentity) {
+    const launchError = launchOutcome.identityError ?? new Error("target exited before its ownership identity was recorded");
+    if (target.pid && groupExists(target.pid)) {
+      process.kill(-target.pid, "SIGTERM");
+      await waitUntil(() => !groupExists(target.pid), plan.terminationGraceMs + 2000, `failed launch group ${target.pid} to close`)
+        .catch(() => process.kill(-target.pid, "SIGKILL"));
+    }
+    const result = launchOutcome.earlyResult ?? await targetResult;
+    const failed = {
+      ...JSON.parse(readFileSync(filePath, "utf8")),
+      status: "failed",
+      startedAtUtc: new Date().toISOString(),
+      finishedAtUtc: new Date().toISOString(),
+      sidecarIdentity,
+      targetIdentity: null,
+      exitCode: result.code,
+      exitSignal: result.signal,
+      error: result.error ?? launchError.message,
+      processGroupClosed: true,
+      control: { host: "127.0.0.1", port, token: plan.controlToken },
+      claimBoundary: "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    };
+    await writeJsonAtomic(filePath, failed);
+    await Promise.all([
+      new Promise((resolve) => stdout.end(resolve)),
+      new Promise((resolve) => stderr.end(resolve)),
+      new Promise((resolve) => server.close(resolve)),
+    ]);
+    return;
+  }
   requireCondition(targetIdentity.pgid === target.pid, "target did not become its own process-group leader");
-  const sidecarIdentity = await waitForProcessIdentity(process.pid);
   lease = {
     schema: SCHEMA,
     runId,
@@ -559,10 +600,7 @@ async function runSidecar(runId) {
 
   let result;
   try {
-    result = await new Promise((resolve) => {
-      target.once("error", (error) => resolve({ code: null, signal: null, error: error.message }));
-      target.once("close", (code, signal) => resolve({ code, signal, error: null }));
-    });
+    result = await targetResult;
     if (groupExists(targetIdentity.pgid)) {
       if (!stopping) requestStop("descendants_remained_after_leader_exit");
       await waitUntil(() => !groupExists(targetIdentity.pgid), plan.terminationGraceMs + 2000, `owned group ${targetIdentity.pgid} to close`)
@@ -606,7 +644,7 @@ async function runSidecar(runId) {
 
 function publicLease(lease) {
   const { control, ...safe } = lease;
-  return { ...safe, control: control ? { host: control.host, port: control.port, authenticated: true } : null };
+  return { ...safe, control: control ? { host: control.host, port: control.port, authentication: "token-redacted" } : null };
 }
 
 function print(value) {
@@ -634,9 +672,17 @@ export async function main(argv = process.argv.slice(2)) {
     return;
   }
   if (action === "list" || action === "reconcile") {
-    requireCondition(rest.length === 0 || (action === "reconcile" && rest.length === 1 && rest[0] === "--repair-closed"), `invalid ${action} arguments`);
+    requireCondition(
+      rest.length === 0 ||
+        (action === "list" && rest.length === 1 && rest[0] === "--active") ||
+        (action === "reconcile" && rest.length === 1 && rest[0] === "--repair-closed"),
+      `invalid ${action} arguments`,
+    );
     const rows = action === "reconcile" ? await reconcile({ repairClosed: rest[0] === "--repair-closed" }) : await reconcile();
-    print(rows.map((row) => ({ ...row, lease: publicLease(row.lease) })));
+    const selected = rest[0] === "--active"
+      ? rows.filter((row) => !["terminal", "stale_closed"].includes(row.classification))
+      : rows;
+    print(selected.map((row) => ({ ...row, lease: publicLease(row.lease) })));
     return;
   }
   if (action === "stop") {

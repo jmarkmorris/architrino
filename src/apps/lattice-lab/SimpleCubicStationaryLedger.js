@@ -124,7 +124,7 @@ export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
   ],
   independentCheck: {
     theorem:
-      "reference/priorities/dormant-deferred/app-lattice-lab/simple-cubic-checkerboard-cancellation-certificate.md",
+      "reference/priorities/app-lattice-lab/simple-cubic-checkerboard-cancellation-certificate.md",
     highPrecisionOracle: "tests/test_lattice_lab_stationary_oracle.py",
     structuralVerifier:
       "scripts/verify-lattice-lab-simple-cubic-checkerboard.mjs",
