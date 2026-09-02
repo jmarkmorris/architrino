@@ -16,6 +16,9 @@ import { fileURLToPath } from "node:url";
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const BROWSER_ENTRY_MODULES = [
+  "src/apps/borg/main.js",
+  "src/apps/borg/library/main.js",
+  "src/apps/compact-sweep-dashboard/main.js",
   "src/apps/ideal-braid/main.js",
   "src/apps/photon/main.js",
 ];

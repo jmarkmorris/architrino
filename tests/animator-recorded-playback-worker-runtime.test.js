@@ -8,11 +8,11 @@ import {
 } from "../src/apps/animator/AnimatorRecordedPlaybackWorkerRuntime.js";
 import { createAnimatorRecordedPlaybackRequest } from "../src/apps/animator/AnimatorRecordedPlaybackWorkerProtocolRuntime.js";
 import { runAnimatorRecordedPlaybackRequestAsync } from "../src/apps/animator/AnimatorRecordedPlaybackWorkerCoreRuntime.js";
-import { createEomRecordedPlaybackHandoff } from "../src/apps/shared/EomRecordedPlaybackHandoff.mjs";
-import { createAcceptedEomRecord } from "./eom-recorded-playback-handoff.test.js";
+import { createBorgRecordedPlaybackHandoff } from "../src/apps/borg/BorgRecordedPlaybackHandoff.mjs";
+import { createAcceptedEomRecord } from "./helpers/eom-recorded-playback-fixture.js";
 
 test("Animator samples playback frames only from an accepted recorded EOM handoff", async () => {
-  const handoff = await createEomRecordedPlaybackHandoff(createAcceptedEomRecord());
+  const handoff = await createBorgRecordedPlaybackHandoff(createAcceptedEomRecord());
   const request = createAnimatorRecordedPlaybackRequest(handoff, {
     requestId: "recorded_playback_positive",
     playbackOptions: { frameCount: 3 },
@@ -32,7 +32,7 @@ test("Animator samples playback frames only from an accepted recorded EOM handof
 });
 
 test("Animator playback worker rejects stale handoffs before frame packaging", async () => {
-  const handoff = await createEomRecordedPlaybackHandoff(createAcceptedEomRecord());
+  const handoff = await createBorgRecordedPlaybackHandoff(createAcceptedEomRecord());
   handoff.record.status = "failed";
   const request = createAnimatorRecordedPlaybackRequest(handoff, {
     requestId: "recorded_playback_stale",
@@ -42,7 +42,7 @@ test("Animator playback worker rejects stale handoffs before frame packaging", a
 });
 
 test("Animator records accepted handoff identity in the document", async () => {
-  const handoff = await createEomRecordedPlaybackHandoff(createAcceptedEomRecord());
+  const handoff = await createBorgRecordedPlaybackHandoff(createAcceptedEomRecord());
   const result = hydrateAnimatorRecordedPlaybackCompleteMessage(
     await runAnimatorRecordedPlaybackRequestAsync(
       createAnimatorRecordedPlaybackRequest(handoff, { requestId: "document_merge" }),

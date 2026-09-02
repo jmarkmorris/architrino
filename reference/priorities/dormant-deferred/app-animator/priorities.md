@@ -57,7 +57,7 @@ It does not own:
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but animator-side structural editing is still incomplete.
 - Imported staging data already carries observer framing, preview identifiers, and export scene data through a dedicated scene-staging contract without importing external app runtimes.
-- Solver-derived simulation mode has moved under this workstream as [simulation-mode.md](simulation-mode.md), so Animator owns the authoring and playback surface while the EOM solver owns the forward solver contract.
+- Recorded EOM playback is closed under this workstream as [simulation-mode.md](simulation-mode.md): Borg owns run and inspection interfaces, Animator owns accepted recorded-output playback, and the EOM solver owns computation.
 
 ## Work Queue
 
@@ -68,7 +68,7 @@ The locally ranked execution order, current-state notes, blockers, and acceptanc
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
 | [design-and-interfaces.md](design-and-interfaces.md) | Stable animator design doctrine, viewport model, observer/framing model, media and overlay boundaries, structure editing direction, inputs, outputs, and app boundaries. | [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md), [scene-taxonomy](../../../learning-office/design/scene-taxonomy.md), [navigation-and-controls](../../../../content/markdown/aaa/archie/navigation-and-controls.md) |
-| [simulation-mode.md](simulation-mode.md) | Detailed packet for solver-derived Animator simulation mode, dataset playback, field shells, delayed hits, authoring controls, offline/cache workflow, and production solver cleanup. | [run-protocols](../../../../content/markdown/aaa/validation/simulations/run-protocols.md), [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md), and Animator runtime documentation. |
+| [simulation-mode.md](simulation-mode.md) | Closed boundary for accepted recorded EOM playback, provenance, fail-closed handoff admission, and production-solver separation. | [run-protocols](../../../../content/markdown/aaa/validation/simulations/run-protocols.md), [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md), and Animator runtime documentation. |
 
 ## Promotion Map
 
@@ -78,7 +78,6 @@ The locally ranked execution order, current-state notes, blockers, and acceptanc
 | `observer_framing_ui` | [design-and-interfaces.md](design-and-interfaces.md) | Animator observer/framing UI and authored scene output. | Authors can directly edit framing intent, required/optional targets, autoscale behavior, and imported observer hints. |
 | `timeline_observer_audio` | [design-and-interfaces.md](design-and-interfaces.md) | Animator timeline object model. | `Observer` becomes a true timeline object and `Audio` is either implemented as a real authored object or removed from placeholder insertion paths. |
 | `canonical_structure_transforms` | [design-and-interfaces.md](design-and-interfaces.md) | Canonical scene structure transforms. | Structure reads and edits share one canonical model rather than animator-local mutation paths. |
-| `simulation_mode` | [simulation-mode.md](simulation-mode.md) | Animator simulation authoring and playback mode. | Solver-derived scenes keep visible provenance, authoring controls, offline/cache behavior, and production solver cleanup without mixing authored paths with simulation output. |
 
 ## Related AAA Notes
 

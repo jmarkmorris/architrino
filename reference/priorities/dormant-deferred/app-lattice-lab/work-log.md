@@ -10,6 +10,14 @@ This file records dated planning, implementation status, validation evidence, fa
 
 ## Log Entries
 
+### 2026-09-02 — Second Low-Risk Presentation Reconciliation
+
+- Reactivated only the five operator-authorized presentation rows while leaving the broader Lattice Lab owner dormant-deferred.
+- Closed LAT-069, LAT-085, LAT-089, LAT-096, and LAT-098 after confirming that their requested terminology, deformation endpoint sentence, scoped Geometry copy, and exposed BCC/FCC names are already present in the canonical app. No runtime, geometry, calculation, certificate, or styling source changed in this reconciliation.
+- The focused command `node --test tests/lattice-lab-ledger-presentation.test.js tests/lattice-lab-runtime.test.js tests/lattice-lab-bcc-neighbor-graph.test.js tests/lattice-lab-periodic-gallery.test.js tests/lattice-lab-random-finite.test.js` passed `72/72`.
+- Fresh all-case browser checks at `1280 × 720` and `800 × 900` confirmed exact `β = 1 is the maximum deformation.` copy, no exposed `finite spherical`, no duplicate Simple Cubic Geometry deformation clause, exact `Body-Centered Cubic` and `Face-Centered Cubic` case names, no exposed BCC sublattice terminology or legacy FCC case name, no horizontal overflow, and a clean console.
+- Reconciled the queue summary from `64` to `59` unresolved entries: `53` queued/requested, `4` in progress, `1` awaiting verification, and `1` explicitly deferred/blocked. The five closed rows are recorded as one consolidated historical entry, increasing that section from `28` to `29` entries.
+
 ### 2026-09-02 — Low-Risk Queue Reconciliation
 
 - Reactivated only the operator-authorized low-risk reconciliation scope while leaving the broader Lattice Lab owner dormant-deferred.

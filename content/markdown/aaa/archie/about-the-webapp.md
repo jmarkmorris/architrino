@@ -62,7 +62,7 @@ The authored application hierarchy rooted at `content/scenes/archie/applications
 - **Learn & Reference:** Atom, Causal Delay Feedback, It’s Greek to Me!, Hyde Periodic Table, Periodic Table, and Standard Model.
 - **Explore Models:** Lattice Lab, Lorentz Geometry, Molecule Visualization, Photon and Polarization Visualization, and Topo.
 - **Analyze Evidence:** Equation Mapping.
-- **Build & Simulate:** Animator and Borg.
+- **Build & Simulate:** Borg starts and inspects EOM runs; Animator authors visual scenes and replays accepted recorded EOM output.
 
 These include display-only lessons, diagnostic workbenches, content-navigation surfaces, and application-specific runtimes. Inclusion in the index is not an evidence or proof grade.
 

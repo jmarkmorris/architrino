@@ -967,7 +967,7 @@ export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
   });
 }
 
-export function computeDelayedPotential(request = {}, itemIndex = 0) {
+function computeDelayedPotential(request = {}, itemIndex = 0) {
   const transmitter = request.transmitter ?? {};
   const samplePoint = vector(request.samplePoint);
   const observationTime = finiteNumber(request.observationTime);
@@ -1016,7 +1016,7 @@ export function computeDelayedPotential(request = {}, itemIndex = 0) {
   });
 }
 
-export function computeDelayedPotentials(requests = []) {
+function computeDelayedPotentials(requests = []) {
   return labelRecords(requests.map((request, index) => computeDelayedPotential(request, index)));
 }
 

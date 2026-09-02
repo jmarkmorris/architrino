@@ -30,6 +30,11 @@ import {
   resolveBorgLibraryReturnHref,
   resolveBraidSearchReturnHref,
 } from "../shared/BorgSelectionNavigation.mjs";
+import {
+  ANIMATOR_BORG_HANDOFF_QUERY,
+  ANIMATOR_BORG_HANDOFF_QUERY_VALUE,
+  receiveAnimatorPrescribedSceneHandoff,
+} from "../shared/AnimatorBorgHandoffTransport.mjs";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -44,6 +49,8 @@ export async function bootBorgApp({
   historyLike = globalThis.history,
   assemblyRecordCatalog = BORG_ASSEMBLY_RECORD_CATALOG,
   startupSeedIndex = createBorgStartupSeedIndex(),
+  receiveAnimatorHandoff = receiveAnimatorPrescribedSceneHandoff,
+  windowLike = globalThis.window,
 } = {}) {
   const query = new URLSearchParams(search);
   const runtimeMode = resolveBorgRuntimeMode(query);
@@ -69,43 +76,59 @@ export async function bootBorgApp({
   let selectedCatalogEntry = null;
   let selectedRecordSha256 = null;
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
-    const selection = resolveBorgSelectionRequest(
-      query,
-      assemblyRecordCatalog.entries,
-    );
-    if (selection.status === BORG_SELECTION_STATUS.MISSING) {
-      throw new RangeError(selection.reason);
-    }
-    if (selection.status === BORG_SELECTION_STATUS.STALE) {
-      throw new RangeError(selection.reason);
-    }
-    if (selection.status !== BORG_SELECTION_STATUS.VALID) {
-      throw new TypeError(selection.reason);
-    }
-    const entry = selection.entry;
-    const recordSha256 = selection.recordSha256;
-    selectedCatalogEntry = entry;
-    selectedRecordSha256 = recordSha256;
-    const records = [await fetchBorgRecord(fetchLike, entry, "assembly-view record", recordSha256)];
-    const [scientificStatus, platonicRelationships] = await Promise.all([
-      loadBorgScientificStatus({
-        fetchLike,
-        coordinates: records[0].provenance?.prescribedGeometry?.coordinates,
-        identity: entry,
-      }),
-      loadBorgPlatonicRelationships({ fetchLike, identity: entry }),
-    ]);
-    assemblyViewSession = createBorgAssemblyViewSession(records);
-    eomRecordReplay = {
-      record: records[0],
-      records,
-      sourceUrls: Object.freeze([entry.recordUrl]),
-      librarySummary: createBorgWorkbenchRecordSummary({
+    const animatorHandoffRequested =
+      query.get(ANIMATOR_BORG_HANDOFF_QUERY) === ANIMATOR_BORG_HANDOFF_QUERY_VALUE;
+    let records;
+    let scientificStatus = null;
+    let platonicRelationships = null;
+    let librarySummary = null;
+    let sourceUrls = [];
+    if (animatorHandoffRequested) {
+      const handoff = await receiveAnimatorHandoff({ windowLike });
+      records = [handoff.record];
+      selectedRecordSha256 = handoff.recordSha256;
+      librarySummary = createAnimatorPrescribedSceneSummary(handoff);
+    } else {
+      const selection = resolveBorgSelectionRequest(
+        query,
+        assemblyRecordCatalog.entries,
+      );
+      if (selection.status === BORG_SELECTION_STATUS.MISSING) {
+        throw new RangeError(selection.reason);
+      }
+      if (selection.status === BORG_SELECTION_STATUS.STALE) {
+        throw new RangeError(selection.reason);
+      }
+      if (selection.status !== BORG_SELECTION_STATUS.VALID) {
+        throw new TypeError(selection.reason);
+      }
+      const entry = selection.entry;
+      const recordSha256 = selection.recordSha256;
+      selectedCatalogEntry = entry;
+      selectedRecordSha256 = recordSha256;
+      records = [await fetchBorgRecord(fetchLike, entry, "assembly-view record", recordSha256)];
+      [scientificStatus, platonicRelationships] = await Promise.all([
+        loadBorgScientificStatus({
+          fetchLike,
+          coordinates: records[0].provenance?.prescribedGeometry?.coordinates,
+          identity: entry,
+        }),
+        loadBorgPlatonicRelationships({ fetchLike, identity: entry }),
+      ]);
+      librarySummary = createBorgWorkbenchRecordSummary({
         record: records[0],
         catalogEntry: entry,
         recordSha256,
         platonicRelationships,
-      }),
+      });
+      sourceUrls = [entry.recordUrl];
+    }
+    assemblyViewSession = createBorgAssemblyViewSession(records);
+    eomRecordReplay = {
+      record: records[0],
+      records,
+      sourceUrls: Object.freeze(sourceUrls),
+      librarySummary,
       scientificStatus,
       platonicRelationships,
     };
@@ -239,6 +262,18 @@ export function createBorgWorkbenchRecordSummary({
           .map((value) => borgWorkbenchFacetLabel(key, value))
           .join(", "),
       }))),
+  });
+}
+
+export function createAnimatorPrescribedSceneSummary(handoff) {
+  const record = handoff.record;
+  return Object.freeze({
+    label: record.title ?? record.provenance?.prescribedGeometry?.sourceSceneId ?? "Animator prescribed scene",
+    assemblyId: record.assemblyId,
+    modelRevisionSha256: record.modelRevisionSha256,
+    description:
+      "Animator-authored prescribed motion. Record-only replay; this is not EOM-evolved evidence.",
+    facets: Object.freeze([]),
   });
 }
 
@@ -378,7 +413,12 @@ export function resolveBorgRuntimeMode(queryOrSearch = "") {
   const query = queryOrSearch instanceof URLSearchParams
     ? queryOrSearch
     : new URLSearchParams(queryOrSearch);
-  if (query.get("assemblyId") || query.get("modelRevisionSha256") || query.get("recordSha256")) {
+  if (
+    query.get("assemblyId") ||
+    query.get("modelRevisionSha256") ||
+    query.get("recordSha256") ||
+    query.get(ANIMATOR_BORG_HANDOFF_QUERY) === ANIMATOR_BORG_HANDOFF_QUERY_VALUE
+  ) {
     return BORG_RECORD_REPLAY_RUNTIME_MODE;
   }
   return BORG_DEFAULT_RUNTIME_MODE;

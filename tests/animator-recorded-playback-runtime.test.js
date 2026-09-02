@@ -16,6 +16,7 @@ test("Animator recorded playback summary reports pinned provenance", () => {
   const summary = summarizeAnimatorRecordedPlayback({
     metadata: {
       simulationDataset: {
+        kind: "animator.simulation.dataset",
         id: "accepted-output",
         provenance: {
           engineId: "eom-solver",
