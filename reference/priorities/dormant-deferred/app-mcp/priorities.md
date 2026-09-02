@@ -10,11 +10,11 @@
 
 ## Current
 
-This folder preserves the proposed Model Context Protocol (MCP) access layer for the Architrino knowledge system. It is parked under `dormant-deferred`; its unfinished client-conformance work is retained but is not executable until the operator explicitly reactivates the lane.
+This folder preserves the proposed Model Context Protocol (MCP) access layer for the Architrino knowledge system. It is parked under `dormant-deferred`; its completed named-client conformance evidence and bounded higher-order graph extension remain preserved, and no parked row is executable until the operator explicitly reactivates the lane.
 
 The target is a read-only, source-grounded protocol surface over versioned indexes built from the repository's accepted `main` snapshot. The repository remains authoritative. Generated indexes and MCP responses remain derived routing and retrieval artifacts; they do not promote theory claims or replace authored corpus sources.
 
-The starting design is recorded in [architecture-proposal.md](architecture-proposal.md). The executable source-index contract is recorded in [source-index-snapshot-v1.md](source-index-snapshot-v1.md), the bounded four-tool boundary is recorded in [mcp-tool-contract-v1.md](mcp-tool-contract-v1.md), the fixture regression surface is recorded in [local-fixture-mcp-adapter.md](local-fixture-mcp-adapter.md), the complete local implementation is recorded in [full-corpus-local-v1.md](full-corpus-local-v1.md), the remote safety boundary is recorded in [remote-transport-deployment-hardening-v1.md](remote-transport-deployment-hardening-v1.md), the loopback HTTP implementation is recorded in [loopback-streamable-http-adapter.md](loopback-streamable-http-adapter.md), and independent client results are recorded in [client-conformance.md](client-conformance.md). Accepted tasks live in [work-queue.md](work-queue.md), provisional extensions belong in [brainstorming.md](brainstorming.md), and dated implementation or adjudication history belongs in [work-log.md](work-log.md).
+The starting design is recorded in [architecture-proposal.md](architecture-proposal.md). The executable source-index contract is recorded in [source-index-snapshot-v1.md](source-index-snapshot-v1.md), the primitive tool boundary is recorded in [mcp-tool-contract-v1.md](mcp-tool-contract-v1.md), the bounded multi-hop extension is recorded in [higher-order-graph-tools-v1.md](higher-order-graph-tools-v1.md), the fixture regression surface is recorded in [local-fixture-mcp-adapter.md](local-fixture-mcp-adapter.md), the complete local implementation is recorded in [full-corpus-local-v1.md](full-corpus-local-v1.md), the remote safety boundary is recorded in [remote-transport-deployment-hardening-v1.md](remote-transport-deployment-hardening-v1.md), the loopback HTTP implementation is recorded in [loopback-streamable-http-adapter.md](loopback-streamable-http-adapter.md), and independent client results are recorded in [client-conformance.md](client-conformance.md). Accepted tasks live in [work-queue.md](work-queue.md), provisional extensions belong in [brainstorming.md](brainstorming.md), and dated implementation or adjudication history belongs in [work-log.md](work-log.md).
 
 ## Objective
 
@@ -26,7 +26,7 @@ The locally ranked execution order, lifecycle states, and acceptance boundaries 
 
 ## Current Blocker
 
-No blocker remains for the loopback HTTP implementation, official SDK conformance, current full-corpus source freshness, deployment-contract identity, or Codex fixture and full-corpus HTTP conformance. ChatGPT desktop now has measured HTTP initialization and tool discovery, but direct calls to the four tools and the typed missing-source result remain unmeasured. Remote readiness separately remains false because TLS ingress, a trusted proxy, exact deployment origins, an authorization server, an accepted-`main` snapshot, and a real prior rollback snapshot do not exist yet.
+MCP-001 named-client conformance and MCP-002 bounded higher-order graph traversal are complete. The local stdio and loopback HTTP surfaces expose deterministic `walk` over declared edges with explicit depth, node, page, cycle, provenance, visibility, and cursor rules. MCP-003 remains deferred while this owner is parked. Remote readiness separately remains false because TLS ingress, a trusted proxy, exact deployment origins, an authorization server, an accepted-`main` snapshot, and a real prior rollback snapshot do not exist yet.
 
 ## Boundaries
 

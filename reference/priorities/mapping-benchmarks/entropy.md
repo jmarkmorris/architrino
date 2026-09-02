@@ -16,11 +16,11 @@ These rows decompose the case at draft grade. They are not executable queue auth
 1. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: none.
 2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [mapping-quantum](../mapping-quantum/priorities.md).
 3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, the RT horizon-wrapping ratio $\eta_H(A;\theta)$, and the Page-curve release-channel target. Status: `kernel-handoff-ready`; terminal enumerator consumption, coefficient derivation, and thermal-limit reduction pending. Depends on: [mapping-strong-field](../mapping-strong-field/priorities.md), `windowed_entropy_functional`.
-4. `cosmology_entropy_balance` - State when Noether sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [mapping-cosmology](../mapping-cosmology/priorities.md), [validation-gates](../dormant-deferred/validation-gates/priorities.md).
+4. `cosmology_entropy_balance` - State when Noether sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md), [validation-gates](../dormant-deferred/validation-gates/priorities.md).
 
 ## Scope
 
-This lane is a draft mapping surface for entropy. It is not a new reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ chapter and it does not replace [mapping-strong-field](../mapping-strong-field/priorities.md), [mapping-quantum](../mapping-quantum/priorities.md), [mapping-cosmology](../mapping-cosmology/priorities.md), or [Radiation](../../../content/markdown/aaa/reactions/radiation.md).
+This lane is a draft mapping surface for entropy. It is not a new reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ chapter and it does not replace [mapping-strong-field](../mapping-strong-field/priorities.md), [mapping-quantum](../mapping-quantum/priorities.md), [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md), or [Radiation](../../../content/markdown/aaa/reactions/radiation.md).
 
 The purpose is to keep the current theoretical meanings of entropy intact, then identify which parts can be recovered as effective limits of assembly dynamics, Noether sea state records, event-ledger routing, and finite observer access windows.
 
@@ -289,7 +289,7 @@ The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native hori
 - [mapping-strong-field](../mapping-strong-field/priorities.md)
 - [holographic-entropy-boundary-data-benchmark](../mapping-strong-field/holographic-entropy-boundary-data-benchmark.md)
 - [mapping-quantum](../mapping-quantum/priorities.md)
-- [mapping-cosmology](../mapping-cosmology/priorities.md)
+- [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md)
 - [validation-gates](../dormant-deferred/validation-gates/priorities.md)
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
 

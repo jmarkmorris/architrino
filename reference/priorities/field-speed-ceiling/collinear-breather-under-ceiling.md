@@ -1,6 +1,6 @@
 # Collinear Breather Under the Ceiling: Feasibility Note
 
-**Date:** 2026-08-02; reconciled with the delayed-ignition theorem on 2026-09-02 **Status:** exploratory FSC-local scratchpad; one sufficient first-chart turnaround theorem derived, autonomous braking and a regular breather not established; no law adopted and no continuation advanced **Origin:** operator question following [FSC-001-EC1](elie-cartan-review-2026-08-02.md); extends the [coincidence continuation scratchpad](coincidence-continuation-scratchpad.md) and revisits the pre-ceiling collinear-breather obstruction ("head-on breather does not close; needs a folded history") inside the proposed closed domain $c_a=c_f=1$.
+**Date:** 2026-08-02; reconciled with the delayed-ignition and complete-lobe theorems on 2026-09-02 **Status:** exploratory FSC-local scratchpad; a sufficient complete returning-lobe theorem and a prescribed-onset spatial two-cycle are derived, but autonomous braking and full retained-state periodicity are not established; no law adopted and no continuation selected **Origin:** operator question following [FSC-001-EC1](elie-cartan-review-2026-08-02.md); extends the [coincidence continuation scratchpad](coincidence-continuation-scratchpad.md) and revisits the pre-ceiling collinear-breather obstruction ("head-on breather does not close; needs a folded history") inside the proposed closed domain $c_a=c_f=1$.
 
 ## Question
 
@@ -8,7 +8,7 @@ Can the idealized mirror-collinear opposite-polarity pair close into a **breathe
 
 ## Verdict in one line
 
-The minimal autonomous wake-crossing state selects straight escape and therefore supplies neither braking nor a breather. If a positive delayed-braking onset is supplied separately, however, the existing FSC-local branch equation can reach a regular positive-separation turnaround; repeating the same selected lobe would give a formal spatial breather, but no autonomous wake-state rule currently selects or repeats that onset.
+The minimal autonomous wake-crossing state selects straight escape and therefore supplies neither braking nor a breather. If a positive delayed-braking onset is supplied separately and $K\ge7u_*/2$, however, the FSC-local branch completes a brake--turn--inward-cap--coincidence lobe; repeating the same onset gives a formal spatial two-cycle, but no autonomous wake-state rule currently selects or repeats it.
 
 ## Minimal autonomous crossing-state: straight selection and no breather
 
@@ -101,31 +101,45 @@ Plainly: once an early enough positive braking time is chosen, the delayed partn
 
 ## Conditional return and the missing periodic selector
 
-At the positive-separation turnaround, the attractive partner contribution remains directed toward the origin, so it changes the velocity sign and starts the return. While $x(t)>0$ and $|v|<1$, the mirror root equation can be written
+The complete derivation is in the [two-lobe return-map and autonomous-trigger audit](two-lobe-return-map-and-autonomous-trigger-audit.md). At the positive-separation turnaround, the attractive partner contribution remains directed toward the origin, so it changes the velocity sign and starts the return. While $x(t)>0$ and $|v|<1$, the mirror root equation can be written
 
 $$
 s+x(s)=t-x(t).
 $$
 
-The left side is nondecreasing because its derivative is $1+v(s)\ge0$, and it is strictly increasing off a $v=-1$ cap segment. A partner root therefore persists and remains unique on each ordinary sub-field chart. If $x_{\max}$ is the turnaround radius, then $r\le2x_{\max}$ and $D_t\le2$, so every ordinary attractive row obeys the lower magnitude bound
+The left side is nondecreasing because its derivative is $1+v(s)\ge0$, and it is strictly increasing off a $v=-1$ cap segment. A partner root therefore persists and remains unique on each ordinary sub-field chart. If $x_{\max}$ is the turnaround radius, then $r\le x+x_{\max}$ and $D_t\le2$, so every ordinary attractive row obeys the lower magnitude bound
 
 $$
 \left|A_{\mathrm{partner}}\right|
 \ge
-\frac{K}{8x_{\max}^2}.
+\frac{K}{2(x+x_{\max})^2}.
 $$
 
-Conditional on no intervening untyped stratum, the returning speed therefore reaches the inward ceiling in finite time or reaches coincidence sooner. On the inward ceiling segment the proposed projection removes only further speed increase, so the pair coasts to the next coincidence. A nonordinary partner family can reappear there and must be owned by the same proposed event completion.
+Put $w=-v$ after turnaround. Since $dx/dt=-w$, integration gives
+
+$$
+w(x)^2
+\ge
+K\left(
+\frac{1}{x+x_{\max}}
+-
+\frac{1}{2x_{\max}}
+\right).
+$$
+
+The stronger sufficient condition $K\ge7u_*/2$ implies $x_{\max}<K/2$, so the right side exceeds $1$ by $x=0$. The returning speed therefore reaches the inward ceiling at a positive separation. On the inward ceiling segment the proposed projection removes only further speed increase, so the pair coasts to the next coincidence. The ordinary root approaches the positive-range cap-start endpoint with locally integrable accumulated row, and the newly emitted inward cap becomes the matched nonordinary family at coincidence.
+
+Plainly: the stronger coupling-to-onset bound rules out a sub-ceiling return to the origin. The pair reaches inward wake speed first, then finishes the lobe on a regular incoming cap that the existing exact-mirror event can classify.
 
 This gives a conditional brake-turn-return lobe, not yet a breather theorem. After the return event, the minimal autonomous crossing state again has plateaued partner clocks and selects straight escape in the opposite direction. The multivalued continuation relation can instead be made to trace a reflected second lobe by choosing the same positive $u_*$ again. Two reflected lobes would return each label to the coincidence point with its original velocity direction, but that construction externally chooses the same onset after every event. The FSC state contains no derived phase, maturity, or reset functional that makes those choices autonomously.
 
-Claim grade: `derived conditional return argument` up to the declared ordinary/event boundaries and `formal periodic construction` for repeated equal onset choices. A regular autonomous breather remains `Not advanced`. Spatial return alone is insufficient for a delay system unless the labeled received-history clocks, event ownership, and future-relevant wake state are also shift-periodic.
+Claim grade: `derived sufficient complete-lobe theorem inside the proposed FSC model` for $K\ge7u_*/2$ and `formal spatial periodic construction` for repeated equal onset choices. A regular autonomous full-state breather remains `Not advanced`. Spatial return alone is insufficient for a delay system unless the labeled received-history clocks, event ownership, and future-relevant wake state are also shift-periodic.
 
-Plainly: a chosen braking branch can make one complete excursion back to coincidence. Repeating that excursion is easy to prescribe by hand, but the proposed autonomous wake state does not contain the clock that would prescribe it. That missing selector, not the braking strength, is now the primary breather obstruction.
+Plainly: a chosen braking branch can make one complete excursion back to coincidence, and two reflected copies return position and velocity. Repeating that excursion is easy to prescribe by hand, but the proposed autonomous wake state does not contain the clock that would prescribe it. The direct cap-duration reset candidate also shrinks rather than closes when $K/u\ge6$. That missing selector, not the braking strength, is now the primary breather obstruction.
 
 ## Where the obstruction actually lives
 
-For the minimal autonomous crossing state, the breather fails at **activation**, before turnaround. For a separately supplied onset with $K\ge3u_*$, braking and positive-separation turnaround are available, and the remaining failure is autonomous repetition after the return event. Note also the ejection-speed constraint: an event law that simply ejected the pair *below* ceiling at zero separation would immediately meet the retained $\delta^{-2}$ braking row (review finding EC-5) and fail BV. So sub-ceiling ejection is lawful only from **positive separation**.
+For the minimal autonomous crossing state, the breather fails at **activation**, before turnaround. For a separately supplied onset with $K\ge3u_*$, braking and positive-separation turnaround are available; for $K\ge7u_*/2$, the full returning lobe reaches the next exact-mirror event. The remaining failure is autonomous onset selection and full-state repetition. Note also the ejection-speed constraint: an event law that simply ejected the pair *below* ceiling at zero separation would immediately meet the retained $\delta^{-2}$ braking row (review finding EC-5) and fail BV. So sub-ceiling ejection is lawful only from **positive separation**.
 
 **Ceiling-exit refinement (upgrades EC-7 / review item II.8.3).** When a ceiling rider first slows at $T_1$, its overtaking co-moving self family is delivered as one atom exactly at $T_1$ — an instant at which the speed still equals $c_f$, so the boundary response applies. The atom is forward (same-polarity repulsion from behind), hence projected to zero under the completion clause; and post-slowdown sub-ceiling motion has no further self roots. **Ceiling exit is therefore lawful and free whenever a retained backward row initiates it.** The wake shock does not forbid recapture; it is washed at the exit instant.
 
@@ -143,4 +157,4 @@ Plainly: to breathe, the pair must leave the coincidence slower than its own wak
 
 ## Closure target
 
-First decide whether the FSC-local autonomous crossing state is intended to select straight passage or whether an additional derived state variable may select a positive onset. If a positive onset is allowed, extend the $K\ge3u_*$ branch through its complete return census and test shift-periodicity of the labeled wake state across two reflected lobes. Retain the finite-interval event route and radial restoration test as separate alternatives rather than using either to supply the missing onset silently.
+Independently review the complete-lobe, cap-map, and returning-event measure arguments. At current FSC authority the autonomous-breather route is closed negatively because neither the crossing state nor the undeveloped wake/action interfaces supply an onset; retain the prescribed-onset spatial two-cycle as a conditional member of the multivalued continuation relation. Reopen onset selection only if a later FSC wake or action law derives an explicit reset-compatible functional. Retain the finite-interval event route and radial restoration test as separate alternatives rather than using either to supply the missing onset silently.

@@ -6,6 +6,21 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Cosmology and nuclear-to-molecular owners archived
+
+- Moved `mapping-cosmology` and `mapping-nuclear-atomic-molecular` intact under `dormant-deferred` at operator direction.
+- Preserved all 17 unresolved queue rows, focused packets, work logs, and retained-evidence records; none is executable or globally scored while parked.
+- Removed the two owners from the active ranking, renumbered the 15 surviving rows without changing scores or relative order, updated archive inventory and incoming links, and redirected machine-readable priority-context paths.
+
+Plainly: the two programs are parked, not deleted or declared complete.
+
+### 2026-09-02 — MCP-001 closed after archive placement
+
+- Captured the operator-supplied ChatGPT-mode five-call result and corroborated its `topics`, `search`, `read`, `neighbors`, `read` sequence against the loopback server telemetry for the current 2,042-record full-corpus snapshot.
+- Closed MCP-001 at the named-client boundary. The archived `app-mcp` owner remains dormant-deferred, MCP-002 and MCP-003 remain parked, and no global score, active-owner count, remote-deployment status, or theory claim changed.
+
+Plainly: completing the one manual acceptance test removes the unfinished-client caveat without reactivating the archived MCP program.
+
 ### 2026-09-02 — iOS, MCP, and Dark Sector archived
 
 - Moved `app-ios`, `app-mcp`, and `dark-sector` under `dormant-deferred` at operator direction. Their documents, queues, and evidence remain preserved, but no parked row is executable or scored.

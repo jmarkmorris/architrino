@@ -54,7 +54,7 @@ try {
 
   const listed = await client.listTools();
   const toolNames = listed.tools.map((tool) => tool.name);
-  requireCondition(JSON.stringify(toolNames) === JSON.stringify(["search", "read", "topics", "neighbors"]), `unexpected tools: ${toolNames.join(", ")}`);
+  requireCondition(JSON.stringify(toolNames) === JSON.stringify(["search", "read", "topics", "neighbors", "walk"]), `unexpected tools: ${toolNames.join(", ")}`);
 
   const topics = await call("topics", {});
   const firstTopic = topics.structuredContent?.result?.records?.[0];
@@ -62,6 +62,7 @@ try {
   await call("search", { query: "Architrino" });
   await call("read", { topicOrRoute: firstTopic.sourceId });
   await call("neighbors", { topicOrRoute: firstTopic.sourceId });
+  await call("walk", { topicOrRoute: firstTopic.sourceId, maxDepth: 2 });
 
   const missing = await client.callTool({ name: "read", arguments: { topicOrRoute: "missing-http-sdk-topic" } });
   requireCondition(missing.isError === true, "missing read did not return a tool-level error");

@@ -174,7 +174,7 @@
       "boundary": "The no-free-color blocker names the finite residual tail as required evidence but explicitly accepts no source rows."
     },
     "nnCorridorOverlapSample": {
-      "candidatePath": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "candidatePath": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
       "usableFor": [
         "sample-level p+n and p+p finite-tail pressure",
         "orientation and mismatch table shape",

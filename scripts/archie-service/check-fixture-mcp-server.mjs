@@ -94,7 +94,7 @@ if (failures.length > 0) {
 
 const action = mode === "--write" ? "write passed" : "check passed";
 console.log(
-  `Archie fixture MCP ${action}: ${fixture.smokeId}, initialize + four tools listed and called + missing-source error + unknown-tool rejection + ping`
+  `Archie fixture MCP ${action}: ${fixture.smokeId}, initialize + five tools listed and called + missing-source error + unknown-tool rejection + ping`
 );
 
 function validateSemanticEvidence() {
@@ -105,8 +105,8 @@ function validateSemanticEvidence() {
   if (initialize?.capabilities?.tools?.listChanged !== false) failures.push("initialize must declare a static tool catalog");
 
   const tools = byCase.get("mcp-stdio-tools-list-001")?.result?.tools ?? [];
-  if (canonicalJson(tools.map((tool) => tool.name)) !== canonicalJson(["search", "read", "topics", "neighbors"])) {
-    failures.push("tools/list did not return the four V1 tools in stable order");
+  if (canonicalJson(tools.map((tool) => tool.name)) !== canonicalJson(["search", "read", "topics", "neighbors", "walk"])) {
+    failures.push("tools/list did not return the five bounded tools in stable order");
   }
   for (const tool of tools) {
     if (
@@ -141,6 +141,10 @@ function validateSemanticEvidence() {
   const neighbors = byCase.get("mcp-stdio-neighbors-call-001")?.result;
   if (neighbors?.isError !== false || neighbors?.structuredContent?.result?.kind !== "neighbors") {
     failures.push("neighbors tools/call did not return a successful structured result");
+  }
+  const walk = byCase.get("mcp-stdio-walk-call-001")?.result;
+  if (walk?.isError !== false || walk?.structuredContent?.result?.kind !== "walk") {
+    failures.push("walk tools/call did not return a successful structured result");
   }
 
   const missing = byCase.get("mcp-stdio-read-missing-call-001")?.result;

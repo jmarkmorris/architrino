@@ -31,7 +31,7 @@ Plainly: exact prescribed circles, the complete infinite equal-radius ladder, th
 
 ## Ranked Next Objects
 
-1. `higher_order_ladder_asymptotics` — [higher-order ladder asymptotics task](#higher-order-ladder-asymptotics). Status: `Queued`.
+1. `higher_order_ladder_asymptotics` — [higher-order ladder asymptotics task](#higher-order-ladder-asymptotics). Status: `In progress`.
 2. `t04_one_cycle_eom_reproduction` — [T04 one-cycle EOM reproduction task](#t04-one-cycle-eom-reproduction). Status: `Deferred / blocked`.
 3. `nearby_history_return_map` — [nearby-history return map and stability task](#nearby-history-return-map-and-stability). Status: `Deferred / blocked`.
 4. `same_record_action_energy_ledger` — [same-record action and energy ledger task](#same-record-action-and-energy-ledger). Status: `Deferred / blocked`.
@@ -40,7 +40,15 @@ Plainly: exact prescribed circles, the complete infinite equal-radius ladder, th
 
 ## In progress
 
-No rows.
+### Higher-order ladder asymptotics
+
+- **Status:** In progress
+- **Closure goal:** Determine the exact correction pattern beyond the accepted leading planar common-center three-binary constraint ladder spacing and radius laws.
+- **Request / acceptance:** Starting from the global equal-radius ladder theorem's uniform tail domain, derive the next nonvanishing terms in $\beta_n$, $\Delta\beta_n$, and $R_n/R_*$ directly from the circular causal-root ledger. Test whether the expansion is a pure inverse-power series or necessarily contains logarithmic, parity-dependent, or other terms. Curve fits may propose coefficients but cannot decide whether factors such as $\pi$, $\sqrt{3}$, or $\log 2$ survive exact summation.
+- **Evidence / blocker:** The global tail theorem supplies the required uniform domain. The leading constants are derived; the current proof pass is testing the first unclaimed coefficient and the uniform remainder structure rather than importing finite-window fit numerators.
+- **Completion:** Exact higher-order coefficients and a controlled remainder are derived, or a proof shows that the proposed inverse-power pattern is incomplete. Failure of a derived coefficient or remainder bound on an independently checked high-topology cell falsifies the expansion.
+
+Plainly: the complete zero pattern is known. The active calculation asks for the progressively smaller location, spacing, and radius corrections and whether their apparent numerical pattern reflects exact mathematics or only a finite fit.
 
 ## Completed
 
@@ -127,15 +135,7 @@ Plainly: the finite discovery sweep has been replaced by a continuous-domain pro
 
 ## Queued
 
-### Higher-order ladder asymptotics
-
-- **Status:** Queued
-- **Closure goal:** Determine the exact correction pattern beyond the accepted leading planar common-center three-binary constraint ladder spacing and radius laws.
-- **Request / acceptance:** Starting from the global equal-radius ladder theorem's uniform tail domain, derive the next nonvanishing terms in $\beta_n$, $\Delta\beta_n$, and $R_n/R_*$ directly from the circular causal-root ledger. Test whether the expansion is a pure inverse-power series or necessarily contains logarithmic, parity-dependent, or other terms. Curve fits may propose coefficients but cannot decide whether factors such as $\pi$, $\sqrt{3}$, or $\log 2$ survive exact summation.
-- **Evidence / blocker:** The global tail theorem now supplies the required uniform domain and removes the prior blocker. The leading constants are derived, while finite-window fit numerators remain discovery provenance and do not establish the exact higher-order sequence.
-- **Completion:** Exact higher-order coefficients and a controlled remainder are derived, or a proof shows that the proposed inverse-power pattern is incomplete. Failure of a derived coefficient or remainder bound on an independently checked high-topology cell falsifies the expansion.
-
-Plainly: the complete zero pattern is known. This task asks for the progressively smaller location, spacing, and radius corrections and whether their apparent numerical pattern reflects exact mathematics or only a finite fit.
+No rows.
 
 ## Deferred / blocked
 

@@ -48,6 +48,6 @@ Reader-facing promotion is complete at `content/markdown/aaa/philosophy-history/
 - [Standard Model Closure](../mapping-standard-model/priorities.md) for gauge, representation, coupling, and reaction-record recovery.
 - [Mapping Benchmarks](../mapping-benchmarks/priorities.md) for observer-level benchmark contracts.
 - [Quantum Closure](../mapping-quantum/priorities.md) for measurement, probability, and classical-record emergence.
-- [Nuclear, Atomic, and Molecular Closure](../mapping-nuclear-atomic-molecular/priorities.md) for QCD-to-hadron and downstream matter bridges.
-- [Cosmology Closure](../mapping-cosmology/priorities.md) for cosmological transfer functions and observer inference.
+- [Nuclear, Atomic, and Molecular Closure](../dormant-deferred/mapping-nuclear-atomic-molecular/priorities.md) for QCD-to-hadron and downstream matter bridges.
+- [Cosmology Closure](../dormant-deferred/mapping-cosmology/priorities.md) for cosmological transfer functions and observer inference.
 - [Source Mining](../source-mining/priorities.md) for external-source acquisition and traceability.

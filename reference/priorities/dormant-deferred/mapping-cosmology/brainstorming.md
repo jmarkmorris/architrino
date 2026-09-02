@@ -8,7 +8,7 @@ Cosmology closure requires an explicit map from architrino causal-delay dynamics
 
 ## Ordered-Core Recycling Boundary
 
-The ordered-core recycling hypothesis remains speculation. Its mature treatment, same-record entropy inequality, admissible event sources, rejection conditions, and promotion boundaries are owned by [Ordered-Core Recycling And Entropy-Ledger Scope Decision](ordered-core-recycling-entropy-scope-decision.md) and deferred queue object COS-014. Free-steady radiative shedding is retired for this mechanism. The already promoted effective discussion of heat-death openings is not duplicated here.
+The ordered-core recycling hypothesis remains speculation. Its mature treatment, same-record entropy inequality, admissible event sources, rejection conditions, and promotion boundaries are owned by [Ordered-Core Recycling And Entropy-Ledger Scope Decision](./ordered-core-recycling-entropy-scope-decision.md) and deferred queue object COS-014. Free-steady radiative shedding is retired for this mechanism. The already promoted effective discussion of heat-death openings is not duplicated here.
 
 ## Slow Noether Sea Relaxation
 

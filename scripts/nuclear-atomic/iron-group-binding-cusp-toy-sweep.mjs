@@ -428,7 +428,7 @@ export function buildIronGroupBindingCuspToySweep(options = {}) {
     claimLevel:
       "row-shape diagnostic only; not empirical nuclear-binding recovery and not reader-facing canon",
     sourcePacket:
-      "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md",
+      "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md",
     graphGenerationRule: {
       id: "bounded_degree_surface_depleted_corridor_estimator/v0",
       description:

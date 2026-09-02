@@ -5,7 +5,7 @@
 - Kind: source-mined benchmark packet.
 - Date mined: June 30, 2026.
 - Status: priority-only; not reader-facing canon.
-- Supports: [Standard Model Closure](priorities.md), [Standard Model Geometry-First Program](geometry-first-program.md), and [Nuclear Binding Closure](../mapping-nuclear-atomic-molecular/nuclear-binding-closure.md).
+- Supports: [Standard Model Closure](priorities.md), [Standard Model Geometry-First Program](geometry-first-program.md), and [Nuclear Binding Closure](../dormant-deferred/mapping-nuclear-atomic-molecular/nuclear-binding-closure.md).
 - Intended corpus destinations: [Color Charge and SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md), [Gluons and the Strong Force](../../../content/markdown/aaa/assemblies/bosons/gluons.md), [Nucleon Structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md), and [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md), after the native derivation burdens below are ready.
 
 ## Scope
@@ -234,7 +234,7 @@ V_{\pi/\text{corr}}(r)
 V_{\text{sea-pol}}(r).
 $$
 
-The first reduced numerical evaluation of this consumer is captured in [NN Corridor Overlap First Evaluation](../mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md). It supplies a candidate $p+n$ and $p+p$ channel table with orientation, branch-interface mismatch, and Coulomb rows included. The channel weights now have a first native extraction from $\mathcal B_{ij}^{\mathrm{int}}$; the remaining scale and range parameters stay source-lead-only until they are extracted from the same $\sigma_{\mathrm{eff}}$ functional and confinement record.
+The first reduced numerical evaluation of this consumer is captured in [NN Corridor Overlap First Evaluation](../dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md). It supplies a candidate $p+n$ and $p+p$ channel table with orientation, branch-interface mismatch, and Coulomb rows included. The channel weights now have a first native extraction from $\mathcal B_{ij}^{\mathrm{int}}$; the remaining scale and range parameters stay source-lead-only until they are extracted from the same $\sigma_{\mathrm{eff}}$ functional and confinement record.
 
 This potential may consume QCD/hadronization benchmarks only after the participating proton and neutron source envelopes are color-singlet assemblies. It fails if $V_{\pi/\text{corr}}$ or $V_{\text{sea-pol}}$ is tuned independently of the same color-corridor and Noether sea response that supplies confinement energetics.
 
@@ -245,7 +245,7 @@ This potential may consume QCD/hadronization benchmarks only after the participa
 | [Color Charge and SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Add a compact benchmark paragraph tying color-singlet closure to no-free-color, static string tension, and lattice static-energy rows. | Needs an explicit native $\sigma_{\mathrm{eff}}$ extraction route, not just the source benchmark. |
 | [Gluons and the Strong Force](../../../content/markdown/aaa/assemblies/bosons/gluons.md) | Sharpen gluon language as color-corridor reconfiguration and event-shape/radiation recovery target. | Must not treat gluons as observed substrate products. |
 | [Nucleon Structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md) | Add lattice light-hadron mass pressure and fragmentation/event-shape level separation where nucleon source envelopes are discussed. | Requires claim-level care so lattice QCD remains a benchmark, not a replaced derivation. |
-| [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | Attach $V_{NN}$ derivation explicitly downstream of accepted color-singlet nucleon envelopes and static confinement energetics. | The first reduced $p+n$/$p+p$ evaluation exists in [NN Corridor Overlap First Evaluation](../mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md), including native branch-interface channel extraction; promotion still needs accepted proton/neutron interface ledgers plus native extraction of the radii and scales from the $\sigma_{\mathrm{eff}}$ functional. |
+| [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | Attach $V_{NN}$ derivation explicitly downstream of accepted color-singlet nucleon envelopes and static confinement energetics. | The first reduced $p+n$/$p+p$ evaluation exists in [NN Corridor Overlap First Evaluation](../dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md), including native branch-interface channel extraction; promotion still needs accepted proton/neutron interface ledgers plus native extraction of the radii and scales from the $\sigma_{\mathrm{eff}}$ functional. |
 
 ## Rejected Or Source-Lead-Only Moves
 
@@ -253,4 +253,4 @@ This potential may consume QCD/hadronization benchmarks only after the participa
 - Do not correct detector measurements to "parton level" and then treat that as the native target.
 - Do not treat a reconstructed jet, a heavy-flavor tag, or a fragmentation model component as direct quark or gluon observation.
 - Do not promote Lund strings, cluster models, preconfinement, or generator tune parameters as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They are source leads for finite color-singlet closure and corridor-breaking thresholds.
-- Do not add a new validation gate for this packet. The useful next step is native replacement of the remaining reduced-row scale and range parameters in [NN Corridor Overlap First Evaluation](../mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md), not another benchmark ledger.
+- Do not add a new validation gate for this packet. The useful next step is native replacement of the remaining reduced-row scale and range parameters in [NN Corridor Overlap First Evaluation](../dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md), not another benchmark ledger.

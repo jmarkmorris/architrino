@@ -9,7 +9,7 @@
 - **Inferred interpretation:** orbital labels organize repeated atomic records as states of an effective electron envelope.
 - **Guessed native bridge:** a localized electron assembly, nuclear assembly, causal-wake history, exclusion envelope, local Noether sea state, and detector response may project to the effective orbital record. No accepted native extractor currently establishes that projection.
 
-This packet does not promote a literal electron trajectory, a physical probability cloud, the Born rule, Pauli filling, or an atomic spectrum as primitive architrino ontology. It does not claim that an electron-assembly carrier, its atomic envelope, or its detector projection has been derived. The reader-facing owners remain [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md), and [Wavefunction Ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md).
+This packet does not promote a literal electron trajectory, a physical probability cloud, the Born rule, Pauli filling, or an atomic spectrum as primitive architrino ontology. It does not claim that an electron-assembly carrier, its atomic envelope, or its detector projection has been derived. The reader-facing owners remain [Atomic Structure](../../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md), and [Wavefunction Ontology](../../../../content/markdown/aaa/quantum/wavefunction-ontology.md).
 
 Plainly: Experiments provide atomic records. Standard orbital mathematics organizes those records very successfully. The open work is to derive why that mathematics emerges from the lower-level dynamics rather than assuming the orbital picture at the start.
 
@@ -102,7 +102,7 @@ x\mid n,\ell,m_\ell,m_s,W
 \mathcal B_{n\ell m_\ell m_s},
 \mu_{*,W},
 \mathcal D
-\right](x),
+\right](./x),
 \qquad
 \int_W \rho_{\mathrm{rec}}(x)\,d\nu_W(x)=1.
 $$
@@ -126,7 +126,7 @@ Plainly: The decisive test is not whether one orbital-shaped picture can be prod
 
 ## Legacy EOC Disposition
 
-The deferred [Electron Orbitals](../dormant-deferred/electron-orbitals/priorities.md) note contains useful standard notation mixed with a private `EOC` compression and digit-pattern discussion. The standard notation above is retained. `EOC` is not canonical notation and is not a promotion source.
+The deferred [Electron Orbitals](../electron-orbitals/priorities.md) note contains useful standard notation mixed with a private `EOC` compression and digit-pattern discussion. The standard notation above is retained. `EOC` is not canonical notation and is not a promotion source.
 
 Its capacity digits, complements, repetitions, and periodic-table block correspondences are definition-driven consequences of encoding already known subshell capacities. They are not independent measurements, a native derivation, or evidence for an orbital mechanism. The deferred note may remain as a historical idea record, but `EOC` should enter the corpus only if a preregistered rule predicts a withheld atomic configuration, spectral relation, or chemically relevant state distinction more compactly than standard configuration notation without fitting or restating the answer.
 

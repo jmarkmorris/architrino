@@ -15,7 +15,7 @@ The candidate task rows, upstream gates, and promotion boundaries live in [work-
 
 This workstream preserves speculative dark-sector subjects when they are assembly candidates, release-channel candidates, transport modes, or dark-visible conversion hypotheses. Its former low numeric rank did not make the lane an accepted closure-evidence workstream, and its current archive placement allocates no active execution attention.
 
-The lane does not replace [mapping-strong-field](../../mapping-strong-field/priorities.md), [mapping-cosmology](../../mapping-cosmology/priorities.md), [Radiation](../../../../content/markdown/aaa/reactions/radiation.md), or the shared residual-routing event ledger. It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
+The lane does not replace [mapping-strong-field](../../mapping-strong-field/priorities.md), [mapping-cosmology](../mapping-cosmology/priorities.md), [Radiation](../../../../content/markdown/aaa/reactions/radiation.md), or the shared residual-routing event ledger. It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
 
 WIMP/neutralino language in this lane is comparison language only. It may organize relic abundance, scattering, annihilation, direct detection, indirect detection, and null-result constraints, but it must not identify a native assembly with a supersymmetric neutralino or treat supersymmetry as Noether braid ontology without a separate ledger-preserving transformation theorem.
 
@@ -79,7 +79,7 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 
 - [mapping-strong-field](../../mapping-strong-field/priorities.md)
 - [strong-field brainstorming](../../mapping-strong-field/brainstorming.md)
-- [mapping-cosmology](../../mapping-cosmology/priorities.md)
+- [mapping-cosmology](../mapping-cosmology/priorities.md)
 - braid
 - [radiation](../../../../content/markdown/aaa/reactions/radiation.md)
 - [archived validation-gates](../validation-gates/priorities.md)

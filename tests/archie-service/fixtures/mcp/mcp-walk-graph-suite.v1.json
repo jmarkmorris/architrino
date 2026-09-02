@@ -1,0 +1,131 @@
+{
+  "schema": "archie-mcp-walk-graph-suite/v1",
+  "suiteId": "mcp_walk_graph_fixture_001",
+  "graphEdges": [
+    {
+      "edgeId": "edge.walk.01-ontology-to-scene",
+      "from": "source.ontology-purpose",
+      "to": "source.scene-ontology",
+      "edgeType": "related",
+      "evidenceSourceId": "source.ontology-purpose"
+    },
+    {
+      "edgeId": "edge.walk.02-ontology-to-reading-copy",
+      "from": "source.ontology-purpose",
+      "to": "source.generated-foundations-ontology",
+      "edgeType": "related",
+      "evidenceSourceId": "source.ontology-purpose"
+    },
+    {
+      "edgeId": "edge.walk.03-scene-to-guide",
+      "from": "source.scene-ontology",
+      "to": "source.app-guide",
+      "edgeType": "related",
+      "evidenceSourceId": "source.scene-ontology"
+    },
+    {
+      "edgeId": "edge.walk.04-reading-copy-to-guide",
+      "from": "source.generated-foundations-ontology",
+      "to": "source.app-guide",
+      "edgeType": "related",
+      "evidenceSourceId": "source.generated-foundations-ontology"
+    },
+    {
+      "edgeId": "edge.walk.05-guide-to-ontology-cycle",
+      "from": "source.app-guide",
+      "to": "source.ontology-purpose",
+      "edgeType": "related",
+      "evidenceSourceId": "source.app-guide"
+    },
+    {
+      "edgeId": "edge.walk.06-guide-to-system-card",
+      "from": "source.app-guide",
+      "to": "source.system-card",
+      "edgeType": "related",
+      "evidenceSourceId": "source.app-guide"
+    },
+    {
+      "edgeId": "edge.walk.07-system-card-to-priority",
+      "from": "source.system-card",
+      "to": "source.priority-mcp-contract",
+      "edgeType": "related",
+      "evidenceSourceId": "source.priority-mcp-contract"
+    }
+  ],
+  "publicRequest": {
+    "topicOrRoute": "source.ontology-purpose",
+    "edgeTypes": ["related"],
+    "direction": "outgoing",
+    "maxDepth": 3,
+    "limit": 2,
+    "cursor": null
+  },
+  "publicExpectedPages": [
+    [
+      {
+        "sourceId": "source.scene-ontology",
+        "depth": 1,
+        "pathEdgeIds": ["edge.walk.01-ontology-to-scene"]
+      },
+      {
+        "sourceId": "source.generated-foundations-ontology",
+        "depth": 1,
+        "pathEdgeIds": ["edge.walk.02-ontology-to-reading-copy"]
+      }
+    ],
+    [
+      {
+        "sourceId": "source.app-guide",
+        "depth": 2,
+        "pathEdgeIds": ["edge.walk.01-ontology-to-scene", "edge.walk.03-scene-to-guide"]
+      },
+      {
+        "sourceId": "source.system-card",
+        "depth": 3,
+        "pathEdgeIds": ["edge.walk.01-ontology-to-scene", "edge.walk.03-scene-to-guide", "edge.walk.06-guide-to-system-card"]
+      }
+    ]
+  ],
+  "publicExcludedSourceIds": ["source.priority-mcp-contract"],
+  "operatorRequest": {
+    "topicOrRoute": "source.app-guide",
+    "edgeTypes": ["related"],
+    "direction": "outgoing",
+    "maxDepth": 2,
+    "limit": 20,
+    "cursor": null
+  },
+  "operatorExpectedRecords": [
+    {
+      "sourceId": "source.ontology-purpose",
+      "depth": 1,
+      "pathEdgeIds": ["edge.walk.05-guide-to-ontology-cycle"]
+    },
+    {
+      "sourceId": "source.system-card",
+      "depth": 1,
+      "pathEdgeIds": ["edge.walk.06-guide-to-system-card"]
+    },
+    {
+      "sourceId": "source.scene-ontology",
+      "depth": 2,
+      "pathEdgeIds": ["edge.walk.05-guide-to-ontology-cycle", "edge.walk.01-ontology-to-scene"]
+    },
+    {
+      "sourceId": "source.generated-foundations-ontology",
+      "depth": 2,
+      "pathEdgeIds": ["edge.walk.05-guide-to-ontology-cycle", "edge.walk.02-ontology-to-reading-copy"]
+    },
+    {
+      "sourceId": "source.priority-mcp-contract",
+      "depth": 2,
+      "pathEdgeIds": ["edge.walk.06-guide-to-system-card", "edge.walk.07-system-card-to-priority"]
+    }
+  ],
+  "syntheticLimitCase": {
+    "recordCount": 300,
+    "expectedReturnedBeforePagination": 256,
+    "expectedTraversalComplete": false,
+    "expectedTruncationReason": "traversal_node_limit"
+  }
+}

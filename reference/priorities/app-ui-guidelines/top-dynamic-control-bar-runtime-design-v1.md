@@ -26,6 +26,10 @@ Plainly: shared navigation changes now have one implementation path, while each 
 
 Plainly: the generic runtime draws and manages the bar. Navigator modules decide where global actions go. Each app keeps only controls that operate its own subject matter.
 
+Icon elements must be created with the SVG namespace rather than by using the HTML element factory with an `svg` tag name. Focused tests must inspect the resulting namespace, and rendered checks must establish nonzero icon-geometry bounds; the presence of a circular button shell or SVG-looking serialized markup is not evidence that a glyph painted. The canonical action rule also owns `box-sizing` and an explicit `32px` minimum height so app-wide button defaults cannot enlarge the shared controls.
+
+Plainly: a shared button is complete only when its icon is actually visible and its outside dimensions remain 32 pixels on every adopting page.
+
 The final migration deleted the superseded `src/apps/navigator/standalone-app-navigation.css` file and its remaining imports. `src/runtime/top-dynamic-control-bar.css` is the sole shared style owner.
 
 ## Runtime Shape

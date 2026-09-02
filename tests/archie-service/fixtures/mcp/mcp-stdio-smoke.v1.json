@@ -35,10 +35,10 @@
           "serverInfo": {
             "name": "architrino-fixture-mcp",
             "title": "Architrino Fixture MCP",
-            "version": "0.1.0",
+            "version": "0.2.0",
             "description": "Read-only local MCP adapter over one validated Architrino fixture snapshot."
           },
-          "instructions": "Use search to locate sources, read to retrieve exact bounded content, topics to enumerate addressable records, and neighbors only for declared direct graph edges. Source authority fields are mandatory context; retrieval is not proof."
+          "instructions": "Use search to locate sources, read to retrieve exact bounded content, topics to enumerate addressable records, neighbors only for declared direct graph edges, and walk only for bounded multi-hop traversal of declared edges. Source authority fields are mandatory context; retrieval and graph reachability are not proof."
         }
       }
     },
@@ -336,6 +336,79 @@
                       "both"
                     ],
                     "default": "both"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20,
+                    "default": 10
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                }
+              },
+              "annotations": {
+                "readOnlyHint": true,
+                "destructiveHint": false,
+                "idempotentHint": true,
+                "openWorldHint": false
+              },
+              "execution": {
+                "taskSupport": "forbidden"
+              }
+            },
+            {
+              "name": "walk",
+              "title": "Walk the declared Architrino graph",
+              "description": "Traverse only visible, declared, typed graph edges with deterministic breadth-first ordering, bounded depth and node count, cycle suppression, path evidence, and pagination. Reachability is not proof or causation.",
+              "inputSchema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "topicOrRoute"
+                ],
+                "properties": {
+                  "topicOrRoute": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 512
+                  },
+                  "edgeTypes": {
+                    "type": "array",
+                    "maxItems": 16,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "routes_to",
+                        "mirrors",
+                        "related",
+                        "prerequisite",
+                        "contains",
+                        "depends_on"
+                      ]
+                    },
+                    "default": []
+                  },
+                  "direction": {
+                    "type": "string",
+                    "enum": [
+                      "outgoing",
+                      "incoming",
+                      "both"
+                    ],
+                    "default": "both"
+                  },
+                  "maxDepth": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 3,
+                    "default": 2
                   },
                   "limit": {
                     "type": "integer",
@@ -732,6 +805,127 @@
             }
           },
           "isError": true
+        }
+      }
+    },
+    {
+      "caseId": "mcp-stdio-walk-call-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "tools/call",
+        "params": {
+          "name": "walk",
+          "arguments": {
+            "topicOrRoute": "source.ontology-purpose",
+            "maxDepth": 2,
+            "limit": 2
+          }
+        }
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"schema\":\"archie-mcp-tool-response/v1\",\"requestId\":\"mcp:10\",\"tool\":\"walk\",\"status\":\"ok\",\"snapshot\":{\"snapshotId\":\"source_snapshot_fixture_001\",\"snapshotSha256\":\"a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65\",\"repositoryRef\":\"fixture-ref\",\"visibilityPolicyVersion\":\"visibility_fixture_v1\",\"freshnessState\":\"fresh\"},\"result\":{\"kind\":\"walk\",\"origin\":{\"sourceId\":\"source.ontology-purpose\",\"title\":\"Ontology: Purpose and Scope\",\"route\":\"content/markdown/aaa/foundations/ontology.md#purpose-and-scope\",\"sectionAnchor\":\"purpose-and-scope\",\"sourceClass\":\"published_corpus\",\"authorityStatus\":\"primary\",\"visibility\":\"public\",\"canonicalParent\":null,\"claimLabelFloor\":\"published corpus\",\"selectionSha256\":\"c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721\"},\"maxDepth\":2,\"traversalNodeLimit\":256,\"traversalComplete\":true,\"records\":[{\"depth\":1,\"path\":[{\"edgeId\":\"edge.generated-ontology-mirrors-source\",\"edgeType\":\"mirrors\",\"direction\":\"incoming\",\"fromSourceId\":\"source.ontology-purpose\",\"toSourceId\":\"source.generated-foundations-ontology\",\"evidenceSourceId\":\"source.generated-foundations-ontology\"}],\"source\":{\"sourceId\":\"source.generated-foundations-ontology\",\"title\":\"Generated Foundations Reading Copy: Ontology\",\"route\":\"document-sphere:content/markdown/aaa/foundations/ontology.md\",\"sectionAnchor\":\"ontology\",\"sourceClass\":\"generated_reading_copy\",\"authorityStatus\":\"routing_only\",\"visibility\":\"public\",\"canonicalParent\":\"source.ontology-purpose\",\"claimLabelFloor\":\"unsupported\",\"selectionSha256\":\"06e8ff6e4576f2faf41b2a1be5a8b02eea41c48f633ed1836b309d8f496ad47f\"}},{\"depth\":1,\"path\":[{\"edgeId\":\"edge.scene-ontology-routes-to-source\",\"edgeType\":\"routes_to\",\"direction\":\"incoming\",\"fromSourceId\":\"source.ontology-purpose\",\"toSourceId\":\"source.scene-ontology\",\"evidenceSourceId\":\"source.scene-ontology\"}],\"source\":{\"sourceId\":\"source.scene-ontology\",\"title\":\"Ontology Scene Route\",\"route\":\"scene:foundations__foundational_ontology#section:purpose-and-scope\",\"sectionAnchor\":null,\"sourceClass\":\"scene_route\",\"authorityStatus\":\"routing_only\",\"visibility\":\"public\",\"canonicalParent\":\"source.ontology-purpose\",\"claimLabelFloor\":\"unsupported\",\"selectionSha256\":\"34a61a3cc2c43c1798726a3613d8e590edd32dcd5f7ca4572d45d18e88d36c5b\"}}]},\"page\":{\"unit\":\"records\",\"limit\":2,\"returned\":2,\"nextCursor\":null,\"truncated\":false,\"truncationReasons\":[]},\"error\":null}"
+            }
+          ],
+          "structuredContent": {
+            "schema": "archie-mcp-tool-response/v1",
+            "requestId": "mcp:10",
+            "tool": "walk",
+            "status": "ok",
+            "snapshot": {
+              "snapshotId": "source_snapshot_fixture_001",
+              "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
+              "repositoryRef": "fixture-ref",
+              "visibilityPolicyVersion": "visibility_fixture_v1",
+              "freshnessState": "fresh"
+            },
+            "result": {
+              "kind": "walk",
+              "origin": {
+                "sourceId": "source.ontology-purpose",
+                "title": "Ontology: Purpose and Scope",
+                "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+                "sectionAnchor": "purpose-and-scope",
+                "sourceClass": "published_corpus",
+                "authorityStatus": "primary",
+                "visibility": "public",
+                "canonicalParent": null,
+                "claimLabelFloor": "published corpus",
+                "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+              },
+              "maxDepth": 2,
+              "traversalNodeLimit": 256,
+              "traversalComplete": true,
+              "records": [
+                {
+                  "depth": 1,
+                  "path": [
+                    {
+                      "edgeId": "edge.generated-ontology-mirrors-source",
+                      "edgeType": "mirrors",
+                      "direction": "incoming",
+                      "fromSourceId": "source.ontology-purpose",
+                      "toSourceId": "source.generated-foundations-ontology",
+                      "evidenceSourceId": "source.generated-foundations-ontology"
+                    }
+                  ],
+                  "source": {
+                    "sourceId": "source.generated-foundations-ontology",
+                    "title": "Generated Foundations Reading Copy: Ontology",
+                    "route": "document-sphere:content/markdown/aaa/foundations/ontology.md",
+                    "sectionAnchor": "ontology",
+                    "sourceClass": "generated_reading_copy",
+                    "authorityStatus": "routing_only",
+                    "visibility": "public",
+                    "canonicalParent": "source.ontology-purpose",
+                    "claimLabelFloor": "unsupported",
+                    "selectionSha256": "06e8ff6e4576f2faf41b2a1be5a8b02eea41c48f633ed1836b309d8f496ad47f"
+                  }
+                },
+                {
+                  "depth": 1,
+                  "path": [
+                    {
+                      "edgeId": "edge.scene-ontology-routes-to-source",
+                      "edgeType": "routes_to",
+                      "direction": "incoming",
+                      "fromSourceId": "source.ontology-purpose",
+                      "toSourceId": "source.scene-ontology",
+                      "evidenceSourceId": "source.scene-ontology"
+                    }
+                  ],
+                  "source": {
+                    "sourceId": "source.scene-ontology",
+                    "title": "Ontology Scene Route",
+                    "route": "scene:foundations__foundational_ontology#section:purpose-and-scope",
+                    "sectionAnchor": null,
+                    "sourceClass": "scene_route",
+                    "authorityStatus": "routing_only",
+                    "visibility": "public",
+                    "canonicalParent": "source.ontology-purpose",
+                    "claimLabelFloor": "unsupported",
+                    "selectionSha256": "34a61a3cc2c43c1798726a3613d8e590edd32dcd5f7ca4572d45d18e88d36c5b"
+                  }
+                }
+              ]
+            },
+            "page": {
+              "unit": "records",
+              "limit": 2,
+              "returned": 2,
+              "nextCursor": null,
+              "truncated": false,
+              "truncationReasons": []
+            },
+            "error": null
+          },
+          "isError": false
         }
       }
     },

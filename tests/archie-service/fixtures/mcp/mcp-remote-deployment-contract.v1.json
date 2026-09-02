@@ -137,7 +137,8 @@
       "search",
       "read",
       "topics",
-      "neighbors"
+      "neighbors",
+      "walk"
     ],
     "resourcesEnabled": false,
     "promptsEnabled": false,

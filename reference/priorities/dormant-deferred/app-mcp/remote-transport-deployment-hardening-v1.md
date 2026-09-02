@@ -133,7 +133,7 @@ The loopback adapter reads one immutable snapshot at startup, validates it compl
 
 The request path performs no repository scan, filesystem write, model call, or external action. Remote publication additionally requires a snapshot tied to accepted `main`. The current full-corpus artifact identifies a local source state, so `candidateIsAcceptedMain` remains false and blocks readiness.
 
-A remote-ready release must also name a compatible prior snapshot, pass all four tool and missing-source calls against that snapshot, restore it through the same atomic pointer mechanism, and repeat the smoke after restoration. A user-visible rollback also enters the existing redacted public-status/incident boundary.
+A remote-ready release must also name a compatible prior snapshot, pass all five tool and missing-source calls against that snapshot, restore it through the same atomic pointer mechanism, and repeat the smoke after restoration. A user-visible rollback also enters the existing redacted public-status/incident boundary.
 
 ## Capability Boundary
 
@@ -142,7 +142,8 @@ Remote V1 exposes exactly:
 - `search`;
 - `read`;
 - `topics`;
-- `neighbors`.
+- `neighbors`;
+- `walk`.
 
 It exposes no resources or prompts and permits no model call, repository write, external action, or durable user state. A host adapter may reject, meter, authenticate, and route these calls; it may not enlarge the tool semantics or source authority defined by the existing snapshot and tool contracts.
 
@@ -180,7 +181,7 @@ node --test tests/archie-service-mcp-remote-deployment-contract.test.js
 node scripts/archie-service/validate-contracts.mjs
 ```
 
-Measured on 2026-07-21, the owned checker accepted the fixture-only contract and all 19 cases with a Not advanced disposition. The combined MCP/source-index regression passed all 20 tests, the broader Archie service contract suite passed all 16 tests, the shared schema validator accepted 37 fixtures with zero errors, strict content validation reported zero errors and warnings, and priority ranking kept all 37 rows aligned.
+Measured again on 2026-09-02 after the bounded `walk` extension, the owned checker accepted the five-tool fixture-only contract and all 19 cases with a Not advanced disposition, and the shared schema validator accepted 39 fixtures with zero errors. The deployment state remains fixture-only and remote readiness remains false.
 
 This is implementation evidence for the contract and validator. The separate local HTTP adapter and official SDK conformance now exist; this evidence still does not establish OAuth, Codex-over-HTTP or ChatGPT-over-HTTP, host load, staging rollback, or public-deployment authorization.
 

@@ -215,7 +215,7 @@ These rows decompose the case at draft grade. They are not executable queue auth
 | --- | --- | --- |
 | This file | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Make blackbody recovery a Gate C benchmark. |
 | This file | [mapping-quantum/transfer-operator-basin-measure](../mapping-quantum/transfer-operator-basin-measure.md) | Use thermal occupation as a basin-measure proof target. |
-| This file | [mapping-cosmology](../mapping-cosmology/priorities.md) | Require CMB blackbody claims to share local radiation ledger variables. |
+| This file | [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md) | Require CMB blackbody claims to share local radiation ledger variables. |
 
 ## Failure Modes
 

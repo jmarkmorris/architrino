@@ -11,7 +11,7 @@
 
 ## Purpose
 
-This implementation replaces the six-record fixture as the only MCP data supply path. It mechanically enumerates the eligible live corpus, builds one immutable local snapshot, and serves that snapshot through the unchanged four-tool MCP semantics. The fixture remains a small regression surface.
+This implementation replaces the six-record fixture as the only MCP data supply path. It mechanically enumerates the eligible live corpus, builds one immutable local snapshot, and serves that snapshot through the four primitive retrieval tools plus the bounded `walk` extension. The fixture remains a small regression surface.
 
 This is a local V1 service. It is not an accepted-`main` publication artifact, remote endpoint, hosted service, or deployment decision.
 
@@ -67,7 +67,7 @@ The full-corpus launcher is:
 scripts/archie-service/run-full-corpus-mcp-server.mjs
 ```
 
-It resolves the snapshot from its own location, reads that one file at startup, validates schema, view and snapshot hashes, source linkage, repository provenance, visibility-policy version, class counts, and fresh local state, then serves only in-memory `search`, `read`, `topics`, and `neighbors` requests. The request core has no filesystem, network, child-process, fetch, or write surface.
+It resolves the snapshot from its own location, reads that one file at startup, validates schema, view and snapshot hashes, source linkage, repository provenance, visibility-policy version, class counts, and fresh local state, then serves only in-memory `search`, `read`, `topics`, `neighbors`, and `walk` requests. The request core has no filesystem, network, child-process, fetch, or write surface.
 
 The existing `architrino_fixture` connection remains unchanged. The full-corpus launcher has not been added to persistent Codex or ChatGPT configuration.
 
@@ -102,7 +102,7 @@ node scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs \
 - Reversing source, edge, and metadata input arrays did not change the snapshot hash.
 - An independent check found exactly one document record for every path declared by the Markdown index.
 - Canonical-parent closure, public priority exclusion, exact section extraction, exact TeX, figure asset reachability, tamper rejection, route-and-anchor reads, realistic pagination, and Unicode code-point continuation passed.
-- The full-corpus subprocess smoke launched from `/tmp`, called all four tools, preserved authored-source preference, returned metadata, rejected a missing source, and rejected a task-augmented call.
+- The current full-corpus subprocess smoke launched from `/tmp`, called all five tools, returned a declared two-hop `routes_to` then `contains` path, preserved authored-source preference, returned metadata, rejected a missing source, and rejected a task-augmented call.
 - Official MCP TypeScript SDK `1.29.0` initialized the full-corpus server, listed and called all four tools, observed `SOURCE_NOT_FOUND`, pinged, and closed.
 - Bundled Codex CLI `0.145.0-alpha.18` loaded only an ephemeral `architrino_full` configuration and successfully called all four tools plus the missing-source path against snapshot `592d130a8349e9dde6273a549bf8a6ef1da2d4ba34cca18c525ecc4df01bae26`, without a persistent configuration change. An earlier exploratory pass also exercised typed `INVALID_REQUEST` handling for two out-of-bounds arguments before correcting them.
 
@@ -122,8 +122,8 @@ The local V1 implementation is not accepted if:
 - an equation or figure lacks exact source evidence;
 - a request reads repository sources or writes any file;
 - the launcher depends on client working directory;
-- any of the four tools, pagination, Unicode continuation, missing-source handling, response ceiling, SDK conformance, or Codex conformance fails.
+- any of the five local tools, pagination, Unicode continuation, missing-source handling, response ceiling, or scoped transport checks fail; the earlier SDK and Codex conformance claims remain bounded to the primitive four-tool surface they measured.
 
 ## Remaining Boundary
 
-The [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md) now exercises the full-corpus snapshot through local HTTP, fixture authorization, limits, safe events, health, and rollback mechanics. Named Codex and ChatGPT HTTP conformance, real OAuth, accepted-`main` publication, a separately published rollback snapshot, TLS ingress, hosting, and public deployment remain separate campaigns. Direct ChatGPT desktop use still requires a supported connection surface and operator approval before any persistent configuration change.
+The [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md) exercises the full-corpus snapshot through local HTTP, fixture authorization, limits, safe events, health, and rollback mechanics. Named Codex and ChatGPT conformance is complete for the primitive four-tool surface; direct named-client invocation of `walk`, real OAuth, accepted-`main` publication, a separately published rollback snapshot, TLS ingress, hosting, and public deployment remain outside this local implementation claim.

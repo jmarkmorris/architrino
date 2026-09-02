@@ -3,7 +3,7 @@ import { MCP_TOOL_LIMITS } from "./tool-contract-v1.mjs";
 export const MCP_REMOTE_DEPLOYMENT_CONTRACT_SCHEMA = "archie-mcp-remote-deployment-contract/v1";
 export const MCP_REMOTE_DEPLOYMENT_NEGATIVE_SUITE_SCHEMA = "archie-mcp-remote-deployment-negative-suite/v1";
 
-const EXPECTED_TOOLS = ["search", "read", "topics", "neighbors"];
+const EXPECTED_TOOLS = ["search", "read", "topics", "neighbors", "walk"];
 const REQUIRED_READINESS_GATES = [
   "validated_snapshot",
   "fresh_snapshot",

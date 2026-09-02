@@ -5,7 +5,7 @@
 - Kind: quantitative priority row.
 - Date captured: July 1, 2026.
 - Status: candidate reduced evaluation with first branch-interface channel extraction; not reader-facing canon.
-- Supports: [QCD Confinement And Hadronization Recovery Targets](../mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md) and [Nuclear Binding Closure](nuclear-binding-closure.md).
+- Supports: [QCD Confinement And Hadronization Recovery Targets](../../mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md) and [Nuclear Binding Closure](./nuclear-binding-closure.md).
 
 ## Claim Level
 
@@ -229,7 +229,7 @@ The required source-acquisition target shape is:
 | `same_record_energy_momentum_angular_momentum_ledger` | `pn_orientation_count`, `pp_orientation_count`, `energy_conservation_row`, `momentum_conservation_row`, `angular_momentum_conservation_row`, `coulomb_separation_row` |
 | `no_open_color_far_field` | `finite_range_residual`, `color_singlet_closure`, `same_record_no_open_color_audit` |
 
-The executable branch target now materializes these as `sourceAcquisitionTargets` in [nucleon-branch-interface-source-target.v1.json](../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json). The current source-acquisition check deliberately fails:
+The executable branch target now materializes these as `sourceAcquisitionTargets` in [nucleon-branch-interface-source-target.v1.json](../../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json). The current source-acquisition check deliberately fails:
 
 $$
 \mathrm{sourceAcquisitionPass}=\mathrm{false},
@@ -239,7 +239,7 @@ $$
 \texttt{missing\_no\_open\_color\_far\_field}.
 $$
 
-This is the correct status after the branch-side ledgers landed as [proton-branch-interface-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json) and [neutron-branch-interface-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json), and the same-record conservation ledger landed as [same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json). The $p+n$ and $p+p$ orientation rows cannot become accepted merely by listing upstream row names. Each row must list the relevant accepted source rows under `acceptedSourceRows`, and each named source-acquisition target must itself carry accepted durable non-fixture evidence. Until then, the branch-interface target remains a success marker for the reduced orientation algebra and source acquisition only.
+This is the correct status after the branch-side ledgers landed as [proton-branch-interface-ledger-retained-evidence.v1.json](../../../../scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json) and [neutron-branch-interface-ledger-retained-evidence.v1.json](../../../../scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json), and the same-record conservation ledger landed as [same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json](../../../../scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json). The $p+n$ and $p+p$ orientation rows cannot become accepted merely by listing upstream row names. Each row must list the relevant accepted source rows under `acceptedSourceRows`, and each named source-acquisition target must itself carry accepted durable non-fixture evidence. Until then, the branch-interface target remains a success marker for the reduced orientation algebra and source acquisition only.
 
 The checker also treats the component shape above as part of source acquisition. A source-acquisition target that is marked accepted but lacks one required component fails as `source_acquisition_target_shape_mismatch`; a target with the right component shape but without accepted durable non-fixture evidence still fails as `source_acquisition_target_not_accepted`.
 

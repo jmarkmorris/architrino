@@ -1,5 +1,14 @@
 # Field-Speed Ceiling Work Log
 
+## 2026-09-02 — FSC-006b/FSC-005 two-lobe return map and trigger audit
+
+- Added the [two-lobe return-map and autonomous-trigger audit](two-lobe-return-map-and-autonomous-trigger-audit.md). The minimal crossing state has no finite autonomous positive-onset transition because its received clocks and admission ledger stay frozen on the exact zero-ledger outgoing plateau.
+- Strengthened the supplied-onset result: $K\ge7u_*/2$ is sufficient for a complete brake--turn--inward-cap--coincidence lobe. The proof reaches inward ceiling at positive separation, verifies local integrability of the ordinary cap-approach row, and recovers the exact-mirror event geometry.
+- Derived the prescribed-onset return map. Repeating one onset gives a reflected spatial two-cycle returning position and velocity after two lobes, but it does not establish periodicity of the literal all-past retained state.
+- Tested the direct cap-duration reset $u_{n+1}=L_n$. For $K/u_n\ge6$, the exact cap ratio lies strictly between zero and one, so the onset shrinks and has no positive fixed cycle.
+- Audited the existing FSC wake, boundary, event, and conditional action interfaces. None supplies a positive maturity balance or event functional $u=K\Phi(L/K)$, so the autonomous-onset route is closed negatively at current FSC authority while the multivalued prescribed-onset relation remains.
+- No autonomous trigger, selected continuation, full-state breather, field-speed ceiling, Master Equation change, wake law, action balance, conservation account, or physical realization was adopted or promoted.
+
 ## 2026-09-02 — FSC-local autonomous braking and breather audit
 
 - Reconciled the older collinear-breather feasibility note with the later delayed-ignition theorem. The earlier no-breather claim is now limited to the minimal autonomous crossing state that forbids an inactive channel from bootstrapping its own first crossing.

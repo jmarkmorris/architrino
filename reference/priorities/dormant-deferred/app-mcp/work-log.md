@@ -4,6 +4,26 @@ This file is the chronological work log for the `app-mcp` priority area. Use it 
 
 ## Log Entries
 
+### 2026-09-02 — MCP-002 bounded graph walk closed
+
+- Selected one minimal higher-order primitive, `walk`, rather than adding overlapping `trace`, `compare`, `related`, `context`, or `learning_path` operations without separate needs and semantics. The accepted operation is deterministic breadth-first traversal over only declared snapshot edges.
+- Added exact depth 1–3, 256-materialized-node, 20-record-page, and 32,768-byte response limits; deterministic `edgeId` ordering and first-shortest-path selection; visited-set cycle suppression; scope-bound pagination; and explicit `traversal_node_limit` disclosure.
+- Required every traversed node and edge-evidence source to be visible in the authorized request scope. Public traversal cannot cross hidden material, while authorized priority results retain `priority_only` authority and `development_status` visibility.
+- Added a separately authored cyclic and converging graph fixture plus focused checks for two-page order, path provenance, cycle suppression, mixed visibility, operator authority, cursor mismatch, depth rejection, response size, and the 256-node hard ceiling.
+- Exposed `walk` through the shared stdio and stateless Streamable HTTP adapters. The full-corpus smoke measured a real two-hop `routes_to` then `contains` path; the loopback suite called the same tool. Named-client receipts for MCP-001 remain evidence for the earlier four-tool surface and do not claim direct ChatGPT or Codex invocation of `walk`.
+- Measured validation: the pure contract checker passed 8 positive and 9 fail-closed cases; 11 focused contract/adapter tests passed; full-corpus stdio passed; 9 loopback HTTP tests passed; the remote contract retained all 19 negative cases; and the service schema accepted 39 fixtures.
+- Removed completed MCP-002 from the queue and renumbered MCP-003 to item 1. The owner remains dormant-deferred; no semantic retrieval, model call, remote deployment, or theory claim advanced.
+
+Plainly: the server can now follow a small, auditable chain of already-recorded links without looping forever or crossing hidden material. It reports exactly which stored edges formed the path, keeps every source's original authority label, and stops at explicit limits; it does not reason out or validate a scientific connection.
+
+### 2026-09-02 — MCP-001 named-client conformance closed
+
+- Captured the operator-supplied ChatGPT-mode result for the manually submitted five-case full-corpus HTTP prompt. `topics`, `search`, `read`, and `neighbors` returned typed `ok`; a second `read` for `source.missing-full-corpus-conformance` returned `not_found` with `SOURCE_NOT_FOUND` and no source.
+- Corroborated the named-client report against the loopback server telemetry: one pseudonymous principal issued the consecutive tool order `topics`, `search`, `read`, `neighbors`, `read`; all five exchanges returned HTTP 200 against snapshot `source_snapshot_full_corpus_v1_6ab8e3d3608d946ccde0`. The safe server log does not retain arguments or structured response bodies, so those remain operator-supplied client evidence.
+- Added the [ChatGPT full-corpus conformance receipt](chatgpt-desktop-http-full-corpus-conformance-2026-09-02.json) and removed completed MCP-001 from the work queue. MCP-002 and MCP-003 remain parked; no remote-deployment or theory claim advanced.
+
+Plainly: both required named client surfaces called the bounded local HTTP service successfully, and the missing-source case failed closed. MCP-001 is complete without reactivating the rest of the archived lane.
+
 ### 2026-09-02 — Priority owner archived
 
 - Moved the complete `app-mcp` priority packet under `dormant-deferred` at operator direction. The read-only service contracts, implementation notes, and conformance receipts remain preserved.

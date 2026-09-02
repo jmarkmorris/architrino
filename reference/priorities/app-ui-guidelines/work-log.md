@@ -6,6 +6,17 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — UI-008 repaired invisible shared-navigation glyphs
+
+- Reproduced the operator-reported incomplete bars on Ideal Braid, Braid Search, and Borg Library: the canonical action shells, labels, order, and search behavior were present, but the Back, Forward, Home, and Search glyph nodes used the HTML namespace and their rendered geometry measured `0x0`.
+- Corrected the canonical `TopDynamicControlBarRuntime.js` icon factory to create real SVG elements. This one change repairs every full-bar consumer without adding page-specific markup or a second navigation path.
+- Added canonical border-box and `32px` minimum-height ownership. This prevents Borg Library's generic `button { min-height: 34px; }` rule from expanding shared actions beyond the accepted size.
+- Added regression checks for the SVG namespace and canonical size declarations. The final focused shared-navigation and three-page suite passed `46/46`.
+- Browser verification at `1440x900` and `390x844` confirmed the five accepted actions in order on all three pages, four SVG icon roots plus nonzero child geometry, viewport-bounded global Search, input focus, `Escape` focus restoration, and no document-level horizontal overflow. Borg Library's action height now measures exactly `32px` rather than `34px`.
+- Added a [tracked repair receipt](evidence/ui-008-shared-navigation-icon-repair.2026-09-02.json). The older UI-005 receipts remain valid for composition, routing, and layout, but they did not instrument SVG namespace or rendered icon geometry and therefore did not establish visible glyphs.
+
+Plainly: the three apps already called the shared navigation code, but that code drew empty-looking button shells. The shared owner now creates real SVG icons and protects the same control size on every app.
+
 ### 2026-09-02 — UI-005 batch 9 completed the Borg and Braid migrations
 
 - Migrated Ideal Braid, Braid Search, Borg, and Borg Library to `StandaloneAppNavigationRuntime.js` and the canonical top dynamic control-bar stylesheet.

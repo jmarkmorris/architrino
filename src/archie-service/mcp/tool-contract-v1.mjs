@@ -11,12 +11,13 @@ export const MCP_TOOL_LIMITS = Object.freeze({
   read: Object.freeze({ defaultContentChars: 4000, minContentChars: 256, maxContentChars: 8000 }),
   topics: Object.freeze({ defaultItems: 10, maxItems: 20 }),
   neighbors: Object.freeze({ defaultItems: 10, maxItems: 20 }),
+  walk: Object.freeze({ defaultItems: 10, maxItems: 20, defaultDepth: 2, maxDepth: 3, maxVisitedNodes: 256 }),
   maxQueryChars: 256,
   maxIdentifierChars: 512,
   maxResponseBytes: 32768,
 });
 
-const TOOLS = new Set(["search", "read", "topics", "neighbors"]);
+const TOOLS = new Set(["search", "read", "topics", "neighbors", "walk"]);
 const VISIBILITY_SCOPES = new Set(["public", "operator_developer"]);
 const SOURCE_CLASSES = new Set([
   "published_corpus",
@@ -90,6 +91,7 @@ const TOOL_HANDLERS = {
   read: executeRead,
   topics: executeTopics,
   neighbors: executeNeighbors,
+  walk: executeWalk,
 };
 
 function executeSearch({ snapshot, request }) {
@@ -281,6 +283,151 @@ function executeNeighbors({ snapshot, request }) {
     result: { kind: "neighbors", origin: sourceChip(origin), records: page },
     page: recordPage({ request, scope, offset, limit: args.limit, returned: page.length, total: neighbors.length }),
   });
+}
+
+function executeWalk({ snapshot, request }) {
+  const args = request.arguments;
+  requireExactKeys(args, ["cursor", "direction", "edgeTypes", "limit", "maxDepth", "topicOrRoute"], "walk arguments");
+  requireString(args.topicOrRoute, "walk topicOrRoute", 1, MCP_TOOL_LIMITS.maxIdentifierChars);
+  requireArrayOfAllowed(args.edgeTypes, EDGE_TYPES, "walk edgeTypes");
+  requireCondition(DIRECTIONS.has(args.direction), "walk direction is unsupported");
+  requireIntegerRange(args.maxDepth, 1, MCP_TOOL_LIMITS.walk.maxDepth, "walk maxDepth");
+  validateLimit(args.limit, MCP_TOOL_LIMITS.walk.maxItems, "walk limit");
+
+  const origin = findRecord(snapshot, args.topicOrRoute, null);
+  if (!origin) {
+    return errorResponse({
+      snapshot,
+      request,
+      status: "not_found",
+      code: "SOURCE_NOT_FOUND",
+      message: "requested graph origin is not present in the active snapshot",
+    });
+  }
+  if (!isVisible(origin, request.visibilityScope)) {
+    return errorResponse({
+      snapshot,
+      request,
+      status: "excluded_visibility",
+      code: "SOURCE_VISIBILITY_EXCLUDED",
+      message: "requested graph origin is outside the authorized visibility scope",
+    });
+  }
+
+  const recordById = new Map(snapshot.views.search.records.map((record) => [record.sourceId, record]));
+  const adjacency = buildVisibleAdjacency({
+    edges: snapshot.views.graph.edges,
+    recordById,
+    visibilityScope: request.visibilityScope,
+    edgeTypes: args.edgeTypes,
+    direction: args.direction,
+  });
+  const walked = breadthFirstWalk({
+    origin,
+    recordById,
+    adjacency,
+    maxDepth: args.maxDepth,
+    maxVisitedNodes: MCP_TOOL_LIMITS.walk.maxVisitedNodes,
+  });
+  const scope = cursorScope(request);
+  const offset = decodeCursorOffset({ cursor: args.cursor, request, scope });
+  if (offset > walked.records.length) {
+    throw new ContractError("invalid_cursor", "CURSOR_OFFSET_OUT_OF_RANGE", "cursor offset exceeds walk result length");
+  }
+  const records = walked.records.slice(offset, offset + args.limit);
+  const nextOffset = offset + records.length;
+  const hasMoreMaterializedRecords = nextOffset < walked.records.length;
+  const truncationReasons = [];
+  if (hasMoreMaterializedRecords) truncationReasons.push("record_limit");
+  if (!walked.traversalComplete) truncationReasons.push("traversal_node_limit");
+
+  return successResponse({
+    snapshot,
+    request,
+    result: {
+      kind: "walk",
+      origin: sourceChip(origin),
+      maxDepth: args.maxDepth,
+      traversalNodeLimit: MCP_TOOL_LIMITS.walk.maxVisitedNodes,
+      traversalComplete: walked.traversalComplete,
+      records,
+    },
+    page: {
+      unit: "records",
+      limit: args.limit,
+      returned: records.length,
+      nextCursor: hasMoreMaterializedRecords ? encodeCursor({ request, scope, offset: nextOffset }) : null,
+      truncated: truncationReasons.length > 0,
+      truncationReasons,
+    },
+  });
+}
+
+function buildVisibleAdjacency({ edges, recordById, visibilityScope, edgeTypes, direction }) {
+  const adjacency = new Map();
+  const sortedEdges = [...edges].sort((left, right) => left.edgeId.localeCompare(right.edgeId));
+  for (const edge of sortedEdges) {
+    if (edgeTypes.length > 0 && !edgeTypes.includes(edge.edgeType)) continue;
+    const from = recordById.get(edge.from);
+    const to = recordById.get(edge.to);
+    const evidence = recordById.get(edge.evidenceSourceId);
+    if (!from || !to || !evidence) continue;
+    if (!isVisible(from, visibilityScope) || !isVisible(to, visibilityScope) || !isVisible(evidence, visibilityScope)) continue;
+    if (direction === "outgoing" || direction === "both") {
+      addAdjacencyStep(adjacency, edge.from, edge.to, edge, "outgoing");
+    }
+    if (direction === "incoming" || direction === "both") {
+      addAdjacencyStep(adjacency, edge.to, edge.from, edge, "incoming");
+    }
+  }
+  for (const steps of adjacency.values()) {
+    steps.sort((left, right) =>
+      left.edgeId.localeCompare(right.edgeId) ||
+      left.direction.localeCompare(right.direction) ||
+      left.toSourceId.localeCompare(right.toSourceId)
+    );
+  }
+  return adjacency;
+}
+
+function addAdjacencyStep(adjacency, fromSourceId, toSourceId, edge, direction) {
+  const steps = adjacency.get(fromSourceId) ?? [];
+  steps.push({
+    edgeId: edge.edgeId,
+    edgeType: edge.edgeType,
+    direction,
+    fromSourceId,
+    toSourceId,
+    evidenceSourceId: edge.evidenceSourceId,
+  });
+  adjacency.set(fromSourceId, steps);
+}
+
+function breadthFirstWalk({ origin, recordById, adjacency, maxDepth, maxVisitedNodes }) {
+  const visited = new Set([origin.sourceId]);
+  const queue = [{ sourceId: origin.sourceId, depth: 0, path: [] }];
+  const records = [];
+  let traversalComplete = true;
+
+  walkQueue: for (let index = 0; index < queue.length; index += 1) {
+    const current = queue[index];
+    if (current.depth >= maxDepth) continue;
+    for (const step of adjacency.get(current.sourceId) ?? []) {
+      if (visited.has(step.toSourceId)) continue;
+      if (records.length >= maxVisitedNodes) {
+        traversalComplete = false;
+        break walkQueue;
+      }
+      const source = recordById.get(step.toSourceId);
+      if (!source) continue;
+      const path = [...current.path, step];
+      const entry = { sourceId: source.sourceId, depth: current.depth + 1, path };
+      visited.add(source.sourceId);
+      queue.push(entry);
+      records.push({ depth: entry.depth, path, source: sourceChip(source) });
+    }
+  }
+  return { records, traversalComplete };
 }
 
 function validateEnvelope({ snapshot, request, accessScope }) {

@@ -72,6 +72,8 @@ test("canonical TOC lozenge retains its typography after the legacy stylesheet i
   assert.match(canonicalRule, /font-size:\s*12px/u);
   assert.match(canonicalRule, /font-weight:\s*700/u);
   assert.match(canonicalRule, /line-height:\s*1/u);
+  assert.match(sharedCss, /\.top-dynamic-control-bar-action\s*\{[\s\S]*?box-sizing:\s*border-box/u);
+  assert.match(sharedCss, /\.top-dynamic-control-bar-action\s*\{[\s\S]*?min-height:\s*32px/u);
   assert.match(sharedCss, /\.top-dynamic-control-bar-action\s*\{[\s\S]*?font:\s*inherit/u);
   assert.equal(
     existsSync(new URL("../src/apps/navigator/standalone-app-navigation.css", import.meta.url)),

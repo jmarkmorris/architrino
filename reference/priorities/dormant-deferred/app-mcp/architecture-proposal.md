@@ -61,7 +61,7 @@ The implementation should extend the live repository shape rather than create a 
 | Assets | `content/assets/` | Images and other public source assets. |
 | Existing service contracts | `src/archie-service/contracts/` | Source, manifest, endpoint, provider, action, and service boundaries. |
 | Existing source-index contract | `src/archie-service/source-index/snapshot-v1.mjs`, `src/archie-service/source-index/full-corpus-v1.mjs`, and the owned builders | Deterministic fixture regression plus complete local-corpus enumeration for hashed exact-content, search, graph, and metadata views. |
-| Existing MCP tool contract | `src/archie-service/mcp/tool-contract-v1.mjs` and `scripts/archie-service/validate-mcp-tool-contracts.mjs` | Pure bounded `search`, `read`, `topics`, and `neighbors` semantics over one snapshot, consumed unchanged by the local adapter. |
+| Existing MCP tool contract | `src/archie-service/mcp/tool-contract-v1.mjs` and `scripts/archie-service/validate-mcp-tool-contracts.mjs` | Pure bounded `search`, `read`, `topics`, `neighbors`, and deterministic multi-hop `walk` semantics over one snapshot, consumed unchanged by the local adapter. |
 | Local MCP adapter | Shared request core plus fixture and full-corpus launchers under `scripts/archie-service/` | Runnable public-scope stdio adapters over one startup-loaded immutable snapshot; full-corpus SDK and Codex conformance pass locally. |
 | Local versioned index output | `content/generated/source-index/local-full-corpus-snapshot.v1.json` | App-mcp-owned local immutable snapshot; remote artifact storage and accepted-`main` publication remain open. |
 
@@ -203,7 +203,7 @@ The following tools are useful candidates after V1, but their names must not imp
 
 | Tool | Allowed deterministic meaning | Required boundary |
 | --- | --- | --- |
-| `walk(topic, depth)` | Traverse typed graph edges to a bounded depth. | Bound depth, node count, edge classes, cycles, and pagination. |
+| `walk(topic, depth)` | Implemented: traverse visible typed graph edges by deterministic breadth-first order to a bounded depth. | Depth 3, 256-node, 20-record-page, cycle, provenance, visibility, cursor, and response-byte boundaries are fixed in [Higher-Order Graph Tools V1](higher-order-graph-tools-v1.md). |
 | `graph(scope?)` | Return graph statistics or a bounded subgraph. | Never return an unbounded corpus graph in one response. |
 | `figures(topic)` | Return indexed figure records and assets. | Preserve license, caption, alt text, source, and canonical parent. |
 | `equations(topic)` | Return exact indexed TeX and its source route. | Preserve TeX exactly; extraction is not mathematical validation. |

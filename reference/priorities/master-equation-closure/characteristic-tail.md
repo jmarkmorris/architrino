@@ -2,17 +2,17 @@
 
 ## Status and authority
 
-- **Purpose:** preserve the mathematical audit of the characteristic-tail action proposal and its unresolved admissibility boundary.
-- **Claim level:** `INCOMPLETE for the frozen whole action; derived cross-worldline future-transmitter term`.
+- **Purpose:** preserve the mathematical audit and negative adjudication of the frozen characteristic-tail action proposal.
+- **Claim level:** `OVERTURNED for the frozen whole action; derived receiver identity and cross-worldline future-transmitter obstruction`.
 - **Current positive result:** the normalized tail kernel satisfies the required receiver-gradient identity on the declared regularized chart.
 - **Current negative result:** the pure scalar $1/r$ causal action is not a universal exact action for the canonical Master Equation.
 - **Decisive audit result:** direct variation and an independently authored finite-difference action check reproduce the future-transmitter coefficient on the regular cross-worldline sector. The frozen whole action nevertheless retains every $i=j$, $t>s$ self-history pair while excluding only $t=s$. That domain has no uniform positive separation floor and its finite-width kernel is nonintegrable at the self diagonal under the stated $C^1$ history class.
-- **Final disposition:** `INCOMPLETE`; MEC-001 is `Awaiting verification`. The receiver-gradient identity survives, but neither the whole-action variation nor the advertised transverse control is admissible until a predeclared self-diagonal or core prescription defines the functional.
+- **Final disposition:** `OVERTURNED`; MEC-001 is complete negatively for `CT-FH-1`. The frozen action is not finite on its declared self-inclusive history class, and any repair confined to the self diagonal or a near-origin core leaves the independently derived regular cross-worldline future-transmitter obstruction unchanged. A repair that changes the cross kernel or adds independently evolving state is a new candidate.
 - **Promotion classification:** `priority-only`.
 - **Reader-facing incorporation:** preserve only the exact receiver-gradient identity and its scope as a mathematical construction. Keep the complete action adjudication, counterexample, and route-closure reasoning in this priority packet.
 - **Ontology effect:** none. This packet does not add an independent wake substance or change the Master Equation.
 
-Plainly: one local calculation has succeeded, and the cross-worldline part of the candidate has the disputed future dependence. The simple $1/r$ action produces an extra term that the Master Equation does not contain. The characteristic-tail kernel removes that extra term in the receiver part of the calculation. But the frozen action also integrates arbitrarily near every self-history diagonal, where its own regular-domain assumption fails and the kernel diverges. The future term is therefore a confirmed formal cross-pair result, not yet an independently verified Euler coefficient of the complete frozen functional.
+Plainly: one local calculation succeeds, but the proposed complete action fails in two independent places. Its self-history integral diverges, and its regular interaction between distinct worldlines depends on future receiver motion that the Master Equation does not read. Repairing only the self diagonal cannot remove a failure between distinct worldlines.
 
 The owning corpus discussions are [Exact Nonlocal Lagrangian](../../../content/markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian), [Energy, Symmetry, and Conservation](../../../content/markdown/aaa/dynamics/master-equation.md#energy-symmetry-and-conservation), and the [Causal Action Functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md). The competing or potentially complementary causal-state route is [Independent Causal Wake-State Closure](independent-causal-wake-state-closure.md), with its current obstruction proved in [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md).
 
@@ -44,11 +44,11 @@ $$
 
 Plainly: $K_{\mathrm{eff}}^{(\eta)}$ is the proposed regularized effective kernel, $r$ is the transmitter-to-receiver separation, $g$ measures departure from exact causal arrival, $\delta_\eta$ is a narrow regularized delta distribution of width $\eta$, and $D_{ij}$ is the receiver's radial variation operator defined below. The equation says that varying the new kernel produces exactly the desired inverse-square causal-surface term and no derivative-of-delta term in this receiver calculation.
 
-That identity was why the proposal merited complete investigation. It was not acceptance evidence. The transmitter-role calculation fails on the regular cross-worldline sector, but verification of the frozen whole action is blocked earlier by the undeclared self-diagonal prescription.
+That identity was why the proposal merited complete investigation. It was not acceptance evidence. The transmitter-role calculation fails on the regular cross-worldline sector, and the frozen whole action is independently inadmissible because its retained self sector diverges.
 
-The complete receiver-plus-transmitter collection has been performed for every regular cross-worldline term. For one worldline point at time $\tau$, the receiver occurrence supplies the desired past-supported term, while the transmitter occurrence supplies a reciprocal term integrated over later receiver times. The latter is not a boundary term and is not determined by the state at $\tau$. This collection cannot yet be promoted to the Euler derivative of the whole frozen action because that action is not defined on its retained self sector.
+The complete receiver-plus-transmitter collection has been performed for every regular cross-worldline term. For one worldline point at time $\tau$, the receiver occurrence supplies the desired past-supported term, while the transmitter occurrence supplies a reciprocal term integrated over later receiver times. The latter is not a boundary term and is not determined by the state at $\tau$. Although the divergent self sector prevents a whole-functional Euler derivative, a self-only completion cannot cancel this distinct-worldline dependence, so both obstructions support the negative verdict.
 
-Plainly: the tail solves the local receiver calculus problem, and each regular cross-pair term creates future dependence when the transmitter is varied. The canonical Master Equation does not contain that future dependence. A final whole-action verdict still requires a mathematically defined self-history sector rather than omission of the near-diagonal terms.
+Plainly: the tail solves the local receiver calculus problem, but each regular cross-pair term creates future dependence when the transmitter is varied. The canonical Master Equation does not contain that dependence, and defining only the missing self-history sector cannot remove it.
 
 ## 2. The target that an action must reproduce
 
@@ -839,9 +839,9 @@ The tail is computed from worldline history and an endpoint convention. Its rece
 
 Plainly: Route A tried to keep the ontology small by encoding wake history only in the worldlines. That economy is exactly what makes the earlier transmitter point respond to later receiver endpoints.
 
-The former central risk is now a derived cross-worldline obstruction. Route A remains `Awaiting verification` because the frozen record does not define its near-diagonal self-history contribution.
+The former central risk is a derived cross-worldline obstruction. Route A is `OVERTURNED` for `CT-FH-1`: the frozen record does not define a finite near-diagonal self-history contribution, and a self-only repair cannot remove the distinct-worldline future response.
 
-Plainly: future reception is not an open question for regular cross pairs. The status remains open because the complete candidate action is not yet a finite functional on its stated history class.
+Plainly: future reception is not an open question for regular cross pairs, and the complete candidate is not finite on its stated history class. Either result prevents `CT-FH-1` from being the accepted action.
 
 ### Route B: independently evolving causal wake state
 
@@ -853,13 +853,13 @@ Plainly: Route B makes the wake an explicit part of the state advanced from one 
 
 Section 16.6 proves the chain-rule statement that exact elimination of an auxiliary wake state preserves the Euler derivative of a differentiable reduced action. A kinematic wake profile may reproduce the scalar kernel value, but it does not define the missing self prescription or derive the missing reception transfer, motion accounts, maturity, or boundary capacities.
 
-Plainly: hiding a well-defined tail inside an extra variable cannot change its equation. The rule cannot yet be applied to the undefined complete `CT-FH-1` functional. A genuinely causal wake state must add independently justified update rules and remains Route B.
+Plainly: hiding a well-defined tail inside an extra variable cannot change its equation. The overturned `CT-FH-1` functional cannot be rescued by exact relabeling. A genuinely causal wake state must add independently justified update rules and remains Route B.
 
-**Claim grade: derived conditional chain-rule no-go; application to `CT-FH-1` is blocked.** The chain-rule claim is falsified by a differentiable past-only auxiliary action whose exact elimination reproduces a reduced functional while the two worldline derivatives differ.
+**Claim grade: derived conditional chain-rule no-go.** The chain-rule claim is falsified by a differentiable past-only auxiliary action whose exact elimination reproduces a reduced functional while the two worldline derivatives differ. Because `CT-FH-1` is not differentiable as a complete action, it cannot satisfy the premise; any finite auxiliary construction defines a new candidate.
 
 Plainly: the two equal reduced actions would have to have unequal derivatives for that falsifier to occur. Section 16.6 states the chain-rule reason they cannot.
 
-The current relation remains option 3 as a route classification: an independent wake state is the distinct causal-state route, but it is not derived by the characteristic tail. This classification is not a final adjudication of `CT-FH-1`. The existing independent-state analysis separately remains blocked under the current primitive set because maturity, motion-account functions, emission capacity, and reception transfer remain unselected.
+The current relation remains option 3 as a route classification: an independent wake state is the distinct causal-state route, but it is not derived by the characteristic tail. `CT-FH-1` is adjudicated negatively. The existing independent-state analysis separately remains blocked under the current primitive set because maturity, motion-account functions, emission capacity, and reception transfer remain unselected.
 
 Plainly: the characteristic-tail action and the current independent-state attempt have both failed, for different exact reasons. The Master Equation remains unchanged and fail closed at the unsupported singular transition.
 
@@ -941,7 +941,7 @@ Allowed variations are $C^1$ spatial variations with compact support inside $[T_
 
 Plainly: the varied worldline segment stays at least one memory horizon away from the outer time boundaries. This removes accidental endpoint motion and forces every surviving coefficient to be a genuine interior Euler term.
 
-**Step 0 claim grade: derived incomplete.** The formula freezes the named parameters, but its retained self-history domain is incompatible with its positive separation floor. Its operator-checkable falsifier is an explicit existing self-diagonal or core rule that makes the displayed action finite without changing `CT-FH-1`.
+**Step 0 claim grade: derived failure of the frozen candidate.** The formula freezes the named parameters, but its retained self-history domain is incompatible with its positive separation floor. This conclusion is falsified by a finite evaluation of the displayed, unchanged `CT-FH-1` self integral on the stated $C^1$ history class that invalidates the lower bound below. Adding an exclusion or core changes the candidate rather than falsifying this result.
 
 Plainly: the formula names most of the candidate, but not the rule needed at arbitrarily short self-history separations. Adding such a rule creates a new candidate unless the rule can be traced to the frozen record.
 
@@ -985,9 +985,9 @@ $$
 
 Plainly: deleting only the exact point $t=s$ does not delete the arbitrarily near self pairs. Their accumulated tail has a logarithmically divergent lower bound for every locally Lipschitz history; if the worldline revisits the exact same position, the pointwise singularity is stronger.
 
-**Independent verdict: `INCOMPLETE`.** Derived: the receiver identity survives, and the formal regular cross-worldline variation contains $-\mathbf F_a^{\mathrm{future}}/2$. Measured: the independent discretized cross-pair action reproduces that coefficient within the refinement table above. Unresolved: the frozen full action, the complete self contribution, and the advertised static transverse histories are inadmissible without an explicit self-diagonal or core prescription. The verdict is falsified by a pre-existing declared prescription that makes the displayed `CT-FH-1` functional and the transverse control finite while preserving all frozen conventions, followed by independent variation of that complete functional.
+**Independent verdict: `OVERTURNED` for `CT-FH-1`.** Derived: the receiver identity survives, the regular cross-worldline variation contains $-\mathbf F_a^{\mathrm{future}}/2$, and the unchanged self-inclusive functional diverges. Measured: the documented independent discretized cross-pair action reproduces the regular coefficient within the refinement table above, although that table has no current standalone replay artifact. A self-only or near-origin repair would define a new candidate and cannot cancel the distinct-worldline future response proved below.
 
-Plainly: the future term is real where the kernel is regular, but `Verified` would claim more than the current functional defines. MEC-001 must remain open until the self sector is frozen and checked independently.
+Plainly: the frozen candidate is not a complete action, and its correct local receiver identity does not rescue it. New action research may reuse that identity, but it must be named and adjudicated separately.
 
 ### 16.2 Independent receiver-gradient rederivation
 
@@ -1217,6 +1217,22 @@ Plainly: this no-go covers the frozen worldline-only characteristic-tail family 
 
 Plainly: the theorem rejects a class of action routes, not delayed dynamics, the canonical Master Equation, or every possible action with independent wake degrees of freedom.
 
+**Self-completion-independent corollary for `CT-FH-1`.** Let a finite completion modify only the $i=j$ self sector or a bounded near-origin core while preserving the separated regular cross-worldline kernel. On the future-only transverse control, such a self completion contributes no dependence of the present $a$-worldline Euler coefficient on the later perturbation of the distinct $b$ worldline. The nonzero mixed response
+
+$$
+\left.
+\frac{d\mathbf E_a(\tau)}{d\varepsilon}
+\right|_{\varepsilon=0}
+=
+-\frac{\Lambda_{ba}}{2R^3}\mathbf e_y
+$$
+
+therefore survives every repair in that class. No self-diagonal or near-origin completion that preserves the regular cross kernel can make the resulting worldline-only Euler equation equal the past-only Master Equation on arbitrary regular histories.
+
+Plainly: changing how one worldline interacts with its own nearby history cannot remove an unwanted dependence on the future of another, well-separated worldline. A term capable of doing that must change the cross interaction or add independent state, so it defines a new action candidate.
+
+Claim grade: **derived negative for every finite self-only or near-origin completion preserving the displayed regular cross kernel**. The corollary is falsified by a correctly varied completion in that class whose self/core term cancels the displayed distinct-worldline mixed response without depending on the perturbed distinct future history. A cross-coupled repair or an independently evolving wake state lies outside the class and must be adjudicated as a new candidate.
+
 ### 16.6 Exact-localization corollary
 
 Suppose an auxiliary action $S_{\mathrm{loc}}[\mathbf X,\mathcal W]$ has a unique past-only wake solution $\mathcal W[\mathbf X]$ and exact elimination reproduces the frozen worldline action,
@@ -1267,21 +1283,21 @@ Plainly: the tail can be stored as a calculable cross-pair profile, but exact lo
 | --- | --- | --- |
 | 0 | `failed` | The record retains all $i=j$, $t>s$ pairs but declares neither a near-diagonal exclusion nor a core kernel; the displayed self action diverges. |
 | 1 | `passed` | Exact differentiation and the cross-pair finite-difference check preserve the receiver-gradient identity. |
-| 2 | `partially closed` | The regular cross-worldline variation contains $-\mathbf F_a^{\mathrm{future}}/2$; the complete self contribution is undefined. |
-| 3 | `partially closed` | The future transverse bump changes the cross-pair coefficient, but the displayed static histories are inadmissible for the whole self-inclusive action. |
-| 4 | `blocked` | A finite self-diagonal or core prescription must be frozen before endpoint and memory closure can be assessed. |
-| 5 | `blocked` | Cross-pair translation symmetry is clear; symmetry of a repaired complete functional is untested. |
-| 6 | `blocked` | Noether charges require a finite complete action and cannot be derived from the regular cross sector alone. |
-| 7 | `partially closed` | The exact and numerical cross-pair controls agree; a complete admissible self-inclusive control is missing. |
-| 8 | `partially closed` | The bounded cross-pair instrument converges, but it cannot represent the undefined self sector. |
-| 9 | `blocked` | A same-record packet requires a finite complete Euler operator. |
-| 10 | `blocked` | Realized-branch comparison requires a frozen self prescription. |
-| 11 | `blocked` | Fold and retained-window continuation are downstream of a defined action. |
-| 12 | `blocked` | The near-diagonal self failure occurs before the distinct coincident-birth question. |
-| 13 | `blocked` | The chain-rule corollary requires a differentiable reduced action, which `CT-FH-1` does not yet supply. |
-| 14 | `incomplete` | Final disposition is `Awaiting verification` for MEC-001. |
+| 2 | `failed candidate` | The regular cross-worldline variation necessarily contains $-\mathbf F_a^{\mathrm{future}}/2$ while the frozen coefficient also undernormalizes the past term. |
+| 3 | `failed candidate` | The future transverse bump changes the present cross-pair coefficient despite identical histories through the varied time. |
+| 4 | `not reached` | Endpoint and memory closure cannot rescue an action already overturned by the self divergence and regular cross-sector obstruction. |
+| 5 | `not reached` | A repaired complete functional would be a new candidate requiring its own symmetry audit. |
+| 6 | `not reached` | Noether charges cannot be derived from the overturned action. |
+| 7 | `passed for the negative cross-sector result` | The exact and documented numerical cross-pair controls agree within their declared scope. |
+| 8 | `passed for the bounded cross-sector instrument` | The instrument converges on its regular target and makes no self-sector claim. |
+| 9 | `not reached` | The overturned action supplies no complete Euler operator for a same-record packet. |
+| 10 | `not reached` | Realized-branch comparison belongs to any separately frozen replacement candidate. |
+| 11 | `not reached` | Fold and retained-window continuation cannot reverse the regular separated-worldline no-go. |
+| 12 | `not reached` | The near-diagonal failure and self-completion-independent cross-sector obstruction already decide `CT-FH-1`. |
+| 13 | `not reached` | Exact localization of the overturned reduced action cannot supply the missing causal update. |
+| 14 | `verified negative` | Final disposition is `OVERTURNED` for `CT-FH-1`; MEC-001 is removed from the live queue. |
 
-Plainly: the receiver identity and future cross-pair coefficient survived independent checking. The audit stops because the frozen candidate is not a finite whole functional on its own admitted self-history domain. Later conservation, branch, fold, and localization claims cannot be graded until that first definition gap is closed.
+Plainly: the receiver identity and future cross-pair coefficient survived checking, while the frozen candidate fails both finiteness and past-only evolution. Later conservation, branch, fold, and localization tests would apply only to a separately defined replacement action.
 
 The detailed step descriptions below preserve the protocol against which `CT-FH-1` is being judged. Their imperative wording records the planned test; the disposition table above is the authority for what has passed, partially closed, failed, or remains blocked.
 
@@ -1514,9 +1530,9 @@ The frozen promotion standard required one construction to pass:
 
 Plainly: local kernel success supplied only item 1's receiver half. Promotion required the full chain.
 
-`CT-FH-1` is not promoted and remains `Awaiting verification`. Its receiver identity and regular cross-pair future term are established, but the complete action and its counterexample require a self-diagonal or core prescription before past-only evolution, endpoint, conservation, realized-branch, fold, or coincident-birth tests can carry acceptance weight.
+`CT-FH-1` is not promoted and is `OVERTURNED`. Its receiver identity remains a valid regular mathematical construction, but the frozen self-inclusive action diverges and every self-only or near-origin completion preserving the regular cross kernel retains the nonzero future-transmitter response. Endpoint, conservation, realized-branch, fold, or coincident-birth tests cannot restore this candidate.
 
-Plainly: the investigation keeps the calculations that are correct and withholds a final action verdict because the frozen object is not yet finite.
+Plainly: the investigation keeps the correct receiver calculation while rejecting the proposed complete action. A finite replacement must be named and tested as a new candidate.
 
 ## 17. Investigation matrix
 
@@ -1524,21 +1540,21 @@ Plainly: the investigation keeps the calculations that are correct and withholds
 | --- | --- | --- | --- |
 | Does the pure $1/r$ scalar action universally derive the Master Equation? | derived negative | one regular counterexample residual, plus full-variation confirmation | discard the universal scalar-action claim, not the Master Equation |
 | Does the normalized tail have the correct receiver gradient? | derived positive | exact hand differentiation plus the independent cross-pair action check | overturned by any extra derivative term |
-| Does the full tail action yield only the canonical Euler equation? | incomplete | freeze a finite self-diagonal or core prescription, then vary the complete functional independently | the present formal cross-sector result cannot verify the whole action |
-| Is the evolution past-only? | derived negative on regular cross pairs; incomplete for the whole action | one admissible self-inclusive transverse control | the advertised control is not yet a history in the frozen functional's domain |
-| Is the endpoint physical and ledger-complete? | blocked by Step 0 | finite complete action first | endpoint work cannot repair an undefined self integral |
-| Are all three charges derived from the unchanged dynamics? | blocked by Step 0 | finite symmetry-preserving complete action | cross-sector formulas are insufficient |
-| Do all three balances close independently? | blocked by Step 0 | complete same-record action and boundary accounts | no conservation claim is available |
-| Does the tail cross coincident birth? | blocked by Step 0 | distinguish and resolve the ordinary self diagonal first | the earlier divergence prevents this test |
-| Can the tail derive the independent wake state? | conditional chain-rule no-go; blocked for `CT-FH-1` | differentiable reduced action | a distinct causal-state construction still needs new constitutive structure |
+| Does the full tail action yield only the canonical Euler equation? | derived negative for `CT-FH-1` | none for this candidate; any cross-kernel or independent-state repair is new | self divergence and the self-completion-independent future response overturn the candidate |
+| Is the evolution past-only? | derived negative on regular cross pairs | none for this candidate | a future-only distinct-worldline perturbation changes the present Euler coefficient |
+| Is the endpoint physical and ledger-complete? | not reached | a separately frozen replacement action | endpoint work cannot repair either decisive failure |
+| Are all three charges derived from the unchanged dynamics? | not reached | a separately accepted complete action or causal update | cross-sector formulas are insufficient |
+| Do all three balances close independently? | not reached | complete same-record update and boundary accounts | no conservation claim is available |
+| Does the tail cross coincident birth? | not reached | a separately frozen replacement candidate | the overturned action supplies no transition law |
+| Can the tail derive the independent wake state? | derived conditional chain-rule no-go | a separately derived causal-state construction | exact relabeling cannot change the overturned reduced equation |
 
-Plainly: the matrix records an incomplete whole-action adjudication. The receiver identity and cross-pair future dependence are secure, but neither one defines or varies the missing self sector.
+Plainly: the matrix records a negative whole-action adjudication. The receiver identity survives as local mathematics, while the complete frozen action fails both its self domain and its past-only equation target.
 
 ## 18. Remaining Master Equation closure objects
 
-MEC-001 first requires one explicit, independently auditable self-diagonal or core convention. Any cutoff, core kernel, subtraction, or exclusion changes the displayed functional unless it can be traced to the frozen candidate, so the repaired record must be named separately and its receiver and transmitter coefficients recomputed.
+MEC-001 is complete negatively for `CT-FH-1`. Any cutoff, core kernel, subtraction, exclusion, cross-kernel change, or independently evolving state defines a new action candidate and must receive a separate identity, complete receiver-plus-transmitter variation, and independent audit.
 
-Plainly: the next MEC-001 calculation is not another replay of the cross-pair formula. It is the missing definition that makes the whole action finite.
+Plainly: there is no remaining calculation that can turn the unchanged candidate into the accepted action. New action research must change the candidate and start a new adjudication record.
 
 MEC-002 remains the independent causal wake-state problem already isolated in [Independent Causal Wake-State Closure](independent-causal-wake-state-closure.md). Its next exact mathematical object is one predeclared reception map
 
@@ -1577,10 +1593,10 @@ This packet does not establish:
 - a finite coincident same-transmitter transition;
 - promotion of the characteristic tail into reader-facing canon.
 
-Plainly: this file records an incomplete whole-action adjudication, a positive receiver identity, and a negative regular cross-pair result. It deliberately makes no physical branch claim.
+Plainly: this file records a negative whole-action adjudication, a positive receiver identity, and a negative regular cross-pair result. It deliberately makes no physical branch claim.
 
 ## 20. Closure condition
 
-The characteristic-tail investigation remains open until one finite self-inclusive candidate has a declared near-diagonal or core rule, admits the transverse control, and receives an independent complete variation. The regular cross-pair calculation must still reproduce or remove $-\mathbf F_a^{\mathrm{future}}/2$ under that prescription. Only then may MEC-001 receive `CONFIRMED` or `OVERTURNED`.
+The `CT-FH-1` characteristic-tail investigation is closed with disposition `OVERTURNED`. Its frozen self-inclusive functional diverges, and every finite self-only or near-origin completion that preserves the regular cross kernel retains the nonzero future-transmitter response. A future action may reuse the receiver identity only under a new candidate identity and must receive a complete independent variation.
 
-Plainly: the current work proves what happens between distinct regular endpoints but does not define the whole action it was asked to verify. The unchanged Master Equation, the reader-facing receiver identity, and the separately blocked independent causal wake-state route remain the broader closure context.
+Plainly: the current work proves why this action cannot be the Master Equation's complete action while preserving the useful receiver identity it discovered. The unchanged Master Equation and the separately blocked independent causal wake-state route remain the broader closure context.

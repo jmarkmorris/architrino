@@ -512,7 +512,7 @@ Failure modes to retain:
 - [master-equation-closure](../master-equation-closure/priorities.md)
 - braid
 - [dark-sector](../dormant-deferred/dark-sector/priorities.md)
-- [mapping-cosmology](../mapping-cosmology/priorities.md)
+- [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md)
 - [app-simulation](../app-simulation/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

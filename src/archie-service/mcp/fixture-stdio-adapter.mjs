@@ -9,11 +9,11 @@ import {
 
 export const MCP_PROTOCOL_VERSION = "2025-11-25";
 export const MCP_FIXTURE_SERVER_NAME = "architrino-fixture-mcp";
-export const MCP_FIXTURE_SERVER_VERSION = "0.1.0";
+export const MCP_FIXTURE_SERVER_VERSION = "0.2.0";
 export const MCP_FULL_CORPUS_SERVER_NAME = "architrino-full-corpus-mcp";
-export const MCP_FULL_CORPUS_SERVER_VERSION = "1.0.0-local";
+export const MCP_FULL_CORPUS_SERVER_VERSION = "1.1.0-local";
 
-const TOOL_NAMES = ["search", "read", "topics", "neighbors"];
+const TOOL_NAMES = ["search", "read", "topics", "neighbors", "walk"];
 
 export const MCP_TOOL_DEFINITIONS = Object.freeze([
   {
@@ -95,6 +95,32 @@ export const MCP_TOOL_DEFINITIONS = Object.freeze([
         },
         direction: { type: "string", enum: ["outgoing", "incoming", "both"], default: "both" },
         limit: { type: "integer", minimum: 1, maximum: MCP_TOOL_LIMITS.neighbors.maxItems, default: MCP_TOOL_LIMITS.neighbors.defaultItems },
+        cursor: { type: ["string", "null"], default: null },
+      },
+    },
+    annotations: readOnlyAnnotations(),
+    execution: { taskSupport: "forbidden" },
+  },
+  {
+    name: "walk",
+    title: "Walk the declared Architrino graph",
+    description: "Traverse only visible, declared, typed graph edges with deterministic breadth-first ordering, bounded depth and node count, cycle suppression, path evidence, and pagination. Reachability is not proof or causation.",
+    inputSchema: {
+      type: "object",
+      additionalProperties: false,
+      required: ["topicOrRoute"],
+      properties: {
+        topicOrRoute: { type: "string", minLength: 1, maxLength: MCP_TOOL_LIMITS.maxIdentifierChars },
+        edgeTypes: {
+          type: "array",
+          maxItems: 16,
+          uniqueItems: true,
+          items: { type: "string", enum: ["routes_to", "mirrors", "related", "prerequisite", "contains", "depends_on"] },
+          default: [],
+        },
+        direction: { type: "string", enum: ["outgoing", "incoming", "both"], default: "both" },
+        maxDepth: { type: "integer", minimum: 1, maximum: MCP_TOOL_LIMITS.walk.maxDepth, default: MCP_TOOL_LIMITS.walk.defaultDepth },
+        limit: { type: "integer", minimum: 1, maximum: MCP_TOOL_LIMITS.walk.maxItems, default: MCP_TOOL_LIMITS.walk.defaultItems },
         cursor: { type: ["string", "null"], default: null },
       },
     },
@@ -361,6 +387,18 @@ function normalizeToolArguments(tool, args) {
         cursor: args.cursor ?? null,
       }),
     },
+    walk: {
+      allowed: ["topicOrRoute", "edgeTypes", "direction", "maxDepth", "limit", "cursor"],
+      required: ["topicOrRoute"],
+      build: () => ({
+        topicOrRoute: args.topicOrRoute,
+        edgeTypes: args.edgeTypes ?? [],
+        direction: args.direction ?? "both",
+        maxDepth: args.maxDepth ?? MCP_TOOL_LIMITS.walk.defaultDepth,
+        limit: args.limit ?? MCP_TOOL_LIMITS.walk.defaultItems,
+        cursor: args.cursor ?? null,
+      }),
+    },
   };
   const spec = specs[tool];
   const unexpected = Object.keys(args).filter((key) => !spec.allowed.includes(key));
@@ -414,7 +452,7 @@ function initializeResult(id, serverInfo) {
     protocolVersion: MCP_PROTOCOL_VERSION,
     capabilities: { tools: { listChanged: false } },
     serverInfo,
-    instructions: "Use search to locate sources, read to retrieve exact bounded content, topics to enumerate addressable records, and neighbors only for declared direct graph edges. Source authority fields are mandatory context; retrieval is not proof.",
+    instructions: "Use search to locate sources, read to retrieve exact bounded content, topics to enumerate addressable records, neighbors only for declared direct graph edges, and walk only for bounded multi-hop traversal of declared edges. Source authority fields are mandatory context; retrieval and graph reachability are not proof.",
   });
 }
 

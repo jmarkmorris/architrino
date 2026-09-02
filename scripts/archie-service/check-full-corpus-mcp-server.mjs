@@ -14,6 +14,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.
 const launcher = path.join(rootDir, "scripts/archie-service/run-full-corpus-mcp-server.mjs");
 const snapshotPath = path.join(rootDir, FULL_CORPUS_SNAPSHOT_PATH);
 const ontologyId = "source.published-corpus.content.markdown.aaa.foundations.ontology";
+const walkOriginId = "source.scene-route.content.scenes.assemblies.color.charge.su3";
 const messages = [
   {
     jsonrpc: "2.0",
@@ -57,11 +58,17 @@ const messages = [
     jsonrpc: "2.0",
     id: 7,
     method: "tools/call",
-    params: { name: "read", arguments: { topicOrRoute: "missing-full-corpus-source" } },
+    params: { name: "walk", arguments: { topicOrRoute: walkOriginId, edgeTypes: ["routes_to", "contains"], direction: "outgoing", maxDepth: 2, limit: 3 } },
   },
   {
     jsonrpc: "2.0",
     id: 8,
+    method: "tools/call",
+    params: { name: "read", arguments: { topicOrRoute: "missing-full-corpus-source" } },
+  },
+  {
+    jsonrpc: "2.0",
+    id: 9,
     method: "tools/call",
     params: { name: "topics", arguments: {}, task: { ttl: 1000 } },
   },
@@ -82,12 +89,12 @@ requireCondition(before.mtimeMs === after.mtimeMs && before.size === after.size,
 
 const responses = run.stdout.trimEnd().split("\n").map((line) => JSON.parse(line));
 const byId = new Map(responses.map((response) => [response.id, response]));
-requireCondition(responses.length === 8, `expected 8 responses, received ${responses.length}`);
+requireCondition(responses.length === 9, `expected 9 responses, received ${responses.length}`);
 requireCondition(byId.get(1)?.result?.serverInfo?.name === MCP_FULL_CORPUS_SERVER_NAME, "wrong server identity");
 requireCondition(
   JSON.stringify(byId.get(2)?.result?.tools?.map((tool) => tool.name)) ===
-    JSON.stringify(["search", "read", "topics", "neighbors"]),
-  "tool catalog differs from V1"
+    JSON.stringify(["search", "read", "topics", "neighbors", "walk"]),
+  "tool catalog differs from the bounded current surface"
 );
 
 const search = structured(byId.get(3));
@@ -108,9 +115,17 @@ requireCondition(
   neighbors.status === "ok" && neighbors.result.records.some((record) => record.edgeType === "contains"),
   "neighbors omitted declared containment"
 );
-const missing = structured(byId.get(7));
+const walk = structured(byId.get(7));
+requireCondition(
+  walk.status === "ok" &&
+    walk.result.kind === "walk" &&
+    walk.result.records.every((record) => record.depth <= 2) &&
+    walk.result.records.some((record) => record.depth === 2 && record.path.length === 2),
+  "walk did not preserve bounded declared-edge traversal"
+);
+const missing = structured(byId.get(8));
 requireCondition(missing.status === "not_found" && missing.error.code === "SOURCE_NOT_FOUND", "missing read advanced unexpectedly");
-requireCondition(byId.get(8)?.error?.code === -32602, "task-augmented call was not rejected");
+requireCondition(byId.get(9)?.error?.code === -32602, "task-augmented call was not rejected");
 
 for (const response of responses) {
   requireCondition(Buffer.byteLength(JSON.stringify(response), "utf8") <= 32768, `response ${response.id} exceeded ceiling`);
@@ -118,7 +133,7 @@ for (const response of responses) {
 
 validateStaticBoundary();
 process.stdout.write(
-  "Archie full-corpus MCP check passed: outside-cwd launch, four tools, authored preference, route-and-anchor read, metadata, pagination, neighbors, missing source, and task rejection\n"
+  "Archie full-corpus MCP check passed: outside-cwd launch, five tools, authored preference, route-and-anchor read, metadata, pagination, neighbors, bounded walk, missing source, and task rejection\n"
 );
 
 function structured(response) {

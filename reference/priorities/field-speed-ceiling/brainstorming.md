@@ -119,6 +119,30 @@ Plainly: the candidate state fails to start braking, not because the available p
 - **Promotion target:** remain in `reference/priorities/field-speed-ceiling`; no Master Equation or reader-facing promotion without a separate operator decision.
 - **Next artifact:** construct the complete two-lobe FSC return map with state variables $(x,v,S_{12},S_{21},\mathcal O_{\mathrm{evt}})$, prove or refute shift-periodicity, and require any proposed onset trigger to be derived from that state rather than inserted as a waiting-time constant.
 
+### Two-Lobe Return Map Result
+
+The [two-lobe return-map audit](two-lobe-return-map-and-autonomous-trigger-audit.md) completes the proposed next calculation. A prescribed onset satisfying $K\ge7u_*/2$ produces a brake--turn--inward-cap--coincidence lobe and resets the exact-mirror event geometry. Repeating the same onset gives a reflected spatial two-cycle. This is not an autonomous full-state breather because the minimal crossing state supplies no onset and literal all-past ownership records have not been placed in a proved shift-periodic state space.
+
+The most direct event-record trigger, $u_{n+1}=L_n$ with $L_n$ the preceding inward-cap duration, fails in the analytically closed regime $K/u_n\ge6$. There the exact cap map is
+
+$$
+\frac{L_{n+1}}{u_n}
+=
+(1+\zeta_n^2)
+\left(1-\zeta_n\arctan\zeta_n\right),
+\qquad
+\zeta_n=\sqrt{\frac{2}{K/u_n-2}},
+$$
+
+and its value lies strictly between zero and one. The reset therefore shortens every later onset and has no positive fixed cycle.
+
+Plainly: a manually repeated alarm produces the requested spatial breathing motion, but the wake-crossing state does not set that alarm. Reusing the last cap duration is natural but does not repair the problem; it drives the cycle toward ever shorter waiting intervals.
+
+- **Claim level:** `derived sufficient theorem inside the proposed FSC model` for the complete lobe; `formal spatial two-cycle` for equal prescribed onsets; `derived negative` for the cap-duration reset at $K/u\ge6$; `open` for a full retained-state periodic orbit or another derived selector.
+- **Assumptions and proof burden:** proposed exact-mirror event completion and ceiling response, normalized $c_f=1$, complete one-root census through the open return chart, and one-time family ownership; derive any alternative trigger from an existing wake or action account and construct either a bi-infinite typed ledger or a future-equivalence quotient before claiming delay-state periodicity.
+- **Promotion target:** remain in `reference/priorities/field-speed-ceiling`; no Master Equation or reader-facing promotion without a separate operator decision.
+- **Next artifact:** independently review the complete-lobe and cap-map derivations, especially the cap-approach measure typing. No existing FSC wake or action account defines $\Phi$; a future selector proposal must supply that missing law explicitly and solve its cap-map fixed-point equation.
+
 ## Uniform Field-Speed Geometry
 
 For a prescribed straight path

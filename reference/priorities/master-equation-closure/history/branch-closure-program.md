@@ -1108,7 +1108,7 @@ Interface falsifier. If a downstream basin weight, shielding coefficient, or res
 - doubling-frequency-lock
 - [mapping-quantum](../../mapping-quantum/priorities.md)
 - [mapping-strong-field](../../mapping-strong-field/priorities.md)
-- [mapping-cosmology](../../mapping-cosmology/priorities.md)
+- [mapping-cosmology](../../dormant-deferred/mapping-cosmology/priorities.md)
 
 ## Related AAA Notes
 

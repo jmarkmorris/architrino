@@ -611,6 +611,24 @@ At fixed causal geometry $\Delta\mathbf V_r$ is fixed while $\mathbf V_r$ can va
 
 Plainly: the account may need to know the receiver's present motion even though the acceleration law must remain receiver-velocity independent.
 
+The first-order statement has a finite-increment strengthening. Let $h:\mathbb R^3\to\mathbb R$ be a differentiable rotationally invariant motion-energy account on a connected open velocity domain. Suppose that for every allowed increment $\mathbf w$ in an open neighborhood, the finite change
+
+$$
+h(\mathbf V+\mathbf w)-h(\mathbf V)
+$$
+
+depends on $\mathbf w$ but not on the base velocity $\mathbf V$ whenever both arguments remain in the domain. Differentiation with respect to $\mathbf V$ gives
+
+$$
+\nabla h(\mathbf V+\mathbf w)=\nabla h(\mathbf V).
+$$
+
+The open increment set and connectedness make $\nabla h$ constant. Rotational invariance then forces that constant vector to vanish, so $h$ is constant. With the conventional zero-account normalization $h(\mathbf0)=0$, one obtains $h\equiv0$.
+
+Plainly: if the same velocity change always costs the same account amount regardless of the receiver's starting motion, the only rotationally symmetric differentiable possibility is a trivial constant account. Every nontrivial isotropic motion-energy account must let its transfer rule read the receiver's present motion or another independently derived state variable.
+
+Claim grade: **derived conditional finite-increment rigidity theorem**. It is falsified by a differentiable nonconstant rotationally invariant $h$ whose finite increments are independent of base velocity on the declared open increment domain.
+
 ### 4.1 Angular booking and finite-increment scope
 
 Let $\Delta\mathbf p_r$ be the receiver momentum-account increment and let the wake debit be $-\Delta\mathbf p_r$. Under same-reception-point booking,
@@ -667,6 +685,22 @@ If $\mathbf0\in D$ and $\mathbf p(\mathbf0)=\mathbf0$, or if proper-rotation equ
 Plainly: the linear form follows from the all-pairs or separately proved triangle-connected increment condition. It does not follow from radial acceleration alone or from one realized trajectory.
 
 This theorem is conditional on emission-center booking, event-wise angular closure, and the stated richness of admissible increments. The coefficient $a$ is an undetermined account scale, not primitive architrino mass. None of these booking identities derives physical conservation or selects a momentum account.
+
+There is also an origin-shift identity that every consistently booked orbital ledger must satisfy. Let $\mathcal B_P$ be the complete momentum-account residual, including motion, wake, and boundary rows, and let $\mathcal B_J(\mathbf O)$ be the corresponding angular-account residual about origin $\mathbf O$. If the origin is shifted by $\mathbf a$ while the same physical rows are retained, every orbital moment changes by minus $\mathbf a$ crossed with its momentum row. Hence
+
+$$
+\mathcal B_J(\mathbf O+\mathbf a)
+=
+\mathcal B_J(\mathbf O)
+-
+\mathbf a\times\mathcal B_P.
+$$
+
+Therefore $\mathcal B_P=\mathbf0$ makes the angular residual origin-independent. Conversely, if $\mathcal B_J$ vanishes for every origin, then $\mathbf a\times\mathcal B_P=\mathbf0$ for every $\mathbf a$, which forces $\mathcal B_P=\mathbf0$.
+
+Plainly: a momentum-account error reappears as a different angular-account error when the coordinate origin moves. An angular pass at one specially chosen origin cannot hide a momentum failure.
+
+Claim grade: **derived algebraic necessary condition for consistently booked orbital and boundary accounts**. It is falsified by one same-record ledger whose direct origin translation violates the displayed identity. The identity supplies no account values and establishes no conservation law.
 
 ## 5. Regular-law and conservation trilemma
 

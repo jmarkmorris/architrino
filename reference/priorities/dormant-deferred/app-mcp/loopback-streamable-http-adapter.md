@@ -46,7 +46,7 @@ stateless MCP request handler
 validated immutable active snapshot in memory
     |
     v
-search | read | topics | neighbors
+search | read | topics | neighbors | walk
 ```
 
 The HTTP adapter uses the same tool definitions, argument normalization, tool engine, source chips, visibility rules, pagination, provenance, and errors as stdio. The only shared-core change is an additional stateless request handler; the stateful stdio session path remains the default and its lifecycle regression still passes.
@@ -146,6 +146,8 @@ Measured on 2026-07-21:
 - the existing stdio lifecycle and tool regression remained passing.
 - the combined Archie service, source-index, stdio, remote-contract, and HTTP suite passed all 45 tests; the shared schema validator accepted 38 fixtures with zero errors; strict content validation reported zero errors and warnings; priority ranking kept all 37 rows aligned; and `git diff --check` passed.
 
+Measured again on 2026-09-02, all nine focused HTTP tests passed after adding the fifth `walk` tool, including a real loopback `tools/call`; the remote contract retained its 19 fail-closed cases and the shared schema accepted 39 fixtures. The 2026-07-21 official SDK result above remains bounded to the four tools it actually measured.
+
 These are measured implementation and interoperability results. They do not establish Codex-over-HTTP or ChatGPT-over-HTTP conformance, OAuth behavior, TLS ingress, remote rollback, host capacity, availability, or public launch readiness.
 
 ## Acceptance Falsifiers
@@ -160,8 +162,8 @@ The loopback adapter is not accepted if:
 - an incompatible visibility policy can become active or serve as rollback;
 - activation exposes a partially validated bundle;
 - any request reads repository source files, writes files, invokes a model, creates durable user state, or performs an external action;
-- the official SDK or any of the four tools fails over HTTP.
+- the transport regression or any of the five current tools fails over HTTP; the retained official-SDK claim remains limited to its measured four-tool run until repeated.
 
 ## Remaining Boundary
 
-The next client-evidence object is ephemeral Codex and direct ChatGPT desktop conformance over the loopback URL. That work must not replace or disable the working stdio connection and must not make a persistent HTTP client change without operator approval.
+Named Codex and ChatGPT desktop conformance is complete for the primitive four-tool surface. Direct named-client invocation of `walk` remains unmeasured; any future pass must not replace or disable the working stdio connection and must not make a persistent HTTP client change without operator approval. Real OAuth, TLS ingress, accepted-`main` publication, remote rollback, host capacity, availability, and public launch remain outside this loopback boundary.

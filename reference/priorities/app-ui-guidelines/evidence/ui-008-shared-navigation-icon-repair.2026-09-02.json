@@ -1,0 +1,86 @@
+{
+  "schema": "app-ui-browser-check-receipt.v1",
+  "task": "UI-008",
+  "date": "2026-09-02",
+  "subject": "shared navigation glyph rendering on Ideal Braid, Braid Search, and Borg Library",
+  "source_identity": {
+    "runtime": "src/runtime/TopDynamicControlBarRuntime.js",
+    "stylesheet": "src/runtime/top-dynamic-control-bar.css",
+    "adapter": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+    "tests": [
+      "tests/top-dynamic-control-bar-runtime.test.js",
+      "tests/scene-hud-toolbar-order.test.js"
+    ]
+  },
+  "defect_observation": {
+    "instrument": "in-app browser DOM and rendered-geometry inspection",
+    "routes": [
+      "/ideal-braid.html",
+      "/braid-search.html",
+      "/borg-library.html"
+    ],
+    "svg_namespace_before": "http://www.w3.org/1999/xhtml",
+    "svg_child_namespace_before": "http://www.w3.org/1999/xhtml",
+    "svg_child_rendered_size_before_px": [0, 0],
+    "visible_effect": "The TOC text and circular action shells rendered, but the Back, Forward, Home, and Search glyphs did not."
+  },
+  "repair": {
+    "svg_factory": "Document.createElementNS with http://www.w3.org/2000/svg",
+    "action_box_sizing": "border-box",
+    "action_min_height_px": 32,
+    "implementation_scope": "Every consumer of the canonical shared runtime and stylesheet"
+  },
+  "reproduction": {
+    "server_command": "node scripts/dev/start-local-dev.mjs",
+    "viewports": [
+      [1440, 900],
+      [390, 844]
+    ],
+    "procedure": "Open each route at both viewports. Inspect the canonical action IDs, SVG and child namespaces, child rendered bounds, and action rectangles. Open global Search, confirm input focus and viewport containment, press Escape, confirm focus returns to Search, and check document horizontal overflow."
+  },
+  "post_repair_checks": [
+    {
+      "route": "/ideal-braid.html",
+      "action_ids": ["textbook-toc-button", "nav-up", "nav-forward", "home-button", "scene-search-toggle"],
+      "svg_root_count": 4,
+      "svg_namespace": "http://www.w3.org/2000/svg",
+      "svg_child_bounds_nonzero": true,
+      "action_height_px": 32,
+      "desktop_search_popover_within_viewport": true,
+      "mobile_search_popover_within_viewport": true,
+      "search_input_focused_on_open": true,
+      "search_focus_restored_on_escape": true,
+      "horizontal_overflow": false
+    },
+    {
+      "route": "/braid-search.html",
+      "action_ids": ["textbook-toc-button", "nav-up", "nav-forward", "home-button", "scene-search-toggle"],
+      "svg_root_count": 4,
+      "svg_namespace": "http://www.w3.org/2000/svg",
+      "svg_child_bounds_nonzero": true,
+      "action_height_px": 32,
+      "desktop_search_popover_within_viewport": true,
+      "mobile_search_popover_within_viewport": true,
+      "search_input_focused_on_open": true,
+      "search_focus_restored_on_escape": true,
+      "horizontal_overflow": false
+    },
+    {
+      "route": "/borg-library.html",
+      "action_ids": ["textbook-toc-button", "nav-up", "nav-forward", "home-button", "scene-search-toggle"],
+      "svg_root_count": 4,
+      "svg_namespace": "http://www.w3.org/2000/svg",
+      "svg_child_bounds_nonzero": true,
+      "action_height_before_px": 34,
+      "action_height_after_px": 32,
+      "desktop_search_popover_within_viewport": true,
+      "mobile_search_popover_within_viewport": true,
+      "search_input_focused_on_open": true,
+      "search_focus_restored_on_escape": true,
+      "horizontal_overflow": false
+    }
+  ],
+  "claim_grade": "measured UI conformance on the three named routes; shared implementation consequence for other canonical consumers",
+  "falsifier": "Any named route showing an empty shared icon shell, an SVG root outside http://www.w3.org/2000/svg, zero-size icon geometry, a shared action taller than 32px, a Search popover outside the viewport, or document-level horizontal overflow falsifies this receipt.",
+  "claim_boundary": "This receipt verifies visible shared-navigation glyphs, canonical action sizing, order, Search containment, and focus behavior on Ideal Braid, Braid Search, and Borg Library. It does not validate their app-local controls, data, scientific models, or every other shared-runtime consumer."
+}

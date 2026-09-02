@@ -23,7 +23,7 @@
     "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
     "protonEnvelopeBlockerPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-source-acquisition-blocker.v1.json",
     "neutronEnvelopeBlockerPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-source-acquisition-blocker.v1.json",
-    "priorityContextPath": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+    "priorityContextPath": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
   },
   "protonColorSingletClosure": {
     "rowId": "proton_color_singlet_closure_0001",

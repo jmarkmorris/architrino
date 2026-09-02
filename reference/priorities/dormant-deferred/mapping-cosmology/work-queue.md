@@ -1,6 +1,6 @@
 # Cosmology Closure Work Queue
 
-This is the canonical execution ledger for cosmology transfer-function closure. The lane remains deferred at top level, so all rows are blocked or deferred until their upstream accepted carriers exist.
+This is the preserved execution ledger for cosmology transfer-function closure. The lane is parked under `dormant-deferred`, so all rows remain non-executable unless the operator restores the directory to the active priority set; their scientific dependencies remain unchanged.
 
 ## Ranked Next Objects
 

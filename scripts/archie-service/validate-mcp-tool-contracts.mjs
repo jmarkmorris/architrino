@@ -37,6 +37,8 @@ const expectedLimits = {
   maxItems: MCP_TOOL_LIMITS.search.maxItems,
   minReadContentChars: MCP_TOOL_LIMITS.read.minContentChars,
   maxReadContentChars: MCP_TOOL_LIMITS.read.maxContentChars,
+  maxWalkDepth: MCP_TOOL_LIMITS.walk.maxDepth,
+  maxWalkVisitedNodes: MCP_TOOL_LIMITS.walk.maxVisitedNodes,
   maxResponseBytes: MCP_TOOL_LIMITS.maxResponseBytes,
 };
 if (canonicalJson(contract.limits) !== canonicalJson(expectedLimits)) {
@@ -92,7 +94,7 @@ if (failures.length > 0) {
 
 const action = mode === "--write" ? "write passed" : "check passed";
 console.log(
-  `Archie MCP tool-contract ${action}: ${contract.contractId}, ${contract.cases.length} positive case(s), ${negativeSuite.cases.length} case(s) with a Not advanced disposition, four bounded tools`
+  `Archie MCP tool-contract ${action}: ${contract.contractId}, ${contract.cases.length} positive case(s), ${negativeSuite.cases.length} case(s) with a Not advanced disposition, five bounded tools`
 );
 
 function validateNegativeSuite() {
@@ -139,6 +141,7 @@ function validatePaginationContinuations() {
     "mcp-read-public-truncated-001",
     "mcp-topics-public-first-page-001",
     "mcp-neighbors-public-first-page-001",
+    "mcp-walk-public-first-page-001",
   ]) {
     const firstCase = caseById.get(caseId);
     if (!firstCase) continue;

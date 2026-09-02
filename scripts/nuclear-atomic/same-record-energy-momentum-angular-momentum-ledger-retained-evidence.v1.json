@@ -18,7 +18,7 @@
     "sameRecordLedgerId": "L_BI_EpJ_0001",
     "sourceTargetId": "same_record_energy_momentum_angular_momentum_ledger_target_0001",
     "sourceTargetPath": "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json",
-    "priorityContextPath": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle"
+    "priorityContextPath": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle"
   },
   "sameRecordLedger": {
     "rowId": "L_BI_EpJ_0001",

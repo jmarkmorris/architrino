@@ -32,10 +32,11 @@ class FakeEventTarget {
 }
 
 class FakeElement extends FakeEventTarget {
-  constructor(tagName, ownerDocument) {
+  constructor(tagName, ownerDocument, namespaceURI = "http://www.w3.org/1999/xhtml") {
     super();
     this.tagName = String(tagName).toUpperCase();
     this.ownerDocument = ownerDocument;
+    this.namespaceURI = namespaceURI;
     this.parentElement = null;
     this.children = [];
     this.attributes = new Map();
@@ -138,6 +139,10 @@ class FakeDocument extends FakeEventTarget {
   createElement(tagName) {
     return new FakeElement(tagName, this);
   }
+
+  createElementNS(namespaceURI, tagName) {
+    return new FakeElement(tagName, this, namespaceURI);
+  }
 }
 
 class FakeWindow extends FakeEventTarget {}
@@ -194,6 +199,7 @@ test("shared runtime creates the accepted order, grouping, icons, and labels", (
   ]);
   assert.deepEqual(host.children[1].children.map((element) => element.id), ["nav-up", "nav-forward"]);
   assert.equal(runtime.getElement("toc").textContent, "TOC");
+  assert.equal(runtime.getElement("home").children[0].namespaceURI, "http://www.w3.org/2000/svg");
   assert.match(runtime.getElement("home").children[0].innerHTML, /M3 11\.5L12 4/u);
   assert.equal(runtime.getElement("search").getAttribute("aria-controls"), "scene-search-panel");
   assert.equal(runtime.getPopoverInput("search").placeholder, "Search scenes");

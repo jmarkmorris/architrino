@@ -38,6 +38,8 @@ It should answer four questions without the user learning a new app-specific pat
 - Use a single shell style per surface: dark translucent fill, thin border, currentColor SVG icon, visible focus state, and no text label inside the button.
 - Use `Helvetica Neue`, then `Arial, sans-serif`, for labels, popovers, and page headers.
 - Keep shared icon buttons at `32px` square with the accepted circular shell in both the main scene and standalone full-standard bars. Text-bearing page-header actions and local app controls may retain their separately owned compact geometry.
+- Create shared glyphs in the SVG namespace and verify that their geometry has nonzero rendered bounds. A circular shell with an empty-looking center is non-conforming even when its accessible label and serialized child markup are present.
+- Let the canonical action rule own border-box sizing and the `32px` minimum height so app-local generic button rules cannot enlarge the shared shell.
 - Use `aria-label`, `title` where helpful, `aria-expanded` for popovers, and `aria-pressed` for stateful toggles.
 - Do not use emoji or text glyphs for shared icons.
 

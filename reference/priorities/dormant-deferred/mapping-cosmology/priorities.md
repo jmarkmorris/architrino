@@ -2,36 +2,36 @@
 
 ## Workstream Metadata
 
-- Kind: `deferred-priority`
-- Rank: `14`
+- Kind: `dormant-deferred-priority`
+- Rank: `unranked / dormant-deferred`
 - Value: `3.14`
 - Cost: `7.0`
 - ROI: `0.45`
-- Status: `deferred`
+- Status: `dormant-deferred`
 
 ## Work Queue
 
-The deferred locally ranked objects, dependencies, and completion boundaries live in [work-queue.md](work-queue.md).
+The preserved objects, dependencies, and completion boundaries live in [work-queue.md](./work-queue.md). No row is executable while this directory remains under `dormant-deferred`.
 
 ## Scope
 
 Convert the current cosmology story from narrative strength to equation-level closure by building a predictive transfer-function pipeline.
 
-This file remains the control surface for deferred cosmology closure. No sibling detailed priority file is needed until component-interface work resumes.
+This file remains the parked control surface for cosmology closure. No sibling detailed priority file is needed until the operator returns this directory to the active priority set.
 
-This lane owns observer-level inventories, production and free-streaming benchmarks, and CMB / BBN / growth / lensing transfer residuals. Speculative candidate assemblies, release channels, and dark-visible re-entry mechanisms remain owned by [dark-sector](../dormant-deferred/dark-sector/priorities.md). A candidate may enter this lane only through a declared cosmology interface and residual; that routing does not promote the candidate or merge the two workstreams.
+This lane owns observer-level inventories, production and free-streaming benchmarks, and CMB / BBN / growth / lensing transfer residuals. Speculative candidate assemblies, release channels, and dark-visible re-entry mechanisms remain owned by [dark-sector](../dark-sector/priorities.md). A candidate may enter this lane only through a declared cosmology interface and residual; that routing does not promote the candidate or merge the two workstreams.
 
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `component_interfaces` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Each observable component states exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from LambdaCDM. |
-| `predictive_pipeline` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | The transfer-function pipeline produces direct CMB, $H_0$, and $S_8$ comparison handles rather than narrative analogy. |
-| `age_clock_convergence` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [expansion-mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), and [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md) | The same Noether sea and assembly history explains why independent age clocks converge near $13$-$14\ \mathrm{Gyr}$ as an effective observer-era record, without promoting that convergence to the absolute age of the Euclidean void and without leaving older visible or material populations unaccounted for. |
-| `cmb_noether_braid_spectrum_linkage` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | The branch states whether CMB Planck-occupation recovery, blackbody preservation, coherent photon-channel bundle transport, spectral-distortion bounds, and frequency-map rows can be derived from Noether braid ensemble dynamics and photon-channel provenance using the same Noether sea state as BBN, redshift, and TT/TE/EE transfer. |
-| `noether_sea_source_relaxation_balance` | This file | [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Expansion Mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Noether sea production, return, capture, decay, reclassification, and relaxation share one continuity and energy ledger before they are used in redshift, CMB, BBN, or dark-energy stories. |
-| `deep_space_inventory_benchmark` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [dark-energy](../../../content/markdown/aaa/cosmology/dark-energy.md), and [dark-matter](../../../content/markdown/aaa/cosmology/dark-matter.md) | Sparse ordinary deep-space contents are separated from the unknown Noether sea carrier inventory and from observer-level dark-sector inferences. |
-| `quasar_population_transport_decomposition` | This file and [cosmological-redshift-distance-ladder](../mapping-benchmarks/cosmological-redshift-distance-ladder.md) | [expansion-mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Quasar counts are decomposed into population, survey, obscuration, lensing, classification, and redshift-transfer rows before any fixed-void or LambdaCDM comparison is scored. |
+| `component_interfaces` | This file | [cosmology-ontology](../../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [BBN-constraints](../../../../content/markdown/aaa/cosmology/BBN-constraints.md), [structure-formation](../../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Each observable component states exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from LambdaCDM. |
+| `predictive_pipeline` | This file | [CMB](../../../../content/markdown/aaa/cosmology/CMB.md), [structure-formation](../../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | The transfer-function pipeline produces direct CMB, $H_0$, and $S_8$ comparison handles rather than narrative analogy. |
+| `age_clock_convergence` | This file | [cosmology-ontology](../../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [expansion-mechanism](../../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [BBN-constraints](../../../../content/markdown/aaa/cosmology/BBN-constraints.md), and [structure-formation](../../../../content/markdown/aaa/cosmology/structure-formation.md) | The same Noether sea and assembly history explains why independent age clocks converge near $13$-$14\ \mathrm{Gyr}$ as an effective observer-era record, without promoting that convergence to the absolute age of the Euclidean void and without leaving older visible or material populations unaccounted for. |
+| `cmb_noether_braid_spectrum_linkage` | This file | [CMB](../../../../content/markdown/aaa/cosmology/CMB.md), [Noether Braid](../../../../content/markdown/aaa/noether-braid/noether-braid.md), and [Reaction-Cosmology Provenance Ledger](../../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | The branch states whether CMB Planck-occupation recovery, blackbody preservation, coherent photon-channel bundle transport, spectral-distortion bounds, and frequency-map rows can be derived from Noether braid ensemble dynamics and photon-channel provenance using the same Noether sea state as BBN, redshift, and TT/TE/EE transfer. |
+| `noether_sea_source_relaxation_balance` | This file | [Noether sea](../../../../content/markdown/aaa/spacetime/noether-sea.md), [Expansion Mechanism](../../../../content/markdown/aaa/cosmology/expansion-mechanism.md), and [Reaction-Cosmology Provenance Ledger](../../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Noether sea production, return, capture, decay, reclassification, and relaxation share one continuity and energy ledger before they are used in redshift, CMB, BBN, or dark-energy stories. |
+| `deep_space_inventory_benchmark` | This file | [cosmology-ontology](../../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [dark-energy](../../../../content/markdown/aaa/cosmology/dark-energy.md), and [dark-matter](../../../../content/markdown/aaa/cosmology/dark-matter.md) | Sparse ordinary deep-space contents are separated from the unknown Noether sea carrier inventory and from observer-level dark-sector inferences. |
+| `quasar_population_transport_decomposition` | This file and [cosmological-redshift-distance-ladder](../../mapping-benchmarks/cosmological-redshift-distance-ladder.md) | [expansion-mechanism](../../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [structure-formation](../../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Quasar counts are decomposed into population, survey, obscuration, lensing, classification, and redshift-transfer rows before any fixed-void or LambdaCDM comparison is scored. |
 | `controversial_qso_association_audit` | This file | Priority-only unless a modern data audit survives controls | Older QSO/galaxy association claims remain source leads only; no corpus claim is promoted unless modern survey selection, lensing, extinction, classification, and look-elsewhere corrections survive. |
 
 ## Closure Goal
@@ -389,7 +389,7 @@ with boundary flux included on every finite comparison window. The redshift-ener
 
 The legacy-source signal to preserve is not the claim that the horizon problem is already solved. It is the alternative layer assignment: horizon uniformity may be evidence that the observer-level cosmological chart is summarizing recurrent source/release and thermalization history rather than a single global birth event. In that reading, galaxy-local or source-network recycling could contribute to the apparent uniform background while the Euclidean void remains fixed.
 
-This remains priority-only until it is expressed through the existing `component_interfaces`, `predictive_pipeline`, and `cmb_noether_braid_spectrum_linkage` tasks. A viable branch must use one declared Noether sea and source/release record to face CMB monopole isotropy, TT/TE/EE acoustic structure, allowed spectral distortions, BBN yields, BAO distance calibration, redshift-distance data, structure growth, and oldest-object/material-clock convergence. The acoustic-ruler coherence residual in [Cosmology Ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md#acoustic-ruler-coherence-burden) must pass across source patches and tracer bins without per-patch ruler tuning. If galaxy-local recycling can explain only qualitative uniformity while breaking any of those shared comparison rows, it remains an analogy rather than a cosmology closure route.
+This remains priority-only until it is expressed through the existing `component_interfaces`, `predictive_pipeline`, and `cmb_noether_braid_spectrum_linkage` tasks. A viable branch must use one declared Noether sea and source/release record to face CMB monopole isotropy, TT/TE/EE acoustic structure, allowed spectral distortions, BBN yields, BAO distance calibration, redshift-distance data, structure growth, and oldest-object/material-clock convergence. The acoustic-ruler coherence residual in [Cosmology Ontology](../../../../content/markdown/aaa/cosmology/cosmology-ontology.md#acoustic-ruler-coherence-burden) must pass across source patches and tracer bins without per-patch ruler tuning. If galaxy-local recycling can explain only qualitative uniformity while breaking any of those shared comparison rows, it remains an analogy rather than a cosmology closure route.
 
 ## Age-Clock Convergence Interface
 
@@ -521,7 +521,7 @@ $$
 \epsilon_{\mathrm{cos}}
 \right\}
 $$
-High $\mathcal{S}_{\mathrm{init}}$ means the branch has moved the smoothing burden into a small starting chart. Low $\mathcal{S}_{\mathrm{init}}$ means the declared Noether sea release or thermalization mechanism is robust under the chosen chart. The corpus promotion target is now [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden), with the inflation-specific use in [inflation-model](../../../content/markdown/aaa/cosmology/inflation-model.md#predictive-restriction-and-initial-conditions).
+High $\mathcal{S}_{\mathrm{init}}$ means the branch has moved the smoothing burden into a small starting chart. Low $\mathcal{S}_{\mathrm{init}}$ means the declared Noether sea release or thermalization mechanism is robust under the chosen chart. The corpus promotion target is now [cosmology-ontology](../../../../content/markdown/aaa/cosmology/cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden), with the inflation-specific use in [inflation-model](../../../../content/markdown/aaa/cosmology/inflation-model.md#predictive-restriction-and-initial-conditions).
 
 ### Component Perturbations and Matter Power
 
@@ -646,7 +646,7 @@ $$
 -\xi_{\nu_e}^\theta
 \right),
 $$
-with $\xi_{\nu_e}^\theta$ included only for declared neutrino-sector asymmetry. This interface should be consumed by [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [inflation-model](../../../content/markdown/aaa/cosmology/inflation-model.md) as the shared pre-BBN / BBN / CMB handoff.
+with $\xi_{\nu_e}^\theta$ included only for declared neutrino-sector asymmetry. This interface should be consumed by [BBN-constraints](../../../../content/markdown/aaa/cosmology/BBN-constraints.md), [structure-formation](../../../../content/markdown/aaa/cosmology/structure-formation.md), and [inflation-model](../../../../content/markdown/aaa/cosmology/inflation-model.md) as the shared pre-BBN / BBN / CMB handoff.
 
 ## Source-Mined Benchmark Contracts
 
@@ -792,16 +792,16 @@ These rows are benchmark contracts. They do not say that Planck, DESI, SH0ES, Pa
 
 ## Related Priorities
 
-- [master-equation-closure](../master-equation-closure/priorities.md)
-- [mapping-strong-field](../mapping-strong-field/priorities.md)
-- [strong-field brainstorming](../mapping-strong-field/brainstorming.md)
-- [dark-sector](../dormant-deferred/dark-sector/priorities.md)
-- [app-simulation](../app-simulation/priorities.md)
+- [master-equation-closure](../../master-equation-closure/priorities.md)
+- [mapping-strong-field](../../mapping-strong-field/priorities.md)
+- [strong-field brainstorming](../../mapping-strong-field/brainstorming.md)
+- [dark-sector](../dark-sector/priorities.md)
+- [app-simulation](../../app-simulation/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
-- [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md)
-- [CMB](../../../content/markdown/aaa/cosmology/CMB.md)
-- [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md)
-- [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md)
-- [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md)
+- [cosmology-ontology](../../../../content/markdown/aaa/cosmology/cosmology-ontology.md)
+- [CMB](../../../../content/markdown/aaa/cosmology/CMB.md)
+- [BBN-constraints](../../../../content/markdown/aaa/cosmology/BBN-constraints.md)
+- [structure-formation](../../../../content/markdown/aaa/cosmology/structure-formation.md)
+- [hubble-s8-tensions](../../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md)

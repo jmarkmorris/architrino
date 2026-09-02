@@ -16,6 +16,14 @@ No rows.
 
 ## Verified
 
+### UI-008 — Shared navigation icon rendering repair
+
+- **Status:** Verified
+- **Priority object:** `shared_navigation_svg_namespace_and_size_repair`
+- **Result:** The canonical runtime now creates glyphs in the SVG namespace, and the canonical stylesheet protects the accepted `32px` action height from app-wide button minimums. Because every full-bar surface consumes this runtime and stylesheet, the implementation repair is shared rather than page-specific.
+- **Evidence:** The [UI-008 browser receipt](evidence/ui-008-shared-navigation-icon-repair.2026-09-02.json) records the pre-repair zero-size glyph fault and post-repair desktop/mobile measurements for Ideal Braid, Braid Search, and Borg Library. Focused tests enforce SVG namespace and canonical sizing ownership.
+- **Boundary:** Browser evidence establishes visible glyph geometry, action order, sizing, popover containment, focus restoration, and lack of horizontal overflow on the three named pages only. Other full-bar surfaces receive the same code path but were not individually rendered in this repair pass.
+
 ### UI-005 — Standalone app migration
 
 - **Status:** Verified

@@ -111,7 +111,7 @@
         "same_record_noether_sea_response",
         "source_path_tying_extraction_to_accepted_upstream_rows"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json"
     },
     "proton_color_singlet_closure": {
@@ -126,7 +126,7 @@
         "E_color_pX_bound",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json"
     },
     "neutron_color_singlet_closure": {
@@ -141,7 +141,7 @@
         "E_color_nX_bound",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json"
     },
     "finite_envelope_boundary": {
@@ -156,7 +156,7 @@
         "same_sigma_eff_domain",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json"
     },
     "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response": {
@@ -179,7 +179,7 @@
         "exists_R0_C_lambda_exp_decay_tail",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-retained-evidence.v1.json"
     },
     "lim_R_to_infty_sup_X_E_color_pX_R_eq_0": {
@@ -195,7 +195,7 @@
         "zero_limit_derivation",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/open-color-asymptotic-projection-limits-retained-evidence.v1.json"
     },
     "lim_R_to_infty_sup_X_E_color_nX_R_eq_0": {
@@ -211,7 +211,7 @@
         "zero_limit_derivation",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/open-color-asymptotic-projection-limits-retained-evidence.v1.json"
     },
     "asymptotic_field_audit": {
@@ -230,7 +230,7 @@
         "lim_R_to_infty_sup_X_E_color_nX_R_eq_0",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/asymptotic-field-audit-retained-evidence.v1.json"
     },
     "local_color_singlet_closure_support": {
@@ -248,7 +248,7 @@
         "same_record_branch_interface_confinement_functional_audit",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/local-color-singlet-closure-support-retained-evidence.v1.json"
     },
     "local_color_singlet_nucleon_envelope_support": {
@@ -270,7 +270,7 @@
         "same_record_branch_interface_confinement_functional_audit",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/local-color-singlet-nucleon-envelope-support-retained-evidence.v1.json"
     },
     "accepted_proton_color_singlet_envelope": {
@@ -323,7 +323,7 @@
         "same_record_energy_momentum_angular_momentum_ledger",
         "no_open_color_far_field"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
       "sourceTargetPath": "scripts/nuclear-atomic/same-record-branch-interface-source-acquisition-blocker.v1.json"
     },
     "accepted_sigma_eff_extraction": {
@@ -370,7 +370,7 @@
         "nucleon_branch_interface_ledgers",
         "same_record_energy_momentum_angular_momentum_ledger"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
       "sourceTargetPath": "scripts/nuclear-atomic/accepted-branch-interface-rows-source-acquisition-blocker.v1.json"
     },
     "finite_residual_corridor_overlap": {
@@ -417,7 +417,7 @@
         "exists_R0_C_lambda_exp_decay_tail",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-retained-evidence.v1.json"
     },
     "lim_R_to_infty_T_NN_R_eq_0": {
@@ -433,7 +433,7 @@
         "zero_limit_derivation",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
     },
     "O_NN_finite": {
@@ -449,7 +449,7 @@
         "finite_overlap_integral",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
     },
     "exists_R0_C_lambda_exp_decay_tail": {
@@ -465,7 +465,7 @@
         "lambda_positive",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
     },
     "bounded_residual_overlap": {
@@ -480,7 +480,7 @@
         "same_tail_support_domain",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/finite-range-tail-support-retained-evidence.v1.json"
     },
     "large_r_zero_limit": {
@@ -495,7 +495,7 @@
         "same_tail_support_domain",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/finite-range-tail-support-retained-evidence.v1.json"
     },
     "finite_range_residual": {
@@ -508,7 +508,7 @@
         "bounded_residual_overlap",
         "large_r_zero_limit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/finite-range-residual-retained-evidence.v1.json"
     },
     "color_singlet_closure": {
@@ -549,7 +549,7 @@
         "operator_norm_bound",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json"
     },
     "finite_open_color_surface_measure": {
@@ -563,7 +563,7 @@
         "projection_domain",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json"
     },
     "same_record_branch_interface_confinement_functional_audit": {
@@ -581,7 +581,7 @@
         "finite_open_color_surface_measure",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/same-record-branch-interface-confinement-functional-audit-retained-evidence.v1.json"
     },
     "corridor_weight_growth_eta_lt_lambda": {
@@ -595,7 +595,7 @@
         "eta",
         "eta_lt_lambda_witness"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json"
     },
     "uniform_large_r_bound_C_lambda_R0": {
@@ -610,7 +610,7 @@
         "lambda",
         "coefficient_exclusion_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-uniform-tail-bound-retained-evidence.v1.json"
     },
     "coefficient_exclusion_audit": {
@@ -624,7 +624,7 @@
         "no_isotope_or_element_indexed_tail_coefficient",
         "no_Fe_Ni_tuned_tail_coefficient"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json"
     }
   },
@@ -667,7 +667,7 @@
         "accepted_inputs_only",
         "target_equation_only"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
     },
     "color_singlet_nucleon_envelope": {
       "id": "color_singlet_nucleon_envelope_accepted_source_row_proof_target_0001",
@@ -706,7 +706,7 @@
         "separate_target_only_envelope_blockers",
         "color_singlet_closure_blocker_only"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
     },
     "delta_E_corr_NN": {
       "id": "delta_E_corr_NN_accepted_source_row_proof_target_0001",
@@ -747,7 +747,7 @@
         "target_equation_only",
         "finite_overlap_blocker_only"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
     },
     "finite_range_residual": {
       "id": "finite_range_residual_accepted_source_row_proof_target_0001",
@@ -789,7 +789,7 @@
         "sample_level_finite_tail",
         "target_equation_only"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
     },
     "no_open_color_far_field": {
       "id": "no_open_color_far_field_accepted_source_row_proof_target_0001",
@@ -829,7 +829,7 @@
         "sample_level_finite_tail",
         "target_only_no_open_color"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#no-open-color-proof-target"
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#no-open-color-proof-target"
     }
   },
   "rows": {

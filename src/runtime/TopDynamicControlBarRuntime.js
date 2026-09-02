@@ -14,6 +14,7 @@ const SHARED_ACTION_ORDER = Object.freeze([
 ]);
 
 const SHARED_ACTION_SET = new Set(SHARED_ACTION_ORDER);
+const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
 const ACTION_ICON_MARKUP = Object.freeze({
   back: '<polyline points="15 5 8 12 15 19"></polyline>',
@@ -98,7 +99,8 @@ function appendActionIcon(button, kind, iconKind, documentRef) {
     button.textContent = "TOC";
     return;
   }
-  const svg = documentRef.createElement("svg");
+  const svg = documentRef.createElementNS?.(SVG_NAMESPACE, "svg")
+    ?? documentRef.createElement("svg");
   svg.setAttribute("viewBox", "0 0 24 24");
   svg.setAttribute("aria-hidden", "true");
   svg.innerHTML = ACTION_ICON_MARKUP[iconKind];

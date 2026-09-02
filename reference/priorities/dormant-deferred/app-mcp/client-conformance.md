@@ -4,7 +4,7 @@
 
 - Kind: `priority-evidence`
 - Claim level: `measured where marked; documented capability where marked`
-- Status: `stdio-and-http-sdk-passing-current-full-corpus-codex-http-passing-chatgpt-http-discovery-passing-tool-calls-unmeasured`
+- Status: `stdio-and-http-sdk-passing-current-full-corpus-codex-and-chatgpt-http-passing`
 - Parent tracker: [Architrino MCP](priorities.md)
 - Server boundaries: [Local Fixture MCP Adapter](local-fixture-mcp-adapter.md) and [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md)
 
@@ -18,8 +18,10 @@ This packet separates protocol conformance from client-surface conformance. A ma
 | --- | --- | --- | --- |
 | Official MCP TypeScript SDK `@modelcontextprotocol/sdk` `1.29.0` | `measured` | `stdio fixture, stdio full corpus, and Streamable HTTP full corpus passed` | The SDK initialized each transport, negotiated tools, listed exactly four tools, called `topics`, `search`, `read`, and `neighbors`, observed `SOURCE_NOT_FOUND`, and pinged. The HTTP pass additionally accepted GET 405, used no session id, remained locally ready, and changed no persistent client configuration. |
 | Codex bundled CLI from the installed ChatGPT desktop app | `measured` | `stdio fixture, stdio full corpus, current-source Streamable HTTP fixture, and current full-corpus HTTP passed` | The earlier stdio runs passed through ephemeral and saved configurations. On 2026-09-02 bundled CLI `0.152.0` used only command-line HTTP configuration in ephemeral read-only sessions, called all four tools successfully against both the current-source fixture and current 2,042-record full-corpus snapshot, observed typed `SOURCE_NOT_FOUND`, and made no persistent MCP configuration change. The [fixture receipt](codex-http-fixture-conformance-2026-09-02.json) and [full-corpus receipt](codex-http-full-corpus-conformance-2026-09-02.json) record the exact boundaries. |
-| ChatGPT desktop local MCP surface | `measured where marked; operator-reported for stdio calls` | `stdio fixture operator-reported working; full-corpus HTTP discovery passed; HTTP tool calls unmeasured` | The operator reported that the installed `architrino_fixture` stdio connection is working. ChatGPT desktop `26.831.20005` then loaded a temporary loopback HTTP entry, initialized, and listed tools. No ChatGPT prompt was submitted, so no direct tool call or typed missing-source result is claimed. The [discovery receipt](chatgpt-desktop-http-discovery-2026-09-02.json) records the boundary. |
+| ChatGPT mode in the unified desktop app | `operator-supplied client result corroborated by measured server telemetry; operator-reported for stdio calls` | `stdio fixture operator-reported working; current full-corpus Streamable HTTP passed` | The operator submitted the five-case prompt through ChatGPT mode in desktop version `26.831.20005`. `topics`, `search`, `read`, and `neighbors` returned typed `ok`; the missing-source `read` returned `not_found` with `SOURCE_NOT_FOUND` and no source. The loopback server independently recorded the same five-tool order from one pseudonymous principal against the expected snapshot, although its safe telemetry does not retain arguments or structured bodies. The [discovery receipt](chatgpt-desktop-http-discovery-2026-09-02.json) and [full-corpus conformance receipt](chatgpt-desktop-http-full-corpus-conformance-2026-09-02.json) preserve the two evidence boundaries. |
 | ChatGPT web | `documented limitation` | `not a local-stdio target` | The current OpenAI Codex manual says ChatGPT web uses remote MCP-backed plugin tools and does not read local Codex configuration. |
+
+These retained client runs measured the four primitive tools before the later `walk` extension was added. The current local transport suites expose and call `walk`, but this packet does not claim direct official-SDK, Codex, or ChatGPT invocation of that fifth tool.
 
 ## Compatibility Defect Found And Corrected
 
@@ -29,7 +31,7 @@ The adapter now:
 
 - accepts object-valued `_meta` on `tools/list` and `tools/call`;
 - continues to reject unknown top-level request parameters;
-- continues to reject task-augmented calls because all four V1 tools declare `taskSupport: forbidden`;
+- continues to reject task-augmented calls because all five current tools declare `taskSupport: forbidden`;
 - exercises `_meta` in the owned subprocess transcript and focused lifecycle test.
 
 The falsifier was direct and operator-checkable: before the correction, a required Codex MCP server prevented the session from starting; after the correction, the same configuration completed all four tool calls.
@@ -42,7 +44,7 @@ The Codex event stream records typed `ok` results for `topics`, `search`, `read`
 
 The source-index check now passes over 2,042 records. After the deployment contract was rebound to current snapshot `source_snapshot_full_corpus_v1_6ab8e3d3608d946ccde0`, the focused HTTP suite passed 9/9 and bundled Codex CLI `0.152.0` completed the same four calls plus typed `SOURCE_NOT_FOUND` against the full corpus. The [full-corpus conformance receipt](codex-http-full-corpus-conformance-2026-09-02.json) records the exact snapshot and execution boundary. No generator write was run in this campaign.
 
-Plainly: Codex can use the current full Architrino corpus through the HTTP adapter. ChatGPT desktop can find and initialize the same kind of connection, but it has not yet been observed calling the tools.
+Plainly: Codex and ChatGPT mode can both use the current full Architrino corpus through the HTTP adapter. The result proves bounded local retrieval compatibility, not remote hosting or theory correctness.
 
 ## Official SDK Runner
 
@@ -99,14 +101,9 @@ After operator approval, the same entry was installed in the shared MCP configur
 
 ## ChatGPT Desktop Evidence Boundary
 
-Strict fixture acceptance still requires a retained fresh-client result showing all four tools and the missing-source behavior. Full-corpus acceptance additionally requires operator approval before adding or replacing any persistent MCP entry:
+The retained manual result satisfies the named ChatGPT surface obligation for the current full-corpus snapshot. The operator supplied the structured result from ChatGPT mode in the unified desktop app; the loopback server independently corroborated the exact five-tool order, common client principal, HTTP success, and snapshot identity. Because safe server telemetry omits arguments and structured bodies, the returned source identifiers and typed `not_found` details remain operator-supplied client evidence rather than an independently reconstructed transcript.
 
-1. restart the MCP connection or open a fresh ChatGPT chat as the UI requires;
-2. confirm that the intended fixture or full-corpus connection appears in `/mcp` or the connection picker;
-3. call all four tools and record structured-result and error behavior;
-4. remove the development connection later if it should not remain installed.
-
-The operator report is retained as useful evidence that the fixture connection works. The later HTTP attempt establishes direct ChatGPT discovery, initialization, and tool listing, but it is intentionally not promoted to complete four-tool conformance. The ChatGPT UI must call the full-corpus server before that named surface is marked passing.
+The result does not test bearer-token handling, TLS ingress, trusted-proxy behavior, remote authorization, hosting availability, accepted-`main` publication, or rollback. Those are remote-deployment obligations outside MCP-001. The temporary HTTP entry is not a production connection.
 
 ## Sources Checked
 
@@ -119,10 +116,10 @@ The operator report is retained as useful evidence that the fixture connection w
 Client conformance is not accepted for a surface if:
 
 - initialization or `tools/list` fails;
-- the surface discovers a tool set other than the four bounded V1 tools;
+- the surface omits or alters any tool required by the exact client-conformance campaign being claimed;
 - any successful call loses its typed `archie-mcp-tool-response/v1` structured content;
 - a missing source becomes a transport error, invented data, or an untyped success;
 - a client causes repository-source reads, writes, model calls inside the adapter, or external actions;
 - a result is inferred from another client rather than measured through the named surface.
 
-Codex is graded passing over both the current-source Streamable HTTP fixture and the current full-corpus HTTP chain. ChatGPT desktop is graded passing only for HTTP discovery and tool listing, not for tool-call conformance. The official SDK result proves protocol interoperability and does not substitute for the remaining named ChatGPT calls.
+Codex is graded passing over both the current-source Streamable HTTP fixture and the current full-corpus HTTP chain. ChatGPT mode is graded passing for the current full-corpus HTTP calls at the explicitly mixed evidence grade recorded above. The official SDK result proves protocol interoperability; the operator-supplied ChatGPT result plus server telemetry establishes the separate named-client boundary.

@@ -105,6 +105,19 @@
       "snapshotMutation": null,
       "expectedStatus": "invalid_request",
       "expectedErrorCode": "INVALID_REQUEST"
+    },
+    {
+      "caseId": "mcp-walk-depth-negative-001",
+      "baseCaseId": "mcp-walk-public-first-page-001",
+      "accessScope": "public",
+      "requestMutation": {
+        "operation": "set",
+        "path": ["arguments", "maxDepth"],
+        "value": 4
+      },
+      "snapshotMutation": null,
+      "expectedStatus": "invalid_request",
+      "expectedErrorCode": "INVALID_REQUEST"
     }
   ]
 }

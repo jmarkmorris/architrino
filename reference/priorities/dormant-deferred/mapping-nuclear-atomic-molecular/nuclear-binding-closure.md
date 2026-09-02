@@ -1,6 +1,6 @@
 # Nuclear Binding Closure
 
-This detailed priority file supports [Nuclear Atomic Molecular Closure](priorities.md) and remains downstream of [Standard Model Closure](../mapping-standard-model/priorities.md). It captures the downstream opportunity in [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md).
+This detailed priority file supports [Nuclear Atomic Molecular Closure](./priorities.md) and remains downstream of [Standard Model Closure](../../mapping-standard-model/priorities.md). It captures the downstream opportunity in [Nuclear Binding](../../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md).
 
 ## Core Opportunity
 
@@ -98,7 +98,7 @@ $$
 
 with no open-color far field between color-singlet nucleons. The first useful calculation is therefore not a fitted Yukawa curve; it is the comparison between two isolated closed nucleon corridors and a paired closed-corridor minimization. The row is rejected if it needs an independent residual-force parameter, leaves unscreened color leakage, or binds $p+p$ as easily as $p+n$ after spin-channel, $V_{\text{Coul}}$, orientation, and branch-interface rows are included.
 
-[NN Corridor Overlap First Evaluation](nn-corridor-overlap-first-evaluation.md) records the first reduced numerical row for that comparison. It gives a candidate $p+n$ attractive window and keeps the corresponding $p+p$ row positive after orientation suppression, branch-interface mismatch, and Coulomb are included. Its channel weights now come from a first $\mathcal B_{ij}^{\mathrm{int}}$ extraction; the ranges and scales remain source leads until the same confinement functional produces them directly.
+[NN Corridor Overlap First Evaluation](./nn-corridor-overlap-first-evaluation.md) records the first reduced numerical row for that comparison. It gives a candidate $p+n$ attractive window and keeps the corresponding $p+p$ row positive after orientation suppression, branch-interface mismatch, and Coulomb are included. Its channel weights now come from a first $\mathcal B_{ij}^{\mathrm{int}}$ extraction; the ranges and scales remain source leads until the same confinement functional produces them directly.
 
 ## Branch-Interface Exchange Residual
 
@@ -147,9 +147,9 @@ The row asks the nuclear packet to trace the parent assembly, alpha output, daug
 
 | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ file | Promotion condition |
 | --- | --- |
-| [nuclear-binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | The benchmark ladder and first effective potential target are promoted into explicit acceptance gates. |
-| [nucleon-structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md) | Nucleon spin, color-singlet structure, and residual strong corridors are connected to the nuclear potential terms. |
-| [mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) | Meson-like exchange is stated as a corridor/provenance mechanism, not a primitive residual force. |
+| [nuclear-binding](../../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | The benchmark ladder and first effective potential target are promoted into explicit acceptance gates. |
+| [nucleon-structure](../../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md) | Nucleon spin, color-singlet structure, and residual strong corridors are connected to the nuclear potential terms. |
+| [mesons](../../../../content/markdown/aaa/assemblies/mesons/mesons.md) | Meson-like exchange is stated as a corridor/provenance mechanism, not a primitive residual force. |
 
 ## Priority Boundary
 

@@ -11,11 +11,11 @@
 
 ## Work Queue
 
-The coupled closure obligations, their blockers, the MEC-005 pairwise causal-root accounting foundation, and the MEC-006 receiver-gradient foundation live in [work-queue.md](work-queue.md). The completed MEC-007 mirror close-approach boundary and its limits remain in the [focused packet](mirror-close-approach-causal-root-boundary.md).
+The coupled closure obligations, their blockers, and the MEC-005 pairwise causal-root accounting foundation live in [work-queue.md](work-queue.md). The negatively completed [MEC-001 characteristic-tail adjudication](characteristic-tail.md), completed bounded [MEC-006 receiver-gradient theorem](receiver-wake-gradient-closure.md), and completed [MEC-007 mirror close-approach boundary](mirror-close-approach-causal-root-boundary.md) remain in their focused packets.
 
 ## Scope
 
-This workstream owns the causal wake update law, the finite coincident same-transmitter transition, all three conserved accounts on that same update, the pairwise causal-root provenance foundation needed to audit those accounts without duplicate attribution, and the receiver/self acceleration-gradient admissibility boundary needed to audit the complete operator row. Completed MEC-007 separately certifies the stationary mirror first regular boundary, complete incoming delayed-root census, exact diagonal exclusion, and divergent unchanged-law limiting measure without assigning a continuation. MEC-005 does not itself derive an account map or conservation law, MEC-006 does not add a new acceleration term or close the self diagonal, and MEC-007 does not select a boundary law or outgoing history. A certified braid belongs to the Braid Program, while observer-level recovery belongs to its downstream theory lanes. Neither is a Master Equation closure task.
+This workstream owns the causal wake update law, the finite coincident same-transmitter transition, all three conserved accounts on that same update, and the pairwise causal-root provenance foundation needed to audit those accounts without duplicate attribution. Completed MEC-006 independently verifies the regular fixed-reception acceleration gradient and closes its singular derivative queries by terminal exclusion: it assigns no self-diagonal, fold, or coincident-birth value, and every such consumer remains `Not advanced`. Completed MEC-007 separately certifies the stationary mirror first regular boundary, complete incoming delayed-root census, exact diagonal exclusion, and divergent unchanged-law limiting measure without assigning a continuation. MEC-005 does not itself derive an account map or conservation law, and neither completed bounded result selects a boundary law or outgoing history. A certified braid belongs to the Braid Program, while observer-level recovery belongs to its downstream theory lanes. Neither is a Master Equation closure task.
 
 The live global blocker is not another receiver-weighted branch certificate. It is the absence of one Architrino-native causal state update that both crosses coincident same-transmitter birth finitely and supplies non-circular conserved accounts. Root topology, inactive gaps, finite-memory bounds, transmitter-side floors, and signed playback remain necessary geometry. They do not determine the missing wake state or its accounts.
 
@@ -119,5 +119,5 @@ These packets may seed a transmitter-side rebuild only after every use of $D_r/D
 
 - [Quantum closure](../mapping-quantum/priorities.md)
 - [Strong-field closure](../mapping-strong-field/priorities.md)
-- [Cosmology closure](../mapping-cosmology/priorities.md)
+- [Cosmology closure](../dormant-deferred/mapping-cosmology/priorities.md)
 - [Equation mapping](../mapping-equations/priorities.md)

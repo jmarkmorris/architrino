@@ -145,7 +145,7 @@ This benchmark should be promoted only with an image-vs-model separation:
 | --- | --- | --- |
 | This file | mass-map | Route lensing mass through exposure and shielding rather than treating mass as primitive substance. |
 | This file | [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Add lensing to the shared gravity acceptance set. |
-| This file | [mapping-cosmology](../mapping-cosmology/priorities.md) | Use weak lensing as a growth and structure benchmark without importing Lambda-CDM ontology. |
+| This file | [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md) | Use weak lensing as a growth and structure benchmark without importing Lambda-CDM ontology. |
 
 ## Failure Modes
 

@@ -1,6 +1,6 @@
 # Nuclear, Atomic, and Molecular Closure Work Queue
 
-This is the canonical execution ledger for nuclear-to-molecular recovery work.
+This is the preserved execution ledger for nuclear-to-molecular recovery work. The lane is parked under `dormant-deferred`, so all rows remain non-executable unless the operator restores the directory to the active priority set; their scientific dependencies remain unchanged.
 
 ## Ranked Next Objects
 

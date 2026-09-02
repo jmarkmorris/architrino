@@ -14,7 +14,7 @@ Status: `consolidated`; `app-simulation` is not an app and is no longer an indep
 | `field_speed_action_self_hit_scan` | [Braid Program](../braid-program/priorities.md) and [Master-Equation Closure](../master-equation-closure/priorities.md) | Braid Program owns the declared field-speed campaign; Master-Equation Closure owns transmitter provenance, action, transmitter-side acceleration, signed playback, causal wake accounts, and branch-certificate acceptance. |
 | `convergence_and_provenance` | [EOM](../app-solver/priorities.md) | EOM owns generic refinement, precision, deterministic replay, checkpoint, and provenance capability; each consuming campaign owns its thresholds. |
 | `eta_positive_package` | [Master-Equation Closure](../master-equation-closure/priorities.md) | Treat finite-$\eta$ existence and continuation as a mathematical proof obligation, not an app feature. |
-| `hydrogen_gamma_n_record_extraction` | [Nuclear, Atomic, and Molecular Closure](../mapping-nuclear-atomic-molecular/priorities.md) | Own the hydrogen spectral-channel record and its atomic promotion gate. |
+| `hydrogen_gamma_n_record_extraction` | [Nuclear, Atomic, and Molecular Closure](../dormant-deferred/mapping-nuclear-atomic-molecular/priorities.md) | Own the hydrogen spectral-channel record and its atomic promotion gate. |
 | `gw_public_waveform_packet` | [Strong-Field Closure](../mapping-strong-field/priorities.md) and [Equation Mapping](../mapping-equations/priorities.md) | Strong-Field Closure owns the source/effective-metric derivation; Equation Mapping owns the versioned observer-level benchmark comparison. |
 
 ## Preserved Detail
@@ -48,6 +48,6 @@ These conditions remain useful definitions, but execution and promotion decision
 - [EOM](../app-solver/priorities.md)
 - [Braid Program](../braid-program/priorities.md)
 - [Master-Equation Closure](../master-equation-closure/priorities.md)
-- [Nuclear, Atomic, and Molecular Closure](../mapping-nuclear-atomic-molecular/priorities.md)
+- [Nuclear, Atomic, and Molecular Closure](../dormant-deferred/mapping-nuclear-atomic-molecular/priorities.md)
 - [Strong-Field Closure](../mapping-strong-field/priorities.md)
 - [Equation Mapping](../mapping-equations/priorities.md)

@@ -215,7 +215,7 @@
         "retained_weak_exposure_only",
         "standard_model_benchmark_table_only"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
     },
     "reaction_event_ledger": {
       "id": "reaction_event_ledger_accepted_source_row_proof_target_0001",
@@ -270,7 +270,7 @@
         "attempt_level_weak_rows",
         "retained_weak_exposure_only"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
     },
     "noether_sea_response": {
       "id": "weak_noether_sea_response_accepted_source_row_proof_target_0001",
@@ -311,7 +311,7 @@
         "retained_window_noether_sea_response_provider",
         "generic_Noether_sea_provider_as_event_update"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
+      "currentPriorityPacket": "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
     }
   },
   "tolerances": {
