@@ -6,21 +6,21 @@ function read(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
 
-test("Braid Search is a focused standalone app with configured local data", () => {
+test("Braid Search is the current exact-identity evidence app", () => {
   const html = read("braid-search.html");
-  const main = read("src/apps/compact-sweep-dashboard/main.js");
+  const main = read("src/apps/braid-search/main.js");
   const runtime = read(
-    "src/apps/compact-sweep-dashboard/CompactSweepDashboardRuntime.js",
+    "src/apps/braid-search/BraidSearchRuntime.js",
   );
 
   assert.match(
     html,
-    /<title>Braid Search · Borg Campaign Analysis<\/title>/u,
+    /<title>Braid Search · Borg Evidence Analysis<\/title>/u,
   );
-  assert.match(html, /id="compact-sweep-dashboard-app"/u);
+  assert.match(html, /id="braid-search-app"/u);
   assert.match(
     html,
-    /src="\.\/src\/apps\/compact-sweep-dashboard\/main\.js"/u,
+    /src="\.\/src\/apps\/braid-search\/main\.js"/u,
   );
   assert.match(html, /prefers-reduced-motion/u);
   assert.match(html, /aria-live="polite"/u);
@@ -28,7 +28,7 @@ test("Braid Search is a focused standalone app with configured local data", () =
     html,
     /src\/runtime\/top-dynamic-control-bar\.css/u,
   );
-  assert.match(main, /renderCompactSweepDashboardApp/u);
+  assert.match(main, /renderBraidSearchApp/u);
   assert.match(runtime, /createStandaloneAppNavigationRuntime/u);
   assert.match(runtime, /navigationHost\.id = "scene-hud-tools"/u);
   assert.doesNotMatch(runtime, /createStandaloneAppSceneSearchRuntime/u);
@@ -40,13 +40,17 @@ test("Braid Search is a focused standalone app with configured local data", () =
   assert.doesNotMatch(runtime, /STANDALONE_APP_HOME_HREF/u);
   assert.match(
     runtime,
-    /\.\/\.local-data\/braid-analysis\/compact-monte-carlo\/configuration-sweep-v2\/compact-sweep-dashboard\.v3\.json/u,
+    /\.\/\.local-data\/braid-analysis\/current-exact-configuration-sweep\/compact-sweep-dashboard\.v3\.json/u,
   );
+  assert.match(runtime, /assembly-registry\.v1\.json/u);
+  assert.match(runtime, /braid-candidate-adjudication-projection\.v1\.json/u);
+  assert.match(runtime, /family-sweep-v1\/compact-sweep-dashboard\.v1\.json/u);
   assert.match(runtime, /role", "tablist"/u);
-  assert.match(runtime, /const DEFAULT_VIEW_ID = "funnel"/u);
+  assert.match(runtime, /const DEFAULT_VIEW_ID = "evidence"/u);
+  assert.match(runtime, /\["evidence", "Evidence records"\]/u);
   assert.doesNotMatch(runtime, /\["overview", "Overview"\]/u);
   assert.doesNotMatch(runtime, /function renderOverview/u);
-  assert.match(runtime, /Borg campaign analysis/u);
+  assert.match(runtime, /Borg evidence analysis/u);
   assert.match(runtime, /Back to Borg Library/u);
   assert.match(runtime, /Configuration-by-gate heatmap/u);
   assert.match(runtime, /Active candidates/u);
@@ -54,10 +58,7 @@ test("Braid Search is a focused standalone app with configured local data", () =
   assert.match(runtime, /readBraidSearchRouteState/u);
   assert.match(runtime, /filters: \{ \.\.\.routeState\.filters \}/u);
   assert.match(runtime, /Assembly \$\{range\.assemblyId\}/u);
-  assert.match(
-    runtime,
-    /replaceChildren\(state\.viewContainer, renderBoundary\(data\)\)/u,
-  );
+  assert.match(runtime, /renderBoundary\(compactData\)/u);
   assert.match(runtime, /descriptionClassName: "compact-dashboard-nowrap"/u);
   assert.match(runtime, /\["cases", "Case detail"\]/u);
   assert.match(runtime, /function renderCaseDetail/u);
@@ -75,7 +76,7 @@ test("Braid Search is a focused standalone app with configured local data", () =
   assert.match(runtime, /cancellation and agreement/u);
   assert.match(runtime, /not mean the candidate emits slowly/u);
   assert.match(
-    read("src/apps/compact-sweep-dashboard/CompactSweepDashboardData.js"),
+    read("src/apps/braid-search/BraidSearchData.js"),
     /Lower is better for this compact diagnostic/u,
   );
   assert.equal(runtime.includes("Data identity"), false);
@@ -84,6 +85,7 @@ test("Braid Search is a focused standalone app with configured local data", () =
   assert.equal(runtime.includes("No smoothed density"), false);
   assert.equal(runtime.includes("Why rows have null scores"), false);
   assert.equal(runtime.includes("node:sqlite"), false);
+  assert.equal(runtime.includes("configuration-sweep-v2"), false);
 });
 
 test("Braid Search keeps a direct developer route outside the public Applications scene", () => {

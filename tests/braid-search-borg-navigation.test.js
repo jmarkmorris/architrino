@@ -23,7 +23,7 @@ import {
 import {
   buildBraidSearchRouteHref,
   readBraidSearchRouteState,
-} from "../src/apps/compact-sweep-dashboard/BraidSearchRouteState.mjs";
+} from "../src/apps/braid-search/BraidSearchRouteState.mjs";
 
 const ENTRY = BORG_ASSEMBLY_RECORD_CATALOG.entries[0];
 const BORG_REGISTRY = JSON.parse(readFileSync(new URL(
@@ -69,11 +69,8 @@ test("shared navigation preserves permanent braid and exact assembly identities"
     returnTo: "/borg-library.html?q=selected",
   }), "http://localhost");
   assert.equal(analysis.pathname, "/braid-search.html");
-  assert.equal(analysis.searchParams.get("view"), "funnel");
-  assert.equal(
-    analysis.searchParams.get("candidateDisposition"),
-    "active-candidate",
-  );
+  assert.equal(analysis.searchParams.get("view"), "evidence");
+  assert.equal(analysis.searchParams.has("candidateDisposition"), false);
   assert.equal(analysis.searchParams.get("assemblyId"), ENTRY.assemblyId);
   assert.equal(
     analysis.searchParams.get("modelRevisionSha256"),
@@ -157,7 +154,7 @@ test("Braid Search owns its route state and Borg accepts only a same-origin retu
   const exactState = readBraidSearchRouteState(
     `?assemblyId=${ENTRY.assemblyId}&modelRevisionSha256=${ENTRY.modelRevisionSha256}`,
   );
-  assert.equal(exactState.viewId, "funnel");
+  assert.equal(exactState.viewId, "evidence");
   assert.equal(exactState.filters.assemblyId, ENTRY.assemblyId);
   assert.equal(
     exactState.filters.modelRevisionSha256,
@@ -219,7 +216,7 @@ test("Borg Workbench record navigation preserves distinct Library and Braid Sear
 
 test("browser surfaces share navigation contracts without importing each other's runtimes", () => {
   const braidRuntime = readFileSync(new URL(
-    "../src/apps/compact-sweep-dashboard/CompactSweepDashboardRuntime.js",
+    "../src/apps/braid-search/BraidSearchRuntime.js",
     import.meta.url,
   ), "utf8");
   const borgBootstrap = readFileSync(new URL(
@@ -236,7 +233,7 @@ test("browser surfaces share navigation contracts without importing each other's
   assert.doesNotMatch(braidRuntime, /Borg handoff:/u);
   assert.match(braidRuntime, /BorgSelectionNavigation\.mjs/u);
   assert.doesNotMatch(braidRuntime, /BorgAppRuntime/u);
-  assert.doesNotMatch(borgBootstrap, /CompactSweepDashboardRuntime/u);
+  assert.doesNotMatch(borgBootstrap, /BraidSearchRuntime/u);
   assert.match(braidHtml, /compact-dashboard-borg-actions/u);
   assert.match(borgHtml, /id="borg-library-link"/u);
   assert.match(borgHtml, /id="borg-return-to-search"/u);

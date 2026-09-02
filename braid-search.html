@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta name="theme-color" content="#07111f" />
-    <title>Braid Search · Borg Campaign Analysis</title>
+    <title>Braid Search · Borg Evidence Analysis</title>
     <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
     <style>
       * {
@@ -215,6 +215,10 @@
         gap: 5px;
       }
 
+      .compact-dashboard-filter[hidden] {
+        display: none;
+      }
+
       .compact-dashboard-filter label {
         color: var(--muted);
         font-size: 11px;
@@ -367,6 +371,66 @@
         margin: 0;
         color: var(--muted);
         font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .compact-dashboard-insight-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .compact-dashboard-evidence-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 9px;
+      }
+
+      .compact-dashboard-evidence-card {
+        display: grid;
+        min-width: 0;
+        gap: 6px;
+        padding: 13px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(12, 30, 49, 0.82);
+        color: var(--ink);
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .compact-dashboard-evidence-card:hover {
+        border-color: var(--cyan);
+        background: rgba(20, 48, 71, 0.92);
+      }
+
+      .compact-dashboard-evidence-card span,
+      .compact-dashboard-evidence-card small,
+      .compact-dashboard-muted {
+        color: var(--muted);
+      }
+
+      .compact-dashboard-evidence-card small {
+        overflow-wrap: anywhere;
+      }
+
+      .compact-dashboard-evidence-relation {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(7, 17, 31, 0.54);
+      }
+
+      .compact-dashboard-evidence-relation h3,
+      .compact-dashboard-evidence-relation p {
+        margin: 0;
+      }
+
+      .compact-dashboard-evidence-relation p {
+        color: var(--muted);
         line-height: 1.5;
       }
 
@@ -735,6 +799,10 @@
         font-size: 12px;
       }
 
+      .compact-dashboard-detail-grid > div {
+        display: contents;
+      }
+
       .compact-dashboard-code {
         color: #d8e7f6;
         font-family: SFMono-Regular, Menlo, Consolas, monospace;
@@ -776,6 +844,9 @@
       }
 
       @media (max-width: 1120px) {
+        .compact-dashboard-insight-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .compact-dashboard-funnel {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
@@ -832,6 +903,9 @@
       }
 
       @media (max-width: 480px) {
+        .compact-dashboard-insight-grid {
+          grid-template-columns: 1fr;
+        }
         .compact-dashboard-funnel,
         .compact-dashboard-reason-grid,
         .compact-dashboard-filters {
@@ -856,16 +930,16 @@
     </style>
   </head>
   <body>
-    <main id="compact-sweep-dashboard-app">
+    <main id="braid-search-app">
       <section class="compact-dashboard-loading" aria-live="polite">
         <h1>Braid Search</h1>
-        <p>Loading the local read-only dashboard export…</p>
+        <p>Loading current Borg identities and their evidence records…</p>
       </section>
     </main>
     <noscript>This dashboard requires JavaScript to read the local campaign data.</noscript>
     <script
       type="module"
-      src="./src/apps/compact-sweep-dashboard/main.js"
+      src="./src/apps/braid-search/main.js"
     ></script>
   </body>
 </html>

@@ -15,7 +15,7 @@ export function readBraidSearchRouteState(search = "") {
   const query = new URLSearchParams(search);
   const page = Number(query.get("casePage"));
   return Object.freeze({
-    viewId: query.get("view") ?? "funnel",
+    viewId: query.get("view") ?? "evidence",
     filters: Object.freeze({
       candidateDisposition: query.get("candidateDisposition") ?? "all",
       assemblyId: query.get("assemblyId") ?? "all",
@@ -36,7 +36,7 @@ export function buildBraidSearchRouteHref(
 ) {
   const url = new URL(locationLike?.href ?? "http://localhost/braid-search.html");
   OWNED_KEYS.forEach((key) => url.searchParams.delete(key));
-  setNondefault(url.searchParams, "view", state.viewId, "funnel");
+  setNondefault(url.searchParams, "view", state.viewId, "evidence");
   setNondefault(
     url.searchParams,
     "candidateDisposition",

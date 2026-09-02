@@ -141,9 +141,9 @@ Plainly: a chosen braking branch can make one complete excursion back to coincid
 
 For the minimal autonomous crossing state, the breather fails at **activation**, before turnaround. For a separately supplied onset with $K\ge3u_*$, braking and positive-separation turnaround are available; for $K\ge7u_*/2$, the full returning lobe reaches the next exact-mirror event. The remaining failure is autonomous onset selection and full-state repetition. Note also the ejection-speed constraint: an event law that simply ejected the pair *below* ceiling at zero separation would immediately meet the retained $\delta^{-2}$ braking row (review finding EC-5) and fail BV. So sub-ceiling ejection is lawful only from **positive separation**.
 
-**Ceiling-exit refinement (upgrades EC-7 / review item II.8.3).** When a ceiling rider first slows at $T_1$, its overtaking co-moving self family is delivered as one atom exactly at $T_1$ — an instant at which the speed still equals $c_f$, so the boundary response applies. The atom is forward (same-polarity repulsion from behind), hence projected to zero under the completion clause; and post-slowdown sub-ceiling motion has no further self roots. **Ceiling exit is therefore lawful and free whenever a retained backward row initiates it.** The wake shock does not forbid recapture; it is washed at the exit instant.
+**Ceiling-exit refinement (independent-review repair of EC-7 / review item II.8.3).** Before a ceiling rider first slows at $T_1$, its straight same-transmitter wake is one co-moving characteristic family. Under the packet's swept-branch reception rule that family is recorded as inactive and is never admitted as an ordinary row. Its disappearance after slowdown is therefore not a newly delivered atom and requires no projection. Post-slowdown sub-ceiling motion has no positive-delay self root. Ceiling exit remains compatible whenever a retained backward partner row initiates it, but the compatibility comes from the inactive-family classification, not from an atomic event update.
 
-Claim grade: `derived under SSR + completion clause`; simultaneity of the self-family crossings at $T_1$ is exact on the straight cap segment.
+Claim grade: `derived under the proposed swept-branch reception rule`. A competing atomic-projection account would be a new event postulate and is not adopted.
 
 ## Route triage
 

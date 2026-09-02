@@ -30,6 +30,16 @@ const MIXED_FACE_CHART = {
   axis: [1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)],
   polarities: [1, -1, 1, -1, 1, -1],
 };
+const FACE_DIAGONAL_CHART = {
+  id: 'antipodal-face-diagonal',
+  axis: [1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)],
+  polarities: [1, -1, 1, -1, 1, -1],
+};
+const REMAINING_EXTREME_RAY_CHARTS = [
+  { id: 'ray-minus3-minus10-11', axis: [-3, -10, 11].map((value) => value / Math.sqrt(230)), receiverIndex: 0 },
+  { id: 'ray-3-minus11-10', axis: [3, -11, 10].map((value) => value / Math.sqrt(230)), receiverIndex: 0 },
+  { id: 'ray-minus11-10-3', axis: [-11, 10, 3].map((value) => value / Math.sqrt(230)), receiverIndex: 4 },
+].map((chart) => ({ ...chart, polarities: [1, -1, 1, -1, 1, -1] }));
 
 function dot(left, right) {
   return left.reduce((sum, value, index) => sum + value * right[index], 0);
@@ -171,5 +181,35 @@ test('unchanged generic evaluator independently samples the antipodal mixed-face
     const obstruction = (acceleration.y + acceleration.z) / Math.sqrt(2);
     assert.ok(obstruction < -0.59,
       `beta=${beta} did not preserve the certified strict-negative obstruction: ${obstruction}`);
+  }
+});
+
+test('unchanged generic evaluator independently samples the antipodal face-diagonal obstruction', () => {
+  for (const beta of [0.1, 0.25, 0.5, 0.75, 0.9, 0.99]) {
+    const packet = independentLedger(beta, FACE_DIAGONAL_CHART);
+    assert.equal(packet.reducedMeasures.validity.passed, true,
+      JSON.stringify(packet.reducedMeasures.numericalConvergence));
+    assert.equal(packet.rawLedgers.causalRoots.length, 6);
+    assert.equal(packet.rawLedgers.causalRoots.every((event) => event.rootCount === 5), true);
+    const acceleration = packet.rawLedgers.causalRoots[0].measures.probeResponses[0].acceleration;
+    const obstruction = dot(FACE_DIAGONAL_CHART.axis, [acceleration.x, acceleration.y, acceleration.z]);
+    assert.ok(obstruction >= -1.917546025443432 && obstruction <= -0.632042783702377,
+      `beta=${beta} produced axis acceleration ${obstruction} outside the certified cover`);
+  }
+});
+
+test('unchanged generic evaluator independently samples the remaining extreme-ray obstructions', () => {
+  for (const chart of REMAINING_EXTREME_RAY_CHARTS) {
+    for (const beta of [0.1, 0.25, 0.5, 0.75, 0.9, 0.99]) {
+      const packet = independentLedger(beta, chart);
+      assert.equal(packet.reducedMeasures.validity.passed, true,
+        JSON.stringify(packet.reducedMeasures.numericalConvergence));
+      assert.equal(packet.rawLedgers.causalRoots.every((event) => event.rootCount === 5), true);
+      const acceleration = packet.rawLedgers.causalRoots[chart.receiverIndex].measures.probeResponses[0].acceleration;
+      const tangential = cross(chart.axis, VERTICES[chart.receiverIndex]);
+      const obstruction = dot(tangential, [acceleration.x, acceleration.y, acceleration.z]);
+      assert.ok(obstruction >= -1.128562106033269 && obstruction <= -0.1017572007967045,
+        `chart=${chart.id} beta=${beta} produced tangential acceleration ${obstruction} outside the certified cover`);
+    }
   }
 });

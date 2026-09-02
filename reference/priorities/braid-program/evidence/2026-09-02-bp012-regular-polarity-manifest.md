@@ -73,14 +73,56 @@ The tracked `run-regular-polarity-shard.mjs` now supplies three fail-closed mode
 
 A retained $N=7$, $\beta_f=3.070356625390253$ four-shard execution consumes the current 40,952-row manifest and one 39,653-byte kernel. The kernel has 28 roots per receiver, no fold event, minimum Jacobian floor $0.7071146280572445$, and maximum root-equation residual $8.24\times10^{-13}$. Its SHA-256 is `60fcc4f669e94569e85b40968220bf3fac9c97c3a0fded355caafba56ef1a4c3`. The four projection shards contain all 85 representatives exactly once; the reducer replays all 85 and reports zero missing or duplicate rows. The reduction receipt SHA-256 is `ab537a2e808a9aa4a3c94d47e3c73e8b2ff9b4b18257967cc94b5e7963481859`.
 
+The same fixed-speed kernel mode was then run once for every remaining inventory, without invoking the redundant direct polarity evaluator:
+
+| $N$ | Roots per receiver | Kernel bytes | Kernel SHA-256 |
+| ---: | ---: | ---: | --- |
+| 8 | 32 | 45,268 | `cc94402be6ac9fb6ddc75056a42d990dab1a1e63e5c11f1825dc2cadc59595bf` |
+| 9 | 36 | 50,796 | `8ec001b0309c2cdc3f8c2b9d113fd0fba7f9a9310e075de885bd3d647288ea14` |
+| 10 | 40 | 55,998 | `026f253e6aaae3b62a785e222c5668f45d05a363c7c6cc68148304773d62650e` |
+| 11 | 44 | 61,546 | `ebed4458961636b559cce4575b8b322823405b6e7383dc0ccc56fad13577cd68` |
+| 12 | 48 | 67,180 | `afdc455f85f395b3f39388bf2afa6499f340e82c9b53400532988427c5d7fbd2` |
+
+All six $N=7$ through $N=12$ kernels report complete finite chord ledgers, no fold event at this speed, minimum Jacobian floor at least $0.7071146280572445$, and maximum root-equation residual $8.24\times10^{-13}$. The four-shard producer and reducer then projected the full fixed-speed manifest:
+
+| $N$ | Expected and replayed representatives | Total shard bytes | Reduction SHA-256 |
+| ---: | ---: | ---: | --- |
+| 7 | 85 | 603,989 | `ab537a2e808a9aa4a3c94d47e3c73e8b2ff9b4b18257967cc94b5e7963481859` |
+| 8 | 257 | 2,048,693 | `80917bec692860364533da5e55df3ab7958b94586bc8b497d7efa0c97cf34816` |
+| 9 | 765 | 6,776,801 | `06afe25827427b0cabbd7276ec21a3bdb31cc5172d0b75014e4b95a37ad11ed0` |
+| 10 | 2,518 | 24,551,872 | `9729e58284f9204495cd134cb31d36e32ec5f91bc5528d74c95c0816193de86d` |
+| 11 | 8,359 | 88,884,746 | `a0854e6abe5113a2007f7132cb5cb897e0441973ae47a959dedbc1cad4e45a5b` |
+| 12 | 28,968 | 333,556,228 | `43398ac56edc391ff1476dd144bbba8e78d751d58c4db9ed957092fcf069d7fa` |
+
+Every reduction reports expected count equal to received and replayed count, with zero duplicate or missing class identifiers. The retained ignored analytical directory occupies 467 MiB including the manifest, kernels, shards, and receipts. This completes all 40,952 regular-polarity projections at one fixed speed, but it does not certify an interval in speed.
+
+Plainly: one reusable root table and one source-bound floating projection now exist for every declared polarity class at the demonstration speed. The bounded speed schedule, topology-boundary probes, and candidate refinement remain open.
+
+## Fixed-Speed Full-Vector Diagnostic
+
+A read-only reduction over the complete retained shard set measured the smallest maximum-member full-vector residual in each inventory at $\beta_f=3.070356625390253$:
+
+| $N$ | Classes read | Smallest maximum-member residual | Minimizing class |
+| ---: | ---: | ---: | --- |
+| 7 | 85 | 7.9798228240434605 | alternating |
+| 8 | 257 | 10.84037148292789 | alternating |
+| 9 | 765 | 13.315014578036166 | alternating |
+| 10 | 2,518 | 16.838461085428204 | alternating |
+| 11 | 8,359 | 19.98356543037336 | alternating |
+| 12 | 28,968 | 24.16997687850113 | alternating |
+
+No class had maximum-member full-vector residual below one at this speed. In every minimizing row the axial residual is exactly zero in floating output, the radial residual is at most $1.34\times10^{-15}$, and the displayed residual is therefore tangential. The read-only pass consumed all 40,952 rows in 2.56 measured wall-clock seconds. This is a finite-point measured diagnostic of the prescribed evaluator, not an interval lower bound and not an independent proof that the alternating class is globally optimal in speed.
+
+Plainly: at this one speed, every regular polarity class misses full-vector balance by a visible tangential component; the alternating word misses least for every tested ring size. A different speed can change that ordering or create a zero, so the bounded speed search remains necessary.
+
 The pipeline script SHA-256 is `b826d709c5f83ad610923de80be278b442d5020506484bea130d00514dedf778`; its focused end-to-end test SHA-256 is `f02106d4fc86ad1ea94bb1cce711b2d835c6c68b4f98d983bd096c4c2e051ab6`. The fixed-speed pipeline test and both shared-kernel tests pass.
 
-Plainly: the campaign now has a working nonredundant data path from manifest to one root kernel to independent shards to an exact completeness receipt. This one-speed demonstration is infrastructure evidence, not a search result across the declared speed interval.
+Plainly: the campaign now has a working nonredundant data path from manifest to one root kernel per ring size to independent shards to exact completeness receipts. This one-speed census is finite-point infrastructure evidence, not a search result across the declared speed interval.
 
 ## Boundary And Falsifier
 
-The manifest is a derived finite-combinatorics and source-binding result. The shared kernel and sharded pipeline are implemented prescribed-path reductions, not a continuous speed-domain certificate. BP-012 still requires a declared speed/topology schedule, topology-boundary probes, candidate refinement, the full $N=7$ through $N=12$ campaign reduction, and unchanged independent full-evaluator checks at promoted candidates and negative controls. No balance, bounded negative, evolution, retention, stability, binding, or physical ranking is established here.
+The manifest is a derived finite-combinatorics and source-binding result. The shared kernel and sharded pipeline are implemented prescribed-path reductions, not a continuous speed-domain certificate. BP-012 still requires a declared speed/topology schedule, topology-boundary probes, candidate refinement, the full scheduled $N=7$ through $N=12$ campaign reduction beyond this single speed, and unchanged independent full-evaluator checks at promoted candidates and negative controls. No balance, bounded negative, evolution, retention, stability, binding, or physical ranking is established here.
 
-A balanced word outside exactly one recorded orbit, a noncanonical row, a manifest/Burnside mismatch, an orbit-population/binomial mismatch, a failed source binding, or a disagreement with the pre-existing canonicalizer overturns the corresponding statement.
+A balanced word outside exactly one recorded orbit, a noncanonical row, a manifest/Burnside mismatch, an orbit-population/binomial mismatch, a failed source binding, a disagreement with the pre-existing canonicalizer, or a retained projection row below the reported fixed-speed minima overturns the corresponding statement.
 
 Closure goal: independently admit the manifest, shared kernel, and fixed-speed shard pipeline, then freeze the speed/topology schedule and run the bounded $N=7$ through $N=12$ campaign without using the redundant serial evaluator.

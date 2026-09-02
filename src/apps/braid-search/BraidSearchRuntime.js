@@ -26,6 +26,7 @@ import {
   resolveBorgLibraryReturnHref,
 } from "../shared/BorgSelectionNavigation.mjs";
 import {
+  buildBraidSearchRouteHref,
   persistBraidSearchRouteState,
   readBraidSearchRouteState,
 } from "./BraidSearchRouteState.mjs";
@@ -186,8 +187,14 @@ function filteredRows(state) {
 }
 
 function assemblyOptions(data, selectedAssemblyId = "all") {
-  const assemblyIds = [...new Set(data.rows.map((row) => row.assemblyId))]
-    .sort();
+  const labels = new Map(data.rows.map((row) => [
+    row.assemblyId,
+    row.label ?? row.sourceSlug ?? row.assemblyId,
+  ]));
+  const assemblyIds = [...labels.keys()].sort((left, right) =>
+    labels.get(left).localeCompare(labels.get(right), undefined, {
+      numeric: true,
+    }));
   if (selectedAssemblyId !== "all" &&
       !assemblyIds.includes(selectedAssemblyId)) {
     assemblyIds.unshift(selectedAssemblyId);
@@ -199,7 +206,7 @@ function assemblyOptions(data, selectedAssemblyId = "all") {
       label: assemblyId === selectedAssemblyId &&
         !data.rows.some((row) => row.assemblyId === assemblyId)
         ? `Assembly ${assemblyId} · no campaign rows`
-        : `Assembly ${assemblyId}`,
+        : labels.get(assemblyId),
     })),
   ];
 }
@@ -2027,7 +2034,7 @@ function renderEvidenceRecord(state, record) {
   const openBorg = element("a", "compact-dashboard-button", "Open in Borg");
   openBorg.href = buildBorgWorkbenchHref({
     selection,
-    returnTo: `${state.locationLike.pathname}${state.locationLike.search}`,
+    returnTo: buildBraidSearchRouteHref(state, state.locationLike),
   });
   const showAll = element("button", "compact-dashboard-button", "All evidence records");
   showAll.type = "button";
@@ -2150,38 +2157,52 @@ function renderBoundary(data) {
   const boundary = element("aside", "compact-dashboard-boundary");
   append(
     boundary,
-    element("strong", "", "Diagnostic only"),
+    element("strong", "", "Evidence boundaries remain separate"),
     element(
       "p",
       "",
-      "This dashboard describes sampling, convergence, compact metrics, " +
-      "numerical margins, computational cost, and rows for later adjudication. " +
-      `It does not establish ${data.claimBoundary.doesNotEstablish.join(", ")}.`,
+      data
+        ? "Compact rows describe sampling, convergence, numerical margins, " +
+          "cost, and rows for later adjudication. They do not establish " +
+          `${data.claimBoundary.doesNotEstablish.join(", ")}.`
+        : "Prescribed records, exact adjudications, broader context, compact " +
+          "diagnostics, and historical archives retain their own claim grades. " +
+          "The app does not combine them into a score or promote context into a verdict.",
     ),
   );
   return boundary;
 }
 
-function renderError(state, message) {
+function renderError(state, message, title = "Evidence index unavailable") {
   state.viewContainer.replaceChildren();
   const wrapper = element("section", "compact-dashboard-error");
   append(
     wrapper,
-    element("h1", "", "Dashboard data unavailable"),
+    element("h1", "", title),
     element("p", "", message),
-    element(
-      "p",
-      "",
-      "Run the read-only exporter and reload this page. Deeper inspection " +
-      "remains in the Codex workspace.",
-    ),
-    element(
-      "pre",
-      "compact-dashboard-pre",
-      "node scripts/eom/export-compact-sweep-dashboard.mjs",
-    ),
   );
   state.viewContainer.appendChild(wrapper);
+}
+
+function renderCampaignUnavailable(state) {
+  const view = element("div", "compact-dashboard-view");
+  const unavailable = panel({
+    kicker: "Optional evidence lane",
+    title: "Exact compact campaign export not loaded",
+    description:
+      "Braid Search remains complete at the current Borg identity and " +
+      "scientific-status levels. This view becomes available when a terminal " +
+      "exact-identity compact export is present.",
+  });
+  if (state.campaignError) {
+    unavailable.body.appendChild(element(
+      "p",
+      "compact-dashboard-muted",
+      state.campaignError,
+    ));
+  }
+  view.appendChild(unavailable.wrapper);
+  return view;
 }
 
 function syncTabs(state) {
@@ -2193,9 +2214,10 @@ function syncTabs(state) {
 }
 
 function renderView(state) {
-  if (!state.data) return;
+  if (!state.evidence) return;
   state.viewContainer.replaceChildren();
   const renderers = {
+    evidence: renderEvidence,
     funnel: renderFunnel,
     gates: renderGates,
     metrics: renderMetrics,
@@ -2204,7 +2226,14 @@ function renderView(state) {
     cases: renderCases,
   };
   const renderer = renderers[state.viewId] ?? renderers[DEFAULT_VIEW_ID];
-  state.viewContainer.appendChild(renderer(state));
+  const isCampaignView = state.viewId !== "evidence";
+  state.dispositionFilter.hidden = !isCampaignView;
+  state.configurationFilter.hidden = !isCampaignView;
+  state.viewContainer.appendChild(
+    isCampaignView && !state.data
+      ? renderCampaignUnavailable(state)
+      : renderer(state),
+  );
   persistBraidSearchRouteState(
     state,
     state.locationLike,
@@ -2219,12 +2248,12 @@ function mountShell(root, state) {
   const title = element("div", "compact-dashboard-title");
   append(
     title,
-    element("div", "compact-dashboard-kicker", "Borg campaign analysis"),
+    element("div", "compact-dashboard-kicker", "Borg evidence analysis"),
     element("h1", "", "Braid Search"),
     element(
       "p",
       "",
-      "Focused prescribed-path diagnostics · read-only evidence view",
+      "Complete current evidence by exact Borg identity · read-only",
     ),
   );
   const actions = element("div", "compact-dashboard-actions");
@@ -2253,7 +2282,7 @@ function mountShell(root, state) {
       state.filters.assemblyId = value;
       state.filters.modelRevisionSha256 = value === "all"
         ? null
-        : state.data.rows.find((row) => row.assemblyId === value)
+        : state.evidence.records.find((row) => row.assemblyId === value)
           ?.modelRevisionSha256 ?? null;
       state.filters.sourceSlug = "all";
       refreshFilters(state);
@@ -2284,8 +2313,8 @@ function mountShell(root, state) {
   });
   append(
     filters,
-    dispositionControl.wrapper,
     assemblyControl.wrapper,
+    dispositionControl.wrapper,
     configurationControl.wrapper,
   );
 
@@ -2340,22 +2369,24 @@ function mountShell(root, state) {
     element(
       "div",
       "compact-dashboard-loading",
-      "Loading dashboard data…",
+      "Loading current Borg evidence…",
     ),
   );
   main.appendChild(viewHost);
   const footer = element(
     "footer",
     "compact-dashboard-footer",
-    "Prescribed-path compact diagnostics only · no campaign artifacts are modified by this browser app.",
+    "Read-only evidence index · no source, campaign, or Borg record is modified by this app.",
   );
   append(shell, header, main, footer);
   root.replaceChildren(shell);
   Object.assign(state, {
     assemblySelect: assemblyControl.select,
+    dispositionFilter: dispositionControl.wrapper,
     dispositionSelect: dispositionControl.select,
     main,
     configurationSelect: configurationControl.select,
+    configurationFilter: configurationControl.wrapper,
     viewContainer: viewHost,
   });
 }
@@ -2371,7 +2402,7 @@ function replaceOptions(select, options, selectedValue) {
 }
 
 function refreshFilters(state) {
-  if (!state.data) return;
+  if (!state.evidence) return;
   replaceOptions(
     state.dispositionSelect,
     dispositionOptions(),
@@ -2379,15 +2410,20 @@ function refreshFilters(state) {
   );
   replaceOptions(
     state.assemblySelect,
-    assemblyOptions(state.data, state.filters.assemblyId),
+    assemblyOptions(
+      { rows: state.evidence.records },
+      state.filters.assemblyId,
+    ),
     state.filters.assemblyId,
   );
-  const options = configurationOptions(
-    state.data,
-    state.filters.assemblyId,
-    state.filters.modelRevisionSha256,
-    state.filters.candidateDisposition,
-  );
+  const options = state.data
+    ? configurationOptions(
+        state.data,
+        state.filters.assemblyId,
+        state.filters.modelRevisionSha256,
+        state.filters.candidateDisposition,
+      )
+    : [{ value: "all", label: "All configurations" }];
   if (!options.some((option) => option.value === state.filters.sourceSlug)) {
     state.filters.sourceSlug = "all";
   }
@@ -2416,27 +2452,97 @@ function loadData(state, rawData) {
     state.selectedCaseKey = null;
   }
   refreshFilters(state);
-  state.main.replaceChildren(state.viewContainer, renderBoundary(data));
-  renderView(state);
 }
 
-export async function renderCompactSweepDashboardApp({
-  root = document.getElementById("compact-sweep-dashboard-app"),
-  defaultDataPath =
-    "./.local-data/braid-analysis/compact-monte-carlo/configuration-sweep-v2/compact-sweep-dashboard.v3.json",
+async function fetchJson(fetchImpl, url, label) {
+  const response = await fetchImpl(url, { cache: "no-store" });
+  if (!response.ok) throw new Error(`${label} returned HTTP ${response.status}`);
+  return response.json();
+}
+
+async function fetchOptionalJson(fetchImpl, url, label) {
+  try {
+    return { data: await fetchJson(fetchImpl, url, label), error: null };
+  } catch (error) {
+    return { data: null, error: error.message };
+  }
+}
+
+async function sha256Text(value, cryptoLike) {
+  if (!cryptoLike?.subtle) throw new Error("SHA-256 verification is unavailable.");
+  const digest = await cryptoLike.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(value),
+  );
+  return [...new Uint8Array(digest)]
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+async function loadProjectionIntegrity(fetchImpl, projection, cryptoLike) {
+  const sourceResponse = await fetchImpl(`./${projection.source}`, {
+    cache: "no-store",
+  });
+  if (!sourceResponse.ok) {
+    throw new Error(
+      `scientific-status source returned HTTP ${sourceResponse.status}`,
+    );
+  }
+  const sourceText = await sourceResponse.text();
+  const sourceSha256 = await sha256Text(sourceText, cryptoLike);
+  const evidenceUrls = [...new Set(projection.relations.flatMap((relation) =>
+    relation.evidenceLinks.map((link) => link.url.split("#")[0])))];
+  const evidenceChecks = await Promise.all(evidenceUrls.map(async (url) => {
+    try {
+      const response = await fetchImpl(`./${url}`, { cache: "no-store" });
+      return response.ok ? null : url;
+    } catch {
+      return url;
+    }
+  }));
+  return {
+    sourceText,
+    sourceSha256,
+    brokenEvidenceLinks: evidenceChecks.filter(Boolean),
+  };
+}
+
+async function loadSourceSpecs(fetchImpl, registry) {
+  const paths = [...new Set(registry.entries.map((entry) => entry.sourceSpec))];
+  const rows = await Promise.all(paths.map(async (sourcePath) => [
+    sourcePath,
+    await fetchJson(fetchImpl, `./${sourcePath}`, `source ${sourcePath}`),
+  ]));
+  return new Map(rows);
+}
+
+export async function renderBraidSearchApp({
+  root = document.getElementById("braid-search-app"),
+  compactDataPath =
+    "./.local-data/braid-analysis/current-exact-configuration-sweep/compact-sweep-dashboard.v3.json",
+  historicalCompactPath =
+    "./.local-data/braid-analysis/compact-monte-carlo/family-sweep-v1/compact-sweep-dashboard.v1.json",
+  borgRegistryPath =
+    "./reference/priorities/app-borg/assembly-registry.v1.json",
+  scientificProjectionPath =
+    "./reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json",
+  campaignRegistryPath =
+    "./src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json",
   fetchImpl = globalThis.fetch,
   documentLike = globalThis.document,
   windowLike = globalThis.window,
+  cryptoLike = globalThis.crypto,
 } = {}) {
-  if (!root) throw new Error("compact sweep dashboard root is required.");
+  if (!root) throw new Error("Braid Search root is required.");
   const routeState = readBraidSearchRouteState(windowLike?.location?.search ?? "");
   const state = {
     casePage: routeState.casePage,
     caseConfigurationId: routeState.caseConfigurationId,
     caseQuery: routeState.caseQuery,
     caseSampleOrdinal: routeState.caseSampleOrdinal,
+    campaignError: null,
     data: null,
-    defaultDataPath,
+    evidence: null,
     filters: { ...routeState.filters },
     historyLike: windowLike?.history,
     locationLike: windowLike?.location,
@@ -2459,20 +2565,77 @@ export async function renderCompactSweepDashboardApp({
     fetchImpl,
   }).init();
   try {
-    const response = await fetchImpl(defaultDataPath, { cache: "no-store" });
-    if (!response.ok) {
-      throw new Error(`local export request returned HTTP ${response.status}`);
+    const [registry, projection, campaignRegistry, compactResult, archiveResult] =
+      await Promise.all([
+        fetchJson(fetchImpl, borgRegistryPath, "Borg registry"),
+        fetchJson(fetchImpl, scientificProjectionPath, "scientific-status projection"),
+        fetchJson(fetchImpl, campaignRegistryPath, "current campaign registry"),
+        fetchOptionalJson(fetchImpl, compactDataPath, "local compact export"),
+        fetchOptionalJson(fetchImpl, historicalCompactPath, "historical compact archive"),
+      ]);
+    const [sourceSpecsByPath, projectionIntegrity] = await Promise.all([
+      loadSourceSpecs(fetchImpl, registry),
+      loadProjectionIntegrity(fetchImpl, projection, cryptoLike),
+    ]);
+    let compactData = compactResult.data;
+    let campaignError = compactResult.error;
+    if (compactData) {
+      try {
+        validateCompactSweepDashboardData(compactData);
+      } catch (error) {
+        compactData = null;
+        campaignError = `local compact export is invalid: ${error.message}`;
+      }
     }
-    loadData(state, await response.json(), defaultDataPath);
+    let historicalArchive = null;
+    if (archiveResult.data) {
+      try {
+        historicalArchive = validateHistoricalCompactArchive(archiveResult.data);
+      } catch (error) {
+        historicalArchive = Object.freeze({
+          status: "invalid",
+          drawn: 0,
+          evaluated: 0,
+          drawnNotEvaluated: 0,
+          compactPassed: 0,
+          reason: `Historical archive is present but invalid: ${error.message}`,
+        });
+      }
+    }
+    state.campaignError = campaignError;
+    state.evidence = buildBraidEvidenceIndex({
+      registry,
+      projection,
+      campaignRegistry,
+      sourceSpecsByPath,
+      campaignData: compactData,
+      campaignError,
+      historicalArchive,
+      projectionIntegrity,
+    });
+    if (compactData) loadData(state, compactData);
+    if (state.filters.assemblyId !== "all" &&
+        !state.evidence.records.some((record) =>
+          record.assemblyId === state.filters.assemblyId &&
+          record.modelRevisionSha256 === state.filters.modelRevisionSha256)) {
+      state.filters.assemblyId = "all";
+      state.filters.modelRevisionSha256 = null;
+    }
+    refreshFilters(state);
+    state.main.replaceChildren(state.viewContainer, renderBoundary(compactData));
+    renderView(state);
   } catch (error) {
     renderError(
       state,
-      `The default local export could not be loaded (${error.message}).`,
+      `The required current Borg evidence could not be loaded (${error.message}).`,
     );
   }
   return {
     get data() {
       return state.data;
+    },
+    get evidence() {
+      return state.evidence;
     },
     get filteredRows() {
       return filteredRows(state);

@@ -128,10 +128,7 @@ export function buildBraidSearchAnalysisHref({
   returnTo = null,
   path = "./braid-search.html",
 } = {}) {
-  const query = new URLSearchParams({
-    view: "funnel",
-    candidateDisposition: "active-candidate",
-  });
+  const query = new URLSearchParams({ view: "evidence" });
   if (selection) {
     const exact = validateBorgSelection(selection);
     query.set("assemblyId", exact.assemblyId);

@@ -1,6 +1,6 @@
 # BP-014 First-Birth Threshold Expansion
 
-Status: exact higher-order birth thresholds and dominant pre-phase lattice derived; uniform complement bound open
+Status: exact higher-order birth thresholds and dominant pre-phase lattice derived; regularized pre-phase remainder closed at $O(N^{4/3})$; non-pre-phase complement open
 
 ## Scope
 
@@ -195,9 +195,117 @@ $$
 }.
 $$
 
-If this inequality is certified on the increasing inverse branch for the declared first-birth $x$ interval, the alternating-sequence bound reduces the complete $R_\beta'$ sum to its last sample. At $X=\pi-\pi/(2N)$, writing $z=\pi-N^{-1/3}y$ gives the fold-separated cubic $y^3/6-xy=\pi/2+O(N^{-2/3})$, so that last sample is $O(N^{4/3})$. This would close the pre-phase remainder at the required subleading order.
+This inequality is now certified on the complete increasing branch for $1\leq\beta\leq13/10$. Divide its positive cross-product by $s^3$ and write $y=z/s$. The target becomes
 
-Plainly: the remaining sum-exchange problem is now one concrete shape sign plus one scaled endpoint estimate. Proving that sign would turn the observed $1/6$ obstruction into a uniform theorem for all sufficiently large rings.
+$$
+P_\beta(c,y)
+=\left(1+c^2+2\beta c^3\right)(\beta+y)^3
+-2(\beta+1)(1+\beta c)^3>0.
+$$
+
+The first factor is positive when $J=1+\beta c>0$: it is immediate for $c\geq0$, while for $c<0$ the branch condition $\beta<-1/c$ gives $1+c^2+2\beta c^3>1-c^2>0$. The Cusa--Huygens inequality gives
+
+$$
+y=\frac z{\sin z}>\frac3{2+\cos z}=\frac3{2+c},
+\qquad 0<z<\pi.
+$$
+
+For completeness, this inequality is source-independent here: if $F(z)=z(2+\cos z)-3\sin z$, then $F(0)=0$, $F'(z)=2(1-\cos z)-z\sin z$, and $F''(z)=\sin z-z\cos z$ has derivative $z\sin z>0$. Hence $F''$, then $F'$, then $F$ are strictly positive on $(0,\pi)$.
+
+Therefore it suffices to evaluate $P_\beta$ at $y=3/(2+c)$. Exact algebra gives
+
+$$
+P_\beta\left(c,\frac3{2+c}\right)
+=-\frac{(1-c)^2}{(2+c)^3}H_\beta(c),
+$$
+
+where
+
+$$
+\begin{aligned}
+H_\beta(c)={}&
+2\beta^3c^4+3\beta^3c^3-14\beta^3c^2-28\beta^3c-8\beta^3\\
+&+6\beta^2c^3-9\beta^2c^2-60\beta^2c-36\beta^2\\
+&+6\beta c^2-31\beta c-38\beta+2c-11.
+\end{aligned}
+$$
+
+Set
+
+$$
+u=\frac{\beta c+1}{\beta+1},
+\qquad
+v=\frac{10}{3}(\beta-1).
+$$
+
+The declared rectangle maps to $(u,v)\in(0,1)\times[0,1]$. The exact tensor-product Bernstein coefficients of $\beta H_\beta(c)$ on this unit square are all nonpositive; the only zero coefficient is the $(0,0)$ corner coefficient and every other coefficient is strictly negative. Since $u>0$ on the open increasing branch, the Bernstein convex-hull identity gives $H_\beta(c)<0$ there. The checker [check_bp014_regularized_shape.py](../../../../scripts/equation-mapping/check_bp014_regularized_shape.py) constructs those rational coefficients and asserts their signs exactly.
+
+It follows that $R_\beta'$ is strictly increasing throughout the asymptotic speed strip $1\leq\beta\leq1.3$. Direct expansion at the regular endpoint gives $R_\beta'(0)=1/[6(\beta+1)^2]>0$, so the alternating-sequence bound reduces the complete $R_\beta'$ sum to its last sample.
+
+That sample admits a uniform enclosure. Fix a compact scaled-speed interval $x\in[a,b]$ with
+
+$$
+0<a\leq b<x_2^{\mathrm{fold}}
+=\frac12(3\pi)^{2/3},
+\qquad
+\beta=1+xN^{-2/3}.
+$$
+
+At $X_{2N-1}=\pi-\pi/(2N)$, write $z=\pi-w$. The exact endpoint equation is
+
+$$
+w-\beta\sin w=\frac{\pi}{2N}.
+$$
+
+The bound $\sin w\geq w-w^3/6$ gives
+
+$$
+w^3\geq\frac{3\pi}{\beta N}.
+$$
+
+Conversely, $\sin w\leq w-w^3/6+w^5/120$ and monotonicity beyond the fold show uniformly that $w\leq C_bN^{-1/3}$ for any fixed $C_b$ satisfying $C_b^3/6-bC_b>\pi/2$ once $N$ is large enough. Thus $w=\Theta(N^{-1/3})$ uniformly on the compact interval.
+
+For the inverse Jacobian $J=1-\beta\cos w$, the cosine upper bound gives
+
+$$
+\begin{aligned}
+N^{2/3}J
+&\geq
+-x+\frac{\beta}{2}N^{2/3}w^2
+-\frac{\beta}{24}N^{2/3}w^4\\
+&\geq
+-b+\frac12\beta^{1/3}(3\pi)^{2/3}
+-O_b(N^{-2/3})\\
+&\geq
+x_2^{\mathrm{fold}}-b-O_b(N^{-2/3}).
+\end{aligned}
+$$
+
+The positive gap $x_2^{\mathrm{fold}}-b$ therefore gives $J\geq\kappa_bN^{-2/3}$ for all sufficiently large $N$. Also $\sin w\geq w/2\geq c_bN^{-1/3}$. Since
+
+$$
+C_\beta'(X_{2N-1})
+=\frac{-\cos z}{\sin^2z\,(1+\beta\cos z)}
+=\frac{\cos w}{\sin^2w\,J},
+$$
+
+the last sample is $O_b(N^{4/3})$. The alternating monotonicity bound now proves
+
+$$
+\boxed{
+\sum_{k=1}^{2N-1}(-1)^kR_\beta'(X_k)
+=O_b(N^{4/3})
+}
+$$
+
+uniformly on every such compact interval. Hence the pre-phase lattice has the proved expansion
+
+$$
+\sum_{k=1}^{2N-1}T_{k,N}^{\mathrm{pre}}
+=\frac{N^2}{6}+\frac{xN^{4/3}}{12}+O_b(N^{4/3}).
+$$
+
+Plainly: the shape sign and endpoint estimate are both proved on every compact scaled-speed interval below the second fold. The positive $N^2/6$ term is now a uniform theorem for the complete pre-phase root family; only the other root families can cancel it.
 
 The leading part of the exact decomposition converges to the nonzero endpoint lattice
 
@@ -276,14 +384,16 @@ The agreement is directionally consistent at small $N$ but does not establish th
 
 The tracked same-evaluator diagnostic [diagnose_planar_ring_large_n_first_birth.mjs](../../../../scripts/equation-mapping/diagnose_planar_ring_large_n_first_birth.mjs) evaluates $x=1.55$. It measures $S_N/N^2$ as approximately $0.1550292$, $0.1600725$, $0.1627559$, and $0.1642900$ for $N=50,100,200,400$, respectively, with exactly $2N+2$ roots per receiver and no reported fold event. This trend is consistent with $1/6$ but is not an independent oracle or a proof of the limit.
 
+The same diagnostic also evaluates the conditional boundary-layer predictor $\beta=\beta_{1,N}^{\mathrm{fold}}+2/(\pi^2N^2)$. For $N=50,100,200,400$, it measures $S_N/N^{4/3}$ as approximately $0.0574984$, $0.0563059$, $0.0555257$, and $0.0550308$, again with exactly $2N+2$ roots per receiver and no reported fold event. Thus the predicted offset removes the observed order-$N^2$ residual and leaves a numerically bounded order-$N^{4/3}$ remainder on this finite same-evaluator sequence. This is a sharper consistency check of the derived coefficient, but it remains nonindependent finite evidence and does not certify a zero or a uniform remainder.
+
 ## Uniform remainder obligation
 
 For any fixed $K$, analyticity of $2(\tan\alpha-\alpha)$ at $\alpha=0$ gives a uniform remainder over $1\leq k\leq K$ once $N$ is large enough. That finite-$K$ statement is not uniform when the number of born lobes grows with $N$. The first-birth theorem must therefore predeclare a compact $x$ interval strictly between the $k=1$ and $k=2$ threshold limits, use the boxed corrections to keep it fold-separated for finite $N$, and prove a uniform decomposition of the complete tangential ledger. In particular, it must justify the pre-phase sum limit, bound the bulk and opposite endpoint after alternating pairing, and decide whether any complement term cancels the derived $1/6$ coefficient.
 
 ## Boundary and falsifier
 
-Derived: the fixed-$k$ threshold expansion, the location of parity in the signed ledger, the fixed-$k$ pre-phase limit, the exact finite regularized decomposition that exposes the $N^2/6$ term, and the local newborn fold expansion. Inferred conditional on the open complement bound: the $2/(\pi^2N^2)$ balance-to-fold gap and $N^{5/3}$ compatible-radius order. Measured: the same-evaluator $N=50$ through $N=400$ diagnostic and the accepted finite $N=12$ comparison. Open: an $O(N^{4/3})$ bound or contrary leading term for the regularized $R_\beta'$ sum, bounds for the opposite endpoint and the non-pre-phase roots, whether the $1/6$ term survives in the complete ledger, even/odd subleading backgrounds, and certification of the boundary-layer zero.
+Derived: the fixed-$k$ threshold expansion, the location of parity in the signed ledger, the exact finite regularized decomposition, the regularized shape inequality for $1\leq\beta\leq1.3$, the uniform pre-phase expansion with leading coefficient $1/6$, and the local newborn fold expansion. Inferred conditional on the open non-pre-phase complement bound: the $2/(\pi^2N^2)$ balance-to-fold gap and $N^{5/3}$ compatible-radius order. Measured: the same-evaluator $N=50$ through $N=400$ interior and predicted-boundary diagnostics and the accepted finite $N=12$ comparison. Open: bounds for the opposite endpoint and the non-pre-phase roots, whether those families cancel the proved pre-phase $1/6$ term, even/odd subleading backgrounds, and certification of the boundary-layer zero.
 
 The threshold series is falsified by a symbolic residual below the declared order or an independently enclosed fixed-$k$ fold violating its remainder. The proposed limiting-balance route is falsified if a uniform complete-ledger bound leaves the nonzero $N^2/6$ term uncancelled. It is also falsified by an additional fold entering the predeclared compact $x$ interval, nonconvergence of either parity background, distinct even/odd limiting zeros when a common constant is claimed, or failure of the finite-$N$ remainder to be uniform.
 
-Closure goal: prove the regularized $R_\beta'$ shape inequality and complete-ledger $O(N^{4/3})$ complement bound; if the $1/6$ coefficient survives, replace the presumed interior limiting zero with the fold-boundary law $\beta_N-\beta_{1,N}^{\mathrm{fold}}\sim2/(\pi^2N^2)$ and certify its radius asymptotic.
+Closure goal: prove matching uniform bounds for the non-pre-phase root families and decide whether they cancel the proved pre-phase $1/6$ coefficient; if not, certify the fold-boundary zero $\beta_N-\beta_{1,N}^{\mathrm{fold}}\sim2/(\pi^2N^2)$ and its radius asymptotic.

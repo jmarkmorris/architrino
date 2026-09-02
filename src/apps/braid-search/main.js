@@ -1,12 +1,12 @@
 import {
-  renderCompactSweepDashboardApp,
-} from "./CompactSweepDashboardRuntime.js";
+  renderBraidSearchApp,
+} from "./BraidSearchRuntime.js";
 
 function reportBootstrapError(error) {
   const message = error instanceof Error ? error.message : String(error);
-  globalThis.__ARCHITRINO_COMPACT_SWEEP_DASHBOARD_BOOT_ERROR__ = message;
+  globalThis.__ARCHITRINO_BRAID_SEARCH_BOOT_ERROR__ = message;
   console.error(error);
-  const root = document.getElementById("compact-sweep-dashboard-app");
+  const root = document.getElementById("braid-search-app");
   if (!root) return;
   const banner = document.createElement("section");
   banner.className = "compact-dashboard-error";
@@ -18,8 +18,8 @@ function reportBootstrapError(error) {
   root.replaceChildren(banner);
 }
 
-renderCompactSweepDashboardApp()
+renderBraidSearchApp()
   .then((runtime) => {
-    globalThis.__ARCHITRINO_COMPACT_SWEEP_DASHBOARD_RUNTIME__ = runtime;
+    globalThis.__ARCHITRINO_BRAID_SEARCH_RUNTIME__ = runtime;
   })
   .catch(reportBootstrapError);

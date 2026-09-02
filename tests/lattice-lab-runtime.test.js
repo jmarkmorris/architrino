@@ -389,6 +389,70 @@ test("maximum deformation aggregates coincident columns and partitions lines", (
   assert.doesNotMatch(source, /repeat-cell-endpoint-edge-bundle/u);
 });
 
+test("HCP endpoint aggregation preserves every source identity and exact edge partition", () => {
+  const hcp = createLatticeLabCaseGallery().find(
+    ({ id }) => id === "hcp-abab-layers-v1",
+  );
+  const visibility = createMainDisplayVisibility(hcp);
+  const deformationFactor = xAxisScaleFromDeformationBeta(1);
+  const operatorViewportHeight = 720;
+  const renderedMarkerDiameterPx = 16;
+  const markerDiameterWorld = renderedMarkerDiameterPx * (
+    2 * defaultViewHalfHeightForDisplayRadius(hcp.displayRadius) /
+      operatorViewportHeight
+  );
+  const aggregation = createEndpointVisualAggregation(
+    visibility.visibleSites.map((site) => ({
+      id: site.id,
+      position: createUniaxialDeformedPosition(site.position, {
+        axis: "x",
+        factor: deformationFactor,
+      }),
+    })),
+    visibility.visibleEdges.map((edge) => ({
+      ...edge,
+      id: canonicalSitePair(edge.fromSiteId, edge.toSiteId),
+    })),
+    markerDiameterWorld + 1e-9,
+  );
+
+  assert.equal(deformationFactor, 0.01);
+  assert.equal(visibility.visibleSites.length, 116);
+  assert.equal(visibility.visibleEdges.length, 509);
+  assert.equal(aggregation.groups.length, 30);
+  assert.equal(aggregation.collapsedGroups.length, 30);
+  assert.deepEqual(
+    Object.fromEntries(
+      aggregation.groups.reduce((histogram, group) => {
+        histogram.set(
+          group.memberIds.length,
+          (histogram.get(group.memberIds.length) ?? 0) + 1,
+        );
+        return histogram;
+      }, new Map()),
+    ),
+    { 2: 4, 3: 6, 4: 10, 5: 10 },
+  );
+  assert.deepEqual(
+    aggregation.groups.flatMap(({ memberIds }) => memberIds).sort(),
+    visibility.visibleSites.map(({ id }) => id).sort(),
+  );
+  assert.equal(aggregation.internalEdgeIds.length, 86);
+  assert.equal(aggregation.externalEdges.length, 71);
+  assert.equal(aggregation.redundantExternalEdgeIds.length, 352);
+  assert.equal(
+    aggregation.internalEdgeIds.length +
+      aggregation.externalEdges.length +
+      aggregation.redundantExternalEdgeIds.length,
+    visibility.visibleEdges.length,
+  );
+  assert.ok(
+    aggregation.groupBySiteId.get(hcp.defaultSiteId)?.memberIds.includes(
+      hcp.defaultSiteId,
+    ),
+  );
+});
+
 test("every deformation status uses the concise beta endpoint wording", () => {
   const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   const compressionPresentation = source.match(

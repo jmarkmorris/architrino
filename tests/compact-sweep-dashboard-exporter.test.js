@@ -18,7 +18,7 @@ import {
 } from "../scripts/eom/export-compact-sweep-dashboard.mjs";
 import {
   validateCompactSweepDashboardData,
-} from "../src/apps/compact-sweep-dashboard/CompactSweepDashboardData.js";
+} from "../src/apps/braid-search/BraidSearchData.js";
 import {
   compactSha256Canonical,
   importCompactMonteCarloCampaign,

@@ -55,7 +55,7 @@ Run the independent point checks with:
 node --test tests/octahedral-nine-channel-edge-axis.test.js
 ```
 
-The unchanged generic prescribed-history evaluator independently checks $\beta\in\{0.1,0.25,0.5,0.75,0.9,0.99\}$, returns five partner roots for every receiver, and reproduces the strict-negative projection. All three focused octahedral tests pass. The test SHA-256 is `acae2bc8206e0c5788f9aeb58bede0059ac547ec14fb923587b476f734e36309`.
+The unchanged generic prescribed-history evaluator independently checks $\beta\in\{0.1,0.25,0.5,0.75,0.9,0.99\}$, returns five partner roots for every receiver, and reproduces the strict-negative projection. All five focused octahedral tests pass. The test SHA-256 is `da4b7f4165c7836753f2de19919aaeeb7db1c0faca4105f2a1a2960184ef2718`.
 
 Plainly: the point instrument and the interval oracle solve roots through different implementations. The point checks do not prove the continuum; they independently test the oracle's root and projection meaning at representative speeds.
 

@@ -62,9 +62,19 @@ Run:
 
 Two consecutive executions produced byte-identical standard output at SHA-256 `980c71760b3895dee283320db657a78c998783d855300e1ff8ebc12c20158a76`; the checker SHA-256 is `cd4e1b9047cd4030ef5f7674a47f9b496862a3e73efac249ac00f813f5f4de5e`.
 
-This packet freezes geometry and quotient ownership only. It does not certify a causal root, acceleration residual, zero count, balance, EOM evolution, retention, stability, binding, or physical identity. The accepted mixed-face exclusion supplies one interior negative orbit but cannot be propagated to the rest of $\mathcal D$ without a continuous interval argument.
+This packet freezes geometry and quotient ownership only. It does not itself certify a causal root, acceleration residual, zero count, balance, EOM evolution, retention, stability, binding, or physical identity. The accepted mixed-face exclusion supplies one interior negative orbit. The separate [face-diagonal exclusion](2026-09-02-octahedral-antipodal-face-diagonal-exclusion.md) excludes the extreme ray $(1,1,1)$ continuously over the strict sub-field speed chart. The remaining-extreme-ray checker excludes $(-3,-10,11)$, $(3,-11,10)$, and $(-11,10,3)$ by tangential projections in `[-1.128562106033269,-0.1017572007967045]`; each cover uses 67 accepted boxes, maximum depth one, and minimum transmitter factor `0.780378125607363351388980056231164221085295574`. Thus all four quotient vertices are excluded, but no fixed-axis certificate can be propagated to an edge or interior without a continuous interval argument in the axis parameters.
 
-Plainly: one lopsided face direction is ruled out, but nearby and distant axes can change residual signs. The two-simplex cover is the exact domain on which that possibility must be proved or a genuine zero isolated.
+Run the three-ray certificate with:
+
+```sh
+"${AAA_VENV:-../.venv}/bin/python" scripts/prescribed-path-analysis/oracle/certify_octahedral_antipodal_remaining_extreme_rays.py
+```
+
+Two consecutive outputs were byte-identical at SHA-256 `b905ae94edbaf31adf5673a94bec17411149484fe36ab9bda76e53d89b941cc2`; the wrapper SHA-256 is `c4aa2278d46f1da6672ea08ceb62dc3e7464fd8f86d729aac0855218b81f861c`.
+
+The unchanged generic prescribed-history evaluator independently samples all three declared tangential projections at six speeds, retains five partner roots per receiver, and places every sample inside the interval enclosure. All five focused octahedral tests pass; the test SHA-256 is `da4b7f4165c7836753f2de19919aaeeb7db1c0faca4105f2a1a2960184ef2718`.
+
+Plainly: one lopsided face direction and all four corner axes are ruled out, but an edge or interior axis can still change residual signs. The two-simplex cover is the exact domain on which that possibility must be proved or a genuine zero isolated.
 
 ## Falsifier And Next Object
 

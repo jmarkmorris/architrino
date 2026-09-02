@@ -429,7 +429,7 @@ test("standalone app home controls avoid bare index navigation", () => {
     "src/apps/molecule/MoleculeRuntime.js",
     "src/apps/website-stats/WebsiteStatsRuntime.js",
     "src/apps/animator/AnimatorAppModeRuntime.js",
-    "src/apps/compact-sweep-dashboard/CompactSweepDashboardRuntime.js",
+    "src/apps/braid-search/BraidSearchRuntime.js",
     "src/apps/pdgedit/PdgeditAppModeRuntime.js",
     "src/apps/pdgedit/PdgeditAppRuntime.js",
     "src/apps/ideal-braid/IdealBraidRuntime.js",

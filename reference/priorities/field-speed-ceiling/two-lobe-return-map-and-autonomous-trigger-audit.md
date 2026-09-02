@@ -1,6 +1,6 @@
 # FSC-006b / FSC-005 — Two-Lobe Return Map and Autonomous-Trigger Audit
 
-**Date:** 2026-09-02 **Status:** exploratory FSC-local theorem packet; a sufficient complete-lobe theorem and a prescribed-onset spatial two-cycle are derived inside the proposed exact-mirror restart; the autonomous positive-onset route is closed negatively at current FSC authority because neither the crossing state nor the undeveloped wake/action interface supplies a selector; no full retained-state periodic orbit, field-speed ceiling, or canonical law is adopted. **Owner:** FSC-006b/FSC-005.
+**Date:** 2026-09-02 **Status:** independently reviewed FSC-local theorem packet; the sufficient complete-lobe theorem, returning-event measure typing, prescribed-onset spatial two-cycle, and narrow selector exclusion survive with the repairs incorporated below; no full retained-state periodic orbit, field-speed ceiling, or canonical law is adopted. **Owner:** FSC-006b/FSC-005.
 
 ## Question and verdict
 
@@ -30,9 +30,9 @@ On the exact straight outgoing trace after $T_n$, the partner clocks remain on t
 
 This proves the following scoped negative.
 
-> **Minimal-state no-onset lemma.** In the isolated exact-mirror chart, a state consisting of labeled retained history, crossing-driven received-source clocks, plateau status, and one-time event-family ownership cannot autonomously select a finite positive braking onset. Its selected crossing-state evolution remains straight unless another admitted contribution first creates a strict receiver-side crossing.
+> **Minimal-transition no-onset lemma.** In the isolated exact-mirror chart, the declared minimal crossing transition rule produces no admission-relevant state transition at any finite positive time on the exact zero-ledger outgoing plateau. Its selected crossing-state evolution remains straight unless another admitted contribution first creates a strict receiver-side crossing.
 
-The lemma does not exclude every imaginable history functional. It says that any positive onset must add a new maturity, threshold, or event-state transition not present in the minimal crossing rule. The available dimensional event scalars are $K$ and $L_n$. Time-translation, reflection, and scale covariance alone permit the entire family
+The lemma does not exclude every imaginable history functional. It says that any positive onset must add a new maturity, threshold, or event-state transition not present in the minimal crossing rule. The dynamically relevant dimensional event scalars in $Z_n$ are $K$ and $L_n$; a selector acting outside the ordinary ledger could additionally use earlier retained records, event counts, or accumulated lookback. That wider inventory increases rather than removes the underdetermination. Time-translation, reflection, and scale covariance alone permit the entire family
 
 $$
 u_n
@@ -66,6 +66,12 @@ $$
 
 Writing $H(s)=2s-E(s)$ gives $H'(s)=2-m(s)=1+v(s)>0$ before the source enters an inward ceiling segment. Since $H(0)=0<E(t)$ and $H(t)-E(t)=2x(t)>0$, exactly one ordinary partner root exists throughout the pre-cap positive-separation chart. The opposite-polarity partner acceleration decreases $v$ monotonically.
 
+The root census remains exact while the receiver rides the final inward cap. Let $t_{\mathrm{cap}}$ be its onset and $T_{n+1}$ the return coincidence. On that cap, $x(t)=T_{n+1}-t$ and $E(t)=2t-T_{n+1}$. For source times $s\in[t_{\mathrm{cap}},t]$, the source also lies on the inward cap and $H(s)=T_{n+1}$, while $E(t)<T_{n+1}$ for every $t<T_{n+1}$; hence this flat segment contains no partner root. On $[0,t_{\mathrm{cap}})$, $H$ is strictly increasing from $H(0)=0<E(t)$ to $H(t_{\mathrm{cap}})=T_{n+1}>E(t)$, so exactly one partner root exists and satisfies $s(t)<t_{\mathrm{cap}}$.
+
+Each receiver also rides its own wake on the inward cap: for $s\in[t_{\mathrm{cap}},t)$ the same-transmitter margin is identically zero and $D_t=D_r=0$. Under the packet's [swept-branch reception rule](mathematics-geometry-dynamical-system.md#109-proposed-swept-source-reception-the-frozen-root-resolution), this is an inactive co-moving same-transmitter characteristic family, not an ordinary row. The complete classified ledger on the cap therefore contains one ordinary partner root and one inactive nonordinary self family.
+
+Plainly: the partner-root function becomes flat over the already-emitted inward cap, but that flat value lies above the causal target until coincidence, so it contributes no extra partner root. The receiver's own cap wake is present as a nonordinary family and is recorded without being inserted into the ordinary acceleration sum.
+
 On the stored-straight first chart, the exact first integral is
 
 $$
@@ -84,7 +90,7 @@ y_{\mathrm{turn}}
 \frac{2Ku_*}{2K-3u_*}.
 $$
 
-For $K\ge3u_*$, $s_{\mathrm{turn}}<u_*$ and $x_{\max}=x_{\mathrm{turn}}>0$. The stronger condition $K\ge7u_*/2$ gives
+For $K\ge3u_*$, the [first-chart turnaround proof](collinear-breather-under-ceiling.md#conditional-first-chart-braking-and-turnaround) gives $s_{\mathrm{turn}}<u_*$, while $m'>0$ makes $v$ strictly decreasing and therefore makes the unique turnaround the positive maximum $x_{\max}=x_{\mathrm{turn}}>0$. The stronger sufficient condition $K\ge7u_*/2$ gives
 
 $$
 x_{\max}
@@ -128,7 +134,7 @@ K\left(
 \right).
 $$
 
-At $x=0$, the right side is $K/(2x_{\max})>1$. Continuity therefore forces $w=1$ at a positive position $x_{\mathrm{cap}}>0$. One explicit positive lower bound is
+The single simple partner root, positive range, and positive $D_t$ floor make the post-turn right-hand side locally Lipschitz, so the branch continues until it reaches either $w=1$ or $x=0$. If it remained below $w=1$ until $x=0$, the displayed bound would give $w(0)^2\ge K/(2x_{\max})>1$, a contradiction. Continuity therefore forces $w=1$ at a positive position $x_{\mathrm{cap}}>0$. One explicit positive lower bound is
 
 $$
 x_{\mathrm{cap}}
@@ -140,7 +146,7 @@ $$
 The proposed ceiling response then removes only further inward speed increase, so the pair travels from $x_{\mathrm{cap}}$ to coincidence at $v=-1$. The resulting inward-cap duration is
 
 $$
-L_{mathrm{out}}=x_{\mathrm{cap}}.
+L_{\mathrm{out}}=x_{\mathrm{cap}}.
 $$
 
 Plainly: under $K\ge7u_*/2$, the pair cannot reach the origin while still moving slower than the wake. It first reaches the inward ceiling at a nonzero distance and then covers exactly that remaining distance at unit speed.
@@ -155,7 +161,7 @@ $$
 \frac{K}{2r^2}\,ds.
 $$
 
-The range tends to $L_{mathrm{out}}>0$, so this ordinary open-interval contribution is locally integrable. At coincidence, the newly emitted inward cap becomes the separately typed matched event family.
+The range tends to $L_{\mathrm{out}}>0$, so this ordinary open-interval contribution is locally integrable. In particular, its receiver-time measure has no atom at $T_{n+1}$ and therefore discharges the exact-mirror guard's no-incoming-remainder-atom clause. The limiting source time $s=t_{\mathrm{cap}}$ is assigned to the event carrier; the ordinary branch approaches it only from below, so there is no double counting. At coincidence, the newly emitted inward cap becomes the separately typed matched event family.
 
 Plainly: the last ordinary wake row may become tall, but its reception interval becomes proportionally narrow. Its accumulated pre-event contribution stays finite because the returning pair reaches ceiling speed at a positive distance.
 
@@ -169,9 +175,9 @@ x(s)-(T_{n+1}-s)
 0.
 $$
 
-Equality holds exactly when the path traveled inward at speed $1$ throughout $[s,T_{n+1}]$, namely on the final cap. Every pre-cap record has strict negative margin and has already passed. The final cap is owned once by the exact-mirror event, the zero impulse preserves the incoming velocity, and the next outgoing orientation is $\epsilon_{n+1}=-\epsilon_n$.
+Equality holds exactly when the path traveled inward at speed $1$ throughout $[s,T_{n+1}]$, namely on the final cap. Every pre-cap record has strict negative margin and has already passed. The final cap is owned once by the exact-mirror event. Its proposed zero impulse is inherited from the common event law: the matched raw scalar records are aggregated on one carrier before a common label-blind, direction-blind linear event map is applied. It is not a cancellation through the ordinary radial kernel. The event preserves the incoming velocity, and the next outgoing orientation is $\epsilon_{n+1}=-\epsilon_n$.
 
-> **Complete returning-lobe theorem.** Conditional on the proposed exact-mirror event completion and ceiling response, a prescribed onset satisfying $K\ge7u_*/2$ produces a continuous brake--turn--inward-cap--coincidence lobe with positive turnaround and cap separations, one ordinary partner root per receiver before the event boundary, locally integrable open-interval partner contribution, and a reset state of the same structural type at the next coincidence.
+> **Complete returning-lobe theorem.** Work in the isolated exact-mirror collinear class after the proposed zero-impulse restart, in normalized units $c_f=1$, with the packet's swept-branch reception rule classifying every co-moving same-transmitter interval at field speed as nonordinary. Let $u_*>0$ be prescribed and satisfy the sufficient condition $K\ge7u_*/2$. On the maximal post-onset continuation, each receiver has exactly one ordinary partner root before the return event, including on the inward cap, while its same-transmitter cap family is inactive and nonordinary. The branch has one positive-separation turnaround, reaches inward ceiling speed at $x_{\mathrm{cap}}>0$, and coasts to coincidence. Its open cap-approach partner contribution is locally integrable and has no event atom. The incoming state consequently satisfies the exact-mirror guard and resets to the same structural type with $\epsilon_{n+1}=-\epsilon_n$ and $L_{n+1}=x_{\mathrm{cap}}$.
 
 **Claim grade:** `derived sufficient theorem inside the proposed FSC model`. It is not a canonical dynamics claim. It is falsified by a missed ordinary or nonordinary root, failure of the acceleration lower bound, arrival at coincidence before $w=1$, nonintegrability of the displayed cap approach, or failure of the exact-mirror event guard at the return.
 
@@ -220,10 +226,10 @@ This is not yet a full retained-state periodic-orbit theorem. The literal all-pa
 The least embellished event-derived alarm is
 
 $$
-u_{n+1}=L_n:
+u_{n+1}=L_{n+1}:
 $$
 
-wait after the next coincidence for as long as the preceding inward cap lasted. This uses no new dimensional scale or fitted constant, but it is still a proposed maturity rule rather than a consequence of geometric crossing.
+after the lobe from $T_n$ to $T_{n+1}$, wait for as long as the inward cap that arrived at $T_{n+1}$. Equivalently, $u_{n+1}=G(K,u_n)$. This uses no new dimensional scale or fitted constant, but it is still a proposed maturity rule rather than a consequence of geometric crossing.
 
 In the analytically closed regime
 
@@ -270,6 +276,8 @@ $$
 0<\ell(\alpha)<1.
 $$
 
+The restriction $\alpha\ge6$ is load-bearing: it guarantees both $s_{\mathrm{cap}}<u_*$ and positivity of the closed-form cap duration. The formula must not be extrapolated below the stored-straight chart on which it was derived.
+
 Plainly: when the coupling is strong enough for a closed formula, the newly produced incoming cap is always shorter than the waiting interval that produced it.
 
 Under the cap-duration rule and $K\ge6u_n$,
@@ -282,7 +290,31 @@ u_n\ell(K/u_n)
 u_n.
 $$
 
-The condition remains true at every later lobe because $K/u_n$ increases. No positive fixed onset exists in this regime: a positive limit would require $\ell(K/u)=1$, which is impossible. The onset sequence instead decreases toward the excluded immediate-onset boundary $u=0$. This is a nonstationary shrinking sequence, not a regular breather.
+The condition remains true at every later lobe because $K/u_n$ increases. No positive fixed onset exists in this regime: a positive limit would require $\ell(K/u)=1$, which is impossible. The onset sequence instead decreases toward the excluded immediate-onset boundary $u=0$.
+
+The exact coincidence-to-coincidence lobe period in this regime is
+
+$$
+P(K,u_*)
+=
+2(1+\zeta^2)u_*
+=
+\frac{2Ku_*}{K-2u_*}.
+$$
+
+Moreover,
+
+$$
+\ell(\alpha)
+=
+1-\frac{8}{3(\alpha-2)^2}
++
+O\!\left((\alpha-2)^{-3}\right),
+$$
+
+so $u_n$ decays on the order of $n^{-1/2}$ and $P_n\sim2u_n$. Hence $\sum_nP_n$ diverges: the shrinking sequence approaches zero only over infinite absolute time and has no finite-time accumulation. It is nonstationary and is not a regular breather, but it is not a finite-time collapse.
+
+Plainly: the cap-duration alarm produces endlessly smaller excursions. They become small slowly enough that infinitely many lobes still require infinite time.
 
 **Claim grade:** `derived negative` for the cap-duration reset candidate when $K/u\ge6$. The claim is falsified by an algebraic error in the boxed cap ratio, a source time leaving the straight segment despite the displayed bound, or a positive solution of $\ell(\alpha)=1$ in the declared regime.
 
@@ -307,10 +339,16 @@ Plainly: there is no hidden conservation or action formula available to set the 
 
 No Master Equation, reader-facing corpus, or general field-speed law receives this result without a separate operator promotion decision.
 
+## Independent-review disposition
+
+The [independent complete-lobe and returning-event review](independent-complete-lobe-returning-event-review-2026-09-02.md) was accepted with repairs. FSC-LR-1, FSC-LR-2, and FSC-LR-9 are incorporated in the completed root census and continuation argument. FSC-LR-3 is resolved in the sibling breather note by retaining the packet's inactive-family disposition and withdrawing the unadopted atomic-projection account. FSC-LR-4, FSC-LR-5, and FSC-LR-16 are corrected here and in the queue records. FSC-LR-6 through FSC-LR-8 and FSC-LR-10 through FSC-LR-15 and FSC-LR-17 are incorporated as scope repairs, provenance, event typing, sufficient-bound calibration, endpoint ownership, exact period, and no-finite-time-accumulation statements. The review's numerical instruments remain falsifier searches and consistency checks, not proof of the proposed law.
+
+No finding was rejected or deferred for operator doctrine. The review does not adopt the ceiling, select an onset, establish literal all-past periodicity, or promote any result beyond the Field-Speed Ceiling lane.
+
 ## Next artifact
 
-The autonomous-selector audit is closed at current FSC authority. The next highest-value artifact is independent theorem and measure-typing review of the delayed-ignition and complete-lobe proofs, including the cap-approach source-clock transfer and event reset. A later wake or action theory may reopen selector derivation only by supplying an explicit event functional and its account.
+The independent theorem and returning-event measure review is complete. The next highest-value artifact is a future-equivalence quotient theorem for the isolated exact-mirror history space: prove or refute that states differing only by permanently inactive owned records induce identical future ordinary ledgers and that the event-reduced return map descends to the quotient. A successful theorem would upgrade the prescribed-onset result from periodic path and event-reduced state to a periodic state of that declared quotient, without supplying the still-missing autonomous onset selector.
 
 ## Closure goal
 
-Independently review the complete-lobe and cap-map derivations and the measure typing at the returning event. Retain the prescribed-onset spatial two-cycle as a conditional member of the multivalued relation, and reopen autonomous braking only if a future FSC wake or action law explicitly derives a reset-compatible $\Phi$ and passes $L=G(K,K\Phi(L/K))$.
+Construct the future-equivalence quotient for permanently inactive owned records and determine whether the prescribed-onset spatial two-cycle is a periodic state of that quotient. Reopen autonomous braking only if a future FSC wake or action law explicitly derives a reset-compatible $\Phi$ and passes $L=G(K,K\Phi(L/K))$.

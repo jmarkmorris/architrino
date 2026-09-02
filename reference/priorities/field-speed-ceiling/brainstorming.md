@@ -123,7 +123,7 @@ Plainly: the candidate state fails to start braking, not because the available p
 
 The [two-lobe return-map audit](two-lobe-return-map-and-autonomous-trigger-audit.md) completes the proposed next calculation. A prescribed onset satisfying $K\ge7u_*/2$ produces a brake--turn--inward-cap--coincidence lobe and resets the exact-mirror event geometry. Repeating the same onset gives a reflected spatial two-cycle. This is not an autonomous full-state breather because the minimal crossing state supplies no onset and literal all-past ownership records have not been placed in a proved shift-periodic state space.
 
-The most direct event-record trigger, $u_{n+1}=L_n$ with $L_n$ the preceding inward-cap duration, fails in the analytically closed regime $K/u_n\ge6$. There the exact cap map is
+The most direct event-record trigger, $u_{n+1}=L_{n+1}=G(K,u_n)$ with $L_{n+1}$ the inward-cap duration arriving at the next event, fails in the analytically closed regime $K/u_n\ge6$. There the exact cap map is
 
 $$
 \frac{L_{n+1}}{u_n}

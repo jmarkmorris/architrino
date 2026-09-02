@@ -31,7 +31,7 @@ import {
   pearsonCorrelation,
   summarizeGate,
   thresholdRatio,
-} from "../../src/apps/compact-sweep-dashboard/CompactSweepDashboardData.js";
+} from "../../src/apps/braid-search/BraidSearchData.js";
 import {
   BORG_SELECTION_SCHEMA,
 } from "../../src/apps/shared/BorgSelectionNavigation.mjs";
@@ -44,6 +44,10 @@ const REPOSITORY_ROOT = path.resolve(import.meta.dirname, "../..");
 const DEFAULT_INPUT_DIRECTORY = path.join(
   REPOSITORY_ROOT,
   ".local-data/braid-analysis/compact-monte-carlo/configuration-sweep-v2",
+);
+const DEFAULT_OUTPUT_DIRECTORY = path.join(
+  REPOSITORY_ROOT,
+  ".local-data/braid-analysis/current-exact-configuration-sweep",
 );
 const DEFAULT_DATABASE_PATH = path.join(
   DEFAULT_INPUT_DIRECTORY,
@@ -62,7 +66,7 @@ const DEFAULT_BORG_REGISTRY_PATH = path.join(
   "reference/priorities/app-borg/assembly-registry.v1.json",
 );
 const DEFAULT_OUTPUT_PATH = path.join(
-  DEFAULT_INPUT_DIRECTORY,
+  DEFAULT_OUTPUT_DIRECTORY,
   "compact-sweep-dashboard.v3.json",
 );
 const ANALYZER_SCHEMA =

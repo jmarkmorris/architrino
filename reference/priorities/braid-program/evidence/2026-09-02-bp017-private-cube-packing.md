@@ -53,7 +53,7 @@ Run:
 "${AAA_VENV:-../.venv}/bin/python" scripts/prescribed-path-analysis/oracle/verify_private_cube_packing.py
 ```
 
-Two consecutive executions produced byte-identical standard output at SHA-256 `OUTPUT_SHA256`; the checker SHA-256 is `CHECKER_SHA256`.
+Two consecutive executions produced byte-identical standard output at SHA-256 `5193634b39f784e3a239b24b984a502457550adb6d6c64ffbcbcefd1d834f3e3`; the checker SHA-256 is `cba556fdb2df2c15ecf71b840882fe2a485bc30216c477281311dc44ddb0259b`.
 
 The construction is an exact periodic geometry result. It does not assign a polarity word, component history, causal-root ledger, acceleration balance, cross-assembly cancellation, EOM evolution, retention, stability, binding, particle identity, score, or scientific acceptance. BP-016 must first supply a source-qualified finite history before this geometry can authorize any history calculation.
 

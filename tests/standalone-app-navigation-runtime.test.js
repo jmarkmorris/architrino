@@ -309,7 +309,7 @@ test("migrated standalone apps atomically replace static bars with canonical hos
 test("Braid Search creates one empty host and delegates the global bar to the canonical adapter", () => {
   const html = readFileSync(new URL("../braid-search.html", import.meta.url), "utf8");
   const runtimeSource = readFileSync(
-    new URL("../src/apps/compact-sweep-dashboard/CompactSweepDashboardRuntime.js", import.meta.url),
+    new URL("../src/apps/braid-search/BraidSearchRuntime.js", import.meta.url),
     "utf8",
   );
 

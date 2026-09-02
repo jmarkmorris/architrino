@@ -1,11 +1,20 @@
 # Field-Speed Ceiling Work Log
 
+## 2026-09-02 — FSC-006b/FSC-005 independent complete-lobe review incorporated
+
+- Incorporated the [independent complete-lobe and returning-event review](independent-complete-lobe-returning-event-review-2026-09-02.md) without editing the independent artifact. The sufficient complete-lobe theorem, returning-event measure typing, prescribed-onset spatial two-cycle, and narrow selector exclusion survive.
+- Repaired the inward-cap partner-root proof, added the inactive same-transmitter cap family to the complete census, stated the post-turn continuation criterion, assigned the cap-start endpoint to the event carrier, and connected local integrability to the no-remainder-atom event guard.
+- Resolved the ceiling-exit self-family conflict in favor of the existing inactive-family rule. The earlier atom-delivery and atomic-projection account was withdrawn because no such event is declared.
+- Corrected the cap-duration reset to $u_{n+1}=L_{n+1}=G(K,u_n)$ and the two malformed $L_{\mathrm{out}}$ macros. Added the exact lobe period $P=2Ku/(K-2u)$ and proved that the shrinking reset sequence approaches zero over infinite absolute time rather than accumulating in finite time.
+- Calibrated $K\ge7u_*/2$ explicitly as a conservative sufficient bound, not a necessary or physical threshold. The review's lower-ratio integrations remain measured falsifier searches and do not strengthen the theorem's proved domain.
+- The next rigorous FSC-006b/FSC-005 object is the future-equivalence quotient theorem for permanently inactive owned records. No ceiling, autonomous onset, literal all-past periodic orbit, canonical law, or cross-lane promotion was adopted.
+
 ## 2026-09-02 — FSC-006b/FSC-005 two-lobe return map and trigger audit
 
 - Added the [two-lobe return-map and autonomous-trigger audit](two-lobe-return-map-and-autonomous-trigger-audit.md). The minimal crossing state has no finite autonomous positive-onset transition because its received clocks and admission ledger stay frozen on the exact zero-ledger outgoing plateau.
 - Strengthened the supplied-onset result: $K\ge7u_*/2$ is sufficient for a complete brake--turn--inward-cap--coincidence lobe. The proof reaches inward ceiling at positive separation, verifies local integrability of the ordinary cap-approach row, and recovers the exact-mirror event geometry.
 - Derived the prescribed-onset return map. Repeating one onset gives a reflected spatial two-cycle returning position and velocity after two lobes, but it does not establish periodicity of the literal all-past retained state.
-- Tested the direct cap-duration reset $u_{n+1}=L_n$. For $K/u_n\ge6$, the exact cap ratio lies strictly between zero and one, so the onset shrinks and has no positive fixed cycle.
+- Tested the direct cap-duration reset $u_{n+1}=L_{n+1}=G(K,u_n)$. For $K/u_n\ge6$, the exact cap ratio lies strictly between zero and one, so the onset shrinks and has no positive fixed cycle.
 - Audited the existing FSC wake, boundary, event, and conditional action interfaces. None supplies a positive maturity balance or event functional $u=K\Phi(L/K)$, so the autonomous-onset route is closed negatively at current FSC authority while the multivalued prescribed-onset relation remains.
 - No autonomous trigger, selected continuation, full-state breather, field-speed ceiling, Master Equation change, wake law, action balance, conservation account, or physical realization was adopted or promoted.
 
