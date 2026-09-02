@@ -29,6 +29,18 @@ test("recorded playback handoff rejects a stale or altered pinned record", async
   );
 });
 
+test("recorded playback handoff rejects envelope identity drift", async () => {
+  const handoff = structuredClone(
+    await createEomRecordedPlaybackHandoff(createAcceptedEomRecord()),
+  );
+  handoff.identity.runId = "different-run";
+
+  await assert.rejects(
+    validateEomRecordedPlaybackHandoff(handoff),
+    /identity does not match the pinned record/,
+  );
+});
+
 test("recorded playback handoff rejects incompatible solver and model identities", async () => {
   const wrongEngine = createAcceptedEomRecord({
     provenance: {

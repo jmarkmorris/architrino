@@ -54,6 +54,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorViewPlanarButton: getElementById(documentLike, "animator-view-planar-button"),
     animatorSceneButton: getElementById(documentLike, "animator-scene-button"),
     animatorLoadEomRecordButton: getElementById(documentLike, "animator-load-eom-record-button"),
+    animatorOpenBorgButton: getElementById(documentLike, "animator-open-borg-button"),
     animatorRecordedOutputPanel: getElementById(documentLike, "animator-recorded-output-panel"),
     animatorEomRecordFileInput: getElementById(documentLike, "animator-eom-record-file-input"),
     animatorRecordedOutputLoadButton: getElementById(

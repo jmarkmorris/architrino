@@ -28,6 +28,7 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   elementMap.set("animator-canvas", canvas);
   elementMap.set("animator-view-planar-button", { id: "planar" });
   elementMap.set("animator-load-eom-record-button", { id: "load_eom_record" });
+  elementMap.set("animator-open-borg-button", { id: "open_borg" });
   elementMap.set("animator-recorded-output-panel", { id: "recorded_output_panel" });
   elementMap.set("animator-eom-record-file-input", { id: "eom_record_file" });
   elementMap.set("animator-recorded-output-load", { id: "recorded_output_load" });
@@ -58,6 +59,7 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   assert.equal(dom.animatorCanvasWrap, canvasParent);
   assert.equal(dom.animatorViewPlanarButton?.id, "planar");
   assert.equal(dom.animatorLoadEomRecordButton?.id, "load_eom_record");
+  assert.equal(dom.animatorOpenBorgButton?.id, "open_borg");
   assert.equal(dom.animatorRecordedOutputPanel?.id, "recorded_output_panel");
   assert.equal(dom.animatorEomRecordFileInput?.id, "eom_record_file");
   assert.equal(dom.animatorRecordedOutputLoadButton?.id, "recorded_output_load");

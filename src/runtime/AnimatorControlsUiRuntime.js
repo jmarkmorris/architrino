@@ -9,6 +9,7 @@ export function createAnimatorControlsUiRuntime(deps) {
     animatorViewAuthoredButton,
     animatorViewPlanarButton,
     animatorExportButton,
+    animatorOpenBorgButton,
     animatorLibrarySaveButton,
     animatorRepoSaveButton,
     animatorLibrarySelect,
@@ -137,6 +138,12 @@ export function createAnimatorControlsUiRuntime(deps) {
     if (animatorExportButton) {
       animatorExportButton.addEventListener("click", () => {
         animatorUiRuntime.exportAnimatorScene();
+      });
+    }
+
+    if (animatorOpenBorgButton) {
+      animatorOpenBorgButton.addEventListener("click", () => {
+        animatorUiRuntime.openAnimatorSceneInBorg();
       });
     }
 

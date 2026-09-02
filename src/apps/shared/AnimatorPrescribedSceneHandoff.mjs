@@ -18,7 +18,7 @@ const DEFAULT_SAMPLE_INTERVAL = 0.1;
 const MAX_SEGMENT_COUNT = 600;
 
 export function validateAnimatorPrescribedSceneDocument(rawDocument = {}) {
-  const document = normalizeAnimatorSceneDocument(rawDocument);
+  const document = JSON.parse(JSON.stringify(normalizeAnimatorSceneDocument(rawDocument)));
   if (document.schemaVersion !== "0.1.0") {
     throw new TypeError(
       `Animator prescribed-scene publication requires scene schemaVersion 0.1.0; received ${String(document.schemaVersion ?? "none")}.`,
@@ -85,6 +85,7 @@ export async function createAnimatorPrescribedSceneHandoff(rawDocument, options 
   // the exact payload about to be handed off is consumable by record-only replay.
   createEomHistoryDataset(record);
   const recordSha256 = await sha256CanonicalJson(record, options.cryptoLike);
+  deepFreezeJson(record);
   return Object.freeze({
     schema: ANIMATOR_PRESCRIBED_SCENE_HANDOFF_SCHEMA,
     recordSha256,
@@ -125,7 +126,15 @@ export async function validateAnimatorPrescribedSceneHandoff(handoff, options = 
     prescribed?.sourceApplication !== "animator" ||
     prescribed?.motionAuthority !== ANIMATOR_PRESCRIBED_MOTION_AUTHORITY ||
     prescribed?.physicsInvoked !== false ||
-    prescribed?.recordOnlyReplay !== true
+    prescribed?.recordOnlyReplay !== true ||
+    prescribed?.sourceSceneSha256 !== record.modelRevisionSha256 ||
+    record.provenance?.engineVersion !== ANIMATOR_PRESCRIBED_SCENE_EMITTER_ID ||
+    record.provenance?.generatingSpec !== "animator-prescribed-scene-record/v1" ||
+    !record.worldlines.every((worldline) =>
+      worldline?.sourceProvenance?.sourceApplication === "animator" &&
+      worldline.sourceProvenance.sourceSceneSha256 === prescribed.sourceSceneSha256 &&
+      worldline.sourceProvenance.motionAuthority === ANIMATOR_PRESCRIBED_MOTION_AUTHORITY
+    )
   ) {
     throw new TypeError(
       "Borg rejects Animator handoffs unless they are authored, display-only, prescribed-geometry records with physicsInvoked=false and recordOnlyReplay=true.",
@@ -149,6 +158,7 @@ export async function validateAnimatorPrescribedSceneHandoff(handoff, options = 
   ) {
     throw new Error("Animator prescribed-scene handoff identity does not match its sealed record.");
   }
+  deepFreezeJson(record);
   return Object.freeze({
     schema: ANIMATOR_PRESCRIBED_SCENE_HANDOFF_SCHEMA,
     recordSha256: handoff.recordSha256,
@@ -234,6 +244,7 @@ function createPrescribedSceneRecord(document, sourceSceneSha256, options) {
     ? options.publishedAt.trim()
     : new Date().toISOString();
   const sourceId = `animator:${document.scene.id}:${sourceSceneSha256.slice(0, 16)}`;
+  const carriers = createNormalizedAssemblyViewRecordCarriers({ fieldSpeed: 1 });
   return {
     schema: "assembly-view-record.v0",
     sourceId,
@@ -277,7 +288,8 @@ function createPrescribedSceneRecord(document, sourceSceneSha256, options) {
       sampleInterval,
       delayHorizon: 0,
     },
-    recordCarriers: createNormalizedAssemblyViewRecordCarriers({ fieldSpeed: 1 }),
+    recordFrame: carriers.frame,
+    vectorOverlays: carriers.vectorOverlays,
     worldlines,
     binaries: [],
     structuralEdges: [],
@@ -513,6 +525,12 @@ function positiveNumber(value, label) {
 
 function addTriplets(left, right) {
   return [left[0] + right[0], left[1] + right[1], left[2] + right[2]];
+}
+
+function deepFreezeJson(value) {
+  if (!value || typeof value !== "object" || Object.isFrozen(value)) return value;
+  Object.values(value).forEach(deepFreezeJson);
+  return Object.freeze(value);
 }
 
 function clamp(value, min, max) {

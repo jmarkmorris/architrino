@@ -63,7 +63,9 @@ export async function openAnimatorPrescribedSceneInBorg(handoff, options = {}) {
     const timeoutId = globalThis.setTimeout(() => {
       finish(reject, new Error("Borg did not accept the sealed Animator record before the handoff timed out."));
     }, timeoutMs);
-    targetWindow = windowLike.open(url.href, "_blank", "noopener=false");
+    // Borg must retain this exact opener long enough to complete the one-shot
+    // structured-clone handshake. No shared store or continuing channel exists.
+    targetWindow = windowLike.open(url.href, "_blank");
     if (!targetWindow) {
       finish(reject, new Error("Open in Borg was blocked. Allow pop-ups for this site and try again."));
     }

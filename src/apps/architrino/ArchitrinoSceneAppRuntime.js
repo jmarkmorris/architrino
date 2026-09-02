@@ -253,6 +253,8 @@ import {
   createAnimatorRecordedPlaybackWorkerClient,
   mergeAnimatorRecordedPlaybackIntoDocument,
 } from "../animator/AnimatorRecordedPlaybackWorkerRuntime.js";
+import { createAnimatorPrescribedSceneHandoff } from "../shared/AnimatorPrescribedSceneHandoff.mjs";
+import { openAnimatorPrescribedSceneInBorg } from "../shared/AnimatorBorgHandoffTransport.mjs";
 
 const appMode = getAnimatorAppMode(globalThis.window);
 const isStandaloneAnimatorApp = isStandaloneAnimatorAppMode(appMode);
@@ -398,6 +400,7 @@ const {
   animatorViewPlanarButton,
   animatorSceneButton,
   animatorLoadEomRecordButton,
+  animatorOpenBorgButton,
   animatorRecordedOutputPanel,
   animatorEomRecordFileInput,
   animatorRecordedOutputLoadButton,
@@ -8577,6 +8580,9 @@ const animatorAppRuntime = createAnimatorAppRuntime({
       animatorNeedsResize = value;
     },
     setTopDynamicControlBarMode,
+    createPrescribedSceneHandoff: createAnimatorPrescribedSceneHandoff,
+    openPrescribedSceneInBorg: openAnimatorPrescribedSceneInBorg,
+    animatorOpenBorgButton,
   },
   controls: {
     animatorTabs,
@@ -8588,6 +8594,7 @@ const animatorAppRuntime = createAnimatorAppRuntime({
     animatorViewAuthoredButton,
     animatorViewPlanarButton,
     animatorExportButton,
+    animatorOpenBorgButton,
     animatorLibrarySaveButton,
     animatorRepoSaveButton,
     animatorLibrarySelect,

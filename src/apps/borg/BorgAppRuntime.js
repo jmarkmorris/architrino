@@ -579,9 +579,12 @@ export function mountBorgApp(options = {}) {
       ? "accepted-initial-datum-active"
       : "manifest-values-active",
     resizeObserver: null,
-    replayDisplayMode: activeReplayEntry?.dataset.provenance.claimGrade === "chart-hypothesis"
-      ? "chart-pose"
-      : "animated",
+    replayDisplayMode:
+      activeReplayEntry?.dataset.provenance.prescribedGeometry?.recordOnlyReplay === true
+        ? "animated"
+        : activeReplayEntry?.dataset.provenance.claimGrade === "chart-hypothesis"
+          ? "chart-pose"
+          : "animated",
     activeDisplayTime: activeReplayEntry?.dataset.window.start ?? 0,
     prescribedTranslationFrame: BORG_PRESCRIBED_DISPLAY_FRAME_FIXED,
     pathTrailDuration: activeReplayEntry
@@ -1357,8 +1360,9 @@ export function mountBorgApp(options = {}) {
       platonicRelationships: options.eomRecordReplay?.platonicRelationships,
     });
     const staticAssembly = isStaticAssemblyReplay();
+    const recordOnlyPrescribedScene = isRecordOnlyPrescribedSceneReplay();
     dom.timeline.hidden = staticAssembly;
-    dom.prescribedBranch.hidden = staticAssembly;
+    dom.prescribedBranch.hidden = staticAssembly || recordOnlyPrescribedScene;
     dom.prescribedTranslationDrawer.hidden = staticAssembly;
     dom.playButton.disabled = staticAssembly;
     dom.startButton.disabled = staticAssembly;
@@ -1368,16 +1372,24 @@ export function mountBorgApp(options = {}) {
       pathLayerButton.hidden = staticAssembly;
       pathLayerButton.disabled = staticAssembly;
     }
-    dom.replayTaxonomyHeading.textContent = staticAssembly ? "Assembly Geometry" : "Braid Taxonomy";
+    dom.replayTaxonomyHeading.textContent = recordOnlyPrescribedScene
+      ? "Animator Prescribed Scene"
+      : staticAssembly ? "Assembly Geometry" : "Braid Taxonomy";
     dom.replayToolsSummary.textContent = staticAssembly ? "Export tools" : "Playback tools";
-    dom.replayTaxonomyIntro.textContent = staticAssembly
+    dom.replayTaxonomyIntro.textContent = recordOnlyPrescribedScene
+      ? "The selected content-sealed record contains Animator-authored prescribed worldlines. Borg only replays the frozen copy; it does not run the EOM solver or upgrade the record to evidence."
+      : staticAssembly
       ? "The selected sealed record shows an exact static constituent inventory and its source-defined structural edges. No braid membership or path history is assigned."
       : "The selected sealed record shows its source-defined constituent inventory and worldlines. Pair-derived candidates also show their declared binary coordinates.";
     dom.modeBoundary.dataset.mode = "assembly-view-replay";
-    dom.modeLabel.textContent = staticAssembly
+    dom.modeLabel.textContent = recordOnlyPrescribedScene
+      ? "Animator prescribed scene · display-only"
+      : staticAssembly
       ? "Static assembly geometry · display-only"
       : "Prescribed geometry · display-only";
-    dom.modeDetail.textContent = staticAssembly
+    dom.modeDetail.textContent = recordOnlyPrescribedScene
+      ? "Authored motion from a validated, sealed Animator record. Record-only replay is enforced."
+      : staticAssembly
       ? "Exact static geometry. No path history or braid classification is assigned; the EOM solver is not running."
       : "The sealed source path is open. Play replays it; the EOM solver is not running.";
     updatePrescribedBranchAction();
@@ -1430,6 +1442,11 @@ export function mountBorgApp(options = {}) {
   function isStaticAssemblyReplay() {
     return replayActive &&
       activeReplayEntry?.dataset?.provenance?.prescribedGeometry?.staticGeometryOnly === true;
+  }
+
+  function isRecordOnlyPrescribedSceneReplay() {
+    return replayActive &&
+      activeReplayEntry?.dataset?.provenance?.prescribedGeometry?.recordOnlyReplay === true;
   }
 
   async function switchStartingGeometry(geometryId) {
@@ -1545,9 +1562,11 @@ export function mountBorgApp(options = {}) {
     state.prescribedTranslationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     state.pathTrailDuration = resolveBorgAssemblyViewTrail(activeReplayEntry).duration;
     state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: [] });
-    state.replayDisplayMode = activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis"
-      ? "chart-pose"
-      : "animated";
+    state.replayDisplayMode = isRecordOnlyPrescribedSceneReplay()
+      ? "animated"
+      : activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis"
+        ? "chart-pose"
+        : "animated";
     assemblyViewScene.setRecord(activeReplayEntry);
     assemblyViewScene.setDisplayMode(state.replayDisplayMode);
     assemblyViewScene.setTranslationFrame(state.prescribedTranslationFrame);
@@ -1581,6 +1600,13 @@ export function mountBorgApp(options = {}) {
       dom.prescribedBranchFeedback.textContent = dom.prescribedBranchFeedback.value;
       return;
     }
+    if (isRecordOnlyPrescribedSceneReplay()) {
+      dom.prescribedBranchStart.disabled = true;
+      dom.prescribedBranchFeedback.value =
+        "Unavailable for Animator prescribed scenes: this handoff is record-only and cannot seed an EOM run.";
+      dom.prescribedBranchFeedback.textContent = dom.prescribedBranchFeedback.value;
+      return;
+    }
     const cut = activeFrameTime();
     const earliestCut = Number(activeReplayEntry.dataset.window.start);
     const eligible = Number.isFinite(cut) && cut > earliestCut;
@@ -1596,6 +1622,12 @@ export function mountBorgApp(options = {}) {
 
   async function startPrescribedDisplayBranch() {
     if (!replayActive || !activeReplayEntry) {
+      return;
+    }
+    if (isRecordOnlyPrescribedSceneReplay()) {
+      dom.prescribedBranchFeedback.value =
+        "Animator prescribed scenes are record-only and cannot seed an EOM run.";
+      dom.prescribedBranchFeedback.textContent = dom.prescribedBranchFeedback.value;
       return;
     }
     stopPlayback();
@@ -1691,9 +1723,11 @@ export function mountBorgApp(options = {}) {
     state.prescribedTranslationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     activeReplayEntry = entry;
     renderRecordSummary();
-    state.replayDisplayMode = entry.dataset.provenance.claimGrade === "chart-hypothesis"
-      ? "chart-pose"
-      : "animated";
+    state.replayDisplayMode = entry.dataset.provenance.prescribedGeometry?.recordOnlyReplay === true
+      ? "animated"
+      : entry.dataset.provenance.claimGrade === "chart-hypothesis"
+        ? "chart-pose"
+        : "animated";
     assemblyViewScene.setRecord(entry);
     assemblyViewScene.setDisplayMode(state.replayDisplayMode);
     assemblyViewScene.setTranslationFrame(state.prescribedTranslationFrame);
@@ -2986,7 +3020,9 @@ export function mountBorgApp(options = {}) {
     state.dynamicRunnerStatus = eomRunnerOptions ? "eom-shadow-running" : "eom-record-replay-running";
     state.dynamicRunnerMessage = eomRunnerOptions
       ? "computing forward EOM evolution from the exact polynomial initial history"
-      : "replaying recorded EOM dataset";
+      : isRecordOnlyPrescribedSceneReplay()
+        ? "replaying a sealed Animator-authored prescribed scene"
+        : "replaying recorded EOM dataset";
     updateEomControlPresentation();
     updateSourceStatusPresentation();
     renderSourceFields();
@@ -3126,7 +3162,9 @@ export function mountBorgApp(options = {}) {
       : "eom-record-replay-running";
     state.dynamicRunnerMessage = eomSimulation
       ? "computing forward EOM chunk"
-      : "reading recorded EOM chunk";
+      : isRecordOnlyPrescribedSceneReplay()
+        ? "reading sealed Animator-authored replay frames"
+        : "reading recorded EOM chunk";
     updateSourceStatusPresentation();
     renderSourceFields();
     const budgetBefore = readLiveRunBudgetSnapshot(windowLike);
