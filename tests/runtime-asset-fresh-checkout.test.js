@@ -30,6 +30,7 @@ test("source-only checkout reconstructs all runtime outputs and a complete Pages
   console.log("[fresh-runtime] source-only export ready; generating ignored assets");
   execFileSync(process.execPath, ["scripts/prepare-runtime-assets.mjs", "--write"], { cwd: sourceRoot, stdio: "inherit" });
   execFileSync(process.execPath, ["scripts/prepare-runtime-assets.mjs", "--check"], { cwd: sourceRoot, stdio: "inherit" });
+  execFileSync(process.execPath, ["scripts/borg/verify-assembly-record-byte-identity.mjs", "--check"], { cwd: sourceRoot, stdio: "inherit" });
   for (const [name, expected] of sourceHashes) assert.equal(hash(path.join(sourceRoot, name)), expected, `source changed: ${name}`);
   const stamps = new Map(runtimeAssetPaths().map((name) => [name, fs.statSync(path.join(sourceRoot, name)).mtimeMs]));
   console.log("[fresh-runtime] sources unchanged; building isolated deployment payload");

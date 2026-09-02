@@ -25,6 +25,11 @@ const SUM_EDGE_CHART = {
   axis: [1 / SQRT2, 0, 1 / SQRT2],
   polarities: [1, -1, 1, -1, 1, -1],
 };
+const MIXED_FACE_CHART = {
+  id: 'antipodal-mixed-face',
+  axis: [1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)],
+  polarities: [1, -1, 1, -1, 1, -1],
+};
 
 function dot(left, right) {
   return left.reduce((sum, value, index) => sum + value * right[index], 0);
@@ -152,5 +157,19 @@ test('unchanged generic evaluator independently samples the antipodal sum-edge o
       `beta=${beta} produced x acceleration ${accelerationX} outside the certified cover`);
     assert.ok(accelerationX < -0.65,
       `beta=${beta} did not preserve the certified strict-negative obstruction`);
+  }
+});
+
+test('unchanged generic evaluator independently samples the antipodal mixed-face obstruction', () => {
+  for (const beta of [0.1, 0.25, 0.5, 0.75, 0.9, 0.99]) {
+    const packet = independentLedger(beta, MIXED_FACE_CHART);
+    assert.equal(packet.reducedMeasures.validity.passed, true,
+      JSON.stringify(packet.reducedMeasures.numericalConvergence));
+    assert.equal(packet.rawLedgers.causalRoots.length, 6);
+    assert.equal(packet.rawLedgers.causalRoots.every((event) => event.rootCount === 5), true);
+    const acceleration = packet.rawLedgers.causalRoots[0].measures.probeResponses[0].acceleration;
+    const obstruction = (acceleration.y + acceleration.z) / Math.sqrt(2);
+    assert.ok(obstruction < -0.59,
+      `beta=${beta} did not preserve the certified strict-negative obstruction: ${obstruction}`);
   }
 });

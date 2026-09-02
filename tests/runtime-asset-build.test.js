@@ -177,6 +177,8 @@ test("local, CI, service, and Pages entrypoints explicitly prepare runtime outpu
   assert.match(workflow, /github.event_name == 'push' \|\| github.event_name == 'workflow_dispatch'/);
   assert.match(workflow, /node --test tests\/runtime-asset-fresh-checkout.test.js/);
   assert.match(workflow, /build-static-site\.mjs --out \.tmp\/site/);
+  assert.match(workflow, /verify-assembly-record-byte-identity\.mjs --check/);
+  assert.ok(workflow.indexOf("verify-assembly-record-byte-identity.mjs --check") < workflow.indexOf("uses: actions/upload-pages-artifact@"));
   assert.match(workflow, /retention-days: 1/);
   assert.match(workflow, /needs: build/);
   assert.match(read(".github/workflows/content-integrity.yml"), /fetch-depth: 0/);

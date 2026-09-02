@@ -54,6 +54,54 @@ function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
 
+function canonicalSitePair(leftId, rightId) {
+  return [leftId, rightId].sort().join("|");
+}
+
+function independentlyEnumerateNeighborPairs(sites, distance) {
+  const pairs = [];
+  sites.forEach((left, leftIndex) => {
+    sites.slice(leftIndex + 1).forEach((right) => {
+      const separation = Math.hypot(...right.position.map(
+        (value, axis) => value - left.position[axis],
+      ));
+      if (Math.abs(separation - distance) < 1e-9) {
+        pairs.push(canonicalSitePair(left.id, right.id));
+      }
+    });
+  });
+  return pairs.sort();
+}
+
+function rotateVectorByQuaternion(vector, quaternion) {
+  const [x, y, z] = vector;
+  const [qx, qy, qz, qw] = quaternion;
+  const tx = 2 * (qy * z - qz * y);
+  const ty = 2 * (qz * x - qx * z);
+  const tz = 2 * (qx * y - qy * x);
+  return [
+    x + qw * tx + qy * tz - qz * ty,
+    y + qw * ty + qz * tx - qx * tz,
+    z + qw * tz + qx * ty - qy * tx,
+  ];
+}
+
+function projectedOrthographicLengthPx(
+  start,
+  end,
+  quaternion,
+  viewportHeight,
+  viewHalfHeight,
+  displayScale = 1,
+) {
+  const rotated = rotateVectorByQuaternion(
+    end.map((value, axis) => value - start[axis]),
+    quaternion,
+  );
+  return Math.hypot(rotated[0], rotated[1]) * displayScale *
+    viewportHeight / (2 * viewHalfHeight);
+}
+
 test("every gallery crop uses 2.75d while apparent diameter stays fixed", () => {
   assert.equal(LATTICE_LAB_DISPLAY_RADIUS, 2.75);
   assert.equal(LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS, 2.75);
@@ -775,6 +823,162 @@ test("trackball drag permits full 3D rotation and tilts the projected Y axis", (
     2 * (qy * qz + qw * qx),
   ];
   assert.ok(Math.abs(yAxis[0]) > 0.05, "projected Y axis must be able to tilt");
+});
+
+test("Diamond nearest-neighbor geometry is independently reconstructed", () => {
+  const diamond = createLatticeLabCaseGallery().find(
+    ({ id }) => id === "diamond-cubic-two-sublattice-v1",
+  );
+  const independentlyEnumerated = independentlyEnumerateNeighborPairs(
+    diamond.sites,
+    1,
+  );
+  const rendered = createNearestNeighborEdges(diamond).map(
+    ({ fromSiteId, toSiteId }) => canonicalSitePair(fromSiteId, toSiteId),
+  ).sort();
+  assert.equal(independentlyEnumerated.length, 79);
+  assert.deepEqual(rendered, independentlyEnumerated);
+
+  const nextShellDistance = 4 / Math.sqrt(6);
+  for (let basisIndex = 0; basisIndex < 8; basisIndex += 1) {
+    const receiver = diamond.idealSites.find(({ grid }) =>
+      grid[0] === 0 && grid[1] === 0 && grid[2] === 0 &&
+      grid[3] === basisIndex
+    );
+    const nearest = diamond.idealSites.filter((site) =>
+      site.id !== receiver.id &&
+      Math.abs(Math.hypot(...site.position.map(
+        (value, axis) => value - receiver.position[axis],
+      )) - 1) < 1e-9
+    );
+    const nextShell = diamond.idealSites.filter((site) =>
+      site.id !== receiver.id &&
+      Math.abs(Math.hypot(...site.position.map(
+        (value, axis) => value - receiver.position[axis],
+      )) - nextShellDistance) < 1e-9
+    );
+    assert.equal(nearest.length, 4, `Diamond basis orbit ${basisIndex}`);
+    assert.equal(nextShell.length, 12, `Diamond next shell ${basisIndex}`);
+    assert.equal(
+      nearest.every(({ polarity }) => polarity !== receiver.polarity),
+      true,
+      `Diamond polarity topology ${basisIndex}`,
+    );
+  }
+
+  const repeatNetwork = createRepeatCellNearestNeighborNetwork(diamond);
+  assert.equal(repeatNetwork.relationshipCount, 8);
+  diamond.repeatCell.sites.forEach((ownedSite) => {
+    const relationships = repeatNetwork.relationships.filter(
+      ({ fromSiteId }) => fromSiteId === ownedSite.id,
+    );
+    assert.equal(relationships.length, 4, ownedSite.id);
+    relationships.forEach((relationship) => {
+      const separation = Math.hypot(...relationship.toPosition.map(
+        (value, axis) => value - relationship.fromPosition[axis],
+      ));
+      assert.ok(Math.abs(separation - 1) < 1e-9);
+      assert.notEqual(relationship.toPolarity, ownedSite.polarity);
+      assert.ok(Math.abs(separation - nextShellDistance) > 1e-3);
+    });
+  });
+  assert.equal(repeatNetwork.edges.length, 7);
+  assert.equal(
+    diamond.unpolarizedLatticePattern.relationshipSegments.length,
+    16,
+  );
+  diamond.unpolarizedLatticePattern.relationshipSegments.forEach((edge) => {
+    const separation = Math.hypot(...edge.end.map(
+      (value, axis) => value - edge.start[axis],
+    ));
+    assert.ok(Math.abs(separation - 1) < 1e-9, edge.id);
+  });
+});
+
+test("default orthographic projection changes apparent length, not world spacing", () => {
+  const quaternion = createDefaultOrientationQuaternion();
+  const mainViewportHeight = 720;
+  const mainViewHalfHeight = defaultViewHalfHeightForDisplayRadius(2.75);
+  const miniatureViewportHeight = 190;
+  const miniatureViewHalfHeight = 2.45;
+  const expectedMiniatureScale = new Map([
+    ["simple-cubic-checkerboard-v1", 1.3],
+    ["bcc-two-sublattice-v1", 1.3],
+    ["fcc-alternating-planes-v1", 1.3],
+    ["hcp-abab-layers-v1", 1.35099963],
+    ["simple-cubic-alternating-planes-v1", 1.3],
+    ["diamond-cubic-two-sublattice-v1", 1.549702858],
+  ]);
+
+  createLatticeLabCaseGallery().filter(({ repeatCell }) => repeatCell)
+    .forEach((caseRecord) => {
+      const siteById = new Map(caseRecord.sites.map((site) => [site.id, site]));
+      const mainLengths = createNearestNeighborEdges(caseRecord).map((edge) => {
+        const start = siteById.get(edge.fromSiteId).position;
+        const end = siteById.get(edge.toSiteId).position;
+        const worldLength = Math.hypot(...end.map(
+          (value, axis) => value - start[axis],
+        ));
+        assert.ok(Math.abs(worldLength - 1) < 1e-9, caseRecord.id);
+        return projectedOrthographicLengthPx(
+          start,
+          end,
+          quaternion,
+          mainViewportHeight,
+          mainViewHalfHeight,
+        );
+      });
+      assert.ok(Math.min(...mainLengths) > 0, caseRecord.id);
+      assert.ok(
+        Math.max(...mainLengths) <=
+          mainViewportHeight / (2 * mainViewHalfHeight) + 1e-9,
+        caseRecord.id,
+      );
+
+      const scale = expectedMiniatureScale.get(caseRecord.id);
+      const repeatLengths = createRepeatCellNearestNeighborNetwork(caseRecord)
+        .edges.map(({ start, end }) => {
+          const worldLength = Math.hypot(...end.map(
+            (value, axis) => value - start[axis],
+          ));
+          assert.ok(Math.abs(worldLength - 1) < 1e-9, caseRecord.id);
+          return projectedOrthographicLengthPx(
+            start,
+            end,
+            quaternion,
+            miniatureViewportHeight,
+            miniatureViewHalfHeight,
+            scale,
+          );
+        });
+      assert.ok(Math.min(...repeatLengths) > 0, caseRecord.id);
+      assert.ok(
+        Math.max(...repeatLengths) <=
+          scale * miniatureViewportHeight / (2 * miniatureViewHalfHeight) +
+            1e-9,
+        caseRecord.id,
+      );
+    });
+});
+
+test("case entry, reset, and reload share one synchronized camera contract", () => {
+  const runtime = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
+  assert.equal(
+    runtime.match(
+      /rootGroup\.quaternion\.set\(\.\.\.createDefaultOrientationQuaternion\(\)\)/gu,
+    ).length,
+    3,
+  );
+  assert.match(runtime, /unpolarizedRoot\.quaternion\.copy\(rootGroup\.quaternion\)/u);
+  assert.match(runtime, /miniatureRoot\.quaternion\.copy\(rootGroup\.quaternion\)/u);
+  assert.match(
+    runtime,
+    /function selectCase\(caseId\) \{[\s\S]*cameraViewHalfHeight = defaultViewHalfHeightForDisplayRadius\([\s\S]*rootGroup\.position\.set\(0, 0, 0\);[\s\S]*rootGroup\.quaternion\.set\(\.\.\.createDefaultOrientationQuaternion\(\)\)/u,
+  );
+  assert.match(
+    runtime,
+    /function resetCase\(\) \{[\s\S]*cameraViewHalfHeight = defaultViewHalfHeightForDisplayRadius\([\s\S]*rootGroup\.position\.set\(0, 0, 0\);[\s\S]*rootGroup\.quaternion\.set\(\.\.\.createDefaultOrientationQuaternion\(\)\)/u,
+  );
 });
 
 test("default display orientation is Z-up without remapping model axes", () => {

@@ -77,6 +77,7 @@ class RigidStratumChart:
     decision: str
     claim_boundary: str
     falsifier: str
+    obstruction_vector_point: tuple[mp.mpf, mp.mpf, mp.mpf] | None = None
 
 
 @dataclass
@@ -229,9 +230,17 @@ def evaluate_box(chart, beta_lo, beta_hi, depth):
             chart.polarities[chart.receiver_index]
             * chart.polarities[transmitter_index]
         )
+        projected_displacement = (
+            displacement[chart.obstruction_component_index]
+            if chart.obstruction_vector_point is None
+            else dot(
+                tuple(I(value) for value in chart.obstruction_vector_point),
+                displacement,
+            )
+        )
         acceleration_component += (
             polarity_product
-            * displacement[chart.obstruction_component_index]
+            * projected_displacement
             / (root * root * root * transmitter_factor)
         )
     return CertifiedBox(

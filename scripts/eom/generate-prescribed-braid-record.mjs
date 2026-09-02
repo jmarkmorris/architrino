@@ -29,9 +29,11 @@ import {
 
 export const PRESCRIBED_BRAID_SPEC_SCHEMA = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
 export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA_ID = PRESCRIBED_ASSEMBLY_SPEC_SCHEMA;
-export const PRESCRIBED_BRAID_EMITTER_ID = "prescribed-assembly-record-emitter.v3";
+export const PRESCRIBED_BRAID_EMITTER_ID = "prescribed-assembly-record-emitter.v4";
 export const PRESCRIBED_GEOMETRY_ENGINE_ID = "prescribed-geometry";
 export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
+export const ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM = 2e-11;
+export const ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID = "assembly-view-record-position-grid.v1";
 
 const STATE_FLAG_FOR_POLARITY = Object.freeze({ "1": 1, "-1": 2 });
 const SCRIPT_DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
@@ -197,7 +199,7 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
     start: positionByConstituent.get(edge.members[0]),
     end: positionByConstituent.get(edge.members[1]),
   }));
-  return {
+  return canonicalizePrescribedBraidRecord({
     schema: ASSEMBLY_VIEW_RECORD_SCHEMA,
     assemblyId: scientificIdentity.assemblyId,
     modelRevisionSha256: scientificIdentity.modelRevisionSha256,
@@ -226,6 +228,12 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
         prescribedReturnPeriod: spec.history.periodic ? spec.history.returnPeriod : null,
         description: spec.provenanceDescription,
         coordinates: createParameterVector(materialized),
+        numericCanonicalization: {
+          id: ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID,
+          positionQuantum: ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM,
+          coefficientRule: "coefficient k is the nearest multiple of positionQuantum / segmentDuration^k",
+          errorRule: "sampled residual bounds include coefficient-grid displacement and round upward",
+        },
       },
     },
     recordFrame: recordCarriers.frame,
@@ -236,7 +244,58 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
     ...(structuralEdges.length > 0 ? { structuralEdges } : {}),
     ansatz,
     events: [],
-  };
+  });
+}
+
+export function canonicalizePrescribedBraidRecord(record) {
+  const canonical = structuredClone(record);
+  const positionQuantum = ASSEMBLY_VIEW_RECORD_POSITION_QUANTUM;
+  for (const worldline of canonical.worldlines ?? []) {
+    for (const segment of worldline.segments ?? []) {
+      const duration = segment.endTime - segment.startTime;
+      if (!(duration > 0) || !Number.isFinite(duration)) {
+        throw new RangeError("record numeric canonicalization requires a positive finite segment duration.");
+      }
+      segment.coefficients = segment.coefficients.map((axis) => axis.map((value, power) =>
+        quantizeFiniteNumber(value, positionQuantum / duration ** power)));
+      segment.positionError = quantizeFiniteNumber(
+        segment.positionError + 2 * positionQuantum,
+        10 * positionQuantum,
+        "up",
+      );
+      segment.velocityError = quantizeFiniteNumber(
+        segment.velocityError + 3 * positionQuantum / duration,
+        10 * positionQuantum / duration,
+        "up",
+      );
+    }
+  }
+  for (const field of ["recordFrame", "vectorOverlays", "binaries", "structuralEdges", "ansatz"]) {
+    if (canonical[field] !== undefined) canonical[field] = canonicalizeNumericTree(canonical[field], positionQuantum);
+  }
+  return canonical;
+}
+
+function canonicalizeNumericTree(value, quantum) {
+  if (typeof value === "number") return Number.isInteger(value) ? value : quantizeFiniteNumber(value, quantum);
+  if (Array.isArray(value)) return value.map((item) => canonicalizeNumericTree(item, quantum));
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, canonicalizeNumericTree(item, quantum)]));
+  }
+  return value;
+}
+
+function quantizeFiniteNumber(value, quantum, mode = "nearest") {
+  if (!Number.isFinite(value) || !Number.isFinite(quantum) || !(quantum > 0)) {
+    throw new TypeError("record numeric canonicalization requires finite values and a positive finite quantum.");
+  }
+  const scaled = value / quantum;
+  const integer = mode === "up" ? Math.ceil(scaled) : Math.round(scaled);
+  if (!Number.isSafeInteger(integer)) {
+    throw new RangeError("record numeric canonicalization exceeded the safe integer grid.");
+  }
+  const result = integer * quantum;
+  return Object.is(result, -0) ? 0 : result;
 }
 
 function createSourceVectorOverlays(materialized, binaries, epochTime) {

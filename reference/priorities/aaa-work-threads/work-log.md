@@ -6,6 +6,13 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Active queue hygiene and zero-row owner disposition
+
+- Removed 23 completed task records from the `Verified` sections of eight active queues: AAA Core, Equation Mapping app, Photon, UI Guidelines, Category Theory, Open Problems, Strong Field, and Source Mining. Their durable packets and work-log history remain in place; no open, blocked, or superseded record was removed.
+- Reviewed all nine active zero-row directories against their live ownership declarations. Retained each unranked as a distinct routing, compatibility, policy, app, or scientific-ownership address and recorded the exact trigger required to reopen executable work.
+
+Plainly: completed work no longer clutters active queues, while empty folders remain only where they still tell future work where to go.
+
 ### 2026-09-02 — MCP reclassified under Archie service ownership
 
 - Reclassified MCP as an Archie-service protocol adapter for authorized software clients, not a user-facing application, and moved its preserved packet under the archived Archie service owner.

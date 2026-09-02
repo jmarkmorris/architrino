@@ -82,6 +82,24 @@ These ten directories remain in the top-level inventory without a numeric rank. 
 
 Plainly: these folders have defined responsibilities but no global numeric rank. Their own queues still determine what work is actionable.
 
+## Zero-Row Owner Disposition — 2026-09-02
+
+The operator authorized review of the nine active directories whose ranked queues are empty. Each is retained unranked because it still owns a distinct route or reopening boundary. Retention does not create executable work.
+
+| Directory | Disposition | Retained responsibility | Reopening trigger |
+| --- | --- | --- | --- |
+| [`aaa-corpus-dragnet`](../aaa-corpus-dragnet/priorities.md) | Retain unranked. | Read-only correlation findings and owner triage. | A newly accepted bounded correlation pass. |
+| [`app-equation-mapping`](../app-equation-mapping/priorities.md) | Retain unranked. | Equation-page app, registry contract, and blocked review-export route. | An operator-selected local draft or a newly justified reader need. |
+| [`app-simulation`](../app-simulation/priorities.md) | Retain as a compatibility routing surface. | Stable legacy paths into the canonical simulation-protocol index. | Never as a local execution owner; work routes to the named scientific or proof owner. |
+| [`app-topo`](../app-topo/priorities.md) | Retain unranked. | Wake Topography app contract and scientific-input boundary. | A source-bound reference surface from the scientific owner. |
+| [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | Retain unranked. | Shared app-chrome standard and implementation ownership. | A newly accepted cross-app standard or migration defect. |
+| [`category-theory`](../category-theory/priorities.md) | Retain unranked. | Mathematical bridge and ownership boundaries for blocked categorical questions. | A named carrier or bridge not adequately handled by a simpler owner. |
+| [`mapping-electromagnetism`](../mapping-electromagnetism/priorities.md) | Retain unranked. | Cross-equation electromagnetic integration ownership. | An accepted common assembly and Noether sea record. |
+| [`mapping-one-nature-many-theories`](../mapping-one-nature-many-theories/priorities.md) | Retain unranked. | Completed bridge decisions, comparison boundaries, and promotion provenance. | A new operator-ratified cross-theory bridge decision. |
+| [`mapping-open-problems`](../mapping-open-problems/priorities.md) | Retain unranked. | Deployed-paper classification and future revision boundary. | A concrete bounded paper revision. |
+
+Plainly: these directories stay active as addresses and ownership boundaries, not as work waiting to be done. A later task must satisfy the stated trigger before entering any queue.
+
 ## Dormant-Deferred Archive
 
 The following 26 children are preserved as archived work. They are excluded from the active inventory, and archive policy excludes them from numeric ranking, the active discussion queue, and tracker-metadata synchronization. Historical tracker metadata does not reactivate a directory. The Archie service MCP adapter is a component of the archived `archie` owner, not a separate application or inventory owner.

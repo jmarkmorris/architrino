@@ -31,6 +31,8 @@ jobs:
         run: node --test tests/runtime-asset-fresh-checkout.test.js
       - name: Build static payload from source
         run: node scripts/build-static-site.mjs --out .tmp/site
+      - name: Verify all Borg registry and record byte identities
+        run: node scripts/borg/verify-assembly-record-byte-identity.mjs --check
       # OPS-007 Pages handoff: the builder rejects payloads above
       # 1,000,000,000 uncompressed bytes; the uploaded copy expires in one day.
       - name: Upload Pages deployment artifact
