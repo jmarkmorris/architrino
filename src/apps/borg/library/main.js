@@ -13,7 +13,8 @@ const previewCache = new Map();
 const api = "/api/borg/library";
 let searchTimer;
 
-createStandaloneAppNavigationRuntime({ host: $("scene-hud-tools") }).init();
+const navigationRuntime = createStandaloneAppNavigationRuntime({ host: $("scene-hud-tools") }).init();
+window.addEventListener("pagehide", () => navigationRuntime.destroy(), { once: true });
 
 function facetLabel(key, value) {
   if (key === "circleOccupancy" && value === "mixed") return "Both occupancy types";

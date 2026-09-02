@@ -1,5 +1,18 @@
 # Field-Speed Ceiling Work Log
 
+## 2026-09-02 — FSC-local autonomous braking and breather audit
+
+- Reconciled the older collinear-breather feasibility note with the later delayed-ignition theorem. The earlier no-breather claim is now limited to the minimal autonomous crossing state that forbids an inactive channel from bootstrapping its own first crossing.
+- Derived the first integral $2m-m^2/2=K(1/u_*-1/y)$ for the supplied-onset braking chart and proved the sufficient condition $K\ge3u_*$ for a smooth zero-speed turnaround at positive separation before the active root leaves the stored straight-source interval.
+- Recorded the conditional return argument: the attractive partner root reverses the pair and, absent an intervening untyped stratum, returns it to the next coincidence. Repeating an equal onset after the reflected event gives a formal spatial cycle but is not selected by the minimal autonomous wake state.
+- No onset trigger, autonomous breather, field-speed ceiling, Master Equation change, event law, conservation account, or physical realization was adopted or promoted.
+
+## 2026-09-02 — FSC-only scope restored
+
+- Removed the premature Field-Speed threshold-mechanism insertion from `master-equation-closure/brainstorming.md`.
+- Kept the emergent-bound and turnaround exploration only in this Field-Speed lane and made its status explicit: FSC-local comparison work, no MEC ownership, no Master Equation change, and no reader-facing or canonical promotion without a separate operator decision.
+- No queue status, scientific claim grade, or accepted law changed.
+
 ## 2026-09-02 — Closed-ceiling straight-trace isochron corollary recorded
 
 - Added an explicit corollary to the exact-mirror restart: at coincidence the retained partner cap arrives as one owned nonordinary family; on the exact straight-through right trace, each receiver thereafter remains on only the frozen $s=0$ partner endpoint, every $s<0$ partner emission fails the causal equality, and every $s>0$ partner emission remains unreceived.

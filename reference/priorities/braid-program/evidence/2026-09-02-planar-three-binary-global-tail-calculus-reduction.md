@@ -447,7 +447,7 @@ $$
 >0.
 $$
 
-The certificate uses exact SymPy differentiation only to construct the displayed kernels, then evaluates their cleared numerators with Arb outward balls at 60 decimal digits. Its low-angle chart covers $0\leq\theta\leq0.25$ after the exact substitutions $\lambda=\pm r\theta$, $\sin\theta=P_{11}(\theta)+\theta^{13}E_s$, and $\cos\theta=P_{12}(\theta)+\theta^{14}E_c$, with $0\leq E_s\leq1/13!$ and $-1/14!\leq E_c\leq0$. The source lower bound $t\geq h|\lambda|$ gives $r<3.7$ on the plus side and $r<1.92$ on the minus side. All four normalized numerators are positive on 800 initial balls without subdivision.
+The certificate uses exact SymPy differentiation only to construct the displayed kernels, then evaluates their cleared numerators with Arb outward balls at 60 decimal digits. Its low-angle chart covers $0\leq\theta\leq0.25$ after the exact substitutions $\lambda=\pm r\theta$, $\sin\theta=P_{11}(\theta)+\theta^{13}E_s$, and $\cos\theta=P_{12}(\theta)+\theta^{14}E_c$, with $0\leq E_s\leq1/13!$ and $-1/14!\leq E_c\leq0$. The source lower bound $t\geq h|\lambda|$ gives $r<3.7$ on the plus side and $r<1.92$ on the minus side. All four normalized numerators are positive on every admitted initial ball without subdivision; the other initial balls are excluded by $|\lambda|>0.01$.
 
 The bulk chart covers $0.2\leq\theta\leq1.4$. Centered mean-value forms prove the three pointwise kernels on 51,786 processed balls to depth eight. Writing the two equal-$t$ roots as $a-d$ and $a+d$ gives the exact relation $\lambda=\cos a\sin d/a$; 639,224 balls to depth eighteen prove the symmetric derivative kernel for $0.2\leq a\leq1.4$. The constraints $|\lambda|\leq0.01$ and $a\leq1.4$ give $d<0.09$, so the cover contains every admitted midpoint pair.
 

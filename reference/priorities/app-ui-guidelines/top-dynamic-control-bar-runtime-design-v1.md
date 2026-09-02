@@ -2,15 +2,15 @@
 
 ## Status
 
-This accepted design selects one canonical implementation path for the top dynamic control bar. The main webapp, Animator, Lattice Lab, Wake Topography, Photon, Causal Delay Feedback, Greek Letter Match, Equation Mapping, PDG Edit, and Molecule now use that path. A remaining page adopts the design only when its repeated markup, SVGs, and local action wiring are removed in the same scoped change.
+This accepted design selects one canonical implementation path for the top dynamic control bar. Every declared full-bar surface now uses that path: the main webapp, Animator, Lattice Lab, Wake Topography, Photon, Causal Delay Feedback, Greek Letter Match, Equation Mapping, PDG Edit, Molecule, Ideal Braid, Braid Search, Borg, and Borg Library.
 
-Plainly: ten full-bar surfaces now use one architecture, while remaining pages move to it in declared batches without keeping two live bars on a migrated page.
+Plainly: all fourteen full-bar surfaces now use one architecture, with one runtime and one stylesheet rather than copied navigation shells.
 
 ## Current Duplication
 
-Ideal Braid and Borg repeat static `scene-hud-tools` markup, button metadata, and SVG fragments. Braid Search repeats the same construction inside `CompactSweepDashboardRuntime.js`. Lattice Lab, Wake Topography, Photon, Causal Delay Feedback, Greek Letter Match, Equation Mapping, PDG Edit, and Molecule have removed their global-navigation copies and now use `StandaloneAppNavigationRuntime.js`. Equation Mapping retains a separate local icon-button family only for equation Search, Edit, and Settings.
+The migration removed the repeated static `scene-hud-tools` markup from Ideal Braid and Borg, the runtime-built copy from Braid Search, and Borg Library's text-only Applications link. Every standalone full-bar surface now uses `StandaloneAppNavigationRuntime.js`. Equation Mapping retains a separate local icon-button family only for equation Search, Edit, and Settings; Borg retains Diagnostics as a declared app-mode extension.
 
-Plainly: navigation behavior is partly shared, but the bar itself is copied. Changing one icon, order rule, or accessibility attribute still requires edits in several places.
+Plainly: shared navigation changes now have one implementation path, while each app still owns the controls that operate its subject matter.
 
 ## Canonical Ownership
 
@@ -26,7 +26,7 @@ Plainly: navigation behavior is partly shared, but the bar itself is copied. Cha
 
 Plainly: the generic runtime draws and manages the bar. Navigator modules decide where global actions go. Each app keeps only controls that operate its own subject matter.
 
-The existing `src/apps/navigator/standalone-app-navigation.css` is superseded when the first migration batch moves its complete rule set into `src/runtime/top-dynamic-control-bar.css`. It must not remain as a second permanent style owner. Existing pages may continue using it only until their atomic migration; the last migration deletes the old file and every import.
+The final migration deleted the superseded `src/apps/navigator/standalone-app-navigation.css` file and its remaining imports. `src/runtime/top-dynamic-control-bar.css` is the sole shared style owner.
 
 ## Runtime Shape
 
@@ -55,7 +55,7 @@ createTopDynamicControlBar({
 })
 ```
 
-Each action descriptor declares `kind`, `id`, `label`, `title`, `onActivate`, and optional `pressed`, `expanded`, `disabled`, `controls`, `popover`, and `className` fields. The runtime rejects duplicate kinds, duplicate IDs, unknown shared kinds, missing accessible labels, and an order that violates the accepted standard. It returns element references plus `update(nextState)` and `destroy()`.
+Each action descriptor declares `kind`, `id`, `label`, `title`, `onActivate`, and optional `pressed`, `expanded`, `disabled`, `controls`, `popover`, `className`, and centrally registered `iconKind` fields. The runtime rejects duplicate kinds, duplicate IDs, unknown shared kinds or icons, missing accessible labels, and an order that violates the accepted standard. It returns element references plus `update(nextState)` and `destroy()`.
 
 Plainly: every button arrives with the information needed for appearance, accessibility, state, and behavior. Apps cannot silently reorder shared actions or create an unlabeled look-alike.
 

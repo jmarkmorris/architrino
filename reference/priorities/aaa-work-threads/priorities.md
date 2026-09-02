@@ -61,8 +61,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 14 | Workstream | [`mapping-cosmology`](../mapping-cosmology/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
 | 15 | App | [`app-photon`](../app-photon/priorities.md) | `local_c_parameterization`: source-bound Noether sea state-to-$c_\gamma,c_{\mathrm{sig}}$ mapping with bounded no-catch-up and stale-root diagnostics | 5.0 | 1.15 | -24 | 1.24 | 0.35 | 3 | 0.80 | 2.00 | 4 | 8 | 8 | 6 | 6.6 | 0.30 |
 | 16 | Op queue | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
-| 17 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standalone_app_home_search_settings_migration` through the canonical runtime | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
-| 18 | App | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab`: one source-carried coordinate morph teaching packet | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.46 | 5 | 4 | 7 | 5 | 5.1 | 0.09 |
+| 17 | App | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab`: one source-carried coordinate morph teaching packet | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.46 | 5 | 4 | 7 | 5 | 5.1 | 0.09 |
 
 ## Active-Only Rerank Movement — 2026-07-26
 
@@ -114,6 +113,12 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 - `app-ui-guidelines` completed `standard_acceptance_pass` with fixed semantics, dimensions, action order, responsive behavior, page exceptions, and a live structural audit.
 - It then completed `shared_bar_runtime_design` and `markdown_control_relocation`, followed by `main_webapp_and_animator_hud_unification`: the canonical runtime and stylesheet now generate one bar that moves between the two headers and passed desktop/mobile interaction checks.
 - Its local rank-1 object is now `standalone_app_home_search_settings_migration`. The row retains its prior component scores and rank because the remaining multi-page migration has the same bounded support-surface value and cost envelope. This changes the scored object only; it does not claim that standalone pages already consume the canonical runtime.
+
+## UI Standalone Migration Closure — 2026-09-02
+
+- `app-ui-guidelines` completed `standalone_app_home_search_settings_migration` across every declared full-bar surface, including the final owner-coordinated Ideal Braid, Braid Search, Borg, and Borg Library batch.
+- The lane now has no executable object and becomes an unranked active owner. `app-borg` moves from rank `18` to `17` without score changes.
+- This is UI architecture and attention-routing closure only. It does not validate any simulation, scientific claim, campaign dataset, assembly classification, or Borg/Braid domain control.
 
 ## Solving The Crisis Source Refresh Closure — 2026-09-02
 

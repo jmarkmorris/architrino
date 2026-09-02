@@ -6,6 +6,19 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — UI-005 batch 9 completed the Borg and Braid migrations
+
+- Migrated Ideal Braid, Braid Search, Borg, and Borg Library to `StandaloneAppNavigationRuntime.js` and the canonical top dynamic control-bar stylesheet.
+- Removed Ideal Braid and Borg's repeated static navigation markup, Braid Search's local constructor and event wiring, and Borg Library's text-only Applications link. Deleted the superseded standalone stylesheet after the final import was removed.
+- Preserved Ideal Braid's simulation and markdown controls, Braid Search's dashboard filters and views, Borg's viewport and timeline controls, and Borg Library's collection search, filters, playback, and Workbench route.
+- Added a centrally registered icon extension so Borg Diagnostics remains the permitted app-mode action after Search while the Borg-owned controller continues to own panel state and rendering.
+- Added compact content clearance on Ideal Braid and Borg, and right-aligned Borg Library's wrapped mobile header so its global Search popover remains viewport-bounded.
+- Focused shared-navigation, Ideal Braid, Braid Search, Borg, and Borg Library tests passed `73/73` after updating the migration contracts. Desktop/mobile browser checks confirmed canonical order, viewport-bounded Search, exact Applications routing, Escape focus restoration, no horizontal overflow, no console errors, and working Borg Diagnostics.
+- Stored eight reproducible captures under ignored `.local-data/app-ui-guidelines/ui-005-batch-9/` and bound them with a [tracked evidence receipt](evidence/ui-005-batch-9-borg-braid-browser-captures.2026-09-02.json).
+- UI-005 is verified. The workstream retains the accepted standard and audit but has no remaining executable queue object.
+
+Plainly: the four owner-coordinated apps now share the same navigation implementation without surrendering their own controls, and no legacy full-bar path remains.
+
 ### 2026-09-02 — UI-005 batch 8 migrated Molecule
 
 - Added one declarative global-navigation host and the canonical stylesheet, then mounted `StandaloneAppNavigationRuntime.js` from the Molecule runtime.
