@@ -15,6 +15,8 @@ const AXIS_COINCIDENCE_TOLERANCE = 1e-9;
 const SWEPT_ENVELOPE_COLOR = 0x7bd6c2;
 const DEFAULT_TUBE_RADIUS = 0.018;
 const DEFAULT_TUBE_OPACITY = 0.2;
+const OBSTRUCTION_COLOR = 0xffb454;
+const REQUIRED_DIRECTION_COLOR = 0xd6dde3;
 
 export function createBorgAssemblyViewScene({
   group,
@@ -34,12 +36,15 @@ export function createBorgAssemblyViewScene({
   structuralEdgeGroup.userData.kind = "source-carried-structural-edges";
   const prescribedTubeGroup = new THREE.Group();
   prescribedTubeGroup.userData.kind = "display-only-path-history-tubes";
+  const obstructionGroup = new THREE.Group();
+  obstructionGroup.userData.kind = "certified-prescribed-balance-obstruction";
   group.add(
     axisGroup,
     sweptEnvelopeGroup,
     structuralEdgeGroup,
     prescribedPathGroup,
     prescribedTubeGroup,
+    obstructionGroup,
   );
   let entry = null;
   let cameraMode = "free";
@@ -62,6 +67,7 @@ export function createBorgAssemblyViewScene({
     clearBorgSceneGroup(structuralEdgeGroup);
     clearBorgSceneGroup(prescribedPathGroup);
     clearBorgSceneGroup(prescribedTubeGroup);
+    clearBorgSceneGroup(obstructionGroup);
     translation = resolveBorgPrescribedTranslation(nextEntry);
     translationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     currentTime = Number(nextEntry?.dataset?.window?.start ?? 0);
@@ -71,6 +77,7 @@ export function createBorgAssemblyViewScene({
     buildBinaryAxes(nextEntry?.dataset?.binaries ?? []);
     buildStructuralEdges(nextEntry?.dataset?.structuralEdges ?? []);
     buildPrescribedPathStrands();
+    buildBalanceObstruction();
     referenceRotation = resolveSourceRotation(nextEntry);
     sweptEnvelopeGroup.visible = displayMode === "swept-envelope";
     prescribedPathGroup.visible = pathVisible;
@@ -106,6 +113,7 @@ export function createBorgAssemblyViewScene({
     translationFrame = nextFrame;
     updatePrescribedPathWindows();
     rebuildSelectedTube();
+    updateBalanceObstruction();
     render?.();
   }
 
@@ -164,6 +172,7 @@ export function createBorgAssemblyViewScene({
     currentTime = Number(time);
     updatePrescribedPathWindows();
     rebuildSelectedTube();
+    updateBalanceObstruction();
     if (cameraMode !== "co-rotating" || !referenceRotation || !entry) {
       render?.();
       return;
@@ -418,6 +427,101 @@ export function createBorgAssemblyViewScene({
     });
   }
 
+  function buildBalanceObstruction() {
+    const coordinates = entry?.dataset?.provenance?.prescribedGeometry?.coordinates;
+    const obstruction = coordinates?.geometry?.prescribedBalanceObstruction;
+    if (obstruction?.schema !== "borg-prescribed-balance-obstruction.v1") return;
+    const inventory = coordinates.constituentInventory ?? [];
+    const receiver = inventory.find((row) => row.id === obstruction.receiverConstituentId);
+    if (!receiver?.worldlineId) return;
+    const axis = sourceVector(obstruction.rotationAxis).normalize();
+    const axisStart = axis.clone().multiplyScalar(-0.72);
+    const axisEnd = axis.clone().multiplyScalar(0.72);
+    const axisGeometry = new THREE.BufferGeometry().setFromPoints([
+      toWorld(axisStart, new THREE.Vector3()),
+      toWorld(axisEnd, new THREE.Vector3()),
+    ]);
+    const axisLine = new THREE.Line(axisGeometry, new THREE.LineDashedMaterial({
+      color: OBSTRUCTION_COLOR,
+      dashSize: 0.06,
+      gapSize: 0.035,
+      transparent: true,
+      opacity: 0.82,
+      depthWrite: false,
+    }));
+    axisLine.computeLineDistances();
+    axisLine.userData = {
+      kind: "certified-sum-edge-rotation-axis",
+      valueAuthority: "source-carried-certified-obstruction",
+    };
+    const halo = new THREE.Mesh(
+      new THREE.SphereGeometry(0.075, 18, 12),
+      new THREE.MeshBasicMaterial({
+        color: OBSTRUCTION_COLOR,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.95,
+        depthTest: false,
+        depthWrite: false,
+      }),
+    );
+    halo.renderOrder = 12;
+    halo.userData = { kind: "certified-obstruction-receiver", receiverWorldlineId: receiver.worldlineId };
+    const requiredLine = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]),
+      new THREE.LineDashedMaterial({
+        color: REQUIRED_DIRECTION_COLOR,
+        dashSize: 0.045,
+        gapSize: 0.03,
+        transparent: true,
+        opacity: 0.8,
+        depthWrite: false,
+      }),
+    );
+    requiredLine.computeLineDistances();
+    requiredLine.userData = { kind: "required-acceleration-direction" };
+    const forbiddenArrow = new THREE.ArrowHelper(
+      sourceVector(obstruction.forbiddenComponentDirection).normalize(),
+      new THREE.Vector3(),
+      0.38,
+      OBSTRUCTION_COLOR,
+      0.09,
+      0.045,
+    );
+    forbiddenArrow.userData = { kind: "certified-forbidden-acceleration-component" };
+    obstructionGroup.userData.obstruction = obstruction;
+    obstructionGroup.userData.receiverWorldlineId = receiver.worldlineId;
+    obstructionGroup.add(axisLine, halo, requiredLine, forbiddenArrow);
+    updateBalanceObstruction();
+  }
+
+  function updateBalanceObstruction() {
+    if (!entry || obstructionGroup.children.length === 0) return;
+    const obstruction = obstructionGroup.userData.obstruction;
+    const receiverWorldlineId = obstructionGroup.userData.receiverWorldlineId;
+    const evaluated = entry.dataset.evaluateWorldline(receiverWorldlineId, currentTime);
+    const receiver = toWorld(
+      applyBorgPrescribedDisplayFrame(
+        evaluated.position,
+        currentTime,
+        translation,
+        translationFrame,
+      ),
+      new THREE.Vector3(),
+    );
+    const halo = obstructionGroup.children.find((row) => row.userData.kind === "certified-obstruction-receiver");
+    const requiredLine = obstructionGroup.children.find((row) => row.userData.kind === "required-acceleration-direction");
+    const forbiddenArrow = obstructionGroup.children.find((row) => row.userData.kind === "certified-forbidden-acceleration-component");
+    halo?.position.copy(receiver);
+    const requiredEnd = receiver.clone().add(sourceVector(obstruction.requiredAccelerationDirection).normalize().multiplyScalar(0.3));
+    requiredLine?.geometry.setFromPoints([receiver, requiredEnd]);
+    requiredLine?.computeLineDistances();
+    if (forbiddenArrow) {
+      forbiddenArrow.position.copy(receiver);
+      forbiddenArrow.setDirection(sourceVector(obstruction.forbiddenComponentDirection).normalize());
+    }
+  }
+
   function buildSweptEnvelope() {
     if (!entry) {
       return;
@@ -457,12 +561,14 @@ export function createBorgAssemblyViewScene({
     clearBorgSceneGroup(structuralEdgeGroup);
     clearBorgSceneGroup(prescribedPathGroup);
     clearBorgSceneGroup(prescribedTubeGroup);
+    clearBorgSceneGroup(obstructionGroup);
     group.remove(
       axisGroup,
       sweptEnvelopeGroup,
       structuralEdgeGroup,
       prescribedPathGroup,
       prescribedTubeGroup,
+      obstructionGroup,
     );
   }
 
@@ -591,4 +697,11 @@ function resolveSourceRotation(entry) {
 
 function finiteVector(vector) {
   return ["x", "y", "z"].every((axis) => Number.isFinite(Number(vector?.[axis])));
+}
+
+function sourceVector(vector) {
+  if (Array.isArray(vector)) {
+    return new THREE.Vector3(Number(vector[0]), Number(vector[1]), Number(vector[2]));
+  }
+  return new THREE.Vector3(Number(vector?.x), Number(vector?.y), Number(vector?.z));
 }

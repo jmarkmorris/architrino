@@ -8,6 +8,7 @@ const REQUIREMENT_TOKENS = new Set(["P[D]", "P[M]", "P[I]", "P[G]", "P[D/M]", "F
 const LIFECYCLES = new Set(["active", "superseded", "withdrawn"]);
 const SCOPES = new Set(["exact-configuration", "slice-only", "broader-family"]);
 const MATCH_KINDS = new Set(["exact-configuration", "exact-configuration-set", "balance-source", "context-target"]);
+const DISPOSITIONS = new Set(["excluded-prescribed-balance"]);
 
 const GRADE_LABELS = Object.freeze({
   D: "derived",
@@ -88,6 +89,7 @@ export function validateBorgScientificStatusProjection(value) {
     if (!LIFECYCLES.has(relation.lifecycle)) fail(`${prefix}.lifecycle is unsupported.`);
     if (!SCOPES.has(relation.scope)) fail(`${prefix}.scope is unsupported.`);
     if (!['adjudication', 'finding-context'].includes(relation.kind)) fail(`${prefix}.kind is unsupported.`);
+    if (relation.disposition != null && !DISPOSITIONS.has(relation.disposition)) fail(`${prefix}.disposition is unsupported.`);
     validateMatch(relation.match, `${prefix}.match`, relation.scope);
     requiredText(relation.candidate, `${prefix}.candidate`);
     requiredText(relation.sourceAnchor, `${prefix}.sourceAnchor`);
@@ -133,6 +135,7 @@ function matches(relation, coordinates, identity) {
 
 function verdictFor(relation) {
   if (!relation) return "No adjudication linked";
+  if (relation.disposition === "excluded-prescribed-balance") return "Excluded prescribed history in the tested scope";
   const h4 = parseBorgRequirementToken(relation.requirements.H4);
   const h5 = parseBorgRequirementToken(relation.requirements.H5);
   if (h5.state === "pass") return "Retained branch established";
@@ -189,7 +192,7 @@ export function describeBorgScientificStatus(coordinates, identity, projection =
     coverage: "current", verdict: verdictFor(current), causes: Object.freeze([]),
     projection: Object.freeze({ revision: validated.revision, source: validated.source, sourceSha256: validated.sourceSha256 }),
     current, context: Object.freeze(context), requirements: Object.freeze(rows),
-    aggregateCategory: hasFailure ? "scoped-fail" : hasReleasePass ? "pass" : "unknown",
+    aggregateCategory: current.disposition === "excluded-prescribed-balance" || hasFailure ? "scoped-fail" : hasReleasePass ? "pass" : "unknown",
   });
 }
 

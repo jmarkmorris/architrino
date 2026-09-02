@@ -18,32 +18,62 @@ The queue excludes other circular-path inventories, the orthogonal-plane weave, 
 | Root topology and asymptotic laws | Derived root-count, fold-sign, spacing, and radius laws on the fixed equal-radius regular-phase circular chart | [planar common-center three-binary constraint circular-path balance-ladder evidence](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md) |
 | Exact circular continuation | Derived exact periodic solution for each exact complete-simple-ledger balance; no nearby-history uniqueness or perturbation stability | [Exact circular-solution theorem](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md#exact-circular-solution-theorem) |
 | T04 past-only release | Measured accepted prefix through $T=0.0029296875$; no full-cycle return and no retention or stability verdict | [T04 release prefix](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md#t04-past-only-release-prefix) |
+| T04 exact numerical handoff | Accepted six-member, 24,576-segment representation with independent identity, 72-root, acceleration, coverage, and cubic-enclosure checks; no one-cycle evolution result | [T04 exact-reference handoff](evidence/2026-09-01-planar-three-binary-t04-exact-reference-handoff.md) |
+| T04 local history flow | Derived existence and uniqueness on $0\leq T\leq0.05$ for a nonzero $W^{2,\infty}$ retained-history neighborhood with the same 72-root chart; no numerical neighborhood radius, return, retention, or stability result | [Local history-flow theorem](evidence/2026-09-01-planar-three-binary-local-history-flow-well-posedness.md) |
 | Fixed $0.1c_f$ axial translation | Computer-assisted derived bounded nonexistence on $2.3743071761\leq\beta_f\leq3.5743071761$ for the equal-radius regular-phase prescribed screw-path chart; no other-speed or release claim | [Fixed axial-translation certificate](evidence/2026-08-29-planar-three-binary-fixed-axial-translation-certificate.md) |
+| Bounded axial-translation-speed chart | Computer-assisted derived no-nonzero-speed result for the eighteen interval-certified branches T02 through T36 on $-0.9\leq u\leq0.9$; no completeness above $\beta_f=20$ | [Axial-translation-speed chart](evidence/2026-09-01-planar-three-binary-axial-translation-speed-chart.md) |
 | Documentation synthesis | The tracked evidence packet and reader-facing AP-STEM explanation are complete; no active writer task remains | [Work-log entry](work-log.md#2026-08-29--planar-common-center-three-binary-constraint-circular-path-balance-ladder-durably-synthesized) |
 
-Plainly: exact prescribed circles and the bounded ladder mathematics are established at their stated grades. Numerical release, response to disturbances, translated balance, generalized planar geometry, and energy remain separate open questions.
+Plainly: exact prescribed circles, their checked T04 numerical input, short-time local uniqueness, the bounded ladder mathematics, and the declared low-order axial-translation chart are established at their stated grades. Full-cycle release, perturbation return, higher-order translated balance, generalized planar geometry, and energy remain separate open questions.
 
 ## Ranked Next Objects
 
-1. `t04_exact_reference_solver_handoff` — [T04 exact-reference-to-solver handoff task](#t04-exact-reference-to-solver-handoff). Status: `Queued`.
-2. `axial_translation_speed_chart` — [axial-translation-speed chart task](#axial-translation-speed-chart). Status: `Queued`.
-3. `global_equal_radius_ladder_theorem` — [global equal-radius ladder theorem task](#global-equal-radius-ladder-theorem). Status: `Queued`.
-4. `local_history_flow_well_posedness` — [local history-flow well-posedness task](#local-history-flow-well-posedness). Status: `Queued`.
-5. `equal_radius_phase_deformation` — [equal-radius phase-deformed chart task](#equal-radius-phase-deformed-chart). Status: `Queued`.
-6. `regular_phase_unequal_radius` — [regular-phase unequal-radius chart task](#regular-phase-unequal-radius-chart). Status: `Queued`.
-7. `general_planar_continuation` — [combined general planar continuation task](#combined-general-planar-continuation). Status: `Deferred / blocked`.
-8. `t04_one_cycle_eom_reproduction` — [T04 one-cycle EOM reproduction task](#t04-one-cycle-eom-reproduction). Status: `Deferred / blocked`.
-9. `nearby_history_return_map` — [nearby-history return map and stability task](#nearby-history-return-map-and-stability). Status: `Deferred / blocked`.
-10. `same_record_action_energy_ledger` — [same-record action and energy ledger task](#same-record-action-and-energy-ledger). Status: `Deferred / blocked`.
-11. `mode_transition_ledger` — [mode-transition ledger task](#mode-transition-ledger). Status: `Deferred / blocked`.
-12. `higher_order_ladder_asymptotics` — [higher-order ladder asymptotics task](#higher-order-ladder-asymptotics). Status: `Deferred / blocked`.
-13. `full_ladder_action_energy_evaluation` — [full-ladder action and energy evaluation task](#full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
+1. `global_equal_radius_ladder_theorem` — [global equal-radius ladder theorem task](#global-equal-radius-ladder-theorem). Status: `Queued`.
+2. `equal_radius_phase_deformation` — [equal-radius phase-deformed chart task](#equal-radius-phase-deformed-chart). Status: `Queued`.
+3. `regular_phase_unequal_radius` — [regular-phase unequal-radius chart task](#regular-phase-unequal-radius-chart). Status: `Queued`.
+4. `general_planar_continuation` — [combined general planar continuation task](#combined-general-planar-continuation). Status: `Deferred / blocked`.
+5. `t04_one_cycle_eom_reproduction` — [T04 one-cycle EOM reproduction task](#t04-one-cycle-eom-reproduction). Status: `Deferred / blocked`.
+6. `nearby_history_return_map` — [nearby-history return map and stability task](#nearby-history-return-map-and-stability). Status: `Deferred / blocked`.
+7. `same_record_action_energy_ledger` — [same-record action and energy ledger task](#same-record-action-and-energy-ledger). Status: `Deferred / blocked`.
+8. `mode_transition_ledger` — [mode-transition ledger task](#mode-transition-ledger). Status: `Deferred / blocked`.
+9. `higher_order_ladder_asymptotics` — [higher-order ladder asymptotics task](#higher-order-ladder-asymptotics). Status: `Deferred / blocked`.
+10. `full_ladder_action_energy_evaluation` — [full-ladder action and energy evaluation task](#full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
 
 ## In progress
 
 No rows.
 
 ## Completed
+
+### Local history-flow well-posedness
+
+- **Status:** Completed
+- **Closure goal:** Establish whether a complete retained history sufficiently near exact T04 determines one locally unique future while the same complete simple-root chart remains active.
+- **Result:** The [local history-flow theorem](evidence/2026-09-01-planar-three-binary-local-history-flow-well-posedness.md) defines a nonzero $W^{2,\infty}$ neighborhood of exact T04 and proves one unique regular Master Equation continuation on $0\leq T\leq0.05$. The method-of-steps interval is shorter than the preserved positive-delay floor, so every first-step transmitter event lies in the supplied past. Compact root-complement separation and the implicit-function theorem preserve the same ordered 72-root chart; positive separation, transmitter-factor, retained-history, and velocity-modulus bounds make the finite acceleration sum locally Lipschitz. An independent 90-decimal circular-root instrument reproduces the complete root-count matrix and conservative open margins.
+- **Boundary:** The neighborhood radius exists but is not numerically enclosed. This completes local mathematical existence, uniqueness, and history dependence only; it establishes no EOM-solver conformance, one-cycle return, perturbation retention, stability, binding, physical identity, score, or scientific acceptance.
+- **Falsifier:** Two distinct regular futures from the same admitted history while all theorem hypotheses hold, a changed root census inside the declared tube, or loss of a stated delay, separation, transmitter-factor, retained-history, or local-Lipschitz premise overturns completion.
+
+Plainly: every sufficiently close complete T04 past selects one short future, and the exact past selects the exact circle. Whether nearby futures return after a turn remains an untested dynamical question.
+
+### T04 exact-reference-to-solver handoff
+
+- **Status:** Completed
+- **Closure goal:** Bind the already certified exact T04 balance to one independently auditable EOM-solver input without re-proving the accepted ladder theorem.
+- **Result:** The [accepted T04 handoff packet](evidence/2026-09-01-planar-three-binary-t04-exact-reference-handoff.md) seals one six-member, 24,576-segment, $c_f=1$ prehistory at SHA-256 `11bdeb13a74149c5faff6383a49f2a829db23896202753cc28ad7402448aba67`. Separately authored root instruments reproduce all 36 directed channels, the expected 72 roots, all six receiver acceleration rows, and the declared decimal-compatibility bounds. The independent Decimal checker accepts one full pre-release period inside the declared cubic position and rate budgets.
+- **Boundary:** This completes the exact-reference identity and numerical-history representation only. It establishes no one-cycle EOM reproduction, nearby-history uniqueness, retention, stability, binding, physical identity, score, or scientific acceptance.
+- **Falsifier:** A changed handoff hash, incompatible source interval, root-ledger discrepancy, full-vector acceleration residual above $2\times10^{-8}$, cubic enclosure failure, discontinuous join, or insufficient past coverage overturns completion.
+
+Plainly: the EOM solver now has a checked numerical past for the exact T04 circle. Whether it can evolve that past for a whole cycle remains a separate blocked task.
+
+### Axial-translation-speed chart
+
+- **Status:** Completed
+- **Closure goal:** Determine whether translated equal-radius regular-phase planar common-center three-binary constraint balances exist away from the stationary slice on a declared finite topology and speed chart.
+- **Result:** The [accepted speed-chart packet](evidence/2026-09-01-planar-three-binary-axial-translation-speed-chart.md) certifies the signed axial weight for all eighteen interval-certified stationary balances T02 through T36. Every weight is strictly negative, with the weakest magnitude bound $|S|>5.757038792589520779970984868646480569385$. Hence the only prescribed screw-path branches on $-0.9\leq u\leq0.9$ occur at $u=0$; no nonzero axial translation balances on the declared finite chart.
+- **Boundary:** This is computer-assisted derived bounded nonexistence for equal radii, regular phases, common circulation, $c_f=1$, the accepted stationary zero brackets through $\beta_f=20$, and the declared axial-speed interval only. It establishes no result above T36, no evolution, retention, stability, binding, physical identity, score, or scientific acceptance.
+- **Falsifier:** A signed-weight interval containing zero, missing or misowned root, incorrect receiver multiplicity, invalid stationary zero count, failed exact screw-path reduction, or outward-rounding failure overturns completion.
+
+Plainly: every certified low-order circular mode fails the axial balance test at every checked nonzero translation speed. The high-order ladder remains outside this finite certificate.
 
 ### Fixed axial-translation interval certificate
 
@@ -58,53 +88,22 @@ Plainly: the finite discovery sweep has been replaced by a continuous-domain pro
 
 ## Queued
 
-### T04 exact-reference-to-solver handoff
-
-- **Status:** Queued
-- **Closure goal:** Bind the already certified exact T04 balance to one independently auditable EOM-solver input without re-proving the accepted ladder theorem.
-- **Request / acceptance:** Freeze outward-rounded intervals for $\beta_f$, $R/R_*$, $\Omega$, and the period; the expected 72-root ownership ledger; the $c_f=1$ normalization; the sufficient circular prehistory depth; and the error introduced by decimal serialization and enclosed cubic history segments. The radius interval must explicitly reconcile the two last-digit decimal forms recorded during the investigation. A separately authored oracle must recompute all six receivers, all 36 directed phase channels, the complete simple-root inventory, and the full-vector acceleration enclosure from the frozen handoff rather than replaying the producing implementation.
-- **Evidence / blocker:** The tracked bounded zero-count certificate already establishes the exact T04 balance member. The remaining gap is the explicit identity-and-error bridge from that mathematical member to the numerical history consumed by the EOM solver. If the handoff cannot cite and independently reproduce the accepted outward-rounded enclosure, its receipt must rebuild that directed-rounding check; an older task recap does not override the tracked accepted packet.
-- **Concurrent Borg boundary:** Borg taxonomy labels, descriptive names, and other presentation-only fields may change while this task runs without invalidating the handoff. A change to the six-member inventory, persistent source order, polarity, component-binary relations, prescribed worldlines, numerical parameters, units, source law, or any other model-identity-bearing field invalidates the pending freeze and requires a newly identified handoff. Borg classification remains display and identity infrastructure and supplies no balance, release, or stability evidence.
-- **Completion:** One sealed handoff and independent receipt establish that both recorded decimal forms enclose the same exact reference and that the numerical input represents it closely enough for the declared one-cycle comparison, or reject the proposed discretization with an explicit failed bound. A missed root, non-simple root, incompatible parameter interval, unresolved decimal discrepancy, or interpolation enclosure outside its budget falsifies acceptance.
-
-Plainly: the exact circle is already known mathematically. This task proves that the finite numerical history handed to the EOM solver is a controlled representation of that exact circle.
-
-### Axial-translation-speed chart
-
-- **Status:** Queued
-- **Closure goal:** Determine whether translated equal-radius regular-phase planar common-center three-binary constraint balances exist at axial speeds other than the fixed $0.1c_f$ control.
-- **Request / acceptance:** Use the exact reduction from fixed axial-translation interval certificate task rather than launching an unconstrained three-coordinate continuation. For a declared compact sub-field interval in $u=s_{\mathrm{grp}}/c_f$, map each stationary tangential ladder zero $b_n$ to $\beta_f=\sqrt{1-u^2}\,b_n$ and certify the signed axial weight $S(b_n)=\sum_m(-1)^m/[4\sin^2v_m\,|b_n\cos v_m-1|]$. A nonzero translation can balance only if $S(b_n)=0$; a certified zero would generate the candidate branch $R(u)=R_n/\sqrt{1-u^2}$ and must then receive an independent full-vector check. Preserve $c_f=1$ in every numerical instantiation and partition any unbounded ladder claim by topology.
-- **Evidence / blocker:** fixed axial-translation interval certificate task is complete and proves the reduction $\mathcal R_t^{\mathrm{tr}}=\sqrt{1-u^2}\,\mathcal R_t^{\mathrm{circ}}$ and $\mathcal R_z^{\mathrm{tr}}=uS(b)$. The fixed-speed T04 enclosure proves $S(b_{\mathrm{T04}})\neq0$. The open burden is a signed-weight census over a declared set of stationary ladder zeros, not a new radial search.
-- **Completion:** The declared speed-and-topology domain has an independently checked signed-weight zero census and corresponding full-vector branch or bounded-no-branch disposition. A root-complete common zero establishes a translated prescribed-balance branch only; it does not establish free translation, retention, or stability.
-
-Plainly: changing the translation speed rescales where each stationary mode appears, but it does not change that mode's signed axial-weight test. The next proof can therefore inspect one discrete stationary ladder instead of sweeping a three-dimensional box.
-
 ### Global equal-radius ladder theorem
 
 - **Status:** Queued
 - **Closure goal:** Upgrade bounded completeness through $\beta_f=20$ and measured T02-through-T200 existence into a proof or falsification of the entire infinite equal-radius regular-phase ladder.
 - **Request / acceptance:** Partition the high-speed domain by analytic fold cells, map every cell to a fixed reference interval, subtract the derived leading asymptotic terms, and obtain remainder and derivative bounds uniform in the topology index. Use endpoint signs plus a fixed-sign derivative or an interval Newton/Krawczyk contraction to prove exactly one simple balance in every parity-admissible cell and none in every intervening cell beyond an explicit finite threshold. Discharge the finite transition cells independently.
-- **Evidence / blocker:** The accepted interval proof closes only $0.05\leq\beta_f\leq20$; the arbitrary-precision T38-through-T200 rows establish existence but not completeness. The raw interval receipt's T36 box list reaches that topology interval's right fold at $\beta_f=20.395832521843\ldots$, while the accepted theorem record and tracked evidence owner remain capped at $\beta_f=20$. Reconcile that evidence-owner mismatch before enlarging the reader-facing theorem domain. Nonuniform endpoint expansions may contain logarithmic corrections and must be bounded rather than fitted away.
+- **Evidence / blocker:** The accepted interval proof closes only $0.05\leq\beta_f\leq20$; the arbitrary-precision T38-through-T200 rows establish existence but not completeness. The [T36 domain reconciliation](evidence/2026-09-01-planar-three-binary-t36-domain-reconciliation.md) keeps the accepted theorem capped at $\beta_f=20$ and classifies the raw receipt's extra boxes through the right fold at $20.395832521843\ldots$ as out-of-scope auxiliary output. The remaining blocker is the uniform tail proof from $\beta_f>20$ onward. Nonuniform endpoint expansions may contain logarithmic corrections and must be bounded rather than fitted away.
 - **Completion:** A global theorem joins the existing bounded certificate and a uniform tail proof, with explicit errors for $\beta_n$, $\Delta\beta_n$, and $R_n/R_*$. A missing predicted zero, an extra zero, an uncontrolled turning point, or failure of the uniform remainder bound falsifies the proposed theorem.
 
 Plainly: the first eighteen modes are already the complete bounded answer. This task decides whether the same alternating one-mode pattern continues forever without hidden extra modes.
-
-### Local history-flow well-posedness
-
-- **Status:** Queued
-- **Closure goal:** Establish whether a complete past history sufficiently near exact T04 determines one locally unique future while the same simple-root chart remains active.
-- **Request / acceptance:** Define a normed retained-history neighborhood around exact T04 and prove positive member separation, complete interior causal roots, nonzero root-Jacobian margins, bounded causal-delay continuation, and local Lipschitz dependence of the complete Master Equation acceleration on the retained history. State the continuation interval and the exact exit conditions at collision, fold, history-boundary contact, or loss of the Lipschitz bound.
-- **Evidence / blocker:** Rotational covariance proves that the exact circular history is a solution, but it does not prove uniqueness from supplied approximate history. State-dependent delays and root-chart changes are the principal mathematical burden.
-- **Completion:** A local existence-and-uniqueness theorem applies to a nonzero retained-history neighborhood, or a concrete counterexample proves nonuniqueness. A second admissible future from the same history, a missed root-chart boundary, or an unbounded local acceleration derivative falsifies uniqueness.
-
-Plainly: the exact circle continues if it is followed exactly. This task asks whether nearly the same stored past selects one well-defined nearby future rather than several possible continuations.
 
 ### Equal-radius phase-deformed chart
 
 - **Status:** Queued
 - **Closure goal:** Determine whether the regular $120^\circ$ planar common-center three-binary constraint phase spacing is locally isolated or belongs to an asymmetric equal-radius balance branch.
 - **Request / acceptance:** Fix one global phase by setting $\phi_1=0$ and search $\phi_2=2\pi/3+\delta_2$, $\phi_3=4\pi/3+\delta_3$ with one common positive radius, frequency, axis, and circulation. Begin with a declared compact neighborhood of T04; evaluate every receiver and every partner/self root without assuming regular-hexagon symmetry after $\delta_2$ or $\delta_3$ becomes nonzero. Use interval Jacobian or branch-continuation evidence to isolate the symmetric zero and any asymmetric branches.
-- **Evidence / blocker:** Earlier bounded nonuniform searches recovered the regular point but did not cover the two-dimensional phase domain. The accepted velocity ladder held the regular phases fixed.
+- **Evidence / blocker:** Earlier bounded nonuniform searches recovered the regular point but did not cover the two-dimensional phase domain. The accepted velocity ladder held the regular phases fixed. The independent [T04 phase-Jacobian diagnostic](evidence/2026-09-01-planar-three-binary-phase-jacobian-diagnostic.md) finds a strong full-column-rank signal: the full $12\times3$ residual Jacobian has measured smallest singular value $4.6821899588\ldots$, and a three-tangential-row sub-Jacobian has measured determinant $9524.2261906\ldots$. The remaining blocker is a source-bound interval root and interval Newton certificate on one declared phase-speed box; pointwise finite differences do not supply the zero census.
 - **Completion:** The declared phase box has a certified zero census: either one isolated regular balance, one or more independently checked asymmetric balances, or an explicit unresolved fold/collision boundary. A certified asymmetric full-vector zero falsifies local isolation.
 
 Plainly: all three binary circles keep the same size; only their angular spacing changes. The calculation tests whether exact balance requires the regular hexagon or tolerates a lopsided arrangement.
@@ -134,7 +133,7 @@ Plainly: the three neutral binaries retain their regular angular offsets but orb
 - **Status:** Deferred / blocked
 - **Closure goal:** Complete one independently checked past-only numerical T04 orbit against the exact circular reference.
 - **Request / acceptance:** Consume the accepted T04 exact-reference-to-solver handoff task handoff and run at least a three-rung refinement/precision ladder for one declared period. Report position, rate, retained-history, root-time, root-ownership, and acceleration residuals at matched phases; require deterministic replay and checkpoint parity where applicable. Keep resource telemetry separate from scientific output.
-- **Evidence / blocker:** Blocked on T04 exact-reference-to-solver handoff task and on reusable EOM-solver root-continuation and memory capability. The prior coarse attempt reached only $0.25\%$ of a period; the medium process published no authoritative response. Candidate-specific acceleration-enclosure tightening exposed by the accepted handoff remains part of this row, while a reusable solver repair is routed to the App Solver owner.
+- **Evidence / blocker:** The T04 exact-reference-to-solver handoff is accepted. This row remains blocked on reusable EOM-solver root-continuation and memory capability. The prior coarse attempt reached only $0.25\%$ of a period; the medium process published no authoritative response. Candidate-specific acceleration-enclosure tightening exposed by the accepted handoff remains part of this row, while a reusable solver repair is routed to the App Solver owner.
 - **Completion:** One full-cycle return passes the frozen numerical envelope and independent audit, or a scientifically interpretable accepted failure occurs before the cycle. An instrumentation halt, missing output, or resource exhaustion remains unresolved rather than a candidate fate.
 
 Plainly: this is the independent numerical reproduction of the exact circle. It is not a disturbance test and therefore cannot establish stability by itself.
@@ -144,7 +143,7 @@ Plainly: this is the independent numerical reproduction of the exact circle. It 
 - **Status:** Deferred / blocked
 - **Closure goal:** Determine whether exact T04 has a positive-width neighborhood of histories that returns toward, remains near, or departs from the circular solution.
 - **Request / acceptance:** After local history-flow well-posedness task and T04 one-cycle EOM reproduction task, predeclare perturbations of position, rate, and retained history spanning common radial, two differential-radial, two phase-shear, and out-of-plane directions. Acceleration remains the Master Equation output. Construct a phase-aligned multi-cycle return map with root-chart, separation, history, refinement, and precision controls; remove only genuine global symmetry directions before interpreting multipliers or growth.
-- **Evidence / blocker:** Blocked on a well-posed nearby-history flow and one independently reproduced reference cycle. Linearization or return-map analysis before those foundations would have no accepted dynamical referent.
+- **Evidence / blocker:** The local history-flow theorem now supplies a well-posed nearby-history flow on a nonzero neighborhood for $0\leq T\leq0.05$. This row remains blocked on one independently reproduced reference cycle and a numerical enclosure showing that the predeclared perturbation histories lie inside an admissible local-history tube. Linearization or return-map analysis before those remaining foundations would have no accepted dynamical referent.
 - **Completion:** A nonzero declared perturbation neighborhood receives a converged stability, instability, mixed-direction, or chart-exit disposition. A single prescribed-path residual or exact unperturbed return does not complete this row.
 
 ### Same-record action and energy ledger
@@ -200,9 +199,9 @@ The former task-scoped obligations are fully transferred to durable queue rows. 
 
 | Investigation lane | Durable queue coverage | First executable successor |
 | --- | --- | --- |
-| Circular prehistory, exact continuation, numerical reproduction, and stability | T04 exact-reference-to-solver handoff task, local history-flow well-posedness task, T04 one-cycle EOM reproduction task, and nearby-history return map and stability task | finish the exact-reference-to-solver receipt, then local history-flow uniqueness, one full-cycle conformance check, and only then perturbation stability |
+| Circular prehistory, exact continuation, numerical reproduction, and stability | completed T04 exact-reference-to-solver handoff, completed local history-flow well-posedness task, T04 one-cycle EOM reproduction task, and nearby-history return map and stability task | the exact-reference receipt and local uniqueness theorem are accepted; next complete one full-cycle conformance check, and only then perturbation stability |
 | Equal-radius velocity ladder | global equal-radius ladder theorem task and higher-order ladder asymptotics task | prove one root in every later admissible fold cell and none in every intervening cell; treat higher-order coefficients as a separate follow-on |
-| Axial translation | axial-translation-speed chart task; fixed axial-translation interval certificate task is complete | certify the stationary-ladder signed axial weights, which decide whether any nonzero-speed screw branch can exist on the declared topology range |
+| Axial translation | completed axial-translation-speed chart and fixed axial-translation interval certificate | closed on $-0.9\leq u\leq0.9$ for the eighteen interval-certified stationary branches T02 through T36; extension above $\beta_f=20$ requires new interval-certified stationary brackets or the global ladder theorem |
 
 Plainly: archiving the user-visible tasks removes no work. The repository queues now own the remaining questions, their order, their evidence requirements, and their falsifiers.
 
@@ -212,14 +211,14 @@ Plainly: archiving the user-visible tasks removes no work. The repository queues
 | --- | --- | --- |
 | Circular prehistory and numerical release | T04 exact-reference-to-solver handoff task, local history-flow well-posedness task, T04 one-cycle EOM reproduction task | the exact-reference handoff, local uniqueness disposition, and one-cycle numerical reproduction each have a durable accepted or explicit negative result; perturbation stability may continue separately under nearby-history return map and stability task |
 | Equal-radius velocity ladder | global equal-radius ladder theorem task, higher-order ladder asymptotics task | the global tail theorem is proved or falsified with an explicit finite boundary and independently checkable artifact; higher-order asymptotics may close separately or remain explicitly deferred |
-| Axial translation | axial-translation-speed chart task; fixed axial-translation interval certificate task complete | the stationary-ladder signed axial weights have a certified zero census on the declared topology range; any surviving zero receives an independent full-vector branch check |
+| Axial translation | completed axial-translation-speed chart and fixed axial-translation interval certificate | closed on the declared T02-through-T36, $-0.9\leq u\leq0.9$ chart; no surviving nonzero-speed branch requires a full-vector follow-up |
 | Investigation writing | no active row | closed: the evidence packet is tracked and the writer thread is archived |
 
 ## Queue Completeness
 
 Every remaining obligation associated with this investigation has a durable owner:
 
-- Exact T04 identity, directed-rounding fallback, numerical-history enclosure, local history-flow uniqueness, one-cycle reproduction, and perturbation stability are owned by the detailed rows in this queue.
+- Exact T04 identity, decimal reconciliation, and numerical-history enclosure are closed by the accepted handoff packet, and local history-flow uniqueness is closed by the T04-specific theorem; one-cycle reproduction and perturbation stability remain owned by the detailed rows in this queue.
 - Reusable causal-root continuation, bounded retained-memory evolution, checkpoint parity, precision failure policy, and circular-root launcher supervision are owned by EOM-002, EOM-003, and EOM-004 in the [EOM work queue](../app-solver/work-queue.md).
 - Source-level braid and assembly inventory is owned by [BP-015](work-queue.md#bp-015--borg-assembly-source-inventory-handoff); durable Borg identity, classification coverage, filtering, and visual representatives are owned by [BORG-014](../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) and [BORG-015](../app-borg/work-queue.md#borg-015--taxonomy-selection-canvas).
 - The delayed action and conserved time-cut account required by the energy rows is owned by the [Master-Equation Closure work queue](../master-equation-closure/work-queue.md), and translated display remains owned by [BORG-006](../app-borg/work-queue.md#borg-006--prescribed-translation-and-causal-history-tubes).

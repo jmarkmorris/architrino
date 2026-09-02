@@ -219,8 +219,16 @@ function completedBoundaryProducts() {
       rowId: "coverage:partition-1:z0:phi0:bin-0",
       surfacePatchId: "partition-1:z0:phi0",
       timeBinId: "bin-0",
+      crossingEventIds: ["crossing-1"],
       status: "accepted",
     }],
+    coverageCounts: {
+      segmentCount: 1,
+      certifiedEmptySegmentCount: 0,
+      crossingSegmentCount: 1,
+      unresolvedSegmentCount: 0,
+      patchTimeCellCount: 1,
+    },
     coverageStatus: "boundary-shell-complete",
     shellInfluenceRows: [{
       schema: "borg-boundary-shell-influence-model.v1",

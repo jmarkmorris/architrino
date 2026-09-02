@@ -268,6 +268,22 @@ ShellCoverageCertificate certify_shell_crossings(
         ++certificate.certified_empty_segment_count;
         continue;
       }
+      const auto full_position = segment.position_interval(full_time);
+      const auto full_velocity = segment.velocity_interval(full_time);
+      eom::IntervalVector radial_position{
+          eom::Interval::point(0.0), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)};
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        radial_position[axis] = full_position[axis] -
+            eom::Interval::point(config.center[axis]);
+      }
+      const auto radial_derivative = dot_product(
+          radial_position, full_velocity);
+      if (!(radial_derivative.lower() > 0.0 ||
+            radial_derivative.upper() < 0.0)) {
+        ++certificate.unresolved_segment_count;
+        continue;
+      }
       double lower_time = clipped_start;
       double upper_time = clipped_end;
       auto lower_side = shell_side(

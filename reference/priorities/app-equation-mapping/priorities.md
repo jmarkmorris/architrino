@@ -10,11 +10,11 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `23`
-- Value: `0.92`
-- Cost: `3.5`
-- ROI: `0.26`
-- Status: `active-carousel-promotion-review`
+- Rank: `unranked`
+- Value: `not scored`
+- Cost: `not scored`
+- ROI: `not scored`
+- Status: `blocked-review-packet-export`
 
 ## Current
 
@@ -24,7 +24,11 @@ The app is intended to feel like a simple static equation annotation surface: on
 
 The first implementation is now a static shell with a local draft editor at [equation-mapping.html](../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
 
-The live executable queue is maintained in [work-queue.md](work-queue.md). The ordinary Markdown link plus structured registry/API contract now binds every one of the 4,587 corpus display-equation occurrences to a searchable, addressable, source-grounded read-only page with symbol access. The next delivery object is optional editorial promotion of selected equations into the 23-entry carousel.
+The live queue is maintained in [work-queue.md](work-queue.md). The ordinary Markdown link plus structured registry/API contract binds every registered corpus display-equation occurrence to a searchable, addressable, source-grounded read-only page with symbol access. No carousel promotion is active. The remaining review-packet export is blocked until an operator-selected local editor draft exists, so this lane has no executable object and carries no current attention score.
+
+## Carousel Addition Trigger
+
+A future carousel addition must begin as a new operator-accepted task tied to a named reader or operator need. Its request must identify the comprehension gap or comparison use case, the equation whose visual decomposition addresses that need, the intended callouts, the claim boundary, and a review condition that can show whether the addition helps. A standing request to promote another equation merely to expand the carousel is not accepted work.
 
 ## Accepted Link, Definition, And Authoring Direction
 
@@ -68,7 +72,7 @@ The first useful version should let the operator:
 
 - Route: [equation-mapping.html](../../../equation-mapping.html).
 - Runtime: [EquationMappingData.js](../../../src/apps/equation-mapping/EquationMappingData.js), [EquationMappingRuntime.js](../../../src/apps/equation-mapping/EquationMappingRuntime.js), and [main.js](../../../src/apps/equation-mapping/main.js).
-- Corpus baseline: 4,587 generated read-only equation pages with 29,590 symbol records; 23 pages are promoted for carousel/editorial mapping.
+- Corpus baseline: generated read-only equation pages and symbol records cover the registered corpus; 23 pages are promoted for carousel/editorial mapping.
 - Static layer model: equation TeX parts, named anchors, overlay comments, pointer-line side, section-line placement, subject area, claim level, and background setting.
 - UI: centered equation layer, collapsible subject index, top-right home/search/edit/settings controls, four background colors, KaTeX rendering, and pointer lines attached to measured formula sections.
 - Editor: local draft editing for formula-section labels/formula text/search text, overlay comment title/status/text/equation, pointer target, section-line placement, and comment placement.

@@ -5,6 +5,7 @@ import { describeLibraryRecord, createLibraryPreview } from "../../src/apps/borg
 import { queryLibraryRows, LIBRARY_FACETS } from "../../src/apps/borg/library/BorgLibraryQuery.mjs";
 import { validateLibraryClassifications } from "../../src/apps/borg/library/BorgLibraryComposition.mjs";
 import { validateBorgScientificStatusProjection } from "../../src/apps/borg/BorgScientificStatus.mjs";
+import { validateBorgPlatonicRelationshipAssignments } from "../../src/apps/borg/BorgPlatonicRelationships.mjs";
 import { createBorgAssemblyRegistryDatabase } from "../../src/apps/borg/registry/BorgAssemblyRegistryDatabase.mjs";
 import { exactModelKey, validateBorgAssemblyRegistry } from "../../src/apps/borg/registry/BorgAssemblyRegistryContract.mjs";
 
@@ -14,24 +15,26 @@ const send = (res, status, data) => { res.writeHead(status, { "Content-Type": "a
 // Indexed, read-only BORG-014 provider. The committed registry is the migration
 // authority; content-addressed source and record objects remain in their owning
 // files and are loaded only on snapshot construction or exact preview demand.
-export function createBorgLibraryService({ repoRoot, registryFile = "reference/priorities/app-borg/assembly-registry.v1.json", classificationFile = "reference/priorities/app-borg/library-classifications.v4.json", scientificProjectionFile = "reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json" } = {}) {
+export function createBorgLibraryService({ repoRoot, registryFile = "reference/priorities/app-borg/assembly-registry.v1.json", classificationFile = "reference/priorities/app-borg/library-classifications.v4.json", scientificProjectionFile = "reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json", platonicAssignmentsFile = "reference/priorities/braid-program/borg-platonic-relationship-assignments.v1.json" } = {}) {
   let snapshot = null;
   let pending = Promise.resolve();
 
   async function loadSnapshot() {
-    const [registryBytes, classificationBytes, projectionBytes] = await Promise.all([
-      readFile(resolve(repoRoot, registryFile)), readFile(resolve(repoRoot, classificationFile)), readFile(resolve(repoRoot, scientificProjectionFile)),
+    const [registryBytes, classificationBytes, projectionBytes, platonicBytes] = await Promise.all([
+      readFile(resolve(repoRoot, registryFile)), readFile(resolve(repoRoot, classificationFile)), readFile(resolve(repoRoot, scientificProjectionFile)), readFile(resolve(repoRoot, platonicAssignmentsFile)),
     ]);
     const registry = validateBorgAssemblyRegistry(JSON.parse(registryBytes));
     const classifications = validateLibraryClassifications(JSON.parse(classificationBytes));
     const projection = validateBorgScientificStatusProjection(JSON.parse(projectionBytes));
+    const platonicAssignments = validateBorgPlatonicRelationshipAssignments(JSON.parse(platonicBytes));
     const ownerBytes = await readFile(resolve(repoRoot, projection.source));
+    const platonicOwnerBytes = await readFile(resolve(repoRoot, platonicAssignments.source));
     const brokenEvidenceLinks = [];
     for (const evidenceUrl of new Set(projection.relations.flatMap((relation) => relation.evidenceLinks.map((link) => link.url)))) {
       try { await stat(resolve(repoRoot, evidenceUrl.split("#")[0])); }
       catch { brokenEvidenceLinks.push(evidenceUrl); }
     }
-    const signature = digest(Buffer.concat([registryBytes, classificationBytes, projectionBytes, ownerBytes, Buffer.from(brokenEvidenceLinks.join("\0"))]));
+    const signature = digest(Buffer.concat([registryBytes, classificationBytes, projectionBytes, ownerBytes, platonicBytes, platonicOwnerBytes, Buffer.from(brokenEvidenceLinks.join("\0"))]));
     if (snapshot?.signature === signature) return snapshot;
     const scientificIntegrity = { sourceSha256: digest(ownerBytes), sourceText: ownerBytes.toString("utf8"), brokenEvidenceLinks };
     const describedByKey = new Map(); const failures = [];
@@ -40,7 +43,7 @@ export function createBorgLibraryService({ repoRoot, registryFile = "reference/p
         const bytes = await readFile(resolve(repoRoot, entry.recordUrl));
         const recordSha256 = digest(bytes);
         if (recordSha256 !== entry.recordSha256) throw new TypeError("Sealed record bytes no longer match the registry migration pin.");
-        const described = describeLibraryRecord(JSON.parse(bytes), entry, recordSha256, classifications, projection, scientificIntegrity);
+        const described = describeLibraryRecord(JSON.parse(bytes), entry, recordSha256, classifications, projection, scientificIntegrity, platonicAssignments, { sourceSha256: digest(platonicOwnerBytes) });
         described.summary.classificationSha256 = digest(classificationBytes);
         described.summary.braidId = entry.braidId;
         described.summary.occurrence = entry.occurrence;

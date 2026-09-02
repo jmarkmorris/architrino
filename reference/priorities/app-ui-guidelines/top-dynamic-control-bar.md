@@ -97,12 +97,25 @@ The bar is dynamic, so not every surface shows every action. The visible order s
 | [assembly-explorer.html](../../../assembly-explorer.html) | Runtime-built page header with title and text `Home` button. | Non-conforming | Replace text Home with standard icon bar. Add Search only if branch/package search is useful. |
 | [pdgedit.html](../../../pdgedit.html) | Top band with document picker/search/filter and Home button. | Partial | Keep document picker local, but make Home and any app-level settings/search use standard icon styling. |
 | [borg.html](../../../borg.html) | Side rails, viewport controls, and timeline controls; no Home or Search. | Non-conforming | Add shared Home; keep viewport/timeline controls local. Search likely omitted until datasets are searchable. |
-| [website-stats.html](../../../website-stats.html) | Sticky page header with text links and opt-out control. | Non-conforming | Convert Home/Archie links to standard icon/action bar if this remains an app surface; keep analytics opt-out as page-local control. |
-| [solver-gpu-harness.html](../../../solver-gpu-harness.html) | Utility page header with status pill and benchmark controls. | Exempt or lightweight-header | Decide whether developer-only harnesses need standard Home. Do not force scene search into a benchmark harness. |
-| [pdgedit-review.html](../../../pdgedit-review.html) | Static review page header and form controls. | Exempt or lightweight-header | Keep as review artifact unless it becomes a public product page. |
-| Generated reading-copy HTML | Content-only generated HTML files under `apps/ios/.../GeneratedTextbookPackage/`. | Exempt | Do not manually add chrome to generated content-only files. Reader shells own navigation. |
-| iOS reader shells | `ReaderShell.html` and `SearchSnippetShell.html` mount native reader content. | Exempt or native-parity | Native SwiftUI shell should own top controls; the web shell stays minimal. |
-| Children's-book review pages | On-demand local review pages under `.local-data/childrens-books/exports/<book>/review/`; see the [pilot export procedure](../../learning-office/childrens-books/production/README.md). | Exempt | Keep simple review links unless promoted to a public-facing product surface. |
+| [website-stats.html](../../../website-stats.html) | Sticky page header with text links and opt-out control. | Lightweight header | Replace the text Home/Archie links with a compact shared Home/project action; keep analytics opt-out as a page-local control. |
+| [solver-gpu-harness.html](../../../solver-gpu-harness.html) | Utility page header with status pill and benchmark controls. | Lightweight header | Provide compact Home navigation when the harness is reachable from app navigation; keep benchmark controls local and omit scene Search, Documents, and Settings. |
+| [pdgedit-review.html](../../../pdgedit-review.html) | Static review page header and form controls. | Exempt — static review | Keep the review header and controls without product chrome unless an explicit productization decision promotes the page. |
+| Generated reading-copy HTML | Content-only generated HTML files under `apps/ios/.../GeneratedTextbookPackage/reading-copies/`. | Exempt — generated content | Do not manually add chrome to generated content-only files. The owning reader shell supplies navigation. |
+| iOS reader shells | `ReaderShell.html` and `SearchSnippetShell.html` mount native reader content. | Native-shell parity | Native SwiftUI owns navigation and top controls; the web content mounts stay minimal. |
+| Children's-book review pages | On-demand local review pages under `.local-data/childrens-books/exports/<book>/review/`; see the [pilot export procedure](../../learning-office/childrens-books/production/README.md). | Exempt — local review | Keep the local review header and links without public product chrome unless an explicit productization decision promotes a page. |
+
+## Page Exception Policy
+
+All public interactive app and workbench surfaces not named below target the full dynamic-control-bar standard. An exception changes the amount or owner of shared chrome; it does not waive accessible names, keyboard access, visible focus, or usable touch targets for controls that remain.
+
+| Surface class | Disposition | Required control ownership | Current named surfaces | Promotion trigger |
+| --- | --- | --- | --- | --- |
+| Public utility | Lightweight header | Show the page title and a compact Home/project action. Keep utility-specific controls local; omit Search, Documents, and Settings unless the utility actually implements them. | [website-stats.html](../../../website-stats.html) | Adopt the full standard only if the utility becomes an interactive app or workbench with app-level navigation, search, documents, or settings. |
+| Developer harness | Lightweight header | Show the harness title/status and compact Home navigation when reachable from app navigation. Keep benchmark and diagnostic controls local. | [solver-gpu-harness.html](../../../solver-gpu-harness.html) | Adopt the full standard only after an explicit decision to make the harness a public app surface with shared app-level actions. |
+| Static review artifact | Exempt | The review page owns only its review title, metadata, and review controls. | [pdgedit-review.html](../../../pdgedit-review.html) | Reclassify before public product navigation or app-level behavior is added. |
+| Generated reading content | Exempt | The generator emits content only; its owning reader shell supplies navigation. Never patch generated copies to add shared chrome. | `apps/ios/ArchitrinoReader/GeneratedTextbookPackage/reading-copies/*.html` | Change the canonical generator or owning shell only when the reader contract changes. |
+| Native content mount | Native-shell parity | Native SwiftUI owns navigation and top controls; embedded HTML stays a minimal content mount. | `ReaderShell.html`, `SearchSnippetShell.html` | Reclassify only if a shell becomes a standalone web destination rather than an embedded native surface. |
+| Local review output | Exempt | The local review exporter owns simple review navigation and controls. | `.local-data/childrens-books/exports/<book>/review/index.html` | Reclassify before any review output is promoted to a public-facing product surface. |
 
 ## Markdown Display Audit
 
@@ -156,10 +169,11 @@ Candidate homes:
 
 ### Phase 5: Page Policy
 
-- Website Stats: convert text Home/Archie links if treated as an app.
-- Solver GPU Harness: classify as developer harness; add lightweight Home only if useful during app-surface browsing.
-- PDG Edit Review and children's-book review pages: keep static review-page layout unless productized.
-- Generated HTML: never manually patch generated reading-copy chrome.
+- Website Stats: use the lightweight public-utility header with a compact Home/project action and page-local analytics controls.
+- Solver GPU Harness: use the lightweight developer-harness header when reachable from app navigation; keep benchmark controls local.
+- PDG Edit Review and children's-book review pages: remain exempt review artifacts unless explicitly productized.
+- Generated reading-copy HTML: remains exempt; never manually patch generated chrome.
+- iOS reader shells: follow native-shell parity, with SwiftUI owning navigation and embedded HTML remaining content-only.
 
 ## Validation Expectations
 
@@ -183,5 +197,3 @@ For audit-only edits to this priority folder:
 1. Should the main scene HUD move from circular `32px` buttons to the standalone app `36px` rounded-square shell, or should shared primitives support both shells?
 2. Should `Search` always mean scene search, or should standalone apps use local search under the same icon when scene search is unavailable?
 3. Should `Notes` and document-guide buttons appear as one document menu in the top bar, or stay as explicit document buttons inside app panels?
-4. Should developer-only utility pages such as Solver GPU Harness get a lightweight Home button, or remain outside product chrome?
-5. Should the static review pages ever carry public-site navigation, or are they intentionally artifact-only?

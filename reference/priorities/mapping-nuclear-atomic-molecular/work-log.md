@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-01 — NAM-003 ownership audit closed
+
+- Audited the nuclear benchmark ladder, effective $V_{NN}$ consumer, first reduced corridor-overlap row, Standard Model confinement packets, and their corpus promotion destinations.
+- Confirmed the live authority split: `mapping-nuclear-atomic-molecular` owns downstream nuclear benchmarks and residual-consumer staging; `mapping-standard-model` owns upstream QCD confinement energetics, color-singlet closure, quark/hadron structure, and the confinement-functional source route. The generic radiation-source carrier remains with `mapping-equations`, and shared event-ledger and Noether sea response contracts remain with their existing owners.
+- Replaced the completed process handle `nuclear_binding_packet_ownership` in the promotion map with the already established `nuclear_potential_derivation` route used by Standard Model Closure, removed NAM-003 from the live queue, and renumbered the remaining rows.
+- Claim boundary: this closes routing and discoverability only. It is not evidence for a derived $V_{NN}$, nuclear binding, confinement closure, accepted source rows, or corpus promotion.
+- Verification: `git diff --check`, `node scripts/validate-priority-ranking.mjs`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+
 ### 2026-07-02 — No-free-color asymptotic-state row accepted
 
 - Continued the branch-interface / no-open-color source-acquisition objective from the accepted `local_color_singlet_closure_support`, `asymptotic_field_audit`, and `finite_range_residual` rows.

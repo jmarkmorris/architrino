@@ -482,7 +482,7 @@ The app may display this decomposition, but it must not promote it to proof evid
 
 ## User Interface Design
 
-The app should open on the working simulation surface, not a landing page. The visual design should be minimal, elegant, contemporary, and parsimonious by default: one quiet simulation workspace with restrained controls, clear hierarchy, and no decorative chrome that competes with the simulation state.
+The Borg application entry should open on the visual, property-based Assembly discovery surface. From there, the operator may start a new random simulation or select one exact registered configuration and hand its identity pins to the workbench. The workbench itself should open directly on the working simulation surface rather than another landing page. Both surfaces should remain minimal, elegant, contemporary, and parsimonious by default, with restrained controls, clear hierarchy, and no decorative chrome that competes with assembly inspection or simulation state.
 
 Parsimony means the first screen should expose only the controls and statuses needed for the active run interpretation. Required solver state, value authority, error-budget status, wake-history gaps, boundary-shell status, and diagnostics required for advancement must remain reachable without turning the default view into a dashboard of every possible row.
 

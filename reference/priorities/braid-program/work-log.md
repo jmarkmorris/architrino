@@ -413,3 +413,73 @@ Plainly: the current search map now accounts for every admitted braid geometry a
 - Updated the mining overview and README to point to the completed census, removed BP-005 from the live queue, renumbered the remaining ranked objects, and updated the configuration chart's non-subchart note. No campaign, gate, fixture, score, candidate, source specification, generated artifact, or reader-facing corpus claim was added.
 
 Plainly: every mined idea now has an explicit home, prerequisite, hold, or rejection. The review closes queue bookkeeping only; it does not turn archived inspiration into proof or measurement.
+
+## 2026-09-01 — BP-015 Borg assembly-source inventory handoff accepted
+
+- Accepted the [Braid-owned assembly-source handoff](evidence/2026-09-01-borg-assembly-source-inventory-handoff.md) over all 144 current exact source configurations, 45 Borg braid entries, and 144 sealed display records. The source catalog retains exact identities, member order, polarity, worldline operators, component relations, geometry, motion policy, record routing, the five exact Platonic vertex-set assignments, and explicit unavailable dispositions without asking Borg to infer scientific facts.
+- Reused the already verified BORG-014 registry as the machine-readable consumer. The separately authored Python verifier reconstructed scientific identity bytes directly from every v3 source specification and passed with 144 unique models, 45 complete braid entries, and 144 unique sealed records. Existing geometry and registry suites remain the focused checks for source relationships, descriptors, display coverage, and no-physics boundaries.
+- Removed BP-015 from the live ranked queue and unblocked BORG-017's source dependency. Later BP-016 braid qualifications require a new reviewed relationship revision; they do not retroactively alter this handoff. No acceleration balance, evolution, retention, stability, binding, particle identity, score, or scientific-acceptance claim changed.
+
+Plainly: Borg now has a complete, source-owned list of what can be displayed and what remains unavailable. Passing the handoff proves identity and coverage, not that any displayed assembly persists in nature.
+
+## 2026-09-01 — T04 exact-reference-to-EOM-solver handoff accepted
+
+- Accepted the [T04 exact-reference handoff packet](evidence/2026-09-01-planar-three-binary-t04-exact-reference-handoff.md). The deterministic $c_f=1$ handoff contains six members and 24,576 cubic prehistory segments at SHA-256 `11bdeb13a74149c5faff6383a49f2a829db23896202753cc28ad7402448aba67`, with one full period of past coverage and positive maximum-chord-delay clearance.
+- Added a focused independent comparison that binds the exact v3 source, reconciles the current high-precision and legacy binary64 decimal forms, uses the unchanged generic prescribed-history evaluator for all cross-transmitter rows, uses the unchanged circular self-hit instrument for all nontrivial same-transmitter rows, reproduces all 36 directed phase channels and 72 roots, and checks all six receiver acceleration vectors inside the declared tolerance.
+- The separately authored Decimal prehistory checker accepted maximum full-segment errors $8.978962513926490263216188204\times10^{-15}$ in position and $1.351123584532765773664848559\times10^{-9}$ in rate, inside the declared $2\times10^{-13}$ and $2\times10^{-9}$ budgets. Removed the completed handoff from the subordinate ranked queue and left one-cycle evolution blocked on the named reusable EOM-solver capabilities.
+- Claim boundary: this closes source identity, decimal compatibility, complete release-time root ownership, and numerical prehistory representation only. It establishes no full-cycle reproduction, nearby-history uniqueness, retention, stability, binding, physical identity, score, or scientific acceptance.
+
+Plainly: the exact T04 circle now has a checked EOM-solver input. The still-open question is whether the EOM solver can advance it for a complete turn without losing certified roots or memory control.
+
+## 2026-09-01 — Bounded axial-translation-speed chart completed through T36
+
+- Accepted the [axial-translation-speed chart packet](evidence/2026-09-01-planar-three-binary-axial-translation-speed-chart.md) on $-0.9\leq u=s_{\mathrm{grp}}/c_f\leq0.9$ with $c_f=1$. The exact screw-path reduction converts each stationary tangential balance into the only possible translated branch coordinates and reduces its axial residual to $uS(b_n)$.
+- A tracked certificate wrapper consumed the frozen accepted stationary interval receipt and independently authored interval oracle. It covered all eighteen interval-certified balances T02 through T36, matched the accepted 48-through-456 directed-root counts, and proved every signed axial weight strictly negative. The weakest magnitude bound is $|S|>5.757038792589520779970984868646480569385$ at T02.
+- Two consecutive certificate runs were byte-identical at SHA-256 `d477a7f48a2defcf20179d922966f5caa51b5e4292c2076084af318c139fbdb9`. The T04 row reproduces the separately accepted fixed-$u=0.1$ axial interval. The resulting bounded-no-branch disposition is stationary balance at $u=0$ and no full prescribed screw-path balance for nonzero $u$ in the declared interval.
+- Removed the completed speed chart from the subordinate ranked queue. The result establishes no completeness above $\beta_f=20$, no unequal-radius or phase-deformed conclusion, and no evolution, retention, stability, binding, physical identity, score, or scientific acceptance.
+
+Plainly: the complete certified low-order ladder cannot be carried axially at any checked nonzero speed while preserving acceleration balance. Higher topology classes remain a separate proof burden.
+
+## 2026-09-01 — First BP-016 nine-channel octahedral stratum excluded
+
+- Accepted the [complete edge-axis exclusion](evidence/2026-09-01-octahedral-nine-channel-edge-axis-exclusion.md) for the balanced `+++---` octahedron rotating rigidly about $(\mathbf e_x-\mathbf e_z)/\sqrt2$ with $c_f=1$. The required $+\mathbf e_x$ y-acceleration is zero, while the outward-rounded complete delayed sum remains inside $[-0.820273791914345,-0.450045806431959]$ throughout $0\leq\beta<1$.
+- The interval oracle covered the closed numerical interval $[0,1]$ with 590 accepted boxes, directly certified all five partner roots needed at the obstructed receiver, and proved their transmitter factors above `0.721143338704490901046192771269617890761098683`. The exact strict-sub-field theorem supplies the 30-root global census and absence of nontrivial self roots; the independent evaluator samples that census. After extraction of the shared interval implementation, two runs were byte-identical at SHA-256 `1542230646c8bc7dfd86a059bb5fc779a7fc177cd3bc6660927f2b2c687c9290`.
+- An unchanged generic prescribed-history evaluator independently checked six strict sub-field speeds, found five partner roots at every receiver, and reproduced the strict-negative obstruction inside the certified enclosure. The point checks support implementation independence but do not replace the interval proof.
+- BP-016 remains queued. At this dated milestone its next exact object was the antipodal-alternating sum-edge nine-channel stratum; the later entry below records that stratum's disposition. No ordinary EOM evolution, retention, stability, binding, particle identity, score, or scientific acceptance follows.
+
+Plainly: one full nine-channel octahedral motion is now ruled out at every speed below the field-speed boundary. The broader Platonic braid program remains open and advances to a different word-and-axis system.
+
+## 2026-09-01 — Antipodal-alternating sum-edge octahedral stratum excluded
+
+- Accepted the [complete sum-edge exclusion](evidence/2026-09-01-octahedral-antipodal-sum-edge-exclusion.md) for the antipodal-alternating `+-+-+-` octahedron rotating rigidly about $(\mathbf e_x+\mathbf e_z)/\sqrt2$ with $c_f=1$. The required $+\mathbf e_y$ x-acceleration is zero, while the outward-rounded complete delayed sum remains inside $[-1.679296800677345,-0.650075702972164]$ throughout $0\leq\beta<1$.
+- The shared interval oracle covered the closed numerical interval $[0,1]$ with 82 accepted boxes, directly certified all five partner roots needed at the obstructed receiver, and proved their transmitter factors above `0.816673612788766191175418041205655633560941338`. The exact strict-sub-field theorem supplies the 30-root global census and absence of nontrivial self roots.
+- Two consecutive certificate runs were byte-identical at SHA-256 `5dcc50c69ecdfdf5713ae373daa2125c5f5f750e2912ea95c96cb7c2368d7bb3`. The unchanged generic prescribed-history evaluator independently checked six strict sub-field speeds, found five partner roots at every receiver, and reproduced the strict-negative obstruction inside the certified enclosure.
+- Refactored the earlier difference-edge certificate behind the same shared interval implementation without changing its claim. Its two-run output is now byte-identical at SHA-256 `1542230646c8bc7dfd86a059bb5fc779a7fc177cd3bc6660927f2b2c687c9290`; both evidence packets bind the shared implementation and their distinct chart wrappers.
+- BP-016 remains queued. Its next finite high-symmetry object is an antipodal-alternating mixed-face nine-channel stratum; the continuous generic-axis chart, eighteen-channel systems, non-rigid octahedral motion, and the other four Platonic solids remain open. No ordinary EOM evolution, retention, stability, binding, particle identity, score, or scientific acceptance follows.
+
+Plainly: a second complete nine-channel octahedral motion is now ruled out below field speed. The result narrows the Platonic search but does not qualify any octahedron as a retained braid.
+
+## 2026-09-01 — T04 local history-flow well-posedness derived
+
+- Accepted the [local history-flow theorem](evidence/2026-09-01-planar-three-binary-local-history-flow-well-posedness.md) for a nonzero $W^{2,\infty}$ neighborhood of the exact T04 retained history. The proof preserves the complete simple 72-root chart, positive delay, separation, transmitter-factor, and history-boundary margins and uses a first method-of-steps interval $0\leq T\leq0.05$ shorter than every admitted positive delay.
+- On that first interval every transmitter event remains in the supplied past. The implicit-function theorem makes each owned root locally unique, the finite canonical acceleration sum is locally Lipschitz, and the ordinary position-rate system therefore has one unique continuation with locally Lipschitz history dependence. The proof states collision, fold, root-ownership, retained-boundary, velocity-modulus, and tube-exit conditions explicitly.
+- Added an independently implemented 90-decimal circular-root margin instrument. It reproduces all 72 directed roots, measures minimum positive delay and causal separation $0.14790337898963239459\ldots$, minimum equal-time member separation $0.56173170007129022074\ldots$, minimum transmitter-factor magnitude $0.11680602873629687474\ldots$, and retained-history clearance $0.10035054881177518822\ldots$. Two executions produced byte-identical output at SHA-256 `3096cf72a2cc4ed9ac1f50f1b83a7e422b16c4c769d847e8e92727eccbe98bfa`.
+- Removed the completed local well-posedness object from the subordinate ranked queue and renumbered the remaining objects. The theorem supplies no explicit numerical neighborhood radius, one-cycle EOM-solver result, perturbation return, retention, stability, binding, physical identity, score, or scientific acceptance.
+
+Plainly: the exact T04 past and every sufficiently close complete past now select one short future. Whether a disturbed history returns after a full turn is still a separate numerical and stability question.
+
+## 2026-09-01 — T36 interval-receipt domain mismatch resolved conservatively
+
+- Added the [T36 domain reconciliation](evidence/2026-09-01-planar-three-binary-t36-domain-reconciliation.md) after inspecting the raw interval receipt, its byte-identical rerun, and the independent point-check receipt. The raw T36 cell extends from $19.871587241904\ldots$ to its right fold at $20.395832521843\ldots$, while the accepted bounded-completeness theorem remains declared only on $0.05\leq\beta_f\leq20$.
+- Classified the raw boxes above $20$ as out-of-scope auxiliary interval output. They remain available to guide a tail proof but do not enlarge the accepted theorem, establish T38, or close any point above the declared cap by inheritance.
+- Updated the global equal-radius ladder task so its remaining mathematical blocker is unambiguous: a uniform tail proof must cover every point above $20$, including the overlap inside the remainder of T36, unless a new source-bound certificate is separately accepted.
+
+Plainly: the finite theorem now has one clean endpoint at speed $20$. The next proof must begin there rather than silently borrowing the raw program's extra half-cell.
+
+## 2026-09-01 — T04 equal-radius phase Jacobian measured
+
+- Added the independent [T04 phase-Jacobian diagnostic](evidence/2026-09-01-planar-three-binary-phase-jacobian-diagnostic.md) on coordinates $(\delta_2,\delta_3,\beta_f)$. The 90-decimal instrument directly recomputes every circular causal root and all twelve planar residual components without importing the JavaScript prescribed-path evaluator or EOM solver.
+- The full $12\times3$ Jacobian has measured singular values $4.6821899588\ldots$, $8.1097908993\ldots$, and $754.0649664905\ldots$. Tangential rows for receivers $0$, $2$, and $4$ form a square sub-Jacobian with measured determinant $9524.2261906440\ldots$. Three centered-difference rungs converged, with maximum last-rung entry change $2.83\times10^{-25}$; two complete executions were byte-identical at SHA-256 `1e9d1ca8d2028667bd0c838015b1ae57d4e5ae6e26040e36e80b5fb3c1ad3699`.
+- Updated the equal-radius phase-deformation task with the exact next certificate: preserve every root owner on a declared phase-speed box, enclose the selected Jacobian with interval arithmetic, apply interval Newton, and check the remaining nine residual components at the isolated interval zero. The task remains queued because pointwise rank does not certify a box or exclude asymmetric branches.
+
+Plainly: T04 has a strong measured local-isolation signal and a concrete three-equation certificate route. The continuous-box proof is still required before the queue item can be removed.

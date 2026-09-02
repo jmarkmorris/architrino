@@ -1,5 +1,4 @@
 import * as THREE from "../../../vendor/three/three.module.js";
-import { BORG_ELECTRINO_COLOR, BORG_POSITRINO_COLOR } from "./BorgOrbitTrails.mjs";
 import {
   TRANSPORT_CONTROL_ICON,
   setTransportControlButtonPresentation,
@@ -34,7 +33,6 @@ import {
   createBorgEomRecordReplayRunner,
 } from "./BorgEomRecordReplayRunner.js";
 import {
-  BORG_EOM_RUN_GRADE_CERTIFIED,
   BORG_EOM_RUN_GRADE_DISPLAY,
   BORG_EOM_SHADOW_RUN_SOURCE,
   createBorgEomShadowRunConfig,
@@ -81,7 +79,6 @@ import {
 } from "./BorgPrescribedDisplayBranch.js";
 import {
   BORG_MAX_REALTIME_PLAYBACK_RATE,
-  BORG_MAX_VISUAL_CATCH_UP_FRAME_SETS,
   BORG_PLAYBACK_PREFILL_MAX_WALL_MS,
   formatBorgRealtimeRate,
   getBorgAdaptivePlaybackRate,
@@ -115,9 +112,60 @@ import {
   createBorgSeededInitialConditionRows,
   validateBorgInitialConditionConfig,
 } from "./BorgInitialConditions.js";
+import {
+  createBorgArchitrinoPointTexture as createArchitrinoPointTexture,
+  createBorgParticleStyles,
+  getBorgParticleStyle as getParticleStyle,
+} from "./BorgRuntimeVisuals.js";
+import {
+  calculateBorgOrthographicFrustum,
+  clampBorgValue as clamp,
+  formatBorgNumber as formatNumber,
+  formatBorgTimelineTime,
+  getBorgBufferedPlaybackAdvance,
+  getBorgPlaybackReanchor,
+  getBorgTimelineRangePresentation,
+  getBorgVectorLength as vectorLength,
+  getBorgVelocityRayLength,
+  interpolateBorgFrameSetInto,
+} from "./BorgRuntimeTimeline.js";
+import {
+  createBorgLiveRunBudgetMeasurement as createLiveRunBudgetMeasurement,
+  createEmptyBorgLiveRunBudget as createEmptyLiveRunBudget,
+  readBorgLiveRunBudgetSnapshot as readLiveRunBudgetSnapshot,
+} from "./BorgRuntimeRunBudget.js";
+import {
+  appendBorgRadioChoice,
+  formatBorgDiagnosticPercentagePoints as formatDiagnosticPercentagePoints,
+  formatBorgDiagnosticPercent as formatDiagnosticPercent,
+  formatBorgFieldValue as formatValue,
+  getBorgRadioGroupValue,
+  isBorgEditableTarget as isEditableTarget,
+  queryRequiredBorgElement as queryRequiredElement,
+  setBorgRadioGroupValue,
+  setBorgStatusTone as setTone,
+} from "./BorgRuntimePresentation.js";
+import {
+  createBorgDeploymentFieldRows,
+  createBorgDiagnosticFieldRows,
+  createBorgEnvelopeFieldRows,
+  createBorgInitialConditionFieldRows,
+  createBorgSourceFieldRows,
+} from "./BorgRuntimePanelRows.js";
+import {
+  DEFAULT_RUN_CONTROL_PRESET_ID,
+  RUN_CONTROL_PRESETS,
+  boundedBorgControlInteger as boundedInteger,
+  createDefaultBorgEomRecordReplayOptions as createDefaultEomRecordReplayOptions,
+  createDefaultEomShadowRunnerOptions,
+  formatBorgRunDurationLabel as formatRunDurationLabel,
+  formatBorgRunTargetDuration as formatRunTargetDuration,
+  isBorgForeverRunPreset as isForeverRunPreset,
+  normalizeBorgEomRunGrade as normalizeEomRunGrade,
+  positiveBorgControlNumber as positiveControlNumber,
+} from "./BorgRuntimeRunSession.js";
 
 const TARGET_ENVELOPE_WORLD_DIAMETER = 6.2;
-const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
 const CAMERA_ORTHOGRAPHIC_DISTANCE = 12;
 const CAMERA_MIN_VIEW_HALF_HEIGHT = 0.8;
 const CAMERA_MAX_VIEW_HALF_HEIGHT = 24;
@@ -129,48 +177,11 @@ const DEFAULT_ROTATION_X = -0.44;
 const DEFAULT_ROTATION_Y = 0.66;
 const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
-const VELOCITY_RAY_MINIMUM_VISIBLE_LENGTH = 0.22;
-const VELOCITY_RAY_LOG_SCALE = 0.88;
 const SIMULATION_WINDOW_LATITUDE_COUNT = 25;
 const SIMULATION_WINDOW_LONGITUDE_COUNT = 48;
 const ENVELOPE_GUIDE_COLOR = 0xcbd0c8;
 const ENVELOPE_GUIDE_OPACITY = 0.88;
-const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
-const FINITE_RUN_CONTROL_PRESET_ID = "live-60s";
-const FIVE_MINUTE_RUN_CONTROL_PRESET_ID = "live-300s";
 const DEFAULT_DISTRIBUTION_LABEL = "manifest initial-condition policy";
-const RUN_CONTROL_PRESETS = Object.freeze([
-  Object.freeze({
-    id: DEFAULT_RUN_CONTROL_PRESET_ID,
-    label: "No limit",
-    displayLabel: "No limit",
-    sourceMode: "live",
-    durationMode: "forever",
-    targetDuration: Number.POSITIVE_INFINITY,
-    chunkDuration: 20,
-    minChunkDuration: 4,
-  }),
-  Object.freeze({
-    id: FINITE_RUN_CONTROL_PRESET_ID,
-    label: "60 seconds",
-    displayLabel: "60 s",
-    sourceMode: "live",
-    targetDuration: 60,
-    chunkDuration: 20,
-    minTargetDuration: 60,
-    minChunkDuration: 4,
-  }),
-  Object.freeze({
-    id: FIVE_MINUTE_RUN_CONTROL_PRESET_ID,
-    label: "5 minutes",
-    displayLabel: "5 min",
-    sourceMode: "live",
-    targetDuration: 300,
-    chunkDuration: 20,
-    minTargetDuration: 300,
-    minChunkDuration: 4,
-  }),
-]);
 const PATH_RENDER_ORDER = 2;
 const ARCHITRINO_RENDER_ORDER = 6;
 const HIDDEN_LAYER_BUTTONS = new Set([
@@ -196,37 +207,11 @@ const LAYER_TITLES = Object.freeze({
   diagnostics: "Diagnostics are shown in the right rail",
 });
 
-const STATUS_TONE = Object.freeze({
-  "authoritative-solver-output": "good",
-  "app-facing-projection": "projection",
-  "display-only-visualization": "display",
-  "missing-error-budget": "warn",
-  "exceeded-error-budget": "bad",
-  "fail-closed-value": "bad",
-});
-
 const SOLVER_FAILURE_BANNERS = Object.freeze({
   "eom-run-error":
     "Computing stopped. The solver failed part-way; everything after the last good frame is missing.",
   "record-replay-error":
     "Replay stopped. Borg did not repair or extend the sealed record.",
-});
-
-const PARTICLE_POLARITY_STYLES = Object.freeze({
-  electrino: Object.freeze({
-    color: BORG_ELECTRINO_COLOR,
-    pathColor: BORG_ELECTRINO_COLOR,
-    velocityColor: 0x9fefff,
-    edgeColor: "#0000ff",
-    polarity: "electrino",
-  }),
-  positrino: Object.freeze({
-    color: BORG_POSITRINO_COLOR,
-    pathColor: BORG_POSITRINO_COLOR,
-    velocityColor: 0xff9b92,
-    edgeColor: "#ff0000",
-    polarity: "positrino",
-  }),
 });
 
 export function mountBorgApp(options = {}) {
@@ -305,6 +290,16 @@ export function mountBorgApp(options = {}) {
     modeBoundary: queryRequiredElement(documentLike, "#borg-mode-boundary"),
     modeLabel: queryRequiredElement(documentLike, "#borg-mode-label"),
     modeDetail: queryRequiredElement(documentLike, "#borg-mode-detail"),
+    recordSummary: documentLike.querySelector?.("#borg-record-summary") ?? null,
+    recordSummaryTitle: documentLike.querySelector?.("#borg-record-summary-title") ?? null,
+    recordSummaryIdentity: documentLike.querySelector?.("#borg-record-summary-identity") ?? null,
+    recordSummaryDescription: documentLike.querySelector?.("#borg-record-summary-description") ?? null,
+    recordSummaryFacets: documentLike.querySelector?.("#borg-record-summary-facets") ?? null,
+    obstructionBadge: documentLike.querySelector?.("#borg-obstruction-badge") ?? null,
+    obstructionDetail: documentLike.querySelector?.("#borg-obstruction-detail") ?? null,
+    obstructionReadout: documentLike.querySelector?.("#borg-obstruction-readout") ?? null,
+    obstructionScope: documentLike.querySelector?.("#borg-obstruction-scope") ?? null,
+    obstructionLedger: documentLike.querySelector?.("#borg-obstruction-ledger") ?? null,
     startingGeometry: queryRequiredElement(documentLike, "#borg-starting-geometry"),
     startingGeometryOptions: queryRequiredElement(documentLike, "#borg-starting-geometry-options"),
     prescribedBranch: queryRequiredElement(documentLike, "#borg-prescribed-branch"),
@@ -330,6 +325,7 @@ export function mountBorgApp(options = {}) {
     replayBinaryGeometryTable: queryRequiredElement(documentLike, "#borg-binary-geometry-table"),
     replayTrailSummary: queryRequiredElement(documentLike, "#borg-replay-trail-summary"),
     replayScientificStatus: queryRequiredElement(documentLike, "#borg-scientific-status"),
+    replayPlatonicRelationships: queryRequiredElement(documentLike, "#borg-platonic-relationships"),
     prescribedTranslationFrame: queryRequiredElement(documentLike, "#borg-prescribed-translation-frame"),
     prescribedTranslationDrawer: queryRequiredElement(documentLike, "#borg-prescribed-translation-drawer"),
     prescribedTranslationStatus: queryRequiredElement(documentLike, "#borg-prescribed-translation-status"),
@@ -901,33 +897,11 @@ export function mountBorgApp(options = {}) {
   }
 
   function renderDeploymentFields() {
-    const budget = state.liveRunBudget;
-    const calibration = state.measuredRunPresetCalibration;
-    renderFieldRows(dom.deploymentFields, [
-      ["deploymentBudgetStatus", manifest.deploymentBudget.deploymentBudgetStatus],
-      ["bundleSizeBytes", manifest.deploymentBudget.bundleSizeBytes ?? "not-measured"],
-      ["staticAssetTransferBytes", manifest.deploymentBudget.staticAssetTransferBytes ?? "not-measured"],
-      ["browserHeapBudget", manifest.deploymentBudget.browserHeapBudget ?? "not-measured"],
-      ["gpuMemoryBudget", manifest.deploymentBudget.gpuMemoryBudget ?? "not-measured"],
-      ["eomSolverThroughput", "not-measured"],
-      ["liveRunBudget", budget.schema],
-      ["liveBudgetStatus", budget.status],
-      ["lastChunkMs", budget.lastChunkWallTimeMs ?? "not-measured"],
-      ["chunkFrameRows", budget.computedFrameRows ?? "not-measured"],
-      ["appendRowsPerSec", budget.frameAppendRateRowsPerSecond ?? "not-measured"],
-      ["heapGrowthBytes", budget.browserHeapGrowthBytes ?? budget.browserHeapAuthority],
-      ["workerMemoryBytes", budget.wasmWorkerMemoryEstimateBytes ?? budget.wasmWorkerMemoryAuthority],
-      ["workerBudgetPressure", budget.wasmWorkerMemoryPressure ?? "not-measured"],
-      ["liveRunRetention", BORG_LIVE_RUN_RETENTION_POLICY_V1.schema],
-      ["retentionStatus", state.liveRunRetention.status],
-      ["retentionFrameLimit", state.liveRunRetention.retainedFrameSetLimit],
-      ["measuredRunPresets", calibration.schema],
-      ["presetThresholdStatus", calibration.status],
-      ["presetThresholdAuthority", calibration.thresholdAuthority],
-      ["presetSamples", calibration.sampleCount],
-      ["targetDurationLimit", calibration.thresholds.maxTargetDuration],
-      ["chunkDurationLimit", calibration.thresholds.maxChunkDuration],
-    ]);
+    renderFieldRows(dom.deploymentFields, createBorgDeploymentFieldRows({
+      manifest,
+      state,
+      retentionPolicy: BORG_LIVE_RUN_RETENTION_POLICY_V1,
+    }));
   }
 
   function renderSourceFields() {
@@ -937,58 +911,19 @@ export function mountBorgApp(options = {}) {
       state.initialConditionConfig.electrinoCount +
         state.initialConditionConfig.positrinoCount,
     );
-    renderFieldRows(dom.sourceFields, [
-      ["Run source", state.sourceMode],
-      ["Run mode", formatRunDurationLabel(activePreset)],
-      ["Playback pace", `${formatBorgRealtimeRate(state.playbackAdaptiveRate)} T/s`],
-      ["Solver production", state.playbackMeasuredProductionRate == null
-        ? "not-measured"
-        : `${formatBorgRealtimeRate(state.playbackMeasuredProductionRate)} T/s`],
-      ["Finite duration", state.eomRunDuration],
-      ["Preset basis", activePreset?.thresholdAuthority ?? "not-measured"],
-      ["Preset target", formatRunTargetDuration(activePreset)],
-      ["Preset chunk", activePreset?.effectiveChunkDuration ?? "static"],
-      ["Distribution", state.distributionLabel],
-      ["Active electrinos", state.initialConditionConfig.electrinoCount],
-      ["Active positrinos", state.initialConditionConfig.positrinoCount],
-      ["EOM coupling $\\kappa$", state.eomCoupling],
-      ["Per-axis speed maximum", state.initialConditionConfig.randomVelocityMaxComponentMagnitude],
-      ["Total-speed minimum", state.initialConditionConfig.randomVelocityMinSpeed],
-      ["Required initial separation", placement.minimumPairSeparation],
-      ["Measured initial separation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
-      ["Run budget", state.liveRunBudget.status],
-      ["Forward EOM status", state.dynamicRunnerStatus],
-      ["Runner kind", state.dynamicRunnerKind],
-      ["EOM architrinos", isEomSimulationActive() ? state.eomPathCount : "not-applicable"],
-      ["EOM ordered pairs", isEomSimulationActive() ? state.eomPathCount ** 2 : "not-applicable"],
-      ["EOM requested duration", isEomSimulationActive() ? state.eomRunDuration : "not-applicable"],
-      ["Forward EOM target", state.dynamicTargetDuration ?? "not-started"],
-      ["Forward EOM chunk duration", state.dynamicChunkDuration ?? "not-started"],
-      ["Forward EOM chunks", state.dynamicChunksComputed],
-      ["Causal seed-history depth", isEomSimulationActive() ? state.eomSeedHistoryDepth : "not-applicable"],
-      ["EOM retained-history policy", state.eomRetainedHistoryPolicy],
-      ["EOM retained-history start", state.eomRetainedHistoryStart ?? "not-started"],
-      ["EOM retained-history end", state.eomRetainedHistoryEnd ?? "not-started"],
-      ["Core scale $\\epsilon_c$", isEomSimulationActive() ? state.eomCoreScale : "not-applicable"],
-      ["Far-field enclosure", "certified policy"],
-      ["Forward-evolution claim", isEomSimulationActive() ? state.eomEvolutionClaimLevel : "not-applicable"],
-      ["Initial-history certificate", state.eomSeedCertificate?.schema ?? "not-applicable"],
-      ["Initial-history acceptance", state.eomSeedCertificate?.acceptanceScope ?? "not-applicable"],
-      ["Initial history is EOM evidence", state.eomSeedCertificate?.canonicalEomEvidence ?? "not-applicable"],
-      ["Initial-history SHA-256", state.eomSeedCertificate?.contentSha256 ?? "not-applicable"],
-      ["Retention", state.liveRunRetention.status],
-      ["Retained frames", state.liveRunRetention.retainedFrameRows],
-      ["Retained keyframes", state.liveRunRetention.retainedFrameSetCount],
-      ["Compacted path points", state.liveRunRetention.compactedPathPointCount],
-      ["Forward EOM message", state.dynamicRunnerMessage],
-      ["Manifest", manifest.manifestId],
-      ["Source claim", manifest.claimLevel],
-      ["Frame rows", currentFrames.length],
-      ["EOM frame sets", frameSets.length],
-      ["Sample interval", activeSampleInterval()],
-      ["Playback source", state.sourceMode],
-      ["Initial layout", manifest.initialConditions.initialLinePolicy],
-    ]);
+    renderFieldRows(dom.sourceFields, createBorgSourceFieldRows({
+      state,
+      manifest,
+      activePreset,
+      placement,
+      isEomSimulationActive: isEomSimulationActive(),
+      formatRunDurationLabel,
+      formatRunTargetDuration,
+      formatRealtimeRate: formatBorgRealtimeRate,
+      currentFrameCount: currentFrames.length,
+      frameSetCount: frameSets.length,
+      sampleInterval: activeSampleInterval(),
+    }));
   }
 
   function renderEnvelopeFields() {
@@ -999,16 +934,14 @@ export function mountBorgApp(options = {}) {
       state.dynamicRunner?.config?.historyDepth ?? activeEomRunnerOptions?.historyDepth,
       manifest.simulationEnvelope.historyDepth,
     );
-    const runtimeWakeHorizon = manifest.simulationEnvelope.fieldSpeed * runtimeHistoryDepth;
-    renderFieldRows(dom.envelopeFields, [
-      ["outerRadius", activeEnvelopeRadius()],
-      ["sampleInterval", activeSampleInterval()],
-      ["seedHistoryDepth", runtimeHistoryDepth],
-      ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
-      ["coupling", state.eomCoupling],
-      ["seedWakeHorizon", runtimeWakeHorizon],
-      ["architrinoCount", runtimePopulationCount ?? manifest.population.architrinoCount],
-    ]);
+    renderFieldRows(dom.envelopeFields, createBorgEnvelopeFieldRows({
+      manifest,
+      coupling: state.eomCoupling,
+      envelopeRadius: activeEnvelopeRadius(),
+      sampleInterval: activeSampleInterval(),
+      populationCount: runtimePopulationCount,
+      historyDepth: runtimeHistoryDepth,
+    }));
   }
 
   function renderInitialConditionFields() {
@@ -1024,61 +957,23 @@ export function mountBorgApp(options = {}) {
     const activeFamily = activeInitialRow
       ? "seeded-random-minimum-separation"
       : manifest.initialConditions.initialConditionFamily;
-    renderFieldRows(dom.initialConditionFields, [
-      ["family", activeFamily],
-      ["seed", state.distributionFrameRows ? state.distributionLabel : manifest.initialConditions.initialConditionSeed ?? "null"],
-      ["electrinoCount", config.electrinoCount],
-      ["positrinoCount", config.positrinoCount],
-      ["coupling $\\kappa$", state.eomCoupling],
-      ["certifiedBudget", certifiedBudget.label],
-      ["budgetAllocationHash", certifiedBudget.allocationHash],
-      ["stepHeight", state.eomStepHeight],
-      ["adaptiveMinimumStep", state.eomMinimumStep],
-      ["velocityPolicy", manifest.initialConditions.velocityPolicy],
-      ["maxPerAxisSpeed", config.randomVelocityMaxComponentMagnitude],
-      ["minimumTotalSpeed", config.randomVelocityMinSpeed],
-      ["minimumPairSeparation", placement.minimumPairSeparation],
-      ["measuredMinimumSeparation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
-      ["velocity rays", state.activeLayers.has("velocity-vectors") ? "on" : "off"],
-      ["customEditStatus", state.initialConditionEditStatus],
-    ]);
+    renderFieldRows(dom.initialConditionFields, createBorgInitialConditionFieldRows({
+      state,
+      manifest,
+      certifiedBudget,
+      placement,
+      activeFamily,
+    }));
   }
 
   function renderDiagnosticFields() {
     const diagnostics = state.polarityDiagnostics;
-    renderFieldRows(dom.diagnosticsFields, [
-      ["proof claim", manifest.validation.proofClaimStatus],
-      ["diagnostic authority", diagnostics?.authority ?? "not-measured"],
-      ["raw EOM keyframe", diagnostics?.frameIndex ?? "not-measured"],
-      ["diagnostic time", diagnostics?.time ?? "not-measured"],
-      ["sphere radius", diagnostics?.sphereRadius ?? "not-measured"],
-      ["electrinos outside sphere now", diagnostics?.outsideNow.electrino ?? "not-measured"],
-      ["positrinos outside sphere now", diagnostics?.outsideNow.positrino ?? "not-measured"],
-      ["electrinos escaped by time", diagnostics?.escapedThroughTime.electrino ?? "not-measured"],
-      ["positrinos escaped by time", diagnostics?.escapedThroughTime.positrino ?? "not-measured"],
-      ["close-pair threshold $\\epsilon_c$", diagnostics?.closePairThreshold ?? "not-measured"],
-      ["close metric", diagnostics
-        ? "fraction of unordered pairs inside core scale $\\epsilon_c$"
-        : "not-measured"],
-      ["electrino close-pair fraction", formatDiagnosticPercent(
-        diagnostics?.pairs.electrino.closeFraction,
-      )],
-      ["positrino close-pair fraction", formatDiagnosticPercent(
-        diagnostics?.pairs.positrino.closeFraction,
-      )],
-      ["all same-polarity close fraction", formatDiagnosticPercent(
-        diagnostics?.pairs.same.closeFraction,
-      )],
-      ["opposite-polarity close fraction", formatDiagnosticPercent(
-        diagnostics?.pairs.opposite.closeFraction,
-      )],
-      ["same / opposite close ratio", diagnostics?.sameToOppositeCloseRatio ?? "not-measured"],
-      ["same - opposite close fraction", formatDiagnosticPercentagePoints(
-        diagnostics?.sameMinusOppositeCloseFraction,
-      )],
-      ["same-polarity mean separation", diagnostics?.pairs.same.meanSeparation ?? "not-measured"],
-      ["opposite-polarity mean separation", diagnostics?.pairs.opposite.meanSeparation ?? "not-measured"],
-    ]);
+    renderFieldRows(dom.diagnosticsFields, createBorgDiagnosticFieldRows({
+      diagnostics,
+      manifest,
+      formatPercent: formatDiagnosticPercent,
+      formatPercentagePoints: formatDiagnosticPercentagePoints,
+    }));
   }
 
   function renderFieldRows(container, rows) {
@@ -1091,7 +986,7 @@ export function mountBorgApp(options = {}) {
       renderInlineMathText(labelElement, label, { documentLike, windowLike });
       const valueElement = documentLike.createElement("span");
       valueElement.className = "borg-field-value";
-      renderInlineMathText(valueElement, formatValue(value), {
+      renderInlineMathText(valueElement, formatValue(value, formatNumber), {
         documentLike,
         windowLike,
       });
@@ -1340,6 +1235,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function configureAssemblyViewControls() {
+    renderRecordSummary();
     dom.envelopeSection.hidden = replayActive;
     dom.sourceProvenance.hidden = replayActive;
     dom.timeline.classList.toggle("is-replay", replayActive);
@@ -1404,6 +1300,7 @@ export function mountBorgApp(options = {}) {
         binaryGeometryTable: dom.replayBinaryGeometryTable,
         trailSummary: dom.replayTrailSummary,
         scientificStatus: dom.replayScientificStatus,
+        platonicRelationships: dom.replayPlatonicRelationships,
         translationFrame: dom.prescribedTranslationFrame,
         translationStatus: dom.prescribedTranslationStatus,
         historyDepth: dom.prescribedHistoryDepth,
@@ -1441,6 +1338,7 @@ export function mountBorgApp(options = {}) {
       onContributionVisibleChange: (visible) =>
         prescribedAnalysisScene.setContributionVisible(visible),
       scientificStatus: options.eomRecordReplay?.scientificStatus,
+      platonicRelationships: options.eomRecordReplay?.platonicRelationships,
     });
     const staticAssembly = isStaticAssemblyReplay();
     dom.timeline.hidden = staticAssembly;
@@ -1469,6 +1367,48 @@ export function mountBorgApp(options = {}) {
     updatePrescribedBranchAction();
     setReplayDisplayMode(state.replayDisplayMode);
     describePrescribedAnalysisProvider();
+  }
+
+  function renderRecordSummary() {
+    if (!dom.recordSummary) {
+      return;
+    }
+    dom.recordSummary.hidden = !replayActive;
+    if (!replayActive || !activeReplayEntry) {
+      return;
+    }
+    const rawRecord = activeReplayEntry.rawRecord;
+    const supplied = options.eomRecordReplay?.librarySummary;
+    const exactSummary = supplied?.assemblyId === rawRecord.assemblyId &&
+      supplied?.modelRevisionSha256 === rawRecord.modelRevisionSha256
+      ? supplied
+      : null;
+    const prescribedGeometry = activeReplayEntry.dataset.provenance?.prescribedGeometry;
+    const obstruction = prescribedGeometry?.coordinates?.geometry?.prescribedBalanceObstruction;
+    dom.recordSummaryTitle.textContent = exactSummary?.label ??
+      rawRecord.title ??
+      prescribedGeometry?.coordinates?.identity?.displayLabel ??
+      "Selected assembly";
+    dom.recordSummaryIdentity.textContent = rawRecord.assemblyId;
+    dom.recordSummaryDescription.textContent = `Recorded description: ${
+      exactSummary?.description ?? prescribedGeometry?.description ?? "Sealed assembly record."
+    }`;
+    if (dom.obstructionBadge && dom.obstructionDetail) {
+      const visible = obstruction?.disposition === "excluded-prescribed-balance";
+      dom.obstructionBadge.hidden = !visible;
+      dom.obstructionDetail.hidden = !visible;
+      if (visible) {
+        dom.obstructionReadout.textContent = `${obstruction.receiverLabel} receiver: required x acceleration = ${obstruction.requiredXAcceleration}; certified x acceleration is ${obstruction.certifiedXLowerBound} to ${obstruction.certifiedXUpperBound}.`;
+        dom.obstructionScope.textContent = `Scope: ${obstruction.parameterDomain}. Amber marks the certified mismatch; polarity remains red and blue.`;
+        dom.obstructionLedger.textContent = `Root ledger: ${obstruction.rootLedger}`;
+      }
+    }
+    dom.recordSummaryFacets.textContent = "";
+    (exactSummary?.facets ?? []).forEach((facet) => {
+      const chip = documentLike.createElement("span");
+      chip.textContent = `${facet.label}: ${facet.value}`;
+      dom.recordSummaryFacets.append(chip);
+    });
   }
 
   function isStaticAssemblyReplay() {
@@ -1734,6 +1674,7 @@ export function mountBorgApp(options = {}) {
     state.selectedPathKey = null;
     state.prescribedTranslationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     activeReplayEntry = entry;
+    renderRecordSummary();
     state.replayDisplayMode = entry.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated";
@@ -3697,39 +3638,6 @@ export function mountBorgApp(options = {}) {
   }
 }
 
-function queryRequiredElement(documentLike, selector) {
-  const element = documentLike?.querySelector?.(selector);
-  if (!element) {
-    throw new Error(`Borg app missing required element ${selector}`);
-  }
-  return element;
-}
-
-export function createBorgParticleStyles(frames) {
-  const styles = new Map();
-  frames.forEach((frame) => {
-    if (styles.has(frame.pathKey)) {
-      return;
-    }
-    const baseStyle =
-      frame.stateFlags === 1 ? PARTICLE_POLARITY_STYLES.positrino : PARTICLE_POLARITY_STYLES.electrino;
-    styles.set(frame.pathKey, {
-      ...baseStyle,
-      pathColor: baseStyle.color,
-      label: String(frame.pathKey),
-    });
-  });
-  return styles;
-}
-
-function getParticleStyle(pathKey, particleStyles) {
-  const numericPathKey = Number(pathKey);
-  const style = particleStyles?.get(pathKey) ??
-    (Number.isFinite(numericPathKey) ? particleStyles?.get(numericPathKey) : null);
-  if (!style) throw new TypeError(`Missing Borg polarity style for path ${pathKey}.`);
-  return style;
-}
-
 function normalizePathTrailDuration(value) {
   const requested = Number(value);
   if (PATH_TRAIL_DURATIONS.includes(requested)) {
@@ -3744,274 +3652,6 @@ function normalizePathTrailDuration(value) {
   );
 }
 
-function formatRunDurationLabel(preset) {
-  if (isForeverRunPreset(preset)) {
-    return "No limit";
-  }
-  const target = preset?.effectiveTargetDuration ?? preset?.targetDuration;
-  if (Number.isFinite(Number(target))) {
-    return `${Number(target)} s`;
-  }
-  return preset?.displayLabel ?? preset?.label ?? "Run";
-}
-
-function formatRunTargetDuration(preset) {
-  if (
-    isForeverRunPreset(preset)
-  ) {
-    return "forever";
-  }
-  return preset?.effectiveTargetDuration ?? preset?.targetDuration ?? "static";
-}
-
-function isForeverRunPreset(preset) {
-  return (
-    preset?.durationMode === "forever" ||
-    preset?.targetDuration === Number.POSITIVE_INFINITY ||
-    preset?.effectiveTargetDuration === Number.POSITIVE_INFINITY
-  );
-}
-
-function runControlPresetById(presetId) {
-  return (
-    RUN_CONTROL_PRESETS.find((preset) => preset.id === presetId) ??
-    RUN_CONTROL_PRESETS.find((preset) => preset.id === DEFAULT_RUN_CONTROL_PRESET_ID) ??
-    RUN_CONTROL_PRESETS[0]
-  );
-}
-
-function createDefaultEomRecordReplayOptions(
-  options = {},
-  preset = runControlPresetById(),
-) {
-  if (options.eomRecordReplay === false || options.enableEomRecordReplay === false) {
-    return null;
-  }
-  const configured =
-    options.eomRecordReplay && typeof options.eomRecordReplay === "object"
-      ? options.eomRecordReplay
-      : null;
-  if (!configured?.record) {
-    return null;
-  }
-  return {
-    ...configured,
-    targetDuration: configured.targetDuration ?? preset.effectiveTargetDuration ?? preset.targetDuration,
-    chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
-  };
-}
-
-export function createDefaultEomShadowRunnerOptions(
-  options = {},
-  preset = runControlPresetById(),
-  initialFrameRows = null,
-  manifest = BORG_DATASET_MANIFEST_V1,
-  runtimeControls = {},
-) {
-  if (options.eomShadowRunner === false || options.enableEomShadowRunner === false) {
-    return null;
-  }
-  const configured =
-    options.eomShadowRunner && typeof options.eomShadowRunner === "object"
-      ? options.eomShadowRunner
-      : null;
-  const eomClient = configured?.eomClient ?? configured?.eomClientFactory?.();
-  if (!eomClient) {
-    return null;
-  }
-  // Forward EOM evolution starts at T=0 unless the caller declares another
-  // history cut.
-  const historyEndTime = finiteBudgetNumber(
-    configured.startTime ?? options.eomHistoryEndTime ?? 0,
-  );
-  const requestedTarget = configured.targetDuration ?? preset.effectiveTargetDuration ?? preset.targetDuration;
-  const historyDepth = positiveControlNumber(
-    runtimeControls.historyDepth ?? configured.historyDepth,
-    manifest.simulationEnvelope?.historyDepth ?? 10,
-  );
-  const targetDuration = Number.isFinite(Number(requestedTarget))
-    ? Number(requestedTarget)
-    : historyEndTime + (finiteBudgetNumber(configured.chunkDuration) ?? 20);
-  const runDuration = positiveControlNumber(
-    runtimeControls.runDuration ?? configured.runDuration,
-    targetDuration - historyEndTime,
-  );
-  const certifiedBudget = getBorgCertifiedBudgetPreset(
-    runtimeControls.certifiedBudgetId ??
-      configured.certifiedBudgetId ??
-      BORG_DEFAULT_CERTIFIED_BUDGET_ID,
-  );
-  return {
-    ...configured,
-    eomClient,
-    runGrade: normalizeEomRunGrade(
-      runtimeControls.runGrade ?? configured.runGrade,
-      BORG_EOM_RUN_GRADE_DISPLAY,
-    ),
-    certifiedBudgetId: certifiedBudget.id,
-    startTime: historyEndTime,
-    targetDuration: historyEndTime + runDuration,
-    runDuration,
-    historyDepth,
-    coreScale: Number(certifiedBudget.allocations.finiteWidth.coreScale),
-    farFieldEnclosureFraction:
-      certifiedBudget.allocations.ordinary.farFieldEnclosureFraction,
-    coupling: String(
-      runtimeControls.coupling ?? configured.coupling ?? manifest.modelControls?.coupling ?? 1,
-    ),
-    initialStep: certifiedBudget.allocations.controller.initialStep,
-    minimumStep: certifiedBudget.allocations.controller.minimumStep,
-    maximumStep: certifiedBudget.allocations.controller.maximumStep,
-    useAdaptiveStepGrowth: certifiedBudget.allocations.controller.adaptiveGrowth,
-    simulationOuterRadius: positiveControlNumber(
-      runtimeControls.simulationOuterRadius ?? configured.simulationOuterRadius,
-      manifest.simulationEnvelope?.outerRadius ?? 1,
-    ),
-    pathCount: boundedInteger(
-      runtimeControls.pathCount,
-      configured.pathCount ?? manifest.population?.architrinoCount ?? 1,
-      1,
-      manifest.population?.maximumArchitrinoCount ?? BORG_MAX_INITIAL_ARCHITRINO_COUNT,
-    ),
-    chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
-    initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
-  };
-}
-
-export function calculateBorgOrthographicFrustum({
-  envelopeWorldRadius,
-  margin,
-  aspect,
-}) {
-  const numericRadius = Number(envelopeWorldRadius);
-  const numericMargin = Number(margin);
-  const numericAspect = Number(aspect);
-  if (!Number.isFinite(numericRadius) || numericRadius <= 0) {
-    throw new TypeError("Borg orthographic envelope radius must be positive and finite.");
-  }
-  if (!Number.isFinite(numericMargin) || numericMargin <= 0) {
-    throw new TypeError("Borg orthographic camera-fit margin must be positive and finite.");
-  }
-  if (!Number.isFinite(numericAspect) || numericAspect <= 0) {
-    throw new TypeError("Borg orthographic viewport aspect must be positive and finite.");
-  }
-  const limitingDimensionScale = Math.min(1, numericAspect);
-  const halfHeight = (numericRadius * numericMargin) / limitingDimensionScale;
-  const halfWidth = halfHeight * numericAspect;
-  return Object.freeze({
-    left: -halfWidth,
-    right: halfWidth,
-    top: halfHeight,
-    bottom: -halfHeight,
-  });
-}
-
-export function getBorgVelocityRayLength(speed) {
-  const numericSpeed = Number(speed);
-  if (!Number.isFinite(numericSpeed) || numericSpeed <= 0) {
-    return 0;
-  }
-  // Display-grade evolution commonly begins with very small nonzero speeds.
-  // Preserve the logarithmic magnitude cue, but give every nonzero vector a
-  // visible direction ray instead of letting log10(1 + speed) collapse it to
-  // a sub-pixel line.
-  return VELOCITY_RAY_MINIMUM_VISIBLE_LENGTH +
-    Math.log10(1 + numericSpeed) * VELOCITY_RAY_LOG_SCALE;
-}
-
-function createEmptyLiveRunBudget() {
-  return Object.freeze({
-    schema: BORG_LIVE_RUN_BUDGET_VERSION,
-    status: "not-measured",
-    lastChunkWallTimeMs: null,
-    computedFrameRows: null,
-    appendedFrameRows: null,
-    frameAppendRateRowsPerSecond: null,
-    browserHeapGrowthBytes: null,
-    browserHeapAuthority: "not-exposed-by-browser",
-    wasmWorkerMemoryEstimateBytes: null,
-    wasmWorkerMemoryAuthority: "not-measured",
-    wasmWorkerMemoryPressure: null,
-    memoryBudgetBytes: null,
-    chunkDuration: null,
-    sampleInterval: null,
-    sourcePresetId: null,
-    chunkIndex: null,
-  });
-}
-
-function readLiveRunBudgetSnapshot(windowLike) {
-  return {
-    timestampMs: windowLike?.performance?.now?.() ?? Date.now(),
-    usedJSHeapSize: finiteBudgetNumber(windowLike?.performance?.memory?.usedJSHeapSize),
-  };
-}
-
-function createLiveRunBudgetMeasurement({
-  before,
-  after,
-  chunk,
-  previousFrameRowCount,
-  nextFrameRowCount,
-  replaceInitialRows,
-  appendedFrameRows,
-  presetId,
-  memoryBudgetBytes,
-}) {
-  const wallTimeMs = Math.max(0, finiteBudgetNumber(after?.timestampMs - before?.timestampMs) ?? 0);
-  const chunkDuration = Math.max(0, finiteBudgetNumber(chunk?.endTime - chunk?.startTime) ?? 0);
-  const computedFrameRows = Array.isArray(chunk?.frames) ? chunk.frames.length : 0;
-  const measuredAppendedFrameRows =
-    finiteBudgetNumber(appendedFrameRows) ??
-    (replaceInitialRows
-      ? computedFrameRows
-      : Math.max(0, (finiteBudgetNumber(nextFrameRowCount) ?? 0) - (finiteBudgetNumber(previousFrameRowCount) ?? 0)));
-  const frameAppendRateRowsPerSecond =
-    wallTimeMs > 0 ? measuredAppendedFrameRows / (wallTimeMs / 1000) : null;
-  const heapGrowthBytes =
-    before?.usedJSHeapSize != null && after?.usedJSHeapSize != null
-      ? Math.max(0, after.usedJSHeapSize - before.usedJSHeapSize)
-      : null;
-  const rawWorkerMemoryEstimateBytes = finiteBudgetNumber(chunk?.bufferByteLength);
-  const wasmWorkerMemoryEstimateBytes =
-    rawWorkerMemoryEstimateBytes != null && rawWorkerMemoryEstimateBytes > 0
-      ? rawWorkerMemoryEstimateBytes
-      : null;
-  const memoryBudgetPressure =
-    wasmWorkerMemoryEstimateBytes != null && memoryBudgetBytes > 0
-      ? wasmWorkerMemoryEstimateBytes / memoryBudgetBytes
-      : null;
-  const status =
-    wallTimeMs <= 0
-      ? "not-measured"
-      : heapGrowthBytes == null
-        ? "partial-live-run-budget"
-        : "measured-live-run-budget";
-
-  return Object.freeze({
-    schema: BORG_LIVE_RUN_BUDGET_VERSION,
-    status,
-    lastChunkWallTimeMs: wallTimeMs,
-    computedFrameRows,
-    appendedFrameRows: measuredAppendedFrameRows,
-    frameAppendRateRowsPerSecond,
-    browserHeapGrowthBytes: heapGrowthBytes,
-    browserHeapAuthority:
-      heapGrowthBytes == null ? "not-exposed-by-browser" : "performance.memory.usedJSHeapSize",
-    wasmWorkerMemoryEstimateBytes,
-    wasmWorkerMemoryAuthority:
-      wasmWorkerMemoryEstimateBytes > 0
-        ? "estimated-from-eom-output-buffers"
-        : "not-exposed-by-worker",
-    wasmWorkerMemoryPressure: memoryBudgetPressure,
-    memoryBudgetBytes: finiteBudgetNumber(memoryBudgetBytes),
-    chunkDuration,
-    sampleInterval: finiteBudgetNumber(chunk?.sampleInterval),
-    sourcePresetId: presetId ?? null,
-    chunkIndex: chunk?.chunkIndex ?? null,
-  });
-}
-
 function selectFrameRowsByPathCount(frameRows, pathCount) {
   const selectedPathKeys = [...new Set(frameRows.map((row) => Number(row.pathKey)))]
     .filter(Number.isFinite)
@@ -4021,299 +3661,18 @@ function selectFrameRowsByPathCount(frameRows, pathCount) {
   return frameRows.filter((row) => selected.has(Number(row.pathKey)));
 }
 
-function boundedInteger(value, fallback, minimum, maximum) {
-  const number = Number(value);
-  return Number.isInteger(number)
-    ? Math.min(maximum, Math.max(minimum, number))
-    : fallback;
-}
-
-function positiveControlNumber(value, fallback) {
-  const number = Number(value);
-  return Number.isFinite(number) && number > 0 ? number : fallback;
-}
-
-function normalizeEomRunGrade(value, fallback) {
-  return value === BORG_EOM_RUN_GRADE_CERTIFIED ||
-      value === BORG_EOM_RUN_GRADE_DISPLAY
-    ? value
-    : fallback;
-}
-
-function finiteBudgetNumber(value) {
-  const number = Number(value);
-  return Number.isFinite(number) ? number : null;
-}
-
-export function interpolateBorgFrameSetInto(
-  fromFrameSet,
-  toFrameSet,
-  progress,
-  target,
-  toFramesByPathKey,
-) {
-  target.frameIndex = progress < 0.5
-    ? fromFrameSet.frameIndex
-    : toFrameSet.frameIndex;
-  target.time = lerp(fromFrameSet.time, toFrameSet.time, progress);
-  target.frames.length = fromFrameSet.frames.length;
-  fromFrameSet.frames.forEach((fromFrame, index) => {
-    const toFrame = toFramesByPathKey?.get(fromFrame.pathKey) ?? fromFrame;
-    const row = target.frames[index] ?? {
-      position: { x: 0, y: 0, z: 0 },
-      velocity: { x: 0, y: 0, z: 0 },
-    };
-    row.pathKey = fromFrame.pathKey;
-    row.frameIndex = progress < 0.5 ? fromFrame.frameIndex : toFrame.frameIndex;
-    row.time = lerp(
-      fromFrame.time ?? fromFrameSet.time,
-      toFrame.time ?? toFrameSet.time,
-      progress,
-    );
-    interpolateVectorInto(
-      row.position,
-      fromFrame.position,
-      toFrame.position,
-      progress,
-    );
-    interpolateVectorInto(
-      row.velocity,
-      fromFrame.velocity,
-      toFrame.velocity,
-      progress,
-    );
-    row.errorBound = Math.max(
-      fromFrame.errorBound ?? 0,
-      toFrame.errorBound ?? 0,
-    );
-    row.stateFlags = fromFrame.stateFlags ?? toFrame.stateFlags ?? 0;
-    row.sourceWorldlineId =
-      fromFrame.sourceWorldlineId ?? toFrame.sourceWorldlineId ?? null;
-    target.frames[index] = row;
-  });
-  return target;
-}
-
-function interpolateVectorInto(target, fromVector, toVector, progress) {
-  target.x = lerp(fromVector?.x ?? 0, toVector?.x ?? 0, progress);
-  target.y = lerp(fromVector?.y ?? 0, toVector?.y ?? 0, progress);
-  target.z = lerp(fromVector?.z ?? 0, toVector?.z ?? 0, progress);
-  return target;
-}
-
-function lerp(fromValue, toValue, progress) {
-  return fromValue + (toValue - fromValue) * progress;
-}
-
-function createArchitrinoPointTexture(documentLike) {
-  const canvas = documentLike.createElement("canvas");
-  canvas.width = 32;
-  canvas.height = 32;
-  const context = canvas.getContext("2d");
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillStyle = "#ffffff";
-  context.beginPath();
-  context.arc(16, 16, 14, 0, Math.PI * 2);
-  context.fill();
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.needsUpdate = true;
-  return texture;
-}
-
-function formatValue(value) {
-  if (typeof value === "number") {
-    return formatNumber(value);
-  }
-  if (value == null) {
-    return "null";
-  }
-  return String(value);
-}
-
-function formatDiagnosticPercent(value) {
-  return Number.isFinite(value)
-    ? `${(Number(value) * 100).toFixed(2)}%`
-    : "not-measured";
-}
-
-function formatDiagnosticPercentagePoints(value) {
-  return Number.isFinite(value)
-    ? `${(Number(value) * 100).toFixed(2)} percentage points`
-    : "not-measured";
-}
-
 function formatTimelineLabel(time) {
   return `T ${formatBorgTimelineTime(time)}`;
 }
 
-export function formatBorgTimelineTime(value) {
-  if (!Number.isFinite(value)) {
-    return "--:--:--.-";
-  }
-  const totalTenths = Math.round(Math.abs(value) * 10);
-  const sign = value < 0 && totalTenths > 0 ? "-" : "";
-  const hours = Math.floor(totalTenths / 36000);
-  const minutes = Math.floor((totalTenths % 36000) / 600);
-  const seconds = Math.floor((totalTenths % 600) / 10);
-  const tenths = totalTenths % 10;
-  return `${sign}${String(hours).padStart(2, "0")}:` +
-    `${String(minutes).padStart(2, "0")}:` +
-    `${String(seconds).padStart(2, "0")}.${tenths}`;
-}
-
-function formatNumber(value) {
-  if (!Number.isFinite(value)) {
-    return String(value);
-  }
-  if (Math.abs(value) >= 1000 || (Math.abs(value) > 0 && Math.abs(value) < 0.001)) {
-    return value.toExponential(3);
-  }
-  return Number(value.toFixed(6)).toString();
-}
-
-function vectorLength(vector) {
-  return Math.hypot(vector?.x ?? 0, vector?.y ?? 0, vector?.z ?? 0);
-}
-
-function isEditableTarget(target) {
-  const tagName = target?.tagName;
-  if (target?.isContentEditable || tagName === "TEXTAREA" || tagName === "SELECT") {
-    return true;
-  }
-  if (tagName !== "INPUT") {
-    return false;
-  }
-  return ["email", "number", "password", "search", "tel", "text", "url"].includes(target.type);
-}
-
-function setTone(element, status) {
-  const tone = STATUS_TONE[status] ?? "display";
-  element.dataset.tone = tone;
-}
-
-function appendBorgRadioChoice(documentLike, container, {
-  name,
-  value,
-  label,
-}) {
-  const choice = documentLike.createElement("label");
-  choice.className = "borg-radio-choice";
-  const input = documentLike.createElement("input");
-  input.type = "radio";
-  input.name = name;
-  input.value = value;
-  const text = documentLike.createElement("span");
-  text.textContent = label;
-  choice.append(input, text);
-  container.append(choice);
-  return input;
-}
-
-function getBorgRadioGroupValue(group) {
-  return [...group.querySelectorAll('input[type="radio"]')]
-    .find((input) => input.checked)?.value ?? "";
-}
-
-function setBorgRadioGroupValue(group, value) {
-  const requestedValue = String(value ?? "");
-  group.querySelectorAll('input[type="radio"]').forEach((input) => {
-    input.checked = input.value === requestedValue;
-  });
-}
-
-function clamp(value, min, max) {
-  return Math.min(max, Math.max(min, value));
-}
-
-export function getBorgTimelineRangePresentation({
-  frameIndexes,
-  activeFrameIndex,
-  isForever,
-  isPlaying,
-}) {
-  if (!Array.isArray(frameIndexes) || frameIndexes.length === 0) {
-    return Object.freeze({
-      min: 0,
-      max: 0,
-      value: 0,
-      disabled: true,
-      mode: "empty",
-      title: "No recorded frame is available.",
-    });
-  }
-  if (isForever && isPlaying) {
-    return Object.freeze({
-      min: 0,
-      max: 100,
-      value: 50,
-      disabled: true,
-      mode: "live-follow",
-      title: "Following live playback. Pause to scrub buffered frames.",
-    });
-  }
-  let min = Number.POSITIVE_INFINITY;
-  let max = Number.NEGATIVE_INFINITY;
-  frameIndexes.forEach((frameIndex) => {
-    min = Math.min(min, frameIndex);
-    max = Math.max(max, frameIndex);
-  });
-  return Object.freeze({
-    min,
-    max,
-    value: clamp(activeFrameIndex, min, max),
-    disabled: false,
-    mode: isForever ? "live-buffer" : "finite-run",
-    title: isForever
-      ? "Buffered-frame scrubber; a no-limit run has no finite completion percentage."
-      : "Run progress and frame scrubber.",
-  });
-}
-
-export function getBorgPlaybackReanchor(frameSets, activeFrameIndex) {
-  if (!Array.isArray(frameSets) || frameSets.length === 0) {
-    return Object.freeze({
-      fromSetIndex: 0,
-      toSetIndex: 0,
-      fromFrameIndex: null,
-      toFrameIndex: null,
-    });
-  }
-  let activeSetIndex = frameSets.findIndex(
-    (frameSet) => Number(frameSet?.frameIndex) === Number(activeFrameIndex),
-  );
-  if (activeSetIndex < 0) {
-    activeSetIndex = frameSets.findIndex(
-      (frameSet) => Number(frameSet?.frameIndex) > Number(activeFrameIndex),
-    );
-  }
-  if (activeSetIndex < 0) {
-    activeSetIndex = frameSets.length - 1;
-  }
-  const fromSetIndex = frameSets.length < 2
-    ? 0
-    : Math.min(activeSetIndex, frameSets.length - 2);
-  const toSetIndex = Math.min(fromSetIndex + 1, frameSets.length - 1);
-  return Object.freeze({
-    fromSetIndex,
-    toSetIndex,
-    fromFrameIndex: frameSets[fromSetIndex]?.frameIndex ?? null,
-    toFrameIndex: frameSets[toSetIndex]?.frameIndex ?? null,
-  });
-}
-
-export function getBorgBufferedPlaybackAdvance({
-  rawProgress,
-  fromSetIndex,
-  frameSetCount,
-}) {
-  const requestedAdvance = Math.max(0, Math.floor(Number(rawProgress) || 0));
-  const availableAdvance = Math.max(
-    0,
-    Number(frameSetCount) - 1 - Number(fromSetIndex),
-  );
-  return Math.min(
-    requestedAdvance,
-    availableAdvance,
-    BORG_MAX_VISUAL_CATCH_UP_FRAME_SETS,
-  );
-}
+export {
+  calculateBorgOrthographicFrustum,
+  createBorgParticleStyles,
+  createDefaultEomShadowRunnerOptions,
+  formatBorgTimelineTime,
+  getBorgBufferedPlaybackAdvance,
+  getBorgPlaybackReanchor,
+  getBorgTimelineRangePresentation,
+  getBorgVelocityRayLength,
+  interpolateBorgFrameSetInto,
+};

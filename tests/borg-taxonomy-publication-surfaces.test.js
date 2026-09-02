@@ -23,7 +23,9 @@ test("worked 2D and 3D chapters publish every exact Borg identity once on a rout
   for (const relativePath of CHAPTERS) {
     const source = readFileSync(path.join(REPOSITORY_ROOT, relativePath), "utf8");
     assert.doesNotMatch(source, /borg-library\.html\?assemblyId=/, relativePath);
-    for (const match of source.matchAll(linkPattern)) {
+    const exactIndex = source.split("## Exact Borg Configuration Index")[1];
+    assert.ok(exactIndex, `${relativePath} is missing its exact Borg configuration index`);
+    for (const match of exactIndex.matchAll(linkPattern)) {
       published.push(exactIdentityKey(match[1], match[2]));
     }
   }

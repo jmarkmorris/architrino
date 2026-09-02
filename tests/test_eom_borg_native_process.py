@@ -396,7 +396,7 @@ class NativeBorgProcessTests(unittest.TestCase):
 
     def test_native_products_measure_complete_shell_and_paired_residual_inputs(self) -> None:
         crossing_segment = "\t".join((
-            "SEG", "0", "5", "0", "0.4", *("0" for _ in range(16))
+            "SEG", "0", "5", "0.2", "0.4", *("0" for _ in range(16))
         ))
         outside_segment = "\t".join((
             "SEG", "0", "5", *("0" for _ in range(18))
@@ -465,7 +465,7 @@ class NativeBorgProcessTests(unittest.TestCase):
                 "NONE" if is_central else "fixture-bin",
                 "receiver" if is_central else "NONE",
                 "NONE" if label == "shell_self_similarity" else (
-                    "4.95" if is_central else "2.5"
+                    "4.95" if is_central else "2"
                 ), "x",
                 reference, reference, boundary, boundary, "1", "1",
                 f"reference-row-{ordinal}", f"boundary-row-{ordinal}",
@@ -486,6 +486,9 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(len(boundary["coverageRows"]), 8)
         self.assertEqual(len(boundary["shellCrossingRows"]), 1)
         self.assertEqual(boundary["shellCrossingRows"][0]["direction"], "outbound")
+        crossing_time = boundary["shellCrossingRows"][0]["crossingTime"]
+        self.assertLessEqual(float(crossing_time["lower"]), 2.0)
+        self.assertGreaterEqual(float(crossing_time["upper"]), 2.0)
         self.assertEqual(len(boundary["shellInfluenceRows"]), 1)
         self.assertEqual(len(boundary["replaySourceRows"]), 1)
         self.assertEqual(

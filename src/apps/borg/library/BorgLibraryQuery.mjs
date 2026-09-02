@@ -10,6 +10,7 @@ export const LIBRARY_FACETS = Object.freeze({
   circleOccupancy: { label: "Circle occupancy", options: [["one", "One per circle"], ["multiple", "Multiple per circle"], ["mixed", "Mixed"]] },
   breathing: { label: "Breathing", options: [["yes", "Breather"], ["no", "Non-breather"]] },
   speedPolicy: { label: "Speed policy", options: [["uncapped", "Uncapped"], ["capped-cf", "Capped at c_f"]] },
+  platonicRelationship: { label: "Platonic relationship", options: [["exact-vertex-set", "Exact Platonic vertex set"], ["platonic-component", "Platonic component"], ["platonic-compound", "Platonic compound"], ["platonic-cell-complex", "Platonic-cell complex"]] },
 });
 
 export function isLibrarySelectorValue(key, value) {

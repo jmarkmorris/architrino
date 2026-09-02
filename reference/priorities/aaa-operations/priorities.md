@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-operations`
-- Rank: `24`
+- Rank: `23`
 - Value: `0.84`
 - Cost: `3.3`
 - ROI: `0.25`
@@ -27,14 +27,18 @@ This workstream tracks operational discipline for the project as the public weba
 
 The locally ranked operational tasks, measurement requirements, and completion boundaries live in [work-queue.md](work-queue.md).
 
-## GitHub Pages Research Notes
+## GitHub Pages Limits Baseline
 
-Research should start from the official GitHub Pages limits documentation. The first pass should answer:
+OPS-002 is closed by the dated [GitHub Pages and Actions limits record](github-pages-and-actions-limits-2026-09-01.md). The accepted live deployment is 415,238,878 bytes and the 2026-09-01 active-checkout reconstruction is 481,493,486 bytes, both below the builder's 1,000,000,000-byte ceiling. The source repository remains above the Pages-specific 1 GB recommendation, and representative per-visit transfer remains unmeasured.
 
-1. What are the current published-site size, source repository size, deployment timeout, bandwidth guidance, build-frequency guidance, and rate-limit behaviors?
-2. Which limits are hard failures, which are soft guidance, and which can result in support contact or throttling?
-3. How do Pages deployments interact with GitHub Actions minutes, storage, artifact retention, and workflow concurrency?
-4. How much monthly transfer does each major app surface imply at 100, 1,000, 10,000, and 100,000 visits?
-5. Which repo artifacts are included in the published Pages site, and which generated/review artifacts stay only in git or Actions?
-6. Which app features increase static transfer, browser heap, GPU memory, or browser storage without increasing GitHub server compute?
-7. When would a CDN/object-storage or app-hosting alternative become operationally justified?
+## Static Asset Inventory Baseline
+
+OPS-006 is closed by the dated [static asset inventory](static-asset-inventory-2026-09-01.md). Its concurrent active-checkout reconstruction measured 481,498,766 public bytes, including 179,521,026 bytes of declared build-generated runtime data, while existing rules kept 958,248,972 tracked bytes Git-only. A disjoint 78,593,285-byte public candidate set now awaits explicit deployment-scope decisions; no asset was removed. OPS-004 owns cold/warm browser and transfer measurements, and OPS-007 owns Actions artifact retention rather than local or Pages storage.
+
+## GitHub Actions Artifact Baseline
+
+OPS-007 is closed by the [GitHub Actions artifact policy](github-actions-artifact-policy.md). Every current upload has an explicit class, retention, and pre-upload size ceiling: the sole producer is the one-day Pages deployment handoff guarded by the existing 1,000,000,000-byte static-builder limit. Future diagnostics, captures, benchmarks, and review bundles have bounded class rules; raw scientific output and sensitive material are prohibited by default. Aggregate overlap must be checked separately from per-artifact retention.
+
+## Domain, DNS, And Certificate Baseline
+
+OPS-010 is closed by the dated [domain, DNS, and certificate inventory](domain-dns-and-certificate-inventory-2026-09-01.md). The canonical public origin is `https://www.architrino.com`; the apex, HTTP variants, and GitHub project domain converge on it with path preservation. The served GitHub Pages certificate covers both hostnames and passed trust and 60-day validity checks. Account-level domain verification remains operator-checkable because the recommended public TXT proof is absent; DNSSEC, CAA, HSTS, and mail-security decisions route to OPS-011, while source-level apex-link cleanup requires a separately accepted task.

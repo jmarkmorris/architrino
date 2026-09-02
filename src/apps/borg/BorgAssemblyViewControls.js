@@ -10,6 +10,7 @@ import {
 } from "./BorgPrescribedTranslation.js";
 import { renderInlineMathText } from "../../runtime/InlineMathRuntime.js";
 import { renderBorgScientificStatus } from "./BorgScientificStatusView.mjs";
+import { renderBorgPlatonicRelationships } from "./BorgPlatonicRelationshipsView.mjs";
 
 const FILTER_LABELS = Object.freeze({
   claimGrade: "Claim grade",
@@ -38,6 +39,7 @@ export function createBorgAssemblyViewControls({
   onAnalysisRootSelect,
   onContributionVisibleChange,
   scientificStatus,
+  platonicRelationships,
 }) {
   const listeners = [];
   let declaredVirtualProbes = [];
@@ -78,6 +80,9 @@ export function createBorgAssemblyViewControls({
     renderPrescribedGeometryTable(documentLike, dom.binaryGeometryTable, presentation);
     renderBorgScientificStatus(documentLike, dom.scientificStatus, scientificStatus ?? {
       coverage: "invalid", verdict: "Projection stale or invalid", causes: ["projection unavailable"], projection: null, current: null, context: [], requirements: [],
+    });
+    renderBorgPlatonicRelationships(documentLike, dom.platonicRelationships, platonicRelationships ?? {
+      state: "unavailable", assignments: [], reason: "Platonic relationship source is unavailable.", revision: null, sourceOwner: null, source: null,
     });
     renderOverlayRows(presentation);
 

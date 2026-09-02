@@ -10,15 +10,17 @@ const loadRegistry = async () => validateBorgAssemblyRegistry(JSON.parse(await r
 
 test("registry migration has complete exact, braid, taxonomy, facet, and visual coverage", async () => {
   const registry = await loadRegistry();
-  assert.equal(registry.entries.length, 144);
-  assert.equal(registry.braids.length, 45);
+  assert.equal(registry.entries.length, 145);
+  assert.equal(registry.braids.length, 46);
   assert.equal(registry.coverage.missingVisualRepresentatives, 0);
   assert.equal(registry.coverage.silentlySubstitutedRows, 0);
-  assert.equal(registry.coverage.deterministicPosters, 144);
-  assert.equal(registry.taxonomy.memberships.length, 45);
+  assert.equal(registry.coverage.deterministicPosters, 145);
+  assert.equal(registry.taxonomy.memberships.length, 46);
   assert.deepEqual(registry.facetDescriptor.facets.map((row) => row.key), [
-    "assemblySpan", "braidCount", "braidDimension", "count", "radii", "circleOccupancy", "breathing", "speedPolicy",
+    "assemblySpan", "braidCount", "braidDimension", "count", "radii", "circleOccupancy", "breathing", "speedPolicy", "platonicRelationship",
   ]);
+  assert.equal(registry.entries.filter((row) => row.facets.platonicRelationship.includes("exact-vertex-set")).length, 6);
+  assert.equal(registry.entries.filter((row) => row.facets.platonicRelationship.includes("unavailable")).length, 139);
   assert.ok(registry.entries.every((row) => row.occurrence.state === "unavailable" && row.visualCoverage.animationMode));
 });
 
@@ -54,7 +56,7 @@ test("indexed registry resolves exact ids, hashes, text, source identity, facets
   const database = createBorgAssemblyRegistryDatabase({ registry });
   try {
     const target = registry.entries[0];
-    assert.equal(database.count, 144);
+    assert.equal(database.count, 145);
     assert.equal(database.getExact(target.assemblyId, target.modelRevisionSha256).braidId, target.braidId);
     assert.equal(database.findExactByRecord(target.recordSha256).assemblyId, target.assemblyId);
     assert.equal(database.lookupHashPrefix(target.modelRevisionSha256.slice(0, 12)).status, "exact");

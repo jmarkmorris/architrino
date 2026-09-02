@@ -25,7 +25,7 @@ async function request(service, path, method = "GET") {
 test("Library query contract exposes independent facts-first facets", () => {
   assert.deepEqual(Object.keys(LIBRARY_FACETS), [
     "assemblySpan", "braidCount", "braidDimension", "count",
-    "radii", "circleOccupancy", "breathing", "speedPolicy",
+    "radii", "circleOccupancy", "breathing", "speedPolicy", "platonicRelationship",
   ]);
   const rows = [
     { assemblyId: "asm-a", modelRevisionSha256: "a".repeat(64), recordSha256: "1".repeat(64), label: "Planar pair", description: "Two paths", facets: { count: "2", circleOccupancy: "multiple", braidDimension: "2d" } },
@@ -84,8 +84,8 @@ test("Library scientific projection is Braid Program owned and exact adjudicatio
   const currentBindings = exactAdjudications.filter((relation) =>
     BORG_ASSEMBLY_RECORD_CATALOG.entries.some((entry) => entry.assemblyId === relation.match.assemblyId && entry.modelRevisionSha256 === relation.match.modelRevisionSha256));
   const preservedOffCatalog = exactAdjudications.filter((relation) => !currentBindings.includes(relation));
-  assert.equal(exactAdjudications.length, 24);
-  assert.equal(currentBindings.length, 23);
+  assert.equal(exactAdjudications.length, 25);
+  assert.equal(currentBindings.length, 24);
   assert.deepEqual(preservedOffCatalog.map((relation) => relation.match.assemblyId), ["asm-f70757c6a491cf997305c297efa86bf8"]);
 });
 
@@ -93,12 +93,12 @@ test("seed provider covers all current records and exact preview pins", async ()
   const service = createBorgLibraryService({ repoRoot });
   const first = await request(service, "/api/borg/library");
   assert.equal(first.status, 200);
-  assert.equal(first.body.total, 45);
-  assert.equal(first.body.exactRecordCount, 144);
-  assert.equal(first.body.activeFindingConfigurationCount, 136);
-  assert.equal(first.body.registeredCount, 144);
+  assert.equal(first.body.total, 46);
+  assert.equal(first.body.exactRecordCount, 145);
+  assert.equal(first.body.activeFindingConfigurationCount, 138);
+  assert.equal(first.body.registeredCount, 145);
   assert.equal(first.body.resultCount, first.body.total);
-  assert.deepEqual(first.body.counts.braidDimension, { unavailable: 18, "3d": 21, "2d": 6 });
+  assert.deepEqual(first.body.counts.braidDimension, { unavailable: 19, "3d": 21, "2d": 6 });
   assert.deepEqual(first.body.failures, []);
   const row = first.body.results.find((result) => result.kind === "leaf");
   const query = new URLSearchParams({

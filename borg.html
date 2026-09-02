@@ -35,8 +35,8 @@
 
       #borg-app {
         display: grid;
-        /* Give the taxonomy rail room while reserving a usable viewport. */
-        grid-template-columns: minmax(620px, 1395px) minmax(360px, 1fr);
+        /* Keep the record rail readable while making the animation canvas primary. */
+        grid-template-columns: clamp(440px, 42vw, 620px) minmax(0, 1fr);
         grid-template-rows: minmax(0, 1fr) 108px;
         width: 100%;
         height: 100%;
@@ -192,6 +192,91 @@
         border-radius: 7px;
         background: #17231f;
       }
+
+      .borg-record-summary {
+        display: grid;
+        gap: 7px;
+        margin-bottom: 10px;
+        padding: 11px;
+        border: 1px solid rgba(139, 164, 126, 0.34);
+        border-radius: 8px;
+        background: #20231d;
+      }
+
+      .borg-record-summary[hidden] {
+        display: none;
+      }
+
+      .borg-record-summary-eyebrow,
+      .borg-record-summary-identity,
+      .borg-record-summary-description {
+        margin: 0;
+      }
+
+      .borg-record-summary-eyebrow {
+        color: #d5c0ff;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+      }
+
+      .borg-record-summary h2 {
+        margin: 0;
+        color: #fbfff4;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+
+      .borg-record-summary-identity {
+        color: #abb6a5;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        overflow-wrap: anywhere;
+      }
+
+      .borg-record-summary-description {
+        color: #d6ddd0;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .borg-record-summary-facets {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .borg-record-summary-facets span {
+        padding: 4px 7px;
+        border-radius: 5px;
+        color: #c9d5c4;
+        background: #2a3027;
+        font-size: 11px;
+      }
+
+      .borg-obstruction-badge {
+        width: fit-content;
+        padding: 5px 8px;
+        border: 1px solid rgba(255, 180, 84, 0.68);
+        border-radius: 999px;
+        color: #ffd394;
+        background: rgba(75, 48, 18, 0.66);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .borg-obstruction-detail {
+        padding: 9px;
+        border: 1px solid rgba(255, 180, 84, 0.34);
+        border-radius: 7px;
+        background: rgba(53, 38, 19, 0.58);
+        color: #d9d2c4;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      .borg-obstruction-detail summary { color: #ffd394; cursor: pointer; font-weight: 780; }
+      .borg-obstruction-detail p { margin: 7px 0 0; }
 
       .borg-mode-copy {
         display: grid;
@@ -1562,8 +1647,23 @@
           </div>
         </header>
 
+        <section id="borg-record-summary" class="borg-record-summary" aria-labelledby="borg-record-summary-title" hidden>
+          <p class="borg-record-summary-eyebrow">EXACT RECORD</p>
+          <h2 id="borg-record-summary-title"></h2>
+          <p id="borg-record-summary-identity" class="borg-record-summary-identity"></p>
+          <p id="borg-record-summary-description" class="borg-record-summary-description"></p>
+          <p id="borg-obstruction-badge" class="borg-obstruction-badge" hidden>⊘ Excluded prescribed history</p>
+          <details id="borg-obstruction-detail" class="borg-obstruction-detail" hidden open>
+            <summary>Why excluded</summary>
+            <p id="borg-obstruction-readout"></p>
+            <p id="borg-obstruction-scope"></p>
+            <p id="borg-obstruction-ledger"></p>
+          </details>
+          <div id="borg-record-summary-facets" class="borg-record-summary-facets" aria-label="Selected assembly properties"></div>
+        </section>
+
         <div id="borg-mode-boundary" class="borg-mode-boundary" data-mode="simulation-workspace">
-          <fieldset id="borg-starting-geometry" class="borg-radio-group">
+          <fieldset id="borg-starting-geometry" class="borg-radio-group" hidden>
             <legend>Starting geometry</legend>
             <div id="borg-starting-geometry-options" class="borg-radio-options is-inline">
               <label class="borg-radio-choice">
@@ -1603,6 +1703,7 @@
           </section>
 
           <section id="borg-scientific-status" aria-label="Scientific status"></section>
+          <section id="borg-platonic-relationships" aria-label="Platonic relationship"></section>
 
           <section id="borg-prescribed-branch" class="borg-prescribed-branch" aria-labelledby="borg-prescribed-branch-heading">
             <strong id="borg-prescribed-branch-heading">Display simulation branch</strong>

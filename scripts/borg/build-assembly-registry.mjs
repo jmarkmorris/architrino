@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BORG_ASSEMBLY_RECORD_CATALOG, BORG_ASSEMBLY_RECORD_CATALOG_ID } from "../../src/apps/borg/BorgAssemblyRecordCatalog.js";
 import { validateBorgScientificStatusProjection } from "../../src/apps/borg/BorgScientificStatus.mjs";
+import { validateBorgPlatonicRelationshipAssignments } from "../../src/apps/borg/BorgPlatonicRelationships.mjs";
 import { validateLibraryClassifications } from "../../src/apps/borg/library/BorgLibraryComposition.mjs";
 import { describeLibraryRecord, LIBRARY_DESCRIPTOR_VERSION } from "../../src/apps/borg/library/BorgLibraryDescriptors.mjs";
 import { LIBRARY_FACETS } from "../../src/apps/borg/library/BorgLibraryQuery.mjs";
@@ -14,6 +15,7 @@ const repoRoot = resolve(fileURLToPath(new URL("../../", import.meta.url)));
 const outputPath = resolve(repoRoot, "reference/priorities/app-borg/assembly-registry.v1.json");
 const classificationPath = resolve(repoRoot, "reference/priorities/app-borg/library-classifications.v4.json");
 const projectionPath = resolve(repoRoot, "reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json");
+const platonicPath = resolve(repoRoot, "reference/priorities/braid-program/borg-platonic-relationship-assignments.v1.json");
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const opaque = (prefix, domain, value) => `${prefix}-${sha256(`${domain}\0${value}`).slice(0, 32)}`;
 
@@ -22,13 +24,16 @@ async function build() {
   const classifications = validateLibraryClassifications(JSON.parse(classificationBytes));
   const projectionBytes = await readFile(projectionPath);
   const projection = validateBorgScientificStatusProjection(JSON.parse(projectionBytes));
+  const platonicBytes = await readFile(platonicPath);
+  const platonicAssignments = validateBorgPlatonicRelationshipAssignments(JSON.parse(platonicBytes));
   const ownerBytes = await readFile(resolve(repoRoot, projection.source));
+  const platonicOwnerBytes = await readFile(resolve(repoRoot, platonicAssignments.source));
   const integrity = { sourceSha256: sha256(ownerBytes), sourceText: ownerBytes.toString("utf8"), brokenEvidenceLinks: [] };
   const described = [];
   for (const catalogEntry of BORG_ASSEMBLY_RECORD_CATALOG.entries) {
     const recordBytes = await readFile(resolve(repoRoot, catalogEntry.recordUrl));
     const record = JSON.parse(recordBytes);
-    const summary = describeLibraryRecord(record, catalogEntry, sha256(recordBytes), classifications, projection, integrity).summary;
+    const summary = describeLibraryRecord(record, catalogEntry, sha256(recordBytes), classifications, projection, integrity, platonicAssignments, { sourceSha256: sha256(platonicOwnerBytes) }).summary;
     const sourceSpec = record.provenance?.generatingSpec;
     const source = JSON.parse(await readFile(resolve(repoRoot, sourceSpec)));
     const anchor = summary.variantSet ? `variant-set:${summary.variantSet.id}` : `source:${sourceSpec}`;

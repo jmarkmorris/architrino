@@ -9,8 +9,7 @@ This is the canonical execution ledger for accepted shared UI-standard work.
 3. `main_webapp_and_animator_hud_unification` — [UI-003](#ui-003--main-webapp-and-animator-hud-unification). Status: `Queued`.
 4. `markdown_control_relocation` — [UI-004](#ui-004--markdown-control-relocation). Status: `Queued`.
 5. `standalone_app_home_search_settings_migration` — [UI-005](#ui-005--standalone-app-migration). Status: `Queued`.
-6. `page_exception_policy` — [UI-006](#ui-006--page-exception-policy). Status: `Queued`.
-7. `visual_regression_capture` — [UI-007](#ui-007--visual-regression-capture). Status: `Queued`.
+6. `visual_regression_capture` — [UI-007](#ui-007--visual-regression-capture). Status: `Queued`.
 
 ## Queued
 
@@ -53,14 +52,6 @@ This is the canonical execution ledger for accepted shared UI-standard work.
 - **Request / acceptance:** Migrate standalone apps in declared batches without changing app-specific domain controls.
 - **Evidence / blocker:** Depends on UI-002.
 - **Completion:** Each batch passes desktop/mobile interaction and accessibility checks.
-
-### UI-006 — Page exception policy
-
-- **Status:** Queued
-- **Priority object:** `page_exception_policy`
-- **Request / acceptance:** Classify generated reading copies, native shells, and review pages as exempt, lightweight-header, or full-standard surfaces.
-- **Evidence / blocker:** None.
-- **Completion:** Every current surface class has one documented disposition.
 
 ### UI-007 — Visual regression capture
 

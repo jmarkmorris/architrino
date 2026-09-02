@@ -459,6 +459,18 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
     new URL("../src/apps/borg/BorgPathTrails.js", import.meta.url),
     "utf8",
   );
+  const runBudgetSource = readFileSync(
+    new URL("../src/apps/borg/BorgRuntimeRunBudget.js", import.meta.url),
+    "utf8",
+  );
+  const runSessionSource = readFileSync(
+    new URL("../src/apps/borg/BorgRuntimeRunSession.js", import.meta.url),
+    "utf8",
+  );
+  const panelRowsSource = readFileSync(
+    new URL("../src/apps/borg/BorgRuntimePanelRows.js", import.meta.url),
+    "utf8",
+  );
 
   assert.match(pathTrailsSource, /new THREE\.LineSegments/);
   assert.doesNotMatch(pathTrailsSource, /CatmullRomCurve3/);
@@ -501,15 +513,15 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.doesNotMatch(runtimeSource, /BoxGeometry/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
-  assert.match(runtimeSource, /live-forever/);
-  assert.match(runtimeSource, /live-60s/);
-  assert.match(runtimeSource, /live-300s/);
+  assert.match(runSessionSource, /live-forever/);
+  assert.match(runSessionSource, /live-60s/);
+  assert.match(runSessionSource, /live-300s/);
   assert.match(nativeProcessClientSource, /worker\.stdin\.on\("error"/);
   assert.match(
     localDevServerSource,
     /const execute = \(\) => \{\s*client = getEomBorgClient\(\);/,
   );
-  assert.match(runtimeSource, /borg-live-run-budget\.v1/);
+  assert.match(runBudgetSource, /borg-live-run-budget\.v1/);
   assert.match(runtimeSource, /BorgMeasuredRunPresets\.js/);
   assert.match(runtimeSource, /BorgLiveRunRetentionPolicy\.js/);
   assert.doesNotMatch(runtimeSource, /BorgReleaseBudgetDisposition\.js/);
@@ -544,7 +556,7 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   );
   assert.match(runtimeSource, /assemblyViewScene\.setPathVisible\(pathGroup\.visible\);/);
   assert.match(runtimeSource, /"diagnostics",\s*\]\);/);
-  assert.match(htmlSource, /grid-template-columns: minmax\(620px, 1395px\) minmax\(360px, 1fr\);/);
+  assert.match(htmlSource, /grid-template-columns: clamp\(440px, 42vw, 620px\) minmax\(0, 1fr\);/);
   assert.match(htmlSource, /@media \(max-width: 980px\)[\s\S]*#borg-app \{\s*grid-template-columns: 1fr;/);
   assert.match(
     runtimeSource,
@@ -593,7 +605,7 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   );
   assert.doesNotMatch(runtimeSource, /setTimeout\(\s*\(\) => ensureDynamicFramesAhead/);
   assert.match(runtimeSource, /getBorgPlaybackRefillDecision/);
-  assert.match(runtimeSource, /Playback pace/);
+  assert.match(panelRowsSource, /Playback pace/);
   assert.doesNotMatch(runtimeSource, /Playback Slow|Playback Normal|Playback Fast/);
   assert.doesNotMatch(runtimeSource, /label: "Realtime"/);
   assert.match(runtimeSource, /function formatActiveTimelineLabel\(time\) \{\s*return formatTimelineLabel\(time\);\s*\}/);
@@ -649,15 +661,15 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runtimeSource, /normalizePathTrailDuration/);
   assert.match(runtimeSource, /duration: state\.pathTrailDuration/);
   assert.match(runtimeSource, /dom\.eomProgress\.hidden = forever/);
-  assert.match(runtimeSource, /runtimeControls\.coupling \?\? configured\.coupling/);
-  assert.match(runtimeSource, /initialStep: certifiedBudget\.allocations\.controller\.initialStep/);
-  assert.match(runtimeSource, /minimumStep: certifiedBudget\.allocations\.controller\.minimumStep/);
-  assert.match(runtimeSource, /maximumStep: certifiedBudget\.allocations\.controller\.maximumStep/);
-  assert.match(runtimeSource, /forward EOM chunks/);
+  assert.match(runSessionSource, /runtimeControls\.coupling \?\? configured\.coupling/);
+  assert.match(runSessionSource, /initialStep: certifiedBudget\.allocations\.controller\.initialStep/);
+  assert.match(runSessionSource, /minimumStep: certifiedBudget\.allocations\.controller\.minimumStep/);
+  assert.match(runSessionSource, /maximumStep: certifiedBudget\.allocations\.controller\.maximumStep/);
+  assert.match(panelRowsSource, /Forward EOM chunks/);
   assert.match(runtimeSource, /state\.eomRunGrade === BORG_EOM_RUN_GRADE_DISPLAY/);
   assert.match(runtimeSource, /point-projected input history at T=0/);
   assert.match(runtimeSource, /It never changes to display grade/);
-  assert.match(runtimeSource, /runtimeControls\.runGrade \?\? configured\.runGrade/);
+  assert.match(runSessionSource, /runtimeControls\.runGrade \?\? configured\.runGrade/);
   assert.doesNotMatch(runtimeSource, /Claim grade through T=/);
   assert.match(
     runtimeSource,
@@ -666,9 +678,9 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.doesNotMatch(runtimeSource, /return `solver t /);
   assert.doesNotMatch(pathTrailsSource, /runGrade|displayGrade|claim-ready/u);
   assert.match(runtimeSource, /Exact polynomial causal seed history \(C1 inertial\)/);
-  assert.match(runtimeSource, /Causal seed-history depth/);
-  assert.match(runtimeSource, /EOM retained-history start/);
-  assert.match(runtimeSource, /close-pair threshold \$\\\\epsilon_c\$/);
+  assert.match(panelRowsSource, /Causal seed-history depth/);
+  assert.match(panelRowsSource, /EOM retained-history start/);
+  assert.match(panelRowsSource, /close-pair threshold \$\\\\epsilon_c\$/);
   assert.match(
     runtimeSource,
     /function startRunAndPlayback\(\)[\s\S]*beginPlaybackPrefill\(firstChunk, generation\)/,
@@ -747,10 +759,10 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   );
   assert.match(runtimeSource, /refreshDiagnosticsPanel\(\)[\s\S]*diagnosticsPanelController\.renderIfOpen\(\)/);
   assert.match(runtimeSource, /calculateBorgPolarityDiagnostics/);
-  assert.match(runtimeSource, /electrinos outside sphere now/);
-  assert.match(runtimeSource, /positrinos escaped by time/);
-  assert.match(runtimeSource, /all same-polarity close fraction/);
-  assert.match(runtimeSource, /opposite-polarity close fraction/);
+  assert.match(panelRowsSource, /electrinos outside sphere now/);
+  assert.match(panelRowsSource, /positrinos escaped by time/);
+  assert.match(panelRowsSource, /all same-polarity close fraction/);
+  assert.match(panelRowsSource, /opposite-polarity close fraction/);
   assert.match(
     htmlSource,
     /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*id="borg-camera-drawer"[\s\S]*id="borg-reset-view-button"[\s\S]*class="borg-solver-banner-slot"[\s\S]*id="borg-solver-banner"/,

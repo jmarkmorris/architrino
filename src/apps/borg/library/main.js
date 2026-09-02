@@ -2,6 +2,7 @@ import { LIBRARY_FACETS, isLibrarySelectorValue, validateLibraryBrowseParams } f
 import { libraryVariantSetLabel } from "./BorgLibraryVariants.mjs";
 import { createSpherePreview } from "./BorgSpherePreview.js";
 import { renderBorgScientificStatus } from "../BorgScientificStatusView.mjs";
+import { renderBorgPlatonicRelationships } from "../BorgPlatonicRelationshipsView.mjs";
 
 const $ = (id) => document.getElementById(id);
 const element = (tag, text, className) => { const node = document.createElement(tag); if (text != null) node.textContent = text; if (className) node.className = className; return node; };
@@ -208,6 +209,9 @@ async function loadResults() {
       if (!canExplore) { button.disabled = true; button.textContent = "Classification not assigned"; button.title = "These records remain visible with Any selected; unassigned values are not menu choices."; }
       const note = element("p", "Loading sealed preview…", "preview-state");
       card.append(top, canvas, element("h2", title, "card-title"));
+      if (!group && row.scientificStatus?.current?.disposition === "excluded-prescribed-balance") {
+        card.append(element("p", "⊘ Excluded prescribed history", "card-disposition"));
+      }
       if (variantGroup) card.append(element("p", `${result.parameterLabels.join(" and ")} vary · example preview`, "card-alias"));
       card.append(element("p", findingConfigurationCount > 0 ? `${findingConfigurationCount} ${findingConfigurationCount === 1 ? "configuration has" : "configurations have"} indexed active findings` : "No active findings indexed yet", `card-finding-count${findingConfigurationCount > 0 ? " has-findings" : ""}`));
       if (group) {
@@ -261,11 +265,13 @@ async function openInspector(row, persist = true) {
       saveUrl();
     }
     $("inspector-title").textContent = row.label; $("inspector-identity").textContent = row.assemblyId;
+    $("inspector-disposition").hidden = row.scientificStatus?.current?.disposition !== "excluded-prescribed-balance";
     $("inspector-canvas").setAttribute("aria-label", row.visualCoverage?.animationMode === "camera-turntable" ? "Static assembly presentation. Drag or use arrow keys to turn the camera; the assembly does not move." : "Selected assembly. Drag or use arrow keys to rotate the view.");
     $("inspector-description").textContent = `Recorded description: ${row.description}`; $("copy-status").textContent = "";
     $("identity").replaceChildren();
     for (const [key, value] of [["Borg braid identity", row.braidId], ["Assembly identity", row.assemblyId], ["Occurrence identity", row.occurrence?.state === "unavailable" ? `Unavailable · ${row.occurrence.reason}` : row.occurrence?.occurrenceId], ["Model revision SHA-256", row.modelRevisionSha256], ["Record SHA-256", row.recordSha256], ["Taxonomy memberships", row.taxonomyMemberships?.map((membership) => `${membership.nodeId} · ${membership.revision}`).join("; ") || "Unavailable"], ["Visual coverage", `${row.visualCoverage.poster} · ${row.visualCoverage.inspection} · ${row.visualCoverage.animationMode}`], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Indexed evidence relations", row.findingRelations.length ? row.findingRelations.map((finding) => `${finding.findingId} (${finding.scope}; ${finding.lifecycle})`).join("; ") : "None indexed"], ["Projection revision", row.findingRelationRevision ?? "Unavailable"], ["Projection source", row.findingRelationSource ?? "Unavailable"], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
     renderBorgScientificStatus(document, $("scientific-status"), row.scientificStatus);
+    renderBorgPlatonicRelationships(document, $("platonic-relationships"), row.platonicRelationships);
     $("facet-reasons").replaceChildren(); $("inspector-facets").replaceChildren();
     for (const [key, definition] of Object.entries(LIBRARY_FACETS)) {
       const value = [].concat(row.facets[key]).map((v) => facetLabel(key, v)).join(", ");

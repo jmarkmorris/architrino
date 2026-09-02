@@ -4,18 +4,9 @@ This is the canonical execution ledger for accepted read-only correlation passes
 
 ## Ranked Next Objects
 
-1. `establish_corpus_dragnet_baseline` — [CD-001](#cd-001--establish-corpus-dragnet-baseline). Status: `Queued`.
-2. `run_first_cross-corpus_correlation_pass` — [CD-002](#cd-002--run-first-cross-corpus-correlation-pass). Status: `Queued`.
+1. `run_first_cross-corpus_correlation_pass` — [CD-002](#cd-002--run-first-cross-corpus-correlation-pass). Status: `Queued`.
 
 ## Queued
-
-### CD-001 — Establish Corpus Dragnet baseline
-
-- **Status:** Queued
-- **Priority object:** `establish_corpus_dragnet_baseline`
-- **Request / acceptance:** Inventory the declared published and internal roots, define the durable finding fields, and record the exact scan boundary and exclusions before analysing relationships.
-- **Evidence / blocker:** The baseline must distinguish canonical sources, generated outputs, historical records, and active owner documents so later scans do not mistake a derivative or archival copy for the source of truth.
-- **Completion:** `recommendations.md` has an execution-ready template and the work log records the exact roots and exclusions for the first pass.
 
 ### CD-002 — Run first cross-corpus correlation pass
 

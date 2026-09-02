@@ -21,6 +21,9 @@ import {
 import { createBorgAssemblyViewSession } from "./BorgAssemblyViewSession.js";
 import { BORG_ASSEMBLY_RECORD_CATALOG } from "./BorgAssemblyRecordCatalog.js";
 import { loadBorgScientificStatus } from "./BorgScientificStatus.mjs";
+import { loadBorgPlatonicRelationships } from "./BorgPlatonicRelationships.mjs";
+import { describeLibraryRecord } from "./library/BorgLibraryDescriptors.mjs";
+import { LIBRARY_FACETS } from "./library/BorgLibraryQuery.mjs";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -59,17 +62,27 @@ export async function bootBorgApp({
       row.assemblyId === assemblyId && row.modelRevisionSha256 === modelRevisionSha256);
     if (!entry) throw new RangeError("The requested exact assembly is not in the current Borg catalog.");
     const records = [await fetchBorgRecord(fetchLike, entry, "assembly-view record", recordSha256)];
-    const scientificStatus = await loadBorgScientificStatus({
-      fetchLike,
-      coordinates: records[0].provenance?.prescribedGeometry?.coordinates,
-      identity: entry,
-    });
+    const [scientificStatus, platonicRelationships] = await Promise.all([
+      loadBorgScientificStatus({
+        fetchLike,
+        coordinates: records[0].provenance?.prescribedGeometry?.coordinates,
+        identity: entry,
+      }),
+      loadBorgPlatonicRelationships({ fetchLike, identity: entry }),
+    ]);
     assemblyViewSession = createBorgAssemblyViewSession(records);
     eomRecordReplay = {
       record: records[0],
       records,
       sourceUrls: Object.freeze([entry.recordUrl]),
+      librarySummary: createBorgWorkbenchRecordSummary({
+        record: records[0],
+        catalogEntry: entry,
+        recordSha256,
+        platonicRelationships,
+      }),
       scientificStatus,
+      platonicRelationships,
     };
   }
 
@@ -160,6 +173,46 @@ export async function bootBorgApp({
     eomRecordReplay,
     braidRecordNavigation,
   });
+}
+
+export function createBorgWorkbenchRecordSummary({
+  record,
+  catalogEntry,
+  recordSha256 = null,
+  platonicRelationships = null,
+}) {
+  const described = describeLibraryRecord(
+    record,
+    catalogEntry,
+    recordSha256,
+  ).summary;
+  const facets = {
+    ...described.facets,
+    platonicRelationship:
+      platonicRelationships?.values ?? described.facets.platonicRelationship,
+  };
+  return Object.freeze({
+    label: described.label,
+    assemblyId: described.assemblyId,
+    modelRevisionSha256: described.modelRevisionSha256,
+    description: described.description,
+    facets: Object.freeze(Object.entries(LIBRARY_FACETS).map(([key, definition]) =>
+      Object.freeze({
+        key,
+        label: definition.label,
+        value: [].concat(facets[key] ?? "unavailable")
+          .map((value) => borgWorkbenchFacetLabel(key, value))
+          .join(", "),
+      }))),
+  });
+}
+
+function borgWorkbenchFacetLabel(key, value) {
+  if (key === "circleOccupancy" && value === "mixed") {
+    return "Both occupancy types";
+  }
+  return LIBRARY_FACETS[key].options.find(([option]) => option === value)?.[1] ??
+    (value === "unavailable" ? "Not assigned" : String(value));
 }
 
 export function createBorgAssemblyRecordNavigation({

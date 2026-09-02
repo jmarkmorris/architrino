@@ -754,6 +754,12 @@ export const BORG_ASSEMBLY_RECORD_CATALOG = createBorgAssemblyRecordCatalog([
     "recordUrl": "content/assets/borg/records/orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253.assembly-view-record.v0.json"
   },
   {
+    "assemblyId": "asm-f2b855b4d9be64b49ece29e9bc770c12",
+    "modelRevisionSha256": "f2b855b4d9be64b49ece29e9bc770c12ae98fef8005c53259bce63b960a09b2b",
+    "label": "Octahedron antipodal sum-edge excluded history",
+    "recordUrl": "content/assets/borg/records/octahedron-antipodal-sum-edge-excluded.assembly-view-record.v0.json"
+  },
+  {
     "assemblyId": "asm-5221daa4bd010d9a791e208c08fe20e8",
     "modelRevisionSha256": "5221daa4bd010d9a791e208c08fe20e88604aebe6163d01f38de832df86b1e7f",
     "label": "Phase-varying prescribed display history",

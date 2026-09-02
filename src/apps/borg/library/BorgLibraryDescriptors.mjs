@@ -5,8 +5,9 @@ import { describeLibraryVariantSet } from "./BorgLibraryVariants.mjs";
 import { describeBorgScientificStatus } from "../BorgScientificStatus.mjs";
 import { describeBorgOrbitTrails } from "../BorgOrbitTrails.mjs";
 import { describeBorgCircleOccupancy } from "../BorgOrbitGeometry.mjs";
+import { describeBorgPlatonicRelationships } from "../BorgPlatonicRelationships.mjs";
 
-export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v12";
+export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v13";
 const norm = (v) => Math.hypot(...v);
 const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);
 const subtract = (a, b) => a.map((v, i) => v - b[i]);
@@ -87,7 +88,7 @@ function breathingState(operators) {
   return states.includes("yes") ? "yes" : states.every((s) => s === "no") ? "no" : "unavailable";
 }
 
-export function describeLibraryRecord(record, catalogEntry, recordSha256, classifications = null, scientificProjection = null, scientificIntegrity = {}) {
+export function describeLibraryRecord(record, catalogEntry, recordSha256, classifications = null, scientificProjection = null, scientificIntegrity = {}, platonicAssignments = null, platonicIntegrity = {}) {
   if (record.assemblyId !== catalogEntry.assemblyId ||
       record.modelRevisionSha256 !== catalogEntry.modelRevisionSha256) {
     throw new TypeError("Library record identity does not match its exact catalog entry.");
@@ -110,6 +111,7 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
   const braidDimension = describeBraidDimensionality(composition, coordinates, dataset);
   const variantSet = describeLibraryVariantSet(coordinates);
   const scientificStatus = describeBorgScientificStatus(coordinates, catalogEntry, scientificProjection, scientificIntegrity);
+  const platonicRelationships = describeBorgPlatonicRelationships(catalogEntry, platonicAssignments, platonicIntegrity);
   const scientificRelations = [scientificStatus.current, ...scientificStatus.context].filter(Boolean);
   const confirmedSpindle = recordClassification(
     classifications,
@@ -120,7 +122,8 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
   const shapes = allCircular ? ["circles"] : ["unavailable"];
   if (confirmedSpindle) { if (shapes[0] === "unavailable") shapes.length = 0; shapes.push("spindle"); }
   const facets = { count: String(dataset.worldlines.length), braidCount: composition.braidCount, breathing: completeOperators ? breathingState(operators) : "unavailable", radii: radii.value,
-    circleOccupancy: circleOccupancy.value, assemblySpan: bounds.dimension, braidDimension: braidDimension.value, shape: shapes, speedPolicy };
+    circleOccupancy: circleOccupancy.value, assemblySpan: bounds.dimension, braidDimension: braidDimension.value, shape: shapes, speedPolicy,
+    platonicRelationship: platonicRelationships.values };
   const label = catalogEntry.label;
   const summary = {
     id: catalogEntry.assemblyId,
@@ -133,6 +136,7 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
     braids: composition.braids,
     claimGrade: dataset.provenance.claimGrade, evidenceStatus: dataset.provenance.evidenceStatus,
     scientificStatus,
+    platonicRelationships,
     findingRelations: scientificRelations.map((relation) => ({ findingId: relation.relationId, lifecycle: relation.lifecycle, scope: relation.scope })),
     findingRelationRevision: scientificStatus.projection?.revision ?? null,
     findingRelationSource: scientificStatus.projection?.source ?? null,
@@ -150,6 +154,7 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
       braidDimension: braidDimension.reason,
       shape: `Circular paths require every source worldline to declare moving-circular.v1 with a fixed center. ${confirmedSpindle ? `Spindle envelope is operator-confirmed for this exact record under ${classifications.revision}.` : "No spindle classification is assigned to this record."}`,
       speedPolicy: "Requires an explicit source policy with owner, version, speed quantity, frame and unit convention. Recorded speed alone does not establish a cap.",
+      platonicRelationship: platonicRelationships.reason,
     },
   };
   return { dataset, summary, sourceLines };

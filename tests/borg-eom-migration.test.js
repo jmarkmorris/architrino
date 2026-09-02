@@ -246,7 +246,11 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
     BORG_RECORD_REPLAY_RUNTIME_MODE,
   );
   assert.equal(recordResult, "record-replay-mounted");
-  assert.deepEqual(fetchCalls, [catalogEntry.recordUrl]);
+  assert.deepEqual(fetchCalls, [
+    catalogEntry.recordUrl,
+    "./reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json",
+    "./reference/priorities/braid-program/borg-platonic-relationship-assignments.v1.json",
+  ]);
   assert.equal(recordMounts.length, 1);
   assert.equal(recordMounts[0].eomRecordReplay.record, record);
   assert.deepEqual(recordMounts[0].eomRecordReplay.records, [record]);

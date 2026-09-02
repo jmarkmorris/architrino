@@ -51,6 +51,16 @@ test("bounded no-success wording names the searched domain", () => {
   assert.match(status.verdict, new RegExp(relation.parameterDomain.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
+test("certified prescribed-balance obstruction is scoped, exact, and fail closed", () => {
+  const relation = exact("octahedron antipodal-alternating sum-edge rigid history");
+  const status = describeBorgScientificStatus({}, relation.match, projection, integrity);
+  assert.equal(status.verdict, "Excluded prescribed history in the tested scope");
+  assert.equal(status.aggregateCategory, "scoped-fail");
+  assert.equal(status.current.disposition, "excluded-prescribed-balance");
+  assert.equal(status.requirements.find((row) => row.id === "H5").state, "not-applicable");
+  assert.match(status.current.doesNotEstablish, /other polarity words, rotation axes, nonrigid histories/);
+});
+
 test("presentation rename preserves binding while model revision change invalidates it", () => {
   const relation = exact("centered five-coordinate representative");
   assert.equal(describeBorgScientificStatus({}, { ...relation.match, label: "Renamed for readers" }, projection, integrity).coverage, "current");

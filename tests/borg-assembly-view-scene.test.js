@@ -139,6 +139,34 @@ test("static stella octangula renders only its twelve source-carried tetrahedral
   scene.dispose();
 });
 
+test("exact sum-edge obstruction record draws an amber receiver, axis, and acceleration mismatch", () => {
+  const record = JSON.parse(readFileSync(new URL(
+    "../content/assets/borg/records/octahedron-antipodal-sum-edge-excluded.assembly-view-record.v0.json",
+    import.meta.url,
+  )));
+  const root = new THREE.Group();
+  const scene = createBorgAssemblyViewScene({
+    group: root,
+    toWorld(source, target) {
+      return target.set(Number(source.x), Number(source.y), Number(source.z));
+    },
+    render() {},
+  });
+  scene.setRecord({ sourceId: record.sourceId, dataset: createEomHistoryDataset(record) });
+  const obstruction = root.children.find((child) => child.userData.kind === "certified-prescribed-balance-obstruction");
+  assert.deepEqual(new Set(obstruction.children.map((child) => child.userData.kind)), new Set([
+    "certified-sum-edge-rotation-axis",
+    "certified-obstruction-receiver",
+    "required-acceleration-direction",
+    "certified-forbidden-acceleration-component",
+  ]));
+  scene.updateTime(Math.PI / 2);
+  const receiver = obstruction.children.find((child) => child.userData.kind === "certified-obstruction-receiver");
+  assert.ok(receiver.position.x < -0.35);
+  assert.ok(Math.abs(receiver.position.y) < 1e-9);
+  scene.dispose();
+});
+
 test("prescribed strands and selected tubes share the finite no-future display window", () => {
   const root = new THREE.Group();
   const scene = createBorgAssemblyViewScene({

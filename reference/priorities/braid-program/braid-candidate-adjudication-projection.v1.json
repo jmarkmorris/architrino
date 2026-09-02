@@ -2,8 +2,49 @@
   "schema": "borg-scientific-status-projection.v1",
   "revision": "braid-candidate-adjudication-projection.2026-09-01.v1",
   "source": "reference/priorities/braid-program/braid-candidate-requirement-adjudication.md",
-  "sourceSha256": "cc2288d4342a4e4eee93dd887ae07e62c2ef00facb839d6a69a1e5cd6c4417ca",
+  "sourceSha256": "c508dad29467c43337c3ef401330e63379bf17c5cf8206062cbd2ec6aef5afa4",
   "relations": [
+    {
+      "relationId": "adj-f2b855b4d9be64b49ece29e9bc770c12",
+      "lifecycle": "active",
+      "kind": "adjudication",
+      "scope": "exact-configuration",
+      "disposition": "excluded-prescribed-balance",
+      "searchOutcome": "no-success",
+      "match": {
+        "kind": "exact-configuration",
+        "assemblyId": "asm-f2b855b4d9be64b49ece29e9bc770c12",
+        "modelRevisionSha256": "f2b855b4d9be64b49ece29e9bc770c12ae98fef8005c53259bce63b960a09b2b"
+      },
+      "candidate": "octahedron antipodal-alternating sum-edge rigid history",
+      "sourceAnchor": "#universal-hard-gate-adjudication",
+      "sourceRow": "| `octahedron antipodal-alternating sum-edge rigid history` | `P[D]` | `P[D]` | `P[D/M]` | `F[D/M]` | `N/A` |",
+      "requirements": {
+        "H1": "P[D]",
+        "H2": "P[D]",
+        "H3": "P[D/M]",
+        "H4": "F[D/M]",
+        "H5": "N/A"
+      },
+      "testedRealization": "Antipodal-alternating `+-+-+-` regular octahedron rotating rigidly about the sum-edge axis `(e_x+e_z)/sqrt(2)`.",
+      "parameterDomain": "0 <= beta < 1 with c_f=1, the exact `+-+-+-` source word, the sum-edge axis, and the regular rigid octahedral geometry",
+      "assumptions": [
+        "The exact assembly identity and certified word-axis geometry remain unchanged.",
+        "The strict sub-field causal-root hypotheses and interval-arithmetic certificate remain valid.",
+        "The conclusion is restricted to the named rigid word-axis stratum."
+      ],
+      "instrument": "Interval-arithmetic obstruction certificate with an unchanged generic evaluator sampled independently across the certified beta interval.",
+      "evidenceLinks": [
+        {
+          "label": "Octahedral antipodal sum-edge exclusion",
+          "url": "reference/priorities/braid-program/evidence/2026-09-01-octahedral-antipodal-sum-edge-exclusion.md"
+        }
+      ],
+      "establishes": "The prescribed acceleration-balance equations have no solution for the exact antipodal-alternating sum-edge rigid history throughout 0 <= beta < 1.",
+      "doesNotEstablish": "No conclusion is made for other polarity words, rotation axes, nonrigid histories, beta at or above 1, evolved retention, stability, binding, or physical realization.",
+      "currentBlocker": "A materially different octahedral word-axis stratum requires its own complete root ledger and balance certificate.",
+      "falsifier": "A verified root-ledger error or any beta in the declared interval for which the certified x-acceleration enclosure contains zero invalidates this exclusion."
+    },
     {
       "relationId": "adj-02d73c88ccf8244e6873d2ee2cd58973",
       "lifecycle": "active",
@@ -1304,6 +1345,37 @@
       "doesNotEstablish": "This broader finding does not become an exact H1–H5 verdict, retention result, stability result, binding result, or physical identity claim.",
       "currentBlocker": "Use the exact Braid Program adjudication row, when one exists, for H1–H5 status.",
       "falsifier": "Remove or supersede this context if its source-owned matcher, evidence link, or scientific owner no longer supports the stated scope."
+    },
+    {
+      "relationId": "finding-octahedron-antipodal-sum-edge-exclusion-2026-09-01",
+      "lifecycle": "active",
+      "kind": "finding-context",
+      "scope": "slice-only",
+      "match": {
+        "kind": "context-target",
+        "assemblyId": "asm-6605678b2d37950a861d9ecba54beffb",
+        "modelRevisionSha256": "6605678b2d37950a861d9ecba54beffb46cb70ad13bb45029aae786382a8dd2b"
+      },
+      "candidate": "A separate antipodal-alternating sum-edge octahedral rigid history is excluded from prescribed acceleration balance.",
+      "sourceAnchor": "#universal-hard-gate-adjudication",
+      "sourceRow": "| `octahedron antipodal-alternating sum-edge rigid history` | `P[D]` | `P[D]` | `P[D/M]` | `F[D/M]` | `N/A` |",
+      "testedRealization": "The separately registered `+-+-+-` regular octahedron rotating rigidly about `(e_x+e_z)/sqrt(2)`.",
+      "parameterDomain": "0 <= beta < 1 with c_f=1, the exact `+-+-+-` source word, the sum-edge axis, and the regular rigid octahedral geometry",
+      "assumptions": [
+        "The exact obstruction identity and certified word-axis geometry remain unchanged.",
+        "This contextual pointer is not an adjudication of the generic rotating octahedron display."
+      ],
+      "instrument": "Interval-arithmetic obstruction certificate with an unchanged generic evaluator sampled independently across the certified beta interval.",
+      "evidenceLinks": [
+        {
+          "label": "Octahedral antipodal sum-edge exclusion",
+          "url": "reference/priorities/braid-program/evidence/2026-09-01-octahedral-antipodal-sum-edge-exclusion.md"
+        }
+      ],
+      "establishes": "A separately registered exact `+-+-+-` sum-edge history is excluded from prescribed acceleration balance throughout 0 <= beta < 1.",
+      "doesNotEstablish": "This does not adjudicate the generic rotating octahedron display, another polarity word, another rotation axis, a nonrigid history, retention, stability, binding, or physical realization.",
+      "currentBlocker": "The generic rotating octahedron requires its own exact root ledger and balance certificate before it can receive an adjudication.",
+      "falsifier": "Remove this context if the exact obstruction identity, certified interval, root ledger, or source-owned relation is invalidated."
     }
   ]
 }
