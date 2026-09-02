@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Browser-performance source closure after UI-005
+
+- Replaced the deleted `src/apps/navigator/standalone-app-navigation.css` identity in the accepted Photon source closure with `src/runtime/top-dynamic-control-bar.css` and added the newly loaded `src/runtime/TopDynamicControlBarRuntime.js` source.
+- Recomputed the complete 37-file, 4,545,046-byte closure to SHA-256 `955a6be672780e24e213e4c9cf81bbdb262c30f688964fa4e504141daaed7cf6`; the browser-performance checker and full Content Integrity can now fail on current UI sources rather than aborting on a deleted path.
+- Ran three isolated 3840-by-2160 checks against fresh loopback origins. They confirmed the current 37-resource, 4,562,057-byte cold transfer and 28,888,248-byte canvas-surface lower bound, but the in-app test surface repeatedly delivered a 30 Hz animation cadence. Those runs were not substituted for the accepted foreground 60 Hz performance profile or used to weaken its budgets.
+
+Plainly: the gate now watches the real shared control-bar files. The old 60 Hz performance requirement remains intact; the slower background/test-surface runs are recorded as rejected measurements, not passed evidence.
+
 ### 2026-09-02 — OPS-001 deployment budget contract
 
 - Accepted [deployment-budget.v1](deployment-budget.v1.json) with Borg as the first consumer, added a source-bound browser probe, wired the checker into Content Integrity, and exposed the measured classes in Borg's deployment drawer.

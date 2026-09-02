@@ -211,6 +211,69 @@ By contrast, the same-transmitter post-zero root and the first newborn pair have
 
 Plainly: the nearest ordinary roots produce a larger positive asymptotic term than the new fold pair. The original limiting-kernel route must first prove a cancellation of that $1/6$ term; otherwise the finite $N=8$ through $N=12$ balances do not continue to infinity on this scale.
 
+## Conditional fold-boundary balance law
+
+If the regularized complement is $O(N^{4/3})$ and the $N^2/6$ term survives, the balance is not lost; it is forced into a thinner boundary layer immediately above the first fold. Let
+
+$$
+\Delta_N=\beta_N-\beta_{1,N}^{\mathrm{fold}}>0.
+$$
+
+For the newborn $k=1$ pair, expand $\beta\sin z-z-\pi/(2N)$ at the fold point $z=\alpha_N$. The two roots satisfy
+
+$$
+z_\pm=\alpha_N\pm\sqrt{\frac{2\Delta_N}{\beta_{1,N}^{\mathrm{fold}}}}
++o(\sqrt{\Delta_N}),
+$$
+
+and their combined tangential contribution is
+
+$$
+T_N^{\mathrm{new}}
+=-\frac{1+o(1)}
+{2\sqrt{2\beta_{1,N}^{\mathrm{fold}}}\,\alpha_N^3\sqrt{\Delta_N}}
+=-\frac{N[1+o(1)]}{3\pi\sqrt2\,\sqrt{\Delta_N}}.
+$$
+
+Balancing this against $N^2/6$ gives the conditional law
+
+$$
+\boxed{
+\beta_N-\beta_{1,N}^{\mathrm{fold}}
+=\frac{2}{\pi^2N^2}+o(N^{-2})
+}.
+$$
+
+Thus
+
+$$
+N^{2/3}(\beta_N-1)
+=x_1^{\mathrm{fold}}
++O(N^{-2/3})
++\frac{2}{\pi^2}N^{-4/3}
++o(N^{-4/3}),
+$$
+
+so the limiting scaled zero sits on the first-fold wall, not in the interior of the first-birth chamber. The newborn radial-to-tangential ratio is $\tan\alpha_N\sim(3\pi/2N)^{1/3}$, which conditionally predicts
+
+$$
+\frac{R_N}{R_*}
+\sim\frac16\left(\frac{3\pi}{2}\right)^{1/3}N^{5/3}.
+$$
+
+Plainly: if the $1/6$ background theorem closes, the large ring can balance only by sitting extremely close to root birth. Its compatible radius then grows like $N^{5/3}$ on this prescribed chart; this is not a released-object size law.
+
+The accepted $N=12$ row provides a finite, nonindependent check only. Its first-fold speed is $1.2896055860174487\ldots$, and the accepted balance gives
+
+$$
+N^2(\beta_N-\beta_{1,N}^{\mathrm{fold}})
+\approx0.1778768,
+\qquad
+\frac2{\pi^2}\approx0.2026424.
+$$
+
+The agreement is directionally consistent at small $N$ but does not establish the conditional asymptotic law.
+
 The tracked same-evaluator diagnostic [diagnose_planar_ring_large_n_first_birth.mjs](../../../../scripts/equation-mapping/diagnose_planar_ring_large_n_first_birth.mjs) evaluates $x=1.55$. It measures $S_N/N^2$ as approximately $0.1550292$, $0.1600725$, $0.1627559$, and $0.1642900$ for $N=50,100,200,400$, respectively, with exactly $2N+2$ roots per receiver and no reported fold event. This trend is consistent with $1/6$ but is not an independent oracle or a proof of the limit.
 
 ## Uniform remainder obligation
@@ -219,8 +282,8 @@ For any fixed $K$, analyticity of $2(\tan\alpha-\alpha)$ at $\alpha=0$ gives a u
 
 ## Boundary and falsifier
 
-Derived: the fixed-$k$ threshold expansion, the location of parity in the signed ledger, the fixed-$k$ pre-phase limit, and the exact finite regularized decomposition that exposes the $N^2/6$ term. Measured: the same-evaluator $N=50$ through $N=400$ diagnostic. Open: an $O(N^{4/3})$ bound or contrary leading term for the regularized $R_\beta'$ sum, bounds for the opposite endpoint and the non-pre-phase roots, whether the $1/6$ term survives in the complete ledger, even/odd background limits, any limiting zero, and compatible-radius order.
+Derived: the fixed-$k$ threshold expansion, the location of parity in the signed ledger, the fixed-$k$ pre-phase limit, the exact finite regularized decomposition that exposes the $N^2/6$ term, and the local newborn fold expansion. Inferred conditional on the open complement bound: the $2/(\pi^2N^2)$ balance-to-fold gap and $N^{5/3}$ compatible-radius order. Measured: the same-evaluator $N=50$ through $N=400$ diagnostic and the accepted finite $N=12$ comparison. Open: an $O(N^{4/3})$ bound or contrary leading term for the regularized $R_\beta'$ sum, bounds for the opposite endpoint and the non-pre-phase roots, whether the $1/6$ term survives in the complete ledger, even/odd subleading backgrounds, and certification of the boundary-layer zero.
 
 The threshold series is falsified by a symbolic residual below the declared order or an independently enclosed fixed-$k$ fold violating its remainder. The proposed limiting-balance route is falsified if a uniform complete-ledger bound leaves the nonzero $N^2/6$ term uncancelled. It is also falsified by an additional fold entering the predeclared compact $x$ interval, nonconvergence of either parity background, distinct even/odd limiting zeros when a common constant is claimed, or failure of the finite-$N$ remainder to be uniform.
 
-Closure goal: prove a uniform complete-ledger expansion on a fold-separated compact $x$ interval and determine whether any complement term cancels the derived pre-phase coefficient $1/6$; if none does, close BP-014 with bounded large-$N$ nonexistence on the proposed first-birth scale.
+Closure goal: prove the regularized $R_\beta'$ shape inequality and complete-ledger $O(N^{4/3})$ complement bound; if the $1/6$ coefficient survives, replace the presumed interior limiting zero with the fold-boundary law $\beta_N-\beta_{1,N}^{\mathrm{fold}}\sim2/(\pi^2N^2)$ and certify its radius asymptotic.

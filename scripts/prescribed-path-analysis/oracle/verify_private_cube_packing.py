@@ -29,6 +29,13 @@ def squared_distance(left, right):
     return sum((a - b) ** 2 for a, b in zip(left, right))
 
 
+def squared_solid_separation(left_cell, right_cell):
+    return sum(
+        max(Fraction(0), abs(LATTICE_SPACING * (left_cell[axis] - right_cell[axis])) - 2 * HALF_EDGE) ** 2
+        for axis in range(3)
+    )
+
+
 def rational(value):
     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
 
@@ -58,6 +65,13 @@ def main():
 
     expected_minimum = LATTICE_SPACING * (1 - SHRINK)
     assert minimum_inter_cell_squared == expected_minimum**2
+
+    minimum_solid_separation_squared = min(
+        squared_solid_separation(left, right)
+        for left_index, left in enumerate(WINDOW)
+        for right in WINDOW[left_index + 1:]
+    )
+    assert minimum_solid_separation_squared == expected_minimum**2
 
     fundamental = [vertex((0, 0, 0), sign) for sign in SIGNS]
     edge_squared = sorted({
@@ -89,17 +103,18 @@ def main():
             "auditedMembers": len(members),
             "uniqueCoordinates": len(coordinates),
             "minimumInterCellVertexSeparation": rational(expected_minimum),
+            "minimumInterCellSolidSeparation": rational(expected_minimum),
             "minimumWitnessCount": len(witnesses),
             "fundamentalPairSquaredDistances": [rational(value) for value in edge_squared],
             "allPassed": True,
         },
         "claimBoundary": (
-            "exact private ownership, cube geometry, noncoincidence, minimum inter-cell vertex separation, "
+            "exact private ownership, cube geometry, noncoincidence, minimum inter-cell vertex and solid separation, "
             "periodicity and packing fraction only; no prescribed history, causal-root, acceleration, "
             "independence, evolution, retention, stability, binding or identity claim"
         ),
         "falsifier": (
-            "a duplicated member identity or coordinate, an inter-cell vertex separation below 1, "
+            "a duplicated member identity or coordinate, an inter-cell vertex or solid separation below 1, "
             "a non-unit cube edge, or a fundamental-cell volume fraction different from 1/8"
         ),
         "instrument": {

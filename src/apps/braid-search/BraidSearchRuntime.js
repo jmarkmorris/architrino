@@ -4,6 +4,7 @@ import {
   DEPRECATED_CONTROL_DISPOSITION,
   HIGH_LEVEL_GATE_DEFINITIONS,
   SURFACE_GATE_DEFINITIONS,
+  buildBraidEvidenceIndex,
   buildEvaluationFunnel,
   caseResidualDetail,
   filterCompactSweepCaseRows,
@@ -14,11 +15,14 @@ import {
   pearsonCorrelation,
   summarizeDistribution,
   summarizeGate,
+  validateHistoricalCompactArchive,
   validateCompactSweepDashboardData,
-} from "./CompactSweepDashboardData.js";
+} from "./BraidSearchData.js";
 import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
 import {
+  BORG_SELECTION_SCHEMA,
   buildBorgLibraryHref,
+  buildBorgWorkbenchHref,
   resolveBorgLibraryReturnHref,
 } from "../shared/BorgSelectionNavigation.mjs";
 import {
@@ -27,10 +31,11 @@ import {
 } from "./BraidSearchRouteState.mjs";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
-const DEFAULT_VIEW_ID = "funnel";
+const DEFAULT_VIEW_ID = "evidence";
 const CASE_PAGE_SIZE = 50;
 
 const VIEW_DEFINITIONS = Object.freeze([
+  ["evidence", "Evidence records"],
   ["funnel", "Evaluation funnel"],
   ["gates", "Gate heatmap"],
   ["metrics", "Metric distributions"],
@@ -1844,6 +1849,301 @@ function renderCases(state) {
   append(layout, listPanel.wrapper, detailPanel.wrapper);
   view.appendChild(layout);
   return view;
+}
+
+function evidenceSelection(record) {
+  return {
+    schema: BORG_SELECTION_SCHEMA,
+    braidId: record.braidId,
+    assemblyId: record.assemblyId,
+    modelRevisionSha256: record.modelRevisionSha256,
+  };
+}
+
+function evidenceStatusLabel(record) {
+  if (record.scientificStatus.coverage === "invalid") {
+    return "Evidence projection invalid";
+  }
+  if (record.scientificStatus.current) {
+    return record.scientificStatus.verdict;
+  }
+  if (record.scientificStatus.context.length) {
+    return "Context linked; no exact adjudication";
+  }
+  return "No exact adjudication linked";
+}
+
+function evidenceLink(value) {
+  const link = element("a", "compact-dashboard-button", value.label);
+  link.href = `./${value.url}`;
+  link.target = "_blank";
+  link.rel = "noopener";
+  return link;
+}
+
+function renderRequirementTable(status) {
+  if (!status.current) {
+    return emptyState(
+      "The current projection has no exact H1–H5 adjudication for this " +
+      "identity. This is unknown coverage, not a failed candidate.",
+    );
+  }
+  const tableNode = table(["Requirement", "State", "Claim grade"]);
+  const body = tableNode.tBodies[0];
+  status.requirements.forEach((requirement) => {
+    const row = element("tr");
+    row.dataset.state = requirement.state;
+    append(
+      row,
+      element("th", "", `${requirement.id} · ${requirement.label}`),
+      element("td", "", requirement.state.replaceAll("-", " ")),
+      element("td", "", requirement.claimGrade),
+    );
+    body.appendChild(row);
+  });
+  return tableNode;
+}
+
+function renderRelation(relation, title = relation.candidate) {
+  const card = element("article", "compact-dashboard-evidence-relation");
+  append(
+    card,
+    element("h3", "", title),
+    element("p", "", relation.establishes),
+  );
+  const facts = element("dl", "compact-dashboard-detail-grid");
+  [
+    ["Scope", relation.scope],
+    ["Instrument", relation.instrument],
+    ["Tested domain", relation.parameterDomain],
+    ["Does not establish", relation.doesNotEstablish],
+    ["Current blocker", relation.currentBlocker],
+    ["Falsifier", relation.falsifier],
+  ].forEach(([label, value]) => {
+    const field = element("div");
+    append(field, element("dt", "", label), element("dd", "", value));
+    facts.appendChild(field);
+  });
+  const links = element("div", "compact-dashboard-borg-actions");
+  relation.evidenceLinks.forEach((value) => links.appendChild(evidenceLink(value)));
+  append(card, facts, links);
+  return card;
+}
+
+function selectEvidenceRecord(state, record) {
+  state.filters.assemblyId = record.assemblyId;
+  state.filters.modelRevisionSha256 = record.modelRevisionSha256;
+  refreshFilters(state);
+  renderView(state);
+  globalThis.scrollTo?.({ top: 0, behavior: "instant" });
+}
+
+function renderEvidenceCollection(state) {
+  const view = element("div", "compact-dashboard-view");
+  const summary = panel({
+    kicker: "Current exact Borg registry",
+    title: `${formatInteger(state.evidence.summary.identityCount)} evidence records`,
+    description:
+      "Every current exact model is present. An unlinked record means no " +
+      "identity-bound adjudication is available; it does not mean the model failed.",
+  });
+  const grid = element("div", "compact-dashboard-insight-grid");
+  append(
+    grid,
+    insight(
+      "Exact adjudications",
+      formatInteger(state.evidence.summary.exactAdjudications),
+      "Current H1–H5 rows bound to one exact identity.",
+    ),
+    insight(
+      "Context linked",
+      formatInteger(state.evidence.summary.contextLinked),
+      "Broader-family or slice-only findings, kept separate from verdicts.",
+    ),
+    insight(
+      "Compact targets",
+      formatInteger(state.evidence.summary.compactTargets),
+      "Current exact cohort members, whether or not an export exists.",
+    ),
+    insight(
+      "Compact rows loaded",
+      formatInteger(state.evidence.summary.compactRows),
+      "Exact identity-bound campaign rows in the optional local export.",
+    ),
+  );
+  summary.body.appendChild(grid);
+  view.appendChild(summary.wrapper);
+
+  const records = panel({
+    kicker: "Choose a model",
+    title: "Current identity coverage",
+    description:
+      "The label is context only; evidence is joined by the assembly ID and full model revision.",
+  });
+  const list = element("div", "compact-dashboard-evidence-list");
+  state.evidence.records.forEach((record) => {
+    const button = element("button", "compact-dashboard-evidence-card");
+    button.type = "button";
+    button.dataset.assemblyId = record.assemblyId;
+    append(
+      button,
+      element("strong", "", record.label),
+      element("span", "", evidenceStatusLabel(record)),
+      element(
+        "small",
+        "",
+        `${record.assemblyId} · ${record.compactCampaign.status.replaceAll("-", " ")}`,
+      ),
+    );
+    button.addEventListener("click", () => selectEvidenceRecord(state, record));
+    list.appendChild(button);
+  });
+  records.body.appendChild(list);
+  view.appendChild(records.wrapper);
+
+  if (state.evidence.historicalArchive) {
+    const archive = state.evidence.historicalArchive;
+    const historical = panel({
+      kicker: "Preserved historical campaign",
+      title: `${formatInteger(archive.drawn)} compact rows remain available`,
+      description: archive.reason,
+    });
+    historical.body.appendChild(element(
+      "p",
+      "",
+      `${formatInteger(archive.evaluated)} evaluated; ` +
+      `${formatInteger(archive.drawnNotEvaluated)} not evaluated; ` +
+      `${formatInteger(archive.compactPassed)} compact passes.`,
+    ));
+    view.appendChild(historical.wrapper);
+  }
+  return view;
+}
+
+function renderEvidenceRecord(state, record) {
+  const view = element("div", "compact-dashboard-view");
+  const selection = evidenceSelection(record);
+  const actions = element("div", "compact-dashboard-borg-actions");
+  const openBorg = element("a", "compact-dashboard-button", "Open in Borg");
+  openBorg.href = buildBorgWorkbenchHref({
+    selection,
+    returnTo: `${state.locationLike.pathname}${state.locationLike.search}`,
+  });
+  const showAll = element("button", "compact-dashboard-button", "All evidence records");
+  showAll.type = "button";
+  showAll.addEventListener("click", () => {
+    state.filters.assemblyId = "all";
+    state.filters.modelRevisionSha256 = null;
+    refreshFilters(state);
+    renderView(state);
+  });
+  append(actions, showAll, openBorg);
+  const identity = panel({
+    kicker: "Current exact Borg identity",
+    title: record.label,
+    description: evidenceStatusLabel(record),
+    actions,
+  });
+  const identityFacts = element("dl", "compact-dashboard-detail-grid");
+  [
+    ["Assembly ID", record.assemblyId],
+    ["Model revision", record.modelRevisionSha256],
+    ["Braid ID", record.braidId],
+    ["Evidence items", formatInteger(record.evidenceItemCount)],
+  ].forEach(([label, value]) => {
+    const field = element("div");
+    append(field, element("dt", "", label), element("dd", "", value));
+    identityFacts.appendChild(field);
+  });
+  identity.body.appendChild(identityFacts);
+  view.appendChild(identity.wrapper);
+
+  const sources = panel({
+    kicker: "Model source lane",
+    title: "Prescribed record",
+    description:
+      "This lane establishes a reproducible display model only. Loading or replaying it creates no dynamical evidence.",
+  });
+  const sourceFacts = element("dl", "compact-dashboard-detail-grid");
+  [
+    ["Claim grade", record.claimGrade],
+    ["Evidence status", record.evidenceStatus],
+    ["Record SHA-256", record.recordSha256],
+  ].forEach(([label, value]) => {
+    const field = element("div");
+    append(field, element("dt", "", label), element("dd", "", value));
+    sourceFacts.appendChild(field);
+  });
+  const sourceActions = element("div", "compact-dashboard-borg-actions");
+  append(
+    sourceActions,
+    evidenceLink({ label: "Source specification", url: record.sourceSpec }),
+    evidenceLink({ label: "Sealed display record", url: record.recordUrl }),
+  );
+  append(sources.body, sourceFacts, sourceActions);
+  view.appendChild(sources.wrapper);
+
+  const status = record.scientificStatus;
+  const adjudication = panel({
+    kicker: "Current scientific-status projection",
+    title: status.verdict,
+    description: status.coverage === "invalid"
+      ? `Fail-closed: ${status.causes.join("; ")}`
+      : `Projection ${state.evidence.projectionRevision}`,
+  });
+  adjudication.body.appendChild(renderRequirementTable(status));
+  if (status.current) {
+    adjudication.body.appendChild(renderRelation(
+      status.current,
+      "Exact identity adjudication",
+    ));
+  }
+  view.appendChild(adjudication.wrapper);
+
+  if (status.context.length) {
+    const context = panel({
+      kicker: "Non-verdict context",
+      title: "Broader-family and slice-only findings",
+      description:
+        "These findings are linked for context but do not become this exact model’s H1–H5 verdict.",
+    });
+    status.context.forEach((relation) =>
+      context.body.appendChild(renderRelation(relation)));
+    view.appendChild(context.wrapper);
+  }
+
+  const compact = record.compactCampaign;
+  const campaign = panel({
+    kicker: "Optional compact-diagnostic lane",
+    title: compact.status.replaceAll("-", " "),
+    description: compact.rowCount > 0
+      ? `${formatInteger(compact.rowCount)} exact identity-bound rows are loaded.`
+      : compact.targeted
+        ? "This model is in the current exact cohort, but no terminal local export is loaded. Other evidence lanes remain available."
+        : "This model is not in the current 20-model compact cohort. That is a coverage boundary, not a scientific verdict.",
+  });
+  if (state.evidence.compactCampaign.error) {
+    campaign.body.appendChild(element(
+      "p",
+      "compact-dashboard-muted",
+      `Local compact export: ${state.evidence.compactCampaign.error}`,
+    ));
+  }
+  view.appendChild(campaign.wrapper);
+  return view;
+}
+
+function renderEvidence(state) {
+  if (state.filters.assemblyId === "all") {
+    return renderEvidenceCollection(state);
+  }
+  const record = state.evidence.records.find((candidate) =>
+    candidate.assemblyId === state.filters.assemblyId &&
+    (!state.filters.modelRevisionSha256 ||
+      candidate.modelRevisionSha256 === state.filters.modelRevisionSha256));
+  return record
+    ? renderEvidenceRecord(state, record)
+    : emptyState("The selected exact Borg identity is not in the current registry.");
 }
 
 function renderBoundary(data) {

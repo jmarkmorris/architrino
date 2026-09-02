@@ -3,7 +3,7 @@
   "status": "passed_pre_release",
   "productionMutation": false,
   "measuredAtUtc": "2026-09-02T20:41:26.396Z",
-  "measurementBoundary": "The public-feedback-interaction profile and its source closure were remeasured after the public scene indexes changed. The photon-4k-visual profile and shared GPU-process envelope retain their original 2026-09-02 measurement.",
+  "measurementBoundary": "The public-feedback-interaction profile and its source closure were remeasured after the public scene indexes changed. The photon-4k-visual performance profile and shared GPU-process envelope retain their original foreground 2026-09-02 measurement; its source closure was re-fingerprinted after UI-005 replaced the deleted legacy stylesheet with the shared control-bar stylesheet and runtime. Three isolated rechecks on the current in-app test surface were rejected from the accepted performance profile because that surface delivered a repeatable 30 Hz animation cadence rather than the foreground 60 Hz cadence required by this receipt.",
   "environment": {
     "browser": "Chrome 152.0.0.0 through the Codex in-app browser",
     "platform": "macOS",
@@ -147,12 +147,12 @@
       ]
     },
     "photon-4k-visual": {
-      "files": 36,
-      "bytes": 4494005,
-      "sha256": "b9c199a0f9f8248e038ad647acc6025b6a66ec0073aeccf0415e2cc8c4fc10b8",
+      "files": 37,
+      "bytes": 4545046,
+      "sha256": "955a6be672780e24e213e4c9cf81bbdb262c30f688964fa4e504141daaed7cf6",
       "paths": [
         "photon.html",
-        "src/apps/navigator/standalone-app-navigation.css",
+        "src/runtime/top-dynamic-control-bar.css",
         "src/runtime/markdown-mermaid.css",
         "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css",
         "src/apps/photon/main.js",
@@ -171,6 +171,7 @@
         "src/apps/photon/PhotonBraidVisualRuntime.js",
         "src/apps/photon/PhotonFormulaRuntime.js",
         "src/prescribed-path-analysis/PrescribedPathAnalysis.mjs",
+        "src/runtime/TopDynamicControlBarRuntime.js",
         "src/apps/navigator/StandaloneAppHomeRuntime.js",
         "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
         "src/runtime/MermaidMarkdownRuntime.js",

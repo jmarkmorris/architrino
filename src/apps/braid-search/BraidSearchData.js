@@ -1,6 +1,16 @@
 import {
   validateBorgSelection,
 } from "../shared/BorgSelectionNavigation.mjs";
+import {
+  exactModelKey,
+  validateBorgAssemblyRegistry,
+} from "../borg/registry/BorgAssemblyRegistryContract.mjs";
+import {
+  describeBorgScientificStatus,
+  validateBorgScientificStatusProjection,
+} from "../borg/BorgScientificStatus.mjs";
+
+export const BRAID_EVIDENCE_INDEX_SCHEMA = "braid-search/evidence-index.v1";
 
 export const COMPACT_SWEEP_DASHBOARD_SCHEMA =
   "prescribed-path-analysis/compact-sweep-dashboard-data.v3";
@@ -482,4 +492,177 @@ export function caseResidualDetail(row) {
         ? signedEmissionGate.thresholdRatio
         : null,
   };
+}
+
+function validateCampaignRegistry(value, registryEntries) {
+  if (value?.schema !==
+      "prescribed-path-analysis/all-candidate-campaign-registry.v2" ||
+      !Array.isArray(value.candidates)) {
+    fail("current compact campaign registry is invalid.");
+  }
+  const registered = new Map(registryEntries.map((entry) => [
+    exactModelKey(entry),
+    entry,
+  ]));
+  const identities = new Set();
+  value.candidates.forEach((candidate, index) => {
+    const key = exactModelKey(candidate);
+    if (!registered.has(key)) {
+      fail(`campaign candidate ${index} is not a current Borg identity.`);
+    }
+    if (identities.has(key)) {
+      fail(`campaign candidate ${index} duplicates an exact identity.`);
+    }
+    identities.add(key);
+    if (candidate.specPath !== registered.get(key).sourceSpec) {
+      fail(`campaign candidate ${index} does not match its Borg source.`);
+    }
+  });
+  return value;
+}
+
+function validateSourceSpec(entry, spec) {
+  if (spec?.schema !== "prescribed-assembly-spec.v3" ||
+      spec.identity?.assemblyId !== entry.assemblyId ||
+      spec.identity?.modelRevisionSha256 !== entry.modelRevisionSha256 ||
+      typeof spec.claimGrade !== "string" ||
+      typeof spec.evidenceStatus !== "string") {
+    fail(`source specification does not match ${exactModelKey(entry)}.`);
+  }
+  return spec;
+}
+
+function compactRowsByIdentity(campaignData, entries) {
+  const result = new Map(entries.map((entry) => [exactModelKey(entry), []]));
+  if (campaignData == null) return result;
+  const data = validateCompactSweepDashboardData(campaignData);
+  data.rows.forEach((row) => {
+    const key = exactModelKey(row);
+    if (!result.has(key)) {
+      fail(`compact campaign row is not a current Borg identity: ${key}.`);
+    }
+    result.get(key).push(row);
+  });
+  return result;
+}
+
+function countEvidenceLinks(status) {
+  return [status.current, ...status.context]
+    .filter(Boolean)
+    .reduce((count, relation) => count + relation.evidenceLinks.length, 0);
+}
+
+export function validateHistoricalCompactArchive(value) {
+  if (value?.schema !==
+      "prescribed-path-analysis/compact-sweep-dashboard-data.v1" ||
+      value?.status !== "terminal-read-only-export" ||
+      !Array.isArray(value.rows) ||
+      value.summary?.drawn !== value.rows.length) {
+    fail("historical compact archive is invalid.");
+  }
+  return Object.freeze({
+    schema: value.schema,
+    status: "preserved-unbound",
+    drawn: value.summary.drawn,
+    evaluated: value.summary.evaluated,
+    drawnNotEvaluated: value.summary.drawnNotEvaluated,
+    compactPassed: value.summary.compactPassed,
+    campaignCount: value.summary.campaignCount,
+    reason:
+      "The retained rows predate exact Borg identity pins. They remain available " +
+      "as historical campaign evidence but are not reassigned to current models.",
+  });
+}
+
+export function buildBraidEvidenceIndex({
+  registry: rawRegistry,
+  projection: rawProjection,
+  campaignRegistry: rawCampaignRegistry,
+  sourceSpecsByPath,
+  campaignData = null,
+  campaignError = null,
+  historicalArchive = null,
+  projectionIntegrity = {},
+} = {}) {
+  const registry = validateBorgAssemblyRegistry(rawRegistry);
+  const projection = validateBorgScientificStatusProjection(rawProjection);
+  const campaignRegistry = validateCampaignRegistry(
+    rawCampaignRegistry,
+    registry.entries,
+  );
+  if (!(sourceSpecsByPath instanceof Map)) {
+    fail("sourceSpecsByPath must be a Map.");
+  }
+  const campaignTargets = new Map(campaignRegistry.candidates.map(
+    (candidate) => [exactModelKey(candidate), candidate],
+  ));
+  const campaignRows = compactRowsByIdentity(campaignData, registry.entries);
+  const records = registry.entries.map((entry) => {
+    const spec = validateSourceSpec(entry, sourceSpecsByPath.get(entry.sourceSpec));
+    const scientificStatus = describeBorgScientificStatus(
+      spec,
+      entry,
+      projection,
+      projectionIntegrity,
+    );
+    const rows = campaignRows.get(exactModelKey(entry));
+    const campaignTarget = campaignTargets.get(exactModelKey(entry)) ?? null;
+    return Object.freeze({
+      assemblyId: entry.assemblyId,
+      modelRevisionSha256: entry.modelRevisionSha256,
+      braidId: entry.braidId,
+      label: entry.label,
+      sourceIdentity: entry.sourceIdentity,
+      sourceSpec: entry.sourceSpec,
+      recordUrl: entry.recordUrl,
+      recordSha256: entry.recordSha256,
+      claimGrade: spec.claimGrade,
+      evidenceStatus: spec.evidenceStatus,
+      scientificStatus,
+      compactCampaign: Object.freeze({
+        targeted: campaignTarget !== null,
+        sourceSlug: campaignTarget?.sourceSlug ?? null,
+        rowCount: rows.length,
+        status: rows.length > 0
+          ? "exact-rows-loaded"
+          : campaignTarget
+            ? "targeted-no-export"
+            : "not-in-current-cohort",
+      }),
+      evidenceItemCount: 2 + countEvidenceLinks(scientificStatus) + rows.length,
+    });
+  });
+  const counts = records.reduce((result, record) => {
+    result[record.scientificStatus.aggregateCategory] += 1;
+    if (record.scientificStatus.current) result.exactAdjudications += 1;
+    if (record.scientificStatus.context.length) result.contextLinked += 1;
+    if (record.compactCampaign.targeted) result.compactTargets += 1;
+    if (record.compactCampaign.rowCount) result.compactRows += record.compactCampaign.rowCount;
+    return result;
+  }, {
+    pass: 0,
+    "scoped-fail": 0,
+    unknown: 0,
+    unindexed: 0,
+    stale: 0,
+    exactAdjudications: 0,
+    contextLinked: 0,
+    compactTargets: 0,
+    compactRows: 0,
+  });
+  return Object.freeze({
+    schema: BRAID_EVIDENCE_INDEX_SCHEMA,
+    registryRevision: registry.revision,
+    projectionRevision: projection.revision,
+    records: Object.freeze(records),
+    summary: Object.freeze({
+      identityCount: records.length,
+      ...counts,
+    }),
+    compactCampaign: Object.freeze({
+      loaded: campaignData !== null,
+      error: campaignError,
+    }),
+    historicalArchive,
+  });
 }
