@@ -1891,28 +1891,8 @@
       "path": "content/scenes/archie/lattice_lab.json"
     },
     {
-      "id": "archie__applications__analyze_evidence",
-      "name": "Analyze Evidence",
-      "path": "content/scenes/archie/applications_analyze_evidence.json"
-    },
-    {
-      "id": "archie__applications__build_simulate",
-      "name": "Build & Simulate",
-      "path": "content/scenes/archie/applications_build_simulate.json"
-    },
-    {
-      "id": "archie__applications__explore_models",
-      "name": "Explore Models",
-      "path": "content/scenes/archie/applications_explore_models.json"
-    },
-    {
-      "id": "archie__applications__learn_reference",
-      "name": "Learn & Reference",
-      "path": "content/scenes/archie/applications_learn_reference.json"
-    },
-    {
       "id": "topo",
-      "name": "Topo",
+      "name": "Wake Topography",
       "path": "content/scenes/archie/topo.json"
     },
     {

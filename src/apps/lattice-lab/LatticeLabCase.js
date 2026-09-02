@@ -651,7 +651,7 @@ function createHcpCase() {
       geometry: "hexagonal close-packed",
       geometryLabel: "Hexagonal close-packed (HCP)",
       polarityRule:
-        "opposite polarities alternate between A and B stacking positions",
+        "opposite polarities alternate between A and B positions in ABAB stacking",
       nearestNeighborDistance: "d",
       coordinationNumber: 12,
       nearestShell: Object.freeze({ count: 12, distance: "d" }),

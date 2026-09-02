@@ -84,7 +84,7 @@ import {
 function requireElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
   if (!element) {
-    throw new Error("Missing Topo interaction-preview element: " + selector);
+    throw new Error("Missing Wake Topography interaction-preview element: " + selector);
   }
   return element;
 }
@@ -849,11 +849,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
 
   const context = dom.canvas.getContext("2d", { alpha: false });
   if (!context) {
-    throw new Error("Topo interaction preview requires a 2D canvas context.");
+    throw new Error("Wake Topography interaction preview requires a 2D canvas context.");
   }
   const contourContext = dom.contourCanvas.getContext("2d");
   if (!contourContext) {
-    throw new Error("Topo interaction preview requires a contour canvas context.");
+    throw new Error("Wake Topography interaction preview requires a contour canvas context.");
   }
 
   const listeners = [];
@@ -901,17 +901,17 @@ export function mountTopoInteractionContractPreview(options = {}) {
   const previewCanvas = documentLike.createElement("canvas");
   const previewContext = previewCanvas.getContext("2d", { alpha: false });
   if (!previewContext) {
-    throw new Error("Topo interaction preview requires a preview canvas context.");
+    throw new Error("Wake Topography interaction preview requires a preview canvas context.");
   }
   const contourStagingCanvas = documentLike.createElement("canvas");
   const contourStagingContext = contourStagingCanvas.getContext("2d");
   if (!contourStagingContext) {
-    throw new Error("Topo interaction preview requires a contour staging context.");
+    throw new Error("Wake Topography interaction preview requires a contour staging context.");
   }
   const fieldRasterCanvas = documentLike.createElement("canvas");
   const fieldRasterContext = fieldRasterCanvas.getContext("2d", { alpha: false });
   if (!fieldRasterContext) {
-    throw new Error("Topo interaction preview requires a field raster context.");
+    throw new Error("Wake Topography interaction preview requires a field raster context.");
   }
   const analyticFieldCanvas = documentLike.createElement("canvas");
   analyticFieldCanvas.className = "topo-gpu-field-canvas";
@@ -1293,7 +1293,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   function drawTopoPassTwoDiagnostic({ width, height, threshold, scalarGrid }) {
     if (!topoPassTwoDiagnosticProgram || !topoPassTwoDiagnosticBindings ||
         !topoScalarFramebuffer.available || !topoPassTwoDiagnosticTarget.available) {
-      throw new Error("Topo pass-two diagnostic resources are unavailable.");
+      throw new Error("Wake Topography pass-two diagnostic resources are unavailable.");
     }
     const savedFramebuffer = fieldGl.getParameter(fieldGl.FRAMEBUFFER_BINDING);
     const savedViewport = fieldGl.getParameter(fieldGl.VIEWPORT);
@@ -1372,7 +1372,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     fieldGl.compileShader(shader);
     if (!fieldGl.getShaderParameter(shader, fieldGl.COMPILE_STATUS)) {
       throw new Error(
-        "Topo analytic field shader failed: " + fieldGl.getShaderInfoLog(shader),
+        "Wake Topography analytic field shader failed: " + fieldGl.getShaderInfoLog(shader),
       );
     }
     return shader;
@@ -1540,7 +1540,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     fieldGl.linkProgram(program);
     if (!fieldGl.getProgramParameter(program, fieldGl.LINK_STATUS)) {
       throw new Error(
-        "Topo analytic field program failed: " + fieldGl.getProgramInfoLog(program),
+        "Wake Topography analytic field program failed: " + fieldGl.getProgramInfoLog(program),
       );
     }
     const buffer = fieldGl.createBuffer();
@@ -1776,7 +1776,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     fieldGl.linkProgram(program);
     if (!fieldGl.getProgramParameter(program, fieldGl.LINK_STATUS)) {
       throw new Error(
-        "Topo circular-binary field program failed: " +
+        "Wake Topography circular-binary field program failed: " +
         fieldGl.getProgramInfoLog(program),
       );
     }
@@ -1919,7 +1919,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     fieldGl.attachShader(program, fragment);
     fieldGl.linkProgram(program);
     if (!fieldGl.getProgramParameter(program, fieldGl.LINK_STATUS)) {
-      throw new Error("Topo binary scalar presentation program failed: " +
+      throw new Error("Wake Topography binary scalar presentation program failed: " +
         fieldGl.getProgramInfoLog(program));
     }
     const buffer = fieldGl.createBuffer();
@@ -2448,7 +2448,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.contourVisibility.setAttribute(
       "aria-valuetext",
       contourStrengthText +
-        "; Topo fade for the graded contour profile",
+        "; Contour fade for the graded contour profile",
     );
     dom.contourVisibility.disabled = false;
     dom.contourControls.hidden = false;
@@ -2957,7 +2957,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       fieldGl.viewport(0, 0, width, height);
       fieldGl.uniform1f(uniforms.u_scalar_pass, 0);
       if (!circularBinaryScalarPresentationRenderer) {
-        throw new Error("Topo scalar presentation renderer is unavailable.");
+        throw new Error("Wake Topography scalar presentation renderer is unavailable.");
       }
       const visibleLevels = contourLevels.slice(0, TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS);
       const contourBounds = topoContourLevelBounds(visibleLevels);

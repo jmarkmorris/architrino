@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 611,
-      "edges": 1380,
-      "scenes": 394,
+      "nodes": 607,
+      "edges": 1376,
+      "scenes": 390,
       "markdownIndexes": 0,
       "markdownDocs": 200,
       "runtimeEdges": 476,
@@ -2399,32 +2399,8 @@
       "nodeType": "scene"
     },
     {
-      "id": "archie__applications__analyze_evidence",
-      "name": "Analyze Evidence",
-      "path": "content/scenes/archie/applications_analyze_evidence.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "archie__applications__build_simulate",
-      "name": "Build & Simulate",
-      "path": "content/scenes/archie/applications_build_simulate.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "archie__applications__explore_models",
-      "name": "Explore Models",
-      "path": "content/scenes/archie/applications_explore_models.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "archie__applications__learn_reference",
-      "name": "Learn & Reference",
-      "path": "content/scenes/archie/applications_learn_reference.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "topo",
-      "name": "Topo",
+      "name": "Wake Topography",
       "path": "content/scenes/archie/topo.json",
       "nodeType": "scene"
     },
@@ -3736,42 +3712,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/applications_analyze_evidence.json",
-      "nodeType": "scene",
-      "id": "archie__applications__analyze_evidence",
-      "name": "Analyze Evidence",
-      "path": "content/scenes/archie/applications_analyze_evidence.json",
-      "searchTarget": "content/scenes/archie/applications_analyze_evidence.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/applications_build_simulate.json",
-      "nodeType": "scene",
-      "id": "archie__applications__build_simulate",
-      "name": "Build & Simulate",
-      "path": "content/scenes/archie/applications_build_simulate.json",
-      "searchTarget": "content/scenes/archie/applications_build_simulate.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/applications_explore_models.json",
-      "nodeType": "scene",
-      "id": "archie__applications__explore_models",
-      "name": "Explore Models",
-      "path": "content/scenes/archie/applications_explore_models.json",
-      "searchTarget": "content/scenes/archie/applications_explore_models.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/applications_learn_reference.json",
-      "nodeType": "scene",
-      "id": "archie__applications__learn_reference",
-      "name": "Learn & Reference",
-      "path": "content/scenes/archie/applications_learn_reference.json",
-      "searchTarget": "content/scenes/archie/applications_learn_reference.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/archie/applications.json",
       "nodeType": "scene",
       "id": "archie__applications",
@@ -4243,7 +4183,7 @@
       "nodeId": "scene:content/scenes/archie/topo.json",
       "nodeType": "scene",
       "id": "topo",
-      "name": "Topo",
+      "name": "Wake Topography",
       "path": "content/scenes/archie/topo.json",
       "searchTarget": "content/scenes/archie/topo.json",
       "implicit": false
@@ -9192,130 +9132,102 @@
   ],
   "edges": [
     {
-      "from": "scene:content/scenes/archie/applications_analyze_evidence.json",
-      "to": "scene:content/scenes/archie/equation_mapping.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_analyze_evidence.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications_build_simulate.json",
+      "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/animator.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_build_simulate.json",
+      "source": "content/scenes/archie/applications.json",
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/archie/applications_build_simulate.json",
+      "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/borg.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_build_simulate.json",
-      "field": "scene.children[1]"
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[8]"
     },
     {
-      "from": "scene:content/scenes/archie/applications_explore_models.json",
-      "to": "scene:content/scenes/archie/ideal_braid.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_explore_models.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications_explore_models.json",
-      "to": "scene:content/scenes/archie/lattice_lab.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_explore_models.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications_explore_models.json",
-      "to": "scene:content/scenes/archie/molecule.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_explore_models.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications_explore_models.json",
-      "to": "scene:content/scenes/archie/photon.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_explore_models.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications_explore_models.json",
-      "to": "scene:content/scenes/archie/topo.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_explore_models.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications_learn_reference.json",
+      "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/causal_delay_feedback.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_learn_reference.json",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/equation_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[13]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/greek_letter_match.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
       "field": "scene.children[1]"
     },
     {
-      "from": "scene:content/scenes/archie/applications_learn_reference.json",
-      "to": "scene:content/scenes/archie/greek_letter_match.json",
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/ideal_braid.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_learn_reference.json",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/lattice_lab.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/molecule.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
       "field": "scene.children[2]"
     },
     {
-      "from": "scene:content/scenes/archie/applications_learn_reference.json",
-      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/photon.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_learn_reference.json",
-      "field": "scene.children[3]"
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[12]"
     },
     {
-      "from": "scene:content/scenes/archie/applications_learn_reference.json",
-      "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/topo.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_learn_reference.json",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
       "field": "scene.children[4]"
     },
     {
-      "from": "scene:content/scenes/archie/applications_learn_reference.json",
-      "to": "scene:content/scenes/nuclear/atom.json",
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_learn_reference.json",
-      "field": "scene.children[0]"
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[3]"
     },
     {
-      "from": "scene:content/scenes/archie/applications_learn_reference.json",
-      "to": "scene:content/scenes/standard-model-particles/standard_model.json",
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/applications_learn_reference.json",
+      "source": "content/scenes/archie/applications.json",
       "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/applications_analyze_evidence.json",
+      "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/applications_build_simulate.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/applications_explore_models.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/applications_learn_reference.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",

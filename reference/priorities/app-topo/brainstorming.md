@@ -1,6 +1,6 @@
-# Topo App Concept Synthesis
+# Wake Topography App Concept Synthesis
 
-This document synthesizes provisional Topo interaction and observable concepts that are not accepted tasks. Topo remains a display-only prescribed-history viewer; forward evolution belongs exclusively to the EOM solver.
+This document synthesizes provisional Wake Topography interaction and observable concepts that are not accepted tasks. Wake Topography remains a display-only prescribed-history viewer; forward evolution belongs exclusively to the EOM solver.
 
 ## Prescribed and Evolved Motion
 
@@ -22,4 +22,4 @@ Canvas balance, motion arrows, contour emphasis, contour count, and playback are
 - **[inferred] Receiver-selected partner-wake contract.** Define the three view states, source-ledger filtering, emitter-only masking, $\beta=1$ behavior, provenance, cache identity, and CPU/GPU parity; promotion is blocked until the scenario contracts verify the root-status claims.
 - **[display idea] Translation arrow and canvas balance.** Visually test source position, aspect ratio, and a restrained positive-$x$ arrow; no theory claim follows from the chosen layout.
 - **[display idea] Contour controls.** Evaluate zero-contour emphasis only where a genuine zero exists and test a paired slider/numeric input for contour count; defaults remain tunable display choices.
-- **[guessed] Successive accepted-product playback.** Consider animation only as a consumer of accepted time-indexed products; forward evolution remains outside Topo.
+- **[guessed] Successive accepted-product playback.** Consider animation only as a consumer of accepted time-indexed products; forward evolution remains outside Wake Topography.

@@ -171,13 +171,7 @@ test("brand visual reference keeps direct launch routing outside product discove
     false,
   );
 
-  for (const scenePath of [
-    "content/scenes/archie/applications.json",
-    "content/scenes/archie/applications_learn_reference.json",
-    "content/scenes/archie/applications_explore_models.json",
-    "content/scenes/archie/applications_analyze_evidence.json",
-    "content/scenes/archie/applications_build_simulate.json",
-  ]) {
+  for (const scenePath of ["content/scenes/archie/applications.json"]) {
     assert.doesNotMatch(readRepoFile(scenePath), /brand[_-]visual[_-](?:identity|reference)/iu);
   }
 });
@@ -194,13 +188,7 @@ test("AAA Core remains a headless platform outside public product discovery", ()
     assert.equal(isPublicProductSceneSearchEntry({id: sceneToken, path: sceneToken}), false);
   }
 
-  for (const scenePath of [
-    "content/scenes/archie/applications.json",
-    "content/scenes/archie/applications_learn_reference.json",
-    "content/scenes/archie/applications_explore_models.json",
-    "content/scenes/archie/applications_analyze_evidence.json",
-    "content/scenes/archie/applications_build_simulate.json",
-  ]) {
+  for (const scenePath of ["content/scenes/archie/applications.json"]) {
     assert.doesNotMatch(readRepoFile(scenePath), /(?:aaa[_-]?core|app-aaa-core)/iu);
   }
 });
@@ -219,13 +207,7 @@ test("UI Guidelines remains shared standards documentation, not a product applic
     null,
   );
 
-  for (const scenePath of [
-    "content/scenes/archie/applications.json",
-    "content/scenes/archie/applications_learn_reference.json",
-    "content/scenes/archie/applications_explore_models.json",
-    "content/scenes/archie/applications_analyze_evidence.json",
-    "content/scenes/archie/applications_build_simulate.json",
-  ]) {
+  for (const scenePath of ["content/scenes/archie/applications.json"]) {
     assert.doesNotMatch(readRepoFile(scenePath), /ui[_-]?guidelines/iu);
   }
 
@@ -464,9 +446,6 @@ test("standalone app home controls avoid bare index navigation", () => {
 
 test("Applications scene does not expose Assembly Explorer", () => {
   const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
-  const categoryPaths = applicationsScene.scene.children.map((child) => child.scenePath);
-  const categoryScenes = categoryPaths.map((scenePath) =>
-    JSON.parse(readRepoFile(scenePath)));
 
   assert.equal(
     applicationsScene.scene.children.some((child) => child.nodeId === "assembly_explorer"),
@@ -474,11 +453,6 @@ test("Applications scene does not expose Assembly Explorer", () => {
   );
   assert.equal(
     applicationsScene.objects.some((object) => object.id === "assembly_explorer"),
-    false
-  );
-  assert.equal(
-    categoryScenes.some((scene) =>
-      scene.scene.children.some((child) => child.nodeId === "assembly_explorer")),
     false
   );
   assert.equal(isPublicProductSceneSearchEntry({
@@ -489,22 +463,15 @@ test("Applications scene does not expose Assembly Explorer", () => {
 
 test("Website Statistics is an Archie Operations utility, not a product application", () => {
   const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
-  const applicationCategoryScenes = applicationsScene.scene.children.map((child) =>
-    JSON.parse(readRepoFile(child.scenePath))
-  );
   const projectScene = JSON.parse(readRepoFile("content/scenes/archie/project.json"));
   const operationsScene = JSON.parse(readRepoFile("content/scenes/archie/operations.json"));
 
   assert.equal(
-    applicationCategoryScenes.some((scene) =>
-      scene.scene.children.some((child) => child.nodeId === "website_stats")
-    ),
+    applicationsScene.scene.children.some((child) => child.nodeId === "website_stats"),
     false
   );
   assert.equal(
-    applicationCategoryScenes.some((scene) =>
-      scene.objects.some((object) => object.id === "website_stats")
-    ),
+    applicationsScene.objects.some((object) => object.id === "website_stats"),
     false
   );
   assert.equal(
@@ -541,7 +508,7 @@ test("Website Statistics is an Archie Operations utility, not a product applicat
 
 test("Applications scene exposes Equation Mapping as a standalone app scene", () => {
   const applicationsScene = JSON.parse(
-    readRepoFile("content/scenes/archie/applications_analyze_evidence.json"),
+    readRepoFile("content/scenes/archie/applications.json"),
   );
   const equationMappingScene = JSON.parse(readRepoFile("content/scenes/archie/equation_mapping.json"));
 
@@ -562,7 +529,7 @@ test("Applications scene exposes Equation Mapping as a standalone app scene", ()
 
 test("Applications scene exposes It's Greek to Me! as a standalone app scene", () => {
   const applicationsScene = JSON.parse(
-    readRepoFile("content/scenes/archie/applications_learn_reference.json"),
+    readRepoFile("content/scenes/archie/applications.json"),
   );
   const greekMatchScene = JSON.parse(readRepoFile("content/scenes/archie/greek_letter_match.json"));
 
@@ -589,7 +556,7 @@ test("Applications scene exposes It's Greek to Me! as a standalone app scene", (
 
 test("Braid Search keeps its direct developer route without public Applications discovery", () => {
   const applicationsScene = JSON.parse(
-    readRepoFile("content/scenes/archie/applications_analyze_evidence.json"),
+    readRepoFile("content/scenes/archie/applications.json"),
   );
   const braidSearchScene = JSON.parse(readRepoFile("content/scenes/archie/braid_search.json"));
 
@@ -644,7 +611,7 @@ test("pdgedit scene no longer resolves to a standalone app path from the main we
 
 test("Lorentz Geometry display name preserves the ideal-braid scene and route contracts", () => {
   const applicationsScene = JSON.parse(
-    readRepoFile("content/scenes/archie/applications_explore_models.json"),
+    readRepoFile("content/scenes/archie/applications.json"),
   );
   assert.equal(
     applicationsScene.objects.find((object) => object.id === "ideal_braid")?.labelTitle,

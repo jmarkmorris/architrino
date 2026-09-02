@@ -135,16 +135,6 @@
       "profileResourceFilesIncluded": 4,
       "profileResourceBytes": 18211,
       "localRouteStatus": 200
-    },
-    "rollback": {
-      "status": "passed",
-      "verificationLevel": "local_rehearsal",
-      "mode": "whole-site-last-known-good",
-      "lastKnownGoodCommit": "8df1d08fe913e5b3b2fba09c50bda7588d437637",
-      "sameEnvironmentRebuild": "byte_identical",
-      "candidateRouteAtLastKnownGood": "absent_expected_for_first_release",
-      "productionReplay": "unverified_requires_separate_authorization",
-      "claimBoundary": "The local gate proves an explicit repeatable rollback target and runbook. It does not prove a live production rollback, cross-environment Borg byte parity, or deployment success."
     }
   }
 }

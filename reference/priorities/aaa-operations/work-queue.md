@@ -4,10 +4,12 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 
 ## Ranked Next Objects
 
-1. `deployment_budget_contract` — Status: `Queued`.
+1. `borg_record_byte_identity` — Status: `Queued`.
+2. `deployment_budget_contract` — Status: `Queued`.
 
 ## Queued task records
 
+- **OPS-013 — `borg_record_byte_identity`.** Resolve the platform-dependent numeric serialization that makes 143 of 145 deployed Borg record files disagree with the exact `recordSha256` values in their deployed registry. **Completion:** the same source generates portable sealed bytes, the Pages build rejects registry/record disagreement before publication, all 145 live records match their deployed registry hashes, and representative exact-record loading passes in Borg.
 - **OPS-001 — `deployment_budget_contract`.** Define `deployment-budget.v1` for bundle, transfer, browser heap/GPU/storage, Actions artifacts, generated output, and separately reported EOM throughput; apply it first to Borg. **Completion:** one measured contract is consumed by Borg without merging hosting and solver budgets.
 
 ## In progress
@@ -16,7 +18,7 @@ No rows.
 
 ## Awaiting verification
 
-- **OPS-009 — `incident_and_rollback_runbook`.** The runbook, isolated last-known-good reconstruction, same-environment byte repeatability, and communication-field test pass. **Remaining verification:** one controlled full Actions re-run must deploy and pass public identity checks; the 91-byte cross-environment drift across 40 generated Borg records needs an owning disposition before byte-parity can be claimed.
+No rows.
 
 ## Verified
 

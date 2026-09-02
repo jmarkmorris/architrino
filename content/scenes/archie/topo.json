@@ -2,7 +2,8 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "topo",
-    "title": "Topo",
+    "name": "Wake Topography",
+    "title": "Wake Topography",
     "type": "Scene-Diagram",
     "units": "relative",
     "wrapLabels": true,

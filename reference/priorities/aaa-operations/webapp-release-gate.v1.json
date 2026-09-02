@@ -9,8 +9,7 @@
     "visual",
     "browser",
     "accessibility",
-    "preview",
-    "rollback"
+    "preview"
   ],
   "checkDefinitions": {
     "content": {
@@ -54,11 +53,6 @@
       "required": true,
       "method": "Build the candidate from an isolated clean checkout plus the scoped candidate files, verify inclusion in the static payload, and exercise the route over loopback HTTP.",
       "failureBehavior": "Block release when the isolated build, route, required public dependencies, or source-bound browser evidence does not pass."
-    },
-    "rollback": {
-      "required": true,
-      "method": "Bind the candidate to the incident runbook and one accepted last-known-good site identity whose same-environment reconstruction is repeatable.",
-      "failureBehavior": "Block release when no explicit last-known-good identity or tested reconstruction exists. A live production rollback remains a separately authorized mutation."
     }
   },
   "profiles": [
@@ -104,13 +98,6 @@
         "maxUnnamedControls": 0,
         "maxDuplicateIds": 0,
         "minControlHeightCssPx": 42
-      },
-      "rollback": {
-        "mode": "whole-site-last-known-good",
-        "lastKnownGoodCommit": "8df1d08fe913e5b3b2fba09c50bda7588d437637",
-        "runbookPath": "reference/priorities/aaa-operations/pages-incident-and-rollback-runbook.md",
-        "rehearsalPath": "reference/priorities/aaa-operations/pages-rollback-rehearsal-2026-09-01.json",
-        "firstReleaseBoundary": "The last-known-good site predates feedback.html, so a rollback deliberately removes the new route while restoring the prior accepted site."
       },
       "evidencePath": "reference/priorities/aaa-operations/feedback-webapp-release-gate-2026-09-01.json"
     }

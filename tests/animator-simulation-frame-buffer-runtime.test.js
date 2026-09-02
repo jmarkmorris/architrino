@@ -44,7 +44,5 @@ test("animator simulation frame buffer packs and hydrates solver frames", () => 
   );
 
   assert.equal(hydrated.frames.length, dataset.frames.length);
-  assert.deepEqual(hydrated.frames[0].particles[0].position, [-6.4, -1.6, 0]);
-  assert.deepEqual(hydrated.frames[6].particles[1].position, [-6.55, 1.45, 0]);
-  assert.equal(hydrated.frames[3].diagnostics.minimumSeparation, 4.827);
+  assert.deepEqual(hydrated.frames, dataset.frames);
 });

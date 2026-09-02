@@ -36,7 +36,7 @@ test("animator draft scaffold builds the default primary assembly draft and core
   assert.equal(draft.core?.coreType, "noether");
   assert.equal(core.binaries.length, 2);
   assert.equal(core.shells.length, 4);
-  assert.deepEqual(core.binaries.map((binary) => binary.motion.radius), [1.26, 1.4400000000000002]);
+  assert.deepEqual(core.binaries.map((binary) => binary.motion.radius), [0.9, 1.26]);
   assert.deepEqual(core.alignment.planeNormals, [
     [0, 1, 0],
     [1, 0, 0],

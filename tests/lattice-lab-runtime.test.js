@@ -2052,50 +2052,31 @@ test("shared panel collapse icon preserves the established open and closed treat
   assert.match(equationRuntime, /createPanelCollapseIconSvg\(this\.indexCollapsed\)/u);
 });
 
-test("Applications groups fifteen apps and keeps Explore Models catalog-alphabetical", () => {
+test("Applications keeps the operator-selected fourteen-app sequence", () => {
   const applications = JSON.parse(
     readRepoFile("content/scenes/archie/applications.json"),
   );
-  const exploreModels = JSON.parse(
-    readRepoFile("content/scenes/archie/applications_explore_models.json"),
-  );
-  const expectedCategories = [
-    "learn_reference",
-    "explore_models",
-    "analyze_evidence",
-    "build_simulate",
-  ];
-  const expectedExploreOrder = [
-    "lattice_lab",
-    "ideal_braid",
-    "molecule",
-    "photon",
-    "topo",
+  const expectedOrder = [
+    "animator", "greek_letter_match", "molecule", "periodic_table",
+    "hyde_periodic_table", "atom", "standard_model", "causal_delay_feedback",
+    "borg", "topo", "ideal_braid", "lattice_lab", "photon", "equation_mapping",
   ];
 
   assert.equal(applications.scene.layout.type, "rings");
   assert.equal(applications.scene.layout.order, "objects");
-  assert.equal(applications.scene.children.length, 4);
-  assert.equal(applications.objects.length, 4);
+  assert.equal(applications.scene.children.length, 14);
+  assert.equal(applications.objects.length, 14);
   assert.deepEqual(
     applications.scene.children.map((entry) => entry.nodeId),
-    expectedCategories,
+    expectedOrder,
   );
   assert.deepEqual(
     applications.objects.map((entry) => entry.id),
-    expectedCategories,
-  );
-  assert.deepEqual(
-    exploreModels.scene.children.map((entry) => entry.nodeId),
-    expectedExploreOrder,
-  );
-  assert.deepEqual(
-    exploreModels.objects.map((entry) => entry.id),
-    expectedExploreOrder,
+    expectedOrder,
   );
   assert.equal(
-    exploreModels.objects.find((entry) => entry.id === "lattice_lab")?.labelTitle,
-    "Lattice Lab",
+    applications.objects.find((entry) => entry.id === "topo")?.labelTitle,
+    "Wake Topography",
   );
 });
 

@@ -1,8 +1,10 @@
-# Topo App Work Log
+# Wake Topography App Work Log
 
 This file is the chronological work log for the `app-topo` priority area. Use [priorities.md](priorities.md) for strategy, [work-queue.md](work-queue.md) for accepted executable work, [requirements-and-design.md](requirements-and-design.md) for the current application boundary, and [brainstorming.md](brainstorming.md) for provisional ideas.
 
 ## Log Entries
+
+- Renamed the reader-facing product from `Topo` to `Wake Topography`, retained the compatibility `topo` route and code identifiers, renamed the two contour controls for clarity, and returned Applications to one fourteen-app scene in the operator-selected sequence. The four category scene sources were retired rather than retained as a second navigation path.
 
 - Made the circular-binary retained history adaptive to the current visible extent, orbital radius, and speed. The warmup is the smallest whole number of orbits that brackets both source roots across the visible frame, so the opening source phase remains unchanged. Defined the approaching-collinear input as infinite stationary prehistory at the existing 20% and 80% start positions followed by an instantaneous prescribed launch at replay time zero; CPU and GPU paths now show both histories throughout the frame. These are prescribed display inputs, not EOM evolution or natural-motion claims.
 

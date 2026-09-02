@@ -10,7 +10,7 @@
 - Output authority: display and analytical-reference use only
 - Not supplied: a scalar potential, receiver acceleration, dynamics, continuation, energy, conservation, stability, or physical validation
 
-This contract selects the **signed ordinary wake-intensity product** as Topo's first raw scalar. It does not call that scalar a potential. A true scalar-Potential product remains routed through [AAA Core Potential](../app-aaa-core/potential-v1.md) and requires a separately versioned scientific kernel.
+This contract selects the **signed ordinary wake-intensity product** as Wake Topography's first raw scalar. It does not call that scalar a potential. A true scalar-Potential product remains routed through [AAA Core Potential](../app-aaa-core/potential-v1.md) and requires a separately versioned scientific kernel.
 
 Plainly: v1 colors the signed inverse-square strength of the ordinary arriving wake geometry. It does not invent a potential formula to make the application name or display more convenient.
 
@@ -149,9 +149,9 @@ on the ordinary domain. For this one-source, one-root product, aggregation is th
 
 Plainly: the raw magnitude is the canonical inverse-square distance factor times the transmitter-side ordinary-root weight. The species supplies only the sign. There is no receiver in this display product.
 
-This scalar is not the canonical per-hit acceleration. A receiver acceleration would additionally require receiver identity and polarity, the coupling and polarity magnitudes, and the line-of-action vector. This scalar is also not a true scalar potential. The canon supplies a causal-wake potential as a history-dependent measure or mollified product and retains a $1/r$ scalar action scaffold as an incomplete variational route; neither supplies a completed pointwise scalar-potential formula that Topo may adopt locally.
+This scalar is not the canonical per-hit acceleration. A receiver acceleration would additionally require receiver identity and polarity, the coupling and polarity magnitudes, and the line-of-action vector. This scalar is also not a true scalar potential. The canon supplies a causal-wake potential as a history-dependent measure or mollified product and retains a $1/r$ scalar action scaffold as an incomplete variational route; neither supplies a completed pointwise scalar-potential formula that Wake Topography may adopt locally.
 
-Plainly: Topo may display $\mathcal I_q^{\mathrm{ord}}$ honestly as wake intensity. It may not relabel the same numbers as potential or acceleration.
+Plainly: Wake Topography may display $\mathcal I_q^{\mathrm{ord}}$ honestly as wake intensity. It may not relabel the same numbers as potential or acceleration.
 
 ## Independent Controls
 
@@ -203,7 +203,7 @@ $$
 \frac{1+\beta}{1-\beta}.
 $$
 
-Plainly: for this particular product at equal distance from the source's present marker, the trailing value is larger. The shorter trailing causal distance outweighs the smaller transmitter-side weight. Topo must show this result rather than manufacture a leading buildup.
+Plainly: for this particular product at equal distance from the source's present marker, the trailing value is larger. The shorter trailing causal distance outweighs the smaller transmitter-side weight. Wake Topography must show this result rather than manufacture a leading buildup.
 
 Using the on-canvas reference distance $a=1/6$ gives these exact raw samples:
 
@@ -337,6 +337,6 @@ This contract fails if any of these operator-checkable observations occurs:
 
 ## Remaining Scientific Decision
 
-Topo v1 can proceed with `Signed ordinary wake intensity` as its exact observable label. A true scalar-Potential mode remains open and must arrive through AAA Core with its own kernel identity, history measure or mollification, radial dependence, normalization, singular and nonordinary behavior, and independent analytical reference. It must be a separate menu product rather than a relabeling or display transform of $\mathcal I_q^{\mathrm{ord}}$.
+Wake Topography v1 can proceed with `Signed ordinary wake intensity` as its exact observable label. A true scalar-Potential mode remains open and must arrive through AAA Core with its own kernel identity, history measure or mollification, radial dependence, normalization, singular and nonordinary behavior, and independent analytical reference. It must be a separate menu product rather than a relabeling or display transform of $\mathcal I_q^{\mathrm{ord}}$.
 
 Plainly: the geometry is closed for the first map. The open issue is whether a later, genuinely defined potential should be added as a second map mode.

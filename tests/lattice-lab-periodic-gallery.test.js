@@ -189,7 +189,7 @@ test("HCP user-facing copy consistently describes ABAB stacking", () => {
   assert.equal(caseRecord.title, "Hexagonal Close-Packed");
   assert.equal(
     caseRecord.polarityRule,
-    "opposite polarities alternate between A and B stacking positions",
+    "opposite polarities alternate between A and B positions in ABAB stacking",
   );
   assert.doesNotMatch(
     [

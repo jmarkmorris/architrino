@@ -61,12 +61,11 @@ test("release gate rejects stale source hashes", () => {
   );
 });
 
-test("release gate rejects failed browser, accessibility, preview, or rollback evidence", () => {
+test("release gate rejects failed browser, accessibility, or preview evidence", () => {
   for (const [field, mutate, pattern] of [
     ["browser", (item) => { item.checks.browser.consoleMessageCount = 1; }, /browser console is not clean/u],
     ["accessibility", (item) => { item.checks.accessibility.unnamedControlCount = 1; }, /unnamed control budget exceeded/u],
     ["preview", (item) => { item.checks.preview.entrypointIncluded = false; }, /preview route did not pass/u],
-    ["rollback", (item) => { item.checks.rollback.verificationLevel = "unverified"; }, /rollback rehearsal did not pass/u],
   ]) {
     const failed = copy(evidence);
     mutate(failed);

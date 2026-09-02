@@ -2,12 +2,13 @@
   "schema": "architrino.browser-performance-evidence.v1",
   "status": "passed_pre_release",
   "productionMutation": false,
-  "measuredAtUtc": "2026-09-02T03:58:18.414Z",
+  "measuredAtUtc": "2026-09-02T20:31:01.378Z",
+  "measurementBoundary": "The public-feedback-interaction profile and its source closure were remeasured after the public scene indexes changed. The photon-4k-visual profile and shared GPU-process envelope retain their original 2026-09-02 measurement.",
   "environment": {
     "browser": "Chrome 152.0.0.0 through the Codex in-app browser",
     "platform": "macOS",
     "server": "scripts/dev/start-local-dev.mjs with EOM_BORG_SHADOW=0 and one fresh loopback port per cold profile",
-    "cacheBoundary": "Cold values use the first app load on a new loopback origin. Warm values use an identical same-origin reload with the development server's HTTP validation behavior retained.",
+    "cacheBoundary": "Cold values use the first app load on a fresh loopback origin. Warm values use an identical same-origin reload with the development server's HTTP validation behavior retained. The refreshed feedback cold profile transferred the complete current source closure.",
     "claimBoundary": "These are local pre-release measurements on one browser and host. They establish current regression budgets, not global user latency, network transfer, exact per-page GPU allocation, production performance, or hosting cost."
   },
   "instrumentSources": [
@@ -26,6 +27,7 @@
     "public-feedback-interaction": {
       "status": "passed",
       "route": "/feedback.html",
+      "measuredAtUtc": "2026-09-02T20:31:01.378Z",
       "viewport": {
         "cssWidth": 1440,
         "cssHeight": 900,
@@ -34,34 +36,34 @@
       "launch": {
         "cold": {
           "originWasFresh": true,
-          "loadEventEndMs": 12.900000005960464,
-          "transferBytes": 831413,
-          "encodedBytes": 829313,
+          "loadEventEndMs": 94.60000002384186,
+          "transferBytes": 831069,
+          "encodedBytes": 828969,
           "resourceCount": 6
         },
         "warm": {
           "sameOriginReload": true,
-          "loadEventEndMs": 16.5,
-          "transferBytes": 813202,
-          "encodedBytes": 815641,
+          "loadEventEndMs": 28.30000001192093,
+          "transferBytes": 812858,
+          "encodedBytes": 815297,
           "resourceCount": 6
         }
       },
       "interaction": {
         "id": "refresh-public-manifest",
         "status": "passed",
-        "nextPaintMs": 31.69999998807907
+        "nextPaintMs": 72.90000003576279
       },
       "frameTiming": {
         "samples": 180,
-        "p95Ms": 18,
+        "p95Ms": 16.799999999999727,
         "medianFps": 59.88023952095874,
         "intervalsOver33_34Ms": 0
       },
       "heap": {
         "supported": true,
-        "warmAfterFramesUsedBytes": 39974550,
-        "frameWindowGrowthBytes": 38172
+        "warmAfterFramesUsedBytes": 11905084,
+        "frameWindowGrowthBytes": 966884
       },
       "storage": {
         "supported": true,
@@ -132,8 +134,8 @@
   "sourceClosures": {
     "public-feedback-interaction": {
       "files": 7,
-      "bytes": 829313,
-      "sha256": "22a58a727c66e8cc098e2bd8be9c25a8ca68639942f9fe516057afd09ed5f698",
+      "bytes": 828969,
+      "sha256": "074ac3b0c9e4a7bec904ad497a83b69344ff170a025844247b916250ba641ff1",
       "paths": [
         "feedback.html",
         "src/apps/feedback/feedback.css",

@@ -10,6 +10,15 @@ This file records dated planning, implementation status, validation evidence, fa
 
 ## Log Entries
 
+### 2026-09-02 — Third Low-Risk Presentation Reconciliation
+
+- Reactivated only LAT-079, LAT-083, LAT-093, LAT-101, and LAT-103 while leaving the broader Lattice Lab owner dormant-deferred.
+- Updated HCP's exposed polarity explanation to use exact `ABAB stacking` terminology. The other four requested presentation states were already present: one shared `Boundary treatment` row, no case-fact `Calculation scope` row, exact exposed `Hexagonal Close-Packed`, and exact exposed `Diamond Cubic` with no user-facing sublattice terminology. No coordinates, site or relationship identities, polarity assignments, crop radius, camera, calculations, certificates, or evidence authority changed.
+- The focused command `node --test tests/lattice-lab-ledger-presentation.test.js tests/lattice-lab-runtime.test.js tests/lattice-lab-bcc-neighbor-graph.test.js tests/lattice-lab-periodic-gallery.test.js tests/lattice-lab-random-finite.test.js` passed `72/72`, including the independent display-crop inventory verifier, deterministic periodic-certificate boundaries, and Random finite calculation/recalculation checks.
+- Fresh desktop browser checks exercised all seven cases at β values `0`, `0.5`, and `1`. Every state retained exactly one shared lowercase-`2.75d` Boundary treatment row, no Calculation scope case fact, exact exposed HCP and Diamond names, no exposed sublattice terminology, and no stale radius. Random recalculation changed its finite residual and reload restored the reproducible baseline; its finite no-continuation method remained inside `Show calculation`, while a periodic BCC disclosure retained certificate authority without using the display crop. Narrow HCP and Diamond inspections confirmed clean wrapping, one shared boundary row, no horizontal overflow, and a clean console.
+- LAT-083's presentation dependency is satisfied by the live exact-`2.75d` constants, all-case inventories, Random finite calculation linkage, and focused verifier. LAT-082 remains unresolved because its broader historical before/after pixel-measurement and full operator-acceptance receipt are outside this five-row presentation pass.
+- Reconciled the queue summary from `59` to `54` unresolved entries: `48` queued/requested, `4` in progress, `1` awaiting verification, and `1` explicitly deferred/blocked. The five closed rows are recorded as one consolidated historical entry, increasing that section from `29` to `30` entries.
+
 ### 2026-09-02 — Second Low-Risk Presentation Reconciliation
 
 - Reactivated only the five operator-authorized presentation rows while leaving the broader Lattice Lab owner dormant-deferred.

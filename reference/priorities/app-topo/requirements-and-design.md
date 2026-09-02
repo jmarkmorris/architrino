@@ -1,4 +1,4 @@
-# Topo App Requirements And Design
+# Wake Topography App Requirements And Design
 
 ## Status
 
@@ -14,7 +14,7 @@
 
 ## Product Definition
 
-`Topo` is a two-dimensional interactive viewer for a declared signed map around one prescribed uniformly translating architrino. The first release is a fixed-time snapshot of the `Signed ordinary wake intensity` product defined by [TOPO-001](topo-observable-and-reference-geometry-v1.md). The source remains visually anchored while the selected $\beta$ changes the path-history geometry used to request a new map.
+`Wake Topography` is a two-dimensional interactive viewer for a declared signed map around one prescribed uniformly translating architrino. The first release is a fixed-time snapshot of the `Signed ordinary wake intensity` product defined by [TOPO-001](topo-observable-and-reference-geometry-v1.md). The source remains visually anchored while the selected $\beta$ changes the path-history geometry used to request a new map.
 
 This first release is called `Electrostatic` in the scenario interface only as a concise user-facing label for a static, single-source comparison. That label does not import a standard electromagnetic field equation into the architrino-level model. The exact $\beta$-dependent v1 observable is supplied by TOPO-001 as a diagnostic composition of canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ factors, not as a new physical law.
 
@@ -63,9 +63,9 @@ The initial controls are:
 | View | pair scenarios only; native `Electrino`, `Positrino`, and `Absolute Observer` radios; partner views exclude the selected observer's self-wake, while Absolute Observer signed-sums both wakes before field, contour, shading, cache, and diagnostic calculations; both markers remain visible |
 | `Speed` ($\beta=v/c_f$) | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
 | Heatmap | bounded square-root transfer $C_s(W)=\operatorname{sgn}(W)g(s)\sqrt{|W|}/(g(s)\sqrt{|W|}+8)$ with $g(s)=0.25\,16^s$; for the stationary inverse-square wake this has the gradual $1/r$-like form $\operatorname{sgn}(W)a(s)/(r+a(s))$, where $a(s)=0.025g(s)$ |
-| `Topo count` | integer $4$ through $25$; default $13$; selects genuine equal-wake thresholds across the fixed raw range without interpolating line geometry; pair perspectives retain only the partner source's sign |
+| `Contour count` | integer $4$ through $25$; default $13$; selects genuine equal-wake thresholds across the fixed raw range without interpolating line geometry; pair perspectives retain only the partner source's sign |
 | `Shading` | range $0$ through $100$, step $1$, default $50$; changes only the characteristic color reach from $0.25$ through $4$ times the default; no visible numeric output; raw values and contours remain unchanged |
-| `Topo fade` | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; changes line opacity only; zero reads `Hidden`; equal nonzero widths and the single adaptive zero stroke do not alter field color, contour geometry, or raw values |
+| `Contour fade` | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; changes line opacity only; zero reads `Hidden`; equal nonzero widths and the single adaptive zero stroke do not alter field color, contour geometry, or raw values |
 | `Scale` | range $0.5$ through $2$ in $0.25$ steps; default $1$; changes the visible coordinate window while preserving the wake law and raw contour values |
 | Color mapping | applied only after the signed raw field and equal-value contour geometry are calculated; contour levels remain raw factor-of-ten values and never consume shaded values |
 | Overlay | scenario-specific reference geometry plus source polarity disks using one shared half-size radius, canonical thin white border, and half-size centered white origin dot |
@@ -76,16 +76,16 @@ Source position, shading spread, contour range, contour visibility, neutral back
 
 ## Shared Application-Shell Contract
 
-Topo inherits the shared Architrino application shell rather than creating an app-local navigation or panel language.
+Wake Topography inherits the shared Architrino application shell rather than creating an app-local navigation or panel language.
 
-- The canvas uses the shared dark neutral-purple stage and translucent dark panel surfaces. The colors must come from shared semantic UI tokens; Topo must not introduce another nearly matching hard-coded purple palette. Signed data zero uses the accepted shared Electric Purple (`#8F00FF`) semantic token. In the single-source uniform-motion scenarios, the beta endpoint's rootless leading region uses the same neutral display midpoint without receiving a fabricated raw value; the shell itself keeps the dark shared stage token.
+- The canvas uses the shared dark neutral-purple stage and translucent dark panel surfaces. The colors must come from shared semantic UI tokens; Wake Topography must not introduce another nearly matching hard-coded purple palette. Signed data zero uses the accepted shared Electric Purple (`#8F00FF`) semantic token. In the single-source uniform-motion scenarios, the beta endpoint's rootless leading region uses the same neutral display midpoint without receiving a fabricated raw value; the shell itself keeps the dark shared stage token.
 - The shared application controls occupy the top-right safe area in the established order: `Home`, `Back`, `Forward`, `Search`, `Notes` or `Documents`, and `Settings`, omitting only a control that has no declared behavior. Buttons use the shared monoline SVGs, dark shell, visible focus state, accessible names, and the standard approximately $32\times32$ hit target.
 - The left control panel uses the shared open/closed panel icon from `PanelCollapseIcons.js`. Collapse preserves a narrow visible rail and the reopen control; it does not remove the control from keyboard navigation. The toggle exposes `aria-expanded`, updates its accessible name, and makes closed content inert. Sliding motion is short and functional and is removed under reduced-motion preferences.
-- Scenario and $\beta$ are local scientific controls in the left panel. The $\beta$ slider reuses the established Architrino slider interaction and keyboard pattern while retaining Topo's own exact $0\leq\beta\leq1$ scientific contract. Contour count, contour visibility, display scale, and legend remain nearby display controls rather than being hidden in global navigation. The default contour visibility is $75\%$.
+- Scenario and $\beta$ are local scientific controls in the left panel. The $\beta$ slider reuses the established Architrino slider interaction and keyboard pattern while retaining Wake Topography's own exact $0\leq\beta\leq1$ scientific contract. Contour count, contour visibility, display scale, and legend remain nearby display controls rather than being hidden in global navigation. The default contour visibility is $75\%$.
 - Mobile layout collapses the left panel before reducing shared icon hit targets and keeps the top-right controls clear of the map legend and source marker.
 - Space invokes the same play/pause action as the visible transport button for the moving collinear and circular-binary scenarios. The shortcut is inert at $\beta=0$, ignores repeat events, and leaves Space to buttons, radios, checkboxes, selects, links, text entry, and editable content. A focused range slider does not suppress the global shortcut because Space has no native range adjustment meaning; arrow, Home, and End behavior remains native.
 
-Plainly: Topo should feel like another Architrino application immediately. The map is new; its navigation, slider behavior, panel toggle, colors, focus rules, and responsive shell are not.
+Plainly: Wake Topography should feel like another Architrino application immediately. The map is new; its navigation, slider behavior, panel toggle, colors, focus rules, and responsive shell are not.
 
 ## Prescribed Uniform-Translation Geometry
 
@@ -162,7 +162,7 @@ $$
 
 The raw signed wake and its equal-value contour geometry are calculated before this transfer. Contours remain separately visible and keep their raw levels and geometry.
 
-Plainly: Topo first calculates the partner's one-over-distance-squared wake and the contour thresholds that cross it. Only afterward does it take the square root for color visibility. The slider changes how far that gradual color remains visible without changing any contour.
+Plainly: Wake Topography first calculates the partner's one-over-distance-squared wake and the contour thresholds that cross it. Only afterward does it take the square root for color visibility. The slider changes how far that gradual color remains visible without changing any contour.
 
 The contour display uses $I(T)=K/T^2$ and
 
@@ -190,7 +190,7 @@ Plainly: changing the background changes the paper behind the signed colors, not
 
 Any point-source observable with inverse-distance growth is singular at the marker. The first renderer must mask a declared sampling neighborhood and identify the marker's TOPO-001 state as `singular` for $0\leq\beta<1$ or `nonordinary` at $\beta=1$; it must not clamp the value and then present the clamp as a finite scientific result. The mask radius is a display-resolution quantity recorded with the frame, not a new physical length, and masked ordinary neighbors remain distinct from the marker's raw scientific state.
 
-At $\beta=1$, the strict trailing half-plane retains one ordinary root, the leading half-plane and off-source transverse line have no positive root, and the source point has a non-isolated degenerate root family. The provider returns the exact states declared by TOPO-001. Topo must render them distinctly from zero and from an ordinary clipped high value.
+At $\beta=1$, the strict trailing half-plane retains one ordinary root, the leading half-plane and off-source transverse line have no positive root, and the source point has a non-isolated degenerate root family. The provider returns the exact states declared by TOPO-001. Wake Topography must render them distinctly from zero and from an ordinary clipped high value.
 
 Plainly: the viewer may leave a hole where the formula is undefined. It may not fill that hole with a convenient color and imply that the theory supplied the missing value.
 
@@ -200,7 +200,7 @@ Changing $\beta$ creates a new map request. The renderer may update progressivel
 
 The map should reveal any leading-versus-trailing asymmetry produced by the selected observable. It must not manufacture the expected front buildup by skewing coordinates, contour thresholds, sampling density, or color limits. A reference test along the horizontal axis will compare equal displayed distances ahead of and behind the source using raw values before coloring.
 
-The scenario menu is extensible, but a later binary, multi-source, time-varying, or EOM-driven scenario requires its own scientific input contract. Adding a menu entry does not authorize Topo to create the underlying field law.
+The scenario menu is extensible, but a later binary, multi-source, time-varying, or EOM-driven scenario requires its own scientific input contract. Adding a menu entry does not authorize Wake Topography to create the underlying field law.
 
 ## First-Release Acceptance Boundary
 

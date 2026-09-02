@@ -1123,7 +1123,7 @@ test("learner journey exposes Roots inside one app with no separate product rout
 
 test("Applications metadata keeps Roots under the single Causal Delay Feedback product", async () => {
   const metadata = JSON.parse(await readFile(
-    new URL("content/scenes/archie/applications_learn_reference.json", REPO_ROOT),
+    new URL("content/scenes/archie/applications.json", REPO_ROOT),
     "utf8",
   ));
   const causalDelayEntries = metadata.objects.filter(

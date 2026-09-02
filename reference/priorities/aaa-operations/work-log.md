@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Pages recovery policy and Borg record byte identity
+
+- Removed OPS-009, its standing Pages reversal procedure, rehearsal receipt, and release-gate dependency at operator direction. If an earlier source state is needed, recovery now starts by inspecting repository branches and commits, selecting the source explicitly, validating it through the ordinary branch and PR process, and publishing only through the verified `main` workflow.
+- Reduced the general webapp release gate from eight categories to seven: content, graph, size, visual, browser, accessibility, and preview. No automatic target or special replay path remains in the contract or checker.
+- Reclassified the earlier 91-byte observation through a live [published Borg record byte-identity audit](pages-borg-record-byte-identity-audit-2026-09-02.md). Of 145 deployed records, 143 disagree with their deployed registry SHA-256 identities; the two static records match.
+- Isolated one representative mismatch to 66 tiny numeric differences and no non-numeric differences. The deployed file and same-source macOS reconstruction had equal byte counts, showing that the earlier 91-byte total was incidental decimal-length drift rather than truncation or missing data.
+- Queued OPS-013 because the Borg loader rejects a record whose bytes do not match the registry. No deployment, Pages setting, DNS record, or public byte was changed.
+
 ### 2026-09-02 — OPS-004 browser performance budget
 
 - Closed OPS-004 with the accepted [browser-performance budget](browser-performance-budget.v1.json), the source-bound [dated evidence receipt](browser-performance-baseline-2026-09-01.json), the repo-native development probe, and `scripts/check-browser-performance-budget.mjs`. The checker is wired into the full content-integrity runner.
@@ -20,12 +28,11 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 ### 2026-09-01 — OPS-003 webapp release gate
 
 - Closed OPS-003 with the accepted [webapp release-gate contract](webapp-release-gate.v1.json), executable `scripts/check-webapp-release-gate.mjs` checker, and source-bound [public-feedback evidence receipt](feedback-webapp-release-gate-2026-09-01.json). The gate is wired into the full content-integrity runner rather than remaining a standalone advisory.
-- Defined eight mandatory categories with explicit failure behavior: content, graph, size, visual, browser, accessibility, preview, and rollback. The checker recursively discovers the load-time HTML, CSS, and JavaScript closure, rejects undeclared local or remote resources, enforces the source-byte ceiling, and rejects stale byte counts or SHA-256 identities.
-- Passed the first consumer with four public-feedback source files totaling 18,211 uncompressed bytes against a 32,768-byte ceiling. Focused positive and negative tests cover the accepted baseline, undeclared resources, over-budget growth, stale hashes, and failed browser, accessibility, preview, or rollback evidence.
+- Defined seven mandatory categories with explicit failure behavior: content, graph, size, visual, browser, accessibility, and preview. The checker recursively discovers the load-time HTML, CSS, and JavaScript closure, rejects undeclared local or remote resources, enforces the source-byte ceiling, and rejects stale byte counts or SHA-256 identities.
+- Passed the first consumer with four public-feedback source files totaling 18,211 uncompressed bytes against a 32,768-byte ceiling. Focused positive and negative tests cover the accepted baseline, undeclared resources, over-budget growth, stale hashes, and failed browser, accessibility, or preview evidence.
 - Used the in-app browser workflow at 1440 by 900 and 390 by 844 pixels. Both viewports had zero horizontal overflow; the mobile check found zero unnamed controls, zero duplicate identifiers, six focusable controls, and a 42-CSS-pixel minimum control height. The copy interaction and all three same-origin public-manifest reads passed with a clean console.
 - Repaired the readonly manifest textarea so its visible manifest heading supplies the accessible name. The change is included in the exact source hash recorded by the evidence receipt.
 - Passed an isolated static preview containing 4,288 files and 482,213,021 bytes; all four profile resources were present and the loopback route returned `200`. The active shared checkout was not used as build evidence because another task had removed an assembly-explorer runtime while working on its own scope.
-- Bound rollback to last-known-good commit `8df1d08fe913e5b3b2fba09c50bda7588d437637`, the existing runbook, and the local rehearsal. Because that accepted site predates `feedback.html`, rollback deliberately removes this first-release route. No production deployment or rollback was performed, and OPS-009 retains live deployment and cross-environment parity verification.
 - Removed OPS-003 from the live operations queue. The result is `passed_pre_release`; it does not claim a production release.
 
 ### 2026-09-01 — OPS-012 privacy-safe public feedback intake
@@ -49,15 +56,6 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 - Recorded current public-domain dispositions: CSP routes to OPS-003 after inline-script and resource-directive proof; HSTS waits for response-header control; Pages account verification and DNSSEC require operator/provider action; CAA waits for a complete supported-issuer allowlist; SPF stays soft-fail pending sender inventory; DMARC stays at monitoring-only; and DKIM requires account plus delivered-message verification before stronger DMARC enforcement.
 - Claim boundary: no GitHub account setting, DNS record, certificate, mail setting, hosting provider, deployment, or production response changed. The zero-advisory result and public DNS/header observations are dated measurements, not permanent security guarantees.
 - Removed OPS-011 and renumbered the remaining operations queue.
-
-### 2026-09-01 — OPS-009 incident and rollback rehearsal
-
-- Added the [Pages incident and rollback runbook](pages-incident-and-rollback-runbook.md) for broken, stale, slow, and over-budget deployments, including evidence capture, deployment pause, last-known-good selection, full source-bound re-run, public verification, repair-forward, and four-stage communication procedures.
-- Verified successful main push run `33415523618` at commit `8df1d08fe913e5b3b2fba09c50bda7588d437637` as the dated rehearsal target. GitHub's current documentation confirms a full re-run preserves the original SHA and ref and remains available for 30 days.
-- Reconstructed that exact commit in a disposable shared clone. The historical full integrity suite passed in 35.8 seconds; two static builds each produced 4,011 files and 415,238,969 bytes, and `diff -qr` found them byte-identical.
-- Compared 123 receipt-bound public paths with the accepted historical artifact. Forty generated Borg record JSON files differed across environments and their size deltas summed to 91 bytes; every checked non-Borg path matched. No Borg generator was modified in this operations task.
-- Recorded the bounded result in [pages-rollback-rehearsal-2026-09-01.json](pages-rollback-rehearsal-2026-09-01.json). Source selection, buildability, same-environment repeatability, and communication fields pass; a live production rollback and cross-environment byte parity do not.
-- Moved OPS-009 to awaiting verification. No workflow re-run, deployment, variable change, cancellation, DNS change, or external incident communication occurred.
 
 ### 2026-09-01 — OPS-008 observability and analytics policy
 

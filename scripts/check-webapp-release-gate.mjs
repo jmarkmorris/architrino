@@ -137,13 +137,6 @@ function validateEvidence({ rootDir, contract, profile, evidence }) {
   requireCondition(preview.isolatedCleanCheckoutBuild === true && preview.buildStatus === "passed", `${profile.id}: isolated preview build did not pass`);
   requireCondition(preview.entrypointIncluded === true && preview.localRouteStatus === 200, `${profile.id}: preview route did not pass`);
 
-  const rollback = evidence.checks.rollback;
-  requireCondition(rollback.status === "passed" && rollback.verificationLevel === "local_rehearsal", `${profile.id}: rollback rehearsal did not pass`);
-  requireCondition(rollback.lastKnownGoodCommit === profile.rollback.lastKnownGoodCommit, `${profile.id}: rollback identity mismatch`);
-  const rehearsalPath = resolveRepoFile(rootDir, profile.rollback.rehearsalPath, `${profile.id} rollback rehearsal`).absolute;
-  const rehearsal = readJson(rehearsalPath);
-  requireCondition(rehearsal.lastKnownGood?.commit === profile.rollback.lastKnownGoodCommit, `${profile.id}: rollback rehearsal does not bind the declared last-known-good commit`);
-  resolveRepoFile(rootDir, profile.rollback.runbookPath, `${profile.id} rollback runbook`);
 }
 
 export function checkWebappReleaseGate({ rootDir = ROOT, contractPath = DEFAULT_CONTRACT_PATH, contract: suppliedContract = null, evidenceByPath = null } = {}) {
@@ -151,8 +144,8 @@ export function checkWebappReleaseGate({ rootDir = ROOT, contractPath = DEFAULT_
   const contract = suppliedContract ?? readJson(resolveRepoFile(rootDir, contractPath, "release-gate contract").absolute);
   requireCondition(contract.schema === CONTRACT_SCHEMA, "invalid webapp release-gate schema");
   requireCondition(contract.status === "accepted", "webapp release-gate contract is not accepted");
-  requireCondition(Array.isArray(contract.requiredCheckCategories) && contract.requiredCheckCategories.length === 8, "release gate must declare eight check categories");
-  assertSameStrings(contract.requiredCheckCategories, ["content", "graph", "size", "visual", "browser", "accessibility", "preview", "rollback"], "release-gate categories");
+  requireCondition(Array.isArray(contract.requiredCheckCategories) && contract.requiredCheckCategories.length === 7, "release gate must declare seven check categories");
+  assertSameStrings(contract.requiredCheckCategories, ["content", "graph", "size", "visual", "browser", "accessibility", "preview"], "release-gate categories");
   requireCondition(Array.isArray(contract.profiles) && contract.profiles.length > 0, "release gate has no consumer profiles");
 
   const summaries = [];

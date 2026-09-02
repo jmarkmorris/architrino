@@ -164,13 +164,7 @@ test("unsupported consumers and provider failures return explicit Core errors", 
 test("Potential has no standalone public route or scene classification", () => {
   assert.equal(fs.existsSync(path.join(ROOT, "potential.html")), false);
   assert.equal(fs.existsSync(path.join(ROOT, "content/scenes/archie/potential.json")), false);
-  for (const sceneName of [
-    "applications.json",
-    "applications_explore_models.json",
-    "applications_analyze_evidence.json",
-    "applications_build_simulate.json",
-    "applications_learn_reference.json",
-  ]) {
+  for (const sceneName of ["applications.json"]) {
     const scene = fs.readFileSync(path.join(ROOT, "content/scenes/archie", sceneName), "utf8");
     assert.doesNotMatch(scene, /potential\.html|archie__potential|"nodeId"\s*:\s*"potential"/u);
   }

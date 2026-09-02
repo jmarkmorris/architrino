@@ -51,9 +51,11 @@ OPS-005 is closed by the dated [hosting alternatives survey](hosting-alternative
 
 OPS-008 is closed by the accepted [observability and analytics policy](observability-and-analytics-policy.md) and its [versioned contract](observability-policy.v1.json). Client analytics are disabled with zero raw and aggregate retention; Website Statistics remains an unconnected zero-data public static operations utility under Archie Operations, outside the product-application catalogue and public scene search. Its route has no access control, and the browser opt-out is an additional veto rather than consent. Automated negative controls scan authored app sources for common hidden-send paths and keep PubChem limited to a disclosed molecule-form submission; shared molecule links load locally without contacting the external service.
 
-## Incident And Rollback Readiness
+## Published Borg Record Identity
 
-OPS-009 is awaiting live verification. The [Pages incident and rollback runbook](pages-incident-and-rollback-runbook.md) covers broken, stale, slow, and over-budget releases; its [dated rehearsal](pages-rollback-rehearsal-2026-09-01.json) rebuilt the accepted last-known-good commit twice after the full integrity gate and obtained byte-identical same-environment payloads. The local payload was 91 bytes larger than the historical Actions receipt, entirely across 40 generated Borg record files, so cross-environment parity and a production rollback remain unproved. Closure requires one controlled full Actions re-run plus public identity checks; no production state was changed for the rehearsal.
+OPS-013 is queued by the dated [production byte-identity audit](pages-borg-record-byte-identity-audit-2026-09-02.md). The deployed registry and deployed record payload disagree for 143 of 145 Borg records. A bounded same-source comparison isolated the difference to tiny floating-point values serialized differently on the Actions host; one representative record had 66 numeric differences, no non-numeric differences, and a maximum absolute difference below $10^{-12}$. The numerical drift is small, but the production loader intentionally rejects any byte whose SHA-256 identity differs from the registry. Closure requires portable sealed-record generation, a pre-publication registry/record check, 145-of-145 live hash agreement, and representative Borg loading.
+
+Plainly: this is not a 91-byte storage problem. It is an exact-identity problem that can prevent readers from opening most published Borg records.
 
 ## Dependency And Public-Security Baseline
 
@@ -65,7 +67,7 @@ OPS-012 is closed by the [privacy-safe public feedback intake](privacy-safe-feed
 
 ## Webapp Release Gate Baseline
 
-OPS-003 is closed by the accepted [webapp release-gate contract](webapp-release-gate.v1.json), its executable checker, and the source-bound [public-feedback receipt](feedback-webapp-release-gate-2026-09-01.json). The first consumer closes all eight required categories: content, graph, size, visual, browser, accessibility, preview, and rollback. Its four-file load-time closure is 18,211 uncompressed bytes against a 32,768-byte ceiling. Browser checks at 1440 by 900 and 390 by 844 pixels found no horizontal overflow, unnamed controls, or duplicate identifiers; the smallest measured control height was 42 CSS pixels. An isolated 4,288-file static build included the route and all four resources, and the rollback field is bound to an explicit last-known-good commit and local rehearsal. This is a passing pre-release gate, not evidence of production deployment or production rollback; OPS-009 retains those live-verification obligations.
+OPS-003 is closed by the accepted [webapp release-gate contract](webapp-release-gate.v1.json), its executable checker, and the source-bound [public-feedback receipt](feedback-webapp-release-gate-2026-09-01.json). The first consumer closes all seven required categories: content, graph, size, visual, browser, accessibility, and preview. Its four-file load-time closure is 18,211 uncompressed bytes against a 32,768-byte ceiling. Browser checks at 1440 by 900 and 390 by 844 pixels found no horizontal overflow, unnamed controls, or duplicate identifiers; the smallest measured control height was 42 CSS pixels. An isolated 4,288-file static build included the route and all four resources. This is a passing pre-release gate, not evidence of production deployment.
 
 ## Browser Performance Baseline
 
