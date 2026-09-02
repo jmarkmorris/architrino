@@ -16,7 +16,7 @@ No rows.
 
 ## Awaiting verification
 
-- **OPS-013 — `borg_record_byte_identity`.** The duration-scaled position grid collapses all 145 historical macOS/Ubuntu record pairs to byte identity, current regeneration passes 145-of-145 registry and collection hashes, and both Content Integrity and Pages now fail before upload on any mismatch. **Remaining verification:** pass the current branch on the GitHub Ubuntu Pages runner, deploy through the ordinary verified `main` workflow, confirm 145-of-145 public hashes, and load representative exact records in Borg.
+- **OPS-013 — `borg_record_byte_identity`.** The duration-scaled position grid with repeated-product segment powers produces the same 145 records under Node 22 and Node 26; GitHub Actions run `33685894947` independently passed the 145-of-145 verifier on Ubuntu, and both Content Integrity and Pages now fail before upload on any mismatch. **Remaining verification:** deploy through the ordinary verified `main` workflow, confirm 145-of-145 public hashes, and load representative exact records in Borg.
 
 ## Verified
 
