@@ -41,4 +41,3 @@ Plainly: the next theorem now has one clean join location. It must prove the tai
 ## Boundaries and falsifier
 
 This reconciliation establishes no zero count above $20$, no global ladder, no higher-order asymptotic coefficient, no evolution, retention, stability, binding, physical identity, score, or scientific acceptance. It is falsified as an owner record if the accepted bounded theorem is separately and explicitly enlarged through a reviewed source-bound certificate, or if the cited raw receipts do not contain the stated T36 interval and hashes.
-

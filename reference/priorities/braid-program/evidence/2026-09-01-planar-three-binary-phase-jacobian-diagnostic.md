@@ -97,4 +97,3 @@ Run:
 Two consecutive executions produced byte-identical standard output at SHA-256 `1e9d1ca8d2028667bd0c838015b1ae57d4e5ae6e26040e36e80b5fb3c1ad3699`.
 
 This packet establishes no certified phase-box zero census, local-isolation theorem, absence of asymmetric branches, evolution, retention, stability, binding, physical identity, score, or scientific acceptance. An interval Jacobian containing rank loss at T04, a missed causal root, failure of difference-rung convergence, or a certified nearby asymmetric full-vector zero overturns the diagnostic disposition.
-
