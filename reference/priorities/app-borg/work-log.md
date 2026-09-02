@@ -6,6 +6,16 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 - Exact Scientific Coverage Synchronized
+
+- Braid Search now consumes 25 current exact adjudications across the 145-record Borg registry, up from 24. The new exact relation belongs only to the static stella-octangula catalog identity and reports its independently checked terminal-endpoint prescribed-balance exclusion; it does not inherit the withdrawn centered-five-coordinate identity's evidence.
+- All 120 records without exact adjudications remain `No adjudication linked`. Context now covers every current identity and carries concrete blockers for the 100 equal-radius ladder variants, 11 regular alternating circular records, generic octahedron, orthogonal-plane weave, generic axially separated endpoint-circle chart, and six source-only display records.
+- Claim grade: implemented and measured evidence-index synchronization consuming one derived-and-measured exact balance exclusion plus explicit source-audit blockers. This establishes no new ordinary evolution, retained branch, stability, binding, physical identity, or scientific acceptance. Falsifier: Braid Search changes an exact verdict without the same `assemblyId + modelRevisionSha256`, promotes context into an exact verdict, or disagrees with the 145/25/120 live census.
+
+Plainly: Borg and Braid Search now show the one newly supported exact result and explain every remaining coverage gap without turning related evidence into a verdict.
+
+Closure goal: Preserve exact identity binding and fail-closed context while future accepted protocols retire specific blockers.
+
 ### 2026-09-01 - BORG-003 Velocity-Scale Sampling Evidence Completed Fail-Closed
 
 - Froze `borg-velocity-sampling-protocol.v1` before result-bearing execution: normalized $c_f=1$, speed range $[0.2,0.8]$, calibration seeds `101/202/303`, holdout seeds `404/505`, six exact affine histories per seed, an eight-patch/two-time-bin shell, and six required checks. Rejected preflight requests corrected only EOM input-domain coverage; they did not expose or alter holdout metrics, policy logic, or acceptance limits.

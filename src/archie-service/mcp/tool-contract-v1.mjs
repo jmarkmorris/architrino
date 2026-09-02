@@ -39,6 +39,10 @@ const AUTHORITIES = new Set([
 ]);
 const EDGE_TYPES = new Set(["routes_to", "mirrors", "related", "prerequisite", "contains", "depends_on"]);
 const DIRECTIONS = new Set(["outgoing", "incoming", "both"]);
+const SEARCH_STOP_WORDS = new Set([
+  "a", "an", "and", "are", "as", "at", "be", "by", "does", "do", "from", "how", "in", "into", "is", "it",
+  "not", "of", "on", "or", "the", "to", "what", "when", "where", "which", "why", "with",
+]);
 const TOPIC_SOURCE_CLASSES = new Set([
   "published_corpus",
   "app_guide",
@@ -566,7 +570,7 @@ function matchesFilters(record, filters) {
 
 function scoreSearchRecord(record, query) {
   const normalizedQuery = normalize(query);
-  const tokens = normalizedQuery.split(" ").filter(Boolean);
+  const tokens = tokenize(query).filter((token) => !SEARCH_STOP_WORDS.has(token));
   const title = normalize(record.title);
   const aliases = record.aliases.map(normalize);
   const keywords = record.keywords.map(normalize);
@@ -585,6 +589,31 @@ function scoreSearchRecord(record, query) {
   if (route.includes(normalizedQuery)) add(80, "route");
   if (searchText.includes(normalizedQuery)) add(60, "content_phrase");
   if (tokens.length > 1 && tokens.every((token) => searchText.includes(token))) add(20, "all_query_terms");
+  if (rankScore === 0) {
+    const fields = {
+      title: new Set(tokenize(record.title)),
+      aliases: new Set(record.aliases.flatMap(tokenize)),
+      keywords: new Set(record.keywords.flatMap(tokenize)),
+      route: new Set(tokenize(record.route)),
+      content: new Set(tokenize(record.searchText)),
+    };
+    const matches = tokens.map((token) => ({
+      token,
+      title: fields.title.has(token),
+      alias: fields.aliases.has(token),
+      keyword: fields.keywords.has(token),
+      route: fields.route.has(token),
+      content: fields.content.has(token),
+    }));
+    const matched = matches.filter((entry) => entry.title || entry.alias || entry.keyword || entry.route || entry.content);
+    const minimumMatches = tokens.length <= 1 ? 1 : Math.max(2, Math.ceil(tokens.length * 0.6));
+    if (matched.length >= minimumMatches) {
+      const fieldScore = matched.reduce((total, entry) => total +
+        (entry.title ? 24 : entry.alias ? 20 : entry.keyword ? 18 : entry.route ? 12 : 4), 0);
+      const coverageScore = Math.round((matched.length / tokens.length) * 40);
+      add(fieldScore + coverageScore, "deterministic_token_fallback");
+    }
+  }
   if (rankScore > 0) {
     const authorityPreference = {
       primary: 300,
@@ -686,6 +715,10 @@ function responseByteLength(response) {
 
 function normalize(value) {
   return value.normalize("NFKC").toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function tokenize(value) {
+  return normalize(value).match(/[\p{L}\p{N}]+/gu) ?? [];
 }
 
 function requireArrayOfAllowed(value, allowed, label) {

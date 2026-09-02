@@ -84,8 +84,8 @@ test("Library scientific projection is Braid Program owned and exact adjudicatio
   const currentBindings = exactAdjudications.filter((relation) =>
     BORG_ASSEMBLY_RECORD_CATALOG.entries.some((entry) => entry.assemblyId === relation.match.assemblyId && entry.modelRevisionSha256 === relation.match.modelRevisionSha256));
   const preservedOffCatalog = exactAdjudications.filter((relation) => !currentBindings.includes(relation));
-  assert.equal(exactAdjudications.length, 25);
-  assert.equal(currentBindings.length, 24);
+  assert.equal(exactAdjudications.length, 26);
+  assert.equal(currentBindings.length, 25);
   assert.deepEqual(preservedOffCatalog.map((relation) => relation.match.assemblyId), ["asm-f70757c6a491cf997305c297efa86bf8"]);
 });
 
@@ -95,7 +95,7 @@ test("seed provider covers all current records and exact preview pins", async ()
   assert.equal(first.status, 200);
   assert.equal(first.body.total, 46);
   assert.equal(first.body.exactRecordCount, 145);
-  assert.equal(first.body.activeFindingConfigurationCount, 138);
+  assert.equal(first.body.activeFindingConfigurationCount, 145);
   assert.equal(first.body.registeredCount, 145);
   assert.equal(first.body.resultCount, first.body.total);
   assert.deepEqual(first.body.counts.braidDimension, { unavailable: 19, "3d": 21, "2d": 6 });

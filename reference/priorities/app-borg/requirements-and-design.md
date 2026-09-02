@@ -228,9 +228,9 @@ Plainly: passing an early requirement does not silently pass a later one. In par
 
 The shared renderer exposes an accessible `H1`--`H5` table, overall verdict, tested realization, parameter domain, assumptions, horizon, instrument, `Establishes`, `Does not establish`, `Current blocker`, `Falsifier`, controlling links, projection revision, source, freshness, lifecycle, and stable `data-scientific-status`, `data-scientific-verdict`, `data-requirement`, and `data-status-hook` attributes. Group and variant cards aggregate exact members into pass, scoped-fail, unknown, unindexed, and stale counts. An example preview never lends its verdict to other members.
 
-The owner-wide projection census is currently three `H4 P[M]` rows and zero `H5` passes. Of the current Borg catalog, 23 exact configurations have exact adjudication bindings; one further exact adjudication remains bound to the display-withheld centered-five-coordinate identity and transfers nothing to its stella-octangula replacement. These counts are checked against the owner and current catalog by `node scripts/check-borg-scientific-status-projection.mjs`; they are not browser constants.
+The owner-wide projection census is currently three `H4 P[M]` rows and zero `H5` passes. Of the current Borg catalog, 25 exact configurations have exact adjudication bindings; one further exact adjudication remains bound to the display-withheld centered-five-coordinate identity. The stella-octangula replacement has its own independently produced exact terminal-endpoint balance exclusion and inherits nothing from the withdrawn identity. These counts are checked against the owner and current catalog by `node scripts/check-borg-scientific-status-projection.mjs`; they are not browser constants.
 
-Plainly: Borg retains the retired row's evidence under its retired identity while treating the new replacement record as scientifically unindexed.
+Plainly: Borg retains the retired row's evidence under its retired identity and separately reports the replacement record's own exact negative result. The two identities do not lend evidence to each other.
 
 #### Catalog Composition Classifications
 

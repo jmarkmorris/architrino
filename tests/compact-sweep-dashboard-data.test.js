@@ -281,6 +281,19 @@ test("evidence index covers every current Borg identity without a compact export
   assert.equal(evidence.summary.compactTargets, campaignRegistry.candidates.length);
   assert.equal(evidence.summary.compactRows, 0);
   assert.equal(evidence.summary.stale, 0);
+  assert.deepEqual({
+    exactAdjudications: evidence.summary.exactAdjudications,
+    pass: evidence.summary.pass,
+    scopedFail: evidence.summary["scoped-fail"],
+    unknown: evidence.summary.unknown,
+    unindexed: evidence.summary.unindexed,
+  }, {
+    exactAdjudications: 25,
+    pass: 1,
+    scopedFail: 3,
+    unknown: 21,
+    unindexed: 120,
+  });
   assert.equal(
     new Set(evidence.records.map((record) =>
       `${record.assemblyId}:${record.modelRevisionSha256}`)).size,
@@ -296,4 +309,12 @@ test("evidence index covers every current Borg identity without a compact export
   assert.equal(ladderRecord.scientificStatus.context.some((relation) =>
     relation.relationId ===
       "finding-planar-three-binary-balance-ladder-2026-08-29"), true);
+  const stellaRecord = evidence.records.find((record) =>
+    record.assemblyId === "asm-242282e6154b97b00ac9d8e5123cde46");
+  assert.equal(stellaRecord.scientificStatus.coverage, "current");
+  assert.equal(stellaRecord.scientificStatus.aggregateCategory, "scoped-fail");
+  assert.equal(stellaRecord.scientificStatus.current.disposition,
+    "excluded-prescribed-balance");
+  assert.equal(stellaRecord.scientificStatus.requirements.find((requirement) =>
+    requirement.id === "H4").token, "F[D/M]");
 });

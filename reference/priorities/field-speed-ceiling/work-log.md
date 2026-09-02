@@ -1,5 +1,32 @@
 # Field-Speed Ceiling Work Log
 
+## 2026-09-02 — FSC-007 regular-chart local well-posedness and FSC-011 circular corollary
+
+- Added the [FSC-007 regular-chart theorem](regular-chart-history-to-ledger-well-posedness.md) with explicit history-to-root, received-clock, row, and complete-ledger Lipschitz constants on an atom-free finite-delay fixed-census $W^{2,\infty}$ chart.
+- Refuted global joint continuity of the pointwise tangent projection at velocity-ball contact and used the correct nonexpansive normal-cone evolution response instead.
+- Proved a short-time contraction with factor $q=hL_A$, an explicit self-map defect condition, local existence and uniqueness, and continuation up to the first named floor, census, trace, clock, history-window, tube, ownership, or event break.
+- Kept the margin-zero exact-mirror chart outside FSC-007; its frozen and characteristic records and multivalued waiting-time continuations violate the regular hypotheses.
+- Applied the theorem to the FSC-010 exact all-past circle using FSC-013's explicit census, range, delay, $D_t$, $D_r$, collision, and self-root certificates. The exact circle now has a unique local continuation inside that tube; arbitrary perturbative histories remain conditional on the displayed self-map defect and chart buffer.
+- No ceiling, response, event law, selector, stability, capture, retained binary, conservation account, canonical dynamics, Master Equation change, or reader-facing claim was adopted or promoted.
+
+## 2026-09-02 — Event-adjacent thin activation cascade excluded
+
+- Added the [event-adjacent no-cascade lemma](event-adjacent-no-cascade-lemma.md) for the isolated mirror-collinear exact-mirror chart.
+- Closed the earlier thin-set gap analytically. Any positive-measure partner activation creates a nondecreasing speed deficit; the root equation then gives one ordinary partner root at every later nearby time, so the active set cannot split into a dust or sequence of bursts.
+- Proved that activation at the event would force $m'(t)\ge K/(2t^2)$ almost everywhere and contradict absolutely continuous velocity. Every admitted local solution therefore has a positive initial ordinary-active-root-free interval.
+- Kept the boundary narrow: no symmetry-broken, transverse, external-channel, jump-clock, singular-continuous-clock, or general event-atlas conclusion follows.
+- Recorded why the result cannot restore uniqueness: straight passage and every positive prescribed waiting-time branch remain distinct compatible continuations.
+- No numerical silence, ceiling adoption, event law, selector, canonical dynamics, Master Equation change, or reader-facing promotion was used.
+
+## 2026-09-02 — Future-equivalence quotient and prescribed-onset state cycle
+
+- Added the [future-equivalence quotient theorem](future-equivalence-quotient-and-two-cycle.md) for the isolated exact-mirror class. The state now explicitly carries labeled paths and emissions, received-source clocks, ordinary and nonordinary classifications, ownership, and separately typed receiver and event measures.
+- Restricted retirement to complete record bundles with a strict all-receiver passage certificate. Zero-margin frozen, characteristic, owned, diagonal, and current-event records remain live even when they contribute no present ordinary row.
+- Proved that strict passage is preserved under every ceiling-admissible future, that equivalent states have identical future ordinary censuses and ledgers along common candidate futures, and that the proposed exact-mirror event update and multivalued continuation relation descend to the quotient when transition clauses are live-extensional.
+- Upgraded equal prescribed onsets from a spatial and reduced-record two-cycle to a genuine period-two state on the normalized event-section quotient. The result remains a prescribed-onset relation, not an autonomous breather or selector.
+- Identified the exact failure mode: any future selector that reads an archived event count, old cap duration, history integral, or other retired datum must restore that datum to the live state. No current FSC equation does so or constrains the missing positive-onset functional.
+- No field-speed ceiling, event law, swept-source law, selector, canonical dynamics, Master Equation change, or reader-facing claim was adopted or promoted.
+
 ## 2026-09-02 — FSC-006b/FSC-005 independent complete-lobe review incorporated
 
 - Incorporated the [independent complete-lobe and returning-event review](independent-complete-lobe-returning-event-review-2026-09-02.md) without editing the independent artifact. The sufficient complete-lobe theorem, returning-event measure typing, prescribed-onset spatial two-cycle, and narrow selector exclusion survive.

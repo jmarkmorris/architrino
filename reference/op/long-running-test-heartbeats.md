@@ -22,6 +22,8 @@ This file owns the operating procedure and recurrence evidence for long-running 
 10. Before a task closes, run `node scripts/dev/owned-compute-supervisor.mjs closeout --owner-task <task>` and resolve every live or identity-uncertain lease by waiting, authenticated handoff, or controlled stop. Handoff changes operational ownership only; it does not transfer scientific authority or acceptance.
 11. Use `list` or `reconcile` before examining the broader process table. The supervisor may signal an unmonitored group only when the live group leader exactly matches the lease's PID, process-group ID, process birth time, and command. Any mismatch fails closed and requires manual investigation; PID, name, CPU use, or silence alone never authorizes a signal.
 12. A detached scientific launcher retains all of its own stricter process-census, admission, memory, deadline, evidence, and acceptance obligations. The generic supervisor is an outer lifecycle envelope, not a scientific oracle or substitute for closed-world membership.
+13. Prune terminal operational records only through `prune --older-than-seconds <seconds>`. The command is a dry-run unless `--apply` is also present. It selects only terminal leases older than the threshold with `processGroupClosed: true`; it retains live, launching, stopping, unmonitored, identity-mismatched, stale-closed, too-recent, or otherwise uncertain leases. Before any apply, it verifies the exact lease and its declared canonical stdout/stderr logs are distinct regular non-symlinked files beneath `.local-data/owned-compute/`; any unsafe candidate refuses the entire apply.
+14. This repository has no task-finalization hook that receives the current owner-task identity. Therefore `closeout --owner-task <task>` is the enforceable repository command, not automatic app-level enforcement. The smallest real integration point is a task-runner or host lifecycle callback that supplies its stable owner-task label, runs `closeout` before marking that task complete, and honors a nonzero exit. Global Git hooks are not a substitute because they cannot identify the current task and must not fail on compute legitimately owned by unrelated tasks.
 
 The canonical forms are:
 
@@ -32,9 +34,13 @@ node scripts/dev/owned-compute-supervisor.mjs handoff --run-id <run-id> --to-tas
 node scripts/dev/owned-compute-supervisor.mjs stop --run-id <run-id> --reason <reason>
 node scripts/dev/owned-compute-supervisor.mjs list --active
 node scripts/dev/owned-compute-supervisor.mjs reconcile
+node scripts/dev/owned-compute-supervisor.mjs prune --older-than-seconds <seconds>
+node scripts/dev/owned-compute-supervisor.mjs prune --older-than-seconds <seconds> --apply
 ```
 
 `run` is the default for work that fits the active task. `start` returns only after the persistent sidecar and target group have registered. Detached runs survive the launching shell but cannot run beyond their declared deadline; the sidecar remains responsible for heartbeat and group cleanup. Terminal leases and logs remain local operational records and are not scientific evidence by themselves.
+
+`prune` reports selected, retained, and deleted records. Dry-run reports what would be eligible without deleting files. Apply deletes only each selected lease plus the stdout and stderr logs named by that lease; it never follows command arguments or treats referenced scientific artifacts as retention targets. A passing prune report establishes only bounded cleanup of closed operational records under the owned-compute state root. It does not establish scientific acceptance, evidence retention, closed-world process membership, or prevention of processes launched outside repository-controlled wrappers.
 
 Do not place credentials or private tokens in command-line arguments because the exact command is retained in the local lease. The source-inventory checker detects literal `detached: true` additions; the policy prohibition on shell backgrounding and computed detachment remains a review obligation rather than a closed-world source theorem.
 

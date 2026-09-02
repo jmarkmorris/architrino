@@ -61,6 +61,17 @@ test("certified prescribed-balance obstruction is scoped, exact, and fail closed
   assert.match(status.current.doesNotEstablish, /other polarity words, rotation axes, nonrigid histories/);
 });
 
+test("static stella-octangula catalog endpoint exposes only its exact balance exclusion", () => {
+  const relation = exact("static stella-octangula catalog history");
+  const status = describeBorgScientificStatus({}, relation.match, projection, integrity);
+  assert.equal(status.verdict, "Excluded prescribed history in the tested scope");
+  assert.equal(status.aggregateCategory, "scoped-fail");
+  assert.equal(status.current.disposition, "excluded-prescribed-balance");
+  assert.equal(status.requirements.find((row) => row.id === "H4").token, "F[D/M]");
+  assert.equal(status.requirements.find((row) => row.id === "H5").state, "not-applicable");
+  assert.match(status.current.doesNotEstablish, /moving stella-octangula history/);
+});
+
 test("presentation rename preserves binding while model revision change invalidates it", () => {
   const relation = exact("centered five-coordinate representative");
   assert.equal(describeBorgScientificStatus({}, { ...relation.match, label: "Renamed for readers" }, projection, integrity).coverage, "current");

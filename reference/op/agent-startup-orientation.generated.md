@@ -81,12 +81,12 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [README.md](../../README.md) | 220 | `81b723567a77aae0` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 155 | `a0be613e48258c15` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 159 | `70f90d7e3aa2f076` |
 | [reference/op/README.md](README.md) | 36 | `874e700c221e909c` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 216 | `a6b6ad0c387cdbba` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `a12ec1f00ca37b55` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6c9dc81dbdddb3f8` |
-| [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 29 | `889e7ee37c9f9f72` |
+| [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 56 | `6086e38cebf73283` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 502 | `b5ed89182fb9ef20` |
 | [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 841 | `9a420e39526ab8e2` |
 | [reference/priorities/README.md](../priorities/README.md) | 62 | `08bdcb72ca31da03` |

@@ -577,3 +577,14 @@ Plainly: three broad queue rows now have exact first mathematical objects rather
 - Claim boundary: these results comprise derived algebra and combinatorics, computer-assisted derived bounded exclusions, exact geometry, and one measured finite-point census. They establish no EOM evolution, retention, stability, binding, physical identity, score, or scientific acceptance. The next agents receive disjoint write sets and may not edit the shared queues, tracker, or this work log.
 
 Plainly: the live queues now say what the merged evidence actually proved and no more. Every remaining row begins from its narrowest unresolved mathematical object rather than repeating completed work.
+
+## 2026-09-02 — Exact Borg adjudication coverage reconciled
+
+- Recomputed the live Braid Search census over all 145 current Borg identities. Exact adjudication coverage increased from 24 to 25 after a separately predeclared endpoint calculation bound the static stella-octangula catalog record's exact `assemblyId + modelRevisionSha256` and unchanged $[0,1]$ history.
+- The endpoint packet certified all 56 retained non-self roots at $T=1$, including eight roots on the retained left boundary, and matched the unchanged independent stationary pair-sum oracle with zero vector discrepancy at binary floating-point precision. Every member had nonzero inward acceleration magnitude $2.5219178085318643$, so only the exact prescribed static history is excluded from acceleration balance; no moving history, evolution, binding, retention, stability, or physical claim follows.
+- Preserved all 120 other current identities without exact adjudications. The coverage audit partitions them into 100 equal-radius ladder variants, 11 regular alternating circular records, three individually contextualized records, and six source-defined display records; every group now carries a concrete operator-checkable blocker. Nineteen of 20 active compact-campaign targets have exact adjudications; the generic axially separated endpoint-circle chart remains blocked because its accepted release evidence belongs to a separate five-coordinate slice.
+- No compact sweep or long-running computation was launched. The tracked predeclaration, machine packet, human-readable evidence record, scientific projection, and Braid Search tests preserve exact identity, provenance, grade, scope, and falsifier boundaries.
+
+Plainly: one current identity gained a defensible exact negative result, while every other unsupported identity stayed unsupported for a stated scientific reason. The interface now shows all evidence the audit could justify without borrowing across identities.
+
+Closure goal: Keep the 25 exact current adjudications synchronized with Braid Search and require new predeclared, identity-bound science before any of the 120 explicit blockers can be retired.

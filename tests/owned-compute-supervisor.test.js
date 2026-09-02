@@ -1,13 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
+import { randomUUID } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SUPERVISOR = path.join(ROOT, "scripts/dev/owned-compute-supervisor.mjs");
+const STATE_ROOT = path.join(ROOT, ".local-data/owned-compute");
 const LEASE_DIR = path.join(ROOT, ".local-data/owned-compute/leases");
+const LOG_DIR = path.join(ROOT, ".local-data/owned-compute/logs");
 
 function invoke(args, { expectFailure = false, timeout = 15000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -22,6 +25,52 @@ function invoke(args, { expectFailure = false, timeout = 15000 } = {}) {
       }
     });
   });
+}
+
+function createPruneFixture({
+  status = "completed",
+  terminalAtUtc = "1600-01-01T00:00:00.000Z",
+  processGroupClosed = true,
+  stdoutPath: suppliedStdoutPath,
+  stderrPath: suppliedStderrPath,
+  extra = {},
+} = {}) {
+  fs.mkdirSync(LEASE_DIR, { recursive: true });
+  fs.mkdirSync(LOG_DIR, { recursive: true });
+  const runId = randomUUID();
+  const filePath = path.join(LEASE_DIR, `${runId}.json`);
+  const stdoutPath = suppliedStdoutPath ?? path.join(LOG_DIR, `${runId}.stdout.log`);
+  const stderrPath = suppliedStderrPath ?? path.join(LOG_DIR, `${runId}.stderr.log`);
+  const terminalField = status === "reconciled_stopped"
+    ? "stoppedAtUtc"
+    : status === "reconciled_closed"
+      ? "reconciledAtUtc"
+      : "finishedAtUtc";
+  const lease = {
+    schema: "architrino.owned-compute-lease.v1",
+    runId,
+    status,
+    requestedAtUtc: terminalAtUtc,
+    [terminalField]: terminalAtUtc,
+    owner: { task: `owned-compute-prune-test-${runId}`, threadId: null },
+    stdoutPath,
+    stderrPath,
+    processGroupClosed,
+    ...extra,
+  };
+  fs.writeFileSync(filePath, `${JSON.stringify(lease, null, 2)}\n`, { mode: 0o600 });
+  return { runId, filePath, stdoutPath, stderrPath };
+}
+
+function writeFixtureLogs(fixture) {
+  fs.writeFileSync(fixture.stdoutPath, "stdout\n", { mode: 0o600 });
+  fs.writeFileSync(fixture.stderrPath, "stderr\n", { mode: 0o600 });
+}
+
+function removeFixture(fixture, additionalPaths = []) {
+  for (const filePath of new Set([fixture.filePath, fixture.stdoutPath, fixture.stderrPath, ...additionalPaths])) {
+    fs.rmSync(filePath, { force: true });
+  }
 }
 
 test("foreground compute records exact ownership and closes its process group", { skip: process.platform === "win32" }, async () => {
@@ -200,5 +249,143 @@ test("identity mismatch refuses a historical or reused PID", { skip: process.pla
     assert.match(result.stderr, /refusing to signal .* process identity does not match its lease/u);
   } finally {
     fs.rmSync(filePath, { force: true });
+  }
+});
+
+test("prune applies only to old closed terminal records", { skip: process.platform === "win32" }, async () => {
+  const fixture = createPruneFixture();
+  const referencedArtifact = path.join(ROOT, ".local-data", `owned-compute-referenced-artifact-${fixture.runId}.json`);
+  const lease = JSON.parse(fs.readFileSync(fixture.filePath, "utf8"));
+  fs.writeFileSync(referencedArtifact, "scientific artifact placeholder\n", { mode: 0o600 });
+  fs.writeFileSync(fixture.filePath, `${JSON.stringify({ ...lease, args: [referencedArtifact] }, null, 2)}\n`, { mode: 0o600 });
+  writeFixtureLogs(fixture);
+  try {
+    const report = await invoke(["prune", "--older-than-seconds", "10000000000", "--apply"]);
+    assert.equal(report.status, "passed");
+    assert.equal(report.mode, "apply");
+    assert.equal(report.selected.some((record) => record.runId === fixture.runId), true);
+    assert.equal(report.deleted.some((record) => record.runId === fixture.runId), true);
+    assert.equal(fs.existsSync(fixture.filePath), false);
+    assert.equal(fs.existsSync(fixture.stdoutPath), false);
+    assert.equal(fs.existsSync(fixture.stderrPath), false);
+    assert.equal(fs.existsSync(referencedArtifact), true);
+  } finally {
+    removeFixture(fixture, [referencedArtifact]);
+  }
+});
+
+test("prune is a dry-run unless apply is explicit", { skip: process.platform === "win32" }, async () => {
+  const fixture = createPruneFixture();
+  writeFixtureLogs(fixture);
+  try {
+    const report = await invoke(["prune", "--older-than-seconds", "10000000000"]);
+    assert.equal(report.status, "passed");
+    assert.equal(report.mode, "dry-run");
+    assert.equal(report.selected.some((record) => record.runId === fixture.runId), true);
+    assert.equal(report.deleted.length, 0);
+    assert.equal(fs.existsSync(fixture.filePath), true);
+    assert.equal(fs.existsSync(fixture.stdoutPath), true);
+    assert.equal(fs.existsSync(fixture.stderrPath), true);
+  } finally {
+    removeFixture(fixture);
+  }
+});
+
+test("prune requires an explicit age threshold", { skip: process.platform === "win32" }, async () => {
+  const result = await invoke(["prune"], { expectFailure: true });
+  assert.match(result.stderr, /--older-than-seconds is required/u);
+});
+
+test("prune retains terminal records newer than the explicit age", { skip: process.platform === "win32" }, async () => {
+  const fixture = createPruneFixture({ terminalAtUtc: new Date().toISOString() });
+  writeFixtureLogs(fixture);
+  try {
+    const report = await invoke(["prune", "--older-than-seconds", "10000000000", "--apply"]);
+    const retained = report.retained.find((record) => record.runId === fixture.runId);
+    assert.equal(retained.reason, "too_recent");
+    assert.equal(report.deleted.some((record) => record.runId === fixture.runId), false);
+    assert.equal(fs.existsSync(fixture.filePath), true);
+  } finally {
+    removeFixture(fixture);
+  }
+});
+
+test("prune retains nonterminal records", { skip: process.platform === "win32" }, async () => {
+  const fixture = createPruneFixture({
+    status: "launching",
+    extra: { deadlineAtUtc: "2999-01-01T00:00:00.000Z" },
+  });
+  writeFixtureLogs(fixture);
+  try {
+    const report = await invoke(["prune", "--older-than-seconds", "10000000000", "--apply"]);
+    const retained = report.retained.find((record) => record.runId === fixture.runId);
+    assert.equal(retained.classification, "launching");
+    assert.equal(retained.reason, "nonterminal");
+    assert.equal(fs.existsSync(fixture.filePath), true);
+  } finally {
+    removeFixture(fixture);
+  }
+});
+
+test("prune refuses a declared log path outside owned-compute state", { skip: process.platform === "win32" }, async () => {
+  const runId = randomUUID();
+  const outsidePath = path.join(ROOT, ".local-data", `owned-compute-outside-${runId}.log`);
+  const fixture = createPruneFixture({ stdoutPath: outsidePath });
+  writeFixtureLogs(fixture);
+  try {
+    const result = await invoke(["prune", "--older-than-seconds", "10000000000", "--apply"], { expectFailure: true });
+    const report = JSON.parse(result.stdout);
+    const retained = report.retained.find((record) => record.runId === fixture.runId);
+    assert.equal(report.status, "refused");
+    assert.equal(retained.reason, "stdout_path_outside_state_root");
+    assert.equal(report.deleted.length, 0);
+    assert.equal(fs.existsSync(outsidePath), true);
+    assert.equal(fs.existsSync(fixture.filePath), true);
+  } finally {
+    removeFixture(fixture, [outsidePath]);
+  }
+});
+
+test("prune refuses a symlinked deletion target", { skip: process.platform === "win32" }, async () => {
+  const fixture = createPruneFixture();
+  const symlinkTarget = path.join(STATE_ROOT, `symlink-target-${fixture.runId}.log`);
+  fs.writeFileSync(symlinkTarget, "outside declared log\n", { mode: 0o600 });
+  fs.symlinkSync(symlinkTarget, fixture.stdoutPath);
+  fs.writeFileSync(fixture.stderrPath, "stderr\n", { mode: 0o600 });
+  try {
+    const result = await invoke(["prune", "--older-than-seconds", "10000000000", "--apply"], { expectFailure: true });
+    const report = JSON.parse(result.stdout);
+    const retained = report.retained.find((record) => record.runId === fixture.runId);
+    assert.equal(report.status, "refused");
+    assert.equal(retained.reason, "stdout_path_is_symlink");
+    assert.equal(report.deleted.length, 0);
+    assert.equal(fs.lstatSync(fixture.stdoutPath).isSymbolicLink(), true);
+    assert.equal(fs.existsSync(symlinkTarget), true);
+  } finally {
+    removeFixture(fixture, [symlinkTarget]);
+  }
+});
+
+test("prune retains identity-uncertain compute without signaling it", { skip: process.platform === "win32" }, async () => {
+  const fixture = createPruneFixture({
+    extra: {
+      targetIdentity: {
+        pid: process.pid,
+        pgid: process.pid,
+        started: "Thu Jan 1 00:00:00 1970",
+        command: "not-the-current-process",
+      },
+    },
+  });
+  writeFixtureLogs(fixture);
+  try {
+    const report = await invoke(["prune", "--older-than-seconds", "10000000000", "--apply"]);
+    const retained = report.retained.find((record) => record.runId === fixture.runId);
+    assert.equal(retained.classification, "uncertain");
+    assert.equal(retained.reason, "identity_uncertain");
+    assert.equal(report.deleted.some((record) => record.runId === fixture.runId), false);
+    assert.equal(fs.existsSync(fixture.filePath), true);
+  } finally {
+    removeFixture(fixture);
   }
 });

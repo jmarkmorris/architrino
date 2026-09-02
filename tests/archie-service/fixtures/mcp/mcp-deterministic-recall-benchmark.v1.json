@@ -1,0 +1,172 @@
+{
+  "schema": "archie-mcp-deterministic-recall-benchmark/v1",
+  "benchmarkId": "mcp_deterministic_recall_2026_09_02",
+  "snapshotPath": "content/generated/source-index/local-full-corpus-snapshot.v1.json",
+  "visibilityScope": "public",
+  "authorityBoundary": "Retrieval success preserves source authority and visibility. It is not proof, scientific acceptance, or permission to expose hidden material.",
+  "baseline": {
+    "engine": "exact phrase or all raw query terms",
+    "searchRecallAt10": 0,
+    "passedCases": 0,
+    "totalCases": 8,
+    "measuredBeforeChange": "2026-09-02"
+  },
+  "thresholds": {
+    "searchRecallAt10": 1,
+    "exactReadRecall": 1,
+    "topicRecall": 1,
+    "graphRecall": 1
+  },
+  "searchCases": [
+    {
+      "caseId": "fixed-void-cosmology",
+      "informationNeed": "Find the fixed-void cosmology statement from a natural-language question.",
+      "query": "Why does the Euclidean void not expand?",
+      "expectedSourceIds": [
+        "source.published-corpus.content.markdown.aaa.foundations.euclidean.void"
+      ],
+      "reviewedSources": [
+        "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+        "content/markdown/aaa/foundations/euclidean-void.md"
+      ]
+    },
+    {
+      "caseId": "clock-recovery",
+      "informationNeed": "Locate the clock-recovery chapter without requiring title-shaped input.",
+      "query": "How is clock time recovered from assembly dynamics?",
+      "expectedSourceIds": [
+        "source.published-corpus.content.markdown.aaa.spacetime.proper.time.and.time.dilation.section.conceptual-setup"
+      ],
+      "reviewedSources": [
+        "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
+      ]
+    },
+    {
+      "caseId": "magnetic-emergence-boundary",
+      "informationNeed": "Find the canonical exclusion of primitive magnetic cross-product language.",
+      "query": "What are magnetic-like phenomena in causal path history geometry?",
+      "expectedSourceIds": [
+        "source.archie-reference.content.markdown.aaa.archie.mathematics.style.guide.section.exclusions-and-scope"
+      ],
+      "reviewedSources": [
+        "content/markdown/aaa/archie/mathematics-style-guide.md"
+      ]
+    },
+    {
+      "caseId": "prescribed-versus-evolved",
+      "informationNeed": "Recover the boundary between prescribed geometry and EOM-solver evolution.",
+      "query": "How does prescribed geometry differ from EOM evolution?",
+      "expectedSourceIds": [
+        "source.published-corpus.content.markdown.aaa.noether.braid.3d.braid.assemblies.section.claim-boundary"
+      ],
+      "reviewedSources": [
+        "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
+      ]
+    },
+    {
+      "caseId": "generated-source-boundary",
+      "informationNeed": "Locate the rule that generated outputs are not hand-maintained sources.",
+      "query": "Why should generated files remain generated?",
+      "expectedSourceIds": [
+        "source.archie-reference.content.markdown.aaa.archie.software.architecture.and.maintenance.section.generated-and-derived-files"
+      ],
+      "reviewedSources": [
+        "content/markdown/aaa/archie/software-architecture-and-maintenance.md"
+      ]
+    },
+    {
+      "caseId": "causal-root-acceleration",
+      "informationNeed": "Find the acceleration law from a question about causal roots.",
+      "query": "How does the Master Equation determine acceleration from causal roots?",
+      "expectedSourceIds": [
+        "source.published-corpus.content.markdown.aaa.dynamics.master.equation"
+      ],
+      "reviewedSources": [
+        "content/markdown/aaa/dynamics/master-equation.md"
+      ]
+    },
+    {
+      "caseId": "claim-grades-and-falsifiers",
+      "informationNeed": "Find the controlled claim-grade and falsifier guidance.",
+      "query": "What are claim grades and falsifiers?",
+      "expectedSourceIds": [
+        "source.archie-reference.content.markdown.aaa.archie.academic.style.guide.section.claim-grades-and-falsifiers"
+      ],
+      "reviewedSources": [
+        "content/markdown/aaa/archie/academic-style-guide.md"
+      ]
+    },
+    {
+      "caseId": "emergent-mass",
+      "informationNeed": "Find the substrate boundary for mass using a natural-language formulation.",
+      "query": "How do architrinos acquire effective mass without primitive mass?",
+      "expectedSourceIds": [
+        "source.published-corpus.content.markdown.aaa.foundations.architrino.section.ontological-status"
+      ],
+      "reviewedSources": [
+        "content/markdown/aaa/foundations/architrino.md",
+        "content/markdown/aaa/assemblies/particle-masses.md"
+      ]
+    }
+  ],
+  "readCases": [
+    {
+      "caseId": "read-master-equation",
+      "topicOrRoute": "source.published-corpus.content.markdown.aaa.dynamics.master.equation",
+      "expectedSourceId": "source.published-corpus.content.markdown.aaa.dynamics.master.equation",
+      "expectedAuthorityStatus": "primary",
+      "requiredContent": "what exactly makes one of them accelerate?"
+    },
+    {
+      "caseId": "read-claim-grades",
+      "topicOrRoute": "source.archie-reference.content.markdown.aaa.archie.academic.style.guide.section.claim-grades-and-falsifiers",
+      "expectedSourceId": "source.archie-reference.content.markdown.aaa.archie.academic.style.guide.section.claim-grades-and-falsifiers",
+      "expectedAuthorityStatus": "primary",
+      "requiredContent": "A measured claim also names its instrument"
+    }
+  ],
+  "topicCases": [
+    {
+      "caseId": "published-topic-enumeration",
+      "filters": {
+        "sourceClasses": [
+          "published_corpus"
+        ],
+        "authorityStatuses": [
+          "primary"
+        ]
+      },
+      "expectedSourceIds": [
+        "source.published-corpus.content.markdown.aaa.dynamics.master.equation",
+        "source.published-corpus.content.markdown.aaa.spacetime.proper.time.and.time.dilation"
+      ]
+    }
+  ],
+  "graphCases": [
+    {
+      "caseId": "master-equation-neighbors",
+      "tool": "neighbors",
+      "topicOrRoute": "source.published-corpus.content.markdown.aaa.dynamics.master.equation",
+      "edgeTypes": [
+        "mirrors"
+      ],
+      "direction": "both",
+      "expectedSourceIds": [
+        "source.generated-reading-copy.content.generated.markdown.textbook.reading.copies.dynamics.master-equation"
+      ]
+    },
+    {
+      "caseId": "master-equation-walk",
+      "tool": "walk",
+      "topicOrRoute": "source.published-corpus.content.markdown.aaa.dynamics.master.equation",
+      "edgeTypes": [
+        "contains"
+      ],
+      "direction": "outgoing",
+      "maxDepth": 1,
+      "expectedSourceIds": [
+        "source.published-corpus.content.markdown.aaa.dynamics.master.equation.section.foundations-and-causal-geometry"
+      ]
+    }
+  ]
+}

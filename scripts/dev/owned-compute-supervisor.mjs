@@ -11,11 +11,14 @@ import {
   readFileSync,
 } from "node:fs";
 import {
+  lstat,
   mkdir,
   readFile,
   readdir,
+  realpath,
   rename,
   rm,
+  unlink,
   writeFile,
 } from "node:fs/promises";
 import net from "node:net";
@@ -29,6 +32,7 @@ const LEASE_DIR = path.join(STATE_ROOT, "leases");
 const LOG_DIR = path.join(STATE_ROOT, "logs");
 const PLAN_DIR = path.join(STATE_ROOT, "plans");
 const SCHEMA = "architrino.owned-compute-lease.v1";
+const PRUNE_REPORT_SCHEMA = "architrino.owned-compute-prune-report.v1";
 const TERMINAL_STATUSES = new Set([
   "completed",
   "failed",
@@ -129,6 +133,79 @@ function parseNamedArguments(argv, allowedNames) {
   const options = parseOptionList(argv);
   for (const name of options.keys()) requireCondition(allowedNames.has(name), `unsupported option: ${name}`);
   return options;
+}
+
+function parsePruneArguments(argv) {
+  let olderThanSeconds;
+  let apply = false;
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
+    if (token === "--apply") {
+      requireCondition(!apply, "--apply may be specified only once");
+      apply = true;
+      continue;
+    }
+    if (token === "--older-than-seconds") {
+      requireCondition(olderThanSeconds === undefined, "--older-than-seconds may be specified only once");
+      olderThanSeconds = positiveNumber(argv[index + 1], "--older-than-seconds", { minimum: 1 });
+      index += 1;
+      continue;
+    }
+    throw new Error(`unsupported prune option: ${token}`);
+  }
+  requireCondition(olderThanSeconds !== undefined, "--older-than-seconds is required");
+  return { olderThanSeconds, apply };
+}
+
+function pathIsInsideStateRoot(filePath) {
+  const relative = path.relative(STATE_ROOT, filePath);
+  return relative.length > 0 && !relative.startsWith(`..${path.sep}`) && relative !== ".." && !path.isAbsolute(relative);
+}
+
+function pathIsInside(rootPath, filePath) {
+  const relative = path.relative(rootPath, filePath);
+  return relative.length > 0 && !relative.startsWith(`..${path.sep}`) && relative !== ".." && !path.isAbsolute(relative);
+}
+
+async function inspectDeletionTarget(filePath, label) {
+  if (typeof filePath !== "string" || !path.isAbsolute(filePath)) {
+    return { ok: false, reason: `${label}_path_not_absolute` };
+  }
+  const resolved = path.resolve(filePath);
+  if (!pathIsInsideStateRoot(resolved)) {
+    return { ok: false, reason: `${label}_path_outside_state_root`, path: resolved };
+  }
+  let stats;
+  try {
+    stats = await lstat(resolved);
+  } catch (error) {
+    return { ok: false, reason: `${label}_path_unavailable`, path: resolved, detail: error.code ?? error.message };
+  }
+  if (stats.isSymbolicLink()) return { ok: false, reason: `${label}_path_is_symlink`, path: resolved };
+  if (!stats.isFile()) return { ok: false, reason: `${label}_path_not_regular_file`, path: resolved };
+  try {
+    const stateRootStats = await lstat(STATE_ROOT);
+    if (stateRootStats.isSymbolicLink() || !stateRootStats.isDirectory()) {
+      return { ok: false, reason: "state_root_not_trusted", path: STATE_ROOT };
+    }
+    const [actualStateRoot, actualFilePath] = await Promise.all([realpath(STATE_ROOT), realpath(resolved)]);
+    if (!pathIsInside(actualStateRoot, actualFilePath)) {
+      return { ok: false, reason: `${label}_path_resolves_outside_state_root`, path: actualFilePath };
+    }
+    return { ok: true, path: resolved, realPath: actualFilePath, device: String(stats.dev), inode: String(stats.ino) };
+  } catch (error) {
+    return { ok: false, reason: `${label}_real_path_unavailable`, path: resolved, detail: error.code ?? error.message };
+  }
+}
+
+async function verifyDeletionTarget(snapshot) {
+  const current = await inspectDeletionTarget(snapshot.path, "deletion_target");
+  requireCondition(current.ok, `refusing changed deletion target: ${snapshot.path} (${current.reason})`);
+  requireCondition(
+    current.device === snapshot.device && current.inode === snapshot.inode,
+    `refusing replaced deletion target: ${snapshot.path}`,
+  );
+  requireCondition(current.realPath === snapshot.realPath, `refusing redirected deletion target: ${snapshot.path}`);
 }
 
 async function processIdentity(pid) {
@@ -406,6 +483,183 @@ async function closeoutOwner(ownerTask) {
     lease.owner?.task === ownerTask && classification !== "terminal" && classification !== "stale_closed");
   requireCondition(active.length === 0, `${ownerTask} still owns ${active.length} live or identity-uncertain compute run(s)`);
   return { ownerTask, status: "clear", checkedLeases: rows.length };
+}
+
+function terminalTimestamp(lease) {
+  const field = lease.status === "reconciled_stopped"
+    ? "stoppedAtUtc"
+    : lease.status === "reconciled_closed"
+      ? "reconciledAtUtc"
+      : "finishedAtUtc";
+  const value = lease[field];
+  const timestampMs = Date.parse(value);
+  return Number.isFinite(timestampMs) ? { field, value, timestampMs } : null;
+}
+
+async function inspectPruneRecord(filePath, runId, lease) {
+  const leaseTarget = await inspectDeletionTarget(filePath, "lease");
+  if (!leaseTarget.ok) return { ok: false, reason: leaseTarget.reason, detail: leaseTarget.path ?? null };
+  const stdoutTarget = await inspectDeletionTarget(lease.stdoutPath, "stdout");
+  if (!stdoutTarget.ok) return { ok: false, reason: stdoutTarget.reason, detail: stdoutTarget.path ?? null };
+  const stderrTarget = await inspectDeletionTarget(lease.stderrPath, "stderr");
+  if (!stderrTarget.ok) return { ok: false, reason: stderrTarget.reason, detail: stderrTarget.path ?? null };
+  const expectedStdout = path.join(LOG_DIR, `${runId}.stdout.log`);
+  const expectedStderr = path.join(LOG_DIR, `${runId}.stderr.log`);
+  if (stdoutTarget.path !== expectedStdout) return { ok: false, reason: "stdout_path_not_canonical", detail: stdoutTarget.path };
+  if (stderrTarget.path !== expectedStderr) return { ok: false, reason: "stderr_path_not_canonical", detail: stderrTarget.path };
+  const targets = [leaseTarget, stdoutTarget, stderrTarget];
+  if (new Set(targets.map((target) => target.path)).size !== targets.length) {
+    return { ok: false, reason: "deletion_targets_not_distinct", detail: null };
+  }
+  return { ok: true, targets };
+}
+
+async function inspectClosedLeaseIdentities(lease) {
+  const identities = [
+    ["target", lease.targetIdentity],
+    ["sidecar", lease.sidecarIdentity],
+  ];
+  for (const [kind, identity] of identities) {
+    if (!identity) continue;
+    if (
+      !Number.isSafeInteger(identity.pid) || identity.pid <= 0 ||
+      !Number.isSafeInteger(identity.pgid) || identity.pgid <= 0 ||
+      typeof identity.started !== "string" || typeof identity.command !== "string"
+    ) {
+      return { ok: false, reason: "identity_uncertain", detail: `${kind}_identity_invalid` };
+    }
+    if (kind === "target") {
+      try {
+        if (groupExists(identity.pgid)) {
+          return { ok: false, reason: "recorded_process_group_still_exists", detail: String(identity.pgid) };
+        }
+      } catch (error) {
+        return { ok: false, reason: "identity_check_unavailable", detail: error.message };
+      }
+    }
+    let actualIdentity;
+    try {
+      actualIdentity = await processIdentity(identity.pid);
+    } catch (error) {
+      return { ok: false, reason: "identity_check_unavailable", detail: error.message };
+    }
+    if (actualIdentity) {
+      return {
+        ok: false,
+        reason: sameIdentity(actualIdentity, identity) ? `recorded_${kind}_identity_still_live` : "identity_uncertain",
+        detail: String(identity.pid),
+      };
+    }
+  }
+  return { ok: true };
+}
+
+async function pruneTerminalRecords({ olderThanSeconds, apply }) {
+  await ensureStateDirectories();
+  const cutoffMs = Date.now() - olderThanSeconds * 1000;
+  const cutoffAtUtc = new Date(cutoffMs).toISOString();
+  const selected = [];
+  const retained = [];
+  const candidates = [];
+  let refused = false;
+  const names = (await readdir(LEASE_DIR)).filter((name) => /^[0-9a-f-]{36}\.json$/u.test(name)).sort();
+
+  for (const name of names) {
+    const runId = name.slice(0, -".json".length);
+    const filePath = path.join(LEASE_DIR, name);
+    const leaseFile = await inspectDeletionTarget(filePath, "lease");
+    if (!leaseFile.ok) {
+      retained.push({ runId, status: "unknown", classification: "uncertain", reason: leaseFile.reason });
+      refused = true;
+      continue;
+    }
+    let lease;
+    try {
+      lease = await readJson(filePath);
+    } catch (error) {
+      retained.push({ runId, status: "unknown", classification: "uncertain", reason: "invalid_lease_json", detail: error.message });
+      refused = true;
+      continue;
+    }
+    if (lease.schema !== SCHEMA || lease.runId !== runId) {
+      retained.push({ runId, status: lease.status ?? "unknown", classification: "uncertain", reason: "invalid_lease_identity" });
+      refused = true;
+      continue;
+    }
+    const classified = await classifyLease(lease);
+    if (classified.classification !== "terminal") {
+      retained.push({
+        runId,
+        status: lease.status,
+        classification: classified.classification,
+        reason: classified.classification === "identity_mismatch_do_not_signal" ? "identity_uncertain" : "nonterminal",
+      });
+      continue;
+    }
+    if (lease.processGroupClosed !== true) {
+      retained.push({ runId, status: lease.status, classification: "terminal", reason: "process_group_not_confirmed_closed" });
+      continue;
+    }
+    const terminalAt = terminalTimestamp(lease);
+    if (!terminalAt) {
+      retained.push({ runId, status: lease.status, classification: "terminal", reason: "terminal_time_uncertain" });
+      continue;
+    }
+    if (terminalAt.timestampMs >= cutoffMs) {
+      retained.push({ runId, status: lease.status, classification: "terminal", reason: "too_recent", terminalAtUtc: terminalAt.value });
+      continue;
+    }
+    const identityInspection = await inspectClosedLeaseIdentities(lease);
+    if (!identityInspection.ok) {
+      retained.push({
+        runId,
+        status: lease.status,
+        classification: "uncertain",
+        reason: identityInspection.reason,
+        detail: identityInspection.detail,
+      });
+      continue;
+    }
+    const inspected = await inspectPruneRecord(filePath, runId, lease);
+    if (!inspected.ok) {
+      retained.push({ runId, status: lease.status, classification: "terminal", reason: inspected.reason, detail: inspected.detail });
+      refused = true;
+      continue;
+    }
+    const record = {
+      runId,
+      status: lease.status,
+      terminalAtUtc: terminalAt.value,
+      files: inspected.targets.map((target) => target.path),
+    };
+    selected.push(record);
+    candidates.push({ record, targets: inspected.targets });
+  }
+
+  const deleted = [];
+  if (apply && !refused) {
+    for (const candidate of candidates) {
+      for (const target of candidate.targets) await verifyDeletionTarget(target);
+    }
+    for (const candidate of candidates) {
+      const [leaseTarget, stdoutTarget, stderrTarget] = candidate.targets;
+      await unlink(stdoutTarget.path);
+      await unlink(stderrTarget.path);
+      await unlink(leaseTarget.path);
+      deleted.push(candidate.record);
+    }
+  }
+
+  return {
+    schema: PRUNE_REPORT_SCHEMA,
+    status: refused ? "refused" : "passed",
+    mode: apply ? "apply" : "dry-run",
+    olderThanSeconds,
+    cutoffAtUtc,
+    selected,
+    retained,
+    deleted,
+  };
 }
 
 async function runSidecar(runId) {
@@ -701,7 +955,13 @@ export async function main(argv = process.argv.slice(2)) {
     print(await closeoutOwner(options.get("--owner-task")));
     return;
   }
-  throw new Error("Usage: owned-compute-supervisor.mjs <run|start|status|list|handoff|stop|reconcile|closeout> ...");
+  if (action === "prune") {
+    const report = await pruneTerminalRecords(parsePruneArguments(rest));
+    print(report);
+    if (report.status === "refused") process.exitCode = 1;
+    return;
+  }
+  throw new Error("Usage: owned-compute-supervisor.mjs <run|start|status|list|handoff|stop|reconcile|closeout|prune> ...");
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === SELF) {

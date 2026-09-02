@@ -78,7 +78,7 @@ SHA-256 here is an integrity and scope-binding checksum, not authentication. A f
 
 ### `search`
 
-`search` normalizes Unicode with NFKC, lowercases text, collapses whitespace, scores declared title, alias, keyword, route, source-id, and indexed-content matches, and then uses source id as the final stable tie-break.
+`search` normalizes Unicode with NFKC, lowercases text, collapses whitespace, scores declared title, alias, keyword, route, source-id, and indexed-content matches, and then uses source id as the final stable tie-break. When those exact phrase and complete-term rules produce no score for a record, a bounded deterministic fallback tokenizes Unicode letters and numbers, removes a fixed list of question and function words, requires at least 60% token coverage with at least two matches for multi-token queries, and applies stable title, alias, keyword, route, and content weights. It performs no stemming, inferred synonym expansion, model call, or embedding lookup.
 
 The deterministic score includes an explicit authority preference after a lexical match. This keeps an authored primary source ahead of a generated reading copy or scene route when both match the same concept. The response exposes the numeric score and its mechanical match reasons; the score is not a probability, proof grade, or confidence in the theory claim.
 
