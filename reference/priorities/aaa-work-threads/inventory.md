@@ -77,7 +77,7 @@ These eleven directories remain in the top-level inventory without a numeric ran
 | [`mapping-electromagnetism`](../mapping-electromagnetism/priorities.md) | Integrates electromagnetic equations and benchmarks against one common assembly and sea record. | Unranked integration owner; source workstreams retain native derivation and evidence authority. |
 | [`mapping-one-nature-many-theories`](../mapping-one-nature-many-theories/priorities.md) | Cross-domain bridge assessment, editorial decisions, and promotion provenance. | Reader-facing promotion is complete; this inventory does not reopen its queue or assume ownership of domain mechanisms. |
 | [`mapping-open-problems`](../mapping-open-problems/priorities.md) | Audited control surface for the deployed Solving the Crisis paper. | No executable object remains after OP-003; future paper revision requires a new bounded task, while scientific and source work remain with their owners. |
-| [`source-mining`](../source-mining/priorities.md) | Source acquisition, source-to-corpus mapping, and completed-source provenance. | No executable object remains after SM-003; repository cleanup and domain disposition require explicit external authority. |
+| [`source-mining`](../source-mining/priorities.md) | Source acquisition, source-to-corpus mapping, and completed-source provenance. | No executable object remains; SM-004 repository cleanup still requires explicit maintenance authority, while SM-005 domain disposition is closed by the operator's non-renewal decision. |
 
 Plainly: these folders have defined responsibilities but no global numeric rank. Their own queues still determine what work is actionable.
 

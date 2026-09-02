@@ -5,9 +5,9 @@
 - Kind: `priority`
 - Queue item: `MEC-007`
 - Priority object: `mirror_close_approach_causal_root_boundary`
-- Claim level: `priority-only theorem, obstruction, and proof program`
+- Claim level: `verified priority theorem and obstruction`
 - Workstream: [master-equation-closure](priorities.md)
-- Current lifecycle status: `Awaiting verification`
+- Current lifecycle status: `Complete`
 - Promotion status: not promoted
 - Separate mathematical owner: [MEC-006 receiver wake-gradient closure](receiver-wake-gradient-closure.md) owns the fixed-reception receiver-position derivative of one admitted acceleration row, not this encounter-boundary program.
 - Routed evidence: [close-approach synthesis](../../research-office/research-history/review-packets/close-approach-causal-delay-seven-council-research-findings-2026-07-29.md), [arrival-bunching analysis](../../research-office/research-history/review-packets/master-equation-arrival-bunching-strict-subfield-research-findings-2026-07-29.md), [stationary first-boundary and self-root topology](../../research-office/research-history/review-packets/master-equation-field-speed-first-boundary-self-root-topology-2026-07-29.md), [admissible-history first-exit theorem](../../research-office/research-history/review-packets/master-equation-admissible-history-pre-coincidence-first-exit-theorem-2026-07-29.md), and [unchanged-law post-threshold obstruction](../../research-office/research-history/review-packets/master-equation-post-field-speed-existing-law-continuation-obstruction-2026-07-29.md).
@@ -130,59 +130,25 @@ Because $\rho\to0$ and $w_-+w_+\to0$ at birth, the self-row measure has infinite
 
 Plainly: every admitted row is pointwise defined at positive delay, but the new self rows accumulate an infinite update next to the excluded diagonal. The ledger therefore confirms the existing `Not advanced` obstruction and does not reopen continuation as an unchanged-law question.
 
-## Active Proof Program
+## Completed Verification
 
-### Bounded pre-boundary root-and-singularity ledger
+The [independent incoming ledger](mec-007-stationary-mirror-incoming-ledger-2026-09-02.md) and its [machine receipt](mec-007-stationary-mirror-incoming-oracle.v1.json) discharge the bounded pre-boundary program. The separately authored `mpmath` oracle preserves both persistent labels and proves the complete one-partner, zero-self census by retained-history sign bracketing and strict monotonicity. Four refinements vary step size, delayed-history representation, decimal precision, root-isolation tolerance, quadrature, and the six-section speed ladder.
 
-Execute the regular approach only while every required certificate remains strictly inside the regular chart. Preserve persistent labels and the complete causal-root census. Record:
+The finest run reaches $u(T_\ast)=1$ at $T_\ast=1.57263966427542494723320$ with $q(T_\ast)=0.0515067031419049260433244$, delayed range $R_\ast=0.291264614512075967194770$, and transmitter factor $D_t=0.528042415793909316213859$. The coordinate separation remains positive, the minimum retained-history margin is $19$, the signed relative-acceleration integral and total variation are both $2$, and the maximum reported root residual is $7.723\times10^{-67}$.
 
-1. signed coordinate-crossing status;
-2. minimum delayed range;
-3. minimum absolute transmitter Jacobian;
-4. retained-history margin;
-5. signed relative-acceleration integral;
-6. total variation;
-7. refinement across time step, history representation, arithmetic precision, root-isolation tolerance, quadrature, and section ladder; and
-8. evidence from an independently authored or analytically closed root oracle wherever that oracle has declared reach.
+Claim grade: the complete incoming root census, fixed-sign integral identity, first-event ordering, exact diagonal exclusion, and limiting-measure divergence are `derived`; the terminal coordinates and refinement behavior are `measured` by the named independent oracle. The numerical convergence spans are not interval enclosures. A missing admitted root, a lost regular margin before $T_\ast$, failed further refinement, or an independent trajectory outside the reported neighborhood would falsify the corresponding result.
 
-Stop before any uncertified root, zero-containing delayed-range or transmitter-Jacobian interval, retained-history loss, or oracle disagreement. A missing root, label swap, hidden branch deletion, same-implementation parity presented as independence, or refinement-dependent integral returns `Not advanced`.
+Plainly: the incoming calculation now reaches the threshold with every required regular margin still positive. The exact theorems establish which roots exist; the independent numerical instrument supplies the stationary endpoint values.
 
-Plainly: the ledger must show exactly which regular margin fails first. It may not fill a missing singular value with zero or a fitted finite part.
+At $T=1.395$, the independent oracle's partner emission time, transmitter factor, and receiver factor all lie inside the separately certified intervals from [`eom_stationary_joint_frontier_fixture_cli`](../../../src/eom/native/eom_stationary_joint_frontier_fixture_cli.cpp). The EOM fixture still stops before $T_\ast$ because its retained-history enclosure exceeds its root-time tolerance at the next probe. The overlap is independent evidence where both instruments have reach; it does not extend EOM solver acceptance beyond the fixture's own certified frontier.
 
-### Same-event admission and limiting measure
+Plainly: the independent path agrees with the EOM solver before the latter stops, then completes the bounded mathematical ledger on its own authority.
 
-On shrinking certified positive-separation sections, distinguish three questions:
+### Deferred diagnostic outside MEC-007 completion
 
-1. whether the canonical causal-root admission rule excludes an exact same-time, co-located partner row or merely leaves it unassigned;
-2. whether the signed all-root acceleration integral and its total variation have finite section limits; and
-3. whether any claimed limit is independent of section sequence and admitted approaching-history family.
+The earlier finite-width/core and fold-regularization sandbox remains deferred to MEC-002/MEC-003 unless a same-record wake construction supplies a derived scale and rule. It is not needed to complete MEC-007 because the unchanged-law question has the exact `Not advanced` obstruction above. No self root may be removed, and no diagnostic regulator may be presented as a selected boundary law.
 
-Omission or nonassignment of one exact same-event row does not establish a finite accumulated update or a unique outgoing retained history. Divergence, sequence dependence, family dependence, or absence of a canonical exclusion returns `Not advanced`.
-
-Plainly: removing one undefined point cannot cure a divergent accumulation in the open intervals beside it.
-
-### Conditional sandbox fallback
-
-This investigation remains deferred and must run only if the continuous wake construction cannot resolve the finite-width or regular-boundary question. At diagnostic authority, compare:
-
-- symmetric radial/core smoothing that recovers the regular inverse-square acceleration outside a width scale; and
-- a separate smooth fold/transversality regularization.
-
-Every width, fold scale, and profile is a sandbox parameter rather than a selected physical constant. Regular self interactions remain admitted; no self root may be removed. Acceptance requires a finite symmetric collinear two-body acceleration impulse, regular-law recovery outside the smoothing region and in a controlled zero-width limit, and comparisons across multiple smooth profiles that expose parameter and profile dependence. Hidden root deletion, failed regular-law recovery, a divergent or regulator-dependent claimed limit, or missing MEC-005 ownership returns `Not advanced`.
-
-No result advances beyond diagnostic authority unless a scale and rule are independently derived from a same-record wake construction.
-
-Plainly: the sandbox may compare candidate smoothings, but it cannot choose a new law or turn a convenient scale into a derived constant.
-
-## Current Execution Blocker
-
-The current-source [`eom_stationary_joint_frontier_fixture_cli`](../../../src/eom/native/eom_stationary_joint_frontier_fixture_cli.cpp) certifies the regular partner-root frontier only through $T=1.394999999999996$. Its next probe at $T=1.3999999999999959$ rejects atomically because the joint root-time enclosure width $1.0205062366854167\times10^{-5}$ exceeds the declared $10^{-5}$ tolerance even at 512-bit arithmetic. The limiting term is the retained-history remainder radius $3.8146835796385637\times10^{-6}$, not arithmetic roundoff.
-
-The fixture is also a root-frontier instrument rather than the complete MEC-007 ledger: it does not emit signed coordinate-crossing status, minimum delayed range, retained-history margin, signed relative-acceleration integral, or total variation. Its traversal/direct-route parity is same-implementation evidence and cannot serve as the independent trajectory oracle.
-
-Claim grade: `measured implementation blocker`. A tighter retained-history representation that certifies the next probe under the unchanged tolerance, or an independent full-trajectory instrument that reaches the terminal regular event, would falsify the blocker.
-
-Plainly: the present fixture stops because its retained-history enclosure is too wide and because its output schema is not the requested ledger. Increasing arithmetic precision alone does not solve either problem.
+Plainly: a future continuation proposal may use a sandbox to test itself, but MEC-007 does not need or authorize that proposal.
 
 ## Dependency Boundaries
 
@@ -200,6 +166,6 @@ Plainly: MEC-007 owns one encounter-boundary proof program. It neither replaces 
 
 MEC-007 establishes no continuation, passage, rebound, coordinate-crossing outcome, outgoing retained history, boundary value, conservation result, physical realization, stability, MEC closure, or EOM solver acceptance.
 
-MEC-007 remains `Awaiting verification`. Completion requires an independently checked complete pre-boundary ledger through the terminal regular event and an exact disposition of same-event root admission and the limiting all-root measure. The unchanged sharp-law post-threshold branch is already exhausted with `Not advanced`; it must not be presented as an open route. Any proposed new continuation or boundary prescription remains a separately authorized MEC-002/MEC-003 candidate and is outside this packet's current authority.
+MEC-007 is `Complete` at its declared priority scope. The independently checked complete pre-boundary ledger reaches the terminal regular event, the strict causal-root rule excludes the exact diagonal, and the exact newborn self-root measure proves that the unchanged sharp-law continuation is not locally finite. That continuation remains `Not advanced`; it must not be presented as an open route. Any proposed new continuation or boundary prescription remains a separately authorized MEC-002/MEC-003 candidate and is outside this packet's authority.
 
-Plainly: this slot can finish by proving exactly where the regular mirror program stops and why. It cannot finish by inventing what happens afterward.
+Plainly: this slot is finished because it proves exactly where the regular mirror program stops and why. It does not invent what happens afterward.

@@ -1,5 +1,10 @@
 # Field-Speed Ceiling Work Log
 
+## 2026-09-02 — MEC-007 stationary threshold intake verified
+
+- Updated the Field-Speed lane's intake after MEC-007 completed its bounded stationary mirror scope. The verified incoming history reaches $u=1$ at positive present separation and delayed range with one simple inward partner root per ordered channel, zero positive-delay self roots, and a complete regular-margin ledger; the unchanged open sharp-law superfield extension remains obstructed by a non-locally-finite newborn self-root measure.
+- FSC calculations may now consume this one verified activation history. The result does not derive or adopt a speed ceiling, select a boundary response, prove generic saturation, supply conservation, or remove FSC-006b/FSC-007 from the prerequisites for FSC-008.
+
 ## 2026-09-02 — FSC-013 circular-binary census-stability neighborhood completed
 
 - Added [Circular-Binary Census-Stability Neighborhood](circular-binary-census-stability-neighborhood.md) under packet identifier `fsc_circular_binary_census_stability_neighborhood/v1`.

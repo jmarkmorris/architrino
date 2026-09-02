@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 PHO-001 Reusable Absolute-History Facade Closure
+
+Closed PHO-001 with [reusable-absolute-history-facade.md](reusable-absolute-history-facade.md). `solvePrescribedAbsoluteHistoryRun` now composes the existing linearly prescribed transmitter, moving-circular transmitter, and moving-circular same-transmitter root contracts without importing Photon state. It emits explicit receiver-phase records, circular phase-spread families grouped by layer, role, charge, root kind, and cycle, and separate rejected-root and unresolved-request reason counts.
+
+Observer-field reconstruction now rejects incomplete causal factors, invalid/nonunit directions, invalid distance or charge records, and roots that fail admission. Rejected rows remain inspectable but contribute the zero vector. The existing Photon moving-circular entrypoint remains a compatibility wrapper, and arbitrary histories plus production authority remain with App Solver and the EOM solver bridge.
+
+Independent focused fixtures at $c_f=1$ pin a stationary linear root and field to $t_e=1$, delay $2$, and $\mathbf E=(1/4,0,0)$; exercise an exact bounded no-root case; verify same-transmitter receiver-phase exposure; and require invalid field geometry and unsupported history kinds to fail closed. Focused validation passed 66/66 tests. The result remains display-only-visualization evidence and establishes no photon branch, phase locking, retention, stability, helicity, Malus-law recovery, or constitutive law.
+
 ### 2026-09-02 PHO-006 Deep Configuration Comparison Closure
 
 Closed PHO-006 with [configuration-search-deep-comparison.md](configuration-search-deep-comparison.md). The Photon configuration search now has a scheduled deep path over the full constructed candidate pool, with a pre-evaluation local-$c$ filter, a post-evaluation measured phase-family filter, progress updates, and event-loop yields between candidates. Both short and deep searches reuse the same candidate builder, prescribed-path analysis, scoring, and serializer.

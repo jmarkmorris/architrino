@@ -48,6 +48,7 @@ K_TEXT = "0.2862286103053385"
 HISTORY_START_TEXT = "-20"
 INITIAL_Q_TEXT = "0.5"
 SECTION_SPEEDS = ("0.25", "0.5", "0.75", "0.9", "0.99", "1")
+TIME_CHECKPOINTS = ("1.24", "1.395")
 
 
 @dataclass(frozen=True)
@@ -93,6 +94,7 @@ class IncomingHistory:
         self.range = [mp.mpf("1")]
         self.transmitter_factor = [mp.mpf("1")]
         self.root_residual = [mp.mpf("0")]
+        self.terminal_time_bracket_width = mp.mpf("0")
 
     def _segment_index(self, time: mp.mpf) -> int:
         index = int(mp.floor(time / self.step))
@@ -165,10 +167,10 @@ class IncomingHistory:
         self.transmitter_factor[0] = 1 - self.delayed_state(emission)[1]
         self.root_residual[0] = residual
 
-    def step_once(self) -> None:
+    def _trial_step(self, width: mp.mpf) -> tuple[mp.mpf, mp.mpf]:
         time = self.times[-1]
         q0, u0 = self.q[-1], self.u[-1]
-        h = self.step
+        h = width
         k1q, k1u, _, _, _ = self.evaluate_derivative(time, q0, u0)
         k2q, k2u, _, _, _ = self.evaluate_derivative(
             time + h / 2, q0 + h * k1q / 2, u0 + h * k1u / 2
@@ -181,7 +183,26 @@ class IncomingHistory:
         )
         q1 = q0 + h * (k1q + 2 * k2q + 2 * k3q + k4q) / 6
         u1 = u0 + h * (k1u + 2 * k2u + 2 * k3u + k4u) / 6
-        time1 = time + h
+        return q1, u1
+
+    def step_once(self) -> None:
+        time = self.times[-1]
+        width = self.step
+        q1, u1 = self._trial_step(width)
+        if u1 >= 1:
+            lower, upper = mp.mpf("0"), width
+            for _ in range(180):
+                middle = (lower + upper) / 2
+                _, middle_u = self._trial_step(middle)
+                if middle_u < 1:
+                    lower = middle
+                else:
+                    upper = middle
+            width = (lower + upper) / 2
+            self.terminal_time_bracket_width = upper - lower
+            q1, _ = self._trial_step(width)
+            u1 = mp.mpf("1")
+        time1 = time + width
         _, a1, emission, residual, _ = self.evaluate_derivative(time1, q1, u1)
         delayed_u = self.delayed_state(emission)[1]
         self.times.append(time1)
@@ -204,8 +225,8 @@ def hermite_value(y0: mp.mpf, y1: mp.mpf, dy0: mp.mpf, dy1: mp.mpf, width: mp.mp
 
 def event_at_speed(history: IncomingHistory, target: mp.mpf) -> dict[str, mp.mpf]:
     right = next(index for index, speed in enumerate(history.u) if speed >= target)
-    if right == 0:
-        left = right = 0
+    if history.u[right] == target:
+        left = right
         z = mp.mpf("0")
     else:
         left = right - 1
@@ -252,6 +273,47 @@ def event_at_speed(history: IncomingHistory, target: mp.mpf) -> dict[str, mp.mpf
     }
 
 
+def checkpoint_at_time(history: IncomingHistory, reception: mp.mpf) -> dict[str, mp.mpf]:
+    if not (0 <= reception <= history.times[-1]):
+        raise ValueError("time checkpoint lies outside the incoming trajectory")
+    right = next(index for index, time in enumerate(history.times) if time >= reception)
+    if history.times[right] == reception:
+        q_value = history.q[right]
+        u_value = history.u[right]
+    else:
+        left = right - 1
+        width = history.times[right] - history.times[left]
+        z = (reception - history.times[left]) / width
+        q_value = hermite_value(
+            history.q[left], history.q[right], -history.u[left], -history.u[right], width, z
+        )
+        u_value = hermite_value(
+            history.u[left], history.u[right], history.a[left], history.a[right], width, z
+        )
+    emission, residual, root_width = history.partner_root(reception, q_value)
+    _, delayed_u = history.delayed_state(emission)
+    causal_range = reception - emission
+    transmitter_factor = 1 - delayed_u
+    acceleration = mp.mpf(K_TEXT) / (causal_range**2 * transmitter_factor)
+    return {
+        "reception": reception,
+        "q": q_value,
+        "coordinate_separation": 2 * q_value,
+        "receiver_speed": u_value,
+        "emission": emission,
+        "range": causal_range,
+        "emission_speed": delayed_u,
+        "transmitter_factor": transmitter_factor,
+        "receiver_factor": 1 + u_value,
+        "acceleration_per_receiver": acceleration,
+        "signed_relative_acceleration_integral": 2 * u_value,
+        "total_variation": 2 * u_value,
+        "retained_history_margin": emission - mp.mpf(HISTORY_START_TEXT),
+        "root_residual": residual,
+        "root_bracket_width": root_width,
+    }
+
+
 def solve(configuration: Configuration) -> dict[str, Any]:
     with mp.workdps(configuration.decimal_digits):
         history = IncomingHistory(
@@ -265,8 +327,24 @@ def solve(configuration: Configuration) -> dict[str, Any]:
                 raise RuntimeError("stationary event was not reached inside the step budget")
             history.step_once()
         sections = {speed: event_at_speed(history, mp.mpf(speed)) for speed in SECTION_SPEEDS}
+        checkpoints = {
+            time: checkpoint_at_time(history, mp.mpf(time)) for time in TIME_CHECKPOINTS
+        }
         terminal = sections["1"]
         terminal_time = terminal["reception"]
+        incoming_indices = [
+            index for index, time in enumerate(history.times) if time <= terminal_time
+        ]
+        incoming_ranges = [history.range[index] for index in incoming_indices] + [terminal["range"]]
+        incoming_factors = [
+            history.transmitter_factor[index] for index in incoming_indices
+        ] + [terminal["transmitter_factor"]]
+        incoming_emissions = [
+            history.emission[index] for index in incoming_indices
+        ] + [terminal["emission"]]
+        incoming_residuals = [
+            history.root_residual[index] for index in incoming_indices
+        ] + [terminal["root_residual"]]
 
         trapezoid = mp.mpf("0")
         for index in range(1, len(history.times)):
@@ -290,22 +368,24 @@ def solve(configuration: Configuration) -> dict[str, Any]:
                 "history_representation": configuration.history_representation,
             },
             "accepted_steps_through_bracket": len(history.times) - 1,
+            "terminal_time_bracket_width": token(history.terminal_time_bracket_width),
             "terminal": render(terminal),
             "trajectory_extrema": {
                 "minimum_q": token(terminal["q"]),
                 "minimum_coordinate_separation": token(terminal["coordinate_separation"]),
-                "minimum_delayed_range": token(min(history.range + [terminal["range"]])),
-                "minimum_abs_transmitter_factor": token(min(history.transmitter_factor + [terminal["transmitter_factor"]])),
+                "minimum_delayed_range": token(min(incoming_ranges)),
+                "minimum_abs_transmitter_factor": token(min(incoming_factors)),
                 "minimum_retained_history_margin": token(min(
-                    emission - mp.mpf(HISTORY_START_TEXT) for emission in history.emission + [terminal["emission"]]
+                    emission - mp.mpf(HISTORY_START_TEXT) for emission in incoming_emissions
                 )),
-                "maximum_abs_root_residual": token(max(abs(value) for value in history.root_residual + [terminal["root_residual"]])),
+                "maximum_abs_root_residual": token(max(abs(value) for value in incoming_residuals)),
             },
             "quadrature": {
                 "relative_acceleration_trapezoid": token(2 * trapezoid),
                 "relative_acceleration_velocity_identity": token(mp.mpf("2")),
                 "absolute_difference": token(abs(2 * trapezoid - 2)),
             },
+            "time_checkpoints": {time: render(values) for time, values in checkpoints.items()},
             "sections": {speed: render(values) for speed, values in sections.items()},
         }
 
@@ -375,6 +455,8 @@ def validate_receipt(receipt: dict[str, Any]) -> None:
             raise ValueError("terminal relative-acceleration identity failed")
         if set(run["sections"]) != set(SECTION_SPEEDS):
             raise ValueError("section ladder is incomplete")
+        if set(run["time_checkpoints"]) != set(TIME_CHECKPOINTS):
+            raise ValueError("time-checkpoint ledger is incomplete")
     if receipt["analytic_census"]["partner_root_count_per_ordered_channel"] != 1:
         raise ValueError("partner-root census is incomplete")
     if receipt["analytic_census"]["positive_delay_self_root_count_per_label"] != 0:

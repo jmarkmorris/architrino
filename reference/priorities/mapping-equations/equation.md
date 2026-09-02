@@ -199,6 +199,8 @@ The mapping direction is therefore bidirectional but level-disciplined:
 
 For `EQ-13` through `EQ-15`, solved wave data are especially high value as acceptance tests: Green-function causal support for Maxwell-like rows, mode-counting and dispersion for photon and Planck rows, Schrödinger Gaussian packets and continuity currents for record-flow rows, and Klein-Gordon/Dirac dispersion or spinor phase structure for ordered-frame rows. A solved wave comparison should score only when the solution family is tied back to one source-backed coarse-graining map, retained event/window, or branch carrier. Otherwise it remains another form of `equation_map.imported_formula`.
 
+The completed [EQM-010 Solved-Wave Inverse-Clue Audit](solved-wave-inverse-clue-audit.md) retains only the six families that already have a named row and falsifier. It adds no score or carrier evidence; its worked Green-function example fixes the exact root, provenance, transversality, and support information that a later `EQ-13` coarse-graining must export.
+
 ### Agent Target
 
 Keep this dependency note current as new suffix rows are added. `EQ-01` is already mapped; its continuing job is to police downstream dependency discipline and prevent imported-formula shortcuts.

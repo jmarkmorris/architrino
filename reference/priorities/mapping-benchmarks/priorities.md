@@ -5,7 +5,7 @@ For the overall program and the distinction between benchmark, equation, and dom
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `11`
+- Rank: `10`
 - Value: `6.95`
 - Cost: `4.6`
 - ROI: `1.51`

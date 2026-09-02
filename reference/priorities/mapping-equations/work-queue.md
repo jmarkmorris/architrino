@@ -13,9 +13,8 @@ This is the canonical execution ledger for inherited-equation mappings and score
 7. `quantum_photon_statistical_maps` — Status: `In progress`.
 8. `tri_binary_equation_bearing_search` — Status: `Queued`.
 9. `koide_charged_lepton_mass_residual` — Status: `In progress`.
-10. `solved_wave_inverse_clue_audit` — Status: `Queued`.
-11. `high_energy_process_suffix_packets` — Status: `In progress`.
-12. `high_energy_astrophysics_equation_survey` — Status: `In progress`.
+10. `high_energy_process_suffix_packets` — Status: `In progress`.
+11. `high_energy_astrophysics_equation_survey` — Status: `In progress`.
 
 ## July 28 Translating-Binary Review Action Register
 
@@ -58,7 +57,6 @@ Plainly: all deferred work is now executable only through a live owner and an ex
 
 - **EQM-001 — `lorentz_envelope_closure`.** Enclose one source-backed `S_eq` relative-periodic point with the square group-reduced residual, lift it to a full delayed history, continue that history over group velocity when transport is claimed, and run frozen-source held-out parallelism. The same retained rest/moving pair must export the exact directional support and six-component centered path second moment, with the predeclared full-matrix affine-contraction residual and same-ledger clock/ruler comparison. **Depends on:** the score-5 ladder. **Completion:** retained dynamic row identity, full-history support, exact-support and full-matrix envelope residuals, and the claimed point or transport theorem pass their independent source/acceptance checks.
 - **EQM-008 — `tri_binary_equation_bearing_search`.** Feed mature residuals into the declared frequency-family search after the partition rule exists. **Depends on:** score-5 ladder and angular-momentum partition rule. **Completion:** one predeclared search returns source-bound residual rows.
-- **EQM-010 — `solved_wave_inverse_clue_audit`.** Mine solved wave families for concrete inverse clues and acceptance tests. **Depends on:** quantum/photon maps and score-5 ladder. **Completion:** each retained clue maps to an existing equation row and falsifier.
 
 ## In progress
 

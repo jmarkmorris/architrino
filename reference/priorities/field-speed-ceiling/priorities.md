@@ -8,7 +8,7 @@
 
 ## Objective
 
-Determine the exact consequences of treating the field speed as a primitive architrino speed ceiling rather than only causal-wake propagation speed. Keep the inquiry separate from MEC-007: it may condition on MEC-007's `Awaiting verification` threshold input, but it neither promotes that input nor supplies or assumes a finite open-interval continuation, an account, conservation, or a physical realization.
+Determine the exact consequences of treating the field speed as a primitive architrino speed ceiling rather than only causal-wake propagation speed. Keep the inquiry separate from completed MEC-007: it may consume MEC-007's verified stationary threshold input and unchanged-law obstruction, but it neither turns them into a ceiling rule nor supplies or assumes a finite open-interval continuation, an account, conservation, or a physical realization.
 
 ## Scope
 
@@ -63,7 +63,7 @@ The packet is not ready for a Tao-style well-posedness review as a posed evoluti
 
 ## Dependencies and Boundaries
 
-- [MEC-007](../master-equation-closure/mirror-close-approach-causal-root-boundary.md) owns the `Awaiting verification` first-field-speed input and unchanged sharp-law post-threshold obstruction. Field-Speed calculations may consume them only conditionally; MEC-007 does not select a ceiling rule. It is the current sub-cap mirror activation test, not the exclusive way a closed-domain proposal could reach or start on its boundary.
+- Completed [MEC-007](../master-equation-closure/mirror-close-approach-causal-root-boundary.md) owns the verified stationary first-field-speed input and unchanged sharp-law post-threshold obstruction. Field-Speed calculations may consume those bounded results, but MEC-007 does not select a ceiling rule. It is one verified sub-cap mirror activation history, not the exclusive way a closed-domain proposal could reach or start on its boundary.
 - [MEC-002](../master-equation-closure/work-queue.md#mec-002--causal-wake-update-law), [MEC-003](../master-equation-closure/work-queue.md#mec-003--finite-coincident-same-transmitter-transition), [MEC-004](../master-equation-closure/work-queue.md#mec-004--same-update-conserved-accounts), and [MEC-005](../master-equation-closure/pairwise-causal-root-ledger-closure.md) retain their existing ownership and are not advanced by this investigation.
 - The EOM solver's current above-field-speed support and Braid prescribed-path diagnostics are existing scope, not evidence for or against this proposal.
 

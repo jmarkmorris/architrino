@@ -7,7 +7,6 @@ Every batch applies the [About Architrino reference policy](../../../content/mar
 ## Ranked Next Objects
 
 1. `neoclassical_repo_cleanup` — [SM-004](#sm-004--neoclassical-repository-cleanup). Status: `Deferred / blocked`.
-2. `neoclassical_domain_disposition` — [SM-005](#sm-005--neoclassical-domain-disposition). Status: `Deferred / blocked`.
 
 ## Queued
 
@@ -23,19 +22,19 @@ No rows.
 - **Evidence / blocker:** This is operational legacy work, not source-mining or theory value.
 - **Completion:** The exact repository scope, preservation rule, and archival outcome are recorded.
 
-### SM-005 — Neoclassical domain disposition
-
-- **Status:** Deferred / blocked
-- **Priority object:** `neoclassical_domain_disposition`
-- **Request / acceptance:** Decide whether to retain, transfer, or sell the `neoclassical.ai` domain.
-- **Evidence / blocker:** Requires operator authorization and current ownership/market checks.
-- **Completion:** One authorized disposition is recorded and executed.
-
 ## Awaiting verification
 
 No rows.
 
 ## Verified
+
+### SM-005 — Neoclassical domain disposition
+
+- **Status:** Verified at operator-decision grade
+- **Priority object:** `neoclassical_domain_disposition`
+- **Decision:** On 2026-09-02, the operator selected non-renewal: allow the `neoclassical.ai` registration to expire naturally at the end of its current term.
+- **Execution boundary:** No transfer, sale, early cancellation, registrar-setting change, DNS change, repository action, or credential action was authorized or performed in closing this queue item.
+- **Completion:** The required disposition is recorded and SM-005 is closed. Natural expiration is a future registrar event and is not claimed to have occurred; an externally enabled automatic renewal would prevent the intended outcome.
 
 ### SM-003 — Solving the Crisis source refresh
 

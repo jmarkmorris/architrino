@@ -6,6 +6,19 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — NAM-002 Pu-238 source-bound event packet closed
+
+- Re-verified the current NNDC ENSDF Pu-238 alpha-decay dataset and bound one selected branch to the $5456.3(3)\,\mathrm{keV}$ alpha, $43.4980(10)\,\mathrm{keV}$ ${}^{234}\mathrm{U}$ daughter level, $0.252(7)\,\mathrm{ns}$ level lifetime, $E2$ de-excitation, $\alpha_T=713(10)$ total internal-conversion coefficient, and $0.0392(8)\%$ gamma intensity.
+- Added a same-event effective ledger: $K_{\mathrm{U234}}=93.472\,\mathrm{keV}$ on the excited branch, $94.24\,\mathrm{keV}$ on the ground-state control, and $I_{\gamma}^{\mathrm{pred}}=28.98\%/(1+713)=0.04059\%$, consistent with the evaluated gamma row at source precision.
+- Bound the ensemble heat row to the IAEA's $560\,\mathrm{W\,kg^{-1}}$ Pu-238 comparison and recovered $0.567\,\mathrm{W\,g^{-1}}$ from the ENSDF half-life and mean emitted energy, a $1.3\%$ rounded-source residual. This closes the effective heat-output benchmark, not microscopic material deposition.
+- Kept beta and neutrino rows explicitly absent from the selected alpha event. Routed photon-carrier details to EQ-29 without treating the gamma line as carrier acceptance.
+- Removed NAM-002 from the live queue. The completed object is a source-bound benchmark design under the queue's `native/source-bound` completion alternative; no native alpha-rate, daughter-carrier, material-stopping, or Noether sea claim advanced.
+- First promotion blocker: `pu238_alpha_escape_event_0001`, requiring one retained parent-basin, separatrix, rate, daughter, recoil, de-excitation, material, Noether sea, path-history, and $E,\mathbf p,\mathbf J$ record. Its falsifier rejects split records, untracked heat, inherited photon acceptance, inserted beta/neutrino products, or failure to recover the declared observer rows without importing them as substrate inputs.
+
+Plainly: one evaluated decay branch now closes its alpha, recoil, daughter-transition, conversion-electron/gamma, and bulk-heat comparison rows. The lower-level event that must generate those rows remains missing and plainly labeled.
+
+Closure goal: derive `pu238_alpha_escape_event_0001` from one retained $\mathbb{A}\mathbb{A}\mathbb{A}$ parent history without importing the source-bound observer values as premises.
+
 ### 2026-09-02 — NAM-009 CPD photorepair record bridge closed
 
 - Selected cis-syn thymine CPD photorepair as the first DNA damage/repair event and added [CPD Photolyase Record-Integrity Ledger](cpd-photolyase-record-integrity-ledger.md).

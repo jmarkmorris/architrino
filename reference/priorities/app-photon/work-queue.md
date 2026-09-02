@@ -4,20 +4,11 @@ This is the canonical execution ledger for remaining Photon work. [priorities.md
 
 ## Ranked Next Objects
 
-1. `reusable_absolute_history_solver` — [PHO-001](#pho-001--reusable-absolute-history-solver). Status: `In progress`.
-2. `local_c_parameterization` — [PHO-002](#pho-002--local-c-parameterization). Status: `In progress`.
-3. `shared_visual_extraction` — [PHO-007](#pho-007--shared-visual-extraction). Status: `Deferred / blocked`.
-4. `runtime_module_decomposition` — [PHO-008](#pho-008--runtime-module-decomposition). Status: `Deferred / blocked`.
+1. `local_c_parameterization` — [PHO-002](#pho-002--local-c-parameterization). Status: `In progress`.
+2. `shared_visual_extraction` — [PHO-007](#pho-007--shared-visual-extraction). Status: `Deferred / blocked`.
+3. `runtime_module_decomposition` — [PHO-008](#pho-008--runtime-module-decomposition). Status: `Deferred / blocked`.
 
 ## In progress
-
-### PHO-001 — Reusable absolute-history solver
-
-- **Status:** In progress
-- **Priority object:** `reusable_absolute_history_solver`
-- **Request / acceptance:** Generalize the shared facade beyond Photon circular histories, expose receiver phase records, deepen phase-spread and rejected-root diagnostics, and harden observer-field reconstruction for local-$c$ translation.
-- **Evidence / blocker:** Existing Photon circular-history facades are compatibility/reference capabilities; general solver ownership routes to App Solver.
-- **Completion:** The generalized capability has explicit ownership, independently checked root/field fixtures, and no Photon-only assumption in its reusable contract.
 
 ### PHO-002 — Local-c parameterization
 
@@ -54,6 +45,14 @@ No rows.
 No rows.
 
 ## Verified
+
+### PHO-001 — Reusable absolute-history solver
+
+- **Status:** Verified
+- **Priority object:** `reusable_absolute_history_solver`
+- **Request / acceptance:** Generalize the shared facade beyond Photon circular histories, expose receiver phase records, deepen phase-spread and rejected-root diagnostics, and harden observer-field reconstruction for local-$c$ translation.
+- **Evidence:** The [reusable absolute-history facade packet](reusable-absolute-history-facade.md) fixes display/reference ownership and the boundary to the three already implemented history contracts. `solvePrescribedAbsoluteHistoryRun` dispatches linear, moving-circular, and moving-circular same-transmitter roots; emits receiver phase, circular family spreads, and exact root/request rejection counts; and rejects malformed field branches with zero contribution. The Photon-specific moving-circular entrypoint remains a compatibility wrapper.
+- **Completion:** Verified 2026-09-02. An independent stationary linear fixture gives $t_e=1$, delay $2$, and $\mathbf E=(1/4,0,0)$ at $c_f=1$; separate fixtures cover a bounded no-root request, same-transmitter receiver phase, invalid field geometry, and unsupported-history fail-closed behavior. Focused validation passed 66/66. The facade remains display-only and does not replace production EOM ownership or establish a physical photon branch.
 
 ### PHO-006 — Configuration Search comparison
 

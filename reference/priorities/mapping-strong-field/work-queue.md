@@ -3,7 +3,7 @@
 ## Ranked Next Objects
 
 1. `observer_predictions` — [SF-002](#sf-002--observer-level-strong-field-predictions). Status: `In progress`.
-2. `horizon_entropy_packet` — [SF-003](#sf-003--horizon-entropy-packet). Status: `Queued`.
+2. `horizon_entropy_packet` — [SF-003](#sf-003--horizon-entropy-packet). Status: `In progress`.
 3. `release_channel_selection` — [SF-004](#sf-004--release-channel-selection). Status: `Queued`.
 4. `discriminating_observable` — [SF-005](#sf-005--discriminating-strong-field-observable). Status: `Queued`.
 5. `high_energy_source_sink_taxonomy` — [SF-006](#sf-006--high-energy-sourcesink-taxonomy). Status: `Queued`.
@@ -25,7 +25,7 @@ Derive an observer-level prediction set from the embedded boundary-condition for
 
 Define the horizon-interface label ensemble and local block-entropy density from admissible $\Lambda_{\text{NS}}$ states; state entropy-area and Page-curve recovery targets, including tests of proposed horizon identifications.
 
-**Status note:** kernel-handoff-ready; terminal-enumerator consumption and coefficient derivation remain.
+**Status note:** The [terminal-enumerator contract](horizon-interface-label-entropy-enumerator-contract.md) defines the admitted quotient ensemble, extendable local block family, exact area-coefficient reduction, small-block independence requirement, Page comparison, and horizon-identification falsifiers. The derived contract is complete, but no accepted horizon-interface carrier supplies finite $\Lambda_{\mathrm{NS}}^H$ labels for terminal enumeration; the item remains open with verdict `blocked_missing_accepted_black_hole_horizon_interface_carrier`.
 
 **Depends on:** SF-002.
 

@@ -44,7 +44,7 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `15`
+- Rank: `14`
 - Value: `1.70`
 - Cost: `3.3`
 - ROI: `0.52`

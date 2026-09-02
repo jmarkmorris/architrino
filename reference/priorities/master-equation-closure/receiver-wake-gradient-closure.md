@@ -35,9 +35,9 @@ This packet derives one fixed-reception spatial derivative and designs its small
 - stability, binding, retention, rebound, or a physical energy account;
 - an EOM solver acceptance result;
 - a finite fold or coincident same-transmitter continuation; or
-- closure of MEC-001, MEC-005, or MEC-007.
+- closure of MEC-001 or MEC-005, or any enlargement of completed MEC-007.
 
-The stationary mirror first-boundary theorem, complete pre-boundary root and singularity ledger, same-event root-admission question, and unchanged sharp-law post-threshold obstruction are owned separately by [MEC-007](mirror-close-approach-causal-root-boundary.md). They are not MEC-006 verification or completion evidence.
+The stationary mirror first-boundary theorem, complete pre-boundary root and singularity ledger, exact same-event exclusion, and unchanged sharp-law post-threshold obstruction are completed separately by [MEC-007](mirror-close-approach-causal-root-boundary.md). They are not MEC-006 verification or completion evidence.
 
 MEC-005 may use this result only as an acceleration-operator readiness obligation. Its two-body conservation interpretation remains gated on an accepted MEC-006 receiver/self gradient, the separate MEC-001 action adjudication where that route is invoked, and the independently derived wake and boundary accounts already required by MEC-002 and MEC-004.
 
@@ -963,8 +963,8 @@ MEC-006 sharpens MEC-001 rather than replacing it. MEC-001 owns the complete rec
 
 MEC-006 also sharpens MEC-005 rather than replacing it. MEC-005 owns root enumeration, multiplicity, provenance, and boundary attribution. MEC-006 owns the derivative of each admitted regular acceleration row. Any future boundary derivative rule must retain both incident root identities, give the derivative boundary transition a single owner, and prohibit duplicate booking as both a root row and a boundary row.
 
-MEC-007 separately owns the mirror close-approach event geometry, incoming first-boundary theorems, same-event measure test, and unchanged-law post-threshold obstruction. MEC-006 applies to that program only if a calculation consumes a receiver/self acceleration-gradient row.
+Completed MEC-007 separately owns the mirror close-approach event geometry, incoming first-boundary theorems, same-event measure disposition, and unchanged-law post-threshold obstruction. MEC-006 applies to that record only if a calculation consumes a receiver/self acceleration-gradient row.
 
-MEC-004 remains separate. No boundary acceleration-gradient prescription supplies a signed account value. If a future boundary update is accepted, MEC-004 must derive its signed maps on that identical update rather than constructing them from a residual. MEC-005's two-body conservation interpretation remains gated on MEC-007's unresolved encounter boundary, on an accepted MEC-006 self-compatible derivative disposition wherever such rows are consumed, and on the separately required account closure on the same encounter record.
+MEC-004 remains separate. No boundary acceleration-gradient prescription supplies a signed account value. If a future boundary update is accepted, MEC-004 must derive its signed maps on that identical update rather than constructing them from a residual. MEC-007's encounter boundary is now disposed as an unchanged-law obstruction, but MEC-005's two-body conservation interpretation remains gated on an accepted MEC-006 self-compatible derivative disposition wherever such rows are consumed, a separately selected MEC-002/MEC-003 boundary update, and the required account closure on that same update.
 
 Plainly: the regular mathematical derivative is now independently checked term by term. The unresolved problem is confined to singular-boundary semantics. Choosing among the listed options would add a new assumption, so this evidence-only pass does not make that choice.

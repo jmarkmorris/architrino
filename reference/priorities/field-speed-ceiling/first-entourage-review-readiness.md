@@ -97,11 +97,10 @@ Plainly: the zero jump, the source emissions, and the received acceleration are 
 
 1. **Primitive ceiling not derived.** No canonical premise proves $\|\mathbf V\|\le c_f$ for an architrino.
 2. **Regular response law remains proposed.** The closed ball, absolute continuity, radial normal-cone reaction, and ledger-first operation order are proposed clauses. The Euclidean least-change projection follows a.e. from those clauses, but not from the bare speed inequality.
-3. **MEC-007 input unverified.** First field-speed arrival, the incoming partner root, and the unchanged-sharp-law obstruction remain `Awaiting verification`.
-4. **Same-transmitter equality convention unadopted.** The inactive co-moving self-contact classification is proposed and limited to its declared geometry.
-5. **Zero contact impulse not derived.** Neither point emission, positive-separation reception, symmetry, nor the velocity constraint proves $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
-6. **Receiver-side contact measure undefined.** Typing the source, ordinary receiver, and event-update measures does not construct $\boldsymbol{\mathsf M}^{\mathrm{contact}}_i$ or its response.
-7. **Zero event coefficient has no limit authority.** The proposed $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$ is not a cancellation, principal value, finite part, or regulator-independent limit of a received measure.
+3. **Same-transmitter equality convention unadopted.** The inactive co-moving self-contact classification is proposed and limited to its declared geometry. MEC-007 now verifies the incoming stationary threshold and unchanged-law obstruction but does not select this convention.
+4. **Zero contact impulse not derived.** Neither point emission, positive-separation reception, symmetry, nor the velocity constraint proves $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
+5. **Receiver-side contact measure undefined.** Typing the source, ordinary receiver, and event-update measures does not construct $\boldsymbol{\mathsf M}^{\mathrm{contact}}_i$ or its response.
+6. **Zero event coefficient has no limit authority.** The proposed $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$ is not a cancellation, principal value, finite part, or regulator-independent limit of a received measure.
 8. **Candidate topology unproved.** The proposed BV/Radon and weak-* topology has not been shown sufficient, closed, or compatible with the delayed root construction.
 9. **FSC-006a far-part theorem completed conditionally.** Simple-branch total-variation transfer and the explicit branch-collapse, receiver left-trace, kernel, label, and competing-stratum hypotheses now yield local total-variation convergence, the exact endpoint residue, and the no-finite-Radon endpoint theorem. The earlier topology alone still does not imply those moving-time hypotheses.
 10. **Guard ownership conditions unproved.** The half-open convention, two-channel ownership, endpoint/family separation, competing-strata routing, and outgoing restart record are declared requirements, not consequences of the canonical law.

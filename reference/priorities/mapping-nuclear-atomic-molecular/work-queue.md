@@ -5,13 +5,12 @@ This is the canonical execution ledger for nuclear-to-molecular recovery work.
 ## Ranked Next Objects
 
 1. `iron_group_binding_cusp_recovery` — Status: `Deferred / blocked`.
-2. `nuclear_radiation_worked_examples` — Status: `In progress`.
-3. `hydrogen_gamma_n_record_extraction` — Status: `Deferred / blocked`.
-4. `no_open_color_finite_tail_route` — Status: `Deferred / blocked`.
+2. `hydrogen_gamma_n_record_extraction` — Status: `Deferred / blocked`.
+3. `no_open_color_finite_tail_route` — Status: `Deferred / blocked`.
 
 ## In progress
 
-- **NAM-002 — `nuclear_radiation_worked_examples`.** Close native rate, daughter de-excitation, material heat-deposition, and provenance rows for alpha, beta, gamma, radioisotope, and heat packets. **Completion:** the first packet uses one native/source-bound event record and routes photon details separately.
+No rows.
 
 ## Queued
 

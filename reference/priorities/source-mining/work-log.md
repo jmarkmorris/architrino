@@ -6,11 +6,17 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Neoclassical domain non-renewal decision
+
+The operator decided not to renew the `neoclassical.ai` domain and to allow its registration to expire naturally at the end of the current term. This closes SM-005 at operator-decision grade. No transfer, sale, early cancellation, registrar-setting change, DNS change, repository action, or credential action was performed, and the future registrar expiration is not claimed as an observed event. An externally enabled automatic renewal would prevent the intended outcome.
+
+SM-004 remains separate and deferred because any cleanup of the legacy repository still requires an explicit repository-maintenance packet.
+
 ### 2026-09-02 — Solving the Crisis source refresh
 
 SM-003 was resolved against the complete 44-chapter retained set in the Open Problems claim-level audit. The [source-refresh packet](solving-the-crisis-source-refresh-2026-09-02.md) replaces broad public-list orientation with an exact chapter-by-chapter ledger of primary papers, scholarly reviews, official data releases, and experiment records. A direct title-and-number comparison found 44 unique matches in sequence and no retained row for excluded chapters 45–46.
 
-The packet records each source's local role and keeps standard frameworks at their exact authority: recovery target, observational constraint, or comparison. It does not import external ontology or equations into architrino-level reasoning, does not create a recurring gate, and does not add decorative citations to the reader-facing chapter. Source Mining now has no executable item; SM-004 and SM-005 remain deferred because they require explicit repository-maintenance or ownership/disposition authority.
+The packet records each source's local role and keeps standard frameworks at their exact authority: recovery target, observational constraint, or comparison. It does not import external ontology or equations into architrino-level reasoning, does not create a recurring gate, and does not add decorative citations to the reader-facing chapter. At completion of that batch, Source Mining had no executable item; SM-004 and SM-005 were deferred because they required explicit repository-maintenance or ownership/disposition authority. The later operator decision recorded above closes SM-005.
 
 ### 2026-09-02 — Legacy technology and operations recovery audit
 

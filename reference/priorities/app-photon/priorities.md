@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `7`
-- Value: `9.24`
-- Cost: `3.7`
-- ROI: `2.50`
+- Rank: `17`
+- Value: `2.00`
+- Cost: `6.6`
+- ROI: `0.30`
 - Status: `active`
 
 ## Current
@@ -33,7 +33,7 @@ The current app implements:
 - pause/play, Space bar pause/play, Reset time, Reset all, Paths, and Slow/Fast controls;
 - Virtual Observer $x$, $y$, and $z$ controls with visible zero markers and near-zero snap;
 - direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls plus a first Lorentz-factor local-$c$ mode that derives both speeds from $\gamma$;
-- default `Absolute history` mode that translates source and Virtual Observer histories at $c_\gamma$ and uses a shared solver-layer moving-circular absolute-history run facade as the first moving-apparatus solver path;
+- default `Absolute history` mode that translates source and Virtual Observer histories at $c_\gamma$ and uses the shared prescribed-path absolute-history facade through its moving-circular compatibility entrypoint;
 - a three-cycle Electric Field plot based on causal-root branch sums;
 - absolute-history source-scan diagnostics for no-catch-up sources, stale windows, near misses, and root-cap hits;
 - a machine-readable `photon-moving-apparatus-delta-x.v1` record that makes absolute history authoritative for $\Delta x$, marks co-moving output comparison-only, and classifies retained-root age in declared reference-cycle bands;
@@ -155,7 +155,7 @@ The Virtual Observer $x$, $y$, and $z$ sliders should continue to show a visible
 
 The lower Electric Field plot is based on a Virtual Observer branch-sum calculation from the architrino source histories in the two braids. This mapping is diagnostic-only and is not a photon-substrate derivation or closure certificate. The current root equation uses the visible signal-speed control $c_{\mathrm{sig}}/c_f$.
 
-The default calculation is now `Absolute history`: the two braid centers and the Virtual Observer translate at $c_\gamma$, and the Electric Field plot is reconstructed from shared solver-layer moving-circular transmitter roots and observer-field contributions. The `co_moving` mode remains available as a comparison diagnostic where braid centers are held at fixed app-frame offsets and the Virtual Observer is held at a fixed app-frame coordinate. Absolute history is still not the final photon-substrate calculation because same-transmitter self-hit coverage, deeper phase-spread summaries, and broader transmitter-history generalization remain open.
+The default calculation is now `Absolute history`: the two braid centers and the Virtual Observer translate at $c_\gamma$, and the Electric Field plot is reconstructed from shared prescribed-path moving-circular transmitter roots and observer-field contributions. The `co_moving` mode remains available as a comparison diagnostic where braid centers are held at fixed app-frame offsets and the Virtual Observer is held at a fixed app-frame coordinate. The [reusable absolute-history facade](reusable-absolute-history-facade.md) now composes the existing linear, moving-circular, and moving-circular same-transmitter contracts, exposes receiver-phase and phase-spread records, and rejects invalid field branches without contribution. It remains a display/reference capability; arbitrary history families and production EOM ownership remain with App Solver.
 
 The Virtual Observer coordinate is
 
@@ -341,7 +341,7 @@ This means the co-moving branch sum is not enough for photon-substrate closure. 
 
 #### Reusable Solver Contract
 
-The moving-apparatus calculation and the same-transmitter self-hit calculation should share one reusable absolute-history solver. The solver should accept transmitter histories, a receiver history, the declared photon-channel speed $c_\gamma$, the branch signal speed $c_{\mathrm{sig}}$, and an admissibility policy, then return:
+The moving-apparatus calculation and the same-transmitter self-hit calculation share one reusable display/reference absolute-history facade. The facade accepts the existing declared transmitter and receiver history contracts, the declared photon-channel speed $c_\gamma$ where it enters those histories, the branch signal speed $c_{\mathrm{sig}}$, and an admissibility policy, then returns:
 
 - every retained source-to-observer causal root;
 - every retained same-transmitter causal root when self-hit diagnostics are enabled;
@@ -372,7 +372,7 @@ Phase-lock should be treated as an output diagnostic of this solver, not as an i
 - do same-transmitter roots return at phase positions that reinforce the emitting binary;
 - and do linear, circular, or elliptical observer candidates correspond to low phase-spread root families.
 
-Candidate phase-lock mechanisms include partner-hit loops, same-transmitter self-hit loops, and any retained causal round-trip family whose phase results recur across cycles. The reusable solver should therefore provide phase-spread summaries by layer, braid role, charge sign, root kind, and cycle. These summaries should let the app distinguish a manually chosen phase preset from a causal phase-lock family produced by the delayed branch geometry.
+Candidate phase-lock mechanisms include partner-hit loops, same-transmitter self-hit loops, and any retained causal round-trip family whose phase results recur across cycles. The reusable facade provides circular phase-spread summaries by layer, braid role, charge sign, root kind, and cycle, with explicit missing and not-applicable receiver-phase counts. These summaries let the app distinguish a manually chosen phase preset from a causal phase-family diagnostic produced by the delayed branch geometry; they do not establish retained phase locking.
 
 #### Field-Reconstruction Pipeline
 
@@ -404,7 +404,7 @@ can nominate self-hit candidate regimes, but a self-hit exists only when the sol
 
 #### Solver Interface
 
-Photon should use the EOM solver bridge for transmitter histories, receiver histories, causal-root ledgers, same-transmitter roots, phase-at-hit results, rejected-root reasons, Jacobian diagnostics, and observer-field reconstruction.
+Photon should use the EOM solver bridge for production-authoritative transmitter histories, receiver histories, causal-root ledgers, same-transmitter roots, phase-at-hit results, rejected-root reasons, Jacobian diagnostics, and observer-field reconstruction. The shared prescribed-path facade remains the compatibility/reference implementation for the currently declared linear and circular history contracts and must not become a second production solver.
 
 ### Polarization And Formulas
 
