@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 612,
-      "edges": 1380,
+      "nodes": 611,
+      "edges": 1379,
       "scenes": 394,
       "markdownIndexes": 0,
-      "markdownDocs": 201,
+      "markdownDocs": 200,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -348,7 +348,7 @@
     },
     {
       "id": "archie__ideal_braid",
-      "name": "A1 Lorentz Geometry",
+      "name": "Coincident-Midpoint Three-Axis Circular Lorentz Geometry",
       "path": "content/scenes/archie/ideal_braid.json",
       "nodeType": "scene"
     },
@@ -2399,63 +2399,15 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_braid__explored_braid_geometries",
-      "name": "Explored Braid Geometries",
-      "path": "content/scenes/noether-braid/explored_braid_geometries.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__spindle_braid",
-      "name": "Spindle Braid",
-      "path": "content/scenes/noether-braid/spindle_braid.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__doubling_frequency_lock",
-      "name": "Doubling-Frequency Resonance Lock",
-      "path": "content/scenes/noether-braid/doubling_frequency_lock.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__braid_a2_symmetry_and_return_response",
-      "name": "A2 Symmetry and Return Response",
-      "path": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "noether_braid__braid_analysis_methodology",
       "name": "Candidate Braid Analysis Methodology",
       "path": "content/scenes/noether-braid/braid_analysis_methodology.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_braid__braid_family_a",
-      "name": "Braid Family A",
-      "path": "content/scenes/noether-braid/braid_family_a.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__braid_family_b",
-      "name": "Braid Family B",
-      "path": "content/scenes/noether-braid/braid_family_b.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__braid_family_c",
-      "name": "Braid Family C",
-      "path": "content/scenes/noether-braid/braid_family_c.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "noether_braid__braid_taxonomy",
       "name": "Braid Taxonomy",
       "path": "content/scenes/noether-braid/braid_taxonomy.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__braid_family_a_overview",
-      "name": "Braid Family A",
-      "path": "content/scenes/noether-braid/braid_family_a_overview.json",
       "nodeType": "scene"
     },
     {
@@ -2501,9 +2453,57 @@
       "nodeType": "scene"
     },
     {
-      "id": "dynamics__shared_circle_assemblies",
-      "name": "Shared-Circle Assemblies",
-      "path": "content/scenes/dynamics/shared_circle_assemblies.json",
+      "id": "archie__brand_visual_identity",
+      "name": "Brand Visual Identity Guide",
+      "path": "content/scenes/archie/brand_visual_identity.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__branding_and_marketing_overview",
+      "name": "Branding & Marketing Overview",
+      "path": "content/scenes/archie/branding_and_marketing_overview.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__branding_and_marketing",
+      "name": "Branding & Marketing",
+      "path": "content/scenes/archie/branding_and_marketing.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__2d_braid_assemblies",
+      "name": "Planar (2D) Braid Assemblies",
+      "path": "content/scenes/noether-braid/2d_braid_assemblies.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__3d_braid_assemblies",
+      "name": "Spatial (3D) Braid Assemblies",
+      "path": "content/scenes/noether-braid/3d_braid_assemblies.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__coincident_axis_three_binary_symmetry",
+      "name": "Coincident-Axis Three-Binary Symmetry",
+      "path": "content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__coordinate_axis_six_point_symmetry_and_return_response",
+      "name": "Coordinate-Axis Six-Point Symmetry and Return Response",
+      "path": "content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__three_binary_4_2_1_frequency_lock",
+      "name": "Three-Binary 4:2:1 Frequency Lock",
+      "path": "content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__zero_axial_offset_three_binary_dynamics_and_interpretation",
+      "name": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+      "path": "content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json",
       "nodeType": "scene"
     },
     {
@@ -2534,6 +2534,12 @@
       "id": "content/markdown/aaa/archie/academic-style-guide.md",
       "name": "Academic Style Guide",
       "path": "content/markdown/aaa/archie/academic-style-guide.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/branding-and-marketing.md",
+      "name": "Branding and Marketing",
+      "path": "content/markdown/aaa/archie/branding-and-marketing.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2664,7 +2670,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
-      "name": "A1 Lorentz Geometry Guide",
+      "name": "Coincident-Midpoint Three-Axis Circular Lorentz Geometry Guide",
       "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc"
     },
@@ -2927,12 +2933,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
-      "name": "Shared-Circle Assemblies",
-      "path": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/foundations/absolute-time-defense.md",
       "name": "Absolute Time Defense",
       "path": "content/markdown/aaa/foundations/absolute-time-defense.md",
@@ -2987,21 +2987,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
-      "name": "Braid A1 Dynamics and Interpretation",
-      "path": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+      "id": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+      "name": "Planar (2D) Braid Assemblies",
+      "path": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-      "name": "A2 Symmetry and Return Response",
-      "path": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
-      "name": "A3.3 Doubling-Frequency Resonance Lock",
-      "path": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "id": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+      "name": "Spatial (3D) Braid Assemblies",
+      "path": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3011,33 +3005,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
-      "name": "B1 Hypotheses and Discrete Symmetry",
-      "path": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "name": "Braid Envelope Geometry",
       "path": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/braid-family-a.md",
-      "name": "Braid Family A",
-      "path": "content/markdown/aaa/noether-braid/braid-family-a.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/braid-family-b.md",
-      "name": "Braid Family B",
-      "path": "content/markdown/aaa/noether-braid/braid-family-b.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/braid-family-c.md",
-      "name": "Braid Family C",
-      "path": "content/markdown/aaa/noether-braid/braid-family-c.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3059,6 +3029,18 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+      "name": "Coincident-Axis Three-Binary Symmetry",
+      "path": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+      "name": "Coordinate-Axis Six-Point Symmetry and Return Response",
+      "path": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "name": "Noether Braid Configuration Space",
       "path": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
@@ -3074,6 +3056,18 @@
       "id": "content/markdown/aaa/noether-braid/noether-braid.md",
       "name": "Noether Braid",
       "path": "content/markdown/aaa/noether-braid/noether-braid.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+      "name": "Three-Binary 4:2:1 Frequency Lock",
+      "path": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
+      "name": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+      "path": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3233,9 +3227,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
-      "name": "Mapping the Planck Scale to the A1 Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
+      "name": "Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3527,12 +3521,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
-      "name": "A1 Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "name": "Action Model Comparison",
       "path": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
@@ -3638,6 +3626,12 @@
       "id": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
       "name": "Bell-Family Record-Measure Harness",
       "path": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
+      "name": "Coincident-Midpoint Orthogonal-Axis Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3838,6 +3832,33 @@
       "name": "Braid Search",
       "path": "content/scenes/archie/braid_search.json",
       "searchTarget": "content/scenes/archie/braid_search.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/brand_visual_identity.json",
+      "nodeType": "scene",
+      "id": "archie__brand_visual_identity",
+      "name": "Brand Visual Identity Guide",
+      "path": "content/scenes/archie/brand_visual_identity.json",
+      "searchTarget": "content/scenes/archie/brand_visual_identity.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/branding_and_marketing_overview.json",
+      "nodeType": "scene",
+      "id": "archie__branding_and_marketing_overview",
+      "name": "Branding & Marketing Overview",
+      "path": "content/scenes/archie/branding_and_marketing_overview.json",
+      "searchTarget": "content/scenes/archie/branding_and_marketing_overview.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/branding_and_marketing.json",
+      "nodeType": "scene",
+      "id": "archie__branding_and_marketing",
+      "name": "Branding & Marketing",
+      "path": "content/scenes/archie/branding_and_marketing.json",
+      "searchTarget": "content/scenes/archie/branding_and_marketing.json",
       "implicit": false
     },
     {
@@ -4069,7 +4090,7 @@
       "nodeId": "scene:content/scenes/archie/ideal_braid.json",
       "nodeType": "scene",
       "id": "archie__ideal_braid",
-      "name": "A1 Lorentz Geometry",
+      "name": "Coincident-Midpoint Three-Axis Circular Lorentz Geometry",
       "path": "content/scenes/archie/ideal_braid.json",
       "searchTarget": "content/scenes/archie/ideal_braid.json",
       "implicit": false
@@ -4684,15 +4705,6 @@
       "name": "Master Equation",
       "path": "content/scenes/dynamics/master_equation_of_motion.json",
       "searchTarget": "content/scenes/dynamics/master_equation_of_motion.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/dynamics/shared_circle_assemblies.json",
-      "nodeType": "scene",
-      "id": "dynamics__shared_circle_assemblies",
-      "name": "Shared-Circle Assemblies",
-      "path": "content/scenes/dynamics/shared_circle_assemblies.json",
-      "searchTarget": "content/scenes/dynamics/shared_circle_assemblies.json",
       "implicit": false
     },
     {
@@ -5857,12 +5869,21 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
+      "nodeId": "scene:content/scenes/noether-braid/2d_braid_assemblies.json",
       "nodeType": "scene",
-      "id": "noether_braid__braid_a2_symmetry_and_return_response",
-      "name": "A2 Symmetry and Return Response",
-      "path": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
-      "searchTarget": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
+      "id": "noether_braid__2d_braid_assemblies",
+      "name": "Planar (2D) Braid Assemblies",
+      "path": "content/scenes/noether-braid/2d_braid_assemblies.json",
+      "searchTarget": "content/scenes/noether-braid/2d_braid_assemblies.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/noether-braid/3d_braid_assemblies.json",
+      "nodeType": "scene",
+      "id": "noether_braid__3d_braid_assemblies",
+      "name": "Spatial (3D) Braid Assemblies",
+      "path": "content/scenes/noether-braid/3d_braid_assemblies.json",
+      "searchTarget": "content/scenes/noether-braid/3d_braid_assemblies.json",
       "implicit": false
     },
     {
@@ -5881,42 +5902,6 @@
       "name": "Braid Envelope Geometry",
       "path": "content/scenes/noether-braid/braid_envelope_geometry.json",
       "searchTarget": "content/scenes/noether-braid/braid_envelope_geometry.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/braid_family_a_overview.json",
-      "nodeType": "scene",
-      "id": "noether_braid__braid_family_a_overview",
-      "name": "Braid Family A",
-      "path": "content/scenes/noether-braid/braid_family_a_overview.json",
-      "searchTarget": "content/scenes/noether-braid/braid_family_a_overview.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/braid_family_a.json",
-      "nodeType": "scene",
-      "id": "noether_braid__braid_family_a",
-      "name": "Braid Family A",
-      "path": "content/scenes/noether-braid/braid_family_a.json",
-      "searchTarget": "content/scenes/noether-braid/braid_family_a.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/braid_family_b.json",
-      "nodeType": "scene",
-      "id": "noether_braid__braid_family_b",
-      "name": "Braid Family B",
-      "path": "content/scenes/noether-braid/braid_family_b.json",
-      "searchTarget": "content/scenes/noether-braid/braid_family_b.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/braid_family_c.json",
-      "nodeType": "scene",
-      "id": "noether_braid__braid_family_c",
-      "name": "Braid Family C",
-      "path": "content/scenes/noether-braid/braid_family_c.json",
-      "searchTarget": "content/scenes/noether-braid/braid_family_c.json",
       "implicit": false
     },
     {
@@ -5947,21 +5932,21 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-braid/doubling_frequency_lock.json",
+      "nodeId": "scene:content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json",
       "nodeType": "scene",
-      "id": "noether_braid__doubling_frequency_lock",
-      "name": "Doubling-Frequency Resonance Lock",
-      "path": "content/scenes/noether-braid/doubling_frequency_lock.json",
-      "searchTarget": "content/scenes/noether-braid/doubling_frequency_lock.json",
+      "id": "noether_braid__coincident_axis_three_binary_symmetry",
+      "name": "Coincident-Axis Three-Binary Symmetry",
+      "path": "content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json",
+      "searchTarget": "content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
+      "nodeId": "scene:content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json",
       "nodeType": "scene",
-      "id": "noether_braid__explored_braid_geometries",
-      "name": "Explored Braid Geometries",
-      "path": "content/scenes/noether-braid/explored_braid_geometries.json",
-      "searchTarget": "content/scenes/noether-braid/explored_braid_geometries.json",
+      "id": "noether_braid__coordinate_axis_six_point_symmetry_and_return_response",
+      "name": "Coordinate-Axis Six-Point Symmetry and Return Response",
+      "path": "content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json",
+      "searchTarget": "content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json",
       "implicit": false
     },
     {
@@ -6001,12 +5986,21 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-braid/spindle_braid.json",
+      "nodeId": "scene:content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json",
       "nodeType": "scene",
-      "id": "noether_braid__spindle_braid",
-      "name": "Spindle Braid",
-      "path": "content/scenes/noether-braid/spindle_braid.json",
-      "searchTarget": "content/scenes/noether-braid/spindle_braid.json",
+      "id": "noether_braid__three_binary_4_2_1_frequency_lock",
+      "name": "Three-Binary 4:2:1 Frequency Lock",
+      "path": "content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json",
+      "searchTarget": "content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json",
+      "nodeType": "scene",
+      "id": "noether_braid__zero_axial_offset_three_binary_dynamics_and_interpretation",
+      "name": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+      "path": "content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json",
+      "searchTarget": "content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json",
       "implicit": false
     },
     {
@@ -7306,6 +7300,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/branding-and-marketing.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/branding-and-marketing.md",
+      "name": "Branding and Marketing",
+      "path": "content/markdown/aaa/archie/branding-and-marketing.md",
+      "searchTarget": "content/markdown/aaa/archie/branding-and-marketing.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/comics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/comics.md",
@@ -7498,7 +7501,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
-      "name": "A1 Lorentz Geometry Guide",
+      "name": "Coincident-Midpoint Three-Axis Circular Lorentz Geometry Guide",
       "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "searchTarget": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "implicit": false
@@ -7891,15 +7894,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/shared-circle-assemblies.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
-      "name": "Shared-Circle Assemblies",
-      "path": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
-      "searchTarget": "content/markdown/aaa/dynamics/shared-circle-assemblies.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/absolute-time-defense.md",
@@ -7981,30 +7975,21 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
-      "name": "Braid A1 Dynamics and Interpretation",
-      "path": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+      "id": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+      "name": "Planar (2D) Braid Assemblies",
+      "path": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-      "name": "A2 Symmetry and Return Response",
-      "path": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
-      "name": "A3.3 Doubling-Frequency Resonance Lock",
-      "path": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "id": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+      "name": "Spatial (3D) Braid Assemblies",
+      "path": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
       "implicit": false
     },
     {
@@ -8017,48 +8002,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
-      "name": "B1 Hypotheses and Discrete Symmetry",
-      "path": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "name": "Braid Envelope Geometry",
       "path": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "searchTarget": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-family-a.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/braid-family-a.md",
-      "name": "Braid Family A",
-      "path": "content/markdown/aaa/noether-braid/braid-family-a.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/braid-family-a.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-family-b.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/braid-family-b.md",
-      "name": "Braid Family B",
-      "path": "content/markdown/aaa/noether-braid/braid-family-b.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/braid-family-b.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-family-c.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/braid-family-c.md",
-      "name": "Braid Family C",
-      "path": "content/markdown/aaa/noether-braid/braid-family-c.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/braid-family-c.md",
       "implicit": false
     },
     {
@@ -8089,6 +8038,24 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+      "name": "Coincident-Axis Three-Binary Symmetry",
+      "path": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+      "name": "Coordinate-Axis Six-Point Symmetry and Return Response",
+      "path": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
@@ -8113,6 +8080,24 @@
       "name": "Noether Braid",
       "path": "content/markdown/aaa/noether-braid/noether-braid.md",
       "searchTarget": "content/markdown/aaa/noether-braid/noether-braid.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+      "name": "Three-Binary 4:2:1 Frequency Lock",
+      "path": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
+      "name": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+      "path": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
       "implicit": false
     },
     {
@@ -8350,12 +8335,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
-      "name": "Mapping the Planck Scale to the A1 Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
+      "name": "Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
       "implicit": false
     },
     {
@@ -8791,15 +8776,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
-      "name": "A1 Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
-      "searchTarget": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
@@ -8959,6 +8935,15 @@
       "name": "Bell-Family Record-Measure Harness",
       "path": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
+      "name": "Coincident-Midpoint Orthogonal-Axis Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
       "implicit": false
     },
     {
@@ -9421,6 +9406,20 @@
       "field": "scene.children[9]"
     },
     {
+      "from": "scene:content/scenes/archie/branding_and_marketing.json",
+      "to": "scene:content/scenes/archie/brand_visual_identity.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/branding_and_marketing.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/archie/branding_and_marketing.json",
+      "to": "scene:content/scenes/archie/branding_and_marketing_overview.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/branding_and_marketing.json",
+      "field": "scene.children[1]"
+    },
+    {
       "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/acknowledgements_in_architrinos_room.json",
       "edgeType": "subscene",
@@ -9597,24 +9596,31 @@
     },
     {
       "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/branding_and_marketing.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/legal_terms.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/people.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
@@ -9628,21 +9634,21 @@
       "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/values.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/website_stats.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/system_card.json",
@@ -10139,14 +10145,14 @@
       "to": "scene:content/scenes/dynamics/causal_action_functional.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -10168,13 +10174,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
       "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/shared_circle_assemblies.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -12746,74 +12745,39 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/noether-braid/braid_family_a.json",
-      "to": "scene:content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/braid_family_a.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/braid_family_a.json",
-      "to": "scene:content/scenes/noether-braid/braid_family_a_overview.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/braid_family_a.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/braid_family_a.json",
-      "to": "scene:content/scenes/noether-braid/doubling_frequency_lock.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/braid_family_a.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/braid_family_a.json",
-      "to": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/braid_family_a.json",
-      "field": "scene.children[1]"
-    },
-    {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/braid_analysis_methodology.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/braid_envelope_geometry.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[10]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/braid_family_a.json",
+      "to": "scene:content/scenes/noether-braid/2d_braid_assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/braid_family_b.json",
+      "to": "scene:content/scenes/noether-braid/3d_braid_assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/braid_family_c.json",
+      "to": "scene:content/scenes/noether-braid/braid_analysis_methodology.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/braid_envelope_geometry.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/noether_braid.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/braid_mathematics.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12831,10 +12795,24 @@
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/noether_braid_configuration_space.json",
+      "to": "scene:content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/noether_braid.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/noether_braid_configuration_space.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/noether_braid.json",
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12848,14 +12826,21 @@
       "to": "scene:content/scenes/noether-braid/noether_braid_topological_charge.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/spindle_braid.json",
+      "to": "scene:content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/noether_braid.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -14041,6 +14026,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/archie/branding_and_marketing_overview.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/branding-and-marketing.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/branding_and_marketing_overview.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/archie/comics/acknowledgements_in_architrinos_room.json",
       "to": "markdown_doc:content/markdown/aaa/archie/comics/acknowledgements-in-architrino-s-room.md",
       "edgeType": "markdown_doc",
@@ -14496,13 +14488,6 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/shared_circle_assemblies.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/shared-circle-assemblies.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/shared_circle_assemblies.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/foundations/absolute_time_defense.json",
       "to": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
       "edgeType": "markdown_doc",
@@ -14566,10 +14551,17 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+      "from": "scene:content/scenes/noether-braid/2d_braid_assemblies.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
+      "source": "content/scenes/noether-braid/2d_braid_assemblies.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/3d_braid_assemblies.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/noether-braid/3d_braid_assemblies.json",
       "field": "scene.source.path"
     },
     {
@@ -14584,27 +14576,6 @@
       "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/noether-braid/braid_envelope_geometry.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/braid_family_a_overview.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-family-a.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/braid_family_a_overview.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/braid_family_b.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-family-b.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/braid_family_b.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/braid_family_c.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-family-c.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/braid_family_c.json",
       "field": "scene.source.path"
     },
     {
@@ -14629,17 +14600,17 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/doubling_frequency_lock.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "from": "scene:content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/doubling_frequency_lock.json",
+      "source": "content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+      "from": "scene:content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/explored_braid_geometries.json",
+      "source": "content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json",
       "field": "scene.source.path"
     },
     {
@@ -14664,10 +14635,17 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/spindle_braid.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
+      "from": "scene:content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/spindle_braid.json",
+      "source": "content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json",
       "field": "scene.source.path"
     },
     {
@@ -14861,7 +14839,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "field": "scene.source.path"
@@ -15344,7 +15322,7 @@
     },
     {
       "from": "scene:content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "field": "scene.source.path"

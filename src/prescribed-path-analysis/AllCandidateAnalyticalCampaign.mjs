@@ -10,9 +10,9 @@ import path from "node:path";
 import { gzipSync } from "node:zlib";
 
 import {
-  BORG_BRAID_RECORD_CATALOG,
-  BORG_BRAID_RECORD_CATALOG_ID,
-} from "../apps/borg/BorgBraidRecordCatalog.js";
+  BORG_ASSEMBLY_RECORD_CATALOG,
+  BORG_ASSEMBLY_RECORD_CATALOG_ID,
+} from "../apps/borg/BorgAssemblyRecordCatalog.js";
 import {
   ACTIVE_PRESCRIBED_BRAID_TARGETS,
   createPrescribedBraidExactSourceRecord,
@@ -24,7 +24,7 @@ import {
   sha256Canonical,
   validatePrescribedRecordAnalysisProtocol,
 } from "./AnalyticalBraidEvaluator.mjs";
-import { validateB1CompleteCycleProbeProtocol } from "./B1CompleteCycleProbeProtocol.mjs";
+import { validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol } from "./CoincidentAxisThreeBinaryCompleteCycleProbeProtocol.mjs";
 import {
   COMPLETE_CYCLE_CAMPAIGN_REDUCER_VERSION,
   evaluateCompleteCycleCandidate,
@@ -33,13 +33,16 @@ import { validateExactPrescribedSourceRecord } from "./ExactPrescribedSourceWake
 import {
   projectCircularRelationshipParameters,
 } from "../prescribed-geometry/PrescribedCircularRelationshipParameters.mjs";
+import {
+  deriveAssemblyScientificIdentity,
+} from "../prescribed-geometry/AssemblyScientificIdentity.mjs";
 
 export const ALL_CANDIDATE_CAMPAIGN_REGISTRY_SCHEMA =
-  "prescribed-path-analysis/all-candidate-campaign-registry.v1";
+  "prescribed-path-analysis/all-candidate-campaign-registry.v2";
 export const ALL_CANDIDATE_CAMPAIGN_MANIFEST_SCHEMA =
-  "prescribed-path-analysis/all-candidate-campaign-manifest.v1";
+  "prescribed-path-analysis/all-candidate-campaign-manifest.v2";
 export const ALL_CANDIDATE_CAMPAIGN_SUMMARY_SCHEMA =
-  "prescribed-path-analysis/all-candidate-campaign-summary.v1";
+  "prescribed-path-analysis/all-candidate-campaign-summary.v2";
 
 const REPOSITORY_ROOT = path.resolve(import.meta.dirname, "../..");
 const CAMPAIGN_DIRECTORY = path.join(
@@ -78,8 +81,36 @@ const IMPLEMENTED_MEASURES = Object.freeze([
 
 export const DEFAULT_ALL_CANDIDATE_CAMPAIGN_REGISTRY_PATH = path.join(
   CAMPAIGN_DIRECTORY,
-  "all-candidate-analytical-campaign.registry.v1.json",
+  "all-candidate-analytical-campaign.registry.v2.json",
 );
+
+const NONZERO_TRANSVERSE_REQUIRED_SOURCE_SLUGS = new Set([
+  "axial-transverse-three-binary-interior",
+  "high-axial-three-binary-interior",
+  "planar-three-binary-common-center-reference",
+]);
+const EXPECTED_ANALYTICAL_COHORT_SOURCE_SLUGS = new Set([
+  "three-axis-circular-coincident-midpoints",
+  "three-axis-circular-coincident-midpoints-common-frequency",
+  "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
+  "three-axis-circular-coincident-midpoints-4-2-1-frequency",
+  "three-axis-circular-coincident-midpoints-3-2-1-frequency",
+  "three-axis-circular-phase-compensated-symmetric",
+  "three-axis-circular-axially-separated",
+  "three-axis-circular-axially-separated-common-frequency",
+  "three-axis-circular-axially-separated-equal-radius-common-frequency",
+  "three-axis-circular-axially-separated-4-2-1-frequency",
+  "three-axis-circular-axially-separated-3-2-1-frequency",
+  "axial-transverse-three-binary-interior",
+  "high-axial-three-binary-interior",
+  "planar-three-binary-common-center-reference",
+  "coincident-center-two-component-circular-co-rotating",
+  "coincident-center-two-component-circular-counter-rotating",
+  "coaxial-separated-two-component-circular-co-rotating",
+  "coaxial-separated-two-component-circular-counter-rotating",
+  "coaxial-separated-two-planar-braid-co-rotating",
+  "coaxial-separated-two-planar-braid-counter-rotating",
+]);
 
 function fail(message) {
   throw new Error(message);
@@ -133,8 +164,8 @@ function validateRegistryShape(registry) {
     );
   }
   concreteString(registry.registryId, "registryId");
-  if (registry.catalogId !== BORG_BRAID_RECORD_CATALOG_ID) {
-    fail(`registry catalog ${registry.catalogId} does not match ${BORG_BRAID_RECORD_CATALOG_ID}.`);
+  if (registry.catalogId !== BORG_ASSEMBLY_RECORD_CATALOG_ID) {
+    fail(`registry catalog ${registry.catalogId} does not match ${BORG_ASSEMBLY_RECORD_CATALOG_ID}.`);
   }
   if (!registry.generatedCampaign || !Array.isArray(registry.candidates) ||
       !Array.isArray(registry.excludedCatalogCandidates) ||
@@ -154,8 +185,20 @@ function targetByRecordPath() {
 }
 
 export function validateCandidateInventory(registry) {
-  const catalogEntries = BORG_BRAID_RECORD_CATALOG.entries;
-  const catalogById = new Map(catalogEntries.map((entry) => [entry.id, entry]));
+  if (registry.candidates.length !== EXPECTED_ANALYTICAL_COHORT_SOURCE_SLUGS.size ||
+      registry.candidates.some((candidate) =>
+        !EXPECTED_ANALYTICAL_COHORT_SOURCE_SLUGS.has(candidate.sourceSlug))) {
+    fail(
+      "every declared exact analytical cohort source must be registered exactly once.",
+    );
+  }
+  const catalogEntries = BORG_ASSEMBLY_RECORD_CATALOG.entries;
+  const identityKey = (row) =>
+    `${row.assemblyId}\0${row.modelRevisionSha256}`;
+  const catalogByIdentity = new Map(catalogEntries.map((entry) => [
+    identityKey(entry),
+    entry,
+  ]));
   const excludedIds = new Set();
   const routedIds = new Set();
   for (const [kind, rows, ids] of [
@@ -163,34 +206,36 @@ export function validateCandidateInventory(registry) {
     ["routed", registry.routedCatalogCandidates, routedIds],
   ]) {
     for (const row of rows) {
-      concreteString(row.candidateId, `${kind} catalog candidateId`);
-      concreteString(row.reason, `${kind} catalog candidate ${row.candidateId} reason`);
-      if (!catalogById.has(row.candidateId) || ids.has(row.candidateId) ||
-          excludedIds.has(row.candidateId) || routedIds.has(row.candidateId)) {
-        fail(`${kind} catalog candidate ${row.candidateId} is missing, duplicated, or overlaps another disposition.`);
+      concreteString(row.sourceSlug, `${kind} catalog sourceSlug`);
+      concreteString(row.assemblyId, `${kind} catalog assemblyId`);
+      concreteString(row.modelRevisionSha256, `${kind} catalog modelRevisionSha256`);
+      concreteString(row.reason, `${kind} catalog configuration ${row.sourceSlug} reason`);
+      const key = identityKey(row);
+      if (!catalogByIdentity.has(key) || ids.has(key) ||
+          excludedIds.has(key) || routedIds.has(key)) {
+        fail(`${kind} catalog configuration ${row.sourceSlug} is missing, duplicated, or overlaps another disposition.`);
       }
-      ids.add(row.candidateId);
+      ids.add(key);
     }
   }
   const targets = targetByRecordPath();
-  const candidateIds = new Set();
+  const candidateIdentities = new Set();
   const candidates = registry.candidates.map((candidate, ordinal) => {
-    const catalog = catalogById.get(candidate.candidateId);
-    if (!catalog || excludedIds.has(candidate.candidateId) ||
-        routedIds.has(candidate.candidateId)) {
-      fail(`registry analytical candidate ${candidate.candidateId} is absent from or separately dispositioned by the Borg catalog.`);
+    const key = identityKey(candidate);
+    const catalog = catalogByIdentity.get(key);
+    if (!catalog || excludedIds.has(key) || routedIds.has(key)) {
+      fail(`registry analytical candidate ${candidate.sourceSlug} is absent from or separately dispositioned by the Borg catalog.`);
     }
-    if (candidate.candidateId !== catalog.id ||
-        candidate.recordPath !== catalog.recordUrl) {
+    if (candidate.recordPath !== catalog.recordUrl) {
       fail(`registry candidate ${ordinal} differs from the canonical Borg catalog.`);
     }
-    if (candidateIds.has(candidate.candidateId)) {
-      fail(`registry candidate ${candidate.candidateId} is duplicated.`);
+    if (candidateIdentities.has(key)) {
+      fail(`registry candidate ${candidate.sourceSlug} is duplicated.`);
     }
-    candidateIds.add(candidate.candidateId);
+    candidateIdentities.add(key);
     const target = targets.get(candidate.recordPath);
     if (!target || relativeRepositoryPath(target.specPath) !== candidate.specPath) {
-      fail(`registry candidate ${candidate.candidateId} differs from the prescribed target map.`);
+      fail(`registry candidate ${candidate.sourceSlug} differs from the prescribed target map.`);
     }
     const specPath = resolveRepositoryPath(candidate.specPath, "candidate specPath");
     const recordPath = resolveRepositoryPath(candidate.recordPath, "candidate recordPath");
@@ -198,17 +243,18 @@ export function validateCandidateInventory(registry) {
     const recordBytes = readFileSync(recordPath);
     const spec = validatePrescribedBraidSpec(JSON.parse(specBytes.toString("utf8")));
     // Geometry constraints belong to the source, not to the flat browse catalog.
-    if (spec.specId !== candidate.candidateId ||
-        spec.identity.taxonomy.familyId !== candidate.familyId ||
-        spec.identity.taxonomy.memberId !== candidate.memberId) {
-      fail(`registry candidate ${candidate.candidateId} differs from its source specification.`);
+    if (spec.identity.assemblyId !== candidate.assemblyId ||
+        spec.identity.modelRevisionSha256 !== candidate.modelRevisionSha256 ||
+        path.basename(candidate.specPath, ".v3.json") !== candidate.sourceSlug) {
+      fail(`registry candidate ${candidate.sourceSlug} differs from its exact source specification.`);
     }
-    if (candidate.familyId === "B" && !projectCircularRelationshipParameters(spec)
+    if (NONZERO_TRANSVERSE_REQUIRED_SOURCE_SLUGS.has(candidate.sourceSlug) &&
+        !projectCircularRelationshipParameters(spec)
       .components.some((component) => component.pairs.some(
         (pair) => pair.transverseOrbitRadius > 0,
       ))) {
       fail(
-        `active Family-B candidate ${candidate.candidateId} requires ` +
+        `active ${candidate.sourceSlug} configuration requires ` +
         "nonzero transverse internal motion.",
       );
     }
@@ -221,24 +267,12 @@ export function validateCandidateInventory(registry) {
       recordBytes,
     };
   });
-  if (candidateIds.size + excludedIds.size + routedIds.size !== catalogEntries.length ||
-      catalogEntries.some((entry) =>
-        !candidateIds.has(entry.id) &&
-        !excludedIds.has(entry.id) &&
-        !routedIds.has(entry.id))) {
-    fail(
-      "every Borg catalog candidate must be either analytically registered or " +
-      "explicitly excluded; an active nonapplicable family may instead be routed " +
-      "to a named separate instrument.",
-    );
-  }
-  const registeredOrder = catalogEntries
-    .filter((entry) => candidateIds.has(entry.id))
-    .map((entry) => entry.id);
-  if (canonicalJson(registeredOrder) !== canonicalJson(registry.candidates.map((row) => row.candidateId))) {
-    fail("analytical registry candidates must preserve Borg catalog order after exclusions.");
-  }
-  return candidates;
+  const catalogOrdinalByIdentity = new Map(catalogEntries.map(
+    (entry, ordinal) => [identityKey(entry), ordinal],
+  ));
+  return candidates.sort((left, right) =>
+    catalogOrdinalByIdentity.get(identityKey(left.declaration)) -
+      catalogOrdinalByIdentity.get(identityKey(right.declaration)));
 }
 
 function validateDeclaredCampaignInventory(registry) {
@@ -282,7 +316,7 @@ function validateDeclaredCampaignInventory(registry) {
 }
 
 export function validateMethodologyCoverageContract(coverage, methodologyBytes) {
-  if (coverage.schema !== "prescribed-path-analysis/analytical-measure-coverage.v1" ||
+  if (coverage.schema !== "prescribed-path-analysis/analytical-measure-coverage.v2" ||
       !Number.isSafeInteger(coverage.requiredMeasureCount) ||
       coverage.requiredMeasureCount < 1 ||
       !Array.isArray(coverage.measures) ||
@@ -291,7 +325,8 @@ export function validateMethodologyCoverageContract(coverage, methodologyBytes) 
   }
   const methodologySha256 = sha256Bytes(methodologyBytes);
   if (methodologySha256 !== coverage.methodology.sha256 ||
-      coverage.methodology.impactReview !== "reviewed-for-complete-cycle-campaign-v1") {
+      coverage.methodology.impactReview !==
+        "reviewed-for-exact-configuration-complete-cycle-campaign-v2") {
     fail(
       `methodology hash ${methodologySha256} requires an explicit analytical coverage impact review.`,
     );
@@ -358,13 +393,27 @@ export function loadAllCandidateCampaignRegistry(
   const protocol = parsedProtocol.schema ===
     "prescribed-path-analysis/analysis-protocol.v1"
     ? validatePrescribedRecordAnalysisProtocol(parsedProtocol)
-    : validateB1CompleteCycleProbeProtocol(parsedProtocol);
+    : validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol(parsedProtocol);
+  const declaredProtocolSources = protocol.applicability
+    ?.acceptedSourceConfigurations;
+  const expectedProtocolSources = candidates.map((candidate) => ({
+    sourceSlug: candidate.declaration.sourceSlug,
+    assemblyId: candidate.declaration.assemblyId,
+    modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+  }));
+  const bySourceSlug = (left, right) =>
+    left.sourceSlug.localeCompare(right.sourceSlug);
+  if (!Array.isArray(declaredProtocolSources) ||
+      canonicalJson([...declaredProtocolSources].sort(bySourceSlug)) !==
+      canonicalJson([...expectedProtocolSources].sort(bySourceSlug))) {
+    fail("exact-configuration cohort protocol differs from the registry inventory.");
+  }
   return {
     registryPath: absolutePath,
     registryBytes: bytes,
     registry,
     registryHash: sha256Canonical(registry),
-    catalogHash: sha256Canonical(BORG_BRAID_RECORD_CATALOG),
+    catalogHash: sha256Canonical(BORG_ASSEMBLY_RECORD_CATALOG),
     candidates,
     checkedCampaigns,
     ...methodologyCoverage,
@@ -373,6 +422,20 @@ export function loadAllCandidateCampaignRegistry(
     protocol,
     protocolHash: sha256Canonical(protocol),
   };
+}
+
+function exactCohortSourceRecord(candidate, options) {
+  const derived = deriveAssemblyScientificIdentity(candidate.spec);
+  const source = createPrescribedBraidExactSourceRecord(candidate.spec, options);
+  return validateExactPrescribedSourceRecord({
+    ...source,
+    sourceSlug: candidate.declaration.sourceSlug,
+    referenceConfigurationIdentity: {
+      assemblyId: candidate.declaration.assemblyId,
+      modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+    },
+    scientificIdentityPreimage: derived.canonicalModel,
+  });
 }
 
 function accelerationMagnitude(vector) {
@@ -399,7 +462,11 @@ function summaryCase(candidate, packet) {
     sourceHash: packet.source.sourceHash,
     resultHash: packet.resultHash,
     protocolHash: packet.protocolHash,
-    taxonomy: packet.source.taxonomy,
+    scientificIdentity: {
+      assemblyId: candidate.declaration.assemblyId,
+      modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+    },
+    sourceSlug: candidate.declaration.sourceSlug,
     sourceSpec: {
       path: candidate.declaration.specPath,
       sha256: sha256Bytes(candidate.specBytes),
@@ -452,12 +519,10 @@ export function buildAllCandidateAnalyticalCampaign(registryPath, options = {}) 
         protocol.history.end > candidate.spec.history.end) {
       fail(`candidate ${candidate.declaration.candidateId} does not support the registry protocol span.`);
     }
-    const exactSource = validateExactPrescribedSourceRecord(
-      createPrescribedBraidExactSourceRecord(candidate.spec, {
-        sourceHash: sha256Bytes(candidate.specBytes),
-        generatingSpec: candidate.declaration.specPath,
-      }),
-    );
+    const exactSource = exactCohortSourceRecord(candidate, {
+      sourceHash: sha256Bytes(candidate.specBytes),
+      generatingSpec: candidate.declaration.specPath,
+    });
     const packet = evaluatePrescribedRecordAnalysis({
       sourceRecord: exactSource,
       protocol,
@@ -470,8 +535,9 @@ export function buildAllCandidateAnalyticalCampaign(registryPath, options = {}) 
     manifestCases.push({
       caseId: row.caseId,
       caseType: row.caseType,
-      familyId: candidate.declaration.familyId,
-      memberId: candidate.declaration.memberId,
+      assemblyId: candidate.declaration.assemblyId,
+      modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+      sourceSlug: candidate.declaration.sourceSlug,
       specPath: candidate.declaration.specPath,
       specSha256: sha256Bytes(candidate.specBytes),
       catalogRecordPath: candidate.declaration.recordPath,
@@ -709,12 +775,10 @@ function buildCompleteCycleAllCandidateCampaign(registryPath, options) {
         protocol.eventEvaluator.history.end > candidate.spec.history.end) {
       fail(`candidate ${candidate.declaration.candidateId} does not support the cohort protocol span.`);
     }
-    const exactSource = validateExactPrescribedSourceRecord(
-      createPrescribedBraidExactSourceRecord(candidate.spec, {
-        sourceHash: sha256Bytes(candidate.specBytes),
-        generatingSpec: candidate.declaration.specPath,
-      }),
-    );
+    const exactSource = exactCohortSourceRecord(candidate, {
+      sourceHash: sha256Bytes(candidate.specBytes),
+      generatingSpec: candidate.declaration.specPath,
+    });
     const candidateStartedAt = Date.now();
     let rawCompleted = 0;
     const timeCount = protocol.completeCycle.primary.timeSamples +
@@ -810,15 +874,19 @@ function buildCompleteCycleAllCandidateCampaign(registryPath, options) {
       caseId: candidate.declaration.candidateId,
       label: candidate.catalog.label,
       caseType: "catalog-candidate-complete-cycle",
-      familyId: candidate.declaration.familyId,
-      memberId: candidate.declaration.memberId,
+      assemblyId: candidate.declaration.assemblyId,
+      modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+      sourceSlug: candidate.declaration.sourceSlug,
       packetPath,
       exactSourceRecordPath,
       sourceRecordId: exactSource.recordId,
       sourceHash: packet.source.sourceHash,
       resultHash: packet.resultHash,
       protocolHash: packet.completeCycleProtocolHash,
-      taxonomy: exactSource.taxonomy,
+      scientificIdentity: {
+        assemblyId: candidate.declaration.assemblyId,
+        modelRevisionSha256: candidate.declaration.modelRevisionSha256,
+      },
       acceptanceState: packet.status.accepted ? "accepted" : "rejected",
       failedGates: packet.status.failedGates,
       gates: packet.gates,
@@ -838,8 +906,9 @@ function buildCompleteCycleAllCandidateCampaign(registryPath, options) {
     manifestCases.push({
       caseId: row.caseId,
       caseType: row.caseType,
-      familyId: row.familyId,
-      memberId: row.memberId,
+      assemblyId: row.assemblyId,
+      modelRevisionSha256: row.modelRevisionSha256,
+      sourceSlug: row.sourceSlug,
       specPath: candidate.declaration.specPath,
       specSha256: row.sourceSpec.sha256,
       catalogRecordPath: candidate.declaration.recordPath,

@@ -1,0 +1,58 @@
+{
+  "schema": "braid-program/stella-octangula-short-eom-release-audit-repair-predeclaration.v1",
+  "date": "2026-09-01",
+  "packetId": "stella-octangula-short-eom-release-2026-09-01-v1",
+  "scope": "Repair only the independent checker's interpretation of the native response field named stepFailures. Do not rerun or change the EOM calculation, any response, any trajectory metric, any threshold, or any other acceptance check.",
+  "observedParserFailure": "The first checker counted every row in stepFailures as a failure, although completed native responses use that field as an accepted-and-rejected step ledger and mark successful rows status=accepted with an empty failureCode.",
+  "immutableInputs": [
+    {
+      "role": "original-independent-checker",
+      "path": "scripts/eom/check-stella-octangula-short-release.py",
+      "sha256": "85d200396a063ab9c4c70b56edd328992b09868174b257ef170837db877f7660",
+      "bytes": 9940
+    },
+    {
+      "role": "accepted-ledger-repair-checker",
+      "path": "scripts/eom/check-stella-octangula-short-release-accepted-ledger.py",
+      "sha256": "6fd9161a51c9b19ef3671bd304eaa15c54f4da8e87b67be62fc29553795687ac",
+      "bytes": 3797
+    },
+    {
+      "role": "run-summary",
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/run-summary.json",
+      "sha256": "92741778a3c1d355a01b6bc940de36b57a67ddeef89627447e4c8dce48a2dbe7",
+      "bytes": 163730
+    },
+    {
+      "role": "first-failed-independent-check",
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/independent-check.json",
+      "sha256": "1701fa18e4f5937e045b7ea71e0aac6d65f58a6777fd89df2427d3470c2d264d",
+      "bytes": 154216
+    },
+    {
+      "role": "fine-response",
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/fine-response.json",
+      "sha256": "3a2ac3266e0cf080c126f795085e6be545ccbed9b9837a459732046bf1f3fbae",
+      "bytes": 857677
+    },
+    {
+      "role": "medium-response",
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/medium-response.json",
+      "sha256": "b1e221cb58981039c136a8ad58c31f011fb331a61be81d83745100b4079e30c6",
+      "bytes": 438102
+    },
+    {
+      "role": "coarse-response",
+      "path": ".local-data/braid-analysis/stella-octangula-short-release-20260901-v1/coarse-response.json",
+      "sha256": "d0e2f766b04712826dd0ef8e2be8b86c08f8f41f46cda560f7b3e8cbfb38c78c",
+      "bytes": 228291
+    }
+  ],
+  "correctedRule": {
+    "acceptedStep": "A step ledger row is accepted only when status=accepted and failureCode is empty.",
+    "rootCompleteness": "Every accepted step must carry exactly 64 ordered-pair root-accounting rows; every row must have status=certified_complete; traversalCoverageDisjointComplete must be true; traversalUnresolvedPairs must be zero; and traversalLogicalPairs=traversalExactPairs=64.",
+    "rungPass": "The ledger row count equals acceptedStepCount, rejectedStepCount is zero, and every accepted-step and root-completeness condition passes.",
+    "overallPass": "Replace only primaryHasNoStepFailures with the fine-rung corrected result, then require every original independent check to pass."
+  },
+  "claimBoundary": "This repair adjudicates response-field semantics only. It cannot change positions, velocities, causal roots, accepted times, refinement deltas, or the scientific claim boundary."
+}

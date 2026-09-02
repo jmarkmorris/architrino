@@ -4715,7 +4715,7 @@ This bridge explains how angular momentum, spin, helicity, and the constants $h$
 
 - At the primitive architrino level, neither angular momentum nor spin is an additional substance or intrinsic property.
 - Angular momentum becomes a conserved history functional when architrino motion is organized inside the rotationally symmetric Euclidean void.
-- Spin becomes an effective transformation class of stable assemblies, especially ordered Family-A, B1, and planar vector-channel structures.
+- Spin becomes an effective transformation class of stable assemblies, especially ordered three-axis circular-chart, B1, and planar vector-channel structures.
 
 The result is not that angular momentum and spin are unreal. The result is that their ontological status is emergent. They are indispensable higher-level ledgers and measurement labels, but the fundamental ontology still consists of architrinos, polarity, position, velocity, absolute time, Euclidean void, causal wakes, and path history.
 
@@ -4727,7 +4727,7 @@ The related material is best read as an ordered path rather than as a flat list 
 
 1. Start with primitive ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) and [Ontology](../../../../markdown/aaa/foundations/ontology.md).
 2. Use [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md) for delayed conservation and wake-history bookkeeping.
-3. Use [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md) for the exact B1 common-axis kinematics that spin must descend from, with [B1 Hypotheses and Discrete Symmetry](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md) carrying its symmetry derivations and [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) carrying the Family-A comparison material.
+3. Use [Braid common-axis three-binary charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md) for the exact B1 common-axis kinematics that spin must descend from, with [B1 Hypotheses and Discrete Symmetry](../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md) carrying its symmetry derivations and [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics) carrying the three-axis circular-chart comparison material.
 4. Treat [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) as downstream tests rather than source derivations.
 
 ##### Primitive Status
@@ -4955,7 +4955,7 @@ If a stable maximum-curvature binary exists, it may define a fundamental length 
 
 ##### B1 Spin Scaffold
 
-[B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1) supplies this bridge with its primary common-axis realization of the angular-momentum ledger, and its fixed-coordinate common-frequency co-rotation makes the kinematic half of that ledger exact rather than approximate. Where the Family-A comparison scaffold below must carry three separate binary normals $\hat{\mathbf n}_\ell$ and combine them into an approximate rank-three construction, B1 has one axis exactly.
+[B1](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1) supplies this bridge with its primary common-axis realization of the angular-momentum ledger, and its fixed-coordinate common-frequency co-rotation makes the kinematic half of that ledger exact rather than approximate. Where the three-axis circular-chart comparison scaffold below must carry three separate binary normals $\hat{\mathbf n}_\ell$ and combine them into an approximate rank-three construction, B1 has one axis exactly.
 
 ###### The Exact Kinematic Ledger of Prescribed Co-Rotating B1
 
@@ -5019,9 +5019,9 @@ with the axial cost of a binary inclination only second order — tilting stores
 
 1. **One cadence.** The A1 frame's three independent frequency increments collapse to a single $\Delta\omega$ shared by every B1 binary. Binary-resolved allocation freedom lives entirely in the geometry — axis offsets, axial coordinates, and inclinations — not in per-binary frequency retuning.
 2. **The cadence is an open coordinate.** Nothing established fixes $\Delta\omega$. Whether any mechanism holds a B1 member at a fixed cadence or speed budget is an open question for the validated engine; until one is established, $\Delta\omega$ enters the partition map as a free coordinate.
-3. **One energy price.** In the reduced action-angle chart the Family-A companion ledger reads $\Delta E=\sum_{a=1}^{3}\omega_a\Delta I_a+\Delta E_{\text{wake}}$, so the energy cost of an accepted increment can depend on which indexed binary receives it. At one cadence that dependence vanishes: $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ at first order, however the allocation falls. For the accepted quantum $\Delta I=\hbar$ this is $\Delta E=\hbar\omega$ appearing as a ledger identity of B1 rather than an imported relation. The actual allocation must therefore be decided by the constraint structure, stiffness spectrum, and causal-root admissibility.
+3. **One energy price.** In the reduced action-angle chart the three-axis circular-chart companion ledger reads $\Delta E=\sum_{a=1}^{3}\omega_a\Delta I_a+\Delta E_{\text{wake}}$, so the energy cost of an accepted increment can depend on which indexed binary receives it. At one cadence that dependence vanishes: $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ at first order, however the allocation falls. For the accepted quantum $\Delta I=\hbar$ this is $\Delta E=\hbar\omega$ appearing as a ledger identity of B1 rather than an imported relation. The actual allocation must therefore be decided by the constraint structure, stiffness spectrum, and causal-root admissibility.
 
-The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the Family-A case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase locking, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed fixed-coordinate family; the energy-price statement is a reduced action-angle statement at the same grade as the Family-A companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
+The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the three-axis circular-chart case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase locking, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed fixed-coordinate family; the energy-price statement is a reduced action-angle statement at the same grade as the three-axis circular-chart companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
 
 ###### Quotient-Spectrum Discipline
 
@@ -5065,7 +5065,7 @@ Everything beyond this chart is open. $M$ and $G$ follow from the exact kinemati
 
 ##### A1 Spin Scaffold
 
-The A1 scaffold carries three persistent binary indices $a\in\{1,2,3\}$ with independently assignable positive radii and frequencies. Its binary axes are mutually orthogonal at the Family-A near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$; phases, axial half-separations, transverse orbit radii, and circulation remain binary coordinates. No index has a fixed radius order or dynamical role. Self-hit activity, proximity to a causal-root fold, external exposure, and wake-ledger dominance are branch-derived diagnostics measured on a particular record. These coordinates define prescribed geometry only; an EOM-solver-retained A1 spin scaffold remains unproved.
+The A1 scaffold carries three persistent binary indices $a\in\{1,2,3\}$ with independently assignable positive radii and frequencies. Its binary axes are mutually orthogonal at the three-axis circular-chart near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$; phases, axial half-separations, transverse orbit radii, and circulation remain binary coordinates. No index has a fixed radius order or dynamical role. Self-hit activity, proximity to a causal-root fold, external exposure, and wake-ledger dominance are branch-derived diagnostics measured on a particular record. These coordinates define prescribed geometry only; an EOM-solver-retained A1 spin scaffold remains unproved.
 
 In a reduced action-angle chart define
 
@@ -5420,7 +5420,7 @@ For a positive one-cycle accepted transaction, $\Delta I_{\text{accepted}}=+\hba
 
 ##### Partition Equations from the Master Ledger
 
-These are the per-frequency partition equations of the A1 realization, used as Family-A comparison material; the primary allocation statement of this bridge is the iso-frequency partition map in the B1 scaffold. The partition equation is not an extra postulate. It is the binary-resolved projection of the master-equation angular-momentum ledger. For each receiver binary $\ell$, define the branch torque collected by that binary over a transition window $[T_i,T_f]$:
+These are the per-frequency partition equations of the A1 realization, used as three-axis circular-chart comparison material; the primary allocation statement of this bridge is the iso-frequency partition map in the B1 scaffold. The partition equation is not an extra postulate. It is the binary-resolved projection of the master-equation angular-momentum ledger. For each receiver binary $\ell$, define the branch torque collected by that binary over a transition window $[T_i,T_f]$:
 
 $$
 \mathbf T_\ell(T)
@@ -11320,7 +11320,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-54061eb42b9596cc)
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $T$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, the source record must declare the indexed clock channel or a transition built from the coupled Family-A ledger. The native clock-map row is therefore an extracted frequency ratio:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $T$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, the source record must declare the indexed clock channel or a transition built from the coupled three-axis circular-chart ledger. The native clock-map row is therefore an extracted frequency ratio:
 $$
 \frac{d\tau}{dT}
 =
@@ -11566,7 +11566,7 @@ The bridge to Lorentz behavior is then:
 $$
 \text{one-}h\text{ action transaction}
 \longrightarrow
-\text{Family-A branch update}
+\text{three-axis circular-chart branch update}
 \longrightarrow
 \text{assembly-envelope oblation}
 \longrightarrow
@@ -11601,7 +11601,7 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-42bafaca288740c4)
 for every branch class admitted as a stable clock/ruler material. This is the sense in which the Lorentz response is branch-quantized: the substrate realizes a continuous observer law through discrete admissible ledger classes, and any residual deviation should carry the signature of a branch transition, separator approach, inter-layer resonance, or incomplete wake ledger.
 
-This target also clarifies which part of the Noether braid should be modeled. The full branch solve must include all three indexed binaries because clock rate, action storage, fold sensitivity, and conservation all live in the coupled Family-A ledger. The complete record then supplies the leading geometric projection:
+This target also clarifies which part of the Noether braid should be modeled. The full branch solve must include all three indexed binaries because clock rate, action storage, fold sensitivity, and conservation all live in the coupled three-axis circular-chart ledger. The complete record then supplies the leading geometric projection:
 $$
 \xi_q(v)
 \equiv
@@ -11747,7 +11747,7 @@ The sum-and-difference identities are exact. Identifying $\delta\tau$ with obser
 The proposed common source is:
 
 1. finite field speed for causal wake transfer,
-2. stable phase closure across indexed Family-A support rows,
+2. stable phase closure across indexed three-axis circular-chart support rows,
 3. deformation of the dynamic exclusion envelope,
 4. clock-frequency extraction from internal cycles,
 5. and medium-dressed response to acceleration.
@@ -12189,7 +12189,7 @@ The geometry projection is then the visible part of the sequence
 $$
 \text{one-}h\text{ action transaction}
 \longrightarrow
-\text{Family-A branch update}
+\text{three-axis circular-chart branch update}
 \longrightarrow
 \text{assembly-envelope oblation}
 \longrightarrow
@@ -13707,11 +13707,11 @@ Use the same overlap/holonomy machinery in the lepton-neutral sector with a diff
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the A1 rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed A1 sector, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
+Its closest companions are [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics), [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
-Here `A1` has only its prescribed taxonomy meaning: one complete Family-A braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes that converge toward the group-translation direction as $\lambda_A\to1$. The axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain binary coordinates; no equality, radius order, particle identity, stability, or retained branch follows from the member label. Every Planck, fermion, black-hole, and constant assignment below is therefore a conjecture about this prescribed chart. A same-record EOM-solver evolution that cannot retain the declared coordinate relations would falsify the physical A1 assignment.
+Here `A1` has only its prescribed taxonomy meaning: one complete three-axis circular-chart braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes that converge toward the group-translation direction as $\lambda_A\to1$. The axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain binary coordinates; no equality, radius order, particle identity, stability, or retained branch follows from the member label. Every Planck, fermion, black-hole, and constant assignment below is therefore a conjecture about this prescribed chart. A same-record EOM-solver evolution that cannot retain the declared coordinate relations would falsify the physical A1 assignment.
 
 The simple way to read the chapter is this: ordinary Planck formulas are not being used as standalone constants that already explain the world. They are being used as hard clues. If an A1 really supplies the deepest stable clock-and-ruler standard, then the familiar Planck combinations should reappear as consequences of one extreme alignment branch, one action ledger, and one observer-export channel. If the constants can be fitted only one at a time, the mapping has failed.
 
@@ -13851,7 +13851,7 @@ approaches $c^5/G$ when $M$ is estimated by the Planck mass, but that substituti
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
 - The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
 - The local one-way starvation condition begins when a forward component approaches $c_f$; the Mach-wedge condition is the stronger combined-speed condition $v_{\text{eff}}>c_f$.
-- The CFT-exterior role label "binary 3 $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)).
+- The CFT-exterior role label "binary 3 $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics)).
 
 ---
 
@@ -17145,7 +17145,7 @@ This also separates physics from legal or moral personhood. $\mathbb{A}\mathbb{A
 
 ### Primitive Metastability
 
-The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) architecture, a declared binary channel may approach the field-speed fold $v=c_f$. [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) treats a controlled crossing of that fold as a candidate discrete action transaction, but the taxonomy assigns no fixed binary to the role and no retained mechanism has yet established ordinary assembly metastability.
+The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) architecture, a declared binary channel may approach the field-speed fold $v=c_f$. [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics) treats a controlled crossing of that fold as a candidate discrete action transaction, but the taxonomy assigns no fixed binary to the role and no retained mechanism has yet established ordinary assembly metastability.
 
 This does not make every Noether braid an agent. A bare Noether braid has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
 
@@ -19032,7 +19032,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Information is not stored in an abstract wavefunction outside the event ledger. It is carried by path history, causal roots, horizon-scale boundary states, terminal alignment classes, radiation events, Noether sea updates, and release-channel ledgers. Entropy is a count of admissible records or alignments at the relevant boundary, not proof of fundamental information loss.
 
-**Detailed architecture route.** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is that black-hole information is stored and released through structured Family-A flows rather than erased. The event-horizon region would correspond to a branch-derived indexed speed row near $v=c_f$, while core microstate storage would involve maximal-curvature self-hit structures. Possible dark-photon or deformation-wave cascades should be treated as a mechanism proposal until their provenance, energy budget, and visible-sector handoff are derived. Under the closure-target discipline, island, replica-wormhole, and boundary-unitarity results are comparison mathematics and high-value consistency pressure, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They show the kind of Page-curve or boundary-access recovery a mature black-hole account must match, but they do not decide the native mechanism. The Page curve would have to be recovered by showing how emitted assemblies preserve enough phase and axial-pattern information through declared Physical Observer records, finite boundary wake data, and release-channel ledgers, without invoking firewalls or hiding the mechanism in formal duality. The proposed zero-entropy limiting state is a separate high-risk closure target, not an established result.
+**Detailed architecture route.** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is that black-hole information is stored and released through structured three-axis circular-chart flows rather than erased. The event-horizon region would correspond to a branch-derived indexed speed row near $v=c_f$, while core microstate storage would involve maximal-curvature self-hit structures. Possible dark-photon or deformation-wave cascades should be treated as a mechanism proposal until their provenance, energy budget, and visible-sector handoff are derived. Under the closure-target discipline, island, replica-wormhole, and boundary-unitarity results are comparison mathematics and high-value consistency pressure, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They show the kind of Page-curve or boundary-access recovery a mature black-hole account must match, but they do not decide the native mechanism. The Page curve would have to be recovered by showing how emitted assemblies preserve enough phase and axial-pattern information through declared Physical Observer records, finite boundary wake data, and release-channel ledgers, without invoking firewalls or hiding the mechanism in formal duality. The proposed zero-entropy limiting state is a separate high-risk closure target, not an established result.
 
 **Resolution tests.** Resolution requires a counting scheme, a release-channel grammar, and a Page-curve-compatible or Page-curve-replacing observable story. It must track energy, momentum, angular momentum, recoil, and record provenance in the same ledger. Island and replica-wormhole results remain comparison pressure, not native ontology.
 
@@ -19823,7 +19823,7 @@ Plainly: the two sides calculate corresponding observables using different descr
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ View
 
-The native background is the Euclidean void and absolute time, not a fundamental AdS geometry. The candidate horizon picture instead concerns a constitutive interface: a change in how assemblies and the surrounding Noether sea respond and export observable records. In the prescribed Family-A chart, the alignment coordinate $\lambda_A$ runs from mutually orthogonal binary axes at zero toward axes aligned with the group-translation direction at one. This defines a geometry, not a black hole, a retained dynamical branch, or a conserved boundary encoding.
+The native background is the Euclidean void and absolute time, not a fundamental AdS geometry. The candidate horizon picture instead concerns a constitutive interface: a change in how assemblies and the surrounding Noether sea respond and export observable records. In the prescribed three-axis circular-chart chart, the alignment coordinate $\lambda_A$ runs from mutually orthogonal binary axes at zero toward axes aligned with the group-translation direction at one. This defines a geometry, not a black hole, a retained dynamical branch, or a conserved boundary encoding.
 
 The same distinction applies to [Ryu-Takayanagi entropy](https://arxiv.org/abs/hep-th/0603001), which relates boundary entanglement entropy to bulk minimal surfaces in its stated setting, and to [island and replica-wormhole calculations](https://arxiv.org/abs/1911.12333), which recover the Page-curve behavior of radiation entropy in controlled gravitational models. These are comparison results, not derivations of an architrino horizon. Their useful question is which entropy and encoding relations a derived native interface can reproduce in the corresponding effective regime.
 
@@ -19835,7 +19835,7 @@ The same distinction applies to [Ryu-Takayanagi entropy](https://arxiv.org/abs/h
 
 The table states comparison questions, not three identified physical regions. A native self-hit regime requires actual intersections of an architrino with its own earlier wake, with the same root-completeness and singular-event treatment required elsewhere. Speed above the primitive causal-wake speed $c_f$ alone is not a self-hit certificate, and equality to $c_f$ alone does not establish an event horizon.
 
-The more precise candidate picture is a spatially varying alignment state in which three persistent binary axes approach the local translation direction. Each binary retains its index $a\in\{1,2,3\}$, frequency $f_a$, and declared geometry. An illustrative frequency ratio $f_1:f_2:f_3=4:2:1$ is a source-record choice, not a consequence of the Family-A label or a universal Planck-frequency law. Index, radius order, frequency order, and self-hit role must remain distinct.
+The more precise candidate picture is a spatially varying alignment state in which three persistent binary axes approach the local translation direction. Each binary retains its index $a\in\{1,2,3\}$, frequency $f_a$, and declared geometry. An illustrative frequency ratio $f_1:f_2:f_3=4:2:1$ is a source-record choice, not a consequence of the three-axis circular-chart label or a universal Planck-frequency law. Index, radius order, frequency order, and self-hit role must remain distinct.
 
 The local and macroscopic questions are different. A local source record specifies constituent speeds and candidate alignment; a macroscopic horizon depends on signal access through an extended assembly and medium configuration. A correspondence between them requires an effective observer map. Calling a binary “inner,” “middle,” or “outer” cannot supply that map.
 
@@ -19870,7 +19870,7 @@ Time requires the same separation. Absolute time $T$ remains the substrate param
 
 ### Geometric Proof Targets
 
-- Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit candidate braid states, then determine whether the retained branch occupies the prescribed Family-A chart.
+- Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit candidate braid states, then determine whether the retained branch occupies the prescribed three-axis circular-chart chart.
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
 - Derive the clock, volume, and signal-access maps from one retained history before assigning interior, interface, and exterior interpretations. An AdS/CFT identification additionally requires a bulk-boundary dictionary in a specified comparison domain.
 - Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.
@@ -20001,11 +20001,11 @@ The thermal clue was concrete. Energy exchange could not be treated as a smooth 
 
 The broader warning was that unbounded extrapolation can turn a good effective formula into a false ontology. Rayleigh-Jeans reasoning failed when a continuum count was extended without the physical action carrier that cuts off the ultraviolet side of the spectrum. The same pattern later reappears in field-theory divergences and curvature singularities: a mathematical description that works in its domain is pushed beyond the carrier conditions that made it meaningful. The Architrino architecture response is not to discard successful formulas. It is to ask which finite branch record, causal-wake regularization, or maximum-curvature regime replaces the divergent extrapolation.
 
-The Planck scale sharpens the same point. In this reading it is a dynamic alignment-horizon problem, not evidence that the Euclidean void is pixelated. Planck-unit relations become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the cadence, radius, and action. The target is therefore a retained candidate constrained to the prescribed Family-A response—mutually orthogonal binary axes at $\lambda_A=0$ converging toward the group-translation direction as $\lambda_A\to1$—whose delay-feedback loop reaches a marginally stable alignment and exports $h$, $\ell_P$, and the corresponding probing limit as one record, not three primitive measuring devices. The physical assignment and retention do not follow from the taxonomy.
+The Planck scale sharpens the same point. In this reading it is a dynamic alignment-horizon problem, not evidence that the Euclidean void is pixelated. Planck-unit relations become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the cadence, radius, and action. The target is therefore a retained candidate constrained to the prescribed three-axis circular-chart response—mutually orthogonal binary axes at $\lambda_A=0$ converging toward the group-translation direction as $\lambda_A\to1$—whose delay-feedback loop reaches a marginally stable alignment and exports $h$, $\ell_P$, and the corresponding probing limit as one record, not three primitive measuring devices. The physical assignment and retention do not follow from the taxonomy.
 
 That distinction should be stated carefully. A deeper mechanism need not choose between continuous source-level evolution and discrete observer-level quantum records. The stronger theorem target is sharper than discreteness: define an action-cycle update on retained path history, show which stable cycles become recordable exchanges, and recover a uniform action scale in the relevant regime. In the language of the Architrino architecture, Planck's clue is not that motion itself must be discontinuous; it is that any accepted quantum of action must be derived from retained action bookkeeping, a stable branch condition, and a physical record channel.
 
-In the Family-A setting, that is not a single-frequency oscillator problem. A retained braid can carry several internal frequency rows; those rows may coincide, lock in rational ratios, or remain distinct while still closing one physical record cycle.
+In the three-axis circular-chart setting, that is not a single-frequency oscillator problem. A retained braid can carry several internal frequency rows; those rows may coincide, lock in rational ratios, or remain distinct while still closing one physical record cycle.
 
 The object to account for is the full closed-return ledger: over the recordable branch cycle, the integrated action must recover $h$ as a uniform adjacent increment across the accepted branch classes. The existence of multiple internal cadences is therefore not a defect in the architecture. It is the mechanism by which the architecture has to earn Planck's constant from branch closure rather than assume it as an external quantum postulate.
 
@@ -20988,7 +20988,7 @@ The Architrino architecture comparison is direct. Holography found compression; 
 
 In that candidate map, the exterior side remains observer-facing volumetric behavior; the horizon interface is the symmetry-breaking threshold; and the interior is modeled as a possible self-hit branch regime with altered clock export. That identification is not free: if the strong-field interior is governed by self-hit dynamics, it inherits the same Jacobian-floor, transversality, regularization, and a priori energy-bound condition stated in the front-matter wall. The inward/outward inflation and deflation analogy, along with CFT-like and AdS-like language, is bridge language for the transition rather than the ontology itself.
 
-The restraint applies to the strongest entropy tools as well. Ryu-Takayanagi surfaces, islands, replica wormholes, and Page-curve constructions are comparison mathematics showing how controlled holographic settings organize information recovery. They should not be imported as horizon ontology. The native target is narrower: derive the horizon-interface regime from Family-A alignment and Noether sea dynamics, then test which boundary-encoding and Page-compatible accounting laws survive as downstream consistency requirements.
+The restraint applies to the strongest entropy tools as well. Ryu-Takayanagi surfaces, islands, replica wormholes, and Page-curve constructions are comparison mathematics showing how controlled holographic settings organize information recovery. They should not be imported as horizon ontology. The native target is narrower: derive the horizon-interface regime from three-axis circular-chart alignment and Noether sea dynamics, then test which boundary-encoding and Page-compatible accounting laws survive as downstream consistency requirements.
 
 The rational miss is that holography became mathematically strongest as duality. In controlled settings, especially AdS/CFT, the boundary description could be made exact without specifying a physical mechanism underneath it. That success pushed the field toward boundary geometry, quantum information, and dual descriptions. It did not require asking what physical assembly process makes a horizon into an encoding interface in the first place.
 

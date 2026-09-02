@@ -13,8 +13,8 @@ function parseArguments(argv) {
     betaStep: 0.025,
     minimumPhaseGap: 0.01,
     nonuniformEvaluationsPerSeed: 900,
-    b13GlobalSamples: 2400,
-    b13RetainedSeeds: 18,
+    planarThreeBinaryGlobalSamples: 2400,
+    planarThreeBinaryRetainedSeeds: 18,
     output: null,
     reuseRegular: null,
   };
@@ -22,8 +22,8 @@ function parseArguments(argv) {
     if (argument === "--quick") {
       options.betaStep = 0.25;
       options.nonuniformEvaluationsPerSeed = 120;
-      options.b13GlobalSamples = 120;
-      options.b13RetainedSeeds = 3;
+      options.planarThreeBinaryGlobalSamples = 120;
+      options.planarThreeBinaryRetainedSeeds = 3;
     } else if (argument.startsWith("--min-beta=")) {
       options.minimumBeta = Number(argument.slice("--min-beta=".length));
     } else if (argument.startsWith("--max-beta=")) {
@@ -34,10 +34,10 @@ function parseArguments(argv) {
       options.minimumPhaseGap = Number(argument.slice("--minimum-phase-gap=".length));
     } else if (argument.startsWith("--nonuniform-evaluations=")) {
       options.nonuniformEvaluationsPerSeed = Number(argument.slice("--nonuniform-evaluations=".length));
-    } else if (argument.startsWith("--b13-global-samples=")) {
-      options.b13GlobalSamples = Number(argument.slice("--b13-global-samples=".length));
-    } else if (argument.startsWith("--b13-retained-seeds=")) {
-      options.b13RetainedSeeds = Number(argument.slice("--b13-retained-seeds=".length));
+    } else if (argument.startsWith("--planar-three-binary-global-samples=")) {
+      options.planarThreeBinaryGlobalSamples = Number(argument.slice("--planar-three-binary-global-samples=".length));
+    } else if (argument.startsWith("--planar-three-binary-retained-seeds=")) {
+      options.planarThreeBinaryRetainedSeeds = Number(argument.slice("--planar-three-binary-retained-seeds=".length));
     } else if (argument.startsWith("--out=")) {
       options.output = argument.slice("--out=".length);
     } else if (argument.startsWith("--reuse-regular=")) {

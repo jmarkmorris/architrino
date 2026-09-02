@@ -34,6 +34,8 @@ function record(runId, overrides = {}) {
   return {
     schema: "assembly-view-record.v0",
     sourceId: overrides.sourceId ?? runId,
+    assemblyId: overrides.assemblyId ?? "asm-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    modelRevisionSha256: overrides.modelRevisionSha256 ?? "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     permutationCanonicalKey: overrides.permutationCanonicalKey,
     provenance: {
       engineId: "eom-solver",

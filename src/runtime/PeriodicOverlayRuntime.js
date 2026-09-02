@@ -4,6 +4,10 @@ import {
   isHydePeriodicTableScene,
   isPeriodicTableScene,
 } from "../services/SceneCapabilitiesService.js";
+import {
+  buildHydeSupplementalArcPlacement,
+  createHydeSupplementalArc,
+} from "./HydeSupplementalArc.js";
 
 export function createPeriodicOverlayRuntime(deps) {
   const {
@@ -518,7 +522,7 @@ export function createPeriodicOverlayRuntime(deps) {
     }
     node.classList.remove("is-focused");
     node.classList.remove("is-hovered");
-    if (node.classList.contains("hyde-periodic-extra-tile")) {
+    if (node.classList.contains("hyde-periodic-extra-arc")) {
       return;
     }
     node.style.removeProperty("fill");
@@ -617,7 +621,7 @@ export function createPeriodicOverlayRuntime(deps) {
     }
     node.classList.add("is-focused");
     node.classList.add("is-hovered");
-    if (node.classList.contains("hyde-periodic-extra-tile")) {
+    if (node.classList.contains("hyde-periodic-extra-arc")) {
       return;
     }
     syncActiveHydeHotspotRing(node);
@@ -698,7 +702,7 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!(target instanceof Element)) {
       return false;
     }
-    return Boolean(target.closest(".hyde-hotspot, .hyde-periodic-extra-tile"));
+    return Boolean(target.closest(".hyde-hotspot, .hyde-periodic-extra-arc"));
   }
 
   function moveActiveHydeHotspotByOffset(offset) {
@@ -796,69 +800,18 @@ export function createPeriodicOverlayRuntime(deps) {
       return null;
     }
     let layer = canvas.querySelector("#hyde-periodic-supplementals");
-    if (!(layer instanceof HTMLElement)) {
-      layer = document.createElement("div");
+    if (!(layer instanceof SVGElement)) {
+      layer = document.createElementNS(svgNamespace, "svg");
       layer.id = "hyde-periodic-supplementals";
+      layer.setAttribute("viewBox", `0 0 ${hydeViewBoxWidth} ${hydeViewBoxHeight}`);
+      layer.setAttribute("role", "group");
+      layer.setAttribute("aria-label", "Additional elements");
       canvas.appendChild(layer);
     }
     return layer;
   }
 
-  function clampNumber(value, min, max) {
-    return Math.max(min, Math.min(max, value));
-  }
-
-  function buildHydeSupplementalTilePlacement({
-    hotspotAnchor,
-    hotspotReference,
-    tileWidth = 118.4 * 1.2,
-    tileHeight = 118.4 * 1.2,
-    offsetX = 0,
-    offsetY = 0,
-  }) {
-    if (!hotspotAnchor?.center) {
-      return null;
-    }
-    const sourceCenter = hotspotAnchor.center;
-    const referenceCenter = hotspotReference?.center ?? {
-      x: sourceCenter.x - 1,
-      y: sourceCenter.y,
-    };
-    const rawDirectionX = sourceCenter.x - referenceCenter.x;
-    const rawDirectionY = sourceCenter.y - referenceCenter.y;
-    const rawLength = Math.hypot(rawDirectionX, rawDirectionY);
-    const directionX = rawLength > 0 ? rawDirectionX / rawLength : 1;
-    const directionY = rawLength > 0 ? rawDirectionY / rawLength : 0;
-    const outwardDistance = Math.max(112, (hotspotAnchor.r || 0) * 6.2);
-    const baseCenterX = sourceCenter.x + directionX * outwardDistance;
-    const baseCenterY = sourceCenter.y + directionY * outwardDistance;
-    const leftShift = Math.max(42, tileWidth * 0.28);
-    const upwardLift = Math.max(220, tileHeight * 1.5);
-    const horizontalAdjust = Math.max(32, tileWidth * 0.22);
-    const verticalAdjust = Math.max(276, tileHeight * 1.86);
-    const unclampedCenterX = baseCenterX - leftShift + horizontalAdjust;
-    const unclampedCenterY = baseCenterY - upwardLift + verticalAdjust - tileHeight;
-    const minCenterX = tileWidth / 2 + 12;
-    const maxCenterX = hydeViewBoxWidth - tileWidth / 2 - 12;
-    const minCenterY = tileHeight / 2 + 12;
-    const maxCenterY = hydeViewBoxHeight - tileHeight / 2 - 12;
-    const centerX = clampNumber(unclampedCenterX + offsetX, minCenterX, maxCenterX);
-    const centerY = clampNumber(unclampedCenterY + offsetY, minCenterY, maxCenterY);
-    const left = centerX - tileWidth / 2;
-    const top = centerY - tileHeight / 2;
-    return {
-      center: {
-        x: centerX,
-        y: centerY,
-      },
-      left,
-      top,
-      width: tileWidth,
-      height: tileHeight,
-    };
-  }
-
-  function createHydeSupplementalElementTile({
+  function createHydeSupplementalElementArc({
     layer,
     element,
     placement,
@@ -869,13 +822,7 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!layer || !element || !placement) {
       return null;
     }
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "ptable-cell hyde-periodic-extra-tile";
-    button.style.left = `${(placement.left / hydeViewBoxWidth) * 100}%`;
-    button.style.top = `${(placement.top / hydeViewBoxHeight) * 100}%`;
-    button.style.width = `${(placement.width / hydeViewBoxWidth) * 100}%`;
-    button.style.height = `${(placement.height / hydeViewBoxHeight) * 100}%`;
+    const button = createHydeSupplementalArc(document, element, placement);
     button.dataset.symbol = element.symbol;
     button.dataset.number = `${element.number}`;
     button.dataset.centerX = `${placement.center.x}`;
@@ -888,24 +835,20 @@ export function createPeriodicOverlayRuntime(deps) {
       placement.center.y - (navigationCenter?.y ?? 0),
       placement.center.x - (navigationCenter?.x ?? 0)
     )}`;
-    button.setAttribute("aria-label", `${element.name} (${element.symbol})`);
     button.setAttribute(
       "aria-keyshortcuts",
       "ArrowLeft ArrowRight ArrowUp ArrowDown Enter Space"
     );
-    const tooltipText = `${element.number} ${element.symbol} - ${element.name}`;
     if (typeof showHoverTooltip !== "function") {
-      button.title = `${element.number} ${element.name} (${element.symbol})`;
+      const title = document.createElementNS(svgNamespace, "title");
+      title.textContent = `${element.number} ${element.name} (${element.symbol})`;
+      button.appendChild(title);
     }
-    button.innerHTML = `
-      <div class="ptable-number">${element.number}</div>
-      <div class="ptable-symbol">${element.symbol}</div>
-      <div class="ptable-name">${element.name}</div>
-    `;
     button.addEventListener("click", () => {
       openPeriodicElementScene(element, overlay);
     });
     button.addEventListener("mouseenter", (event) => {
+      setActiveHydeHotspot(button);
       showHydeElementPreview(element, event.clientX, event.clientY);
     });
     button.addEventListener("mousemove", (event) => {
@@ -1911,46 +1854,39 @@ export function createPeriodicOverlayRuntime(deps) {
       const hotspot87 = orderedHotspots.find(
         (hotspot) => hydeHotspotNumberToAtomicNumber.get(hotspot.index + 1) === 87
       ) ?? null;
-      const hotspot88 = orderedHotspots.find(
-        (hotspot) => hydeHotspotNumberToAtomicNumber.get(hotspot.index + 1) === 88
-      ) ?? null;
       const hotspot118 = orderedHotspots.find(
         (hotspot) => hydeHotspotNumberToAtomicNumber.get(hotspot.index + 1) === 118
       ) ?? null;
-      const hotspot117 = orderedHotspots.find(
-        (hotspot) => hydeHotspotNumberToAtomicNumber.get(hotspot.index + 1) === 117
-      ) ?? null;
-      const tilePlacement = buildHydeSupplementalTilePlacement({
-        hotspotAnchor: hotspot87 ?? hotspot118,
-        hotspotReference: hotspot88 ?? hotspot117,
-        offsetX: hotspot87 ? -64 : 0,
-        offsetY: hotspot87 ? -132 : 0,
-      });
-      const tileColor = getPeriodicColor(element119.category);
-      const tileNode = createHydeSupplementalElementTile({
+      const arcPlacement = buildHydeSupplementalArcPlacement(
+        (hotspot87 ?? hotspot118)?.center,
+        hydeViewBoxWidth,
+        hydeViewBoxHeight
+      );
+      const arcColor = getPeriodicColor(element119.category);
+      const arcNode = createHydeSupplementalElementArc({
         layer: supplementalLayer,
         element: element119,
-        placement: tilePlacement,
+        placement: arcPlacement,
         overlay,
         leftFocusTarget: hydeHotspotNodeByAtomicNumber.get(118) ?? null,
         navigationCenter,
       });
-      if (tileNode) {
-        hydeHotspotNodeByAtomicNumber.set(119, tileNode);
+      if (arcNode) {
+        hydeHotspotNodeByAtomicNumber.set(119, arcNode);
         hydeHotspotAtomicNumbersInOrder.push(119);
       }
       const hotspot118Node = hydeHotspotNodeByAtomicNumber.get(118);
-      if (tileNode && hotspot118Node) {
+      if (arcNode && hotspot118Node) {
         hotspot118Node.addEventListener("keydown", (event) => {
           if (event.key === "ArrowRight") {
             event.preventDefault();
-            tileNode.focus();
+            arcNode.focus();
           }
         });
       }
       const legendKey = element119.category || "Unknown";
       if (!legendSet.has(legendKey)) {
-        legendSet.set(legendKey, tileColor);
+        legendSet.set(legendKey, arcColor);
       }
     }
     hydeHotspotAtomicNumbersInOrder.sort((left, right) => left - right);

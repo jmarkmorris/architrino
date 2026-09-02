@@ -2,11 +2,11 @@
 
 ## Noether Braid
 
-The **Noether braid** is the reader-facing class of neutral assembly scaffolds used by the Noether sea chapters and particle-architecture chapters. Families A and B begin with a six-architrino branch; Family C extends the class to a twelve-worldline coaxial branch. This is the first place where the reader should think in terms of a retained many-body branch rather than a pair, point particle, or ordinary orbit.
+The **Noether braid** is the reader-facing class of neutral assembly scaffolds used by the Noether sea chapters and particle-architecture chapters. Families A and B begin with a six-architrino branch; two-component circular charts extends the class to a twelve-worldline coaxial branch. This is the first place where the reader should think in terms of a retained many-body branch rather than a pair, point particle, or ordinary orbit.
 
 A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a polarity-neutral six-body branch whose architrino paths lie on closed support curves with speed factors bounded above and below. In that branch, three negative-polarity architrinos (electrinos) and three positive-polarity architrinos (positrinos) maintain a persistent causal-return ledger.
 
-For the base neutral braid, the simple idea is six persistent strands plus one shared ledger. Family C carries twelve persistent strands on its own declared ledger. The hard question in either case is whether the delayed dynamics can keep that ledger coherent: the same identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold.
+For the base neutral braid, the simple idea is six persistent strands plus one shared ledger. two-component circular charts carries twelve persistent strands on its own declared ledger. The hard question in either case is whether the delayed dynamics can keep that ledger coherent: the same identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold.
 
 This question is the crux of the theory. The Noether sea, the particle architecture, the mass-response program, and the effective-metric recovery all rest first on a retained base branch, so the retained-branch question is the central open obligation of this scene. The chapters here define the braid families, carry the shared mathematics, explain the configuration-space hypotheses, and state the requirements a retained branch must satisfy, each at its stated claim level. These chapters do not track the search: status, run results, and candidate rankings are not textbook content, and a result enters only once it is established at its stated claim level.
 
@@ -51,20 +51,20 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-53e7eac1f9efc366)
 
-Thus the base class permits changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to exact binary rows. A retained neutral braid must still return to a closed causal ledger within the declared recovery tolerance. Families A and B inherit this six-site neutral inventory before adding member coordinates. Family C instead declares a twelve-worldline neutral inventory, while each exact B1 or B1.3 component on its C3–C6 loci inherits the six-site base inventory.
+Thus the base class permits changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to exact binary rows. A retained neutral braid must still return to a closed causal ledger within the declared recovery tolerance. Families A and B inherit this six-site neutral inventory before adding member coordinates. two-component circular charts instead declares a twelve-worldline neutral inventory, while each exact B1 or B1.3 component on its C3–C6 loci inherits the six-site base inventory.
 
 The prescribed geometry is organized by [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md). Its current map is:
 
 | Term | Definition | Additional structure |
 | --- | --- | --- |
 | [**neutral braid**](#neutral-braid-base) | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
-| [**Family A**](../../../../markdown/aaa/noether-braid/braid-family-a.md) | One braid whose three binary axes are orthogonal at the near-rest endpoint and converge toward the group-translation direction under the prescribed response. | `A1` is the zero-axial-offset subset, `A2` is the fully symmetric member, and `A3` carries the general axial/transverse decomposition. |
-| [**Family B**](../../../../markdown/aaa/noether-braid/braid-family-b.md) | One braid whose three binary midpoints and axes coincide. | `B1` is the fixed-coordinate common-frequency co-rotating member. |
-| [**Family C**](../../../../markdown/aaa/noether-braid/braid-family-c.md) | A twelve-worldline coaxial braid family containing six neutral binaries. | `C1` and `C2` are general co-rotating and counter-rotating members; `C3` and `C4` constrain the record to two B1 components; `C5` and `C6` further constrain both components to B1.3. |
+| [**three-axis circular charts**](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md) | One braid whose three binary axes are orthogonal at the near-rest endpoint and converge toward the group-translation direction under the prescribed response. | `A1` is the zero-axial-offset subset, `A2` is the fully symmetric member, and `A3` carries the general axial/transverse decomposition. |
+| [**common-axis three-binary charts**](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md) | One braid whose three binary midpoints and axes coincide. | `B1` is the fixed-coordinate common-frequency co-rotating member. |
+| [**two-component circular charts**](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md) | A twelve-worldline coaxial braid family containing six neutral binaries. | `C1` and `C2` are general co-rotating and counter-rotating members; `C3` and `C4` constrain the record to two B1 components; `C5` and `C6` further constrain both components to B1.3. |
 
 These definitions name prescribed coordinate classes, not retained-branch existence. Stable all-pairs roots, recovery after perturbation, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into a family identifier. The broader diagnostic axes and search variables remain in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md).
 
-The word **braid** names the family-declared retained worldline strands together with their shared causal-return ledger: six strands in the base and Family-A/B cases, and twelve in Family C. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) program.
+The word **braid** names the family-declared retained worldline strands together with their shared causal-return ledger: six strands in the base and three-axis circular-chart/B cases, and twelve in two-component circular charts. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) program.
 
 Canonical reader-facing prose uses **Noether braid** for the assembly class, **neutral braid** for the base case, and the family/member identifiers for prescribed geometry. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
@@ -84,25 +84,25 @@ It does not carry the detailed family derivations, select a frequency family, as
 | --- | --- | --- |
 | Requirements | [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md) | The realization-independent retention-certificate shape, its base-family instantiation, proof-burden order, and recovery-target inventory. |
 | Taxonomy | [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md) | The canonical coordinates, family/member identifiers, master tables, and prescribed response endpoints. |
-| Family definition | [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md) | The shared Family-A geometry, A1 and A3 variants, the A2 definition, and their coordinate-locus relations. |
-| Family definition | [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md) | The exact B1 path geometry, coordinate boundaries, axial-translation specialization, and Family-A boundary. |
-| Family definition | [Braid Family C](../../../../markdown/aaa/noether-braid/braid-family-c.md) | The general twelve-worldline coaxial chart, the C1/C2 circulation relation, the C3/C4 two-B1 loci, the C5/C6 two-B1.3 loci, and the physical-mapping boundary. |
+| Family definition | [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md) | The shared three-axis circular-chart geometry, A1 and A3 variants, the A2 definition, and their coordinate-locus relations. |
+| Family definition | [Braid common-axis three-binary charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md) | The exact B1 path geometry, coordinate boundaries, axial-translation specialization, and three-axis circular-chart boundary. |
+| Family definition | [Braid two-component circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md) | The general twelve-worldline coaxial chart, the C1/C2 circulation relation, the C3/C4 two-B1 loci, the C5/C6 two-B1.3 loci, and the physical-mapping boundary. |
 | Configuration space | [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md) | The evidence-level terms and supplementary rank-three angular-momentum-frame diagnostics outside the canonical taxonomy. |
-| Braid A1 dynamics and interpretation | [Braid A1 Dynamics and Interpretation](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md) | A1 retention questions, closure labels, cadence retuning, scaling, alignment, and downstream hypotheses. |
-| A2 symmetry and return response | [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md) | The A2 invariant-channel theorem, two-ring geometry, dipole identity, momentum screw, and return-response analysis. |
+| Braid A1 dynamics and interpretation | [Braid A1 Dynamics and Interpretation](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md) | A1 retention questions, closure labels, cadence retuning, scaling, alignment, and downstream hypotheses. |
+| A2 symmetry and return response | [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md) | The A2 invariant-channel theorem, two-ring geometry, dipole identity, momentum screw, and return-response analysis. |
 | Mathematics | [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md) | The shared machinery: transverse speed-budget lemmas, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and Accessory Configuration moment analysis. |
 | Analysis methodology | [Candidate Braid Analysis Methodology](../../../../markdown/aaa/noether-braid/braid-analysis-methodology.md) | The common causal-wake map, internal and external probes, energy-ledger interface, sampling method, and candidate-grading rules. |
-| Analysis | [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md) | The A3.3 $4{:}2{:}1$ candidate, including its zero-axial-offset A1.3 locus, and its lock analysis. |
+| Analysis | [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md) | The A3.3 $4{:}2{:}1$ candidate, including its zero-axial-offset A1.3 locus, and its lock analysis. |
 | Export | [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
 | Export | [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) | Classification of retained branch charts. |
 
-A first reading should follow the table order: what a retained braid must satisfy, then the coordinate taxonomy and Family-A, Family-B, and Family-C definitions, then the broader configuration space and member specialists, then shared mathematics, the common analysis method, and candidate analyses, with the export chapters as the interface layer. Search progress is not tracked in these chapters.
+A first reading should follow the table order: what a retained braid must satisfy, then the coordinate taxonomy and three-axis circular-chart, common-axis three-binary-chart, and two-component circular-chart definitions, then the broader configuration space and member specialists, then shared mathematics, the common analysis method, and candidate analyses, with the export chapters as the interface layer. Search progress is not tracked in these chapters.
 
 ### Medium-Selection Burden
 
 Branch retention is not the same question as Noether sea primacy. A retained Noether braid branch would show that one neutral assembly class can persist. It would not yet show that this class is the dominant ambient structure in the universe, because many other architrino assemblies might also be imagined.
 
-The stronger claim is a selection theorem over candidate assembly classes. A class can serve as the ambient Noether sea population only if it can be retained as a branch and also form a dense, locally neutral, convergent, transparent, pressure-bearing, and constitutively useful medium. In the notation of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#composition), any proposed Family-A route must pass the ambient selection residual while competing assembly classes either fail, remain local matter or reaction branches, or appear only as higher-energy, short-lived, or environment-specific excitations.
+The stronger claim is a selection theorem over candidate assembly classes. A class can serve as the ambient Noether sea population only if it can be retained as a branch and also form a dense, locally neutral, convergent, transparent, pressure-bearing, and constitutively useful medium. In the notation of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#composition), any proposed three-axis circular-chart route must pass the ambient selection residual while competing assembly classes either fail, remain local matter or reaction branches, or appear only as higher-energy, short-lived, or environment-specific excitations.
 
 This distinction protects the proof order. The neutral-braid row asks whether the six-site architecture can close; each family/member row adds its own coordinate constraints. The Noether sea selection row asks why one retained member should dominate the weak homogeneous medium rather than a different assembly population. A particle-like success, a metric-like export, or an appealing exclusion volume is therefore not enough by itself; the same branch class must also supply the statistical abundance, far-field cancellation, packing, and shared-response properties needed by the Noether sea.
 
@@ -116,13 +116,13 @@ Nothing in this chapter is a retained-branch result. Every row below is an oblig
 
 ### Document Role
 
-This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The neutral six-body base lives in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); prescribed member definitions live in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md), and [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md). The shared mathematical machinery lives in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md). Proof dispositions are not carried in this chapter; broader diagnostic axes live in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md).
+This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The neutral six-body base lives in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); prescribed member definitions live in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md), and [Braid common-axis three-binary charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md). The shared mathematical machinery lives in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md). Proof dispositions are not carried in this chapter; broader diagnostic axes live in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md).
 
 A reader should use this chapter the way an engineer uses a requirements specification: to know what any proposed design must eventually satisfy, and to recognize when a reported success addresses one row while leaving the blocking rows untouched.
 
 ### The Retained-Branch Certificate
 
-The retention question has the same row structure for every family member. A candidate branch $B$ over a test window $W$ is a claim that the family-declared neutral inventory keeps returning to one repeatable causal relationship: the same identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold. The base and Family-A/B cases use six architrinos with inventory $3\epsilon_+ + 3\epsilon_-$; Family C uses twelve worldlines grouped into six neutral binaries. The certificate makes that claim auditable by splitting it into rows that must all close on one ledger identity:
+The retention question has the same row structure for every family member. A candidate branch $B$ over a test window $W$ is a claim that the family-declared neutral inventory keeps returning to one repeatable causal relationship: the same identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold. The base and three-axis circular-chart/B cases use six architrinos with inventory $3\epsilon_+ + 3\epsilon_-$; two-component circular charts uses twelve worldlines grouped into six neutral binaries. The certificate makes that claim auditable by splitting it into rows that must all close on one ledger identity:
 
 $$
 \mathsf{R}(B,W)
@@ -180,7 +180,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e4481a28161fec1f)
 
-Every predicate must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, framing convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Base-Family Certificate Instantiation](#base-family-certificate-instantiation); any prescribed taxonomy member inherits the same rows and may compress the all-pairs ledger only after its reduction map proves how the compressed entries are inherited.
+Every predicate must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, framing convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Base-two-component circular chartsertificate Instantiation](#base-family-certificate-instantiation); any prescribed taxonomy member inherits the same rows and may compress the all-pairs ledger only after its reduction map proves how the compressed entries are inherited.
 
 ### The First-Failure Ladder
 
@@ -233,7 +233,7 @@ A retained, transportable braid branch is the theory's proposed common cause for
 | Target | Requirement | Owning chapters |
 | --- | --- | --- |
 | Mass map | Observed particle masses must be extracted as effective inertial response of retained branches — small observed mass from large shielded interior energy — with the extraction rule derived from the same branch record used for retention. | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| Fermion generations | The three-generation ladder must be recovered as a structural ladder of the braid family — the working reading is a shielding-tier ladder — with the generation count derived from the delayed dynamics rather than postulated. | [A1 Shielding](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-shielding-and-fermion-generations), [Muon and Tau](../../../../markdown/aaa/assemblies/fermions/muon-tau.md) |
+| Fermion generations | The three-generation ladder must be recovered as a structural ladder of the braid family — the working reading is a shielding-tier ladder — with the generation count derived from the delayed dynamics rather than postulated. | [A1 Shielding](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-shielding-and-fermion-generations), [Muon and Tau](../../../../markdown/aaa/assemblies/fermions/muon-tau.md) |
 | Spin-statistics and exchange | Fermionic antisymmetry and bosonic shared occupation must be recovered from braid envelope geometry plus an exchange sign consumed from the same retained row that supplies spinor closure, not from a separately selected bookkeeping sign. | [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) |
 | Photon and Maxwell recovery | The photon channel must be recovered as a propagating assembly of released action history whose superposed delayed potentials reproduce Maxwell behavior, transverse polarization, and propagation at the recovered signal speed. | [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md) |
 | Strong force and color | Color bookkeeping, gluon-like exchange, and confinement must be recovered from braid substructure and its interaction channels, including why isolated color-carrying assemblies are unstable. | [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), [Gluons](../../../../markdown/aaa/assemblies/bosons/gluons.md), [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) |
@@ -261,7 +261,7 @@ Transparency is a bounded-response condition, not zero coupling: the medium must
 
 Three rules keep this contract usable. First, requirements are not evidence: adding, sharpening, or reorganizing rows in this chapter changes no proof status anywhere. Second, claim levels travel with their owning chapters: a row stated here in working-theory voice may be a derivation, a closure target, or a comparison target at its source, and the source governs. Third, the ladder is ordered: any reported success should be located on the proof-burden ladder before it is celebrated, and any reported failure should be located on the first-failure ladder before it is generalized.
 
-### Base-Family Certificate Instantiation
+### Base-two-component circular chartsertificate Instantiation
 
 This section instantiates the general contract for the base family, the **neutral braid** — the six-architrino, polarity-balanced case whose full definition follows in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); the inventory facts used here (three electrinos, three positrinos, thirty ordered distinct source pairs) are all a reader needs in advance. The neutral braid claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
 
@@ -335,7 +335,7 @@ $$
 
 Same-transmitter rows $(i,i)$ are governed by the declared same-transmitter policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive transmitter-site counts for each receiver are inventory facts, not a compressed acceleration law. The acceleration contribution must still be assembled from the actual retained causal roots, delays, Jacobian floors, transmitter-side acceleration weights, and line-of-action vectors for these ordered pairs. A prescribed taxonomy member can reduce this ledger only after its reduction map proves how the compressed entries are inherited from the all-pairs ledger.
 
-For Family C, let $I_C=\{1,\ldots,12\}$. Its uncompressed ordered distinct-pair ledger is
+For two-component circular charts, let $I_C=\{1,\ldots,12\}$. Its uncompressed ordered distinct-pair ledger is
 $$
 \Pi_{\mathrm{all}}^{C}
 =
@@ -345,7 +345,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1be1255a6bb5bbd5)
-C3 through C6 may expose two exact B1 or B1.3 component ledgers, but those component rows do not replace the 132-pair Family-C ledger unless a proved reduction map accounts for every cross-component pair. An associated Accessory Configuration remains a separate inventory and certificate input rather than part of these twelve defining worldlines.
+C3 through C6 may expose two exact B1 or B1.3 component ledgers, but those component rows do not replace the 132-pair two-component circular-chart ledger unless a proved reduction map accounts for every cross-component pair. An associated Accessory Configuration remains a separate inventory and certificate input rather than part of these twelve defining worldlines.
 
 The certificate should report the first blocking row as
 
@@ -377,7 +377,7 @@ Each taxonomy member receives a neutral identifier consisting of a family letter
 
 This is a geometry-and-motion taxonomy. It does not establish that a prescribed configuration is generated, retained, or stable under the EOM solver.
 
-[Shared-Circle Assemblies](../../../../markdown/aaa/dynamics/shared-circle-assemblies.md) is a Dynamics chart rather than an additional braid family. A shared-circle record receives a braid identifier only when its complete inventory and coordinates satisfy a row below. Its equal-radius six-worldline antipodal-neutral intersection is B1.3; other inventory sizes remain outside B1.3.
+[Planar (2D) Braid Assemblies](../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md) is a Dynamics chart rather than an additional braid family. A circular-path record receives a braid identifier only when its complete inventory and coordinates satisfy a row below. Its equal-radius six-worldline antipodal-neutral intersection is B1.3; other inventory sizes remain outside B1.3.
 
 Plainly: a ring can be an exact and useful prescribed assembly without being assigned a braid-family name. Circular appearance alone never changes the inventory contract.
 
@@ -387,17 +387,17 @@ Assembly composition describes how complete braid records are combined.
 
 | Coordinate | Meaning |
 | --- | --- |
-| Top-level braid count $N_{\mathcal B}$ | Number of complete prescribed Noether braid records in the assembly. A Family-C record counts as one top-level braid even where C3 through C6 expose two exact component-braid rows. |
+| Top-level braid count $N_{\mathcal B}$ | Number of complete prescribed Noether braid records in the assembly. A two-component circular-chart record counts as one top-level braid even where C3 through C6 expose two exact component-braid rows. |
 | Relative braid-center displacement | Position of each braid center relative to the assembly center when $N_{\mathcal B}>1$. |
 | Relative orientation | Orientation of each braid record relative to the assembly reference frame. |
 | Relative phase | Timing offset between braid records. |
 | Relative circulation | Whether the braid records advance with the same or opposite circulation sense. |
 
-An assembly containing two separate six-worldline braid records does not become Family C merely because it contains twelve worldlines in total. Family C is one shared twelve-worldline top-level record on the applicable common-axis chart. For a multi-braid assembly, record polarity conjugation, pro/anti orientation when defined, relative circulation, axis relation, and planarity as independent relations; no one relation is licensed by the others.
+An assembly containing two separate six-worldline braid records does not become two-component circular charts merely because it contains twelve worldlines in total. two-component circular charts is one shared twelve-worldline top-level record on the applicable common-axis chart. For a multi-braid assembly, record polarity conjugation, pro/anti orientation when defined, relative circulation, axis relation, and planarity as independent relations; no one relation is licensed by the others.
 
 ### Individual Braid
 
-A base, Family-A, or Family-B Noether braid consists of three neutral binaries. Family C consists of six neutral binaries in one twelve-worldline top-level record. Each binary contains one electrino and one positrino. Other polarity pairings are outside the present taxonomy.
+A base, three-axis circular-chart, or common-axis three-binary-chart Noether braid consists of three neutral binaries. two-component circular charts consists of six neutral binaries in one twelve-worldline top-level record. Each binary contains one electrino and one positrino. Other polarity pairings are outside the present taxonomy.
 
 The overarching translation characteristic is the speed of the complete assembly group. Let $\mathbf X_{\mathrm{grp}}(T)$ be the declared translation center of the prescribed assembly group. Its group velocity and group speed are
 
@@ -415,7 +415,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-95bdb78df2e065e3)
 
-For one top-level braid record, including Family C, $\mathbf X_{\mathrm{grp}}$ is the declared center of that record. For an assembly containing several top-level braid records, it is the declared center of the complete assembly. The group speed is distinct from the internal orbital speeds of the constituent architrinos.
+For one top-level braid record, including two-component circular charts, $\mathbf X_{\mathrm{grp}}$ is the declared center of that record. For an assembly containing several top-level braid records, it is the declared center of the complete assembly. The group speed is distinct from the internal orbital speeds of the constituent architrinos.
 
 The braid-level record contains this overarching characteristic and the coordinate collections obtained from its three binaries:
 
@@ -506,9 +506,9 @@ This angle is not a primary taxonomy coordinate.
 
 The taxonomy table uses fixed-coordinate prescribed time dependence as an idealized characteristic. Other possible time dependences, including breathing, precession, and other deformations, lie outside its present scope.
 
-### Family A: Noether Core
+### three-axis circular charts: Noether Core
 
-Family A is the original Noether core geometry. Its member distinctions and symmetry relationships are developed in [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md). Let $\hat{\mathbf n}_a^{(0)}$ denote its three binary axes at the near-rest endpoint. These axes are mutually orthogonal:
+three-axis circular charts is the original Noether core geometry. Its member distinctions and symmetry relationships are developed in [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md). Let $\hat{\mathbf n}_a^{(0)}$ denote its three binary axes at the near-rest endpoint. These axes are mutually orthogonal:
 
 $$
 \hat{\mathbf n}_a^{(0)}\mathbin{\cdot}\hat{\mathbf n}_b^{(0)}=\delta_{ab}
@@ -532,7 +532,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c503c8d479e5b97e)
 
-Family A translates along this direction:
+three-axis circular charts translates along this direction:
 
 $$
 \mathbf V_{\mathrm{grp}}(T)
@@ -542,7 +542,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-eb1a02975552b756)
 
-Let $\lambda_A\in[0,1]$ denote the prescribed Family-A flattening coordinate. The near-rest endpoint is $\lambda_A=0$. As $\lambda_A$ increases, the three binary axes converge toward the translation direction. The flat endpoint is
+Let $\lambda_A\in[0,1]$ denote the prescribed three-axis circular-chart flattening coordinate. The near-rest endpoint is $\lambda_A=0$. As $\lambda_A$ increases, the three binary axes converge toward the translation direction. The flat endpoint is
 
 $$
 \hat{\mathbf n}_1(1)
@@ -556,9 +556,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7c26273e22e0a49b)
 
-The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response study and the photon-channel response study use the flat Family-A geometry at $\lambda_A=1$ as prescribed input. These endpoint assignments are geometry-response charts; deriving either physical channel from an EOM-solver record remains open.
+The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response study and the photon-channel response study use the flat three-axis circular-chart geometry at $\lambda_A=1$ as prescribed input. These endpoint assignments are geometry-response charts; deriving either physical channel from an EOM-solver record remains open.
 
-`A1` is the zero-axial-offset Family-A member. All three binary midpoints coincide with the braid center, and each binary has
+`A1` is the zero-axial-offset three-axis circular-chart member. All three binary midpoints coincide with the braid center, and each binary has
 
 $$
 \mathbf c_a(T)=\mathbf X_{\mathrm{grp}}(T),
@@ -570,7 +570,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c27b4c6a30d3c46b)
 
-Thus the electrino and positrino of binary $a$ traverse the same geometric circle in the plane through the braid center orthogonal to $\hat{\mathbf n}_a$, while occupying antipodal points at every common time. The phrase "same plane" applies within each binary; the three Family-A binary planes remain distinct whenever their axes are distinct.
+Thus the electrino and positrino of binary $a$ traverse the same geometric circle in the plane through the braid center orthogonal to $\hat{\mathbf n}_a$, while occupying antipodal points at every common time. The phrase "same plane" applies within each binary; the three three-axis circular-chart binary planes remain distinct whenever their axes are distinct.
 
 The A1 indices $a\in\{1,2,3\}$ are persistent record identities, not a sorting by radius, frequency, speed, or any derived dynamical role. Their radii satisfy
 
@@ -584,9 +584,9 @@ $$
 
 and may be assigned independently, including equal values. The three frequencies are also independently assignable. If an evolved branch later supplies a field-speed carrier, a boundary-leading path, or another distinguished role, that role is a diagnostic derived from the branch record and does not relabel the binaries.
 
-`A2` is the fully symmetric Family-A member. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. Thus a $120^\circ$ rotation about $\hat{\mathbf u}_A$ cyclically permutes the three binaries without selecting one of them.
+`A2` is the fully symmetric three-axis circular-chart member. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. Thus a $120^\circ$ rotation about $\hat{\mathbf u}_A$ cyclically permutes the three binaries without selecting one of them.
 
-`A3` is the general axial-decomposition Family-A member. Its three binary midpoints coincide with the braid center, while each persistent binary independently carries nonnegative $h_a$ and $\rho_a$ satisfying $R_a^2=h_a^2+\rho_a^2$. When $h_a>0$ and $\rho_a>0$, the two endpoint orbit centers are separated by $2h_a\hat{\mathbf n}_a$. A1 is the exact zero-axial-offset subset of A3:
+`A3` is the general axial-decomposition three-axis circular-chart member. Its three binary midpoints coincide with the braid center, while each persistent binary independently carries nonnegative $h_a$ and $\rho_a$ satisfying $R_a^2=h_a^2+\rho_a^2$. When $h_a>0$ and $\rho_a>0$, the two endpoint orbit centers are separated by $2h_a\hat{\mathbf n}_a$. A1 is the exact zero-axial-offset subset of A3:
 
 $$
 A1.n
@@ -603,9 +603,9 @@ $$
 
 for each shared constrained-variant suffix $n\in\{1,2,3,4\}$. The unsuffixed A1 member is the corresponding zero-axial-offset subset of unsuffixed A3. A2 is selected by its cyclic symmetry constraints and occupies a symmetric locus within the A3 coordinate space; it is not renamed by this subset relation.
 
-### Family B: Coincident Binary Axes
+### common-axis three-binary charts: Coincident Binary Axes
 
-Family B contains one-braid members whose three binary axes coincide. Its exact path geometry and coordinate boundaries are developed in [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md). The B1 chart uses one common binary midpoint at the braid center,
+common-axis three-binary charts contains one-braid members whose three binary axes coincide. Its exact path geometry and coordinate boundaries are developed in [Braid common-axis three-binary charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md). The B1 chart uses one common binary midpoint at the braid center,
 
 $$
 \mathbf c_1(T)
@@ -633,17 +633,17 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-826e6fcf880fff95)
 
-`B1` is the fixed-coordinate common-frequency co-rotating member. Its binaries may have different radii, axial half-separations, transverse orbit radii, and phases, but share one midpoint, one axis, one frequency, and one circulation sense. The coincident-axis relation distinguishes Family B from Family A; the family identifier does not assert that either geometry is dynamically retained.
+`B1` is the fixed-coordinate common-frequency co-rotating member. Its binaries may have different radii, axial half-separations, transverse orbit radii, and phases, but share one midpoint, one axis, one frequency, and one circulation sense. The coincident-axis relation distinguishes common-axis three-binary charts from three-axis circular charts; the family identifier does not assert that either geometry is dynamically retained.
 
 The three current Borg selections are `B1.1`, the interior reference with $h_a>0$ and $\rho_a>0$; `B1.2`, the high-axial interior selection with $h_a>\rho_a>0$; and `B1.3`, the all-equatorial boundary with $h_a=0$ and $\rho_a=R_a$. Each inherits every other B1 relation. Active B1 candidates additionally satisfy $\sum_a\rho_a^2>0$, equivalently nonzero total squared internal speed for the declared common frequency. The all-axial locus $\rho_a=0$, $h_a=R_a$ remains part of the B1 coordinate boundary, but the former identifier `B1.4` is retained only as a deprecated historical null control.
 
-Family A and Family B meet on a boundary. Every Family-A member reaches the coincident-axis relation at $\lambda_A=1$; a common-frequency Family-A variant with one common circulation sense and coincident binary midpoints also occupies the B1 coordinate locus at that endpoint. The A2 face-opposite seed also admits a distinct body-diagonal rotating-channel chart on the cyclic-symmetric B1 sublocus described in [B1 Hypotheses and Discrete Symmetry](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#cyclic-symmetric-a2b1-overlap). This geometric coincidence does not identify the two families away from either overlap.
+three-axis circular charts and common-axis three-binary charts meet on a boundary. Every three-axis circular-chart member reaches the coincident-axis relation at $\lambda_A=1$; a common-frequency three-axis circular-chart variant with one common circulation sense and coincident binary midpoints also occupies the B1 coordinate locus at that endpoint. The A2 face-opposite seed also admits a distinct body-diagonal rotating-channel chart on the cyclic-symmetric B1 sublocus described in [B1 Hypotheses and Discrete Symmetry](../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#cyclic-symmetric-a2b1-overlap). This geometric coincidence does not identify the two families away from either overlap.
 
-### Family C: Coaxial Twelve-Architrino Geometry
+### two-component circular charts: Coaxial Twelve-Architrino Geometry
 
-Family C contains twelve architrino worldlines grouped into six neutral binaries on one common oriented axis. Its exact ordered path chart, binary-counterpart map, causal-delay relation, constrained component loci, and physical-mapping boundary are developed in [Braid Family C](../../../../markdown/aaa/noether-braid/braid-family-c.md).
+two-component circular charts contains twelve architrino worldlines grouped into six neutral binaries on one common oriented axis. Its exact ordered path chart, binary-counterpart map, causal-delay relation, constrained component loci, and physical-mapping boundary are developed in [Braid two-component circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md).
 
-The parent coordinates are the ordered axial positions $\xi_m$, spacing vector $\mathbf d_C$, total length $L_C$, radii $\rho_m$, angular frequencies $\omega_m$, phases $\phi_m$, circulation senses $q_m$, and fixed-point-free neutral-binary map $\pi$. Family C does not require its twelve worldlines to decompose into two B1 braids.
+The parent coordinates are the ordered axial positions $\xi_m$, spacing vector $\mathbf d_C$, total length $L_C$, radii $\rho_m$, angular frequencies $\omega_m$, phases $\phi_m$, circulation senses $q_m$, and fixed-point-free neutral-binary map $\pi$. two-component circular charts does not require its twelve worldlines to decompose into two B1 braids.
 
 `C1` is the general co-rotating member: all twelve worldlines share one circulation sense. `C2` is the general counter-rotating member: worldlines $1$ through $6$ have one circulation sense and worldlines $7$ through $12$ have the opposite sense. Both retain the complete spacing, radius, frequency, phase, and binary-pairing coordinates.
 
@@ -688,8 +688,8 @@ The first three tables carry the geometry. The fourth table supplies optional na
 | `A2` | 1 | A2 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | One common sense |
 | `A3` | 1 | A3 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | Not yet specified |
 | `B1` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf n}_B$ | $\hat{\mathbf n}_B$ | $T=0$ | One common sense |
-| `C1` | 1 | General Family C | Variable $s_{\mathrm{grp}}$ | Twelve ordered coordinates $\xi_m$ | One common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q_C$ |
-| `C2` | 1 | General Family C | Variable $s_{\mathrm{grp}}$ | Twelve ordered coordinates $\xi_m$ | One common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $q_C$ on $\mathcal I_1$ and $-q_C$ on $\mathcal I_2$ |
+| `C1` | 1 | General two-component circular charts | Variable $s_{\mathrm{grp}}$ | Twelve ordered coordinates $\xi_m$ | One common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q_C$ |
+| `C2` | 1 | General two-component circular charts | Variable $s_{\mathrm{grp}}$ | Twelve ordered coordinates $\xi_m$ | One common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $q_C$ on $\mathcal I_1$ and $-q_C$ on $\mathcal I_2$ |
 | `C3` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
 | `C3` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
 | `C4` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $q$ |
@@ -701,7 +701,7 @@ The first three tables carry the geometry. The fourth table supplies optional na
 
 #### Individual Binary Master Table
 
-Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates attached to persistent binary indices. They do not encode a size order, and equality is permitted unless a constrained row says otherwise. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. A1 fixes $h_a=0$ and $\rho_a=R_a$; A3 carries the general axial and transverse decomposition of $R_a$ defined above. C3 through C6 inherit the individual-binary rows of their declared B1 or B1.3 components. C1 and C2 instead use the twelve-worldline coordinates and explicit counterpart map defined in [Braid Family C](../../../../markdown/aaa/noether-braid/braid-family-c.md#shared-family-c-coordinate-chart).
+Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates attached to persistent binary indices. They do not encode a size order, and equality is permitted unless a constrained row says otherwise. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. A1 fixes $h_a=0$ and $\rho_a=R_a$; A3 carries the general axial and transverse decomposition of $R_a$ defined above. C3 through C6 inherit the individual-binary rows of their declared B1 or B1.3 components. C1 and C2 instead use the twelve-worldline coordinates and explicit counterpart map defined in [Braid two-component circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#shared-family-c-coordinate-chart).
 
 | Member ID | Braid index | Binary index | Radius | Axial half-separation | Transverse orbit radius | Frequency | Phase |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -757,46 +757,46 @@ The deprecated `B1.4` control is not an active master-table row. Its preserved b
 
 Family and member names are optional aliases. The Description column may aid navigation, but it does not define the geometry and must not introduce a characteristic absent from the first three master tables.
 
-Every Family-A Borg depiction in this table selects the near-rest endpoint $\lambda_A=0$. Its three source-defined binary axes are the mutually orthogonal $x$, $y$, and $z$ axes, so the corresponding binary orbit planes are yz, xz, and xy. The wider taxonomy retains the prescribed interpolation through $0 < \lambda_A < 1$ and the coincident-axis endpoint at $\lambda_A=1$.
+Every three-axis circular-chart Borg depiction in this table selects the near-rest endpoint $\lambda_A=0$. Its three source-defined binary axes are the mutually orthogonal $x$, $y$, and $z$ axes, so the corresponding binary orbit planes are yz, xz, and xy. The wider taxonomy retains the prescribed interpolation through $0 < \lambda_A < 1$ and the coincident-axis endpoint at $\lambda_A=1$.
 
 | Member ID | Family name | Member name | Geometry record | Borg depiction | Description |
 | --- | --- | --- | --- | --- | --- |
-| `A1` | Noether core | Coincident endpoint orbits | `family-a-a1-general-v1` | `A1 — coincident endpoint orbits` | Zero-axial-offset Family-A member whose two endpoint paths share one geometric circle within each binary. |
-| `A1.1` | Noether core | Equal-frequency | `family-a-a1-1-equal-frequency-v1` | `A1.1 — equal frequency` | A1 constrained to one common binary frequency while retaining independently assignable radii. |
-| `A1.2` | Noether core | Equal-frequency equal-radius | `family-a-a1-2-equal-frequency-equal-radius-v1` | `A1.2 — equal frequency, equal radius` | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
-| `A1.3` | Noether core | 4:2:1-frequency | `family-a-a1-3-4-2-1-frequency-v1` | `A1.3 — 4:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
-| `A1.4` | Noether core | 3:2:1-frequency | `family-a-a1-4-3-2-1-frequency-v1` | `A1.4 — 3:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `A2` | Noether core | Fully symmetric | `family-a-a2-fully-symmetric-v1` | `A2 — fully symmetric` | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
-| `A3` | Noether core | General axial decomposition | `family-a-a3-general-v1` | `A3 — general` | General Family-A member with independently assignable positive radii, frequencies, phases, and axial/transverse decompositions. |
-| `A3.1` | Noether core | Equal-frequency axial decomposition | `family-a-a3-1-equal-frequency-v1` | `A3.1 — equal frequency` | A3 constrained to one common binary frequency while retaining independently assignable radii and decompositions. |
-| `A3.2` | Noether core | Equal-frequency equal-radius axial decomposition | `family-a-a3-2-equal-frequency-equal-radius-v1` | `A3.2 — equal frequency, equal radius` | A3 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
-| `A3.3` | Noether core | 4:2:1-frequency axial decomposition | `family-a-a3-3-4-2-1-frequency-v1` | `A3.3 — 4:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
-| `A3.4` | Noether core | 3:2:1-frequency axial decomposition | `family-a-a3-4-3-2-1-frequency-v1` | `A3.4 — 3:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `B1.1` | Coincident binary axes | Interior reference | `illustrative-spindle-chart-hypothesis-v0` | `B1.1 — interior reference` | B1 with $h_a>0$ and $\rho_a>0$ for all three binaries. |
-| `B1.2` | Coincident binary axes | High-axial interior | `illustrative-extreme-cap-tilt-spindle-variant-v0` | `B1.2 — high-axial interior` | B1 with $h_a>\rho_a>0$ for all three binaries. |
-| `B1.3` | Coincident binary axes | All-equatorial boundary | `illustrative-planar-tri-binary-spindle-boundary-v0` | `B1.3 — all-equatorial boundary` | B1 with $h_a=0$ and $\rho_a=R_a$ for all three binaries. |
-| `C1` | Coaxial twelve-architrino geometry | Co-rotating | `family-c-c1-co-rotating-general-v1` | `C1 — co-rotating` | Twelve ordered coaxial architrino worldlines with one common circulation sense and an explicit neutral-binary counterpart map. |
-| `C2` | Coaxial twelve-architrino geometry | Counter-rotating | `family-c-c2-counter-rotating-general-v1` | `C2 — counter-rotating` | Twelve ordered coaxial architrino worldlines with opposite circulation senses on the two declared index subsets and an explicit neutral-binary counterpart map. |
-| `C3` | Coaxial twelve-architrino geometry | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C3 — co-rotating B1 pair` | C1 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
-| `C4` | Coaxial twelve-architrino geometry | Counter-rotating B1 pair | `family-c-c2-counter-rotating-b1-pair-v1` | `C4 — counter-rotating B1 pair` | C2 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
-| `C5` | Coaxial twelve-architrino geometry | Co-rotating B1.3 pair | `family-c-c1-1-co-rotating-b1-3-pair-v1` | `C5 — co-rotating B1.3 pair` | C3 constrained to two all-equatorial B1.3 components. |
-| `C6` | Coaxial twelve-architrino geometry | Counter-rotating B1.3 pair | `family-c-c2-1-counter-rotating-b1-3-pair-v1` | `C6 — counter-rotating B1.3 pair` | C4 constrained to two all-equatorial B1.3 components. |
+| `A1` | Noether core | Coincident endpoint orbits | `three-axis-circular-coincident-midpoints-v1` | `Three-axis circular chart — coincident pair midpoints` | Zero-axial-offset three-axis circular-chart member whose two endpoint paths share one geometric circle within each binary. |
+| `A1.1` | Noether core | Equal-frequency | `three-axis-circular-coincident-midpoints-common-frequency-v1` | `Three-axis circular chart — coincident pair midpoints, common frequency` | A1 constrained to one common binary frequency while retaining independently assignable radii. |
+| `A1.2` | Noether core | Equal-frequency equal-radius | `three-axis-circular-coincident-midpoints-equal-radius-common-frequency-v1` | `Three-axis circular chart — coincident pair midpoints, equal radius and common frequency` | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
+| `A1.3` | Noether core | 4:2:1-frequency | `three-axis-circular-coincident-midpoints-4-2-1-frequency-v1` | `Three-axis circular chart — coincident pair midpoints, 4:2:1 frequency ratio` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
+| `A1.4` | Noether core | 3:2:1-frequency | `three-axis-circular-coincident-midpoints-3-2-1-frequency-v1` | `Three-axis circular chart — coincident pair midpoints, 3:2:1 frequency ratio` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
+| `A2` | Noether core | Fully symmetric | `three-axis-circular-phase-compensated-symmetric-v1` | `Three-axis circular chart — phase-compensated equal geometry` | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
+| `A3` | Noether core | General axial decomposition | `three-axis-circular-axially-separated-v1` | `Three-axis circular chart — axially separated endpoint circles` | General three-axis circular-chart member with independently assignable positive radii, frequencies, phases, and axial/transverse decompositions. |
+| `A3.1` | Noether core | Equal-frequency axial decomposition | `three-axis-circular-axially-separated-common-frequency-v1` | `Three-axis circular chart — axially separated endpoint circles, common frequency` | A3 constrained to one common binary frequency while retaining independently assignable radii and decompositions. |
+| `A3.2` | Noether core | Equal-frequency equal-radius axial decomposition | `three-axis-circular-axially-separated-equal-radius-common-frequency-v1` | `Three-axis circular chart — axially separated endpoint circles, equal radius and common frequency` | A3 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
+| `A3.3` | Noether core | 4:2:1-frequency axial decomposition | `three-axis-circular-axially-separated-4-2-1-frequency-v1` | `Three-axis circular chart — axially separated endpoint circles, 4:2:1 frequency ratio` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
+| `A3.4` | Noether core | 3:2:1-frequency axial decomposition | `three-axis-circular-axially-separated-3-2-1-frequency-v1` | `Three-axis circular chart — axially separated endpoint circles, 3:2:1 frequency ratio` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
+| `B1.1` | Coincident binary axes | Interior reference | `axial-transverse-three-binary-interior-v0` | `Axial-transverse three-binary interior reference` | B1 with $h_a>0$ and $\rho_a>0$ for all three binaries. |
+| `B1.2` | Coincident binary axes | High-axial interior | `high-axial-three-binary-interior-v0` | `High-axial three-binary interior reference` | B1 with $h_a>\rho_a>0$ for all three binaries. |
+| `B1.3` | Coincident binary axes | All-equatorial boundary | `planar-three-binary-common-center-reference-v0` | `Unequal-radius planar three-binary reference` | B1 with $h_a=0$ and $\rho_a=R_a$ for all three binaries. |
+| `C1` | Coaxial twelve-architrino geometry | Co-rotating | `coincident-center-two-component-circular-co-rotating-v1` | `Coincident-center two-component circular chart — co-rotating` | Twelve ordered coaxial architrino worldlines with one common circulation sense and an explicit neutral-binary counterpart map. |
+| `C2` | Coaxial twelve-architrino geometry | Counter-rotating | `coincident-center-two-component-circular-counter-rotating-v1` | `Coincident-center two-component circular chart — counter-rotating` | Twelve ordered coaxial architrino worldlines with opposite circulation senses on the two declared index subsets and an explicit neutral-binary counterpart map. |
+| `C3` | Coaxial twelve-architrino geometry | Co-rotating B1 pair | `coaxial-separated-two-component-circular-co-rotating-v1` | `Coaxial separated two-component circular chart — co-rotating` | C1 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C4` | Coaxial twelve-architrino geometry | Counter-rotating B1 pair | `coaxial-separated-two-component-circular-counter-rotating-v1` | `Coaxial separated two-component circular chart — counter-rotating` | C2 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C5` | Coaxial twelve-architrino geometry | Co-rotating B1.3 pair | `coaxial-separated-two-planar-braid-co-rotating-v1` | `Coaxial separated two-planar-braid chart — co-rotating` | C3 constrained to two all-equatorial B1.3 components. |
+| `C6` | Coaxial twelve-architrino geometry | Counter-rotating B1.3 pair | `coaxial-separated-two-planar-braid-counter-rotating-v1` | `Coaxial separated two-planar-braid chart — counter-rotating` | C4 constrained to two all-equatorial B1.3 components. |
 
-## Braid Family A
+## Braid three-axis circular charts
 
-### Braid Family A
+### Braid three-axis circular charts
 
-Family A contains prescribed one-braid geometries whose three binary axes are mutually orthogonal at the near-rest endpoint and converge toward the group-translation direction as the prescribed flattening coordinate increases. The canonical coordinates, response endpoints, and master-table rows are defined in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-a-noether-core). This chapter explains how those coordinates distinguish A1, A2, A3, and their constrained loci.
+three-axis circular charts contains prescribed one-braid geometries whose three binary axes are mutually orthogonal at the near-rest endpoint and converge toward the group-translation direction as the prescribed flattening coordinate increases. The canonical coordinates, response endpoints, and master-table rows are defined in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-a-noether-core). This chapter explains how those coordinates distinguish A1, A2, A3, and their constrained loci.
 
-Family A is a geometry-and-motion definition. It does not establish that an A1, A2, or A3 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
+three-axis circular charts is a geometry-and-motion definition. It does not establish that an A1, A2, or A3 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
 
-#### Shared Family-A Geometry
+#### Shared three-axis circular-chart Geometry
 
-Every Family-A member is one complete Noether braid composed of three neutral binaries. Each binary contains one electrino and one positrino. The three binary midpoints coincide with the braid center. The binaries share a braid-level phase zero, while radius, axial half-separation, transverse orbit radius, frequency, phase, and circulation are binary coordinates.
+Every three-axis circular-chart member is one complete Noether braid composed of three neutral binaries. Each binary contains one electrino and one positrino. The three binary midpoints coincide with the braid center. The binaries share a braid-level phase zero, while radius, axial half-separation, transverse orbit radius, frequency, phase, and circulation are binary coordinates.
 
-At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the Family-A translation direction. The complete braid translates along that direction, and its group speed is distinct from the internal architrino speeds.
+At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the three-axis circular-chart translation direction. The complete braid translates along that direction, and its group speed is distinct from the internal architrino speeds.
 
-Every Family-A Borg catalog representative uses this near-rest endpoint: $\lambda_A=0$, source axes along $x$, $y$, and $z$, and corresponding binary orbit planes yz, xz, and xy. This prescribed display selection does not remove the intermediate and flat response geometries from the wider Family-A taxonomy.
+Every three-axis circular-chart Borg catalog representative uses this near-rest endpoint: $\lambda_A=0$, source axes along $x$, $y$, and $z$, and corresponding binary orbit planes yz, xz, and xy. This prescribed display selection does not remove the intermediate and flat response geometries from the wider three-axis circular-chart taxonomy.
 
 The prescribed flattening coordinate $\lambda_A$ connects two endpoint geometries:
 
@@ -804,15 +804,15 @@ The prescribed flattening coordinate $\lambda_A$ connects two endpoint geometrie
 | --- | --- | --- |
 | $0$ | Three mutually orthogonal axes | Nearly spherical near-rest endpoint in the declared weak-gradient environment. |
 | $0 < \lambda_A < 1$ | Three axes converging toward the translation direction | Increasingly oblate intermediate geometry. |
-| $1$ | Three coincident axes along the translation direction | Flat Family-A response geometry used as prescribed input in event-horizon and photon-channel response studies. |
+| $1$ | Three coincident axes along the translation direction | Flat three-axis circular-chart response geometry used as prescribed input in event-horizon and photon-channel response studies. |
 
 This response is prescribed taxonomy. An EOM-solver derivation of the path through these geometries, including either physical endpoint assignment, remains open.
 
-The coincident-axis endpoint is also a geometric boundary with Family B. A Family-A record does not become a Family-B record away from that boundary, and coincidence at one endpoint does not establish a shared dynamical branch.
+The coincident-axis endpoint is also a geometric boundary with common-axis three-binary charts. A three-axis circular-chart record does not become a common-axis three-binary-chart record away from that boundary, and coincidence at one endpoint does not establish a shared dynamical branch.
 
 #### A1
 
-A1 is the zero-axial-offset Family-A member. Its indices $a\in\{1,2,3\}$ are persistent record identities. They are not assigned by sorting the radii, frequencies, speeds, or later dynamical roles. The radii are independently assignable positive coordinates, and equal values are permitted. The three frequencies are likewise independently assignable.
+A1 is the zero-axial-offset three-axis circular-chart member. Its indices $a\in\{1,2,3\}$ are persistent record identities. They are not assigned by sorting the radii, frequencies, speeds, or later dynamical roles. The radii are independently assignable positive coordinates, and equal values are permitted. The three frequencies are likewise independently assignable.
 
 For every A1 binary,
 
@@ -826,7 +826,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a1527409c4a34726)
 
-The two architrinos therefore remain antipodal while traversing the same geometric circle, whose center is the braid center. The three binary circles need not share one plane: at the near-rest endpoint their plane normals are the three mutually orthogonal Family-A axes.
+The two architrinos therefore remain antipodal while traversing the same geometric circle, whose center is the braid center. The three binary circles need not share one plane: at the near-rest endpoint their plane normals are the three mutually orthogonal three-axis circular-chart axes.
 
 A1 does not require the exact cyclic binary-permutation symmetry of A2. When its binary coordinates differ, a spatial rotation cannot map one binary onto another with different geometry. An integer frequency ratio can make the full prescribed figure repeat after a common period, but it does not by itself establish spatial equivalence.
 
@@ -845,17 +845,17 @@ The exact radius, frequency, phase, axial-half-separation, and transverse-orbit-
 
 #### A2
 
-A2 is the fully symmetric Family-A member. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. No binary is distinguished. A $120^\circ$ rotation about the Family-A translation direction cyclically permutes the three binaries.
+A2 is the fully symmetric three-axis circular-chart member. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. No binary is distinguished. A $120^\circ$ rotation about the three-axis circular-chart translation direction cyclically permutes the three binaries.
 
-An exact near-rest reference fixture places the three binary axes on an orthonormal frame. At one common reference time, each positrino lies at distance $R$ from the braid center along one positive frame axis and its electrino partner lies at the antipodal point. This is the face-opposite seed used by the invariant-channel analysis in [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#invariant-channels-and-equivariant-reductions).
+An exact near-rest reference fixture places the three binary axes on an orthonormal frame. At one common reference time, each positrino lies at distance $R$ from the braid center along one positive frame axis and its electrino partner lies at the antipodal point. This is the face-opposite seed used by the invariant-channel analysis in [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#invariant-channels-and-equivariant-reductions).
 
 The fixture is one exact A2 representative, not the whole A2 coordinate space. At that reference instant it uses axial half-separation $h=R$ and transverse orbit radius $\rho=0$. In the taxonomy motion about each binary's own fixed axis, that snapshot is static because $\rho=0$; the body-diagonal rotating channel is a distinct prescribed motion of the same six positions. The A2 taxonomy permits any common pair $(h,\rho)$ satisfying the binary-radius relation, provided all three binaries share that geometry and the other A2 constraints.
 
-The member-specific symmetry lemma, reduced channels, two-ring geometry, axial polarity-dipole identity, momentum-screw alignment, and retention questions are developed in [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md). Those results constrain the fixture under their stated assumptions; they do not certify A2 retention.
+The member-specific symmetry lemma, reduced channels, two-ring geometry, axial polarity-dipole identity, momentum-screw alignment, and retention questions are developed in [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md). Those results constrain the fixture under their stated assumptions; they do not certify A2 retention.
 
 #### A3
 
-A3 is the general axial-decomposition Family-A member. It retains the common braid center and persistent binary identities of A1 while permitting each binary to carry its own nonnegative axial half-separation and transverse orbit radius:
+A3 is the general axial-decomposition three-axis circular-chart member. It retains the common braid center and persistent binary identities of A1 while permitting each binary to carry its own nonnegative axial half-separation and transverse orbit radius:
 
 $$
 R_a^2=h_a^2+\rho_a^2.
@@ -911,11 +911,11 @@ A1.2 is the $h=0$ locus of A3.2. A2 occupies the cyclically symmetric locus of A
 
 #### Claim Boundary
 
-The Family-A definitions are prescribed. They would be falsified as EOM-solver branch claims by a same-record evolution showing that the declared coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability rows. Until such a record exists, Family A supplies exact display geometry and explicit closure targets, not a retained physical braid.
+The three-axis circular-chart definitions are prescribed. They would be falsified as EOM-solver branch claims by a same-record evolution showing that the declared coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability rows. Until such a record exists, three-axis circular charts supplies exact display geometry and explicit closure targets, not a retained physical braid.
 
 ### Braid A1 Dynamics and Interpretation
 
-This specialist chapter carries the retention, phase-closure, cadence-retuning, scaling, strong-field, and downstream interpretation hypotheses specific to A1. The A1 coordinates and constrained variants are defined in [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md#a1); the realization-independent proof contract is defined in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
+This specialist chapter carries the retention, phase-closure, cadence-retuning, scaling, strong-field, and downstream interpretation hypotheses specific to A1. The A1 coordinates and constrained variants are defined in [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a1); the realization-independent proof contract is defined in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
 
 Nothing in this chapter establishes an EOM-solver-retained A1 branch. Derived identities, conditional results, hypotheses, and observer-level mappings keep their stated claim grades.
 
@@ -933,7 +933,7 @@ The claims in this chapter have three distinct scopes: A1-specific hypotheses, f
 | Reduced closure label $\Lambda_{A1}$ and its alignment restriction | A1-specific hypothesis | The label is available for A1 branch comparison only and does not establish a retained branch. |
 | Dynamic exclusion-envelope export | Family-general export requirement with an A1 realization | The shared interface is owned by [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md). |
 | Three-support-row shielding mapped to fermion generations | Unsupported A1 assignment | No retained branch, shielding extraction, or particle map currently establishes the assignment. |
-| Family-A axis convergence under the prescribed response | A1-specific prescribed response and dynamical recovery target | The endpoint is part of the A1 chart; evolved convergence remains unproved. |
+| three-axis circular-chart axis convergence under the prescribed response | A1-specific prescribed response and dynamical recovery target | The endpoint is part of the A1 chart; evolved convergence remains unproved. |
 | Event-horizon, Planck-scale, and dipole-quiet identifications | Unsupported A1 assignments | These remain comparison hypotheses until A1-specific moment and strong-field records establish them. The A2 dipole theorem cannot be transferred to A1 by analogy. |
 | A Noether braid as the structural candidate for fermion recovery | Family-general recovery requirement | Assigning A1, rather than another retained member, to a fermion class remains unsupported. |
 
@@ -941,13 +941,13 @@ An unsupported A1 assignment is not part of the A1 definition and must not be co
 
 #### Retention and Interpretation
 
-The A1 geometry, persistent binary indices, and constrained variants are defined in [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md#a1). The remaining material below concerns phase closure, retuning, dynamics, shielding, and downstream interpretations. It does not add coordinates to the A1 definition.
+The A1 geometry, persistent binary indices, and constrained variants are defined in [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a1). The remaining material below concerns phase closure, retuning, dynamics, shielding, and downstream interpretations. It does not add coordinates to the A1 definition.
 
 All equations use the persistent indices $a\in\{1,2,3\}$. The indices do not encode a radius order or preassign a field-speed carrier, self-hit channel, shielding rank, or envelope-leading path. Any such diagnostic must be extracted from the same retained branch record used by the equation in which it appears.
 
 ##### Symmetry-Distance Diagnostic
 
-A2's exact threefold channel pins its kinematic angular momentum along the Family-A translation direction. A1 does not require the equal geometry and cyclic binary-permutation symmetry used by that theorem, so the same pinning result does not apply to a general A1 record. The resulting hypothesis is that nonzero precession may diagnose distance from the A2 symmetry channel, while decaying precession may diagnose relaxation toward it. This is an inferred diagnostic, not a proof that A1 precesses, that A1 relaxes toward A2, or that either member is retained. A retained evolution would falsify the diagnostic if its measured precession failed to track an independently defined symmetry-distance residual.
+A2's exact threefold channel pins its kinematic angular momentum along the three-axis circular-chart translation direction. A1 does not require the equal geometry and cyclic binary-permutation symmetry used by that theorem, so the same pinning result does not apply to a general A1 record. The resulting hypothesis is that nonzero precession may diagnose distance from the A2 symmetry channel, while decaying precession may diagnose relaxation toward it. This is an inferred diagnostic, not a proof that A1 precesses, that A1 relaxes toward A2, or that either member is retained. A retained evolution would falsify the diagnostic if its measured precession failed to track an independently defined symmetry-distance residual.
 
 ##### Retention and Shielding Hypotheses
 
@@ -1421,7 +1421,7 @@ Any attempt to pair this shielding ladder with accessory geometry must use a com
 
 Maximal curvature, same-transmitter-root access, field-speed occupancy, energy-transfer leverage, and external exposure are branch diagnostics, not A1 member assignments. A retained record may place these diagnostics on different binary indices, may place more than one diagnostic on one index, or may fail to supply a unique assignment. The sets $\mathcal H_q(W)$ and $\mathcal S_q(W)$ above record two of these distinctions without changing the binary identities.
 
-The horizon-approach hypothesis for A1 is therefore permutation-neutral: as the assembly approaches its terminal-alignment target, the three binary axes converge to the Family-A translation direction, precession ceases, at least two branch-derived speed rows approach the field-speed locus, and at least one retained same-transmitter-root row remains available. Which indices satisfy those conditions, and how their frequencies, radii, and energy rows retune, must be measured on the evolved branch. This is a derivation target, not an evolved-trajectory result.
+The horizon-approach hypothesis for A1 is therefore permutation-neutral: as the assembly approaches its terminal-alignment target, the three binary axes converge to the three-axis circular-chart translation direction, precession ceases, at least two branch-derived speed rows approach the field-speed locus, and at least one retained same-transmitter-root row remains available. Which indices satisfy those conditions, and how their frequencies, radii, and energy rows retune, must be measured on the evolved branch. This is a derivation target, not an evolved-trajectory result.
 
 The canonical term for this whole-assembly transition is the **braid symmetry-breaking point**. It does not assign permanent roles to binaries 1, 2, or 3 and does not claim that their radii, frequencies, or energies become equal. Because $s_a=\omega_a\rho_a$, equal threshold speed does not by itself imply equal frequency, equal effective lever arm, equal radius, or equal energy.
 
@@ -1429,7 +1429,7 @@ The proposed local black-hole dual is an unsupported A1 assignment. It asks whet
 
 **Mapping hypothesis (unsupported):** "Planck-scale" references may map to the **event-horizon alignment condition** (coincident A1 binary axes with branch-derived field-speed occupancy) only if an explicit derivation supplies that scale map; compare [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) and [Mapping the Planck Scale to A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md).
 
-The alignment limit also has a proposed wake-signature reading, but the available theorem is member-specific. The [axial polarity dipole identity](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#moments-and-the-axial-polarity-dipole) proves the cancellation only for A2's symmetric two-ring geometry. A general A1 record does not inherit that identity. The A1 **dipole-quiet limit** is therefore a theorem target requiring an A1-specific cycle-resolved moment calculation. If that calculation leaves a nonzero leading polarity-signed moment at terminal alignment, the proposed identification with horizon darkness and the associated entropy interpretation fail.
+The alignment limit also has a proposed wake-signature reading, but the available theorem is member-specific. The [axial polarity dipole identity](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#moments-and-the-axial-polarity-dipole) proves the cancellation only for A2's symmetric two-ring geometry. A general A1 record does not inherit that identity. The A1 **dipole-quiet limit** is therefore a theorem target requiring an A1-specific cycle-resolved moment calculation. If that calculation leaves a nonzero leading polarity-signed moment at terminal alignment, the proposed identification with horizon darkness and the associated entropy interpretation fail.
 
 ##### The Foundation for Fermions
 
@@ -1445,7 +1445,7 @@ For the strong-field continuation, see [Black Holes](../../../../markdown/aaa/sp
 
 ### A2 Symmetry and Return Response
 
-A2 is the fully symmetric Family-A member defined in [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md#a2). This specialist chapter owns the mathematics and retention analysis unique to its exact face-opposite reference fixture: the invariant symmetry channels, the two-ring projection, the axial polarity dipole, the momentum screw, the near-antipodality diagnostic, and the isolated and sea-embedded return-response questions.
+A2 is the fully symmetric three-axis circular-chart member defined in [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a2). This specialist chapter owns the mathematics and retention analysis unique to its exact face-opposite reference fixture: the invariant symmetry channels, the two-ring projection, the axial polarity dipole, the momentum screw, the near-antipodality diagnostic, and the isolated and sea-embedded return-response questions.
 
 The chapter does not redefine A2 and does not certify a retained branch. Its exact results constrain the declared A2 fixture under their stated hypotheses. The realization-independent retention contract remains in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md), and the family-general speed split remains in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#transverse-internal-motion-speed-budget-lemma).
 
@@ -1465,7 +1465,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-77d5d9c718258b2a)
 
-This seed lies on a common sphere, so it is the maximal-symmetry Family-A member: the A2 reference fixture defined in [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md#a2). Two finite symmetry groups act on the seed by simultaneous spatial transformation and site relabeling. For a coordinate-axis permutation $\rho\in S_3$, let $M_\rho$ be the coordinate-permutation matrix and let $\rho$ permute site labels within each polarity; let $\iota$ compose point inversion with polarity exchange. Both act on configurations by
+This seed lies on a common sphere, so it is the maximal-symmetry three-axis circular-chart member: the A2 reference fixture defined in [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a2). Two finite symmetry groups act on the seed by simultaneous spatial transformation and site relabeling. For a coordinate-axis permutation $\rho\in S_3$, let $M_\rho$ be the coordinate-permutation matrix and let $\rho$ permute site labels within each polarity; let $\iota$ compose point inversion with polarity exchange. Both act on configurations by
 
 $$
 (g\cdot\mathbf X)_\ell(t)=M_g\,\mathbf X_{g^{-1}\ell}(t)
@@ -1545,7 +1545,7 @@ The scope boundary is part of the result. Invariance of the channel does not pro
 
 ##### Polarity Conjugation
 
-Because the delayed acceleration kernel depends on polarity only through products $\sigma_i\sigma_j$, global polarity conjugation leaves every trajectory unchanged: an electrino-face-leading branch and a positrino-face-leading branch are exactly degenerate in isolation. The leading-octant sign can acquire physical meaning only through coupling to an environment that is not polarity-balanced, which is where ordered-braid chirality must obtain its content; the helicity sign of the momentum screw below is the candidate carrier of that chirality label. Translation along $\hat{\mathbf n}$, by contrast, produces a real asymmetry: with $\iota$ broken, the leading face meets fresh medium while the trailing face rides in the branch's own wake, and this fore-aft wake asymmetry is the native deformation channel developed further in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics).
+Because the delayed acceleration kernel depends on polarity only through products $\sigma_i\sigma_j$, global polarity conjugation leaves every trajectory unchanged: an electrino-face-leading branch and a positrino-face-leading branch are exactly degenerate in isolation. The leading-octant sign can acquire physical meaning only through coupling to an environment that is not polarity-balanced, which is where ordered-braid chirality must obtain its content; the helicity sign of the momentum screw below is the candidate carrier of that chirality label. Translation along $\hat{\mathbf n}$, by contrast, produces a real asymmetry: with $\iota$ broken, the leading face meets fresh medium while the trailing face rides in the branch's own wake, and this fore-aft wake asymmetry is the native deformation channel developed further in [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics).
 
 #### A2 Two-Ring Geometry
 
@@ -1567,7 +1567,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-082b053380ee5012)
 
-The transverse dipole components cancel in balanced three-phase fashion. This cancellation is a statement about the braid's summed distant signature, not about the accelerations inside it: each architrino still receives the full delayed influence of all five partners through its own causal roots, and none of those per-receiver contributions vanish. What cancels is the collective polarity-signed moment that a distant receiver reconstructs from the superposed wakes. A branch that flattens toward the transverse plane therefore loses its leading polarity-signed moment entirely: the flattened fast configuration is quiet at dipole order, with its first surviving structure at higher moment order. This identity is the channel's native contribution to the energy-shielding story used by the Family-A chapters, and it links the terminal planar limit to wake quietness rather than to increased exposure.
+The transverse dipole components cancel in balanced three-phase fashion. This cancellation is a statement about the braid's summed distant signature, not about the accelerations inside it: each architrino still receives the full delayed influence of all five partners through its own causal roots, and none of those per-receiver contributions vanish. What cancels is the collective polarity-signed moment that a distant receiver reconstructs from the superposed wakes. A branch that flattens toward the transverse plane therefore loses its leading polarity-signed moment entirely: the flattened fast configuration is quiet at dipole order, with its first surviving structure at higher moment order. This identity is the channel's native contribution to the energy-shielding story used by the three-axis circular-chart chapters, and it links the terminal planar limit to wake quietness rather than to increased exposure.
 
 #### Momentum Screw and Helicity
 
@@ -1647,7 +1647,7 @@ The invariant-channel lemma, its exact channel corollaries, the two-ring geometr
 
 This chapter owns the specialized A3.3 doubling-frequency $4{:}2{:}1$ lock study inside the broader [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md). The persistent indices $a\in\{1,2,3\}$ identify the three A3 binaries, with $f_1:f_2:f_3=4:2:1$ in A3.3. The zero-axial-offset A1.3 member is the $h_1=h_2=h_3=0$ locus of the same frequency chart. The candidate is definitionally frequency-separated and tests that chart under explicit support, field-speed-carrier, phase-return, and stability assumptions. It does not order the radii, make doubling frequency the default Noether braid frequency, certify A3 dynamics from kinematics, or generalize to B1, whose iso-frequency common-axis structure has no doubling ladder to lock.
 
-It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [A3.3](../../../../markdown/aaa/noether-braid/braid-family-a.md#a3-constrained-variants), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md), which provide the assembly scaffold, zero-offset subset, geometry, and scale-setting context for the lock relations derived here.
+It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [A3.3](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#a3-constrained-variants), [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md), which provide the assembly scaffold, zero-offset subset, geometry, and scale-setting context for the lock relations derived here.
 
 The level distinctions matter throughout. Ontologically, the three indexed binaries are assembly components built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. As a derivation target, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
 
@@ -2318,15 +2318,15 @@ On one side, the near-orthogonal sector carries three independent phase circles 
 
 For a neighboring closure problem, see [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
-## Braid Family B
+## Braid common-axis three-binary charts
 
-Family B contains prescribed one-braid geometries whose three binary axes are the same oriented line. The canonical coordinates and master-table rows are defined in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-b-coincident-binary-axes). This chapter gives the exact B1 path geometry, its coordinate boundaries, and its intersection with Family A.
+common-axis three-binary charts contains prescribed one-braid geometries whose three binary axes are the same oriented line. The canonical coordinates and master-table rows are defined in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-b-coincident-binary-axes). This chapter gives the exact B1 path geometry, its coordinate boundaries, and its intersection with three-axis circular charts.
 
-Family B is a geometry-and-motion definition. It does not establish that a B1 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
+common-axis three-binary charts is a geometry-and-motion definition. It does not establish that a B1 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
 
-### Shared Family-B Geometry
+### Shared common-axis three-binary-chart Geometry
 
-Every Family-B member is one complete Noether braid composed of three neutral binaries. The binaries share one oriented axis $\hat{\mathbf n}_B$. The source-defined B1 chart also gives them one common midpoint, the braid center $\mathbf C(T)$.
+Every common-axis three-binary-chart member is one complete Noether braid composed of three neutral binaries. The binaries share one oriented axis $\hat{\mathbf n}_B$. The source-defined B1 chart also gives them one common midpoint, the braid center $\mathbf C(T)$.
 
 Choose transverse unit vectors $\hat{\mathbf e}_1$ and $\hat{\mathbf e}_2$ so that $(\hat{\mathbf e}_1,\hat{\mathbf e}_2,\hat{\mathbf n}_B)$ is an orthonormal frame. For binary $a\in\{1,2,3\}$, define
 
@@ -2379,7 +2379,7 @@ Thus internal speed is controlled by transverse orbit radius rather than by tota
 
 ### B1
 
-B1 is the fixed-coordinate common-frequency co-rotating member of Family B. Its member-level constraints are:
+B1 is the fixed-coordinate common-frequency co-rotating member of common-axis three-binary charts. Its member-level constraints are:
 
 | Coordinate or relation | B1 value |
 | --- | --- |
@@ -2405,7 +2405,7 @@ The live Borg catalog assigns decimal member identifiers to three prescribed B1 
 | `B1.2` | High-axial interior: $h_a>\rho_a>0$ for every binary. |
 | `B1.3` | All-equatorial boundary: $h_a=0$ and $\rho_a=R_a$ for every binary. |
 
-These identifiers distinguish the catalog records; they do not replace B1 as the parent member inherited by Family-C component braids.
+These identifiers distinguish the catalog records; they do not replace B1 as the parent member inherited by two-component circular-chart component braids.
 
 An active B1 candidate must contain nonzero transverse internal motion. Define the transverse-motion magnitude
 
@@ -2445,9 +2445,9 @@ At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but no longe
 
 #### Equal-Radius Phase-Symmetric Acceleration-Balance Locus
 
-One exact B1.3 sublocus sets $R_1=R_2=R_3=R$ and assigns the three binary phases $0$, $2\pi/3$, and $4\pi/3$. Each binary has antipodal opposite-polarity endpoints. The six endpoints therefore form a regular hexagon with alternating polarities while sharing one center, one axis, one angular rate, and one circulation sense. In the broader Dynamics taxonomy this is the exact $N=3$ overlap with the [Shared-Circle Assemblies](../../../../markdown/aaa/dynamics/shared-circle-assemblies.md#exact-taxonomy-intersections) chart; the overlap does not enlarge B1.3 to other inventory sizes.
+One exact B1.3 sublocus sets $R_1=R_2=R_3=R$ and assigns the three binary phases $0$, $2\pi/3$, and $4\pi/3$. Each binary has antipodal opposite-polarity endpoints. The six endpoints therefore form a regular hexagon with alternating polarities while sharing one center, one axis, one angular rate, and one circulation sense. In the broader Dynamics taxonomy this is the exact $N=3$ overlap with the [Planar (2D) Braid Assemblies](../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#exact-taxonomy-intersections) chart; the overlap does not enlarge B1.3 to other inventory sizes.
 
-For the default uncapped Master Equation with $c_f=1$, this equal-radius phase-symmetric chart contains the acceleration-balance ladder derived in [Shared-Circle Assemblies](../../../../markdown/aaa/dynamics/shared-circle-assemblies.md#equal-radius-b13-velocity-search). Its representative T04 row has dimensionless speed $\beta_f=2.974307176117306$ and compatible scale $R/R_*=0.5617317000713459$, where $R_*=\kappa\epsilon^2/c_f^2$. The full accepted ladder currently runs from T02 through T200; bounded uniqueness is certified only through T36.
+For the default uncapped Master Equation with $c_f=1$, this equal-radius phase-symmetric chart contains the acceleration-balance ladder derived in [Planar (2D) Braid Assemblies](../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#equal-radius-b13-velocity-search). Its representative T04 row has dimensionless speed $\beta_f=2.974307176117306$ and compatible scale $R/R_*=0.5617317000713459$, where $R_*=\kappa\epsilon^2/c_f^2$. The full accepted ladder currently runs from T02 through T200; bounded uniqueness is certified only through T36.
 
 The measured 72-root directed ledger includes every nontrivial same-transmitter root and excludes only the coincident self root. Its maximum radial, tangential, axial, and full-vector prescribed-acceleration residuals are respectively $3.2862601528904634\times10^{-14}$, $6.88338275267597\times10^{-14}$, $0$, and $7.62510728881475\times10^{-14}$. Tightening the root tolerance preserves the root topology and gives maximum full-vector residual $4.500069559058899\times10^{-12}$; the minimum Jacobian floor is $0.11680602873827528$. An independently authored generic prescribed-history evaluator checks the cross-transmitter roots and acceleration contributions, while an independently authored circular-binary evaluator checks the nontrivial same-transmitter roots. Rotational covariance is checked both algebraically and over a full cycle.
 
@@ -2509,7 +2509,7 @@ $$
 
 each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#transverse-internal-motion-speed-budget-lemma). A mechanism that fixes the total speed budget remains an open branch hypothesis.
 
-Axial translation is a B1 specialization, not a Family-B requirement. A record whose group velocity is not parallel to $\hat{\mathbf n}_B$ retains the same internal B1 geometry but is not an axial screw path.
+Axial translation is a B1 specialization, not a common-axis three-binary-chart requirement. A record whose group velocity is not parallel to $\hat{\mathbf n}_B$ retains the same internal B1 geometry but is not an axial screw path.
 
 Plainly: axial translation carries the center along the common axis while every non-axial endpoint continues circling it. The resulting helix is not obtained by simply adding a harmless velocity label: delayed separations and arrival directions change along the entire history.
 
@@ -2531,7 +2531,7 @@ Choosing the radius only to cancel the radial component gives $R/R_*=0.247157606
 
 Plainly: shrinking the radius can repair the inward amount only; it cannot remove the sideways or axial acceleration, so neither the old nor the radial-only radius is a full balance.
 
-A nearby continuation over $2.3743071761\leq\beta_f\leq3.5743071761$ evaluated 1,201 base samples together with fold-boundary probes and refined the detected component zeros. Its tangential zero retained a nonzero axial residual, and its axial zeros retained nonzero tangential residuals; no sampled or refined point achieved full balance. This is a bounded measured diagnostic; the subsequent [fixed axial-translation study](../../../../markdown/aaa/dynamics/shared-circle-assemblies.md#fixed-axial-translation-study) supplies the interval-certified exclusion on this fixed-speed domain.
+A nearby continuation over $2.3743071761\leq\beta_f\leq3.5743071761$ evaluated 1,201 base samples together with fold-boundary probes and refined the detected component zeros. Its tangential zero retained a nonzero axial residual, and its axial zeros retained nonzero tangential residuals; no sampled or refined point achieved full balance. This is a bounded measured diagnostic; the subsequent [fixed axial-translation study](../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#fixed-axial-translation-study) supplies the interval-certified exclusion on this fixed-speed domain.
 
 Plainly: changing transverse speed moved the two residuals through zero at different places. The finite probe set could not rule out an unsampled coincidence, so the later interval proof covers the entire declared speed interval, including its causal-root folds.
 
@@ -2539,23 +2539,23 @@ Plainly: changing transverse speed moved the two residuals through zero at diffe
 
 Plainly: this control rejects the idea that the stationary T04 radius remains balanced after adding $0.1c_f$ axial translation. The linked certificate rejects every equal-radius regular-phase screw-path balance in the declared transverse-speed interval at that fixed axial speed, but neither result rejects other axial speeds or broader B1.3 geometries.
 
-### Boundary with Family A
+### Boundary with three-axis circular charts
 
-Family A and Family B share a coordinate boundary. At $\lambda_A=1$, the three Family-A axes coincide with the Family-A translation direction. A common-frequency Family-A record with one common circulation sense then satisfies the B1 axis, frequency, and circulation relations. It reaches the source-defined common-center B1 chart only if its three binary midpoints also coincide with the braid center.
+three-axis circular charts and common-axis three-binary charts share a coordinate boundary. At $\lambda_A=1$, the three three-axis circular-chart axes coincide with the three-axis circular-chart translation direction. A common-frequency three-axis circular-chart record with one common circulation sense then satisfies the B1 axis, frequency, and circulation relations. It reaches the source-defined common-center B1 chart only if its three binary midpoints also coincide with the braid center.
 
-The A2 face-opposite seed supplies a second exact overlap: common-frequency co-rotation about its body diagonal occupies the [cyclic-symmetric A2/B1 sublocus](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#cyclic-symmetric-a2b1-overlap), independently of $\lambda_A=1$. These overlaps are coordinate-locus statements. They do not identify Family A with Family B away from the shared loci and do not establish a physical transition between them.
+The A2 face-opposite seed supplies a second exact overlap: common-frequency co-rotation about its body diagonal occupies the [cyclic-symmetric A2/B1 sublocus](../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#cyclic-symmetric-a2b1-overlap), independently of $\lambda_A=1$. These overlaps are coordinate-locus statements. They do not identify three-axis circular charts with common-axis three-binary charts away from the shared loci and do not establish a physical transition between them.
 
 ### Claim Boundary
 
 The B1 equations define prescribed paths exactly. The equal-radius phase-symmetric B1.3 locus above also carries an accepted prescribed acceleration-balance ladder under the stated complete-root calculations. These statements would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or fixed-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. B1 therefore supplies exact display geometry, an acceleration-balanced prescribed ladder on one sublocus, and explicit closure targets, not a retained physical braid.
 
-## Braid Family C
+## Braid two-component circular charts
 
-Family C contains prescribed twelve-architrino geometries whose twelve architrino worldlines are coaxial. The canonical assembly coordinates and master-table rows are defined in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-c-coaxial-twelve-architrino-geometry). This chapter gives the exact common-axis path chart, the neutral-binary pairing contract, and the constrained members C1 through C6.
+two-component circular charts contains prescribed twelve-architrino geometries whose twelve architrino worldlines are coaxial. The canonical assembly coordinates and master-table rows are defined in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-c-coaxial-twelve-architrino-geometry). This chapter gives the exact common-axis path chart, the neutral-binary pairing contract, and the constrained members C1 through C6.
 
-Family C is a geometry-and-motion definition. It does not establish that a Family-C record is generated, bound, retained, stable, or physically realized under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
+two-component circular charts is a geometry-and-motion definition. It does not establish that a two-component circular-chart record is generated, bound, retained, stable, or physically realized under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
 
-### Shared Family-C Coordinate Chart
+### Shared two-component circular-chart Coordinate Chart
 
 Choose one oriented orthonormal frame
 
@@ -2613,7 +2613,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d5fbf3807a2fffea)
 
-is a primary Family-C coordinate because it changes the exact causal delays between architrino worldlines. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
+is a primary two-component circular-chart coordinate because it changes the exact causal delays between architrino worldlines. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
 
 Let $\mathbf X_{\mathrm{grp}}(T)$ be the prescribed assembly center. For uniform translation of that center at group speed $s_{\mathrm{grp}}$,
 
@@ -2665,7 +2665,7 @@ for every $m$.
 
 ### Neutral-Binary Pairing
 
-Every Family-C source record declares a fixed-point-free involution
+Every two-component circular-chart source record declares a fixed-point-free involution
 
 $$
 \pi:\{1,\ldots,12\}\to\{1,\ldots,12\}
@@ -2685,17 +2685,17 @@ $$
 
 The six unordered pairs $\{m,\pi(m)\}$ are the six neutral binaries. For each pair, the record declares opposite endpoint polarities and explicitly states the radius, frequency, phase, circulation, axial-midpoint, and axial-separation relations. The binary map is not inferred from axial adjacency, drawing color, or an optional Accessory Configuration.
 
-The Family-C parent chart does not require the six binaries to divide into two complete B1 braids. A source may declare such a decomposition, but it is an additional constrained relation rather than the Family-C definition.
+The two-component circular-chart parent chart does not require the six binaries to divide into two complete B1 braids. A source may declare such a decomposition, but it is an additional constrained relation rather than the two-component circular-chart definition.
 
 ### Optional Accessory Configuration
 
-A Family-C assembly may also declare an Accessory Configuration containing six additional architrino worldlines. Those six sites are separate assembly inventory: their polarity and complete prescribed paths must be declared, and they are not counted among the twelve defining Family-C architrino worldlines.
+A two-component circular-chart assembly may also declare an Accessory Configuration containing six additional architrino worldlines. Those six sites are separate assembly inventory: their polarity and complete prescribed paths must be declared, and they are not counted among the twelve defining two-component circular-chart architrino worldlines.
 
-Adding or removing an Accessory Configuration does not change the Family-C member identifier. It changes the declared assembly inventory and therefore changes the source record and its hash.
+Adding or removing an Accessory Configuration does not change the two-component circular-chart member identifier. It changes the declared assembly inventory and therefore changes the source record and its hash.
 
 ### C1
 
-C1 is the co-rotating Family-C member:
+C1 is the co-rotating two-component circular-chart member:
 
 $$
 q_m=q_C,
@@ -2711,7 +2711,7 @@ C1 retains the full ordered-spacing, radius, frequency, phase, and binary-pairin
 
 ### C2
 
-C2 is the counter-rotating Family-C member. The source record declares the two ordered index subsets
+C2 is the counter-rotating two-component circular-chart member. The source record declares the two ordered index subsets
 
 $$
 \mathcal I_1=\{1,\ldots,6\},
@@ -2788,7 +2788,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6fb5a1df2182a13e)
 
-Each component separately inherits the complete B1 common-midpoint, common-axis, common-frequency, common-circulation, antipodality, and polarity-conjugacy relations. The source record declares the bijection between these twelve endpoint labels and the persistent Family-C indices $m$.
+Each component separately inherits the complete B1 common-midpoint, common-axis, common-frequency, common-circulation, antipodality, and polarity-conjugacy relations. The source record declares the bijection between these twelve endpoint labels and the persistent two-component circular-chart indices $m$.
 
 C3 imposes one common circulation sense across both components. C4 imposes opposite component circulation senses. Neither member requires the two components to have equal radii, equal frequencies, equal internal phases, or a phase lock.
 
@@ -2845,17 +2845,17 @@ This equation is exact for the prescribed chart and generally transcendental bec
 
 ### Interface With Physical Hypotheses
 
-Family C supplies a generic prescribed coordinate chart for twelve coaxial architrino worldlines. A particle or transport hypothesis occupies a constrained locus only after its extra polarity, phase, frequency, accessory, propagation, action, and angular-momentum relations are stated explicitly.
+two-component circular charts supplies a generic prescribed coordinate chart for twelve coaxial architrino worldlines. A particle or transport hypothesis occupies a constrained locus only after its extra polarity, phase, frequency, accessory, propagation, action, and angular-momentum relations are stated explicitly.
 
 In particular, the photon-channel hypothesis is a **coaxial contra-rotating polarity-conjugate planar pair**. C2 supplies only a twelve-worldline counter-rotation chart. It does not by itself establish the photon-side planar decomposition, polarity conjugation, propagation-axis relation, null propagation, polarization, helicity, action target, binding, retention, or physical realization. Those obligations remain owned by [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#the-photon-gamma-coaxial-contra-rotating-polarity-conjugate-planar-pair) and its closure gates.
 
 ### Claim Boundary
 
-The Family-C equations are exact prescribed paths. A prescribed-path residual candidate is falsified when its declared causal-root, minimum-separation, speed, complete-cycle acceleration-balance, refinement, or independent-reconstruction requirements fail. Such a result remains analytical: it does not establish or refute stability, retention, binding, photon identity, quantization, or physical realization.
+The two-component circular-chart equations are exact prescribed paths. A prescribed-path residual candidate is falsified when its declared causal-root, minimum-separation, speed, complete-cycle acceleration-balance, refinement, or independent-reconstruction requirements fail. Such a result remains analytical: it does not establish or refute stability, retention, binding, photon identity, quantization, or physical realization.
 
 ## Noether Braid Configuration Space
 
-This chapter gives the analysis space surrounding the canonical braid taxonomy: the evidence-level vocabulary and the rank-three angular-momentum-frame variables used to test a candidate record. It comes after the family map in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), the prescribed coordinates in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), and the retention contract of [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). The analyzed regions include [Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md), the A3.3 $4{:}2{:}1$ lock and its A1.3 zero-axial-offset locus, iso-frequency candidates, and field-speed hinge-occupancy candidates. Within the rank-three sublocus, a branch candidate is a three-row state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
+This chapter gives the analysis space surrounding the canonical braid taxonomy: the evidence-level vocabulary and the rank-three angular-momentum-frame variables used to test a candidate record. It comes after the family map in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), the prescribed coordinates in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), and the retention contract of [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). The analyzed regions include [three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md), the A3.3 $4{:}2{:}1$ lock and its A1.3 zero-axial-offset locus, iso-frequency candidates, and field-speed hinge-occupancy candidates. Within the rank-three sublocus, a branch candidate is a three-row state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
 
 This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which branches remain candidate braids and which can be promoted to certified braids, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
 
@@ -2875,7 +2875,7 @@ This chapter uses four evidence-level terms in a controlled way:
 
 | Term | Meaning in this chapter | What it does not claim by itself |
 | --- | --- | --- |
-| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window; this chapter's analysis space is the six-body base and Family-A/B case, while a twelve-worldline Family-C candidate carries the corresponding rows on its own declared ledger. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
+| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window; this chapter's analysis space is the six-body base and three-axis circular-chart/B case, while a twelve-worldline two-component circular-chart candidate carries the corresponding rows on its own declared ledger. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
 | retained | Evidential status for a branch, row, or chart whose required data close on the same record under the declared tolerance, event/domain convention, and stability conditions. | `Retained` does not mean assumed, preferred, or merely still under discussion. If the same-record ledgers are missing, the object remains a candidate. |
 | support | The geometric region, envelope, or comparison chart occupied by the branch data. A1 path support, a path-history-derived oblate spheroidal envelope, and an axial comparison chart describe different objects. | Support is not an acceleration law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
 | record | The finite ledger attached to one branch over the declared memory window. It includes only data that can still affect the next delayed update or certificate: inventory, path history, causal-root rows, wake rows, energy/action rows, momentum and angular-momentum rows, phase and plane-orientation rows, support claims, response-center and group-velocity rows, and the local Noether sea row. | A record is not a narrative summary or a loose collection of diagnostics. A proof claim must say which rows close on the same record. |
@@ -2899,9 +2899,9 @@ $$
 
 These entries are diagnostics that may be computed from a taxonomy member's record. They are not additional columns in the canonical taxonomy, and they do not by themselves prove that the delayed dynamics admit a stable branch. Retention and certification are evidence statuses, not configuration axes.
 
-### Family-B Example: B1
+### common-axis three-binary-chart Example: B1
 
-A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member. Active B1 candidate records require $\sum_a\rho_a^2>0$; the all-axial endpoint remains a coordinate boundary and deprecated null control rather than an active candidate.
+A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member. Active B1 candidate records require $\sum_a\rho_a^2>0$; the all-axial endpoint remains a coordinate boundary and deprecated null control rather than an active candidate.
 
 The status discipline binds. B1 is a prescribed member, not a retained branch, and no family ranking is asserted. Its exact geometry does not establish physical formation, retention, or preference over another taxonomy member.
 
@@ -2962,7 +2962,7 @@ $$
 
 A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid branch until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
-The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of A1, or the photon-channel bridge described by the coaxial contra-rotating polarity-conjugate planar pair. The generic opposite-circulation composition coordinates for two complete B1 records are defined separately by [C2](../../../../markdown/aaa/noether-braid/braid-family-c.md#c2); planarization and photon identity are additional constraints. A planar reduced chart should therefore be named as a chart, not used as a base-family name.
+The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of A1, or the photon-channel bridge described by the coaxial contra-rotating polarity-conjugate planar pair. The generic opposite-circulation composition coordinates for two complete B1 records are defined separately by [C2](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#c2); planarization and photon identity are additional constraints. A planar reduced chart should therefore be named as a chart, not used as a base-family name.
 
 ### Angular-Momentum Handedness
 
@@ -2998,9 +2998,9 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 
 | Frequency-ratio value | Meaning |
 | --- | --- |
-| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The fixed-coordinate common-axis member is [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1). |
+| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The fixed-coordinate common-axis member is [B1](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
-| doubling-frequency $4{:}2{:}1$ | The A3.3 member with indexed ratio $f_1:f_2:f_3=4:2:1$, studied in [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md). A1.3 is its zero-axial-offset locus. The ratio does not imply a radius order. |
+| doubling-frequency $4{:}2{:}1$ | The A3.3 member with indexed ratio $f_1:f_2:f_3=4:2:1$, studied in [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md). A1.3 is its zero-axial-offset locus. The ratio does not imply a radius order. |
 
 Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
 
@@ -3258,7 +3258,7 @@ R_{\parallel}\ \text{measured along }\hat{\mathbf e}_{P},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5e8668088a844ee9)
-while the same internal angular-momentum ledger remains retained. Thus the retained rows decompose internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis. They do not convert the [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1) common-axis internal geometry into a Family-A oblate response; B1's member-declared rest envelope and its moving-envelope projection are separate records in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#envelope-forms).
+while the same internal angular-momentum ledger remains retained. Thus the retained rows decompose internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis. They do not convert the [B1](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1) common-axis internal geometry into a three-axis circular-chart oblate response; B1's member-declared rest envelope and its moving-envelope projection are separate records in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#envelope-forms).
 
 ### Unordered Layer Semantics
 
@@ -3373,7 +3373,7 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-7e20fb680994f77b)
 This is the layerwise specialization of the [signed causal-root complex](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge. A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
-Family B realizes this decoupling directly. In [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius values when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md). No family ordering is asserted.
+common-axis three-binary charts realizes this decoupling directly. In [B1](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius values when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md). No family ordering is asserted.
 
 A terminology boundary applies throughout this section: the field-speed value $s_a=c_f$ is a **coordinate locus** of the configuration space — the boundary where the same-transmitter root inventory changes — and nothing here asserts that any dynamical mechanism holds a layer at that locus. Occupancy of the locus is a chart label, not an attractor claim.
 
@@ -3520,7 +3520,7 @@ while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing aniso
 
 ### Relation To The Doubling-frequency Chapter
 
-[A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the indexed A3 frequency triplet, especially the A3.3 relation $f_1:f_2:f_3=4:2:1$, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior. The A1.3 chart inherits the same frequency relation on the zero-axial-offset locus.
+[A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the indexed A3 frequency triplet, especially the A3.3 relation $f_1:f_2:f_3=4:2:1$, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior. The A1.3 chart inherits the same frequency relation on the zero-axial-offset locus.
 
 The doubling-frequency chapter should therefore be read as a specialized search row:
 $$
@@ -3542,7 +3542,7 @@ Both rows are legitimate until the retained-branch certificates decide which, if
 
 ## B1 Hypotheses and Discrete Symmetry
 
-This chapter owns the B1 harmonic-matching hypothesis, discrete-symmetry derivations, and open retention burden. The prescribed common-center, common-axis path geometry and its equatorial, axial, and axial-translation loci are defined in [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md).
+This chapter owns the B1 harmonic-matching hypothesis, discrete-symmetry derivations, and open retention burden. The prescribed common-center, common-axis path geometry and its equatorial, axial, and axial-translation loci are defined in [Braid common-axis three-binary charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md).
 
 The status discipline of the braid stack binds throughout. B1 is a prescribed member, not a retained branch. The kernel-covariance results below are derivations within their declared scope; physical formation, self-support, retention, selection, and observer-level symmetry recovery remain open. The retained-branch certificate target of [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md) governs those claims.
 
@@ -3572,7 +3572,7 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-fdf6b8e61333862d)
 The three equal-radius path pairs share that axis, a common angular frequency and circulation sense, and phases separated by $120^\circ$. Under common-frequency co-rotation about $\hat{\mathbf n}$ they therefore occupy a cyclic-symmetric B1 sublocus. The same prescribed worldlines admit an A2 rotating-channel chart and a B1 chart; the labels describe coordinate structures and do not duplicate the physical inventory.
 
-This overlap is independent of the Family-A $\lambda_A=1$ boundary. It also does not certify retention. The fixed-plane lemma below derives axial no-balance for a polarity-segregated interior two-ring chart on every ordinary simple-root branch chart, without imposing a member-speed ceiling. The all-equatorial boundary remains the only fixed-coordinate B1-family locus not excluded by that axial argument, but it still requires the full retained-branch certificate.
+This overlap is independent of the three-axis circular-chart $\lambda_A=1$ boundary. It also does not certify retention. The fixed-plane lemma below derives axial no-balance for a polarity-segregated interior two-ring chart on every ordinary simple-root branch chart, without imposing a member-speed ceiling. The all-equatorial boundary remains the only fixed-coordinate B1-family locus not excluded by that axial argument, but it still requires the full retained-branch certificate.
 
 #### Fixed-Plane Axial No-Balance Lemma
 
@@ -3652,11 +3652,11 @@ B1 is a prescribed member. Everything beyond its exact geometry and the declared
 
 Six architrinos interacting through delayed causal wakes form a hard dynamical problem: the state is an entire path history, the per-hit accelerations arrive along causal roots that must be solved for, and no general closed-form solution exists. This chapter collects what can nevertheless be established exactly — by symmetry, geometry, and kinematics — before any support-band structure is chosen and before any branch is claimed to persist. The machinery here is core-agnostic: every braid realization in the [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) family consumes it, and none of it asserts branch retention.
 
-The results divide by strength, and the division is stated with each result. Exact derivations include the transverse speed-budget lemmas and the constant-lag reduction of the rotating-wave ansatz. Scoped negative results include the anti-damping family, which rejects specific fixed-coordinate charts without rejecting the braid program. Candidate mechanisms at hypothesis level include the action-click picture at the causal-root fold set and the Accessory Configuration moment analysis. Theorem targets include the eigen-braid spectrum system. Claim levels travel with their statements throughout. The A2-specific invariant channels, two-ring geometry, dipole identity, momentum-screw alignment, and return-response analysis live in [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md).
+The results divide by strength, and the division is stated with each result. Exact derivations include the transverse speed-budget lemmas and the constant-lag reduction of the rotating-wave ansatz. Scoped negative results include the anti-damping family, which rejects specific fixed-coordinate charts without rejecting the braid program. Candidate mechanisms at hypothesis level include the action-click picture at the causal-root fold set and the Accessory Configuration moment analysis. Theorem targets include the eigen-braid spectrum system. Claim levels travel with their statements throughout. The A2-specific invariant channels, two-ring geometry, dipole identity, momentum-screw alignment, and return-response analysis live in [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md).
 
 ### Document Role
 
-This chapter owns the shared mathematical machinery of the braid family: the substrate levels and speed hierarchy with the transverse speed-budget lemmas, the spiral-helical motion picture and mass thesis, the hinge equation sketch, the bounded-weight inverse-square escape lemma, the acceleration-gradient comparison, the scoped anti-damping negative results, the eigen-braid spectrum framing, the action-click mechanism, and the Accessory Configuration moment analysis. The neutral six-body base lives in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); prescribed coordinates and definitions live in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md), and [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md). The realization-independent proof obligations live in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
+This chapter owns the shared mathematical machinery of the braid family: the substrate levels and speed hierarchy with the transverse speed-budget lemmas, the spiral-helical motion picture and mass thesis, the hinge equation sketch, the bounded-weight inverse-square escape lemma, the acceleration-gradient comparison, the scoped anti-damping negative results, the eigen-braid spectrum framing, the action-click mechanism, and the Accessory Configuration moment analysis. The neutral six-body base lives in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); prescribed coordinates and definitions live in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md), and [Braid common-axis three-binary charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md). The realization-independent proof obligations live in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
 
 **Represented-history atlas boundary.** An atlas row describes a declared retained history, not an unbounded past. It must name the retained interval, prehistory, complete transmitter inventory, and any fixed spatial enclosure. On a bounded history whose transmitters remain uniformly below $c_f$, whose pairwise separations stay positive, and whose root inventory is complete, the sharp causal-root map is transverse and finite. A nontrivial same-transmitter root is excluded on the strictly sub-field-speed interval, and the represented history can be reconstructed across time from its declared charts while those hypotheses persist.
 
@@ -3770,7 +3770,7 @@ $$
 
 The quadrature is exact kinematics under the transverse-motion hypothesis. The pinning of $\beta_{\mathrm{pin}}$ is a separate branch hypothesis, not an established retention mechanism. The A2 body-diagonal rotating channel and the B1 axial screw chart are two realizations of the transverse geometry; neither realization makes fixed total site speed automatic. A record with $\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}\neq0$ falsifies use of the quadrature for that site and must retain the cross term, which generally makes the maximum speed phase dependent.
 
-The same pinned-speed hypothesis appears in the retained A1 scaling material of [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#retention-and-interpretation): a branch that holds an indexed internal speed fixed while accepting action transactions is forced onto the $R_a f_a\approx\text{constant}$ product law. The shared lemma shows how the hypothesis would also constrain transport; it does not establish that A1, A2, or B1 satisfies the pinning condition.
+The same pinned-speed hypothesis appears in the retained A1 scaling material of [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#retention-and-interpretation): a branch that holds an indexed internal speed fixed while accepting action transactions is forced onto the $R_a f_a\approx\text{constant}$ product law. The shared lemma shows how the hypothesis would also constrain transport; it does not establish that A1, A2, or B1 satisfies the pinning condition.
 
 ### Spiral-Helical Motion Picture
 
@@ -3864,11 +3864,11 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-f70a0ffb870211fa)
 then $\mathcal E_R(T_\ast)>0$ and $\dot R$ cannot later reach zero while the hypotheses remain valid. This is an escape certificate for that scalar chart, not a family-general no-binding theorem.
 
-A braid application must derive $R$ and the bound $K$ from the actual retained acceleration ledger. A speed cap, separation floor, acceleration-weight cap, and polarity inventory can supply such a bound only when their projection covers every retained root contribution on the same interval. Failure of any bound suspends the certificate. The A2 isolated-release channel is one conditional application route; see [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
+A braid application must derive $R$ and the bound $K$ from the actual retained acceleration ledger. A speed cap, separation floor, acceleration-weight cap, and polarity inventory can supply such a bound only when their projection covers every retained root contribution on the same interval. Failure of any bound suspends the certificate. The A2 isolated-release channel is one conditional application route; see [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
 
 ### Acceleration-Gradient Branch Comparison
 
-The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should output compatible delay-geometry records on the same kind of branch packet (the scan packet defined with A1 diagnostics in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)):
+The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should output compatible delay-geometry records on the same kind of branch packet (the scan packet defined with A1 diagnostics in [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics)):
 $$
 \mathcal{D}_{A1}^{\mathrm{accel}}(W)
 \sim
@@ -3889,8 +3889,8 @@ A recurring obstruction shapes the whole retention program: in chart after chart
 1. **Circular partner-wake binary.** On the uniform circular benchmark, the retained circular row has an inward radial component and a forward tangential work row; the combination accelerates the orbiting motion and prevents a partner-only constant-speed circle. Any sub-field-speed contraction claim must beat this row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. The detailed statement lives in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md).
 2. **Collinear self-hit reading.** Along a true collinear history, the same-transmitter term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: self-interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The open question is therefore whether partner attraction can recapture the motion despite that self-drive.
 3. **Fixed-coordinate octahedral chart.** The fixed-coordinate zero-offset octahedral carrier at fixed speed is conjectured to carry a nonzero tangential residual rejecting the narrow fixed-speed branch chart; this conjecture is unverified, and the reading discipline for that chart is recorded in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md#reading-discipline).
-4. **Zero-angular-momentum channel invariance.** The face-opposite seed placed on the zero-angular-momentum channel stays exactly on that channel: the dynamic center holds at zero, all six radii stay equal, and antipodal partners stay exact. This is the invariant-channel theorem, not a statement of the seed's dynamical fate, which is open; the fixture record lives in the [A2 isolated-release analysis](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
-5. **Polarity-segregated fixed-plane two-ring family.** The axial and tangential questions separate. Axially, the [fixed-plane axial no-balance lemma](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#fixed-plane-axial-no-balance-lemma) proves that same-plane contributions have exactly zero axial component while every ordinary simple-root opposite-plane contribution accelerates its receiver toward the midplane. The positive canonical root weight cannot reverse that sign, so no fixed-height member of this family has axial acceleration balance at nonzero ring separation for any finite member speed, including super-field-speed motion. This derivation requires complete bounded history in two fixed parallel planes, a stationary axial center, polarity segregation by plane, positive ranges, and an ordinary simple-root ledger. It excludes caustics, non-simple-root event contributions, collisions, incomplete history, variable height, plane precession, axial translation, mixed plane polarities, and additional external, constraint, or Noether-sea acceleration. It does not force a dynamical history to become planar. Tangentially, on the planar hexagon, the conjectured behavior is a strictly positive tangential residual growing with rim speed while the radial residual stays inward — the delayed kernel pumping the rotation rather than braking it. That tangential conjecture is unverified; the axial derivation stands on its own.
+4. **Zero-angular-momentum channel invariance.** The face-opposite seed placed on the zero-angular-momentum channel stays exactly on that channel: the dynamic center holds at zero, all six radii stay equal, and antipodal partners stay exact. This is the invariant-channel theorem, not a statement of the seed's dynamical fate, which is open; the fixture record lives in the [A2 isolated-release analysis](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
+5. **Polarity-segregated fixed-plane two-ring family.** The axial and tangential questions separate. Axially, the [fixed-plane axial no-balance lemma](../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#fixed-plane-axial-no-balance-lemma) proves that same-plane contributions have exactly zero axial component while every ordinary simple-root opposite-plane contribution accelerates its receiver toward the midplane. The positive canonical root weight cannot reverse that sign, so no fixed-height member of this family has axial acceleration balance at nonzero ring separation for any finite member speed, including super-field-speed motion. This derivation requires complete bounded history in two fixed parallel planes, a stationary axial center, polarity segregation by plane, positive ranges, and an ordinary simple-root ledger. It excludes caustics, non-simple-root event contributions, collisions, incomplete history, variable height, plane precession, axial translation, mixed plane polarities, and additional external, constraint, or Noether-sea acceleration. It does not force a dynamical history to become planar. Tangentially, on the planar hexagon, the conjectured behavior is a strictly positive tangential residual growing with rim speed while the radial residual stays inward — the delayed kernel pumping the rotation rather than braking it. That tangential conjecture is unverified; the axial derivation stands on its own.
 
 The reading discipline matters as much as the results. Each entry is scoped to the chart and assumptions that produced it; the agreement across charts is qualitative consilience, and no ledger quantity may be consumed across charts. None of these results rejects the neutral braid, A1, A2, B1, and C-family, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
 
@@ -3933,7 +3933,7 @@ The current status keeps the target honest. The axial no-balance derivation abov
 
 ### Action Clicks at the Fold Set
 
-The material in this section is a candidate mechanism at hypothesis level: it proposes how the discrete action transaction of the [cadence-scale retuning hypothesis](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis) is physically implemented, and none of it is yet supported by a retained branch record.
+The material in this section is a candidate mechanism at hypothesis level: it proposes how the discrete action transaction of the [cadence-scale retuning hypothesis](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis) is physically implemented, and none of it is yet supported by a retained branch record.
 
 Start with an everyday machine. A mechanical watch does not spend energy continuously; an escapement lets the stored energy advance the mechanism one discrete click at a time, and the click count is an integer because a gear tooth is either engaged or it is not. The proposal here is that the field-speed hinge is the braid's escapement.
 
@@ -3951,7 +3951,7 @@ Whether a hinge click can supply a clean, chart-defined transacted amount depend
 
 A same-transmitter (self-hit) crossing on a smooth strand is born on the coincidence stratum. As the causal lag $\Delta\to 0$ the separation is $\lVert\mathbf X(T)-\mathbf X(T-\Delta)\rVert=\lvert\mathbf v\rvert\,\Delta+O(\Delta^2)$, so the same-transmitter root nucleates exactly at the field-speed crossing with a vanishing chord, $r_{ij}\to 0$ as the root opens. On the symmetric one-band channel this onset is a cusp rather than a generic fold, and the transacted amount is not fixed by the fold chart; it is set by the declared spatial regularization scale $\epsilon_c$. Identifying the physical value of $\epsilon_c$ with a conditional minimum-circular-binary or near-field two-body scale is a separate hypothesis, not part of the substrate regularization definition. This is a scoped negative for any single-site absorber picture: the symmetric single-site self-hit cannot supply a chart-defined transacted amount, because its magnitude is a property of $\epsilon_c$ rather than of the branch geometry. Same-transmitter rows remain in the ontology; they simply do not fix a clean click on their own.
 
-A cross-hit crossing between two distinct strands can instead be born at finite chord. When the transmitter-side alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ holds at finite separation, the crossing sits on the caustic stratum with $r_{ij}\neq 0$: a generic (Whitney $A_2$) fold of nonzero curvature whose transacted impulse is finite and independent of the short-distance regularization. This is the surviving route to a chart-clean click magnitude, and it is a theorem target rather than a result. It is contingent on a hinge geometry that sustains the alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ across a click window — the same dynamic-alignment and formation-history condition that gates the [A2 return-response question](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question). Whether a braid's own formation and recycling dynamics hold that alignment long enough to transact is the open question on which the clean click magnitude, and with it the whole hinge-absorber route, depends.
+A cross-hit crossing between two distinct strands can instead be born at finite chord. When the transmitter-side alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ holds at finite separation, the crossing sits on the caustic stratum with $r_{ij}\neq 0$: a generic (Whitney $A_2$) fold of nonzero curvature whose transacted impulse is finite and independent of the short-distance regularization. This is the surviving route to a chart-clean click magnitude, and it is a theorem target rather than a result. It is contingent on a hinge geometry that sustains the alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ across a click window — the same dynamic-alignment and formation-history condition that gates the [A2 return-response question](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question). Whether a braid's own formation and recycling dynamics hold that alignment long enough to transact is the open question on which the clean click magnitude, and with it the whole hinge-absorber route, depends.
 
 ### Accessory Configuration
 
@@ -4423,7 +4423,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Complete-cycle residual normal wake flux | $F_{\mathrm{res}}(R)$ from the absolute locally superposed signed normal flux | How much local signed wake survives cancellation over the complete cycle |
 | Complete-cycle normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}(R)=F_{\mathrm{res}}(R)/F_{\mathrm{raw}}(R)$ | Linear wake cancellation under the declared enclosing-surface convention, not energy or work |
 | Frequency-resolved normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$ from transmitter-root-tagged complex coefficients | Which temporal harmonics and angular modes survive phase-sensitive signed superposition at each enclosing radius |
-| Resonance-block cancellation score | $C_L(m,n;\phi)$ with certified tail bound $\varepsilon_L$ for a declared lock | Whether the leading score gap over every alternative exceeds $2\varepsilon_L$ under the [A3.3 cancellation certificate](../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md#rg-style-truncation-test) |
+| Resonance-block cancellation score | $C_L(m,n;\phi)$ with certified tail bound $\varepsilon_L$ for a declared lock | Whether the leading score gap over every alternative exceeds $2\varepsilon_L$ under the [A3.3 cancellation certificate](../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md#rg-style-truncation-test) |
 | Directional response | $\mathbf A_p$ for both probe polarities on $S_R$ | Vector exposure and polarity dependence |
 | Angular ledger | Cycle-resolved isotropic and higher angular coefficients | Which external angular channels survive cancellation |
 | Anisotropy | Non-isotropic far-field ledger relative to the naive constituent ledger | Whether a scalar cancellation summary is adequate |
@@ -4665,20 +4665,20 @@ The coordinate types recur across the taxonomy, but they are not all independent
 | Binary radius $R_a$ and transverse orbit radius $\rho_a$ | Present in every binary record | $R_a$ and $\rho_a$ coincide only when $h_a=0$. An axial binary with $\rho_a=0$ has no circular path even if $R_a>0$. |
 | Binary frequency $f_a$ | Present in every binary record | The two endpoints of one neutral binary share a frequency. Equal-frequency and fixed-ratio members reduce several frequency coordinates to one scale. At $\rho_a=0$, frequency remains a record label but does not change the path. |
 | Binary phase $\phi_a$ | Present in every binary record and required in addition to radius and frequency | Phase is measured relative to the common braid-level zero point. Some members fix the relative phases. At $\rho_a=0$, phase does not change the path. |
-| Binary midpoint and axis data | Present in every braid record | Family A constrains three axes through $\lambda_A$; B1 makes the three axes and midpoints coincide; Family C orders twelve architrino worldlines on one common axis. |
-| Group velocity $\mathbf V_{\mathrm{grp}}$ | Present at assembly level | The common scalar taxonomy coordinate is $s_{\mathrm{grp}}=\|\mathbf V_{\mathrm{grp}}\|$. Family A fixes its direction to $\hat{\mathbf u}_A$; axial B1 is a specialization rather than the whole B1 class. |
+| Binary midpoint and axis data | Present in every braid record | three-axis circular charts constrains three axes through $\lambda_A$; B1 makes the three axes and midpoints coincide; two-component circular charts orders twelve architrino worldlines on one common axis. |
+| Group velocity $\mathbf V_{\mathrm{grp}}$ | Present at assembly level | The common scalar taxonomy coordinate is $s_{\mathrm{grp}}=\|\mathbf V_{\mathrm{grp}}\|$. three-axis circular charts fixes its direction to $\hat{\mathbf u}_A$; axial B1 is a specialization rather than the whole B1 class. |
 | Circulation sense and endpoint polarity assignment | Required discrete source choices | A member may lock circulation within or between braids. Neutrality fixes one electrino and one positrino per binary, but which persistent endpoint carries each polarity still changes the signed source record. |
-| Architrino worldline count and binary grouping | Member-defining discrete choices | Families A and B contain six architrino worldlines in three neutral binaries. Family C contains twelve architrino worldlines in six neutral binaries and requires an explicit fixed-point-free counterpart map. |
-| Axial spacing | Not universal | A3 and B1 use binary axial half-separations $h_a$ along their respective binary axes. Family C carries the complete ordered spacing vector $\mathbf d_C$; C3 through C6 additionally carry the B1-component center separation $d_C$. General Family A has no single common axis on which all orbits can be spaced. |
+| Architrino worldline count and binary grouping | Member-defining discrete choices | Families A and B contain six architrino worldlines in three neutral binaries. two-component circular charts contains twelve architrino worldlines in six neutral binaries and requires an explicit fixed-point-free counterpart map. |
+| Axial spacing | Not universal | A3 and B1 use binary axial half-separations $h_a$ along their respective binary axes. two-component circular charts carries the complete ordered spacing vector $\mathbf d_C$; C3 through C6 additionally carry the B1-component center separation $d_C$. General three-axis circular charts has no single common axis on which all orbits can be spaced. |
 | Orbit order along one axis | Not an independent universal coordinate | In a coaxial chart, order is derived by sorting the signed axial positions. Persistent binary indices do not change when two radii, frequencies, or axial positions cross. Order becomes a separate discrete choice only when assigning different path or polarity data to the ordered sites changes the source record. |
 
 Thus radius, frequency, phase, and group translation are the common kinematic coordinate types. Axis and midpoint data, circulation, and endpoint polarity assignment are also required source coordinates. Axial spacing and axial order belong only to charts that actually have a common axis; they must not be imposed on all A, B, and C candidates.
 
-The member-level inventory below describes the admissible taxonomy space, not the single display coordinate selected by a catalog source record. In particular, the current Family-A Borg reference records select $\lambda_A=0$; varying $\lambda_A$ requires a campaign that explicitly includes the wider Family-A coordinate.
+The member-level inventory below describes the admissible taxonomy space, not the single display coordinate selected by a catalog source record. In particular, the current three-axis circular-chart Borg reference records select $\lambda_A=0$; varying $\lambda_A$ requires a campaign that explicitly includes the wider three-axis circular-chart coordinate.
 
 | Braid class or catalog members | Independent continuous coordinates beyond the common radius, frequency, phase, and group-translation columns | Relations that add or remove freedom |
 | --- | --- | --- |
-| `A1` | Family-A flattening $\lambda_A$ | $h_a=0$ for all three binaries; $R_a$, $f_a$, and $\phi_a$ may otherwise differ. |
+| `A1` | three-axis circular-chart flattening $\lambda_A$ | $h_a=0$ for all three binaries; $R_a$, $f_a$, and $\phi_a$ may otherwise differ. |
 | `A1.1` | $\lambda_A$ | One common frequency; radii and phases remain independently assignable. |
 | `A1.2` | $\lambda_A$ | One radius, one frequency, fixed phases $0$, $2\pi/3$, and $4\pi/3$. |
 | `A1.3`, `A1.4` | $\lambda_A$ | One base frequency with the indexed ratio $4{:}2{:}1$ or $3{:}2{:}1$; radii and phases remain independently assignable. |
@@ -4711,11 +4711,11 @@ A deterministic counter-based sampler supplies a reproducible bounded reference 
 | Axial/transverse decomposition | Sample $h/R$ uniformly in $[0.10,0.90]$ for generic decompositions and in $[0.72,0.98]$ for B1.2. Exact equatorial, axial, equal-decomposition, and member-specific boundary relations remain exact. |
 | Frequencies | Draw positive integer return-period harmonics from $\{1,2,3\}$; common-frequency members share one harmonic and fixed-ratio members draw a base harmonic from $\{1,2\}$ before applying their exact ratio. |
 | Phases | Draw each free phase and braid offset uniformly on $[0,2\pi)$; symmetry-fixed phase patterns remain exact. |
-| Family-A flattening | Draw $\lambda_A$ uniformly on $[0,1]$. |
+| three-axis circular-chart flattening | Draw $\lambda_A$ uniformly on $[0,1]$. |
 | General C1/C2 axial geometry | Draw eleven positive adjacent orbit-center gaps independently and uniformly in $[0.035,0.075]$, center the ordered set on the common axis, pair adjacent centers into six neutral binaries, and assign persistent binary identities by a seeded permutation. |
 | C3 through C6 component spacing | Multiply the reference coaxial component-center separation by a uniform factor in $[0.65,0.80]$. |
 | Circulation and polarity | Draw every permitted independent sign from a balanced two-point distribution, then impose exact same-sense or opposite-sense member relations. |
-| Common translation | Draw a permitted direction and a speed uniformly from zero to one-half of the conservative envelope-safe speed. Family A uses its declared translation direction. The resulting exact source must remain inside radius $0.99$ through the retained record. |
+| Common translation | Draw a permitted direction and a speed uniformly from zero to one-half of the conservative envelope-safe speed. three-axis circular charts uses its declared translation direction. The resulting exact source must remain inside radius $0.99$ through the retained record. |
 
 The sampler constructs the constrained coordinates directly and then calls the canonical member validator. A validator failure is a sampler defect, not a Monte Carlo gate rejection. The seed, member identifier, sample ordinal, every drawn coordinate, the complete sampled source, and the validator result are retained.
 
@@ -4891,7 +4891,7 @@ The campaign output should include the distribution of every objective and gate,
 
 #### Common-Axis Architrino-Worldline Chart
 
-The common-axis chart supplies a six-worldline Family-B dimension extension and the twelve-worldline Family-C parent geometry. Let $\hat{\mathbf n}$ be the oriented translation axis, with transverse orthonormal vectors $\hat{\mathbf e}_1,\hat{\mathbf e}_2$. Assign persistent architrino-worldline indices $m=1,\ldots,N_w$, ordered axial coordinates
+The common-axis chart supplies a six-worldline common-axis three-binary-chart dimension extension and the twelve-worldline two-component circular-chart parent geometry. Let $\hat{\mathbf n}$ be the oriented translation axis, with transverse orthonormal vectors $\hat{\mathbf e}_1,\hat{\mathbf e}_2$. Assign persistent architrino-worldline indices $m=1,\ldots,N_w$, ordered axial coordinates
 
 $$
 \xi_1<\xi_2<\cdots<\xi_{N_w},
@@ -4954,7 +4954,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4f111536748b6e55)
 
-For a twelve-worldline Family-C source, six additional architrino worldlines may be declared as an Accessory Configuration only when all six polarities and complete paths are supplied. A three-worldline Family-B scaling control is not an Accessory Configuration. An additional path associated with slot $P_k$ has the form
+For a twelve-worldline two-component circular-chart source, six additional architrino worldlines may be declared as an Accessory Configuration only when all six polarities and complete paths are supplied. A three-worldline common-axis three-binary-chart scaling control is not an Accessory Configuration. An additional path associated with slot $P_k$ has the form
 
 $$
 \mathbf Y_k(T)
@@ -5104,9 +5104,9 @@ This packet makes analytical candidate comparison reproducible. A prescribed bra
 
 ## Braid Envelope Geometry
 
-This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The prescribed family coordinates belong to [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), with Family A developed in [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md), Family B in [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md), and Family C in [Braid Family C](../../../../markdown/aaa/noether-braid/braid-family-c.md); delayed retention and deformation mechanisms belong to their mathematical and member-specific owners.
+This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The prescribed family coordinates belong to [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), with three-axis circular charts developed in [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md), common-axis three-binary charts in [Braid common-axis three-binary charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md), and two-component circular charts in [Braid two-component circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md); delayed retention and deformation mechanisms belong to their mathematical and member-specific owners.
 
-A Noether braid is not a static object. It is a dynamic system of six architrinos — twelve for a Family-C record — whose high-frequency paths sweep out a persistent volume of intense wake activity. That swept volume is the assembly's effective exclusion envelope.
+A Noether braid is not a static object. It is a dynamic system of six architrinos — twelve for a two-component circular-chart record — whose high-frequency paths sweep out a persistent volume of intense wake activity. That swept volume is the assembly's effective exclusion envelope.
 
 In plain terms, this chapter explains what a retained braid "looks like" to neighboring assemblies and to the Noether sea. The envelope is not a hard surface. It is the region where the assembly's locked wake activity is strong enough that other histories are deflected, excluded, phase-disrupted, or forced to retune.
 
@@ -5118,14 +5118,14 @@ This chapter is the envelope and export-interface chapter for braid geometry. It
 
 - the dynamic exclusion-envelope interpretation of a braid assembly,
 - the exact directional-support and dwell-weighted second-moment descriptions of a declared path-history envelope,
-- the envelope forms associated with the member coordinates — B1's common-axis envelope and the Family-A oblate spheroidal envelope,
+- the envelope forms associated with the member coordinates — B1's common-axis envelope and the three-axis circular-chart oblate spheroidal envelope,
 - the role of the boundary layer in setting the leading envelope surface,
 - and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether sea conditions.
 
 This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../../../../markdown/aaa/foundations/architrino.md),
-- the prescribed family scaffolds; see [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md), and [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md),
+- the prescribed family scaffolds; see [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md), and [Braid common-axis three-binary charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md),
 - exact delay-root dynamics; see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
@@ -5843,11 +5843,11 @@ Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor n
 
 ### Envelope Forms
 
-The envelope form is member data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1) sweeps a common-axis envelope at rest, with axial extent set by the $h_a$ values and transverse extent set by the $\rho_a$ values. B1 does not fix the sign of $R_{\parallel}-R_{\perp}$: an elongated, equatorial, or intermediate envelope can be selected by its binary coordinates. The Family-A response uses the **near-spherical-to-oblate envelope** described next. The moving Lorentz-projection target is a separate branch response and must not be inferred from a rest-shape sign.
+The envelope form is member data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. [B1](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1) sweeps a common-axis envelope at rest, with axial extent set by the $h_a$ values and transverse extent set by the $\rho_a$ values. B1 does not fix the sign of $R_{\parallel}-R_{\perp}$: an elongated, equatorial, or intermediate envelope can be selected by its binary coordinates. The three-axis circular-chart response uses the **near-spherical-to-oblate envelope** described next. The moving Lorentz-projection target is a separate branch response and must not be inferred from a rest-shape sign.
 
 #### Near-Spherical-to-Oblate Form (A1)
 
-The A1 structure contains three persistently indexed binaries whose reference orbital planes are mutually orthogonal by definition. Near rest in a weak, homogeneous Noether sea, the working response hypothesis is a nearly spherical time-averaged envelope. Increased group speed or gravitational gradient compresses the envelope along the Family-A $(1,1,1)$ translation direction, so the envelope becomes increasingly oblate as the three binary axes converge toward that direction. This is the prescribed Family-A response, not an EOM-solver-retained settling result.
+The A1 structure contains three persistently indexed binaries whose reference orbital planes are mutually orthogonal by definition. Near rest in a weak, homogeneous Noether sea, the working response hypothesis is a nearly spherical time-averaged envelope. Increased group speed or gravitational gradient compresses the envelope along the three-axis circular-chart $(1,1,1)$ translation direction, so the envelope becomes increasingly oblate as the three binary axes converge toward that direction. This is the prescribed three-axis circular-chart response, not an EOM-solver-retained settling result.
 
 No binary is assigned the leading boundary by the taxonomy. For a declared branch window $W$ and direction $\hat{\mathbf m}$, define the directional support of binary $a$ by
 $$
@@ -6103,7 +6103,7 @@ The envelope is therefore the visible projection of the retained causal-root led
 
 ### Retuning Projection to Envelope Variables
 
-This section is the A1 instantiation of the envelope projection, stated on its cadence-scale retuning map ([A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis)); the corresponding projection for B1 remains open.
+This section is the A1 instantiation of the envelope projection, stated on its cadence-scale retuning map ([A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis)); the corresponding projection for B1 remains open.
 
 The cadence-scale retuning map must project into $(\lambda,\xi)$ through the envelope geometry, not by assigning those variables independently. Let
 
@@ -6207,7 +6207,7 @@ For local assembly modeling, use this page as the geometric source for:
 - deformation of the family-leading envelope paths under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For the Family-A definitions, use [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md), where the prescribed flattening response is separated from the EOM-solver retention burden. For the Family-B definition, use [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md); its moving-envelope projection remains open.
+For the three-axis circular-chart definitions, use [Braid three-axis circular charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md), where the prescribed flattening response is separated from the EOM-solver retention burden. For the common-axis three-binary-chart definition, use [Braid common-axis three-binary charts](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md); its moving-envelope projection remains open.
 
 For Noether sea modeling, use [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) and [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), where many Noether braids become a coupled medium rather than isolated assembly envelopes.
 
@@ -6223,7 +6223,7 @@ For Noether sea modeling, use [Noether sea](../../../../markdown/aaa/spacetime/n
 
 ## Noether Braid Topological Charge
 
-This chapter gives a first-class home to the candidate topological label of a Noether braid assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-return degree data of a resonance-locked Family-A member. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate Noether braid branch charts is developed in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md).
+This chapter gives a first-class home to the candidate topological label of a Noether braid assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-return degree data of a resonance-locked three-axis circular-chart member. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate Noether braid branch charts is developed in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md).
 
 The reader-facing idea is that a topological charge is not a decorative name for a braid. It is a proposed invariant label carried by one retained branch chart. Root counts tell which self-hit and partner-hit channels are active; signed degrees say what survives fold-pair surgery; phase-return degree data say how the locked branch winds over one cycle. Only the combination can become a stable assembly label.
 
@@ -6408,7 +6408,7 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-10d19f31b5dec1bf)
 with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
 
-The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated A3.3 member and its A1.3 zero-axial-offset locus. They are not generic Noether braid data. In particular, [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1) is common-frequency on one common-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A B1 branch may still report the partial charge $(N_s,M_p)$; a B1 lower-rank return invariant would require a separate definition and certificate.
+The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated A3.3 member and its A1.3 zero-axial-offset locus. They are not generic Noether braid data. In particular, [B1](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#b1) is common-frequency on one common-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A B1 branch may still report the partial charge $(N_s,M_p)$; a B1 lower-rank return invariant would require a separate definition and certificate.
 
 The phase entry is also conditional on the three support-row planes remaining independent. Use the canonical determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#angular-momentum-frame). The degree pair is admissible only when
 $$
@@ -6453,7 +6453,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-05af92406596673b)
-The richer ordered-braid chirality label $\chi_c$ is introduced in [Reduced A1 Closure Label](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#reduced-a1-closure-label). In this chapter, $\chi_{\mathrm{fr}}$ is the certified $\mathbb{Z}_2$ projection of that richer chirality data when the same branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. The marker's canonical source is the framing row of the [retained-branch certificate](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md#the-retained-branch-certificate), which carries the framed-path record $Lk=\operatorname{Wr}+\operatorname{Tw}$, the framing sign, and its positive conditioning floor on the same ledger identity as the root and phase-return data. It is not an independent competitor to $\chi_c$, and it is not part of the base triple until the projection is certified. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
+The richer ordered-braid chirality label $\chi_c$ is introduced in [Reduced A1 Closure Label](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#reduced-a1-closure-label). In this chapter, $\chi_{\mathrm{fr}}$ is the certified $\mathbb{Z}_2$ projection of that richer chirality data when the same branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. The marker's canonical source is the framing row of the [retained-branch certificate](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md#the-retained-branch-certificate), which carries the framed-path record $Lk=\operatorname{Wr}+\operatorname{Tw}$, the framing sign, and its positive conditioning floor on the same ledger identity as the root and phase-return data. It is not an independent competitor to $\chi_c$, and it is not part of the base triple until the projection is certified. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
 
 ### Invariance And Allowed Transitions
 
@@ -6549,7 +6549,7 @@ The established pieces are local:
 - The delay-map theorem pack in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
 - The signed causal-root complex in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
 - [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
-- [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md#assumption-2-exact-integer-phase-closure) supplies the A3.3 integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$; A1.3 is its zero-axial-offset locus, and B1 does not inherit that rank-three entry.
+- [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md#assumption-2-exact-integer-phase-closure) supplies the A3.3 integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$; A1.3 is its zero-axial-offset locus, and B1 does not inherit that rank-three entry.
 - [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
 
 The open proof burden is global:

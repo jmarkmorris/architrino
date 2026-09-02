@@ -1,4 +1,4 @@
-# F5 certification diagnosis and successor admission boundary
+# phase-varying display representative certification diagnosis and successor admission boundary
 
 Status: source-only diagnosis; no successor numerical work authorized or performed. The [completed ordinary-evolution experiment](2026-08-27-f5-ordinary-evolution-evaluation.md) remains independently accepted as a bounded unresolved experiment. Its failed scientific gates remain failed. This document neither reopens that experiment nor admits a new declaration.
 
@@ -14,7 +14,7 @@ The live integrity audit (`../../../../.local-data/braid-analysis/f5-certificati
 
 Plainly: the saved evidence still has the bytes accepted by the previous reviewers. This does not confer that acceptance on changed code or a new run.
 
-Benchmark task `01a045de-6a34-77f3-bac4-90f2362f6ccd` retains ownership of the F5 caller and its tests. It confirmed their historical hashes unchanged and is preparing an archival/source-binding arrangement before an operational extension. All EOM source/build bytes and scientific references remain untouched during that coordination. F6c task `01a045dc-2981-7e42-b970-4f659be06958` confirmed no EOM changes or rebuilds and released its idle compute reservation; this is not an F5 execution window. A fresh explicit handoff and host admission are still required. Shared readiness remains frozen at `04a889345ee7c4cd43b0f41bebb70cb2f176ac4d13af035204347f3c6904feaf`; shared queue, tracker and readiness were not edited.
+Benchmark task `01a045de-6a34-77f3-bac4-90f2362f6ccd` retains ownership of the phase-varying display representative caller and its tests. It confirmed their historical hashes unchanged and is preparing an archival/source-binding arrangement before an operational extension. All EOM source/build bytes and scientific references remain untouched during that coordination. asymmetric counter-breathing representative task `01a045dc-2981-7e42-b970-4f659be06958` confirmed no EOM changes or rebuilds and released its idle compute reservation; this is not a phase-varying display representative execution window. A fresh explicit handoff and host admission are still required. Shared readiness remains frozen at `04a889345ee7c4cd43b0f41bebb70cb2f176ac4d13af035204347f3c6904feaf`; shared queue, tracker and readiness were not edited.
 
 ## Producer obligation
 

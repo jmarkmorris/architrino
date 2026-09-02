@@ -27,7 +27,25 @@ function sourceLines(source) {
 
 export function selectSection(source, heading) {
   if (!heading) return source;
-  const tokens = parser().parse(source, {});
+  const parsed = parser().parse(source, {});
+  const codeLineRanges = parsed.filter((token) => ["fence", "code_block"].includes(token.type))
+    .map((token) => token.map);
+  const lines = source.match(/.*(?:\n|$)/g).filter(Boolean);
+  let displayClose = null;
+  const headingSource = lines.map((line, index) => {
+    if (codeLineRanges.some(([start, end]) => index >= start && index < end)) return line;
+    const trimmed = line.trim();
+    if (!displayClose && (trimmed === "$$" || trimmed === "\\[")) {
+      displayClose = trimmed === "$$" ? "$$" : "\\]";
+      return line.endsWith("\n") ? "\n" : "";
+    }
+    if (displayClose) {
+      if (trimmed === displayClose) displayClose = null;
+      return line.endsWith("\n") ? "\n" : "";
+    }
+    return line;
+  }).join("");
+  const tokens = parser().parse(headingSource, {});
   const headings = tokens.flatMap((token, index) => token.type === "heading_open"
     ? [{ text: tokens[index + 1].content, level: Number(token.tag.slice(1)), line: token.map[0] }] : []);
   const matches = headings.filter((row) => row.text === heading);

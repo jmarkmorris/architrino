@@ -8,7 +8,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-08-27 General theory-to-braid requirement inference relocated
 
-Moved [Inferring Braid Requirements](inferring-braid-requirements.md) intact from Mapping Electromagnetism, rebased its relative references, and made Equation Mapping the general inference owner under the [shared architecture](../mapping/mapping-method.md). Its electromagnetic material remains a domain application. Candidate adjudication and focused F6c/three-binary geometry now live in the Braid Program. The [relocation record](../mapping-electromagnetism/work-log.md#2026-08-27--general-requirements-and-candidate-geometry-ownership-split) lists all nine moved files and the preserved source-provenance boundary. Existing derivations, section anchors, evidence grades, equation scores, and queue states are unchanged.
+Moved [Inferring Braid Requirements](inferring-braid-requirements.md) intact from Mapping Electromagnetism, rebased its relative references, and made Equation Mapping the general inference owner under the [shared architecture](../mapping/mapping-method.md). Its electromagnetic material remains a domain application. Candidate adjudication and focused asymmetric counter-breathing representative/three-binary geometry now live in the Braid Program. The [relocation record](../mapping-electromagnetism/work-log.md#2026-08-27--general-requirements-and-candidate-geometry-ownership-split) lists all nine moved files and the preserved source-provenance boundary. Existing derivations, section anchors, evidence grades, equation scores, and queue states are unchanged.
 
 ### 2026-08-22 Priority owner renamed to mapping-equations
 

@@ -15,9 +15,13 @@ import {
   thresholdRatio,
 } from "../src/apps/compact-sweep-dashboard/CompactSweepDashboardData.js";
 
+const FIRST_ASSEMBLY_ID = "asm-0153fdc7276d1a064d8794a423bd775b";
+const SECOND_ASSEMBLY_ID = "asm-3e9d646d95041634d7ee5fe7eed862d6";
+const FIRST_SOURCE_SLUG = "three-axis-circular-coincident-midpoints";
+
 function row({
-  familyId,
-  memberId,
+  assemblyId,
+  sourceSlug,
   evaluated = true,
   passed = false,
   nullClass = null,
@@ -27,8 +31,8 @@ function row({
 } = {}) {
   return {
     candidateDisposition,
-    familyId,
-    memberId,
+    assemblyId,
+    sourceSlug,
     evaluation: {
       evaluated,
       nullClass,
@@ -47,30 +51,30 @@ function row({
   };
 }
 
-test("dashboard filtering applies family and member constraints together", () => {
+test("dashboard filtering applies assembly and configuration constraints together", () => {
   const rows = [
-    row({ familyId: "A", memberId: "A1" }),
-    row({ familyId: "A", memberId: "A2" }),
-    row({ familyId: "B", memberId: "B1.1" }),
+    row({ assemblyId: FIRST_ASSEMBLY_ID, sourceSlug: FIRST_SOURCE_SLUG }),
+    row({ assemblyId: FIRST_ASSEMBLY_ID, sourceSlug: "three-axis-circular-phase-compensated-symmetric" }),
+    row({ assemblyId: SECOND_ASSEMBLY_ID, sourceSlug: "axial-transverse-three-binary-interior" }),
   ];
   assert.deepEqual(
-    filterCompactSweepRows(rows, { familyId: "A" }),
+    filterCompactSweepRows(rows, { assemblyId: FIRST_ASSEMBLY_ID }),
     rows.slice(0, 2),
   );
   assert.deepEqual(
     filterCompactSweepRows(rows, {
-      familyId: "A",
-      memberId: "A2",
+      assemblyId: FIRST_ASSEMBLY_ID,
+      sourceSlug: "three-axis-circular-phase-compensated-symmetric",
     }),
     [rows[1]],
   );
   assert.deepEqual(
-    filterCompactSweepRows(rows, { memberId: "B1.1" }),
+    filterCompactSweepRows(rows, { sourceSlug: "axial-transverse-three-binary-interior" }),
     [rows[2]],
   );
   const deprecated = row({
-    familyId: "B",
-    memberId: "B1.4",
+    assemblyId: SECOND_ASSEMBLY_ID,
+    sourceSlug: "all-axial-three-binary-boundary",
     candidateDisposition: DEPRECATED_CONTROL_DISPOSITION,
   });
   assert.deepEqual(
@@ -90,37 +94,43 @@ test("dashboard filtering applies family and member constraints together", () =>
 test("case filtering treats sample expressions as exact ordinals", () => {
   const caseRows = [
     {
-      memberId: "A1.2",
+      sourceSlug: "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
       sampleOrdinal: 0,
       caseId: "case-zero",
       campaignHash: "campaign-a",
     },
     {
-      memberId: "A1.2",
+      sourceSlug: "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
       sampleOrdinal: 2,
       caseId: "case-two-a",
       campaignHash: "campaign-a",
     },
     {
-      memberId: "A1.2",
+      sourceSlug: "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
       sampleOrdinal: 2,
       caseId: "case-two-b",
       campaignHash: "campaign-b",
     },
     {
-      memberId: "A1.3",
+      sourceSlug: "three-axis-circular-coincident-midpoints-4-2-1-frequency",
       sampleOrdinal: 2,
-      caseId: "case-two-other-member",
+      caseId: "case-two-other-configuration",
       campaignHash: "campaign-a",
     },
   ];
 
   assert.deepEqual(
-    filterCompactSweepCaseRows(caseRows, "A1.2 sample 2"),
+    filterCompactSweepCaseRows(
+      caseRows,
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency sample 2",
+    ),
     caseRows.slice(1, 3),
   );
   assert.deepEqual(
-    filterCompactSweepCaseRows(caseRows, "A1.2 sample-2"),
+    filterCompactSweepCaseRows(
+      caseRows,
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency sample-2",
+    ),
     caseRows.slice(1, 3),
   );
   assert.deepEqual(
@@ -129,7 +139,7 @@ test("case filtering treats sample expressions as exact ordinals", () => {
   );
   assert.deepEqual(
     filterCompactSweepCaseRows(caseRows, "", {
-      memberId: "A1.2",
+      sourceSlug: "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
       sampleOrdinal: "2",
     }),
     caseRows.slice(1, 3),
@@ -138,17 +148,17 @@ test("case filtering treats sample expressions as exact ordinals", () => {
 
 test("evaluation funnel keeps null classes separate from compact gate outcomes", () => {
   const funnel = buildEvaluationFunnel([
-    row({ familyId: "A", memberId: "A1", passed: false }),
-    row({ familyId: "A", memberId: "A1", passed: true }),
+    row({ assemblyId: FIRST_ASSEMBLY_ID, sourceSlug: FIRST_SOURCE_SLUG, passed: false }),
+    row({ assemblyId: FIRST_ASSEMBLY_ID, sourceSlug: FIRST_SOURCE_SLUG, passed: true }),
     row({
-      familyId: "A",
-      memberId: "A1",
+      assemblyId: FIRST_ASSEMBLY_ID,
+      sourceSlug: FIRST_SOURCE_SLUG,
       evaluated: false,
       nullClass: "event-convergence",
     }),
     row({
-      familyId: "A",
-      memberId: "A1",
+      assemblyId: FIRST_ASSEMBLY_ID,
+      sourceSlug: FIRST_SOURCE_SLUG,
       evaluated: false,
       nullClass: "minimum-separation",
     }),
@@ -170,20 +180,20 @@ test("threshold ratios and gate aggregation use exact evaluated denominators", (
   assert.equal(thresholdRatio(0.01, 0), null);
   const summary = summarizeGate([
     row({
-      familyId: "A",
-      memberId: "A1",
+      assemblyId: FIRST_ASSEMBLY_ID,
+      sourceSlug: FIRST_SOURCE_SLUG,
       gatePassed: true,
       ratio: 0.25,
     }),
     row({
-      familyId: "A",
-      memberId: "A1",
+      assemblyId: FIRST_ASSEMBLY_ID,
+      sourceSlug: FIRST_SOURCE_SLUG,
       gatePassed: false,
       ratio: 2,
     }),
     row({
-      familyId: "A",
-      memberId: "A1",
+      assemblyId: FIRST_ASSEMBLY_ID,
+      sourceSlug: FIRST_SOURCE_SLUG,
       evaluated: false,
     }),
   ], "surfaceQuadrature", "exposure");

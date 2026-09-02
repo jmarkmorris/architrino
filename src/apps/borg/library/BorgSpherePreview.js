@@ -11,6 +11,7 @@ export function createSpherePreview(canvas, preview, onSelect = () => {}) {
   let visible = true;
   let pointer = null;
   let fraction = .5;
+  let activeComponentBraidId = null;
   const { center, radius } = preview.bounds;
   const times = Array.from({ length: preview.sampleCount }, (_, i) => preview.start + i * (preview.end-preview.start)/(preview.sampleCount-1));
   function publishRotation() { canvas.dataset.orientation = rotation.toArray().map((v) => v.toFixed(6)).join(","); }
@@ -64,6 +65,7 @@ export function createSpherePreview(canvas, preview, onSelect = () => {}) {
     };
     const elements = [];
     for (const path of preview.paths) {
+      if (activeComponentBraidId && path.componentBraidId !== activeComponentBraidId) continue;
       const color = borgPolarityCss(path.polarity);
       for (const segment of borgTrailSegments(path.points, times, times[frame], path.trailDuration, path.trailFade)) {
         const a = project(segment.a), b = project(segment.b);
@@ -91,5 +93,5 @@ export function createSpherePreview(canvas, preview, onSelect = () => {}) {
     context.restore();
   }
   reset();
-  return { draw, reset, dispose() { abort.abort(); observer.disconnect(); } };
+  return { draw, reset, setComponentBraid(componentBraidId = null) { activeComponentBraidId = componentBraidId; canvas.dataset.activeComponentBraidId = componentBraidId ?? "all"; draw(fraction); }, dispose() { abort.abort(); observer.disconnect(); } };
 }

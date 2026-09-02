@@ -1,14 +1,14 @@
 {
   "schema": "prescribed-assembly-spec.v2",
-  "specId": "f5-phase-varying-campaign-v2",
-  "label": "F5 — campaign-scoped phase-varying history",
-  "provenanceDescription": "Campaign-scoped twelve-member revised F5 prescribed history selected by the frozen bounded guard-margin search. It is an executable input and display-only history, not an operator-approved representative and not EOM evolution, binding, return under ordinary evolution, retention, stability, particle identity, or physical realization.",
+  "specId": "phase-varying-prescribed-display-history-v2",
+  "label": "phase-varying prescribed display history — campaign-scoped phase-varying history",
+  "provenanceDescription": "Campaign-scoped twelve-member revised phase-varying prescribed display history prescribed history selected by the frozen bounded guard-margin search. It is an executable input and display-only history, not an operator-approved representative and not EOM evolution, binding, return under ordinary evolution, retention, stability, particle identity, or physical realization.",
   "claimGrade": "chart-hypothesis",
   "evidenceStatus": "display-only",
   "date": "2026-08-26",
   "identity": {
-    "candidateId": "F5",
-    "displayLabel": "F5 — provisional phase-varying campaign row",
+    "candidateId": "phase-varying prescribed display history",
+    "displayLabel": "phase-varying prescribed display history — provisional phase-varying campaign row",
     "status": "campaign-scoped-provisional-representative",
     "geometryOwner": "reference/priorities/mapping-electromagnetism/inferring-braid-requirements.md#the-revised-f5-history-has-one-registered-member-operator"
   },

@@ -53,8 +53,12 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
   assert.equal(getStandaloneAppPathForScene("lattice-lab"), "lattice-lab.html");
   assert.equal(getStandaloneAppPathForScene("topo"), "topo.html");
   assert.equal(getStandaloneAppPathForScene("animator"), "animator.html");
-  assert.equal(getStandaloneAppPathForScene("borg"), "borg.html");
+  assert.equal(getStandaloneAppPathForScene("borg"), "borg-library.html");
   assert.equal(getStandaloneAppPathForScene("braid-search"), "braid-search.html");
+  assert.equal(
+    getStandaloneAppPathForScene("archie__brand_visual_identity"),
+    "brand-visual-identity.html"
+  );
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/assembly_explorer.json"),
     "assembly-explorer.html"
@@ -80,10 +84,14 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
     "topo.html"
   );
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/animator.json"), "animator.html");
-  assert.equal(getStandaloneAppPathForScene("content/scenes/archie/borg.json"), "borg.html");
+  assert.equal(getStandaloneAppPathForScene("content/scenes/archie/borg.json"), "borg-library.html");
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/braid_search.json"),
     "braid-search.html"
+  );
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/brand_visual_identity.json"),
+    "brand-visual-identity.html"
   );
   assert.equal(
     resolveStandaloneAppHrefForScene(
@@ -132,7 +140,7 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
       "content/scenes/archie/borg.json",
       "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fborg.json"
     ),
-    "http://127.0.0.1:5173/borg.html"
+    "http://127.0.0.1:5173/borg-library.html"
   );
   assert.equal(
     resolveStandaloneAppHrefForScene(
@@ -140,6 +148,13 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
       "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fbraid_search.json"
     ),
     "http://127.0.0.1:5173/braid-search.html"
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/archie/brand_visual_identity.json",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fbrand_visual_identity.json"
+    ),
+    "http://127.0.0.1:5173/brand-visual-identity.html"
   );
 });
 

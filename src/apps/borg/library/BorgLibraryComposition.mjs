@@ -16,25 +16,30 @@ export function describeBraidComposition(coordinates) {
     }
   }
   if (covered.size !== ids.size) return unavailable;
-  return { braidCount: String(groups.length), braids: groups.map((group) => ({ id: group.id, memberCount: group.members.length })),
-    reason: `${groups.length} source-declared braid group${groups.length === 1 ? "" : "s"} cover the assembly without overlap. This selector counts component groups, including both Family-C subsets; it does not assert independent binding.` };
+  return { braidCount: String(groups.length), braids: groups.map((group) => ({ id: group.id, members: [...group.members], memberCount: group.members.length })),
+    reason: `${groups.length} source-declared component braid${groups.length === 1 ? "" : "s"} cover the assembly without overlap. This characteristic reports explicit source membership; it does not assert independent binding.` };
 }
 
 export function validateLibraryClassifications(value) {
-  if (value?.schema !== "borg-library-classifications.v3" || value.authority !== "operator" || typeof value.revision !== "string" || !value.revision || typeof value.source !== "string" || !value.source) throw new TypeError("Invalid library classification authority or revision.");
+  if (value?.schema !== "borg-library-classifications.v4" || value.authority !== "operator" || typeof value.revision !== "string" || !value.revision || typeof value.source !== "string" || !value.source) throw new TypeError("Invalid library classification authority or revision.");
   if ("nested" in value || "radii" in value) throw new TypeError("Radius equality is source-derived; retired nesting assignments cannot override it.");
   for (const facet of ["spindle"]) {
     if (!Array.isArray(value[facet])) throw new TypeError(`Missing ${facet} classification rows.`);
-    const hashes = new Set();
+    const identities = new Set();
     for (const row of value[facet]) {
-      if (!/^[a-f0-9]{64}$/.test(row?.recordSha256) || hashes.has(row.recordSha256)) throw new TypeError(`Invalid or duplicate ${facet} record pin.`);
+      if (!/^asm-[a-f0-9]{32}$/.test(row?.assemblyId) || !/^[a-f0-9]{64}$/.test(row?.modelRevisionSha256)) {
+        throw new TypeError(`Invalid ${facet} exact-assembly pin.`);
+      }
+      const identity = `${row.assemblyId}:${row.modelRevisionSha256}`;
+      if (identities.has(identity)) throw new TypeError(`Duplicate ${facet} exact-assembly pin.`);
       if (typeof row.value !== "boolean") throw new TypeError(`Missing boolean ${facet} classification value.`);
-      hashes.add(row.recordSha256);
+      identities.add(identity);
     }
   }
   return value;
 }
 
-export function recordClassification(classifications, recordSha256, facet) {
-  return classifications?.[facet]?.find((row) => row.recordSha256 === recordSha256)?.value ?? null;
+export function recordClassification(classifications, assemblyId, modelRevisionSha256, facet) {
+  return classifications?.[facet]?.find((row) =>
+    row.assemblyId === assemblyId && row.modelRevisionSha256 === modelRevisionSha256)?.value ?? null;
 }

@@ -50,6 +50,7 @@ import {
   createBorgStartupSeedIndex,
   resolveBorgRuntimeMode,
 } from "../src/apps/borg/BorgBootstrap.js";
+import { BORG_ASSEMBLY_RECORD_CATALOG } from "../src/apps/borg/BorgAssemblyRecordCatalog.js";
 import {
   createBorgPlacementPolicy,
 } from "../src/apps/borg/BorgInteractiveDefaults.js";
@@ -220,11 +221,16 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(explicitShadowMounts[0].autoStartEom, true);
 
 
-  const record = createAssemblyViewBootRecord();
+  const catalogEntry = BORG_ASSEMBLY_RECORD_CATALOG.entries[0];
+  const record = JSON.parse(readFileSync(catalogEntry.recordUrl, "utf8"));
+  const exactQuery = new URLSearchParams({
+    assemblyId: catalogEntry.assemblyId,
+    modelRevisionSha256: catalogEntry.modelRevisionSha256,
+  });
   const recordMounts = [];
   const fetchCalls = [];
   const recordResult = await bootBorgApp({
-    search: "?eomRecord=https://example.test/run.json",
+    search: `?${exactQuery}`,
     fetchLike: async (url) => {
       fetchCalls.push(url);
       return { ok: true, async json() { return record; } };
@@ -236,15 +242,19 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   });
 
   assert.equal(
-    resolveBorgRuntimeMode("?eomRecord=https://example.test/run.json"),
+    resolveBorgRuntimeMode(`?${exactQuery}`),
     BORG_RECORD_REPLAY_RUNTIME_MODE,
   );
   assert.equal(recordResult, "record-replay-mounted");
-  assert.deepEqual(fetchCalls, ["https://example.test/run.json"]);
+  assert.deepEqual(fetchCalls, [
+    catalogEntry.recordUrl,
+    "./reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json",
+    "./reference/priorities/braid-program/borg-platonic-relationship-assignments.v1.json",
+  ]);
   assert.equal(recordMounts.length, 1);
   assert.equal(recordMounts[0].eomRecordReplay.record, record);
   assert.deepEqual(recordMounts[0].eomRecordReplay.records, [record]);
-  assert.equal(recordMounts[0].assemblyViewSession.selectedSourceId, "borg-boot-record-run");
+  assert.equal(recordMounts[0].assemblyViewSession.selectedSourceId, record.sourceId);
   assert.equal(
     typeof recordMounts[0].eomShadowRunner.eomClientFactory,
     "function",
@@ -252,38 +262,9 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   );
   assert.equal(recordMounts[0].autoStartEom, true);
 
-  const comparisonMounts = [];
-  await bootBorgApp({
-    search:
-      "?eomRecord=https://example.test/chart.json&eomRecord=https://example.test/evolved.json",
-    createEomClient() {
-      throw new Error("record replay must never construct the live EOM client");
-    },
-    fetchLike: async (url) => ({
-      ok: true,
-      async json() {
-        return createAssemblyViewBootRecord(
-          url.includes("chart") ? "chart-direct-record" : "evolved-direct-record",
-        );
-      },
-    }),
-    mountApp(options) {
-      comparisonMounts.push(options);
-      return options;
-    },
-  });
-  assert.deepEqual(
-    comparisonMounts[0].assemblyViewSession.records.map((entry) => entry.sourceId),
-    ["chart-direct-record", "evolved-direct-record"],
-  );
-  assert.deepEqual(comparisonMounts[0].eomRecordReplay.sourceUrls, [
-    "https://example.test/chart.json",
-    "https://example.test/evolved.json",
-  ]);
-
   await assert.rejects(
     bootBorgApp({
-      search: "?eomRecord=https://example.test/missing.json",
+      search: `?${exactQuery}`,
       fetchLike: async () => ({ ok: false, status: 404 }),
       mountApp() {
         throw new Error("must not mount on a failed record fetch");
@@ -1267,7 +1248,7 @@ test("Borg native process protocol carries the same continuous-history request",
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
   assert.equal(protocol.split("\n")[0], BORG_NATIVE_EOM_PROTOCOL_MAGIC);
-  assert.match(protocol, /^EOM_BORG_NATIVE_V10\nRUN\t/u);
+  assert.match(protocol, /^EOM_BORG_NATIVE_V11\nRUN\t/u);
   const runFields = protocol.split("\n")[1].split("\t");
   assert.equal(runFields.length, 60);
   assert.equal(runFields[4], "0.05");
@@ -1422,7 +1403,7 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
     assert.throws(
       () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary }),
       (error) => {
-        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V10/u);
+        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V11/u);
         assert.match(error.message, /binary parser=EOM_BORG_NATIVE_V999/u);
         assert.match(
           error.message,
@@ -1443,7 +1424,7 @@ test("Borg native clients own separate exact-history temporary roots", async () 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V11\\n");
   process.exit(0);
 }
 const rootArgument = process.argv.find((argument) =>
@@ -1529,7 +1510,7 @@ test("Borg native client restarts a persistent worker when its executable change
   const fixtureBinary = join(fixtureDirectory, "refreshable-eom-binary.mjs");
   const fixtureSource = (marker) => `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V11\\n");
   process.exit(0);
 }
 let buffer = "";
@@ -1595,7 +1576,7 @@ test("Borg native client clears its history prefix after a halted request", asyn
   const fixtureBinary = join(fixtureDirectory, "cache-reset-eom-binary.mjs");
   const fixtureSource = `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V11\\n");
   process.exit(0);
 }
 let buffer = "";
@@ -1689,7 +1670,7 @@ test("Borg server process client forwards a validated Display prefix without seg
   const fixtureBinary = join(fixtureDirectory, "display-prefix-eom-binary.mjs");
   const fixtureSource = `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V11\\n");
   process.exit(0);
 }
 let buffer = "";

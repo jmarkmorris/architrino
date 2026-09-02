@@ -1,4 +1,4 @@
-# A1 Lorentz Geometry priorities
+# Coincident-Midpoint Three-Axis Circular Lorentz Geometry priorities
 
 ## Objective
 

@@ -8,7 +8,7 @@ Read the chapter as a branch atlas, not as a single orbit story. The partner-onl
 
 **Claim-status convention.** A **derived** statement follows from the declared circular or history-space equations on its stated chart. A **conditional** statement follows only under the assumptions named with it. A **target** states a proof or certificate obligation that is not yet closed. A **diagnostic** is a computable comparison or branch record whose agreement does not by itself promote the underlying claim. These labels apply chapter-wide; an unlabeled explanation does not upgrade a conditional, target, or diagnostic statement.
 
-This chapter is the foundational precursor to [Shared-Circle Assemblies](shared-circle-assemblies.md), [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics), [A3.3 Doubling-Frequency Resonance Lock](../noether-braid/braid-a3-3-doubling-frequency-lock.md), [Master Equation](master-equation.md), and the assembly-level [Noether Braid](../noether-braid/noether-braid.md). Shared-Circle Assemblies carries the complete-root circular benchmark into balanced many-member rings while keeping their braid-taxonomy status explicit. The primitive-entity ontology in [Architrino](../foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
+This chapter is the foundational precursor to [Planar (2D) Braid Assemblies](../noether-braid/2d-braid-assemblies.md), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), [Three-Binary 4:2:1 Frequency Lock](../noether-braid/three-binary-4-2-1-frequency-lock.md), [Master Equation](master-equation.md), and the assembly-level [Noether Braid](../noether-braid/noether-braid.md). Planar (2D) Braid Assemblies carries the complete-root circular benchmark into balanced many-member rings while keeping their braid-taxonomy status explicit. The primitive-entity ontology in [Architrino](../foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
 
 ## The Spiral Orbiting Binary and the Contraction Phase
 
@@ -129,7 +129,7 @@ $$
 
 When $\mathbf{V}$ is parallel to $\mathbf{n}$, each architrino draws a constant-pitch helical trace with pitch $2\pi\|\mathbf{V}\|/\omega$ per binary cycle. At a tilted orientation, the absolute-history trace combines longitudinal pitch $2\pi|\mathbf{V}\cdot\mathbf{n}|/\omega$ with the transverse group-velocity component $\mathbf{V}-(\mathbf{V}\cdot\mathbf{n})\mathbf{n}$. This trace is a visualization and solver diagnostic, not a stability proof: the dynamical question is still whether the translated path-history ledger retains the same active causal roots, Jacobian floors, energy/action records, and branch identity.
 
-### Collision-Free Shared-Circle Winding Lemma
+### Collision-Free Single-Circle Winding Lemma
 
 Let $M\ge 2$ continuous labeled worldlines remain on one fixed nondegenerate circle for a common labeled period $P>0$, with $\mathbf X_i(P)=\mathbf X_i(0)$ for every label and $\mathbf X_i(T)\ne\mathbf X_j(T)$ for every $i\ne j$ and every $T\in[0,P]$. Choose one orientation for the circle and continuous lifts $\theta_i:[0,P]\to\mathbb R$ of that common angular coordinate. Each label then has an integer signed winding number
 
@@ -283,7 +283,7 @@ If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the
 2. self-hit repulsion (non-Markovian feedback when same-transmitter roots exist; super-field-speed circular history is the relevant branch),
 3. Centripetal requirement for stable circular orbit.
 
-**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the candidate Family-A ladder and broader Noether braid claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
+**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the candidate orthogonal-axis three-binary ladder and broader Noether braid claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
 
 ### Setup and Notation (Symmetric Frame)
 

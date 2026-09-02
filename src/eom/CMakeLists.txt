@@ -150,5 +150,5 @@ add_test(
 )
 set_tests_properties(
   eom_borg_shadow_protocol_version
-  PROPERTIES PASS_REGULAR_EXPRESSION "^EOM_BORG_NATIVE_V10"
+  PROPERTIES PASS_REGULAR_EXPRESSION "^EOM_BORG_NATIVE_V11"
 )

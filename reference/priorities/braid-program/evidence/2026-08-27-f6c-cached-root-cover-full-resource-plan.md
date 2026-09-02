@@ -1,4 +1,4 @@
-# F6c Cached Full Root-Cover Resource Plan
+# asymmetric counter-breathing representative Cached Full Root-Cover Resource Plan
 
 Status: measured full-run planning candidate awaiting independent pilot/resource review and a separately frozen full operational composition, 2026-08-27. This plan preserves the earlier [resource return](2026-08-27-f6c-root-cover-full-resource-plan.md), SHA-256 `46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef`. That baseline attempt was not run. This is a separate prospective attempt, not a relabeling or resumption.
 
@@ -52,7 +52,7 @@ Plainly: the faster implementation owes the entire original calculation again. I
 
 | Control | Full-attempt requirement |
 | --- | --- |
-| Concurrency | One serial consumer followed by one independent comparison; zero EOM workers; no concurrent F5 response or other F6c pilot/full attempt |
+| Concurrency | One serial consumer followed by one independent comparison; zero EOM workers; no concurrent phase-varying display representative response or other asymmetric counter-breathing representative pilot/full attempt |
 | Inclusive deadline | 1800 seconds from external launcher start through capture, both stages, final publication, rechecks, cleanup and successfully flushed final completion |
 | Memory | Aggregate owned-process RSS samples no more than one second apart; stop at 2 GiB or loss of valid observation |
 | Heartbeat | Flushed external stage, elapsed time and observed row progress every 15 seconds |

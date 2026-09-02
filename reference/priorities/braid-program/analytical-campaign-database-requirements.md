@@ -61,7 +61,7 @@ On 2026-07-22, `rebuild-all --check` and then `rebuild-all --publish` generated 
 | Failed-gate distribution | 6 `complete-cycle/fixedInternalPrimary`; 1 `complete-cycle/movingReceiverRefined`; 9 `complete-cycle/transmitterSensitivity` |
 | Coverage contract | 29 obligations: 20 `implemented`, 7 `newly-implemented`, 2 `inapplicable-with-reason` |
 
-The three accepted analytical packets are B1.1, B1.2, and B1.4. Acceptance means only that each complete prescribed-path packet passed the declared analytical gates under the common protocol. The sixteen rejected packets remain complete, queryable diagnostic records. Neither outcome establishes EOM-solver retention, stability, energy, binding, physical realization, or a completed braid-family grade.
+The three accepted analytical packets are the axial-transverse coincident-axis three-binary interior, high-axial coincident-axis three-binary interior, and all-axial coincident-axis three-binary boundary configurations. Acceptance means only that each complete prescribed-path packet passed the declared analytical gates under the common protocol. The sixteen rejected packets remain complete, queryable diagnostic records. Neither outcome establishes EOM-solver retention, stability, energy, binding, physical realization, or a broader configuration-domain grade.
 
 ### 2.3 Retired direct footprint measurement
 
@@ -522,7 +522,7 @@ The complete current generation is published at the Git-ignored runtime path `.l
 - [migration `003-complete-cycle-measures.sql`](../../../src/prescribed-path-analysis/database/migrations/003-complete-cycle-measures.sql) stores coverage identity, raw analytical artifacts, multidimensional measures, and generation-case inventory for complete-cycle campaigns;
 - [IndependentAnalyticalAcceptance.mjs](../../../src/prescribed-path-analysis/database/IndependentAnalyticalAcceptance.mjs) derives the required gates and rebuilds reduced projections from retained packet ledgers without treating producer booleans as sufficient evidence;
 - [AnalyticalCampaignDatabase.mjs](../../../src/prescribed-path-analysis/database/AnalyticalCampaignDatabase.mjs) implements complete preflight, bounded idempotent ingestion, interruption resume, deterministic export, integrity verification, and verified online backup;
-- [the all-candidate registry](../../../src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v1.json) owns the exact catalog, generated baseline, imported campaign, and intentional-exclusion inventory;
+- [the all-candidate registry](../../../src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json) owns the exact catalog, generated baseline, imported campaign, and intentional-exclusion inventory;
 - [AllCandidateAnalyticalCampaign.mjs](../../../src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs) validates that registry against the live catalog and generator target map and constructs exact prescribed-path campaign artifacts;
 - [AnalyticalCampaignRebuild.mjs](../../../src/prescribed-path-analysis/database/AnalyticalCampaignRebuild.mjs) builds, verifies, records, and atomically publishes a fresh database generation with rollback;
 - [the database command](../../../scripts/eom/analytical-campaign-database.mjs) exposes migrate, import, rebuild-all check/publish, inspect, verify, export, and backup operations; and

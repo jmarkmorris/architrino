@@ -6,6 +6,15 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-01 — Page exception policy accepted
+
+- Closed UI-006 by assigning one disposition to every current non-full-standard surface class in [top-dynamic-control-bar.md](top-dynamic-control-bar.md).
+- Classified `website-stats.html` as a lightweight public-utility header and `solver-gpu-harness.html` as a lightweight developer-harness header. Both retain compact Home navigation while utility, benchmark, and diagnostic controls remain local.
+- Classified `pdgedit-review.html` and children's-book review outputs as exempt review artifacts, generated textbook reading copies as exempt generated content, and the iOS `ReaderShell.html` and `SearchSnippetShell.html` mounts as native-shell parity surfaces owned by SwiftUI navigation.
+- Recorded explicit promotion triggers so an exception cannot silently become public product chrome. All other public interactive apps and workbenches in the current surface audit remain full-standard migration targets.
+- Claim boundary: this closes the page-classification policy only. It does not implement lightweight headers, migrate a full-standard surface, or establish that any currently partial surface already conforms.
+- Validation passed: priority-rank alignment, `git diff --check`, strict content validation, and strict scene-graph checking all completed without errors or warnings.
+
 ### 2026-07-21 - Canonical transport controls
 
 - Accepted `Play`, `Pause`, `First frame`, `Rewind`, `Reset`, and `Stop` as the canonical transport-control set.

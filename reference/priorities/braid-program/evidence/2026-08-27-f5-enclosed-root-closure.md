@@ -1,4 +1,4 @@
-# F5 Enclosed Prescribed-Root Closure
+# phase-varying display representative Enclosed Prescribed-Root Closure
 
 Status: independently reviewed `H3 P[M]`, restricted to the approved prescribed history and declared `8/32/128` reception ladder, 2026-08-27. This is not an ordinary EOM evolution, retained braid, stability result, score change, or physical-realization claim. The finite IEEE nearest-rounding and gradual-underflow premises remain explicit.
 

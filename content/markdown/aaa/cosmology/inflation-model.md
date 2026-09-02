@@ -1,10 +1,10 @@
 # Inflation Model
 
-This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), and the strong-field pages [Black Holes](../spacetime/black-holes.md) and [Mapping the Planck Scale to the A1 Geometry](../philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md).
+This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), and the strong-field pages [Black Holes](../spacetime/black-holes.md) and [Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry](../philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md).
 
 ## Core Idea
 
-The early rapid-expansion phase is hypothesized to arise from a high-curvature continuation of the prescribed Family-A response, not from a fundamental standalone inflaton ontology. Here Family A means only the one-braid chart whose three binary axes are mutually orthogonal at $\lambda_A=0$ and converge toward the group-translation direction as $\lambda_A\to1$; the cosmological assignment, dynamics, stability, and retention do not follow from that geometry.
+The early rapid-expansion phase is hypothesized to arise from a high-curvature continuation of the prescribed orthogonal-axis three-binary response, not from a fundamental standalone inflaton ontology. Here orthogonal-axis three-binary configurations means only the one-braid chart whose three binary axes are mutually orthogonal at $\lambda_A=0$ and converge toward the group-translation direction as $\lambda_A\to1$; the cosmological assignment, dynamics, stability, and retention do not follow from that geometry.
 
 ## Local-Process Commitment
 
@@ -295,7 +295,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6d4488b0633aa4b1)
-Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the conjecture that inflation-like release, horizon-scale transport, and late-time expansion could be different channels of one candidate continuation of the Family-A response.
+Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the conjecture that inflation-like release, horizon-scale transport, and late-time expansion could be different channels of one candidate continuation of the orthogonal-axis three-binary response.
 
 ## Expansion-Module Interface
 

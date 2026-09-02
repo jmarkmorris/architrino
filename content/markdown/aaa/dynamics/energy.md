@@ -4,7 +4,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with moving archit
 
 This chapter answers four linked questions. What kinetic bookkeeping is allowed for a single architrino? How does work occur when a receiver crosses delayed causal wakes? How do assemblies hide or expose internal energy? How can Noether sea coupling make energy, inertia, and effective geometry appear at larger scales?
 
-The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
+The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Accelerations and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and transmitter-side acceleration weight, on this fixed background. Derivations keep $c_f$ symbolic so the primitive-speed dependence remains visible; numerical instantiations use normalized units with $c_f=1$.
 
@@ -748,7 +748,7 @@ Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\ch
 At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether braid assemblies**. The following size and energy statements are hypotheses awaiting a certified Noether braid and scale map:
 
 - These Noether braids are extremely small compared to ordinary particles (electrons, protons, etc.).
-- Each Noether braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy; A1 is the best-developed Family-A member, not the definition of the sea.
+- Each Noether braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy; coincident-midpoint orthogonal-axis braid is the best-developed orthogonal-axis three-binary member, not the definition of the sea.
 - As a sea, they form a **dense population of coupled assemblies** occupying the Euclidean void. This ambient Noether sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
   - Effective causal-cone behavior and Lorentz-like behavior,

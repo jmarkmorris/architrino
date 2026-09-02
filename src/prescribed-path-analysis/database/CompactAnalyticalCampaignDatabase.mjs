@@ -11,13 +11,13 @@ import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 
 export const COMPACT_ANALYTICAL_DATABASE_SCHEMA =
-  "prescribed-path-analysis/compact-control-plane-sqlite.v1";
+  "prescribed-path-analysis/compact-control-plane-sqlite.v2";
 export const COMPACT_ANALYTICAL_DATABASE_TOOL_VERSION =
-  "prescribed-path-analysis/compact-control-plane-sqlite.v1";
+  "prescribed-path-analysis/compact-control-plane-sqlite.v2";
 export const COMPACT_MONTE_CARLO_CAMPAIGN_SCHEMA =
-  "prescribed-path-analysis/compact-monte-carlo-campaign.v1";
+  "prescribed-path-analysis/compact-monte-carlo-campaign.v2";
 export const COMPACT_MONTE_CARLO_CASE_SCHEMA =
-  "prescribed-path-analysis/compact-monte-carlo-case.v1";
+  "prescribed-path-analysis/compact-monte-carlo-case.v2";
 
 const REPOSITORY_ROOT = path.resolve(import.meta.dirname, "../../..");
 const MIGRATION_DIRECTORY = new URL("./compact-migrations/", import.meta.url);
@@ -283,8 +283,12 @@ function validateCompactCase(row, campaign, outputOrdinal) {
     caseHash: row.caseHash,
     schemaId: row.schema,
     caseId: concreteString(row.caseId, `caseRows[${outputOrdinal}].caseId`),
-    familyId: concreteString(row.familyId, `${row.caseId}.familyId`),
-    memberId: concreteString(row.memberId, `${row.caseId}.memberId`),
+    assemblyId: concreteString(row.assemblyId, `${row.caseId}.assemblyId`),
+    modelRevisionSha256: sha256(
+      row.modelRevisionSha256,
+      `${row.caseId}.modelRevisionSha256`,
+    ),
+    sourceSlug: concreteString(row.sourceSlug, `${row.caseId}.sourceSlug`),
     candidateId: concreteString(row.candidateId, `${row.caseId}.candidateId`),
     sampleOrdinal: nonnegativeInteger(
       row.sampleOrdinal,
@@ -489,7 +493,7 @@ export function importCompactMonteCarloCampaign(databasePath, campaign, options 
       const insertCase = database.prepare(`
         INSERT INTO compact_case(
           campaign_hash, output_ordinal, case_hash, schema_id, case_id,
-          family_id, member_id, candidate_id, sample_ordinal,
+          assembly_id, model_revision_sha256, source_slug, candidate_id, sample_ordinal,
           sampled_spec_hash, exact_source_hash, protocol_hash,
           implementation_hash, score_hash, status_code, evaluated, passed,
           score_status_code, reason_code, wall_seconds, user_cpu_seconds,
@@ -498,7 +502,7 @@ export function importCompactMonteCarloCampaign(databasePath, campaign, options 
           verification_receipt_json, row_json_sha256, row_json
         ) VALUES (
           ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-          ?, ?, ?, ?, ?, ?, ?
+          ?, ?, ?, ?, ?, ?, ?, ?
         )
       `);
       for (const caseRow of validated.rows) {
@@ -508,8 +512,9 @@ export function importCompactMonteCarloCampaign(databasePath, campaign, options 
           caseRow.caseHash,
           caseRow.schemaId,
           caseRow.caseId,
-          caseRow.familyId,
-          caseRow.memberId,
+          caseRow.assemblyId,
+          caseRow.modelRevisionSha256,
+          caseRow.sourceSlug,
           caseRow.candidateId,
           caseRow.sampleOrdinal,
           caseRow.sampledSpecHash,
@@ -653,8 +658,9 @@ export function queryCompactAnalyticalCampaignCases(databasePath, options = {}) 
     const mappings = [
       ["campaignHash", "campaign_hash"],
       ["caseId", "case_id"],
-      ["familyId", "family_id"],
-      ["memberId", "member_id"],
+      ["assemblyId", "assembly_id"],
+      ["modelRevisionSha256", "model_revision_sha256"],
+      ["sourceSlug", "source_slug"],
       ["statusCode", "status_code"],
       ["scoreStatusCode", "score_status_code"],
       ["reasonCode", "reason_code"],

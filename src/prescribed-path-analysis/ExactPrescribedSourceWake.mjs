@@ -185,6 +185,12 @@ export function validateExactPrescribedSourceRecord(record) {
       `exact prescribed source record requires schema ${EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA}.`,
     );
   }
+  concreteString(record.assemblyId, "sourceRecord.assemblyId");
+  concreteString(record.modelRevisionSha256, "sourceRecord.modelRevisionSha256");
+  if (!/^[a-f0-9]{64}$/.test(record.modelRevisionSha256) ||
+      record.assemblyId !== `asm-${record.modelRevisionSha256.slice(0, 32)}`) {
+    throw new TypeError("exact prescribed source record requires a consistent exact identity pair.");
+  }
   concreteString(record.recordId, "sourceRecord.recordId");
   if (record.engineId !== "prescribed-geometry") {
     throw new TypeError("sourceRecord.engineId must be prescribed-geometry.");

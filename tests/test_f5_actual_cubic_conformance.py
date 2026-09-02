@@ -88,7 +88,7 @@ class F5ActualCubicProofTests(unittest.TestCase):
 
     def test_frozen_f5_endpoint_and_derivative_domain_controls(self):
         root = Path(__file__).resolve().parents[1]
-        config = json.loads((root / "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json").read_text(), parse_float=Decimal)
+        config = json.loads((root / "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json").read_text(), parse_float=Decimal)
         first = config["worldlines"][0]["operator"]
         for mode in ("source-decimal", "frozen-binary64", "both-constant-interpretations"):
             state = f5_member_jet(first, point(0), mode=mode, order=1)
@@ -104,7 +104,7 @@ class F5ActualCubicProofTests(unittest.TestCase):
 
     def test_constant_impostor_cannot_pass_actual_f5_conformance(self):
         root = Path(__file__).resolve().parents[1]
-        config = json.loads((root / "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json").read_text(), parse_float=Decimal)
+        config = json.loads((root / "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json").read_text(), parse_float=Decimal)
         segment = {
             "tStart": "-1", "tEnd": "-0.9800062096544188",
             "coefficients": [["0", "0", "0", "0"] for _ in range(3)],
@@ -119,7 +119,7 @@ class F5ActualCubicProofTests(unittest.TestCase):
         # This fixture uses the oracle itself and tests plumbing only. It is
         # deliberately not an independent reference for a production adapter.
         root = Path(__file__).resolve().parents[1]
-        config = json.loads((root / "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json").read_text(), parse_float=Decimal)
+        config = json.loads((root / "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json").read_text(), parse_float=Decimal)
         raw = config["worldlines"][0]["operator"]
         start, end = Decimal("-1"), Decimal("-0.9800062096544188")
         before = f5_member_jet(raw, point(start), mode="source-decimal", order=1)

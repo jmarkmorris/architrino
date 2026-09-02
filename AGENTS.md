@@ -57,7 +57,13 @@ This document distinguishes three audience scopes:
 
 ### Workspace Workflow
 
-- Immediately after this file, read the generated router at [reference/op/agent-startup-orientation.generated.md](reference/op/agent-startup-orientation.generated.md), choose one workflow, and then read only its live owner. Use [reference/op/README.md](reference/op/README.md) as the procedure index.
+#### Startup Access Gate
+
+Before attempting the repository bootstrap reads, determine whether the current session can actually read files in this local checkout. Do not infer filesystem access from the interface name or from a path appearing in the conversation.
+
+- **If the checkout is readable:** read this file (`AGENTS.md`) in full, then read the generated router at [reference/op/agent-startup-orientation.generated.md](reference/op/agent-startup-orientation.generated.md), choose one workflow, and read only its live owner. Do not ask permission for these reads or report them back as a task result. Use [reference/op/README.md](reference/op/README.md) as the procedure index.
+- **If the checkout is not readable:** do not attempt the local reads and do not block on them. Apply any repository policy supplied in the conversation, subject to higher-priority instructions; state once, near the start of the first substantive reply, that the local `AGENTS.md` and router reads were skipped because this environment cannot reach the checkout; then proceed on the substance using the available context.
+- A session without checkout access must not imply that it inspected live files or current repository state. Distinguish conclusions supported by the supplied conversation from conclusions that require a repo-aware session.
 - Use [reference/op/theory-orientation.md](reference/op/theory-orientation.md) for theory-facing startup and [content/markdown/aaa/archie/software-architecture-and-maintenance.md](content/markdown/aaa/archie/software-architecture-and-maintenance.md) for software architecture, cleanup, canonical paths, and anti-cruft policy.
 - The operator often runs many agents in this same checkout at the same time. Treat a dirty working tree as normal ambient state, not as an exceptional condition by itself.
 - The operator does not use git worktrees for this repo because they do not meet the workflow requirements. Do not propose or request a git worktree as the default isolation strategy unless the operator explicitly asks for one.

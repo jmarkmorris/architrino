@@ -591,7 +591,7 @@ The excess over $H_2(P)$ measures model mismatch, not a new substrate ingredient
 
 Record entropy maps to durable alternatives in an apparatus or observer channel. A record is not merely a symbolic label. It is an assembly/environment state that persists long enough to be read, copied, or reset within a declared window.
 
-Horizon entropy maps to observer-accessible boundary or horizon-interface label capacity. It is not a literal statement that the Euclidean void is made of area bits. The label count must be derived from strong-field Noether sea and Family-A records.
+Horizon entropy maps to observer-accessible boundary or horizon-interface label capacity. It is not a literal statement that the Euclidean void is made of area bits. The label count must be derived from strong-field Noether sea and orthogonal-axis three-binary records.
 
 Computation entropy maps to implemented device cost. Bit logic alone does not create a thermodynamic cost. A cost claim is physical only after the device state space, success criterion, reset operation, heat/work ledger, and boundary exchange have been declared.
 
@@ -902,7 +902,7 @@ $$
 
 This is a recovery target, not a postulate. The proof fails if $S_{\partial\Omega}^{(O)}$, $T_U^{(O)}$, $dQ_{\partial\Omega}^{(O)}$, and the effective metric are assigned independent records.
 
-For black holes, the area-law coefficient must come from terminal Family-A alignment and horizon-interface label compatibility. For a connected block $U$ of alignment-area patches,
+For black holes, the area-law coefficient must come from terminal orthogonal-axis three-binary alignment and horizon-interface label compatibility. For a connected block $U$ of alignment-area patches,
 
 $$
 s_{\mathrm{align}}(\theta)
@@ -930,7 +930,7 @@ $$
 
 This target avoids a false one-patch interpretation. The coefficient is a block entropy density and patch-area normalization, not a literal independent count on one microscopic patch.
 
-The label set is not arbitrary. At terminal alignment a Family-A braid collapses its binary-axis directions onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
+The label set is not arbitrary. At terminal alignment an orthogonal-axis three-binary braid collapses its binary-axis directions onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
 
 $$
 \left|

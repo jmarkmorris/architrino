@@ -50,7 +50,7 @@ SCIENCE = (
     ('nominalConformance', PREPARED+'nominal-history-conformance.json', 'f862a7148a0a00b3bde5fbb0d164156fce2dbfc161597b0cdaa182457f3741e0'),
     ('apiConformance', PREPARED+'api-domain-conformance.json', '440deb996eaeb646b7863e9276fb937f9897c11fdbd56fed11a32efb269fe746'),
     ('reviewedBuild', LADDER+'reviewed-build.json', '5c8a9c36804b8bfed45b7f98834c0c104e758465ca0d19402bf0c328d81f9710'),
-    ('approvedSource', 'reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json', 'e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'),
+    ('approvedSource', 'reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json', 'e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'),
     ('scientificFixture', 'reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json', 'bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344'),
 )
 IMPORTS = (

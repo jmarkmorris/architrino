@@ -10,7 +10,7 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { BORG_BRAID_RECORD_CATALOG } from "../src/apps/borg/BorgBraidRecordCatalog.js";
+import { BORG_ASSEMBLY_RECORD_CATALOG } from "../src/apps/borg/BorgAssemblyRecordCatalog.js";
 import {
   DEFAULT_ALL_CANDIDATE_CAMPAIGN_REGISTRY_PATH,
   buildAllCandidateAnalyticalCampaign,
@@ -22,17 +22,17 @@ import {
   adjudicateTransmitterSensitivityConvergence,
   centeredSensitivityDerivative,
   differentiateMatchedRootBranches,
-  perturbDeclaredPrimaryBraidPhaseOffset,
 } from "../src/prescribed-path-analysis/CompleteCycleAnalyticalCampaign.mjs";
-import {
-  validateCompleteCycleSourceApplicability,
-} from "../src/prescribed-path-analysis/B1StreamingReductions.mjs";
 import {
   createPrescribedBraidExactSourceRecord,
 } from "../scripts/eom/generate-prescribed-braid-record.mjs";
 import {
+  applyCircularRelationshipParameters,
   projectCircularRelationshipParameters,
 } from "../src/prescribed-geometry/PrescribedCircularRelationshipParameters.mjs";
+import {
+  deriveAssemblyScientificIdentity,
+} from "../src/prescribed-geometry/AssemblyScientificIdentity.mjs";
 import {
   openAnalyticalCampaignDatabase,
   verifyAnalyticalCampaignDatabase,
@@ -53,32 +53,47 @@ test("flat catalog routing leaves analytical geometry checks owned by source spe
   const registry = JSON.parse(readFileSync(DEFAULT_ALL_CANDIDATE_CAMPAIGN_REGISTRY_PATH, "utf8"));
   const candidates = validateCandidateInventory(registry);
   assert.equal(candidates.length, 20);
-  assert.ok(BORG_BRAID_RECORD_CATALOG.entries.every((row) => !("familyId" in row)));
+  assert.ok(BORG_ASSEMBLY_RECORD_CATALOG.entries.every((row) =>
+    typeof row.assemblyId === "string" &&
+    /^[0-9a-f]{64}$/.test(row.modelRevisionSha256)));
   for (const candidate of candidates) {
-    assert.equal(candidate.spec.identity.taxonomy.familyId, candidate.declaration.familyId);
-    assert.equal(candidate.spec.identity.taxonomy.memberId, candidate.declaration.memberId);
+    assert.equal(candidate.spec.identity.assemblyId, candidate.declaration.assemblyId);
+    assert.equal(
+      candidate.spec.identity.modelRevisionSha256,
+      candidate.declaration.modelRevisionSha256,
+    );
   }
   const changed = structuredClone(registry);
-  changed.candidates[0].familyId = "B";
-  assert.throws(() => validateCandidateInventory(changed), /differs from its source specification/);
+  changed.candidates[0].assemblyId = "asm-00000000000000000000000000000000";
+  assert.throws(
+    () => validateCandidateInventory(changed),
+    /absent from or separately dispositioned by the Borg catalog/,
+  );
 });
 
-test("all-candidate registry explicitly covers or excludes every live Borg catalog entry", () => {
+test("all-candidate registry binds its complete analytical cohort to exact Borg leaves", () => {
   const campaign = buildAllCandidateAnalyticalCampaign(undefined, {
     evaluationMode: "baseline",
   });
   assert.equal(campaign.candidates.length, 20);
-  assert.deepEqual(
-    campaign.candidates.map((row) => row.declaration.candidateId),
-    BORG_BRAID_RECORD_CATALOG.entries.slice(0, 20).map((row) => row.id),
-  );
+  const catalogPairs = new Set(BORG_ASSEMBLY_RECORD_CATALOG.entries.map((row) =>
+    `${row.assemblyId}\0${row.modelRevisionSha256}`));
+  assert.equal(campaign.candidates.every((row) => catalogPairs.has(
+    `${row.declaration.assemblyId}\0${row.declaration.modelRevisionSha256}`,
+  )), true);
   assert.equal(
-    campaign.candidates.some((row) => row.declaration.memberId === "B1.4"),
+    campaign.candidates.some((row) =>
+      row.declaration.sourceSlug === "all-axial-three-binary-boundary"),
     false,
   );
+  const interiorThreeBinarySlugs = new Set([
+    "axial-transverse-three-binary-interior",
+    "high-axial-three-binary-interior",
+    "planar-three-binary-common-center-reference",
+  ]);
   assert.equal(
     campaign.candidates.filter((row) =>
-      row.declaration.familyId === "B").every((row) =>
+      interiorThreeBinarySlugs.has(row.declaration.sourceSlug)).every((row) =>
       projectCircularRelationshipParameters(row.spec).components.some(
         (component) => component.pairs.some((pair) => pair.transverseOrbitRadius > 0),
       )),
@@ -102,7 +117,7 @@ test("all-candidate registry explicitly covers or excludes every live Borg catal
 
 test("methodology coverage is exact and a methodology byte change does not advance", () => {
   const coverage = JSON.parse(readFileSync(
-    new URL("../src/prescribed-path-analysis/analytical-measure-coverage.v1.json", import.meta.url),
+    new URL("../src/prescribed-path-analysis/analytical-measure-coverage.v2.json", import.meta.url),
     "utf8",
   ));
   const methodology = readFileSync(new URL(
@@ -168,13 +183,27 @@ test("transmitter-sensitivity convergence compares dimensionless per-measure unc
   assert.equal(adjudication.endpoints.sourceA.absoluteUncertainty, 1);
 });
 
-test("cohort sensitivity varies the declared braid phase offset without breaking A1.2", () => {
+test("cohort sensitivity creates a new exact identity and preserves the equal-radius constraint", () => {
   const registry = loadAllCandidateCampaignRegistry();
-  const a12 = registry.candidates.find((row) => row.declaration.memberId === "A1.2");
+  const configuration = registry.candidates.find((row) =>
+    row.declaration.sourceSlug ===
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency");
   const delta = Math.PI / 64;
-  const perturbed = perturbDeclaredPrimaryBraidPhaseOffset(a12.spec, delta);
-  const before = projectCircularRelationshipParameters(a12.spec);
+  const before = projectCircularRelationshipParameters(configuration.spec);
+  const changed = structuredClone(before);
+  changed.components[0].phaseOffset += delta;
+  const perturbed = applyCircularRelationshipParameters(configuration.spec, changed);
+  const derivedIdentity = deriveAssemblyScientificIdentity(perturbed);
+  perturbed.identity = {
+    ...perturbed.identity,
+    assemblyId: derivedIdentity.assemblyId,
+    modelRevisionSha256: derivedIdentity.modelRevisionSha256,
+  };
   const after = projectCircularRelationshipParameters(perturbed);
+  assert.notEqual(
+    perturbed.identity.modelRevisionSha256,
+    configuration.spec.identity.modelRevisionSha256,
+  );
   assert.equal(after.components[0].phaseOffset, before.components[0].phaseOffset + delta);
   assert.deepEqual(
     after.components[0].pairs.map((pair) => pair.phase),
@@ -182,12 +211,13 @@ test("cohort sensitivity varies the declared braid phase offset without breaking
   );
 });
 
-test("coaxial C5 circles satisfy the cohort geometry and exact envelope", () => {
+test("coaxial separated planar braids have the declared geometry and exact envelope", () => {
   const registry = loadAllCandidateCampaignRegistry();
-  const c5 = registry.candidates.find((row) => row.declaration.memberId === "C5");
-  const source = createPrescribedBraidExactSourceRecord(c5.spec);
-  const parameters = projectCircularRelationshipParameters(c5.spec);
-  assert.doesNotThrow(() => validateCompleteCycleSourceApplicability(source, registry.protocol));
+  const configuration = registry.candidates.find((row) =>
+    row.declaration.sourceSlug ===
+      "coaxial-separated-two-planar-braid-co-rotating");
+  const source = createPrescribedBraidExactSourceRecord(configuration.spec);
+  const parameters = projectCircularRelationshipParameters(configuration.spec);
   assert.deepEqual(parameters.components.map((component) => component.centerOffset), [
     [0, 0, -0.55],
     [0, 0, 0.55],
@@ -226,7 +256,7 @@ test("registry omission fails before replacing the target database", async () =>
         databasePath,
         registryPath,
       }),
-      /every Borg catalog candidate must be either analytically registered or explicitly excluded/,
+      /every declared exact analytical cohort source must be registered exactly once/,
     );
     assert.equal(sha256File(databasePath), before);
   } finally {

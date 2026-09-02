@@ -180,9 +180,12 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
     {
       "layer": "wake-streams",
       "state": "disabled",
-      "sourceFields": [],
-      "valueAuthority": "fail-closed-value",
-      "firstFailureCode": "wake_history_gap_unclassified"
+      "sourceFields": [
+        "eom-response.wakeBoundaryProducts.resolvedWakeInteractionRows",
+        "eom-response.wakeBoundaryProducts.failureWakeRows",
+        "eom-response.wakeBoundaryProducts.rowConservationCounts"
+      ],
+      "valueAuthority": "runtime-eom-owned-or-fail-closed"
     },
     {
       "layer": "diagnostics",
@@ -197,13 +200,14 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
     "eomRunFrameRows": "eom-shadow-output",
     "simulationWindowGuide": "app-facing-projection",
     "velocityRayGeometry": "app-facing-projection",
-    "wakeStreams": "fail-closed-value",
+    "wakeStreams": "runtime-eom-owned-or-fail-closed",
     "deploymentBudgets": "missing-error-budget",
     "renderQuality": "not-measured"
   },
   "noAuthorityPromotions": true,
   "failClosedFirstFailureCodes": [
-    "wake_history_gap_unclassified",
+    "missing_boundary_shell_crossing_coverage",
+    "required_residual_unmeasured",
     "velocity_sampling_protocol_missing"
   ],
   "validation": {
@@ -214,10 +218,19 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
 
 export const BORG_FAIL_CLOSED_ROWS = deepFreeze([
   {
-    "firstFailureCode": "wake_history_gap_unclassified",
+    "firstFailureCode": "missing_boundary_shell_crossing_coverage",
     "affectedConsumers": [
-      "wake-streams",
-      "receiver-acceleration"
+      "boundary-shell-replay",
+      "boundary-generated-wake-rows"
+    ],
+    "valueAuthority": "fail-closed-value"
+  },
+  {
+    "firstFailureCode": "required_residual_unmeasured",
+    "affectedConsumers": [
+      "shell-self-similarity",
+      "shell-replay-residual",
+      "boundary-to-central-residual"
     ],
     "valueAuthority": "fail-closed-value"
   },

@@ -1,0 +1,103 @@
+{
+  "schema": "prescribed-assembly-spec.v3",
+  "specId": "stella-octangula-static-assembly-v1",
+  "label": "Interlocked tetrahedra (stella octangula) — static assembly",
+  "provenanceDescription": "Exact static eight-site stella-octangula display: the checkerboard cube vertices split into two opposite-polarity regular tetrahedra. Stationary worldlines carry the static coordinates through the record interface only. No prescribed motion, EOM evolution, braid classification, balance, retention, stability, binding, or physical realization is implied.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-09-01",
+  "identity": {
+    "assemblyId": "asm-242282e6154b97b00ac9d8e5123cde46",
+    "modelRevisionSha256": "242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8",
+    "displayLabel": "Interlocked tetrahedra (stella octangula) — static assembly",
+    "status": "operator-approved-static-assembly-display",
+    "geometryOwner": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
+  },
+  "illustrativeCoordinates": {
+    "status": "exact-static-checkerboard-cube-coordinates",
+    "choices": [
+      "The eight positions are the cube corners (plus or minus 1/(2 sqrt(3))) on each Cartesian coordinate, giving circumradius 0.5.",
+      "The polarity product of the coordinate signs partitions the corners into two regular tetrahedra. Twelve source-owned edges display the two complete tetrahedral edge graphs.",
+      "Stationary worldlines satisfy the record carrier but prescribe no history beyond an unchanged static state. The braid relation remains empty until a separately qualified path history exists; c_f=1."
+    ]
+  },
+  "constituents": [
+    { "id": "positive-1", "polarity": 1, "role": "assembly", "worldlineId": "worldline-positive-1" },
+    { "id": "positive-2", "polarity": 1, "role": "assembly", "worldlineId": "worldline-positive-2" },
+    { "id": "positive-3", "polarity": 1, "role": "assembly", "worldlineId": "worldline-positive-3" },
+    { "id": "positive-4", "polarity": 1, "role": "assembly", "worldlineId": "worldline-positive-4" },
+    { "id": "negative-1", "polarity": -1, "role": "assembly", "worldlineId": "worldline-negative-1" },
+    { "id": "negative-2", "polarity": -1, "role": "assembly", "worldlineId": "worldline-negative-2" },
+    { "id": "negative-3", "polarity": -1, "role": "assembly", "worldlineId": "worldline-negative-3" },
+    { "id": "negative-4", "polarity": -1, "role": "assembly", "worldlineId": "worldline-negative-4" }
+  ],
+  "worldlines": [
+    { "id": "worldline-positive-1", "constituentId": "positive-1", "operator": { "kind": "stationary.v1", "epochTime": 0, "position": [0.2886751345948129, 0.2886751345948129, 0.2886751345948129] } },
+    { "id": "worldline-positive-2", "constituentId": "positive-2", "operator": { "kind": "stationary.v1", "epochTime": 0, "position": [0.2886751345948129, -0.2886751345948129, -0.2886751345948129] } },
+    { "id": "worldline-positive-3", "constituentId": "positive-3", "operator": { "kind": "stationary.v1", "epochTime": 0, "position": [-0.2886751345948129, 0.2886751345948129, -0.2886751345948129] } },
+    { "id": "worldline-positive-4", "constituentId": "positive-4", "operator": { "kind": "stationary.v1", "epochTime": 0, "position": [-0.2886751345948129, -0.2886751345948129, 0.2886751345948129] } },
+    { "id": "worldline-negative-1", "constituentId": "negative-1", "operator": { "kind": "stationary.v1", "epochTime": 0, "position": [-0.2886751345948129, -0.2886751345948129, -0.2886751345948129] } },
+    { "id": "worldline-negative-2", "constituentId": "negative-2", "operator": { "kind": "stationary.v1", "epochTime": 0, "position": [-0.2886751345948129, 0.2886751345948129, 0.2886751345948129] } },
+    { "id": "worldline-negative-3", "constituentId": "negative-3", "operator": { "kind": "stationary.v1", "epochTime": 0, "position": [0.2886751345948129, -0.2886751345948129, 0.2886751345948129] } },
+    { "id": "worldline-negative-4", "constituentId": "negative-4", "operator": { "kind": "stationary.v1", "epochTime": 0, "position": [0.2886751345948129, 0.2886751345948129, -0.2886751345948129] } }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": { "centerAtEpoch": [0, 0, 0], "velocity": [0, 0, 0] },
+    "frameProvenance": [{ "frameId": "centered-cube-frame", "frameDefinition": { "type": "centered-cartesian-cube-frame.v1", "owner": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md" } }],
+    "structuralEdges": [
+      { "id": "positive-edge-12", "kind": "tetrahedral-edge", "polarity": 1, "members": ["positive-1", "positive-2"] },
+      { "id": "positive-edge-13", "kind": "tetrahedral-edge", "polarity": 1, "members": ["positive-1", "positive-3"] },
+      { "id": "positive-edge-14", "kind": "tetrahedral-edge", "polarity": 1, "members": ["positive-1", "positive-4"] },
+      { "id": "positive-edge-23", "kind": "tetrahedral-edge", "polarity": 1, "members": ["positive-2", "positive-3"] },
+      { "id": "positive-edge-24", "kind": "tetrahedral-edge", "polarity": 1, "members": ["positive-2", "positive-4"] },
+      { "id": "positive-edge-34", "kind": "tetrahedral-edge", "polarity": 1, "members": ["positive-3", "positive-4"] },
+      { "id": "negative-edge-12", "kind": "tetrahedral-edge", "polarity": -1, "members": ["negative-1", "negative-2"] },
+      { "id": "negative-edge-13", "kind": "tetrahedral-edge", "polarity": -1, "members": ["negative-1", "negative-3"] },
+      { "id": "negative-edge-14", "kind": "tetrahedral-edge", "polarity": -1, "members": ["negative-1", "negative-4"] },
+      { "id": "negative-edge-23", "kind": "tetrahedral-edge", "polarity": -1, "members": ["negative-2", "negative-3"] },
+      { "id": "negative-edge-24", "kind": "tetrahedral-edge", "polarity": -1, "members": ["negative-2", "negative-4"] },
+      { "id": "negative-edge-34", "kind": "tetrahedral-edge", "polarity": -1, "members": ["negative-3", "negative-4"] }
+    ]
+  },
+  "relationships": {
+    "sourceOrder": ["positive-1", "positive-2", "positive-3", "positive-4", "negative-1", "negative-2", "negative-3", "negative-4"],
+    "neutralPairs": [
+      { "id": "antipodal-pair-1", "members": ["positive-1", "negative-1"] },
+      { "id": "antipodal-pair-2", "members": ["positive-2", "negative-2"] },
+      { "id": "antipodal-pair-3", "members": ["positive-3", "negative-3"] },
+      { "id": "antipodal-pair-4", "members": ["positive-4", "negative-4"] }
+    ],
+    "componentBraids": [],
+    "polaritySectors": [
+      { "id": "positive-tetrahedron", "polarity": 1, "members": ["positive-1", "positive-2", "positive-3", "positive-4"] },
+      { "id": "negative-tetrahedron", "polarity": -1, "members": ["negative-1", "negative-2", "negative-3", "negative-4"] }
+    ],
+    "symmetryOrbits": [
+      { "id": "positive-tetrahedral-orbit", "members": ["positive-1", "positive-2", "positive-3", "positive-4"] },
+      { "id": "negative-tetrahedral-orbit", "members": ["negative-1", "negative-2", "negative-3", "negative-4"] }
+    ],
+    "accessorySets": []
+  },
+  "history": { "start": 0, "end": 1, "delayHorizon": 0, "periodic": false },
+  "constraints": {
+    "validators": ["stella-octangula-static-consistency.v1"],
+    "speedGuard": { "normalizedFieldSpeed": 1, "maximumExclusive": 1, "policy": "reject" },
+    "collisionGuard": { "sampleCount": 2, "minimumSampledClearance": 0.57 }
+  },
+  "display": {
+    "staticGeometryOnly": true,
+    "responseCenter": [0, 0, 0],
+    "sphericalEnvelopeRadius": 0.5,
+    "trailDuration": 1,
+    "ansatzSampleCount": 2
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 1,
+    "errorMethod": "exact-stationary-hermite/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  }
+}

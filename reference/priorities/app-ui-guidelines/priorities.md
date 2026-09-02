@@ -11,7 +11,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-ui`
-- Rank: `25`
+- Rank: `24`
 - Value: `0.76`
 - Cost: `3.5`
 - ROI: `0.22`

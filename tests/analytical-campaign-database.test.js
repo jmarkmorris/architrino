@@ -132,7 +132,7 @@ function linearSource(id, centerX) {
 }
 
 function noRootPacket() {
-  const sourceRecord = {
+  const sourceRecordBody = {
     schema: EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
     recordId: "database-no-root-test",
     sourceSchema: "database-independent-acceptance-test.v1",
@@ -140,6 +140,15 @@ function noRootPacket() {
     engineVersion: "independent-test-fixture.v1",
     history: { start: 0, end: 4 },
     sources: [linearSource("near", 0), linearSource("far", 100)],
+  };
+  const modelRevisionSha256 = sha256Canonical({
+    schema: "assembly-scientific-identity.v1",
+    sourceRecord: sourceRecordBody,
+  });
+  const sourceRecord = {
+    ...sourceRecordBody,
+    assemblyId: `asm-${modelRevisionSha256.slice(0, 32)}`,
+    modelRevisionSha256,
   };
   const protocol = {
     schema: PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,

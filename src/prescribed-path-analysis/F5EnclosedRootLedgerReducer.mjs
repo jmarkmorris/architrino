@@ -11,7 +11,7 @@ export const F5_HISTORY_MANIFEST_SCHEMA =
 
 export const F5_FIXED_BINDINGS = Object.freeze({
   "approved-config": Object.freeze({
-    path: "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json",
+    path: "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
     sha256: "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
   }),
   "pilot-fixture": Object.freeze({

@@ -6,18 +6,16 @@ This is the canonical execution ledger for nuclear-to-molecular recovery work.
 
 1. `iron_group_binding_cusp_recovery` — Status: `Deferred / blocked`.
 2. `nuclear_radiation_worked_examples` — Status: `In progress`.
-3. `nuclear_binding_packet_ownership` — Status: `In progress`.
-4. `atomic_orbital_import` — Status: `Queued`.
-5. `molecular_bonding_bridge` — Status: `Queued`.
-6. `hydrogen_gamma_n_record_extraction` — Status: `Deferred / blocked`.
-7. `no_open_color_finite_tail_route` — Status: `Deferred / blocked`.
-8. `enzyme_active_site_bridge` — Status: `Deferred / blocked`.
-9. `dna_record_integrity_bridge` — Status: `Deferred / blocked`.
+3. `atomic_orbital_import` — Status: `Queued`.
+4. `molecular_bonding_bridge` — Status: `Queued`.
+5. `hydrogen_gamma_n_record_extraction` — Status: `Deferred / blocked`.
+6. `no_open_color_finite_tail_route` — Status: `Deferred / blocked`.
+7. `enzyme_active_site_bridge` — Status: `Deferred / blocked`.
+8. `dna_record_integrity_bridge` — Status: `Deferred / blocked`.
 
 ## In progress
 
 - **NAM-002 — `nuclear_radiation_worked_examples`.** Close native rate, daughter de-excitation, material heat-deposition, and provenance rows for alpha, beta, gamma, radioisotope, and heat packets. **Completion:** the first packet uses one native/source-bound event record and routes photon details separately.
-- **NAM-003 — `nuclear_binding_packet_ownership`.** Keep the benchmark ladder and first $V_{NN}$ row discoverable while preserving Standard Model confinement ownership. **Completion:** routing remains current without duplicating derivation authority.
 
 ## Queued
 

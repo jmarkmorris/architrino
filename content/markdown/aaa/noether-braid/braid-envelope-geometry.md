@@ -1,8 +1,8 @@
 # Braid Envelope Geometry
 
-This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The prescribed family coordinates belong to [Braid Taxonomy](braid-taxonomy.md), with Family A developed in [Braid Family A](braid-family-a.md), Family B in [Braid Family B](braid-family-b.md), and Family C in [Braid Family C](braid-family-c.md); delayed retention and deformation mechanisms belong to their mathematical and member-specific owners.
+This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The prescribed family coordinates belong to [Braid Taxonomy](braid-taxonomy.md), with orthogonal-axis three-binary configurations developed in [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md), coincident-axis three-binary configurations in [Braid coincident-axis three-binary configurations](3d-braid-assemblies.md), and two-component circular configurations in [Braid two-component circular configurations](3d-braid-assemblies.md); delayed retention and deformation mechanisms belong to their mathematical and member-specific owners.
 
-A Noether braid is not a static object. It is a dynamic system of six architrinos — twelve for a Family-C record — whose high-frequency paths sweep out a persistent volume of intense wake activity. That swept volume is the assembly's effective exclusion envelope.
+A Noether braid is not a static object. It is a dynamic system of six architrinos — twelve for a two-component circular record — whose high-frequency paths sweep out a persistent volume of intense wake activity. That swept volume is the assembly's effective exclusion envelope.
 
 In plain terms, this chapter explains what a retained braid "looks like" to neighboring assemblies and to the Noether sea. The envelope is not a hard surface. It is the region where the assembly's locked wake activity is strong enough that other histories are deflected, excluded, phase-disrupted, or forced to retune.
 
@@ -14,14 +14,14 @@ This chapter is the envelope and export-interface chapter for braid geometry. It
 
 - the dynamic exclusion-envelope interpretation of a braid assembly,
 - the exact directional-support and dwell-weighted second-moment descriptions of a declared path-history envelope,
-- the envelope forms associated with the member coordinates — B1's common-axis envelope and the Family-A oblate spheroidal envelope,
+- the envelope forms associated with the member coordinates — coincident-axis three-binary locus's common-axis envelope and the orthogonal-axis three-binary oblate spheroidal envelope,
 - the role of the boundary layer in setting the leading envelope surface,
 - and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether sea conditions.
 
 This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../foundations/architrino.md),
-- the prescribed family scaffolds; see [Braid Taxonomy](braid-taxonomy.md), [Braid Family A](braid-family-a.md), and [Braid Family B](braid-family-b.md),
+- the prescribed family scaffolds; see [Braid Taxonomy](braid-taxonomy.md), [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md), and [Braid coincident-axis three-binary configurations](3d-braid-assemblies.md),
 - exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](../spacetime/emergent-metric.md).
@@ -38,7 +38,7 @@ Another Noether braid approaching this region does not encounter a classical wal
 
 ### Exclusion Envelope As Pressure Source
 
-The dynamic exclusion envelope also supplies the native route from assembly geometry to pressure. Pressure is not introduced as a separate primitive substance. It is an effective stress readout that appears when many stable assemblies cannot be moved closer without increasing wake disruption, branch deformation, or loss of stable closure.
+The dynamic exclusion envelope also supplies the $\mathbb{A}\mathbb{A}\mathbb{A}$-native route from assembly geometry to pressure. Pressure is not introduced as a separate primitive substance. It is an effective stress readout that appears when many stable assemblies cannot be moved closer without increasing wake disruption, branch deformation, or loss of stable closure.
 
 For a compact region $\Omega$, the first packing-pressure readout is the trace of the exclusion-stress tensor already carried by the packing channel:
 
@@ -54,7 +54,7 @@ $$
 
 Here $S_{\mathrm{excl}}$ is the coarse-grained tensor assembled from the local entries $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ in the packing projector below. The factor $1/3$ extracts the isotropic pressure component in three spatial dimensions; anisotropic residuals remain in the stress tensor and must not be hidden when the local packing is directionally biased.
 
-This is the Noether braid analogue of the familiar lesson from electron degeneracy: excluded state volume can become macroscopic pressure. The analogy is limited but useful. In ordinary electron matter, the observer-level pressure law also depends on the recovered fermionic exchange sign and momentum-state filling. In the Noether braid substrate, the corresponding pressure channel must be derived from the member-specific exclusion envelope, causal-wake disruption, and the same retained branch ledger that later recovers the fermionic exchange rule. A B1 consumer projects its envelope from the common-axis paths, while an A1 consumer uses its near-spherical-to-oblate response. Exclusion geometry can explain why closer packing becomes dynamically costly; spin-statistics closure is still required before the full electron pressure law has been recovered.
+This is the Noether braid analogue of the familiar lesson from electron degeneracy: excluded state volume can become macroscopic pressure. The analogy is limited but useful. In ordinary electron matter, the observer-level pressure law also depends on the recovered fermionic exchange sign and momentum-state filling. In the Noether braid substrate, the corresponding pressure channel must be derived from the member-specific exclusion envelope, causal-wake disruption, and the same retained branch ledger that later recovers the fermionic exchange rule. A coincident-axis three-binary locus consumer projects its envelope from the common-axis paths, while a coincident-midpoint orthogonal-axis locus consumer uses its near-spherical-to-oblate response. Exclusion geometry can explain why closer packing becomes dynamically costly; spin-statistics closure is still required before the full electron pressure law has been recovered.
 
 ## Assembly-Noether Sea Interface Diagnostic
 
@@ -526,7 +526,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3cc3305cd81ddde2)
 
-Here $\|\cdot\|_F$ is the Frobenius norm in the declared Euclidean frame, $\Delta\mathsf M_{\mathrm{env},j}$ is measured against the same-member branch reference, and $\epsilon_M$ is a predeclared second-moment sensitivity with units of length squared. Each $\Delta\ln$ term is measured relative to the declared same-member branch reference for the channel: the retained rest branch of the member under test for clock/ruler calibration, the candidate neighboring braid for packing, or the pre-entry path branch for penetration. A weak homogeneous A1 record is one possible A1 calibration branch; it is not the reference for a B1 calculation.
+Here $\|\cdot\|_F$ is the Frobenius norm in the declared Euclidean frame, $\Delta\mathsf M_{\mathrm{env},j}$ is measured against the same-member branch reference, and $\epsilon_M$ is a predeclared second-moment sensitivity with units of length squared. Each $\Delta\ln$ term is measured relative to the declared same-member branch reference for the channel: the retained rest branch of the member under test for clock/ruler calibration, the candidate neighboring braid for packing, or the pre-entry path branch for penetration. A weak homogeneous coincident-midpoint orthogonal-axis locus record is one possible coincident-midpoint orthogonal-axis locus calibration branch; it is not the reference for a coincident-axis three-binary locus calculation.
 
 For penetration along $\hat{\mathbf u}$, decompose the signed branch acceleration into tangent and transverse parts,
 
@@ -739,11 +739,11 @@ Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor n
 
 ## Envelope Forms
 
-The envelope form is member data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. [B1](braid-family-b.md#b1) sweeps a common-axis envelope at rest, with axial extent set by the $h_a$ values and transverse extent set by the $\rho_a$ values. B1 does not fix the sign of $R_{\parallel}-R_{\perp}$: an elongated, equatorial, or intermediate envelope can be selected by its binary coordinates. The Family-A response uses the **near-spherical-to-oblate envelope** described next. The moving Lorentz-projection target is a separate branch response and must not be inferred from a rest-shape sign.
+The envelope form is member data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. [coincident-axis three-binary locus](3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart) sweeps a common-axis envelope at rest, with axial extent set by the $h_a$ values and transverse extent set by the $\rho_a$ values. coincident-axis three-binary locus does not fix the sign of $R_{\parallel}-R_{\perp}$: an elongated, equatorial, or intermediate envelope can be selected by its binary coordinates. The orthogonal-axis three-binary response uses the **near-spherical-to-oblate envelope** described next. The moving Lorentz-projection target is a separate branch response and must not be inferred from a rest-shape sign.
 
-### Near-Spherical-to-Oblate Form (A1)
+### Near-Spherical-to-Oblate Form (coincident-midpoint orthogonal-axis locus)
 
-The A1 structure contains three persistently indexed binaries whose reference orbital planes are mutually orthogonal by definition. Near rest in a weak, homogeneous Noether sea, the working response hypothesis is a nearly spherical time-averaged envelope. Increased group speed or gravitational gradient compresses the envelope along the Family-A $(1,1,1)$ translation direction, so the envelope becomes increasingly oblate as the three binary axes converge toward that direction. This is the prescribed Family-A response, not an EOM-solver-retained settling result.
+The coincident-midpoint orthogonal-axis locus structure contains three persistently indexed binaries whose reference orbital planes are mutually orthogonal by definition. Near rest in a weak, homogeneous Noether sea, the working response hypothesis is a nearly spherical time-averaged envelope. Increased group speed or gravitational gradient compresses the envelope along the orthogonal-axis three-binary $(1,1,1)$ translation direction, so the envelope becomes increasingly oblate as the three binary axes converge toward that direction. This is the prescribed orthogonal-axis three-binary response, not an EOM-solver-retained settling result.
 
 No binary is assigned the leading boundary by the taxonomy. For a declared branch window $W$ and direction $\hat{\mathbf m}$, define the directional support of binary $a$ by
 $$
@@ -765,7 +765,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-a95f5f4756939763)
 An index is boundary-leading in direction $\hat{\mathbf m}$ only when it attains this maximum on the retained record. The maximizer may depend on direction or time, may be nonunique, and does not relabel the binary. Under the prescribed compression response, the union of all six paths produces the flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
 
-In low-stress A1 prose, "A1 envelope" means this effective path-history envelope, not a literal material surface.
+In low-stress coincident-midpoint orthogonal-axis locus prose, "coincident-midpoint orthogonal-axis locus envelope" means this effective path-history envelope, not a literal material surface.
 
 ### Exact Support and Centered Path Second Moments
 
@@ -918,13 +918,13 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3070bac4118bc111)
-but this is a moving-branch closure target linking the clock channel to the envelope projection. It should not be used to define $\xi$, and it does not determine B1's rest-envelope aspect ratio.
+but this is a moving-branch closure target linking the clock channel to the envelope projection. It should not be used to define $\xi$, and it does not determine coincident-axis three-binary locus's rest-envelope aspect ratio.
 
 ## Lorentz Projection Role
 
-For branch-quantized Lorentz response, the envelope variables $(\xi,\lambda)$ are projection variables. They expose the geometry of a stable branch to external clocks, rulers, and nearby assemblies, but they do not by themselves contain the full branch state. The equations in this section state the family-general moving-envelope target; the A1 instantiation begins in [Retuning Projection to Envelope Variables](#retuning-projection-to-envelope-variables), while the B1 projection remains open.
+For branch-quantized Lorentz response, the envelope variables $(\xi,\lambda)$ are projection variables. They expose the geometry of a stable branch to external clocks, rulers, and nearby assemblies, but they do not by themselves contain the full branch state. The equations in this section state the family-general moving-envelope target; the coincident-midpoint orthogonal-axis locus instantiation begins in [Retuning Projection to Envelope Variables](#retuning-projection-to-envelope-variables), while the coincident-axis three-binary locus projection remains open.
 
-The hidden branch state contains the member-specific binary radii, frequencies, speeds, axes, active causal-root ledger, and wake exchange. For A1 and B1 alike, the leading surface must be projected from all six paths. Therefore the observed ruler factor is extracted through the declared member envelope,
+The hidden branch state contains the member-specific binary radii, frequencies, speeds, axes, active causal-root ledger, and wake exchange. For coincident-midpoint orthogonal-axis locus and coincident-axis three-binary locus alike, the leading surface must be projected from all six paths. Therefore the observed ruler factor is extracted through the declared member envelope,
 $$
 \gamma_{\mathrm{rul}}^{(q)}(v)
 \equiv
@@ -999,7 +999,7 @@ The envelope is therefore the visible projection of the retained causal-root led
 
 ## Retuning Projection to Envelope Variables
 
-This section is the A1 instantiation of the envelope projection, stated on its cadence-scale retuning map ([A1 Dynamics](braid-a1-dynamics.md#cadence-scale-retuning-hypothesis)); the corresponding projection for B1 remains open.
+This section is the coincident-midpoint orthogonal-axis locus instantiation of the envelope projection, stated on its cadence-scale retuning map ([coincident-midpoint orthogonal-axis locus Dynamics](zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis)); the corresponding projection for coincident-axis three-binary locus remains open.
 
 The cadence-scale retuning map must project into $(\lambda,\xi)$ through the envelope geometry, not by assigning those variables independently. Let
 
@@ -1063,7 +1063,7 @@ $$
 
 This approximation is a projection estimate, not a branch proof. It fails when the maximizer changes with direction or time, when more than one binary contributes at the same order, or when root-history, axis precession, or neighbor-induced strain changes the interface independently of a single radius. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether sea transport calculations.
 
-## A1 Envelope Deformability
+## Coincident-Midpoint Orthogonal-Axis Locus Envelope Deformability
 
 The oblate spheroidal envelope is deformable because it is generated by orbit paths, not by a rigid shell. Those paths depend on the superposition of:
 
@@ -1075,9 +1075,9 @@ The oblate spheroidal envelope is deformable because it is generated by orbit pa
 
 External effective fields, nearby assembly wakes, and dense local assemblies can perturb the binary paths. The most exposed channel must be derived from the branch response and need not be the same index in every direction or environment. A distortion of any boundary-leading path changes the exclusion envelope.
 
-This gives A1 two distinct geometric roles:
+This gives coincident-midpoint orthogonal-axis locus two distinct geometric roles:
 
-1. As an assembly, it can deform while preserving A1 identity across a stable regime.
+1. As an assembly, it can deform while preserving coincident-midpoint orthogonal-axis locus identity across a stable regime.
 2. As a medium constituent, many deforming braids can contribute to coarse-grained Noether sea density, strain, and signal-propagation changes.
 
 The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../spacetime/emergent-metric.md), [PPN Parameters](../spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
@@ -1096,22 +1096,22 @@ This separation would be overturned only by a theorem on an accepted branch fami
 
 For local assembly modeling, use this page as the geometric source for:
 
-- a family-declared fusiform or oblate spheroidal envelope boundary,
+- a source-declared fusiform or oblate spheroidal envelope boundary,
 - the exact directional support and centered path second-moment tensor over a declared emission window,
 - an optional quadratic-envelope tensor only when its angular fit residual passes a predeclared tolerance,
 - principal axes set by the retained family's orientation,
 - deformation of the family-leading envelope paths under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For the Family-A definitions, use [Braid Family A](braid-family-a.md), where the prescribed flattening response is separated from the EOM-solver retention burden. For the Family-B definition, use [Braid Family B](braid-family-b.md); its moving-envelope projection remains open.
+For the orthogonal-axis three-binary definitions, use [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md), where the prescribed flattening response is separated from the EOM-solver retention burden. For the coincident-axis three-binary definition, use [Braid coincident-axis three-binary configurations](3d-braid-assemblies.md); its moving-envelope projection remains open.
 
 For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), where many Noether braids become a coupled medium rather than isolated assembly envelopes.
 
 ## Summary Commitment
 
-> **A1 Geometry Commitment:** A1 has a near-spherical weak-stress envelope that becomes oblate under increased group speed or gravitational gradient. The exclusion envelope is generated by binary path histories and is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
+> **coincident-midpoint orthogonal-axis locus Geometry Commitment:** coincident-midpoint orthogonal-axis locus has a near-spherical weak-stress envelope that becomes oblate under increased group speed or gravitational gradient. The exclusion envelope is generated by binary path histories and is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
 
-> **Member-Scoping Commitment:** B1's rest aspect ratio depends on its prescribed binary coordinates; A1 is near spherical in its weak-stress reference state and becomes increasingly oblate along its prescribed compression response. The moving Lorentz-projection target $\xi\to1/\gamma$ is a branch-response statement and must be derived separately for each member.
+> **Member-Scoping Commitment:** coincident-axis three-binary locus's rest aspect ratio depends on its prescribed binary coordinates; coincident-midpoint orthogonal-axis locus is near spherical in its weak-stress reference state and becomes increasingly oblate along its prescribed compression response. The moving Lorentz-projection target $\xi\to1/\gamma$ is a branch-response statement and must be derived separately for each member.
 
 > **Lorentz Projection Commitment:** In Lorentz closure, the full six-path envelope supplies the observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to one binary path or to envelope shape alone.
 

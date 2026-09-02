@@ -1,21 +1,21 @@
-# F6c Nonlinear Return-Map Campaign
+# asymmetric counter-breathing representative Nonlinear Return-Map Campaign
 
-- Thread label: nearby nontrivial F6c return search
+- Thread label: nearby nontrivial asymmetric counter-breathing representative return search
 - Started: 2026-08-24 America/New_York
 - Status: completed bounded search and refinement
 - Postures: closure lab and proof-route forge
 - Lanes: `G` intuition-to-proof synthesis and `H` priority-ledger convergence
 - Path shard: `reference/priorities/mapping-electromagnetism/f6c-geometry.md`, `scripts/mapping-electromagnetism/f6c-nonlinear-return-map-search.mjs`, and temporary EOM solver result directories
 - Claim grade: measured bounded-search evidence
-- Closure goal: find or falsify a nearby nontrivial F6c return under the exact direct and reflected proper-rotation actions while retaining all declared dynamical and causal guards.
+- Closure goal: find or falsify a nearby nontrivial asymmetric counter-breathing representative return under the exact direct and reflected proper-rotation actions while retaining all declared dynamical and causal guards.
 
 ## Instrument And Search Boundary
 
-The campaign rebuilt the current EOM solver harness and searched twenty nearby releases around the stored harmonic seed. The screen varied both sector cadences, the relative sector phase, and four independent axial/radial harmonic phase offsets. The harmonic residual supplied only the seed neighborhood; acceptance required comparison of all six F6c coordinates and all six rates under an exact direct or reflected action.
+The campaign rebuilt the current EOM solver harness and searched twenty nearby releases around the stored harmonic seed. The screen varied both sector cadences, the relative sector phase, and four independent axial/radial harmonic phase offsets. The harmonic residual supplied only the seed neighborhood; acceptance required comparison of all six asymmetric counter-breathing representative coordinates and all six rates under an exact direct or reflected action.
 
 Each analyzed history recorded lifted phase winding, a nontrivial excursion-and-turn marker, the exact action and same-polarity module permutation, labeled-history equivalence, complete release-root certification, root multiplicity and pressure, pair clearance, member-speed allocation with $c_f=1$, member identity and provenance, and symmetry leakage. A per-candidate wall cap preserved certified partial histories when adaptive evolution approached a costly boundary.
 
-Plainly: the search compared complete F6c state returns, not a scalar recrossing or a low harmonic proxy. Every retained near miss still had to remain causal, collision-clear, provenance-complete, and inside the six-coordinate symmetry surface.
+Plainly: the search compared complete asymmetric counter-breathing representative state returns, not a scalar recrossing or a low harmonic proxy. Every retained near miss still had to remain causal, collision-clear, provenance-complete, and inside the six-coordinate symmetry surface.
 
 ## Measured Result
 
@@ -29,7 +29,7 @@ Plainly: refinement confirms that the nearest row is a real, numerically resolve
 
 ## Claim Boundary And Next Pruning Rule
 
-This bounded campaign falsifies a nearby return within the sampled phase-and-cadence neighborhood and declared integration horizon. It does not prove that F6c has no nontrivial return globally. It establishes no retention, stability, clock, energy closure, particle identity, or Lorentz recovery.
+This bounded campaign falsifies a nearby return within the sampled phase-and-cadence neighborhood and declared integration horizon. It does not prove that asymmetric counter-breathing representative has no nontrivial return globally. It establishes no retention, stability, clock, energy closure, particle identity, or Lorentz recovery.
 
 The next search should prioritize seed families that exhibit radial and cadence turns on the same certified history before enlarging the return-map optimizer. A candidate is overturned by any unresolved causal root, root multiplicity above the declared branch, pair-clearance failure, member-speed violation, provenance ambiguity, symmetry leakage beyond tolerance, lack of a nontrivial cycle marker, or failure of the full twelve-component action residual to converge under refinement.
 

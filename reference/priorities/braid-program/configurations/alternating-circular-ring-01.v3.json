@@ -1,0 +1,202 @@
+{
+  "schema": "prescribed-assembly-spec.v3",
+  "specId": "alternating-circular-ring-01-v1",
+  "label": "Alternating circular ring — 1:1",
+  "provenanceDescription": "Alternating circular ring — 1:1: source-declared prescribed display representative. No EOM evolution, balance evaluation, retention, or stability calculation is performed by this record.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-08-30",
+  "identity": {
+    "assemblyId": "asm-c0fd5d90aab6386dadb80f9d5a32807b",
+    "modelRevisionSha256": "c0fd5d90aab6386dadb80f9d5a32807b8016130a12fc9d9fce7943e8f6f834d8",
+    "displayLabel": "Alternating circular ring — 1:1",
+    "status": "operator-approved-prescribed-display",
+    "geometryOwner": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md"
+  },
+  "illustrativeCoordinates": {
+    "status": "prescribed-display-coordinates",
+    "choices": [
+      "Regular polygon in the xy plane; polarity alternates around its 2N equally spaced sites. Positive circulation about +z.",
+      "Coordinates use c_f=1 and coupling length R_*=1. Speed and radius are the chapter's measured bounded-landscape row. Rounded coordinates are displayed, not re-evaluated or certified by this record.",
+      "Opposite-polarity antipodes are explicitly paired. Only the equal-radius 3:3 alternating circular balance is assigned the six-member the planar common-center three-binary constraint component.",
+      "History spans two source periods with 64 cubic intervals per period. Delay horizon zero denotes display-only coverage, not a supplied causal ledger. The common center is fixed; c_f=1. The schema braid role marks primary assembly members, not an assigned braid identity. Only explicit componentBraids assign composition."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "member-1",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-1"
+    },
+    {
+      "id": "member-2",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-2"
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "worldline-1",
+      "constituentId": "member-1",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.08694167347390959,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          0.08694167347390959,
+          0
+        ],
+        "angularVelocity": 35.31513142902223,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "worldline-2",
+      "constituentId": "member-2",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.08694167347390959,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          0.08694167347390959,
+          0
+        ],
+        "angularVelocity": 35.31513142902223,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 3.141592653589793
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [],
+    "circularPathBalance": {
+      "membersPerPolarity": 1,
+      "radius": 0.08694167347390959,
+      "angularRate": 35.31513142902223,
+      "normalizedSpeed": 3.070356625390253,
+      "couplingLength": 1,
+      "polarityWord": "alternating",
+      "phaseSpacing": 3.141592653589793
+    }
+  },
+  "relationships": {
+    "sourceOrder": [
+      "member-1",
+      "member-2"
+    ],
+    "neutralPairs": [
+      {
+        "id": "neutral-pairs-1",
+        "members": [
+          "member-1",
+          "member-2"
+        ],
+        "display": {
+          "binaryIndex": 1,
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    ],
+    "componentBraids": [],
+    "polaritySectors": [
+      {
+        "id": "polarity-sectors-1",
+        "polarity": 1,
+        "members": [
+          "member-1"
+        ]
+      },
+      {
+        "id": "polarity-sectors-2",
+        "polarity": -1,
+        "members": [
+          "member-2"
+        ]
+      }
+    ]
+  },
+  "history": {
+    "start": 0,
+    "end": 0.35583530644974576,
+    "delayHorizon": 0,
+    "periodic": true,
+    "returnPeriod": 0.17791765322487288
+  },
+  "constraints": {
+    "validators": [],
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "report-only",
+      "observedBound": 3.070356625390253
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 0.09998292449499602,
+    "trailPeriods": 1,
+    "ansatzSampleCount": 128
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.0027799633316386387,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  }
+}

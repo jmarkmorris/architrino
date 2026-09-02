@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 import {
@@ -8,7 +9,7 @@ import {
 } from "../src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs";
 import {
   alternatingPolarityClass,
-  classifyPlanarRingTaxonomy,
+  classifyPlanarRingCharacteristics,
   enumerateBalancedPolarityClasses,
   evaluatePlanarCoRotatingRing,
   regularRingPhases,
@@ -47,26 +48,35 @@ function genericCrossLedger({
   refinedMaxIterations = 180,
 }) {
   const period = 2 * Math.PI / beta;
+  const sources = phases.map((phase, index) => ({
+    id: `source-${index}`,
+    charge: polarities[index],
+    trajectory: {
+      kind: "moving-circular.v1",
+      epochTime: 0,
+      centerAtEpoch: [0, 0, 0],
+      centerVelocity: [0, 0, 0],
+      radiusU: [1, 0, 0],
+      radiusV: [0, 1, 0],
+      angularVelocity: beta,
+      angularAcceleration: 0,
+      phaseAtEpoch: phase,
+    },
+  }));
+  const modelRevisionSha256 = createHash("sha256").update(JSON.stringify({
+    history: { start: -2.05, end: period },
+    sources,
+    fieldSpeed: 1,
+    sourceLaw: "default uncapped emission-site acceleration law",
+  })).digest("hex");
   const sourceRecord = {
     schema: "prescribed-path-analysis/exact-source-record.v1",
+    assemblyId: `asm-${modelRevisionSha256.slice(0, 32)}`,
+    modelRevisionSha256,
     recordId: "planar-ring-independent-cross-root-check",
     engineId: "prescribed-geometry",
     history: { start: -2.05, end: period },
-    sources: phases.map((phase, index) => ({
-      id: `source-${index}`,
-      charge: polarities[index],
-      trajectory: {
-        kind: "moving-circular.v1",
-        epochTime: 0,
-        centerAtEpoch: [0, 0, 0],
-        centerVelocity: [0, 0, 0],
-        radiusU: [1, 0, 0],
-        radiusV: [0, 1, 0],
-        angularVelocity: beta,
-        angularAcceleration: 0,
-        phaseAtEpoch: phase,
-      },
-    })),
+    sources,
   };
   const protocol = {
     schema: "prescribed-path-analysis/analysis-protocol.v1",
@@ -173,32 +183,32 @@ test("rotation and reflection-plus-circulation-reversal preserve the complete pr
   assert.equal(verifyReflectionCovariance({ phases, polarities, beta }).passed, true);
 });
 
-test("the B1.3 mapping is exact only for a six-member antipodal-neutral common-circle record", () => {
+test("the planar common-center three-binary constraint mapping is exact only for a six-member antipodal-neutral common-circle record", () => {
   const phases = [0, Math.PI, 0.7, 0.7 + Math.PI, 2.2, 2.2 + Math.PI];
   const polarities = [1, -1, -1, 1, 1, -1];
-  const b13 = classifyPlanarRingTaxonomy({ n: 3, phases, polarities });
-  assert.equal(b13.memberId, "B1.3");
-  assert.equal(b13.allAntipodesNeutral, true);
-  const twelve = classifyPlanarRingTaxonomy({
+  const planarThreeBinary = classifyPlanarRingCharacteristics({ n: 3, phases, polarities });
+  assert.equal(planarThreeBinary.configurationId, "planar-three-binary-common-center");
+  assert.equal(planarThreeBinary.allAntipodesNeutral, true);
+  const twelve = classifyPlanarRingCharacteristics({
     n: 6,
     phases: regularRingPhases(6),
     polarities: enumerateBalancedPolarityClasses(6).find((row) => row.allAntipodesNeutral).polarities,
   });
-  assert.equal(twelve.memberId, null);
-  assert.match(twelve.classification, /not C5\/C6 because d_C=0/);
+  assert.equal(twelve.configurationId, null);
+  assert.match(twelve.classification, /not a coaxial-separated two-planar-braid configuration/u);
 
-  const twentyFour = classifyPlanarRingTaxonomy({
+  const twentyFour = classifyPlanarRingCharacteristics({
     n: 12,
     phases: regularRingPhases(12),
     polarities: alternatingPolarityClass(12).polarities,
   });
-  assert.equal(twentyFour.memberId, null);
+  assert.equal(twentyFour.configurationId, null);
   assert.equal(twentyFour.allAntipodesNeutral, false);
-  assert.match(twentyFour.classification, /outside B1\.3 inventory/);
+  assert.match(twentyFour.classification, /outside the six-member planar three-binary inventory/u);
 });
 
-test("the live B1.3 source record satisfies the independent coordinate mapping", () => {
-  const path = new URL("../reference/priorities/braid-program/configurations/illustrative-planar-tri-binary-spindle-boundary.v2.json", import.meta.url);
+test("the live planar common-center three-binary constraint source record satisfies the independent coordinate mapping", () => {
+  const path = new URL("../reference/priorities/braid-program/configurations/planar-three-binary-common-center-reference.v3.json", import.meta.url);
   const spec = JSON.parse(readFileSync(path, "utf8"));
   const constituents = new Map(spec.constituents.map((row) => [row.id, row]));
   const phases = spec.worldlines.map((row) => {
@@ -222,8 +232,8 @@ test("the live B1.3 source record satisfies the independent coordinate mapping",
   assert.equal(frequencies.size, 1);
   assert.equal(normals.size, 1);
   assert.ok(spec.worldlines.every((row) => row.operator.angularVelocity > 0));
-  const taxonomy = classifyPlanarRingTaxonomy({ n: 3, phases, polarities });
-  assert.equal(taxonomy.memberId, "B1.3");
+  const characteristics = classifyPlanarRingCharacteristics({ n: 3, phases, polarities });
+  assert.equal(characteristics.configurationId, "planar-three-binary-common-center");
 });
 
 test("every promoted regular candidate matches both unchanged independent root instruments", () => {
@@ -264,7 +274,7 @@ test("the regular alternating 12:12 candidate balances and matches both unchange
   assert.equal(evidence.rawArtifact.requiredForTests, false);
   assert.equal(evidence.declaredScope.coverage,
     "one exact symmetry class; not a census of all balanced 12:12 polarity classes and not a nonuniform-phase search");
-  assert.equal(evidence.taxonomyDecision.verdict, "outside-B1.3");
+  assert.equal(evidence.configurationRelation.verdict, "outside-planar-three-binary-common-center");
   const beta = evidence.regularResult.best.beta;
   const phases = regularRingPhases(n);
   const polarities = alternatingPolarityClass(n).polarities;
@@ -274,9 +284,9 @@ test("the regular alternating 12:12 candidate balances and matches both unchange
   assert.equal(evidence.regularResult.best.rootCount, specialized.rootCount);
   assert.ok(specialized.compatibleScale > 0);
   assert.ok(specialized.residuals.maximumFullVector <= 2e-8);
-  const taxonomy = classifyPlanarRingTaxonomy({ n, phases, polarities });
-  assert.equal(taxonomy.memberId, null);
-  assert.equal(taxonomy.allAntipodesNeutral, false);
+  const characteristics = classifyPlanarRingCharacteristics({ n, phases, polarities });
+  assert.equal(characteristics.configurationId, null);
+  assert.equal(characteristics.allAntipodesNeutral, false);
 
   const generic = genericCrossLedger({
     phases,

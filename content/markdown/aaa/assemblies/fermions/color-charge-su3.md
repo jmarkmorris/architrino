@@ -1,6 +1,6 @@
 # Color Charge and SU(3)
 
-This chapter gives a candidate assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and a prescribed A1 scaffold are hypothesized to fit together before the particle assignment and full topological confinement derivation are closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
+This chapter gives a candidate assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and a prescribed coincident-midpoint orthogonal-axis braid scaffold are hypothesized to fit together before the particle assignment and full topological confinement derivation are closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
 
 The standard color label is extremely successful as algebra. The implementation question is different: what physical feature of a quark assembly can be counted in three ways, transformed by an octet of corridor modes, and hidden inside color-singlet hadrons? This chapter answers at the recovery-target level: color is axis exceptionality in the axial frame of a Noether braid assembly.
 
@@ -10,9 +10,9 @@ That means the word `color` should be read as a structured bookkeeping channel, 
 
 ## Ontology, Notation, and Generations
 
-### A1 Scaffold
+### Coincident-Midpoint Orthogonal-Axis Braid Scaffold
 
-The working Gen-I fermion mapping uses a candidate **A1 scaffold**: three persistently indexed electrino:positrino binaries whose positive radii and frequencies are independently assignable, whose axes are mutually orthogonal at the Family-A near-rest endpoint, and whose axes converge toward the group-translation direction along the prescribed flattening coordinate. Phases, axial half-separations, transverse orbit radii, and circulation remain explicit binary coordinates. **Noether braid** remains the broader neutral six-architrino class; see [Noether Braid](../../noether-braid/noether-braid.md). The taxonomy defines this prescribed geometry only; it does not establish a quark assignment, retention, stability, or color mechanism.
+The working Gen-I fermion mapping uses a candidate **coincident-midpoint orthogonal-axis braid scaffold**: three persistently indexed electrino:positrino binaries whose positive radii and frequencies are independently assignable, whose axes are mutually orthogonal at the orthogonal-axis three-binary near-rest endpoint, and whose axes converge toward the group-translation direction along the prescribed flattening coordinate. Phases, axial half-separations, transverse orbit radii, and circulation remain explicit binary coordinates. **Noether braid** remains the broader neutral six-architrino class; see [Noether Braid](../../noether-braid/noether-braid.md). The taxonomy defines this prescribed geometry only; it does not establish a quark assignment, retention, stability, or color mechanism.
 
 The scaffold supplies the stable reference triad. The axial layer supplies the visible polarity pattern. Color appears only when those two facts together leave one axis distinguishable from the other two.
 
@@ -33,7 +33,7 @@ The illustrative source record used in this chapter assigns the following dynami
   - Velocity $v_3 < c_f$
   - Lowest curvature; exposed-envelope expansion/contraction behavior
 
-These speed, radius, curvature, and shielding roles are hypotheses of this source record. They are not meanings of indices 1, 2, and 3, and another A1 branch may assign the derived roles differently.
+These speed, radius, curvature, and shielding roles are hypotheses of this source record. They are not meanings of indices 1, 2, and 3, and another coincident-midpoint orthogonal-axis braid branch may assign the derived roles differently.
 
 Each binary defines one **axis** with two **polar sites**. We use $\epsilon=|e|/6$ for the polarity-unit magnitude, with $\epsilon_-\equiv-\epsilon$ and $\epsilon_+\equiv+\epsilon$. Each polar site is occupied by either:
 
@@ -59,13 +59,13 @@ For a Gen‑I baryon (3 quarks):
 - 18 axial architrinos
 - **36 architrinos** total.
 
-We use **A1** only for this prescribed indexed Family-A member and **Noether braid** for the broader neutral six-architrino class. Every color and particle assignment in this chapter remains a candidate mapping.
+We use **coincident-midpoint orthogonal-axis braid** only for this prescribed indexed orthogonal-axis three-binary member and **Noether braid** for the broader neutral six-architrino class. Every color and particle assignment in this chapter remains a candidate mapping.
 
 
 
 ### Generational excitation states
 
-Standard Model “generations” are interpreted as candidate **excitation states** of the same A1-based architecture:
+Standard Model “generations” are interpreted as candidate **excitation states** of the same architecture based on the coincident-midpoint orthogonal-axis braid:
 
 - **Gen‑I (ground‑state assembly)**
   - All three binaries assembled: [1, 2, 3].
@@ -98,7 +98,7 @@ This is the fermion-sector consumer of the pro/anti orientation basis defined in
 
 ## Colorless Fermions: Axis Uniformity
 
-**Core rule:** Color charge appears only when the indexed A1 axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+**Core rule:** Color charge appears only when the indexed coincident-midpoint orthogonal-axis braid axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
 This is the entry point for the whole chapter. Leptons are colorless because their axial pattern does not single out axis 1, 2, or 3. Quarks are colored because their axial pattern does.
 
@@ -224,7 +224,7 @@ These span the color space: $\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_1\
 
 Pole assignment inside the exceptional axis (which pole hosts the electrino) changes local dipole structure but not which axis is exceptional; at the level of color it’s a **gauge‑like internal redundancy**.
 
-Anti-up quarks use the polarity-conjugate A1 branch with 5 electrinos and 1 positrino in the axial layer, forming the conjugate triplet **3̄** with basis $|\bar u_1\rangle,|\bar u_2\rangle,|\bar u_3\rangle$.
+Anti-up quarks use the polarity-conjugate coincident-midpoint orthogonal-axis braid branch with 5 electrinos and 1 positrino in the axial layer, forming the conjugate triplet **3̄** with basis $|\bar u_1\rangle,|\bar u_2\rangle,|\bar u_3\rangle$.
 
 
 
@@ -516,7 +516,7 @@ In SU(3):
 
 - Baryon color state: $3 \otimes 3 \otimes 3 \supset 1$ (fully antisymmetric singlet).
 
-In A1-based geometry:
+In geometry based on the coincident-midpoint orthogonal-axis braid:
 
 - A color singlet baryon is a configuration where each of 1, 2, 3 is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
 - Example proton (uud, schematic):
@@ -617,7 +617,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/ca
 
 ## Summary and Interfaces
 
-- **A1** is the current three-axis $(1,2,3)$ scaffold candidate used here for carrying conserved charge labels through internal symmetries; delayed-dynamics retention remains a theorem target.
+- **coincident-midpoint orthogonal-axis braid** is the current three-axis $(1,2,3)$ scaffold candidate used here for carrying conserved charge labels through internal symmetries; delayed-dynamics retention remains a theorem target.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon polarity-conjugate neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two positive-polarity dyads, one mixed dyad.

@@ -1,0 +1,79 @@
+{
+  "schema": "action-analysis/coincident-midpoint-common-frequency-minimum-delayed-action-provider-summary.v1",
+  "scientificIdentity": {
+    "assemblyId": "asm-2a289a6fe32f64922ab71bae973acc80",
+    "modelRevisionSha256": "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6"
+  },
+  "protocolId": "coincident-midpoint-common-frequency-minimum-delayed-action-provider-v1",
+  "protocolHash": "ff631f739d2827df85fdf93e8091b833d37835071f5b3a7d214432929973428c",
+  "resultHash": "10fd537cc38509df436cc5abe8739a0e830e88c09f1d03a684b2aa5693cb000d",
+  "status": {
+    "code": "blocked-future-boundary-causal-update",
+    "score": null,
+    "localEulerIdentityVerifiedOnBoundedChart": true,
+    "reason": "the characteristic-tail local Euler identity passes on the bounded rotating chart, but its Noether crossing charge is not determined by the current causal state"
+  },
+  "sealedCoincidentMidpointCommonFrequencyControl": {
+    "protocolHash": "a3d1bd614f99aa2eef8dcae172e1b60b5a3ca3719cb9a8ba6500de7ad4e68fc6",
+    "resultHash": "6ad21456a76efd9fbbc841b60e4d593e36382891ab356a3fd79f73ef5c231d6f",
+    "summaryHash": "96660a3111e235a1d663265c9412a19ece45bcb1b1ae58a1f1f9cd5c05fcafdd",
+    "passed": true,
+    "mutated": false
+  },
+  "actionCandidate": {
+    "id": "normalized-delayed-interior-characteristic-tail.v1",
+    "fieldSpeed": 1,
+    "eta": 0.0625,
+    "endpointConvention": "infinite-characteristic-endpoint",
+    "symmetry": "time-translation/spatial-translation/spatial-rotation invariant at the scalar-kernel level",
+    "conjugateMomentum": "p_i=mu_arch*V_i; mu_arch=1 only as declared diagnostic normalization, not primitive mass",
+    "localEulerIdentityPassedOnBoundedChart": true
+  },
+  "rotatingChart": {
+    "id": "opposite-polarity-antipodal-two-body-circular-chart.v1",
+    "beta": 0.5,
+    "phaseDelay": 0.9003672225897477,
+    "delay": 1.8007344451794953,
+    "radius": 1.800734445179494,
+    "rootResidual": -1.3322676295501878e-15,
+    "transmitterDenominator": 1.217565429518355,
+    "prescribedChartOnly": true,
+    "eomSolutionClaimed": false
+  },
+  "localEuler": {
+    "passed": true,
+    "maximumAbsoluteError": 0.0000033352485531157328,
+    "noncentralDirectScalarFailures": 4
+  },
+  "futureBoundary": {
+    "passed": false,
+    "gate": "future-boundary-causal-update",
+    "reason": "normalized-tail Noether crossing terms require receiver states after the time cut, and the current causal state has no independent wake account that determines them",
+    "timeCut": 0,
+    "futureReception": 0.5,
+    "emissionTime": -1.3007344451794953,
+    "continuationsDifferOnlyAfterCut": true,
+    "integrandDifference": 0.007092398897046797,
+    "differenceFloor": 0.001,
+    "futureDependenceWitnessPassed": true,
+    "causalUpdateMayReadFutureReceiver": false
+  },
+  "branchAttempt": {
+    "executed": false,
+    "reason": "stop-on-first-unresolved-future-boundary",
+    "actualRetainedPeriodicBranchEstablished": false
+  },
+  "angularMomentumLedger": {
+    "executed": false,
+    "reason": "future-boundary gate failed before a same-record mechanical, wake, environment, and boundary ledger could be evaluated",
+    "complete": false
+  },
+  "nonClaims": {
+    "quantization": false,
+    "physicalRealization": false,
+    "candidateStatus": false,
+    "campaign1Progress": false,
+    "coincidentMidpointCommonFrequencyRadiusOrHistoryExpansion": false
+  },
+  "summaryHash": "ffa18537cef457c828eb3b68069c4bc4c002e6307abead0a3c00ff9ed10629bf"
+}

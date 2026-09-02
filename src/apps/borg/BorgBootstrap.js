@@ -19,7 +19,11 @@ import {
   createBorgPlacementPolicy,
 } from "./BorgInteractiveDefaults.js";
 import { createBorgAssemblyViewSession } from "./BorgAssemblyViewSession.js";
-import { BORG_BRAID_RECORD_CATALOG } from "./BorgBraidRecordCatalog.js";
+import { BORG_ASSEMBLY_RECORD_CATALOG } from "./BorgAssemblyRecordCatalog.js";
+import { loadBorgScientificStatus } from "./BorgScientificStatus.mjs";
+import { loadBorgPlatonicRelationships } from "./BorgPlatonicRelationships.mjs";
+import { describeLibraryRecord } from "./library/BorgLibraryDescriptors.mjs";
+import { LIBRARY_FACETS } from "./library/BorgLibraryQuery.mjs";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -32,14 +36,14 @@ export async function bootBorgApp({
   fetchLike = globalThis.fetch,
   locationLike = globalThis.location,
   historyLike = globalThis.history,
-  braidRecordCatalog = BORG_BRAID_RECORD_CATALOG,
+  assemblyRecordCatalog = BORG_ASSEMBLY_RECORD_CATALOG,
   startupSeedIndex = createBorgStartupSeedIndex(),
 } = {}) {
   const query = new URLSearchParams(search);
   const runtimeMode = resolveBorgRuntimeMode(query);
-  const braidRecordNavigation = createBorgBraidRecordNavigation({
-    catalog: braidRecordCatalog,
-    selectedRecordUrls: query.getAll("eomRecord"),
+  const braidRecordNavigation = createBorgAssemblyRecordNavigation({
+    catalog: assemblyRecordCatalog,
+    selectedAssemblyId: query.get("assemblyId"),
     locationLike,
     historyLike,
     fetchLike,
@@ -47,18 +51,38 @@ export async function bootBorgApp({
   let assemblyViewSession = null;
   let eomRecordReplay = null;
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
-    const recordUrls = query.getAll("eomRecord");
+    const assemblyId = query.get("assemblyId");
+    const modelRevisionSha256 = query.get("modelRevisionSha256");
     const recordSha256 = query.get("recordSha256");
-    if (recordSha256 !== null && (recordUrls.length !== 1 || !/^[a-f0-9]{64}$/.test(recordSha256))) {
-      throw new TypeError("A pinned record requires exactly one record URL and a lowercase SHA-256 hash.");
+    if (!/^asm-[a-f0-9]{32}$/.test(assemblyId ?? "") || !/^[a-f0-9]{64}$/.test(modelRevisionSha256 ?? "") ||
+        (recordSha256 !== null && !/^[a-f0-9]{64}$/.test(recordSha256))) {
+      throw new TypeError("Assembly replay requires a valid assemblyId and modelRevisionSha256; recordSha256, when present, must be a lowercase SHA-256 hash.");
     }
-    const records = await Promise.all(recordUrls.map((recordUrl) =>
-      fetchBorgRecord(fetchLike, recordUrl, "assembly-view record", recordSha256)));
+    const entry = assemblyRecordCatalog.entries.find((row) =>
+      row.assemblyId === assemblyId && row.modelRevisionSha256 === modelRevisionSha256);
+    if (!entry) throw new RangeError("The requested exact assembly is not in the current Borg catalog.");
+    const records = [await fetchBorgRecord(fetchLike, entry, "assembly-view record", recordSha256)];
+    const [scientificStatus, platonicRelationships] = await Promise.all([
+      loadBorgScientificStatus({
+        fetchLike,
+        coordinates: records[0].provenance?.prescribedGeometry?.coordinates,
+        identity: entry,
+      }),
+      loadBorgPlatonicRelationships({ fetchLike, identity: entry }),
+    ]);
     assemblyViewSession = createBorgAssemblyViewSession(records);
     eomRecordReplay = {
       record: records[0],
       records,
-      sourceUrls: Object.freeze([...recordUrls]),
+      sourceUrls: Object.freeze([entry.recordUrl]),
+      librarySummary: createBorgWorkbenchRecordSummary({
+        record: records[0],
+        catalogEntry: entry,
+        recordSha256,
+        platonicRelationships,
+      }),
+      scientificStatus,
+      platonicRelationships,
     };
   }
 
@@ -151,9 +175,49 @@ export async function bootBorgApp({
   });
 }
 
-export function createBorgBraidRecordNavigation({
-  catalog = BORG_BRAID_RECORD_CATALOG,
-  selectedRecordUrls = [],
+export function createBorgWorkbenchRecordSummary({
+  record,
+  catalogEntry,
+  recordSha256 = null,
+  platonicRelationships = null,
+}) {
+  const described = describeLibraryRecord(
+    record,
+    catalogEntry,
+    recordSha256,
+  ).summary;
+  const facets = {
+    ...described.facets,
+    platonicRelationship:
+      platonicRelationships?.values ?? described.facets.platonicRelationship,
+  };
+  return Object.freeze({
+    label: described.label,
+    assemblyId: described.assemblyId,
+    modelRevisionSha256: described.modelRevisionSha256,
+    description: described.description,
+    facets: Object.freeze(Object.entries(LIBRARY_FACETS).map(([key, definition]) =>
+      Object.freeze({
+        key,
+        label: definition.label,
+        value: [].concat(facets[key] ?? "unavailable")
+          .map((value) => borgWorkbenchFacetLabel(key, value))
+          .join(", "),
+      }))),
+  });
+}
+
+function borgWorkbenchFacetLabel(key, value) {
+  if (key === "circleOccupancy" && value === "mixed") {
+    return "Both occupancy types";
+  }
+  return LIBRARY_FACETS[key].options.find(([option]) => option === value)?.[1] ??
+    (value === "unavailable" ? "Not assigned" : String(value));
+}
+
+export function createBorgAssemblyRecordNavigation({
+  catalog = BORG_ASSEMBLY_RECORD_CATALOG,
+  selectedAssemblyId = null,
   locationLike = globalThis.location,
   historyLike = globalThis.history,
   fetchLike = globalThis.fetch,
@@ -162,20 +226,21 @@ export function createBorgBraidRecordNavigation({
   if (!Array.isArray(entries)) {
     throw new TypeError("Borg braid record navigation requires a validated catalog.");
   }
-  const selectedRecordId = entries.find((entry) =>
-    selectedRecordUrls.includes(entry.recordUrl)
-  )?.id ?? null;
+  const selectedRecordId = entries.find((entry) => entry.assemblyId === selectedAssemblyId)?.assemblyId ?? null;
 
-  function buildUrl(recordId) {
-    const entry = entries.find((candidate) => candidate.id === recordId);
+  function buildUrl(assemblyId) {
+    const entry = entries.find((candidate) => candidate.assemblyId === assemblyId);
     if (!entry) {
-      throw new RangeError(`Borg braid record catalog has no entry ${String(recordId)}.`);
+      throw new RangeError(`Borg assembly record catalog has no entry ${String(assemblyId)}.`);
     }
-    return `borg.html?eomRecord=${encodeURIComponent(entry.recordUrl)}`;
+    return `borg.html?${new URLSearchParams({
+      assemblyId: entry.assemblyId,
+      modelRevisionSha256: entry.modelRevisionSha256,
+    })}`;
   }
 
-  function navigate(recordId) {
-    const url = buildUrl(recordId);
+  function navigate(assemblyId) {
+    const url = buildUrl(assemblyId);
     if (typeof locationLike?.assign !== "function") {
       throw new TypeError("Borg braid record navigation requires location.assign().");
     }
@@ -183,19 +248,19 @@ export function createBorgBraidRecordNavigation({
     return url;
   }
 
-  async function load(recordId) {
-    const entry = entries.find((candidate) => candidate.id === recordId);
+  async function load(assemblyId) {
+    const entry = entries.find((candidate) => candidate.assemblyId === assemblyId);
     if (!entry) {
-      throw new RangeError(`Borg braid catalog has no record ${String(recordId)}.`);
+      throw new RangeError(`Borg assembly catalog has no record ${String(assemblyId)}.`);
     }
     if (typeof fetchLike !== "function") {
       throw new TypeError("Borg braid record loading requires fetch().");
     }
-    return fetchBorgRecord(fetchLike, entry.recordUrl, "prescribed geometry");
+    return fetchBorgRecord(fetchLike, entry, "prescribed geometry");
   }
 
-  function persistSelection(recordId) {
-    const url = buildUrl(recordId);
+  function persistSelection(assemblyId) {
+    const url = buildUrl(assemblyId);
     if (typeof historyLike?.replaceState !== "function") {
       return false;
     }
@@ -213,22 +278,29 @@ export function createBorgBraidRecordNavigation({
   });
 }
 
-async function fetchBorgRecord(fetchLike, recordUrl, label, expectedSha256 = null) {
+async function fetchBorgRecord(fetchLike, entry, label, expectedSha256 = null) {
   if (typeof fetchLike !== "function") {
     throw new TypeError(`Borg ${label} loading requires fetch().`);
   }
-  const response = await fetchLike(recordUrl);
+  const response = await fetchLike(entry.recordUrl);
   if (!response?.ok) {
     throw new Error(
-      `Borg ${label} fetch failed (${response?.status ?? "no response"}): ${recordUrl}`,
+      `Borg ${label} fetch failed (${response?.status ?? "no response"}): ${entry.recordUrl}`,
     );
   }
-  if (expectedSha256 === null) return response.json();
-  const bytes = await response.arrayBuffer();
-  const digest = await globalThis.crypto.subtle.digest("SHA-256", bytes);
-  const actual = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
-  if (actual !== expectedSha256) throw new Error("The selected Borg record changed. Return to the assembly library and select its current version; the saved hash was not retargeted.");
-  return JSON.parse(new TextDecoder().decode(bytes));
+  let record;
+  if (expectedSha256 === null) record = await response.json();
+  else {
+    const bytes = await response.arrayBuffer();
+    const digest = await globalThis.crypto.subtle.digest("SHA-256", bytes);
+    const actual = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+    if (actual !== expectedSha256) throw new Error("The selected Borg record changed. Return to the assembly library and select its current version; the saved hash was not retargeted.");
+    record = JSON.parse(new TextDecoder().decode(bytes));
+  }
+  if (record.assemblyId !== entry.assemblyId || record.modelRevisionSha256 !== entry.modelRevisionSha256) {
+    throw new Error("The loaded Borg record does not match the requested exact assembly identity.");
+  }
+  return record;
 }
 
 export function createBorgStartupSeedIndex(cryptoLike = globalThis.crypto) {
@@ -256,7 +328,7 @@ export function resolveBorgRuntimeMode(queryOrSearch = "") {
   const query = queryOrSearch instanceof URLSearchParams
     ? queryOrSearch
     : new URLSearchParams(queryOrSearch);
-  if (query.get("eomRecord")) {
+  if (query.get("assemblyId") || query.get("modelRevisionSha256") || query.get("recordSha256")) {
     return BORG_RECORD_REPLAY_RUNTIME_MODE;
   }
   return BORG_DEFAULT_RUNTIME_MODE;

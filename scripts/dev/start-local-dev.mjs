@@ -351,7 +351,7 @@ server.listen(PORT, HOST, () => {
   process.stdout.write(
     EOM_BORG_SHADOW_ENABLED
       ? "[eom] Borg native shadow endpoint enabled by default; open /borg.html.\n"
-      : "[eom] Borg native shadow endpoint disabled; use ?eomRecord=<accepted-eom-record-url>.\n",
+      : "[eom] Borg native shadow endpoint disabled; replay a catalog record with ?assemblyId=<id>&modelRevisionSha256=<sha256>.\n",
   );
 });
 pdgLiveArtifactRuntime?.start();

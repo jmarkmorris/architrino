@@ -1,10 +1,10 @@
 # Priorities Inventory
 
-Snapshot: 2026-08-27.
+Snapshot: 2026-09-01.
 
 This is the developer-facing ownership and routing inventory for [reference/priorities](../README.md). The canonical numeric order lives in [priorities.md](priorities.md); the repeated mathematical joins live in [closure-join-matrix.md](closure-join-matrix.md).
 
-The live filesystem contains 30 top-level workstream directories plus the `dormant-deferred` container. The workstreams comprise 20 ranked owners, 2 control/routing surfaces, and 8 unranked owners. The archive contains 22 child directories. The four separately ranked shared packets are not additional directory owners.
+The live filesystem contains 30 top-level workstream directories plus the `dormant-deferred` container. The workstreams comprise 19 ranked owners, 2 control/routing surfaces, and 9 unranked owners. The archive contains 22 child directories. The four separately ranked shared packets are not additional directory owners.
 
 ## Inclusion Rules
 
@@ -27,7 +27,7 @@ The unified table still contains archived `app-animator`, `archie`, and `aaa-fut
 | 2 | [`braid-program`](../braid-program/priorities.md) | `binary_subfield_fate` | Sole scientific owner for evolution-first assembly campaigns and fate classification. | [Work queue](../braid-program/work-queue.md). |
 | 3 | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law` | Owns the independently evolving wake-state derivation, causal accounts, and branch-certificate mathematics. | [Work queue](../master-equation-closure/work-queue.md); [causal wake-state packet](../master-equation-closure/independent-causal-wake-state-closure.md). |
 | 6 | [`mapping-equations`](../mapping-equations/priorities.md) | `lorentz_envelope_closure` | Maps source-backed carriers into explicit inherited-equation comparison and failure rows. | [Work queue](../mapping-equations/work-queue.md); [equation inventory](../mapping-equations/equation.md). |
-| 7 | [`app-borg`](../app-borg/priorities.md) | `native_wake_history_and_boundary_residual_fixture` | EOM-backed simulation surface and record-only assembly replay; it does not certify displayed data. | [Execution queue](../app-borg/work-queue.md) and [assembly-viewer requirements](../app-borg/assembly-viewer-requirements.md). |
+| 7 | [`app-borg`](../app-borg/priorities.md) | `assembly_viewer_record_contract_carriers` | EOM-backed simulation surface and record-only assembly replay; it does not certify displayed data. | [Execution queue](../app-borg/work-queue.md) and [assembly-viewer requirements](../app-borg/assembly-viewer-requirements.md). |
 | 8 | [`mapping-standard-model`](../mapping-standard-model/priorities.md) | `quark_mass_predictions` | Geometry-first quark, flavor, confinement, weak, and gauge recovery targets. | [Work queue](../mapping-standard-model/work-queue.md); [geometry-first program](../mapping-standard-model/geometry-first-program.md). |
 | 9 | [`app-photon`](../app-photon/priorities.md) | `reusable_absolute_history_solver` | Photon teaching and diagnostics consumer; general solver capability routes back to EOM. | [Work queue](../app-photon/work-queue.md); the tracker retains the app and evidence boundary. |
 | 11 | [`mapping-strong-field`](../mapping-strong-field/priorities.md) | `embedded_boundary_conditions` | Strong-field boundary data, observer predictions, entropy recovery, and release-channel selection. | [Execution queue](../mapping-strong-field/work-queue.md) and [high-energy routing](../mapping-strong-field/high-energy-astrophysics/priorities.md). |
@@ -39,10 +39,9 @@ The unified table still contains archived `app-animator`, `archie`, and `aaa-fut
 | 19 | [`mapping-cosmology`](../mapping-cosmology/priorities.md) | `component_interfaces` | Deferred but top-level owner for the cosmology transfer-function and observer-interface pipeline. | [Work queue](../mapping-cosmology/work-queue.md); the tracker retains interfaces and promotion map. |
 | 20 | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance` | Read-only source-grounded MCP access; repository sources remain authoritative. | [Work queue](../app-mcp/work-queue.md); [client conformance](../app-mcp/client-conformance.md). |
 | 22 | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive` | iPhone/iPad release packaging and physical-device acceptance. | [Work queue](../app-ios/work-queue.md); the tracker retains completed package design. |
-| 23 | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | `curated_carousel_promotion_review` | Interactive explanatory surface for stable-ID equation documents and canonical page links; it does not certify equation claims. | [Work queue](../app-equation-mapping/work-queue.md); [requirements and design](../app-equation-mapping/requirements-and-design.md). |
-| 24 | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract` | Repo-wide deployment, hosting, cost, reliability, and release operations. | [Work queue](../aaa-operations/work-queue.md); first consumer is Borg. |
-| 25 | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` | Shared implementation-facing control-bar and app-chrome standardization. | [Work queue](../app-ui-guidelines/work-queue.md); [top dynamic control bar](../app-ui-guidelines/top-dynamic-control-bar.md). |
-| 26 | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` | Speculative candidate-assembly and dark-visible re-entry watchlist. | [Work queue](../dark-sector/work-queue.md); [photon-like mode packet](../dark-sector/dark-sector-photon-like-mode.md). |
+| 23 | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract` | Repo-wide deployment, hosting, cost, reliability, and release operations. | [Work queue](../aaa-operations/work-queue.md); first consumer is Borg. |
+| 24 | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` | Shared implementation-facing control-bar and app-chrome standardization. | [Work queue](../app-ui-guidelines/work-queue.md); [top dynamic control bar](../app-ui-guidelines/top-dynamic-control-bar.md). |
+| 25 | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` | Speculative candidate-assembly and dark-visible re-entry watchlist. | [Work queue](../dark-sector/work-queue.md); [photon-like mode packet](../dark-sector/dark-sector-photon-like-mode.md). |
 
 Plainly: this table lists current top-level owners and copies their existing ranks. Gaps are shared-packet ranks or archived rows, not newly assigned priorities.
 
@@ -66,11 +65,12 @@ These rows multiply several owners and therefore retain their own numeric attent
 
 ## Unranked Active Owners
 
-These eight directories remain in the top-level inventory without a numeric rank. Their local status and ownership boundaries are preserved; inclusion here does not make a blocked task executable or reopen completed work.
+These nine directories remain in the top-level inventory without a numeric rank. Their local status and ownership boundaries are preserved; inclusion here does not make a blocked task executable or reopen completed work.
 
 | Directory | Present role | Ranking or execution boundary |
 | --- | --- | --- |
 | [`app-aaa-core`](../app-aaa-core/priorities.md) | Shared path, storage, query, codec, and publication platform. | Ranking awaits contract review and a representative workload estimate. |
+| [`app-equation-mapping`](../app-equation-mapping/priorities.md) | Interactive explanatory surface for stable-ID equation documents and canonical page links; it does not certify equation claims. | No executable object remains: carousel expansion requires a newly justified task, and review-packet export requires an operator-selected local draft. |
 | [`app-potential`](../app-potential/priorities.md) | Potential-observable reconstruction and display application. | Ranking awaits the AAA Core contract and a representative workload estimate; no separate forward solver. |
 | [`app-topo`](../app-topo/priorities.md) | Planar topographic display of prescribed potential products. | Ranking awaits a reference-surface estimate; consumes Potential and AAA Core services. |
 | [`category-theory`](../category-theory/priorities.md) | Supporting mathematical structures for history composition, restrictions, and recovery interfaces. | Low-intensity support; physical realization and acceptance remain with the scientific owners. |

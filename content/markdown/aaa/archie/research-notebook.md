@@ -14,9 +14,9 @@ Relevant files:
 
 - [Noether Braid](../noether-braid/noether-braid.md)
 - [Braid Taxonomy](../noether-braid/braid-taxonomy.md)
-- [Braid Family A](../noether-braid/braid-family-a.md)
-- [Braid Family B](../noether-braid/braid-family-b.md)
-- [Braid Family C](../noether-braid/braid-family-c.md)
+- [Braid orthogonal-axis three-binary configurations](../noether-braid/3d-braid-assemblies.md)
+- [Braid coincident-axis three-binary configurations](../noether-braid/3d-braid-assemblies.md)
+- [Braid two-component circular configurations](../noether-braid/3d-braid-assemblies.md)
 - [Braid Mathematics](../noether-braid/braid-mathematics.md)
 - [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md)
 - [Braid Recovery Requirements](../noether-braid/braid-recovery-requirements.md)
@@ -38,9 +38,9 @@ can approach zero. The canonical per-hit acceleration weight $c_f/|D_t|$ then be
 
 The six-path endurance tests described in this entry, with no modeled Noether sea response, produced accepted histories extending only to approximately $T=5$ to $T=11.5$. These short histories did not supply the long-duration evolution needed to determine braid survival. This was a limitation of the particular computations, not a theorem that every braid evolution must fail.
 
-A parallel effort reorganized the entire Noether Braid section of the textbook so that the document structure matches the new research program. Large overlapping treatments were replaced by a layered architecture: the Noether Braid entry point, a coordinate taxonomy, separate Family A, B, and C definitions, shared braid mathematics, configuration space, recovery requirements, and focused dynamics and symmetry chapters. The former omnibus family and spindle treatments were removed after their durable material was reassigned to those owners. This was not merely editorial cleanup. It separates exact prescribed geometry from analytical consequences, EOM-solver retention, Noether-sea support, and downstream recovery claims, so each document now states one evidence level without borrowing authority from another.
+A parallel effort reorganized the entire Noether Braid section of the textbook so that the document structure matches the new research program. Large overlapping treatments were replaced by a layered architecture: the Noether Braid entry point, a coordinate taxonomy, separate orthogonal-axis three-binary, coincident-axis three-binary, and two-component circular configurations, shared braid mathematics, configuration space, recovery requirements, and focused dynamics and symmetry chapters. The former omnibus and spindle treatments were removed after their durable material was reassigned to those owners. This was not merely editorial cleanup. It separates exact prescribed geometry from analytical consequences, EOM-solver retention, Noether-sea support, and downstream recovery claims, so each document now states one evidence level without borrowing authority from another.
 
-The campaign therefore added a complementary route: prescribe exact braid geometries first, then analyze them without asking the EOM solver to evolve them. Families A, B, and C now provide coordinate-defined classes ranging from one-braid orthogonal-axis and coincident-axis geometries to two-braid compositions. These are imposed paths, not retained physical braids. Their value is that every position, velocity, phase, period, and family coordinate is known exactly enough to support a controlled analytical comparison.
+The campaign therefore added a complementary route: prescribe exact braid geometries first, then analyze them without asking the EOM solver to evolve them. Each record now states its coordinate-defined geometry directly, ranging from one-braid orthogonal-axis and coincident-axis configurations to two-braid compositions. These are imposed paths, not retained physical braids. Their value is that every position, velocity, phase, period, and configuration coordinate is known exactly enough to support a controlled analytical comparison.
 
 The prescribed-path analysis program computes causal roots, internal and external wake exposure, virtual-probe acceleration response, prescribed-path equation mismatch, cancellation, angular structure, spectra, radial behavior, and source-parameter sensitivity under one declared protocol. The data path is
 
@@ -56,7 +56,7 @@ $$
 
 where $\Theta_M$ is the admissible configuration space of family member $M$, $S$ is the exact prescribed source record, $P$ is the fixed analysis protocol, and $\mathbf G$ is the resulting analytical measure vector. Each result remains associated with its complete prescribed coordinates, numerical method, and stated evidence level, so different geometries can be compared under a common analysis.
 
-The search begins with basic prescribed geometries. Reproducible Monte Carlo campaigns will vary the allowed coordinates of each family and measure points across its configuration space. A single attractive point will not be treated as a solution. Interesting points will receive directed refinement and local differential analysis: small declared coordinate changes will measure gradients, sensitivities, root-topology boundaries, numerical convergence, and the width of any favorable neighborhood. The useful object is a robust region that remains favorable under small perturbations and a fixed common protocol, not a narrowly tuned sample or a hidden weighted score.
+The search begins with basic prescribed geometries. Reproducible Monte Carlo campaigns will vary each configuration's allowed coordinates and measure points across its configuration space. A single attractive point will not be treated as a solution. Interesting points will receive directed refinement and local differential analysis: small declared coordinate changes will measure gradients, sensitivities, root-topology boundaries, numerical convergence, and the width of any favorable neighborhood. The useful object is a robust region that remains favorable under small perturbations and a fixed common protocol, not a narrowly tuned sample or a hidden weighted score.
 
 The hope is that this analytical atlas will identify geometries worth the much more expensive dynamical and Noether-sea work. $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover tested aspects of general relativity and quantum theory as effective output; neither framework may be inserted as an architrino-level premise. A promising prescribed geometry may guide the analytical program toward measures that bear on those recovery targets, but the prescribed-path results alone cannot establish stability, energy, retention, physical realization, a Noether-sea response, or recovery of either theory. Those claims still require independent instruments and realized-branch evidence.
 
@@ -142,7 +142,7 @@ Relevant files:
 
 - [Noether Braid](../noether-braid/noether-braid.md)
 - [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md)
-- [A3.3 Doubling-Frequency Resonance Lock](../noether-braid/braid-a3-3-doubling-frequency-lock.md)
+- [Three-Binary 4:2:1 Frequency Lock](../noether-braid/three-binary-4-2-1-frequency-lock.md)
 - [Noether Braid Topological Charge](../noether-braid/noether-braid-topological-charge.md)
 
 The terminology shifted from `swarm` to `braid` because the older word suggested an unstructured collective. It described many objects in motion, but it did not carry the mathematical discipline now needed by the theory. The new word points directly at intertwined path histories, retained ordering, exchange, phase winding, and topological invariants. A Noether braid is not just a cloud of architrinos. It is a candidate six-body polarity-neutral retained branch, built from three electrinos and three positrinos, whose causal-root ledger, phase record, wake history, energy/action rows, and angular-momentum rows can be followed through delayed dynamics.
@@ -237,7 +237,7 @@ Relevant files:
 
 - [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md)
 - [Energy](../dynamics/energy.md)
-- [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics)
+- [Zero-Axial-Offset Three-Binary Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics)
 
 The angular-momentum and spin proof route gained a sharper reduced candidate target around a rank-three source record that assigns the closure role to binary 2. The work used persistent `(1,2,3)` frequency-triplet notation to compare the indexed $(f+2,f,f-1)$ candidate against symmetric, doubling-frequency, and finite integer-lock controls. The point was not to accept a retained branch or make the closure role part of the taxonomy; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
 
@@ -326,22 +326,22 @@ The polarization panel asks what kind of field the candidate actually produces. 
 
 The supporting documents keep that boundary clear. [Photon Guide](photon-guide.md) explains how to use the app. [Mode Taxonomy](../reactions/mode-taxonomy.md), [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md), [Quantum Summary](../quantum/quantum-summary.md), and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) state what still has to be recovered: stable transverse behavior, polarization, helicity, analyzer response, and no free longitudinal photon mode.
 
-## 2026-06-10: Ideal Noether Braid Lorentz Geometry App
+## 2026-06-10: Coincident-Midpoint Three-Axis Circular Lorentz Geometry App
 
 Relevant files:
 
-- [A1 Lorentz Geometry App](../../../../ideal-braid.html)
-- [A1 Lorentz Geometry Guide](ideal-braid-guide.md)
+- [Lorentz Geometry App](../../../../ideal-braid.html)
+- [Lorentz Geometry Guide](ideal-braid-guide.md)
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
 
-The standalone [A1 Lorentz Geometry App](../../../../ideal-braid.html) became the interactive inspection surface for the prescribed A1 Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether braid deformation concrete: an A1 braid is shown inside a velocity-dependent envelope, the user adjusts $\beta_f=v/c_f$, and the app ties the visible flattening to $\gamma_f$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
+The standalone [Lorentz Geometry App](../../../../ideal-braid.html) became the interactive inspection surface for the prescribed zero-axial-offset orthogonal-axis three-binary Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether braid deformation concrete: the prescribed braid is shown inside a velocity-dependent envelope, the user adjusts $\beta_f=v/c_f$, and the app ties the visible flattening to $\gamma_f$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
 
 The app deliberately does not claim to prove Lorentz kinematics from Noether braid dynamics. It records the target geometry in a form that can be checked visually and algebraically: in the zero-extra-scale lesson case, the displayed oblate spheroidal envelope satisfies $R_{\parallel}=R_{\perp}/\gamma$ and $\xi=1/\gamma$. That makes the Lorentz factor more than a formula in a side panel; it becomes the aspect ratio of the displayed envelope. The app is therefore a dictionary between the formula, the return-cycle picture, and the geometry that a later branch-ledger derivation would have to recover.
 
-The three supporting documents divide the burden cleanly. [A1 Lorentz Geometry Guide](ideal-braid-guide.md) is the app-facing explanation: it defines the lesson purpose, the control meanings, the geometry dictionary, the energy and mass-equivalent readouts, and the claim level of the surface. [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) gives the reader-facing bridge: the continuous observer-level Lorentz function is not replaced by a step function; the discrete object is the admissible material return-cycle branch whose longitudinal and transverse cycles close to the same period. [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) carries the deeper proof program, where the Lorentz laws must be derived from delayed substrate dynamics, stable translating branches, closure residuals, and bounded preferred-frame leakage.
+The three supporting documents divide the burden cleanly. [Lorentz Geometry Guide](ideal-braid-guide.md) is the app-facing explanation: it defines the lesson purpose, the control meanings, the geometry dictionary, the energy and mass-equivalent readouts, and the claim level of the surface. [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) gives the reader-facing bridge: the continuous observer-level Lorentz function is not replaced by a step function; the discrete object is the admissible material return-cycle branch whose longitudinal and transverse cycles close to the same period. [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) carries the deeper proof program, where the Lorentz laws must be derived from delayed substrate dynamics, stable translating branches, closure residuals, and bounded preferred-frame leakage.
 
-Together these four surfaces turned the Lorentz lesson into a governed research object. The A1 Lorentz Geometry App provides the visible target, the guide explains how to read it, the bridge names the branch-indexed mechanism, and the kinematics chapter states the mathematical work still required. That separation matters because it lets the project use the app pedagogically without mistaking a visualization for a completed theorem.
+Together these four surfaces turned the Lorentz lesson into a governed research object. The Lorentz Geometry App provides the visible target, the guide explains how to read it, the bridge names the branch-indexed mechanism, and the kinematics chapter states the mathematical work still required. That separation matters because it lets the project use the app pedagogically without mistaking a visualization for a completed theorem.
 
 ## 2026-04-19: PDG Applications Failure and Reset
 
@@ -355,7 +355,7 @@ Only a small number of channels, especially neutron and muon beta-family reactio
 
 ## 2026-03-14: Doubling-Frequency Resonance Lock
 
-Today the doubling-frequency-lock note, [A3.3 Doubling-Frequency Resonance Lock](../noether-braid/braid-a3-3-doubling-frequency-lock.md), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
+Today the [Three-Binary 4:2:1 Frequency Lock](../noether-braid/three-binary-4-2-1-frequency-lock.md) note was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
 $$
 v_k=2\pi f_k r_k=\beta_k c_f
 $$
@@ -383,7 +383,7 @@ So even if one later tests the doubling-frequency candidate $(m,n)=(2,4)$, the f
 
 The conceptual gain is that the note now separates three different burdens cleanly. Kinematics gives the exact identity above. Integer phase closure gives commensurate frequencies. The cancellation principle is then the extra ingredient that might select one preferred integer lock from the commensurate lattice.
 
-This mattered for the larger program because the A1 candidate has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
+This mattered for the larger program because the zero-axial-offset orthogonal-axis three-binary candidate has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
 
 ## 2026-03-12: Master Equation Canon Handoff
 

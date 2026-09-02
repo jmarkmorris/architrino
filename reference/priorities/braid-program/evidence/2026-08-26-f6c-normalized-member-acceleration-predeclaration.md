@@ -1,12 +1,12 @@
-# F6c Normalized Member-Acceleration Predeclaration
+# asymmetric counter-breathing representative Normalized Member-Acceleration Predeclaration
 
 Status: v2 — SUBJECT PROVENANCE, NAMED REFERENCE REPAIRS, AND DATA EXPORT INDEPENDENTLY VERIFIED; ACCELERATION MEASUREMENT NOT EXECUTED, 2026-08-27.
 
 ## Binding Outcome
 
-This packet binds the admitted `F6c` candidate to one exact unblocking artifact for `M05` and `M06`: an independently evaluated, dimensionless, member-level Master Equation acceleration-residual measurement on the same refined dual-turn evidence generation that currently supplies the F6c `M02`--`M04` and `M08` rows. It does not authorize an EOM run, make either metric available, change a score, close `H5`, or establish retention.
+This packet binds the admitted `asymmetric counter-breathing representative` candidate to one exact unblocking artifact for `M05` and `M06`: an independently evaluated, dimensionless, member-level Master Equation acceleration-residual measurement on the same refined dual-turn evidence generation that currently supplies the asymmetric counter-breathing representative `M02`--`M04` and `M08` rows. It does not authorize an EOM run, make either metric available, change a score, close `H5`, or establish retention.
 
-Plainly: the next F6c equation-consistency test now has one named history, one ruler, one interval, and one independent comparison rule. Merely writing this packet earns no evidence.
+Plainly: the next asymmetric counter-breathing representative equation-consistency test now has one named history, one ruler, one interval, and one independent comparison rule. Merely writing this packet earns no evidence.
 
 ## Version 2 Subject-Provenance Correction
 
@@ -20,7 +20,7 @@ Independent read-only review accepted this v2 provenance correction at document 
 
 ## Why This Obligation Is Not A New Gate
 
-`M05` and `M06` already require the RMS and peak mismatch between a history's required member acceleration and the complete Master Equation acceleration on that same history. The all-candidate campaign named an independent normalized member-acceleration packet as an exact F6c blocker. This packet replaces that vague blocker with an executable specification and has the existing [weighted score packet](../candidate-weighted-score-packet.md#frozen-metric-normalization) as its direct consumer. It adds no metric, hard gate, or candidate status.
+`M05` and `M06` already require the RMS and peak mismatch between a history's required member acceleration and the complete Master Equation acceleration on that same history. The all-candidate campaign named an independent normalized member-acceleration packet as an exact asymmetric counter-breathing representative blocker. This packet replaces that vague blocker with an executable specification and has the existing [weighted score packet](../candidate-weighted-score-packet.md#frozen-metric-normalization) as its direct consumer. It adds no metric, hard gate, or candidate status.
 
 Plainly: this is the missing measurement recipe for two existing score rows, not another hurdle added to the program.
 
@@ -28,15 +28,15 @@ Plainly: this is the missing measurement recipe for two existing score rows, not
 
 | Field | Frozen value |
 | --- | --- |
-| candidate | `F6c` |
+| candidate | `asymmetric counter-breathing representative` |
 | measurement scope | refined dual-turn row from the 2026-08-24 bounded campaign |
-| evidence packet | [F6c dual-turn return search](../f6c-dual-turn-return-search-2026-08-24.json) |
+| evidence packet | [asymmetric counter-breathing representative dual-turn return search](../f6c-dual-turn-return-search-2026-08-24.json) |
 | evidence-packet SHA-256 | `342e8fc12f61f677a869e6af357691937415c0bf646746f565f1578215676b86` |
 | refined summary | [Durable Stage B summary](2026-08-27-f6c-refined-stage-b-summary.json), SHA-256 `9e053c214e2d09544a488957dde7d59de40ee15937b8c056ef7d56d24eb40d3d` |
 | refined row manifest | [Durable Stage B manifest](2026-08-27-f6c-refined-stage-b-manifest.json), SHA-256 `cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b` |
 | run ID | `f6c-balanced-tetrahedral-p0.678-n1.25-th3.36-br0.787-cp1.76-hp0.0771-hm-0.147-rp0.0463-rm-0.134-tp0.116-tm-0.254-hhp4.82-hhm2.21-hrp6-hrm3.44-v1` |
 | refined model fingerprint | `fnv1a64:6b87d1f138d33e13` |
-| generating specification | `F6c-nonlinear-return-map-search-v2-return-continuation` |
+| generating specification | `asymmetric counter-breathing representative-nonlinear-return-map-search-v2-return-continuation` |
 | search-runner SHA-256 | `5ecf2d80fa301b65d0460948269e698e903fbc2acc68d06bef4165b7d728f001` for `scripts/mapping-electromagnetism/f6c-nonlinear-return-map-search.mjs` |
 | EOM harness SHA-256 | `5100c4d555646e3d8a64a9282c22537ea0f4a72934b88f7be9b892c9328bc87a` for `scripts/eom/attractor-ensemble-harness.cpp` |
 | member labels in path-key order | `(0+,0-,1+,1-,2+,2-,3+,3-)` for path keys `(1,2,3,4,5,6,7,8)` |
@@ -57,9 +57,9 @@ Plainly: these are the refined record's two sector coordinates and rates. They a
 
 Reconstruction must bind the durable row manifest's exact `f6cCoordinate`, `seeds`, `coupling`, retained-history controls, and integration controls, and the summary's exact fifteen `parameters` literals. In particular, the manifest's recorded coupling is the string `10.304229970992187`; it is not replaced with another candidate's normalization. The manifest's input-coordinate literals and the summary's reconstructed release-coordinate literals have distinct roles and must not be silently substituted for each other. Every refined-rung export must preserve all eight member identities and the complete accepted retained history; a release snapshot alone is insufficient.
 
-The operator-selected [small asymmetric counter-breathing display representative](../configurations/f6c-polarity-resolved-harmonic.v2.json) is explicitly excluded. It is a prescribed visualization from a different evidence generation. The radial-frequency continuation is also excluded because it changes the history and its declared coordinate is already exhausted below its material-improvement gate.
+The operator-selected [small asymmetric counter-breathing display representative](../configurations/small-asymmetric-counter-breathing-history.v3.json) is explicitly excluded. It is a prescribed visualization from a different evidence generation. The radial-frequency continuation is also excluded because it changes the history and its declared coordinate is already exhausted below its material-improvement gate.
 
-Plainly: the test stays attached to the F6c trajectory that already owns the score-bearing root, speed, and leakage values. It cannot borrow acceleration numbers from the newer display animation or the separate radial-frequency sweep.
+Plainly: the test stays attached to the asymmetric counter-breathing representative trajectory that already owns the score-bearing root, speed, and leakage values. It cannot borrow acceleration numbers from the newer display animation or the separate radial-frequency sweep.
 
 ## Common Ruler, Clock, And Interval
 
@@ -158,12 +158,12 @@ Plainly: the measurement must settle when the EOM step, stored-history spacing, 
 
 ## Disposition Rules
 
-- If every admission and refinement condition passes, `M05` and `M06` become measured values for this exact F6c evidence generation and the score packet is recomputed without changing weights or anchors.
-- If the independent acceleration residual excludes the subject trajectory beyond its declared numerical envelope, the refined dual-turn record loses equation-consistency authority and its same-generation score rows require readjudication. This does not reject the exact F6c geometry family.
+- If every admission and refinement condition passes, `M05` and `M06` become measured values for this exact asymmetric counter-breathing representative evidence generation and the score packet is recomputed without changing weights or anchors.
+- If the independent acceleration residual excludes the subject trajectory beyond its declared numerical envelope, the refined dual-turn record loses equation-consistency authority and its same-generation score rows require readjudication. This does not reject the exact asymmetric counter-breathing representative geometry family.
 - If the instrument cannot reach the full interval or certify the comparison, the result is `unavailable`; absence of a value is not a favorable residual.
 - No outcome changes `H5` by itself. A complete labeled-history return and retained-history certificate remain separate obligations.
 
-Plainly: a clean result can add two factual measurements. A bad result can invalidate this one evolved record. Neither outcome proves or disproves every possible F6c history.
+Plainly: a clean result can add two factual measurements. A bad result can invalidate this one evolved record. Neither outcome proves or disproves every possible asymmetric counter-breathing representative history.
 
 ## Claim Grades And Falsifiers
 
@@ -175,7 +175,7 @@ Excluded claims: retained braid, stability, equilibrium, binding, physical reali
 
 ## Required Output
 
-Execution must produce one machine-readable packet under `reference/priorities/braid-program/evidence/` containing the frozen identity, source and instrument hashes, per-rung raw residuals and enclosures, complete admission ledger, peak witness, wall-time measurements, disposition, claim grades, falsifiers, and excluded claims. Until that packet exists and passes independent review, F6c remains `STASIS`, `M05/M06` remain unavailable, and no EOM execution is authorized by this predeclaration.
+Execution must produce one machine-readable packet under `reference/priorities/braid-program/evidence/` containing the frozen identity, source and instrument hashes, per-rung raw residuals and enclosures, complete admission ledger, peak witness, wall-time measurements, disposition, claim grades, falsifiers, and excluded claims. Until that packet exists and passes independent review, asymmetric counter-breathing representative remains `STASIS`, `M05/M06` remain unavailable, and no EOM execution is authorized by this predeclaration.
 
 The [launch-readiness packet](2026-08-27-braid-search-launch-readiness.md#bp-010-reference-blocker) records the independently reviewed offline adapter and actual data-only export. All 14,080 original segment records and 648 accepted-frame rows preserve their exact tokens. This closes the data bridge only; continuous-reception interval bounds and the independent acceleration measurement remain outstanding.
 

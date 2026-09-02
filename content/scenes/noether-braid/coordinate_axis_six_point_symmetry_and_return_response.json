@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "noether_braid__coordinate_axis_six_point_symmetry_and_return_response",
+    "title": "Coordinate-Axis Six-Point Symmetry and Return Response",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": { "type": "static" },
+    "source": { "type": "markdown", "path": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md" },
+    "view": { "columns": 1, "autoOpen": true }
+  },
+  "objects": []
+}

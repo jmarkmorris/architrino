@@ -49,14 +49,14 @@ test("Braid Search is a focused standalone app with configured local data", () =
   assert.doesNotMatch(runtime, /STANDALONE_APP_HOME_HREF/u);
   assert.match(
     runtime,
-    /\.\/\.local-data\/braid-analysis\/compact-monte-carlo\/family-sweep-v1\/compact-sweep-dashboard\.v1\.json/u,
+    /\.\/\.local-data\/braid-analysis\/compact-monte-carlo\/configuration-sweep-v2\/compact-sweep-dashboard\.v2\.json/u,
   );
   assert.match(runtime, /role", "tablist"/u);
-  assert.match(runtime, /Member-by-gate heatmap/u);
+  assert.match(runtime, /Configuration-by-gate heatmap/u);
   assert.match(runtime, /Active candidates/u);
   assert.match(runtime, /Deprecated controls/u);
   assert.match(runtime, /candidateDisposition: "all"/u);
-  assert.match(runtime, /Family \$\{range\.familyId\}/u);
+  assert.match(runtime, /Assembly \$\{range\.assemblyId\}/u);
   assert.match(
     runtime,
     /replaceChildren\(state\.viewContainer, renderBoundary\(data\)\)/u,
@@ -71,7 +71,7 @@ test("Braid Search is a focused standalone app with configured local data", () =
   assert.match(runtime, /tabindex: 0/u);
   assert.match(runtime, /circle\.addEventListener\("click", inspect\)/u);
   assert.match(runtime, /event\.key === "Enter" \|\| event\.key === " "/u);
-  assert.match(runtime, /compact-dashboard-case-member/u);
+  assert.match(runtime, /compact-dashboard-case-configuration/u);
   assert.match(runtime, /compact-dashboard-case-sample/u);
   assert.match(runtime, /Candidate, case, or hash/u);
   assert.match(runtime, /Selected campaign row/u);
@@ -82,7 +82,7 @@ test("Braid Search is a focused standalone app with configured local data", () =
     /Lower is better for this compact diagnostic/u,
   );
   assert.equal(runtime.includes("Data identity"), false);
-  assert.equal(runtime.includes("B1.4"), false);
+  assert.equal(runtime.includes("all-axial-three-binary-boundary"), false);
   assert.equal(runtime.includes("Open JSON"), false);
   assert.equal(runtime.includes("No smoothed density"), false);
   assert.equal(runtime.includes("Why rows have null scores"), false);

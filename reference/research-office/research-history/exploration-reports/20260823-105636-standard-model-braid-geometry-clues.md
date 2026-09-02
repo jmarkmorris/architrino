@@ -248,85 +248,85 @@ The nineteenth checkpoint identifies polarity--circulation correlation, not moti
 
 - Derived a collision obstruction for the simplest magnetic counterflow: equal-radius opposite-sense paths in one plane necessarily coincide twice per cycle, independent of initial phase.
 - Derived the smallest local clearance repair: place the counterrotators on parallel planes separated by $2h$. This prevents path coincidence but gives an opposite-polarity dyad a nonzero axial electric first moment.
-- Intersected collision avoidance with the electric-dipole null to construct F5, a balanced double-dyad triad. Each body axis carries two axially reversed polarity-conjugate counterrotating dyads on distinct radii; three identical modules occupy an orthonormal body triad.
+- Intersected collision avoidance with the electric-dipole null to construct phase-varying display representative, a balanced double-dyad triad. Each body axis carries two axially reversed polarity-conjugate counterrotating dyads on distinct radii; three identical modules occupy an orthonormal body triad.
 - Derived the prescribed-geometry identities: positive local track clearance, cancellation of the two axial cycle-averaged electric dipoles, addition of their signed current moments, isotropic summed second moment over the three axes, and a nonzero total current moment along the body diagonal.
-- Identified F5 as two interlaced A3-like six-worldline records rather than a Family-C member, because the latter has one common axis. Added it to the seed, electric, and magnetic comparison tables without changing taxonomy.
+- Identified phase-varying display representative as two interlaced A3-like six-worldline records rather than a two-component circular member, because the latter has one common axis. Added it to the seed, electric, and magnetic comparison tables without changing taxonomy.
 - Preserved the major falsifiers: cross-axis and causal-root clearance, ordinary binding/retention, instantaneous polar and radiative leakage, moment/angular mismatch, ordinary $2\pi$ return, wrong mode count, missing charge projection, and extra stable 12-identity branches.
 - Revalidated the packet: strict content validation remains at zero errors and zero warnings, and all 953 dollar-delimited math spans render with zero failures through vendored KaTeX.
 
-The twentieth checkpoint supplies the campaign's first explicit geometry that simultaneously attempts neutral-core polarity balance, electric-dipole cancellation, scalar second-moment isotropy, body-fixed three-port symmetry, and a nonzero signed current moment. F5 remains a prescribed guessed seed, not an evolved, retained, stable, charged, spinor, or Standard Model branch.
+The twentieth checkpoint supplies the campaign's first explicit geometry that simultaneously attempts neutral-core polarity balance, electric-dipole cancellation, scalar second-moment isotropy, body-fixed three-port symmetry, and a nonzero signed current moment. phase-varying display representative remains a prescribed guessed seed, not an evolved, retained, stable, charged, spinor, or Standard Model branch.
 
 ## Checkpoint 21 — 2026-08-23
 
-- Tested F5's cheapest unresolved burden with a bounded prescribed-path cross-axis clearance diagnostic at $c_f=1$, $(\rho_1,\rho_2,h)=(0.25,0.40,0.20)$, equal unit angular rates, and maximum declared internal tangential speed $0.40$.
+- Tested phase-varying display representative's cheapest unresolved burden with a bounded prescribed-path cross-axis clearance diagnostic at $c_f=1$, $(\rho_1,\rho_2,h)=(0.25,0.40,0.20)$, equal unit angular rates, and maximum declared internal tangential speed $0.40$.
 - A symmetry-constrained $8^3$ phase grid with 720 time samples found a positive-clearance row. A separately written 343-row local phase refinement with 1,440 time samples per row selected $(5\pi/32,-3\pi/32,-3\pi/32)$.
 - A 200,000-time-sample sweep on that frozen row measured minimum sampled clearance $0.0706633508$, or about $0.17666$ of the outer radius.
 - A 27-row stencil perturbing each phase offset by $-0.01$, $0$, or $+0.01$ measured worst sampled clearance $0.0706300083$. The sampled survivor is therefore not isolated on that discrete phase stencil.
 - Explicitly limited the result to the reported prescribed positions. The scans are not an independent analytic oracle, continuous-time interval certificate, continuous phase basin, causal-root calculation, ordinary EOM evolution, binding, stability, or particle evidence.
 - Revalidated the packet: strict content validation remains at zero errors and zero warnings, and all 970 dollar-delimited math spans render with zero failures through vendored KaTeX.
 
-The twenty-first checkpoint shows that F5 does not necessarily fail from cross-axis path collision on the sampled normalized chart and phase stencil. Its next blocker is causal-root validity followed by ordinary binding and retention; the positive sampled clearance does not advance any of those rows.
+The twenty-first checkpoint shows that phase-varying display representative does not necessarily fail from cross-axis path collision on the sampled normalized chart and phase stencil. Its next blocker is causal-root validity followed by ordinary binding and retention; the positive sampled clearance does not advance any of those rows.
 
 ## Checkpoint 22 — 2026-08-23
 
-- Used F5's cyclic three-module orbit to define the most general Hermitian circulant port operator and derived its exact Fourier mode/eigenvalue rows. The declared port subspace contains exactly one common mode and two oriented traveling/return modes.
+- Used phase-varying display representative's cyclic three-module orbit to define the most general Hermitian circulant port operator and derived its exact Fourier mode/eigenvalue rows. The declared port subspace contains exactly one common mode and two oriented traveling/return modes.
 - Proved a reflection-even degeneracy no-go: when the cyclic coupling is real, the two oriented modes are degenerate. Three distinct generation-facing responses require a derived orientation-sensitive circulation, delayed- history, return-permutation, or holonomy contribution.
-- Identified F5's counterrotation and body-diagonal axial moment as candidate carriers for that oriented coupling without asserting that ordinary evolution produces it.
+- Identified phase-varying display representative's counterrotation and body-diagonal axial moment as candidate carriers for that oriented coupling without asserting that ordinary evolution produces it.
 - Proved a mixing no-go: two circulant operators on the same three-port space commute and share the Fourier basis. A port-only generation operator and a port-only weak-exposure operator therefore cannot recover nontrivial CKM/PMNS overlap.
 - Required an independent weak posture, source/detector event, shielding, or corridor projection derived from the same retained core, with a nonzero commutator on the comparison domain rather than an inserted mixing matrix.
 - Preserved the no-overgeneration burden: the three port modes are not the only modes of a 12-identity system, so every additional mode must be an excitation, unstable, confined, inaccessible, or otherwise correctly dispositioned before the port triplet can represent generations.
 - Revalidated the packet: strict content validation remains at zero errors and zero warnings, and all 983 dollar-delimited math spans render with zero failures through vendored KaTeX.
 
-The twenty-second checkpoint gives F5 a plausible exactly-three mode mechanism and two mathematical rejection tests. It does not derive the port operator, split the oriented modes dynamically, recover masses or mixing, or dispose of the remaining full-system modes.
+The twenty-second checkpoint gives phase-varying display representative a plausible exactly-three mode mechanism and two mathematical rejection tests. It does not derive the port operator, split the oriented modes dynamically, recover masses or mixing, or dispose of the remaining full-system modes.
 
 ## Checkpoint 23 — 2026-08-23
 
-- Applied the full same-record projection bundle to the F5 clearance survivor. Its raw-center second moment is isotropic, but a moving geometric centroid produces centroid-relative anisotropy; its electric dipole has a large oscillatory amplitude despite a zero cycle mean.
-- Ran a 512-row joint F5 phase grid and found substantially better bounded tradeoffs. Proved a conditional exact no-go: on the two-ring common-cadence circular equal-exposure chart, simultaneous stationary centroid and exact dipole null force equal radii, which restores unavoidable same-plane counterrotation collisions.
+- Applied the full same-record projection bundle to the phase-varying display representative clearance survivor. Its raw-center second moment is isotropic, but a moving geometric centroid produces centroid-relative anisotropy; its electric dipole has a large oscillatory amplitude despite a zero cycle mean.
+- Ran a 512-row joint phase-varying display representative phase grid and found substantially better bounded tradeoffs. Proved a conditional exact no-go: on the two-ring common-cadence circular equal-exposure chart, simultaneous stationary centroid and exact dipole null force equal radii, which restores unavoidable same-plane counterrotation collisions.
 - Constructed F6, an eight-identity tetrahedral counterflow core. The exact tetrahedral vector and tensor sums cancel axial dipoles and position-based second-moment anisotropy, while circulation signs control the surviving signed current moment.
 - Audited a one-versus-three F6 clearance survivor and withheld promotion: the same record retained oscillatory dipole, centroid motion, centroid-relative anisotropy, and moment-axis drift.
-- Derived F6b, a two-versus-two tetrahedral edge partition with circulation signs $(-1,-1,+1,+1)$ and exact phases $(0,\pi,4\pi/3,\pi/3)$. Direct substitution makes each polarity-sector position sum, total centroid, centroid velocity, and electric dipole vanish for every time while preserving a nonzero exactly aligned signed current moment and cycle-averaged scalar second moment.
+- Derived scoped-negative circular control, a two-versus-two tetrahedral edge partition with circulation signs $(-1,-1,+1,+1)$ and exact phases $(0,\pi,4\pi/3,\pi/3)$. Direct substitution makes each polarity-sector position sum, total centroid, centroid velocity, and electric dipole vanish for every time while preserving a nonzero exactly aligned signed current moment and cycle-averaged scalar second moment.
 - A 200,000-time-sample check at $(h,\rho)=(0.20,0.30)$ measured minimum sampled clearance $0.0140088666$. A 100,000-sample selected-offset comparison found $0.1014611872$ at $h=\rho=0.30$ with internal speed $0.30$ and $c_f=1$; clearance increased across the sampled $h/\rho$ rows through $3$.
 - Identified exactly three two-versus-two partitions but kept them unassigned: they also change the body-fixed moment axis and may be ordinary orientation states rather than generation or color classes.
 - Revalidated the packet: strict content validation remains at zero errors and zero warnings, and all 1,074 dollar-delimited math spans render with zero failures through vendored KaTeX.
 
-The twenty-third checkpoint makes F6b the strongest prescribed geometry in this campaign: it passes the exact centroid, dipole, isotropic-second-moment, and nonzero-current-moment identities together with positive sampled clearance at sub-field-speed internal motion. It remains unevolved and unretained; the next decisive row is continuous causal-root validity and ordinary release.
+The twenty-third checkpoint makes scoped-negative circular control the strongest prescribed geometry in this campaign: it passes the exact centroid, dipole, isotropic-second-moment, and nonzero-current-moment identities together with positive sampled clearance at sub-field-speed internal motion. It remains unevolved and unretained; the next decisive row is continuous causal-root validity and ordinary release.
 
 ## Checkpoint 24 — 2026-08-23
 
-- Reduced every F6b squared pair distance to a degree-two trigonometric polynomial and exhaustively evaluated its stationary points. The 28 unordered pairs fall into four minimum classes, and the exact global clearance at $h=\rho=0.30$ is $\sqrt{(9-6\sqrt2)/50}=0.101461187235\ldots>0$.
+- Reduced every scoped-negative circular control squared pair distance to a degree-two trigonometric polynomial and exhaustively evaluated its stationary points. The 28 unordered pairs fall into four minimum classes, and the exact global clearance at $h=\rho=0.30$ is $\sqrt{(9-6\sqrt2)/50}=0.101461187235\ldots>0$.
 - Combined exact clearance with global member speed $0.30<c_f=1$ to close the prescribed causal-root topology: every reception event has exactly seven simple partner roots, no nontrivial self root, $D_t,D_r\ge0.70$, maximum delay $0.848528$, and exact root-distance floor $\sqrt{18-12\sqrt2}/13=0.0780470671\ldots$.
-- Added a reproducible report-grade F6b diagnostic around the established prescribed-path analyzer. At 128 reception times per member, it materialized 1,024 receiver events and 7,168 partner-root rows; every event had seven roots, primary/refined root arithmetic agreed within tolerance, and the declared analytical-validity packet passed.
+- Added a reproducible report-grade scoped-negative circular control diagnostic around the established prescribed-path analyzer. At 128 reception times per member, it materialized 1,024 receiver events and 7,168 partner-root rows; every event had seven roots, primary/refined root arithmetic agreed within tolerance, and the declared analytical-validity packet passed.
 - Found that the symmetry-protected sum of all eight evaluated member accelerations cancels to $1.45\times10^{-12}$, but that this group screen conceals a decisive local failure.
 - Fit one positive common acceleration scale across every member and time with no local retuning. The optimum scale $0.0009363493424$ leaves RMS residual $0.2990089834$ and peak residual $0.3644475203$ against prescribed member acceleration magnitude $0.30$; the evaluated/required direction cosine reaches $-0.6146091201$.
-- Rejected the exact isolated F6b circular history for ordinary release. This does not reject the tetrahedral edge partition: useful repairs must change a direction-bearing row through noncircular paths, variable cadence, symmetry-compensated unequal tracks, added internal/sea inventory, or a different polarity-to-path assignment.
+- Rejected the exact isolated scoped-negative circular control circular history for ordinary release. This does not reject the tetrahedral edge partition: useful repairs must change a direction-bearing row through noncircular paths, variable cadence, symmetry-compensated unequal tracks, added internal/sea inventory, or a different polarity-to-path assignment.
 
-The twenty-fourth checkpoint turns a visually and algebraically balanced geometry into a sharper lesson: exact group cancellation, exact dipole null, isotropic cycle average, nonzero moment, collision freedom, and complete causal-root topology still do not imply correct member dynamics. The next candidate should preserve the F6b balance identities while treating the member-acceleration residual as an early rejection surface, before any claim about binding, retention, spinor behavior, generation, or particle identity.
+The twenty-fourth checkpoint turns a visually and algebraically balanced geometry into a sharper lesson: exact group cancellation, exact dipole null, isotropic cycle average, nonzero moment, collision freedom, and complete causal-root topology still do not imply correct member dynamics. The next candidate should preserve the scoped-negative circular control balance identities while treating the member-acceleration residual as an early rejection surface, before any claim about binding, retention, spinor behavior, generation, or particle identity.
 
 ## Checkpoint 25 — 2026-08-23
 
-- Decomposed the best-scaled F6b member residual into local directions. Its RMS is almost entirely radial: $0.2982185154$ radial versus $0.0164934414$ tangential and $0.0141441021$ axial. The closest opposite-polarity cross-module edges supply the largest individual acceleration channels.
+- Decomposed the best-scaled scoped-negative circular control member residual into local directions. Its RMS is almost entirely radial: $0.2982185154$ radial versus $0.0164934414$ tangential and $0.0141441021$ axial. The closest opposite-polarity cross-module edges supply the largest individual acceleration channels.
 - Exhausted several low-complexity repairs without promotion. Exact symbolic enumeration leaves only the declared polarity assignment and its global conjugate; a $\pi/12$ phase grid found only the declared exact-null phase row; 80 broad plus 441 refined aspect/cadence rows retained normalized RMS at least $0.956430005$; same-polarity, conjugated, and locally anchored completions remained worse on their bounded screens.
-- Recognized that exact electric null does not require the positive and negative tetrahedra to share one motion. Introduced F6c with separate $h_\sigma(T)$, $\rho_\sigma(T)$, and $\theta_\sigma(T)$ for the two polarity sectors.
-- Derived that F6c preserves each polarity-sector position sum, total centroid, centroid velocity, electric dipole, and body-fixed current axis for arbitrary differentiable sector histories. Derived the exact axial, radial, and phase acceleration decomposition and its six collective delayed equations.
-- Projected the complete F6b ledger onto the candidate tangent spaces. A shared three-coordinate motion leaves vector-field normal fraction $0.684081866$. The polarity-resolved six-coordinate surface has normal fraction $2.3063\times10^{-15}$ and maximum within-sector projection spread $9.53\times10^{-13}$.
+- Recognized that exact electric null does not require the positive and negative tetrahedra to share one motion. Introduced asymmetric counter-breathing representative with separate $h_\sigma(T)$, $\rho_\sigma(T)$, and $\theta_\sigma(T)$ for the two polarity sectors.
+- Derived that asymmetric counter-breathing representative preserves each polarity-sector position sum, total centroid, centroid velocity, electric dipole, and body-fixed current axis for arbitrary differentiable sector histories. Derived the exact axial, radial, and phase acceleration decomposition and its six collective delayed equations.
+- Projected the complete scoped-negative circular control ledger onto the candidate tangent spaces. A shared three-coordinate motion leaves vector-field normal fraction $0.684081866$. The polarity-resolved six-coordinate surface has normal fraction $2.3063\times10^{-15}$ and maximum within-sector projection spread $9.53\times10^{-13}$.
 - Measured the coordinate histories on the prescribed circular record. All six contain multiple harmonics; the leading set includes cadence harmonics $1$, $2$, $4$, and $7$, while the positive and negative phase projections have opposite signed cycle means. These are diagnostic response components, not retained frequency eigenvalues.
 - Defined the next ordinary-evolution test: release the eight-member history, reconstruct the six coordinates and rates at every accepted frame, and require off-manifold control, root/clearance validity, coordinate return, current-axis survival, and a complete finite-window ledger.
-- Decomposed F6c into three conjugation-even common coordinates and three conjugation-odd polarity-differential coordinates. This gives effective charge a candidate odd exposure carrier while leaving common envelope rows even, with symmetric and paired asymmetric return basins as neutral and charge-conjugate hypotheses.
+- Decomposed asymmetric counter-breathing representative into three conjugation-even common coordinates and three conjugation-odd polarity-differential coordinates. This gives effective charge a candidate odd exposure carrier while leaving common envelope rows even, with symmetric and paired asymmetric return basins as neutral and charge-conjugate hypotheses.
 - Identified three instantaneous charge-preserving configuration directions, then preserved the delayed-dynamics caveat: a three-mode generation result requires an invariant reduction that slaves rates and retained history to a closed three-coordinate return operator. The coordinate count alone proves no spectrum.
-- Added and passed a focused regression test for the F6b/F6c diagnostic. It protects deterministic reproduction of the root and tangent metrics and is not an independent physics oracle.
-- Revalidated the packet: all 1,227 dollar-delimited math spans in the main inference document render with zero failures through vendored KaTeX; strict content validation reports zero errors and zero warnings, and the F6b/F6c report-grade diagnostic reruns successfully.
+- Added and passed a focused regression test for the scoped-negative circular control/asymmetric counter-breathing representative diagnostic. It protects deterministic reproduction of the root and tangent metrics and is not an independent physics oracle.
+- Revalidated the packet: all 1,227 dollar-delimited math spans in the main inference document render with zero failures through vendored KaTeX; strict content validation reports zero errors and zero warnings, and the scoped-negative circular control/asymmetric counter-breathing representative report-grade diagnostic reruns successfully.
 
-The twenty-fifth checkpoint replaces the unsuccessful pure-orbit hypothesis with a sharply constrained geometry family. The Master Equation response does not preserve one shared orbit, but on the tested circular history it respects fourfold tetrahedral equivalence separately within each polarity sector to numerical precision. This directly favors polarity-differential breathing and cadence as native internal coordinates. F6c remains prescribed and unretained; the tangent result is a geometry clue and an executable release target, not a standard-model particle assignment.
+The twenty-fifth checkpoint replaces the unsuccessful pure-orbit hypothesis with a sharply constrained geometry family. The Master Equation response does not preserve one shared orbit, but on the tested circular history it respects fourfold tetrahedral equivalence separately within each polarity sector to numerical precision. This directly favors polarity-differential breathing and cadence as native internal coordinates. asymmetric counter-breathing representative remains prescribed and unretained; the tangent result is a geometry clue and an executable release target, not a standard-model particle assignment.
 
 ## Checkpoint 26 — 2026-08-23
 
-- Promoted F6c tangency from a sampled observation to an exact symmetry theorem. The improper order-four map $(x,y,z)\mapsto(-x,-z,y)$ together with the module cycle $(0\;3\;1\;2)$ preserves every F6c history separately within each polarity sector. Euclidean equivariance therefore makes the six-coordinate surface dynamically invariant on an ordinary complete-root branch.
+- Promoted asymmetric counter-breathing representative tangency from a sampled observation to an exact symmetry theorem. The improper order-four map $(x,y,z)\mapsto(-x,-z,y)$ together with the module cycle $(0\;3\;1\;2)$ preserves every asymmetric counter-breathing representative history separately within each polarity sector. Euclidean equivariance therefore makes the six-coordinate surface dynamically invariant on an ordinary complete-root branch.
 - Derived the exact current-axis magnitude. It contains both circulation terms proportional to $\dot\theta_\sigma$ and breathing-shear terms proportional to $h_\sigma\dot\rho_\sigma-\dot h_\sigma\rho_\sigma$. A nonzero axial current moment therefore does not require every constituent sector to maintain unidirectional fixed-radius circulation at every instant.
 - Ran a deterministic 512-row prescribed-path search for an unequal-sector, common-uniform-cadence relative equilibrium. After local refinement, its best normalized RMS member residual was $0.836251846$. A frozen 128-time confirmation gave $0.836252421$, with radial, axial, and phase components $0.726873467$, $0.325044315$, and $0.255576344$.
-- Added a declared F6c seed family to the accepted EOM attractor harness using certified circular histories rotated onto the tetrahedral axes. Release root certification completed all 64 ordered bookkeeping rows with no unresolved row; the EOM and analytical release projections agree after the declared charge/coefficient normalization.
+- Added a declared asymmetric counter-breathing representative seed family to the accepted EOM attractor harness using certified circular histories rotated onto the tetrahedral axes. Release root certification completed all 64 ordered bookkeeping rows with no unresolved row; the EOM and analytical release projections agree after the declared charge/coefficient normalization.
 - Added a frame analyzer that reconstructs $h_\pm$, $\rho_\pm$, $\theta_\pm$ and their rates, plus centroid, dipole, current axis, member speed, and symmetry leakage from every accepted EOM frame.
-- Reached a clean $T=0.374$ checkpoint with 321 accepted steps and zero rejected steps. The trajectory remained on the F6c surface to $4.84\times10^{-16}$ in position and $1.75\times10^{-15}$ in velocity; maximum member speed was $0.6870583<c_f$, and minimum accepted-chunk pair distance was $0.3132132$.
+- Reached a clean $T=0.374$ checkpoint with 321 accepted steps and zero rejected steps. The trajectory remained on the asymmetric counter-breathing representative surface to $4.84\times10^{-16}$ in position and $1.75\times10^{-15}$ in velocity; maximum member speed was $0.6870583<c_f$, and minimum accepted-chunk pair distance was $0.3132132$.
 - Resolved a negative-sector axial turn at $T\approx0.0236642$, a negative-sector circulation reversal at $T\approx0.1490220$, and a positive-sector cadence minimum near $T=0.196$. The current moment remained body-axis aligned while changing from $-0.4156922$ to $-0.1288454$.
 - A half-step refinement through $T=0.2$ agreed with the first run to $1.66\times10^{-8}$ in coordinates, $2.45\times10^{-7}$ in rates, $1.47\times10^{-5}$ in turn times, and $5.12\times10^{-9}$ in minimum separation.
 
@@ -334,18 +334,18 @@ The twenty-sixth checkpoint supplies the campaign's first ordinary-evolution geo
 
 ## Checkpoint 27 — 2026-08-23
 
-- Solved the two F6c release-time radial-balance equations and evolved their near-root cadence row. Instantaneous balance substantially slowed radius loss but did not produce a radial turn through $T=0.2$.
+- Solved the two asymmetric counter-breathing representative release-time radial-balance equations and evolved their near-root cadence row. Instantaneous balance substantially slowed radius loss but did not produce a radial turn through $T=0.2$.
 - Moved just beyond the balance row to cadences $(2.38,2.0)$. Both release radial second derivatives became positive, and both sectors completed tiny expansion-to-contraction turns. This establishes an allowed radial breathing direction but not a useful cycle.
 - Increased the cadences to $(3.0,2.5)$ while retaining maximum member speed $0.9<c_f$. At the clean $T=0.152$ checkpoint, the negative radius had reached $0.3012598721$ and turned near $T=0.135464$, while the positive radius had reached $0.3064302684$ and was still expanding.
-- The high-cadence record remained on the exact F6c surface to $5.13\times10^{-16}$ in position and $1.26\times10^{-15}$ in velocity, but accepted-chunk pair clearance fell to $0.1940721$. The larger breathing excursion therefore competes with a tightening phase corridor.
+- The high-cadence record remained on the exact asymmetric counter-breathing representative surface to $5.13\times10^{-16}$ in position and $1.26\times10^{-15}$ in velocity, but accepted-chunk pair clearance fell to $0.1940721$. The larger breathing excursion therefore competes with a tightening phase corridor.
 - Located that corridor in the reconstructed frames. It is the symmetry-equivalent same-polarity negative pair orbit $(0^-,1^-)$ and $(2^-,3^-)$ across the tested launches, not a conjugate-polarity approach. A sector envelope radius can therefore expand while an internal edge orbit pinches.
 - Derived the exact two-edge distance as a sum of squares. Coincidence requires both $h_-=\rho_-/\sqrt2$ and $\theta_-=\pi/6\pmod{2\pi}$, giving the reduced search an analytic collision guard rather than a sampled-separation proxy alone.
-- Derived the geometry inference that F6c has separate common and polarity-differential breathing clocks. A retained candidate must phase-lock both clocks and control the relative-phase edge-pinch observable already carried by the six coordinates; one shared orbital cadence is insufficient.
-- Proved exact field-free global polarity conjugation for a complete canonical charge-product history: unlabeled paths and even F6c coordinates are preserved, while odd coordinates and the polarity-weighted current moment reverse. This is a structural conjugate-pair test, not a particle identity.
-- Added relative negative-sector phase as a declared F6c seed coordinate. A seven-row, fixed-cadence release screen showed that phase alone exchanges same- and opposite-polarity limiting corridors and changes both the sign and magnitude of radial response.
+- Derived the geometry inference that asymmetric counter-breathing representative has separate common and polarity-differential breathing clocks. A retained candidate must phase-lock both clocks and control the relative-phase edge-pinch observable already carried by the six coordinates; one shared orbital cadence is insufficient.
+- Proved exact field-free global polarity conjugation for a complete canonical charge-product history: unlabeled paths and even asymmetric counter-breathing representative coordinates are preserved, while odd coordinates and the polarity-weighted current moment reverse. This is a structural conjugate-pair test, not a particle identity.
+- Added relative negative-sector phase as a declared asymmetric counter-breathing representative seed coordinate. A seven-row, fixed-cadence release screen showed that phase alone exchanges same- and opposite-polarity limiting corridors and changes both the sign and magnitude of radial response.
 - Evolved the best-clearance $\theta_-(0)=\pi/2$ row to $T=0.15$. Both radii expanded and both heights contracted without a turn, while maximum member speed reached $0.983222c_f$. The row trades radial collapse for field-speed approach and is not retained.
 - Derived the exact distance formula for its four-member opposite-polarity limiting edge orbit and reproduced member distances to $5.00\times10^{-16}$.
-- Revalidated the expanded packet: all 1,437 dollar-delimited math spans in the main inference document render through vendored KaTeX with zero failures; strict content validation reports zero errors and zero warnings, and both focused F6b/F6c diagnostics pass.
+- Revalidated the expanded packet: all 1,437 dollar-delimited math spans in the main inference document render through vendored KaTeX with zero failures; strict content validation reports zero errors and zero warnings, and both focused scoped-negative circular control/asymmetric counter-breathing representative diagnostics pass.
 
 The twenty-seventh checkpoint turns cadence and relative sector phase from descriptive variables into controlled geometry parameters. Together they determine the sign and amplitude of radial response, the limiting pair-polarity class, and whether the immediate obstruction is contraction or field-speed approach. The live frontier is now a constrained return-map search over two breathing clocks, relative phase, analytic corridor guards, and field-speed margin, not a fixed-circle orbit search.
 
@@ -358,23 +358,23 @@ The twenty-seventh checkpoint turns cadence and relative sector phase from descr
 - Diagnosed the shared circular-prehistory bias. Every tested seed fixes four simultaneous axial/radial rates to zero. A generic periodic six-coordinate history has only one time-origin freedom and therefore need not intersect that codimension-four section.
 - Recorded the next geometry instrument: a certified breathing prehistory with one Poincare section and nonzero rates in the remaining axial/radial coordinates. Further fixed-circle tuning is low value.
 
-The twenty-eighth checkpoint closes the fixed-circle launch family as the current search vehicle. It has supplied useful breathing, phase, corridor, and field-speed clues, but its synchronized four-turn release section is too restrictive for a generic recurrent F6c history. The next campaign step is not another circle; it is a complete delayed breathing history.
+The twenty-eighth checkpoint closes the fixed-circle launch family as the current search vehicle. It has supplied useful breathing, phase, corridor, and field-speed clues, but its synchronized four-turn release section is too restrictive for a generic recurrent asymmetric counter-breathing representative history. The next campaign step is not another circle; it is a complete delayed breathing history.
 
 ## Checkpoint 29 — 2026-08-23
 
-- Added a certified common-frequency harmonic-breathing prehistory on the exact F6c surface. Analytical endpoint positions and velocities, conservative cubic error enclosures, positive axial/radial coordinates, complete release roots, and a whole-history $c_f=1$ speed bound are explicit admission conditions.
+- Added a certified common-frequency harmonic-breathing prehistory on the exact asymmetric counter-breathing representative surface. Analytical endpoint positions and velocities, conservative cubic error enclosures, positive axial/radial coordinates, complete release roots, and a whole-history $c_f=1$ speed bound are explicit admission conditions.
 - Corrected the release diagnostic from radial acceleration projection to actual radial coordinate acceleration: $\ddot\rho_\sigma=R_\sigma+ \rho_\sigma\dot\theta_\sigma^2$. The first breathing seed had negative $R_\pm$ but positive $\ddot\rho_\pm$, exposing why the distinction matters.
 - Ran two disjoint deterministic release screens totaling 144 rows. Of 111 admitted, root-certified histories, 48 had simultaneous negative radial second derivatives and ten also had simultaneous outward radial rates. The screen is a bounded candidate filter, not a basin-volume estimate.
 - Evolved a fixed double-radial-turn candidate to a durable $T=0.195$ checkpoint. It resolved radial maxima at $T\approx0.0476328$ and $T\approx0.0626490$, completed 478 accepted steps with no rejection, kept maximum speed $0.773405c_f$ and pair clearance $0.265661$, and showed no axial turn.
 - Evolved the only sampled release whose acceleration opposed all four outward axial/radial rates. It resolved axial maxima at $T\approx0.0264644$ and $T\approx0.0792469$ through $T=0.09$, with 252 accepted and zero rejected steps, but neither radial rate turned.
-- Both ordinary histories stayed on the exact F6c surface at approximately $10^{-15}$ normalized velocity residual and kept the polarity-weighted current on its body axis. The complementary turn channels are therefore motions of one invariant geometry, not leakage into unrelated member motion.
+- Both ordinary histories stayed on the exact asymmetric counter-breathing representative surface at approximately $10^{-15}$ normalized velocity residual and kept the polarity-weighted current on its body axis. The complementary turn channels are therefore motions of one invariant geometry, not leakage into unrelated member motion.
 - Extended the analyzer from first-turn reporting to complete turn sequences and six coordinate/rate endpoint deltas. This supplies the residual vector required by a future one-section Poincare return search.
 
-The twenty-ninth checkpoint establishes that complete delayed breathing history materially changes the F6c response and can select axial or radial turning in both polarity sectors. It does not establish a cycle: local release acceleration can change before the associated rate crosses zero, and neither tested history returned all six coordinates and rates. The search frontier is now phase-locking demonstrated axial and radial motions on one complete-root Poincare return while enforcing exact pair-corridor and field-speed guards.
+The twenty-ninth checkpoint establishes that complete delayed breathing history materially changes the asymmetric counter-breathing representative response and can select axial or radial turning in both polarity sectors. It does not establish a cycle: local release acceleration can change before the associated rate crosses zero, and neither tested history returned all six coordinates and rates. The search frontier is now phase-locking demonstrated axial and radial motions on one complete-root Poincare return while enforcing exact pair-corridor and field-speed guards.
 
 ## Checkpoint 30 — 2026-08-23
 
-- Added a common cycle-phase coordinate to the certified F6c harmonic-history generator, preserving exact symmetry and analytical state reconstruction at every sampled phase.
+- Added a common cycle-phase coordinate to the certified asymmetric counter-breathing representative harmonic-history generator, preserving exact symmetry and analytical state reconstruction at every sampled phase.
 - Built a whole-cycle residual that compares EOM coordinate accelerations with the accelerations required by one immutable harmonic history. The residual keeps all six acceleration components, pair clearance, root status, and field-speed margin separate.
 - Tested the double-radial-turn and double-axial-turn histories around complete 12-phase cycles. Their RMS residuals were $9.895$ and $16.208$; the observed finite-time turns therefore do not make either prescribed sine wave a cycle.
 - Found and rejected an eight-phase sampling alias. A provisional RMS $3.773$ row deteriorated to $7.022$ when frozen at 16 phases and exposed an intervening $0.1202$ pair corridor.
@@ -382,19 +382,19 @@ The twenty-ninth checkpoint establishes that complete delayed breathing history 
 - Added one cosine cadence-modulation amplitude per polarity sector because phase acceleration dominated the residual and ordinary evolution had shown strong cadence exchange. A local row favored nearly common negative modulation near $(-0.086,-0.089)$, but its frozen 24-phase RMS remained $2.816$ with maximum residual $10.518$.
 - Concluded at bounded-search grade that cadence breathing is a supported internal coordinate, while one common-frequency sine/cosine waveform is too rigid. Preserved the clustered row only as a seed for nonlinear evolved return work.
 
-The thirtieth checkpoint changes the meaning of the frequency clue. F6c does not presently support a simple orbit or one sinusoidal breathing clock whose prescribed acceleration reproduces itself. The ordinary and prescribed records instead favor nonlinear exchange among axial breathing, radial breathing, and sector cadence while retaining one exact symmetry surface and body-fixed current channel. A viable recurrence frequency must therefore be a property of the complete delayed return, with multiple internal harmonics and possibly circulation reversal inside one period.
+The thirtieth checkpoint changes the meaning of the frequency clue. asymmetric counter-breathing representative does not presently support a simple orbit or one sinusoidal breathing clock whose prescribed acceleration reproduces itself. The ordinary and prescribed records instead favor nonlinear exchange among axial breathing, radial breathing, and sector cadence while retaining one exact symmetry surface and body-fixed current channel. A viable recurrence frequency must therefore be a property of the complete delayed return, with multiple internal harmonics and possibly circulation reversal inside one period.
 
 ## Checkpoint 31 — 2026-08-23
 
 - Released the best frozen phase-modulated harmonic row into ordinary EOM evolution, allowing its waveform to emerge from the delayed dynamics.
 - Resolved a positive-sector axial maximum at $T\approx0.140865$ and the first decreasing return to the initial section $h_+=0.3$ at $T\approx0.272382754$.
 - Measured the other eleven coordinate-and-rate differences at that section. Their RMS was $0.825221$, with maximum residual $\Delta\dot\theta_-=2.591159$; the event is therefore a one-coordinate section return, not recurrence.
-- Continued the same record through the last accepted state at $T=0.28625$. It retained pair clearance $0.296293$, stayed on the exact F6c surface to $4.72\times10^{-16}$ normalized position and $8.30\times10^{-16}$ velocity residual, and kept the current on its body axis to $1.36\times10^{-15}$.
+- Continued the same record through the last accepted state at $T=0.28625$. It retained pair clearance $0.296293$, stayed on the exact asymmetric counter-breathing representative surface to $4.72\times10^{-16}$ normalized position and $8.30\times10^{-16}$ velocity residual, and kept the current on its body axis to $1.36\times10^{-15}$.
 - The negative-sector cadence rose to $3.616172$, giving member speed $0.999765c_f$. The next step was rejected because all four symmetry-equivalent negative self-history rows required an uncertified caustic route with `numeric_transmitter_factor_sign_uncertified`.
 - Classified the result at measured diagnostic grade as a sector-local cadence-caustic failure coincident with the field-speed boundary. It is not a collision, off-surface breakup, retained braid, or universal theorem.
 - Strengthened the next return-map objective: minimize all remaining coordinates and rates, especially both sector cadences, while preserving pair clearance, member-speed margin, and an explicit causal-root transmitter-factor margin.
 
-The thirty-first checkpoint supplies the first nonlinear F6c Poincare-section measurement. Its main value is negative but geometric: a neutral, symmetric, well-separated assembly can fail through internal polarity-differential cadence runaway while its gross shape remains coherent. A viable braid needs a native cadence regulator—turning, circulation reversal, or transfer into other shape motion—before any constituent history reaches the causal-root caustic margin.
+The thirty-first checkpoint supplies the first nonlinear asymmetric counter-breathing representative Poincare-section measurement. Its main value is negative but geometric: a neutral, symmetric, well-separated assembly can fail through internal polarity-differential cadence runaway while its gross shape remains coherent. A viable braid needs a native cadence regulator—turning, circulation reversal, or transfer into other shape motion—before any constituent history reaches the causal-root caustic margin.
 
 ## Checkpoint 32 — 2026-08-23
 
@@ -407,24 +407,24 @@ The thirty-first checkpoint supplies the first nonlinear F6c Poincare-section me
 - Continued the zero-radial row to a durable $T=0.36$ checkpoint. No larger return appeared. Negative circulation reversed, the two radii moved in opposite directions, maximum member speed reached $0.91983c_f$, and the limiting opposite-polarity edge orbit narrowed to $0.21782$.
 - Stopped the run recoverably as root work rose to 1,396 MPFR pairs in the last accepted chunk. This is a cost boundary, not a physical halt or nonexistence result.
 
-The thirty-second checkpoint corrects the return-search objective. A frequency clue cannot be assigned to any scalar coordinate that happens to recross its initial level. The period must be attached to a nontrivial return of ordered braid identity or topology after sufficient internal motion. Otherwise optimization collapses toward infinitesimal out-and-back arcs. This is a general requirement for every proposed standard-model braid, not only F6c.
+The thirty-second checkpoint corrects the return-search objective. A frequency clue cannot be assigned to any scalar coordinate that happens to recross its initial level. The period must be attached to a nontrivial return of ordered braid identity or topology after sufficient internal motion. Otherwise optimization collapses toward infinitesimal out-and-back arcs. This is a general requirement for every proposed standard-model braid, not only asymmetric counter-breathing representative.
 
 ## Checkpoint 33 — 2026-08-23
 
-- Enumerated all 24 signed-coordinate orthogonal symmetries of the tetrahedral module axes and found eight that preserve the exact F6c common-phase chart. Four are proper rotations.
+- Enumerated all 24 signed-coordinate orthogonal symmetries of the tetrahedral module axes and found eight that preserve the exact asymmetric counter-breathing representative common-phase chart. Four are proper rotations.
 - Reduced those proper rotations to two distinct phase actions: the direct action $(\theta_+,\theta_-)\mapsto(\theta_+,\theta_-)$ and the reflected action $(\theta_+,\theta_-)\mapsto (-\theta_+-\pi/3,-\theta_-+\pi/3)$.
 - Derived the associated rate conditions. Direct recurrence preserves both cadences and requires integer $2\pi$ windings. Reflected recurrence reverses both cadences and includes a same-polarity module permutation.
 - Distinguished an ordered path-history return from an orientation-quotiented geometric return. The reflected action cannot be promoted to braid identity without a separate exchange-history result.
-- Added both exact actions to the F6c trajectory analyzer. The zero-radial row never entered a nonzero direct winding cell. Its minimum reflected RMS was $0.844798$ at $T=0.297$, with maximum component $1.752080$.
+- Added both exact actions to the asymmetric counter-breathing representative trajectory analyzer. The zero-radial row never entered a nonzero direct winding cell. Its minimum reflected RMS was $0.844798$ at $T=0.297$, with maximum component $1.752080$.
 - Classified the smallest direct residual, at the first stored frame $T=0.002$ in winding cell $(0,0)$, as the same near-release degeneracy already exposed by the scalar section crossing.
 
-Plainly: the campaign now has an exact, geometry-derived definition of what a candidate F6c cycle must return. It also exposes a genuine ontology question: whether a spatially rotated configuration with exchanged same-polarity modules is the same braid depends on the ordered delayed histories, not on the instantaneous shape alone.
+Plainly: the campaign now has an exact, geometry-derived definition of what a candidate asymmetric counter-breathing representative cycle must return. It also exposes a genuine ontology question: whether a spatially rotated configuration with exchanged same-polarity modules is the same braid depends on the ordered delayed histories, not on the instantaneous shape alone.
 
-The thirty-third checkpoint converts “frequency implies regular motion” into a falsifiable identity condition. A frequency belongs to the smallest nontrivial return of the complete ordered delayed geometry, after declaring allowed rotations, windings, and module exchanges. None of the evolved F6c rows examined so far meets that condition.
+The thirty-third checkpoint converts “frequency implies regular motion” into a falsifiable identity condition. A frequency belongs to the smallest nontrivial return of the complete ordered delayed geometry, after declaring allowed rotations, windings, and module exchanges. None of the evolved asymmetric counter-breathing representative rows examined so far meets that condition.
 
 ## Checkpoint 34 — 2026-08-23
 
-- Applied the exact direct and reflected return tests to 2,451 stored F6c manifests. Fifteen were usable evolved records; none entered a nonzero direct winding cell.
+- Applied the exact direct and reflected return tests to 2,451 stored asymmetric counter-breathing representative manifests. Fifteen were usable evolved records; none entered a nonzero direct winding cell.
 - Identified the cycle-phase-$5.5$ release as the smallest stored reflected residual. Its minimum occurred at the last saved frame, so the same immutable history was resumed rather than retuned.
 - Continued it from $T=0.20$ through durable checkpoints at $0.24$ and $0.25$ to its last accepted state at $T=0.251$, with 303 accepted and one rejected step.
 - Measured only shallow reflected-RMS improvement: $0.545956$, $0.536961$, $0.535204$, and $0.535034$ at those successive times.
@@ -438,7 +438,7 @@ The thirty-fourth checkpoint supplies a more discriminating motion clue. A viabl
 
 ## Checkpoint 35 — 2026-08-23
 
-- Derived the exact per-sector F6c member-speed identity $v_\sigma^2=\dot h_\sigma^2+\dot\rho_\sigma^2+ (\rho_\sigma\dot\theta_\sigma)^2$ from the orthonormal moving frame.
+- Derived the exact per-sector asymmetric counter-breathing representative member-speed identity $v_\sigma^2=\dot h_\sigma^2+\dot\rho_\sigma^2+ (\rho_\sigma\dot\theta_\sigma)^2$ from the orthonormal moving frame.
 - Added axial, radial, and tangential squared-speed fractions to the trajectory analyzer, together with direct reconstruction against measured member speeds.
 - Verified the identity independently across both polarities and all four tetrahedral modules; analyzer reconstruction residual stayed below $10^{-15}$ on the two boundary records.
 - Found that the phase-zero failure used $93.66\%$ of negative-sector squared speed in circulation, $6.34\%$ axially, and less than $0.001\%$ radially.
@@ -451,7 +451,7 @@ The thirty-fifth checkpoint supplies a compact comparison space for candidate br
 
 ## Checkpoint 36 — 2026-08-23
 
-- Recast each exact F6c sector current moment as $m_{x,\sigma}=\pm(4/3)\mathbf a_\sigma\cdot\mathbf q_\sigma$, where $\mathbf q_\sigma=(\dot h_\sigma,\dot\rho_\sigma, \rho_\sigma\dot\theta_\sigma)$ is the orthonormal speed-rate vector and $\mathbf a_\sigma$ depends only on instantaneous shape.
+- Recast each exact asymmetric counter-breathing representative sector current moment as $m_{x,\sigma}=\pm(4/3)\mathbf a_\sigma\cdot\mathbf q_\sigma$, where $\mathbf q_\sigma=(\dot h_\sigma,\dot\rho_\sigma, \rho_\sigma\dot\theta_\sigma)$ is the orthonormal speed-rate vector and $\mathbf a_\sigma$ depends only on instantaneous shape.
 - Derived the shape-dependent current-capacity bound $|m_{x,\sigma}|\le(4/3)\|\mathbf a_\sigma\|v_\sigma$.
 - Identified one current-efficient rate direction and a two-dimensional instantaneous current-null plane for each polarity sector.
 - Verified the formulas by independent direct summation of all module cross-products for both polarities; record-level residuals stayed below $10^{-15}$.
@@ -464,7 +464,7 @@ The thirty-sixth checkpoint adds an efficient-motion requirement. A candidate ch
 
 ## Checkpoint 37 — 2026-08-23
 
-- Classified both reflected proper-rotation actions as order-two half-turns about axes transverse to the exact F6c current axis.
+- Classified both reflected proper-rotation actions as order-two half-turns about axes transverse to the exact asymmetric counter-breathing representative current axis.
 - Verified that each sends $\hat{\mathbf x}$ to $-\hat{\mathbf x}$, reverses both sector cadences, exchanges same-polarity modules, and squares to the identity phase action.
 - Derived that an exact reflected relative periodic orbit has reduced shape period $\tau$ but fixed-frame current period $2\tau$.
 - Derived zero fixed-frame current average over $2\tau$ when the reflected half-cycle antisymmetry holds throughout the orbit.
@@ -472,15 +472,15 @@ The thirty-sixth checkpoint adds an efficient-motion requirement. A candidate ch
 
 Plainly: “the geometry repeats” is not yet a complete frequency statement. A shape can recur after half a cycle while its current remains reversed.
 
-The thirty-seventh checkpoint adds observable-specific period bookkeeping. A shape-sensitive recovery target and a current-sensitive recovery target can carry a factor-of-two frequency relation on the reflected F6c symmetry class. This is a classical finite-group consequence, not an imported spin rule or a particle assignment.
+The thirty-seventh checkpoint adds observable-specific period bookkeeping. A shape-sensitive recovery target and a current-sensitive recovery target can carry a factor-of-two frequency relation on the reflected asymmetric counter-breathing representative symmetry class. This is a classical finite-group consequence, not an imported spin rule or a particle assignment.
 
 ## Checkpoint 38 — 2026-08-23
 
-- Generalized the F6c result to a relative-return rule: if $Z(T+\tau)=gZ(T)$, each observable repeats according to the order of its own representation of $g$.
-- Added an executable return ledger for every proper F6c chart action.
+- Generalized the asymmetric counter-breathing representative result to a relative-return rule: if $Z(T+\tau)=gZ(T)$, each observable repeats according to the order of its own representation of $g$.
+- Added an executable return ledger for every proper asymmetric counter-breathing representative chart action.
 - Recorded reflected return orders one for orientation-quotiented scalar shape and two for both sector cadence and fixed-frame axial current.
 - Identified integer frequency ratios as possible representation-order or harmonic effects of one geometric clock, rather than automatic evidence for several independent internal clocks.
-- Kept the spinor boundary explicit: F6c supplies an ordinary vector reversal, not a nontrivial $4\pi$ ordered-history lift.
+- Kept the spinor boundary explicit: asymmetric counter-breathing representative supplies an ordinary vector reversal, not a nontrivial $4\pi$ ordered-history lift.
 
 Plainly: the question “what motion supplies this frequency?” must include “which feature of the motion is being measured?” The same delayed cycle can repeat its shape and its current on different schedules.
 
@@ -489,7 +489,7 @@ The thirty-eighth checkpoint adds a reusable inference tool for particle compari
 ## Checkpoint 39 — 2026-08-23
 
 - Derived exact sector-current flow as a sum of shape-direction rotation and Master Equation acceleration of the collective rate vector.
-- Deduplicated the certified release archive by physical F6c coordinates and coupling. In the 2,299-geometry pre-local-screen census, 1,079 releases had opposed sector-current derivatives, 190 canceled at least 90% of their absolute derivative sum, and 29 met the declared active-handoff screen.
+- Deduplicated the certified release archive by physical asymmetric counter-breathing representative coordinates and coupling. In the 2,299-geometry pre-local-screen census, 1,079 releases had opposed sector-current derivatives, 190 canceled at least 90% of their absolute derivative sum, and 29 met the declared active-handoff screen.
 - Identified a conjugate current handoff whose sector slopes $(-0.437531,+0.434729)$ left total slope $-0.00280243$ on current $-0.723067$. A $10^{-4}$ EOM continuation independently reproduced the two slopes.
 - Separated geometric survival from current persistence: the lowest-curvature guarded release remained separated through $T=0.40$ but lost 84% of its current.
 - Added root-time pressure as a tolerance-relative continuation guard. Two distinct histories approached pressure $0.982$ and $0.999$ before known same- and cross-polarity root-enclosure failures while root multiplicity, transmitter-factor magnitude, and spatial clearance remained ordinary.
@@ -517,7 +517,7 @@ The fortieth checkpoint supplies the campaign's strongest local dynamical clue: 
 
 ## Checkpoint 41 — 2026-08-23
 
-- Derived an exact linear pair-distance-rate row on the F6c six-coordinate speed frame.
+- Derived an exact linear pair-distance-rate row on the asymmetric counter-breathing representative six-coordinate speed frame.
 - Combined current and one pair corridor into a two-row constraint projector. Target current and target corridor rate leave a four-dimensional affine joint-neutral rate space at fixed shape.
 - Applied the projector to the selected guarded release. The minimum-norm current-only motion would have closed its limiting pair at rate $-0.200974$.
 - Found that carrying the same current on the nonclosing boundary raises the minimum collective rate norm from $0.333269$ to $0.368445$; reproducing the observed opening rate $+0.195976$ raises it to $0.455370$.
@@ -535,7 +535,7 @@ The forty-first checkpoint converts the qualitative current-versus-survival trad
 ## Checkpoint 42 — 2026-08-23
 
 - Identified one artificial restriction in the shared-phase harmonic seed family: at fixed endpoint shape it permits only one common proportionality between all four axial/radial displacements and rates.
-- Extended the F6c history instrument with independent phase offsets for the positive/negative axial and radial breathing coordinates while preserving prior shared-phase records as the zero-offset default.
+- Extended the asymmetric counter-breathing representative history instrument with independent phase offsets for the positive/negative axial and radial breathing coordinates while preserving prior shared-phase records as the zero-offset default.
 - Constructed an exact endpoint-matched harmonic prehistory for the selected current-and-opening minimax rate at breathing frequency $1.25$. The four amplitudes were $0.061712$, $0.117372$, $0.107764$, and $0.066783$.
 - Reconstructed the original shape, target current $-0.728215$, opening rate $+0.195976$, and equal sector speeds $0.341973$ to floating-point precision. All 64 release root rows certified under the strict $10^{-5}$ contract.
 - Evolved the same immutable history through $T=0.28$ with 318 accepted and zero rejected steps. Positive cadence reversed near $T=0.194854$ while the maximum member speed over the interval remained $0.403658$.

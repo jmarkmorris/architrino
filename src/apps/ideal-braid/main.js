@@ -20,7 +20,7 @@ export function reportIdealBraidBootstrapError(
   banner.id = "ideal-braid-boot-error";
   banner.className = "ideal-braid-boot-error";
   banner.setAttribute?.("role", "alert");
-  banner.textContent = `A1 Lorentz Geometry failed to initialize: ${message}`;
+  banner.textContent = `Coincident-Midpoint Three-Axis Circular Lorentz Geometry failed to initialize: ${message}`;
   appElement.prepend?.(banner);
   return banner;
 }

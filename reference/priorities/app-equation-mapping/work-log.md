@@ -6,6 +6,13 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-01 — Arbitrary carousel promotion withdrawn
+
+- Withdrew AEM-004 at operator direction because the task proposed promoting an unspecified equation without a named comprehension gap, comparison use case, or other reason that would make carousel placement valuable.
+- Added a re-entry rule: any future carousel addition must be a new accepted task naming the need, selected equation, intended callouts, claim boundary, and review condition. No equation was promoted, and no corpus, runtime, generated record, or equation claim changed.
+- Moved AEM-005 to deferred because a static review packet requires an operator-selected local editor draft. With no executable local object, the workstream is now unranked rather than retaining the withdrawn task's inferred attention score.
+- Synchronized the unified ranking and active inventory. Lower ranked active owners moved up one position without score changes.
+
 ### 2026-08-29 — Portable equation action label adopted
 
 - Promoted `View →` from a web-reader-only transformation to the canonical portable Markdown label at operator direction, so VS Code preview and other Markdown readers no longer expose the superseded descriptive sentence.

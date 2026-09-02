@@ -1900,7 +1900,7 @@ That means a Koide-like benchmark, if it is useful at all, belongs first to the 
 
 To advance from qualitative thesis to quantitative mass prediction, the active mass program must close five linked steps.
 
-1. **Stable A1 attractor target:** derive one robust Noether braid attractor family whose three persistent binaries have independently assignable positive radii and frequencies, mutually orthogonal axes at the Family-A near-rest endpoint, and axes that converge toward the group-translation direction along the prescribed flattening coordinate; record the remaining binary coordinates, branch data, and stability diagnostics. The `A1` label fixes this prescribed chart but does not prejudge retention.
+1. **Stable coincident-midpoint orthogonal-axis braid attractor target:** derive one robust Noether braid attractor family whose three persistent binaries have independently assignable positive radii and frequencies, mutually orthogonal axes at the orthogonal-axis three-binary near-rest endpoint, and axes that converge toward the group-translation direction along the prescribed flattening coordinate; record the remaining binary coordinates, branch data, and stability diagnostics. The `coincident-midpoint orthogonal-axis braid` label fixes this prescribed chart but does not prejudge retention.
 2. **Internal energy ledger:** compute the dimensionless internal energy stored in that attractor without assuming the particle mass being derived.
 3. **Shielding extraction:** derive $\zeta(A)$ from far-field wake cancellation and exposed coupling geometry.
 4. **Medium-dressed response:** derive the response tensor that turns shielded internal energy into inertial and gravitational response in the weak-field regime.
@@ -1908,7 +1908,7 @@ To advance from qualitative thesis to quantitative mass prediction, the active m
 
 #### Reference Attractor Gate
 
-The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral rest-branch candidate constrained to the A1 prescribed coordinates in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation. Failure to retain the A1 coordinate relations on the same evolved record rejects this candidate before any mass comparison.
+The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral rest-branch candidate constrained to the coincident-midpoint orthogonal-axis braid prescribed coordinates in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation. Failure to retain the coincident-midpoint orthogonal-axis braid coordinate relations on the same evolved record rejects this candidate before any mass comparison.
 
 This attractor should not be pictured as three independent circular binaries. Its source record assigns different causal-speed regimes to the persistent indices: binary 1 is self-hit and super-field-speed on the active branch, binary 2 sits near the $v=c_f$ fold, and binary 3 remains sub-field-speed as the shielding and boundary-coupling channel. These assignments define the $A_0$ candidate record; they are not taxonomy-assigned roles. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
 
@@ -1953,7 +1953,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 
 ### Color Charge SU(3)
 
-This chapter gives a candidate assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and a prescribed A1 scaffold are hypothesized to fit together before the particle assignment and full topological confinement derivation are closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md).
+This chapter gives a candidate assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and a prescribed coincident-midpoint orthogonal-axis braid scaffold are hypothesized to fit together before the particle assignment and full topological confinement derivation are closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md).
 
 The standard color label is extremely successful as algebra. The implementation question is different: what physical feature of a quark assembly can be counted in three ways, transformed by an octet of corridor modes, and hidden inside color-singlet hadrons? This chapter answers at the recovery-target level: color is axis exceptionality in the axial frame of a Noether braid assembly.
 
@@ -1963,9 +1963,9 @@ That means the word `color` should be read as a structured bookkeeping channel, 
 
 #### Ontology, Notation, and Generations
 
-##### A1 Scaffold
+##### Coincident-Midpoint Orthogonal-Axis Braid Scaffold
 
-The working Gen-I fermion mapping uses a candidate **A1 scaffold**: three persistently indexed electrino:positrino binaries whose positive radii and frequencies are independently assignable, whose axes are mutually orthogonal at the Family-A near-rest endpoint, and whose axes converge toward the group-translation direction along the prescribed flattening coordinate. Phases, axial half-separations, transverse orbit radii, and circulation remain explicit binary coordinates. **Noether braid** remains the broader neutral six-architrino class; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). The taxonomy defines this prescribed geometry only; it does not establish a quark assignment, retention, stability, or color mechanism.
+The working Gen-I fermion mapping uses a candidate **coincident-midpoint orthogonal-axis braid scaffold**: three persistently indexed electrino:positrino binaries whose positive radii and frequencies are independently assignable, whose axes are mutually orthogonal at the orthogonal-axis three-binary near-rest endpoint, and whose axes converge toward the group-translation direction along the prescribed flattening coordinate. Phases, axial half-separations, transverse orbit radii, and circulation remain explicit binary coordinates. **Noether braid** remains the broader neutral six-architrino class; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). The taxonomy defines this prescribed geometry only; it does not establish a quark assignment, retention, stability, or color mechanism.
 
 The scaffold supplies the stable reference triad. The axial layer supplies the visible polarity pattern. Color appears only when those two facts together leave one axis distinguishable from the other two.
 
@@ -1986,7 +1986,7 @@ The illustrative source record used in this chapter assigns the following dynami
   - Velocity $v_3 < c_f$
   - Lowest curvature; exposed-envelope expansion/contraction behavior
 
-These speed, radius, curvature, and shielding roles are hypotheses of this source record. They are not meanings of indices 1, 2, and 3, and another A1 branch may assign the derived roles differently.
+These speed, radius, curvature, and shielding roles are hypotheses of this source record. They are not meanings of indices 1, 2, and 3, and another coincident-midpoint orthogonal-axis braid branch may assign the derived roles differently.
 
 Each binary defines one **axis** with two **polar sites**. We use $\epsilon=|e|/6$ for the polarity-unit magnitude, with $\epsilon_-\equiv-\epsilon$ and $\epsilon_+\equiv+\epsilon$. Each polar site is occupied by either:
 
@@ -2012,11 +2012,11 @@ For a Gen‑I baryon (3 quarks):
 - 18 axial architrinos
 - **36 architrinos** total.
 
-We use **A1** only for this prescribed indexed Family-A member and **Noether braid** for the broader neutral six-architrino class. Every color and particle assignment in this chapter remains a candidate mapping.
+We use **coincident-midpoint orthogonal-axis braid** only for this prescribed indexed orthogonal-axis three-binary member and **Noether braid** for the broader neutral six-architrino class. Every color and particle assignment in this chapter remains a candidate mapping.
 
 ##### Generational excitation states
 
-Standard Model “generations” are interpreted as candidate **excitation states** of the same A1-based architecture:
+Standard Model “generations” are interpreted as candidate **excitation states** of the same architecture based on the coincident-midpoint orthogonal-axis braid:
 
 - **Gen‑I (ground‑state assembly)**
   - All three binaries assembled: [1, 2, 3].
@@ -2045,7 +2045,7 @@ This is the fermion-sector consumer of the pro/anti orientation basis defined in
 
 #### Colorless Fermions: Axis Uniformity
 
-**Core rule:** Color charge appears only when the indexed A1 axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+**Core rule:** Color charge appears only when the indexed coincident-midpoint orthogonal-axis braid axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
 This is the entry point for the whole chapter. Leptons are colorless because their axial pattern does not single out axis 1, 2, or 3. Quarks are colored because their axial pattern does.
 
@@ -2167,7 +2167,7 @@ These span the color space: $\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_1\
 
 Pole assignment inside the exceptional axis (which pole hosts the electrino) changes local dipole structure but not which axis is exceptional; at the level of color it’s a **gauge‑like internal redundancy**.
 
-Anti-up quarks use the polarity-conjugate A1 branch with 5 electrinos and 1 positrino in the axial layer, forming the conjugate triplet **3̄** with basis $|\bar u_1\rangle,|\bar u_2\rangle,|\bar u_3\rangle$.
+Anti-up quarks use the polarity-conjugate coincident-midpoint orthogonal-axis braid branch with 5 electrinos and 1 positrino in the axial layer, forming the conjugate triplet **3̄** with basis $|\bar u_1\rangle,|\bar u_2\rangle,|\bar u_3\rangle$.
 
 ##### Down‑type quarks ($4\epsilon_-,2\epsilon_+$)
 
@@ -2453,7 +2453,7 @@ In SU(3):
 
 - Baryon color state: $3 \otimes 3 \otimes 3 \supset 1$ (fully antisymmetric singlet).
 
-In A1-based geometry:
+In geometry based on the coincident-midpoint orthogonal-axis braid:
 
 - A color singlet baryon is a configuration where each of 1, 2, 3 is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
 - Example proton (uud, schematic):
@@ -2553,7 +2553,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 
 #### Summary and Interfaces
 
-- **A1** is the current three-axis $(1,2,3)$ scaffold candidate used here for carrying conserved charge labels through internal symmetries; delayed-dynamics retention remains a theorem target.
+- **coincident-midpoint orthogonal-axis braid** is the current three-axis $(1,2,3)$ scaffold candidate used here for carrying conserved charge labels through internal symmetries; delayed-dynamics retention remains a theorem target.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon polarity-conjugate neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two positive-polarity dyads, one mixed dyad.
@@ -2876,7 +2876,7 @@ Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite
 
 Claim level: derivation from the braid chirality invariant, conditional on the near-photon geometry above; the status of a right-handed or sterile branch stays under the [empirical gate](#empirical-decision-gates) below, not asserted as doctrine.
 
-The near-photon geometry fixes the neutrino's handedness through the same chiral invariant that organizes every braid's discrete symmetry. A neutral braid carries the pseudoscalar $\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S)$ built from its polarity dipole $\mathbf p$ and spin $\mathbf S$ (see [Discrete-Symmetry Structure](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#discrete-symmetry-structure)), and the weak-flavored transaction channels are exactly the channels that read $\chi$ maximally. Two properties of the neutrino then force its observed one-handedness.
+The near-photon geometry fixes the neutrino's handedness through the same chiral invariant that organizes every braid's discrete symmetry. A neutral braid carries the pseudoscalar $\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S)$ built from its polarity dipole $\mathbf p$ and spin $\mathbf S$ (see [Discrete-Symmetry Structure](../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#discrete-symmetry-structure)), and the weak-flavored transaction channels are exactly the channels that read $\chi$ maximally. Two properties of the neutrino then force its observed one-handedness.
 
 First, the neutrino is near-luminal. At the luminal limit helicity and chirality coincide and become frame-fixed — there is no rest frame in which to overtake the state and reverse its apparent handedness — so $\chi$ is very nearly an invariant label rather than a frame-dependent projection. This is the same limit that makes the fully locked photon a strictly two-helicity object.
 
@@ -2995,9 +2995,9 @@ The neutral-lepton branch is revised by observable gates, not by importing an in
 
 - **Absolute mass gate:** the eigenvalues of $H_{\mathrm{geo}}$ must remain compatible, through the same comparison-layer map from mass-squared response to ordinary mass language, with oscillation splittings, direct kinematic bounds, and cosmological bounds on $\sum_i m_i$. If future data force the lightest neutrino mass close to zero, the near-photon phase operator should explain that as a boundary or shielding limit of the neutral core-pair spectrum rather than as an added parameter.
 - **Mass-ordering gate (referent-pending):** the same $H_{\mathrm{geo}}$ spectrum must recover $\Delta\lambda_{21}>0$ with comparison magnitude near $7.5\times10^{-5}\,\mathrm{eV}^2$ and an atmospheric-scale gap near $2.4\times10^{-3}\,\mathrm{eV}^2$. The sign of the latter gap must select either normal or inverted ordering before oscillation fitting; the eigenvalues may not be permuted afterward to match the preferred ordering. Because these gaps are residuals about the unexhibited photon lock, this gate becomes measurable only after the base branch exists.
-- **Dirac/Majorana gate:** Claim level: derivation from the parity of the chirality invariant, conditional on that invariant being $C$-odd; the geometry that realizes it is not required, and the open joint below is named rather than deferred. **If the neutrino's handedness invariant is $C$-odd, the assembly is conjugate-distinct, the branch is Dirac-like, and the neutrino does not itself violate total lepton number.** The step is short: polarity conjugation reverses a $C$-odd invariant, $C:\chi\to-\chi$ (see [Discrete-Symmetry Structure](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#discrete-symmetry-structure)), so a self-conjugate neutrino requires $\chi=-\chi$, hence $\chi=0$, hence no handedness at all — contradicting the observed one-handedness of the weak corridor. The orbit of the assembly under $\{1,C,P,CP\}$ then carries four members: the weak-coupled pair $\nu$ and $\bar\nu=CP(\nu)$ at one sign of $\chi$, and the parity enantiomers $C(\nu)$ and $P(\nu)$ at the other. Four states with two decoupled is the Dirac count, not the Majorana count of two.
+- **Dirac/Majorana gate:** Claim level: derivation from the parity of the chirality invariant, conditional on that invariant being $C$-odd; the geometry that realizes it is not required, and the open joint below is named rather than deferred. **If the neutrino's handedness invariant is $C$-odd, the assembly is conjugate-distinct, the branch is Dirac-like, and the neutrino does not itself violate total lepton number.** The step is short: polarity conjugation reverses a $C$-odd invariant, $C:\chi\to-\chi$ (see [Discrete-Symmetry Structure](../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#discrete-symmetry-structure)), so a self-conjugate neutrino requires $\chi=-\chi$, hence $\chi=0$, hence no handedness at all — contradicting the observed one-handedness of the weak corridor. The orbit of the assembly under $\{1,C,P,CP\}$ then carries four members: the weak-coupled pair $\nu$ and $\bar\nu=CP(\nu)$ at one sign of $\chi$, and the parity enantiomers $C(\nu)$ and $P(\nu)$ at the other. Four states with two decoupled is the Dirac count, not the Majorana count of two.
 
-  This argument does not depend on the retained braid geometry. It needs only the *transformation character* of the handedness invariant, not the structure that realizes it: any $C$-odd polar quantity locked to the spin forces the same conclusion, whatever the assembly turns out to look like. The axial polarity dipole $\mathbf p$ of prescribed B1 geometry—one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense—is one realization and is not privileged or claimed retained here.
+  This argument does not depend on the retained braid geometry. It needs only the *transformation character* of the handedness invariant, not the structure that realizes it: any $C$-odd polar quantity locked to the spin forces the same conclusion, whatever the assembly turns out to look like. The axial polarity dipole $\mathbf p$ of prescribed coincident-axis three-binary braid geometry—one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense—is one realization and is not privileged or claimed retained here.
 
   **The open joint is the character itself, and it is the whole gate.** A chiral object admits two distinct pseudoscalars, and they carry opposite $C$-parity. A polarity-type invariant $\operatorname{sign}(\mathbf p\cdot\mathbf S)$ is $C$-odd and $P$-odd, hence $CP$-even. A helicity-type invariant $\operatorname{sign}(\mathbf v\cdot\mathbf S)$ is $P$-odd but $C$-**even**. Both reproduce maximal parity violation, so the observed handedness of the weak channel does not discriminate between them and cannot settle this gate. Only the $C$-odd branch entails Dirac; a $C$-even handedness invariant leaves the neutrino free to be self-conjugate.
 
@@ -5186,7 +5186,7 @@ The photon-channel construction is the canonical electromagnetic transport targe
 *   **The Assembly Target:** A candidate photon channel is modeled as a specific, coherent bundle of these historical influences (per-hit actions), organized into a planar-pair mode whose retained stability remains to be established. In this construction, emission is not the excitation of a background field; it is the release of an action ledger into the candidate photon channel.
 
 #### Geometric Unit: The Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
-The nearest generic taxonomy chart is [C2](../../../../markdown/aaa/noether-braid/braid-family-c.md#c2), which defines the opposite-circulation composition of two complete B1 records. It becomes a photon coordinate skeleton only if both photon-side planar records are established as B1 components. The photon hypothesis is more restrictive: it additionally requires planarization, coaxial placement, propagation-axis alignment, polarity conjugation, and the closure properties developed below. Those extra requirements remain photon-channel claims rather than Family-C coordinates.
+The nearest generic taxonomy chart is the [counter-rotating coincident-center two-component circular configuration](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#counter-rotating-coincident-center-two-component-circular-configuration), which defines the opposite-circulation composition of two complete coincident-axis three-binary braid records. It becomes a photon coordinate skeleton only if both photon-side planar records are established as coincident-axis three-binary braid components. The photon hypothesis is more restrictive: it additionally requires planarization, coaxial placement, propagation-axis alignment, polarity conjugation, and the closure properties developed below. Those extra requirements remain photon-channel claims rather than two-component circular coordinates.
 
 At the finest scale, the photon unit is a composite assembly:
 *   **Planar braids:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
@@ -5197,7 +5197,7 @@ At the finest scale, the photon unit is a composite assembly:
 
 #### Relation To The Symmetry-Breaking Threshold
 
-The candidate photon carrier is close to the planar geometry assigned to the Family-A flat endpoint $\lambda_A=1$. At a horizon interface the three Family-A binary axes are hypothesized to converge toward the group-translation direction while branch-derived speed rows approach $c_f$; in the photon theorem target, the carrier is a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared prescribed geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
+The candidate photon carrier is close to the planar geometry assigned to the orthogonal-axis three-binary flat endpoint $\lambda_A=1$. At a horizon interface the three orthogonal-axis three-binary binary axes are hypothesized to converge toward the group-translation direction while branch-derived speed rows approach $c_f$; in the photon theorem target, the carrier is a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared prescribed geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
 
 The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating polarity-conjugate planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
 
@@ -5847,7 +5847,7 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 ### Pair production (note)
 
 - This note covers photon-triggered conversion, not ordinary atomic or material absorption. Consuming the incoming photon means closing the free planar-pair ledger; it does not automatically mean that the outgoing fermion identities are inherited from the photon constituents.
-- A typed neutral two-braid source assembly should be treated as the local source architecture for spontaneous pro-anti fermion pair production. Its relation record declares polarity conjugation and pro/anti orientation separately; it is not a photon or a Family-C member merely because it contains two braid records. With sufficient energy input, a pair-conversion mode can unpack that neutral source into a fermion and antifermion while returning the Noether braid bookkeeping to overall neutrality.
+- A typed neutral two-braid source assembly should be treated as the local source architecture for spontaneous pro-anti fermion pair production. Its relation record declares polarity conjugation and pro/anti orientation separately; it is not a photon or a two-component circular member merely because it contains two braid records. With sufficient energy input, a pair-conversion mode can unpack that neutral source into a fermion and antifermion while returning the Noether braid bookkeeping to overall neutrality.
 - In this framing, the key point is not limited to the electron channel. A typed two-braid source can furnish the neutral braid content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
 - Photon-photon pair production must carry an explicit provenance fork rather than assuming the answer. The direct-rearrangement row sets $\Delta\mathcal I_{\mathrm{sea}}=0$ and asks whether the two incoming photon ledgers alone supply the outgoing $e^-e^+$ Noether braid and axial inventories. The recruited-source row allows a declared neutral two-braid source assembly from the Noether sea to supply or receive braid content while the photons provide the energy and event trigger.
 - A compact inventory equation for the fork is

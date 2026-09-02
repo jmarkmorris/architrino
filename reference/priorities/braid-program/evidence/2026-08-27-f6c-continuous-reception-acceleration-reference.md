@@ -1,6 +1,6 @@
-# F6c Continuous-Reception Acceleration Range Reference
+# asymmetric counter-breathing representative Continuous-Reception Acceleration Range Reference
 
-Status: separate reference candidate frozen for independent review, 2026-08-27. This batch contains only a conditional mathematical adapter and synthetic controls. No actual F6c or F5 history has been parsed or evaluated; no root search, EOM execution, quadrature, peak, metric, score, resource allowance or refinement is introduced.
+Status: separate reference candidate frozen for independent review, 2026-08-27. This batch contains only a conditional mathematical adapter and synthetic controls. No actual asymmetric counter-breathing representative or phase-varying display representative history has been parsed or evaluated; no root search, EOM execution, quadrature, peak, metric, score, resource allowance or refinement is introduced.
 
 ## Scope And Fixed Owners
 
@@ -24,7 +24,7 @@ Plainly: the reference receives one small, fully identified mathematical object,
 
 The eight ordered labels are `(0+,0-,1+,1-,2+,2-,3+,3-)`, paired with path IDs `(1,2,3,4,5,6,7,8)`. Each immutable `Member` carries its exact signed charge, original mapped history digest and the two exact frame positions and velocities. In `f6c-reconstruction-family` scope, the fixed literals are `coupling="10.304229970992187"`, signed charge magnitude `"0.1666666666666666666666666666666667"`, `ruler="0.5320012303229503"` and `field_speed="1"`, with retained domain `[-8,0.13]` and a future frame. The charge is its recorded decimal, not an exact one-sixth substitution. `synthetic-control` permits explicit positive coupling and ruler and nonzero signed charges consistent with the same labels; it supplies no actual-data authority. Every numerical instantiation uses $c_f=1$.
 
-Plainly: actual F6c settings are not adjustable through this interface. Synthetic examples have a separate label and cannot be relabeled actual evidence.
+Plainly: actual asymmetric counter-breathing representative settings are not adjustable through this interface. Synthetic examples have a separate label and cannot be relabeled actual evidence.
 
 `RootRow` is a declared projection of the existing conditional root row, preserving `receiver_id`, `transmitter_id`, `reception`, `emission`, `ordinary_roots_per_reception`, `coincident_endpoint_excluded`, `oldest_residual`, `lower_face_residual`, `upper_face_residual`, `displacement`, `distance`, `transmitter_factor`, `receiver_factor`, `root_free_complement_conditional` and `retained_boundary_contact`. The two original nonself piece arrays are represented by `receiver_coverage_sha256` and `transmitter_coverage_sha256`, using the already specified ordered clipped-piece-list hash. Self rows have empty original library piece arrays but no compact piece-audit records; both projected coverage fields are therefore `None`, preserving actual absence rather than inventing self audit records or hashes. The actual-data mapper must independently authenticate every projected field and nonself coverage hash against its source. No scalar `RootCompletenessCertificate` is fabricated.
 
@@ -97,7 +97,7 @@ Plainly: only the displayed bounds are rounded, always away from the enclosed an
 
 Plainly: these examples have answers supplied by their independent geometry or polynomial derivatives. They test this reference without using an actual candidate history or treating a saved implementation output as truth.
 
-The fake hash tokens and two intentionally arbitrary interval-algebra controls exercise schema and arithmetic plumbing only. They do not constitute genuine root certificates or physical examples. Likewise, applying the literal F6c constants to the stationary synthetic fixture only checks fixed-setting validation; it does not evaluate F6c data.
+The fake hash tokens and two intentionally arbitrary interval-algebra controls exercise schema and arithmetic plumbing only. They do not constitute genuine root certificates or physical examples. Likewise, applying the literal asymmetric counter-breathing representative constants to the stationary synthetic fixture only checks fixed-setting validation; it does not evaluate asymmetric counter-breathing representative data.
 
 Plainly: some tests deliberately isolate bookkeeping from geometry. Their successful execution cannot be mistaken for an accepted actual cover.
 

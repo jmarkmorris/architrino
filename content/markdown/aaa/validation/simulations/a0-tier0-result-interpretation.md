@@ -6,7 +6,7 @@ Tier 0 tests whether a reduced branch chart satisfies the geometric and numerica
 
 A candidate geometry can satisfy preliminary consistency conditions without being a physical attractor. The distinction separates a useful search result from evidence for a stable assembly.
 
-Tier 0 is not an attractor proof. It specifies consistency conditions for a reduced carrier chart before Tier 1 $\eta > 0$ continuation. Any future output must be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
+Tier 0 is not an attractor proof. It specifies consistency conditions for a reduced carrier chart before Tier 1 $\eta > 0$ continuation. Any future output must be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
 
 No computed branch-search result is reported here. The conditions below define a proposed analysis and the limits of any result obtained from it.
 

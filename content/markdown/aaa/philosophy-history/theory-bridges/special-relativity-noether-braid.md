@@ -113,7 +113,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-54061eb42b9596cc)
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $T$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, the source record must declare the indexed clock channel or a transition built from the coupled Family-A ledger. The native clock-map row is therefore an extracted frequency ratio:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $T$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, the source record must declare the indexed clock channel or a transition built from the coupled orthogonal-axis three-binary ledger. The native clock-map row is therefore an extracted frequency ratio:
 $$
 \frac{d\tau}{dT}
 =
@@ -359,7 +359,7 @@ The bridge to Lorentz behavior is then:
 $$
 \text{one-}h\text{ action transaction}
 \longrightarrow
-\text{Family-A branch update}
+\text{orthogonal-axis three-binary branch update}
 \longrightarrow
 \text{assembly-envelope oblation}
 \longrightarrow
@@ -394,7 +394,7 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-42bafaca288740c4)
 for every branch class admitted as a stable clock/ruler material. This is the sense in which the Lorentz response is branch-quantized: the substrate realizes a continuous observer law through discrete admissible ledger classes, and any residual deviation should carry the signature of a branch transition, separator approach, inter-layer resonance, or incomplete wake ledger.
 
-This target also clarifies which part of the Noether braid should be modeled. The full branch solve must include all three indexed binaries because clock rate, action storage, fold sensitivity, and conservation all live in the coupled Family-A ledger. The complete record then supplies the leading geometric projection:
+This target also clarifies which part of the Noether braid should be modeled. The full branch solve must include all three indexed binaries because clock rate, action storage, fold sensitivity, and conservation all live in the coupled orthogonal-axis three-binary ledger. The complete record then supplies the leading geometric projection:
 $$
 \xi_q(v)
 \equiv
@@ -540,7 +540,7 @@ The sum-and-difference identities are exact. Identifying $\delta\tau$ with obser
 The proposed common source is:
 
 1. finite field speed for causal wake transfer,
-2. stable phase closure across indexed Family-A support rows,
+2. stable phase closure across indexed orthogonal-axis three-binary support rows,
 3. deformation of the dynamic exclusion envelope,
 4. clock-frequency extraction from internal cycles,
 5. and medium-dressed response to acceleration.

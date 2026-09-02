@@ -1,6 +1,6 @@
 # Braid Recovery Requirements
 
-Before any particular braid geometry is featured, the theory owes the reader a contract: what must a candidate braid actually deliver? This chapter states that contract once, independently of which realization — one support band, three ordered bands, or another family member — eventually satisfies it. The requirements come in two layers. The retention layer asks whether the family-declared neutral inventory can persist as one coherent causal-return record. The recovery layer asks what a retained branch must then hand to the rest of physics: the clocks, rulers, masses, charges, spectra, statistics, forces, and cosmological histories that general relativity, quantum theory, the Standard Model, and the $\Lambda$CDM-era observations already describe at the observer level.
+Before any particular braid geometry is featured, the theory owes the reader a contract: what must a candidate braid actually deliver? This chapter states that contract once, independently of which realization — one support band, three ordered bands, or another exact configuration — eventually satisfies it. The requirements come in two layers. The retention layer asks whether the source-declared neutral inventory can persist as one coherent causal-return record. The recovery layer asks what a retained branch must then hand to the rest of physics: the clocks, rulers, masses, charges, spectra, statistics, forces, and cosmological histories that general relativity, quantum theory, the Standard Model, and the $\Lambda$CDM-era observations already describe at the observer level.
 
 Stating the requirements realization-independently protects the proof order. A realization chapter may carry beautiful exact structure and still leave every row below open; a recovery chapter may state a sharp observer-level target that no current branch can yet consume. Keeping the contract in one place prevents both failure modes from hiding: every claim in the braid scene can be checked against this chapter's ladder, and every ladder row names the chapter where its detailed burden lives.
 
@@ -8,13 +8,13 @@ Nothing in this chapter is a retained-branch result. Every row below is an oblig
 
 ## Document Role
 
-This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The neutral six-body base lives in [Noether Braid](noether-braid.md#neutral-braid-base); prescribed member definitions live in [Braid Taxonomy](braid-taxonomy.md), [Braid Family A](braid-family-a.md), and [Braid Family B](braid-family-b.md). The shared mathematical machinery lives in [Braid Mathematics](braid-mathematics.md). Proof dispositions are not carried in this chapter; broader diagnostic axes live in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
+This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The neutral six-body base lives in [Noether Braid](noether-braid.md#neutral-braid-base); prescribed member definitions live in [Braid Taxonomy](braid-taxonomy.md), [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md), and [Braid coincident-axis three-binary configurations](3d-braid-assemblies.md). The shared mathematical machinery lives in [Braid Mathematics](braid-mathematics.md). Proof dispositions are not carried in this chapter; broader diagnostic axes live in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
 
 A reader should use this chapter the way an engineer uses a requirements specification: to know what any proposed design must eventually satisfy, and to recognize when a reported success addresses one row while leaving the blocking rows untouched.
 
 ## The Retained-Branch Certificate
 
-The retention question has the same row structure for every family member. A candidate branch $B$ over a test window $W$ is a claim that the family-declared neutral inventory keeps returning to one repeatable causal relationship: the same identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold. The base and Family-A/B cases use six architrinos with inventory $3\epsilon_+ + 3\epsilon_-$; Family C uses twelve worldlines grouped into six neutral binaries. The certificate makes that claim auditable by splitting it into rows that must all close on one ledger identity:
+The retention question has the same row structure for every exact configuration. A candidate branch $B$ over a test window $W$ is a claim that the source-declared neutral inventory keeps returning to one repeatable causal relationship: the same identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold. The base and orthogonal-axis three-binary/B cases use six architrinos with inventory $3\epsilon_+ + 3\epsilon_-$; two-component circular configurations uses twelve worldlines grouped into six neutral binaries. The certificate makes that claim auditable by splitting it into rows that must all close on one ledger identity:
 
 $$
 \mathsf{R}(B,W)
@@ -38,7 +38,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-69d77fe708161a59)
 
-The inventory row fixes which architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, transmitter-side acceleration weights, and lines of action assembled from the true path histories rather than from a compressed acceleration law. The tail, dynamics, action, and Noether rows demand that the delayed accelerations, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The framing row carries the deformation-stable framed-path record, including the declared relation $Lk=\operatorname{Wr}+\operatorname{Tw}$, the framing sign, and its positive conditioning floor. The event and stability rows demand that framing-wall or root-topology crossings are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
+The inventory row fixes which architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the exact configuration enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, transmitter-side acceleration weights, and lines of action assembled from the true path histories rather than from a compressed acceleration law. The tail, dynamics, action, and Noether rows demand that the delayed accelerations, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The framing row carries the deformation-stable framed-path record, including the declared relation $Lk=\operatorname{Wr}+\operatorname{Tw}$, the framing sign, and its positive conditioning floor. The event and stability rows demand that framing-wall or root-topology crossings are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
 
 Retention is the conjunction, never a partial credit:
 
@@ -72,7 +72,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e4481a28161fec1f)
 
-Every predicate must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, framing convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Base-Family Certificate Instantiation](#base-family-certificate-instantiation); any prescribed taxonomy member inherits the same rows and may compress the all-pairs ledger only after its reduction map proves how the compressed entries are inherited.
+Every predicate must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, framing convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate is given in [Neutral-Braid Certificate Instantiation](#neutral-braid-certificate-instantiation); any exact prescribed configuration uses the same rows and may compress the all-pairs ledger only after its reduction map proves how the compressed entries are inherited.
 
 ## The First-Failure Ladder
 
@@ -125,7 +125,7 @@ A retained, transportable braid branch is the theory's proposed common cause for
 | Target | Requirement | Owning chapters |
 | --- | --- | --- |
 | Mass map | Observed particle masses must be extracted as effective inertial response of retained branches — small observed mass from large shielded interior energy — with the extraction rule derived from the same branch record used for retention. | [Particle Masses](../assemblies/particle-masses.md) |
-| Fermion generations | The three-generation ladder must be recovered as a structural ladder of the braid family — the working reading is a shielding-tier ladder — with the generation count derived from the delayed dynamics rather than postulated. | [A1 Shielding](braid-a1-dynamics.md#a1-shielding-and-fermion-generations), [Muon and Tau](../assemblies/fermions/muon-tau.md) |
+| Fermion generations | The three-generation ladder must be recovered as a structural ladder of the braid family — the working reading is a shielding-tier ladder — with the generation count derived from the delayed dynamics rather than postulated. | [coincident-midpoint orthogonal-axis locus Shielding](zero-axial-offset-three-binary-dynamics-and-interpretation.md#coincident-midpoint-orthogonal-axis-three-binary-configuration-shielding-and-fermion-generations), [Muon and Tau](../assemblies/fermions/muon-tau.md) |
 | Spin-statistics and exchange | Fermionic antisymmetry and bosonic shared occupation must be recovered from braid envelope geometry plus an exchange sign consumed from the same retained row that supplies spinor closure, not from a separately selected bookkeeping sign. | [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md), [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) |
 | Photon and Maxwell recovery | The photon channel must be recovered as a propagating assembly of released action history whose superposed delayed potentials reproduce Maxwell behavior, transverse polarization, and propagation at the recovered signal speed. | [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Radiation](../reactions/radiation.md) |
 | Strong force and color | Color bookkeeping, gluon-like exchange, and confinement must be recovered from braid substructure and its interaction channels, including why isolated color-carrying assemblies are unstable. | [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), [Gluons](../assemblies/bosons/gluons.md), [Nucleon Structure](../nuclear-atomic/nucleon-structure.md) |
@@ -153,9 +153,9 @@ Transparency is a bounded-response condition, not zero coupling: the medium must
 
 Three rules keep this contract usable. First, requirements are not evidence: adding, sharpening, or reorganizing rows in this chapter changes no proof status anywhere. Second, claim levels travel with their owning chapters: a row stated here in working-theory voice may be a derivation, a closure target, or a comparison target at its source, and the source governs. Third, the ladder is ordered: any reported success should be located on the proof-burden ladder before it is celebrated, and any reported failure should be located on the first-failure ladder before it is generalized.
 
-## Base-Family Certificate Instantiation
+## Neutral-Braid Certificate Instantiation
 
-This section instantiates the general contract for the base family, the **neutral braid** — the six-architrino, polarity-balanced case whose full definition follows in [Noether Braid](noether-braid.md#neutral-braid-base); the inventory facts used here (three electrinos, three positrinos, thirty ordered distinct source pairs) are all a reader needs in advance. The neutral braid claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
+This section instantiates the general contract for the **neutral braid**—the six-architrino, polarity-balanced case defined in [Noether Braid](noether-braid.md#neutral-braid-base). The inventory facts used here—three electrinos, three positrinos, and thirty ordered distinct source pairs—are all a reader needs in advance. The neutral-braid claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
 
 $$
 \mathsf{R}_{\mathrm{NB}}(B,W)
@@ -227,7 +227,7 @@ $$
 
 Same-transmitter rows $(i,i)$ are governed by the declared same-transmitter policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive transmitter-site counts for each receiver are inventory facts, not a compressed acceleration law. The acceleration contribution must still be assembled from the actual retained causal roots, delays, Jacobian floors, transmitter-side acceleration weights, and line-of-action vectors for these ordered pairs. A prescribed taxonomy member can reduce this ledger only after its reduction map proves how the compressed entries are inherited from the all-pairs ledger.
 
-For Family C, let $I_C=\{1,\ldots,12\}$. Its uncompressed ordered distinct-pair ledger is
+For two-component circular configurations, let $I_C=\{1,\ldots,12\}$. Its uncompressed ordered distinct-pair ledger is
 $$
 \Pi_{\mathrm{all}}^{C}
 =
@@ -237,7 +237,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1be1255a6bb5bbd5)
-C3 through C6 may expose two exact B1 or B1.3 component ledgers, but those component rows do not replace the 132-pair Family-C ledger unless a proved reduction map accounts for every cross-component pair. An associated Accessory Configuration remains a separate inventory and certificate input rather than part of these twelve defining worldlines.
+coaxial-separated co-rotating two-component configuration through coaxial two-planar-braid counter-rotating configuration may expose two exact coincident-axis three-binary locus or planar common-center three-binary locus component ledgers, but those component rows do not replace the 132-pair two-component circular ledger unless a proved reduction map accounts for every cross-component pair. An associated Accessory Configuration remains a separate inventory and certificate input rather than part of these twelve defining worldlines.
 
 The certificate should report the first blocking row as
 

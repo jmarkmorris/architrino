@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
-    "title": "Mapping the Planck Scale to the A1 Geometry",
+    "title": "Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md"
     },
     "view": {
       "columns": 1,

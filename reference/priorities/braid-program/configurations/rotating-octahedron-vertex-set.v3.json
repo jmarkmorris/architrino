@@ -1,0 +1,343 @@
+{
+  "schema": "prescribed-assembly-spec.v3",
+  "specId": "rotating-octahedron-vertex-set-v1",
+  "label": "Rotating octahedron vertex-set display",
+  "provenanceDescription": "Rotating octahedron vertex-set display: source-declared prescribed display representative. No EOM evolution, balance evaluation, retention, or stability calculation is performed by this record.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-08-30",
+  "identity": {
+    "assemblyId": "asm-6605678b2d37950a861d9ecba54beffb",
+    "modelRevisionSha256": "6605678b2d37950a861d9ecba54beffb46cb70ad13bb45029aae786382a8dd2b",
+    "displayLabel": "Rotating octahedron vertex-set display",
+    "status": "operator-approved-prescribed-display",
+    "geometryOwner": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md"
+  },
+  "illustrativeCoordinates": {
+    "status": "prescribed-display-coordinates",
+    "choices": [
+      "Algebraic vertex coordinates follow the co-spherical chapter and its balanced-word enumeration instrument, normalized to circumradius 0.5. One representative coloring assigns the sign of the first nonzero Cartesian coordinate; it is balanced and, except for the tetrahedron, opposite at antipodes.",
+      "All vertices rotate rigidly about (1,2,4)/sqrt(21) at angular rate pi/2. This generic axis is a display choice; the initial vertex set and every pair distance are preserved. This is one colored moving example, not an exhaustive coloring collection or a balanced motion result. No braid component or neutral binary is assigned from polyhedral appearance.",
+      "History spans two source periods with 64 cubic intervals per period. Delay horizon zero denotes display-only coverage, not a supplied causal ledger. The common center is fixed; c_f=1. The schema braid role marks primary assembly members, not an assigned braid identity. Only explicit componentBraids assign composition."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "member-1",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-1"
+    },
+    {
+      "id": "member-2",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-2"
+    },
+    {
+      "id": "member-3",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-3"
+    },
+    {
+      "id": "member-4",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-4"
+    },
+    {
+      "id": "member-5",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-5"
+    },
+    {
+      "id": "member-6",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-6"
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "worldline-1",
+      "constituentId": "member-1",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.02380952380952381,
+          0.04761904761904762,
+          0.09523809523809525
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.47619047619047616,
+          -0.04761904761904762,
+          -0.09523809523809525
+        ],
+        "radiusV": [
+          0,
+          0.4364357804719848,
+          -0.2182178902359924
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "worldline-2",
+      "constituentId": "member-2",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.02380952380952381,
+          -0.04761904761904762,
+          -0.09523809523809525
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.47619047619047616,
+          0.04761904761904762,
+          0.09523809523809525
+        ],
+        "radiusV": [
+          0,
+          -0.4364357804719848,
+          0.2182178902359924
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "worldline-3",
+      "constituentId": "member-3",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.04761904761904762,
+          0.09523809523809525,
+          0.1904761904761905
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.04761904761904762,
+          0.40476190476190477,
+          -0.1904761904761905
+        ],
+        "radiusV": [
+          -0.4364357804719848,
+          0,
+          0.1091089451179962
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "worldline-4",
+      "constituentId": "member-4",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.04761904761904762,
+          -0.09523809523809525,
+          -0.1904761904761905
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.04761904761904762,
+          -0.40476190476190477,
+          0.1904761904761905
+        ],
+        "radiusV": [
+          0.4364357804719848,
+          0,
+          -0.1091089451179962
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "worldline-5",
+      "constituentId": "member-5",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.09523809523809525,
+          0.1904761904761905,
+          0.380952380952381
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.09523809523809525,
+          -0.1904761904761905,
+          0.11904761904761901
+        ],
+        "radiusV": [
+          0.21821789023599236,
+          -0.10910894511799618,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "worldline-6",
+      "constituentId": "member-6",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.09523809523809525,
+          -0.1904761904761905,
+          -0.380952380952381
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.09523809523809525,
+          0.1904761904761905,
+          -0.11904761904761901
+        ],
+        "radiusV": [
+          -0.21821789023599236,
+          0.10910894511799618,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [],
+    "platonicVertices": {
+      "solid": "octahedron",
+      "circumradius": 0.5,
+      "rotationAxis": [
+        0.2182178902359924,
+        0.4364357804719848,
+        0.8728715609439696
+      ],
+      "angularRate": 1.5707963267948966,
+      "polarityRule": "sign of first nonzero Cartesian vertex coordinate"
+    }
+  },
+  "relationships": {
+    "sourceOrder": [
+      "member-1",
+      "member-2",
+      "member-3",
+      "member-4",
+      "member-5",
+      "member-6"
+    ],
+    "neutralPairs": [],
+    "componentBraids": [],
+    "polaritySectors": [
+      {
+        "id": "polarity-sectors-1",
+        "polarity": 1,
+        "members": [
+          "member-1",
+          "member-3",
+          "member-5"
+        ]
+      },
+      {
+        "id": "polarity-sectors-2",
+        "polarity": -1,
+        "members": [
+          "member-2",
+          "member-4",
+          "member-6"
+        ]
+      }
+    ]
+  },
+  "history": {
+    "start": 0,
+    "end": 8,
+    "delayHorizon": 0,
+    "periodic": true,
+    "returnPeriod": 4
+  },
+  "constraints": {
+    "validators": [],
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "report-only",
+      "observedBound": 0.7664701249532138
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 0.575,
+    "trailPeriods": 1,
+    "ansatzSampleCount": 128
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.0625,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  }
+}

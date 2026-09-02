@@ -1,6 +1,6 @@
-# F6c one-hour extension: partial handoff
+# asymmetric counter-breathing representative one-hour extension: partial handoff
 
-Closure goal: Complete the independently checked whole-history F6c acceleration-mismatch evaluation. **Not achieved.** The extension made two measured IPC transport checks pass, then exposed an unresolved failed-send cleanup path. No new scientific interval was evaluated, and no complete evaluator is admitted.
+Closure goal: Complete the independently checked whole-history asymmetric counter-breathing representative acceleration-mismatch evaluation. **Not achieved.** The extension made two measured IPC transport checks pass, then exposed an unresolved failed-send cleanup path. No new scientific interval was evaluated, and no complete evaluator is admitted.
 
 ## Authority and stopping boundary
 
@@ -16,7 +16,7 @@ The accepted conditional causal cover still spans all 160 original intervals. Em
 
 The accepted three-parent result retains 271,021 independently checked arithmetic comparisons. Its partial squared-mismatch integral enclosure is `[0, 2.893826384416237e-6]`; its partial peak enclosure is `[0, 0.012410144149620187]`, under the existing definitions. These partial quantities are not a whole-history average or maximum. Their lower bounds containing zero do not establish balance. There is no persistent-braid, retention, stability, score or historical-trajectory identity conclusion.
 
-The accepted stream is `.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/pilot-three-refined-parents-v3/leaf-evidence.ndjson`, SHA256 `5d1ba9394793e781f875298c1622a07dab0063e4c9c7d9b974cc2219e30442c7`, 2,594,278 bytes. The independent numerical review begins `57b948f7`, segment review `64aade8a`, operational review `553394ea`, and combined review `ebbcde95`; their complete locations and bindings remain in the earlier handoff. Accepted lossless packaging remains `packaging/accepted-parents-1-2.v1/evidence.f6cp` in the original F6c evidence lane, SHA256 `d0ca10de0e09dbd891313b08f788a17df4934a49f505390601d1237bedeb5f32`, 8,093,747 bytes, 28 payloads. It reduced the active evidence file count from 308 to 284 without dropping accepted bytes or merging rejected attempts.
+The accepted stream is `.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/pilot-three-refined-parents-v3/leaf-evidence.ndjson`, SHA256 `5d1ba9394793e781f875298c1622a07dab0063e4c9c7d9b974cc2219e30442c7`, 2,594,278 bytes. The independent numerical review begins `57b948f7`, segment review `64aade8a`, operational review `553394ea`, and combined review `ebbcde95`; their complete locations and bindings remain in the earlier handoff. Accepted lossless packaging remains `packaging/accepted-parents-1-2.v1/evidence.f6cp` in the original asymmetric counter-breathing representative evidence lane, SHA256 `d0ca10de0e09dbd891313b08f788a17df4934a49f505390601d1237bedeb5f32`, 8,093,747 bytes, 28 payloads. It reduced the active evidence file count from 308 to 284 without dropping accepted bytes or merging rejected attempts.
 
 This hour's independently authored `resume-independent-integrity-v1.json` reauthenticated 189 retained files, 147,870,866 bytes, and 38 aliases; SHA256 `b758c8aab9822a1850d4b22d4994534fff46d0d7dbc9419242f6c1ac0e4e1624`. Its companion review is `8c88d908f0c07dea218ca9c55d4555ffaf5a7f23f848e62f892d972841c09849`. The earlier filesystem-device change was recorded as a historical boundary, not silently relabeled as original device identity.
 
@@ -39,7 +39,7 @@ Paths below are relative to that directory. The machine-readable final inventory
 - `prepare-real-ipc-control.mjs`: `90baf1ac4649cd152b4b19e05550fa7031aff2ec58b167bdb9307ac2f90880c7`; `real-ipc-control-hook.mjs`: `df12afb8591bd146239313e04f45f68e3327814a961d0b1acd76e3a2a8fc86ac`.
 - Separately authored `verify-real-ipc-control.mjs`: `e557936d8b0f0154b22ad14cf528e780705193871868ec108a20d1ecf718e354`; separately reviewed `audit-real-ipc-closure.mjs`: `026e2bef7d82be723ac55661d4d695755d1d9038c4469ec2141f87ce4056aa97`. Neither was modified to accommodate a failed actual result.
 
-The canonical operational sources remain C `0e0f728b79f32c3a8c03021748902dca3b450fac6b450d73ce1868b32ae61228`, K `18cc7d6a646d1bad55fbc02e3b8eb09223f7098c9940360998ad6a6a04e1d2c8`, and H `a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9`. Exact source archives, old identities, private candidate diffs and discarded preparation/auditor drafts are retained separately. Benchmark and F5 owners confirmed no competing runtime; peer source-hold releases did not supply independent acceptance for this candidate.
+The canonical operational sources remain C `0e0f728b79f32c3a8c03021748902dca3b450fac6b450d73ce1868b32ae61228`, K `18cc7d6a646d1bad55fbc02e3b8eb09223f7098c9940360998ad6a6a04e1d2c8`, and H `a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9`. Exact source archives, old identities, private candidate diffs and discarded preparation/auditor drafts are retained separately. Benchmark and phase-varying display representative owners confirmed no competing runtime; peer source-hold releases did not supply independent acceptance for this candidate.
 
 Plainly: the tested repair is an isolated operational proposal. The production source generation and mathematical evaluation remain unchanged.
 

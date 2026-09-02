@@ -124,9 +124,9 @@ def require_equal(actual, expected, label):
 
 
 def validate_wire(request, wire):
-    """Authenticate the declared fresh transport against its actual V10 records."""
+    """Authenticate the declared fresh transport against its actual V11 records."""
     lines = wire.splitlines()
-    require_equal(lines[0], "EOM_BORG_NATIVE_V10", "wire protocol")
+    require_equal(lines[0], "EOM_BORG_NATIVE_V11", "wire protocol")
     run = lines[1].split("\t")
     require_equal(len(run), 60, "wire RUN width")
     c, m = request["numericalControls"], request["modelControls"]

@@ -13,7 +13,7 @@
 **Current theory alignment**:
 - Treat `dynamics/master-equation.md` and `dynamics/causal-action-functional.md` as the canonical analysis targets.
 - Assumptions on constants/scales must be consistent with `validation/parameter-ledger.md`.
-- Branch-analysis guidance should remain coupled to `noether-braid/braid-a1-dynamics.md`, `noether-braid/braid-analysis-methodology.md`, `noether-braid/braid-recovery-requirements.md`, `validation/simulations/convergence-tests.md`, and `validation/simulations/run-protocols.md`.
+- Branch-analysis guidance should remain coupled to `noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md`, `noether-braid/braid-analysis-methodology.md`, `noether-braid/braid-recovery-requirements.md`, `validation/simulations/convergence-tests.md`, and `validation/simulations/run-protocols.md`.
 - Open theorem burdens should track `reference/priorities/braid-program/priorities.md`, `reference/priorities/braid-program/work-queue.md`, `reference/priorities/braid-program/method.md`, and `reference/priorities/app-solver/contracts/evolution-contract-v1.md`; legacy `$A_0$` protocols are not current authority.
 
 **Core responsibilities**:

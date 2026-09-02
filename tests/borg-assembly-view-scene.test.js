@@ -87,12 +87,12 @@ test("Borg merges coincident binary axes without unowned chart-path overlays", (
 
 test("canonical prescribed records render one axis per distinct geometric line", () => {
   const cases = [
-    ["family-a-a1-general.assembly-view-record.v0.json", 3],
-    ["illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json", 1],
-    ["family-c-c1-co-rotating-general.assembly-view-record.v0.json", 1],
-    ["family-c-c2-counter-rotating-general.assembly-view-record.v0.json", 1],
-    ["family-c-c1-co-rotating-b1-pair.assembly-view-record.v0.json", 1],
-    ["family-c-c2-counter-rotating-b1-pair.assembly-view-record.v0.json", 1],
+    ["three-axis-circular-coincident-midpoints.assembly-view-record.v0.json", 3],
+    ["axial-transverse-three-binary-interior.assembly-view-record.v0.json", 1],
+    ["coincident-center-two-component-circular-co-rotating.assembly-view-record.v0.json", 1],
+    ["coincident-center-two-component-circular-counter-rotating.assembly-view-record.v0.json", 1],
+    ["coaxial-separated-two-component-circular-co-rotating.assembly-view-record.v0.json", 1],
+    ["coaxial-separated-two-component-circular-counter-rotating.assembly-view-record.v0.json", 1],
   ];
   for (const [filename, expectedAxisCount] of cases) {
     const record = JSON.parse(readFileSync(new URL(
@@ -114,6 +114,57 @@ test("canonical prescribed records render one axis per distinct geometric line",
     assert.equal(axisGroup.children.length, expectedAxisCount, filename);
     scene.dispose();
   }
+});
+
+test("static stella octangula renders only its twelve source-carried tetrahedral edges", () => {
+  const record = JSON.parse(readFileSync(new URL(
+    "../content/assets/borg/records/stella-octangula-static-assembly.assembly-view-record.v0.json",
+    import.meta.url,
+  )));
+  const root = new THREE.Group();
+  const scene = createBorgAssemblyViewScene({
+    group: root,
+    toWorld(source, target) {
+      return target.set(Number(source.x), Number(source.y), Number(source.z));
+    },
+    render() {},
+  });
+  scene.setRecord({ sourceId: record.sourceId, dataset: createEomHistoryDataset(record) });
+  const edgeGroup = root.children.find((child) => child.userData.kind === "source-carried-structural-edges");
+  const pathGroup = root.children.find((child) => child.userData.kind === "prescribed-path-history-strands");
+  assert.equal(edgeGroup.children.length, 12);
+  assert.equal(pathGroup.children.length, 0);
+  assert.ok(edgeGroup.children.every((edge) => edge.userData.valueAuthority === "source-carried-static-assembly-geometry"));
+  assert.deepEqual(new Set(edgeGroup.children.map((edge) => edge.userData.polarity)), new Set([-1, 1]));
+  scene.dispose();
+});
+
+test("exact sum-edge obstruction record draws an amber receiver, axis, and acceleration mismatch", () => {
+  const record = JSON.parse(readFileSync(new URL(
+    "../content/assets/borg/records/octahedron-antipodal-sum-edge-excluded.assembly-view-record.v0.json",
+    import.meta.url,
+  )));
+  const root = new THREE.Group();
+  const scene = createBorgAssemblyViewScene({
+    group: root,
+    toWorld(source, target) {
+      return target.set(Number(source.x), Number(source.y), Number(source.z));
+    },
+    render() {},
+  });
+  scene.setRecord({ sourceId: record.sourceId, dataset: createEomHistoryDataset(record) });
+  const obstruction = root.children.find((child) => child.userData.kind === "certified-prescribed-balance-obstruction");
+  assert.deepEqual(new Set(obstruction.children.map((child) => child.userData.kind)), new Set([
+    "certified-sum-edge-rotation-axis",
+    "certified-obstruction-receiver",
+    "required-acceleration-direction",
+    "certified-forbidden-acceleration-component",
+  ]));
+  scene.updateTime(Math.PI / 2);
+  const receiver = obstruction.children.find((child) => child.userData.kind === "certified-obstruction-receiver");
+  assert.ok(receiver.position.x < -0.35);
+  assert.ok(Math.abs(receiver.position.y) < 1e-9);
+  scene.dispose();
 });
 
 test("prescribed strands and selected tubes share the finite no-future display window", () => {

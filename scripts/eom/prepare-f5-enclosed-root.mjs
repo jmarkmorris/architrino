@@ -15,7 +15,7 @@ const BUILD_BASE = ".tmp/";
 const SELF = "scripts/eom/prepare-f5-enclosed-root.mjs";
 const TARGET = "eom_f5_enclosed_root_cli";
 const FROZEN = Object.freeze({
-  "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+  "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
   "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
   "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
   "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md": "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496",

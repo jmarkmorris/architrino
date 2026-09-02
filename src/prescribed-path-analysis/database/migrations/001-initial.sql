@@ -24,8 +24,9 @@ CREATE TABLE source_record (
   exact_source_record_schema TEXT,
   engine_id TEXT NOT NULL,
   engine_version TEXT,
-  family_id TEXT,
-  member_id TEXT,
+  assembly_id TEXT NOT NULL,
+  model_revision_sha256 TEXT NOT NULL CHECK (length(model_revision_sha256) = 64),
+  source_slug TEXT NOT NULL,
   source_envelope_json BLOB NOT NULL,
   exact_source_artifact_hash BLOB REFERENCES artifact(artifact_hash),
   source_hash_verification_state TEXT NOT NULL CHECK (
@@ -33,8 +34,8 @@ CREATE TABLE source_record (
   )
 ) STRICT, WITHOUT ROWID;
 
-CREATE INDEX source_family_member
-  ON source_record(family_id, member_id, source_hash);
+CREATE INDEX source_exact_configuration
+  ON source_record(assembly_id, model_revision_sha256, source_slug, source_hash);
 CREATE INDEX source_identity_drift
   ON source_record(record_id, source_hash);
 
@@ -90,8 +91,9 @@ CREATE TABLE campaign_summary (
 
 CREATE TABLE configuration (
   configuration_hash BLOB PRIMARY KEY CHECK (length(configuration_hash) = 32),
-  family_id TEXT,
-  member_id TEXT,
+  assembly_id TEXT NOT NULL,
+  model_revision_sha256 TEXT NOT NULL CHECK (length(model_revision_sha256) = 64),
+  source_slug TEXT NOT NULL,
   parameter_vector_json BLOB NOT NULL,
   coordinate_definition TEXT NOT NULL,
   alpha_1 REAL,
@@ -99,8 +101,10 @@ CREATE TABLE configuration (
   alpha_3 REAL
 ) STRICT, WITHOUT ROWID;
 
-CREATE INDEX configuration_family_range
-  ON configuration(family_id, member_id, alpha_1, alpha_2, alpha_3);
+CREATE INDEX configuration_exact_range
+  ON configuration(
+    assembly_id, model_revision_sha256, source_slug, alpha_1, alpha_2, alpha_3
+  );
 
 CREATE TABLE case_result (
   result_hash BLOB PRIMARY KEY CHECK (length(result_hash) = 32),

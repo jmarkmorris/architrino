@@ -1,4 +1,4 @@
-Closure goal: Advance F5 certification for a minimum of twelve hours of unattended work, complete at least one independently checked ordinary EOM evaluation, and use the resulting evidence to resolve or sharply bound the remaining certification obstruction without changing the scientific case or weakening acceptance.
+Closure goal: Advance phase-varying display representative certification for a minimum of twelve hours of unattended work, complete at least one independently checked ordinary EOM evaluation, and use the resulting evidence to resolve or sharply bound the remaining certification obstruction without changing the scientific case or weakening acceptance.
 
 ## Operator authorization and session duration
 
@@ -10,7 +10,7 @@ I will be unavailable. Make the ordinary technical decisions needed to advance t
 
 Record the actual start time in UTC and America/New_York. Set the minimum-work point to start plus twelve hours and the hard campaign stop to start plus fourteen hours. Spend at least twelve hours advancing this objective; do not voluntarily finalize at the first result, first unresolved outcome, first failed test, first coordination delay or first completed report. After twelve hours, finish a useful bounded batch and close safely before the hard stop. Begin final process closure no later than start plus thirteen hours thirty minutes. Context compaction does not restart either clock.
 
-Use the supported durable-goal facility if available: create this objective when no unfinished goal exists, without inventing a token budget; otherwise continue the existing matching F5 goal. Keep a task plan and use supported continuation across turns. Do not mark the overall objective complete merely because the first evaluation or the available runtime ends. Do not create a separate scheduled task or an improvised background agent to simulate persistence.
+Use the supported durable-goal facility if available: create this objective when no unfinished goal exists, without inventing a token budget; otherwise continue the existing matching phase-varying display representative goal. Keep a task plan and use supported continuation across turns. Do not mark the overall objective complete merely because the first evaluation or the available runtime ends. Do not create a separate scheduled task or an improvised background agent to simulate persistence.
 
 Plainly: this is authorization to work, not another request to prepare an approval question. Twelve hours is the minimum intended working session; fourteen hours is its maximum unattended duration. Do not fill time with sleeps, repeated unchanged checks, unnecessary reruns or paperwork.
 
@@ -22,12 +22,12 @@ Work in the current Architrino repository. Read [AGENTS.md](../../../../AGENTS.m
 
 Resume from these owners; do not repeat completed work merely to reconstruct context:
 
-- [F5 certification diagnosis](2026-08-28-f5-certification-diagnosis.md), reviewed generation SHA-256 `c378dd07547cb36187a2180a1b64a46b997085f05f344f19ceb47cb0842603e2`.
+- [phase-varying display representative certification diagnosis](2026-08-28-f5-certification-diagnosis.md), reviewed generation SHA-256 `c378dd07547cb36187a2180a1b64a46b997085f05f344f19ceb47cb0842603e2`.
 - Final independent diagnosis review (`../../../../.local-data/braid-analysis/f5-certification-successor-20260828/diagnosis-final-review-v1.json`), SHA-256 `6fd3e745a665e9bd402c4d17b39d9968c896754fb369672600316ca776bf5acc`, and its producer/reference audits.
-- [Completed F5 evaluation](2026-08-27-f5-ordinary-evolution-evaluation.md) and [historical declaration](2026-08-27-f5-ordinary-evolution-declaration.v1.json), declaration SHA-256 `e908f1fc47acaeb0ba046818fc66a2781251492be2022cdb978e4727e0d72515`.
+- [Completed phase-varying display representative evaluation](2026-08-27-f5-ordinary-evolution-evaluation.md) and [historical declaration](2026-08-27-f5-ordinary-evolution-declaration.v1.json), declaration SHA-256 `e908f1fc47acaeb0ba046818fc66a2781251492be2022cdb978e4727e0d72515`.
 - Accepted evaluator handoff (`../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/accepted-evaluator-handoff-v1.json`), SHA-256 `3d802021b53efa5c95f4dc213e0901a5f5aeb9f2aaa483e0f836a2f93993f96f`.
 - Independent historical outcome review (`../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/actual-evaluation-independent-outcome-review-v1.json`), SHA-256 `8af7fe88c538ac6684bfe85dd1ec080a060575c969893356e5e76757781c4847`.
-- [Work queue](../work-queue.md), F5 sections of [shared readiness](2026-08-27-braid-search-launch-readiness.md), and the live benchmark coordination records.
+- [Work queue](../work-queue.md), phase-varying display representative sections of [shared readiness](2026-08-27-braid-search-launch-readiness.md), and the live benchmark coordination records.
 
 Reauthenticate evidence before consumption. Distinguish preserved original objects from changed live paths. The historical archive v3 manifest is manifest.json (`../../../../.local-data/braid-analysis/complete-evaluator-parallel-20260827/original-f5-generation-v3/manifest.json`), SHA-256 `e0d3a8aaa28f514605c8b55af66e03fb6d097080f8748d95038e7b5f858e744a`; its independent preservation receipt (`../../../../.local-data/braid-analysis/complete-evaluator-parallel-20260827/original-f5-generation-v3-independent-review-v1.json`) has SHA-256 `44b1d4c8bb78756bce4d8d16aa0da8851b3a71238fac69fab059ed42515c933f`. Preservation does not make archived code relocatable or changed code accepted.
 
@@ -37,7 +37,7 @@ Plainly: start from what has already been checked. The job is to learn why certi
 
 ## Fixed scientific case
 
-Keep the approved F5 geometry and member identities, exact past-only history `[-1,0]` including every coefficient and uncertainty token, release at zero, effective strength `K=0.002`, charge magnitude `q0=1`, coupling `0.002`, normalized wake speed `c_f=1`, sharp chart and requested horizon `T=0.5`.
+Keep the approved phase-varying display representative geometry and member identities, exact past-only history `[-1,0]` including every coefficient and uncertainty token, release at zero, effective strength `K=0.002`, charge magnitude `q0=1`, coupling `0.002`, normalized wake speed `c_f=1`, sharp chart and requested horizon `T=0.5`.
 
 The initial successor retains every historical coarse/medium/fine numerical control, root and acceleration tolerance, integration acceptance predicate, geometric threshold and comparison rule. Prescribed positive-time motion remains comparison data only. No new candidate, strength search, history refinement, nominal-state override, finite-width rescue, tolerance relaxation or substituted production solver is authorized.
 
@@ -47,7 +47,7 @@ Plainly: the first successor is the same scientific and numerical problem with b
 
 ### 1. Close the missing producer observations
 
-Implement the smallest passive diagnostic extension that captures the actual failed root-subrequest, exact retained/trial history or independently reconstructible base-plus-extension tokens, reception time, attempted step/substep/correction identity, source segment, uncertainty radii, existing correlation/contraction route, and each executed precision attempt's residual/factor bounds, containing interval, candidate interval before/after clipping, directed width and refusal predicate. Declare capture selection, record/byte caps and truncation behavior before testing it on F5. An incomplete capture cannot support a complete causal diagnosis.
+Implement the smallest passive diagnostic extension that captures the actual failed root-subrequest, exact retained/trial history or independently reconstructible base-plus-extension tokens, reception time, attempted step/substep/correction identity, source segment, uncertainty radii, existing correlation/contraction route, and each executed precision attempt's residual/factor bounds, containing interval, candidate interval before/after clipping, directed width and refusal predicate. Declare capture selection, record/byte caps and truncation behavior before testing it on phase-varying display representative. An incomplete capture cannot support a complete causal diagnosis.
 
 Keep numerical decisions, ordering and acceptance unchanged. Independently review the change for noninterference and meaningful failure-path coverage. Reproduction against the old build may check preservation, but is not independent mathematical validation. Use existing focused tests and independent known-answer controls. Retain all historical versions and build a separately identified executable.
 
@@ -79,7 +79,7 @@ Plainly: a repeat unresolved outcome can be useful, but it is a milestone rather
 
 Use bounded implementation and independent-review subagents, with at most three active subagents plus the parent and disjoint write sets. The parent remains responsible for checking and integrating their evidence. Keep numerical processes serial even when source analysis is parallel.
 
-Benchmark task `01a045de-6a34-77f3-bac4-90f2362f6ccd` owns `scripts/eom/run-f5-ordinary-evolution.mjs` and `tests/f5-ordinary-evolution-runner.test.js`. F6c task `01a045dc-2981-7e42-b970-4f659be06958` coordinates its own compute and shared-source constraints. Verify live ownership; do not assume the last reported window is still available. Obtain exact file handoffs and source-generation agreements before mutation, and an explicit compute window before builds, numerical work or heavy tests. A preserved archive alone does not clear live-path hash checks.
+Benchmark task `01a045de-6a34-77f3-bac4-90f2362f6ccd` owns `scripts/eom/run-f5-ordinary-evolution.mjs` and `tests/f5-ordinary-evolution-runner.test.js`. asymmetric counter-breathing representative task `01a045dc-2981-7e42-b970-4f659be06958` coordinates its own compute and shared-source constraints. Verify live ownership; do not assume the last reported window is still available. Obtain exact file handoffs and source-generation agreements before mutation, and an explicit compute window before builds, numerical work or heavy tests. A preserved archive alone does not clear live-path hash checks.
 
 Do not overwrite another task's code, steal or remove its lock, stop its processes, or weaken its admission checks. Keep shared readiness/queue/status byte-stable until their owner agrees an edit window. Use the existing complete caller after coordination and independent review; no exported-stage bypass or second production route.
 

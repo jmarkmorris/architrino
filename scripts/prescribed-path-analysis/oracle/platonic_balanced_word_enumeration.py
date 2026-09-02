@@ -19,7 +19,7 @@ criterion is not supplied here, and the fixed-point-cloud common-mode residual
 is deliberately NOT used, because its zero-internal-motion ansatz does not
 describe a co-spherical orbiting assembly.
 
-Companion chapter: reference/priorities/braid-program/shared-sphere-assemblies.md,
+Companion chapter: content/markdown/aaa/noether-braid/3d-braid-assemblies.md,
 Part III. That chapter is unbooked and unpromoted; this file is a discrete
 inventory for it and is not evidence for any candidate.
 

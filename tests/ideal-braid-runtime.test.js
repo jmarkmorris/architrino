@@ -34,7 +34,7 @@ import {
 
 const repoRoot = fileURLToPath(new URL("../", import.meta.url));
 
-test("A1 Lorentz Geometry model preserves stable ids and exposes indexed labels", () => {
+test("Coincident-Midpoint Three-Axis Circular Lorentz Geometry model preserves stable ids and exposes indexed labels", () => {
   const model = createIdealBraidModel({ THREE });
 
   assert.equal(model.binaries.length, 3);
@@ -66,7 +66,7 @@ test("A1 Lorentz Geometry model preserves stable ids and exposes indexed labels"
   );
 });
 
-test("standalone A1 Lorentz Geometry home navigation returns to the main webapp", () => {
+test("standalone Coincident-Midpoint Three-Axis Circular Lorentz Geometry home navigation returns to the main webapp", () => {
   const assigned = [];
   const locationLike = {
     assign: (href) => assigned.push(href),
@@ -248,7 +248,7 @@ test("real prescribed-path analysis converges the super-field circular self-hit 
   assert.ok(Math.abs(row.residual) <= 1e-12);
 });
 
-test("A1 Lorentz Geometry circular self-hit spans can be batched through the prescribed-path analysis", async () => {
+test("Coincident-Midpoint Three-Axis Circular Lorentz Geometry circular self-hit spans can be batched through the prescribed-path analysis", async () => {
   const ratios = [1.2, 1.01, 0.8];
   const spans = [2.053476582744672, 0, 0];
   const rows = await solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis(ratios, {
@@ -370,7 +370,7 @@ test("guide links open their target document and reset/focus the markdown panel"
   const markdownContent = createFakeElement("markdown-content");
   const markdownBody = createFakeElement("markdown-body");
   const runtime = createIdealBraidMarkdownRuntime({
-    documentLike: { title: "A1 Lorentz Geometry" },
+    documentLike: { title: "Coincident-Midpoint Three-Axis Circular Lorentz Geometry" },
     windowLike: {},
     markdownPanel,
     markdownTitle,
@@ -380,7 +380,7 @@ test("guide links open their target document and reset/focus the markdown panel"
   });
 
   await runtime.showMarkdownPanel({
-    name: "A1 Lorentz Geometry Guide",
+    name: "Coincident-Midpoint Three-Axis Circular Lorentz Geometry Guide",
     markdownPath: "content/markdown/aaa/archie/ideal-braid-guide.md",
     markdownColumns: 1,
   });
@@ -410,7 +410,7 @@ test("guide links open their target document and reset/focus the markdown panel"
   assert.equal(markdownPanel.classList.contains("is-open"), true);
 });
 
-test("bootstrap failure produces a visible A1 Lorentz Geometry error banner", () => {
+test("bootstrap failure produces a visible Coincident-Midpoint Three-Axis Circular Lorentz Geometry error banner", () => {
   const appElement = createFakeElement("ideal-braid-app");
   appElement.prepend = (child) => {
     appElement.prepended = child;
@@ -688,7 +688,7 @@ function createIdealBraidMountHarness() {
   const documentEvents = createFakeElement("document");
   const windowEvents = createFakeElement("window");
   const documentLike = {
-    title: "A1 Lorentz Geometry",
+    title: "Coincident-Midpoint Three-Axis Circular Lorentz Geometry",
     activeElement: null,
     addEventListener: documentEvents.addEventListener,
     createElement: (tagName) => createFakeElement(tagName),
@@ -750,13 +750,13 @@ function createIdealBraidMountHarness() {
   };
 }
 
-test("Lorentz Geometry document and canvas titles omit the A1 prefix", () => {
+test("document and canvas titles use the facts-first public name", () => {
   const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
-  assert.match(html, /<title>Lorentz Geometry<\/title>/);
+  assert.match(html, /<title>Coincident-Midpoint Three-Axis Circular Lorentz Geometry<\/title>/);
   assert.doesNotMatch(html, /<title>A1 Lorentz Geometry<\/title>/);
   assert.match(
     html,
-    /<div class="ideal-braid-title">Lorentz Geometry<\/div>/,
+    /<div class="ideal-braid-title">Coincident-Midpoint Three-Axis Circular Lorentz Geometry<\/div>/,
   );
   assert.doesNotMatch(
     html,

@@ -1,0 +1,86 @@
+{
+  "schema": "borg-assembly-registry-million-entry-benchmark.v1",
+  "instrument": "scripts/borg/benchmark-assembly-registry.mjs",
+  "registrySchema": "borg-assembly-registry-sqlite.v1",
+  "engineeringCorpus": {
+    "kind": "deterministic-synthetic",
+    "entries": 1000000,
+    "scientificEvidence": false
+  },
+  "environment": {
+    "node": "v26.3.0",
+    "sqlite": "3.53.2",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "import": {
+    "wallMs": 264139.015208,
+    "entriesPerSecond": 3785.88524384607,
+    "databaseBytes": 7432015872
+  },
+  "operations": [
+    {
+      "name": "exact-id-lookup",
+      "repetitions": 25,
+      "minMs": 0.017333000025246292,
+      "medianMs": 0.018334000022150576,
+      "p95Ms": 0.03433300001779571,
+      "maxMs": 0.5892080000485294
+    },
+    {
+      "name": "full-model-hash-lookup",
+      "repetitions": 25,
+      "minMs": 0.007541000028140843,
+      "medianMs": 0.007958000001963228,
+      "p95Ms": 0.014958000043407083,
+      "maxMs": 0.029415999946650118
+    },
+    {
+      "name": "unique-prefix-hash-lookup",
+      "repetitions": 25,
+      "minMs": 75.54458399995929,
+      "medianMs": 78.95545900001889,
+      "p95Ms": 104.95754100003978,
+      "maxMs": 1714.9358749999665
+    },
+    {
+      "name": "facet-filter-count",
+      "repetitions": 25,
+      "minMs": 21.847540999995545,
+      "medianMs": 23.05920800002059,
+      "p95Ms": 25.772500000020955,
+      "maxMs": 543.1140420000302
+    },
+    {
+      "name": "text-search",
+      "repetitions": 25,
+      "minMs": 0.030375000031199306,
+      "medianMs": 0.031832999957259744,
+      "p95Ms": 0.051124999998137355,
+      "maxMs": 1.4373340000165626
+    },
+    {
+      "name": "cursor-page",
+      "repetitions": 25,
+      "minMs": 0.013832999975420535,
+      "medianMs": 0.014792000001762062,
+      "p95Ms": 0.02404200000455603,
+      "maxMs": 0.05087500001536682
+    },
+    {
+      "name": "record-hash-lookup",
+      "repetitions": 25,
+      "minMs": 0.01837499998509884,
+      "medianMs": 0.02000000001862645,
+      "p95Ms": 0.028584000014234334,
+      "maxMs": 0.22649999998975545
+    }
+  ],
+  "verification": {
+    "integrityCheck": "ok",
+    "exactRows": 1000000,
+    "facetRows": 4000000,
+    "exactTargetFound": true
+  },
+  "claimBoundary": "Engineering scalability measurement only; synthetic rows establish no assembly geometry, dynamics, retention, stability, binding, or scientific acceptance."
+}

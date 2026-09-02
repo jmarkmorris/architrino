@@ -1,4 +1,4 @@
-# F6c embedded Gauss–Kronrod request protocol
+# asymmetric counter-breathing representative embedded Gauss–Kronrod request protocol
 
 Status: executable pure protocol and derived conditional proof, pending independent review, 2026-08-27. No actual history, root, acceleration, integral or peak evaluation is performed or authorized by this artifact.
 
@@ -119,6 +119,6 @@ The unchanged integral reference is [f6c_residual_integral_supremum.py](../../..
 
 ## Acceptance falsifiers and remaining direct handoff
 
-Independent review must return the protocol for incorrect moments or square-root brackets, nonpositive or knot-crossing node neighborhoods, changing the deterministic polynomial before its remainder is bounded, unsupported node/residual premises, treating embedded-rule agreement as an error proof, missing or reordered members/frames, stale-child response substitution, mutable input aliases, budget resets, a partial partition presented as complete, an empty intersection accepted as a bound, incorrect global width comparison, or any authority promotion from declared labels alone. Tests distinguish exact mathematical known answers from mocked transition plumbing; neither is actual F6c measurement evidence.
+Independent review must return the protocol for incorrect moments or square-root brackets, nonpositive or knot-crossing node neighborhoods, changing the deterministic polynomial before its remainder is bounded, unsupported node/residual premises, treating embedded-rule agreement as an error proof, missing or reordered members/frames, stale-child response substitution, mutable input aliases, budget resets, a partial partition presented as complete, an empty intersection accepted as a bound, incorrect global width comparison, or any authority promotion from declared labels alone. Tests distinguish exact mathematical known answers from mocked transition plumbing; neither is actual asymmetric counter-breathing representative measurement evidence.
 
 The next direct handoff is a separately reviewed source-bound variable-cell range/remainder adapter supplying this fixed request contract from the already defined family and complete cover. That adapter must preserve original frame/segment knots, justify node-neighborhood coverage and any correlated remainder, and retain the zero new root/emission-operation limit or explicitly stop for a separately authorized protocol. Only after its independent comparison and measured operational plan are accepted could this protocol be executed on actual data. No additional ledger, full-history launch, three-rung result, score transfer or changed physical setting is created here.

@@ -128,7 +128,7 @@
           "framesEmitted": 648,
           "releaseRootClearance": "certified_complete",
           "modelFingerprint": "fnv1a64:6b87d1f138d33e13",
-          "generatingSpec": "F6c-nonlinear-return-map-search-v2-return-continuation",
+          "generatingSpec": "small asymmetric counter-breathing history-nonlinear-return-map-search-v2-return-continuation",
           "engineBuildId": "local-eom-dev-2026-08-24"
         },
         "completeStateRecords": {
@@ -591,7 +591,7 @@
           ],
           "memberIdentityRule": "EOM path identities remain labeled throughout; no relabeling is performed by the analyzer",
           "seedFamily": "f6c-balanced-tetrahedral-v1",
-          "generatingSpec": "F6c-nonlinear-return-map-search-v2-return-continuation",
+          "generatingSpec": "small asymmetric counter-breathing history-nonlinear-return-map-search-v2-return-continuation",
           "maximumNormalizedManifoldResidual": {
             "position": 4.638738523784433e-16,
             "velocity": 9.291846771391616e-16
@@ -669,7 +669,7 @@
           "framesEmitted": 648,
           "releaseRootClearance": "certified_complete",
           "modelFingerprint": "fnv1a64:6b87d1f138d33e13",
-          "generatingSpec": "F6c-nonlinear-return-map-search-v2-return-continuation",
+          "generatingSpec": "small asymmetric counter-breathing history-nonlinear-return-map-search-v2-return-continuation",
           "engineBuildId": "local-eom-dev-2026-08-24"
         },
         "completeStateRecords": {
@@ -1132,7 +1132,7 @@
           ],
           "memberIdentityRule": "EOM path identities remain labeled throughout; no relabeling is performed by the analyzer",
           "seedFamily": "f6c-balanced-tetrahedral-v1",
-          "generatingSpec": "F6c-nonlinear-return-map-search-v2-return-continuation",
+          "generatingSpec": "small asymmetric counter-breathing history-nonlinear-return-map-search-v2-return-continuation",
           "maximumNormalizedManifoldResidual": {
             "position": 4.638738523784433e-16,
             "velocity": 9.291846771391616e-16
@@ -1211,7 +1211,7 @@
           "framesEmitted": 648,
           "releaseRootClearance": "certified_complete",
           "modelFingerprint": "fnv1a64:6b87d1f138d33e13",
-          "generatingSpec": "F6c-nonlinear-return-map-search-v2-return-continuation",
+          "generatingSpec": "small asymmetric counter-breathing history-nonlinear-return-map-search-v2-return-continuation",
           "engineBuildId": "local-eom-dev-2026-08-24"
         },
         "completeStateRecords": {
@@ -1674,7 +1674,7 @@
           ],
           "memberIdentityRule": "EOM path identities remain labeled throughout; no relabeling is performed by the analyzer",
           "seedFamily": "f6c-balanced-tetrahedral-v1",
-          "generatingSpec": "F6c-nonlinear-return-map-search-v2-return-continuation",
+          "generatingSpec": "small asymmetric counter-breathing history-nonlinear-return-map-search-v2-return-continuation",
           "maximumNormalizedManifoldResidual": {
             "position": 4.638738523784433e-16,
             "velocity": 9.291846771391616e-16

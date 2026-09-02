@@ -91,7 +91,7 @@
       "byteCount": 17333611,
       "lineCount": 491592,
       "correctionOfVersion": 3,
-      "correctionReason": "The third closed run preserved the regular B1.3 chart point but did not retain every exact regular phase point in the general nonuniform charts; this packet adds those exact chart subloci while keeping every nonregular extension unresolved.",
+      "correctionReason": "The third closed run preserved the regular planar common-center three-binary constraint chart point but did not retain every exact regular phase point in the general nonuniform charts; this packet adds those exact chart subloci while keeping every nonregular extension unresolved.",
       "elapsedSeconds": 158.017
     }
   ],
@@ -99,7 +99,7 @@
     "balancedCandidateCount": 5,
     "unresolvedSearchRowCount": 61,
     "verdict": "balanced-regular-subloci-found-with-broader-phase-search-unresolved",
-    "claimGrade": "mixed derived taxonomy, independently checked ledger implementation, and bounded numerical search",
+    "claimGrade": "mixed derived configuration relation, independently checked ledger implementation, and bounded numerical search",
     "excludedClaims": [
       "retention",
       "binding",

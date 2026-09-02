@@ -1,0 +1,888 @@
+{
+  "schema": "prescribed-assembly-spec.v3",
+  "specId": "alternating-circular-ring-10-v1",
+  "label": "Alternating circular ring — 10:10",
+  "provenanceDescription": "Alternating circular ring — 10:10: source-declared prescribed display representative. No EOM evolution, balance evaluation, retention, or stability calculation is performed by this record.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-08-30",
+  "identity": {
+    "assemblyId": "asm-c58bdeab092bcb8033d5e774ac9ed7d1",
+    "modelRevisionSha256": "c58bdeab092bcb8033d5e774ac9ed7d17014fc7c64b4b6d0fd00da0b2a8ca6e7",
+    "displayLabel": "Alternating circular ring — 10:10",
+    "status": "operator-approved-prescribed-display",
+    "geometryOwner": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md"
+  },
+  "illustrativeCoordinates": {
+    "status": "prescribed-display-coordinates",
+    "choices": [
+      "Regular polygon in the xy plane; polarity alternates around its 2N equally spaced sites. Positive circulation about +z.",
+      "Coordinates use c_f=1 and coupling length R_*=1. Speed and radius are the chapter's measured bounded-landscape row. Rounded coordinates are displayed, not re-evaluated or certified by this record.",
+      "Like-polarity antipodes are not declared neutral binaries; no braid component is inferred from member count.",
+      "History spans two source periods with 64 cubic intervals per period. Delay horizon zero denotes display-only coverage, not a supplied causal ledger. The common center is fixed; c_f=1. The schema braid role marks primary assembly members, not an assigned braid identity. Only explicit componentBraids assign composition."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "member-1",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-1"
+    },
+    {
+      "id": "member-2",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-2"
+    },
+    {
+      "id": "member-3",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-3"
+    },
+    {
+      "id": "member-4",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-4"
+    },
+    {
+      "id": "member-5",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-5"
+    },
+    {
+      "id": "member-6",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-6"
+    },
+    {
+      "id": "member-7",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-7"
+    },
+    {
+      "id": "member-8",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-8"
+    },
+    {
+      "id": "member-9",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-9"
+    },
+    {
+      "id": "member-10",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-10"
+    },
+    {
+      "id": "member-11",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-11"
+    },
+    {
+      "id": "member-12",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-12"
+    },
+    {
+      "id": "member-13",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-13"
+    },
+    {
+      "id": "member-14",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-14"
+    },
+    {
+      "id": "member-15",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-15"
+    },
+    {
+      "id": "member-16",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-16"
+    },
+    {
+      "id": "member-17",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-17"
+    },
+    {
+      "id": "member-18",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-18"
+    },
+    {
+      "id": "member-19",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "worldline-19"
+    },
+    {
+      "id": "member-20",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "worldline-20"
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "worldline-1",
+      "constituentId": "member-1",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "worldline-2",
+      "constituentId": "member-2",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0.3141592653589793
+      }
+    },
+    {
+      "id": "worldline-3",
+      "constituentId": "member-3",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0.6283185307179586
+      }
+    },
+    {
+      "id": "worldline-4",
+      "constituentId": "member-4",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0.9424777960769379
+      }
+    },
+    {
+      "id": "worldline-5",
+      "constituentId": "member-5",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 1.2566370614359172
+      }
+    },
+    {
+      "id": "worldline-6",
+      "constituentId": "member-6",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 1.5707963267948966
+      }
+    },
+    {
+      "id": "worldline-7",
+      "constituentId": "member-7",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 1.8849555921538759
+      }
+    },
+    {
+      "id": "worldline-8",
+      "constituentId": "member-8",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 2.199114857512855
+      }
+    },
+    {
+      "id": "worldline-9",
+      "constituentId": "member-9",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 2.5132741228718345
+      }
+    },
+    {
+      "id": "worldline-10",
+      "constituentId": "member-10",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 2.827433388230814
+      }
+    },
+    {
+      "id": "worldline-11",
+      "constituentId": "member-11",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 3.141592653589793
+      }
+    },
+    {
+      "id": "worldline-12",
+      "constituentId": "member-12",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 3.455751918948772
+      }
+    },
+    {
+      "id": "worldline-13",
+      "constituentId": "member-13",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 3.7699111843077517
+      }
+    },
+    {
+      "id": "worldline-14",
+      "constituentId": "member-14",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.084070449666731
+      }
+    },
+    {
+      "id": "worldline-15",
+      "constituentId": "member-15",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.39822971502571
+      }
+    },
+    {
+      "id": "worldline-16",
+      "constituentId": "member-16",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.71238898038469
+      }
+    },
+    {
+      "id": "worldline-17",
+      "constituentId": "member-17",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 5.026548245743669
+      }
+    },
+    {
+      "id": "worldline-18",
+      "constituentId": "member-18",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 5.340707511102648
+      }
+    },
+    {
+      "id": "worldline-19",
+      "constituentId": "member-19",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 5.654866776461628
+      }
+    },
+    {
+      "id": "worldline-20",
+      "constituentId": "member-20",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          10.014108665969196,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          10.014108665969196,
+          0
+        ],
+        "angularVelocity": 0.13300198989612613,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 5.969026041820607
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [],
+    "circularPathBalance": {
+      "membersPerPolarity": 10,
+      "radius": 10.014108665969196,
+      "angularRate": 0.13300198989612613,
+      "normalizedSpeed": 1.3318963796099441,
+      "couplingLength": 1,
+      "polarityWord": "alternating",
+      "phaseSpacing": 0.3141592653589793
+    }
+  },
+  "relationships": {
+    "sourceOrder": [
+      "member-1",
+      "member-2",
+      "member-3",
+      "member-4",
+      "member-5",
+      "member-6",
+      "member-7",
+      "member-8",
+      "member-9",
+      "member-10",
+      "member-11",
+      "member-12",
+      "member-13",
+      "member-14",
+      "member-15",
+      "member-16",
+      "member-17",
+      "member-18",
+      "member-19",
+      "member-20"
+    ],
+    "neutralPairs": [],
+    "componentBraids": [],
+    "polaritySectors": [
+      {
+        "id": "polarity-sectors-1",
+        "polarity": 1,
+        "members": [
+          "member-1",
+          "member-3",
+          "member-5",
+          "member-7",
+          "member-9",
+          "member-11",
+          "member-13",
+          "member-15",
+          "member-17",
+          "member-19"
+        ]
+      },
+      {
+        "id": "polarity-sectors-2",
+        "polarity": -1,
+        "members": [
+          "member-2",
+          "member-4",
+          "member-6",
+          "member-8",
+          "member-10",
+          "member-12",
+          "member-14",
+          "member-16",
+          "member-18",
+          "member-20"
+        ]
+      }
+    ]
+  },
+  "history": {
+    "start": 0,
+    "end": 94.48257596877643,
+    "delayHorizon": 0,
+    "periodic": true,
+    "returnPeriod": 47.241287984388215
+  },
+  "constraints": {
+    "validators": [],
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "report-only",
+      "observedBound": 1.3318963796099441
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 11.516224965864575,
+    "trailPeriods": 1,
+    "ansatzSampleCount": 128
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.7381451247560659,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  }
+}

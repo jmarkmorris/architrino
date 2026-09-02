@@ -5,7 +5,7 @@
 - Kind: priority-side pre-EOM kinematics, provenance, and directional-adjudication contract
 - Created: 2026-08-25
 - Claim level: derived geometry and rank-selection lemma; measured implementation checks; candidate-only medium architecture
-- Parent seed: [F6c Cubic Lattice](f6c-cubic-lattice.md)
+- Parent seed: [asymmetric counter-breathing representative Cubic Lattice](f6c-cubic-lattice.md)
 - Exploration source: [Session 24](brainstorming.md#session-24--locally-deformable-twisting-and-reorganizing-cubic-medium-2026-08-25)
 - Structural consumer: [adaptive cubic-medium kinematics](../../../scripts/mapping-electromagnetism/adaptive-cubic-medium-kinematics.mjs)
 - Focused tests: [adaptive cubic-medium kinematics tests](../../../tests/adaptive-cubic-medium-kinematics.test.js)
@@ -415,7 +415,7 @@ Plainly: three directions can kill an isotropy claim, but they cannot prove equa
 
 The [Observer Framework](../../../content/markdown/aaa/spacetime/observer-framework.md) requires a Physical Observer record to retain its readout, apparatus-response kernel, modulation protocol, calibration covariance, nuisance family, and boundary-wake record. The directional campaign therefore cannot substitute point-position displacement for a clock, ruler, detector, or apparatus readout.
 
-The current [F6c Cubic Lattice](f6c-cubic-lattice.md#cubic-symmetry-and-anisotropy) packet correctly states that clock- or ruler-facing anisotropy is not reported until physical clock or ruler assemblies are included. No accepted adaptive background or matched physical-receiver record is present in the live packet. The structural consumer's empty-record audit consequently returns:
+The current [asymmetric counter-breathing representative Cubic Lattice](f6c-cubic-lattice.md#cubic-symmetry-and-anisotropy) packet correctly states that clock- or ruler-facing anisotropy is not reported until physical clock or ruler assemblies are included. No accepted adaptive background or matched physical-receiver record is present in the live packet. The structural consumer's empty-record audit consequently returns:
 
 ```json
 {

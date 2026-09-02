@@ -1,0 +1,339 @@
+{
+  "schema": "prescribed-path-analysis/coincident-midpoint-common-frequency-history-policy-extension-independent-verifier-protocol.v1",
+  "protocolId": "coincident-midpoint-common-frequency-history-policy-extension-independent-verifier-v1",
+  "sourceConfiguration": {
+    "scientificIdentity": {
+      "assemblyId": "asm-2a289a6fe32f64922ab71bae973acc80",
+      "modelRevisionSha256": "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6"
+    }
+  },
+  "claimGrade": "independent-acceptance-of-diagnostic-mathematics",
+  "claimBoundary": {
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "eomIntervalMachineryInvoked": false,
+    "eomCampaignInvoked": false,
+    "diagnosticOnly": true,
+    "score": null,
+    "candidateSelection": false,
+    "excludedClaims": [
+      "retention",
+      "stability",
+      "binding",
+      "physical-candidate-selection",
+      "physical-realization",
+      "physical-superluminal-transport",
+      "energy",
+      "action",
+      "angular-momentum-dynamics",
+      "radiation",
+      "pressure",
+      "general-relativity-recovery",
+      "campaign-1-authorization"
+    ]
+  },
+  "baseProtocol": {
+    "path": "src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-continuous-ratio-phase-root-inventory-protocol.v1.json",
+    "sha256": "b87b16d140c67608977ac9bb7cf21175936808d0b9617b41778e150c904f4a4f"
+  },
+  "sealedOriginalVerifier": {
+    "rootSheet": {
+      "protocolPath": "src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-root-sheet-monotonic-enclosure-treatment-protocol.v1.json",
+      "protocolHash": "a85f1d3b668f2aab7601ea2327613b193219feab109e210586354d7648bb9d3b",
+      "summaryPath": "reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-root-sheet-monotonic-enclosure-treatment-summary.v1.json",
+      "resultHash": "fe89965435198af812153696e6278adf058c1cbae507a948630fd1adda8401f4",
+      "summaryHash": "f37db3ed32ff38060e3b837d73644f9f219db9fb6543414297bcb0e902aa7e4d"
+    },
+    "projection": {
+      "protocolPath": "src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-receiver-phase-projection-monotonicity-protocol.v1.json",
+      "protocolHash": "d528d27f660b0e76eff2d7dc5f717420d2dfcf396b82befbdc719911fe767405",
+      "summaryPath": "reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-receiver-phase-projection-monotonicity-summary.v1.json",
+      "resultHash": "3cea3f991ba78f8b327cbf11c6b83a85162104a92220965e8f0921d73d5ed11d",
+      "summaryHash": "f862fe2bc950d7026e0729b9a8dd7f9cbe7b992a16ae5c64050c207f7cd0947a"
+    }
+  },
+  "sealedPreviousBoundary": {
+    "protocolPath": "src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-outer-radius-second-band-expansion-protocol.v1.json",
+    "protocolHash": "a051e8f4637302523a9c3732362085acd810295edb1450c2f9ed078cc66fb92c",
+    "summaryPath": "reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-outer-radius-second-band-expansion-summary.v1.json",
+    "resultHash": "55d64d083a315446c6ce4d7c107e2ff953a3ca8a407f887c59d0e75045adc80a",
+    "summaryHash": "a8e521ac0743c406ab4ec233957f5e170338808736ce7815ac9250d15857680e",
+    "requiredStatus": "counterexample-diagnostic",
+    "requiredBoundary": "9/(8*sin(9/8))"
+  },
+  "sealedSubject": {
+    "protocolPath": "src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-outer-radius-history-policy-extension-protocol.v1.json",
+    "protocolHash": "4e864e3ff3e3bb6799e70e6715643fd23b902edde482b1f4591a8207ca6748ff",
+    "summaryPath": "reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-outer-radius-history-policy-extension-summary.v1.json",
+    "resultHash": "89b3f68c47bec47f92e4faf0f8acb41dc7381e76f9893d3892af96662ea5aa11",
+    "summaryHash": "71015bcb1a5c83e850b17ea122b196bf2910f1cd9c2457c28b167c665fa55424",
+    "use": "identity-and-scope-control-only; producer gate booleans are not acceptance inputs"
+  },
+  "relativePhaseLock": {
+    "phaseBaseline": ["0", "2*pi/3", "4*pi/3"],
+    "varyingCoordinate": "common-cycle-position-only",
+    "relativePhaseOffsetsVary": false
+  },
+  "rootSheet": {
+    "rootFunction": "G(alpha1,alpha3,theta,delta)=squared-distance-delta^2",
+    "dependentVariable": "dimensionlessDelay",
+    "parameterVariables": [
+      "active-radius-ratios",
+      "receptionPhase"
+    ],
+    "domain": {
+      "alpha1": [0.875, 0.9375],
+      "alpha2": [1, 1],
+      "alpha3": [1.2468584789674295, 1.25],
+      "receptionPhase": [0, 6.283185307179586],
+      "dimensionlessDelayInterior": [0.03125, 2.265625]
+    },
+    "leftBoundaryOwnership": "previous-boundary-control-owned/new-slice-left-open-right-closed",
+    "phaseSeam": "theta-zero-identified-with-two-pi/exact-four-pi-sigma-periodicity.v1",
+    "rootCountInvarianceTheorem": {
+      "id": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1"
+    },
+    "subFieldSpeedCoordinateCharts": {
+      "id": "coincident-midpoint-common-frequency-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+      "receptionFixed": {
+        "parameterPhase": "theta",
+        "dependentVariable": "dimensionlessDelay",
+        "movingEndpointAtFixedPhase": "transmitter"
+      },
+      "emissionFixed": {
+        "parameterPhase": "epsilon=(theta-delta)-modulo-two-pi",
+        "dependentVariable": "dimensionlessDelay",
+        "movingEndpointAtFixedPhase": "receiver"
+      },
+      "chartTransition": {
+        "map": "(theta,delta)<->(epsilon=theta-delta modulo 2*pi,delta)",
+        "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+        "seamRule": "zero-and-two-pi-are-one-phase-circle-point"
+      }
+    }
+  },
+  "targetRepresentatives": [
+    "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-1",
+    "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+    "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-1",
+    "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+    "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-1",
+    "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-2",
+    "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-1",
+    "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2"
+  ],
+  "endpointInversionReuse": [
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-1",
+      "reused": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-2-endpoint-2"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+      "reused": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-2-endpoint-1"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "reused": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-2"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+      "reused": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-1"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-1",
+      "reused": "coincident-midpoint-common-frequency-binary-2-endpoint-2<-coincident-midpoint-common-frequency-binary-1-endpoint-2"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-2",
+      "reused": "coincident-midpoint-common-frequency-binary-2-endpoint-2<-coincident-midpoint-common-frequency-binary-1-endpoint-1"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "reused": "coincident-midpoint-common-frequency-binary-2-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-2"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-2-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+      "reused": "coincident-midpoint-common-frequency-binary-2-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-1"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-1",
+      "reused": "coincident-midpoint-common-frequency-binary-3-endpoint-2<-coincident-midpoint-common-frequency-binary-1-endpoint-2"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-1-endpoint-2",
+      "reused": "coincident-midpoint-common-frequency-binary-3-endpoint-2<-coincident-midpoint-common-frequency-binary-1-endpoint-1"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-1",
+      "reused": "coincident-midpoint-common-frequency-binary-3-endpoint-2<-coincident-midpoint-common-frequency-binary-2-endpoint-2"
+    },
+    {
+      "representative": "coincident-midpoint-common-frequency-binary-3-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+      "reused": "coincident-midpoint-common-frequency-binary-3-endpoint-2<-coincident-midpoint-common-frequency-binary-2-endpoint-1"
+    }
+  ],
+  "foldExclusion": {
+    "squaredResidualExclusionFloor": 1e-10,
+    "squaredDelayDerivativeExclusionFloor": 1e-8,
+    "intervalPaddingUlps": 4,
+    "initialRatioSubdivisions": 2,
+    "initialReceptionPhaseSubdivisions": 24,
+    "maximumSubdivisionDepth": 18,
+    "maximumBoxesPerRepresentative": 20000,
+    "maximumBoxesPerPacket": 180000,
+    "minimumAlphaWidth": 0.0000152587890625,
+    "minimumReceptionPhaseWidth": 0.00009587379924285257,
+    "minimumDelayWidth": 0.000034332275390625,
+    "splitPolicy": "largest-active-normalized-width.v1"
+  },
+  "anchorRootInventory": {
+    "point": {
+      "alpha1": 0.90625,
+      "alpha3": 1.25,
+      "coordinatePhase": 0.4487989505128276,
+      "coordinateRule": "use-epsilon-in-emission-fixed-chart; otherwise-use-theta"
+    },
+    "expectedRootCountPerRepresentative": 1,
+    "initialDelaySubdivisions": 32,
+    "maximumSubdivisionDepth": 48,
+    "maximumBoxesPerRepresentative": 4096,
+    "minimumDelayWidth": 1e-10,
+    "rootResidualFloor": 1e-10,
+    "rootTransversalityFloor": 1e-8,
+    "independentNormalizedResidualFloor": 1e-9,
+    "rootSeparationFloor": 1e-7,
+    "boundaryOwnership": "left-open-right-closed/internal; near-zero-and-extended-history-edge-owned-by-endpoint-proofs.v1"
+  },
+  "projectionCertificate": {
+    "targetOrderedChannelIds": [
+      "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+      "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+      "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-2-endpoint-1",
+      "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-2"
+    ],
+    "representativeChannelIds": [
+      "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+      "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+      "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2"
+    ],
+    "endpointInversionReuse": [
+      {
+        "representative": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-2-endpoint-2",
+        "reused": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-2-endpoint-1"
+      },
+      {
+        "representative": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-1",
+        "reused": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-2"
+      },
+      {
+        "representative": "coincident-midpoint-common-frequency-binary-1-endpoint-1<-coincident-midpoint-common-frequency-binary-3-endpoint-2",
+        "reused": "coincident-midpoint-common-frequency-binary-1-endpoint-2<-coincident-midpoint-common-frequency-binary-3-endpoint-1"
+      }
+    ],
+    "certificate": {
+      "analyticRootGeometryBound": {
+        "method": "exact-shared-coordinate-gram-bound-over-declared-radius-intervals.v1",
+        "rootDotIdentity": "q=(r^2+t^2-delta^2)/(2*r*t)",
+        "orthogonalDerivativeBound": "(partial-q/partial-delta-at-fixed-theta)^2<=1-q^2",
+        "positivePolynomial": "P=4*delta^2-((r+t)^2-delta^2)*(delta^2-(t-r)^2)",
+        "middleTransmitter": {
+          "positivePolynomialLowerBound": 0.015625,
+          "receptionSquaredDelayDerivativeUpperBound": -0.002717391304347826,
+          "emissionSquaredDelayDerivativeUpperBound": -0.0078125,
+          "projectionDerivativeLowerBound": 0.0003619418178527802,
+          "projectionDerivativeUpperBound": 736
+        },
+        "outerTransmitter": {
+          "transmitterRadiusInterval": [1.2468584789674295, 1.25],
+          "positivePolynomialLowerBound": 0.06243896484375,
+          "receptionSquaredDelayDerivativeUpperBound": -0.009293241279069768,
+          "emissionSquaredDelayDerivativeUpperBound": -0.015625,
+          "projectionDerivativeLowerBound": 0.0010963455149501661,
+          "projectionDerivativeUpperBound": 430
+        }
+      },
+      "domain": {
+        "alpha1": [0.875, 0.9375],
+        "alpha2": [1, 1],
+        "alpha3": [1.2468584789674295, 1.25],
+        "emissionPhase": [0, 6.283185307179586],
+        "dimensionlessDelay": [0.03125, 2.265625]
+      },
+      "phaseSeam": "epsilon-zero-identified-with-two-pi.v1",
+      "continuousConclusionWhenComplete": "the-receiver-phase-projection-is-strictly-increasing-on-each-declared-emission-fixed-root-sheet.v1"
+    }
+  },
+  "projectionIntervalTreatment": {
+    "squaredResidualExclusionFloor": 1e-10,
+    "squaredDelayDerivativeNegativityFloor": 1e-8,
+    "intervalPaddingUlps": 4,
+    "initialRatioSubdivisions": 2,
+    "initialEmissionPhaseSubdivisions": 24,
+    "maximumSubdivisionDepth": 18,
+    "maximumBoxesPerRepresentative": 20000,
+    "maximumBoxesPerPacket": 60000,
+    "maximumIntervalEvaluationsPerPacket": 500000,
+    "minimumAlphaWidth": 0.0000152587890625,
+    "minimumEmissionPhaseWidth": 0.00009587379924285257,
+    "minimumDelayWidth": 0.000034332275390625,
+    "splitPolicy": "largest-active-parameter-normalized-width.v1"
+  },
+  "rootSheetParameterization": {
+    "maximumDelayContractionIterationsPerBox": 64
+  },
+  "controls": {
+    "originalVerifierExactReplayRequired": true,
+    "previousBoundaryExactReplayRequired": true,
+    "producerStatusNotAcceptanceEvidence": true,
+    "completeInterBinaryAccountingRequired": true,
+    "endpointInversionReuseRequired": true,
+    "phaseSeamReplayRequired": true,
+    "independentPointWitnessesRequired": true,
+    "independentNormalizedResidualFloor": 1e-9,
+    "independentDerivativeDifferenceTolerance": 0.000001,
+    "finiteDifferenceStep": 9.5367431640625e-7,
+    "syntheticFold": {
+      "rootFunction": "(delta-1)^2",
+      "foldPoint": 1,
+      "requiredDisposition": "unresolved-possible-fold-box"
+    },
+    "syntheticPositiveProjection": {
+      "squaredResidualEnclosure": [-1, 1],
+      "receptionSquaredDelayDerivativeEnclosure": [-2, -1],
+      "emissionSquaredDelayDerivativeEnclosure": [-3, -2],
+      "requiredDisposition": "certified-root-capable-positive-projection-box"
+    },
+    "syntheticNegativeProjection": {
+      "squaredResidualEnclosure": [-1, 1],
+      "receptionSquaredDelayDerivativeEnclosure": [0.25, 0.5],
+      "emissionSquaredDelayDerivativeEnclosure": [-3, -2],
+      "requiredDisposition": "counterexample-nonpositive-projection-box"
+    },
+    "syntheticIndeterminateProjection": {
+      "squaredResidualEnclosure": [-1, 1],
+      "receptionSquaredDelayDerivativeEnclosure": [-0.5, 0.5],
+      "emissionSquaredDelayDerivativeEnclosure": [-3, -2],
+      "requiredDisposition": "unresolved-projection-sign-box"
+    },
+    "resourceExhaustion": {
+      "maximumBoxesPerRepresentative": 1,
+      "requiredStatus": "drawn-not-evaluated",
+      "requiredScore": null
+    }
+  },
+  "completionRule": {
+    "statusWhenComplete": "independent-acceptance-passed",
+    "statusWhenCounterexampleFound": "counterexample-diagnostic",
+    "statusWhenAnyObligationUnresolved": "drawn-not-evaluated",
+    "score": null,
+    "noCandidateDisposition": true,
+    "stopAfterThisSlice": true
+  }
+}

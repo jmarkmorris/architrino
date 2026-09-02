@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__branding_and_marketing",
+    "title": "Branding & Marketing",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "children": [
+      {
+        "nodeId": "brand_visual_identity",
+        "scenePath": "content/scenes/archie/brand_visual_identity.json"
+      },
+      {
+        "nodeId": "branding_and_marketing_overview",
+        "scenePath": "content/scenes/archie/branding_and_marketing_overview.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "brand_visual_identity",
+      "title": "Brand Visual Identity Guide",
+      "radius": 2.2,
+      "color": "#6A0DAD",
+      "labelTitle": "Brand Visual Identity Guide",
+      "labelBadge": "diagram"
+    },
+    {
+      "id": "branding_and_marketing_overview",
+      "title": "Branding & Marketing Overview",
+      "radius": 2.2,
+      "color": "#8873DD",
+      "labelTitle": "Branding & Marketing Overview",
+      "labelBadge": "doc"
+    }
+  ]
+}

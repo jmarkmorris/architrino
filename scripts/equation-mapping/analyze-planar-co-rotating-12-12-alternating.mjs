@@ -75,19 +75,19 @@ export function runPlanarTwelveTwelveAlternatingCli(argv = process.argv.slice(2)
       reflectionAndCirculationReversal: verifyReflectionCovariance({ phases, polarities: polarityClass.polarities, beta: 3.070356625390253 }),
     },
     regularResult,
-    taxonomyDecision: {
-      verdict: "outside-B1.3",
-      reason: "B1.3 contains exactly six architrinos in three antipodal neutral binaries; this 12:12 record contains 24 architrinos and its alternating word has like-polarity antipodes.",
-      familyCDecision: "not C5/C6; the record has one common center, no positive component-center separation, and no antipodal-neutral B1.3 component decomposition.",
+    configurationRelation: {
+      verdict: "outside-planar common-center three-binary constraint",
+      reason: "planar common-center three-binary constraint contains exactly six architrinos in three antipodal neutral binaries; this 12:12 record contains 24 architrinos and its alternating word has like-polarity antipodes.",
+      twoComponentCircularDecision: "not a coaxial-separated two-planar-braid configuration; the record has one common center, no positive component-center separation, and no antipodal-neutral planar three-binary common-center component decomposition.",
     },
     independentReference: {
       test: "tests/planar-co-rotating-ring-balance.test.js",
       crossTransmitterInstrument: "src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs",
       sameTransmitterInstrument: "scripts/equation-mapping/analyze-circular-self-hit-binary.mjs",
     },
-    claimGrade: "derived taxonomy plus bounded numerical regular-alternating search; candidate promotion requires the declared independent test",
-    excludedClaims: ["B1.3 membership", "complete 12:12 polarity coverage", "nonuniform-phase coverage", "retention", "binding", "stability", "release survival", "physical identity", "score increase", "scientific acceptance"],
-    falsifier: "A missing causal root, failed independent root or acceleration comparison, changed topology under refinement, receiver-incompatible scale, or residual above the declared tolerance overturns the balance verdict; a taxonomy change would require a canonical inventory revision rather than this calculation.",
+    claimGrade: "derived configuration relation plus bounded numerical regular-alternating search; candidate promotion requires the declared independent test",
+    excludedClaims: ["planar common-center three-binary constraint membership", "complete 12:12 polarity coverage", "nonuniform-phase coverage", "retention", "binding", "stability", "release survival", "physical identity", "score increase", "scientific acceptance"],
+    falsifier: "A missing causal root, failed independent root or acceleration comparison, changed topology under refinement, receiver-incompatible scale, or residual above the declared tolerance overturns the balance verdict; a configuration-definition change would require a canonical inventory revision rather than this calculation.",
     execution: {
       commandOptions: options,
       elapsedSeconds: (Date.now() - startedAt) / 1000,
@@ -100,7 +100,7 @@ export function runPlanarTwelveTwelveAlternatingCli(argv = process.argv.slice(2)
     const outputPath = path.resolve(options.output);
     mkdirSync(path.dirname(outputPath), { recursive: true });
     writeFileSync(outputPath, serialized);
-    process.stdout.write(`${JSON.stringify({ output: outputPath, verdict: regularResult.verdict, taxonomyDecision: packet.taxonomyDecision, execution: packet.execution }, null, 2)}\n`);
+    process.stdout.write(`${JSON.stringify({ output: outputPath, verdict: regularResult.verdict, configurationRelation: packet.configurationRelation, execution: packet.execution }, null, 2)}\n`);
   } else {
     process.stdout.write(serialized);
   }

@@ -1,10 +1,10 @@
-# F6c Emission-Only Refinement Predeclaration
+# asymmetric counter-breathing representative Emission-Only Refinement Predeclaration
 
 Status: bounded mathematical and algorithmic declaration for independent review, 2026-08-27. No refinement implementation, actual sign-query calculation, refined cover, acceleration range or execution authorization is supplied by this document.
 
 ## Subject And Direct Consumer
 
-The subject is the same reconstructed F6c history family and the same closed reception cell zero, $I_r=[0,0.001]$, used by the [one-cell acceleration declaration](2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md). The only proposed numerical change is a separately certified restriction of each nonself emission interval inside its original $[-8,-0.05]$ box. Reception time is not subdivided. The direct consumer is a separately bound successor of the existing one-cell acceleration-range mapper and its independent output comparison; the unchanged [range reference](2026-08-27-f6c-continuous-reception-acceleration-reference.md) already accepts pair-specific emission intervals.
+The subject is the same reconstructed asymmetric counter-breathing representative history family and the same closed reception cell zero, $I_r=[0,0.001]$, used by the [one-cell acceleration declaration](2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md). The only proposed numerical change is a separately certified restriction of each nonself emission interval inside its original $[-8,-0.05]$ box. Reception time is not subdivided. The direct consumer is a separately bound successor of the existing one-cell acceleration-range mapper and its independent output comparison; the unchanged [range reference](2026-08-27-f6c-continuous-reception-acceleration-reference.md) already accepts pair-specific emission intervals.
 
 Plainly: this attempt would ask where, within the already covered past, each arrival can occur. It keeps the same receiver-time window and the same possible histories. A broad but valid acceleration interval is not a negative result about the geometry.
 
@@ -127,7 +127,7 @@ The 32-query allowance is new bounded algorithmic effort for this emission-only 
 
 Plainly: no accuracy requirement is relaxed and no extra frame-refinement budget is quietly granted. A complete result may still be too broad to say whether the path closely follows the law.
 
-Permitted outcomes are a complete independently conformant refined cover and declared range output, a complete but unchanged or uninformative restriction, or an explicit unresolved/failed attempt with its prefix preserved. Non-strict exploratory signs alone are not failures; missing final coverage, an invalid denominator, an independent mismatch, a binding change, or resource/publication/closure failure prevents acceptance. A failed or broad family diagnostic cannot be interpreted as proof against every F6c geometry or as a favorable residual. Historical EOM trajectory identity, original analytic-past membership, metrics `M05/M06`, H3 promotion, scores, EOM execution, equilibrium, binding, retention, return, stability and physical realization remain excluded.
+Permitted outcomes are a complete independently conformant refined cover and declared range output, a complete but unchanged or uninformative restriction, or an explicit unresolved/failed attempt with its prefix preserved. Non-strict exploratory signs alone are not failures; missing final coverage, an invalid denominator, an independent mismatch, a binding change, or resource/publication/closure failure prevents acceptance. A failed or broad family diagnostic cannot be interpreted as proof against every asymmetric counter-breathing representative geometry or as a favorable residual. Historical EOM trajectory identity, original analytic-past membership, metrics `M05/M06`, H3 promotion, scores, EOM execution, equilibrium, binding, retention, return, stability and physical realization remain excluded.
 
 Plainly: the result must distinguish a safe but unhelpful bound from a broken calculation, and both from an actual geometrical counterexample. None grants historical score authority.
 

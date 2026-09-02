@@ -9,6 +9,8 @@ import {
   resolveBorgPrescribedTranslation,
 } from "./BorgPrescribedTranslation.js";
 import { renderInlineMathText } from "../../runtime/InlineMathRuntime.js";
+import { renderBorgScientificStatus } from "./BorgScientificStatusView.mjs";
+import { renderBorgPlatonicRelationships } from "./BorgPlatonicRelationshipsView.mjs";
 
 const FILTER_LABELS = Object.freeze({
   claimGrade: "Claim grade",
@@ -36,6 +38,8 @@ export function createBorgAssemblyViewControls({
   onVirtualProbe,
   onAnalysisRootSelect,
   onContributionVisibleChange,
+  scientificStatus,
+  platonicRelationships,
 }) {
   const listeners = [];
   let declaredVirtualProbes = [];
@@ -51,16 +55,14 @@ export function createBorgAssemblyViewControls({
     const translation = resolveBorgPrescribedTranslation(entry);
     dom.controls.hidden = false;
     const prescribedGeometry = presentation.provenance.prescribedGeometry;
-    const taxonomy = prescribedGeometry?.taxonomy;
+    const identity = prescribedGeometry?.coordinates?.identity;
     renderFieldRows(documentLike, dom.provenance, [
       [prescribedGeometry ? "Geometry source" : "Engine", `${presentation.provenance.engineId} ${presentation.provenance.engineVersion}`],
-      ...(taxonomy ? [
-        ["Candidate", presentation.catalogLabel ?? taxonomy.displayLabel],
-        ["Geometry class", `${taxonomy.memberId} — ${taxonomy.memberLabel}`],
-        ...(presentation.catalogLabel && presentation.catalogLabel !== taxonomy.displayLabel
-          ? [["Recorded label", taxonomy.displayLabel]] : []),
-        ...(taxonomy.instantiationLabel ? [["Instantiation", taxonomy.instantiationLabel]] : []),
-        ["Canon source", taxonomy.canonSource],
+      ...(identity ? [
+        ["Configuration", presentation.catalogLabel ?? identity.displayLabel],
+        ["Assembly ID", presentation.rawRecord.assemblyId],
+        ["Model revision SHA-256", presentation.rawRecord.modelRevisionSha256],
+        ...(identity.geometryOwner ? [["Geometry owner", identity.geometryOwner]] : []),
       ] : []),
       ...prescribedCoordinateRows(prescribedGeometry),
       ["Physics invoked", prescribedGeometry ? "no — prescribed chart arithmetic only" : "see source engine provenance"],
@@ -76,12 +78,18 @@ export function createBorgAssemblyViewControls({
     renderFilterOptions();
     renderComparisonOptions();
     renderPrescribedGeometryTable(documentLike, dom.binaryGeometryTable, presentation);
+    renderBorgScientificStatus(documentLike, dom.scientificStatus, scientificStatus ?? {
+      coverage: "invalid", verdict: "Projection stale or invalid", causes: ["projection unavailable"], projection: null, current: null, context: [], requirements: [],
+    });
+    renderBorgPlatonicRelationships(documentLike, dom.platonicRelationships, platonicRelationships ?? {
+      state: "unavailable", assignments: [], reason: "Platonic relationship source is unavailable.", revision: null, sourceOwner: null, source: null,
+    });
     renderOverlayRows(presentation);
 
     dom.cameraMode.value = "free";
     const trail = resolveBorgAssemblyViewTrail(entry);
     const missingTrails = [...describeBorgOrbitTrails(entry.dataset).values()].filter(row => row.mode === "unavailable").length;
-    dom.trailSummary.textContent = `Red/blue trails: shared binary orbit = half-turn each; co-rotating ring = arc to preceding member; dedicated orbit = full turn or source cycle. Retained history limit: ${format(trail.duration)} T.${missingTrails ? ` ${missingTrails} trails unavailable: missing orbit ownership or phase information.` : ""}`;
+    dom.trailSummary.textContent = `Red/blue trails: a declared antipodal two-occupant circle receives half-turn tails; a co-rotating multiply occupied ring receives an arc to the preceding member; a single-occupant circle receives a full turn or source cycle. Retained history limit: ${format(trail.duration)} T.${missingTrails ? ` ${missingTrails} trails unavailable: missing circle ownership or phase information.` : ""}`;
     dom.cameraMode.querySelector?.('option[value="co-rotating"]')?.toggleAttribute?.(
       "disabled",
       !borgCoRotatingCameraAvailable(hasCoRotatingCarrier),
@@ -782,7 +790,7 @@ function prescribedCoordinateRows(prescribedGeometry) {
   return [
     ["Braid count", braids.length],
     ["Prescribed return period", coordinates.prescribedReturnPeriod],
-    ...(flattening == null ? [] : [["Family-A flattening coordinate", flattening]]),
+    ...(flattening == null ? [] : [["Coincident-midpoint three-axis circular flattening coordinate", flattening]]),
     ["Braid-center offsets", centers],
     ["Braid phase offsets", phases],
     ["Braid circulation senses", circulations],

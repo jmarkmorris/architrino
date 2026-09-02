@@ -20,6 +20,9 @@ import {
   BORG_CAUSAL_HISTORY_RETENTION_SCHEMA,
   applyBorgCausalHistoryRetention,
 } from "../../src/apps/borg/BorgCausalHistoryRetention.js";
+import {
+  createBorgEomBoundaryDiagnosticsRecords,
+} from "../../src/apps/borg/BorgEomWakeBoundaryProducts.js";
 
 const BORG_EOM_REQUEST_SCHEMA = "eom_borg_shadow_request/v1";
 const BORG_EOM_CONTRACT_ID = "eom_evolution_contract/v1";
@@ -28,8 +31,8 @@ const BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA =
   "borg-eom-http-history-prefix/v1";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
-  "borg-native-eom-process-client.v10";
-export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V10";
+  "borg-native-eom-process-client.v11";
+export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V11";
 
 const BORG_HISTORY_TEMP_PARENT = join(
   tmpdir(),
@@ -595,6 +598,15 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
       ]));
     });
   });
+  const boundaryRecords = createBorgEomBoundaryDiagnosticsRecords(
+    request.resourceEnvelope.boundaryDiagnostics ?? null,
+    {
+      runId: request.runId,
+      fieldSpeed: request.modelControls.fieldSpeed,
+      pathIds: request.histories.map((history) => history.pathId),
+    },
+  );
+  boundaryRecords.forEach((record) => lines.push(tabRecord(record)));
   lines.push("END");
   return `${lines.join("\n")}\n`;
 }

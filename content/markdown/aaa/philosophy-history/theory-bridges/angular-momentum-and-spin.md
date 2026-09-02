@@ -4,7 +4,7 @@ This bridge explains how angular momentum, spin, helicity, and the constants $h$
 
 - At the primitive architrino level, neither angular momentum nor spin is an additional substance or intrinsic property.
 - Angular momentum becomes a conserved history functional when architrino motion is organized inside the rotationally symmetric Euclidean void.
-- Spin becomes an effective transformation class of stable assemblies, especially ordered Family-A, B1, and planar vector-channel structures.
+- Spin becomes an effective transformation class of stable assemblies, especially ordered orthogonal-axis three-binary, coincident-axis three-binary braid, and planar vector-channel structures.
 
 The result is not that angular momentum and spin are unreal. The result is that their ontological status is emergent. They are indispensable higher-level ledgers and measurement labels, but the fundamental ontology still consists of architrinos, polarity, position, velocity, absolute time, Euclidean void, causal wakes, and path history.
 
@@ -16,7 +16,7 @@ The related material is best read as an ordered path rather than as a flat list 
 
 1. Start with primitive ontology in [Architrino](../../foundations/architrino.md) and [Ontology](../../foundations/ontology.md).
 2. Use [Master Equation](../../dynamics/master-equation.md) and [Causal Action Functional](../../dynamics/causal-action-functional.md) for delayed conservation and wake-history bookkeeping.
-3. Use [Braid Family B](../../noether-braid/braid-family-b.md) for the exact B1 common-axis kinematics that spin must descend from, with [B1 Hypotheses and Discrete Symmetry](../../noether-braid/braid-b1-symmetry.md) carrying its symmetry derivations and [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics) carrying the Family-A comparison material.
+3. Use [Braid coincident-axis three-binary configurations](../../noether-braid/3d-braid-assemblies.md) for the exact coincident-axis three-binary braid common-axis kinematics that spin must descend from, with [Coincident-Axis Three-Binary Hypotheses and Discrete Symmetry](../../noether-braid/coincident-axis-three-binary-symmetry.md) carrying its symmetry derivations and [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation) carrying the orthogonal-axis three-binary comparison material.
 4. Treat [Measurement Ontology](../../quantum/measurement-ontology.md), [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md), and [Bell's Theorem](./bell-theorem.md) as downstream tests rather than source derivations.
 
 ## Primitive Status
@@ -242,11 +242,11 @@ Near the self-hit onset, $J_s\to0^+$ and the unregularized response develops a s
 
 If a stable maximum-curvature binary exists, it may define a fundamental length and cycle scale for the architecture. It still does not make spin primitive. It gives a reproducible planar circulation standard. The step from that standard to spin requires additional structure: at minimum, a stable orientation frame, a representation under rotations, and a measurement response that recovers standard spin projections.
 
-## B1 Spin Scaffold
+## Coincident-Axis Three-Binary Braid Spin Scaffold
 
-[B1](../../noether-braid/braid-family-b.md#b1) supplies this bridge with its primary common-axis realization of the angular-momentum ledger, and its fixed-coordinate common-frequency co-rotation makes the kinematic half of that ledger exact rather than approximate. Where the Family-A comparison scaffold below must carry three separate binary normals $\hat{\mathbf n}_\ell$ and combine them into an approximate rank-three construction, B1 has one axis exactly.
+[coincident-axis three-binary braid](../../noether-braid/3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart) supplies this bridge with its primary common-axis realization of the angular-momentum ledger, and its fixed-coordinate common-frequency co-rotation makes the kinematic half of that ledger exact rather than approximate. Where the orthogonal-axis three-binary comparison scaffold below must carry three separate binary normals $\hat{\mathbf n}_\ell$ and combine them into an approximate rank-three construction, coincident-axis three-binary braid has one axis exactly.
 
-### The Exact Kinematic Ledger of Prescribed Co-Rotating B1
+### The Exact Kinematic Ledger of the Prescribed Co-Rotating Coincident-Axis Braid
 
 All six architrinos co-rotate at one common frequency $\omega$ about one shared axis $\hat{\mathbf z}$. Each indexed binary $a\in\{1,2,3\}$ is an antipodal pair with independently assignable axial coordinate $h_a$ and axis offset $\rho_a$. The kinematic angular momentum is then exact at every instant, not cycle-averaged and not approximate:
 
@@ -260,7 +260,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-94ce20f3e0e34977)
 
-Every binary normal coincides with the spin axis, $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf z}$: the ledger is a **rank-one spine** carrying the indexed spin magnitudes $J_a$. The kinematic linear momentum vanishes exactly at rest because each binary is antipodal and is exactly axial under axial group velocity. The B1 transport state therefore reduces to the two scalars $P_\parallel$ and $J_\parallel$, with the origin-independent helicity $\mathbf J\cdot\mathbf P$ as the combined label. Claim level: derived from the prescribed B1 kinematics.
+Every binary normal coincides with the spin axis, $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf z}$: the ledger is a **rank-one spine** carrying the indexed spin magnitudes $J_a$. The kinematic linear momentum vanishes exactly at rest because each binary is antipodal and is exactly axial under axial group velocity. The coincident-axis three-binary braid transport state therefore reduces to the two scalars $P_\parallel$ and $J_\parallel$, with the origin-independent helicity $\mathbf J\cdot\mathbf P$ as the combined label. Claim level: derived from the prescribed coincident-axis three-binary braid kinematics.
 
 The axis sector has an equally clean kinematic reduction. Take as slow coordinates the per-binary plane inclinations about two transverse axes, $\eta_a^{x}$ and $\eta_a^{y}$. The cycle-averaged tilt inertia of a layer about a transverse axis through the braid center is
 
@@ -270,11 +270,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-69031b23d7d36eec)
 
-so a binary with small $\rho_a$ can still carry full-scale tilt inertia through $h_a$ while carrying little spin. The two coordinate types therefore separate the spin ledger from the tilt-inertia ledger, which makes the axis sector a gyroscopic problem rather than a quasi-static one. Claim level: exact kinematics of prescribed fixed-coordinate B1 (the tilt inertia is the cycle-averaged fixed-coordinate binary reduction); $\mu_{\text{arch}}$ is the numerical site weight of the working models, not a primitive mass.
+so a binary with small $\rho_a$ can still carry full-scale tilt inertia through $h_a$ while carrying little spin. The two coordinate types therefore separate the spin ledger from the tilt-inertia ledger, which makes the axis sector a gyroscopic problem rather than a quasi-static one. Claim level: exact kinematics of prescribed fixed-coordinate coincident-axis three-binary braid (the tilt inertia is the cycle-averaged fixed-coordinate binary reduction); $\mu_{\text{arch}}$ is the numerical site weight of the working models, not a primitive mass.
 
 ### The Wake Ledger and the Causal-Delay Asymmetry
 
-The total rotational ledger is the kinematic spine plus the same branch-resolved wake term as in the boxed three-binary total of the functional scaffold below. B1 adds a clean indexed row structure for posing the wake questions (claim level for this subsection: symmetry and structural arguments on prescribed fixed-coordinate B1; no measured wake rows are carried):
+The total rotational ledger is the kinematic spine plus the same branch-resolved wake term as in the boxed three-binary total of the functional scaffold below. coincident-axis three-binary braid adds a clean indexed row structure for posing the wake questions (claim level for this subsection: symmetry and structural arguments on prescribed fixed-coordinate coincident-axis three-binary braid; no measured wake rows are carried):
 
 - The per-binary transverse (tilt) wake torques vanish at the untilted configuration — tilt equilibrium is automatic, by reflection symmetry of the fixed-coordinate family.
 - Whether the per-binary axial wake torques close binary by binary — and, if not, which binaries carry a standing tangential surplus that must be transacted into the outgoing wake — is the first wake measurement the validated engine must supply for this family. No per-binary closure values are carried here.
@@ -284,7 +284,7 @@ How the transacted half of the wake ledger behaves under axial group velocity �
 
 ### The Iso-Frequency Partition Map
 
-The A1 partition targets allocate an accepted increment across three per-binary frequencies. On B1 that chart collapses, and the partition becomes a constrained allocation map through geometry at a single cadence. From the exact kinematic ledger, an accepted transaction that shifts the axis offsets, axial coordinates, common cadence, binary inclinations, and wake books its axial and transverse increments as
+The coincident-midpoint orthogonal-axis braid partition targets allocate an accepted increment across three per-binary frequencies. On coincident-axis three-binary braid that chart collapses, and the partition becomes a constrained allocation map through geometry at a single cadence. From the exact kinematic ledger, an accepted transaction that shifts the axis offsets, axial coordinates, common cadence, binary inclinations, and wake books its axial and transverse increments as
 
 $$
 \Delta J_z
@@ -304,13 +304,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-506aca2e5ea80e8b)
 
-with the axial cost of a binary inclination only second order — tilting stores transverse angular momentum at zero first-order axial price. Three structural constraints then reshape the A1 allocation problem:
+with the axial cost of a binary inclination only second order — tilting stores transverse angular momentum at zero first-order axial price. Three structural constraints then reshape the coincident-midpoint orthogonal-axis braid allocation problem:
 
-1. **One cadence.** The A1 frame's three independent frequency increments collapse to a single $\Delta\omega$ shared by every B1 binary. Binary-resolved allocation freedom lives entirely in the geometry — axis offsets, axial coordinates, and inclinations — not in per-binary frequency retuning.
-2. **The cadence is an open coordinate.** Nothing established fixes $\Delta\omega$. Whether any mechanism holds a B1 member at a fixed cadence or speed budget is an open question for the validated engine; until one is established, $\Delta\omega$ enters the partition map as a free coordinate.
-3. **One energy price.** In the reduced action-angle chart the Family-A companion ledger reads $\Delta E=\sum_{a=1}^{3}\omega_a\Delta I_a+\Delta E_{\text{wake}}$, so the energy cost of an accepted increment can depend on which indexed binary receives it. At one cadence that dependence vanishes: $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ at first order, however the allocation falls. For the accepted quantum $\Delta I=\hbar$ this is $\Delta E=\hbar\omega$ appearing as a ledger identity of B1 rather than an imported relation. The actual allocation must therefore be decided by the constraint structure, stiffness spectrum, and causal-root admissibility.
+1. **One cadence.** The coincident-midpoint orthogonal-axis braid frame's three independent frequency increments collapse to a single $\Delta\omega$ shared by every coincident-axis three-binary braid binary. Binary-resolved allocation freedom lives entirely in the geometry — axis offsets, axial coordinates, and inclinations — not in per-binary frequency retuning.
+2. **The cadence is an open coordinate.** Nothing established fixes $\Delta\omega$. Whether any mechanism holds a coincident-axis three-binary braid member at a fixed cadence or speed budget is an open question for the validated engine; until one is established, $\Delta\omega$ enters the partition map as a free coordinate.
+3. **One energy price.** In the reduced action-angle chart the orthogonal-axis three-binary companion ledger reads $\Delta E=\sum_{a=1}^{3}\omega_a\Delta I_a+\Delta E_{\text{wake}}$, so the energy cost of an accepted increment can depend on which indexed binary receives it. At one cadence that dependence vanishes: $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ at first order, however the allocation falls. For the accepted quantum $\Delta I=\hbar$ this is $\Delta E=\hbar\omega$ appearing as a ledger identity of coincident-axis three-binary braid rather than an imported relation. The actual allocation must therefore be decided by the constraint structure, stiffness spectrum, and causal-root admissibility.
 
-The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the Family-A case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase locking, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed fixed-coordinate family; the energy-price statement is a reduced action-angle statement at the same grade as the Family-A companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
+The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the orthogonal-axis three-binary case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase locking, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed fixed-coordinate family; the energy-price statement is a reduced action-angle statement at the same grade as the orthogonal-axis three-binary companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
 
 ### Quotient-Spectrum Discipline
 
@@ -318,7 +318,7 @@ The exact global-tilt null is a gift and a trap, and it fixes a method rule for 
 
 ### The Ordered Frame and the Helicity-Polarity Lock
 
-The spinor program of this bridge needs an ordered frame: a locked triple of oriented structures whose transport around closed histories can be interrogated for $2\pi/4\pi$ behavior. Prescribed B1 supplies the spin axis $\hat{\mathbf z}$ exactly. An axial polarity dipole is an additional B1 subset condition, not a consequence of the common axis alone. If the members of binary $a$ have axial signs $s_a$ and azimuthal phases $\phi_a$, transverse cancellation requires
+The spinor program of this bridge needs an ordered frame: a locked triple of oriented structures whose transport around closed histories can be interrogated for $2\pi/4\pi$ behavior. Prescribed coincident-axis three-binary braid supplies the spin axis $\hat{\mathbf z}$ exactly. An axial polarity dipole is an additional coincident-axis three-binary braid subset condition, not a consequence of the common axis alone. If the members of binary $a$ have axial signs $s_a$ and azimuthal phases $\phi_a$, transverse cancellation requires
 
 $$
 \sum_{a=1}^{3}s_a\rho_a e^{i\phi_a}=0.
@@ -326,7 +326,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-76a653275e26c9e7)
 
-On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated B1 subset; the $2\pi/4\pi$ transport response and any group-velocity orientation preference remain open.
+On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated coincident-axis three-binary braid subset; the $2\pi/4\pi$ transport response and any group-velocity orientation preference remain open.
 
 ### Gyroscopic-Circulatory Axis Dynamics
 
@@ -350,11 +350,11 @@ $$
 
 with $M$ the diagonal tilt-inertia matrix, $G$ the gyroscopic (spin) block, and $\Gamma$ the spin-transport block of the baseline axial torques, required for the exact global null of $K-\Gamma$ and hence for the quotient discipline. The eigenvector components pair into complex tilt amplitudes $\zeta_a=\eta_a^x+i\eta_a^y$, so each quotient eigenvalue is a whirl mode: a rotating precession pattern with growth rate $\operatorname{Re}\lambda$ and whirl frequency $\operatorname{Im}\lambda$.
 
-Everything beyond this chart is open. $M$ and $G$ follow from the exact kinematics; $K$, $\Gamma$, and any delay-memory (tilt-rate) contribution are measurements the validated engine has yet to supply. Whether B1 holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether group velocity changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is the standard fixed-coordinate binary linearization chart; every block beyond $M$ and $G$, and every stability statement, is an open measurement.
+Everything beyond this chart is open. $M$ and $G$ follow from the exact kinematics; $K$, $\Gamma$, and any delay-memory (tilt-rate) contribution are measurements the validated engine has yet to supply. Whether coincident-axis three-binary braid holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether group velocity changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is the standard fixed-coordinate binary linearization chart; every block beyond $M$ and $G$, and every stability statement, is an open measurement.
 
-## A1 Spin Scaffold
+## Coincident-Midpoint Orthogonal-Axis Braid Spin Scaffold
 
-The A1 scaffold carries three persistent binary indices $a\in\{1,2,3\}$ with independently assignable positive radii and frequencies. Its binary axes are mutually orthogonal at the Family-A near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$; phases, axial half-separations, transverse orbit radii, and circulation remain binary coordinates. No index has a fixed radius order or dynamical role. Self-hit activity, proximity to a causal-root fold, external exposure, and wake-ledger dominance are branch-derived diagnostics measured on a particular record. These coordinates define prescribed geometry only; an EOM-solver-retained A1 spin scaffold remains unproved.
+The coincident-midpoint orthogonal-axis braid scaffold carries three persistent binary indices $a\in\{1,2,3\}$ with independently assignable positive radii and frequencies. Its binary axes are mutually orthogonal at the orthogonal-axis three-binary near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$; phases, axial half-separations, transverse orbit radii, and circulation remain binary coordinates. No index has a fixed radius order or dynamical role. Self-hit activity, proximity to a causal-root fold, external exposure, and wake-ledger dominance are branch-derived diagnostics measured on a particular record. These coordinates define prescribed geometry only; an EOM-solver-retained coincident-midpoint orthogonal-axis braid spin scaffold remains unproved.
 
 In a reduced action-angle chart define
 
@@ -410,7 +410,7 @@ The actual partition is a dynamics problem determined by conservation, causal-ro
 
 ## Delayed Three-Binary Functional Scaffold
 
-This is the A1 functional scaffold; its single-cadence B1 counterpart is stated above, where the kinematic half is exact. The A1 ledger can now be written in a form that is concrete enough for proof work and simulation checks. This is still a scaffold: the wake term must be derived from the regularized nonlocal causal action before it can be claimed as a closed theorem.
+This is the coincident-midpoint orthogonal-axis braid functional scaffold; its single-cadence coincident-axis three-binary braid counterpart is stated above, where the kinematic half is exact. The coincident-midpoint orthogonal-axis braid ledger can now be written in a form that is concrete enough for proof work and simulation checks. This is still a scaffold: the wake term must be derived from the regularized nonlocal causal action before it can be claimed as a closed theorem.
 
 For each indexed binary $\ell\in\{1,2,3\}$, let $R_\ell(T)$ be its radius, $\omega_\ell(T)$ its angular frequency, $\hat{\mathbf n}_\ell(T)$ its plane normal, and
 
@@ -709,7 +709,7 @@ For a positive one-cycle accepted transaction, $\Delta I_{\text{accepted}}=+\hba
 
 ## Partition Equations from the Master Ledger
 
-These are the per-frequency partition equations of the A1 realization, used as Family-A comparison material; the primary allocation statement of this bridge is the iso-frequency partition map in the B1 scaffold. The partition equation is not an extra postulate. It is the binary-resolved projection of the master-equation angular-momentum ledger. For each receiver binary $\ell$, define the branch torque collected by that binary over a transition window $[T_i,T_f]$:
+These are the per-frequency partition equations of the coincident-midpoint orthogonal-axis braid realization, used as orthogonal-axis three-binary comparison material; the primary allocation statement of this bridge is the iso-frequency partition map in the coincident-axis three-binary braid scaffold. The partition equation is not an extra postulate. It is the binary-resolved projection of the master-equation angular-momentum ledger. For each receiver binary $\ell$, define the branch torque collected by that binary over a transition window $[T_i,T_f]$:
 
 $$
 \mathbf T_\ell(T)
@@ -802,7 +802,7 @@ $$
 
 It is stronger than the scalar $\hbar$ bookkeeping equation because it keeps the transaction axis, binary normals, wake recoil, and source recoil in the same vector ledger.
 
-The scalar partition used in the A1 bookkeeping is obtained only after projecting onto the accepted transaction axis $\hat{\mathbf a}$. Define
+The scalar partition used in the coincident-midpoint orthogonal-axis braid bookkeeping is obtained only after projecting onto the accepted transaction axis $\hat{\mathbf a}$. Define
 
 $$
 \Delta I_\ell
@@ -929,7 +929,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-17ee4a1dd400542a)
 
-when $\hat{\mathbf n}_\ell$ is fixed during the projected step. Each binary then contributes one mechanical retune equation. For the worked branch below only, declare binary $1$ to be self-hit-selected, binary $2$ to be fold-selected, and binary $3$ to be externally exposed. These are measured branch roles, not A1 identities. The branch-specific side conditions are:
+when $\hat{\mathbf n}_\ell$ is fixed during the projected step. Each binary then contributes one mechanical retune equation. For the worked branch below only, declare binary $1$ to be self-hit-selected, binary $2$ to be fold-selected, and binary $3$ to be externally exposed. These are measured branch roles, not coincident-midpoint orthogonal-axis braid identities. The branch-specific side conditions are:
 
 $$
 R_3^+\omega_3^+ < c_f,
@@ -977,11 +977,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b03884c6e268a4c1)
 
-Together, these equations are the A1 total-angular-momentum partition system. The four-substep branch below is a solved certificate inside this system, not the general solution of the branch-selection problem.
+Together, these equations are the coincident-midpoint orthogonal-axis braid total-angular-momentum partition system. The four-substep branch below is a solved certificate inside this system, not the general solution of the branch-selection problem.
 
 ## Worked External-Exposure-Coupled Transition
 
-This worked example is explicitly scoped to the separated-scale A1 realization and the branch-role assignment declared above; it does not impose that assignment on other A1 members. A corresponding B1 transaction on the iso-frequency allocation map remains an open target. This transition has two levels. The first gives the general separated-scale ledger for one positive closed-cycle action transaction coupled first to the externally exposed binary. The second solves one minimal branch certificate: one externally exposed substep, one fold-selected substep, two self-hit-selected substeps, and no retained wake angular momentum after the transition. General branch coefficients remain closure targets, but the minimal branch shows how the scaffold can produce an explicit partition and frequency retune.
+This worked example is explicitly scoped to the separated-scale coincident-midpoint orthogonal-axis braid realization and the branch-role assignment declared above; it does not impose that assignment on other coincident-midpoint orthogonal-axis braid members. A corresponding coincident-axis three-binary braid transaction on the iso-frequency allocation map remains an open target. This transition has two levels. The first gives the general separated-scale ledger for one positive closed-cycle action transaction coupled first to the externally exposed binary. The second solves one minimal branch certificate: one externally exposed substep, one fold-selected substep, two self-hit-selected substeps, and no retained wake angular momentum after the transition. General branch coefficients remain closure targets, but the minimal branch shows how the scaffold can produce an explicit partition and frequency retune.
 
 Use a separated-scale branch with
 
@@ -1680,7 +1680,7 @@ This is a consistency theorem for the finite branch-selection law, not another v
 
 ## Ordered-Frame Spinor Target
 
-Spin-$\tfrac{1}{2}$ should not be modeled as a tiny literal orbit. A1 has a richer object available: an ordered, non-coplanar internal frame together with root-ledger history. A compact way to name the data is
+Spin-$\tfrac{1}{2}$ should not be modeled as a tiny literal orbit. Coincident-midpoint orthogonal-axis braid has a richer object available: an ordered, non-coplanar internal frame together with root-ledger history. A compact way to name the data is
 
 $$
 \mathcal{F}_{\text{core}}(t)
@@ -1696,9 +1696,9 @@ $$
 
 where $\phi_\ell$ are binary phases and $\mathcal{R}$ records the active causal-root and self-hit branch data. A spatial rotation acts on the normals, but it need not return the full ordered phase-and-root history to itself after the same rotation that returns an ordinary rigid body.
 
-### The B1 Locked Frame
+### The Coincident-Axis Three-Binary Braid Locked Frame
 
-On B1 all three binary normals coincide with the spin axis, so the non-coplanarity condition $\det[\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3]\ne0$ does not apply. B1 instead supplies the locked triple
+On coincident-axis three-binary braid all three binary normals coincide with the spin axis, so the non-coplanarity condition $\det[\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3]\ne0$ does not apply. coincident-axis three-binary braid instead supplies the locked triple
 
 $$
 \mathcal F_{\text{spin}}(t)
@@ -1713,15 +1713,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-881d7438511a111d)
 
-where $\hat{\boldsymbol\jmath}$ is the exact spin axis from the rank-one kinematic spine, $\hat{\mathbf d}$ is the polarity-dipole direction on the transverse-canceling B1 subset defined above, $\theta_3$ is a declared azimuthal reference, and $\mathcal R$ is the causal-root and self-hit ledger. On that subset the handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$. The prescribed B1 coordinate lock keeps the triple's relative orientation fixed around the entire cycle. Claim level: derived for the stated transverse-canceling subset; no axial dipole is asserted for general B1.
+where $\hat{\boldsymbol\jmath}$ is the exact spin axis from the rank-one kinematic spine, $\hat{\mathbf d}$ is the polarity-dipole direction on the transverse-canceling coincident-axis three-binary braid subset defined above, $\theta_3$ is a declared azimuthal reference, and $\mathcal R$ is the causal-root and self-hit ledger. On that subset the handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$. The prescribed coincident-axis three-binary braid coordinate lock keeps the triple's relative orientation fixed around the entire cycle. Claim level: derived for the stated transverse-canceling subset; no axial dipole is asserted for general coincident-axis three-binary braid.
 
-The discrete-symmetry structure of the label follows from B1's results at their stated claim level. Polarity conjugation $C$ reverses $\hat{\mathbf d}$ while preserving $\hat{\boldsymbol\jmath}$, so it flips $h$: a braid and its polarity-conjugate braid are the exactly degenerate glove pair at fixed worldline order. A true mirror reverses the ordered orientation and flips $h$ again. The combined $CP$ operation restores $h$. The pro/anti ordered-orientation sign is therefore not the same object as the polarity-conjugation sign; their product supplies the polarity-weighted handedness $h$. Consequently the gauge quotient on the B1 frame must not remove polarity assignment, ordered-orientation reversal, or causal-root branch change — exactly the discipline stated for the A1 chart below.
+The discrete-symmetry structure of the label follows from coincident-axis three-binary braid's results at their stated claim level. Polarity conjugation $C$ reverses $\hat{\mathbf d}$ while preserving $\hat{\boldsymbol\jmath}$, so it flips $h$: a braid and its polarity-conjugate braid are the exactly degenerate glove pair at fixed worldline order. A true mirror reverses the ordered orientation and flips $h$ again. The combined $CP$ operation restores $h$. The pro/anti ordered-orientation sign is therefore not the same object as the polarity-conjugation sign; their product supplies the polarity-weighted handedness $h$. Consequently the gauge quotient on the coincident-axis three-binary braid frame must not remove polarity assignment, ordered-orientation reversal, or causal-root branch change — exactly the discipline stated for the coincident-midpoint orthogonal-axis braid chart below.
 
-For B1, a $2\pi$ spatial rotation about $\hat{\boldsymbol\jmath}$ returns the visible geometry of the locked triple. Whether the complete phase-and-root history returns after $2\pi$ or only after $4\pi$ is the parity test $\epsilon_r^{2\pi}$ defined below. The A1 chart that follows poses the same target on a non-coplanar frame.
+For coincident-axis three-binary braid, a $2\pi$ spatial rotation about $\hat{\boldsymbol\jmath}$ returns the visible geometry of the locked triple. Whether the complete phase-and-root history returns after $2\pi$ or only after $4\pi$ is the parity test $\epsilon_r^{2\pi}$ defined below. The coincident-midpoint orthogonal-axis braid chart that follows poses the same target on a non-coplanar frame.
 
-### The A1 Ordered-Frame Chart
+### The Coincident-Midpoint Orthogonal-Axis Braid Ordered-Frame Chart
 
-The corresponding reduced A1 state vector is
+The corresponding reduced coincident-midpoint orthogonal-axis braid state vector is
 
 $$
 \Gamma_C(t)
@@ -1777,12 +1777,12 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3d9fe4d7e613d559)
 
-The reduced closure-label version of the same target keeps only the data needed to compare closed A1 branches. The dynamics and ordered-frame sections use the same persistent indices $a\in\{1,2,3\}$. Radius order and branch-derived roles are recorded separately and do not rename the binaries.
+The reduced closure-label version of the same target keeps only the data needed to compare closed coincident-midpoint orthogonal-axis braid branches. The dynamics and ordered-frame sections use the same persistent indices $a\in\{1,2,3\}$. Radius order and branch-derived roles are recorded separately and do not rename the binaries.
 
 For a closed ordered frame, use the reduced branch label
 
 $$
-\Lambda_{\text{A1}}
+\Lambda_{\mathrm{cm}}
 =
 \left(
 k_1,k_2,k_3;\
@@ -2164,7 +2164,7 @@ $$
 
 If this identity fails, the consumer label is chart-dependent and cannot be promoted as spinor, weak, exchange, or metric evidence. This proposition remains a theorem target until a non-coplanar retained row with quotient witness, doubled-path restoration, and angular-momentum residuals is populated.
 
-The Lorentz-sector extension is a separate but connected theorem target. Once the relativistic observer sector has been recovered, the same ordered A1 frame must admit an effective spinor response compatible with the double cover
+The Lorentz-sector extension is a separate but connected theorem target. Once the relativistic observer sector has been recovered, the same ordered coincident-midpoint orthogonal-axis braid frame must admit an effective spinor response compatible with the double cover
 
 $$
 \widetilde{\Lambda}_{\mathrm{eff}}:
@@ -2189,7 +2189,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5ee4bd57756cca39)
 
-That is a $2\pi$ single-valuedness rule on an observer-level orbital envelope. A fermion spinor target cannot reuse that ordinary closure rule. It must explain why the visible $SO(3)$ orientation closes after $2\pi$ while the history-lifted A1 state changes sheet and only restores after $4\pi$.
+That is a $2\pi$ single-valuedness rule on an observer-level orbital envelope. A fermion spinor target cannot reuse that ordinary closure rule. It must explain why the visible $SO(3)$ orientation closes after $2\pi$ while the history-lifted coincident-midpoint orthogonal-axis braid state changes sheet and only restores after $4\pi$.
 
 For a central external envelope, the full observer-level orbital gate also includes angular regularity:
 
@@ -2227,7 +2227,7 @@ $$
 \mathfrak{f}_A
 =
 \left(
-\Lambda_{\text{A1}},
+\Lambda_{\mathrm{cm}},
 \mathcal{A}_{\mathrm{ax}},
 q_{\mathrm{eff}},
 \mathbf{p}_{\mathrm{eff}},
@@ -2239,7 +2239,7 @@ h_{\mathrm{eff}},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a41fdad1445dc7e1)
-where $\Lambda_{\text{A1}}$ is the reduced A1 closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
+where $\Lambda_{\mathrm{cm}}$ is the reduced coincident-midpoint orthogonal-axis braid closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
 $$
 C_{\mathrm{eff}}^2
 =
@@ -2279,7 +2279,7 @@ The component action table makes the proof obligation explicit:
 
 | Record component | $C_{\mathrm{eff}}$ | $P_{\mathrm{eff}}$ | $T_{\mathrm{eff}}$ | Combined benchmark |
 | --- | --- | --- | --- | --- |
-| $\Lambda_{\text{A1}}$ | map to the pro/anti-conjugate closure label | reverse the observer-facing orientation chart | reverse phase-flow order in the comparison chart | return an admissible closure label |
+| $\Lambda_{\mathrm{cm}}$ | map to the pro/anti-conjugate closure label | reverse the observer-facing orientation chart | reverse phase-flow order in the comparison chart | return an admissible closure label |
 | $\mathcal{A}_{\mathrm{ax}}$ | swap effective polarity inventory while preserving axial-site admissibility | reflect the axial frame relative to the observer chart | reverse cycle orientation and phase ordering | preserve the allowed axial inventory class |
 | $q_{\mathrm{eff}}$ | $q_{\mathrm{eff}}\mapsto-q_{\mathrm{eff}}$ | unchanged | unchanged | match the antiparticle charge record |
 | $\mathbf{p}_{\mathrm{eff}}$ | unchanged as a charge-conjugation datum | $\mathbf{p}_{\mathrm{eff}}\mapsto-\mathbf{p}_{\mathrm{eff}}$ | $\mathbf{p}_{\mathrm{eff}}\mapsto-\mathbf{p}_{\mathrm{eff}}$ | recover the same mass-shell comparison branch |
@@ -2289,7 +2289,7 @@ The component action table makes the proof obligation explicit:
 | $\mathsf{s}_{\mathrm{sh}}$ | preserve generation shielding class unless the reaction ledger changes it | preserve generation shielding class | preserve generation shielding class | commute with $T_{\mathrm{gen}}$ up to the generation residual |
 | $\mathcal{P}$ | conjugate source and product provenance rows | reverse the observer chart, not the substrate history | compare the reversed effective process with the admissible history record | keep energy, $\mathbf{p}$, $\mathbf{J}$, polarity, and remnant rows balanced |
 
-The local proof target is therefore not just a $4\pi$ lift. It is a lifted A1 state whose coarse spinor chart admits effective $C_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $T_{\mathrm{eff}}$ operations compatible with weak chirality, charge conjugation, and the generation/mixing ledgers. If no such effective operations can be derived from $\Lambda_{\text{A1}}$, then the ordered-frame route may reproduce a rotation double cover while still failing the fermion symmetry benchmark.
+The local proof target is therefore not just a $4\pi$ lift. It is a lifted coincident-midpoint orthogonal-axis braid state whose coarse spinor chart admits effective $C_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $T_{\mathrm{eff}}$ operations compatible with weak chirality, charge conjugation, and the generation/mixing ledgers. If no such effective operations can be derived from $\Lambda_{\mathrm{cm}}$, then the ordered-frame route may reproduce a rotation double cover while still failing the fermion symmetry benchmark.
 
 ### Spinor-to-Metric Compatibility Residual
 
@@ -2335,7 +2335,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cf097a84a6b8c913)
 
-which measures handedness of the self-interaction pattern. The open problem is to lift that kind of causal-locus invariant from one worldline or branch family to the full ordered A1 frame and then prove the $4\pi$ return behavior.
+which measures handedness of the self-interaction pattern. The open problem is to lift that kind of causal-locus invariant from one worldline or branch family to the full ordered coincident-midpoint orthogonal-axis braid frame and then prove the $4\pi$ return behavior.
 
 ## The $h$ and $\hbar$ Convention
 
@@ -2441,7 +2441,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ae5f4498a3466fc5)
 
-with, in the A1 per-frequency chart,
+with, in the coincident-midpoint orthogonal-axis braid per-frequency chart,
 
 $$
 \Delta I_1+\Delta I_2+\Delta I_3+\Delta I_{\text{wake}}
@@ -2451,15 +2451,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-276a8da88a64bb4a-2)
 
-and, in the primary iso-frequency chart, the same total allocated through the B1 scaffold's partition map (radii, tilts, shared cadence, wake) at the single energy price $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ — in either chart only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
+and, in the primary iso-frequency chart, the same total allocated through the coincident-axis three-binary braid scaffold's partition map (radii, tilts, shared cadence, wake) at the single energy price $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ — in either chart only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
 
 Whether the transacted unit is constant under group velocity has not been established. The comparison that decides it — the $J_z$-conserving trajectory against the closure-optimal trajectory on a retained family — is an open EOM-solver calculation (closure target 17 below). Coincidence would derive Planck-constant constancy from the family's dynamics; divergence would convert observed constancy into a selection constraint on which family members can be dressed into matter.
 
 ## Foundation-Up Closure Route
 
-The closure route below is written in the A1 per-frequency chart: its integer ledger counts three per-binary windings, and its holonomy object is the normal triad. In B1, one common cadence collapses the winding triple and the locked frame replaces the normal triad, so B1 needs its own derivation of the route. The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. The clean generalization is that ordinary orbital labels come from closure and regularity on an effective angular envelope, while A1 labels should come from closure, root-ledger admissibility, normal-triad holonomy, and stability of the three indexed binaries. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this style of reasoning begins one layer lower: first classify the stable A1 closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
+The closure route below is written in the coincident-midpoint orthogonal-axis braid per-frequency chart: its integer ledger counts three per-binary windings, and its holonomy object is the normal triad. In coincident-axis three-binary braid, one common cadence collapses the winding triple and the locked frame replaces the normal triad, so coincident-axis three-binary braid needs its own derivation of the route. The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. The clean generalization is that ordinary orbital labels come from closure and regularity on an effective angular envelope, while coincident-midpoint orthogonal-axis braid labels should come from closure, root-ledger admissibility, normal-triad holonomy, and stability of the three indexed binaries. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this style of reasoning begins one layer lower: first classify the stable coincident-midpoint orthogonal-axis braid closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
 
-For an A1, the first closure object is the three-binary phase and root ledger over a stable return period $P_{\mathrm{cyc}}$. A useful theorem-target form is
+For a coincident-midpoint orthogonal-axis braid, the first closure object is the three-binary phase and root ledger over a stable return period $P_{\mathrm{cyc}}$. A useful theorem-target form is
 
 $$
 \Theta_a(P_{\mathrm{cyc}})
@@ -2509,11 +2509,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-70cacf91f57e0ab8)
 
-subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed A1 geometry.
+subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed coincident-midpoint orthogonal-axis braid geometry.
 
-When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced A1 closure label $\Lambda_{\text{A1}}$. That label keeps the integer windings, causal-root ledgers, cross-binary phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the braid closure data that would have to derive it.
+When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced coincident-midpoint orthogonal-axis braid closure label $\Lambda_{\mathrm{cm}}$. That label keeps the integer windings, causal-root ledgers, cross-binary phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the braid closure data that would have to derive it.
 
-The candidate A1 closure labels are therefore:
+The candidate coincident-midpoint orthogonal-axis braid closure labels are therefore:
 
 - Binary winding vector $(k_1,k_2,k_3)$, generated by phase closure.
 - Inter-layer lock integers $k_{IM},k_{MO},k_{IO}$, generated by relative closure.
@@ -2585,12 +2585,12 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-490b966aee396d1b)
 
-where $\lambda_C$ abbreviates the selected A1 closure label, and $\mathbf k=(k_1,k_2,k_3,\mathcal R)$ is its energy-level reduction. This is not a new substrate field; it is an effective description of the superposed causal wakes after coarse-graining. The atomic-orbital program is then to show that an electron assembly in the nuclear and Noether sea environment locks to stable resonance basins whose angular part recovers $Y_\ell^m$.
+where $\lambda_C$ abbreviates the selected coincident-midpoint orthogonal-axis braid closure label, and $\mathbf k=(k_1,k_2,k_3,\mathcal R)$ is its energy-level reduction. This is not a new substrate field; it is an effective description of the superposed causal wakes after coarse-graining. The atomic-orbital program is then to show that an electron assembly in the nuclear and Noether sea environment locks to stable resonance basins whose angular part recovers $Y_\ell^m$.
 
 The resulting proof route is:
 
 $$
-\text{A1 integer closure}
+\text{coincident-midpoint integer closure}
 \longrightarrow
 \text{structured causal-wake envelope}
 \longrightarrow
@@ -2601,9 +2601,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ba5a40edd2c3ae20)
 
-This route strengthens the distinction rather than weakening it. The internal A1 spinor closure still targets $4\pi$ fermion behavior, while the atomic orbital envelope still targets $2\pi$ observer-level angular closure. The possible unification is that both are selected by geometry, phase closure, and causal-root admissibility at different levels of description.
+This route strengthens the distinction rather than weakening it. The internal coincident-midpoint orthogonal-axis braid spinor closure still targets $4\pi$ fermion behavior, while the atomic orbital envelope still targets $2\pi$ observer-level angular closure. The possible unification is that both are selected by geometry, phase closure, and causal-root admissibility at different levels of description.
 
-The failure modes are part of the proof program. The route is disciplined or falsified if no candidate closure class has a positive non-symmetry Floquet gap, if root ledgers change continuously rather than through branch or fold events, if the ordered frame has trivial $2\pi$ holonomy where spinor closure is required, if the proposed lift fails to restore after $4\pi$, if group-velocity anisotropy behaves like dissipative drag in stable atoms, if far-zone coefficients fail to converge or fail to recover the spherical-harmonic central limit, or if a derivation conflates internal A1 rotational action with observer-level atomic orbital angular momentum.
+The failure modes are part of the proof program. The route is disciplined or falsified if no candidate closure class has a positive non-symmetry Floquet gap, if root ledgers change continuously rather than through branch or fold events, if the ordered frame has trivial $2\pi$ holonomy where spinor closure is required, if the proposed lift fails to restore after $4\pi$, if group-velocity anisotropy behaves like dissipative drag in stable atoms, if far-zone coefficients fail to converge or fail to recover the spherical-harmonic central limit, or if a derivation conflates internal coincident-midpoint orthogonal-axis braid rotational action with observer-level atomic orbital angular momentum.
 
 ## Bridge to Standard Quantum Mechanics
 
@@ -2696,11 +2696,11 @@ The silver-atom Stern-Gerlach experiment is the clean recovery contrast. Classic
 
 Observer-level orbital angular momentum $\mathbf{L}$ belongs to spatial motion around a center or to an orbital degree of freedom in an effective wave description. It should not be conflated with internal binary action inside a particle assembly.
 
-The hydrogen $1s$ state is the warning case. In standard quantum numbers, the electron's atomic orbital quantum number is $\ell=0$. That statement concerns the observer-level atomic wavefunction. If the electron assembly contains internal A1 rotational action, that action is not the same object as the atomic $\mathbf{L}$. The atomic label describes the coarse motion of the electron assembly relative to the nucleus; the internal A1 ledger describes the assembly's own organized causal history.
+The hydrogen $1s$ state is the warning case. In standard quantum numbers, the electron's atomic orbital quantum number is $\ell=0$. That statement concerns the observer-level atomic wavefunction. If the electron assembly contains internal coincident-midpoint orthogonal-axis braid rotational action, that action is not the same object as the atomic $\mathbf{L}$. The atomic label describes the coarse motion of the electron assembly relative to the nucleus; the internal coincident-midpoint orthogonal-axis braid ledger describes the assembly's own organized causal history.
 
 The mapping target is therefore two-stage:
 
-1. derive internal rotational-action ledgers from architrino and A1 dynamics;
+1. derive internal rotational-action ledgers from architrino and coincident-midpoint orthogonal-axis braid dynamics;
 2. derive observer-level orbital quantum numbers from the effective envelope of an assembly in an external potential.
 
 Skipping that distinction would make internal circulation falsely appear as atomic orbital angular momentum.
@@ -2764,7 +2764,7 @@ The repo-wide spin taxonomy is:
 | Effective spin label | Geometry target |
 | --- | --- |
 | Spin-$0$ | Scalar or radial response with no attached orientation axis. |
-| Spin-$\tfrac{1}{2}$ | Ordered locked braid frame with $4\pi$ spinor closure — the B1's exact locked triple as primary, the non-coplanar A1 frame as comparison. |
+| Spin-$\tfrac{1}{2}$ | Ordered locked braid frame with $4\pi$ spinor closure — the coincident-axis three-binary braid's exact locked triple as primary, the non-coplanar coincident-midpoint orthogonal-axis braid frame as comparison. |
 | Spin-$1$ | Vector channel with one distinguished axis and transverse or helical structure. |
 | Spin-$2$ | Tensor-like transverse-traceless deformation data. |
 
@@ -4324,7 +4324,7 @@ The correct development order is:
 
 1. derive the delayed total angular-momentum functional for architrino dynamics;
 2. evaluate the functional for changing-frequency A1s;
-3. validate the projected A1 partition equations and derive the branch-selection rule for accepted action transactions;
+3. validate the projected coincident-midpoint orthogonal-axis braid partition equations and derive the branch-selection rule for accepted action transactions;
 4. prove or falsify ordered-frame spinor closure;
 5. derive a Stern-Gerlach-like measurement response from apparatus coupling;
 6. construct the pair-provenance ledger for singlet-like creation;
@@ -4346,28 +4346,28 @@ The following usage should be preferred across the corpus:
 - Write "spin-measurement outcome" for the apparatus-indexed basin record, not for a pre-existing spin arrow hidden inside the target.
 - Write "observer-level orbital quantum number" for atomic $\ell$ and $m$ labels until their effective-envelope recovery is derived.
 - Treat "intrinsic spin" as standard quantum language meaning "not observer-level orbital motion"; do not use it to imply primitive spin on an architrino.
-- Treat the common-axis B1 scaffold and the three-normal A1 scaffold as distinct charts; do not transfer a ledger quantity between them without an explicit derivation.
+- Treat the common-axis coincident-axis three-binary braid scaffold and the three-normal coincident-midpoint orthogonal-axis braid scaffold as distinct charts; do not transfer a ledger quantity between them without an explicit derivation.
 
 ## Closure Targets
 
 This bridge leaves several derivations open beyond the partition scaffold above.
 
 1. Promote the delayed three-layer scaffold above into a conserved functional derived directly from the regularized nonlocal action.
-2. Validate that functional on B1 — where the kinematic half is exact and the open burden is the wake row, including its possible tilt-sector asymmetry — and on an A1 branch whose indexed binaries have measured radii, frequencies, plane normals, phases, active root branches, external-exposure rows, fold proximity, and self-hit history.
+2. Validate that functional on coincident-axis three-binary braid — where the kinematic half is exact and the open burden is the wake row, including its possible tilt-sector asymmetry — and on a coincident-midpoint orthogonal-axis braid branch whose indexed binaries have measured radii, frequencies, plane normals, phases, active root branches, external-exposure rows, fold proximity, and self-hit history.
 3. Populate the finite candidate set $\mathcal A_N(B^-,\Gamma_{\text{coupl}},W)$, evaluate $\mathcal R_{\mathrm{sel}}$ on each retained branch candidate, and test whether $\operatorname{Sel}_{B,N}$ is chart-invariant, stable under retained-budget refinement $N\preceq N'$, unique, or a physical tie for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
 4. Generalize the solved four-substep branch by deriving or fitting $a$, $b$, $w$, $\Delta R_\ell$, $\Delta\omega_\ell$, and $\Delta E_{\ell,\text{root}}$ from the master equation for non-minimal branches.
 5. Determine whether the partition is unique or branch-dependent — on the iso-frequency allocation map (radii, tilts, shared cadence, wake) as the primary form, and for the indexed per-frequency rows as comparison.
-6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift on B1's locked frame — the non-coplanar chart does not apply to B1, so the lift question must be posed on the locked triple's history rows — and separately on the ordered non-coplanar A1 frame, then test whether either lifted response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
+6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift on coincident-axis three-binary braid's locked frame — the non-coplanar chart does not apply to coincident-axis three-binary braid, so the lift question must be posed on the locked triple's history rows — and separately on the ordered non-coplanar coincident-midpoint orthogonal-axis braid frame, then test whether either lifted response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
 7. Evaluate the Master-Equation apparatus branch-sum impulse rate $d\mathbf J_{C}^{\text{app}}/dT$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal Noether braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
 9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating polarity-conjugate planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
-11. Derive integer phase-winding closure for A1 energy levels by computing the admissible ledgers $(k_1,k_2,k_3,\mathcal R)$ and their allowed changes under $\Delta A_{\text{cycle}}=h$ transactions.
-12. Derive the effective far-zone causal-wake envelope of an integer-closed A1 and decompose its angular content into recovery coefficients that can be compared with spherical-harmonic orbital modes.
+11. Derive integer phase-winding closure for coincident-midpoint orthogonal-axis braid energy levels by computing the admissible ledgers $(k_1,k_2,k_3,\mathcal R)$ and their allowed changes under $\Delta A_{\text{cycle}}=h$ transactions.
+12. Derive the effective far-zone causal-wake envelope of an integer-closed coincident-midpoint orthogonal-axis braid and decompose its angular content into recovery coefficients that can be compared with spherical-harmonic orbital modes.
 13. Derive the native effective envelope extractor $\mathcal E_{\mathrm{orb}}$ for an assembly in an external potential, then apply the angular-envelope lemma to recover $2\pi$ azimuthal single-valuedness, $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$ without importing internal spin data.
 14. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
 15. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
-16. Settle the B1 axis sector with the EOM solver: measure the tilt block $K$, the spin-transport block $\Gamma$, and any delay-memory contribution, deflate the exact global-tilt null, read the gyroscopic-circulatory quotient spectrum, and confirm any linear indication by direct evolution under the master equation; determine whether the realization holds its axis and, if a surplus exists, what channel absorbs it, including any discrete transaction at a causal-root fold. No stability verdict or worked B1 transaction is currently established.
+16. Settle the coincident-axis three-binary braid axis sector with the EOM solver: measure the tilt block $K$, the spin-transport block $\Gamma$, and any delay-memory contribution, deflate the exact global-tilt null, read the gyroscopic-circulatory quotient spectrum, and confirm any linear indication by direct evolution under the master equation; determine whether the realization holds its axis and, if a surplus exists, what channel absorbs it, including any discrete transaction at a causal-root fold. No stability verdict or worked coincident-axis three-binary braid transaction is currently established.
 17. Execute the $J_z$-conserving-trajectory versus closure-optimal-trajectory comparison on a surviving family, feeding the $h$ and $\hbar$ convention section: coincidence derives Planck-constant constancy; divergence converts observed constancy into a selection constraint on dressable family members.
 
 Until those targets are closed, this document should be read as a disciplined bridge. It is strong enough to say that angular momentum and spin are not primitive architrino properties, strong enough to prevent $h/\hbar$ drift, and strong enough to route Bell's theorem to the correct prerequisite. It is not yet a proof that standard spin and all Bell correlations have been derived from the master equation.

@@ -4,26 +4,11 @@ This is the canonical execution ledger for accepted Equation Mapping app work. [
 
 ## Ranked Next Objects
 
-1. `curated_carousel_promotion_review` — [AEM-004](#aem-004--curated-carousel-promotion-review). Status: `Queued`.
-2. `review_packet_export` — [AEM-005](#aem-005--review-packet-export). Status: `Queued`.
+No rows.
 
 ## Queued
 
-### AEM-004 — Curated carousel promotion review
-
-- **Status:** Queued
-- **Priority object:** `curated_carousel_promotion_review`
-- **Request / acceptance:** Review one already-searchable corpus equation for optional carousel placement and additional curated callouts without implying proof acceptance or changing its baseline equation status.
-- **Evidence / blocker:** All corpus equations already have the same search, address, source, and symbol surface. Promotion now needs only an editorial selection, claim-boundary review, and curated overlay document.
-- **Completion:** One selected equation is promoted only if its callouts add material explanatory value; its app-owned overlay record preserves the generated source and symbol data, its claim-level boundary remains explicit, and focused tests plus browser review confirm that promotion changes carousel/editorial features only.
-
-### AEM-005 — Review packet export
-
-- **Status:** Queued
-- **Priority object:** `review_packet_export`
-- **Request / acceptance:** Export a static equation-map packet for review, including document JSON and a screenshot.
-- **Evidence / blocker:** Depends on local editor draft state.
-- **Completion:** The exported packet contains the normalized document data and a readable screenshot with enough provenance to identify its source equation and claim level.
+No rows.
 
 ## In progress
 
@@ -61,8 +46,19 @@ No rows.
 
 ## Deferred / blocked
 
-No rows.
+### AEM-005 — Review packet export
+
+- **Status:** Deferred
+- **Priority object:** `review_packet_export`
+- **Request / acceptance:** Export a static equation-map packet for review, including document JSON and a screenshot.
+- **Evidence / blocker:** No operator-selected local editor draft is available to export. The task becomes executable only when such a draft exists and the operator requests its review packet.
+- **Completion:** The exported packet contains the normalized document data and a readable screenshot with enough provenance to identify its source equation and claim level.
 
 ## Superseded / withdrawn
 
-No rows.
+### AEM-004 — Curated carousel promotion review
+
+- **Status:** Withdrawn
+- **Priority object:** `curated_carousel_promotion_review`
+- **Reason:** Withdrawn by operator decision on 2026-09-01 because promoting an arbitrary equation adds no justified reader or operator value.
+- **Re-entry condition:** A carousel addition must be proposed as a new task with a named comprehension gap or comparison use case, a selected equation whose visual decomposition addresses it, explicit callouts and claim boundary, and a review condition that can show whether the addition helps.

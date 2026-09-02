@@ -1,6 +1,6 @@
-# F5 Past-Only Handoff: Fresh Build Plan
+# phase-varying display representative Past-Only Handoff: Fresh Build Plan
 
-Status: independently reviewed build-only plan, 2026-08-27. Separate review accepts the builder, captured registered-child launcher, and all 14 controls, including four independently authored startup-interruption controls. No actual F5 input or EOM evolution is authorized by this plan. The current consumer is the separately reviewed data-only producer; the [launch-readiness owner](2026-08-27-braid-search-launch-readiness.md#strength-independent-f5-evolution-prerequisite) retains the independent reference boundary and unresolved ordinary-evolution choices.
+Status: independently reviewed build-only plan, 2026-08-27. Separate review accepts the builder, captured registered-child launcher, and all 14 controls, including four independently authored startup-interruption controls. No actual phase-varying display representative input or EOM evolution is authorized by this plan. The current consumer is the separately reviewed data-only producer; the [launch-readiness owner](2026-08-27-braid-search-launch-readiness.md#strength-independent-f5-evolution-prerequisite) retains the independent reference boundary and unresolved ordinary-evolution choices.
 
 Plainly: this step makes and identifies the program that will report the saved prehistory. It does not run the geometry or choose interaction strength.
 
@@ -55,4 +55,4 @@ Plainly: a receipt counts only after the entire build closes successfully on tim
 
 After independent build review, declare a separate single-attempt producer/checker invocation bound to the accepted past-only prefix and frozen verifier. That later invocation must again use exclusive output, an inclusive observed deadline, unchanged source/runtime identities, successful process closure and independently checked final hashes. This plan alone does not launch it. The effective-strength choice and ordinary-evolution request remain separate.
 
-Closure goal: independently review and perform one bounded fresh build, then inspect its receipt before any actual F5 handoff generation.
+Closure goal: independently review and perform one bounded fresh build, then inspect its receipt before any actual phase-varying display representative handoff generation.

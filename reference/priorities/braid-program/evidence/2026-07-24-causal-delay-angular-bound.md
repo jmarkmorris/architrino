@@ -9,7 +9,7 @@ This packet separates two approximations that had previously been grouped togeth
 1. the finite enclosing sphere approaching the compact-source far field; and
 2. the exact direction-dependent emission time being replaced by its first position-acceleration correction.
 
-The bounds below are derived in normalized units $c_f=1$. The numerical audit is measured by the independently implemented [`independent-causal-delay-bound-audit.mjs`](../../../../scripts/prescribed-path-analysis/independent-causal-delay-bound-audit.mjs). The result applies to the active prescribed Family-C paths only. No path was evolved, and no binding, stability, energy, retention, shielding, particle-identity, or physical-realization claim follows.
+The bounds below are derived in normalized units $c_f=1$. The numerical audit is measured by the independently implemented [`independent-causal-delay-bound-audit.mjs`](../../../../scripts/prescribed-path-analysis/independent-causal-delay-bound-audit.mjs). The result applies to the active prescribed two-component circular paths only. No path was evolved, and no binding, stability, energy, retention, shielding, particle-identity, or physical-realization claim follows.
 
 ## Exact Setup
 
@@ -386,7 +386,7 @@ $$
 
 The audit instrument independently implements the circular histories, finite and far causal roots, exact radial acceleration rows, Gauss-Legendre sphere quadrature, and degree-$1$ and degree-$2$ tensor projections. It does not import the prescribed wake evaluator, causal-root solver, angular reducer, or prior attribution instrument.
 
-The active $c_f=1$ Family-C cohort produced:
+The active $c_f=1$ two-component circular cohort produced:
 
 - $197$ cases and $1{,}361{,}664$ independently evaluated time-direction samples;
 - $197/197$ passes for the root, finite-radius, delay-linearization, and combined bounds;
@@ -398,31 +398,31 @@ The independent exact ratio and the $2/5$ approximation remain strongly related:
 
 | Cohort | Count | Log Pearson correlation | Log-fit slope | Effective coefficient against $\langle\|\mathbf S\|^2\rangle/\langle\|\mathbf U\|^2\rangle$ | Median relative ratio error | Maximum relative ratio error |
 |---|---:|---:|---:|---:|---:|---:|
-| Family C | 197 | $0.99464$ | $1.00668$ | $0.44401$ | $0.1273$ | $0.4162$ |
+| two-component circular configurations | 197 | $0.99464$ | $1.00668$ | $0.44401$ | $0.1273$ | $0.4162$ |
 | C4 | 33 | $0.98930$ | $0.95599$ | $0.43084$ | $0.1419$ | $0.2939$ |
 
 These are prescribed-path measurements. The independently recovered primary ratios establish implementation agreement; the closed-form identities establish the $2/5$ rule for $L$.
 
 ## What the Bound Changes
 
-Increasing $R$ suppresses $E_R$, but it does not suppress $E_D$. The active Family-C cohort has median $\nu=0.543$ and maximum $\nu=0.910$. Its rigorous delay-linearization bound is therefore conservative: relative to the approximation's sampled root-mean-square amplitude, its minimum is $4.07$, median $35.43$, and maximum $271.25$. The resulting theorem-level ratio intervals are vacuous for these draws.
+Increasing $R$ suppresses $E_R$, but it does not suppress $E_D$. The active two-component circular cohort has median $\nu=0.543$ and maximum $\nu=0.910$. Its rigorous delay-linearization bound is therefore conservative: relative to the approximation's sampled root-mean-square amplitude, its minimum is $4.07$, median $35.43$, and maximum $271.25$. The resulting theorem-level ratio intervals are vacuous for these draws.
 
 The correct disposition is therefore:
 
 1. the compact-source far limit is controlled;
 2. the $2/5$ coefficient is proved exactly for the first causal-delay approximation;
 3. an independent implementation reproduces the exact prescribed ratios and confirms that the approximation is a strong predictor;
-4. the current worst-case bound does not certify that approximation for any individual active Family-C draw.
+4. the current worst-case bound does not certify that approximation for any individual active two-component circular draw.
 
-The Family-C relationship remains a measured prescribed-path regularity with a derived mechanism, not a uniformly error-certified coefficient law for the current speed range.
+The two-component circular relationship remains a measured prescribed-path regularity with a derived mechanism, not a uniformly error-certified coefficient law for the current speed range.
 
 ## EOM-Branch Audit
 
-A live search of `.local-data`, `reference/priorities/braid-program/campaigns`, `reference/priorities/braid-program/evidence`, and the EOM priority records found no legitimate EOM-evolved Family-C or C4 branch.
+A live search of `.local-data`, `reference/priorities/braid-program/campaigns`, `reference/priorities/braid-program/evidence`, and the EOM priority records found no legitimate EOM-evolved two-component circular or C4 branch.
 
-The current C1 through C6 records are `chart-hypothesis` / `display-only` prescribed geometry. Campaign 1 is specified and construction-tested but explicitly has no production fate result; it concerns the two-architrino sub-field rung, not Family C. The Braid Program method places twelve-architrino evolution after the binary, four-architrino, and six-architrino rungs and requires declared prehistories, root clearance, collapse, refinement, and an independent oracle.
+The current C1 through C6 records are `chart-hypothesis` / `display-only` prescribed geometry. Campaign 1 is specified and construction-tested but explicitly has no production fate result; it concerns the two-architrino sub-field rung, not two-component circular configurations. The Braid Program method places twelve-architrino evolution after the binary, four-architrino, and six-architrino rungs and requires declared prehistories, root clearance, collapse, refinement, and an independent oracle.
 
-An ad hoc evolution of the prescribed C4 coordinates would therefore not be the “first legitimate EOM-evolved Family-C branch” and cannot test survival of the position-acceleration relationship.
+An ad hoc evolution of the prescribed C4 coordinates would therefore not be the “first legitimate EOM-evolved two-component circular branch” and cannot test survival of the position-acceleration relationship.
 
 When an eligible branch exists, the test must use that branch's retained positions, velocities, and acceleration rows to compute $\mathbf U$, $\mathbf S$, the exact exterior degree powers, and the bound terms on the same claim window. It must preserve branch identity across a radius ladder and all collapse/refinement members. A relation seen only in the seed or in one prehistory does not survive the test.
 
@@ -442,4 +442,4 @@ Reproduce the audit from the repository root with:
 node scripts/prescribed-path-analysis/independent-causal-delay-bound-audit.mjs
 ```
 
-Reject the theorem if any displayed inequality fails under its hypotheses. Reject the independent audit if its canonical hash fails, if its exact checks fail, or if an independently sampled difference exceeds its declared bound. Reject evolved survival if an eligible EOM-evolved Family-C branch fails the same-row relation after root clearance, collapse, and refinement.
+Reject the theorem if any displayed inequality fails under its hypotheses. Reject the independent audit if its canonical hash fails, if its exact checks fail, or if an independently sampled difference exceeds its declared bound. Reject evolved survival if an eligible EOM-evolved two-component circular branch fails the same-row relation after root clearance, collapse, and refinement.

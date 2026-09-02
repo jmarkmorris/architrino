@@ -1,6 +1,6 @@
-# F5 Phase-Varying Executable And Guard Certificate
+# phase-varying display representative Phase-Varying Executable And Guard Certificate
 
-Status: CLOSED REPRESENTATION AND PRESCRIBED-HISTORY CERTIFICATE, 2026-08-26. This packet closed `H1` and `H2` for one campaign-selected revised F5 realization. The operator subsequently approved the same scientific row for prescribed display. That approval does not supersede the exact failure of the demoted common-cadence circular realization, close `H3`, or establish return under ordinary EOM evolution, binding, retention, stability, particle identity, or physical realization.
+Status: CLOSED REPRESENTATION AND PRESCRIBED-HISTORY CERTIFICATE, 2026-08-26. This packet closed `H1` and `H2` for one campaign-selected revised phase-varying display representative realization. The operator subsequently approved the same scientific row for prescribed display. That approval does not supersede the exact failure of the demoted common-cadence circular realization, close `H3`, or establish return under ordinary EOM evolution, binding, retention, stability, particle identity, or physical realization.
 
 ## Predeclaration and frozen input
 
@@ -20,7 +20,7 @@ $$
 
 with the standard ordered right-handed frame. The bounded search covered all 64 fixed branch sheets, a 48-by-128 coarse relative-phase/cycle grid, and the frozen 65-by-1,024 refinement around each of the four best coarse rows. The final continuous certificate used 65,536 uniform cycle phases.
 
-Plainly: the numerical choices were fixed before the search result. The search covered its declared discrete branch space and grids, but it is not a proof of a global optimum over every continuous F5 coordinate.
+Plainly: the numerical choices were fixed before the search result. The search covered its declared discrete branch space and grids, but it is not a proof of a global optimum over every continuous phase-varying display representative coordinate.
 
 ## Selected realization
 
@@ -36,7 +36,7 @@ The source order is the six positive-sector rows followed by the six negative-se
 
 At certificate close the configuration status was `campaign-scoped-provisional-representative`. The operator approved the exact row for prescribed display later on 2026-08-26; that later action adds the canonical source to the generated Borg target list without changing this packet's evidence grade.
 
-Plainly: this is one reproducible F5 input chosen by the bounded campaign search and later endorsed for display. It does not rename F5, replace the broader creative-geometry family, or turn the prescribed path into dynamics.
+Plainly: this is one reproducible phase-varying display representative input chosen by the bounded campaign search and later endorsed for display. It does not rename phase-varying display representative, replace the broader creative-geometry family, or turn the prescribed path into dynamics.
 
 ## Continuous collision certificate
 
@@ -66,9 +66,9 @@ d_{\min}^{\mathrm{sampled}}
 >0.
 $$
 
-**Measured:** the declared grid minimum was produced by `scripts/eom/analyze-f5-phase-varying-guard-margin.mjs`, which independently implements the displayed F5 reconstruction and imports neither the registered operator nor an EOM solver path. **Derived:** the continuous lower bound follows from the reverse triangle inequality and the global member-speed enclosure. This closes the coordinate-noncoincidence route of `H2` on the complete prescribed cycle; no coincidence continuation is needed on this realization.
+**Measured:** the declared grid minimum was produced by `scripts/eom/analyze-f5-phase-varying-guard-margin.mjs`, which independently implements the displayed phase-varying display representative reconstruction and imports neither the registered operator nor an EOM solver path. **Derived:** the continuous lower bound follows from the reverse triangle inequality and the global member-speed enclosure. This closes the coordinate-noncoincidence route of `H2` on the complete prescribed cycle; no coincidence continuation is needed on this realization.
 
-Plainly: even between samples, no pair can close the measured gap quickly enough to meet. The certificate is a full-cycle noncoincidence result for this prescribed history, not a statement about nearby F5 rows.
+Plainly: even between samples, no pair can close the measured gap quickly enough to meet. The certificate is a full-cycle noncoincidence result for this prescribed history, not a statement about nearby phase-varying display representative rows.
 
 ## Speed and retained-history coverage
 
@@ -126,7 +126,7 @@ The result is falsified if an independent reconstruction finds a labeled pair be
 ```bash
 node scripts/eom/analyze-f5-phase-varying-guard-margin.mjs --out .local-data/braid-analysis/2026-08-26-complete-registry-closure/f5-phase-varying-guard-search.v1.json
 node --test tests/f5-phase-varying-worldline-operator.test.js tests/f5-phase-varying-history-independent-conformance.test.js tests/prescribed-worldline-independent-conformance.test.js
-node --input-type=module -e 'import fs from "node:fs"; import { validatePrescribedAssemblySpec } from "./src/prescribed-geometry/PrescribedAssemblySpec.mjs"; validatePrescribedAssemblySpec(JSON.parse(fs.readFileSync("reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json", "utf8")));'
+node --input-type=module -e 'import fs from "node:fs"; import { validatePrescribedAssemblySpec } from "./src/prescribed-geometry/PrescribedAssemblySpec.mjs"; validatePrescribedAssemblySpec(JSON.parse(fs.readFileSync("reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json", "utf8")));'
 ```
 
-Closure goal: restart a clean predeclared enclosed complete-root audit on the approved immutable F5 scientific row before any ordinary EOM evolution or metric scoring.
+Closure goal: restart a clean predeclared enclosed complete-root audit on the approved immutable phase-varying display representative scientific row before any ordinary EOM evolution or metric scoring.

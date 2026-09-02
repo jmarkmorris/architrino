@@ -2,7 +2,7 @@
 // mathematics is the separately reviewed integer-interval primitive reference.
 import {
   Q, decimalToken, floorDivide, multiply, rootHi, sinCos,
-} from "../../scripts/eom/derive-abc-subfield-root-reference.mjs";
+} from "../../scripts/eom/derive-subfield-circular-root-reference.mjs";
 
 export const CIRCULAR_ERROR_CONTRACT = Object.freeze({
   segmentStep: "0.002", segmentsPerHistory: 1000, retainedDepth: "2",

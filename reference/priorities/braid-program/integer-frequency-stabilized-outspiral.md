@@ -209,7 +209,7 @@ Plainly: the integer frequency may count full-state recurrences rather than indi
 
 ## 7. Planck-scale boundary conditions
 
-The use of $\ell_P$ and Planck frequency is an observer-level comparison boundary, not an architrino-level premise. The current reader-facing [Planck-scale mapping](../../../content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md) uses the separate convention $R_{\mathrm{align}}=\ell_P/(2\pi)$. This packet preserves the operator-stipulated toy radius $r_0=2\pi\ell_P$ and does not change that canon.
+The use of $\ell_P$ and Planck frequency is an observer-level comparison boundary, not an architrino-level premise. The current reader-facing [Planck-scale mapping](../../../content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md) uses the separate convention $R_{\mathrm{align}}=\ell_P/(2\pi)$. This packet preserves the operator-stipulated toy radius $r_0=2\pi\ell_P$ and does not change that canon.
 
 A literal integer-frequency Planck-scale starting state requires one of these declarations:
 
@@ -221,9 +221,9 @@ Plainly: setting $L_*=1$ and $c_f=1$ supplies the frequency unit. It does not by
 
 ## 8. Relationship to the existing frequency-step ledger
 
-The [A1.1 static-level frequency-step ledger](a1-1-frequency-step-action-ledger.md) already separates static frequency-labeled records from physical transitions. This investigation is narrower and earlier-stage:
+The [outer-super-field circular-layer static frequency-step ledger](coincident-midpoint-common-frequency-step-action-ledger.md) already separates static frequency-labeled records from physical transitions. This investigation is narrower and earlier-stage:
 
-- it concerns a two-architrino outspiral rather than an accepted A1.1 level family;
+- it concerns a two-architrino outspiral rather than an accepted outer-super-field circular-layer level set;
 - it proposes logarithmically spaced radii tied to integer frequencies;
 - it asks whether stabilization can create the discrete states; and
 - it makes no action, energy, angular-momentum, braid-retention, or transition claim.

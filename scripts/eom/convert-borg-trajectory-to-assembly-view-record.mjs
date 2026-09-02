@@ -2,7 +2,8 @@
 
 // Converts a `borg-fixture-trajectory.v1`-shaped replay file (the attractor
 // ensemble harness's current output) into an `assembly-view-record.v0` file
-// that the viewer apps replay directly (borg.html?eomRecord=<url>).
+// that viewer tooling can ingest. Borg catalog replay requires the converted
+// record to be registered under its exact assemblyId + modelRevisionSha256 pair.
 //
 // Viewer-not-instrument rule: this converter computes no physics. It rebuilds
 // display-only piecewise-cubic segments from the replay's own sampled

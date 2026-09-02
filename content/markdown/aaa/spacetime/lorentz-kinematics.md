@@ -6,7 +6,7 @@ The opening abstract states the target; the later sections move through the gove
 
 The reader should keep four moving pieces distinct. The substrate has a preferred rest frame. A moving assembly can deform and retune. Physical Observers synchronize clocks and rulers using assemblies and signals. Precision experiments see only the exported observer record. Lorentz recovery succeeds only if the same retained branch hides the first piece from the fourth by controlling the middle two.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether braid story, see [the special-relativity bridge](../philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [A1 Lorentz Geometry App](../../../../ideal-braid.html).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether braid story, see [the special-relativity bridge](../philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Coincident-Midpoint Three-Axis Circular Lorentz Geometry App](../../../../ideal-braid.html).
 
 ## Coordinate Layers
 
@@ -114,9 +114,9 @@ The absolute velocity used by the substrate solver cannot remain an observer-acc
 
 ### Mathematical objective
 
-Given a translating bound assembly, first for one binary and then for the prescribed A1 chart, derive:
+Given a translating bound assembly, first for one binary and then for the prescribed coincident-midpoint orthogonal-axis braid chart, derive:
 
-Here `A1` means one complete Family-A braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes converging toward the group-translation direction as $\lambda_A\to1$. Axial half-separations, transverse orbit radii, phases, and circulation remain explicit binary coordinates. The label supplies no Lorentz law, retained branch, hierarchy, particle assignment, or stability result; those are the theorem targets below, falsified if same-record evolution fails the coordinate or observer-residual gates.
+Here `coincident-midpoint orthogonal-axis braid` means one complete orthogonal-axis three-binary braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes converging toward the group-translation direction as $\lambda_A\to1$. Axial half-separations, transverse orbit radii, phases, and circulation remain explicit binary coordinates. The label supplies no Lorentz law, retained branch, hierarchy, particle assignment, or stability result; those are the theorem targets below, falsified if same-record evolution fails the coordinate or observer-residual gates.
 
 1. The velocity-dependent equilibrium shape tensor $Q(v)$ and its anisotropy.
 2. The velocity-dependent internal period $P(v)$.
@@ -1022,7 +1022,7 @@ with the following structured components:
 
 1. Translational architrino speed increase: $\Delta v_{\text{tr}}>0$.
 2. Discrete frequency retuning of binaries $1,2,3$: $\Delta f_k=n_k\,\delta f_k$, with $n_k\in\mathbb{Z}$ and $k\in\{1,2,3\}$.
-3. A1 axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
+3. Coincident-midpoint orthogonal-axis braid axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
 4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
 5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
 
@@ -1043,7 +1043,7 @@ The immediate task is to identify which subset dominates $\partial \tau_{\text{o
 Working assumption:
 
 1. In the working source record, binary 3 defines the effective exclusion-volume boundary; see [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md). This is a provisional branch role, not a taxonomy identity.
-2. Each A1 binary ($1,2,3$) has its own circulation axis.
+2. Each coincident-midpoint orthogonal-axis braid binary ($1,2,3$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
 Proposed mechanism chain under applied force (acceleration of a Noether braid-based assembly):
@@ -1493,9 +1493,9 @@ Start with a single causal path-history binary under constant group velocity $\m
 2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(\beta_f)$.
 3. First nonzero leakage coefficients in the $\beta_f$ expansion.
 
-### Stage B: A1 full closure
+### Stage B: Coincident-Midpoint Orthogonal-Axis Braid Full Closure
 
-Promote to an A1 with coupled circulation scales. Establish:
+Promote to a coincident-midpoint orthogonal-axis braid with coupled circulation scales. Establish:
 
 1. Persistence of aligned attractor family under group velocity.
 2. Factorization or controlled coupling of 1/2/3 period shifts.
@@ -1515,7 +1515,7 @@ so local assembly kinematics and macroscopic refractive geometry are mathematica
 
 To connect the two-channel deformation model to observables, use the following sequence:
 
-1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta_\star)$ from causal path-history A1 dynamics.
+1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta_\star)$ from causal path-history coincident-midpoint orthogonal-axis braid dynamics.
 2. Effective-medium propagation law: construct $n_{\text{eff}}(\xi,\lambda,n)$ for signal transport through deformed Noether braid populations.
 3. Effective metric extraction: build $g_{\mu\nu}^{\text{eff}}$ from medium variables and preferred-frame structure.
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
@@ -1873,7 +1873,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-66683edaf2a83368)
-and the same evolved branch must supply the common exponent $p$. The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error, and $\epsilon_p$ measures uncertainty or longitudinal/transverse mismatch in the extracted attractor-amplitude exponent. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $P(v)=\gamma_f P_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+and the same evolved branch must supply the common exponent $p$. The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures coincident-midpoint orthogonal-axis braid hierarchy leakage away from the binary benchmark, $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error, and $\epsilon_p$ measures uncertainty or longitudinal/transverse mismatch in the extracted attractor-amplitude exponent. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $P(v)=\gamma_f P_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power group velocity terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$
@@ -1906,7 +1906,7 @@ The technology-facing status is therefore conditional. The immediate test is not
 
 This also prevents overclaiming. This chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
-### A1 adiabatic decoupling bound
+### Coincident-Midpoint Orthogonal-Axis Braid Adiabatic Decoupling Bound
 
 Conditional lemma target: this bound assumes the Theorem A translating attractor exists and the nonresonance condition holds; the averaging computation below is an open obligation, not a completed proof.
 
@@ -1914,7 +1914,7 @@ Let
 $$
 \mathbf{c}^{(2)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{binary}}
 \qquad
-\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{A1}}
+\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\mathrm{cm}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9259e10c5c1f9b38)
@@ -1929,9 +1929,9 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3d4a190126c83c89)
-For the source record's indexed rows $(1,2,3)$, decompose the binary-3 channel stiffness in the coupled A1 system into its isolated binary contribution plus cross-binary corrections:
+For the source record's indexed rows $(1,2,3)$, decompose the binary-3 channel stiffness in the coupled coincident-midpoint orthogonal-axis braid system into its isolated binary contribution plus cross-binary corrections:
 $$
-K_{ab}^{(3),\mathrm{A1}}
+K_{ab}^{(3),\mathrm{cm}}
 =
 K_{ab}^{(3),\mathrm{bin}}
 +
@@ -1972,7 +1972,7 @@ $$
 
 ### Spectral-decoupling vulnerability criterion
 
-The [A1 Adiabatic Decoupling Bound](#a1-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
+The [coincident-midpoint orthogonal-axis braid adiabatic decoupling bound](#coincident-midpoint-orthogonal-axis-braid-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
 $$
 |m\omega_3-n\omega_2|
 \ge
@@ -2077,7 +2077,7 @@ If these equalities hold on the same branch ledger, the Lorentzian compensation 
 
 ### Theorem A (attractor existence at constant group velocity)
 
-Target (unproved). For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and A1 systems for $\|\mathbf V\|<c_f$.
+Target (unproved). For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and coincident-midpoint orthogonal-axis braid systems for $\|\mathbf V\|<c_f$.
 
 ### Theorem B (anisotropic deformation law)
 
@@ -2167,7 +2167,7 @@ The inverse-function theorem therefore gives local identifiability of the four s
 
 ### Theorem F (cross-regime universality of closure coefficients)
 
-If binary and A1 attracting branches exist, are smooth in $\beta_f$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
+If binary and coincident-midpoint orthogonal-axis braid attracting branches exist, are smooth in $\beta_f$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
 $$
 \omega_1\gg \omega_2\gg \omega_3\qquad
 |m\omega_3-n\omega_2|
@@ -2228,7 +2228,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
-6. Diophantine nonresonance fails (small-divisor regime), causing secular interbinary resonance and invalidating the adiabatic mismatch bound used in [A1 Adiabatic Decoupling Bound](#a1-adiabatic-decoupling-bound).
+6. Diophantine nonresonance fails (small-divisor regime), causing secular interbinary resonance and invalidating the adiabatic mismatch bound used in [coincident-midpoint orthogonal-axis braid adiabatic decoupling bound](#coincident-midpoint-orthogonal-axis-braid-adiabatic-decoupling-bound).
 7. The extracted Lorentz coefficients cannot be traced to the causal-root ledger on a completed branch chart, or the same ledger cannot generate clock, ruler, and two-way signal closure without separate per-observable tuning.
 
 ## Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
@@ -2246,7 +2246,7 @@ Primary theory anchors:
 1. [dynamics/master-equation.md](../dynamics/master-equation.md)
 2. [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md)
 3. [dynamics/binary-dynamics.md](../dynamics/binary-dynamics.md)
-4. [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics)
+4. [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation)
 5. `spacetime/*`
 6. [validation/constraint-ledger.md](../validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../validation/no-go-theorems.md)

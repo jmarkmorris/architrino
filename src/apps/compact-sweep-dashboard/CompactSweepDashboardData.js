@@ -1,5 +1,5 @@
 export const COMPACT_SWEEP_DASHBOARD_SCHEMA =
-  "prescribed-path-analysis/compact-sweep-dashboard-data.v1";
+  "prescribed-path-analysis/compact-sweep-dashboard-data.v2";
 
 export const ACTIVE_CANDIDATE_DISPOSITION = "active-candidate";
 export const DEPRECATED_CONTROL_DISPOSITION =
@@ -233,8 +233,13 @@ export function validateCompactSweepDashboardData(data) {
       ["protocolHash", row.protocolHash],
       ["implementationHash", row.implementationHash],
     ].forEach(([field, value]) => assertSha256(value, `${label}.${field}`));
-    if (typeof row.familyId !== "string" || typeof row.memberId !== "string") {
-      fail(`${label} must retain familyId and memberId.`);
+    if (typeof row.assemblyId !== "string" ||
+        typeof row.sourceSlug !== "string") {
+      fail(`${label} must retain assemblyId and sourceSlug.`);
+    }
+    assertSha256(row.modelRevisionSha256, `${label}.modelRevisionSha256`);
+    if (row.assemblyId !== `asm-${row.modelRevisionSha256.slice(0, 32)}`) {
+      fail(`${label} exact identity pair is inconsistent.`);
     }
     if (![ACTIVE_CANDIDATE_DISPOSITION, DEPRECATED_CONTROL_DISPOSITION]
       .includes(row.candidateDisposition)) {
@@ -315,14 +320,14 @@ export function pearsonCorrelation(pairs = []) {
 }
 
 export function filterCompactSweepRows(rows = [], filters = {}) {
-  const familyId = String(filters.familyId ?? "all");
-  const memberId = String(filters.memberId ?? "all");
+  const assemblyId = String(filters.assemblyId ?? "all");
+  const sourceSlug = String(filters.sourceSlug ?? "all");
   const candidateDisposition = String(
     filters.candidateDisposition ?? "all",
   );
   return rows.filter((row) =>
-    (familyId === "all" || row.familyId === familyId) &&
-    (memberId === "all" || row.memberId === memberId) &&
+    (assemblyId === "all" || row.assemblyId === assemblyId) &&
+    (sourceSlug === "all" || row.sourceSlug === sourceSlug) &&
     (candidateDisposition === "all" ||
       row.candidateDisposition === candidateDisposition));
 }
@@ -335,7 +340,7 @@ export function filterCompactSweepCaseRows(
   const normalizedQuery = String(query ?? "").trim().toLowerCase();
   const sampleMatch = normalizedQuery.match(/\bsample(?:\s+|-)(\d+)\b/u);
   const querySampleOrdinal = sampleMatch ? Number(sampleMatch[1]) : null;
-  const memberId = String(filters.memberId ?? "all");
+  const sourceSlug = String(filters.sourceSlug ?? "all");
   const selectedSampleOrdinal = String(filters.sampleOrdinal ?? "all");
   const remainingQuery = sampleMatch
     ? normalizedQuery.replace(sampleMatch[0], " ").trim()
@@ -344,7 +349,7 @@ export function filterCompactSweepCaseRows(
 
   return rows.filter((row) => {
     if (
-      (memberId !== "all" && row.memberId !== memberId) ||
+      (sourceSlug !== "all" && row.sourceSlug !== sourceSlug) ||
       (
         selectedSampleOrdinal !== "all" &&
         String(row.sampleOrdinal) !== selectedSampleOrdinal
@@ -363,7 +368,7 @@ export function filterCompactSweepCaseRows(
       row.campaignHash,
       row.sampledSpecHash,
       row.exactSourceHash,
-      row.memberId,
+      row.sourceSlug,
     ].join(" ").toLowerCase();
     return terms.every((term) => haystack.includes(term));
   });
@@ -395,7 +400,7 @@ export function buildEvaluationFunnel(rows = []) {
   };
 }
 
-export function groupRows(rows = [], key = "memberId") {
+export function groupRows(rows = [], key = "sourceSlug") {
   const groups = new Map();
   rows.forEach((row) => {
     const value = String(row?.[key] ?? "unknown");

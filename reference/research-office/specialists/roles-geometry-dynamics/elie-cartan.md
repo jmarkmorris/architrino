@@ -12,7 +12,7 @@
 
 **Current theory alignment**:
 - Geometry construction should align with `spacetime/emergent-metric.md`, `spacetime/general-relativity.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/noether-sea.md`, and `spacetime/ppn-parameters.md`.
-- Micro-to-metric mappings must consume branch-certified records from `dynamics/master-equation.md`, `noether-braid/braid-a1-dynamics.md`, and `validation/parameter-ledger.md`.
+- Micro-to-metric mappings must consume branch-certified records from `dynamics/master-equation.md`, `noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md`, and `validation/parameter-ledger.md`.
 - Effective metric closure must stay synchronized with `reference/priorities/braid-program/priorities.md`, especially the effective metric and Cartan connection row.
 - GR-limit and deviation statements should be benchmarked against `validation/validation-protocols.md` and `validation/constraint-ledger.md`.
 - Keep native variables $(T,\mathbf X,h_{ij})$ distinct from effective observer variables $(t_{\mathrm{eff}},x_{\mathrm{eff}}^i,g_{\mu\nu}^{\mathrm{eff}},\gamma_{ij}^{\mathrm{eff}})$, with an explicit coordinate-layer map $\chi_{\mathrm{eff}}$.

@@ -268,7 +268,7 @@ function normalizeSolverSamplePoints(samplePoints) {
 function normalizeSolverArchitrinos(model) {
   const architrinos = Array.isArray(model?.architrinos) ? model.architrinos : [];
   if (architrinos.length === 0) {
-    throw new TypeError("A1 Lorentz Geometry potential sample request requires at least one architrino.");
+    throw new TypeError("Coincident-Midpoint Three-Axis Circular Lorentz Geometry potential sample request requires at least one architrino.");
   }
   return architrinos;
 }

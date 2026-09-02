@@ -26,24 +26,32 @@
         "scenePath": "content/scenes/noether-braid/braid_taxonomy.json"
       },
       {
-        "nodeId": "braid_family_a",
-        "scenePath": "content/scenes/noether-braid/braid_family_a.json"
+        "nodeId": "2d_braid_assemblies",
+        "scenePath": "content/scenes/noether-braid/2d_braid_assemblies.json"
       },
       {
-        "nodeId": "braid_family_b",
-        "scenePath": "content/scenes/noether-braid/braid_family_b.json"
+        "nodeId": "3d_braid_assemblies",
+        "scenePath": "content/scenes/noether-braid/3d_braid_assemblies.json"
       },
       {
-        "nodeId": "braid_family_c",
-        "scenePath": "content/scenes/noether-braid/braid_family_c.json"
+        "nodeId": "zero_axial_offset_three_binary_dynamics_and_interpretation",
+        "scenePath": "content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json"
+      },
+      {
+        "nodeId": "coordinate_axis_six_point_symmetry_and_return_response",
+        "scenePath": "content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json"
+      },
+      {
+        "nodeId": "three_binary_4_2_1_frequency_lock",
+        "scenePath": "content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json"
+      },
+      {
+        "nodeId": "coincident_axis_three_binary_symmetry",
+        "scenePath": "content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json"
       },
       {
         "nodeId": "noether_braid_configuration_space",
         "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json"
-      },
-      {
-        "nodeId": "spindle_braid",
-        "scenePath": "content/scenes/noether-braid/spindle_braid.json"
       },
       {
         "nodeId": "braid_mathematics",
@@ -89,26 +97,51 @@
       "labelBadge": "doc"
     },
     {
-      "id": "braid_family_a",
-      "title": "Braid Family A",
+      "id": "2d_braid_assemblies",
+      "title": "Planar (2D) Braid Assemblies",
       "radius": 2.05,
-      "color": "#486a7c",
-      "labelTitle": "Braid Family A"
-    },
-    {
-      "id": "braid_family_b",
-      "title": "Braid Family B",
-      "radius": 2.05,
-      "color": "#5f647f",
-      "labelTitle": "Braid Family B",
+      "color": "#345b78",
+      "labelTitle": "Planar (2D) Braid Assemblies",
       "labelBadge": "doc"
     },
     {
-      "id": "braid_family_c",
-      "title": "Braid Family C",
+      "id": "3d_braid_assemblies",
+      "title": "Spatial (3D) Braid Assemblies",
       "radius": 2.05,
-      "color": "#76577f",
-      "labelTitle": "Braid Family C",
+      "color": "#486a7c",
+      "labelTitle": "Spatial (3D) Braid Assemblies",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "zero_axial_offset_three_binary_dynamics_and_interpretation",
+      "title": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+      "radius": 2.05,
+      "color": "#4f7466",
+      "labelTitle": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "coordinate_axis_six_point_symmetry_and_return_response",
+      "title": "Coordinate-Axis Six-Point Symmetry and Return Response",
+      "radius": 2.05,
+      "color": "#6a607c",
+      "labelTitle": "Coordinate-Axis Six-Point Symmetry and Return Response",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "three_binary_4_2_1_frequency_lock",
+      "title": "Three-Binary 4:2:1 Frequency Lock",
+      "radius": 2.05,
+      "color": "#5a5f7a",
+      "labelTitle": "Three-Binary 4:2:1 Frequency Lock",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "coincident_axis_three_binary_symmetry",
+      "title": "Coincident-Axis Three-Binary Symmetry",
+      "radius": 2.05,
+      "color": "#655c7d",
+      "labelTitle": "Coincident-Axis Three-Binary Symmetry",
       "labelBadge": "doc"
     },
     {
@@ -117,14 +150,6 @@
       "radius": 2.05,
       "color": "#3f6658",
       "labelTitle": "Noether Braid Configuration Space",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "spindle_braid",
-      "title": "B1 Hypotheses and Discrete Symmetry",
-      "radius": 2.05,
-      "color": "#655c7d",
-      "labelTitle": "B1 Hypotheses and Discrete Symmetry",
       "labelBadge": "doc"
     },
     {

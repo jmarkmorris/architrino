@@ -13,24 +13,24 @@ import {
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const SCRIPT_DIRECTORY = path.dirname(SCRIPT_PATH);
 const REPOSITORY_ROOT = path.resolve(SCRIPT_DIRECTORY, "../..");
-export const DEFAULT_B1_SOURCE_SPEC_PATH = path.resolve(
+export const DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_SOURCE_SPEC_PATH = path.resolve(
   REPOSITORY_ROOT,
   "reference/priorities/braid-program/configurations/" +
-    "illustrative-spindle-chart-hypothesis.v2.json",
+    "axial-transverse-three-binary-interior.v3.json",
 );
-export const DEFAULT_B1_ANALYSIS_PROTOCOL_PATH = path.resolve(
+export const DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_ANALYSIS_PROTOCOL_PATH = path.resolve(
   SCRIPT_DIRECTORY,
-  "../../src/prescribed-path-analysis/fixtures/b1-interior-small-fixture.analysis-protocol.v1.json",
+  "../../src/prescribed-path-analysis/fixtures/axial-transverse-three-binary-interior-small-fixture.analysis-protocol.v1.json",
 );
-export const DEFAULT_B1_ANALYSIS_RESULT_PATH = path.resolve(
+export const DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_ANALYSIS_RESULT_PATH = path.resolve(
   REPOSITORY_ROOT,
-  ".tmp/prescribed-path-analysis/b1-interior-small-fixture.result-packet.v1.json",
+  ".tmp/prescribed-path-analysis/axial-transverse-three-binary-interior-small-fixture.result-packet.v1.json",
 );
 
 function parseArgs(args) {
   const parsed = {
-    specPath: DEFAULT_B1_SOURCE_SPEC_PATH,
-    protocolPath: DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
+    specPath: DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_SOURCE_SPEC_PATH,
+    protocolPath: DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_ANALYSIS_PROTOCOL_PATH,
     checkPath: null,
     writePath: null,
   };
@@ -51,9 +51,9 @@ function parseArgs(args) {
   return parsed;
 }
 
-export function evaluateSpindleAnalysisFromFiles(options = {}) {
-  const specPath = options.specPath ?? DEFAULT_B1_SOURCE_SPEC_PATH;
-  const protocolPath = options.protocolPath ?? DEFAULT_B1_ANALYSIS_PROTOCOL_PATH;
+export function evaluateAxialTransverseThreeBinaryInteriorAnalysisFromFiles(options = {}) {
+  const specPath = options.specPath ?? DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_SOURCE_SPEC_PATH;
+  const protocolPath = options.protocolPath ?? DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_ANALYSIS_PROTOCOL_PATH;
   const sourceBytes = fs.readFileSync(specPath);
   const upstreamSourceHash = createHash("sha256").update(sourceBytes).digest("hex");
   const spec = JSON.parse(sourceBytes.toString("utf8"));
@@ -72,7 +72,7 @@ export function serializePrescribedRecordAnalysis(packet) {
 function runCli() {
   const options = parseArgs(process.argv.slice(2));
   const serialized = serializePrescribedRecordAnalysis(
-    evaluateSpindleAnalysisFromFiles(options),
+    evaluateAxialTransverseThreeBinaryInteriorAnalysisFromFiles(options),
   );
   if (options.writePath) {
     fs.mkdirSync(path.dirname(options.writePath), { recursive: true });

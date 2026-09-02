@@ -2,7 +2,7 @@
 
 Cosmic censorship, holography, and the anti-de Sitter/conformal field theory correspondence (AdS/CFT) ask different questions about gravitational predictability and information. Cosmic censorship concerns the visibility of singular behavior and the extent to which initial data determine evolution. Holography concerns lower-dimensional descriptions of gravitational systems. AdS/CFT supplies a concrete bulk-boundary correspondence in specified theoretical settings. These ideas illuminate one another, but none is a synonym for the others.
 
-This chapter uses them as comparison mathematics and questions for $\mathbb{A}\mathbb{A}\mathbb{A}$, not as imported ontology. A native horizon-interface account requires its own derivation from architrino histories, candidate braid alignment, and Noether sea response. The mechanism owners are [Black Holes](../spacetime/black-holes.md), [Horizon Chirality](../spacetime/horizon-chirality.md), and [Mapping the Planck Scale to the A1 Geometry](theory-bridges/mapping-planck-scale-a1-geometry.md). The purpose here is to distinguish what the inherited mathematics says from what the candidate assembly picture still has to establish.
+This chapter uses them as comparison mathematics and questions for $\mathbb{A}\mathbb{A}\mathbb{A}$, not as imported ontology. A native horizon-interface account requires its own derivation from architrino histories, candidate braid alignment, and Noether sea response. The mechanism owners are [Black Holes](../spacetime/black-holes.md), [Horizon Chirality](../spacetime/horizon-chirality.md), and [Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry](theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md). The purpose here is to distinguish what the inherited mathematics says from what the candidate assembly picture still has to establish.
 
 ## Conceptual View
 
@@ -25,7 +25,7 @@ Plainly: the two sides calculate corresponding observables using different descr
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ View
 
-The native background is the Euclidean void and absolute time, not a fundamental AdS geometry. The candidate horizon picture instead concerns a constitutive interface: a change in how assemblies and the surrounding Noether sea respond and export observable records. In the prescribed Family-A chart, the alignment coordinate $\lambda_A$ runs from mutually orthogonal binary axes at zero toward axes aligned with the group-translation direction at one. This defines a geometry, not a black hole, a retained dynamical branch, or a conserved boundary encoding.
+The native background is the Euclidean void and absolute time, not a fundamental AdS geometry. The candidate horizon picture instead concerns a constitutive interface: a change in how assemblies and the surrounding Noether sea respond and export observable records. In the prescribed orthogonal-axis three-binary chart, the alignment coordinate $\lambda_A$ runs from mutually orthogonal binary axes at zero toward axes aligned with the group-translation direction at one. This defines a geometry, not a black hole, a retained dynamical branch, or a conserved boundary encoding.
 
 The same distinction applies to [Ryu-Takayanagi entropy](https://arxiv.org/abs/hep-th/0603001), which relates boundary entanglement entropy to bulk minimal surfaces in its stated setting, and to [island and replica-wormhole calculations](https://arxiv.org/abs/1911.12333), which recover the Page-curve behavior of radiation entropy in controlled gravitational models. These are comparison results, not derivations of an architrino horizon. Their useful question is which entropy and encoding relations a derived native interface can reproduce in the corresponding effective regime.
 
@@ -37,7 +37,7 @@ The same distinction applies to [Ryu-Takayanagi entropy](https://arxiv.org/abs/h
 
 The table states comparison questions, not three identified physical regions. A native self-hit regime requires actual intersections of an architrino with its own earlier wake, with the same root-completeness and singular-event treatment required elsewhere. Speed above the primitive causal-wake speed $c_f$ alone is not a self-hit certificate, and equality to $c_f$ alone does not establish an event horizon.
 
-The more precise candidate picture is a spatially varying alignment state in which three persistent binary axes approach the local translation direction. Each binary retains its index $a\in\{1,2,3\}$, frequency $f_a$, and declared geometry. An illustrative frequency ratio $f_1:f_2:f_3=4:2:1$ is a source-record choice, not a consequence of the Family-A label or a universal Planck-frequency law. Index, radius order, frequency order, and self-hit role must remain distinct.
+The more precise candidate picture is a spatially varying alignment state in which three persistent binary axes approach the local translation direction. Each binary retains its index $a\in\{1,2,3\}$, frequency $f_a$, and declared geometry. An illustrative frequency ratio $f_1:f_2:f_3=4:2:1$ is a source-record choice, not a consequence of the orthogonal-axis three-binary label or a universal Planck-frequency law. Index, radius order, frequency order, and self-hit role must remain distinct.
 
 The local and macroscopic questions are different. A local source record specifies constituent speeds and candidate alignment; a macroscopic horizon depends on signal access through an extended assembly and medium configuration. A correspondence between them requires an effective observer map. Calling a binary “inner,” “middle,” or “outer” cannot supply that map.
 
@@ -72,7 +72,7 @@ Time requires the same separation. Absolute time $T$ remains the substrate param
 
 ## Geometric Proof Targets
 
-- Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit candidate braid states, then determine whether the retained branch occupies the prescribed Family-A chart.
+- Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit candidate braid states, then determine whether the retained branch occupies the prescribed orthogonal-axis three-binary chart.
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
 - Derive the clock, volume, and signal-access maps from one retained history before assigning interior, interface, and exterior interpretations. An AdS/CFT identification additionally requires a bulk-boundary dictionary in a specified comparison domain.
 - Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.

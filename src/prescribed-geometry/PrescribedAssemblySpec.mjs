@@ -14,6 +14,9 @@ import {
   materializePrescribedSeaDeclarations,
   validatePrescribedSeaDeclarations,
 } from "./PrescribedSeaModels.mjs";
+import {
+  deriveAssemblyScientificIdentity,
+} from "./AssemblyScientificIdentity.mjs";
 
 export {
   PRESCRIBED_LATTICE_GENERATOR_KINDS,
@@ -22,11 +25,11 @@ export {
   PRESCRIBED_SEA_MODEL_KINDS,
 } from "./PrescribedSeaModels.mjs";
 
-export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA = "prescribed-assembly-spec.v2";
+export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA = "prescribed-assembly-spec.v3";
 export const PRESCRIBED_ASSEMBLY_EVALUATOR_ID = "prescribed-assembly-evaluator.v2";
 export const NORMALIZED_FIELD_SPEED = 1;
 
-const CONSTITUENT_ROLES = new Set(["braid", "accessory"]);
+const CONSTITUENT_ROLES = new Set(["assembly", "braid", "accessory"]);
 const GEOMETRY_TOLERANCE = 1e-12;
 
 export function validatePrescribedAssemblySpec(spec) {
@@ -54,8 +57,12 @@ export function validatePrescribedAssemblySpec(spec) {
   validateInterpolation(spec.interpolation);
   validateDisplay(spec.display, spec.history);
   validateConstraints(spec);
-  validateCompatibility(spec.compatibility);
   runPrescribedAssemblyValidators(spec);
+  const derivedIdentity = deriveAssemblyScientificIdentity(spec);
+  if (spec.identity.assemblyId !== derivedIdentity.assemblyId ||
+      spec.identity.modelRevisionSha256 !== derivedIdentity.modelRevisionSha256) {
+    throw new TypeError("prescribed assembly exact identity does not match its canonical scientific payload.");
+  }
   return spec;
 }
 
@@ -166,13 +173,14 @@ function validateIdentity(identity) {
   if (!identity || typeof identity !== "object" || Array.isArray(identity)) {
     throw new TypeError("prescribed assembly identity metadata is required.");
   }
-  for (const field of ["candidateId", "displayLabel", "status", "geometryOwner"]) {
+  for (const field of ["assemblyId", "modelRevisionSha256", "displayLabel", "status", "geometryOwner"]) {
     concreteString(identity[field], `identity.${field}`);
   }
-  if (identity.taxonomy != null) {
-    for (const field of ["familyId", "familyLabel", "memberId", "memberLabel", "canonSource"]) {
-      concreteString(identity.taxonomy[field], `identity.taxonomy.${field}`);
-    }
+  if (!/^asm-[a-f0-9]{32}$/.test(identity.assemblyId)) {
+    throw new TypeError("identity.assemblyId must be an opaque exact-configuration identifier.");
+  }
+  if (!/^[a-f0-9]{64}$/.test(identity.modelRevisionSha256)) {
+    throw new TypeError("identity.modelRevisionSha256 must be a lowercase SHA-256 digest.");
   }
 }
 
@@ -194,7 +202,7 @@ function validateConstituentsAndWorldlines(spec) {
       throw new TypeError(`${label}.polarity must be -1 or +1.`);
     }
     if (!CONSTITUENT_ROLES.has(row.role)) {
-      throw new TypeError(`${label}.role must be braid or accessory.`);
+      throw new TypeError(`${label}.role must be assembly, braid, or accessory.`);
     }
     const worldlineId = concreteString(row.worldlineId, `${label}.worldlineId`);
     if (constituentWorldlineIds.has(worldlineId)) {
@@ -470,18 +478,6 @@ function validateConstraints(spec) {
       );
     }
   }
-}
-
-function validateCompatibility(compatibility) {
-  if (compatibility == null) return;
-  if (!Array.isArray(compatibility.retainedIdentifiers)) {
-    throw new TypeError("compatibility.retainedIdentifiers must be an array.");
-  }
-  compatibility.retainedIdentifiers.forEach((row, index) => {
-    for (const field of ["kind", "value", "reason"]) {
-      concreteString(row?.[field], `compatibility.retainedIdentifiers[${index}].${field}`);
-    }
-  });
 }
 
 function concreteString(value, label) {

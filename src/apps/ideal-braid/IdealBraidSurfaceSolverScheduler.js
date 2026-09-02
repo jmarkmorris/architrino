@@ -31,7 +31,7 @@ export function createIdealBraidSurfaceSolverScheduler({
   onErrorCleared = () => {},
 } = {}) {
   if (!model || typeof getStateKey !== "function" || typeof getSamplePoints !== "function") {
-    throw new TypeError("A1 Lorentz Geometry surface scheduler requires model and state accessors.");
+    throw new TypeError("Coincident-Midpoint Three-Axis Circular Lorentz Geometry surface scheduler requires model and state accessors.");
   }
 
   let destroyed = false;

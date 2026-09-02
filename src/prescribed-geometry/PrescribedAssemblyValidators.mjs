@@ -6,23 +6,21 @@ import {
 } from "./PrescribedCircularRelationshipParameters.mjs";
 
 export const PRESCRIBED_ASSEMBLY_VALIDATOR_IDS = Object.freeze([
-  "legacy-family-a.v1",
-  "legacy-family-b.v1",
-  "legacy-family-c.v1",
-  "sd3-centered-five-coordinate.v1",
-  "f5-phase-varying.v1",
-  "f6b-scoped-negative.v1",
-  "f6c-exact-map.v1",
+  "circular-relationship-consistency.v2",
+  "centered-five-coordinate-consistency.v2",
+  "phase-varying-history-consistency.v2",
+  "scoped-negative-circular-consistency.v2",
+  "polarity-resolved-harmonic-consistency.v2",
+  "stella-octangula-static-consistency.v1",
 ]);
 
 const VALIDATORS = new Map([
-  ["legacy-family-a.v1", validateCircularFamily("A")],
-  ["legacy-family-b.v1", validateCircularFamily("B")],
-  ["legacy-family-c.v1", validateCircularFamily("C")],
-  ["sd3-centered-five-coordinate.v1", validateSd3],
-  ["f5-phase-varying.v1", validateF5],
-  ["f6b-scoped-negative.v1", validateF6b],
-  ["f6c-exact-map.v1", validateF6c],
+  ["circular-relationship-consistency.v2", validateCircularRelationships],
+  ["centered-five-coordinate-consistency.v2", validateCenteredFiveCoordinate],
+  ["phase-varying-history-consistency.v2", validatePhaseVaryingHistory],
+  ["scoped-negative-circular-consistency.v2", validateScopedNegativeCircular],
+  ["polarity-resolved-harmonic-consistency.v2", validatePolarityResolvedHarmonic],
+  ["stella-octangula-static-consistency.v1", validateStellaOctangulaStatic],
 ]);
 
 export function runPrescribedAssemblyValidators(spec) {
@@ -33,84 +31,127 @@ export function runPrescribedAssemblyValidators(spec) {
   });
 }
 
-function validateCircularFamily(expectedFamilyId) {
-  return (spec) => {
-    if (spec.identity.taxonomy?.familyId !== expectedFamilyId) {
-      throw new TypeError(`${spec.constraints.validators[0]} requires Family ${expectedFamilyId}.`);
-    }
-    projectCircularRelationshipParameters(spec);
-  };
+function validateCircularRelationships(spec) {
+  projectCircularRelationshipParameters(spec);
 }
 
-function validateSd3(spec) {
-  requireCandidate(spec, "SD3", 6, "sd3-centered-linear-member.v1");
+function validateCenteredFiveCoordinate(spec) {
+  requireInventory(spec, 6, "sd3-centered-linear-member.v1", "centered five-coordinate history");
   requirePolarityCounts(spec, 3, 3);
   if (spec.relationships.neutralPairs?.length !== 3) {
-    throw new TypeError("SD3 requires three declared neutral-pair relationships.");
+    throw new TypeError("centered five-coordinate history requires three declared neutral-pair relationships.");
   }
   const reconstruction = spec.geometry?.reconstruction;
-  if (reconstruction?.operator !== "sd3-centered-five-coordinate.v1" ||
+  if (reconstruction?.operator !== "centered-five-coordinate-linear-history.v1" ||
       reconstruction.removedGauge?.coordinate !== "gamma" ||
       reconstruction.removedGauge?.value !== 0 ||
       reconstruction.removedGauge?.rate !== 0) {
-    throw new TypeError("SD3 requires the exact centered five-coordinate reconstruction and gamma=dot(gamma)=0 gauge.");
+    throw new TypeError("centered five-coordinate history requires its exact reconstruction and gamma=dot(gamma)=0 gauge.");
   }
   requireCentroid(spec, 0, 1e-12);
   requireCentroidVelocity(spec, 0, 1e-12);
 }
 
-function validateF6b(spec) {
-  requireCandidate(spec, "F6b", 8, "moving-circular.v1");
+function validateScopedNegativeCircular(spec) {
+  requireInventory(spec, 8, "moving-circular.v1", "scoped-negative circular history");
   requirePolarityCounts(spec, 4, 4);
-  if (spec.identity.status !== "scoped-negative-reproducibility-control") {
-    throw new TypeError("F6b must remain a scoped-negative reproducibility control.");
-  }
   if ((spec.relationships.neutralPairs ?? []).length !== 0) {
-    throw new TypeError("F6b axis modules must not be represented as neutral binaries.");
+    throw new TypeError("scoped-negative circular axis modules must not be represented as neutral binaries.");
   }
 }
 
-function validateF5(spec) {
-  requireCandidate(spec, "F5", 12, "f5-phase-varying-member.v1");
+function validatePhaseVaryingHistory(spec) {
+  requireInventory(spec, 12, "f5-phase-varying-member.v1", "phase-varying history");
   requirePolarityCounts(spec, 6, 6);
-  if (spec.identity.status !== "operator-approved-prescribed-display") {
-    throw new TypeError("F5 revised history must remain the operator-approved prescribed display representative.");
-  }
   if ((spec.relationships.pairings ?? []).length !== 6) {
-    throw new TypeError("F5 requires six declared polarity-conjugate dyads.");
+    throw new TypeError("phase-varying history requires six declared polarity-conjugate dyads.");
   }
   if ((spec.relationships.neutralPairs ?? []).length !== 0) {
-    throw new TypeError("F5 polarity-conjugate dyads must not be reclassified as established neutral binaries.");
+    throw new TypeError("phase-varying polarity-conjugate dyads must not be reclassified as established neutral binaries.");
   }
   requireCentroid(spec, 0, 1e-12);
   requireCentroidVelocity(spec, 0, 1e-12);
 }
 
-function validateF6c(spec) {
-  requireCandidate(spec, "F6c", 8, "f6c-harmonic-member.v1");
+function validatePolarityResolvedHarmonic(spec) {
+  requireInventory(spec, 8, "f6c-harmonic-member.v1", "polarity-resolved harmonic history");
   requirePolarityCounts(spec, 4, 4);
   if ((spec.relationships.neutralPairs ?? []).length !== 0) {
-    throw new TypeError("F6c axis modules must not be represented as neutral binaries.");
+    throw new TypeError("polarity-resolved harmonic axis modules must not be represented as neutral binaries.");
   }
   const operators = spec.worldlines.map((row) => row.operator);
   const axes = operators.filter((row) => row.polarity === 1).map((row) => row.axis);
-  if (axes.length !== 4) throw new TypeError("F6c requires four ordered positive-sector tetrahedral axes.");
+  if (axes.length !== 4) throw new TypeError("polarity-resolved harmonic history requires four ordered positive-sector tetrahedral axes.");
   const sum = axes.reduce((accumulator, axis) => accumulator.map((value, index) => value + axis[index]), [0, 0, 0]);
-  if (Math.hypot(...sum) > 1e-12) throw new RangeError("F6c tetrahedral axes must be centered.");
+  if (Math.hypot(...sum) > 1e-12) throw new RangeError("polarity-resolved harmonic tetrahedral axes must be centered.");
   for (let left = 0; left < axes.length; left += 1) {
     for (let right = left + 1; right < axes.length; right += 1) {
       const product = axes[left].reduce((total, value, index) => total + value * axes[right][index], 0);
-      if (Math.abs(product + 1 / 3) > 1e-12) throw new RangeError("F6c axes must have tetrahedral pair products -1/3.");
+      if (Math.abs(product + 1 / 3) > 1e-12) throw new RangeError("polarity-resolved harmonic axes must have tetrahedral pair products -1/3.");
     }
   }
 }
 
-function requireCandidate(spec, candidateId, count, operatorKind) {
-  if (spec.identity.candidateId !== candidateId || spec.constituents.length !== count) {
-    throw new TypeError(`${candidateId} requires ${count} individually declared constituents.`);
+function validateStellaOctangulaStatic(spec) {
+  requireInventory(spec, 8, "stationary.v1", "static stella octangula");
+  requirePolarityCounts(spec, 4, 4);
+  if (spec.constituents.some((row) => row.role !== "assembly")) {
+    throw new TypeError("static stella octangula members must remain unclassified assembly-role constituents.");
+  }
+  if ((spec.relationships.componentBraids ?? []).length !== 0) {
+    throw new TypeError("static stella octangula must not declare a component braid without a qualifying history.");
+  }
+  const positionByMember = new Map(spec.worldlines.map((row) => [
+    row.constituentId,
+    evaluatePrescribedWorldlineOperator(row.operator, 0).position,
+  ]));
+  const sectors = spec.relationships.polaritySectors ?? [];
+  if (sectors.length !== 2 || sectors.some((row) => row.members.length !== 4)) {
+    throw new TypeError("static stella octangula requires two four-member polarity sectors.");
+  }
+  const expectedEdgeKeys = new Set();
+  let sharedEdgeLength = null;
+  sectors.forEach((sector) => {
+    for (let left = 0; left < sector.members.length; left += 1) {
+      for (let right = left + 1; right < sector.members.length; right += 1) {
+        const first = positionByMember.get(sector.members[left]);
+        const second = positionByMember.get(sector.members[right]);
+        const length = Math.hypot(...first.map((value, index) => value - second[index]));
+        sharedEdgeLength ??= length;
+        if (Math.abs(length - sharedEdgeLength) > 1e-12) {
+          throw new RangeError("each polarity sector of the static stella octangula must be a regular tetrahedron.");
+        }
+        expectedEdgeKeys.add([sector.members[left], sector.members[right]].toSorted().join("|"));
+      }
+    }
+  });
+  const edges = spec.geometry?.structuralEdges;
+  if (!Array.isArray(edges) || edges.length !== 12) {
+    throw new TypeError("static stella octangula requires all twelve tetrahedral structural edges.");
+  }
+  const actualEdgeKeys = new Set(edges.map((edge) => {
+    if (edge.kind !== "tetrahedral-edge" || !Array.isArray(edge.members) || edge.members.length !== 2) {
+      throw new TypeError("static stella-octangula structural edges must be two-member tetrahedral-edge declarations.");
+    }
+    const polarities = edge.members.map((id) => spec.constituents.find((row) => row.id === id)?.polarity);
+    if (polarities[0] == null || polarities[0] !== polarities[1] || edge.polarity !== polarities[0]) {
+      throw new RangeError("static stella-octangula structural edges must stay within one declared polarity sector.");
+    }
+    return edge.members.toSorted().join("|");
+  }));
+  if (actualEdgeKeys.size !== 12 || [...actualEdgeKeys].some((key) => !expectedEdgeKeys.has(key))) {
+    throw new TypeError("static stella-octangula structural edges must be exactly the two tetrahedral K4 edge sets.");
+  }
+  requireCentroid(spec, 0, 1e-12);
+  requireCentroidVelocity(spec, 0, 1e-12);
+}
+
+function requireInventory(spec, count, operatorKind, label) {
+  if (spec.constituents.length !== count) {
+    throw new TypeError(`${label} requires ${count} individually declared constituents.`);
   }
   if (!spec.worldlines.every((row) => row.operator.kind === operatorKind)) {
-    throw new TypeError(`${candidateId} requires ${operatorKind} on every declared worldline.`);
+    throw new TypeError(`${label} requires ${operatorKind} on every declared worldline.`);
   }
 }
 

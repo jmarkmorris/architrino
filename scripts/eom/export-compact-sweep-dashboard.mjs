@@ -36,7 +36,7 @@ import {
 const REPOSITORY_ROOT = path.resolve(import.meta.dirname, "../..");
 const DEFAULT_INPUT_DIRECTORY = path.join(
   REPOSITORY_ROOT,
-  ".local-data/braid-analysis/compact-monte-carlo/family-sweep-v1",
+  ".local-data/braid-analysis/compact-monte-carlo/configuration-sweep-v2",
 );
 const DEFAULT_DATABASE_PATH = path.join(
   DEFAULT_INPUT_DIRECTORY,
@@ -44,20 +44,20 @@ const DEFAULT_DATABASE_PATH = path.join(
 );
 const DEFAULT_ANALYZER_RECEIPT_PATH = path.join(
   DEFAULT_INPUT_DIRECTORY,
-  "active-sweep-analyzer-receipt.v1.json",
+  "active-sweep-analyzer-receipt.v2.json",
 );
 const DEFAULT_DATABASE_VERIFICATION_PATH = path.join(
   DEFAULT_INPUT_DIRECTORY,
-  "active-database-verification.v1.json",
+  "active-database-verification.v2.json",
 );
 const DEFAULT_OUTPUT_PATH = path.join(
   DEFAULT_INPUT_DIRECTORY,
-  "compact-sweep-dashboard.v1.json",
+  "compact-sweep-dashboard.v2.json",
 );
 const ANALYZER_SCHEMA =
-  "prescribed-path-analysis/compact-family-sweep-analysis.v1";
+  "prescribed-path-analysis/compact-configuration-sweep-analysis.v2";
 const SHA256_PATTERN = /^[0-9a-f]{64}$/u;
-const DEPRECATED_COMPARATIVE_MEMBERS = Object.freeze(new Set(["B1.4"]));
+const DEPRECATED_COMPARATIVE_MEMBERS = Object.freeze(new Set(["all-axial-three-binary-boundary"]));
 
 const DASHBOARD_CLAIM_BOUNDARY = Object.freeze({
   diagnosticOnly: true,
@@ -257,8 +257,8 @@ function readDatabase(databasePath) {
         case_hash AS caseHash,
         schema_id AS schema,
         case_id AS caseId,
-        family_id AS familyId,
-        member_id AS memberId,
+        assembly_id AS assemblyId,
+        source_slug AS sourceSlug,
         candidate_id AS candidateId,
         sample_ordinal AS sampleOrdinal,
         sampled_spec_hash AS sampledSpecHash,
@@ -541,17 +541,17 @@ function sampledCoordinates(row) {
     circulationSenses: Array.isArray(coordinates.circulationSenses)
       ? coordinates.circulationSenses
       : [],
-    familyAFlattening: Number.isFinite(coordinates.familyAFlattening)
-      ? coordinates.familyAFlattening
+    threeAxisFrameFlattening: Number.isFinite(coordinates.threeAxisFrameFlattening)
+      ? coordinates.threeAxisFrameFlattening
       : null,
-    familyCSpacingScale: Number.isFinite(coordinates.familyCSpacingScale)
-      ? coordinates.familyCSpacingScale
+    coaxialComponentSpacingScale: Number.isFinite(coordinates.coaxialComponentSpacingScale)
+      ? coordinates.coaxialComponentSpacingScale
       : null,
     frequencies: normalizeCoordinateValues(coordinates.frequencies),
-    generalCAxialSpacings: Array.isArray(
-      coordinates.generalCAxialSpacings,
+    coincidentCenterAxialSpacings: Array.isArray(
+      coordinates.coincidentCenterAxialSpacings,
     )
-      ? coordinates.generalCAxialSpacings.map((value) =>
+      ? coordinates.coincidentCenterAxialSpacings.map((value) =>
           Number.isFinite(value) ? value : null)
       : [],
     geometryScale: Number.isFinite(coordinates.geometryScale)
@@ -580,12 +580,12 @@ function rerunCommand(row, campaign, wave) {
   return [
     "node scripts/eom/run-compact-monte-carlo.mjs",
     `--seed ${shellQuote(campaign.header.sampling.seed)}`,
-    `--cases-per-member ${campaign.header.sampling.casesPerMember}`,
+    `--cases-per-configuration ${campaign.header.sampling.casesPerConfiguration}`,
     "--resolution coverage",
     `--sampler ${campaign.header.sampling.samplerId.includes("local")
       ? "local-reference"
-      : "full-taxonomy"}`,
-    `--members ${shellQuote(row.memberId)}`,
+      : "full-exact-configuration"}`,
+    `--source-slugs ${shellQuote(row.sourceSlug)}`,
     `--output ${shellQuote(output)}`,
     `# inspect sample ordinal ${row.sampleOrdinal}; require sampledSpecHash ` +
       row.sampledSpecHash,
@@ -614,7 +614,7 @@ function buildDashboardRows(databaseRows, analyzerReceipt) {
       row.retainedRow.exactRerunInstruction;
     const evaluated = row.evaluated === 1;
     const comparativeRankingEligible =
-      !DEPRECATED_COMPARATIVE_MEMBERS.has(row.memberId);
+      !DEPRECATED_COMPARATIVE_MEMBERS.has(row.sourceSlug);
     return {
       campaignFile: wave.file,
       campaignHash: row.campaignHash,
@@ -636,14 +636,15 @@ function buildDashboardRows(databaseRows, analyzerReceipt) {
       },
       exactRerunInstruction,
       exactSourceHash: row.exactSourceHash,
-      familyId: row.familyId,
+      assemblyId: row.assemblyId,
+      modelRevisionSha256: row.modelRevisionSha256,
       gates: {
         highLevel: highLevelGates(row.score),
         surfaceQuadrature: surfaceGates(row.score),
       },
       implementationHash: row.implementationHash,
       comparativeRankingEligible,
-      memberId: row.memberId,
+      sourceSlug: row.sourceSlug,
       metrics: metricValues(row.score),
       performance: {
         earlyExit: !evaluated,
@@ -677,8 +678,8 @@ function buildDashboardRows(databaseRows, analyzerReceipt) {
       waveId: wave.waveId,
     };
   }).sort((left, right) =>
-    left.familyId.localeCompare(right.familyId) ||
-    left.memberId.localeCompare(right.memberId, undefined, { numeric: true }) ||
+    left.assemblyId.localeCompare(right.assemblyId) ||
+    left.sourceSlug.localeCompare(right.sourceSlug, undefined, { numeric: true }) ||
     left.sampleOrdinal - right.sampleOrdinal ||
     left.campaignHash.localeCompare(right.campaignHash));
 }
@@ -689,32 +690,32 @@ function summarizeRows(rows) {
   const activeFunnel = buildEvaluationFunnel(activeRows);
   const deprecatedRows = rows.filter((row) =>
     !row.comparativeRankingEligible);
-  const families = ["A", "B", "C"].map((familyId) => {
-    const familyRows = rows.filter((row) => row.familyId === familyId);
+  const assemblies = sortedUnique(rows.map((row) => row.assemblyId)).map((assemblyId) => {
+    const assemblyRows = rows.filter((row) => row.assemblyId === assemblyId);
     return {
-      activeDrawCount: familyRows.filter((row) =>
+      activeDrawCount: assemblyRows.filter((row) =>
         row.comparativeRankingEligible).length,
-      activeMemberCount: new Set(familyRows.filter((row) =>
-        row.comparativeRankingEligible).map((row) => row.memberId)).size,
-      drawCount: familyRows.length,
-      evaluatedCount: familyRows.filter((row) =>
+      activeConfigurationCount: new Set(assemblyRows.filter((row) =>
+        row.comparativeRankingEligible).map((row) => row.sourceSlug)).size,
+      drawCount: assemblyRows.length,
+      evaluatedCount: assemblyRows.filter((row) =>
         row.evaluation.evaluated).length,
-      familyId,
-      memberCount: new Set(familyRows.map((row) => row.memberId)).size,
+      assemblyId,
+      configurationCount: new Set(assemblyRows.map((row) => row.sourceSlug)).size,
       medianWallSeconds: median(
-        familyRows.map((row) => row.performance.wallSeconds),
+        assemblyRows.map((row) => row.performance.wallSeconds),
       ),
     };
   });
-  const members = sortedUnique(rows.map((row) => row.memberId)).map(
-    (memberId) => {
-      const memberRows = rows.filter((row) => row.memberId === memberId);
+  const configurations = sortedUnique(rows.map((row) => row.sourceSlug)).map(
+    (sourceSlug) => {
+      const configurationRows = rows.filter((row) => row.sourceSlug === sourceSlug);
       return {
-        drawCount: memberRows.length,
-        evaluatedCount: memberRows.filter((row) =>
+        drawCount: configurationRows.length,
+        evaluatedCount: configurationRows.filter((row) =>
           row.evaluation.evaluated).length,
-        memberId,
-        nullScoreCount: memberRows.filter((row) =>
+        sourceSlug,
+        nullScoreCount: configurationRows.filter((row) =>
           !row.evaluation.evaluated).length,
       };
     },
@@ -739,7 +740,7 @@ function summarizeRows(rows) {
       compactPassed: activeFunnel.compactPassed,
       drawn: activeFunnel.drawn,
       evaluated: activeFunnel.evaluated,
-      memberCount: new Set(activeRows.map((row) => row.memberId)).size,
+      configurationCount: new Set(activeRows.map((row) => row.sourceSlug)).size,
       nullScoreRows: activeFunnel.drawnNotEvaluated,
     },
     campaignCount: new Set(rows.map((row) => row.campaignHash)).size,
@@ -750,18 +751,18 @@ function summarizeRows(rows) {
       drawn: deprecatedRows.length,
       evaluated: deprecatedRows.filter((row) =>
         row.evaluation.evaluated).length,
-      memberIds: sortedUnique(deprecatedRows.map((row) => row.memberId)),
+      sourceSlugs: sortedUnique(deprecatedRows.map((row) => row.sourceSlug)),
     },
     etaExtEtaWakeFluxPearson: etaCorrelation,
     evaluated: funnel.evaluated,
     eventConvergenceFailures: funnel.eventConvergenceFailures,
-    families,
-    familyBalanced: false,
+    assemblies,
+    configurationBalanced: false,
     gateFailed: funnel.gateFailed,
     gateTotals,
-    members,
-    memberBalanced: members.every(
-      (member) => member.drawCount === members[0]?.drawCount,
+    configurations,
+    configurationBalanced: configurations.every(
+      (configuration) => configuration.drawCount === configurations[0]?.drawCount,
     ),
     minimumSeparationFailures: funnel.minimumSeparationFailures,
     nullScoreRows: funnel.drawnNotEvaluated,
@@ -811,7 +812,7 @@ export function buildCompactSweepDashboardExport({
       campaignFile: manifest.file,
       campaignHash: campaign.campaignHash,
       campaignId: campaign.campaignId,
-      casesPerMember: campaign.header.sampling.casesPerMember,
+      casesPerConfiguration: campaign.header.sampling.casesPerConfiguration,
       implementationHash: campaign.implementationHash,
       protocolHash: campaign.protocolHash,
       seed: campaign.header.sampling.seed,

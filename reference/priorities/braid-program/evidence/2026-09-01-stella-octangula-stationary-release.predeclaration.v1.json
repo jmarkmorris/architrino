@@ -1,0 +1,68 @@
+{
+  "schema": "braid-program/stella-octangula-stationary-release-predeclaration.v1",
+  "packetId": "stella-octangula-stationary-release-2026-09-01-v1",
+  "date": "2026-09-01",
+  "closureGoal": "Build the stationary-history release packet and measure its initial acceleration before attempting animation or braid classification.",
+  "source": {
+    "path": "reference/priorities/braid-program/configurations/stella-octangula-static-assembly.v3.json",
+    "sha256": "cfe4893b81eb3a079961633755af07d4c46aca719ec1ce1db1cc7eb5102b5825",
+    "assemblyId": "asm-242282e6154b97b00ac9d8e5123cde46",
+    "modelRevisionSha256": "242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8"
+  },
+  "releaseBoundary": {
+    "historyKind": "exact-stationary-past.v1",
+    "primaryHistory": { "start": -2, "end": 0 },
+    "deeperHistoryControl": { "start": -4, "end": 0 },
+    "releaseTime": 0,
+    "incomingVelocity": [0, 0, 0],
+    "normalizedFieldSpeed": 1,
+    "coupling": 1,
+    "selfHitPolicy": "exclude-same-transmitter-id.v1"
+  },
+  "rootContract": {
+    "policy": "all-retained-roots/event-specific-isolation-certified.v2",
+    "expectedReceiverCount": 8,
+    "expectedRootsPerReceiver": 7,
+    "expectedTotalRoots": 56,
+    "expectedDistanceMultiplicitiesPerReceiver": [
+      { "distance": 0.5773502691896258, "multiplicity": 3, "sourcePolarityRelation": "opposite" },
+      { "distance": 0.816496580927726, "multiplicity": 3, "sourcePolarityRelation": "same" },
+      { "distance": 1, "multiplicity": 1, "sourcePolarityRelation": "opposite-antipode" }
+    ]
+  },
+  "independentReference": {
+    "instrument": "scripts/prescribed-path-analysis/oracle/stella-octangula-stationary-release-oracle.mjs",
+    "kind": "direct stationary pair sum plus closed-form radial coefficient",
+    "pairRule": "a_i = coupling * sum_{j != i} q_i q_j (x_i - x_j) / |x_i - x_j|^3",
+    "closedFormUnitRadiusRadialCoefficient": "3 sqrt(6) / 8 - (1 + 3 sqrt(3)) / 4",
+    "scaleRule": "radial coefficient relative to x scales as R^-3; acceleration magnitude scales as R^-2",
+    "circumradius": 0.5
+  },
+  "tolerances": {
+    "sourceCoordinateAbsolute": 1e-15,
+    "rootResidualAbsolute": 1e-12,
+    "rootDistanceAbsolute": 1e-11,
+    "accelerationVectorAbsolute": 1e-10,
+    "radialCoefficientAbsolute": 1e-10,
+    "tangentialResidualAbsolute": 1e-10,
+    "historyDepthParityAbsolute": 1e-10
+  },
+  "decisionRule": {
+    "pass": "Every receiver has seven certified non-self roots, the 56-root distance inventory matches the frozen multiplicities, the evaluated acceleration matches the independent pair sum and closed form, every tangential residual is within tolerance, and the deeper stationary history reproduces the acceleration and root inventory.",
+    "fail": "Any missing or extra root, source mismatch, radial-oracle mismatch, tangential component above tolerance, or history-depth dependence fails this release packet closed."
+  },
+  "claimBoundary": {
+    "included": "Derived and measured T=0 acceleration conditional on the exact stationary past, c_f=1, coupling=1, and the declared isolated eight-member source inventory.",
+    "excluded": [
+      "future evolution",
+      "animation",
+      "braid classification",
+      "balance",
+      "binding",
+      "retention",
+      "stability",
+      "energy",
+      "physical realization"
+    ]
+  }
+}

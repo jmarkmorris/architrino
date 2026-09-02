@@ -70,7 +70,7 @@ content/scenes/archie/applications.json
 
 Current application and application-like surfaces include:
 
-- A1 Lorentz Geometry: `ideal-braid.html`
+- Coincident-Midpoint Three-Axis Circular Lorentz Geometry: `ideal-braid.html`
 - Photon and Polarization Visualization App: `photon.html`
 - Causal Delay Feedback: `causal-delay-feedback.html`
 - Equation Mapping: `equation-mapping.html`

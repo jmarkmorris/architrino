@@ -31,7 +31,10 @@ jobs:
         run: node --test tests/runtime-asset-fresh-checkout.test.js
       - name: Build static payload from source
         run: node scripts/build-static-site.mjs --out .tmp/site
-      - uses: actions/upload-pages-artifact@v4
+      # OPS-007 Pages handoff: the builder rejects payloads above
+      # 1,000,000,000 uncompressed bytes; the uploaded copy expires in one day.
+      - name: Upload Pages deployment artifact
+        uses: actions/upload-pages-artifact@v4
         with:
           path: .tmp/site
           retention-days: 1

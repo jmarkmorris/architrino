@@ -39,7 +39,7 @@ The current frontier is core geometrical theory closure: master-equation closure
    - [Binary Dynamics](../../content/markdown/aaa/dynamics/binary-dynamics.md)
 4. For Noether braid and core geometry:
    - [Noether Braid](../../content/markdown/aaa/noether-braid/noether-braid.md)
-   - [Nested Shell Braid Dynamics](../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)
+   - [Nested Shell Braid Dynamics](../../content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics)
    - [Nested Shell Braid Geometry](../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md)
 5. For canon and style:
    - [Academic Style Guide](../../content/markdown/aaa/archie/academic-style-guide.md)

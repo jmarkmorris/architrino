@@ -20,9 +20,9 @@ import {
 } from "../../src/prescribed-path-analysis/database/CompactAnalyticalCampaignDatabase.mjs";
 
 const DEFAULT_INPUT =
-  ".local-data/braid-analysis/performance/compact-monte-carlo-abc-coverage-v3.json";
+  ".local-data/braid-analysis/performance/compact-monte-carlo-exact-configuration-coverage-v4.json";
 const DEFAULT_OUTPUT =
-  ".local-data/braid-analysis/performance/compact-monte-carlo-storage-v1.json";
+  ".local-data/braid-analysis/performance/compact-monte-carlo-storage-v2.json";
 
 function parsePositiveInteger(value, name) {
   const parsed = Number.parseInt(value, 10);
@@ -87,8 +87,9 @@ function canonicalCaseInventory(campaign) {
   return campaign.caseRows
     .map((row) => ({
       caseId: row.caseId,
-      familyId: row.familyId,
-      memberId: row.memberId,
+      assemblyId: row.assemblyId,
+      modelRevisionSha256: row.modelRevisionSha256,
+      sourceSlug: row.sourceSlug,
       candidateId: row.candidateId,
       sampleOrdinal: row.sampleOrdinal,
       sampledSpecHash: row.exactRerunInstruction.sampledSpecHash,
@@ -187,8 +188,10 @@ function writeSqlite({ campaign, inventory, runDirectory }) {
   });
   const storedInventory = database
     .prepare(`
-      SELECT case_id AS caseId, family_id AS familyId, member_id AS memberId,
-             candidate_id AS candidateId, sample_ordinal AS sampleOrdinal,
+      SELECT case_id AS caseId, assembly_id AS assemblyId,
+             model_revision_sha256 AS modelRevisionSha256,
+             source_slug AS sourceSlug, candidate_id AS candidateId,
+             sample_ordinal AS sampleOrdinal,
              sampled_spec_hash AS sampledSpecHash,
              exact_source_hash AS exactSourceHash, protocol_hash AS protocolHash,
              score_hash AS scoreHash, case_hash AS caseHash,
@@ -205,21 +208,27 @@ function writeSqlite({ campaign, inventory, runDirectory }) {
     caseById: database.prepare(
       "SELECT row_json FROM compact_case WHERE case_id = ?",
     ),
-    memberSamples: database.prepare(
+    configurationSamples: database.prepare(
       `SELECT case_hash FROM compact_case
-       WHERE family_id = ? AND member_id = ? ORDER BY sample_ordinal`,
+       WHERE assembly_id = ? AND model_revision_sha256 = ?
+         AND source_slug = ? ORDER BY sample_ordinal`,
     ),
     statusCases: database.prepare(
       `SELECT case_hash FROM compact_case
-       WHERE status_code = ? ORDER BY family_id, member_id`,
+       WHERE status_code = ?
+       ORDER BY assembly_id, model_revision_sha256, source_slug`,
     ),
   };
   const queryMicroseconds = {
     caseById: queryMedianMicroseconds((iteration) =>
       queries.caseById.get(inventory[iteration % inventory.length].caseId),
     ),
-    memberSamples: queryMedianMicroseconds(() =>
-      queries.memberSamples.all(inventory[0].familyId, inventory[0].memberId),
+    configurationSamples: queryMedianMicroseconds(() =>
+      queries.configurationSamples.all(
+        inventory[0].assemblyId,
+        inventory[0].modelRevisionSha256,
+        inventory[0].sourceSlug,
+      ),
     ),
     statusCases: queryMedianMicroseconds(() =>
       queries.statusCases.all(inventory[0].statusCode),
@@ -274,11 +283,12 @@ function writeGzipNdjson({ campaign, inventory, runDirectory }) {
     caseById: queryMedianMicroseconds((iteration) =>
       rowsByCaseId.get(inventory[iteration % inventory.length].caseId),
     ),
-    memberSamples: queryMedianMicroseconds(() =>
+    configurationSamples: queryMedianMicroseconds(() =>
       restoredRows.filter(
         (row) =>
-          row.familyId === inventory[0].familyId &&
-          row.memberId === inventory[0].memberId,
+          row.assemblyId === inventory[0].assemblyId &&
+          row.modelRevisionSha256 === inventory[0].modelRevisionSha256 &&
+          row.sourceSlug === inventory[0].sourceSlug,
       ),
     ),
     statusCases: queryMedianMicroseconds(() =>
@@ -305,8 +315,9 @@ function writeGzipCsv({ campaign, inventory, runDirectory }) {
   const rowsById = new Map(campaign.caseRows.map((row) => [row.caseId, row]));
   const header = [
     "case_id",
-    "family_id",
-    "member_id",
+    "assembly_id",
+    "model_revision_sha256",
+    "source_slug",
     "candidate_id",
     "sample_ordinal",
     "case_hash",
@@ -319,8 +330,9 @@ function writeGzipCsv({ campaign, inventory, runDirectory }) {
     ...inventory.map((item) =>
       [
         item.caseId,
-        item.familyId,
-        item.memberId,
+        item.assemblyId,
+        item.modelRevisionSha256,
+        item.sourceSlug,
         item.candidateId,
         item.sampleOrdinal,
         item.caseHash,
@@ -360,11 +372,12 @@ function writeGzipCsv({ campaign, inventory, runDirectory }) {
         (row) => row.caseId === inventory[iteration % inventory.length].caseId,
       ),
     ),
-    memberSamples: queryMedianMicroseconds(() =>
+    configurationSamples: queryMedianMicroseconds(() =>
       restoredRows.filter(
         (row) =>
-          row.familyId === inventory[0].familyId &&
-          row.memberId === inventory[0].memberId,
+          row.assemblyId === inventory[0].assemblyId &&
+          row.modelRevisionSha256 === inventory[0].modelRevisionSha256 &&
+          row.sourceSlug === inventory[0].sourceSlug,
       ),
     ),
     statusCases: queryMedianMicroseconds(() =>
@@ -428,7 +441,7 @@ function main() {
   const inputBytes = readFileSync(inputPath);
   const campaign = JSON.parse(inputBytes);
   if (
-    campaign.schema !== "prescribed-path-analysis/compact-monte-carlo-campaign.v1"
+    campaign.schema !== "prescribed-path-analysis/compact-monte-carlo-campaign.v2"
   ) {
     throw new Error(`Unsupported compact campaign schema: ${campaign.schema}`);
   }
@@ -446,7 +459,7 @@ function main() {
     { id: "gzip-csv-with-json", run: writeGzipCsv },
   ];
   const report = {
-    schema: "architrino/compact-monte-carlo-storage-benchmark.v1",
+    schema: "architrino/compact-monte-carlo-storage-benchmark.v2",
     startedAt: new Date().toISOString(),
     sourceBoundary: {
       productionDatabaseRead: false,

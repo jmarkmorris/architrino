@@ -28,7 +28,7 @@ The early Noether-braid grammar matured when the neutral-braid scaffold was pair
 
 This was one of the seminal nonlinear moments. Three motifs that had been only loosely related began to lock together:
 
-- indexed Family-A support could provide a neutral retained carrier,
+- indexed orthogonal-axis three-binary support could provide a neutral retained carrier,
 - axial attachments could differentiate fermion-like assemblies,
 - and generation structure might arise from how indexed support and axial-layer persistence survive stripping, exposure, energy shifts, or branch changes.
 
@@ -81,7 +81,7 @@ The mature theory is therefore less exuberant than the early archive but more am
 | --- | --- | --- | --- | --- |
 | 2018 | Noether sea | A physical spacetime medium made from neutral source-era assemblies. | Noether sea as a material population of neutral assemblies in Euclidean void. | Constitutive response, effective-metric recovery, redshift tax, density and delay variables. |
 | 2019 | Binary recognition | Opposite-polarity pair with scalable radius, frequency, energy, and stability. | Primary two-architrino assembly and first retained return-cycle carrier. | Branch geometry, self-hit admissibility, energy/action accounting, Planck-scale limit. |
-| 2019-2021 | Noether braid recognition | A neutral-braid scaffold with indexed Family-A support as a conservation and shielding signal. | Noether braid or Family-A candidate, with topology protected only where proven. | Retained causal-root ledger, stability, neutralization, link/framing theorems. |
+| 2019-2021 | Noether braid recognition | A neutral-braid scaffold with indexed orthogonal-axis three-binary support as a conservation and shielding signal. | Noether braid or orthogonal-axis three-binary candidate, with topology protected only where proven. | Retained causal-root ledger, stability, neutralization, link/framing theorems. |
 | 2020 | Axial layer | Additional polar-site constituents around fermion-like assemblies. | Axial architrinos, axial layer, axial pattern, axial inventory, and polar-site binding. | Exact charge bookkeeping, weak/hypercharge/electric recovery, axial persistence. |
 | 2020-2024 | Fermion generations | Generation differences tied to indexed support, exposure, stripping, or energy state. | Mass-map and branch-geometry target across three generations. | Generation ladder, decay provenance, mass ratios, accepted carrier evidence. |
 | 2021-2023 | Strong-sector linkage | Quark braids, binary couplings, polar vortices, color-like bookkeeping, and proton spin linked together. | Strong-sector recovery from Noether-braid geometry and axial-layer bookkeeping. | SU(3)-like algebra, confinement, gluon-like transport, spin accounting, color neutrality. |

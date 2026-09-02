@@ -202,7 +202,7 @@ $\mu_{\mathrm{arch}}$ is the declared units constant, not a carrier mass; the in
 - **Falsifier:** one certified hit with $\mathbf V_r$ at $45^\circ$ to $\hat{\mathbf r}$ and a non-proportional $P$ must show a residual scaling linearly in $R$.
 - **Destination:** `characteristic-tail.md` §3, upgrading the $K_\mu$, $\mathbf P_\mu$, $\mathbf J_\mu$ chart from proxy-grade to derived-conditional.
 
-### F5 — Regulator-path independence: impulse-level yes, continuation-level open
+### phase-varying display representative — Regulator-path independence: impulse-level yes, continuation-level open
 
 This corrects the earlier position that weighted integrability was insufficient in general.
 
@@ -416,7 +416,7 @@ Plainly: two threads reached this file at once. Their conclusions mostly agree, 
 | P3 | §2 | Insert the **allocation rule** as item 0 of the missing-objects list, with the density-versus-measure difficulty that motivates it | derived necessity |
 | P4 | §3 | Replace the bare $T^{-3}$ assertion with F1's normal form, including $dT_e/dT_r=-1$ and the prefactor | derived on the quadratic control |
 | P5 | §3 | Add F6's elimination table and the double-drain counterexample; state $M\propto z^3$ as conditional on a declared angular fraction, **not** as derived | derived eliminations |
-| P6 | §3 | Add F5's corrected acceptance condition — $M\ge0$, weighted integrability, declared dominated regulator class, plus a continuation-uniqueness certificate — retaining the spike family as the reason the class must be declared | derived |
+| P6 | §3 | Add phase-varying display representative's corrected acceptance condition — $M\ge0$, weighted integrability, declared dominated regulator class, plus a continuation-uniqueness certificate — retaining the spike family as the reason the class must be declared | derived |
 | P8 | §4 | Add F9's two non-circularity criteria and the receiver-velocity requirement, with the note that this does not put $\mathbf V_r$ into the acceleration; delete the empty shell-age variation | derived |
 | P10 | §6 | Replace the two-horn positive-energy argument with F8's trilemma and the finite-time-halt calculation; relocate the pressure onto the uniform-emission postulate | derived conditional |
 
@@ -465,7 +465,7 @@ Legs 1–3 are preserved here as research designs and are routed explicitly in t
 
 **Leg 1 — deferred to MEC-002, MEC-005, and MEC-004: the cumulative extraction bound.** This calculation remains open. On a **nonsymmetric two-carrier retained history** — transmitter at rest at the origin, receiver released from rest at $r_0$, like polarity so the canonical law repels — compute total energy extracted over a window $W$ and test the §3 item-4 dilemma. **Pass:** the total is bounded by a per-shell capacity without the acceleration departing from canonical anywhere on $z\ge z_{\min}$. **Fail:** either capacity exhausts, killing the fourth branch outright, or the bound requires unbounded per-shell capacity. The radial equation still lacks the closing term needed to complete the calculation; supplying that closure is part of the proposed research.
 
-**Leg 2 — deferred to MEC-003: continuation uniqueness.** With $M\ge0$ and weighted integrability assumed, establish or refute uniqueness of the limit continuation through birth (local Lipschitz or Osgood away from the singular time, plus the finite-impulse crossing property). This is the only remaining gap in F5. **Fail:** different dominated regulators select different branches, and the birth transition stays fail-closed regardless of $M$.
+**Leg 2 — deferred to MEC-003: continuation uniqueness.** With $M\ge0$ and weighted integrability assumed, establish or refute uniqueness of the limit continuation through birth (local Lipschitz or Osgood away from the singular time, plus the finite-impulse crossing property). This is the only remaining gap in phase-varying display representative. **Fail:** different dominated regulators select different branches, and the birth transition stays fail-closed regardless of $M$.
 
 **Leg 3 — deferred to MEC-004 after MEC-005: the angular pin.** Evaluate $\|\Delta\mathbf J_{\mathrm{tot}}\|=R\,v|(P/v)'|\|\Delta\mathbf V\|\cos\theta\sin\theta$ across $\theta\in[0,\pi/2]$ and three shell ages, for $P=\mu_{\mathrm{arch}}v$ and one non-proportional $P$. Confirms or kills F4.
 

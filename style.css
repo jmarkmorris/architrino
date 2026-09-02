@@ -5,8 +5,8 @@
 }
 
 :root {
-  --scene-background-base: #6A0DAD;
-  --scene-background: #6A0DAD;
+  --scene-background-base: var(--ui-brand-purple);
+  --scene-background: var(--ui-brand-purple);
 }
 
 html,
@@ -6075,51 +6075,58 @@ body.has-textbook-page-nav #markdown-panel.is-open {
   width: 113.6363636364%;
   height: 114.6788990826%;
   z-index: 2;
+  overflow: visible;
   pointer-events: none;
 }
 
-#hyde-periodic-supplementals .hyde-periodic-extra-tile {
-  position: absolute;
-  container-type: inline-size;
-  pointer-events: auto;
-  padding: 6px 4px;
-  justify-content: flex-start;
-  text-align: center;
-  color: #f5f7ff;
-  background: rgba(61, 48, 122, 0.92);
-  border-color: rgba(190, 178, 242, 0.72);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.34);
+#hyde-periodic-supplementals .hyde-periodic-extra-arc {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+  outline: none;
 }
 
-#hyde-periodic-supplementals .hyde-periodic-extra-tile:hover,
-#hyde-periodic-supplementals .hyde-periodic-extra-tile:focus-visible {
-  background: rgba(72, 58, 138, 0.95);
-  border-color: rgba(212, 203, 248, 0.9);
+#hyde-periodic-supplementals .hyde-extra-band {
+  fill: #85b8e3;
+  stroke: #231f20;
+  stroke-width: 2;
 }
 
-#hyde-periodic-supplementals .hyde-periodic-extra-tile.is-focused {
-  background: rgba(84, 69, 156, 0.98);
-  border-color: rgba(245, 249, 255, 0.98);
-  box-shadow: 0 0 0 2px rgba(214, 228, 255, 0.45), 0 10px 20px rgba(0, 0, 0, 0.42);
+#hyde-periodic-supplementals .hyde-extra-symbol-ring {
+  fill: rgba(255, 255, 255, 0.14);
+  stroke: #f5f7ff;
+  stroke-width: 4;
 }
 
-#hyde-periodic-supplementals .hyde-periodic-extra-tile .ptable-number {
-  top: 5px;
-  left: 5px;
-  font-size: min(11px, 20cqi);
+#hyde-periodic-supplementals text {
+  font-family: var(--ui-font-family);
+  fill: #231f20;
+  pointer-events: none;
 }
 
-#hyde-periodic-supplementals .hyde-periodic-extra-tile .ptable-symbol {
-  margin-top: min(20px, 30cqi);
-  font-size: min(20px, 36cqi);
+#hyde-periodic-supplementals .hyde-extra-name {
+  font-size: 22px;
 }
 
-#hyde-periodic-supplementals .hyde-periodic-extra-tile .ptable-name {
-  margin-top: 2px;
-  line-height: 1.12;
-  /* Scale the full name with the tile's content width, not the viewport. */
-  font-size: min(10px, 16cqi);
-  overflow-wrap: anywhere;
+#hyde-periodic-supplementals .hyde-extra-number {
+  font-size: 20px;
+}
+
+#hyde-periodic-supplementals .hyde-extra-symbol {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-arc:hover .hyde-extra-band,
+#hyde-periodic-supplementals .hyde-periodic-extra-arc.is-focused .hyde-extra-band,
+#hyde-periodic-supplementals .hyde-periodic-extra-arc:focus-visible .hyde-extra-band {
+  fill: #bed3ee;
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-arc:hover .hyde-extra-symbol-ring,
+#hyde-periodic-supplementals .hyde-periodic-extra-arc.is-focused .hyde-extra-symbol-ring,
+#hyde-periodic-supplementals .hyde-periodic-extra-arc:focus-visible .hyde-extra-symbol-ring {
+  stroke: #6e1fd4;
+  stroke-width: 6;
 }
 
 #hyde-periodic-grid .hyde-hotspot {

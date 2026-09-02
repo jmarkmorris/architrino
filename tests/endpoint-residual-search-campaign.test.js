@@ -13,7 +13,8 @@ import {
 test("endpoint-only search is deterministic, complete-inventory gated, and root-audited", () => {
   const loaded = loadAllCandidateCampaignRegistry();
   const candidate = loaded.candidates.find(
-    (row) => row.declaration.memberId === "A1.2",
+    (row) => row.declaration.sourceSlug ===
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
   );
   const protocol = createEndpointResidualSearchProtocol(loaded.protocol, {
     primaryTimeSamples: 12,
@@ -52,7 +53,7 @@ test("endpoint-only search is deterministic, complete-inventory gated, and root-
     first.cases[0].refined.memberResidual.returnSymmetryClaim,
     false,
   );
-  assert.equal(first.cases[0].refined.memberResidual.taxonomyClaim, false);
+  assert.equal(first.cases[0].refined.memberResidual.configurationExistenceClaim, false);
   assert.match(first.cases[0].evidenceDisposition, /no path evolution/);
   assert.equal(first.pathEvolutionInvoked, false);
   assert.equal(first.eomSolverInvoked, false);
@@ -75,7 +76,8 @@ test("endpoint-only search is deterministic, complete-inventory gated, and root-
 test("endpoint-only search records sampling failures as unknown", () => {
   const loaded = loadAllCandidateCampaignRegistry();
   const candidate = structuredClone(loaded.candidates.find(
-    (row) => row.declaration.memberId === "A1.2",
+    (row) => row.declaration.sourceSlug ===
+      "three-axis-circular-coincident-midpoints-equal-radius-common-frequency",
   ));
   candidate.spec = {};
   const protocol = createEndpointResidualSearchProtocol(loaded.protocol, {

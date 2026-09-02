@@ -1,4 +1,4 @@
-# F6c shutdown repair and scientific restart handoff
+# asymmetric counter-breathing representative shutdown repair and scientific restart handoff
 
 Closure goal: Independently accept the controller shutdown repair, then advance the already declared scientific batch only if its complete admission and conservative execution budget fit. The whole-history goal remains open.
 
@@ -61,7 +61,7 @@ Each prepared case has `plan.json`, `preparation-v1.json`, `external-invocation-
 
 Plainly: rejection is the expected result for each deliberately interrupted operation. Independent acceptance means that the required failure was actually observed and safely closed; it never changes the operation into a scientific success.
 
-Each actual interval used separate immediate quiescence acknowledgments from the F5 and benchmark owners and their active reviewers, plus the local independent reviewer. Process-creating metadata was held only through the actual interval and released at the observed terminal boundary; numerical work did not inherit admission. Idle holds were released when a peer acknowledgment was unavailable. No future compute reservation is created by these acknowledgments.
+Each actual interval used separate immediate quiescence acknowledgments from the phase-varying display representative and benchmark owners and their active reviewers, plus the local independent reviewer. Process-creating metadata was held only through the actual interval and released at the observed terminal boundary; numerical work did not inherit admission. Idle holds were released when a peer acknowledgment was unavailable. No future compute reservation is created by these acknowledgments.
 
 The disconnected-send control retained the actual native `ERR_IPC_CHANNEL_CLOSED` callback after the sticky first failure, actual child exit 125, both stream closures and IPC disconnect, with **aggregate close absent**. Its final composed completion was at 599.646958 ms of the original controller clock. The early-exit control retained successful payload delivery, authenticated group SIGTERM before startup, actual null/SIGTERM exit and all four closure observations; aggregate close was present and recorded later. This measured difference supports the source explanation for the missing aggregate notification. The old failed run's missing callback trace and the sender of its exit 137 remain unestablished.
 

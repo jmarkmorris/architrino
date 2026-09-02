@@ -1,8 +1,8 @@
-Closure goal: resolve the specific F5 process-observation blocker at source and contract level, producing either a minimal independently reviewed repair candidate or a precise external prerequisite. Do not start another scientific campaign.
+Closure goal: resolve the specific phase-varying display representative process-observation blocker at source and contract level, producing either a minimal independently reviewed repair candidate or a precise external prerequisite. Do not start another scientific campaign.
 
 ## Activation, scope and clock
 
-Execute this prompt only when the operator submits it to a new task for execution. Drafting, reading or reviewing it does not start work or renew the expired F5 campaign.
+Execute this prompt only when the operator submits it to a new task for execution. Drafting, reading or reviewing it does not start work or renew the expired phase-varying display representative campaign.
 
 This is a new **one-hour source-only task**. Record the actual UTC start and hard stop at start plus sixty minutes. Reserve the last fifteen minutes for independent review and final publication; finish earlier if the decision is established. Do not extend the clock, fill time with unchanged checks or reopen completed accounting.
 
@@ -14,7 +14,7 @@ Plainly: establish whether the next experiment has a defensible observation path
 
 Work in the existing Architrino checkout. Read `AGENTS.md`, the generated startup router, the live goal-seeking procedure and only the owners needed below. Do not create a worktree. Preserve unrelated changes and every historical source, binary, plan, failed outcome and review.
 
-The [F5 session report](2026-08-28-f5-unattended-certification-session.md) is closed at documentation scope. Its original scientific campaign remains stopped and unmet: zero complete evaluations launched, observation retries exhausted, and no accepted diagnostic EOM build or failed-trial capture. The report's SHA-256 at this prompt's preparation is `99e611863fd741b378422a8a472fac102c1e24aad8cd7464858913c804b36a95`. Any original campaign prompt reached through these records is historical context, not renewed execution authority.
+The [phase-varying display representative session report](2026-08-28-f5-unattended-certification-session.md) is closed at documentation scope. Its original scientific campaign remains stopped and unmet: zero complete evaluations launched, observation retries exhausted, and no accepted diagnostic EOM build or failed-trial capture. The report's SHA-256 at this prompt's preparation is `99e611863fd741b378422a8a472fac102c1e24aad8cd7464858913c804b36a95`. Any original campaign prompt reached through these records is historical context, not renewed execution authority.
 
 Use this repository-relative evidence root, called `B` below:
 
@@ -67,16 +67,16 @@ Plainly: the useful result is a justified next step. If a repair cannot be defen
 - Do not weaken resource limits, observation cadence, birth-identity requirements, cleanup conditions, source authentication, failed gates or scientific acceptance. Do not fabricate closure events or rewrite a rejected record as passing.
 - Do not change OS security settings, entitlements, account settings or permissions; do not request broad privilege as a substitute for diagnosis. State an exact needed capability and its evidence if one is established.
 - Keep canonical C/K/H, callers, tests, mathematical references, shared readiness and EOM sources unchanged. Keep the original geometry, past-only history and uncertainty, coupling `0.002`, charge magnitude `1`, normalized wake speed `1` and requested horizon `0.5` unchanged. No new physics or mathematical proof campaign belongs in this task.
-- Coordinate current ownership with benchmark task `01a045de-6a34-77f3-bac4-90f2362f6ccd` and active F6c repair task `01a04a86-7073-77d0-9d1d-364b07c21877`. Do not restart an ended peer or duplicate an active owner's repair. Missing replies grant no permission. Source-only work may continue outside held inputs; honor explicitly requested actual-only metadata holds.
+- Coordinate current ownership with benchmark task `01a045de-6a34-77f3-bac4-90f2362f6ccd` and active asymmetric counter-breathing representative repair task `01a04a86-7073-77d0-9d1d-364b07c21877`. Do not restart an ended peer or duplicate an active owner's repair. Missing replies grant no permission. Source-only work may continue outside held inputs; honor explicitly requested actual-only metadata holds.
 - No commit, push, regeneration, historical deletion or edit to a sealed closeout artifact. Keep evidence in one new directory and deliver one concise integrated decision document, not another status-ledger hierarchy.
 
 Plainly: a valid alternative observation method must satisfy the existing safety requirement, not merely stop reporting the missing data. If it needs new execution authority or access, this source-only task ends at that boundary.
 
 ## Adjacent repairs are context, not acceptance
 
-Read the current [F6c shutdown-repair handoff](2026-08-28-f6c-shutdown-repair-handoff.md) only to avoid duplicating work and to identify relevant shared completion-contract changes. When this prompt was drafted, four real controls were independently accepted and the large positive remained unrun; the handoff was explicitly interim. Re-read its final disposition when available and bind the exact generation used. Do not wait indefinitely for it.
+Read the current [asymmetric counter-breathing representative shutdown-repair handoff](2026-08-28-f6c-shutdown-repair-handoff.md) only to avoid duplicating work and to identify relevant shared completion-contract changes. When this prompt was drafted, four real controls were independently accepted and the large positive remained unrun; the handoff was explicitly interim. Re-read its final disposition when available and bind the exact generation used. Do not wait indefinitely for it.
 
-That private C/K repair concerns actual exit, stdout/stderr closure and IPC disconnect, plus observation of the original timeout. It does not establish a complete F5 process census or resolve NORMAL3's 317 inaccessible identity records. Its downstream scientific completion-contract migration was also unaccepted at that checkpoint. Preserve both distinctions; do not import F6c control acceptance into F5 or undertake that separate migration here.
+That private C/K repair concerns actual exit, stdout/stderr closure and IPC disconnect, plus observation of the original timeout. It does not establish a complete phase-varying display representative process census or resolve NORMAL3's 317 inaccessible identity records. Its downstream scientific completion-contract migration was also unaccepted at that checkpoint. Preserve both distinctions; do not import asymmetric counter-breathing representative control acceptance into phase-varying display representative or undertake that separate migration here.
 
 ## Deliverable and stop condition
 
@@ -85,8 +85,8 @@ Write one decision document with:
 1. The exact failed obligation and authenticated source/raw-record evidence, separating measured facts, source deductions and unresolved causes.
 2. The selected minimal route, its independent review and falsifier; include a private patch only if justified.
 3. The **single next bounded validation action** that would discriminate or validate the route: exact target, required authority/access, inputs, expected observations, failure conditions and closure requirements. Limit the proposal to one operational observation/control of at most 120 seconds, preserving the strictest applicable existing resource rules and reserving all independent closure work. Mark it unexecuted and unadmitted; freshly bound plans and a separately authorized execution window are required before anyone runs it. Do not reset the old retry quota.
-4. Explicit remaining F5 work and an honest verdict: source repair candidate supported, external prerequisite identified, or unresolved with a named missing observation. None means F5 complete or runtime-ready.
+4. Explicit remaining phase-varying display representative work and an honest verdict: source repair candidate supported, external prerequisite identified, or unresolved with a named missing observation. None means phase-varying display representative complete or runtime-ready.
 
 Re-read the output, verify local references and scoped whitespace without running tests, and report elapsed time and changed paths. A list of ideas, another generic wrapper, repeated historical diagnosis or a claim of successful operation without actual evidence does not meet the goal. Do not automatically request a longer campaign.
 
-Closure goal: establish one defensible next step past the F5 observation blocker, or an exact reason that no safe next execution is currently available.
+Closure goal: establish one defensible next step past the phase-varying display representative observation blocker, or an exact reason that no safe next execution is currently available.

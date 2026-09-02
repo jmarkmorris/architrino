@@ -1,5 +1,5 @@
 import {
-  classifyPlanarRingTaxonomy,
+  classifyPlanarRingCharacteristics,
   enumerateBalancedPolarityClasses,
   evaluatePlanarCoRotatingRing,
   regularRingPhases,
@@ -281,13 +281,13 @@ export function scanRegularPolarityClass({
     rootTolerance: 2e-14,
     foldTolerance: 2e-11,
   }) : null;
-  const taxonomy = classifyPlanarRingTaxonomy({ n, phases, polarities });
+  const characteristics = classifyPlanarRingCharacteristics({ n, phases, polarities });
   return {
     n,
     phaseConfiguration: "regular-2n-gon",
     phases,
     polarityClass,
-    taxonomy,
+    characteristics,
     scanInterval: [minimumBeta, maximumBeta],
     betaStep,
     sampledBetaCount: samples.length,
@@ -493,12 +493,12 @@ export function searchNonuniformPolarityClass({
     rootTolerance: 2e-14,
     foldTolerance: 2e-11,
   }) : null;
-  const taxonomy = best ? classifyPlanarRingTaxonomy({ n, phases: best.phases, polarities: polarityClass.polarities }) : null;
+  const characteristics = best ? classifyPlanarRingCharacteristics({ n, phases: best.phases, polarities: polarityClass.polarities }) : null;
   return {
     n,
     phaseConfiguration: "nonuniform-fixed-cyclic-order",
     polarityClass,
-    taxonomy,
+    characteristics,
     scanInterval: [minimumBeta, maximumBeta],
     minimumPhaseGap,
     optimization: "deterministic multistart Nelder-Mead over phase-gap logits and beta",
@@ -568,7 +568,7 @@ function antipodalChartPoint(vector, minimumBeta, maximumBeta) {
   };
 }
 
-export function searchB13AntipodalPhaseChart({
+export function searchPlanarThreeBinaryAntipodalPhaseChart({
   minimumBeta = 0.05,
   maximumBeta = 20,
   minimumPhaseGap = 0.01,
@@ -631,8 +631,8 @@ export function searchB13AntipodalPhaseChart({
   const best = combined[0];
   const tightened = best ? evaluatePlanarCoRotatingRing({ ...best.point, rootTolerance: 2e-14, foldTolerance: 2e-11 }) : null;
   return {
-    chart: "complete-equal-radius-antipodal-neutral-B1.3-phase-chart",
-    taxonomy: best ? classifyPlanarRingTaxonomy({ n: 3, phases: best.point.phases, polarities: best.point.polarities }) : null,
+    chart: "complete-equal-radius-antipodal-neutral-planar-three-binary-phase-chart",
+    characteristics: best ? classifyPlanarRingCharacteristics({ n: 3, phases: best.point.phases, polarities: best.point.polarities }) : null,
     scanInterval: [minimumBeta, maximumBeta],
     minimumPhaseGap,
     globalSampling: { rule: "three-dimensional Halton sequence bases 2,3,5", requested: globalSamples, evaluated: sampled.length },
@@ -664,7 +664,7 @@ export function searchB13AntipodalPhaseChart({
       tightenedMaximumFullVectorResidual: tightened.residuals.maximumFullVector,
       rootTopologyMatch: best.evaluation.rootTopologySignature === tightened.rootTopologySignature,
     } : null,
-    independentReference: "taxonomy is exact; root-ledger checks are independent; global phase-chart coverage is sampled and optimized, not proved exhaustive",
+    independentReference: "the configuration relation is exact; root-ledger checks are independent; global phase-chart coverage is sampled and optimized, not proved exhaustive",
     claimGrade: "bounded diagnostic",
     broaderPhaseChartVerdict: "unresolved",
     falsifier: "A lower-residual antipodal-neutral phase point in the declared domain, a missed causal root, a collision below the declared gap, or failed refinement overturns the bounded verdict.",
@@ -682,8 +682,8 @@ export function runPlanarRingCampaign({
   betaStep = 0.025,
   minimumPhaseGap = 0.01,
   nonuniformEvaluationsPerSeed = 900,
-  b13GlobalSamples = 2400,
-  b13RetainedSeeds = 18,
+  planarThreeBinaryGlobalSamples = 2400,
+  planarThreeBinaryRetainedSeeds = 18,
   reusedRegular = null,
   progress = () => {},
 } = {}) {
@@ -732,13 +732,13 @@ export function runPlanarRingCampaign({
       }),
     });
   }
-  progress({ stage: "b1.3-antipodal-chart" });
-  const b13AntipodalPhaseChart = searchB13AntipodalPhaseChart({
+  progress({ stage: "planar-three-binary-antipodal-chart" });
+  const planarThreeBinaryAntipodalPhaseChart = searchPlanarThreeBinaryAntipodalPhaseChart({
     minimumBeta,
     maximumBeta,
     minimumPhaseGap,
-    globalSamples: b13GlobalSamples,
-    retainedSeeds: b13RetainedSeeds,
+    globalSamples: planarThreeBinaryGlobalSamples,
+    retainedSeeds: planarThreeBinaryRetainedSeeds,
     regularBetaSeeds: regular.find((group) => group.n === 3).classes
       .find((row) => row.polarityClass.alternating).candidateBetaValues
       .filter((row) => row.residuals.maximumFullVector <= 2e-8)
@@ -751,7 +751,7 @@ export function runPlanarRingCampaign({
     schema: "braid-program/planar-n-n-circular-balance-campaign.v1",
     campaignId: "planar-co-rotating-n-n-uncapped-master-equation-2026-08-29",
     correctionOf: ".local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-n-n-circular-balance.v3.json",
-    correctionReason: "The third closed run preserved the regular B1.3 chart point but did not retain every exact regular phase point in the general nonuniform charts; this packet adds those exact chart subloci while keeping every nonregular extension unresolved.",
+    correctionReason: "The third closed run preserved the regular planar three-binary common-center chart point but did not retain every exact regular phase point in the general nonuniform charts; this packet adds those exact chart subloci while keeping every nonregular extension unresolved.",
     compatibilityIdentifier: "aaa-corpus-advancement",
     model: {
       fieldSpeed: 1,
@@ -776,7 +776,7 @@ export function runPlanarRingCampaign({
     },
     regular,
     nonuniform,
-    b13AntipodalPhaseChart,
+    planarThreeBinaryAntipodalPhaseChart,
     summary: {
       balancedCandidateCount: balanced.length,
       unresolvedSearchRowCount,
@@ -789,7 +789,7 @@ export function runPlanarRingCampaign({
       verdict: balanced.length > 0
         ? "balanced-regular-subloci-found-with-broader-phase-search-unresolved"
         : "no-balanced-regular-candidate-found-with-broader-phase-search-unresolved",
-      claimGrade: "mixed derived taxonomy, independently checked ledger implementation, and bounded numerical search",
+      claimGrade: "mixed derived configuration relation, independently checked ledger implementation, and bounded numerical search",
       excludedClaims: ["retention", "binding", "stability", "release survival", "physical identity", "score increase", "scientific acceptance"],
       falsifier: "Any missing causal root, failed independent check, nonconvergent residual, or balanced point inside the declared bounded domain overturns the corresponding result.",
     },

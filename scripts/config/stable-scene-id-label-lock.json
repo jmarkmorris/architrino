@@ -61,26 +61,18 @@
       "objects": {
         "braid_analysis_methodology": "Candidate Braid Analysis Methodology",
         "braid_envelope_geometry": "Braid Envelope Geometry",
-        "braid_family_a": "Braid Family A",
-        "braid_family_b": "Braid Family B",
-        "braid_family_c": "Braid Family C",
         "braid_mathematics": "Braid Mathematics",
         "braid_recovery_requirements": "Braid Recovery Requirements",
         "braid_taxonomy": "Braid Taxonomy",
         "noether_braid_configuration_space": "Noether Braid Configuration Space",
         "noether_braid_overview": "Noether Braid",
         "noether_braid_topological_charge": "Noether Braid Topological Charge",
-        "spindle_braid": "B1 Hypotheses and Discrete Symmetry"
-      }
-    },
-    "content/scenes/noether-braid/braid_family_a.json": {
-      "sceneId": "noether_braid__braid_family_a",
-      "sceneName": "Braid Family A",
-      "objects": {
-        "braid_a2_symmetry_and_return_response": "A2 Symmetry and Return Response",
-        "braid_family_a_overview": "Braid Family A",
-        "doubling_frequency_lock": "A3.3 Doubling-Frequency Resonance Lock",
-        "explored_braid_geometries": "Braid A1 Dynamics and Interpretation"
+        "2d_braid_assemblies": "Planar (2D) Braid Assemblies",
+        "3d_braid_assemblies": "Spatial (3D) Braid Assemblies",
+        "zero_axial_offset_three_binary_dynamics_and_interpretation": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+        "coordinate_axis_six_point_symmetry_and_return_response": "Coordinate-Axis Six-Point Symmetry and Return Response",
+        "three_binary_4_2_1_frequency_lock": "Three-Binary 4:2:1 Frequency Lock",
+        "coincident_axis_three_binary_symmetry": "Coincident-Axis Three-Binary Symmetry"
       }
     },
     "content/scenes/foundations/foundations.json": {

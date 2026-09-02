@@ -4,9 +4,10 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 import {
+  INDEPENDENT_ABC_NOTATION_EXCLUSIONS,
   RETIRED_BRAID_NAME_TOKENS,
-  scanA1PublicDisplayTerminology,
-  scanA1PublicDisplayText,
+  scanLorentzGeometryPublicDisplayTerminology,
+  scanLorentzGeometryPublicDisplayText,
   scanBorgPrescribedTaxonomyTerminology,
   scanBorgReaderFacingValue,
   scanBraidTaxonomyTerminology,
@@ -47,7 +48,7 @@ test("braid taxonomy scanner detects each retired terminology class", () => {
   );
 });
 
-test("braid taxonomy scanner audits member and family labels while enforcing the approved public app name", () => {
+test("braid taxonomy scanner strictly rejects member and family labels and the retired public app name", () => {
   const source = [
     "The A1 candidate is compared with B1, C1, C4, and Family-A geometry.",
     "The Ideal Noether Braid app displays a prescribed path.",
@@ -66,26 +67,25 @@ test("braid taxonomy scanner audits member and family labels while enforcing the
   const strictFindings = scanTextForBraidTaxonomyTerminology(source, "synthetic.md", {
     includeAuditOnly: false,
   });
-  assert.equal(strictFindings.length, 1);
-  assert.equal(strictFindings[0].ruleId, "ideal-braid-name");
+  assert.equal(strictFindings.length, 6);
+  assert.deepEqual(new Set(strictFindings.map((finding) => finding.ruleId)), reportRuleIds);
 });
 
-test("braid taxonomy scanner recognizes complete dot-zero example aliases", () => {
+test("braid taxonomy scanner recognizes complete legacy dot-zero identifiers", () => {
   const findings = scanTextForBraidTaxonomyTerminology("A1.0 A2.0 A3.0 A1.1 A3.4", "synthetic.md")
     .filter((finding) => finding.ruleId === "taxonomy-member-identifier");
   assert.deepEqual(findings.map((finding) => finding.match), ["A1.0", "A2.0", "A3.0", "A1.1", "A3.4"]);
 });
 
-test("braid taxonomy scanner preserves only the concrete dated historical app title", () => {
+test("braid taxonomy scanner rejects retired app names even in dated prose", () => {
   const relativePath = "content/markdown/aaa/archie/research-notebook.md";
-  assert.deepEqual(
-    scanTextForBraidTaxonomyTerminology(
-      "## 2026-06-10: Ideal Noether Braid Lorentz Geometry App",
-      relativePath,
-      { includeAuditOnly: false },
-    ),
-    [],
+  const datedFindings = scanTextForBraidTaxonomyTerminology(
+    "## 2026-06-10: Ideal Noether Braid Lorentz Geometry App",
+    relativePath,
+    { includeAuditOnly: false },
   );
+  assert.equal(datedFindings.length, 1);
+  assert.equal(datedFindings[0].ruleId, "ideal-braid-name");
 
   const findings = scanTextForBraidTaxonomyTerminology(
     "The Ideal Noether Braid app is the current public name.",
@@ -96,22 +96,82 @@ test("braid taxonomy scanner preserves only the concrete dated historical app ti
   assert.equal(findings[0].ruleId, "ideal-braid-name");
 });
 
-test("A1 public-display scanner rejects old prose labels but preserves machine contracts", () => {
+test("Lorentz-geometry public-display scanner rejects opaque prose labels without inspecting established machine entrypoints", () => {
   const source = [
     "<h1>Ideal Noether Braid</h1>",
+    '<p>A1 Lorentz Geometry</p>',
+    '<label>Family-A</label>',
     'const appId = "ideal-braid";',
     'const sceneId = "ideal_braid";',
     'const selector = "#ideal-braid-title";',
   ].join("\n");
-  const findings = scanA1PublicDisplayText(source, "synthetic-app.html");
-  assert.equal(findings.length, 1);
-  assert.equal(findings[0].ruleId, "ideal-braid-public-display");
+  const findings = scanLorentzGeometryPublicDisplayText(source, "synthetic-app.html");
+  assert.equal(findings.length, 3);
+  assert.ok(findings.every((finding) => finding.ruleId === "lorentz-geometry-public-display"));
 });
 
-test("A1 public display surfaces use the approved name", () => {
-  const result = scanA1PublicDisplayTerminology();
-  assert.equal(result.files.length, 9);
+test("Lorentz-geometry public display surfaces use the facts-first name", () => {
+  const result = scanLorentzGeometryPublicDisplayTerminology();
+  assert.equal(result.files.length, 12);
   assert.deepEqual(result.findings, []);
+});
+
+test("strict A/B/C gating preserves explicit independently owned notation contexts", () => {
+  assert.deepEqual(
+    INDEPENDENT_ABC_NOTATION_EXCLUSIONS.map((exclusion) => exclusion.id),
+    [
+      "constitutive-ledger-row",
+      "perspective-argument-label",
+      "c1-continuity-notation",
+      "chemistry-atom-key",
+    ],
+  );
+  assert.deepEqual(
+    scanTextForBraidTaxonomyTerminology(
+      "| C1 | $\\rho_0$ | Constitutive closure target |",
+      "content/markdown/aaa/validation/parameter-ledger.md",
+      { includeAuditOnly: false },
+    ),
+    [],
+  );
+  assert.deepEqual(
+    scanTextForBraidTaxonomyTerminology(
+      "- A1 A single-hit receiver record contains the acceleration.",
+      "content/markdown/aaa/validation/simulations/perspective.md",
+      { includeAuditOnly: false },
+    ),
+    [],
+  );
+  assert.deepEqual(
+    scanTextForBraidTaxonomyTerminology(
+      "The interpolant has C1 continuity, and the chemistry atom key C1 labels carbon.",
+      "synthetic.md",
+      { includeAuditOnly: false },
+    ),
+    [],
+  );
+  const braidFinding = scanTextForBraidTaxonomyTerminology(
+    "The C1 braid candidate remains selected.",
+    "synthetic.md",
+    { includeAuditOnly: false },
+  );
+  assert.equal(braidFinding.length, 1);
+  assert.equal(braidFinding[0].ruleId, "taxonomy-member-identifier");
+  const mixedContextFinding = scanTextForBraidTaxonomyTerminology(
+    "C1 continuity is required, but the A1 braid candidate label is retired.",
+    "synthetic.md",
+    { includeAuditOnly: false },
+  );
+  assert.equal(mixedContextFinding.length, 1);
+  assert.equal(mixedContextFinding[0].match, "A1");
+  assert.deepEqual(
+    scanTextForBraidTaxonomyTerminology(
+      "This taxonomy records which channel family a reaction uses.",
+      "synthetic.md",
+      { includeAuditOnly: false },
+    ),
+    [],
+  );
 });
 
 test("braid taxonomy scanner catches comma-separated H/M/L positional notation", () => {
@@ -148,9 +208,9 @@ test("braid taxonomy scanner audits broader positional support phrases", () => {
 
 test("braid taxonomy scanner ignores implementation identifiers and link destinations", () => {
   const source = [
-    "Use A1 with persistent binary indices and independently assigned radii.",
+    "Use the coincident-midpoint three-axis circular geometry with persistent binary indices and independently assigned radii.",
     "The runtime identifier is `nested-shell-braid`.",
-    "See [A1 dynamics](../noether-braid/braid-a1-dynamics.md).",
+    "See [zero-axial-offset three-binary dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md).",
     "[legacy-target]: ../nested-shell-braid/fixture.md",
     "```text",
     "spindle braid; inner binary; I:M:O",
@@ -256,10 +316,10 @@ test("Borg reader-facing fields reject retired candidate labels in every control
   }
 });
 
-test("Borg prescribed taxonomy scan excludes compatibility identifiers but gates visible metadata", () => {
+test("Borg prescribed taxonomy scan ignores machine identity fields but gates visible metadata", () => {
   const result = scanBorgPrescribedTaxonomyTerminology();
   assert.ok(result.files.some((relativePath) =>
-    relativePath.endsWith("illustrative-spindle-chart-hypothesis.v2.json")));
+    relativePath.endsWith("axial-transverse-three-binary-interior.v3.json")));
   assert.deepEqual(result.findings, []);
 });
 
