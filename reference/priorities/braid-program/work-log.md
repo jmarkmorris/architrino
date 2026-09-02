@@ -483,3 +483,11 @@ Plainly: the finite theorem now has one clean endpoint at speed $20$. The next p
 - Updated the equal-radius phase-deformation task with the exact next certificate: preserve every root owner on a declared phase-speed box, enclose the selected Jacobian with interval arithmetic, apply interval Newton, and check the remaining nine residual components at the isolated interval zero. The task remains queued because pointwise rank does not certify a box or exclude asymmetric branches.
 
 Plainly: T04 has a strong measured local-isolation signal and a concrete three-equation certificate route. The continuous-box proof is still required before the queue item can be removed.
+
+## 2026-09-01 — T04 equal-radius phase box certified
+
+- Accepted the [T04 phase-box certificate](evidence/2026-09-01-planar-three-binary-phase-box-certificate.md) on $|\delta_2|,|\delta_3|,|\beta_f-\beta_{\mathrm{T04}}|\leq9\times10^{-6}$. The independently authored interval oracle preserves the source-permuted 72-root ledger, excludes every complement root box, proves positive separation and transmitter-factor margins, and encloses the selected three-row Jacobian with outward-rounded arithmetic.
+- Interval Newton proves exactly one selected-row zero in the declared box. The accepted scalar T04 bracket and rotation covariance place it on the regular line, while direct interval evaluation contains zero in all nine remaining full-vector rows. Therefore regular T04 is the unique full-vector balance in the box and no asymmetric equal-radius balance occurs there.
+- Removed the completed phase-deformation object from the subordinate ranked queue and narrowed the combined general continuation blocker to the regular-phase unequal-radius chart. BP-013 still owns the broader collision-free phase-domain census. The certificate establishes no result outside its box, unequal-radius balance, evolution, retention, stability, binding, physical identity, score, or scientific acceptance.
+
+Plainly: the earlier pointwise rank signal is now a continuous local proof. T04 is locally isolated in phase and speed, while broader phase and radius questions remain open.

@@ -19,6 +19,7 @@ The queue excludes other circular-path inventories, the orthogonal-plane weave, 
 | Exact circular continuation | Derived exact periodic solution for each exact complete-simple-ledger balance; no nearby-history uniqueness or perturbation stability | [Exact circular-solution theorem](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md#exact-circular-solution-theorem) |
 | T04 past-only release | Measured accepted prefix through $T=0.0029296875$; no full-cycle return and no retention or stability verdict | [T04 release prefix](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md#t04-past-only-release-prefix) |
 | T04 exact numerical handoff | Accepted six-member, 24,576-segment representation with independent identity, 72-root, acceleration, coverage, and cubic-enclosure checks; no one-cycle evolution result | [T04 exact-reference handoff](evidence/2026-09-01-planar-three-binary-t04-exact-reference-handoff.md) |
+| T04 equal-radius phase isolation | Computer-assisted derived unique full-vector zero on $|\delta_2|,|\delta_3|,|\beta_f-\beta_{\mathrm{T04}}|\leq9\times10^{-6}$; no wider phase-domain or unequal-radius census | [T04 phase-box certificate](evidence/2026-09-01-planar-three-binary-phase-box-certificate.md) |
 | T04 local history flow | Derived existence and uniqueness on $0\leq T\leq0.05$ for a nonzero $W^{2,\infty}$ retained-history neighborhood with the same 72-root chart; no numerical neighborhood radius, return, retention, or stability result | [Local history-flow theorem](evidence/2026-09-01-planar-three-binary-local-history-flow-well-posedness.md) |
 | Fixed $0.1c_f$ axial translation | Computer-assisted derived bounded nonexistence on $2.3743071761\leq\beta_f\leq3.5743071761$ for the equal-radius regular-phase prescribed screw-path chart; no other-speed or release claim | [Fixed axial-translation certificate](evidence/2026-08-29-planar-three-binary-fixed-axial-translation-certificate.md) |
 | Bounded axial-translation-speed chart | Computer-assisted derived no-nonzero-speed result for the eighteen interval-certified branches T02 through T36 on $-0.9\leq u\leq0.9$; no completeness above $\beta_f=20$ | [Axial-translation-speed chart](evidence/2026-09-01-planar-three-binary-axial-translation-speed-chart.md) |
@@ -29,21 +30,30 @@ Plainly: exact prescribed circles, their checked T04 numerical input, short-time
 ## Ranked Next Objects
 
 1. `global_equal_radius_ladder_theorem` — [global equal-radius ladder theorem task](#global-equal-radius-ladder-theorem). Status: `Queued`.
-2. `equal_radius_phase_deformation` — [equal-radius phase-deformed chart task](#equal-radius-phase-deformed-chart). Status: `Queued`.
-3. `regular_phase_unequal_radius` — [regular-phase unequal-radius chart task](#regular-phase-unequal-radius-chart). Status: `Queued`.
-4. `general_planar_continuation` — [combined general planar continuation task](#combined-general-planar-continuation). Status: `Deferred / blocked`.
-5. `t04_one_cycle_eom_reproduction` — [T04 one-cycle EOM reproduction task](#t04-one-cycle-eom-reproduction). Status: `Deferred / blocked`.
-6. `nearby_history_return_map` — [nearby-history return map and stability task](#nearby-history-return-map-and-stability). Status: `Deferred / blocked`.
-7. `same_record_action_energy_ledger` — [same-record action and energy ledger task](#same-record-action-and-energy-ledger). Status: `Deferred / blocked`.
-8. `mode_transition_ledger` — [mode-transition ledger task](#mode-transition-ledger). Status: `Deferred / blocked`.
-9. `higher_order_ladder_asymptotics` — [higher-order ladder asymptotics task](#higher-order-ladder-asymptotics). Status: `Deferred / blocked`.
-10. `full_ladder_action_energy_evaluation` — [full-ladder action and energy evaluation task](#full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
+2. `regular_phase_unequal_radius` — [regular-phase unequal-radius chart task](#regular-phase-unequal-radius-chart). Status: `Queued`.
+3. `general_planar_continuation` — [combined general planar continuation task](#combined-general-planar-continuation). Status: `Deferred / blocked`.
+4. `t04_one_cycle_eom_reproduction` — [T04 one-cycle EOM reproduction task](#t04-one-cycle-eom-reproduction). Status: `Deferred / blocked`.
+5. `nearby_history_return_map` — [nearby-history return map and stability task](#nearby-history-return-map-and-stability). Status: `Deferred / blocked`.
+6. `same_record_action_energy_ledger` — [same-record action and energy ledger task](#same-record-action-and-energy-ledger). Status: `Deferred / blocked`.
+7. `mode_transition_ledger` — [mode-transition ledger task](#mode-transition-ledger). Status: `Deferred / blocked`.
+8. `higher_order_ladder_asymptotics` — [higher-order ladder asymptotics task](#higher-order-ladder-asymptotics). Status: `Deferred / blocked`.
+9. `full_ladder_action_energy_evaluation` — [full-ladder action and energy evaluation task](#full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
 
 ## In progress
 
 No rows.
 
 ## Completed
+
+### Equal-radius phase-deformed chart
+
+- **Status:** Completed
+- **Closure goal:** Determine whether the regular $120^\circ$ T04 phase spacing is locally isolated or belongs to an asymmetric equal-radius balance branch.
+- **Result:** The [T04 phase-box certificate](evidence/2026-09-01-planar-three-binary-phase-box-certificate.md) preserves all 72 source-owned causal roots throughout $|\delta_2|,|\delta_3|,|\beta_f-\beta_{\mathrm{T04}}|\leq9\times10^{-6}$. Interval Newton proves that three independent tangential rows have exactly one zero in the box. The accepted scalar T04 bracket and rotation covariance place that zero on the regular line, and direct interval evaluation contains zero in every remaining full-vector row. Thus regular T04 is the unique full-vector balance in the declared box; no asymmetric equal-radius balance occurs there.
+- **Boundary:** This is a computer-assisted derived local zero census on one declared equal-radius, antipodal-partner, common-circulation box. It establishes no result outside that box, unequal-radius balance, general planar continuation, evolution, retention, stability, binding, physical identity, score, or scientific acceptance.
+- **Falsifier:** A missed or misowned causal root, complement zero, causal fold, singular interval-Jacobian member, escaping Newton image, invalid scalar bracket, failed covariance argument, or independently certified asymmetric full-vector zero inside the declared box overturns completion.
+
+Plainly: T04 is locally alone when only its two independent phase gaps and common speed are allowed to move within the certified box. Larger phase domains and unequal radii remain separate questions.
 
 ### Local history-flow well-posedness
 
@@ -98,16 +108,6 @@ Plainly: the finite discovery sweep has been replaced by a continuous-domain pro
 
 Plainly: the first eighteen modes are already the complete bounded answer. This task decides whether the same alternating one-mode pattern continues forever without hidden extra modes.
 
-### Equal-radius phase-deformed chart
-
-- **Status:** Queued
-- **Closure goal:** Determine whether the regular $120^\circ$ planar common-center three-binary constraint phase spacing is locally isolated or belongs to an asymmetric equal-radius balance branch.
-- **Request / acceptance:** Fix one global phase by setting $\phi_1=0$ and search $\phi_2=2\pi/3+\delta_2$, $\phi_3=4\pi/3+\delta_3$ with one common positive radius, frequency, axis, and circulation. Begin with a declared compact neighborhood of T04; evaluate every receiver and every partner/self root without assuming regular-hexagon symmetry after $\delta_2$ or $\delta_3$ becomes nonzero. Use interval Jacobian or branch-continuation evidence to isolate the symmetric zero and any asymmetric branches.
-- **Evidence / blocker:** Earlier bounded nonuniform searches recovered the regular point but did not cover the two-dimensional phase domain. The accepted velocity ladder held the regular phases fixed. The independent [T04 phase-Jacobian diagnostic](evidence/2026-09-01-planar-three-binary-phase-jacobian-diagnostic.md) finds a strong full-column-rank signal: the full $12\times3$ residual Jacobian has measured smallest singular value $4.6821899588\ldots$, and a three-tangential-row sub-Jacobian has measured determinant $9524.2261906\ldots$. The remaining blocker is a source-bound interval root and interval Newton certificate on one declared phase-speed box; pointwise finite differences do not supply the zero census.
-- **Completion:** The declared phase box has a certified zero census: either one isolated regular balance, one or more independently checked asymmetric balances, or an explicit unresolved fold/collision boundary. A certified asymmetric full-vector zero falsifies local isolation.
-
-Plainly: all three binary circles keep the same size; only their angular spacing changes. The calculation tests whether exact balance requires the regular hexagon or tolerates a lopsided arrangement.
-
 ### Regular-phase unequal-radius chart
 
 - **Status:** Queued
@@ -125,7 +125,7 @@ Plainly: the three neutral binaries retain their regular angular offsets but orb
 - **Status:** Deferred / blocked
 - **Closure goal:** Search the general fixed-coordinate planar planar common-center three-binary constraint chart only after the phase-only and radius-only directions identify the relevant local structure.
 - **Request / acceptance:** Open two independent phase offsets and two independent radius ratios together, with common scale and common frequency solved from the complete full-vector residual. Seed only from certified equal-radius phase-deformed chart task or regular-phase unequal-radius chart task branches or explicitly preserved null directions; do not launch an unconstrained high-dimensional sweep.
-- **Evidence / blocker:** Blocked on equal-radius phase-deformed chart task and regular-phase unequal-radius chart task. Without those coordinate-isolating results, a combined sweep would not distinguish phase effects from radius effects or establish coverage.
+- **Evidence / blocker:** The equal-radius phase direction is locally closed at T04 by the phase-box certificate. This row remains blocked on the regular-phase unequal-radius chart; the local phase result does not establish coverage of a wider phase domain or the coupled phase-radius chart.
 - **Completion:** A declared compact chart receives a branch census with independent root and residual verification, or a proof that no continuation leaves the certified lower-dimensional loci within that chart.
 
 ### T04 one-cycle EOM reproduction

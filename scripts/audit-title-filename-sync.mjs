@@ -29,6 +29,8 @@ const COMPATIBILITY_TITLE_ALIASES = new Map([
     "content/markdown/aaa/archie/licenses-attributions.md",
     "Licenses, Attribution & Source Use",
   ],
+  ["content/markdown/aaa/noether-braid/2d-braid-assemblies.md", "Planar (2D) Braid Assemblies"],
+  ["content/markdown/aaa/noether-braid/3d-braid-assemblies.md", "Spatial (3D) Braid Assemblies"],
 ]);
 
 const args = process.argv.slice(2);

@@ -77,15 +77,15 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 148 | `fb77aec9ff45582b` |
-| [README.md](../../README.md) | 211 | `8b21d9f6b49de424` |
+| [AGENTS.md](../../AGENTS.md) | 154 | `aa6094ba89ba4b16` |
+| [README.md](../../README.md) | 211 | `a3adfe4b70e121f7` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 131 | `f3bc036948d74e52` |
 | [reference/op/README.md](README.md) | 35 | `103118f984d95c66` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 216 | `a6b6ad0c387cdbba` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `a12ec1f00ca37b55` |
-| [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `164aef30b22413d7` |
+| [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6c9dc81dbdddb3f8` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 29 | `889e7ee37c9f9f72` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 502 | `b5ed89182fb9ef20` |
 | [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 841 | `9a420e39526ab8e2` |
@@ -104,6 +104,6 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md) | 79 | `bab0a2cbe3a73eab` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 412 | `048b8d6ba9449ff2` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 349 | `ff128b1622cf028d` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 151 | `13d99345f8a05144` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `472dc8be011bb613` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 177 | `527728d513c60978` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 151 | `af58911e1e2a6ad4` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `def92453cf807042` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 177 | `9b04c7ae35b26449` |

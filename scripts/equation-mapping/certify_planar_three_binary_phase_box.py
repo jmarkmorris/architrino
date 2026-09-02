@@ -20,14 +20,18 @@ import mpmath as mp
 
 ROOT = Path(__file__).resolve().parents[2]
 RELEASE_SOURCE = ROOT / "scripts/eom/prepare-planar-three-binary-circular-release.mjs"
-SCALAR_RECEIPT = ROOT / ".local-data/braid-analysis/b13-velocity-search/2026-08-29-b13-equal-radius-interval-zero-count.v1.json"
-SCALAR_ORACLE = ROOT / ".local-data/braid-analysis/b13-velocity-search/interval_b13_zero_count.py"
+SCALAR_THEOREM_EVIDENCE = ROOT / "reference/priorities/braid-program/evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md"
 
 FROZEN_RELEASE_SOURCE_SHA256 = "031706b047589664eae160d6430cc89f8373a0278aeec7fb85931a993dbc5b44"
-FROZEN_SCALAR_RECEIPT_SHA256 = "fd83e4ea68aace450fc945e410182177c048be05a592608a865e14bc93e463af"
-FROZEN_SCALAR_ORACLE_SHA256 = "b16ea1f0137ccbf5349012fb341a461c4af89b5ad968fe1d4151212ebfa582f4"
+FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256 = "1669066391ac4ba783be843b7f77fa11d3d9c3332085d3cbea570b8cc2ae3e54"
+HISTORICAL_SCALAR_RECEIPT_SHA256 = "fd83e4ea68aace450fc945e410182177c048be05a592608a865e14bc93e463af"
+HISTORICAL_SCALAR_ORACLE_SHA256 = "b16ea1f0137ccbf5349012fb341a461c4af89b5ad968fe1d4151212ebfa582f4"
 
 BETA_TOKEN = "2.974307176117293568027380199624405914686222541005478142309948089455288"
+SCALAR_T04_BRACKET = (
+    "2.974307176117293568027380199624405759471313658229216539",
+    "2.974307176117293568027380199624407455446056078940370605",
+)
 DELTA_RADIUS_TOKEN = "9e-6"
 BETA_RADIUS_TOKEN = "9e-6"
 ROOT_PROPOSAL_TOLERANCE_TOKEN = "1e-75"
@@ -545,26 +549,12 @@ def interval_matrix_vector(matrix, vector):
     return [sum((entry * value for entry, value in zip(row, vector)), I(0)) for row in matrix]
 
 
-def load_scalar_t04_bracket() -> list[str]:
-    receipt = json.loads(SCALAR_RECEIPT.read_text())
-    if not receipt["summary"]["allPassed"]:
-        raise CertificateFailure("frozen scalar receipt is not accepted")
-    rows = [row for row in receipt["intervals"] if row["topologyIntervalId"] == "T04"]
-    if len(rows) != 1 or len(rows[0]["zeros"]) != 1:
-        raise CertificateFailure("frozen scalar receipt does not contain exactly one T04 zero")
-    row = rows[0]
-    if row["directedRootCount"] != 72 or not row["zeros"][0]["simple"]:
-        raise CertificateFailure("frozen scalar T04 row lost its simple 72-root status")
-    return row["zeros"][0]["betaBracket"]
-
-
 def calculate() -> dict[str, object]:
     mp.mp.dps = POINT_DPS
     mp.iv.dps = INTERVAL_DPS
     for path, expected in (
         (RELEASE_SOURCE, FROZEN_RELEASE_SOURCE_SHA256),
-        (SCALAR_RECEIPT, FROZEN_SCALAR_RECEIPT_SHA256),
-        (SCALAR_ORACLE, FROZEN_SCALAR_ORACLE_SHA256),
+        (SCALAR_THEOREM_EVIDENCE, FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256),
     ):
         actual = sha256(path)
         if actual != expected:
@@ -600,7 +590,7 @@ def calculate() -> dict[str, object]:
     if not all(strict_subset(image, box) for image, box in zip(newton_image, parameter_box)):
         raise CertificateFailure("interval Newton image is not strictly inside phase-speed box")
 
-    scalar_bracket = load_scalar_t04_bracket()
+    scalar_bracket = list(SCALAR_T04_BRACKET)
     scalar_interval = I(scalar_bracket[0], scalar_bracket[1])
     if not strict_subset(scalar_interval, beta):
         raise CertificateFailure("accepted scalar T04 bracket is not inside phase-speed box")
@@ -645,10 +635,10 @@ def calculate() -> dict[str, object]:
         "frozenInputs": {
             "releaseSource": str(RELEASE_SOURCE.relative_to(ROOT)),
             "releaseSourceSha256": FROZEN_RELEASE_SOURCE_SHA256,
-            "acceptedScalarReceipt": str(SCALAR_RECEIPT.relative_to(ROOT)),
-            "acceptedScalarReceiptSha256": FROZEN_SCALAR_RECEIPT_SHA256,
-            "acceptedScalarOracle": str(SCALAR_ORACLE.relative_to(ROOT)),
-            "acceptedScalarOracleSha256": FROZEN_SCALAR_ORACLE_SHA256,
+            "acceptedScalarTheoremEvidence": str(SCALAR_THEOREM_EVIDENCE.relative_to(ROOT)),
+            "acceptedScalarTheoremEvidenceSha256": FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256,
+            "historicalScalarReceiptSha256": HISTORICAL_SCALAR_RECEIPT_SHA256,
+            "historicalScalarOracleSha256": HISTORICAL_SCALAR_ORACLE_SHA256,
             "acceptedScalarT04BetaBracket": scalar_bracket,
         },
         "arithmetic": {

@@ -6,7 +6,7 @@
 
 **Closure goal:** Certify a nonzero two-phase, one-speed neighborhood of T04 with complete causal-root ownership, an interval-Newton zero count, and an exact disposition of every planar residual row.
 
-**Claim grade:** **Computer-assisted derived local isolation.** The independently authored oracle implements the circular causal equation, its implicit derivatives, and the complete receiver-by-receiver acceleration sum with outward-rounded interval arithmetic. It binds the accepted T04 source and scalar zero-count receipt by SHA-256 and does not import the pointwise phase-Jacobian diagnostic, prescribed-path evaluator, or EOM solver.
+**Claim grade:** **Computer-assisted derived local isolation.** The independently authored oracle implements the circular causal equation, its implicit derivatives, and the complete receiver-by-receiver acceleration sum with outward-rounded interval arithmetic. It binds the accepted T04 release source and tracked bounded-ladder theorem packet by SHA-256, embeds the accepted scalar bracket, preserves the historical scalar receipt and oracle hashes as provenance, and does not import the pointwise phase-Jacobian diagnostic, prescribed-path evaluator, or EOM solver.
 
 Plainly: this result replaces the earlier pointwise rank signal with a continuous-box proof. It decides the declared local phase question, not the whole two-dimensional phase domain.
 
@@ -102,7 +102,7 @@ Plainly: three independent tangential equations can cross zero only once anywher
 
 ## Remaining nine full-vector rows
 
-The frozen scalar receipt certifies one simple regular-phase T04 zero in
+The accepted bounded-ladder theorem packet records one simple regular-phase T04 zero whose source receipt bracket is
 
 $$
 2.974307176117293568027380199624405759471313658229216539
@@ -126,7 +126,7 @@ Run:
 "${AAA_VENV:-../.venv}/bin/python" scripts/equation-mapping/certify_planar_three_binary_phase_box.py
 ```
 
-The certificate script is frozen at SHA-256 `7909ab617d6a870964594b50cf92ba1717cd0365e67ae4eb5fcb2dfc9134b19c`. Two consecutive executions produced byte-identical standard output at SHA-256 `5abe6eb342ef4a7ddfc59f67497f76610f65528791daafc9a47b00c4c6f048dd`.
+The certificate script is frozen at SHA-256 `13fa1d3c0d7f07f2a0cd1e9f9f94f0e3487ee85297d93e0d1e35bb3f8c5a38f0`. Two consecutive executions produced byte-identical standard output at SHA-256 `c8b6ff3a946658c9864cbe075b7eaae05bf419d4959992a46cedc35cea5a5a75`.
 
 This certificate establishes local isolation only on the declared equal-radius, antipodal-partner, common-circulation phase-speed box. It establishes no zero census outside that box, unequal-radius result, general planar continuation, evolution, retention, stability, binding, physical identity, score, or scientific acceptance. A missed causal root, overlapping owner enclosure, complement zero, causal fold, zero-containing separation or transmitter factor, singular interval-Jacobian member, escaping Newton image, invalid scalar T04 bracket, failed covariance argument, or independently certified asymmetric full-vector zero inside the box falsifies the result.
 

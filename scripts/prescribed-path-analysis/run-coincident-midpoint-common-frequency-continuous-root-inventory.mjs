@@ -52,9 +52,7 @@ function parseArguments(argv) {
 async function writeJson(target, value) {
   const absolute = path.resolve(repositoryRoot, target);
   await mkdir(path.dirname(absolute), { recursive: true });
-  const serialized = absolute.endsWith(".gz")
-    ? JSON.stringify(value)
-    : JSON.stringify(value, null, 2);
+  const serialized = JSON.stringify(value);
   const bytes = Buffer.from(`${serialized}\n`);
   await writeFile(
     absolute,

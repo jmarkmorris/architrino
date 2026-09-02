@@ -124,7 +124,7 @@ async function build() {
     },
   };
   validateBorgAssemblyRegistry(result);
-  return `${JSON.stringify(result, null, 2)}\n`;
+  return `${JSON.stringify(result)}\n`;
 }
 
 const built = await build();
