@@ -13,9 +13,9 @@
     "lockfile": "package-lock.json",
     "lockfileVersion": 3,
     "directDependencies": {
-      "mermaid": "11.16.1"
+      "mermaid": "11.17.2"
     },
-    "lockedProductionEntries": 111,
+    "lockedProductionEntries": 113,
     "versionRule": "exact_direct_versions_and_lockfile_integrity",
     "auditCommand": "npm audit --package-lock-only --audit-level=moderate --omit=dev",
     "auditThreshold": "moderate",
@@ -27,10 +27,10 @@
   "vendoredAssets": [
     {
       "name": "Mermaid",
-      "version": "11.16.1",
+      "version": "11.17.2",
       "license": "MIT",
       "path": "vendor/mermaid/mermaid.min.js",
-      "sha256": "14fdd79d3b02a877a6b98bf9fa8bfc7bacd7d6de3dde49fb95319c45cc7b1a34",
+      "sha256": "32f3c1c5cdb397f83f21665b9e741ca68eca908ca689f25ed27435edde72d073",
       "provenance": "vendor/mermaid/SOURCE.md",
       "disposition": "accepted_package_copy_with_trailing_whitespace_normalized_and_both_hashes_recorded"
     },
