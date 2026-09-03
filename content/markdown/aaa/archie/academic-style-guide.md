@@ -173,17 +173,27 @@ The asymmetry justifies erring toward explanation. A reader who already knows a 
 
 **Symbols are a solved case.** Corpus prose carries `View →` links into the equation viewer, which holds each symbol's full definition. A symbol therefore needs only to be named in words where it is used; re-glossing every symbol at every recurrence is padding.
 
-**Concepts are the open case.** They are reintroduced as the corpus advances, because a reader arriving at a later chapter may not carry an earlier one's vocabulary. The point at which reintroduction stops buying clarity and becomes padding is not yet settled and will not be settled here by assertion. Until it is, reintroduce a concept when it has not yet appeared in the current document, or when it is load-bearing in the argument being made, and treat anything beyond that as padding.
+**Concepts are reintroduced twice over: at first use in a document, and again wherever the argument turns on them.**
+
+At first use in a document, always. Later in the same document, restate the meaning wherever the term becomes load-bearing — where a step depends on what it actually means rather than merely mentioning it. A chapter of eleven thousand words that uses `wake` twenty-nine times does not gloss it twenty-nine times; it glosses it at the first use and again where a derivation turns on what a wake is, because by then the reader is ten pages downstream and rereading is more expensive than a clause.
+
+The test is not a counter. It is whether a reader who half-remembers the term could follow the next sentence without it.
 
 What is bounded in every case is re-derivation rather than re-definition. The full development of a concept happens once; later recurrences say what the object is and what it is doing here without rebuilding it.
 
 ### Scope of assumed knowledge
 
-**Cumulative within a document, self-contained at document boundaries.**
+**Cumulative within a document. At document boundaries, a brief clue plus a link.**
 
-Within one document a defined concept stays defined, and later sections build on earlier ones. At the start of a new document nothing is assumed: it opens by orienting the reader and defines what it imports from elsewhere.
+Within one document a defined concept stays defined, and later sections build on earlier ones.
 
-The reason is the delivery surface rather than a preference about prose. The corpus is published as a website, and a reader may arrive at any document first. A fully cumulative corpus, where each chapter assumes all earlier ones, fails that reader. Full self-containment at every section boundary fails a different way, multiplying redundancy without a matching gain, since a reader three sections into a document already holds the first section's vocabulary.
+Across documents, a chapter does not assume its reader has read any other chapter, and it does not reproduce that chapter either. When it uses a concept developed elsewhere, it gives **a brief clue in place and links to the full treatment**. A clue is a clause or a sentence carrying enough meaning that the next paragraph makes sense — not a paragraph, and not a definition deferred to the link.
+
+So rather than "the substrate has absolute time, a Euclidean void, and finite wake speed," which tells an arriving reader nothing, write: "the substrate has absolute time, a Euclidean void, and a finite speed at which a [wake](../foundations/architrino.md) — the expanding disturbance an architrino leaves behind it — travels outward." The reader can continue immediately, and follow the link when they want the full development.
+
+The reason is the delivery surface rather than a preference about prose. The corpus is published as a website, and a reader may arrive at any document first, most often from a search result. A fully cumulative corpus, where each chapter assumes all earlier ones, loses that reader in its opening lines. Reproducing the foundations in every chapter that draws on them loses them a different way, by burying the chapter's own subject.
+
+This rule is currently unmet across much of the corpus. Several chapters use foundational vocabulary heavily while linking to `foundations/` not at all, and bringing them into line is a known outstanding task rather than an oversight.
 
 ## Paragraphing Standard
 
@@ -431,6 +441,8 @@ Identify published computational evidence by a comprehensible title and stable p
 ## Section-Length Standard
 
 Length is not a constraint. Completeness of explanation outranks economy, and a long passage a reader can follow is preferred to a compact one they cannot. For substantial conceptual leaves, the default target is at least one page of meaningful prose, and often more.
+
+The reason is the delivery surface. The corpus is written for online access and there is no printed edition to keep within a page count, so the usual pressure to compress does not apply. What replaces it is a different obligation: the prose must be **accessible and technical at once**. An expert scans quickly past what they already hold, which costs them little, while a new reader is carried through the same passage. Writing for the expert alone loses the newcomer, and writing for the newcomer alone would mean thinning the technical content, which is not the trade being made. Serve both in the same prose.
 
 That is not licence to pad. Explaining something again in different words because a reader may need it is completeness; restating a thesis in different words is padding, and remains a defect however unconstrained the length budget.
 
