@@ -41,6 +41,10 @@ const CHECKS = [
     args: ["scripts/check-deployment-budget.mjs"],
   },
   {
+    name: "Validate owned-compute launch policy",
+    args: ["scripts/check-owned-compute-launch-policy.mjs"],
+  },
+  {
     name: "Validate Potential consumer and publication contract",
     args: ["scripts/check-potential-consumer-publication-contract.mjs"],
   },

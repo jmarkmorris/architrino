@@ -46,7 +46,17 @@ GitHub Actions run `33685894947` checked commit `8a11dc9bd70804009181edde0e05f20
 
 The Pages workflow now runs `scripts/borg/verify-assembly-record-byte-identity.mjs --check` before `actions/upload-pages-artifact`, and the full content-integrity runner performs the same check immediately after preparing runtime assets. The verifier fails closed on a missing record, omitted catalog identity, changed URL, record/registry identity disagreement, byte-hash disagreement, or collection/registry disagreement.
 
-This is measured local and current-branch Ubuntu evidence for byte-portable generation. A verified `main` deployment, a post-deployment 145-of-145 public audit, and representative exact-record loading remain required before OPS-013 is closed.
+This is measured local and branch-level Ubuntu evidence for byte-portable generation. GitHub Actions run `33685894947` does not establish a successful branch job, upload, deployment, or public result; it establishes only the verifier's 145-of-145 Ubuntu pass before an unrelated generated-orientation failure.
+
+## Closure Verification
+
+PR [#246](https://github.com/jmarkmorris/architrino/pull/246) merged the portable emitter state through the ordinary reviewed path at commit `00710092e165486f072c9dfe6cd8af4e8e99d343`. Its post-merge `main` Content Integrity run [`33690784705`](https://github.com/jmarkmorris/architrino/actions/runs/33690784705) passed. The post-merge Pages run [`33690784657`](https://github.com/jmarkmorris/architrino/actions/runs/33690784657) passed source/generated validation, deployment selection, runtime reconstruction, static-payload construction, all Borg registry/record identities, artifact upload, and deployment at the same commit.
+
+The read-only HTTPS instrument `scripts/borg/audit-public-assembly-record-byte-identity.mjs` then fetched the deployed registry and every URL it names. It measured 145 matching hashes out of 145, 145 matching embedded identities out of 145, and 116,875,800 total record bytes. The deployed registry revision was `borg-assembly-registry.2026-09-01.v1`, with registry SHA-256 `d119087043ae00bc746ea09c534cc239a35be6667c8bdc28de790ca70058bc63`.
+
+Representative live-browser checks selected the first, middle, and last registry entries: `Three-axis circular chart — coincident pair midpoints`, `Rotating tetrahedron vertex-set display`, and `Equal-radius planar three-binary circular balance — beta=40.828...`. Each page reported `EXACT RECORD`, displayed the expected assembly title, exposed the sealed-source-path status, rendered one canvas, and raised no browser-console warning or error.
+
+Plainly: the ordinary release path, public byte audit, and representative strict-loader checks now agree. This closes the publication-identity defect without bypassing SHA-256 enforcement or relaxing numeric serialization.
 
 ## Required Resolution
 
@@ -59,4 +69,6 @@ OPS-013 closes only when all four conditions hold:
 
 The falsifier for closure is any generated or deployed record whose byte digest differs from its registry `recordSha256`.
 
-Closure goal: restore one portable, fail-closed byte-identity contract between every published Borg registry entry and its sealed record.
+All four conditions are satisfied. OPS-013 is complete and has left the active queue. Future mismatch is a new regression against the retained fail-closed checks, not remaining OPS-013 work.
+
+Closure goal: maintain one portable, fail-closed byte-identity contract between every published Borg registry entry and its sealed record.

@@ -1,0 +1,76 @@
+{
+  "schema": "braid-program/stella-octangula-catalog-endpoint-balance-predeclaration.v1",
+  "packetId": "stella-octangula-catalog-endpoint-balance-2026-09-02-v1",
+  "date": "2026-09-02",
+  "closureGoal": "Determine whether the exact static stella-octangula catalog history is acceleration-balanced at its terminal full-delay-horizon endpoint without transferring evidence from a different release-source identity.",
+  "source": {
+    "path": "reference/priorities/braid-program/configurations/stella-octangula-static-assembly.v3.json",
+    "sha256": "cfe4893b81eb3a079961633755af07d4c46aca719ec1ce1db1cc7eb5102b5825",
+    "assemblyId": "asm-242282e6154b97b00ac9d8e5123cde46",
+    "modelRevisionSha256": "242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8"
+  },
+  "observationBoundary": {
+    "historyKind": "exact-catalog-stationary-history.v1",
+    "history": { "start": 0, "end": 1 },
+    "observationTime": 1,
+    "normalizedFieldSpeed": 1,
+    "coupling": 1,
+    "selfHitPolicy": "exclude-same-transmitter-id.v1"
+  },
+  "rootContract": {
+    "policy": "all-retained-roots/event-specific-isolation-certified.v2",
+    "expectedReceiverCount": 8,
+    "expectedRootsPerReceiver": 7,
+    "expectedTotalRoots": 56,
+    "expectedLeftBoundaryRoots": 8,
+    "expectedDistanceMultiplicitiesPerReceiver": [
+      { "distance": 0.5773502691896258, "multiplicity": 3, "sourcePolarityRelation": "opposite" },
+      { "distance": 0.816496580927726, "multiplicity": 3, "sourcePolarityRelation": "same" },
+      { "distance": 1, "multiplicity": 1, "sourcePolarityRelation": "opposite-antipode" }
+    ]
+  },
+  "independentReference": {
+    "instrument": "scripts/prescribed-path-analysis/oracle/stella-octangula-stationary-release-oracle.mjs",
+    "kind": "unchanged direct stationary pair sum plus closed-form radial coefficient",
+    "pairRule": "a_i = coupling * sum_{j != i} q_i q_j (x_i - x_j) / |x_i - x_j|^3",
+    "closedFormUnitRadiusRadialCoefficient": "3 sqrt(6) / 8 - (1 + 3 sqrt(3)) / 4",
+    "scaleRule": "radial coefficient relative to x scales as R^-3; acceleration magnitude scales as R^-2",
+    "circumradius": 0.5
+  },
+  "tolerances": {
+    "rootResidualAbsolute": 1e-12,
+    "rootDistanceAbsolute": 1e-11,
+    "rootTimeAbsolute": 1e-12,
+    "accelerationVectorAbsolute": 1e-10,
+    "radialCoefficientAbsolute": 1e-10,
+    "tangentialResidualAbsolute": 1e-10,
+    "balanceAccelerationAbsolute": 1e-10
+  },
+  "decisionRule": {
+    "instrumentPass": "The source bytes and exact identity match the declaration; the source history is exactly [0,1]; every receiver has seven certified non-self roots within the retained history; the 56-root distance inventory matches the frozen multiplicities; the evaluated acceleration matches the unchanged independent pair sum and closed form; and every tangential residual is within tolerance.",
+    "scientificExclusion": "If the instrument passes and every receiver acceleration magnitude exceeds the frozen balance tolerance, classify the exact prescribed static catalog history as excluded-prescribed-balance.",
+    "fail": "Any source, identity, history, root-inventory, independent-reference, or symmetry mismatch fails the packet closed and licenses no adjudication."
+  },
+  "intendedAdjudication": {
+    "H1": "P[D]",
+    "H2": "P[D]",
+    "H3": "P[D/M]",
+    "H4": "F[D/M]",
+    "H5": "N/A",
+    "disposition": "excluded-prescribed-balance"
+  },
+  "claimBoundary": {
+    "included": "Derived and measured terminal-endpoint causal-root completeness and nonzero acceleration for the exact catalog identity and its exact stationary [0,1] history at T=1, c_f=1, coupling=1, and the declared isolated eight-member source inventory.",
+    "excluded": [
+      "the distinct extended stationary release-source identity",
+      "future EOM evolution",
+      "moving stella-octangula histories",
+      "braid classification",
+      "binding",
+      "retention",
+      "stability",
+      "energy",
+      "physical realization"
+    ]
+  }
+}

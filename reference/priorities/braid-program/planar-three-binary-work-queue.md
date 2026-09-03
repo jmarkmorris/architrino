@@ -45,7 +45,13 @@ Plainly: exact prescribed circles, the complete infinite equal-radius ladder, th
 - **Status:** In progress
 - **Closure goal:** Determine the exact correction pattern beyond the accepted leading planar common-center three-binary constraint ladder spacing and radius laws.
 - **Request / acceptance:** Starting from the global equal-radius ladder theorem's uniform tail domain, derive the next nonvanishing terms in $\beta_n$, $\Delta\beta_n$, and $R_n/R_*$ directly from the circular causal-root ledger. Test whether the expansion is a pure inverse-power series or necessarily contains logarithmic, parity-dependent, or other terms. Curve fits may propose coefficients but cannot decide whether factors such as $\pi$, $\sqrt{3}$, or $\log 2$ survive exact summation.
-- **Evidence / blocker:** The global tail theorem supplies the required uniform domain. The leading constants are derived; the current proof pass is testing the first unclaimed coefficient and the uniform remainder structure rather than importing finite-window fit numerators.
+- **Evidence / blocker:** The global tail theorem supplies the required uniform domain. The [higher-order fold precursor](evidence/2026-09-02-bp011-higher-order-fold-precursor.md) derives the odd-fold location
+
+  $$
+  \beta_q=A_n-\frac1{2A_n}-\frac7{24A_n^3}-\frac{83}{240A_n^5}+O(A_n^{-7}),
+  $$
+
+  where $A_n=\pi(n+1)/3$. This is the fold-boundary expansion, not the balance expansion. The balance-to-fold displacement still requires uniform old-background and newborn-pair expansions over the growing alternating lattice, including any logarithmic or parity-dependent term.
 - **Completion:** Exact higher-order coefficients and a controlled remainder are derived, or a proof shows that the proposed inverse-power pattern is incomplete. Failure of a derived coefficient or remainder bound on an independently checked high-topology cell falsifies the expansion.
 
 Plainly: the complete zero pattern is known. The active calculation asks for the progressively smaller location, spacing, and radius corrections and whether their apparent numerical pattern reflects exact mathematics or only a finite fit.

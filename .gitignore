@@ -24,6 +24,9 @@ node_modules/
 # Local exact-state PR validation receipts
 /.local-data/pr-validation/
 
+# Local owned-compute leases, heartbeats, and logs
+/.local-data/owned-compute/
+
 # Reproducible UI browser captures; tracked receipts retain hashes and measurements.
 /.local-data/app-ui-guidelines/
 

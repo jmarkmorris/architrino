@@ -1,6 +1,6 @@
 # Architrino Lattice Lab Conceptual Synthesis
 
-This synthesis distinguishes the Lattice Lab's geometric teaching purpose from the stronger claims that require independent certificates. The workstream is dormant-deferred and is not reactivated by this summary.
+This synthesis distinguishes the Lattice Lab's geometric teaching purpose from the stronger claims that require independent certificates. The workstream is active; this summary does not itself add or reprioritize a queue item.
 
 ## Geometry and Evidence
 

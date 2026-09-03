@@ -10,6 +10,12 @@ This file records dated planning, implementation status, validation evidence, fa
 
 ## Log Entries
 
+### 2026-09-02 — Workstream Reactivated
+
+- Moved the complete owner packet from `reference/priorities/dormant-deferred/app-lattice-lab/` back to `reference/priorities/app-lattice-lab/` at the operator's direction.
+- Restored active ownership and execution routing for the four queued objects in [work-queue.md](work-queue.md), led by LAT-013. LAT-009 and LAT-075 remain explicitly deferred and were not reopened.
+- Updated cross-workstream links, the runtime certificate-provenance path, and the active/archive inventory without changing application code, geometry, calculations, certificates, or evidence authority.
+
 ### 2026-09-02 — Final Low-Risk Implementation Reconciliation
 
 - Closed ten implemented low-risk rows: LAT-008, LAT-014, LAT-064, LAT-065, LAT-072, LAT-073, LAT-074, LAT-076, LAT-082, and LAT-097. Closed LAT-015, LAT-094, and LAT-100 by supersession because their exact requested designs conflict with later accepted β, evidence-surface, and unpolarized-companion behavior. The [final low-risk reconciliation audit](final-low-risk-reconciliation-audit-2026-09-02.md) records the full disposition and evidence.

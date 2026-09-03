@@ -4,7 +4,7 @@
 
 - Claim level: `derivation-target`
 - Priority rank: `1` within Master Equation closure
-- Current result: `regular-kinematic-substate-derived; unchanged-regular-law-finite-birth-incompatible; account-complete-update-closed-negatively-under-current-primitives`
+- Current result: `regular-kinematic-substate-derived; lineage-gated-quintic-candidate-partial; account-complete-update-still-open`
 - Canonical regular-domain law: unchanged transmitter-side acceleration
 - Required outcome: one causal update that closes the coincident transition and conserved accounts together
 
@@ -19,6 +19,8 @@ What is the smallest independently evolving wake state, derived from Architrino 
 This is a research program, not an accepted ontology change. The state must be derived before it can be promoted.
 
 The first full attempt is [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md). It derives directional surface resolution, a coupling or maturity variable, scalar wake energy, vector wake momentum, and explicit boundary flux as the smallest necessary state class. It also proves that the current primitives do not select the coincident-birth maturity law, the motion-account functions, an emission capacity, or a reception transfer. The route therefore remains not advanced until one new Architrino-native construction supplies all four together.
+
+The first authorized new construction is [Diagonal-Birth-Lineage Causal-Wake Candidate](diagonal-birth-lineage-causal-wake-candidate.md). Its frozen cubic profile fails receiver-sensitivity integrability. Its separately frozen lineage-gated quintic successor passes the exact quadratic and arbitrary finite odd-order local magnitude and receiver-sensitivity tests while preserving ordinary folds by provenance. It remains priority-only because persistent tangencies, lineage certification, event-map uniqueness, regulator independence, and all three conserved accounts are unresolved.
 
 Research input: [Wake Reception Transfer, Motion Accounts, and Coincident-Birth Maturity](../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) sharpens the allocation, account-measure, birth-integrability, regulator, extraction, and angular-booking questions. It is priority-only research guidance; it does not amend this closure status, select a constitutive update, or establish conservation or unique continuation.
 
@@ -114,6 +116,8 @@ The smallest useful test contains:
 5. one finite retained-history boundary control, verifying explicit boundary flux rather than hidden loss.
 
 Every control must emit the pre-update state, post-update state, wake-state change, motion-account change, boundary flux, refinement identity, and the reconstructed conservation residuals.
+
+The bounded candidate instrument `scripts/equation-mapping/analyze-causal-wake-birth-lineage-candidate.mjs` currently checks the cubic rejection, finite odd-order quintic powers, lineage-gated ordinary-fold transparency, continuous irreversible release, persistent-tangent quarantine, and the $D_r=0$ finite-shell account obstruction. These are candidate tests, not an accepted continuation or conservation certificate.
 
 ## Falsifiers
 

@@ -29,8 +29,8 @@ const activeExactAdjudications = activeAdjudications.filter((relation) => relati
 const currentExactBindings = activeExactAdjudications.filter((relation) =>
   catalog.has(`${relation.match.assemblyId}:${relation.match.modelRevisionSha256}`));
 const offCatalogExactBindings = activeExactAdjudications.length - currentExactBindings.length;
-if (currentExactBindings.length !== 24 || offCatalogExactBindings !== 1) {
-  throw new Error(`Expected 24 current exact Borg adjudication bindings and one exact evidence row preserved off-catalog; found ${currentExactBindings.length} and ${offCatalogExactBindings}.`);
+if (currentExactBindings.length !== 25 || offCatalogExactBindings !== 1) {
+  throw new Error(`Expected 25 current exact Borg adjudication bindings and one exact evidence row preserved off-catalog; found ${currentExactBindings.length} and ${offCatalogExactBindings}.`);
 }
 
 console.log(`Borg scientific-status projection OK: ${activeAdjudications.length} adjudication rows, ${h4Passes.length} H4 P[M], ${h5Passes.length} H5 passes; ${currentExactBindings.length} current exact bindings and ${offCatalogExactBindings} preserved off-catalog exact row.`);

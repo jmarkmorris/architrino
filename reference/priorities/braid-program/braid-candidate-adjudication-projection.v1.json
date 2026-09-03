@@ -1,9 +1,105 @@
 {
   "schema": "borg-scientific-status-projection.v1",
-  "revision": "braid-candidate-adjudication-projection.2026-09-01.v1",
+  "revision": "braid-candidate-adjudication-projection.2026-09-02.v2",
   "source": "reference/priorities/braid-program/braid-candidate-requirement-adjudication.md",
-  "sourceSha256": "c508dad29467c43337c3ef401330e63379bf17c5cf8206062cbd2ec6aef5afa4",
+  "sourceSha256": "d0590fcb01336724dd35dfa1a40c73fb58cd163b34412077a81418fadee166db",
   "relations": [
+    {
+      "relationId": "adj-stella-octangula-catalog-endpoint-balance-2026-09-02",
+      "lifecycle": "active",
+      "kind": "adjudication",
+      "scope": "exact-configuration",
+      "disposition": "excluded-prescribed-balance",
+      "searchOutcome": "no-success",
+      "match": {
+        "kind": "exact-configuration",
+        "assemblyId": "asm-242282e6154b97b00ac9d8e5123cde46",
+        "modelRevisionSha256": "242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8"
+      },
+      "candidate": "static stella-octangula catalog history",
+      "sourceAnchor": "#universal-hard-gate-adjudication",
+      "sourceRow": "| `static stella-octangula catalog history` | `P[D]` | `P[D]` | `P[D/M]` | `F[D/M]` | `N/A` | The [exact catalog-endpoint root and acceleration packet](evidence/2026-09-02-stella-octangula-catalog-endpoint-balance.md) certifies all $56$ retained roots at $T=1$ and matches an unchanged independent pair-sum oracle, while every member has nonzero inward acceleration. This excludes only the exact prescribed static $[0,1]$ history. |",
+      "requirements": {
+        "H1": "P[D]",
+        "H2": "P[D]",
+        "H3": "P[D/M]",
+        "H4": "F[D/M]",
+        "H5": "N/A"
+      },
+      "testedRealization": "Exact eight-member checkerboard-cube stella-octangula catalog record with stationary worldlines over its declared [0,1] history.",
+      "parameterDomain": "The exact catalog assemblyId + modelRevisionSha256, stationary history 0 <= T <= 1, terminal observation T=1, c_f=1, coupling=1, and the isolated eight-member source inventory.",
+      "assumptions": [
+        "The exact catalog source bytes, identity pair, and stationary [0,1] history remain unchanged.",
+        "The endpoint includes roots emitted at the retained left boundary T=0.",
+        "The conclusion is restricted to the named prescribed static history and does not transfer to a moving realization or the distinct extended-history release-source identity."
+      ],
+      "instrument": "Complete all-retained-roots prescribed-history evaluator at T=1 checked against an unchanged independently implemented stationary pair sum and closed-form radial coefficient.",
+      "evidenceLinks": [
+        {
+          "label": "Stella-octangula exact catalog-endpoint balance exclusion",
+          "url": "reference/priorities/braid-program/evidence/2026-09-02-stella-octangula-catalog-endpoint-balance.md"
+        }
+      ],
+      "establishes": "The exact prescribed static catalog history has all 56 required non-self roots at its terminal full-delay-horizon endpoint and nonzero inward acceleration at every receiver, so it is not an acceleration-balanced prescribed solution.",
+      "doesNotEstablish": "No conclusion is made for a moving stella-octangula history, the distinct extended-history release-source identity, future EOM evolution, braid classification, binding, retention, stability, energy, or physical realization.",
+      "currentBlocker": "Any moving stella-octangula candidate requires a new exact identity, a declared complete path history, and its own root-complete ordinary-evolution protocol.",
+      "falsifier": "A source or exact-identity mismatch, a missing or extra retained root, rejection of a left-boundary antipodal root, independent-reference disagreement beyond tolerance, or acceleration compatible with zero withdraws this exclusion."
+    },
+    {
+      "relationId": "finding-source-only-catalog-blockers-2026-09-02",
+      "lifecycle": "active",
+      "kind": "finding-context",
+      "scope": "broader-family",
+      "match": {
+        "kind": "exact-configuration-set",
+        "configurations": [
+          {
+            "assemblyId": "asm-6b9cb9397450575add281f03b1a1e583",
+            "modelRevisionSha256": "6b9cb9397450575add281f03b1a1e58334c2c9f13327586cfa1445b325f37ff8"
+          },
+          {
+            "assemblyId": "asm-89dfdf44bc72c7f399640967b6888dff",
+            "modelRevisionSha256": "89dfdf44bc72c7f399640967b6888dff8a600e8a60489beef4452d77c3e5734f"
+          },
+          {
+            "assemblyId": "asm-911cf685cdf21ead658c2d06f8337a65",
+            "modelRevisionSha256": "911cf685cdf21ead658c2d06f8337a65949d5c14ee6fb924a10a33997622e1e2"
+          },
+          {
+            "assemblyId": "asm-aadc63a0362d72229c1f20574c138588",
+            "modelRevisionSha256": "aadc63a0362d72229c1f20574c1385882db27c6e7baa7f760e019e00c1127464"
+          },
+          {
+            "assemblyId": "asm-d9dc5a90da03b2a44237f2563820fdad",
+            "modelRevisionSha256": "d9dc5a90da03b2a44237f2563820fdad7dfe2ec379ec27260876eab3bb707898"
+          },
+          {
+            "assemblyId": "asm-fbe88c602415275bc562c8825a501bf1",
+            "modelRevisionSha256": "fbe88c602415275bc562c8825a501bf16d2ff5fb5e2d865028917d6fd08052d2"
+          }
+        ]
+      },
+      "candidate": "Six source-defined display records currently have no accepted identity-bound scientific packet.",
+      "sourceAnchor": "#indexed-source-owned-findings",
+      "sourceRow": "Six source-defined display records currently have no accepted identity-bound scientific packet.",
+      "testedRealization": "The six exact catalog identities enumerated in the 2026-09-02 Borg exact-adjudication coverage audit.",
+      "parameterDomain": "Identity and evidence-availability audit only; no scientific parameter domain was evaluated.",
+      "assumptions": [
+        "The registry and scientific projection remain current at the cited revisions.",
+        "Prescribed geometry and display records are not scientific adjudications."
+      ],
+      "instrument": "Identity-bound registry, projection, Braid Search evidence-index, and priority-evidence audit.",
+      "evidenceLinks": [
+        {
+          "label": "Borg exact-adjudication coverage audit",
+          "url": "reference/priorities/braid-program/evidence/2026-09-02-borg-exact-adjudication-coverage-audit.md"
+        }
+      ],
+      "establishes": "Each named exact identity is current in the Borg registry and lacks an accepted exact H1-H5 adjudication in the live Braid-owned projection.",
+      "doesNotEstablish": "The audit establishes no geometry beyond the source declaration, causal-root result, acceleration balance, evolution, binding, retention, stability, physical identity, or scientific acceptance.",
+      "currentBlocker": "Each identity requires its own declared scientific question, exact identity-bound complete path history, accepted protocol, and independent reference before any H1-H5 adjudication.",
+      "falsifier": "Remove or revise this context if an accepted exact identity-bound scientific packet is integrated for any named record or if its catalog identity changes."
+    },
     {
       "relationId": "adj-f2b855b4d9be64b49ece29e9bc770c12",
       "lifecycle": "active",
@@ -1219,7 +1315,7 @@
       ],
       "establishes": "Accepted prescribed acceleration-balance row in the bounded regular alternating circular landscape.",
       "doesNotEstablish": "This broader finding does not become an exact H1–H5 verdict, retention result, stability result, binding result, or physical identity claim.",
-      "currentBlocker": "Use the exact Braid Program adjudication row, when one exists, for H1–H5 status.",
+      "currentBlocker": "Each of the 11 exact catalog leaves requires its own identity-bound H1-H5 row and accepted protocol; the structured-set balance result cannot supply an exact leaf adjudication.",
       "falsifier": "Remove or supersede this context if its source-owned matcher, evidence link, or scientific owner no longer supports the stated scope."
     },
     {
@@ -1250,7 +1346,7 @@
       ],
       "establishes": "Accepted equal-radius planar three-binary prescribed acceleration-balance row in the exact topology ladder.",
       "doesNotEstablish": "This broader finding does not become an exact H1–H5 verdict, retention result, stability result, binding result, or physical identity claim.",
-      "currentBlocker": "Use the exact Braid Program adjudication row, when one exists, for H1–H5 status.",
+      "currentBlocker": "Each of the 100 exact ladder variants requires its own identity-bound H1-H5 evidence chain; the broader prescribed acceleration-balance source establishes neither an exact leaf adjudication nor ordinary evolution or retention.",
       "falsifier": "Remove or supersede this context if its source-owned matcher, evidence link, or scientific owner no longer supports the stated scope."
     },
     {
@@ -1281,7 +1377,7 @@
       ],
       "establishes": "The fixed orthogonal-plane weave locus has no prescribed acceleration balance on the declared speed interval.",
       "doesNotEstablish": "This broader finding does not become an exact H1–H5 verdict, retention result, stability result, binding result, or physical identity claim.",
-      "currentBlocker": "Use the exact Braid Program adjudication row, when one exists, for H1–H5 status.",
+      "currentBlocker": "An exact source-and-domain equivalence proof must bind the broader locus theorem to this catalog identity before it can support an exact H1-H5 adjudication.",
       "falsifier": "Remove or supersede this context if its source-owned matcher, evidence link, or scientific owner no longer supports the stated scope."
     },
     {
