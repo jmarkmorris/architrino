@@ -81,7 +81,7 @@ Run the certificate with:
 "${AAA_VENV:-../.venv}/bin/python" scripts/prescribed-path-analysis/oracle/certify_octahedral_antipodal_generic_axis_edges.py
 ```
 
-The checker uses 70-decimal-digit `mpmath` `libmpi` intervals. The installed interval and elementary-function source files are bound in its output, and lower and upper operations route through their floor- and ceiling-rounded primitives. The checker SHA-256 is `ef8634756884578bcafd72ee2bf2aa40b32c0d5becd6789b1603a3335d2357b8`. Its stable output SHA-256 is `d3ae819c47d9a2be6fbac0b592903f23f794adcee27da4ee2ab9f302bfd53d08`.
+The checker uses 70-decimal-digit `mpmath` `libmpi` intervals. The installed interval and elementary-function source files are bound in its output, and lower and upper operations route through their floor- and ceiling-rounded primitives. The checker SHA-256 is `ef8634756884578bcafd72ee2bf2aa40b32c0d5becd6789b1603a3335d2357b8`. Two consecutive stable-source executions produced byte-identical standard output at SHA-256 `5c825f40528c82f4fe5a4230dc6407f5324c3f80a043df17d086c85e2dfa5021`.
 
 The independent references are the exact quotient reconstruction in `freeze_octahedral_antipodal_generic_axis_domain.py` and the analytic strict-sub-field uniqueness theorem in the mathematical owner. The unchanged `AnalyticalBraidEvaluator` separately samples every declared edge, retains five partner roots at every receiver, and evaluates the same nine common-scale residual channels. That floating-point agreement is a consistency check only; it is not the interval proof.
 
