@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1580
+      "sections": 1582
     }
   },
   "tocRoot": {
@@ -116,6 +116,22 @@
             "scenePath": "content/scenes/foundations/architrino.json",
             "markdownPath": "content/markdown/aaa/foundations/architrino.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Why the delay is the whole idea",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Why the delay is the whole idea",
+                "sectionKey": "why the delay is the whole idea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What an architrino is not",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "What an architrino is not",
+                "sectionKey": "what an architrino is not",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Core Definition",
