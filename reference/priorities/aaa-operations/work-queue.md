@@ -5,7 +5,7 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 ## Ranked Next Objects
 
 1. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
-2. `plainly_convention_document_migration` — [OPS-015](#ops-015--plainly-convention-document-migration). Status: `Blocked`, on OPS-014 finalization.
+2. `plainly_convention_document_migration` — [OPS-015](#ops-015--plainly-convention-document-migration). Status: `Blocked`, on corpus-wide standards readiness.
 3. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
 4. `local_repository_document_surface` — [OPS-017](#ops-017--local-repository-document-surface). Status: `Awaiting verification`.
 
@@ -97,12 +97,17 @@ Plainly: stop copying policy by hand and let a generator do it; keep behavior ru
 
 ### OPS-015 — Plainly convention document migration
 
-- **Status:** Blocked, on OPS-014 finalization
+- **Status:** Blocked, on corpus-wide standards readiness
 - **Priority object:** `plainly_convention_document_migration`
-- **Blocked by:** [OPS-014](#ops-014--agent-guidance-surface-consolidation). Do not begin conversion until the operator has used the new standard across several sessions and confirmed it is settled. Converting documents to a convention that is still being tuned would mean converting them twice.
-- **Request / acceptance:** Decide, tier by tier, which existing documents should be converted from the retired inline `Plainly:` tag to the plain-by-default interleaved explanation the [operator explanation standard](../../op/operator-explanation-standard.md) now requires, and execute only the tiers that earn it. The measured occurrence count is not the work item; reader visibility is.
+- **Blocked by:** Operator decision that the explanation standards are ready to apply across all corpus markdown. That gate is later and higher than OPS-014 finalization: OPS-014 settles where guidance lives, while this waits until the operator judges the standards themselves settled enough to rewrite a published book against. Converting documents to a convention still being tuned would mean converting them twice. The operator opens this gate; an agent may not infer it from OPS-014 closing.
+- **Sweep instrument:** [Corpus dragnet](../aaa-corpus-dragnet/priorities.md) owns the read-only correlation pass that inventories occurrences and their contexts. Dragnet workers are read-only outside their own lane by charter, so they supply findings and never perform the conversion. Execution belongs to this item.
+- **Request / acceptance:** Decide, tier by tier, which existing documents should be converted from the retired inline `Plainly:` tag to the plain-by-default interleaved explanation the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) now requires, and execute only the tiers that earn it. The measured occurrence count is not the work item; reader visibility is.
 
-The standard already states that documents written under the retired convention keep their form and that conversion happens opportunistically during substantial revision. This item exists because that default is right for the working record and wrong for two specific surfaces, which are identified below.
+The [operator explanation standard](../../op/operator-explanation-standard.md) already states that documents written under the retired convention keep their form and that conversion happens opportunistically during substantial revision. This item exists because that default is right for the working record and wrong for two specific surfaces, which are identified below.
+
+#### Superseding scope, 2026-09-03
+
+The operator has since decided on a corpus-wide rewrite of all 199 `content/markdown/aaa` documents against the merged explanation standard, whether or not they carry the retired tag. Tier 1 below is therefore a subset of that larger campaign rather than an independent task, and should be executed as part of it rather than as a separate tag sweep. Tiers 2 and 3 remain this item's own work. When the rewrite campaign has a lane, Tier 1 moves there and this item narrows to the operator-facing surfaces.
 
 #### Measured scope, 2026-09-03
 
@@ -146,7 +151,15 @@ The 464 occurrences under `research-office/research-history` are review packets 
 
 Tier 1 changes reader-facing corpus prose, so it is a canon question, not a cleanup. AGENTS.md requires that Archie canon be treated as a controlled reference and that a proposed style-policy change be discussed with its downstream effects before broad corpus updates. Tier 1 therefore needs an explicit operator decision on whether the academic style guide should say anything about the tag — endorse it, forbid it, or stay silent — before any corpus file is touched. Silence in the guide is what allowed the leak, so leaving it silent is a choice with consequences and should be made deliberately.
 
-- **Evidence / blocker:** The occurrence census is complete and the two governing style authorities have been checked and do not prescribe the tag. Blocking items are OPS-014 finalization, an operator canon decision on Tier 1, and confirmation that no exporter or search index depends on the literal string `Plainly:` — `textbook_bundle_search_index.json` contains it, and whether that is incidental content or a structural key has not been established.
+#### Discharged blocker: search-index dependency, checked 2026-09-03
+
+`apps/ios/ArchitrinoReader/GeneratedTextbookPackage/textbook_bundle_search_index.json` contains the literal string `Plainly:`, which raised the question of whether the search machinery keys on it. It does not. The file is `{schema_version, total_entries, entries}`, and a full walk of the structure found the string **62 times, every occurrence inside `entries[N].text`, and zero occurrences as a key**. It is indexed prose, not structure.
+
+The index is also a generated artifact derived from the corpus, and the iOS package is an on-demand development snapshot rather than a routine output, so it carries whatever the corpus says at the next authorized export. No separate conversion work is needed for it.
+
+Claim grade: `measured` by a recursive walk of the parsed JSON, distinguishing key positions from string values. Falsifier: any consumer that reads the literal `Plainly:` as a delimiter, section marker, or lookup key rather than as displayed text.
+
+- **Evidence / blocker:** The occurrence census is complete, the two governing style authorities have been checked and do not prescribe the tag, and the search-index dependency is discharged above. Two blockers remain: the operator's corpus-wide readiness decision, and an operator canon decision on Tier 1 — though Tier 1 is now expected to execute inside the corpus rewrite campaign rather than here.
 - **Completion:** Tier 2 is converted and the startup-path files no longer demonstrate the retired pattern; Tier 1 is either converted under an explicit canon decision or explicitly declined with that decision recorded; Tier 3 is confirmed as opportunistic-only; and a repeat scan shows no new `Plainly:` occurrences in documents authored after the standard was adopted.
 
 ### OPS-016 — Reference equation-mapping surface

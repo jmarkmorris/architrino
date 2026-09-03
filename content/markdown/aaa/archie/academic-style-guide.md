@@ -27,11 +27,33 @@ Do not apply this guide mechanically to interface chrome such as button labels, 
 
 ## Audience
 
-Write for a reader who knows neither $\mathbb{A}\mathbb{A}\mathbb{A}$ nor the established physics it must eventually recover.
+The rule is one sentence:
 
-That is the whole audience decision, and everything else in this guide follows from it. $\mathbb{A}\mathbb{A}\mathbb{A}$ is a new field, and the corpus exists to bring people into it. A reader who already held both bodies of knowledge would not need the book.
+> **Define what the reader of this artifact plausibly lacks.**
 
-Two consequences deserve stating plainly, because each is easy to miss.
+This is a test rather than an answer, and that distinction is the point. A rule that named one audience would be right on one surface and wrong on the others, because a published chapter and a working analysis note are read by different people. The test produces the correct behavior on each surface without anyone having to hold two standards in mind.
+
+An author does not decide who the reader is. They identify what they are writing, and the table says:
+
+| Artifact class | Reader | May assume | Must define |
+| --- | --- | --- | --- |
+| Chapter, essay, explanatory reference | Unknown; may hold nothing | nothing | every $\mathbb{A}\mathbb{A}\mathbb{A}$ concept, all established physics, all imported apparatus |
+| Working analysis, findings record | Someone already working on the project | $\mathbb{A}\mathbb{A}\mathbb{A}$ and project vocabulary | imported apparatus, and material from another line of work |
+| Interface chrome | Application user, with no room to explain | nothing | nothing; route the reader to the explanation instead |
+
+Three refinements carry most of the judgment.
+
+**The load-bearing override.** Whatever the artifact class, if a term is decisive for the claim being made at that moment, restate its meaning in a clause even for a reader who already knows it. When an argument turns on a central acceleration being directed along the line joining two objects, one clause saying so prevents a misreading of precisely the sentence that matters. This is cheap everywhere and worth doing everywhere.
+
+**Never define a term the reader has just supplied.** If a reader arrives asking about wake structure, they hold the word. Definition serves comprehension, not ceremony.
+
+**Redundancy costs scale with the artifact, not the reader.** In a short note an unneeded definition costs one skipped line. Across a large corpus the same habit compounds into a longer book that is worse to read. So "when in doubt, explain" is the right default where the reader is unknown, and a weaker default where the reader is known and the material is dense.
+
+### What the rule yields for the corpus
+
+Applied to a chapter, essay, or explanatory reference, the test gives one answer: **write for a reader who knows neither $\mathbb{A}\mathbb{A}\mathbb{A}$ nor the established physics it must eventually recover.**
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is a new field and the corpus exists to bring people into it. A reader who already held both bodies of knowledge would not need the book. Two consequences deserve stating plainly, because each is easy to miss.
 
 **Every $\mathbb{A}\mathbb{A}\mathbb{A}$ concept is defined where it is used.** Architrino, causal root, path history, wake, polarity, absolute time, the Euclidean void, the master equation: none of these may be assumed. They are the subject matter, not the shared background.
 

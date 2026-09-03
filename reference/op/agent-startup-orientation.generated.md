@@ -84,7 +84,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 171 | `dc8fc4e31bbafb4e` |
 | [reference/op/README.md](README.md) | 36 | `874e700c221e909c` |
-| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 235 | `a90ec4598a88e957` |
+| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 117 | `65d1e5d3141b7a83` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 206 | `c6467613b5a3461f` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `a12ec1f00ca37b55` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6c9dc81dbdddb3f8` |
@@ -104,7 +104,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md) | 61 | `be92497977042d40` |
 | [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | 73 | `ce8fd06fb4b75567` |
 | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md) | 79 | `bab0a2cbe3a73eab` |
-| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 490 | `9ad22e6f9a91bab3` |
+| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 512 | `45d7cf6b589916fc` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 349 | `ff128b1622cf028d` |
 | [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 151 | `af58911e1e2a6ad4` |
 | [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `def92453cf807042` |
