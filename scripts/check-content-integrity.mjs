@@ -77,6 +77,10 @@ const CHECKS = [
     args: ["--test", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js"],
   },
   {
+    name: "Validate private MCP secure-tunnel deployment contract",
+    args: ["--test", "tests/archie-service-mcp-secure-tunnel-deployment.test.js"],
+  },
+  {
     name: "Check current Master Equation terminology",
     args: ["scripts/check-master-equation-terminology-migration.mjs"],
   },

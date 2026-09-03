@@ -4,14 +4,23 @@ This file is the chronological work log for the Archie-service MCP adapter. Use 
 
 ## Log Entries
 
-### 2026-09-02 — MCP-003 closed without embeddings
+### 2026-09-02 — MCP-004 private deployment contract opened
+
+- The operator explicitly reactivated MCP deployment work without reactivating unrelated dormant Archie work.
+- Selected the official OpenAI Secure MCP Tunnel as the bounded first remote path. It carries the existing stdio server through outbound HTTPS and creates no inbound listener or public endpoint; the separate public OAuth/HTTPS contract remains unadvanced.
+- Added a pinned `darwin-arm64` tunnel-client `v0.0.14` archive and executable identity, environment-only credential references, exact live-remote-`main` release check, complete content-integrity and full-corpus preflight, managed-runtime connection, three-field health acceptance, and redacted local receipt.
+- MCP-004 remains open until the implementation is merged, launched from the exact accepted post-merge `main` commit, and independently exercised through real ChatGPT and Codex clients. Local protocol smoke and tunnel readiness are necessary but cannot substitute for those transcripts.
+
+Plainly: the server now has a fail-closed deployment recipe, but code review, live account connection, and two real client calls still decide whether this row closes.
+
+### 2026-09-02 — MCP-003 passed; embeddings declined
 
 - Froze eight natural-language retrieval needs against reviewed authored sources before altering the query engine. The prior exact-phrase/all-raw-term search returned a nonempty top-10 page for 0 of 8 questions because punctuation and question words were treated as required lexical content.
 - Added a bounded deterministic fallback only for records that otherwise score zero: Unicode letter/number tokenization, a fixed function-word list, at least 60% token coverage with two matches for multi-token queries, fixed field weights, the existing authority preference, and the existing source-id tie-break. No stemming, inferred synonym expansion, model call, embedding lookup, repository scan, visibility bypass, or authority promotion was added.
 - The reviewed [deterministic-recall benchmark](deterministic-recall-benchmark-2026-09-02.md) passed 8/8 natural-language search targets at rank 10, 2/2 exact reads, 1/1 topic-enumeration case, and 2/2 declared-edge `neighbors`/`walk` cases. It returned no non-public or `priority_only` source in public scope, and the existing seven-test tool-contract suite remained passing.
-- Closed MCP-003 with a measured negative implementation decision and removed it from the dormant queue. Embeddings remain a future fallback only if a later reviewed benchmark shows an important residual miss that reasonable deterministic retrieval cannot solve; any such proposal must define model, privacy, freshness, cost, visibility, provenance, fallback, and no-authority-promotion gates before implementation.
+- MCP-003 passed its reviewed acceptance benchmark and was removed from the dormant queue. The separate embeddings implementation proposal received a measured negative decision. Embeddings remain a future fallback only if a later reviewed benchmark shows an important residual miss that reasonable deterministic retrieval cannot solve; any such proposal must define model, privacy, freshness, cost, visibility, provenance, fallback, and no-authority-promotion gates before implementation.
 
-Plainly: the benchmark found a real recall defect, but ordinary deterministic parsing fixed every reviewed case. There is no measured reason to add an embedding service or private vector index.
+Plainly: MCP-003 succeeded: the benchmark found a real recall defect, and ordinary deterministic parsing fixed every reviewed case. Only the embeddings proposal was declined because there is no measured reason to add an embedding service or private vector index.
 
 ### 2026-09-02 — Reclassified as an Archie-service protocol adapter
 
