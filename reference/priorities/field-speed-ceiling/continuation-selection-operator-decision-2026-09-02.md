@@ -1,10 +1,10 @@
 # FSC-006b / FSC-005 — Continuation-Selection Operator Decision
 
-**Date:** 2026-09-02 **Status:** decision packet prepared; operator decision required; no continuation doctrine or selector adopted. **Owner:** FSC-006b/FSC-005. **Recommendation:** Option A, retain the exact-mirror continuation as a multivalued relation at current FSC authority.
+**Date:** 2026-09-02 **Status:** operator selected Option A; exact-mirror continuation retained as a multivalued relation at current FSC authority; no selector or new law adopted. **Owner:** FSC-006b/FSC-005. **Decision:** Option A.
 
 ## Decision in one sentence
 
-The proposed exact-mirror model now has a rigorous future-equivalence quotient, no event-adjacent thin activation cascade in the declared mirror-collinear chart, and a separate regular-chart uniqueness theorem, but it still contains the straight trace and one delayed-braking branch for every prescribed positive onset. Because no admitted state functional derives one onset, the honest current choice is to retain that multivalued continuation relation rather than hide a new selection law inside smoothness, symmetry, minimality, or a desired breather.
+The operator selected Option A: the proposed exact-mirror model retains the straight trace and one delayed-braking branch for every prescribed positive onset as a multivalued continuation relation, because no admitted state functional derives one onset and no new selection law is authorized.
 
 Plainly: the mathematics can describe every allowed future and can rule out pathological flickering at the event. It still has no alarm clock that chooses one future. Option A records that fact; Option B would add the missing clock as a new law.
 
@@ -137,20 +137,20 @@ Plainly: this route could eventually provide a real alarm clock, but no such clo
 
 Plainly: Option A is the only choice that states no more than the present mathematics. Every Option B variant adds a rule whose key derivation or uniqueness theorem is still missing.
 
-**Recommendation:** retain Option A. This is not a claim that multivalued continuation is the final physical doctrine. It is the narrowest honest status until a selector is derived from admitted state data and passes the functional, symmetry, guard, reset, ownership, quotient, positive-fixed-onset, and falsifier obligations above.
+**Operator decision:** retain Option A. This is not a claim that multivalued continuation is the final physical doctrine. It is the narrowest honest status until a selector is derived from admitted state data and passes the functional, symmetry, guard, reset, ownership, quotient, positive-fixed-onset, and falsifier obligations above.
 
-**Claim grade:** `operator recommendation from derived and conditional FSC results`. It is not a theorem and does not adopt the recommendation. The recommendation should be revisited if a quotient-compatible selector with a complete account and independent derivation is produced.
+**Claim grade:** `operator doctrine for the proposed FSC lane, based on derived and conditional FSC results`. It is not a theorem, a selector, or a canonical law. The decision should be revisited if a quotient-compatible selector with a complete account and independent derivation is produced.
 
 Plainly: the recommendation preserves the exact current knowledge boundary. It leaves the door open to determinism later, but requires the missing law to be written and tested before it is treated as part of the model.
 
 ## 5. Nonclaims and lane boundary
 
-This packet changes no canonical Master Equation, ontology, EOM solver contract, reader-facing corpus, field-speed ceiling, constrained response, swept-source rule, exact-mirror event law, continuation doctrine, action account, stability claim, conservation claim, or physical realization. All results and alternatives remain inside the Field-Speed Ceiling priority lane.
+This packet records one FSC-lane doctrine: at present authority, exact-mirror continuation is multivalued under Option A. It changes no canonical Master Equation, ontology, EOM solver contract, reader-facing corpus, field-speed ceiling, constrained response, swept-source rule, exact-mirror event law, action account, stability claim, conservation claim, or physical realization. All results and unselected alternatives remain inside the Field-Speed Ceiling priority lane.
 
 ## Closure goal
 
-Record the operator's explicit continuation doctrine for the proposed exact-mirror FSC model while keeping every unselected Option B route as a separate research proposal rather than an implicit law.
+Preserve the operator's Option A decision while keeping every unselected Option B route as a separate research proposal rather than an implicit law.
 
-## Operator question
+## Operator decision
 
-Do you authorize closing the present FSC-006b/FSC-005 selection decision by retaining the exact-mirror continuation as a multivalued relation under Option A, with every selector remaining a separate future FSC proposal unless independently derived? (y/n)
+Authorized on 2026-09-02: close the present FSC-006b/FSC-005 selection decision under Option A. Retain the exact-mirror continuation as a multivalued relation, with every selector remaining a separate future FSC proposal unless independently derived and separately authorized.

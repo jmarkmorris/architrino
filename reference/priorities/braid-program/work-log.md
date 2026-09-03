@@ -603,3 +603,14 @@ Closure goal: Keep the 25 exact current adjudications synchronized with Braid Se
 Plainly: two requested mathematical objects are complete, four open rows now have narrower executable or external blockers, and BP-010 is stopped at a specific missing historical archive route rather than being replayed against changed source bytes. The finite BP-012 and BP-016 grids remain measurements, while BP-013's one certified cell remains local.
 
 Closure goal: replace BP-016's five-edge finite scout with complete outward-rounded edge certificates, because that object gates the two generic-axis interiors and the first admissible BP-017 dynamics packet.
+
+## 2026-09-02 — BP-016 generic-axis boundary excluded
+
+- Completed the [five-edge generic-axis certificate](evidence/2026-09-02-octahedral-antipodal-generic-axis-edge-exclusion.md) before entering either simplex interior. The exact quotient edges $(0,1)$, $(1,2)$, $(2,0)$, $(2,3)$, and $(3,0)$ are covered on $0\leq\beta\leq1$ by 9,078 outward-rounded boxes after 17,836 processed boxes, with the closed field-speed face used only as a computational cap for the scientific domain $0\leq\beta<1$ at $c_f=1$.
+- Every accepted box encloses all 30 ordered partner roots with exact receiver-transmitter ownership. The strict-sub-field contraction theorem excludes complementary roots, nontrivial self roots remain absent, and the global transmitter-factor floor is $0.0239350503710699968568826566806687263482545324$.
+- Every box evaluates all nine Cartesian components of the three representative acceleration residuals after fitting one common prescribed scale. At least one outward-rounded component excludes zero on every box. The surviving edge-box set is empty, so the required interval-Newton/Krawczyk application count is exactly zero rather than an unprocessed remainder.
+- Claim grade: computer-assisted derived bounded nonexistence on the complete five-edge boundary. The prior finite scout remains discovery evidence only. No simplex-interior, field/super-field, non-rigid, EOM evolution, retention, stability, binding, physical identity, score, or scientific-acceptance conclusion follows.
+
+Plainly: every generic-axis boundary point is now ruled out with complete roots and interval arithmetic. BP-016 stays open only because a balance could still occur inside either of the two exact triangular charts.
+
+Closure goal: apply the same complete-root, outward-rounded nine-channel cover to the two simplex interiors and certify or isolate every surviving common-zero box.

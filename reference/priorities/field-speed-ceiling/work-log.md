@@ -1,20 +1,22 @@
 # Field-Speed Ceiling Work Log
 
-## 2026-09-02 — Continuation-selection operator decision prepared
+## 2026-09-02 — Operator selected Option A for exact-mirror continuation
 
 - Added the [continuation-selection decision packet](continuation-selection-operator-decision-2026-09-02.md) using the completed quotient, event-adjacent no-cascade, and regular-chart results.
 - Compared retaining the exact-mirror continuation as a multivalued relation with straight-passage, positive-onset, approximation-limit, and future wake/action-derived selector laws.
-- Recommended retaining the multivalued relation at current authority because no admitted quotient-compatible state functional derives one onset and the direct cap-duration reset has no positive fixed cycle in its proved regime.
+- Recorded the operator's selection of Option A: retain the multivalued relation at current FSC authority because no admitted quotient-compatible state functional derives one onset and the direct cap-duration reset has no positive fixed cycle in its proved regime.
 - Stated the complete obligations for any future selector: functional, symmetry and scale behavior, guard and reset, clocks, wake and ownership accounting, positive fixed onset where applicable, quotient compatibility, falsifier, and evidence beyond a fitted waiting-time convention.
-- Left one explicit operator decision. No continuation doctrine, selector, ceiling, event law, response law, canonical dynamics, Master Equation change, or reader-facing claim was adopted or promoted.
+- Reconciled the live owners: FSC-007 remains a completed prerequisite at its conditional regular-chart scope, FSC-011 remains advanced only for the exact FSC-010 circle, and completed FSC-006b/FSC-005 selection was removed from the ranked queue after its operator acceptance condition was met.
+- Updated the exact-mirror restart, delayed-ignition, and selector-analysis siblings to point to the completed review chain and the Option A decision while preserving their original theorem scopes and falsifiers.
+- Closed the decision under Option A without adding a selector. No ceiling, event law, response law, canonical dynamics, Master Equation change, or reader-facing claim was adopted or promoted.
 
 ## 2026-09-02 — FSC-007 regular-chart local well-posedness and FSC-011 circular corollary
 
 - Added the [FSC-007 regular-chart theorem](regular-chart-history-to-ledger-well-posedness.md) with explicit history-to-root, received-clock, row, and complete-ledger Lipschitz constants on an atom-free finite-delay fixed-census $W^{2,\infty}$ chart.
 - Refuted global joint continuity of the pointwise tangent projection at velocity-ball contact and used the correct nonexpansive normal-cone evolution response instead.
-- Proved a short-time contraction with factor $q=hL_A$, an explicit self-map defect condition, local existence and uniqueness, and continuation up to the first named floor, census, trace, clock, history-window, tube, ownership, or event break.
+- Proved a method-of-steps short-time contraction on the receiver-velocity ball with factor $q=\tfrac12L_{\mathrm{rec}}h^2<1$, under an explicit invariant-response-cylinder hypothesis, and obtained local existence, uniqueness, and continuation up to the first named floor, census, trace, clock, history-window, response-regime, tube, ownership, or event break.
 - Kept the margin-zero exact-mirror chart outside FSC-007; its frozen and characteristic records and multivalued waiting-time continuations violate the regular hypotheses.
-- Applied the theorem to the FSC-010 exact all-past circle using FSC-013's explicit census, range, delay, $D_t$, $D_r$, collision, and self-root certificates. The exact circle now has a unique local continuation inside that tube; arbitrary perturbative histories remain conditional on the displayed self-map defect and chart buffer.
+- Applied the theorem to the FSC-010 exact all-past circle using FSC-013's explicit census, range, delay, $D_t$, $D_r$, collision, and self-root certificates. The exact circle now has a unique local continuation in its regular chart; a uniform result for arbitrary perturbative histories in the whole FSC-013 tube remains conditional on verifying the invariant response regime and compatible right-acceleration trace there.
 - No ceiling, response, event law, selector, stability, capture, retained binary, conservation account, canonical dynamics, Master Equation change, or reader-facing claim was adopted or promoted.
 
 ## 2026-09-02 — Event-adjacent thin activation cascade excluded
