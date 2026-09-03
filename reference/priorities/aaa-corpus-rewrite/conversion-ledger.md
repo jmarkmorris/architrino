@@ -16,26 +16,35 @@ When the guide advances an edition, this ledger says exactly which documents wer
 | --- | :---: | ---: | ---: | ---: | --- | --- |
 | `foundations/architrino.md` | 1.0 | 4,090 | 6,297 | +54% | 2026-09-03 | Pilot. Operator accepted. All 17 equation-viewer links, all equations, all 16 internal links, and every claim preserved. |
 | `foundations/euclidean-void.md` | 1.0 | 3,401 | 4,657 | +37% | 2026-09-03 | All 37 equation-viewer links preserved and still correctly placed after their math blocks; all internal links resolve; retired plain-language blockquote removed. Growth is lower than the pilot because much of the file is notation tables and operator definitions, which need explanation but not expansion. |
+| `foundations/ontology.md` | 1.0 | 3,936 | 4,418 | +12% | 2026-09-03 | Navigation hub. Growth is low because most of the file is routing tables that need no expansion; the added prose explains Bell's theorem, superselection, the exchange loop, holonomy, and the forgetting-map tower. |
+| `foundations/constructing-the-absolute-frame.md` | 1.0 | 2,318 | 2,604 | +12% | 2026-09-03 | All 12 equation-viewer links preserved. Added explanations of the cross product as area, the conditioning floor, $SE(3)$ versus the disconnected parity component, and writhe/twist. |
 
 ## Running totals
 
 | | Files | Words | Note |
 | --- | ---: | ---: | --- |
-| Converted | 2 | 7,491 → 10,954 | +46% combined |
+| Converted | 4 | 13,745 → 17,976 | +31% combined |
 | Corpus at campaign start | 199 | 835,848 | measured immediately before the pilot |
-| Corpus today | 199 | 841,511 | conversions plus concurrent style-guide expansion |
-| Remaining unconverted | 197 | 830,557 | |
+| Corpus today | 199 | 842,279 | conversions plus concurrent style-guide expansion |
+| Remaining unconverted | 195 | 824,303 | |
 
 The corpus figures differ by more than the two conversions account for because the academic style guide is itself a corpus document and grew during the same session. That growth is not a conversion and carries no ledger row.
 
 ## What the growth figure is and is not
 
-Two conversions, growing 54% and 37%, for a combined 46%. Applying 46% to the unconverted remainder projects a finished corpus of roughly **1.22 million words**, and that is the current planning basis.
+Four conversions, growing 54%, 37%, 12%, and 12%, for a combined **31%**. Applying 31% to the unconverted remainder projects a finished corpus of roughly **1.10 million words**, and that is the current planning basis.
 
-The spread between the two is already informative and is the reason a single number was never going to be enough. `architrino.md` is almost entirely conceptual prose introducing vocabulary from nothing, and it grew most. `euclidean-void.md` is roughly half notation tables, operator definitions, and coordinate expressions, which need a sentence of explanation each but do not expand — a formula stays one formula however well it is introduced.
+The spread is large and it is not noise. Growth tracks one thing: **how much of a document is prose that must introduce vocabulary, versus material that needs a sentence of explanation but does not expand.**
 
-So the expected growth of any given chapter tracks its ratio of prose to notation. Conceptual chapters should run near 54%, notation-heavy ones nearer 37%, and chapters that already define their own terms lower still. That is a better predictor than a single corpus-wide rate, and it should be tested rather than assumed.
+| Document character | Example | Growth |
+| --- | --- | ---: |
+| Conceptual prose introducing vocabulary from nothing | `architrino.md` | +54% |
+| Half notation, operator definitions, coordinate expressions | `euclidean-void.md` | +37% |
+| Mostly routing tables and cross-references | `ontology.md` | +12% |
+| Short, formula-dense, single-topic | `constructing-the-absolute-frame.md` | +12% |
 
-Both files are also foundational, which means both carried more undefined vocabulary than a typical later chapter. The projection therefore still has an upward bias, now of a smaller and better-understood size.
+A formula stays one formula however well it is introduced, and a routing table stays a routing table. Only prose that must build a concept from nothing grows substantially.
 
-Claim grade: `measured` for each row; `inferred` for the corpus projection, upgraded from `guessed` now that two samples bracket a range and their difference has an identified cause. Falsifier: five further conversions whose mean growth falls outside 30% to 60%.
+That makes document character a far better predictor than a corpus-wide rate, and it revises the estimate downward twice over. The first two conversions suggested 46%; four suggest 31%. All four are also foundational, carrying more undefined vocabulary than a typical later chapter, so the projection still has an upward bias.
+
+Claim grade: `measured` for each row; `inferred` for the projection. Falsifier: five further conversions whose mean growth falls outside 15% to 50%.

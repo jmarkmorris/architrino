@@ -42,7 +42,7 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 
 ### CRW-001 — Phase 1: Foundations
 
-- **Status:** In progress, 2 of 9 complete
+- **Status:** In progress, 4 of 9 complete
 - **Priority object:** `foundations_phase_one`
 - **Request / acceptance:** Convert all nine documents in `content/markdown/aaa/foundations/` to edition 1.0, satisfying the done criteria above. Accepted when all nine carry ledger rows and the operator has reviewed at least two.
 
@@ -54,11 +54,11 @@ Foundations comes first because everything else links into it. The 70 under-link
 | `absolute-time.md` | 4,265 | Queued |
 | `absolute-time-defense.md` | 4,830 | Queued |
 | `absolute-timespace.md` | 5,369 | Queued |
-| `constructing-the-absolute-frame.md` | 2,318 | Queued |
+| `constructing-the-absolute-frame.md` | 2,318 → 2,604 | **Converted** 2026-09-03 |
 | `detecting-the-absolute-frame.md` | 4,023 | Queued |
 | `emergence-of-structure.md` | 5,078 | Queued |
 | `euclidean-void.md` | 3,401 → 4,657 | **Converted** 2026-09-03 |
-| `ontology.md` | 3,936 | Queued |
+| `ontology.md` | 3,936 → 4,418 | **Converted** 2026-09-03 |
 
 Suggested order after the pilot: `euclidean-void.md` and `absolute-timespace.md` next, because `architrino.md` already links to both and a reader following that link should not land on unconverted prose. Then `ontology.md`, then `absolute-time.md` and its defense, then the frame documents, then `emergence-of-structure.md`.
 
