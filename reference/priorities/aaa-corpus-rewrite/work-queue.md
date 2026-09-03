@@ -42,7 +42,7 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 
 ### CRW-001 — Phase 1: Foundations
 
-- **Status:** In progress, 4 of 9 complete
+- **Status:** In progress, 5 of 9 complete
 - **Priority object:** `foundations_phase_one`
 - **Request / acceptance:** Convert all nine documents in `content/markdown/aaa/foundations/` to edition 1.0, satisfying the done criteria above. Accepted when all nine carry ledger rows and the operator has reviewed at least two.
 
@@ -53,7 +53,7 @@ Foundations comes first because everything else links into it. The 70 under-link
 | `architrino.md` | 4,090 → 6,297 | **Converted**, pilot, accepted 2026-09-03 |
 | `absolute-time.md` | 4,265 | Queued |
 | `absolute-time-defense.md` | 4,830 | Queued |
-| `absolute-timespace.md` | 5,369 | Queued |
+| `absolute-timespace.md` | 5,369 → 5,931 | **Converted** 2026-09-03 |
 | `constructing-the-absolute-frame.md` | 2,318 → 2,604 | **Converted** 2026-09-03 |
 | `detecting-the-absolute-frame.md` | 4,023 | Queued |
 | `emergence-of-structure.md` | 5,078 | Queued |
