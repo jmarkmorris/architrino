@@ -84,7 +84,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 171 | `dc8fc4e31bbafb4e` |
 | [reference/op/README.md](README.md) | 36 | `874e700c221e909c` |
-| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 205 | `571dd552628be63d` |
+| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 235 | `a90ec4598a88e957` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 206 | `c6467613b5a3461f` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `a12ec1f00ca37b55` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6c9dc81dbdddb3f8` |

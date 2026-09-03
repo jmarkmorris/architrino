@@ -6,6 +6,8 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 
 1. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
 2. `plainly_convention_document_migration` — [OPS-015](#ops-015--plainly-convention-document-migration). Status: `Blocked`, on OPS-014 finalization.
+3. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
+4. `local_repository_document_surface` — [OPS-017](#ops-017--local-repository-document-surface). Status: `Awaiting verification`.
 
 ## Queued task records
 
@@ -20,11 +22,11 @@ Plainly: guidance about how agents should write and behave is currently scattere
 
 #### Identified conflict
 
-The [operator explanation standard](../../op/operator-explanation-standard.md) Cadence Rule states that total response length is explicitly not a constraint and that completeness of inline explanation outranks brevity. A client-level brevity setting active in the same sessions instructs the opposite: be as concise as possible and limit explanation. Neither document references the other, and no precedence rule exists, so each response resolves the conflict arbitrarily.
+The [operator explanation standard](../../op/operator-explanation-standard.md) states that total response length is not a constraint and that completeness of inline explanation outranks brevity. A client-level brevity setting active in the same sessions instructs the opposite: be as concise as possible and limit explanation. **Resolved.** The standard's Length and precedence section now names that setting and declares that the standard outranks it for work in this checkout, on the grounds that client-side settings are invisible to other agents in the same checkout and carry no repository authority.
 
-A second, subtler defect: the explanation standard has one setting but is applied to at least four distinct output registers with genuinely different needs — adjudication packet, explainer of an already-settled result, correction or erratum, and short status or closeout. Register-appropriate output is currently produced by accident rather than by rule.
+A second, subtler defect: one density setting was applied to output registers with genuinely different needs — adjudication packet, explainer of an already-settled result, correction, and short status or closeout. **Resolved.** The standard now carries a four-register table, each register with its own density rule, and states that choosing the register is part of writing the response.
 
-Plainly: one rule says be thorough at any length, another says be brief, and nothing says which to obey. On top of that, a proof document and a two-line status update are being held to the same standard, when they obviously need different ones.
+Both defects are now closed in the standard itself. What remains open in this item is the surface inventory and the generated `CLAUDE.md` floor, not the explanation rules.
 
 #### Inventory A — Claude surfaces outside the repository
 
@@ -62,7 +64,7 @@ Plainly: Claude and Codex each read guidance from several places, and only some 
 | Governing policy | [`AGENTS.md`](../../../AGENTS.md) | Sole authored authority; 154 lines |
 | Session bootstrap | [`CLAUDE.md`](../../../CLAUDE.md) | Routes to `AGENTS.md`; carries the Claude-only write-permission rule and a hand-maintained mirror of the policy floor |
 | Generated router | [`agent-startup-orientation.generated.md`](../../op/agent-startup-orientation.generated.md) | Workflow cards, standing rules, prompt index; regenerated and `--check` gated, with source fingerprints |
-| Explanation standard | [`operator-explanation-standard.md`](../../op/operator-explanation-standard.md) | Detailed authority for plain-language output; audience, unit, content, cadence, recap, self-check |
+| Explanation standard | [`operator-explanation-standard.md`](../../op/operator-explanation-standard.md) | Sole authority for operator-facing output; audience, plain-by-default explanation, repetition, structure, expected tools, analogy, registers, length precedence, `Open items:`, response mechanics, self-check |
 | Operator feedback backlog | [`README-op.md`](../../op/README-op.md) | One-line workflow behaviors under Method, Efficiency, Clarity, Multi-Agent Use, Technical Closure |
 | Procedure index | [`README.md`](../../op/README.md) | Index for the rest of `reference/op/` |
 | Prompt template | [`codex-goal-seeking-prompt-template.md`](../../op/codex-goal-seeking-prompt-template.md) | Communication and reporting procedure |
@@ -89,8 +91,9 @@ Plainly: inside the repository the policy story is already tidy — one governin
 Plainly: stop copying policy by hand and let a generator do it; keep behavior rules in the repository where every agent can see them; give short updates and long proofs different rules instead of one; write down which rule wins when two disagree; pick the settings by blind test rather than by argument; and keep one list of where everything lives.
 
 - **Progress, 2026-09-03:** Recommendations 3 and 4 are complete. [`operator-explanation-standard.md`](../../op/operator-explanation-standard.md) was rewritten to replace the AP-STEM audience model with an expert-in-theory, non-specialist-in-imported-framework model; to retire the inline `Plainly:` tag in favor of plain-by-default interleaved explanation; to require mechanism as well as significance; to state that repetition of definitions is a feature because omission costs comprehension while redundancy costs a scan; to add structure and expected-tool rules; to add the four-register table; and to declare precedence over client-level brevity settings by name. Recommendation 2 is partly complete: the operator cleared Cowork Global instructions on 2026-09-03, and the account-level `Concise` response style is now explicitly overridden by the standard rather than silently conflicting with it. Duplicated style guidance was reduced to pointers in `AGENTS.md`, `CLAUDE.md`, `codex-goal-seeking-prompt-template.md`, `adjudication.md`, and the `start-research.md` report template.
-- **Evidence / blocker:** Inventory C is established by direct reading. Inventory A is established for every row except organization instructions. Inventory B is largely unverified and is the first remaining blocker. Recommendation 1 is not started: no generator exists for the `CLAUDE.md` floor, so that mirror is still hand-maintained and can drift. Recommendation 5 is not started: the A/B protocol has no source passages selected and no results ledger. Recommendation 6 is not started: Inventories A, B, and C live only in this queue row and carry no per-row verification dates.
-- **Completion:** The surface inventory is verified for both clients and carries per-row verification dates; the length-and-density conflict is resolved by a stated precedence rule in `operator-explanation-standard.md`; the output registers are named with distinct cadence rules; the `CLAUDE.md` floor is generated and `--check` gated against `AGENTS.md`; and at least one blind A/B round has been run with its outcome recorded.
+- **Calibration rounds, 2026-09-03.** Recommendation 5 was run as two labelled rounds rather than the blind protocol it specifies, because the operator was refining the standard rather than being tested against it and needed to comment on the varied dimension directly. Round 1 held one technical unit fixed — the $D_{t,ij}$ against $D_{r,ij}$ asymmetry in `dynamics/master-equation.md` — and varied analogy-carried against map-abstraction-carried explanation. Both were rejected: the extended analogy lost the reader partway, and the abstraction-carried version was judged less explanatory. Round 2 varied continuous prose against a verdict-first case split over the same unit. Continuous prose won, described as readable straight through. Three preferences were stated and are now written into the standard: define terms more, accepting redundancy from section to section; carry mechanism in configuration and symbol rather than in analogy; and deliver visualization, logic, definitions, and words before the equation. Claim grade: `measured` by direct operator response, on one technical unit across two rounds. Falsified by a third round on different source material reversing any of the three preferences. The result is not blind and is not evidence about which profile the operator would choose without knowing the axis.
+- **Evidence / blocker:** Inventory C is established by direct reading. Inventory A is established for every row except organization instructions. Inventory B is largely unverified and is the first remaining blocker. Recommendation 1 is not started: no generator exists for the `CLAUDE.md` floor, so that mirror is still hand-maintained and can drift. Recommendation 6 is not started: Inventories A, B, and C live only in this queue row and carry no per-row verification dates.
+- **Completion:** The surface inventory is verified for both clients and carries per-row verification dates; the length-and-density conflict is resolved by a stated precedence rule in `operator-explanation-standard.md`; the output registers are named with distinct density rules; the `CLAUDE.md` floor is generated and `--check` gated against `AGENTS.md`; and at least one calibration round has been run with its outcome recorded, with any round that was not blind labelled as such.
 
 ### OPS-015 — Plainly convention document migration
 
@@ -119,6 +122,8 @@ Counts come from a direct `Plainly:` scan excluding `.tmp`, `.git`, and `node_mo
 
 Claim grade: `measured` by filesystem scan on 2026-09-03. Falsified by a repeat scan returning materially different counts, which would mean the tag is still being written into new documents and the standard is not being followed.
 
+Repeat scan, 2026-09-03, markdown only, excluding `.tmp` and `.local-data`: `content/markdown/aaa` holds 225 occurrences across 25 files, against the 223 across 23 files recorded above. The drift is two files and two occurrences on the same day, which is small but not zero and is the signal the falsifier above was written to catch; a third scan showing further growth would mean the tag is still being authored. The `apps/ios` figure is not comparable — this scan counted markdown only and returned 163 occurrences across 9 files, while the row above counts the package's HTML as well.
+
 #### Finding: the tag leaked into reader-facing prose
 
 `Plainly:` is an operator-communication convention. Neither of the two authorities that actually govern reader-facing text asks for it: the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) prescribes explanatory prose, a compact map, and an equation followed by plain-language symbol meanings, and never names the tag; the [UI guidelines](../../../content/markdown/aaa/archie/ui-guidelines.md) do not mention it at all.
@@ -144,13 +149,78 @@ Tier 1 changes reader-facing corpus prose, so it is a canon question, not a clea
 - **Evidence / blocker:** The occurrence census is complete and the two governing style authorities have been checked and do not prescribe the tag. Blocking items are OPS-014 finalization, an operator canon decision on Tier 1, and confirmation that no exporter or search index depends on the literal string `Plainly:` — `textbook_bundle_search_index.json` contains it, and whether that is incidental content or a structural key has not been established.
 - **Completion:** Tier 2 is converted and the startup-path files no longer demonstrate the retired pattern; Tier 1 is either converted under an explicit canon decision or explicitly declined with that decision recorded; Tier 3 is confirmed as opportunistic-only; and a repeat scan shows no new `Plainly:` occurrences in documents authored after the standard was adopted.
 
+### OPS-016 — Reference equation-mapping surface
+
+- **Status:** Queued
+- **Priority object:** `reference_equation_mapping_surface`
+- **Request / acceptance:** Give operator-facing documents under `reference/` the same symbol-definition viewer the corpus already has, so a document carrying display equations can be read with every symbol resolvable on demand rather than only from the prose around it. Acceptance requires a second registry that builds and validates alongside the corpus registry, without modifying any source file and without creating links from `content/markdown/aaa` into `reference/`.
+- **Origin:** Operator request, 2026-09-03, during calibration of the [operator explanation standard](../../op/operator-explanation-standard.md): the corpus has a view-equation mode showing every symbol's definition, and operator-facing documents do not.
+
+#### Operator decision, 2026-09-03
+
+The builder leaves reference source files untouched. The viewer resolves symbols on its own. Corpus behavior is unchanged: `[View →]` chips continue to be injected into `content/markdown/aaa`. The reason for the split is that policy and procedure files under `reference/` are read as plain markdown in a terminal at least as often as in a browser, and injected chips are noise there.
+
+#### Current implementation, read 2026-09-03
+
+[`scripts/build-equation-mapping-corpus.mjs`](../../../scripts/build-equation-mapping-corpus.mjs) is 763 lines. It scans one root, `CORPUS_ROOT = "content/markdown/aaa"` at line 14, extracts every symbol from each TeX block, searches surrounding lines for a definition using a cue pattern, and falls back to a shared dictionary of standard symbols. It emits `content/generated/equation-mapping/corpus-equations.json` under schema `equation-mapping-corpus-registry.v1`, declared in [`scripts/config/generated-runtime-assets.json`](../../../scripts/config/generated-runtime-assets.json) as id `equation-corpus` and therefore a reproducible ignored output. The viewer page is `equation-mapping.html`. At line 708 the builder writes back into source markdown, which is how the chips are injected. [`scripts/check-content-integrity.mjs`](../../../scripts/check-content-integrity.mjs) line 65 runs it with `--check`, and [`scripts/validate-equation-mapping-links.mjs`](../../../scripts/validate-equation-mapping-links.mjs), 74 lines, verifies registered links resolve.
+
+#### Work items
+
+1. Parameterize the scan root into a set of roots, each with its own registry path, viewer route, and write policy. Not a one-line change: the root constant is also used at line 515 to derive a document's area from the path segment following it.
+2. Add a second registry output for `reference/`, with its own `generated-runtime-assets.json` entry so it builds and stays untracked.
+3. Supply a navigation fallback. Reference documents have no entry in `content/graph/scene_graph.json` or `content/graph/textbook_toc.json`, which the builder joins against for back-links.
+4. Honor the read-only decision above: the reference pass must not invoke the line-708 write path.
+5. Keep the two registries separate rather than merged. A merged surface would place reference targets inside corpus pages and can manufacture the `content/markdown/aaa` → `reference/priorities` links AGENTS.md forbids.
+6. Teach the integrity gate and the link validator about the second surface.
+
+- **Evidence / blocker:** The implementation facts above are `measured` by direct reading of the named files and line numbers. Not established: whether the viewer can resolve symbols for a document that carries no injected chips, which is what work item 4 depends on and has not been checked in `src/apps/equation-mapping/`. No blocker beyond that.
+- **Completion:** A reference registry builds, validates, and is `--check` gated; reference documents render with resolvable symbols; no reference source file is modified by the build; and no link from `content/markdown/aaa` into `reference/` is created.
+
 ## In progress
 
 No rows.
 
 ## Awaiting verification
 
-No rows.
+### OPS-017 — Local repository document surface
+
+- **Status:** Awaiting verification
+- **Priority object:** `local_repository_document_surface`
+- **Request / acceptance:** Give the operator a browsable local view of the repository's markdown using the existing webapp conventions, so navigating internal documents does not require an editor preview. The surface must be structurally incapable of reaching a Pages deployment, must not add tracked build output, and must reuse the shared application chrome rather than inventing navigation.
+- **Origin:** Operator request, 2026-09-03, during the explanation-standard work: reading `reference/` documents through editor previews was the friction, and the webapp's own grid navigation was the wanted shape.
+
+The surface indexes two roots — `reference/` and `content/markdown/aaa/` — three directory levels below each, presented under a synthetic repository node. Measured on build: 1,138 documents across 123 directories, 2,922,026 words. Home offers Reference and Corpus; below that the tree mirrors the filesystem.
+
+#### Delivered
+
+| Component | Path |
+| --- | --- |
+| Manifest generator, `--write` and `--check`, `--depth N` | `scripts/build-reference-surface.mjs` |
+| Application runtime | `src/apps/reference/ReferenceSurfaceRuntime.js` |
+| Page | `reference.html` |
+| Generated manifest, ignored | `content/generated/reference/reference-surface.v1.json` |
+| Deployment exclusion | `scripts/build-static-site.mjs`, `INTERNAL_DEVELOPER_HARNESS_PATHS` |
+| Ignore rule | `.gitignore` |
+| Runtime-asset registration, so `npm run dev` builds it | `scripts/config/generated-runtime-assets.json` |
+| Probe-gated entry control | `index.html` |
+
+Documents render with markdown-it, KaTeX, and mermaid. Internal `.md` links are rewritten to stay in the surface when the target is indexed and marked as leaving it when not. Navigation uses `createStandaloneAppNavigationRuntime` in `#scene-hud-tools`, the same shared top-right chrome as every other standalone application, constructed inside a try/catch so a chrome failure degrades to a working viewer rather than a blank page.
+
+The entry control on `index.html` is a probe rather than a hidden link: it issues a `HEAD` request for the manifest and reveals itself only on success. The manifest does not exist in a deployment, so the control never appears there and no dead link ships. Obscurity is not the mechanism; absence is.
+
+The grid is fixed at six columns by operator decision, with no narrow-window breakpoints, because the surface is used only on a large desktop monitor.
+
+Claim grade: `measured`. The deployment exclusion was verified by calling `isPagesDeploymentExcluded` directly on the three paths and confirming each returns excluded while `index.html` and `photon.html` do not. The manifest counts are the generator's own output. The runtime was exercised against a stub DOM covering home, directory, breadcrumb, and absent-chrome paths. Falsifier: a Pages build whose output contains `reference.html`, the runtime directory, or the generated manifest.
+
+#### Not done
+
+- No lane owns whether the surface should index roots beyond `reference/` and `content/markdown/aaa/`.
+- The generator's `--check` is not part of the content-integrity gate, so a stale manifest is never reported. It is a local aid and staleness only means the tree is out of date, but the omission is deliberate rather than overlooked.
+- The filename `reference.html` is historical and now narrower than what the surface indexes. Retained deliberately: renaming touches the exclusion list, the ignore rule, the `index.html` probe, and the generator output path, for no benefit the operator sees. The visible titles say `Repository Documents`.
+- No test covers the runtime. The stub-DOM exercise was a development check, not a committed test.
+
+- **Evidence / blocker:** Nothing blocks use; the surface works. Verification is outstanding only in the sense that it has not yet been used across enough sessions to know whether the depth limit, the two roots, and the six-column grid are right.
+- **Completion:** The surface survives repeated operator use without a change request, or its outstanding questions above are answered and closed.
 
 ## Verified
 

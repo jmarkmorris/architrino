@@ -12,4 +12,4 @@ An additional operations idea must name a measurable risk, affected public surfa
 
 ## Unresolved Ideas
 
-- None currently recorded.
+- **Agent responses rendered in a side panel rather than inline.** Shelved by the operator on 2026-09-03, kept because the underlying need is real. The request behind it is that a substantive explanatory response be readable with the same symbol-definition support a corpus document has. [OPS-016](work-queue.md#ops-016--reference-equation-mapping-surface) delivers that for anything written to a file. Extending it to chat responses is a different kind of change: a response is not a repository document, so it would have to be written to a known path as well as delivered inline, and then rendered by the reference mapping surface. Measurable risk is file accumulation — every explanation becomes a durable artifact requiring retention policy under [machine-artifact retention](../../op/machine-artifact-retention.md). No owner, no completion condition, and no decision to advance it. Revisit only after OPS-016 ships and the file-based surface has been used enough to show whether it already meets the need.

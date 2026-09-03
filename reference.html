@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#080b12" />
+    <!--
+      The filename is historical: this surface began as a reference/ browser and
+      now indexes reference/ and content/markdown/aaa/ together. Renaming the
+      file would touch the deployment exclusion list, .gitignore, the index.html
+      probe, and the generator output path, for no benefit the operator can see,
+      so the filename stays and the visible titles say what it actually is.
+    -->
+    <title>Repository Documents — Local Operator Surface</title>
+    <link rel="stylesheet" href="./src/runtime/top-dynamic-control-bar.css" />
+    <link rel="stylesheet" href="./src/runtime/markdown-mermaid.css" />
+    <link
+      rel="stylesheet"
+      href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
+    />
+    <script defer src="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"></script>
+    <script src="./vendor/markdown-it/markdown-it.min.js"></script>
+    <script defer src="./vendor/mermaid/mermaid.min.js"></script>
+    <style>
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background: #080b12;
+        color: #eef3ff;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      button, input { font: inherit; }
+
+      #reference-app {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      /* The shared top-right control bar owns back, forward, home, table of
+         contents, and global scene search. The app header reserves room for it
+         so the two never overlap. */
+      .reference-navigation {
+        position: fixed;
+        top: 10px;
+        right: 12px;
+        z-index: 9500;
+      }
+
+      .reference-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 20px;
+        padding-right: 260px;
+        border-bottom: 1px solid #1d2740;
+        background: #0b1020;
+        flex: 0 0 auto;
+      }
+
+      .reference-brand { display: flex; align-items: baseline; gap: 14px; min-width: 0; margin-right: auto; }
+
+      .reference-home {
+        background: none;
+        border: none;
+        color: #eef3ff;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .reference-home:hover { color: #7fb0ff; }
+
+      .reference-totals { color: #8593b4; font-size: 12px; white-space: nowrap; }
+
+      .reference-search {
+        background: #111a2e;
+        border: 1px solid #24314f;
+        border-radius: 6px;
+        color: #eef3ff;
+        padding: 7px 11px;
+        min-width: 260px;
+      }
+
+      .reference-search:focus { outline: none; border-color: #3f6bd0; }
+
+      .reference-crumbs {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding: 10px 20px;
+        color: #8593b4;
+        font-size: 13px;
+        border-bottom: 1px solid #141c2f;
+        flex: 0 0 auto;
+      }
+
+      .reference-crumb-link {
+        background: none;
+        border: none;
+        color: #7fb0ff;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .reference-crumb-link:hover { text-decoration: underline; }
+      .reference-crumb-sep { color: #3b475f; }
+
+      .reference-view { flex: 1 1 auto; overflow: auto; padding: 20px; }
+
+      /* Fixed six columns, rows as needed. minmax(0, 1fr) rather than a pixel
+         minimum so long unbroken titles and paths cannot force a column wider
+         than its share and push the count below six.
+
+         Six is unconditional by operator decision, 2026-09-03: this surface is
+         used only on a large desktop monitor. Do not add narrow-window
+         breakpoints or restore an auto-fill column count. */
+      .reference-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .reference-card {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: left;
+        background: #101728;
+        border: 1px solid #202c47;
+        border-radius: 10px;
+        padding: 12px 13px;
+        color: inherit;
+        cursor: pointer;
+        min-height: 96px;
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .reference-card:hover { border-color: #3f6bd0; background: #131d33; }
+
+      .reference-card-title { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.35; }
+      .reference-card-file .reference-card-title { font-size: 14px; font-weight: 500; }
+      .reference-card-path { margin: 0; color: #6f7d9c; font-size: 12px; word-break: break-all; }
+
+      .reference-card-meta {
+        margin-top: auto;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        color: #8593b4;
+        font-size: 11px;
+      }
+
+      .reference-group-title {
+        margin: 22px 0 10px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #8593b4;
+      }
+
+      .reference-group-title:first-child { margin-top: 0; }
+
+      .reference-empty { color: #8593b4; padding: 8px 0; }
+
+      .reference-doc { max-width: 900px; margin: 0 auto; }
+      .reference-doc-path { color: #6f7d9c; font-size: 12px; margin: 0 0 18px; word-break: break-all; }
+      .reference-doc-body { line-height: 1.6; }
+      .reference-doc-body h1 { font-size: 26px; margin-top: 0; }
+      .reference-doc-body h2 { font-size: 20px; margin-top: 1.8em; border-bottom: 1px solid #1d2740; padding-bottom: 6px; }
+      .reference-doc-body h3 { font-size: 16px; margin-top: 1.6em; }
+      .reference-doc-body a { color: #7fb0ff; }
+      .reference-doc-body a.reference-external-link { color: #8593b4; }
+      .reference-doc-body code { background: #131d33; padding: 1px 5px; border-radius: 4px; font-size: 0.92em; }
+      .reference-doc-body pre { background: #0d1424; border: 1px solid #1d2740; border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
+      .reference-doc-body pre code { background: none; padding: 0; }
+      .reference-doc-body table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; }
+      .reference-doc-body th, .reference-doc-body td { border: 1px solid #1d2740; padding: 7px 10px; text-align: left; }
+      .reference-doc-body th { background: #101728; }
+      .reference-doc-body blockquote { margin: 1em 0; padding: 2px 16px; border-left: 3px solid #2a3a5c; color: #b9c4dc; }
+      .reference-doc-body hr { border: none; border-top: 1px solid #1d2740; }
+    </style>
+  </head>
+  <body>
+    <div id="scene-hud-tools" class="reference-navigation"></div>
+    <div id="reference-app"></div>
+    <script type="module">
+      import { createReferenceSurfaceRuntime } from "./src/apps/reference/ReferenceSurfaceRuntime.js";
+
+      if (globalThis.mermaid?.initialize) {
+        globalThis.mermaid.initialize({ startOnLoad: false, theme: "dark" });
+      }
+      createReferenceSurfaceRuntime({
+        mount: document.getElementById("reference-app"),
+        navigationHost: document.getElementById("scene-hud-tools"),
+        documentLike: document,
+        windowLike: window,
+      }).start();
+    </script>
+  </body>
+</html>

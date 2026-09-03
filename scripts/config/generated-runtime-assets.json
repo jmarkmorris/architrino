@@ -15,6 +15,11 @@
       "id": "full-corpus-index",
       "path": "content/generated/source-index/local-full-corpus-snapshot.v1.json",
       "command": ["scripts/archie-service/build-full-corpus-source-index.mjs", "--write"]
+    },
+    {
+      "id": "reference-surface",
+      "path": "content/generated/reference/reference-surface.v1.json",
+      "command": ["scripts/build-reference-surface.mjs", "--write"]
     }
   ]
 }

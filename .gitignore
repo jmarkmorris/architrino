@@ -12,6 +12,7 @@ node_modules/
 /content/assets/borg/records/
 /content/generated/equation-mapping/corpus-equations.json
 /content/generated/source-index/local-full-corpus-snapshot.v1.json
+/content/generated/reference/
 
 # Children's-book pilot: reproducible local exports and retained migration copies
 /.local-data/childrens-books/

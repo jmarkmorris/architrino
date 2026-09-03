@@ -21,10 +21,6 @@
       {
         "nodeId": "help",
         "scenePath": "content/scenes/archie/help.json"
-      },
-      {
-        "nodeId": "ui_guidelines",
-        "scenePath": "content/scenes/archie/ui_guidelines.json"
       }
     ]
   },
@@ -51,15 +47,6 @@
       "radius": 2.2,
       "color": "#5a1f2e",
       "labelTitle": "Navigation & Controls",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "ui_guidelines",
-      "title": "UI Guidelines",
-      "radius": 2.2,
-      "color": "#2f6b6f",
-      "labelTitle": "UI Guidelines",
-      "labelSubtitle": "Shared application standards",
       "labelBadge": "doc"
     }
   ]

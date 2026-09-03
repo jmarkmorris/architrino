@@ -35,6 +35,8 @@ Explanation is interleaved and worked in, not labelled. The clarifying sentence 
 
 An equation, a results table, a ledger, a code block, or a measurement block is irreducible — it cannot be written plainly, because its precision is the point. Follow it immediately with prose that names every symbol in words and says what the object is and why it is true. That prose carries no label either.
 
+Every display equation carries a symbol list. Immediately after the equation, give one line per symbol appearing in it — the symbol, then what it is in words — including symbols already defined earlier in the same response. The list does not replace the prose saying what the object is and why it is true; it sits between the equation and that prose. A reader who has to scroll back to recover what $D_{t,ij}$ was has already lost the thread the equation was meant to carry.
+
 ## What an explanation must do
 
 An explanation explains; it does not summarize. Specifically it must:
@@ -45,20 +47,31 @@ An explanation explains; it does not summarize. Specifically it must:
 - **Introduce no new claims.** An explanatory passage that smuggles in content the technical unit did not establish is a defect, because the claim then carries no grade and no falsifier.
 - **Be proportional.** A ten-line derivation does not get a one-line gloss.
 
-## Repetition is a feature
+## Clarity, and the cost of repetition
 
-Define a term again on later use. Do not suppress a definition because the term was defined earlier in the document, earlier in the session, or in a neighboring document.
+Clarity is the objective. Repetition is neither required nor forbidden: it is a cost worth paying when it buys clarity, and a defect when it does not.
 
-The asymmetry is the whole argument. A reader who already knows the term loses one skipped line. A reader who does not know it, or knew it last week and has since been working on something else, loses the entire passage. Redundancy costs a scan; omission costs comprehension. Once a reader has internalized a term they learn to read straight past its definition, and that skipping is cheap and automatic.
+The asymmetry is what justifies erring toward explanation. A reader who already knows a term loses one skipped line. A reader who does not know it, or knew it last week and has since been working on something else, loses the entire passage. Omission costs comprehension; redundancy costs a scan. Once a reader has internalized a term they read straight past its definition, and that skipping is cheap and automatic. So when the judgment is genuinely close, explain.
 
-Bound the repetition by depth, not by whether it happens. The full development of an imported concept happens once. Each later recurrence gets a one- to three-sentence restatement — what the object is and what it is doing here — never a second development. Repeating the definition is cheap; repeating the derivation is padding.
+Symbols and equation terms are a solved case in the corpus and an unsolved one in chat. Corpus prose carries `View →` links into the Equation Mapping application, so a symbol needs only to be named in words where it is used; the application holds its full definition, and re-glossing every symbol at every recurrence is padding. A chat response has no such channel, so there a symbol is named in words wherever it appears.
 
-This applies to imported terms with particular force, because they recur across sessions separated by days of unrelated work.
+Concepts are the open case. They are reintroduced as the corpus advances, because a reader arriving at a later chapter may not carry an earlier one's vocabulary. The point at which reintroduction stops buying clarity and becomes padding is **not yet settled**, and this document will not settle it by assertion. It is a calibration question, and the pilot chapter is the instrument for answering it.
+
+Until then, the provisional rule is: reintroduce a concept when it has not yet appeared in the current document, or when it is load-bearing in the argument being made. Treat anything beyond that as padding. This is provisional and is expected to be replaced by a measured threshold, not defended.
+
+The scoping rule that follows from it, also provisional, is **cumulative within a document, self-contained at document boundaries**. Within one file a defined concept stays defined and later sections build on it. At the start of a new file nothing is assumed, because the corpus is a website and a reader arrives from search, a link, or the application on an arbitrary page rather than from page one. Each document therefore opens by orienting the reader and defines what it imports from outside itself.
+
+Two alternatives were considered and rejected. Full self-containment at every section boundary maximizes accessibility but multiplies redundancy across a large corpus without a corresponding gain, since a reader who has read three sections of a document has the vocabulary of the first. A fully cumulative corpus, where later chapters assume all earlier ones, is much cheaper to write but fails the reader who lands mid-corpus, which is the common case for a published website and the exact failure the audience model exists to prevent.
+
+This scoping rule is a decision about how the book reads and how large a rewrite costs. It is provisional on the same terms as the threshold above: the pilot chapter tests it, and a measured outcome replaces it.
+
+What is bounded in every case is re-derivation rather than re-definition. The full development of an imported concept happens once; later recurrences say what the object is and what it is doing here without rebuilding it.
 
 ## Structure
 
+- **Order of arrival: configuration, logic, definitions, equation.** Show or describe the configuration, state the logical structure of the argument in words, define every term the equation will use, and place the equation last as the compact statement of what has already been established. An equation that arrives before the reader holds the picture, the logic, and the definitions is unreadable no matter how clean it is.
 - **Picture before symbol.** Establish the physical or geometric configuration in words first, then introduce notation for it. The picture is the actual configuration — the emission event, the separation, the wake, the branch — not a comparison to something else. Do not open a passage with an equation and describe it afterwards.
-- **One idea per section.** Break an explanation into short titled or numbered parts, each carrying a single step. A long undifferentiated block is harder to follow than the same content chunked, even when the sentences are identical.
+- **One idea per section, for procedures and multi-part findings.** Break instructions, checklists, and findings carrying several independent results into short titled or numbered parts. A single mechanism is the exception: it reads better as continuous prose that carries the reader through in one pass. Chunking one argument into labelled cases invites compression, and compressed cases stop explaining.
 - **Define at or before first use,** never after. A term defined three paragraphs after it appears has already cost the reader those paragraphs.
 - **Lead with the outcome.** When a decision, verdict, or headline exists, state it first and use what follows as support.
 - **State the finding before the mathematics.** The sentence is the claim; equations, code, and measurements are the evidence for it. A response that opens with evidence and arrives at the claim last forces the operator to hold everything in mind before learning what it was for.
@@ -69,6 +82,8 @@ This applies to imported terms with particular force, because they recur across 
 
 These are expected, not merely permitted.
 
+- **Visualization.** A figure, a labelled sketch of the configuration, or a table of the cases, whenever the passage carries a geometry or three or more relationships. Draw the configuration before writing the equation for it. Where the response surface cannot carry a figure, a labelled table of the objects and their relations does the same work.
+- **Explicit logic.** State the inference structure in words — what follows from what, and what each step depends on — before the algebra that implements it. "Only the emission end sets the arrival density, therefore only the emission-end factor can diverge" is the logic; the denominator is its implementation.
 - **The configuration itself.** Explain by walking the actual objects — the emission event, the separation vector, the wake, the branch, the retained history — and naming each symbol as it enters. The subject matter here is geometric and symbolic, and an explanation that stays inside it can be checked against the equations line by line. This is the default carrier of every mechanism.
 - **Exact engineering vocabulary where the mapping is exact.** An irreducible stored error radius is a noise floor; a seed effect against numerical scatter is a signal-to-noise ratio; a converging corrector is a settling feedback loop. Use these when they are exact and name the point at which the correspondence fails.
 - **Worked numbers.** A single instantiated example with actual values does more than a paragraph of qualitative description. Use $c_f=1$.
@@ -94,7 +109,7 @@ One standard does not fit every output. Four registers, each with its own densit
 
 | Register | Typical output | Density |
 | --- | --- | --- |
-| Explainer | Walking through a settled result, an imported framework, or a term the operator has asked about | Highest. Every imported term defined, picture before symbol, worked numbers throughout, one idea per section. Length is not a concern. |
+| Explainer | Walking through a settled result, an imported framework, or a term the operator has asked about | Highest. Every imported term defined and redefined on recurrence, configuration and logic before the equation, a symbol list under every display equation, figures or case tables where a geometry is involved, worked numbers throughout. Length is not a concern. |
 | Adjudication | Priority packets, findings reports, theorem targets, review dispositions | High for imported apparatus and for the verdict; the formal statements stay precise and are explained immediately after. Claim grades and falsifiers are mandatory. |
 | Correction | Superseding an earlier statement | Explainer density, plus an explicit statement of what was wrong, why, and what downstream conclusions change. |
 | Status | Completion notices, closeouts, short answers, "the file is written" | Lowest. Outcome first, no exposition, no restated background. Do not pad a status with explanation the operator did not ask for. |
@@ -108,6 +123,19 @@ Total response length is not a constraint. Completeness of inline explanation ou
 This rule governs work in this repository and outranks any client-level brevity setting, including the built-in `Concise` response style and any account-level or global instruction asking for shorter output. Those settings are set outside this repository, are invisible to other agents working in the same checkout, and carry no repository authority. Where such a setting conflicts with this standard, this standard wins.
 
 The Status register is the exception that keeps this honest: short output is correct when the response carries no explanatory obligation. Length is earned by content, never spent on restating what the operator already knows.
+
+## Work in artifacts, not in chat
+
+An insight that exists only in a chat thread is technical debt. It has no owner, no claim grade, no falsifier, and no path to promotion, and recovering it later costs more than writing it down would have. Substantive work therefore happens in a document that is either already an artifact or a candidate for eventual promotion, and the chat response reports what the document now says.
+
+This is a working-mode rule, not only a writing rule. In practice:
+
+- **Write first, report second.** When a session produces a result, a correction, an open question, or a design decision, it goes into the owning document in the same turn it is discovered. The response then says what changed and where, rather than being the only place the content exists.
+- **A conversation is not a store.** Do not let a thread accumulate findings on the understanding that they will be captured at the end. Threads are interrupted, redirected, and abandoned, and a long thread that has to be mined afterwards has already failed.
+- **Choose the destination before writing the content.** If no document owns the material, that absence is itself the first finding: say so and open the owning artifact.
+- **Uncertainty is content.** An open calibration, an unresolved threshold, or a question the operator has not answered belongs in the document, marked as open. A document that records what is not yet known is more useful than one that is silent, and far more useful than a chat message that says the same thing.
+
+The `Open items:` block below is the narrow exception, and its rule keeps it narrow: it carries decisions blocked on the operator in the current turn, and everything durable is filed and referenced rather than restated.
 
 ## Open items and outstanding recommendations
 
@@ -160,20 +188,22 @@ A closing recap is permitted but is never a substitute for explanation delivered
 
 Before sending a substantive response, verify:
 
-1. Every imported term is defined in place, and restated in one to three sentences if it recurs after a gap.
+1. Every imported term is defined in place, and defined again where it recurs, including in a later section of the same response.
 2. No symbol appears in prose without having been named in words.
-3. Every technical unit is followed immediately by prose saying what it is and why it is true.
-4. No passage is dense-then-glossed; the technical prose reads plainly on its own, and no `Plainly:` tag or equivalent marker appears.
-5. The mechanism is carried by the configuration and its symbols. Any analogy is at most a sentence or two, arrives after the geometry, is bounded, and imports no observer-level law.
-6. The register is right, and a Status response has not been padded with unrequested exposition.
-7. Every quantity offered was measured now, and every negative states its scope.
-8. What the work did not cover is stated.
-9. An `Open items:` block is present, carries forward everything still undecided from earlier turns, and says `none` when nothing is outstanding.
-10. No recommendation or question requiring an operator decision exists only in the prose.
-11. Any figure corrected from an earlier response is flagged as a correction rather than silently restated.
-12. Questions were asked one at a time, with ranked fixed choices and an explicit option prompt.
-13. `Closure goal:` is present, names one objective, and is the last line.
-14. Deleting the final paragraph would leave the response fully understandable.
+3. Every display equation is followed by a symbol list covering every symbol in it, including symbols defined earlier.
+4. The configuration, the logic, and the definitions all arrive before the equation, never after it.
+5. Every technical unit is followed immediately by prose saying what it is and why it is true.
+6. No passage is dense-then-glossed; the technical prose reads plainly on its own, and no `Plainly:` tag or equivalent marker appears.
+7. The mechanism is carried by the configuration and its symbols. Any analogy is at most a sentence or two, arrives after the geometry, is bounded, and imports no observer-level law.
+8. The register is right, and a Status response has not been padded with unrequested exposition.
+9. Every quantity offered was measured now, and every negative states its scope.
+10. What the work did not cover is stated.
+11. An `Open items:` block is present, carries forward everything still undecided from earlier turns, and says `none` when nothing is outstanding.
+12. No recommendation or question requiring an operator decision exists only in the prose.
+13. Any figure corrected from an earlier response is flagged as a correction rather than silently restated.
+14. Questions were asked one at a time, with ranked fixed choices and an explicit option prompt.
+15. `Closure goal:` is present, names one objective, and is the last line.
+16. Deleting the final paragraph would leave the response fully understandable.
 
 ## Worked example
 

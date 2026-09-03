@@ -41,7 +41,7 @@ The 2026 NP-completeness/APX-hardness result is a useful outside data point for 
 
 Claim grade: inferred. This is a methodological transfer (expect intractability, plan accordingly), not a mathematical result about AAA assemblies themselves. No falsifier is meaningful here until an actual AAA complexity index is defined; this is a design-caution note, not a testable claim.
 
-There is also a shared epistemic instinct, philosophical rather than technical: AT's requirement that only *independently formed* copies count as evidence of selection (a single lineage of copies proves nothing about non-randomness if they all trace to one shared origin event) parallels AAA's evidence-independence rule in [AGENTS.md](../../../AGENTS.md#evidence-independence) — agreement between dependent instruments or a replayed record is determinism, not evidence. Worth naming if a comparative-glossary entry is ever drafted; not itself a technical contribution either direction.
+There is also a shared epistemic instinct, philosophical rather than technical: AT's requirement that only *independently formed* copies count as evidence of selection (a single lineage of copies proves nothing about non-randomness if they all trace to one shared origin event) parallels AAA's evidence-independence rule in [AGENTS.md](../../../../AGENTS.md#evidence-independence) — agreement between dependent instruments or a replayed record is determinism, not evidence. Worth naming if a comparative-glossary entry is ever drafted; not itself a technical contribution either direction.
 
 ## 5. Open discussion items
 
@@ -49,4 +49,4 @@ There is also a shared epistemic instinct, philosophical rather than technical: 
 - Whether an AAA-side complexity index (section 4) is worth defining formally, and if so, on which assembly family (circular-path ladder vs. braid taxonomy) it would be cheapest to test first.
 - Whether the analogy in section 3 is strong enough to warrant contacting or citing Cronin's group directly, or whether it stays an internal comparison note indefinitely.
 
-No promotion path is proposed yet. Per [AGENTS.md Discuss-First Handling](../README.md#discuss-first-handling), this stays `discussion-scoped` until the operator decides whether to develop it further, park it, or drop it.
+No promotion path is proposed. Per [AGENTS.md Discuss-First Handling](../../README.md#discuss-first-handling), this packet is parked under `dormant-deferred` until an explicit operator decision reactivates or drops it.
