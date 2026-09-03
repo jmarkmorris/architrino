@@ -45,6 +45,10 @@ const CHECKS = [
     args: ["scripts/check-owned-compute-launch-policy.mjs"],
   },
   {
+    name: "Test owned-compute task-closeout hook",
+    args: ["--test", "tests/owned-compute-stop-hook.test.js"],
+  },
+  {
     name: "Validate Potential consumer and publication contract",
     args: ["scripts/check-potential-consumer-publication-contract.mjs"],
   },

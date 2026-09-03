@@ -326,7 +326,9 @@ Plainly: the event construction and its compatible futures have been reviewed, t
 
 ## Claim boundary
 
-The proposed law is limited to the exact equal-magnitude, opposite-polarity mirror event. It does not adopt a general coincidence law, swept-source reception on every channel, the field-speed ceiling, or a conservation rule. It constructs a labeled restart equation, proves one exact isolated straight trace, and now has a local-existence theorem for a continuum of positive-waiting-time delayed-braking branches. It does not select one of those branches, prove general well-posedness, establish stability or causal decoupling under perturbation, continue the braking branch to reversal, or prove a breather.
+The proposed law is limited to the exact equal-magnitude, opposite-polarity mirror event. It does not adopt a general coincidence law, swept-source reception on every channel, the field-speed ceiling, or a conservation rule. It constructs a labeled restart equation, proves one exact isolated straight trace, and now has a local-existence theorem for a continuum of positive-waiting-time delayed-braking branches. No current FSC theory or hypothesis implements the cause of the delayed onset: the new ordinary row explains the acceleration contribution after an onset is prescribed but supplies no mechanism that chooses or initiates that onset. The packet does not select one branch, prove general well-posedness, establish stability or causal decoupling under perturbation, or prove an autonomous breather.
+
+Plainly: the mathematics can continue a branch after a waiting time is supplied, but it has no physical or dynamical clock that makes the wait end. Option A keeps that absence explicit.
 
 ## Closure goal
 

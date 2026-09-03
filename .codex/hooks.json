@@ -1,0 +1,17 @@
+{
+  "description": "Repository lifecycle enforcement for owned compute.",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/scripts/dev/owned-compute-stop-hook.mjs\"",
+            "timeout": 120,
+            "statusMessage": "Checking task-owned compute closeout"
+          }
+        ]
+      }
+    ]
+  }
+}

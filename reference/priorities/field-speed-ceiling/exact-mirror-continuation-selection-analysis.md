@@ -83,7 +83,9 @@ Plainly: the equation offers every positive alarm time but contains no alarm clo
 
 ## Exact verdict and falsifiers
 
-**Derived verdict:** no currently declared, approximation-independent solution principle selects straight passage or a unique positive braking onset. Continuous-acceleration, scalar-minimality, and a restricted approximation limit can select straight only after adding a stronger solution or selection rule. A unique braking onset requires an additional trigger functional. The minimum scale-free new datum for the isolated mirror case is the displayed activation-selection clause, which selects straight passage; it is identified here but not adopted.
+**Derived verdict:** no currently declared, approximation-independent solution principle selects straight passage or a unique positive braking onset. More strongly, no current FSC theory or hypothesis implements a cause that changes the zero-ledger straight state into the delayed-braking state at a positive time. Continuous-acceleration, scalar-minimality, and a restricted approximation limit can select straight only after adding a stronger solution or selection rule. A unique braking onset requires an additional trigger functional. The minimum scale-free new datum for the isolated mirror case is the displayed activation-selection clause, which selects straight passage; it is identified here but not adopted.
+
+Plainly: the branch theorem proves what the motion can do after someone supplies an alarm time. The present model contains no alarm process, so the waiting time cannot be reported as a caused prediction.
 
 This verdict is overturned if one of the following is demonstrated:
 

@@ -185,7 +185,7 @@ if (isMain) {
   try {
     const result = runDeterministicRecallBenchmark();
     console.log(
-      `Archie MCP deterministic recall passed: search ${result.searchCases.filter((entry) => entry.passed).length}/${result.searchCases.length}, exact read ${result.readCases.filter((entry) => entry.passed).length}/${result.readCases.length}, topics ${result.topicCases.filter((entry) => entry.passed).length}/${result.topicCases.length}, graph ${result.graphCases.filter((entry) => entry.passed).length}/${result.graphCases.length}; embeddings ${result.semanticFallbackDecision}.`
+      `MCP-003 passed: search ${result.searchCases.filter((entry) => entry.passed).length}/${result.searchCases.length}, exact read ${result.readCases.filter((entry) => entry.passed).length}/${result.readCases.length}, topics ${result.topicCases.filter((entry) => entry.passed).length}/${result.topicCases.length}, graph ${result.graphCases.filter((entry) => entry.passed).length}/${result.graphCases.length}; separate embeddings proposal ${result.semanticFallbackDecision}.`
     );
   } catch (error) {
     console.error(error.message);
