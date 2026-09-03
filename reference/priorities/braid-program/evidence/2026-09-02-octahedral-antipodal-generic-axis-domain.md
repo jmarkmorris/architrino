@@ -2,7 +2,7 @@
 
 Date: 2026-09-02
 Compatibility identifier: `aaa-corpus-advancement`
-Status: exact compact domain frozen; continuous root-and-residual cover remains open
+Status: exact compact domain frozen; complete boundary excluded; continuous interior cover remains open
 Queue owner: [BP-016 — Platonic Braid Qualification and Prescribed-History Program](../work-queue.md#bp-016--platonic-braid-qualification-and-prescribed-history-program)
 Mathematical owner: [Platonic Moving-History Reduction](../platonic-moving-history-reduction.md)
 
@@ -62,7 +62,7 @@ Run:
 
 Two consecutive executions produced byte-identical standard output at SHA-256 `980c71760b3895dee283320db657a78c998783d855300e1ff8ebc12c20158a76`; the checker SHA-256 is `cd4e1b9047cd4030ef5f7674a47f9b496862a3e73efac249ac00f813f5f4de5e`.
 
-This packet freezes geometry and quotient ownership only. It does not itself certify a causal root, acceleration residual, zero count, balance, EOM evolution, retention, stability, binding, or physical identity. The accepted mixed-face exclusion supplies one interior negative orbit. The separate [face-diagonal exclusion](2026-09-02-octahedral-antipodal-face-diagonal-exclusion.md) excludes the extreme ray $(1,1,1)$ continuously over the strict sub-field speed chart. The remaining-extreme-ray checker excludes $(-3,-10,11)$, $(3,-11,10)$, and $(-11,10,3)$ by tangential projections in `[-1.128562106033269,-0.1017572007967045]`; each cover uses 67 accepted boxes, maximum depth one, and minimum transmitter factor `0.780378125607363351388980056231164221085295574`. Thus all four quotient vertices are excluded, but no fixed-axis certificate can be propagated to an edge or interior without a continuous interval argument in the axis parameters.
+This packet freezes geometry and quotient ownership only. It does not itself certify a causal root, acceleration residual, zero count, balance, EOM evolution, retention, stability, binding, or physical identity. The accepted mixed-face exclusion supplies one interior negative orbit. The separate [face-diagonal exclusion](2026-09-02-octahedral-antipodal-face-diagonal-exclusion.md) excludes the extreme ray $(1,1,1)$ continuously over the strict sub-field speed chart. The remaining-extreme-ray checker excludes $(-3,-10,11)$, $(3,-11,10)$, and $(-11,10,3)$ by tangential projections in `[-1.128562106033269,-0.1017572007967045]`; each cover uses 67 accepted boxes, maximum depth one, and minimum transmitter factor `0.780378125607363351388980056231164221085295574`. The [complete five-edge certificate](2026-09-02-octahedral-antipodal-generic-axis-edge-exclusion.md) now propagates complete roots and all nine residual channels through 9,078 outward-rounded boxes, excluding every quotient edge with no survivor. Neither fixed-axis nor edge exclusion propagates into a simplex interior without a continuous interval argument in both axis parameters.
 
 Run the three-ray certificate with:
 
@@ -74,12 +74,12 @@ Two consecutive outputs were byte-identical at SHA-256 `b905ae94edbaf31adf5673a9
 
 The unchanged generic prescribed-history evaluator independently samples all three declared tangential projections at six speeds, retains five partner roots per receiver, and places every sample inside the interval enclosure. All five focused octahedral tests pass; the test SHA-256 is `da4b7f4165c7836753f2de19919aaeeb7db1c0faca4105f2a1a2960184ef2718`.
 
-Plainly: one lopsided face direction and all four corner axes are ruled out, but an edge or interior axis can still change residual signs. The two-simplex cover is the exact domain on which that possibility must be proved or a genuine zero isolated.
+Plainly: one lopsided face direction, all four corner axes, and all five connecting edges are ruled out. A residual sign can still change inside either triangular chart, so both interiors remain to be proved empty or to yield a genuine isolated zero.
 
 ## Falsifier And Next Object
 
 An induced axial action outside the six recorded actions, a seed orbit of different size, an axis orbit with no representative satisfying all five halfspaces, a missing extreme ray, or a gap in the two-simplex cone decomposition overturns the corresponding domain statement.
 
-The next certificate must preserve all 30 strict-sub-field partner roots and no nontrivial self roots over each simplex-speed box, then evaluate the nine independent full-vector residual channels. A sign-definite forbidden projection closes a box; otherwise interval Newton or subdivision must isolate every common zero or report the exact unresolved boundary.
+The next certificate must preserve all 30 strict-sub-field partner roots and no nontrivial self roots over each interior simplex-speed box, inherit the certified edge ownership on shared boundaries, and evaluate the nine independent full-vector residual channels. A sign-definite forbidden projection closes a box; otherwise interval Newton or Krawczyk plus subdivision must isolate every common zero or report the exact unresolved boundary.
 
 Closure goal: certify the complete root and nine-channel residual cover on the two exact generic-axis simplex charts, preserving boundary identifications and the strict $c_f=1$ speed scope.

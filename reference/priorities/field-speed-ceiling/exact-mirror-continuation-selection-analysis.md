@@ -1,6 +1,6 @@
 # Exact-mirror continuation selection analysis
 
-**Status:** derived negative for the currently declared solution class and its presently available selectors; minimum additional activation-selection clause identified but not adopted. **Owner:** FSC-006b/FSC-005. **Primary input:** [Trailing-front delayed-ignition local-existence theorem](trailing-front-activation-dichotomy.md). **Claim boundary:** this note neither selects a continuation nor changes the canonical ordinary law, proposed ceiling response, or proposed exact-mirror event map.
+**Status:** derived negative for the currently declared solution class and its presently available selectors; the operator subsequently selected Option A and retained the multivalued relation without adopting the identified activation-selection clause. **Owner:** FSC-006b/FSC-005. **Primary input:** [Trailing-front delayed-ignition local-existence theorem](trailing-front-activation-dichotomy.md). **Decision record:** [Continuation-selection operator decision](continuation-selection-operator-decision-2026-09-02.md). **Claim boundary:** this note derives the selector obstruction but neither supplies a selector nor changes the canonical ordinary law, proposed ceiling response, or proposed exact-mirror event map.
 
 ## Decision question
 
@@ -96,4 +96,4 @@ The proposed activation-selection clause is falsified as the minimum necessary s
 
 ## Closure goal
 
-Independently review the delayed-ignition theorem together with this selector audit. Then decide whether the proposed exact-mirror model retains a multivalued continuation relation or proposes the scale-free activation-selection clause; do not extend a braking branch toward reversal or a breather until that foundational decision is explicit.
+Preserve the operator-selected multivalued relation at current FSC authority. Treat the scale-free activation-selection clause and every other selector as a separate future proposal requiring independent derivation and operator authorization.
