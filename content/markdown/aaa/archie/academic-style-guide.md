@@ -23,7 +23,21 @@ Apply this guide to the following content classes unless a more specific local t
 - explanatory theory summaries
 - methodology and meta-reference documents intended for readers
 
-Do not apply this guide mechanically to interface help text or ultra-short glossary entries where brevity is the dominant requirement.
+Do not apply this guide mechanically to interface chrome such as button labels, tooltips, and ultra-short glossary entries, where a hard size constraint makes full explanation impossible. Longer in-application guides, help pages, and explanatory panels are explanatory prose and do follow this guide.
+
+## Audience
+
+Write for a reader who knows neither $\mathbb{A}\mathbb{A}\mathbb{A}$ nor the established physics it must eventually recover.
+
+That is the whole audience decision, and everything else in this guide follows from it. $\mathbb{A}\mathbb{A}\mathbb{A}$ is a new field, and the corpus exists to bring people into it. A reader who already held both bodies of knowledge would not need the book.
+
+Two consequences deserve stating plainly, because each is easy to miss.
+
+**Every $\mathbb{A}\mathbb{A}\mathbb{A}$ concept is defined where it is used.** Architrino, causal root, path history, wake, polarity, absolute time, the Euclidean void, the master equation: none of these may be assumed. They are the subject matter, not the shared background.
+
+**Established physics is explained, not merely named.** This is the consequence most often missed. Phrases such as "Lorentz behavior is a recovery target," "this recovers the inverse-square law," or "the effective metric reproduces the parameterized post-Newtonian limit" carry no meaning for a reader who has not studied special relativity, electrostatics, or general relativity. Wherever an appeal to established physics is doing real work in an argument, say in plain terms what that established result claims and why it matters here. Naming it is not explaining it.
+
+The corpus does not assume that a reader started at page one. It is published as a website, and readers arrive from a search result, an external link, or the application on an arbitrary page. The scoping rule in Explanation Standard below follows from that.
 
 ## Core Aim
 
@@ -36,6 +50,18 @@ The prose should do three things at once:
 3. Distinguish what is established, what is inferred, and what remains open.
 
 For central theory passages, the strongest pattern combines explanatory prose, formal precision, and a small equation. Begin by naming what is happening in the substrate or effective layer. Then give a compact map, table, or list that separates the moving parts. Then introduce the equation that binds those parts together, followed immediately by plain-language meanings for the symbols and the closure question that remains. The equation should clarify the prose rather than replace it, and the prose should make the equation's conceptual burden visible.
+
+The prose must also do a fourth thing that is easy to leave out: **say why the claim is true, not only what it says and why it matters.** A passage that states a result, then explains its significance, has skipped the mechanism. "The approach reverses because the sideways requirement grows faster than the inward pull, one over distance cubed against one over distance squared" is an explanation. "The approach reverses, which rules out contact" is a summary wearing an explanation's clothes. Give the reader the reason, in words, before or alongside the formal statement.
+
+## Plain by Default
+
+Write technical prose plainly in the first instance. Do not write a dense passage and then repair it with a plainer restatement afterwards.
+
+This matters more than it may appear. A convention that promises a translation later removes the pressure on the technical prose to be readable, and quietly licenses density everywhere outside the translation. What it produces is a hard version followed by a repair, when what serves the reader is prose that never needed repairing.
+
+Some objects are irreducible: an equation, a results table, a data ledger, a measurement block. Their precision is the point and they cannot be written plainly. Follow each immediately with prose that names every symbol in words and says what the object is and why it holds. That prose carries no label; it is simply the next sentence.
+
+Plainness is not informality. The tone remains formal and exact, as the Tone Standard below requires. What plainness rules out is unnecessary density, not seriousness.
 
 ## Style Principles
 
@@ -111,6 +137,32 @@ Avoid transitions such as:
 - "This changes everything..."
 - "The obvious conclusion is..."
 
+## Explanation Standard
+
+### Define at or before first use
+
+Define a term where it first appears, never several paragraphs later. A term defined after its first use has already cost the reader everything in between.
+
+### Clarity, and the cost of repetition
+
+Clarity is the objective. Repetition is neither required nor forbidden: it is a cost worth paying when it buys clarity, and a defect when it does not.
+
+The asymmetry justifies erring toward explanation. A reader who already knows a term loses one skipped line. A reader who does not know it loses the passage. Omission costs comprehension; redundancy costs a scan. Once a reader has internalized a term they read straight past its definition, and that skipping is cheap and automatic. So when the judgment is close, explain.
+
+**Symbols are a solved case.** Corpus prose carries `View →` links into the equation viewer, which holds each symbol's full definition. A symbol therefore needs only to be named in words where it is used; re-glossing every symbol at every recurrence is padding.
+
+**Concepts are the open case.** They are reintroduced as the corpus advances, because a reader arriving at a later chapter may not carry an earlier one's vocabulary. The point at which reintroduction stops buying clarity and becomes padding is not yet settled and will not be settled here by assertion. Until it is, reintroduce a concept when it has not yet appeared in the current document, or when it is load-bearing in the argument being made, and treat anything beyond that as padding.
+
+What is bounded in every case is re-derivation rather than re-definition. The full development of a concept happens once; later recurrences say what the object is and what it is doing here without rebuilding it.
+
+### Scope of assumed knowledge
+
+**Cumulative within a document, self-contained at document boundaries.**
+
+Within one document a defined concept stays defined, and later sections build on earlier ones. At the start of a new document nothing is assumed: it opens by orienting the reader and defines what it imports from elsewhere.
+
+The reason is the delivery surface rather than a preference about prose. The corpus is published as a website, and a reader may arrive at any document first. A fully cumulative corpus, where each chapter assumes all earlier ones, fails that reader. Full self-containment at every section boundary fails a different way, multiplying redundancy without a matching gain, since a reader three sections into a document already holds the first section's vocabulary.
+
 ## Paragraphing Standard
 
 Default paragraph pattern:
@@ -122,6 +174,20 @@ Default paragraph pattern:
 Prefer medium-length paragraphs. Avoid both one-sentence fragment chains and extremely long blocks unless the material genuinely requires them.
 
 In Markdown source, keep each prose paragraph and each prose-bearing list item on one physical line. Do not manually hard-wrap prose to a fixed column. Retain separate physical lines only where Markdown structure, display mathematics, code, tables, quotations, or an intentional explicit hard break requires them.
+
+## Expected Tools
+
+These are expected of good explanatory prose, not merely permitted.
+
+**Analogy that carries the mechanism.** A concrete comparison conveying how something works is worth more than a careful restatement of what it does. Always say where the analogy stops, because an unbounded analogy quietly becomes a claim. Choose comparisons from everyday experience or from geometry rather than from an observer-level physical theory the framework must derive.
+
+This is distinct from the prohibition in What To Avoid below. Metaphor used *in place of* mechanism is a defect; analogy used to *carry* mechanism is the tool. The difference is whether the reader could reconstruct the reasoning after reading it.
+
+**Worked numbers.** One instantiated example with actual values does more than a paragraph of qualitative description. Set $c_f = 1$.
+
+**Signposting the surprise.** Say explicitly when a step is counterintuitive or a result unexpected. This tells the reader where to spend attention and where coasting is safe.
+
+**Picture before symbol.** Establish the physical or geometric situation in words, then introduce notation for it. Do not open with an equation and describe it afterwards.
 
 ## Heading Standard
 
@@ -161,6 +227,8 @@ The tone should not be:
 
 Where a strong claim is made, the prose should earn it through distinctions and reasons rather than through emphasis alone.
 
+Plain and formal are not opposites, and the target is both. Plainness is the formality here: a sentence a reader understands on first pass is more exact than a dense one they must decode, because the decoding introduces error the author never sees. What the tone rules out is chattiness, not clarity. Avoid filler, jokes, and conversational drift; do not avoid short words, direct sentences, or ordinary vocabulary.
+
 ## Preferred Sentence Patterns
 
 Good sentence patterns for this project include:
@@ -197,13 +265,16 @@ Avoid the following unless there is a specific reason to retain them:
 
 - colloquialisms
 - chatty asides
-- second-person address in textbook chapters
 - hype phrases
 - empty intensifiers
 - process-history filler, such as "previously," "now redesigned," "obsolete plan," or "we used to"
 - unresolved pronouns such as "this" or "that" when the referent is unclear
-- metaphor used in place of mechanism
+- metaphor used in place of mechanism, as distinguished from analogy that carries mechanism in Expected Tools above
 - rhetorical questions used as ornament rather than structure
+
+Second-person address is permitted where it does pedagogical work. "Picture two architrinos and draw the line between them" instructs the reader to perform a step, and the second person is the natural way to say so. It remains out of place in ordinary exposition, where it becomes chatty, and it is never a substitute for a claim: "you can see that the barrier holds" asserts nothing the reader can check.
+
+Labelled plain-language restatements, such as a passage introduced by a fixed tag announcing a simpler version, are not used. Explanation is interleaved with the material it explains, as Plain by Default requires, rather than appended to it under a marker.
 
 ## Forward-Only Documentation
 
@@ -337,7 +408,9 @@ Identify published computational evidence by a comprehensible title and stable p
 
 ## Section-Length Standard
 
-For substantial conceptual leaves, the default target is at least one page of meaningful prose, and often more.
+Length is not a constraint. Completeness of explanation outranks economy, and a long passage a reader can follow is preferred to a compact one they cannot. For substantial conceptual leaves, the default target is at least one page of meaningful prose, and often more.
+
+That is not licence to pad. Explaining something again in different words because a reader may need it is completeness; restating a thesis in different words is padding, and remains a defect however unconstrained the length budget.
 
 Length is justified when it adds one or more of the following:
 
@@ -390,14 +463,19 @@ Published source notes and contribution statements support transparency, but the
 Before finalizing a reader-facing chapter or section, check the following:
 
 1. Does the opening identify the subject and its significance?
-2. Are ontology, effective description, and inference kept distinct where needed?
-3. Does the section preserve real strengths before stating criticism?
-4. Are transitions explicit enough for textbook reading?
-5. Is the tone formal and explanatory rather than conversational?
-6. Are all project-specific notation and terminology rules respected?
-7. Does the final paragraph clarify what survives, what changes, or what remains open?
-8. Are factual, legal, and scientific assertions supported by explicit derivations, independently checkable sources, or declared validation records as appropriate, with references selected under the About Architrino policy?
-9. Does any material AI assistance use clear contribution language without implying independent AI authorship or accountability?
+2. Could a reader who knows neither $\mathbb{A}\mathbb{A}\mathbb{A}$ nor established physics follow it, with every $\mathbb{A}\mathbb{A}\mathbb{A}$ concept defined where used and every appeal to established physics explained rather than named?
+3. Does the document stand on its own at its opening, assuming nothing from other documents that it does not introduce?
+4. Does the prose say why each claim is true, not only what it says and why it matters?
+5. Is every symbol named in words where it appears, and is each irreducible object followed immediately by prose explaining it?
+6. Is the technical prose plain on its own, rather than dense followed by a simpler restatement?
+7. Are ontology, effective description, and inference kept distinct where needed?
+8. Does the section preserve real strengths before stating criticism?
+9. Are transitions explicit enough for textbook reading?
+10. Is the tone formal and explanatory rather than conversational?
+11. Are all project-specific notation and terminology rules respected?
+12. Does the final paragraph clarify what survives, what changes, or what remains open?
+13. Are factual, legal, and scientific assertions supported by explicit derivations, independently checkable sources, or declared validation records as appropriate, with references selected under the About Architrino policy?
+14. Does any material AI assistance use clear contribution language without implying independent AI authorship or accountability?
 
 ## Relation to Local Templates
 

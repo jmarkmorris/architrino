@@ -3,7 +3,7 @@
   "status": "passed_pre_release",
   "productionMutation": false,
   "measuredAtUtc": "2026-09-03T02:35:56.383Z",
-  "measurementBoundary": "The public-feedback-interaction profile and its source closure retain their accepted measurement after the public scene indexes changed. The photon-4k-visual profile was remeasured after the Mermaid 11.17.2 vendor update from the complete current source closure in a dedicated Codex in-app Chromium 152 tab at exactly 3840 by 2160 CSS pixels and device-pixel ratio 1, with no active managed compute lease. Earlier wrong-device-scale and contention-bound samples remain rejected. The shared Codex GPU-process envelope retains its original foreground 2026-09-02 measurement because the accepted contract assigns that distinct shared-process instrument.",
+  "measurementBoundary": "The public-feedback-interaction profile and its source closure retain their accepted measurement after the public scene indexes changed. On 2026-09-03 the UI Guidelines scene node moved from the Archie user-interface index to the Archie documentation index, which regenerated content/graph/scene_graph.json and changed the profile's source closure by two bytes, from 824446 to 824444, with the file count unchanged at seven. The closure fingerprint was re-pinned and the measurement was retained rather than re-asserted: the moved node is a scene-index entry that is not on the /feedback.html interaction path, and no file in the feedback entrypoint, stylesheet, or runtime changed. The retained cold-load encodedBytes of 824446 is the earlier measured transfer and is deliberately not edited. This profile's closure includes the generated scene graph, so any scene edit invalidates it; a change that touches the feedback route itself requires remeasurement rather than a re-pin. The photon-4k-visual profile was remeasured after the Mermaid 11.17.2 vendor update from the complete current source closure in a dedicated Codex in-app Chromium 152 tab at exactly 3840 by 2160 CSS pixels and device-pixel ratio 1, with no active managed compute lease. Earlier wrong-device-scale and contention-bound samples remain rejected. The shared Codex GPU-process envelope retains its original foreground 2026-09-02 measurement because the accepted contract assigns that distinct shared-process instrument.",
   "environment": {
     "browser": "Chrome 152.0.0.0 through the Codex in-app browser for Public Feedback and the remeasured Photon profile",
     "platform": "macOS",
@@ -135,8 +135,8 @@
   "sourceClosures": {
     "public-feedback-interaction": {
       "files": 7,
-      "bytes": 824446,
-      "sha256": "83710d918f68a51a20fc9e5fae74322d25db4c96f436ffaac86dc9569133a4e5",
+      "bytes": 824444,
+      "sha256": "fef1ee3a1780daa8a6ef8a82ff91c7fe05344d46d65f96b0f71e1d313430f8a0",
       "paths": [
         "feedback.html",
         "src/apps/feedback/feedback.css",
