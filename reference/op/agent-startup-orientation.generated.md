@@ -81,7 +81,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [README.md](../../README.md) | 220 | `81b723567a77aae0` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 163 | `a285e78741317991` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 171 | `dc8fc4e31bbafb4e` |
 | [reference/op/README.md](README.md) | 36 | `874e700c221e909c` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 216 | `a6b6ad0c387cdbba` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `a12ec1f00ca37b55` |
