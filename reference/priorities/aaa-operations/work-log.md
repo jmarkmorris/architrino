@@ -6,6 +6,15 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — GitHub Actions major-version maintenance
+
+- Consolidated the five open GitHub Actions Dependabot proposals into one reviewable workflow change: `actions/checkout` 7.0.1, `actions/setup-node` 7.0.0, `actions/upload-pages-artifact` 5.0.0, `actions/configure-pages` 6.0.0, and `actions/deploy-pages` 5.0.0.
+- Verified each selected full 40-character commit against the official `actions/*` repository and its published release, then updated the accepted security-policy pins with the workflow references. The workflows continue to request Node 22 for repository commands; the new actions themselves use their declared Node 24 action runtime on GitHub-hosted runners.
+- Preserved the existing workflow permissions, triggers, checkout depth, Node selection, validation commands, Pages preflight, artifact path, one-day retention, deployment conditions, concurrency policy, and exact-SHA supply-chain rule.
+- The combined branch must pass local repository validation and both real pull-request workflows before the individual Dependabot PRs are closed as superseded. A pull-request Pages run proves the updated checkout, setup, build, and upload path; deployment remains intentionally skipped until a later merge to `main`.
+
+Plainly: the maintenance update changes the reviewed GitHub machinery versions without changing what the site builds or when it publishes. The real pull-request run is the compatibility test for the combined set, and no production deployment occurs before operator review and merge.
+
 ### 2026-09-02 — Photon performance evidence refreshed for Mermaid 11.17.2
 
 - Remeasured the complete 38-file Photon source closure after the vendored Mermaid update on a fresh loopback origin in a dedicated Codex in-app Chromium 152 tab at exactly 3840 by 2160 CSS pixels and device-pixel ratio 1. No managed compute lease was active.

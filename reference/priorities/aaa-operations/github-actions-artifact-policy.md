@@ -51,7 +51,7 @@ Official limits and billing behavior are recorded in [GitHub Pages And Actions L
 | Workflow | Artifact behavior | Disposition |
 | --- | --- | --- |
 | [Content Integrity](../../../.github/workflows/content-integrity.yml) | Produces ordinary Actions logs only; no upload action. | Compliant; no artifact retention setting is required. |
-| [Build and deploy Pages](../../../.github/workflows/pages.yml) | `actions/upload-pages-artifact@v4` uploads `.tmp/site`; `retention-days: 1`. [build-static-site.mjs](../../../scripts/build-static-site.mjs) fails before upload above `1,000,000,000` uncompressed bytes. | Compliant as a Pages deployment handoff. The workflow now names the step and states its inherited size/retention contract inline. |
+| [Build and deploy Pages](../../../.github/workflows/pages.yml) | `actions/upload-pages-artifact@v5` uploads `.tmp/site`; `retention-days: 1`. [build-static-site.mjs](../../../scripts/build-static-site.mjs) fails before upload above `1,000,000,000` uncompressed bytes. | Compliant as a Pages deployment handoff. The workflow names the step and states its inherited size/retention contract inline. |
 
 The GitHub artifact API returned 30 historical `github-pages` artifacts and no active artifacts at `2026-09-02T01:05:10Z`. The largest listed artifact was 1,261,964,485 stored bytes on 2026-08-28. The accepted post-reduction artifact was 197,078,868 stored bytes on 2026-08-31, an 84.38% reduction. These are GitHub's stored artifact sizes, not uncompressed published-site bytes.
 
