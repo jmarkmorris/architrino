@@ -1,0 +1,93 @@
+{
+  "schema": "archie-mcp-secure-tunnel-deployment/v1",
+  "deploymentClass": "private_outbound_only",
+  "publicRemoteContractAdvanced": false,
+  "provider": "openai_secure_mcp_tunnel",
+  "officialGuide": "https://developers.openai.com/api/docs/guides/secure-mcp-tunnels",
+  "latestReleaseUrl": "https://github.com/openai/tunnel-client/releases/latest",
+  "latestReleaseApi": "https://api.github.com/repos/openai/tunnel-client/releases/latest",
+  "clientRelease": {
+    "tag": "v0.0.14",
+    "versionPrefix": "0.0.14+",
+    "reviewedAsLatestOn": "2026-09-02",
+    "attestationRepository": "openai/tunnel-client",
+    "attestationVerification": "gh_attestation_verify",
+    "provenanceBundleName": "tunnel-client-v0.0.14-provenance.sigstore.json",
+    "provenanceBundleSha256": "3e1fa63b7ebe8333ce9031c6eac343bdf3fd911a3db27321d855d9d1f28541f2",
+    "platforms": {
+      "darwin-arm64": {
+        "archiveName": "tunnel-client-v0.0.14-darwin-arm64.zip",
+        "archiveSha256": "b540493c5bdbcdbb755700c8e2e16597e28b1569e425007e0f73111047bd6a64",
+        "executableSha256": "309fd85da5a8c2ca8dae920deea8ac10a4d7934ed18ac46e7df0c200139cc9c5"
+      }
+    }
+  },
+  "controlPlane": {
+    "baseUrl": "https://api.openai.com",
+    "tunnelIdEnvironmentVariable": "OPENAI_MCP_TUNNEL_ID",
+    "runtimeApiKeyEnvironmentVariable": "CONTROL_PLANE_API_KEY",
+    "runtimeApiKeyReference": "env:CONTROL_PLANE_API_KEY",
+    "archivePathEnvironmentVariable": "ARCHITRINO_MCP_TUNNEL_ARCHIVE_PATH",
+    "binaryPathEnvironmentVariable": "ARCHITRINO_MCP_TUNNEL_CLIENT_BIN"
+  },
+  "runtime": {
+    "profile": "architrino-full-corpus",
+    "profileDirectory": ".local-data/archie-mcp-tunnel/profiles",
+    "receiptPath": ".local-data/archie-mcp-tunnel/local-runtime-receipt.json",
+    "pidPath": ".local-data/archie-mcp-tunnel/tunnel-client.pid",
+    "ownedComputeRunPath": ".local-data/archie-mcp-tunnel/owned-compute-run.json",
+    "healthUrlPath": ".local-data/archie-mcp-tunnel/health.url",
+    "logPath": ".local-data/archie-mcp-tunnel/tunnel-client.jsonl",
+    "healthListenAddress": "127.0.0.1:0",
+    "healthPath": "/healthz",
+    "readinessPath": "/readyz",
+    "metricsPath": "/metrics",
+    "connectedMetric": "commands_poll_last_successful_timestamp_seconds",
+    "maxSuccessfulPollAgeSeconds": 90,
+    "startupTimeoutMs": 30000,
+    "supervisor": "scripts/dev/owned-compute-supervisor.mjs",
+    "supervisorOwnerTask": "architrino-mcp-secure-tunnel",
+    "supervisorDeadlineSeconds": 86400,
+    "supervisorHeartbeatSeconds": 15,
+    "supervisorTerminationGraceSeconds": 10,
+    "openBrowser": false,
+    "allowRemoteUi": false,
+    "rawHttpLogging": false,
+    "transport": "stdio",
+    "launcher": "scripts/archie-service/run-full-corpus-mcp-server.mjs",
+    "commands": {
+      "initialize": "init",
+      "diagnose": "doctor",
+      "serve": "run"
+    }
+  },
+  "release": {
+    "acceptedBranch": "main",
+    "requiresExactRemoteMain": true,
+    "requiresCleanTree": true,
+    "requiresCurrentOfficialRelease": true,
+    "requiresArchiveHash": true,
+    "requiresExecutableHash": true,
+    "requiresReleaseAttestation": true,
+    "requiresContentIntegrity": true,
+    "requiresFreshFullCorpusSnapshot": true,
+    "requiresFullCorpusProtocolSmoke": true,
+    "requiresDeterministicRecallBenchmark": true
+  },
+  "capabilityBoundary": {
+    "tools": [
+      "search",
+      "read",
+      "topics",
+      "neighbors",
+      "walk"
+    ],
+    "accessScope": "public",
+    "readOnly": true,
+    "hiddenMaterialAllowed": false,
+    "claimAuthorityRaised": false,
+    "repositoryWritesAllowed": false,
+    "inboundListenerAllowed": false,
+    "publicEndpointCreated": false
+  }
+}

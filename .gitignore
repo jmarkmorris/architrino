@@ -28,6 +28,9 @@ node_modules/
 # Local owned-compute leases, heartbeats, and logs
 /.local-data/owned-compute/
 
+# Private MCP tunnel binary, profile, runtime state, logs, and receipts
+/.local-data/archie-mcp-tunnel/
+
 # Reproducible UI browser captures; tracked receipts retain hashes and measurements.
 /.local-data/app-ui-guidelines/
 

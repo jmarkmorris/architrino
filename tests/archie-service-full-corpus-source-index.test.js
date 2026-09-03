@@ -159,16 +159,20 @@ test("full-corpus reads support exact route anchors, pagination, and Unicode cod
 
   const unicodeId =
     "source.published-corpus.content.markdown.aaa.philosophy.history.theory.bridges.weak.mixing.ckm.section.geometric-picture-of-ckm";
-  const unicodeContent = snapshot.views.content.records.find((record) => record.sourceId === unicodeId).content;
-  const unicodeOffset = Array.from(unicodeContent).findIndex((character) => character === "𝒪");
-  assert.ok(unicodeOffset >= 256 && unicodeOffset <= 8000);
+  const unicodeSnapshot = structuredClone(snapshot);
+  const unicodeRecord = unicodeSnapshot.views.content.records.find((record) => record.sourceId === unicodeId);
+  const unicodeCharacters = Array.from(unicodeRecord.content);
+  const unicodeOffset = 512;
+  assert.ok(unicodeCharacters.length > unicodeOffset * 2);
+  unicodeCharacters[unicodeOffset] = "𝒪";
+  unicodeRecord.content = unicodeCharacters.join("");
   const first = call("read", {
     topicOrRoute: unicodeId,
     sectionAnchor: null,
     maxContentChars: unicodeOffset,
     cursor: null,
     includeMetadata: false,
-  });
+  }, unicodeSnapshot);
   assert.equal(Array.from(first.result.content).length, unicodeOffset);
   assert.equal(first.page.truncated, true);
   const second = call("read", {
@@ -177,7 +181,7 @@ test("full-corpus reads support exact route anchors, pagination, and Unicode cod
     maxContentChars: unicodeOffset,
     cursor: first.page.nextCursor,
     includeMetadata: false,
-  });
+  }, unicodeSnapshot);
   assert.equal(Array.from(second.result.content)[0], "𝒪");
 });
 
@@ -191,15 +195,15 @@ test("full-corpus negative inputs and altered bundles do not advance", () => {
   assert.throws(() => assertSnapshotBundle(tampered), /search view hash mismatch/);
 });
 
-function call(tool, argumentsValue) {
+function call(tool, argumentsValue, targetSnapshot = snapshot) {
   return executeMcpTool({
-    snapshot,
+    snapshot: targetSnapshot,
     accessScope: "public",
     request: {
       schema: "archie-mcp-tool-request/v1",
       requestId: `test-${tool}`,
       tool,
-      snapshotId: snapshot.snapshotId,
+      snapshotId: targetSnapshot.snapshotId,
       visibilityScope: "public",
       arguments: argumentsValue,
     },

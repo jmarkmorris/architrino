@@ -45,6 +45,10 @@ const CHECKS = [
     args: ["scripts/check-owned-compute-launch-policy.mjs"],
   },
   {
+    name: "Validate private MCP secure-tunnel deployment contract",
+    args: ["scripts/archie-service/manage-secure-mcp-tunnel.mjs", "--check"],
+  },
+  {
     name: "Test owned-compute task-closeout hook",
     args: ["--test", "tests/owned-compute-stop-hook.test.js"],
   },
@@ -79,6 +83,10 @@ const CHECKS = [
   {
     name: "Test generated runtime storage and deployment contracts",
     args: ["--test", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js"],
+  },
+  {
+    name: "Test private MCP secure-tunnel deployment safety",
+    args: ["--test", "tests/archie-service-mcp-secure-tunnel-deployment.test.js"],
   },
   {
     name: "Check current Master Equation terminology",

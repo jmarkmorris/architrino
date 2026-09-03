@@ -19,8 +19,8 @@
   },
   "generatedArtifactDigests": {
     "markdownIndex": "43f2c5f5e1aa19e6088e518e1ffa459c9a3ad078aa2323a246e6c520ecae7611",
-    "readingCopies": "be9823760865e2927473372a527bc98f0b65322c992e8df3bd1a90b0b7e9cccb",
-    "sceneGraph": "a062daf55b6faf3c61b20b2caa6c9c4b0485b40f794705357803540a1241dbda",
+    "readingCopies": "e84d0d33dfc6f67b307c7fb3d53976d53a7db38d19f54dbed2fbc9444d18e989",
+    "sceneGraph": "18df2ef64b4130c96f1a3237266f8f3942a1a0e9ae230463d5d370610bbd50b3",
     "textbookToc": "9d2e87a5ef60b88718cf95e65d02a145cbac2bf3537a6000cdcce00a534a4237"
   },
   "sourceRecordCountByClass": {
@@ -40,7 +40,7 @@
       "sourceId": "source.app-guide",
       "sourcePath": "content/markdown/aaa/archie/about-the-webapp.md",
       "sectionAnchor": "open-architrino",
-      "sourceContentSha256": "87dbf39caf1354eef0c29d6c9037a9aecf0f7a12d99860baeff500ad98dff43d",
+      "sourceContentSha256": "0ee018666afd76174906baa09eb7c5398f5b6d06aef80c274ebfb9733dee5622",
       "selectionSha256": "8e21372bd10a216ed5ba3dc4a63ac253e795f0e9fd4d9304cdde8d4f70b5eaa1"
     },
     {
@@ -143,7 +143,7 @@
             "navigation",
             "webapp"
           ],
-          "sourceContentSha256": "87dbf39caf1354eef0c29d6c9037a9aecf0f7a12d99860baeff500ad98dff43d",
+          "sourceContentSha256": "0ee018666afd76174906baa09eb7c5398f5b6d06aef80c274ebfb9733dee5622",
           "selectionSha256": "8e21372bd10a216ed5ba3dc4a63ac253e795f0e9fd4d9304cdde8d4f70b5eaa1",
           "searchText": "Open Architrino webapp guide application navigation webapp Open Architrino Architrino logo and QR code for architrino.com Scan the QR code to open architrino.com.",
           "publicEligible": true
@@ -267,7 +267,7 @@
           "publicEligible": true
         }
       ],
-      "sha256": "93839c4a092445381630a317faef1585c6b7694aecc0d2cd86b84375a561799a"
+      "sha256": "7fd1396d19852619df198cba99425f992a59d4d02306edfc0de5dba354192c92"
     },
     "graph": {
       "schema": "archie-source-graph-view/v1",
@@ -371,5 +371,5 @@
       "sha256": "3293d10f8f7cfb6655ab08cf27a33eab7d396107757fb0dc80ca10beed19c0a4"
     }
   },
-  "snapshotSha256": "931c7883db98e620422482ed35e69c61155df13639dfb43c70119173b3d0d2ae"
+  "snapshotSha256": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773"
 }
