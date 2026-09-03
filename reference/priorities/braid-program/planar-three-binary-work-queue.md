@@ -15,6 +15,7 @@ The queue excludes other circular-path inventories, the orthogonal-plane weave, 
 | Foundation | Grade and exact boundary | Durable owner |
 | --- | --- | --- |
 | Equal-radius regular-phase ladder | Computer-assisted derived completeness in every ordinary topology cell: exactly one simple inward-radial zero in each even cell T02, T04, and onward, with no zero in T00 or any odd cell | [bounded ladder evidence](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md), [T200 finite-ladder certificate](evidence/2026-09-01-planar-three-binary-t200-finite-ladder-certificate.md), and [global-tail theorem](evidence/2026-09-02-planar-three-binary-global-tail-calculus-reduction.md) |
+| First post-leading balance correction | Derived uniform growing-lattice asymptotic: the balance-to-fold displacement contains the fractional term $-\eta(1/2)\beta_q^{-9/2}/(27\sqrt{\pi/3})$, so the balance series is not a pure integer inverse-power series | [fold-boundary balance correction](evidence/2026-09-02-bp011-fold-boundary-balance-correction.md) |
 | Root topology and asymptotic laws | Derived root-count, fold-sign, spacing, and radius laws on the fixed equal-radius regular-phase circular chart | [planar common-center three-binary constraint circular-path balance-ladder evidence](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md) |
 | Exact circular continuation | Derived exact periodic solution for each exact complete-simple-ledger balance; no nearby-history uniqueness or perturbation stability | [Exact circular-solution theorem](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md#exact-circular-solution-theorem) |
 | T04 past-only release | Measured accepted prefix through $T=0.0029296875$; no full-cycle return and no retention or stability verdict | [T04 release prefix](evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md#t04-past-only-release-prefix) |
@@ -27,36 +28,37 @@ The queue excludes other circular-path inventories, the orthogonal-plane weave, 
 | Bounded axial-translation-speed chart | Computer-assisted derived no-nonzero-speed result for the eighteen interval-certified branches T02 through T36 on $-0.9\leq u\leq0.9$; no completeness above $\beta_f=20$ | [Axial-translation-speed chart](evidence/2026-09-01-planar-three-binary-axial-translation-speed-chart.md) |
 | Documentation synthesis | The tracked evidence packet and reader-facing AP-STEM explanation are complete; no active writer task remains | [Work-log entry](work-log.md#2026-08-29--planar-common-center-three-binary-constraint-circular-path-balance-ladder-durably-synthesized) |
 
-Plainly: exact prescribed circles, the complete infinite equal-radius ladder, their checked T04 numerical input, short-time local uniqueness, and the declared low-order axial-translation chart are established at their stated grades. Higher-order ladder corrections, full-cycle release, perturbation return, higher-order translated balance, generalized planar geometry, and energy remain separate open questions.
+Plainly: exact prescribed circles, the complete infinite equal-radius ladder, its first post-leading balance correction, checked T04 numerical input, short-time local uniqueness, and the declared low-order axial-translation chart are established at their stated grades. Full-cycle release, perturbation return, higher-order translated balance, generalized planar geometry, and energy remain separate questions with named dependencies.
 
 ## Ranked Next Objects
 
-1. `higher_order_ladder_asymptotics` — [higher-order ladder asymptotics task](#higher-order-ladder-asymptotics). Status: `In progress`.
-2. `t04_one_cycle_eom_reproduction` — [T04 one-cycle EOM reproduction task](#t04-one-cycle-eom-reproduction). Status: `Deferred / blocked`.
-3. `nearby_history_return_map` — [nearby-history return map and stability task](#nearby-history-return-map-and-stability). Status: `Deferred / blocked`.
-4. `same_record_action_energy_ledger` — [same-record action and energy ledger task](#same-record-action-and-energy-ledger). Status: `Deferred / blocked`.
-5. `mode_transition_ledger` — [mode-transition ledger task](#mode-transition-ledger). Status: `Deferred / blocked`.
-6. `full_ladder_action_energy_evaluation` — [full-ladder action and energy evaluation task](#full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
+1. `t04_one_cycle_eom_reproduction` — [T04 one-cycle EOM reproduction task](#t04-one-cycle-eom-reproduction). Status: `Deferred / blocked`.
+2. `nearby_history_return_map` — [nearby-history return map and stability task](#nearby-history-return-map-and-stability). Status: `Deferred / blocked`.
+3. `same_record_action_energy_ledger` — [same-record action and energy ledger task](#same-record-action-and-energy-ledger). Status: `Deferred / blocked`.
+4. `mode_transition_ledger` — [mode-transition ledger task](#mode-transition-ledger). Status: `Deferred / blocked`.
+5. `full_ladder_action_energy_evaluation` — [full-ladder action and energy evaluation task](#full-ladder-action-and-energy-evaluation). Status: `Deferred / blocked`.
 
 ## In progress
 
-### Higher-order ladder asymptotics
-
-- **Status:** In progress
-- **Closure goal:** Determine the exact correction pattern beyond the accepted leading planar common-center three-binary constraint ladder spacing and radius laws.
-- **Request / acceptance:** Starting from the global equal-radius ladder theorem's uniform tail domain, derive the next nonvanishing terms in $\beta_n$, $\Delta\beta_n$, and $R_n/R_*$ directly from the circular causal-root ledger. Test whether the expansion is a pure inverse-power series or necessarily contains logarithmic, parity-dependent, or other terms. Curve fits may propose coefficients but cannot decide whether factors such as $\pi$, $\sqrt{3}$, or $\log 2$ survive exact summation.
-- **Evidence / blocker:** The global tail theorem supplies the required uniform domain. The [higher-order fold precursor](evidence/2026-09-02-bp011-higher-order-fold-precursor.md) derives the odd-fold location
-
-  $$
-  \beta_q=A_n-\frac1{2A_n}-\frac7{24A_n^3}-\frac{83}{240A_n^5}+O(A_n^{-7}),
-  $$
-
-  where $A_n=\pi(n+1)/3$. This is the fold-boundary expansion, not the balance expansion. The balance-to-fold displacement still requires uniform old-background and newborn-pair expansions over the growing alternating lattice, including any logarithmic or parity-dependent term.
-- **Completion:** Exact higher-order coefficients and a controlled remainder are derived, or a proof shows that the proposed inverse-power pattern is incomplete. Failure of a derived coefficient or remainder bound on an independently checked high-topology cell falsifies the expansion.
-
-Plainly: the complete zero pattern is known. The active calculation asks for the progressively smaller location, spacing, and radius corrections and whether their apparent numerical pattern reflects exact mathematics or only a finite fit.
+No rows.
 
 ## Completed
+
+### Higher-order ladder asymptotics
+
+- **Status:** Completed
+- **Closure goal:** Determine the first correction beyond the accepted leading planar common-center three-binary constraint ladder law and decide whether the expansion is a pure integer inverse-power series.
+- **Result:** The [fold-boundary balance correction](evidence/2026-09-02-bp011-fold-boundary-balance-correction.md) keeps the fold boundary distinct from the balance and proves, using the unchanged outward-rounded global-tail shape theorem for uniform growing-lattice control,
+
+  $$
+  \beta_n-\beta_q=\frac1{18\beta_q^3}-\frac{\eta(1/2)}{27\sqrt{\pi/3}}\beta_q^{-9/2}+o(\beta_q^{-9/2}).
+  $$
+
+  Consequently the balance expansion contains a half-integer term before order $A_n^{-5}$ and is not a pure integer inverse-power series. The exact fold coefficient $-83/240$ contributes to a sharper future order-$A_n^{-5}$ balance calculation but is not itself the balance coefficient.
+- **Boundary:** This is a derived prescribed-balance asymptotic. The integer order-$A_n^{-5}$ balance coefficient, matching spacing and radius corrections, evolution, retention, stability, action, binding, identity, score, and scientific acceptance remain unclaimed; the sharper asymptotic is an optional follow-on rather than an accepted queue obligation.
+- **Falsifier:** A valid root inventory changing the shifted-endpoint decomposition, a failure of the accepted outward-rounded shape sign, a different scaled old-background limit, or an independently certified balance sequence violating the displayed half-integer coefficient overturns completion.
+
+Plainly: the next balance correction is derived and it appears at a half-integer power. That proves the proposed all-integer pattern incomplete without borrowing the fold boundary's coefficient.
 
 ### Global equal-radius ladder theorem
 
@@ -207,7 +209,7 @@ The former task-scoped obligations are fully transferred to durable queue rows. 
 | Investigation lane | Durable queue coverage | First executable successor |
 | --- | --- | --- |
 | Circular prehistory, exact continuation, numerical reproduction, and stability | completed T04 exact-reference-to-solver handoff, completed local history-flow well-posedness task, T04 one-cycle EOM reproduction task, and nearby-history return map and stability task | the exact-reference receipt and local uniqueness theorem are accepted; next complete one full-cycle conformance check, and only then perturbation stability |
-| Equal-radius velocity ladder | completed global equal-radius ladder theorem and higher-order ladder asymptotics task | the complete alternating zero census is proved; derive the exact higher-order location, spacing, and radius corrections as a separate follow-on |
+| Equal-radius velocity ladder | completed global equal-radius ladder theorem and completed higher-order ladder asymptotics task | the complete alternating zero census and first post-leading balance correction are proved; a sharper order-$A_n^{-5}$ balance, spacing, or radius calculation is an optional separately declared follow-on |
 | Axial translation | completed axial-translation-speed chart and fixed axial-translation interval certificate | closed on $-0.9\leq u\leq0.9$ for T02 through T36; the new T38-through-T200 stationary brackets make a separately predeclared higher-topology extension executable but do not alter the completed low-order claim |
 
 Plainly: archiving the user-visible tasks removes no work. The repository queues now own the remaining questions, their order, their evidence requirements, and their falsifiers.
@@ -217,7 +219,7 @@ Plainly: archiving the user-visible tasks removes no work. The repository queues
 | Investigation lane | Detailed rows | Queue lane is complete when |
 | --- | --- | --- |
 | Circular prehistory and numerical release | T04 exact-reference-to-solver handoff task, local history-flow well-posedness task, T04 one-cycle EOM reproduction task | the exact-reference handoff, local uniqueness disposition, and one-cycle numerical reproduction each have a durable accepted or explicit negative result; perturbation stability may continue separately under nearby-history return map and stability task |
-| Equal-radius velocity ladder | completed global equal-radius ladder theorem, higher-order ladder asymptotics task | the global zero census is closed; higher-order asymptotics may close separately or remain explicitly deferred without weakening that theorem |
+| Equal-radius velocity ladder | completed global equal-radius ladder theorem, completed higher-order ladder asymptotics task | the global zero census and first post-leading balance correction are closed; no accepted live object remains in this lane |
 | Axial translation | completed axial-translation-speed chart and fixed axial-translation interval certificate | closed on the declared T02-through-T36, $-0.9\leq u\leq0.9$ chart; no surviving nonzero-speed branch requires a full-vector follow-up |
 | Investigation writing | no active row | closed: the evidence packet is tracked and the writer thread is archived |
 
@@ -234,6 +236,6 @@ No remaining research, implementation, taxonomy, Borg, or documentation obligati
 
 ## Aggregate Completion
 
-The parent BP-011 row remains open while any detailed object is `Queued`, `In progress`, or `Awaiting verification`. When a detailed task completes, preserve its result in the evidence packet or work log and remove it from the live ranked list. BP-011 may close only when every accepted planar common-center three-binary constraint object is completed, withdrawn, superseded, or deliberately deferred with a named dependency and no executable next step.
+The parent BP-011 row is complete and removed from the live parent ranking: no detailed object is `Queued`, `In progress`, or `Awaiting verification`. The remaining one-cycle, nearby-history, action, transition, and full-ladder energy rows are deliberately deferred with named external dependencies and no executable next step. Any future sharper asymptotic or wider planar census must be accepted as a new object rather than silently reopening this completed investigation.
 
 Closure goal: convert the accepted planar common-center three-binary constraint prescribed-balance foundation into independently closed mathematical, numerical, translation, generalized-geometry, stability, and same-record action results without allowing one evidence grade to substitute for another.
