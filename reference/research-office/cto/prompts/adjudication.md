@@ -30,6 +30,6 @@ For each finished result, decide accept, accept-with-caveat, or reject, and stat
 
 ## Front-end for the operator
 
-- Deliver the decision in plain language, pitched to the operator's stated level: define technical terms rather than assuming them, lead with the outcome and what it means, and keep the mathematics to what is necessary.
+- Deliver the decision in the Adjudication register of [the operator explanation standard](../../../op/operator-explanation-standard.md), which owns audience, density, and length; lead with the outcome and what it means.
 - Remind the operator to parallelize when several independent tests are queued.
 - End with a plain-language `Closure goal:` line: the outcome, what it means, and the single next move.

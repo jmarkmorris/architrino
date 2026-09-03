@@ -47,7 +47,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 ## Clarity
 
 - [ ] Use [math-preview](../../.agents/skills/math-preview/SKILL.md) for substantial mathematics whose normal view is inadequate, with verified KaTeX, the project theme, and unchanged source.
-- [ ] When a decision, action, or headline exists, state it first; use the following nonlinear exploration as context rather than burying the lead. Keep free-association brainstorming welcome when no immediate decision is needed.
+- [ ] Agent response shape — leading with the decision, explanation density, question format, `Closure goal:`, and `Open items:` — is owned by [operator-explanation-standard.md](operator-explanation-standard.md) and is not tracked as backlog here. Items below concern how the operator frames requests, not how the agent answers. Free-association brainstorming remains welcome when no immediate decision is needed.
 - [ ] Treat an unresolved discussion-scoped priority as requiring an explicit accept, reject, or defer response; do not infer implementation authority from silence.
 - [ ] Name the canonical project term when a concept has multiple nearby aliases.
 - [ ] For frequency-triplet work, state raw `B_1:B_2:B_3` search order first and use `I:M:O` only as a retained role map.

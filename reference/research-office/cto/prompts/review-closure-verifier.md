@@ -2,6 +2,8 @@ Closure goal: Verify whether another agent's edits correctly resolve a specified
 
 # Review Closure Verifier Prompt
 
+Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and the required `Open items:` block.
+
 Use this prompt when Op asks whether another agent's edits correctly resolved a prior numbered review. This is review-only by default.
 
 ## Startup

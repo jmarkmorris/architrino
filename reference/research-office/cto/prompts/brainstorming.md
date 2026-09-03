@@ -2,6 +2,8 @@ Closure goal: Run an open-ended, cross-lane brainstorming session that engages e
 
 # Brainstorming Session (Capture-First)
 
+Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and the required `Open items:` block.
+
 Use this prompt for a working brainstorm: the operator wants to think out loud across the theory, and the session's job is both to reason well and to capture relentlessly. The failure mode to avoid is a good conversation that leaves no durable trace.
 
 ## Posture

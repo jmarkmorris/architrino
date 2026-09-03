@@ -128,7 +128,8 @@ Unresolved questions and disagreements:
 Repository disposition and validation:
 [edits, unchanged owners, checks, or no-edit result]
 
-Plainly: [concise user-level explanation]
+Explanation:
+[what the result is, why it is true, and what it means, written per the operator explanation standard: assume the theory, define every imported term in place, plain prose rather than a gloss appended to a dense statement]
 ```
 
 The Principal Investigator must make the final synthesis no stronger than the weakest evidence required for the conclusion, disclose material disagreements, and never promote a Specialist report merely because its role lens sounds authoritative.

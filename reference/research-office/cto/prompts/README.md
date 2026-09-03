@@ -4,6 +4,8 @@ This directory holds reusable prompts for CTO-led repository work. Use it for pr
 
 All reusable prompts in this directory should begin with `Closure goal:` and should avoid addressing an agent by name. Role labels and reviewer lenses may appear inside the prompt when they are useful context.
 
+Every prompt in this directory produces operator-facing output, and [the operator explanation standard](../../../op/operator-explanation-standard.md) is the sole authority for that output: audience, explanation density, response length, structure, register, question format, and the required `Open items:` block. It applies to each prompt here whether or not that prompt names it, and no prompt may restate, narrow, or override its rules.
+
 The compact cross-agent startup map is generated at [../../../op/agent-startup-orientation.generated.md](../../../op/agent-startup-orientation.generated.md). Use the generated map for quick routing, then read the live prompt file selected for the task.
 
 All prompts that select, review, or promote sources apply the [About Architrino reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). Prompts may specify acquisition, verification, and reporting procedures, but must not establish a competing citation policy.

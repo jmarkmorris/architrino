@@ -9,6 +9,8 @@ Closure goal: Show readable, accurately rendered mathematics while preserving th
 
 Use the repository's bundled Markdown-It, KaTeX, fonts, and app colors through [the helper](scripts/render-preview.mjs). This is an on-demand local presentation workflow, not a corpus generator or mathematical verifier. Do not change formulas, source documents, app code, or generated publication artifacts to make a preview render.
 
+Prose written around a preview, and the response that delivers it, follow [the operator explanation standard](../../../reference/op/operator-explanation-standard.md), which owns audience, explanation density, and response shape.
+
 ## Render
 
 1. Identify the requested document or section. For newly drafted explanations, save the exact intended Markdown in the task's writable artifact directory first. Preserve code examples and all four TeX delimiter forms. Do not substitute Unicode approximations or generated artwork for equations.

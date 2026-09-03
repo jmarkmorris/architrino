@@ -620,9 +620,13 @@ and restrict a chart from $U$ to $V\subset U$ by restricting its active-root rec
 
 Global closure is the additional statement that local sections of $\mathcal{F}_{\mathrm{root}}$ glue. On an overlap $U_\alpha\cap U_\beta$, two local charts must agree not merely on the plotted trajectory but on the signed causal-root ledger, branch labels, endpoint convention, wake-history charges, and transition metadata. The global branch charts are the $H^0$ sections of this sheaf over the declared history window. A mismatch on triple overlaps defines a Cech-style obstruction class in $\check H^1(\{U_\alpha\};\mathcal{F}_{\mathrm{root}})$: locally replayable charts may exist while no single global branch chart exists. This is a theorem target, not a new postulate. It gives proof programs an explicit failure mode between "local residuals are small" and "the Master Equation branch is globally closed."
 
-#### Dual-Mollified Absolute-Time Evolution Law
+#### Auxiliary Dual-Mollified Regulator for Proof and Computation
 
-For proof work, branch sums should be derived from one regularized absolute-time law rather than treated as the primary definition through every causal fold. Fix a memory horizon
+The postulated Master Equation is the sharp causal-root law stated in [The Master Equation (Canonical Form)](#the-master-equation-canonical-form). It is defined on admitted positive-separation roots. The finite-regulator family below is not a second Master Equation and does not alter that postulate. It is an auxiliary evaluation route for finite-width causal surfaces, certified fold or caustic neighborhoods, and regulator-convergence tests. Its authority is conditional on recovering the canonical sharp law on a common regular domain.
+
+Plainly: the sharp equation defines the dynamics. The softened equation is a controlled calculation tool whose results count only where they converge back to the sharp equation.
+
+For that auxiliary route, fix a memory horizon
 $$
 h>0
 $$
@@ -658,7 +662,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b77e33b0c3477625)
-The dual-mollified finite-memory evolution law is
+The auxiliary dual-mollified finite-memory regulator is
 $$
 \boxed{
 \frac{d^2\mathbf X_i}{dT_r^2}
@@ -674,7 +678,7 @@ c_f
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f3d38778f6559850)
-At $\mathbf r_{ij}=\mathbf 0$, the softened vector kernel multiplying $\delta_\eta$ is defined by its continuous extension, which is $\mathbf 0$.
+At fixed $\epsilon_c>0$, the softened vector kernel multiplying $\delta_\eta$ has the continuous value $\mathbf 0$ at $\mathbf r_{ij}=\mathbf 0$. This is only a pointwise value of the auxiliary regulator. It does not admit the zero-delay diagonal as an ordinary causal hit, define a coincidence response, establish a null action, or select a post-coincidence continuation.
 
 The sign convention remains
 $$
@@ -701,7 +705,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-454720b62ed063d2)
 
-This equation is the reference law for certification work on the dual-mollified problem. The causal-surface mollifier
+This equation is the reference regulator for certification work on the dual-mollified problem. The causal-surface mollifier
 $$
 \delta_\eta
 $$
@@ -727,7 +731,23 @@ c_f\,\delta(g_{ij})\,dT_t
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9d56381b92186eaf)
-Thus the $\epsilon_c\to0^+$ limit away from coordinate coincidence recovers the canonical inverse-square transmitter-side branch law. Branch-resolved formulas are local reductions of this equation on finite simple-root charts. They should not be used as the global definition across causal folds, caustic transit, or chart-boundary verification.
+Denote the regulated right-hand side above by $\mathbf A_i^{(\eta,\epsilon_c)}(T_r)$. For a fixed retained history on a compact chart with a finite complete set of isolated simple roots, $r_{ij}\ge d>0$, and $|D_{t,ij}|\ge\nu_t>0$, the required two-stage recovery statement is
+$$
+\lim_{\epsilon_c\to0^+}
+\lim_{\eta\to0^+}
+\mathbf A_i^{(\eta,\epsilon_c)}(T_r)
+=
+\sum_j\sum_{T_t\in\mathcal C_{ij}(T_r)}
+\kappa\,\sigma_{ij}|q_iq_j|
+\frac{c_f}{|D_{t,ij}|}
+\frac{\widehat{\mathbf r}_{ij}}{r_{ij}^2}.
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-2760b9055d10f80c)
+
+Plainly: first shrink the artificial wake thickness while the roots remain isolated, then remove the artificial core scale while every separation remains positive. The result must be the canonical sharp causal-root sum. This statement supplies no limit at coincidence.
+
+Branch-resolved formulas are the authoritative sharp law on their admitted regular domain, while the auxiliary integral supplies a controlled route through finite-width or singular-chart calculations. It must not replace the canonical definition or be used to assign a value at a causal fold, caustic transit, coordinate coincidence, or chart boundary without the corresponding convergence and event certificates.
 
 The two regulators quarantine different singular loci. The width $\eta$ regularizes the causal-surface collapse, branch folds, and caustic-transit impulse; the core scale $\epsilon_c$ regularizes the coincidence or diagonal collision locus. A theorem packet may refine them together for computation, but a sharp-limit claim must state which of $\eta\to0^+$ and $\epsilon_c\to0^+$ is being taken, and why the other singular locus remains controlled during that limit.
 
@@ -741,12 +761,12 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1bb64bcad800fc98)
-whose retained records are generated by the dual-mollified evolution law above.
+whose retained records are generated by the auxiliary dual-mollified regulator above.
 
 The admissibility assumptions are:
 
-1. The evolution is causal in absolute time: every acceleration contribution is generated from $T_t<T_r$, and the self-coincident endpoint is excluded by the $H(0)=0$ convention or by the declared core regularization.
-2. The retained chart has finite memory, positive inactive-root gaps, a declared transmitter-side acceleration-weight interval, and either a positive active-root transmitter-side Jacobian floor $\nu_J > 0$ or an explicitly declared finite-order caustic transit integrated in the dual-mollified law.
+1. The evolution is causal in absolute time: every acceleration contribution is generated from $T_t<T_r$, and the self-coincident endpoint is excluded by the $H(0)=0$ convention. A declared core regulator does not override that exclusion.
+2. The retained chart has finite memory, positive inactive-root gaps, a declared transmitter-side acceleration-weight interval, and either a positive active-root transmitter-side Jacobian floor $\nu_J > 0$ or an explicitly declared finite-order caustic transit integrated with the auxiliary dual-mollified regulator.
 3. The active support stays away from an unregularized collision: either $r_{ij,\ell}\ge d > 0$ on the retained records or the same $\epsilon_c$ cutoff is used in the acceleration, action, and energy records.
 4. The regularized right-hand side is locally Lipschitz on the retained history tube, so the finite-$\eta$ state-dependent delay problem has existence, uniqueness, and continuation until a declared boundary of the admissible class is reached.
 5. The same regularized action or compatible realized-trajectory reconstruction supplies the acceleration contribution, wake-history energy, momentum, and angular-momentum records. Endpoint leakage, omitted branch records, and period-cut terms must appear as residuals rather than hidden corrections.
@@ -764,7 +784,7 @@ Under these assumptions, the finite-$\eta$ theorem packet should prove the follo
   [View →](../../../../equation-mapping.html#corpus-equation-70e5563432f1625a)
   then $K_{\mu}(T)$ remains bounded on $W$. A branch with $V_{\max}\to\infty$ must therefore leave the admissible class by driving the interaction charge downward without bound, losing a floor, or breaking the declared action-energy residual.
 - **Pre-acceleration is excluded at finite $\eta$.** The acceleration at $T$ is a functional of the retained history segment $[T-h,T)$, together with the current receiver event, and contains no future state. A proposed action repair is admissible only when its endpoint convention contributes a wake-history boundary term or a vanishing residual, not a future-boundary acceleration selection rule.
-- **Caustic and Jacobian blow-up are quarantined.** Simple-root charts require $\nu_J > 0$. A finite-order caustic may be crossed only through the dual-mollified equation with finite integrated impulse and stable transition metadata. Persistent $J=0$, cusp behavior outside a finite-order normal form, simultaneous collision-floor failure, or regulator-dependent transition observables are chart failures rather than ordinary acceleration contributions.
+- **Caustic and Jacobian blow-up are quarantined.** Simple-root charts require $\nu_J > 0$. A finite-order caustic may be crossed only through the auxiliary dual-mollified regulator with finite integrated impulse and stable transition metadata. Persistent $J=0$, cusp behavior outside a finite-order normal form, simultaneous collision-floor failure, or regulator-dependent transition observables are chart failures rather than ordinary acceleration contributions.
 - **Finite deterministic multistability is routed, not quarantined.** At a fold boundary, if the regularized post-transit data supply exactly one admissible continuation chart, the event is an ordinary branch transition. If they supply two or more inequivalent admissible charts with positive floors and finite memory, the complete microstate still selects one deterministic continuation, but a record-limited comparison must route the event to a finite basin-weight or multistability record. Multistability is a failure only when the finite continuation family is empty, infinite, unlabeled, or lacks the common branch data needed for comparison.
 
 The failure boundary for the theorem packet is the union of the following conditions:
@@ -840,7 +860,7 @@ The ordered sum and factor $1/2$ count each pair once. The positive sign is requ
 
 Plainly: the energy row uses a $1/r$ action kernel. Its delta function supplies the moving-transmitter weight during root evaluation; that weight is not inserted by hand a second time.
 
-This expression remains a diagnostic unless it is derived from the same time-translation-invariant action regularization as the acceleration and boundary charge. If the dual-mollified law uses a core cutoff $\epsilon_c$, the energy diagnostic must carry the same cutoff convention. The theorem-level nonlocal charge is the boundary functional in [Action-Level Wake-Energy Functional at a Time Boundary](#action-level-wake-energy-functional-at-a-time-boundary).
+This expression remains a diagnostic unless it is derived from the same time-translation-invariant action regularization as the acceleration and boundary charge. If the auxiliary dual-mollified regulator uses a core cutoff $\epsilon_c$, the energy diagnostic must carry the same cutoff convention. The theorem-level nonlocal charge is the boundary functional in [Action-Level Wake-Energy Functional at a Time Boundary](#action-level-wake-energy-functional-at-a-time-boundary).
 
 ### Causal Interaction Set (The Geometry of Delay)
 
@@ -1276,6 +1296,10 @@ with every term evaluated in absolute time. The residual is the finite-loop-size
 
 ### The Master Equation (Canonical Form)
 
+**Authority statement.** The equations in this section are the postulated Master Equation. They govern admitted sharp causal roots at positive separation. The earlier [auxiliary dual-mollified regulator](#auxiliary-dual-mollified-regulator-for-proof-and-computation) is a proof and computational route only: it must recover this law on a common regular domain, and it supplies no ordinary zero-delay hit or coincidence law.
+
+Plainly: this section owns the equation of motion. A softened computation is acceptable only as a tested approximation or singular-chart instrument subordinate to it.
+
 #### Per-Hit Acceleration
 
 For each causal emission time $T_t \in \mathcal{C}_{ij}(T_r)$, define:
@@ -1398,6 +1422,10 @@ W_{ij}^{\mathrm{acc}}(T_r;T_t)
 $$
 
 [View →](../../../../equation-mapping.html#causal-wake-master-equation)
+
+This boxed sharp causal-root sum is the authoritative Master Equation. No $\epsilon_c$ factor belongs to its regular-domain acceleration kernel. A calculation that introduces $\epsilon_c$ must label it as auxiliary regularization, retain the same polarity and transmitter-side acceleration weight, and demonstrate convergence to this equation wherever it claims canonical Master Equation evidence.
+
+Plainly: core softening may help a proof or solver cross a difficult numerical region, but it cannot silently change the law being tested.
 
 where:
 
@@ -2341,9 +2369,9 @@ while preserving total emission $q$.
 
 **In the super-field-speed regime** ($\|\mathbf V_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, Jacobian floor, and transmitter-side acceleration weight remain controlled.
 
-**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. If a theorem or simulation also introduces a short-distance core mollifier $\epsilon_c$, it must declare whether the amplitude remains polarity-blind apart from $\sigma_{ij}|q_i q_j|$ or whether a derived polarity-dependent kernel has been added. The default law uses the former convention; the latter is a new closure claim and must preserve the same causal-root, symmetry, and event-ledger checks before it can be used in an assembly or blackbody argument.
+**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. If a theorem or simulation also introduces the auxiliary short-distance core regulator $\epsilon_c$, it must separately demonstrate the $\epsilon_c\to0^+$ recovery of the canonical positive-separation kernel and declare whether the regulated amplitude remains polarity-blind apart from $\sigma_{ij}|q_i q_j|$. A polarity-dependent regulated kernel is a new closure claim and must preserve the same causal-root, symmetry, and event-ledger checks before it can be used in an assembly or blackbody argument. No regulator value at $r=0$ defines an ordinary causal hit or coincidence response.
 
-#### Conditional Well-Posedness for the Regularized Exact Model
+#### Conditional Well-Posedness for the Auxiliary Finite-Width Model
 
 To make the existence/uniqueness claim precise for the finite-$\eta$ regularization used in this chapter, we formalize the dynamics as a state-dependent delay system in first-order form:
 $$
@@ -2951,7 +2979,7 @@ We can:
 
 The reduced problem is analytic up to standard quadratures, with causal-delay corrections available as a systematic perturbation series.
 
-For the local origin-crossing theorem program in the self-hit-capable collinear reduction, the working 1D model is dual-mollified rather than merely causal-surface-regularized: the causal-surface mollifier $\delta_\eta$ still selects delayed roots, while a separate core mollifier $\epsilon_c$ is imposed on the inverse-square amplitude so the post-crossing local vector field remains finite.
+For the local origin-crossing theorem program in the self-hit-capable collinear reduction, the auxiliary working 1D model is dual-mollified rather than merely causal-surface-regularized: the causal-surface mollifier $\delta_\eta$ still selects delayed roots, while a separate core regulator $\epsilon_c$ is imposed on the inverse-square amplitude so the post-crossing local vector field remains finite. This working model is not the canonical Master Equation and cannot supply a coincidence law; any result intended to bear on the sharp dynamics must pass the declared regulator-convergence and event-certification burdens.
 
 ---
 
