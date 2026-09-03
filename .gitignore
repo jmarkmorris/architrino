@@ -4,7 +4,8 @@ __pycache__/
 .obsidian/
 .tmp/
 tmp/
-.codex/
+.codex/*
+!.codex/hooks.json
 node_modules/
 
 # Reproducible runtime payloads: build during setup and deployment; never track.

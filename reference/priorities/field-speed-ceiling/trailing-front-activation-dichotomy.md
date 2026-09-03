@@ -8,6 +8,8 @@ The proposed exact-mirror event map has zero matched impulse, continuous positio
 
 For every selected waiting time $u_*>0$, there is a local mirror-collinear solution that agrees exactly with the straight field-speed trace through $u_*$ and then begins continuous braking on one newly activated ordinary partner root per receiver. No external perturbation, row clipping, reweighting, or new contact event is used. The waiting time is not selected by the equation.
 
+This is an existence construction, not an implemented cause of delayed onset. No current FSC theory or hypothesis supplies an evolving variable, wake/action process, perturbation, maturity guard, or other mechanism that keeps the channel inactive and then makes it activate at the prescribed $u_*$. The ordinary partner row supplies the acceleration contribution after activation; it does not cause the choice of activation time.
+
 Plainly: the unchanged post-event wake equation permits the pair to fly straight for any chosen positive time and then begin slowing. It also permits them to continue straight. The current law therefore gives a set of futures rather than one future.
 
 ## Declared setting

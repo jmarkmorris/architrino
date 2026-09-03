@@ -4,14 +4,14 @@ This file is the chronological work log for the Archie-service MCP adapter. Use 
 
 ## Log Entries
 
-### 2026-09-02 — MCP-003 closed without embeddings
+### 2026-09-02 — MCP-003 passed; embeddings declined
 
 - Froze eight natural-language retrieval needs against reviewed authored sources before altering the query engine. The prior exact-phrase/all-raw-term search returned a nonempty top-10 page for 0 of 8 questions because punctuation and question words were treated as required lexical content.
 - Added a bounded deterministic fallback only for records that otherwise score zero: Unicode letter/number tokenization, a fixed function-word list, at least 60% token coverage with two matches for multi-token queries, fixed field weights, the existing authority preference, and the existing source-id tie-break. No stemming, inferred synonym expansion, model call, embedding lookup, repository scan, visibility bypass, or authority promotion was added.
 - The reviewed [deterministic-recall benchmark](deterministic-recall-benchmark-2026-09-02.md) passed 8/8 natural-language search targets at rank 10, 2/2 exact reads, 1/1 topic-enumeration case, and 2/2 declared-edge `neighbors`/`walk` cases. It returned no non-public or `priority_only` source in public scope, and the existing seven-test tool-contract suite remained passing.
-- Closed MCP-003 with a measured negative implementation decision and removed it from the dormant queue. Embeddings remain a future fallback only if a later reviewed benchmark shows an important residual miss that reasonable deterministic retrieval cannot solve; any such proposal must define model, privacy, freshness, cost, visibility, provenance, fallback, and no-authority-promotion gates before implementation.
+- MCP-003 passed its reviewed acceptance benchmark and was removed from the dormant queue. The separate embeddings implementation proposal received a measured negative decision. Embeddings remain a future fallback only if a later reviewed benchmark shows an important residual miss that reasonable deterministic retrieval cannot solve; any such proposal must define model, privacy, freshness, cost, visibility, provenance, fallback, and no-authority-promotion gates before implementation.
 
-Plainly: the benchmark found a real recall defect, but ordinary deterministic parsing fixed every reviewed case. There is no measured reason to add an embedding service or private vector index.
+Plainly: MCP-003 succeeded: the benchmark found a real recall defect, and ordinary deterministic parsing fixed every reviewed case. Only the embeddings proposal was declined because there is no measured reason to add an embedding service or private vector index.
 
 ### 2026-09-02 — Reclassified as an Archie-service protocol adapter
 

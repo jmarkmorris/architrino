@@ -8,6 +8,14 @@ The operator selected Option A: the proposed exact-mirror model retains the stra
 
 Plainly: the mathematics can describe every allowed future and can rule out pathological flickering at the event. It still has no alarm clock that chooses one future. Option A records that fact; Option B would add the missing clock as a new law.
 
+## Causal-implementation boundary
+
+No current FSC theory or hypothesis implements the cause of delayed-braking onset. Once a positive time $u_*$ is prescribed, the delayed-ignition theorem proves that a new ordinary partner root and its acceleration contribution produce a valid braking branch. The theorem does not supply any evolving state, wake process, action account, perturbation, maturity condition, or event guard that waits until $u_*$ and then causes that root to activate. The prescribed onset is therefore an input to the branch construction, not an output of an implemented causal mechanism.
+
+**Claim grade:** `derived current-authority absence classification`. It is falsified by identifying an already declared FSC state variable and evolution equation whose value changes on the zero-ledger plateau, reaches a proved activation guard at one positive time, and produces the existing delayed-braking ledger without fitted waiting-time data.
+
+Plainly: the ordinary wake equation explains the slowing after the branch has been started. Nothing currently written explains why the straight motion would stop being straight at one later moment. Option A preserves that missing-cause boundary rather than treating the freely supplied waiting time as physics.
+
 ## 1. Inputs to the decision
 
 | Input | Result available now | Boundary that remains |
