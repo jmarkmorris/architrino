@@ -22,6 +22,7 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 10. `full_ppn_completion` — Status: `Deferred / blocked`.
 11. `horizon_diagnostics_consumer` — Status: `Deferred / blocked`.
 12. `speed_symbol_consolidation` — Status: `Deferred / blocked`.
+13. `unbooked_session_item_recovery` — Status: `Deferred / blocked`. Owner assignment is the first action.
 
 ## In progress
 
@@ -110,6 +111,27 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 - **Request / acceptance:** Audit ownership and collapse theorems before placing the listed speed symbols in one canonical Lorentz/effective-metric table.
 - **Evidence / blocker:** Preserve provenance-bound legacy values and $c_f=1$ numerical instantiation.
 - **Completion:** Every symbol has one owner, scope, and collapse relation.
+
+### AWT-015 — Unbooked session-item recovery, 2026-09-03
+
+- **Status:** Deferred / blocked
+- **Priority object:** `unbooked_session_item_recovery`
+- **Request / acceptance:** Assign one declared owner to each row in the table below, then route it to that owner's `work-queue.md` and delete the row here. This object exists because the items were generated in operator sessions and were never booked anywhere; it is a routing backlog, not a result.
+- **Provenance:** Recovered on 2026-09-03 from a review of five idle operator session transcripts. The transcripts themselves are not repository artifacts and are not citable evidence; every row below must be re-derived or re-authored by its owner before it carries any grade. Nothing in this row is graded, and no row licenses a claim.
+
+| # | Recovered item | Nearest owner | Routing status |
+| ---: | --- | --- | --- |
+| 1 | Hermann Weyl gauge episode for [historical-context-and-missed-opportunities.md](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md), plus the Weyl, Yang, Mills, and Wilson absences from `archie/major-thinkers.md`. The corpus cites Weyl only as a symbol; the man, the 1918–1929 episode, and the origin of the term are absent. | **None declared.** No `reference/priorities` workstream owns `philosophy-history`. Nearest by content is [mapping-one-nature-many-theories](../mapping-one-nature-many-theories/work-queue.md). | Owner assignment required first. |
+| 2 | Non-decoupling channels as discriminating falsifier targets: anomaly matching and the colour count from $\pi^0\to\gamma\gamma$, the dimension-5 neutrino operator, the symmetry-breaking pattern, light-species counting, and the two naturalness failures. Proposed as the places where the inverse problem is not many-to-one, sited near the existing gauge recovery gate. | [mapping-standard-model](../mapping-standard-model/work-queue.md), which owns gauge recovery targets. | Not routed. |
+| 3 | Terminology hazard: treating an emitted wake's spatial period as an assembly extent conflates pitch with radius. `reactions/radiation.md` currently avoids the term entirely, which is the correct default to preserve rather than a gap to fill. | Archie canon; controlled reference, so propose wording before editing. | Not routed. |
+| 4 | Photon formation-geometry relaxation: whether the geometry an emitted assembly takes in the dense near-zone wake environment differs from its free-flight geometry. Distinct from, and must not be confused with, distance-accumulating expansion, which the photon-transport burden in [treasure-physics-overlooked.md](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) and [euclidean-void.md](../../../content/markdown/aaa/foundations/euclidean-void.md) already bars. Falsifier: identical relaxed geometry in dense and ambient backgrounds retires it. | [app-photon](../app-photon/work-queue.md) or [mapping-electromagnetism](../mapping-electromagnetism/work-queue.md). | Not routed. |
+| 5 | Near-field magnitude lemma promotion. [MEC-008](../master-equation-closure/work-queue.md#mec-008--same-transmitter-coincidence-domain-reachability) records the result in its 2026-09-03 progress block, but there is no Promotion Map row and no reader-ready standalone document, so promotion today would require the rewrite that promotion policy forbids. | [master-equation-closure](../master-equation-closure/work-queue.md). | Needs a Promotion Map row and an independent-authorship gate. |
+| 6 | `force row` survives in eight live files against the deprecation in [AGENTS.md](../../../AGENTS.md): `mapping-equations/eq-01-05-root-conservation-packet.md`, `mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md`, `master-equation-closure/spiral-vp1-inactive-memory-proof.md`, `master-equation-closure/spiral-vp1-root-transport-interval-proof.md`, `app-solver/work-log.md`, `mapping-benchmarks/casimir-effect.md`, and two files under `master-equation-closure/history/` that are already revoked and arguably inert. | Each owning directory. | Not routed. |
+| 7 | `lane` carries two meanings. Operator prose uses it for a workstream, where `workstream` is already canonical; reader-facing prose in `content/markdown/aaa` uses it for a corpus section, where a reader has no way to resolve it. | [aaa-corpus-rewrite](../aaa-corpus-rewrite/work-queue.md) for the reader-facing sense. | Not routed. |
+
+- **Evidence / blocker:** Row 1 is blocked on owner assignment, which is an operator decision rather than a technical one. Rows 2 through 7 are blocked only on routing. Nothing here is blocked on a derivation.
+- **Deliberately excluded:** `node scripts/build-textbook-md-pdf.mjs --write` is not a lost item. Generator `--write` runs only on explicit operator request or in the branch/PR process, so its standing-pending state is the policy working, not a backlog.
+- **Completion:** Every row above is either routed to an owner queue or rejected with a stated reason, and this object is removed.
 
 ## Awaiting verification
 
