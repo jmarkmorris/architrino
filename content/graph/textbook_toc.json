@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1582
+      "sections": 1583
     }
   },
   "tocRoot": {
@@ -400,6 +400,14 @@
             "scenePath": "content/scenes/foundations/euclidean_void.json",
             "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Three layers that get confused",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Three layers that get confused",
+                "sectionKey": "three layers that get confused",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Core Concept",

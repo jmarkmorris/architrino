@@ -6,7 +6,7 @@ It owns none of the content rules. Those live in the [academic style guide](../.
 
 ## Import
 
-**Every content rule in the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md) applies to operator-facing output.** That guide is the single authority for audience, plain-by-default prose, what an explanation must do, definition at first use, clarity and the cost of repetition, scope of assumed knowledge, structure, and the expected tools of analogy, worked numbers, signposting, and picture-before-symbol.
+**Every content rule in the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md) applies to operator-facing output.** The imported edition is **1.0**; when that guide advances an edition, this import follows it without needing an edit here. That guide is the single authority for audience, plain-by-default prose, what an explanation must do, definition at first use, clarity and the cost of repetition, scope of assumed knowledge, structure, and the expected tools of analogy, worked numbers, signposting, and picture-before-symbol.
 
 The import is wholesale and is not restated here, because a summary would drift from its source. Read the style guide. This document adds only what a published textbook has no use for.
 

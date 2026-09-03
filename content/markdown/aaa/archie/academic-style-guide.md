@@ -12,6 +12,8 @@ This guide defines the default prose standard for textbook-facing content in the
 
 This guide complements, rather than replaces, the mathematical guide in [mathematics-style-guide.md](mathematics-style-guide.md). The mathematical guide governs notation and formal dialect. This guide governs prose, structure, tone, and editorial discipline.
 
+**Edition 1.0**, settled 2026-09-03. The edition number exists because the corpus is being brought into line with this guide chapter by chapter, over a long period, and a converted chapter needs to record which edition it was written against. A later edition changes the number; a typographical fix does not.
+
 ## Scope
 
 Apply this guide to the following content classes unless a more specific local template overrides it:

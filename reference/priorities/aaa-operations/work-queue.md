@@ -105,9 +105,11 @@ Plainly: stop copying policy by hand and let a generator do it; keep behavior ru
 
 The [operator explanation standard](../../op/operator-explanation-standard.md) already states that documents written under the retired convention keep their form and that conversion happens opportunistically during substantial revision. This item exists because that default is right for the working record and wrong for two specific surfaces, which are identified below.
 
-#### Superseding scope, 2026-09-03
+#### Tier 1 reassigned, 2026-09-03
 
-The operator has since decided on a corpus-wide rewrite of all 199 `content/markdown/aaa` documents against the merged explanation standard, whether or not they carry the retired tag. Tier 1 below is therefore a subset of that larger campaign rather than an independent task, and should be executed as part of it rather than as a separate tag sweep. Tiers 2 and 3 remain this item's own work. When the rewrite campaign has a lane, Tier 1 moves there and this item narrows to the operator-facing surfaces.
+The operator decided on a corpus-wide rewrite of all 199 `content/markdown/aaa` documents against the merged explanation standard, whether or not they carry the retired tag. That campaign now has a lane: [corpus explanation rewrite](../aaa-corpus-rewrite/priorities.md), with the pilot complete and accepted.
+
+**Tier 1 is reassigned there** and is no longer this item's work. Removing the tag from 23 corpus files is a subset of rewriting all 199 against the same standard, and running it separately would touch those files twice. This item retains Tiers 2 and 3, the operator-facing surfaces, and its own gate is unchanged.
 
 #### Measured scope, 2026-09-03
 
