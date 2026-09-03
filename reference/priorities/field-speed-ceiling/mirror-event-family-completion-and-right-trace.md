@@ -1,6 +1,6 @@
 # Mirror event-family completion and right-trace construction
 
-**Status:** proposed exact-mirror event map constructed; isolated straight-trace compatibility and positive-waiting-time delayed-braking local existence derived; continuation proven multivalued in the declared class; selection decision and independent review open. **Claim grade:** proposed nonordinary event law with derived consequences inside the declared exact mirror class. It is not an adopted canonical law and does not establish general delayed-system well-posedness, reversal, or a breather.
+**Status:** proposed exact-mirror event map constructed; isolated straight-trace compatibility and positive-waiting-time delayed-braking local existence derived; independent review complete; operator selected Option A and retained the proven multivalued continuation relation at current FSC authority. **Claim grade:** proposed nonordinary event law with derived consequences inside the declared exact mirror class. It is not an adopted canonical law, supplies no selector, and does not establish general delayed-system well-posedness, stability, or an autonomous breather.
 
 ## Purpose
 
@@ -318,21 +318,18 @@ When $\boldsymbol{\mathsf R}_i\ne0$, the right-trace equation retains those cont
 
 A general well-posedness theorem for this history-dependent restart is not proved here. FSC-007 still owns genuinely regular atom-free charts, but its positive inactive-gap hypotheses exclude this margin-zero mirror chart. In the exact isolated mirror class, the straight trace and the proved positive-waiting-time braking branches establish that the continuation relation is multivalued. A unique continuation requires additional selection data.
 
-## Review obligations
+## Completed review and decision
 
-The completed Jack K. Hale delayed-history review is recorded in [FSC-006b-JKH3](jack-k-hale-third-review-2026-08-02.md). Remaining review and proof obligations are:
+The completed Jack K. Hale delayed-history review is recorded in [FSC-006b-JKH3](jack-k-hale-third-review-2026-08-02.md). The [independent complete-lobe and returning-event review](independent-complete-lobe-returning-event-review-2026-09-02.md) verifies the repaired local-existence, root-census, and measure-typing chain. The [event-adjacent no-cascade lemma](event-adjacent-no-cascade-lemma.md) closes the thin activation-component question in the declared mirror-collinear class. The [future-equivalence quotient theorem](future-equivalence-quotient-and-two-cycle.md) supplies the live/archive state boundary. The operator selected Option A in the [continuation-selection decision](continuation-selection-operator-decision-2026-09-02.md), retaining the continuation as a multivalued relation without adding a selector.
 
-1. an independent theorem review of the delayed-ignition local-existence proof and full-vector embedding;
-2. an independent measure-typing review of the event map, ownership record, and remainder ledger;
-3. the event-adjacent no-cascade estimate for thin activation sets, which can classify the immediate boundary but cannot restore uniqueness; and
-4. an explicit decision whether to retain multivalued continuation or propose a separate selection law.
-
-An independent measure review should test that the divergent ordinary positive-range approach measure, the finite common event measure, and the post-event remainder ledger remain separately typed.
+Plainly: the event construction and its compatible futures have been reviewed, the immediate cascade gap has been closed, and the state quotient has been specified. The operator's decision records the remaining nonuniqueness instead of inventing a rule that chooses one future.
 
 ## Claim boundary
 
-The proposed law is limited to the exact equal-magnitude, opposite-polarity mirror event. It does not adopt a general coincidence law, swept-source reception on every channel, the field-speed ceiling, or a conservation rule. It constructs a labeled restart equation, proves one exact isolated straight trace, and now has a local-existence theorem for a continuum of positive-waiting-time delayed-braking branches. It does not select one of those branches, prove general well-posedness, establish stability or causal decoupling under perturbation, continue the braking branch to reversal, or prove a breather.
+The proposed law is limited to the exact equal-magnitude, opposite-polarity mirror event. It does not adopt a general coincidence law, swept-source reception on every channel, the field-speed ceiling, or a conservation rule. It constructs a labeled restart equation, proves one exact isolated straight trace, and now has a local-existence theorem for a continuum of positive-waiting-time delayed-braking branches. No current FSC theory or hypothesis implements the cause of the delayed onset: the new ordinary row explains the acceleration contribution after an onset is prescribed but supplies no mechanism that chooses or initiates that onset. The packet does not select one branch, prove general well-posedness, establish stability or causal decoupling under perturbation, or prove an autonomous breather.
+
+Plainly: the mathematics can continue a branch after a waiting time is supplied, but it has no physical or dynamical clock that makes the wait end. Option A keeps that absence explicit.
 
 ## Closure goal
 
-Independently review the delayed-ignition local-existence theorem and complete the Lars Hörmander measure-typing check. Then decide whether the exact-mirror proposal retains a multivalued continuation relation or adds an explicit selection law before treating the event-family prerequisite as complete.
+Preserve the operator-selected multivalued continuation relation at current FSC authority. Any future selector must be independently derived, checked against the quotient and ownership records, and separately authorized.

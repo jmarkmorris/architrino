@@ -42,12 +42,12 @@ The existing MCP contract fixture remained byte-for-byte valid because the new f
 
 Plainly: all reviewed retrieval needs now close through deterministic source text and declared graph structure. The fallback did not rewrite old successful rankings or open hidden material.
 
-## MCP-003 Decision
+## MCP-003 Outcome And Embeddings Decision
 
-Embeddings are not justified by this benchmark. The observed recall failure had a bounded deterministic cause and a bounded deterministic repair. No residual reviewed case requires approximate semantic similarity, so MCP-003 closes with a measured negative implementation decision: do not add an embedding model, external provider, private vector store, embedding freshness pipeline, semantic cost center, or semantic authority layer.
+MCP-003 passed: its reviewed benchmark exposed the baseline deterministic-search defect, the bounded lexical repair corrected that defect, and every declared acceptance case passed without a visibility or authority leak. Separately, the embeddings implementation proposal received a measured negative decision because no residual reviewed case requires approximate semantic similarity. Do not add an embedding model, external provider, private vector store, embedding freshness pipeline, semantic cost center, or semantic authority layer on the present evidence.
 
 The decision is falsified if a later reviewed natural-language benchmark identifies an important public source that remains unreachable by reasonable deterministic token, title, route, exact-read, topic, or declared-graph methods. Any future embedding proposal must then separately define and enforce model identity, privacy, freshness, measured cost, visibility filtering before and after ranking, repository-source provenance, deterministic fallback behavior, and a prohibition on authority promotion before implementation.
 
-Plainly: semantic retrieval remains a possible later fallback, but it has no measured job to do today.
+Plainly: MCP-003 succeeded. Only the proposal to add embeddings was declined; semantic retrieval remains a possible later fallback, but it has no measured job to do today.
 
 Closure goal: preserve source-grounded deterministic retrieval and reconsider embeddings only after a reviewed residual recall failure survives reasonable deterministic repair.

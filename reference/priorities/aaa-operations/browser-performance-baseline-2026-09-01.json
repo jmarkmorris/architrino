@@ -2,10 +2,10 @@
   "schema": "architrino.browser-performance-evidence.v1",
   "status": "passed_pre_release",
   "productionMutation": false,
-  "measuredAtUtc": "2026-09-02T23:08:10.451Z",
-  "measurementBoundary": "The public-feedback-interaction profile and its source closure were remeasured after the public scene indexes changed. The photon-4k-visual profile was remeasured from the complete current source closure in an isolated foreground Microsoft Edge 152 profile at exactly 3840 by 2160 CSS pixels and device-pixel ratio 1 after unclaimed host compute processes were stopped. Earlier wrong-device-scale and contention-bound samples remain rejected. The shared Codex GPU-process envelope retains its original foreground 2026-09-02 measurement because the accepted contract assigns that distinct shared-process instrument.",
+  "measuredAtUtc": "2026-09-03T02:35:56.383Z",
+  "measurementBoundary": "The public-feedback-interaction profile and its source closure retain their accepted measurement after the public scene indexes changed. The photon-4k-visual profile was remeasured after the Mermaid 11.17.2 vendor update from the complete current source closure in a dedicated Codex in-app Chromium 152 tab at exactly 3840 by 2160 CSS pixels and device-pixel ratio 1, with no active managed compute lease. Earlier wrong-device-scale and contention-bound samples remain rejected. The shared Codex GPU-process envelope retains its original foreground 2026-09-02 measurement because the accepted contract assigns that distinct shared-process instrument.",
   "environment": {
-    "browser": "Chrome 152.0.0.0 through the Codex in-app browser for Public Feedback; Microsoft Edge 152.0.0.0 through an isolated foreground CDP profile for Photon",
+    "browser": "Chrome 152.0.0.0 through the Codex in-app browser for Public Feedback and the remeasured Photon profile",
     "platform": "macOS",
     "server": "scripts/dev/start-local-dev.mjs with EOM_BORG_SHADOW=0 and one fresh loopback port per cold profile",
     "cacheBoundary": "Cold values use the first app load on a fresh loopback origin. Warm values use an identical same-origin reload with the development server's HTTP validation behavior retained. The refreshed cold profiles transferred their complete current source closures.",
@@ -74,7 +74,7 @@
     "photon-4k-visual": {
       "status": "passed",
       "route": "/photon.html",
-      "measuredAtUtc": "2026-09-02T23:08:10.451Z",
+      "measuredAtUtc": "2026-09-03T02:35:56.383Z",
       "viewport": {
         "cssWidth": 3840,
         "cssHeight": 2160,
@@ -83,14 +83,14 @@
       "launch": {
         "cold": {
           "originWasFresh": true,
-          "loadEventEndMs": 363.69999998807907,
-          "transferBytes": 4562057,
-          "encodedBytes": 4550657,
+          "loadEventEndMs": 549.1999999880791,
+          "transferBytes": 4568660,
+          "encodedBytes": 4557260,
           "resourceCount": 37
         },
         "warm": {
           "sameOriginReload": true,
-          "loadEventEndMs": 273.39999997615814,
+          "loadEventEndMs": 294,
           "transferBytes": 11400,
           "encodedBytes": 561899,
           "resourceCount": 37
@@ -100,12 +100,12 @@
         "samples": 360,
         "p95Ms": 17.199999999999818,
         "medianFps": 59.88023952095874,
-        "intervalsOver33_34Ms": 1
+        "intervalsOver33_34Ms": 0
       },
       "heap": {
         "supported": true,
-        "warmAfterFramesUsedBytes": 42603162,
-        "frameWindowGrowthBytes": -29146247
+        "warmAfterFramesUsedBytes": 21872226,
+        "frameWindowGrowthBytes": -58068185
       },
       "gpuSurfaceProxy": {
         "method": "canvas backing-store lower bound; excludes textures, geometry, driver allocation, compositor copies, and shared GPU-process memory",
@@ -149,8 +149,8 @@
     },
     "photon-4k-visual": {
       "files": 38,
-      "bytes": 4550657,
-      "sha256": "8887fe22a77ff33f8027326ecb49ce0f6598d90738474ad5b8addaff484958b3",
+      "bytes": 4557260,
+      "sha256": "a855748978dfe25c460de2597bcb6bb8d0060282f78a583c116da4902a0f155d",
       "paths": [
         "photon.html",
         "src/runtime/top-dynamic-control-bar.css",

@@ -40,6 +40,13 @@ const REMAINING_EXTREME_RAY_CHARTS = [
   { id: 'ray-3-minus11-10', axis: [3, -11, 10].map((value) => value / Math.sqrt(230)), receiverIndex: 0 },
   { id: 'ray-minus11-10-3', axis: [-11, 10, 3].map((value) => value / Math.sqrt(230)), receiverIndex: 4 },
 ].map((chart) => ({ ...chart, polarities: [1, -1, 1, -1, 1, -1] }));
+const GENERIC_AXIS_RAYS = [
+  [-3, -10, 11],
+  [3, -11, 10],
+  [1, 1, 1],
+  [-11, 10, 3],
+];
+const GENERIC_AXIS_EDGES = [[0, 1], [1, 2], [2, 0], [2, 3], [3, 0]];
 
 function dot(left, right) {
   return left.reduce((sum, value, index) => sum + value * right[index], 0);
@@ -59,6 +66,42 @@ function scale(vector, scalar) {
 
 function subtract(left, right) {
   return left.map((value, index) => value - right[index]);
+}
+
+function add(left, right) {
+  return left.map((value, index) => value + right[index]);
+}
+
+function unit(vector) {
+  return scale(vector, 1 / Math.sqrt(dot(vector, vector)));
+}
+
+function axisOnGenericEdge(edge, parameter) {
+  return unit(add(
+    scale(GENERIC_AXIS_RAYS[edge[0]], 1 - parameter),
+    scale(GENERIC_AXIS_RAYS[edge[1]], parameter),
+  ));
+}
+
+function nineResiduals(packet, axis) {
+  const representativeIndices = [0, 2, 4];
+  const accelerations = representativeIndices.map((index) => {
+    const value = packet.rawLedgers.causalRoots[index].measures.probeResponses[0].acceleration;
+    return [value.x, value.y, value.z];
+  });
+  const prescribed = representativeIndices.map((index) => subtract(
+    scale(axis, dot(axis, VERTICES[index])),
+    VERTICES[index],
+  ));
+  const denominator = prescribed.reduce((sum, row) => sum + dot(row, row), 0);
+  const commonScale = accelerations.reduce(
+    (sum, acceleration, index) => sum + dot(acceleration, prescribed[index]),
+    0,
+  ) / denominator;
+  return accelerations.flatMap((acceleration, index) => subtract(
+    acceleration,
+    scale(prescribed[index], commonScale),
+  ));
 }
 
 function independentLedger(beta, chart) {
@@ -211,5 +254,25 @@ test('unchanged generic evaluator independently samples the remaining extreme-ra
       assert.ok(obstruction >= -1.128562106033269 && obstruction <= -0.1017572007967045,
         `chart=${chart.id} beta=${beta} produced tangential acceleration ${obstruction} outside the certified cover`);
     }
+  }
+});
+
+test('unchanged generic evaluator samples all five exact quotient edges with complete partner roots and nine rows', () => {
+  for (const [edgeIndex, edge] of GENERIC_AXIS_EDGES.entries()) {
+    const axis = axisOnGenericEdge(edge, 0.37);
+    const packet = independentLedger(0.63, {
+      id: `generic-edge-${edgeIndex}`,
+      axis,
+      polarities: [1, -1, 1, -1, 1, -1],
+    });
+    assert.equal(packet.reducedMeasures.validity.passed, true,
+      JSON.stringify(packet.reducedMeasures.numericalConvergence));
+    assert.equal(packet.rawLedgers.causalRoots.length, 6);
+    assert.equal(packet.rawLedgers.causalRoots.every((event) => event.rootCount === 5), true);
+    const residuals = nineResiduals(packet, axis);
+    assert.equal(residuals.length, 9);
+    assert.equal(residuals.every(Number.isFinite), true);
+    assert.ok(Math.max(...residuals.map(Math.abs)) > 0.1,
+      `edge=${edgeIndex} finite consistency point unexpectedly approached a common zero`);
   }
 });

@@ -1,6 +1,6 @@
 # Exact-mirror continuation selection analysis
 
-**Status:** derived negative for the currently declared solution class and its presently available selectors; minimum additional activation-selection clause identified but not adopted. **Owner:** FSC-006b/FSC-005. **Primary input:** [Trailing-front delayed-ignition local-existence theorem](trailing-front-activation-dichotomy.md). **Claim boundary:** this note neither selects a continuation nor changes the canonical ordinary law, proposed ceiling response, or proposed exact-mirror event map.
+**Status:** derived negative for the currently declared solution class and its presently available selectors; the operator subsequently selected Option A and retained the multivalued relation without adopting the identified activation-selection clause. **Owner:** FSC-006b/FSC-005. **Primary input:** [Trailing-front delayed-ignition local-existence theorem](trailing-front-activation-dichotomy.md). **Decision record:** [Continuation-selection operator decision](continuation-selection-operator-decision-2026-09-02.md). **Claim boundary:** this note derives the selector obstruction but neither supplies a selector nor changes the canonical ordinary law, proposed ceiling response, or proposed exact-mirror event map.
 
 ## Decision question
 
@@ -83,7 +83,9 @@ Plainly: the equation offers every positive alarm time but contains no alarm clo
 
 ## Exact verdict and falsifiers
 
-**Derived verdict:** no currently declared, approximation-independent solution principle selects straight passage or a unique positive braking onset. Continuous-acceleration, scalar-minimality, and a restricted approximation limit can select straight only after adding a stronger solution or selection rule. A unique braking onset requires an additional trigger functional. The minimum scale-free new datum for the isolated mirror case is the displayed activation-selection clause, which selects straight passage; it is identified here but not adopted.
+**Derived verdict:** no currently declared, approximation-independent solution principle selects straight passage or a unique positive braking onset. More strongly, no current FSC theory or hypothesis implements a cause that changes the zero-ledger straight state into the delayed-braking state at a positive time. Continuous-acceleration, scalar-minimality, and a restricted approximation limit can select straight only after adding a stronger solution or selection rule. A unique braking onset requires an additional trigger functional. The minimum scale-free new datum for the isolated mirror case is the displayed activation-selection clause, which selects straight passage; it is identified here but not adopted.
+
+Plainly: the branch theorem proves what the motion can do after someone supplies an alarm time. The present model contains no alarm process, so the waiting time cannot be reported as a caused prediction.
 
 This verdict is overturned if one of the following is demonstrated:
 
@@ -96,4 +98,4 @@ The proposed activation-selection clause is falsified as the minimum necessary s
 
 ## Closure goal
 
-Independently review the delayed-ignition theorem together with this selector audit. Then decide whether the proposed exact-mirror model retains a multivalued continuation relation or proposes the scale-free activation-selection clause; do not extend a braking branch toward reversal or a breather until that foundational decision is explicit.
+Preserve the operator-selected multivalued relation at current FSC authority. Treat the scale-free activation-selection clause and every other selector as a separate future proposal requiring independent derivation and operator authorization.

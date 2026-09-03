@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — Photon performance evidence refreshed for Mermaid 11.17.2
+
+- Remeasured the complete 38-file Photon source closure after the vendored Mermaid update on a fresh loopback origin in a dedicated Codex in-app Chromium 152 tab at exactly 3840 by 2160 CSS pixels and device-pixel ratio 1. No managed compute lease was active.
+- The updated closure is 4,557,260 encoded bytes at SHA-256 `a855748978dfe25c460de2597bcb6bb8d0060282f78a583c116da4902a0f155d`. The accepted profile measured 549.2-millisecond cold load, 294-millisecond warm load, 4,568,660 cold-transfer bytes, 11,400 warm-transfer bytes, 360 frame samples, 17.2-millisecond p95, 59.88 median frames per second, zero intervals above 33.34 milliseconds, 21,872,226 post-frame used-heap bytes, -58,068,185 frame-window heap growth, 28,888,248 canvas-surface bytes, and zero origin-storage bytes.
+- Retained the separately contracted shared-GPU-process envelope; this remeasurement updates the Photon route and source-bound evidence only. It is one local pre-release measurement and does not establish production performance or a general improvement.
+
+Plainly: changing Mermaid changed bytes that Photon loads, so the old performance receipt was no longer valid. The current bytes were measured directly and remain within every unchanged Photon budget.
+
 ### 2026-09-02 — OPS-013 public Borg byte identity closed
 
 - Preserved GitHub Actions run `33685894947` at its demonstrated authority: its Ubuntu job reported 145-of-145 Borg identity verification before an unrelated generated-orientation failure stopped the broader branch job.

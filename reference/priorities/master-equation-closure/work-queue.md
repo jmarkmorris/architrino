@@ -1,6 +1,6 @@
 # Master-Equation Closure Work Queue
 
-This is the canonical execution ledger for the three coupled Master-Equation closure obligations and the pairwise causal-root accounting foundation needed to audit conserved-account maps without duplicate attribution. The negatively completed [MEC-001 characteristic-tail adjudication](characteristic-tail.md), completed bounded [MEC-006 receiver-gradient theorem](receiver-wake-gradient-closure.md), and completed [MEC-007 mirror close-approach boundary](mirror-close-approach-causal-root-boundary.md) remain bounded inputs, not live queue rows.
+This is the canonical execution ledger for the three coupled Master-Equation closure obligations, the pairwise causal-root accounting foundation needed to audit conserved-account maps without duplicate attribution, and the physical-domain reachability question that determines whether coincident same-transmitter birth requires a continuation law at all. The negatively completed [MEC-001 characteristic-tail adjudication](characteristic-tail.md), completed bounded [MEC-006 receiver-gradient theorem](receiver-wake-gradient-closure.md), and completed [MEC-007 mirror close-approach boundary](mirror-close-approach-causal-root-boundary.md) remain bounded inputs, not live queue rows.
 
 Review provenance: [Planck Action Period, Blackbody, and Fine-Structure Coupling](../../research-office/research-history/review-packets/planck-action-period-blackbody-alpha-reconciliation-2026-07-29.md) routes its variational and same-update balance questions to `MEC-001`, `MEC-002`, and `MEC-004`; it supplies no action, wake state, conserved account, or status change.
 
@@ -38,9 +38,10 @@ Plainly: every deferred review question now has a live owner and a test. Cross-o
 ## Ranked Next Objects
 
 1. `causal_wake_update_law` — [MEC-002](#mec-002--causal-wake-update-law). Status: `In progress`.
-2. `pairwise_causal_root_ledger_closure` — [MEC-005](#mec-005--pairwise-causal-root-ledger-closure). Status: `Queued`.
-3. `finite_coincident_same_transmitter_transition` — [MEC-003](#mec-003--finite-coincident-same-transmitter-transition). Status: `Deferred / blocked`.
-4. `same_update_conserved_accounts` — [MEC-004](#mec-004--same-update-conserved-accounts). Status: `Deferred / blocked`.
+2. `same_transmitter_coincidence_domain_reachability` — [MEC-008](#mec-008--same-transmitter-coincidence-domain-reachability). Status: `Queued`.
+3. `pairwise_causal_root_ledger_closure` — [MEC-005](#mec-005--pairwise-causal-root-ledger-closure). Status: `Queued`.
+4. `finite_coincident_same_transmitter_transition` — [MEC-003](#mec-003--finite-coincident-same-transmitter-transition). Status: `Deferred / blocked`.
+5. `same_update_conserved_accounts` — [MEC-004](#mec-004--same-update-conserved-accounts). Status: `Deferred / blocked`.
 
 ## In progress
 
@@ -53,6 +54,15 @@ Plainly: every deferred review question now has a live owner and a test. Cross-o
 - **Completion:** One Architrino-native update evolves without future receiver history or residual-defined wake state and passes the regular-chart reduction.
 
 ## Queued
+
+### MEC-008 — Same-transmitter coincidence domain reachability
+
+- **Status:** Queued
+- **Priority object:** `same_transmitter_coincidence_domain_reachability`
+- **Request / acceptance:** Determine whether coincident same-transmitter root birth, or an accumulating positive-delay self-root stratum approaching that boundary, is reachable from admissible EOM-evolved retained histories in a populated Architrino system. A domain exclusion is accepted only if a theorem derived from the existing update proves an invariant admissible region that cannot reach the boundary; singularity of the formula at the boundary is not itself an exclusion proof. Reachability is accepted by one independently certified EOM-evolved counterexample with complete retained history and causal-root provenance. Prescribed isolated collinear histories remain local analytical controls and cannot alone decide physical-domain membership.
+- **Evidence / blocker:** MEC-007 proves a non-locally-finite newborn self-root measure only for its declared mirror-symmetric collinear history and a prescribed one-sided extension. That control refutes universal regularity over any history class that admits it, but it does not prove that a populated EOM evolution realizes the extension. Conversely, the intuition that other Architrinos continually bend the path does not yet prove exclusion: near-diagonal self-root birth is controlled first by the local chord-speed condition $\|\mathbf X_i(T)-\mathbf X_i(T-\tau)\|/\tau=c_f$ as $\tau\to0^+$, while curvature and the complete acceleration ledger enter the higher-order crossing structure. The missing object is a population-stable invariant-domain or reachability theorem on the actual retained-history phase space, with explicit quantifiers over population, initial histories, regular-root margins, and finite evolution interval. A declaration that the Master Equation simply stops before the boundary is classified as an incomplete-domain convention until that theorem or a separately accepted terminal-event ontology is supplied.
+- **Required controls:** (1) the existing isolated collinear birth as a singular analytical control; (2) a minimally noncollinear three-or-more-Architrino EOM-evolved control with complete root census; (3) perturbations of population, geometry, and retained prehistory that test whether the boundary is avoided robustly or only by fine tuning; and (4) a local Taylor/chord expansion separating the necessary $\|\mathbf V_i\|=c_f$ contact from curvature-dependent higher-order terms. Every numerical instantiation uses $c_f=1$.
+- **Completion:** Either prove that all declared admissible populated EOM histories remain in an invariant region excluding coincident same-transmitter birth and near-diagonal self-root accumulation, or exhibit an independently certified admitted EOM history that reaches the boundary. If neither side closes, the domain question remains open and MEC-002/MEC-003 may not cite exclusion as a solution.
 
 ### MEC-005 — Pairwise causal-root ledger closure
 
@@ -70,7 +80,7 @@ Plainly: every deferred review question now has a live owner and a test. Cross-o
 - **Status:** Deferred / blocked
 - **Priority object:** `finite_coincident_same_transmitter_transition`
 - **Request / acceptance:** Derive finite, unique, open-neighborhood continuation through complete coincident same-transmitter root birth on MEC-002.
-- **Evidence / blocker:** Depends on MEC-002 and must be accepted jointly with MEC-004. The unchanged sharp-law route is closed negatively: the newborn self-root acceleration measure is not locally finite, and finite coupling requires the exact weighted-integrability condition recorded in the MEC-002 analysis. On the quadratic chart, impulse control requires $\int M(\tau)\tau^{-3}d\tau<\infty$, while receiver-independent scalar-maturity sensitivity requires the stronger $\int M(\tau)\tau^{-5}d\tau<\infty$. Exact odd-order prescribed histories show that no fixed finite reception-age power works over arbitrary crossing order. These conditions do not select the coupling law, scale, event map, admitted history class, or outgoing state. MEC-007 supplies the mirror-encounter first-boundary theorem and obstruction, not a transition rule; it neither satisfies nor replaces this obligation.
+- **Evidence / blocker:** Depends on MEC-002 and must be accepted jointly with MEC-004 if MEC-008 proves or exhibits physical-domain reachability. The unchanged sharp-law route is closed negatively on the admitted analytical control: the newborn self-root acceleration measure is not locally finite, and finite coupling requires the exact weighted-integrability condition recorded in the MEC-002 analysis. On the quadratic chart, impulse control requires $\int M(\tau)\tau^{-3}d\tau<\infty$, while receiver-independent scalar-maturity sensitivity requires the stronger $\int M(\tau)\tau^{-5}d\tau<\infty$. Exact odd-order prescribed histories show that no fixed finite reception-age power works over arbitrary crossing order. These conditions do not select the coupling law, scale, event map, admitted history class, outgoing state, or physical reachability. MEC-007 supplies the mirror-encounter first-boundary theorem and obstruction, not a transition rule; MEC-008 now owns whether the boundary belongs to the admissible EOM-evolved domain.
 - **Completion:** Continuation is regulator-path independent and is not an event-only patch.
 
 ### MEC-004 — Same-update conserved accounts

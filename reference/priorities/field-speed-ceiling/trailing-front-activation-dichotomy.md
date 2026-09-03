@@ -1,12 +1,14 @@
 # Trailing-front delayed-ignition local-existence theorem
 
-**Status:** derived local existence and continuation nonuniqueness inside the proposed exact-mirror restart; independent theorem review pending. **Owner:** FSC-006b/FSC-005. **Primary precursor:** [Jack K. Hale third review](jack-k-hale-third-review-2026-08-02.md), finding JKH3-6. **Claim boundary:** this theorem is conditional on the proposed field-speed response and proposed exact-mirror event completion. It adopts neither law canonically.
+**Status:** derived local existence and continuation nonuniqueness inside the proposed exact-mirror restart; independent review complete; operator selected Option A and retained the multivalued relation. **Owner:** FSC-006b/FSC-005. **Primary precursor:** [Jack K. Hale third review](jack-k-hale-third-review-2026-08-02.md), finding JKH3-6. **Decision record:** [Continuation-selection operator decision](continuation-selection-operator-decision-2026-09-02.md). **Claim boundary:** this theorem is conditional on the proposed field-speed response and proposed exact-mirror event completion. It adopts neither law canonically and supplies no selector.
 
 ## Purpose and verdict
 
 The proposed exact-mirror event map has zero matched impulse, continuous position and velocity, a complete labeled history splice, and single ownership of the event family. The isolated straight separating trace is one exact continuation. This note proves that it is not the unique continuation in the declared absolutely continuous, almost-everywhere solution class.
 
 For every selected waiting time $u_*>0$, there is a local mirror-collinear solution that agrees exactly with the straight field-speed trace through $u_*$ and then begins continuous braking on one newly activated ordinary partner root per receiver. No external perturbation, row clipping, reweighting, or new contact event is used. The waiting time is not selected by the equation.
+
+This is an existence construction, not an implemented cause of delayed onset. No current FSC theory or hypothesis supplies an evolving variable, wake/action process, perturbation, maturity guard, or other mechanism that keeps the channel inactive and then makes it activate at the prescribed $u_*$. The ordinary partner row supplies the acceleration contribution after activation; it does not cause the choice of activation time.
 
 Plainly: the unchanged post-event wake equation permits the pair to fly straight for any chosen positive time and then begin slowing. It also permits them to continue straight. The current law therefore gives a set of futures rather than one future.
 
@@ -171,11 +173,11 @@ Plainly: the first slowdown is permitted, but its start time is undetermined. Th
 ## Remaining boundaries
 
 - Immediate sustained ignition at $u_*=0$ remains excluded in the declared absolutely continuous class because the row scales as $K/(2t^2)$ and is not locally integrable.
-- Event-adjacent thin activation cascades remain unclassified, but they cannot restore uniqueness because the positive-waiting-time branches already prove nonuniqueness.
-- The theorem is local. It does not prove that braking reaches zero speed, reverses either path, returns the pair to coincidence, or produces a breather.
+- Event-adjacent thin activation cascades are now excluded in the declared mirror-collinear class by the [no-cascade lemma](event-adjacent-no-cascade-lemma.md); that result does not restore uniqueness.
+- This theorem is local. The later [complete-lobe theorem](two-lobe-return-map-and-autonomous-trigger-audit.md) proves turnaround and return under its stronger sufficient bound, but neither result produces an autonomous onset or breather.
 - The exact collinear embedding is not a perturbative-stability theorem and says nothing about noncollinear histories.
 - The event aggregation, zero-impulse restart, and field-speed response remain proposed laws rather than canonical dynamics.
-- Independent theorem and measure-typing review remain required before broader promotion.
+- Independent theorem and measure-typing review are complete. Broader promotion remains barred because the event law, response, and field-speed ceiling are proposed and Option A supplies no selected physical future.
 
 ## Falsifiers
 
@@ -183,4 +185,4 @@ The theorem is overturned by any of the following inside the declared class: a s
 
 ## Closure goal
 
-Independently review the local-existence proof and the event/receiver-measure typing. Then decide whether the proposed exact-mirror model accepts a multivalued continuation relation or adds a separately explicit selection law; only after that decision should the braking branch be extended toward reversal and a possible return.
+Preserve the reviewed nonuniqueness theorem and operator-selected Option A boundary. Any future selector must be a separately derived and authorized FSC proposal.
