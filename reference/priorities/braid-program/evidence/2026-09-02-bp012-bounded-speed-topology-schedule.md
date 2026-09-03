@@ -58,7 +58,7 @@ node scripts/prescribed-path-analysis/run-bp012-bounded-schedule.mjs
 node --test tests/bp012-bounded-schedule.test.js tests/regular-polarity-shared-kernel.test.js tests/regular-polarity-shard-pipeline.test.js
 ```
 
-The schedule/census source SHA-256 is `9c02ca3f8d030c063999d7791cef855204e661089ee28b32249f164188468f18`; the focused schedule test SHA-256 is `e46dec4728497c2225983a16841c1dfbbb22bfb48910a9759776aac671ae487e`.
+The schedule/census source SHA-256 is `bbf8b59093d6082ae175b5d709773deba01340a7090f0fffea850e837dbf31fa`; the focused schedule test SHA-256 is `6eb20b99e394848c2dae944257510d45f3028e981c1a535f72f7717ea8ef4d1b`.
 
 Claim grades are **derived** for the fold equation, its monotonic uniqueness, and the finite topology partition; **measured** for the 286,664 projection census; and **consistency only** for shared-kernel/full-evaluator agreement. No interval-certified exclusion, balance, evolution, retention, stability, binding, identity, score, or scientific acceptance follows.
 

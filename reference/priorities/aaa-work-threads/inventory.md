@@ -4,7 +4,7 @@ Snapshot: 2026-09-02.
 
 This is the developer-facing ownership and routing inventory for [reference/priorities](../README.md). The canonical numeric order lives in [priorities.md](priorities.md); the repeated mathematical joins live in [closure-join-matrix.md](closure-join-matrix.md).
 
-The live filesystem contains 27 immediate top-level directories plus the `dormant-deferred` container: 24 priority inventory directories comprising 11 ranked owners, 1 control surface, 1 unranked shared headless platform, and 11 other unranked owners, plus the non-owner `mapping` overview, the `mapping-cronin-assembly-theory` packet, and the legacy `app-simulation` compatibility directory. The archive contains 25 child directories. The four separately ranked shared packets are not additional directory owners.
+The live filesystem contains 27 immediate top-level directories plus the `dormant-deferred` container: 24 priority inventory directories comprising 10 ranked owners, 1 control surface, 1 unranked shared headless platform, and 12 other unranked owners, plus the non-owner `mapping` overview, the `mapping-cronin-assembly-theory` packet, and the legacy `app-simulation` compatibility directory. The archive contains 25 child directories. The four separately ranked shared packets are not additional directory owners.
 
 ## Inclusion Rules
 
@@ -31,8 +31,7 @@ The rank column mirrors the current unified table for owners that remain directl
 | 11 | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` | Deferred but top-level quantum recovery owner for measures, detector kernels, pair provenance, and Bell gates. | [Work queue](../mapping-quantum/work-queue.md); [transfer-operator packet](../mapping-quantum/transfer-operator-basin-measure.md). |
 | 12 | [`app-solver`](../app-solver/priorities.md) | `eom_application_surface` | Sole forward solver and reusable numerical-execution owner. | [Work queue](../app-solver/work-queue.md); [attractor-search instrument](../app-solver/campaigns/attractor-search-instrument.md). |
 | 13 | [`app-photon`](../app-photon/priorities.md) | `local_c_parameterization` | Photon teaching and diagnostics consumer; general solver capability routes back to EOM. | [Work queue](../app-photon/work-queue.md); the tracker retains the app and evidence boundary. |
-| 14 | [`aaa-operations`](../aaa-operations/priorities.md) | `borg_record_byte_identity` | Repo-wide deployment, hosting, cost, reliability, and release operations. | [Work queue](../aaa-operations/work-queue.md); current verification closes portable Borg publication identity. |
-| 15 | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab` | Deferred teaching packet for one source-carried coordinate morph; no scientific claim follows from display behavior. | [Execution queue](../app-borg/work-queue.md) and [assembly-viewer requirements](../app-borg/assembly-viewer-requirements.md). |
+| 14 | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab` | Deferred teaching packet for one source-carried coordinate morph; no scientific claim follows from display behavior. | [Execution queue](../app-borg/work-queue.md) and [assembly-viewer requirements](../app-borg/assembly-viewer-requirements.md). |
 
 Plainly: this table lists current top-level owners and copies their existing ranks. Gaps are shared-packet ranks or archived rows, not newly assigned priorities.
 
@@ -65,10 +64,11 @@ Plainly: AAA Core supplies shared machinery behind applications. A visitor does 
 
 ## Other Unranked Active Owners
 
-These eleven directories remain in the top-level inventory without a numeric rank. Their local status and ownership boundaries are preserved; inclusion here does not make a blocked task executable or reopen completed work.
+These twelve directories remain in the top-level inventory without a numeric rank. Their local status and ownership boundaries are preserved; inclusion here does not make a blocked task executable or reopen completed work.
 
 | Directory | Present role | Ranking or execution boundary |
 | --- | --- | --- |
+| [`aaa-operations`](../aaa-operations/priorities.md) | Repo-wide deployment, hosting, cost, reliability, and release operations. | OPS-013 is closed and no executable object remains; later operational work requires a new accepted queue item. |
 | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | Interactive explanatory surface for stable-ID equation documents and canonical page links; it does not certify equation claims. | No executable object remains: carousel expansion requires a newly justified task, and review-packet export requires an operator-selected local draft. |
 | [`app-lattice-lab`](../app-lattice-lab/priorities.md) | Accepted Lattice Lab teaching app, its periodic-versus-finite evidence boundaries, and its reactivated follow-on queue. | Active but unranked; LAT-013 is the local rank-1 object, four rows are queued, and LAT-009 plus LAT-075 remain explicitly deferred. |
 | [`app-topo`](../app-topo/priorities.md) | Planar topographic display of prescribed wake-intensity and declared Potential products. | Ranking awaits a reference-surface estimate; consumes AAA Core services and retains visualization ownership. |

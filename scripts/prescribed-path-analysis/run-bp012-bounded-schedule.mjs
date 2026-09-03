@@ -16,6 +16,15 @@ export const DIAGNOSTIC_SPEEDS = Object.freeze([0.05, 0.5, 0.99, 1.01, 3.0703566
 const polaritiesFor = (word) => [...word].map((value) => value === "+" ? 1 : -1);
 const foldCoordinate = (beta) => Math.sqrt(beta * beta - 1) - Math.acos(1 / beta);
 
+function adjacentFloat(value, direction) {
+  const buffer = new ArrayBuffer(8);
+  const view = new DataView(buffer);
+  view.setFloat64(0, value, false);
+  const bits = view.getBigUint64(0, false) + BigInt(direction);
+  view.setBigUint64(0, bits, false);
+  return view.getFloat64(0, false);
+}
+
 function invertFoldCoordinate(target) {
   let lo = 1;
   let hi = SPEED_DOMAIN[1];
@@ -32,7 +41,14 @@ export function topologySchedule(n) {
   const maximumQ = Math.floor((2 * n * foldCoordinate(SPEED_DOMAIN[1])) / Math.PI);
   const boundaries = Array.from({ length: maximumQ }, (_, index) => {
     const q = index + 1;
-    return { q, exactEquation: `M(beta)=pi*${q}/${2 * n}`, beta: invertFoldCoordinate(Math.PI * q / (2 * n)) };
+    const beta = invertFoldCoordinate(Math.PI * q / (2 * n));
+    return {
+      q,
+      exactEquation: `M(beta)=pi*${q}/${2 * n}`,
+      beta,
+      probeBelow: adjacentFloat(beta, -1),
+      probeAbove: adjacentFloat(beta, 1),
+    };
   }).filter((row) => row.beta > SPEED_DOMAIN[0] && row.beta < SPEED_DOMAIN[1]);
   const endpoints = [SPEED_DOMAIN[0], ...boundaries.map((row) => row.beta), SPEED_DOMAIN[1]];
   return {

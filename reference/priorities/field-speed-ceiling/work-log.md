@@ -1,5 +1,13 @@
 # Field-Speed Ceiling Work Log
 
+## 2026-09-02 — Continuation-selection operator decision prepared
+
+- Added the [continuation-selection decision packet](continuation-selection-operator-decision-2026-09-02.md) using the completed quotient, event-adjacent no-cascade, and regular-chart results.
+- Compared retaining the exact-mirror continuation as a multivalued relation with straight-passage, positive-onset, approximation-limit, and future wake/action-derived selector laws.
+- Recommended retaining the multivalued relation at current authority because no admitted quotient-compatible state functional derives one onset and the direct cap-duration reset has no positive fixed cycle in its proved regime.
+- Stated the complete obligations for any future selector: functional, symmetry and scale behavior, guard and reset, clocks, wake and ownership accounting, positive fixed onset where applicable, quotient compatibility, falsifier, and evidence beyond a fitted waiting-time convention.
+- Left one explicit operator decision. No continuation doctrine, selector, ceiling, event law, response law, canonical dynamics, Master Equation change, or reader-facing claim was adopted or promoted.
+
 ## 2026-09-02 — FSC-007 regular-chart local well-posedness and FSC-011 circular corollary
 
 - Added the [FSC-007 regular-chart theorem](regular-chart-history-to-ledger-well-posedness.md) with explicit history-to-root, received-clock, row, and complete-ledger Lipschitz constants on an atom-free finite-delay fixed-census $W^{2,\infty}$ chart.

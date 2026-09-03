@@ -3,11 +3,11 @@
 ## Workstream Metadata
 
 - Kind: `priority-operations`
-- Rank: `14`
-- Value: `0.84`
-- Cost: `3.3`
-- ROI: `0.25`
-- Status: `active`
+- Rank: `unranked active owner`
+- Value: `0.00`
+- Cost: `0.0`
+- ROI: `0.00`
+- Status: `active-no-executable-object`
 - Claim level: `operations-priority`
 - Scope: deployment discipline, service limits, release readiness, cost visibility, reliability, and webapp growth operations.
 
@@ -59,9 +59,9 @@ OPS-008 is closed by the accepted [observability and analytics policy](observabi
 
 ## Published Borg Record Identity
 
-OPS-013 is awaiting live verification under the dated [production byte-identity audit](pages-borg-record-byte-identity-audit-2026-09-02.md). The deployed `main` registry and record payload disagree for 143 of 145 Borg records. The candidate emitter now uses a duration-scaled $2\times10^{-11}$ position grid with repeated-product segment powers and conservatively enlarged residual bounds. Fresh Node 22 and Node 26 generation agrees for all 145 records, and GitHub Actions run `33685894947` independently passed the 145-of-145 verifier on Ubuntu before a later unrelated generated-orientation check stopped the branch job. Content Integrity and Pages both fail before upload on any Borg mismatch. Closure still requires a verified `main` deployment, 145-of-145 public hash agreement, and representative Borg loading.
+OPS-013 is closed by the dated [production byte-identity audit](pages-borg-record-byte-identity-audit-2026-09-02.md). GitHub Actions run `33685894947` establishes only that the 145-of-145 verifier passed on Ubuntu for the portable emitter before an unrelated generated-orientation failure stopped that branch job. PR [#246](https://github.com/jmarkmorris/architrino/pull/246) then merged the same emitter state, post-merge `main` Pages run [`33690784657`](https://github.com/jmarkmorris/architrino/actions/runs/33690784657) completed validation, runtime reconstruction, Borg identity verification, artifact upload, and deployment successfully at commit `00710092e165486f072c9dfe6cd8af4e8e99d343`, and Content Integrity run [`33690784705`](https://github.com/jmarkmorris/architrino/actions/runs/33690784705) passed at the same commit. The independent public HTTPS audit measured 145 matching registry/record SHA-256 identities out of 145, and the first, middle, and last registry selections each loaded through Borg's exact-record path with no browser-console error. The fail-closed loader and portable serialization contract remain intact.
 
-Plainly: this is not a 91-byte storage problem. It is an exact-identity problem that can prevent readers from opening most published Borg records.
+Plainly: every public Borg record now matches the exact byte identity promised by the deployed registry, and representative records open through the same strict hash-checking path readers use.
 
 ## Dependency And Public-Security Baseline
 

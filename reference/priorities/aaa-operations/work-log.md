@@ -6,6 +6,15 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-02 — OPS-013 public Borg byte identity closed
+
+- Preserved GitHub Actions run `33685894947` at its demonstrated authority: its Ubuntu job reported 145-of-145 Borg identity verification before an unrelated generated-orientation failure stopped the broader branch job.
+- Verified that PR [#246](https://github.com/jmarkmorris/architrino/pull/246) merged the same portable emitter state. Post-merge `main` Content Integrity run [`33690784705`](https://github.com/jmarkmorris/architrino/actions/runs/33690784705) and Pages deployment run [`33690784657`](https://github.com/jmarkmorris/architrino/actions/runs/33690784657) both passed at `00710092e165486f072c9dfe6cd8af4e8e99d343`.
+- Added the read-only public HTTPS audit instrument and measured 145-of-145 registry/record SHA-256 agreement, 145-of-145 embedded identity agreement, and 116,875,800 fetched record bytes. Representative first, middle, and last records each loaded through Borg's `EXACT RECORD` path with the sealed source path open and no browser-console warning or error.
+- Removed OPS-013 from the live queue and removed the zero-row Operations lane from the global numeric ranking. No Actions artifact was deleted, no loader check was bypassed, and no portable-serialization rule was weakened.
+
+Plainly: the public site now delivers the exact bytes its Borg registry promises, and the evidence covers both all-file hashing and real strict-loader use.
+
 ### 2026-09-02 — Browser-performance source closure after UI-005
 
 - Replaced the deleted `src/apps/navigator/standalone-app-navigation.css` identity in the accepted Photon source closure with `src/runtime/top-dynamic-control-bar.css` and added the newly loaded `src/runtime/TopDynamicControlBarRuntime.js` source.

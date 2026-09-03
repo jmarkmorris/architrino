@@ -58,8 +58,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 11 | Workstream | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
 | 12 | Engine | [`app-solver`](../app-solver/priorities.md) | `eom_application_surface`: bounded-population run and inspection surface with canonical history, progress, cancellation, checkpoint, diagnostics, and provenance | 6.0 | 1.30 | -56 | 1.56 | 0.20 | 2 | 0.70 | 1.70 | 4 | 2 | 4 | 4 | 3.3 | 0.52 |
 | 13 | App | [`app-photon`](../app-photon/priorities.md) | `local_c_parameterization`: source-bound Noether sea state-to-$c_\gamma,c_{\mathrm{sig}}$ mapping with bounded no-catch-up and stale-root diagnostics | 5.0 | 1.15 | -24 | 1.24 | 0.35 | 3 | 0.80 | 2.00 | 4 | 8 | 8 | 6 | 6.6 | 0.30 |
-| 14 | Op queue | [`aaa-operations`](../aaa-operations/priorities.md) | `borg_record_byte_identity`: portable sealed bytes plus Ubuntu, deployed-hash, and representative live-load verification | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
-| 15 | App | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab`: one source-carried coordinate morph teaching packet | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.46 | 5 | 4 | 7 | 5 | 5.1 | 0.09 |
+| 14 | App | [`app-borg`](../app-borg/priorities.md) | `borg_taxonomy_morph_lab`: one source-carried coordinate morph teaching packet | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.46 | 5 | 4 | 7 | 5 | 5.1 | 0.09 |
 
 ## Dormant-Deferred Routing — 2026-09-02
 
@@ -159,6 +158,12 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 - After archival, the operator completed the one outstanding ChatGPT-mode full-corpus HTTP test. The four bounded tools returned typed `ok`, and the missing-source read returned `not_found` with `SOURCE_NOT_FOUND`; loopback telemetry corroborated the five-tool sequence and snapshot identity.
 - MCP-001 is now verified. The result does not reactivate the parked Archie-service MCP component, alter the active inventory or scores, establish remote deployment readiness, or advance any scientific claim.
+
+## OPS-013 Public Borg Identity Closure — 2026-09-02
+
+- `aaa-operations` completed `borg_record_byte_identity` through a verified merge, successful post-merge `main` Content Integrity and Pages deployment, 145-of-145 public registry/record hash agreement, and representative exact-record loading in Borg.
+- The lane now has no executable next object and becomes an unranked active owner. `app-borg` moves from rank `15` to `14` without score changes.
+- This closes an operations and publication-integrity defect only. It does not validate any Borg configuration scientifically, raise a Borg claim grade, or remove the temporary Actions-artifact overlap warning.
 
 ## Current Focus
 

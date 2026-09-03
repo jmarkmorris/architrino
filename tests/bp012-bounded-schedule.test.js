@@ -9,6 +9,7 @@ test("fold schedule partitions the bounded domain without gaps", () => {
     const schedule = topologySchedule(n);
     assert.equal(schedule.openTopologyCells[0].lower, 0.05);
     assert.equal(schedule.openTopologyCells.at(-1).upper, 20);
+    assert.ok(schedule.foldBoundaries.every((row) => row.probeBelow < row.beta && row.beta < row.probeAbove));
     for (const [index, cell] of schedule.openTopologyCells.entries()) {
       assert.ok(cell.lower < cell.representative && cell.representative < cell.upper);
       if (index > 0) assert.equal(cell.lower, schedule.openTopologyCells[index - 1].upper);

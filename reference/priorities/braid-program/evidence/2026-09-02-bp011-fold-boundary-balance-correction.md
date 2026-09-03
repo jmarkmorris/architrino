@@ -4,7 +4,7 @@ Status: first post-leading balance coefficient derived with uniform growing-latt
 
 ## Result
 
-The next balance term is not the odd-fold coefficient $-83/240$. The complete old-root background has a fold-boundary correction of order $eta_q^{-3/2}$, so the first correction to the balance-to-fold displacement has the fractional order $eta_q^{-9/2}$. For odd fold $q=2n-1$, let
+The next balance term is not the odd-fold coefficient $-83/240$. The complete old-root background has a fold-boundary correction of order $\beta_q^{-3/2}$, so the first correction to the balance-to-fold displacement has the fractional order $\beta_q^{-9/2}$. For odd fold $q=2n-1$, let
 
 $$
 h=\frac\pi6,
@@ -18,7 +18,7 @@ Then the prescribed equal-radius regular-phase balance satisfies
 
 $$
 \boxed{
-\beta_n-eta_q
+\beta_n-\beta_q
 =\frac1{18\beta_q^3}
 -\frac{\eta(1/2)}{27\sqrt{\pi/3}}\,\beta_q^{-9/2}
 +o(\beta_q^{-9/2})
