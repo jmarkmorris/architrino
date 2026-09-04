@@ -111,7 +111,9 @@ function createFakeElement() {
 
 function createFakeButton() {
   let clickHandler = null;
+  const attributes = new Map();
   const button = {
+    attributes,
     classList: createClassList(),
     disabled: false,
     addEventListener(type, handler) {
@@ -121,6 +123,12 @@ function createFakeButton() {
     },
     contains(target) {
       return target === button;
+    },
+    getAttribute(key) {
+      return attributes.get(key) ?? null;
+    },
+    setAttribute(key, value) {
+      attributes.set(key, String(value));
     },
     click() {
       return clickHandler?.();
@@ -727,6 +735,83 @@ test("priority markdown links stay inside the markdown runtime", async (t) => {
   ]);
 });
 
+test("markdown heading links open the owning definition section", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+  let clickHandler = null;
+  const navigatedTargets = [];
+
+  globalThis.fetch = async () => ({
+    ok: true,
+    async text() {
+      return "# Two-Dimensional Braid Assemblies";
+    },
+  });
+  globalThis.window = {};
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const markdownBody = createFakeElement();
+  markdownBody.addEventListener = (type, handler) => {
+    if (type === "click") {
+      clickHandler = handler;
+    }
+  };
+  const runtime = createMarkdownRuntime({
+    markdownPanel: createFakeElement(),
+    markdownBody,
+    markdownLayoutToggle: createFakeElement(),
+    markdownRenderer: null,
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => path,
+    navigateToTarget(target) {
+      navigatedTargets.push(target);
+    },
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "Two-Dimensional Braid Assemblies",
+    markdownPath: "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+    markdownColumns: 1,
+  });
+
+  const link = {
+    getAttribute(name) {
+      return name === "href"
+        ? "../foundations/architrino.md#the-condition-that-picks-out-a-causal-root"
+        : null;
+    },
+  };
+  const event = {
+    defaultPrevented: false,
+    altKey: false,
+    ctrlKey: false,
+    metaKey: false,
+    shiftKey: false,
+    preventDefault() {
+      this.defaultPrevented = true;
+    },
+    target: {
+      closest(selector) {
+        return selector === "a[href]" ? link : null;
+      },
+    },
+  };
+
+  assert.equal(typeof clickHandler, "function");
+  await clickHandler(event);
+
+  assert.equal(event.defaultPrevented, true);
+  assert.deepEqual(navigatedTargets, [
+    "runtime:markdown:reader:content/markdown/aaa/foundations/architrino.md::the-condition-that-picks-out-a-causal-root",
+  ]);
+});
+
 test("PDF toolbar button opens markdown before invoking browser print", async (t) => {
   const originalWindow = globalThis.window;
   const printCalls = [];
@@ -839,7 +924,7 @@ test("whole document toolbar button toggles an open current document", async () 
   assert.equal(hideCalls, 1);
 });
 
-test("outside pointer closes an open markdown panel", () => {
+test("outside pointer closes an open markdown panel", async () => {
   const documentLike = createFakeEventTarget();
   const markdownPanel = createFakeElement();
   const markdownDocButton = createFakeButton();
@@ -863,12 +948,48 @@ test("outside pointer closes an open markdown panel", () => {
   });
 
   runtime.wireListeners();
-  documentLike.dispatch("pointerdown", { target: markdownPanel });
-  documentLike.dispatch("pointerdown", { target: markdownDocButton });
-  documentLike.dispatch("pointerdown", { target: { id: "outside" } });
+  await documentLike.dispatch("pointerdown", { target: markdownPanel });
+  await documentLike.dispatch("pointerdown", { target: markdownDocButton });
+  await documentLike.dispatch("pointerdown", { target: { id: "outside" } });
 
   assert.equal(hideCalls, 1);
   assert.equal(panelOpen, false);
+});
+
+test("document-only markdown close returns through scene history", async () => {
+  const markdownClose = createFakeButton();
+  let hideCalls = 0;
+  let returnCalls = 0;
+  const currentLevel = {
+    name: "Architrino",
+    markdownPath: "content/markdown/aaa/foundations/architrino.md",
+    markdownAutoOpen: true,
+    nodes: [],
+  };
+  const runtime = createScenePanelUiRuntime({
+    markdownClose,
+    markdownRuntime: {
+      hideMarkdownPanel() {
+        hideCalls += 1;
+      },
+    },
+    getCurrentLevel: () => currentLevel,
+    isTransitionActive: () => false,
+    async returnFromDocumentLevel() {
+      returnCalls += 1;
+      return true;
+    },
+  });
+
+  runtime.updateMarkdownCloseAction();
+  runtime.wireListeners();
+
+  assert.equal(markdownClose.getAttribute("aria-label"), "Close document and return");
+  assert.equal(markdownClose.title, "Close and return");
+  await markdownClose.click();
+
+  assert.equal(returnCalls, 1);
+  assert.equal(hideCalls, 0);
 });
 
 test("PDF toolbar button downloads download-only markdown without opening print", async () => {

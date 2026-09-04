@@ -472,12 +472,12 @@ $$
 \eta_{\mathrm{ext}}(R)
 =
 \frac{\mathcal L_{\mathrm{ext}}(R)}
-{\mathcal L_{\mathrm{raw}}(R)+\varepsilon_L}
+{\mathcal L_{\mathrm{raw}}(R)+\varepsilon_{\mathrm{den}}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c091ecaa794c4b50)
 
-is a geometry-response exposure fraction. It measures external cancellation under a declared probe and surface convention. It is analytically computable from a prescribed record and is not the apparent-energy fraction.
+is a geometry-response exposure fraction, where $\varepsilon_{\mathrm{den}}>0$ is a declared denominator floor with the same units as $\mathcal L_{\mathrm{raw}}$. It measures external cancellation under a declared probe and surface convention. It is analytically computable from a prescribed record and is not the apparent-energy fraction.
 
 ### Complete-Cycle Normal Causal-Wake Flux
 
@@ -676,7 +676,7 @@ The coordinate types recur across the taxonomy, but they are not all independent
 | Group velocity $\mathbf V_{\mathrm{grp}}$ | Present at assembly level | The common scalar taxonomy coordinate is $s_{\mathrm{grp}}=\|\mathbf V_{\mathrm{grp}}\|$. Orthogonal-axis three-binary configurations fix its direction to $\hat{\mathbf u}_A$; the axial coincident-axis three-binary locus is a specialization rather than the whole coincident-axis three-binary locus class. |
 | Circulation sense and endpoint polarity assignment | Required discrete source choices | A member may lock circulation within or between braids. Neutrality fixes one electrino and one positrino per binary, but which persistent endpoint carries each polarity still changes the signed source record. |
 | Architrino worldline count and binary grouping | Record-defining discrete choices | The six-architrino records contain three neutral binaries. Two-component circular records contain twelve worldlines in six neutral binaries and require an explicit fixed-point-free counterpart map. |
-| Axial spacing | Not universal | The axially separated orthogonal-axis locus and coincident-axis three-binary locus use binary axial half-separations $h_a$ along their respective binary axes. Two-component circular configurations carry the complete ordered spacing vector $\mathbf d_C$; the coaxial-separated co-rotating through coaxial two-planar-braid counter-rotating configurations additionally carry the coincident-axis three-binary locus-component center separation $d_C$. General orthogonal-axis three-binary configurations have no single common axis on which all orbits can be spaced. |
+| Axial spacing | Not universal | The axially separated orthogonal-axis locus and coincident-axis three-binary locus use binary axial half-separations $h_a$ along their respective binary axes. Two-component circular configurations carry the complete ordered spacing vector $\mathbf d_C$; the coaxial-separated two-component and two-planar-braid configurations, in both co-rotating and counter-rotating forms, additionally carry the coincident-axis three-binary component-center separation $d_C$. General orthogonal-axis three-binary configurations have no single common axis on which all orbits can be spaced. |
 | Orbit order along one axis | Not an independent universal coordinate | In a coaxial chart, order is derived by sorting the signed axial positions. Persistent binary indices do not change when two radii, frequencies, or axial positions cross. Order becomes a separate discrete choice only when assigning different path or polarity data to the ordered sites changes the source record. |
 
 Thus radius, frequency, phase, and group translation are the common kinematic coordinate types. Axis and midpoint data, circulation, and endpoint polarity assignment are also required source coordinates. Axial spacing and axial order belong only to charts that actually have a common axis; they must not be imposed on every candidate.
@@ -705,11 +705,11 @@ An overall shift of absolute-time origin changes the stored phase coordinates, a
 
 The coincident-axis three-binary locus sampling domain requires $\sum_a\rho_a^2>0$. In the purely axial limit, $\rho_a=0$ and $h_a=R_a$ for every binary, so frequency and phase no longer change the endpoint paths. This limit has no internal orbital motion and serves only as an axial-limit control, not an orbiting coincident-axis three-binary locus candidate.
 
-For coaxial-separated co-rotating two-component configuration through coaxial two-planar-braid counter-rotating configuration, the axial component-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the declared positive domain and sampling measure. The constrained display records use a dimensionless catalog length coordinate, so $d_C=1.10$ means $1.10$ catalog length units rather than a dimensional physical length. It is one reference point, not a fixed sampling value. A sampling study must specify the minimum, maximum, unit conversion or normalized-unit convention, and probability measure for $d_C$ before drawing samples.
+For the coaxial-separated two-component and two-planar-braid configurations, in both co-rotating and counter-rotating forms, the axial component-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the declared positive domain and sampling measure. The constrained display records use a dimensionless catalog length coordinate, so $d_C=1.10$ means $1.10$ catalog length units rather than a dimensional physical length. It is one reference point, not a fixed sampling value. A sampling study must specify the minimum, maximum, unit conversion or normalized-unit convention, and probability measure for $d_C$ before drawing samples.
 
 ### Declared Full-Taxonomy Reference Measure
 
-A deterministic counter-based sampler supplies a reproducible bounded reference measure over every coordinate type in the table above. “Full taxonomy” means that no independently variable coordinate type is silently fixed; it does not mean that this bounded measure is uniform in a coordinate-free sense or exhausts an unbounded family.
+A deterministic counter-based sampler supplies a reproducible bounded reference measure over every coordinate type in the table above. “Full taxonomy” means that no independently variable coordinate type is silently fixed; it does not mean that this bounded measure is uniform in a coordinate-free sense or exhausts an unbounded family. The numerical intervals below are finite coverage choices in catalog-normalized coordinates, not constants derived from the theory or evidence that the sampled bounds are physically preferred. The radius-$0.99$ condition is a safety margin inside the unit-radius source envelope used by this reference sampler.
 
 | Coordinate group | Declared sampling rule |
 | --- | --- |
@@ -720,7 +720,7 @@ A deterministic counter-based sampler supplies a reproducible bounded reference 
 | Phases | Draw each free phase and braid offset uniformly on $[0,2\pi)$; symmetry-fixed phase patterns remain exact. |
 | orthogonal-axis three-binary flattening | Draw $\lambda_A$ uniformly on $[0,1]$. |
 | General coincident-center co-rotating two-component configuration/coincident-center counter-rotating two-component configuration axial geometry | Draw eleven positive adjacent orbit-center gaps independently and uniformly in $[0.035,0.075]$, center the ordered set on the common axis, pair adjacent centers into six neutral binaries, and assign persistent binary identities by a seeded permutation. |
-| coaxial-separated co-rotating two-component configuration through coaxial two-planar-braid counter-rotating configuration component spacing | Multiply the reference coaxial component-center separation by a uniform factor in $[0.65,0.80]$. |
+| Coaxial-separated two-component and two-planar-braid component spacing | For either circulation relation, multiply the reference coaxial component-center separation by a uniform factor in $[0.65,0.80]$. |
 | Circulation and polarity | Draw every permitted independent sign from a balanced two-point distribution, then impose exact same-sense or opposite-sense member relations. |
 | Common translation | Draw a permitted direction and a speed uniformly from zero to one-half of the conservative envelope-safe speed. Orthogonal-axis three-binary configurations use their declared translation direction. The resulting exact source must remain inside radius $0.99$ through the retained record. |
 
@@ -878,7 +878,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4f111536748b6e55)
 
-For a twelve-worldline two-component circular source, six additional architrino worldlines may be declared as an Accessory Configuration only when all six polarities and complete paths are supplied. A three-worldline coincident-axis three-binary scaling control is not an Accessory Configuration. An additional path associated with slot $P_k$ has the form
+For a twelve-worldline two-component circular source, six additional architrino worldlines may be declared as an Accessory Configuration only when all six polarities and complete paths are supplied. A three-worldline coincident-axis scaling control is not an Accessory Configuration and is not a three-binary record. An additional path associated with slot $P_k$ has the form
 
 $$
 \mathbf Y_k(T)
@@ -896,25 +896,25 @@ where the axial offset $\epsilon_k$ and transverse path $\boldsymbol\delta_k(T)$
 Write any declared architrino worldline as
 
 $$
-\mathbf Z_a(T)
+\mathbf Z_i(T)
 =
 \mathbf C_0
 +s_{\mathrm{grp}}T\hat{\mathbf n}
-+\zeta_a\hat{\mathbf n}
-+\boldsymbol\delta_a(T).
++\zeta_i\hat{\mathbf n}
++\boldsymbol\delta_i(T).
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cb5911cb4a64d87d)
 
-Every retained positive causal delay from transmitter $a$ to receiver $b$ satisfies
+Every retained positive causal delay from transmitter $i$ to receiver $j$ satisfies
 
 $$
 \left\|
 \left(
-\zeta_b-\zeta_a+s_{\mathrm{grp}}u
+\zeta_j-\zeta_i+s_{\mathrm{grp}}u
 \right)\hat{\mathbf n}
-+\boldsymbol\delta_b(T)
--\boldsymbol\delta_a(T-u)
++\boldsymbol\delta_j(T)
+-\boldsymbol\delta_i(T-u)
 \right\|
 =c_fu,
 \qquad
@@ -928,10 +928,10 @@ This equation covers every ordered transmitter-receiver pair in the declared sou
 For each declared worldline, compare prescribed acceleration with the master-equation acceleration from the complete declared source inventory:
 
 $$
-\mathbf R_a(T)
+\mathbf R_i(T)
 =
-\ddot{\mathbf Z}^{\mathrm{prescribed}}_a(T)
--\mathbf A^{\mathrm{ME}}_a(T).
+\ddot{\mathbf Z}^{\mathrm{prescribed}}_i(T)
+-\mathbf A^{\mathrm{ME}}_i(T).
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d72539efdf9773d2)
@@ -961,7 +961,7 @@ A valid prescribed-record comparison requires:
 3. **Causal admissibility:** complete retained roots, declared self-hit treatment, resolved fold events, and converged root sums.
 4. **Analytical wake comparison:** signed and raw exposure, complete-cycle normal wake flux and cancellation, anisotropy, spectra, peak response, and source-parameter sensitivity under one common protocol.
 
-A prescribed chart receives only an analytical prescribed-record grade. Stability and energy are outside the method and outside its score.
+A prescribed chart can support only claims about the declared record and its analytical response. Each such claim still uses one of the canonical grades — derived, measured, inferred, or guessed — according to its evidence. Stability and energy are outside the method and outside its score.
 
 ### Interpretation of Results
 

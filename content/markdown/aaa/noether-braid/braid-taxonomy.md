@@ -1,6 +1,6 @@
 # Braid Taxonomy
 
-This chapter defines the characteristics used to identify braid assemblies. The catalog is flat: every exact configuration is a peer, and no label, chapter, filename, visual resemblance, or filter result is a parent template. Worked planar configurations appear in [Planar (2D) Braid Assemblies](2d-braid-assemblies.md); worked spatial configurations appear in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md).
+This chapter defines the characteristics used to identify the [Noether braid](noether-braid.md) assemblies developed in this part of the corpus. The catalog is flat: every exact configuration is a peer, and no label, chapter, filename, visual resemblance, or filter result is a parent template. Worked planar configurations appear in [Planar (2D) Braid Assemblies](2d-braid-assemblies.md); worked spatial configurations appear in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md).
 
 A classification states supported facts about a complete prescribed or evolved record. It does not establish acceleration balance, EOM-solver release, retention, stability, binding, particle identity, or formation. Those claims require their own evidence. A taxonomy tells us what a configuration is made of and how its paths are arranged. It does not tell us whether the configuration survives when released.
 
@@ -110,7 +110,7 @@ No row is inherited from another row. Two configurations with common values rema
 
 ## Coordinate Constraints Used by Worked Configurations
 
-The catalog contains several exact coordinate loci. Their descriptive names state their constraints directly:
+For binary $a$, let $R_a$ be the endpoint distance from its midpoint, $h_a$ its axial half-separation, and $\rho_a$ its transverse orbit radius, so $R_a^2=h_a^2+\rho_a^2$. The catalog contains several exact coordinate loci. Their descriptive names state their constraints directly:
 
 - **Orthogonal-axis three-binary records** use three declared binary frames. At one endpoint the axes are mutually orthogonal; a declared flattening operator may move them toward a common direction.
 - **Coincident-midpoint orthogonal-axis three-binary configurations** set every binary midpoint at the braid center and every axial half-separation to zero.
@@ -119,7 +119,7 @@ The catalog contains several exact coordinate loci. Their descriptive names stat
 - **Coincident-axis three-binary records** place three declared neutral binaries on one oriented axis with a common frequency. The planar locus sets $h_a=0$ for all three binaries; the all-axial boundary sets $\rho_a=0$.
 - **Two-component circular records** declare two complete component subsets and their center, axis, frequency, phase, and circulation relations. Co-rotation and counter-rotation are independent values, not subclasses with inherited physics.
 
-These loci are coordinate facts. They do not establish that an EOM-solver trajectory occupies the locus. The old letter containers were unnecessary. The equations themselves say what each chart is.
+These loci are coordinate facts. They do not establish that an EOM-solver trajectory occupies the locus. Each chart is identified by its equations and named constraints.
 
 ## Borg Correspondence
 

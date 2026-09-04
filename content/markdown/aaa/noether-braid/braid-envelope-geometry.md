@@ -58,7 +58,7 @@ This is the Noether braid analogue of the familiar lesson from electron degenera
 
 The dynamic exclusion envelope supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether sea is the neighboring neutral braid population and its ambient wake record after the assembly ledger has been excluded.
 
-The bright-first question is operational: at a specified point and response channel, does wake activity tied to the assembly's accepted lock dominate, or does the ambient Noether sea dominate? That comparison locates usable clock corridors, packing boundaries, penetration regions, and interface layers before any sharp surface is inferred.
+The assembly-versus-ambient question is operational: at a specified point and response channel, does wake activity tied to the assembly's accepted lock dominate, or does the ambient Noether sea dominate? That comparison locates usable clock corridors, packing boundaries, penetration regions, and interface layers before any sharp surface is inferred.
 
 For an assembly $a$ and a declared response channel $X$, let $\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T)$ denote the ambient Noether sea contribution in the same region. A practical interface diagnostic is
 
@@ -890,7 +890,7 @@ Relative to the declared rest envelope,
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
 =
-\lambda^3(v)\,\xi(v)
+\lambda^3(v)\,\frac{\xi(v)}{\xi(0)}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-42219d941e2bd344)
@@ -900,17 +900,17 @@ This identity is geometric. If a homogeneous moving branch independently closes 
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
 =
-\frac{\lambda^3(v)}{\gamma_{\mathrm{eff}}(v)}
+\frac{\lambda^3(v)}{\gamma_{\mathrm{eff}}(v)\,\xi(0)}
 +O(\epsilon_{\mathrm{LV}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ed296930498af1b1)
 
-and the zero-extra-scale subclass $\lambda=1$ reduces to $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma_{\mathrm{eff}}+O(\epsilon_{\mathrm{LV}})$. The volume law does not establish $\lambda=1$ or Lorentz closure; it exposes the packing and exclusion-volume quantity once those branch relations are supplied.
+If the declared rest envelope is spherical, so $\xi(0)=1$, the zero-extra-scale subclass $\lambda=1$ reduces to $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma_{\mathrm{eff}}+O(\epsilon_{\mathrm{LV}})$. The volume law does not establish $\lambda=1$, $\xi(0)=1$, or Lorentz closure; it exposes the packing and exclusion-volume quantity once those branch relations are supplied.
 
 Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
 $$
-\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
+\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma_{\mathrm{eff}}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3070bac4118bc111)
@@ -934,7 +934,7 @@ $$
 
 but the branch $q$ is accepted only when all three binary ledgers also retune consistently with clock closure, conservation, and preferred-frame leakage bounds.
 
-The direct Lorentz-to-geometry map comes from a closed return cycle. In a homogeneous cell, define
+The following is an observer-level two-way return construction, not a derivation from the Master Equation. Conditional on one dressed assembly channel with speed $c_{\mathrm{eff}}$ governing both longitudinal and transverse return legs in a homogeneous cell, define
 $$
 \gamma_{\text{eff}}(v)
 \equiv
@@ -977,7 +977,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-54df338e8e9033cd)
 
-The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
+> Claim grade: derived within the declared observer-level return construction and conditional on its common dressed-channel premise. A same-record retained branch whose longitudinal and transverse return legs do not reduce to these two equations, or whose measured return closure gives a different axis ratio, falsifies application of the construction. Deriving its premise and closure coefficients from retained branch dynamics belongs to [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
+
+The role of the geometry chapter is to record this conditional envelope projection, not to use it as a primitive definition or as evidence that a branch satisfies the premise.
 
 This distinction prevents a single-binary shortcut. A branch-derived boundary-leading channel can estimate one visible deformation contribution, while a mature Lorentz closure must show that the same branch update also determines the clock factor
 $$
@@ -1112,7 +1114,7 @@ For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [No
 
 > **coincident-midpoint orthogonal-axis locus Geometry Commitment:** coincident-midpoint orthogonal-axis locus has a near-spherical weak-stress envelope that becomes oblate under increased group speed or gravitational gradient. The exclusion envelope is generated by binary path histories and is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
 
-> **Member-Scoping Commitment:** coincident-axis three-binary locus's rest aspect ratio depends on its prescribed binary coordinates; coincident-midpoint orthogonal-axis locus is near spherical in its weak-stress reference state and becomes increasingly oblate along its prescribed compression response. The moving Lorentz-projection target $\xi\to1/\gamma$ is a branch-response statement and must be derived separately for each member.
+> **Member-Scoping Commitment:** coincident-axis three-binary locus's rest aspect ratio depends on its prescribed binary coordinates; coincident-midpoint orthogonal-axis locus is near spherical in its weak-stress reference state and becomes increasingly oblate along its prescribed compression response. The moving Lorentz-projection target $\xi\to1/\gamma_{\mathrm{eff}}$ is a branch-response statement and must be derived separately for each member.
 
 > **Lorentz Projection Commitment:** In Lorentz closure, the full six-path envelope supplies the observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to one binary path or to envelope shape alone.
 

@@ -128,7 +128,20 @@ export function createMarkdownColumnPaginationRuntime({
     let pageState = null;
     let columnIndex = 0;
 
+    const finishPage = () => {
+      if (!pageState) {
+        return;
+      }
+      // Fixed heights are packing limits, not space to reserve after packing.
+      // A full-width equation can end a spread after just one short paragraph.
+      pageState.page.style.setProperty("--markdown-column-page-height", "0px");
+      pageState.columns.forEach((column) => {
+        column.style.height = "auto";
+      });
+    };
+
     const startPage = () => {
+      finishPage();
       pageState = createColumnPage(columnCount, pageHeight);
       columnIndex = 0;
     };
@@ -142,6 +155,7 @@ export function createMarkdownColumnPaginationRuntime({
 
     sourceNodes.forEach((node) => {
       if (isWideBlock(node)) {
+        finishPage();
         pageState = null;
         columnIndex = 0;
         appendWideBlock(node);
@@ -178,6 +192,7 @@ export function createMarkdownColumnPaginationRuntime({
       }
     });
 
+    finishPage();
     return true;
   }
 

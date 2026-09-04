@@ -2,7 +2,7 @@
 
 This chapter studies the doubling-frequency $4{:}2{:}1$ lock within the axially separated orthogonal-axis three-binary configuration of the broader [Noether Braid Configuration Space](noether-braid-configuration-space.md). The persistent indices $a\in\{1,2,3\}$ identify its three binaries, and the frequency condition is $f_1:f_2:f_3=4:2:1$. Setting $h_1=h_2=h_3=0$ gives the zero-axial-offset, coincident-midpoint member of the same frequency chart. The candidate is definitionally frequency-separated and is tested under explicit support, field-speed-carrier, phase-return, and stability assumptions. The chart does not order the radii, make doubling frequency the default Noether braid frequency, certify the dynamics of the axially separated configuration from kinematics, or generalize to the coincident-axis three-binary locus, whose iso-frequency common-axis structure has no doubling ladder to lock.
 
-It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [axially separated orthogonal-axis three-binary configuration with 4:2:1 frequency ratio](3d-braid-assemblies.md#axially-separated-three-axis-circular-chart-constrained-variants), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), and [Mapping the Planck Scale](../philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md), which provide the assembly scaffold, zero-offset subset, geometry, and scale-setting context for the lock relations derived here.
+It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [axially separated orthogonal-axis three-binary configuration with 4:2:1 frequency ratio](3d-braid-assemblies.md#axially-separated-constrained-variants), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), and [Mapping the Planck Scale](../philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md), which provide the assembly scaffold, zero-offset subset, geometry, and scale-setting context for the lock relations derived here.
 
 The level distinctions matter throughout. Ontologically, the three indexed binaries are assembly components built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. As a derivation target, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
 
@@ -59,7 +59,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bc8a2f18393b8b3e)
 
-For compact notation, the algebra below writes $v_h=c_f$ and $\beta_h=1$ for this carrier value.
+For compact notation, the frozen-chart algebra below writes $v_h=c_f$ and $\beta_h=1$ for this fixed carrier value. Every exact radius-frequency identity in that algebra uses fixed $f_h$, $r_h$, and $\beta_h=1$; the fluctuation $\delta v_h(T)$ introduced next belongs only to the caustic-impulse ledger and is not substituted into those identities.
 
 The branch-level motion may have microscopic crossings
 $$
@@ -82,7 +82,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ded68219009abda5)
 
-rather than an infinite-acceleration constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
+rather than an infinite-acceleration constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../dynamics/energy.md#self-hit-branch-changes-and-discrete-ledgers).
 
 This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
 
@@ -221,7 +221,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-34848497603093d1)
 
-where $\theta_{h,j}^{\ast}$ are the candidate-carrier caustic phases and $\mathcal{F}_j$ is proportional to the finite caustic impulse $\Delta\mathbf{V}_{h,j}$ and its wake-history increment on the retained branch. Any energy-routing fulcrum is therefore geometric and branch-derived: transfers may concentrate at the carrier caustic phases where the phase-bundle connection is not flat. This is the same ledger event class used by the [self-hit echo bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
+where $\theta_{h,j}^{\ast}$ are the candidate-carrier caustic phases and $\mathcal{F}_j$ is proportional to the finite caustic impulse $\Delta\mathbf{V}_{h,j}$ and its wake-history increment on the retained branch. Any energy-routing fulcrum is therefore geometric and branch-derived: transfers may concentrate at the carrier caustic phases where the phase-bundle connection is not flat. This is the same ledger event class used by the [self-hit bookkeeping](../dynamics/energy.md#self-hit-branch-changes-and-discrete-ledgers).
 
 A minimal test functional can be written before committing to a particular lock. Let $(q_1,q_2,q_3)=(n,m,1)$, with phase variables $\theta_k(T)=q_k\omega_3 T+\phi_k$ and $\omega_3=2\pi f_3$. For a low-order truncation depth $L$, define
 $$

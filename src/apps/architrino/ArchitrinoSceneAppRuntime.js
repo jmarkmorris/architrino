@@ -6739,6 +6739,7 @@ const fileSourceRuntime = createFileSourceRuntime({
 });
 
 function updateSceneMarkdown() {
+  scenePanelUiRuntime.updateMarkdownCloseAction();
   if (!currentLevel || !currentLevel.markdownPath) {
     markdownRuntime.hideMarkdownPanel();
     return;
@@ -8853,6 +8854,16 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   closeDetailPanel,
   getCurrentLevel: () => currentLevel,
   isTransitionActive: () => transitionState.active,
+  returnFromDocumentLevel: async () => {
+    if (!appDirector) {
+      return false;
+    }
+    if (await appDirector.goBack()) {
+      return true;
+    }
+    await appDirector.resetHome();
+    return true;
+  },
   toggleTextbookToc,
   documentLike: globalThis.document,
 });

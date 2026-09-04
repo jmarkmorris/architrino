@@ -1,6 +1,6 @@
 # Zero-Axial-Offset Three-Binary Dynamics and Interpretation
 
-This specialist chapter carries the retention, phase-closure, cadence-retuning, scaling, strong-field, and downstream interpretation hypotheses specific to the coincident-midpoint orthogonal-axis three-binary configuration. Its coordinates and constrained variants are defined in [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md#coincident-midpoint-three-axis-circular-chart); the realization-independent proof contract is defined in [Braid Recovery Requirements](braid-recovery-requirements.md).
+This specialist chapter carries the retention, phase-closure, cadence-retuning, scaling, strong-field, and downstream interpretation hypotheses specific to the coincident-midpoint orthogonal-axis three-binary configuration. Its coordinates and constrained variants are defined in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md#coincident-midpoint-orthogonal-axis-three-binary-configuration); the realization-independent proof contract is defined in [Braid Recovery Requirements](braid-recovery-requirements.md).
 
 Nothing in this chapter establishes that the EOM solver retains such a branch. Derived identities, conditional results, hypotheses, and observer-level mappings keep their stated claim grades.
 
@@ -26,7 +26,7 @@ An unsupported assignment is not part of the coincident-midpoint configuration's
 
 ## Retention and Interpretation
 
-The geometry, persistent binary indices, and constrained variants are defined in [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md#coincident-midpoint-three-axis-circular-chart). The remaining material concerns phase closure, retuning, dynamics, shielding, and downstream interpretations. It does not add coordinates to that definition.
+The geometry, persistent binary indices, and constrained variants are defined in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md#coincident-midpoint-orthogonal-axis-three-binary-configuration). The remaining material concerns phase closure, retuning, dynamics, shielding, and downstream interpretations. It does not add coordinates to that definition.
 
 All equations use the persistent indices $a\in\{1,2,3\}$. The indices do not encode a radius order or preassign a field-speed carrier, self-hit channel, shielding rank, or envelope-leading path. Any such diagnostic must be extracted from the same retained branch record used by the equation in which it appears.
 
@@ -489,7 +489,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7ce5f2a90fb08bba)
 
-Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block. This expression does not yet derive the entropy coefficient. It identifies the native object whose block entropy density must be computed before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
+Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block, while $|U|$ counts alignment-area patches under the declared patch-to-area normalization. This expression does not derive the Bekenstein-Hawking coefficient; the coefficient $1/4$ is an observer-level comparison target owned by the [horizon interface](../spacetime/black-holes.md#horizon-interface). It identifies the native object whose block entropy density and area map must be derived before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
 
 ### Geometry and Exclusion Envelope
 
@@ -525,7 +525,7 @@ The alignment limit also has a proposed wake-signature reading, but the availabl
 
 The Noether braid class supplies a family-general structural candidate for the fermion program. Different closure labels, shielding tiers, energy records, and surrounding axial/wake structures may map to Standard Model flavors and generations, but no current result selects coincident-midpoint orthogonal-axis three-binary configuration or establishes that mapping. It remains a derivation target until retained branch labels, shielding ledgers, and apparatus-coupling records have been recovered from the dynamics.
 
-The collective motion, or **group velocity**, of a Noether braid assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md): volumetric Noether braid envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
+The collective motion, or **group velocity**, of a Noether braid assembly is one variable shaping its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that hypothesis is developed in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md): volumetric Noether braid envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
 
 
 ### Coincident-Midpoint Orthogonal-Axis Three-Binary Dynamics

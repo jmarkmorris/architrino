@@ -34,11 +34,20 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 
 ## Ranked Next Objects
 
-No open objects. CRW-003 and CRW-004 are verified below.
+### CRW-005 — Independent post-conversion assurance review
+
+- **Status:** In progress
+- **Opened:** 2026-09-04
+- **Priority object:** `independent_assurance_review`
+- **Request / acceptance:** Independently compare every converted corpus document with its pre-campaign source and edition 1.0, prioritizing exact mathematics, claim authority, falsifiers, source support, link integrity, and teaching structure. Findings are consult-only until Codex adjudicates and applies accepted corrections.
+- **Scope:** 190 documents outside the already independently reviewed `foundations/` batch. The six `dynamics/` documents are included for a fresh Claude review at the operator's request despite their earlier Codex baseline review. Packet 1 covered all 14 `noether-braid/` documents; 176 documents remain. Packet 2 is `dynamics/`.
+- **Packet 1 disposition:** Accepted the envelope-volume normalization, tangent-space claim correction, sharp-kernel restoration, topology-label restoration, conditional speed-budget grading, source support, broken anchors, merged headings, and bounded notation/grammar repairs. Rejected blanket renaming based only on a shared base glyph and rejected the claimed honeycomb scope error because the text already restricts the proof to intact regular face-to-face cells. Deferred the cross-corpus $c_1$ notation migration pending an exact use map and replacement proposal.
+- **Blocked by:** nothing.
+- **Completion:** Every one of the 190 paths has one recorded independent disposition and every accepted defect has been corrected and validated.
 
 ## In progress
 
-No rows.
+CRW-005 is the active row.
 
 ## Awaiting verification
 
@@ -112,9 +121,9 @@ Claim grade: `measured` by filesystem scan on 2026-09-03. Falsifier: a repeat sc
 
 At the final 2026-09-04 recheck, the corpus occurrence count is zero. The explanatory substance formerly carried by each label was integrated during its document's conversion rather than removed by a separate tag sweep.
 
-The residual is concentrated in `philosophy-history/one-nature-many-theories.md`, which holds ten occurrences. The other seven files hold four or fewer each. The count should continue to fall through ordinary document conversion rather than a separate sweep.
+Before the final conversion, the residual had been concentrated in `philosophy-history/one-nature-many-theories.md`, which held ten occurrences; the other seven files held four or fewer each. Those historical measurements explain the earlier sequence above but do not describe the current corpus state.
 
-So this item schedules no corpus work. It carries the number, and it fails if Phase 2 completes with the number above zero.
+Accordingly, this verified item schedules no corpus work. It retains the historical measurements and would have failed if Phase 2 had completed with the count above zero.
 
 #### Startup-path pass — executed 2026-09-03
 

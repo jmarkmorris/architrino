@@ -2,7 +2,7 @@
 
 Six architrinos interacting through delayed causal wakes form a hard dynamical problem: the state is an entire path history, the per-hit accelerations arrive along causal roots that must be solved for, and no general closed-form solution exists. This chapter collects what can nevertheless be established exactly — by symmetry, geometry, and kinematics — before any support-band structure is chosen and before any branch is claimed to persist. The machinery here is core-agnostic: every braid realization in the [Noether Braid](noether-braid.md) family consumes it, and none of it asserts branch retention.
 
-The results divide by strength, and the division is stated with each result. Exact derivations include the transverse speed-budget lemmas and the constant-lag reduction of the rotating-wave ansatz. Scoped negative results include the anti-damping family, which rejects specific fixed-coordinate charts without rejecting the braid program. Candidate mechanisms at hypothesis level include the action-click picture at the causal-root fold set and the Accessory Configuration moment analysis. Theorem targets include the eigen-braid spectrum system. Claim levels travel with their statements throughout. The phase-compensated equal-geometry locus-specific invariant channels, two-ring geometry, dipole identity, momentum-screw alignment, and return-response analysis live in [phase-compensated equal-geometry locus Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md).
+The results divide by strength, and the division is stated with each result. Exact derivations include the constant-lag reduction of the rotating-wave ansatz and the algebraic consequences of a declared transverse speed-budget premise. Scoped negative results include the anti-damping family, which rejects specific fixed-coordinate charts without rejecting the braid program. Candidate mechanisms at hypothesis level include the action-click picture at the causal-root fold set and the Accessory Configuration moment analysis. Theorem targets include the eigen-braid spectrum system. Claim levels travel with their statements throughout. The phase-compensated equal-geometry locus-specific invariant channels, two-ring geometry, dipole identity, momentum-screw alignment, and return-response analysis live in [Coordinate-Axis Six-Point Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md).
 
 ## Document Role
 
@@ -68,7 +68,7 @@ $$
 
 from the same retained branch record, not append it as an independent Lorentz factor. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
 
-### Transverse Internal-Motion Speed-Budget Lemma
+### Transverse Internal-Motion Speed-Budget Premise and Consequence
 
 Let one site's native velocity be decomposed into group translation and internal motion,
 
@@ -108,7 +108,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-358a1ee6eb1d1c92)
 
-If a branch additionally pins the total site speed to $\|\mathbf V_i\|=\beta_{\mathrm{pin}} c_f$, the available internal speed is forced to
+If a branch additionally declares the physical premise that the total site speed is pinned to $\|\mathbf V_i\|=\beta_{\mathrm{pin}} c_f$, the available internal speed follows algebraically as
 
 $$
 v_{\mathrm{int},i}(u)
@@ -118,7 +118,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4cb81593b9f3a036)
 
-The quadrature is exact kinematics under the transverse-motion hypothesis. The pinning of $\beta_{\mathrm{pin}}$ is a separate branch hypothesis, not an established retention mechanism. The phase-compensated equal-geometry locus body-diagonal rotating channel and the coincident-axis three-binary locus axial screw chart are two realizations of the transverse geometry; neither realization makes fixed total site speed automatic. A record with $\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}\neq0$ falsifies use of the quadrature for that site and must retain the cross term, which generally makes the maximum speed phase dependent.
+The quadrature and square-root relation are derived consequences of the transverse-motion and pinned-speed premises. The pinning of $\beta_{\mathrm{pin}}$ is a guessed branch hypothesis, not an established retention mechanism or a consequence of the canonical interaction law. Deriving or rejecting that premise from a retained branch remains open. The phase-compensated equal-geometry locus body-diagonal rotating channel and the coincident-axis three-binary locus axial screw chart are two realizations of the transverse geometry; neither realization makes fixed total site speed automatic. A record with $\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}\neq0$ falsifies use of the quadrature for that site and must retain the cross term, which generally makes the maximum speed phase dependent. A retained transverse record whose total site speed varies independently of $u$ falsifies the pinned-speed premise.
 
 The same pinned-speed hypothesis appears in the retained coincident-midpoint orthogonal-axis locus scaling material of [coincident-midpoint orthogonal-axis locus Dynamics](zero-axial-offset-three-binary-dynamics-and-interpretation.md#retention-and-interpretation): a branch that holds an indexed internal speed fixed while accepting action transactions is forced onto the $R_a f_a\approx\text{constant}$ product law. The shared lemma shows how the hypothesis would also constrain transport; it does not establish that coincident-midpoint orthogonal-axis locus, phase-compensated equal-geometry locus, or coincident-axis three-binary locus satisfies the pinning condition.
 
@@ -126,7 +126,7 @@ The same pinned-speed hypothesis appears in the retained coincident-midpoint ort
 
 A resting Noether braid is a phase-locked structure of coupled binary layers. When the braid moves with group velocity (center-of-mass convention) $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
 
-The spiral-helical picture is not decorative. A causal wake sent between partners, or between the layers, must now reach a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, group velocity is encoded as internal geometry.
+The spiral-helical picture is not decorative. For a translating assembly, a causal wake sent between partners or layers reaches a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, group velocity is encoded as internal geometry.
 
 This is the common mechanical basis for three later downstream readouts:
 
@@ -222,22 +222,22 @@ $$
 
 then $\mathcal E_R(T_\ast)>0$ and $\dot R$ cannot later reach zero while the hypotheses remain valid. This is an escape certificate for that scalar chart, not a family-general no-binding theorem.
 
-A braid application must derive $R$ and the bound $K$ from the actual retained acceleration ledger. A speed cap, separation floor, acceleration-weight cap, and polarity inventory can supply such a bound only when their projection covers every retained root contribution on the same interval. Failure of any bound suspends the certificate. The phase-compensated equal-geometry locus isolated-release channel is one conditional application route; see [phase-compensated equal-geometry locus Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
+A braid application must derive $R$ and the bound $K$ from the actual retained acceleration ledger. A speed cap, separation floor, acceleration-weight cap, and polarity inventory can supply such a bound only when their projection covers every retained root contribution on the same interval. Failure of any bound suspends the certificate. The phase-compensated equal-geometry locus isolated-release channel is one conditional application route; see [Coordinate-Axis Six-Point Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
 
 ## Acceleration-Gradient Branch Comparison
 
-The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should output compatible delay-geometry records on the same kind of branch packet (the scan packet defined with coincident-midpoint orthogonal-axis locus diagnostics in [coincident-midpoint orthogonal-axis locus Dynamics](zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation)):
+The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. Let $\mathcal D_{\mathrm{cm}}$ denote the delay-geometry diagnostic record for the coincident-midpoint orthogonal-axis configuration defined in [Zero-Axial-Offset Three-Binary Dynamics and Interpretation](zero-axial-offset-three-binary-dynamics-and-interpretation.md). A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should produce compatible records:
 $$
-\mathcal{D}_{coincident-midpoint orthogonal-axis locus}^{\mathrm{accel}}(W)
+\mathcal D_{\mathrm{cm}}^{\mathrm{accel}}(W)
 \sim
-\mathcal{D}_{coincident-midpoint orthogonal-axis locus}^{\mathrm{grad}}(W)
+\mathcal D_{\mathrm{cm}}^{\mathrm{grad}}(W)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-887f9f2ccc91af88)
 
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
-The ambient Noether sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
+The ambient Noether sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported records recover the usual local equivalence behavior. This chapter asks first whether the substrate records match before that translation.
 
 ---
 
@@ -252,9 +252,9 @@ A recurring obstruction shapes the whole retention program: in chart after chart
 4. **Zero-angular-momentum channel invariance.** The face-opposite seed placed on the zero-angular-momentum channel stays exactly on that channel: the dynamic center holds at zero, all six radii stay equal, and antipodal partners stay exact. This is the invariant-channel theorem, not a statement of the seed's dynamical fate, which is open; the fixture record lives in the [phase-compensated equal-geometry locus isolated-release analysis](coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
 5. **Polarity-segregated fixed-plane two-ring family.** The axial and tangential questions separate. Axially, the [fixed-plane axial no-balance lemma](coincident-axis-three-binary-symmetry.md#fixed-plane-axial-no-balance-lemma) proves that same-plane contributions have exactly zero axial component while every ordinary simple-root opposite-plane contribution accelerates its receiver toward the midplane. The positive canonical root weight cannot reverse that sign, so no fixed-height member of this family has axial acceleration balance at nonzero ring separation for any finite member speed, including super-field-speed motion. This derivation requires complete bounded history in two fixed parallel planes, a stationary axial center, polarity segregation by plane, positive ranges, and an ordinary simple-root ledger. It excludes caustics, non-simple-root event contributions, collisions, incomplete history, variable height, plane precession, axial translation, mixed plane polarities, and additional external, constraint, or Noether-sea acceleration. It does not force a dynamical history to become planar. Tangentially, on the planar hexagon, the conjectured behavior is a strictly positive tangential residual growing with rim speed while the radial residual stays inward — the delayed kernel pumping the rotation rather than braking it. That tangential conjecture is unverified; the axial derivation stands on its own.
 
-The reading discipline matters as much as the results. Each entry is scoped to the chart and assumptions that produced it; the agreement across charts is qualitative consilience, and no ledger quantity may be consumed across charts. None of these results rejects the neutral braid, coincident-midpoint orthogonal-axis locus, phase-compensated equal-geometry locus, coincident-axis three-binary locus, and C-family, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
+The reading discipline matters as much as the results. Each entry is scoped to the chart and assumptions that produced it; the agreement across charts is qualitative consilience, and no ledger quantity may be consumed across charts. None of these results rejects the neutral braid, the coincident-midpoint orthogonal-axis, phase-compensated equal-geometry, coincident-axis three-binary, or two-component circular configuration families, or the bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
 
-The constructive consequence is a sharpened search. The scoped negative results direct the live search away from the tested fixed-coordinate single-frequency charts. They do not prove that every retained branch must deform. Candidate alternatives exchange pumped tangential action with another internal channel — radial breathing against rotation or the two-frequency class whose closed figures are the integer phase-closure states — absorb it through same-transmitter contributions at the field-speed hinge, or export it to a Noether sea environment. A fixed-coordinate ansatz cannot represent wake exhaust by construction, so a retained branch must have somewhere to put any pumped action, with escaped boundary flux recorded by [wake escapement](../dynamics/energy.md#wake-escapement). The spectrum hunt below therefore emphasizes relative periodic orbits while leaving any untested relative-equilibrium branch to its own acceptance record.
+The constructive consequence is a sharpened mathematical target. The scoped negative results disfavor the tested fixed-coordinate single-frequency charts without proving that every retained branch must deform. Candidate alternatives exchange pumped tangential action with another internal channel — radial breathing against rotation or the two-frequency class whose closed figures are the integer phase-closure states — absorb it through same-transmitter contributions at the field-speed hinge, or export it to a Noether sea environment. A fixed-coordinate ansatz cannot represent wake exhaust by construction, so a retained branch must have somewhere to put any pumped action, with escaped boundary flux recorded by [wake escapement](../dynamics/energy.md#wake-escapement). The spectrum target below therefore emphasizes relative periodic orbits while leaving any untested relative-equilibrium branch to its own acceptance record.
 
 ## The Eigen-Braid Spectrum
 
@@ -274,7 +274,7 @@ with angular rate $\omega$ and constant axial group-velocity component $u$. On t
 A constant-lag reduction makes the ansatz tractable, and it is a derivation. On the rotating-wave ansatz, every directed-pair causal delay is constant in time: splitting any initial separation into axial and transverse parts relative to $\hat{\mathbf n}$, the rotation acts only on the transverse part and the constant group velocity contributes only along the axial part, so the separation norm between reception time $T_r$ and transmitter emission time $T_r-\tau$ depends on $\tau$ alone. Each directed pair's root residual
 
 $$
-F_{ij}(\tau)
+F^{\mathrm{sq}}_{ij}(\tau)
 =
 \left\|\boldsymbol\Delta_\perp(\tau)\right\|^2
 +\left(\Delta_\parallel+u\tau\right)^2
@@ -283,13 +283,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8057c1cf9dcfdba7)
 
-is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The same argument covers same-transmitter root records. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
+is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The superscript distinguishes this squared-distance residual from the unsquared causal-root residual used in the fold analysis below. The same argument covers same-transmitter root records. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
 
-The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, transmitter-side acceleration-weight floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed group velocity and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption — the residuals are real-analytic away from caustics and collisions, so solution sets are generically isolated, and a degenerate continuum would itself be a reportable structure.
+The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F^{\mathrm{sq}}_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, transmitter-side acceleration-weight floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed group velocity and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption — the residuals are real-analytic away from caustics and collisions, so solution sets are generically isolated, and a degenerate continuum would itself be a reportable structure.
 
 A second interface target rides on the spectrum. Each row carries a definite screw pitch and helicity sign, and the interface hypothesis is that admissible rows at fixed root topology form a discrete pitch ladder whose transitions are root-topology transitions — the click picture below — so that action quantization is inherited from integer root counts rather than imposed.
 
-The current status keeps the target honest. The axial no-balance derivation above forces the tested fixed-coordinate single-frequency family planar, and the anti-damping indications (where they hold) disfavor it further, so the live spectrum question is posed for relative periodic orbits — breathing against rotation with periodic rather than constant delays — and for hinge-occupying and sea-embedded rows. A found row would still be a relative equilibrium or relative periodic orbit only; transverse stability, action and wake balance, and the same-record rows of [Braid Recovery Requirements](braid-recovery-requirements.md) all remain between a spectrum row and a retained branch.
+The axial no-balance derivation above forces the tested fixed-coordinate single-frequency family planar, and the anti-damping indications, where they hold, disfavor it further. The spectrum question is therefore posed for relative periodic orbits — breathing against rotation with periodic rather than constant delays — and for hinge-occupying and sea-embedded rows. A found row would still be a relative equilibrium or relative periodic orbit only; transverse stability, action and wake balance, and the same-record rows of [Braid Recovery Requirements](braid-recovery-requirements.md) all remain between a spectrum row and a retained branch.
 
 ## Action Clicks at the Fold Set
 

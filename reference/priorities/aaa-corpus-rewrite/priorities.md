@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Rank: `active editorial owner`
-- Status: `complete`
+- Status: `active`
 - Claim level: `editorial-priority`
 - Standard edition: [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) edition 1.0, settled 2026-09-03
 - Scope: reader-facing prose under `content/markdown/aaa`
@@ -29,7 +29,7 @@ Claim grade: `measured` by scanning every corpus document outside `archie/` and 
 
 Phase 1 and Phase 2 are complete. All nine `foundations/` documents, beginning with [Ontology](../../../content/markdown/aaa/foundations/ontology.md), were rewritten against edition 1.0 and then independently reviewed against their 2026-09-01 baselines. Every later reader-order batch—`dynamics/`, `noether-braid/`, `spacetime/`, `assemblies/`, `nuclear-atomic/`, `reactions/`, `quantum/`, `cosmology/`, `validation/`, `philosophy-history/`, and `archie/`—has been converted and checked against its immediate pre-conversion source.
 
-At the final 2026-09-04 recheck, all 199 documents are recorded at edition 1.0. The ledger contains exactly 199 unique live corpus paths, with no missing, extra, or duplicate row. Document length is not tracked and is not a concern for this campaign: the corpus is published online with no printed edition, so a conversion is judged on whether the content survived and whether the prose meets the guide, never on what it cost in words.
+At the final 2026-09-04 conversion recheck, all 199 documents were recorded at edition 1.0. The ledger contains exactly 199 unique live corpus paths, with no missing, extra, or duplicate row. A second-agent assurance review is now active over the 190 documents outside the already independently reviewed `foundations/` batch. The operator requested that Claude review `dynamics/` again despite its earlier Codex baseline review. Packet 1 covered all 14 `noether-braid/` documents; Codex adjudicated and incorporated the accepted mathematical, claim-boundary, source, notation, link, and structure corrections. The remaining assurance scope is 176 documents, with the six `dynamics/` documents next. Document length is not tracked and is not a concern for this campaign: the corpus is published online with no printed edition, so a conversion is judged on whether the content survived and whether the prose meets the guide, never on what it cost in words.
 
 The authored sources pass whitespace, strict content, and equation-mapping-link checks. The current corpus contains 4,657 equation-viewer links; all are standalone rendered paragraphs, and no retired plain-language tag remains. The equation-mapping corpus registry, scene graph, generated textbook navigation, and generated reading copies are stale and remain for the authorized regeneration or final branch process. Per-file rows are recorded in [conversion-ledger.md](conversion-ledger.md).
 
@@ -50,6 +50,7 @@ Foundations first, and not as a matter of taste. Every one of the 70 under-linke
 1. **Phase 1 — Foundations.** Complete: 9 files, independently reviewed.
 2. **Term lookup and orientation.** Complete: the glossary covers the audited foundation terms, a persistent Glossary control provides lookup from any scene or document, the ambiguous render-time decorator was declined after a 33.3% false-positive sample, and two load-bearing passages received selective inline clues. The [CRW-002 result](crw-002-term-lookup-result.md) records the evidence and remaining glossary-canon follow-up.
 3. **Phase 2 onward.** Complete: all remaining reader-order batches, including the 39 `archie/` reference documents that followed the two earlier reader-support conversions, are recorded at edition 1.0.
+4. **Independent assurance review.** Active: `foundations/` remains excluded because it was already independently reviewed. At the operator's request, `dynamics/` is included for a fresh Claude review. Packet 1 covered the 14 `noether-braid/` documents, leaving 176 documents; Packet 2 is the six-document `dynamics/` batch.
 
 ## Work Queue
 

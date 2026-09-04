@@ -20,7 +20,7 @@ This chapter uses four evidence-level terms in a controlled way:
 
 | Term | Meaning in this chapter | What it does not claim by itself |
 | --- | --- | --- |
-| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window; this chapter's analysis space is the six-body base and orthogonal-axis three-binary/B case, while a twelve-worldline two-component circular candidate carries the corresponding rows on its own declared ledger. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
+| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window; this chapter's analysis space is the neutral-base, orthogonal-axis three-binary, and coincident-axis three-binary configurations, while a twelve-worldline two-component circular candidate carries the corresponding rows on its own declared ledger. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
 | retained | Evidential status for a branch, row, or chart whose required data close on the same record under the declared tolerance, event/domain convention, and stability conditions. | `Retained` does not mean assumed, preferred, or merely still under discussion. If the same-record ledgers are missing, the object remains a candidate. |
 | support | The geometric region, envelope, or comparison chart occupied by the branch data. Coincident-midpoint orthogonal-axis locus path support, a path-history-derived oblate spheroidal envelope, and an axial comparison chart describe different objects. | Support is not an acceleration law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
 | record | The finite ledger attached to one branch over the declared memory window. It includes only data that can still affect the next delayed update or certificate: inventory, path history, causal-root rows, wake rows, energy/action rows, momentum and angular-momentum rows, phase and plane-orientation rows, support claims, response-center and group-velocity rows, and the local Noether sea row. | A record is not a narrative summary or a loose collection of diagnostics. A proof claim must say which rows close on the same record. |
@@ -54,7 +54,7 @@ The status discipline binds. The coincident-axis three-binary locus is a prescri
 
 ## Supplementary Diagnostics
 
-The canonical dimensions are defined only in [Braid Taxonomy](braid-taxonomy.md). This chapter adds analysis diagnostics that may be applied after a member is specified: angular-momentum-frame rank, frame handedness, speed regime, and field-speed-hinge occupancy. These diagnostics are intentionally outside the master taxonomy table until a later decision promotes one of them.
+The canonical dimensions are defined only in [Braid Taxonomy](braid-taxonomy.md). This chapter adds analysis diagnostics that may be applied after a member is specified: angular-momentum-frame rank, frame handedness, speed regime, and field-speed-hinge occupancy. These diagnostics are supplementary rather than columns in the master taxonomy table.
 
 ## Base Inventory
 
@@ -288,13 +288,13 @@ A **candidate braid** is a proposed Noether braid branch or branch family whose 
 
 The retained record is not an arbitrary internal diary and it is not an arbitrary collection of architrinos. It is the finite branch chart for one Noether braid: the six-body polarity-neutral inventory of three positive-polarity and three negative-polarity architrinos, together with the path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase data, plane-orientation data, response-center data, group-velocity row, and Noether sea record that can still affect the next delayed update of that same six-body branch. A path-history segment belongs to the retained record only while it can still enter a self-hit, partner-hit, wake-tail, boundary, or branch-return row on the declared memory window.
 
-Let $P_{P_{\mathrm{ret}}}^{(\mathbf{V})}$ be the finite-memory return map over one branch return duration $P_{\mathrm{ret}}$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, global spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is a candidate for certified-braid promotion when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
+Let $\mathcal P_{P_{\mathrm{ret}}}^{(\mathbf{V})}$ be the finite-memory return map over one branch return duration $P_{\mathrm{ret}}$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, global spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is a candidate for certified-braid promotion when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
 $$
 \mathcal R_{\mathrm{cert}}
 =
 d_{\mathfrak B}
 \left(
-P_{P_{\mathrm{ret}}}^{(\mathbf{V})}(B_{3B}),\,
+\mathcal P_{P_{\mathrm{ret}}}^{(\mathbf{V})}(B_{3B}),\,
 g\cdot B_{3B}
 \right)
 \le
@@ -315,11 +315,11 @@ $$
 =
 \frac{R_{\parallel}}{R_{\perp}}
 \to
-\frac{1}{\gamma},
+\frac{1}{\gamma_{\mathrm{eff}}},
 \qquad
 \frac{d\tau}{dt_{\mathrm{eff}}}
 \to
-\frac{1}{\gamma},
+\frac{1}{\gamma_{\mathrm{eff}}},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9d3c9f95b1a200f9)

@@ -169,3 +169,24 @@ test("equation-map rows retain the full-width display-equation layout", () => {
   assert.equal(markdownBody.childNodes[1].classList.contains("markdown-column-wide-block"), true);
   assert.equal(markdownBody.childNodes[1].childNodes[0], equationRow);
 });
+
+test("short passages between equations do not reserve a viewport of blank space", () => {
+  const introduction = createFakeNode({ height: 100, text: "Manifold and Metric" });
+  const equation = createFakeNode({ height: 40, text: "R cubed", wide: true });
+  const explanation = createFakeNode({ height: 80, text: "A location is a point" });
+  const { markdownBody, runtime } = createRuntime([introduction, equation, explanation]);
+
+  for (const count of [2, 3, 2]) {
+    runtime.apply(count);
+    const [before, wide, after] = markdownBody.childNodes;
+    assert.equal(before.scrollHeight, 100);
+    assert.equal(after.scrollHeight, 80);
+    assert.equal(wide.childNodes[0], equation);
+    for (const page of [before, after]) {
+      assert.equal(page.style.properties.get("--markdown-column-page-height"), "0px");
+      assert.ok(page.childNodes.every(column => column.style.height === "auto"));
+    }
+  }
+  runtime.clear();
+  assert.deepEqual(markdownBody.childNodes, [introduction, equation, explanation]);
+});

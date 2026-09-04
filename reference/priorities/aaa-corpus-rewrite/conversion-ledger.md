@@ -16,6 +16,10 @@ Word counts, growth percentages, and corpus-size projections were removed on 202
 
 Do not reintroduce size columns or growth analysis. If a future decision needs the numbers, measure them then; they are cheap to recover and were never the reason to convert or not convert a document.
 
+## Independent Assurance Review
+
+The conversion ledger records edition coverage; independent assurance is tracked separately so a style-conversion row is not mistaken for a second-agent semantic review. The review denominator is 190 documents: the 199-document corpus minus only the nine `foundations/` documents already independently reviewed. Although Codex previously reviewed the six `dynamics/` documents against their baseline, the operator requested a fresh Claude review, so they remain in this assurance campaign. Packet 1 reviewed all 14 `noether-braid/` documents on 2026-09-04. Codex adjudicated the findings against the live sources, accepted the defects that affected mathematics, claim scope, source support, notation identity, anchors, or teaching structure, rejected the blanket base-glyph collision rule and the honeycomb objection, and deferred the cross-corpus $c_1$ rename pending a complete impact map. Packet 1 therefore leaves 176 documents for independent review; Packet 2 is the six-document `dynamics/` review.
+
 ## Ledger
 
 | Document | Edition | Date | Notes |
@@ -232,7 +236,7 @@ Do not reintroduce size columns or growth analysis. If a future decision needs t
 
 ## The independent review pass
 
-The foundations and dynamics conversions were checked by a separate Codex pass rather than by their author alone. The Noether-braid, spacetime, assemblies, nuclear-and-atomic, reactions, quantum, cosmology, validation, and philosophy-and-history batches were checked in their conversion passes against the immediate pre-conversion sources with frozen equation, viewer-link, internal-link, claim-grade, and falsifier boundaries; they have not yet received a second-agent review.
+The foundations and dynamics conversions were checked by a separate Codex pass rather than by their author alone. The Noether-braid batch has now received a second-agent review through Packet 1, and Codex adjudicated and applied the accepted corrections. The spacetime, assemblies, nuclear-and-atomic, reactions, quantum, cosmology, validation, and philosophy-and-history batches were checked in their conversion passes against the immediate pre-conversion sources with frozen equation, viewer-link, internal-link, claim-grade, and falsifier boundaries; they have not yet received a second-agent review.
 
 The corrections share a single pattern, and it is the most useful finding this ledger carries: **explanatory rewriting tends to firm up hedged claims.** Making a passage clear invites making it decisive, and decisive is not always what the theory has earned. In foundations that showed up as a propagation law said to *dynamically distinguish* the rest frame rather than *structurally* doing so, a clock form said to prove the absolute-time postulate when it only encodes it, a glider described as a rotation-number lift rather than a relative periodic orbit, source-motion asymmetry treated as an established Doppler law rather than a derivation target, and unbounded wake history stated without its finite-memory caveat.
 

@@ -16,14 +16,14 @@ Every orthogonal-axis three-binary member is one complete Noether braid composed
 
 At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the orthogonal-axis three-binary translation direction. The complete braid translates along that direction, and its group speed is distinct from the internal architrino speeds.
 
-Every orthogonal-axis three-binary Borg catalog representative uses this near-rest endpoint: $\lambda=0$, source axes along $x$, $y$, and $z$, and corresponding binary orbit planes yz, xz, and xy. This prescribed display selection does not remove the intermediate and flat response geometries from the wider orthogonal-axis three-binary taxonomy.
+Every orthogonal-axis three-binary Borg catalog representative uses this near-rest endpoint: $\lambda_A=0$, source axes along $x$, $y$, and $z$, and corresponding binary orbit planes yz, xz, and xy. This prescribed display selection does not remove the intermediate and flat response geometries from the wider orthogonal-axis three-binary taxonomy.
 
-The prescribed flattening coordinate $\lambda$ connects two endpoint geometries:
+The prescribed flattening coordinate $\lambda_A$ connects two endpoint geometries:
 
-| $\lambda$ | Binary-axis relation | Envelope description |
+| $\lambda_A$ | Binary-axis relation | Envelope description |
 | --- | --- | --- |
 | $0$ | Three mutually orthogonal axes | Nearly spherical near-rest endpoint in the declared weak-gradient environment. |
-| $0 < \lambda < 1$ | Three axes converging toward the translation direction | Increasingly oblate intermediate geometry. |
+| $0 < \lambda_A < 1$ | Three axes converging toward the translation direction | Increasingly oblate intermediate geometry. |
 | $1$ | Three coincident axes along the translation direction | Flat orthogonal-axis three-binary response geometry used as prescribed input in event-horizon and photon-channel response studies. |
 
 This response is prescribed taxonomy. An EOM-solver derivation of the path through these geometries, including either physical endpoint assignment, remains open.
@@ -61,17 +61,17 @@ Each constrained variant uses the coincident-midpoint orthogonal-axis three-bina
 | `coincident-midpoint orthogonal-axis three-binary configuration with 4:2:1 frequency ratio` | Indexed frequency ratio $f_1:f_2:f_3=4:2:1$. | Independently assignable radii and unconstrained phases; the ratio does not order the radii. |
 | `coincident-midpoint orthogonal-axis three-binary configuration with 3:2:1 frequency ratio` | Indexed frequency ratio $f_1:f_2:f_3=3:2:1$. | Independently assignable radii and unconstrained phases; the ratio does not order the radii. |
 
-The exact radius, frequency, phase, axial-half-separation, and transverse-orbit-radius rows are carried only by the [Individual Binary Master Table](braid-taxonomy.md#individual-binary-master-table).
+The exact radius, frequency, phase, axial-half-separation, and transverse-orbit-radius rows are carried by the [coordinate constraints](braid-taxonomy.md#coordinate-constraints-used-by-worked-configurations) and the member's exact source record.
 
 ## Phase-Compensated Equal-Geometry Orthogonal-Axis Three-Binary Configuration
 
 The phase-compensated equal-geometry orthogonal-axis three-binary configuration is the fully symmetric orthogonal-axis three-binary member. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. No binary is distinguished. A $120^\circ$ rotation about the orthogonal-axis three-binary translation direction cyclically permutes the three binaries.
 
-An exact near-rest reference fixture places the three binary axes on an orthonormal frame. At one common reference time, each positrino lies at distance $R$ from the braid center along one positive frame axis and its electrino partner lies at the antipodal point. This is the face-opposite seed used by the invariant-channel analysis in [phase-compensated equal-geometry orthogonal-axis three-binary configuration Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md#invariant-channels-and-equivariant-reductions).
+An exact near-rest reference fixture places the three binary axes on an orthonormal frame. At one common reference time, each positrino lies at distance $R$ from the braid center along one positive frame axis and its electrino partner lies at the antipodal point. This is the face-opposite seed used by the invariant-channel analysis in [Coordinate-Axis Six-Point Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md#invariant-channels-and-equivariant-reductions).
 
 The fixture is one exact phase-compensated equal-geometry orthogonal-axis three-binary configuration representative, not the whole phase-compensated equal-geometry orthogonal-axis three-binary configuration coordinate space. At that reference instant it uses axial half-separation $h=R$ and transverse orbit radius $\rho=0$. In the taxonomy motion about each binary's own fixed axis, that snapshot is static because $\rho=0$; the body-diagonal rotating channel is a distinct prescribed motion of the same six positions. The phase-compensated equal-geometry orthogonal-axis three-binary configuration taxonomy permits any common pair $(h,\rho)$ satisfying the binary-radius relation, provided all three binaries share that geometry and the other phase-compensated equal-geometry orthogonal-axis three-binary configuration constraints.
 
-The member-specific symmetry lemma, reduced channels, two-ring geometry, axial polarity-dipole identity, momentum-screw alignment, and retention questions are developed in [phase-compensated equal-geometry orthogonal-axis three-binary configuration Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md). Those results constrain the fixture under their stated assumptions; they do not certify phase-compensated equal-geometry orthogonal-axis three-binary configuration retention.
+The member-specific symmetry lemma, reduced channels, two-ring geometry, axial polarity-dipole identity, momentum-screw alignment, and retention questions are developed in [Coordinate-Axis Six-Point Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md). Those results constrain the fixture under their stated assumptions; they do not certify phase-compensated equal-geometry orthogonal-axis three-binary configuration retention.
 
 ## Axially Separated Orthogonal-Axis Three-Binary Configuration
 
@@ -133,11 +133,11 @@ The coincident-midpoint equal-radius orthogonal-axis three-binary configuration 
 
 The orthogonal-axis three-binary definitions are prescribed. They would be falsified as EOM-solver branch claims by a same-record evolution showing that the declared coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability rows. Until such a record exists, these loci supply exact display geometry and explicit closure targets, not a retained physical braid.
 
+## Coincident-Axis Three-Binary Geometry
+
 The coincident-axis three-binary records prescribe one braid whose three binary axes are the same oriented line. Their canonical characteristics are defined in [Braid Taxonomy](braid-taxonomy.md#coordinate-constraints-used-by-worked-configurations). This chapter gives the exact path geometry, its coordinate boundaries, and its intersections with orthogonal-axis records.
 
 This is a geometry-and-motion definition. It does not establish that a matching record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
-
-## Coincident-Axis Three-Binary Geometry
 
 Every coincident-axis three-binary member is one complete Noether braid composed of three neutral binaries. The binaries share one oriented axis $\hat{\mathbf n}_B$. The source-defined coincident-axis three-binary locus chart also gives them one common midpoint, the braid center $\mathbf C(T)$.
 
@@ -180,7 +180,7 @@ $$
 
 These equations make the coincident-axis three-binary locus restrictions explicit: the endpoints of each neutral binary remain antipodal about the common braid center; all three binaries use the same axis, frequency, and circulation sense; and the radii, axial half-separations, transverse orbit radii, and phases may differ by binary.
 
-The radius decomposition $R_a^2=h_a^2+\rho_a^2$ is defined in the [Individual Binary](braid-taxonomy.md#individual-binary) coordinate section. The internal speed of either endpoint of binary $a$ is
+The radius decomposition $R_a^2=h_a^2+\rho_a^2$ is part of the [coordinate constraints](braid-taxonomy.md#coordinate-constraints-used-by-worked-configurations). The internal speed of either endpoint of binary $a$ is
 
 $$
 s_a=2\pi f\rho_a.
@@ -254,7 +254,7 @@ The equatorial and axial depictions are coordinate boundaries of the coincident-
 
 The planar common-center three-binary chart all-equatorial display sets $h_a=0$ for all three binaries. Mixed boundary records are also permitted by the coincident-axis three-binary locus coordinates and remain active-candidate eligible when at least one $\rho_a$ is nonzero.
 
-At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but no longer change that binary's endpoint positions because its transverse orbit radius is zero. Two axial records that differ only in those labels therefore depict the same path geometry unless another retained record gives the labels an independent dynamical role.
+At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but do not change that binary's endpoint positions because its transverse orbit radius is zero. Two axial records that differ only in those labels therefore depict the same path geometry unless another retained record gives the labels an independent dynamical role.
 
 ### Planar Balance Locus
 
@@ -302,7 +302,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b1c5b16e8a9576b1)
 
-each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-lemma). A mechanism that fixes the total speed budget remains an open branch hypothesis.
+each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-premise-and-consequence). A mechanism that fixes the total speed budget remains an open branch hypothesis.
 
 Axial translation is a coincident-axis three-binary locus specialization, not a coincident-axis three-binary requirement. A record whose group velocity is not parallel to $\hat{\mathbf n}_B$ retains the same internal coincident-axis three-binary locus geometry but is not an axial screw path. Axial translation carries the center along the common axis while every non-axial endpoint continues circling it. The resulting helix is not obtained by simply adding a harmless velocity label: delayed separations and arrival directions change along the entire history.
 
@@ -312,19 +312,19 @@ The fixed $0.1c_f$ screw-path study and its interval-certified bounded nonexiste
 
 ## Boundary with Orthogonal-Axis Three-Binary Configurations
 
-Orthogonal-axis and coincident-axis three-binary configurations share a coordinate boundary. At $\lambda=1$, the three orthogonal-axis binary axes coincide with the translation direction. A common-frequency orthogonal-axis record with one common circulation sense then satisfies the coincident-axis chart's axis, frequency, and circulation relations. It reaches the source-defined common-center locus only if its three binary midpoints also coincide with the braid center.
+Orthogonal-axis and coincident-axis three-binary configurations share a coordinate boundary. At $\lambda_A=1$, the three orthogonal-axis binary axes coincide with the translation direction. A common-frequency orthogonal-axis record with one common circulation sense then satisfies the coincident-axis chart's axis, frequency, and circulation relations. It reaches the source-defined common-center locus only if its three binary midpoints also coincide with the braid center.
 
-The phase-compensated equal-geometry orthogonal-axis three-binary configuration face-opposite seed supplies a second exact overlap: common-frequency co-rotation about its body diagonal occupies the [cyclic-symmetric orthogonal-axis/coincident-axis sublocus](coincident-axis-three-binary-symmetry.md#cyclic-symmetric-orthogonal-axiscoincident-axis-overlap), independently of $\lambda=1$. These overlaps are coordinate-locus statements. They do not identify orthogonal-axis three-binary configurations with coincident-axis three-binary configurations away from the shared loci and do not establish a physical transition between them.
+The phase-compensated equal-geometry orthogonal-axis three-binary configuration face-opposite seed supplies a second exact overlap: common-frequency co-rotation about its body diagonal occupies the [cyclic-symmetric orthogonal-axis/coincident-axis sublocus](coincident-axis-three-binary-symmetry.md#cyclic-symmetric-orthogonal-axiscoincident-axis-overlap), independently of $\lambda_A=1$. These overlaps are coordinate-locus statements. They do not identify orthogonal-axis three-binary configurations with coincident-axis three-binary configurations away from the shared loci and do not establish a physical transition between them.
 
 ## Coincident-Axis Claim Boundary
 
 The coincident-axis three-binary locus equations define prescribed paths exactly. The equal-radius phase-symmetric planar common-center three-binary chart locus above also carries an accepted prescribed acceleration-balance ladder under the stated complete-root calculations. These statements would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or fixed-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. The coincident-axis three-binary locus therefore supplies exact display geometry, an acceleration-balanced prescribed ladder on one sublocus, and explicit closure targets, not a retained physical braid.
 
+## Two-Component Circular Coordinate Chart
+
 The two-component circular records prescribe twelve coaxial architrino worldlines. Their canonical characteristics are defined in [Braid Taxonomy](braid-taxonomy.md#coordinate-constraints-used-by-worked-configurations). This chapter gives the exact common-axis path chart, the neutral-binary pairing contract, and the co-rotating and counter-rotating peer configurations.
 
 This is a geometry-and-motion definition. It does not establish that a two-component circular record is generated, bound, retained, stable, or physically realized under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
-
-## Two-Component Circular Coordinate Chart
 
 Choose one oriented orthonormal frame
 
@@ -422,7 +422,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8de2892fd5227395)
 
-The twelve radii $\rho_m>0$, angular frequencies $\omega_m>0$, phases $\phi_m$, and circulation senses $q_m$ are independently declared unless a member row constrains them. A complete-return record must declare a period $P_C>0$ satisfying
+The twelve radii $\rho_m>0$, angular frequencies $\omega_m>0$, phases $\phi_m$, and circulation senses $q_m$ are independently declared unless a member row constrains them. A shape-return record must declare a period $P_C>0$ satisfying
 
 $$
 \frac{\omega_mP_C}{2\pi}\in\mathbb Z
@@ -430,7 +430,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-75d719c7d6c79a80)
 
-for every $m$.
+for every $m$. A complete-history return additionally requires the retained causal-root and wake ledgers to return on the same period; commensurate visible paths alone do not establish that stronger condition.
 
 ## Neutral-Binary Pairing
 
@@ -608,13 +608,13 @@ In particular, the photon-channel hypothesis is a **coaxial contra-rotating pola
 
 The two-component circular equations are exact prescribed paths. A prescribed-path residual candidate is falsified when its declared causal-root, minimum-separation, speed, complete-cycle acceleration-balance, refinement, or independent-reconstruction requirements fail. Such a result remains analytical: it does not establish or refute stability, retention, binding, photon identity, quantization, or physical realization.
 
+## The Co-Spherical Chart
+
 A co-spherical assembly is a prescribed collection of architrinos whose worldlines remain on one common sphere: one fixed center, one radius, and every member at that radius for all time. This spatial chart extends the planar cases in [Planar (2D) Braid Assemblies](2d-braid-assemblies.md). A co-spherical record receives braid characteristics only when its exact member inventory, component membership, polarity pairing, centers, axes, frequencies, and circulation support them. Co-sphericity alone is an appearance; taxonomy follows the coordinate record.
 
 Co-sphericity organizes exact intersections with the braid taxonomy and permits comparisons among restricted acceleration-balance results. It does not itself imply balance. The circular-path subset contains prescribed balanced histories, while several nonplanar co-spherical families have bounded exclusions or measured residuals. Those results must be stated at their individual scopes; they do not establish a general obstruction to co-spherical motion. Every moving member must remain the same distance from one center. This geometric condition describes a family of possible histories; the acceleration law decides which histories, if any, satisfy it.
 
 The results below distinguish derived chart algebra and taxonomy intersections, a sign-based exclusion for latitude-segregated two-ring words, a finite enumeration of balanced vertex colourings, and measured results cited from their originating analyses. None establishes retained motion, binding, stability, particle identity, effective mass, or formation.
-
-## The Co-Spherical Chart
 
 Choose a fixed center $\mathbf C$, a radius $R>0$, and $2N$ distinct members. The chart requires
 
@@ -658,7 +658,7 @@ A degree of freedom here is a geometric coordinate, discrete assembly choice, or
 
 > In a two-latitude rigid co-rotating co-spherical configuration, at least one ring must carry both polarities. Latitude-segregated polarity words are excluded.
 
-This is exactly the octahedron exclusion in general form, and it generalizes usefully: with three or more rings, contributions from rings above and below a receiver can cancel against each other, so segregation is no longer automatically fatal. Scope and falsifier follow the corpus statement it generalizes — the argument covers admitted simple roots only, caustic and collision events lie outside it, and an admitted root with a negative canonical acceleration weight, or a nonzero axial same-ring line of action, would overturn it. If the northern members are all one polarity and the southern members all the other, every north-south pull leans the same way and nothing can cancel it. Mixing the polarities within a ring, or using three rings instead of two, restores the possibility of cancellation. This is a real filter and it can be applied today.
+This is exactly the octahedron exclusion in general form, and it generalizes usefully: with three or more rings, contributions from rings above and below a receiver can cancel against each other, so segregation is not automatically fatal. Scope and falsifier follow the corpus statement it generalizes — the argument covers admitted simple roots only, caustic and collision events lie outside it, and an admitted root with a negative canonical acceleration weight, or a nonzero axial same-ring line of action, would overturn it. If the northern members are all one polarity and the southern members all the other, every north-south pull leans the same way and nothing can cancel it. Mixing the polarities within a ring, or using three rings instead of two, restores the possibility of cancellation. This gives a direct exclusion test for the two-ring chart.
 
 It bears directly on `co-rotating coaxial two-planar-braid chart`/`counter-rotating coaxial two-planar-braid chart`, which are two-ring objects: their co-spherical sub-locus is live only if the component rings are not polarity-segregated.
 
@@ -704,7 +704,7 @@ with $\Theta_k(T)=\theta_k+\delta\theta_k(T)$ and $\Phi_k(T)=\Omega T+\phi_k+\de
 | Per-ring angular rates | Independent $\Omega_\ell$ per latitude ring | Distinct fixed latitudes separate the corresponding circles | Represent independent counterflow without the same-circle coincidence of persistent opposed circulation |
 | Per-ring circulation senses | $s_\ell=\operatorname{sgn}\Omega_\ell$ | New; open | Test counter-rotation between latitudes, handedness, and reflection covariance with the applicable circulation reversal |
 | Common radius | $R$, or $R/R_*$ | Open | Determine the compatible assembly scale |
-| Per-sector or per-ring radii | $R_\sigma$, $R_\ell$ | **Activating this exits the chart.** The `scoped-negative circular control`-to-`asymmetric counter-breathing representative` evidence indicates the dynamics moves this way when released | Document the exit route honestly rather than treating co-sphericity as preserved under release |
+| Per-sector or per-ring radii | $R_\sigma$, $R_\ell$ | Activating this exits the chart. The cited tangent-projection comparison uses the larger allowed tangent space and supplies no evolved dynamical direction. | Represent a possible exit chart without treating co-sphericity as preserved under release. |
 | Common radial breathing | $\delta r_k(T)=\delta R(T)$ for every member | Extension beyond fixed $R$; preserves a common time-varying radius | Test coherent expansion and contraction without separating the sector radii |
 | Latitude drift | $\delta\theta_k(T)$ | **New; chart-preserving, with no circle analogue** | Test latitude exchange, meridional shear, and internal deformation that does not leave the sphere |
 | Longitude modulation | $\delta\phi_k(T)$ | Open | Test phase locking, angular shear, and collision-free speed exchange within a ring |
@@ -742,7 +742,7 @@ For an orthogonal-axis three-binary or coincident-axis three-binary configuratio
 | `coincident-midpoint orthogonal-axis three-binary configuration`, `coincident-midpoint common-frequency orthogonal-axis three-binary configuration`, `coincident-midpoint orthogonal-axis three-binary configuration with 4:2:1 frequency ratio`, `coincident-midpoint orthogonal-axis three-binary configuration with 3:2:1 frequency ratio`, `axially separated orthogonal-axis three-binary configuration`, `axially separated common-frequency orthogonal-axis three-binary configuration`, `axially separated orthogonal-axis three-binary configuration with 4:2:1 frequency ratio`, `axially separated orthogonal-axis three-binary configuration with 3:2:1 frequency ratio` | sub-locus | $R_1=R_2=R_3$ |
 | Coincident-axis three-binary reference, axial-transverse interior, and high-axial interior | sub-locus | $R_1=R_2=R_3$, with $h_a^2+\rho_a^2$ equal across binaries |
 | `planar common-center three-binary chart` | degenerate sub-locus | $R_1=R_2=R_3$ with $h_a=0$ collapses to one multiply occupied **circle** |
-| `all-axial three-binary boundary` (deprecated) | barred | equal radii with $\rho_a=0$ produce coordinate coincidence at $\pm R\hat{\mathbf n}_B$ |
+| `all-axial three-binary boundary` | barred | equal radii with $\rho_a=0$ produce coordinate coincidence at $\pm R\hat{\mathbf n}_B$ |
 | `co-rotating coincident-center two-component circular configuration`, `counter-rotating coincident-center two-component circular configuration` | sub-locus | $\exists\,\zeta,R$ with $(\xi_m-\zeta)^2+\rho_m^2=R^2$ for all twelve worldlines, center on $\hat{\mathbf n}_C$ |
 | `co-rotating coaxial two-component circular configuration`, `counter-rotating coaxial two-component circular configuration` | constrained sub-locus | component centers are separated by $d_C>0$, so at most one component center can be the sphere center and the other component must be all-equatorial |
 | `co-rotating coaxial two-planar-braid chart`, `counter-rotating coaxial two-planar-braid chart` | sub-locus | equal radii *within* each component; the two components need not share a radius |
@@ -768,7 +768,7 @@ Each row is owned by the document named; this chapter collects dispositions and 
 
 Two entries deserve to be read together rather than as separate rows.
 
-**[measured; owned by asymmetric counter-breathing representative geometry]** `scoped-negative circular control` is the single-sphere specialization of `asymmetric counter-breathing representative`, and the Master Equation rejected it in an unusually informative way. Projection of the evaluated acceleration onto the common three-coordinate tangent of the fixed shared-radius history leaves $68.408\%$ of the acceleration norm outside that tangent. Granting the two polarity sectors separate axial, radial, and phase histories — that is, releasing the single co-spherical configuration into two independently breathing sector envelopes — reduces the measured normal fraction to $2.31\times10^{-15}$. The larger, polarity-resolved set of allowed motions fits the measured acceleration much better at the evaluated state. This is a tangent-projection comparison, not an evolved departure from the sphere and not evidence that the larger history is retained.
+**[measured; owned by asymmetric counter-breathing representative geometry]** `scoped-negative circular control` is the single-sphere specialization of `asymmetric counter-breathing representative`, and the Master Equation rejected it in an unusually informative way. Projection of the evaluated acceleration onto the common three-coordinate tangent of the fixed shared-radius history leaves $68.408\%$ of the acceleration norm outside that tangent. Projection onto the larger six-coordinate tangent that grants the two polarity sectors separate axial, radial, and phase directions reduces the measured normal fraction to $2.31\times10^{-15}$. Because the larger tangent contains the smaller tangent, part of this reduction is guaranteed by the additional allowed dimensions. The comparison therefore establishes only that the evaluated acceleration is nearly tangent to the larger chart at that state; it does not establish an evolved departure from the sphere, select a dynamical direction, or show that the larger history is retained.
 
 **[inference; limited to the listed nonplanar examples]** The axial sign argument, interval-certified bounded exclusion, tangent-projection residual, and stationary-strata exclusions provide distinct reasons that particular co-spherical prescriptions fail. Their union is not a theorem about all co-spherical histories, and the balanced circular-path subset already prevents such a blanket conclusion. A nonplanar acceleration-balanced history would disprove any stronger conjecture that co-sphericity itself is obstructed outside the planar subset.
 
@@ -1031,7 +1031,7 @@ which is the regular octahedron whose six vertices are the cube's face centers. 
 
 This is a prescribed polarity geometry, not by itself a physical realization. In particular, an acceleration result for the complete infinite checkerboard or alternating-plane lattice cannot be transferred to the eight-site cube by deleting every other lattice site: that deletion changes the complete causal-root acceleration sum. The compound therefore remains a geometric and polarity construction until a declared path history is evaluated for precisely its member inventory.
 
-The exact static assembly is available in [Borg](../../../../borg.html?assemblyId=asm-242282e6154b97b00ac9d8e5123cde46&modelRevisionSha256=242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8). Its twelve displayed edges are the two tetrahedral edge sets; the stationary record carrier supplies no motion, and no braid classification is assigned. Borg now shows the eight cube-corner members as two interlocked tetrahedra. The picture identifies the static geometry only; it does not claim that the members trace a braid.
+The exact static assembly is available in [Borg](../../../../borg.html?assemblyId=asm-242282e6154b97b00ac9d8e5123cde46&modelRevisionSha256=242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8). Its twelve displayed edges are the two tetrahedral edge sets; the stationary record carrier supplies no motion, and no braid classification is assigned. Borg shows the eight cube-corner members as two interlocked tetrahedra. The picture identifies the static geometry only; it does not claim that the members trace a braid.
 
 The app's other periodic polarity decorations give additional exact consequences for the Platonic constructions displayed in this section.
 
@@ -1204,7 +1204,7 @@ One of the cube's three antipodal-alternating classes is the tetrahedral pair as
 
 **[derived; exclusion scope]** For the declared face-center rotation axis, the octahedral vertices form two triangular rings at $\pm h$. Assigning one polarity to each ring gives the excluded segregated word. Mixed-polarity assignments on those rings are not covered by that sign argument. The two colouring classes in the enumeration quotient vertex sets by the full point group; classifying moving histories additionally requires the axis and history, so a result for one axis-word pair must not be extended to an entire motion family.
 
-The stationary analysis now exhausts the two balanced polarity classes on the regular octahedron. It does not classify deformed six-point geometries or transfer to a moving history.
+The stationary analysis exhausts the two balanced polarity classes on the regular octahedron. It does not classify deformed six-point geometries or transfer to a moving history.
 
 The cited analyses provide no moving-history balance result for the other four solids. The enumeration does not fill that gap.
 
@@ -1218,7 +1218,7 @@ An orbiting co-spherical history has nonzero internal velocities. Rigid co-rotat
 
 **[derived; conditional symmetry reduction]** If a second-rank residual tensor is constructed equivariantly from the complete motion record, its symmetry is constrained by the stabilizer of that record. An irreducible three-dimensional symmetry action can force an invariant tensor to be scalar. This reduces the balance question but does not answer it: a scalar residual can vanish without a geometrically degenerate configuration. An exclusion requires a separate proof that the relevant scalar cannot vanish. The polarity word, rotation axis, and history must all be included when identifying the stabilizer. Symmetry can make several residual components equal. It does not, by itself, prove that their common value is nonzero.
 
-The Platonic Moving-History Reduction makes this principle exact for the octahedron. It defines the coloured complete-history stabilizer using the axial-vector action on angular velocity, proves the residual equivariance theorem, enumerates every special rotation-axis stratum and every high-symmetry axis orbit for both balanced words, and derives the exact number of independent scalar residual channels. For rigid histories with every member below $c_f=1$, it also proves one and only one partner root per ordered pair, no nontrivial self-hit root, a positive transmitter-side Jacobian floor, collision clearance $\sqrt2R$, and sufficient prehistory depth $2R$. Exact channel arguments then exclude every vertex-axis orbit and the five-channel difference-edge-axis stratum. The octahedral moving problem is no longer an unspecified search over six vector equations. Each word and axis has an exact reduced channel count and a complete root ledger, and the smallest special-axis cases already fail. The next unresolved rigid systems have nine scalar channels.
+The Platonic Moving-History Reduction makes this principle exact for the octahedron. It defines the coloured complete-history stabilizer using the axial-vector action on angular velocity, proves the residual equivariance theorem, enumerates every special rotation-axis stratum and every high-symmetry axis orbit for both balanced words, and derives the exact number of independent scalar residual channels. For rigid histories with every member below $c_f=1$, it also proves one and only one partner root per ordered pair, no nontrivial self-hit root, a positive transmitter-side Jacobian floor, collision clearance $\sqrt2R$, and sufficient prehistory depth $2R$. Exact channel arguments then exclude every vertex-axis orbit and the five-channel difference-edge-axis stratum. The octahedral moving problem has an exact reduced channel count and complete root ledger for each word and axis; the smallest special-axis cases fail, and the next unresolved rigid systems have nine scalar channels.
 
 ### Enumeration Method
 
@@ -1232,7 +1232,7 @@ A balanced polarity word assigns equal numbers of the two polarities to the memb
 
 ### Complete balance on moving histories
 
-The full residual must include every cross-transmitter causal root and every nontrivial same-transmitter root in the declared history domain. The rigid sub-field-speed octahedral chart now has a complete thirty-partner-root ledger and no nontrivial self roots, as derived in the moving-history reduction packet. Latitude-dependent speeds can give different root and fold structures for non-rigid members. The circular-path scalar reduction and the frozen-point-cloud criterion cannot be assumed to apply. The two-ring sign exclusion remains valid within its stated simple-root assumptions without a complete numerical balance calculation.
+The full residual must include every cross-transmitter causal root and every nontrivial same-transmitter root in the declared history domain. The rigid sub-field-speed octahedral chart has a complete thirty-partner-root ledger and no nontrivial self roots, as derived in the moving-history reduction. Latitude-dependent speeds can give different root and fold structures for non-rigid members. The circular-path scalar reduction and the frozen-point-cloud criterion cannot be assumed to apply. The two-ring sign exclusion remains valid within its stated simple-root assumptions without a complete numerical balance calculation.
 
 ### Collision clearance and latitude structure
 
@@ -1242,7 +1242,7 @@ The two-latitude `co-rotating coaxial two-planar-braid chart`/`counter-rotating 
 
 ### Polyhedral motion and symmetry
 
-The stationary octahedral exclusion now covers both balanced word classes. The rigid-axis census closes every special symmetry stratum and the continuous generic stratum at the level of equation reduction. Dynamically, the monochromatic-face history, every vertex-axis orbit, and the five-channel antipodal-alternating difference-edge-axis history are excluded at their stated speed scopes. The remaining nine- and eighteen-channel scalar systems, together with non-rigid histories, remain separate questions. The tetrahedral, cubic, icosahedral, and dodecahedral word classes have no moving-history result in the cited inventory. Any complete moving claim must cover both the finite colouring classes and the declared continuous motion parameters.
+The stationary octahedral exclusion covers both balanced word classes. The rigid-axis census closes every special symmetry stratum and the continuous generic stratum at the level of equation reduction. Dynamically, the monochromatic-face history, every vertex-axis orbit, and the five-channel antipodal-alternating difference-edge-axis history are excluded at their stated speed scopes. The remaining nine- and eighteen-channel scalar systems, together with non-rigid histories, remain separate questions. The tetrahedral, cubic, icosahedral, and dodecahedral word classes have no moving-history result in the cited inventory. Any complete moving claim must cover both the finite colouring classes and the declared continuous motion parameters.
 
 ### Nonplanar co-sphericity
 

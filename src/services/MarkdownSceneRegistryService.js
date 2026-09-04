@@ -286,7 +286,9 @@ export function createMarkdownSceneRegistry(deps) {
       if (!markdownPath) {
         return null;
       }
-      const sceneName = markdownSection || (await resolveRuntimeMarkdownTitle(markdownPath));
+      const sceneName = markdownSection
+        ? titleFromSlug(markdownSection)
+        : await resolveRuntimeMarkdownTitle(markdownPath);
       const markdownColumns = await resolveRuntimeMarkdownColumns(markdownPath);
       return ensureMarkdownReaderScene({
         markdownPath,

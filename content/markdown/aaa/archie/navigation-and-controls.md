@@ -45,6 +45,7 @@ When a sphere maps to markdown, notes open in the markdown panel.
 - A node can open a section view or a full document view.
 - Section views provide local context inside a larger document.
 - Full document views support longer-form reading across the whole text.
+- Links to a named heading open that section directly, so readers do not need to search the destination page for the definition.
 - Split scenes derive peer spheres from one heading level in a document.
 - Tree scenes derive a bounded local heading hierarchy from one document.
 
@@ -82,10 +83,10 @@ Sphere labels may also use more than one text row when the scene author provides
 - Toggle layout (1/2 column): layout icon in the global document controls
 - Open full document from section/index: document icon in the global document controls
 - Export the open reading surface: PDF icon in the global document controls
-- Close the panel: `Close` (×) icon at the right of the panel header
+- Close the panel: `Close` (×) icon at the right of the panel header. When the document is the whole scene, closing returns to the scene that opened it; a directly opened document returns Home. When a document overlays a scene with other content, closing reveals that scene in place.
 - In two-column mode, read down the left column and then the right column; the next two-column spread continues below, using ordinary vertical scrolling.
 
-The panel also closes on its own when navigation opens another scene or reading surface, so closing it explicitly is a way to return to the scene beneath rather than the only way to leave the document.
+The panel also closes on its own when navigation opens another scene or reading surface. Scene history retains document routes, so `Back` and `Forward` remain available after returning from a document.
 
 When a split or tree source is section-based, opening the full document is often the fastest way to regain the surrounding overview before returning to the local node.
 
