@@ -402,7 +402,7 @@ and the crosswalk residual $\epsilon_{\mathrm{cross}}^{\mathfrak{B}}$ compares a
 
 The theorem target is:
 
-> For a retained branch chart $\mathfrak{B}$ whose per-hit force row is native, whose action regularization is symmetry-preserving, and whose event and boundary rows use the same root signature, $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)\to0$ under the declared refinement limit for every isolated finite window $W$ before any energy, momentum, angular-momentum, mass-shell, photon, metric, or thermodynamic row is treated as more than a diagnostic map.
+> For a retained branch chart $\mathfrak{B}$ whose per-hit acceleration contribution is native, whose action regularization is symmetry-preserving, and whose event and boundary rows use the same root signature, $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)\to0$ under the declared refinement limit for every isolated finite window $W$ before any energy, momentum, angular-momentum, mass-shell, photon, metric, or thermodynamic row is treated as more than a diagnostic map.
 
 ## Relationship To Other Equation Rows
 
@@ -460,7 +460,7 @@ $$
 
 for a two-body or reduced neutral-braid branch chart with declared $h$, $\eta$, $\epsilon_c$, active roots, inactive gaps, transmitter-side floor, acceleration weights, separate playback, and endpoint convention. The calculation should output:
 
-- the force row from the native per-hit causal wake law;
+- the acceleration contribution from the native per-hit causal wake law;
 - the wake-history charge route used for $E_{\mathrm{wake}}$, $\mathbf P_{\mathrm{wake}}$, and $\mathbf J_{\mathrm{wake}}$;
 - the event ledger for any root transition, recoil, remnant, support-boundary crossing, or medium update;
 - boundary flux through $\partial\Omega$ or an explicit isolated-window proof that the flux is absent;
@@ -473,7 +473,7 @@ The first proof step is not to prove all conservation laws globally. It is to sh
 | Failure code | Meaning |
 | --- | --- |
 | `eq01-05.root_signature_split` | Force, action, wake charge, event, or boundary rows use different active-root labels, memory depth, regularization, Jacobian floor, endpoint convention, or Noether sea state. |
-| `eq01-05.wake_charge_placeholder` | $E_{\mathrm{wake}}$, $\mathbf P_{\mathrm{wake}}$, or $\mathbf J_{\mathrm{wake}}$ is named but not constructed from the causal-history law and branch convention that generated the force row. |
+| `eq01-05.wake_charge_placeholder` | $E_{\mathrm{wake}}$, $\mathbf P_{\mathrm{wake}}$, or $\mathbf J_{\mathrm{wake}}$ is named but not constructed from the causal-history law and branch convention that generated the acceleration contribution. |
 | `eq01-05.event_sink_hidden` | Recoil, remnant, medium update, radiation, support-boundary, or branch transition is used as an untracked loss term instead of a row in $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$. |
 | `eq01-05.boundary_flux_hidden` | Wake escapement or assembly/medium crossing leaves $\Omega$ without appearing in $\Phi_{Q,\partial\Omega}$. |
 | `eq01-05.no_double_count_failed` | The same near-field, wake, or Noether sea exchange is counted both in a retained charge and in an event or boundary channel. |

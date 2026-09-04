@@ -1,6 +1,6 @@
 # Corpus Dragnet Work Queue
 
-This is the canonical execution ledger for accepted read-only correlation passes. A pass may write only to this lane's durable recommendation and work log files; it must not edit the inspected corpus.
+This is the canonical execution ledger for accepted Corpus Dragnet actions. Each queue item states its own edit authority, inspected scope, owner routes, and completion conditions.
 
 ## Ranked Next Objects
 

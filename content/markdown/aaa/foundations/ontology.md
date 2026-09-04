@@ -4,7 +4,7 @@
 
 That distinction sounds abstract and is intensely practical. Physics routinely uses quantities that work beautifully without anyone claiming they are fundamental — temperature is real and useful, yet no single molecule has one. Confusing "this description works" with "this is what exists" is the most common way a theory ends up explaining something in terms of itself.
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ the answer comes in layers. At the bottom sit absolute time, the Euclidean void, and architrinos. Above them, assemblies, causal wakes, and the Noether sea. Above those, the familiar furniture of physics: fields, particles, clocks, rulers, metrics, and the records observers actually collect. The governing rule of this chapter is that these layers must never be mixed.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ the answer comes in layers. At the bottom sit absolute time, the Euclidean void, architrinos, and the source-dependent causal-wake support fixed by architrino histories. Above them sit assemblies and the Noether sea. Above those lie effective fields, particles, clocks, rulers, metrics, and finally the records observers actually collect. The governing rule of this chapter is that these layers must never be mixed.
 
 This is the bedrock map. It says what exists at the substrate level, what emerges from assembly and medium behavior, and which terms must stay level-aware for everything downstream to remain coherent.
 
@@ -17,7 +17,7 @@ This document establishes what fundamentally exists in $\mathbb{A}\mathbb{A}\mat
 It defines six foundation routes:
 
 1. **The Substrate**: [absolute time](./absolute-time.md), [Euclidean void](./euclidean-void.md), and [absolute timespace](./absolute-timespace.md).
-2. **The Fundamental Entity**: the [architrino](./architrino.md), a point entity that continuously emits an expanding record of its own motion and receives everyone else's.
+2. **The Fundamental Entity**: the [architrino](./architrino.md), a point entity that continuously emits an expanding record of its own motion and receives the causal-root contributions that reach it.
 3. **The Physical Medium**: the [Noether sea](../spacetime/noether-sea.md), content filling the void, built from coupled neutral assemblies.
 4. **The Observer Framework**: [complete state versus what an observer can reach](../spacetime/observer-framework.md).
 5. **Terminology Discipline**: [level-aware vocabulary](../archie/terminology-usage.md).
@@ -94,15 +94,15 @@ Read it left to right as a sequence of deliberate losses. $S(T)$ is the complete
 
 The observer projection used elsewhere is the composite of all three, $\Pi_{\mathrm{obs}}=\Pi_{\mathrm{record}}\circ\Pi_{\mathrm{eff}}\circ\Pi_{\mathrm{assembly}}$, which refines the single-step version stated in [Architrino](./architrino.md#provenance-and-persistence).
 
-Each arrow keeps some information and discards some. Individual provenance labels, depth of path history, branch alternatives not taken, fine assembly coordinates, medium microstate, and anything a particular apparatus cannot reach may be lost at different stages.
+Each arrow keeps some information and discards some. Individual provenance labels, depth of path history, fine assembly coordinates, medium microstate, and any inactive branch-chart labels actually retained in the complete state may be lost at different stages. The map does not turn unrealized possible futures into ontic data.
 
-Here is why that matters rather than being bookkeeping. **A quantity is well-defined at a level only if it survives the map into that level.** Ask for the "position of the electron" at the observer level and the question is only meaningful if position survives the projections; if it does not, the question has no referent, however natural it sounds.
+Here is why that matters rather than being bookkeeping. A lower-level quantity descends to a coarser level only if it is constant, within the declared tolerance, on every fiber of the projection: all detailed states mapped to one coarse state must assign it the same value. Coarse levels may also define new collective quantities, such as temperature, that have no one-particle counterpart. Asking for the "position of the electron" at the observer level is meaningful only after the observer map defines such a position or a lower-level position descends through it.
 
 Failure to survive is measured by a residual — provenance leakage $\epsilon_{\mathrm{prov}}$, branch or record residuals $\mathcal R_{\mathcal Q}$, clock-composition residuals $\Delta^{\mathrm{comp}}$, clock-universality residuals $\epsilon_{\mathrm{univ}}$. So level discipline is not vocabulary hygiene. It decides which quantities remain meaningful after a projection, and the residuals say how badly the others fail.
 
 ### Where projections break
 
-Projections also need regularity: they are usable only where they can be locally inverted, and each carries a declared floor below which that fails.
+The foundations use several nondegeneracy floors, but they guard different mathematical obligations. A projection is intentionally many-to-one and need not be locally invertible. A causal-root chart needs an implicit-function condition; a reconstructed frame or wake center needs an identifiable inverse; a basin separator needs a regular boundary; and a clock/ruler export needs a stable forward map.
 
 | Floor | Guarded map | Failure meaning | Owner |
 |:---|:---|:---|:---|
@@ -113,9 +113,9 @@ Projections also need regularity: they are usable only where they can be locally
 | $\kappa_{\mathrm{sep}}>0$ | basin separator | unstable, riddled, or unresolved branch partition | [Emergence of Structure](./emergence-of-structure.md#context-as-constraint-on-basin-selection) |
 | $\sigma_{\mathrm{cr}}>0$ | clock/ruler handoff | rank loss or locally multivalued metric export | [Absolute Time Defense](./absolute-time-defense.md#absolute-time-global-foliation-and-proper-time) |
 
-Each floor guards against the same class of failure: the map becoming degenerate, so that distinct states below collapse to one state above and the inverse stops existing.
+Each floor prevents a named chart or inference from becoming ill-conditioned. Their failures are related by loss of regularity, not by one universal inverse-map theorem.
 
-The shared theorem target is a regularity lemma. Away from the locus where a floor fails — a set expected to be one dimension thinner than the space it sits in, so that generic states avoid it — the map has controlled local inverse behavior. At a floor failure the theory must report a residual, a branch jump, or a reconfiguration event, and must not quietly go on using a chart that no longer applies.
+The safe common rule is local and typed: state the map, state the rank or transversality condition it actually needs, and fail closed when that condition is lost. A generic scalar fold is codimension one, but rank-deficient matrix varieties and basin-boundary pathologies can have other codimensions. No dimension claim transfers from one row to another without a theorem for that row.
 
 ### Two distinctions that govern the rest
 
@@ -125,7 +125,7 @@ The shared theorem target is a regularity lemma. Away from the locus where a flo
 
 A conservative entry criterion for emergent matter status therefore has two parts. A stable assembly $A$ must carry a nonzero closed internal energy ledger $E_{\text{internal}}(A) > 0$ as defined in [Energy](../dynamics/energy.md), and it must carry an exclusion record — the property that makes two of them unable to occupy the same place — protected by retained configuration topology together with a barrier that preserves the branch.
 
-The second part is the harder one, and the reason is geometric. As [Euclidean Void](./euclidean-void.md) establishes, the container supplies no ambient topological protection whatever. So the protecting structure must be carried by the assembly itself: an oblate exclusion envelope, together with the ordered-frame, framed linking, or causal-writhe data that fermionic matter requires, plus a nonzero barrier $\Delta E_{\mathrm{excl}}>0$ against deforming through the forbidden branch. This is an entry criterion for the mass-map and exclusion programs, not a completed derivation of particle masses or of spin-statistics.
+The second part is the harder one, and the reason is geometric. As [Euclidean Void](./euclidean-void.md) establishes, the container $\mathbb{R}^3$ is contractible and supplies no nontrivial topology by itself. Collision-excluded multi-assembly configuration spaces can nevertheless carry nontrivial loop classes. The protecting structure must therefore be realized and retained by the assembly dynamics: an exclusion envelope, ordered-frame, framed-linking, or causal-writhe record, together with a nonzero barrier $\Delta E_{\mathrm{excl}}>0$ against leaving the protected branch. This is an entry criterion for the mass-map and exclusion programs, not a completed derivation of particle masses or spin-statistics.
 
 ## The Substrate
 
@@ -147,13 +147,13 @@ For the argument, see [Absolute Time Defense](./absolute-time-defense.md). For o
 
 > **Abridged Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
-This is a claim about the container and nothing else. It does not deny that observers reconstruct curved effective geometry — they do, and that reconstruction is valid at its own level. The Noether sea is content within the void, never the void. See [Noether sea](../spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../spacetime/emergent-metric.md).
+This is a claim about the container and nothing else. Established observer physics successfully uses curved metric geometry; $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover that description from clocks, rulers, signals, and medium response at its effective layer. The Noether sea is content within the void, never the void. See [Noether sea](../spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../spacetime/emergent-metric.md).
 
 ### Absolute Timespace
 
-[Absolute Timespace](./absolute-timespace.md) owns the background arena $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$: one time dimension multiplied by three of space, kept as separate factors. It owns the **foliation** — the slicing of that arena into stacked sheets of constant time, each one a complete snapshot of space at one instant — along with the separated clock-form and spatial-metric data $(dT,h)$, Galilean kinematics, and causal-wake geometry.
+[Absolute Timespace](./absolute-timespace.md) owns the background arena $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$: one time dimension multiplied by three of space, kept as separate factors. It owns the **foliation** — the slicing of that arena into stacked sheets of constant time, each one a complete snapshot of space at one instant — along with the separated clock form and spatial metric, the compatible flat product connection $(dT,h,\nabla)$, Galilean kinematics, and causal-wake geometry.
 
-> **Abridged Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$, foliated by absolute-time slices $\Sigma_T$. The background is non-dynamical and non-curved; causality is ordered by $T$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame.
+> **Abridged Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$, Euclidean spatial metric $h_{ij}=\delta_{ij}$, and a compatible flat torsion-free product connection $\nabla$, foliated by absolute-time slices $\Sigma_T$. The background is non-dynamical and non-curved; causality is ordered by $T$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame within that structure.
 
 The product notation packages a clock and a container. It deliberately does not introduce a four-dimensional metric mixing space and time as primitive ontology — the difference between a product and a genuinely woven spacetime is the difference between this theory and established relativity at the substrate level. Relativistic language enters only after medium response, clock and ruler behavior, and signal reconstruction have been derived.
 
@@ -167,19 +167,19 @@ For the factors, see [Absolute Time](./absolute-time.md) and [Euclidean Void](./
 
 The architrino is the sole primitive substance of the theory. That does not make an isolated one a matter particle. Rest mass, spatial exclusion, fermionic behavior, and particle species are all downstream assembly properties.
 
-The same caution governs exchange behavior. The labels *fermion* and *boson* — established physics's division of particles into those that refuse to share a state and those that pile happily into the same one — are recovery targets here, not postulates to insert. Any effective exchange label must be routed through a retained assembly closure label and the ordered-frame program. The current concrete braid instance is $\Lambda_{\mathrm{cm}}$; no separate generic taxonomy is introduced.
+The same caution governs exchange behavior. In established quantum theory, identical fermion states are antisymmetric under exchange and obey Pauli exclusion, while identical boson states are symmetric and may occupy the same one-particle state. Those exchange rules are recovery targets here, not postulates to insert. Any effective exchange label must be routed through a retained assembly closure label and the ordered-frame program. The current concrete braid instance is $\Lambda_{\mathrm{cm}}$; no separate generic taxonomy is introduced.
 
 ### The hard wall: the two-assembly exchange loop
 
 Swapping two identical objects and returning is a closed loop in the space of configurations. The question is what the theory does around that loop.
 
-The ambient space does supply a candidate loop. For two identical centers in $\mathbb{R}^3$ with coincidence removed, the space of unordered configurations has **fundamental group** $\mathbb{Z}_2$ — meaning there are exactly two classes of closed path, the trivial one and the exchange, and doing the exchange twice returns you to the trivial class. This is the classic Leinaas–Myrheim and Laidlaw–DeWitt observation.
+The collision-excluded configuration space supplies a candidate loop. For two identical centers in $\mathbb{R}^3$ with coincidence removed, the space of unordered configurations has **fundamental group** $\mathbb{Z}_2$ — meaning there are exactly two classes of closed path, the trivial one and the exchange, and doing the exchange twice returns you to the trivial class. Laidlaw and DeWitt's [configuration-space treatment](https://doi.org/10.1103/PhysRevD.3.1375) is a primary source for the connection between these homotopy classes and bosonic or fermionic propagators.
 
 What the void does *not* supply is **superselection**: nothing about the container forces a recovered effective state to change at all when carried around that loop. A loop existing is not the same as a loop mattering.
 
 So the fermionic route must establish two separate facts about the retained dynamics. First, the dynamically retained two-assembly component must not trivialize the exchange class after the allowed quotient — the loop must survive in the configurations the theory actually keeps. Second, the recovered effective state must pick up a factor of $-1$ around it, which is the **holonomy**: what a quantity becomes after being carried around a loop and brought back.
 
-If either fails, the antisymmetric behavior of fermions has not been recovered from assembly dynamics and would have to be inserted by hand at the effective level. The generic failure mode is trivial holonomy rather than a missing loop class, which is to say the loop is usually there and usually does nothing.
+If either fails, the antisymmetric behavior of fermions has not been recovered from assembly dynamics and would have to be inserted at the effective level. Trivial holonomy is one possible failure even when the exchange loop survives; loss of the loop class under the retained quotient is another. The dynamics must determine which occurs.
 
 ### Polarity and wake
 
@@ -215,7 +215,7 @@ Routing:
 
 [Observer Framework](../spacetime/observer-framework.md) owns the complete-state perspective $\mathbb{U}_{\text{now}}$, observers, the distinction between what is and what is known, and absolute versus operational simultaneity.
 
-The complete state is the absolute-time slice $\mathbb{U}_{\text{now}}\equiv S(T)$. An observer samples only a constrained record from inside it, using clocks, rulers, and signals whose behavior is itself produced by assembly and medium dynamics.
+The complete state $\mathbb{U}_{\text{now}}\equiv S(T)$ is indexed by an absolute-time slice $\Sigma_T$; it is not the geometric slice itself. An observer samples only a constrained record from that state, using clocks, rulers, and signals whose behavior is itself produced by assembly and medium dynamics.
 
 > **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete state on an absolute-time slice from the measurements available to embedded observers. Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate.
 
@@ -227,17 +227,17 @@ Observer descriptions can be indispensable without being final ontology. Effecti
 
 Some background, because this section is unintelligible without it.
 
-**Bell's theorem** is a result of established physics with a startling consequence. Suppose two particles are prepared together, sent far apart, and measured independently. If the world is *local* — nothing influences anything faster than light — and if each particle carries some complete set of properties determined at the source, then the correlations between the two measurement outcomes must obey a specific numerical bound. Experiments violate that bound, repeatedly and decisively. So at least one of those assumptions is wrong, and every interpretation of quantum mechanics is essentially a choice about which one to give up.
+**Bell's theorem** constrains a specific conjunction of assumptions. For settings chosen independently of a complete hidden state $\lambda$, Bell-local causality requires each outcome probability to depend only on the local setting and $\lambda$. That factorization implies Bell inequalities. Loophole-free experiments violate those inequalities, so no model satisfying the full conjunction can reproduce the observed correlations. Hensen and collaborators' [2015 experiment](https://doi.org/10.1038/nature15759), for example, reported a Bell-inequality violation while closing the principal locality and detection loopholes.
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ is deterministic, so it owes an answer. Bell-family experiments are treated here as a hard observer-level constraint on any deterministic completion. They are not treated as evidence for ontological randomness, backward causation, or faster-than-$c_f$ signalling.
 
 The complete state on a slice $\Sigma_T$ remains definite. An observer has access only to pair records, detector settings, coincidence windows, and statistics.
 
-The guardrail is strict and worth stating as an obligation rather than a reassurance. If **measurement independence** (the experimenters' settings are not correlated with the hidden state), no advanced influence, finite-speed local response, and local factorization over a complete past-state variable $\lambda$ are *all* retained, then Bell's factorization is restored and the observed violations cannot be recovered. The theory must therefore choose and declare which assumption fails. A foundation page may route that burden; it must not imply that shared provenance alone dissolves it.
+The guardrail is strict and worth stating as an obligation rather than a reassurance. If **measurement independence** (the settings are statistically independent of $\lambda$), local factorization, and the ordinary treatment of the settings and outcomes are all retained, then the observed violations cannot be recovered. A finite propagation speed by itself does not evade the theorem. The theory must therefore state exactly which Bell assumption fails and how observer no-signalling survives. A foundation page may route that burden; it must not imply that shared provenance alone dissolves it.
 
 If $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves measurement independence and no-signalling at the observer level, then the violation must come from an explicitly nonseparable substrate response — for instance a $c_f$-mediated coordination channel operating outside effective light cones while remaining unable to transmit a controllable signal.
 
-That option is a substantive claim about a hierarchy of speeds, not a free move. The coordination channel must lie outside the observer's photon cone, which requires $c_f > c_0$ once the low-energy photon speed $c_0$ is calibrated. Any stronger separation such as $c_f \gg c_0$ must then be reconciled with photon dressing, Lorentz closure for moving assemblies, and clock universality. It must also evade a known obstruction: finite superluminal influences with $c_0 < v < \infty$ can be turned into operational signalling in multi-party arrangements, which would be fatal.
+That option is a substantive claim about a hierarchy of speeds, not a free move. The coordination channel must lie outside the observer's photon cone, which requires $c_f > c_0$ once the low-energy photon speed $c_0$ is calibrated. Any stronger separation such as $c_f \gg c_0$ must then be reconciled with photon dressing, Lorentz closure for moving assemblies, and clock universality. It must also evade a known conditional obstruction: Bancal and collaborators proved that models reproducing the target correlations with hidden influences of finite speed $c_0<v<\infty$ permit operational faster-than-light signalling in suitable multipartite arrangements, under their stated causal and correlation assumptions; see [*Quantum non-locality based on finite-speed causal influences leads to superluminal signalling*](https://doi.org/10.1038/nphys2460).
 
 Concretely, the observer-level description must fail the factorizable form
 
@@ -250,9 +250,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7d4586f544b65b38)
 
-which says the joint probability of outcomes $a$ and $b$, given settings $\hat m_A$ and $\hat m_B$ and the hidden state $\lambda$, is the product of two independent one-sided probabilities. Failing it is exactly what Bell violation requires — and it must fail without introducing instantaneous influence between detectors. If measurement independence is relaxed instead, the relaxation must be quantified, and the text must not simultaneously claim exact measurement independence.
+which says the joint probability of outcomes $a$ and $b$, conditional on settings $\hat m_A,\hat m_B$ and the complete hidden state $\lambda$, factors into local response probabilities. Reproducing Bell violation requires rejecting this factorization or another premise used to derive the tested inequality, and the chosen route must preserve the observed no-signalling marginals. If measurement independence is relaxed instead, the relaxation must be quantified, and the text must not simultaneously claim exact measurement independence.
 
-The two routes are mutually exclusive:
+The chapter keeps two clean routes separate for accounting. A hybrid is logically possible, but it must declare both departures and cannot use one to obscure the other:
 
 - **Substrate nonseparability:** retain strict measurement independence and no-signalling; the violation is carried by nonfactorizable pair provenance and apparatus-response coupling.
 - **Controlled relaxation of measurement independence:** relax it in declared substrate response variables, bounded to prevent macroscopic backward causation or signalling.
@@ -261,9 +261,9 @@ Working selection, provisional until the Bell derivation closes: $\mathbb{A}\mat
 
 A shared-source story on its own is not enough, and this is the trap the route must avoid. If retained provenance screens the two wings into independent local laws, the account has simply fallen back into the Bell-local class and reproduces nothing. Any shared record — a framed pair-braid, a linking invariant — is part of $\lambda$; if each wing's response is a local function of its own setting and that record, factorization returns and the correlation stays inside the bound.
 
-So the route assigns two distinct roles: pair provenance *gates* the live channel, and the live channel *carries* the nonfactorizability. During the measurement window the coupled response must fail the product form while each single-wing marginal stays independent of the far setting. Coordination outside the effective photon cone is permitted when $c_f > c_0$; influence faster than $c_f$, and any controllable observer signalling, remain forbidden.
+So the route assigns two distinct roles: pair provenance *gates* the proposed live channel, and the channel would have to *carry* the nonfactorizability. During the measurement window the coupled response must fail the product form while each single-wing marginal stays independent of the far setting. A candidate coordination route outside the effective photon cone requires $c_f>c_0$; it is not thereby established, and it must still survive the finite-speed obstruction. Influence faster than $c_f$, and any controllable observer signalling, remain forbidden by the proposed route.
 
-This makes the finite-speed obstruction a real closure burden rather than a footnote. The route predicts one of two things: measurable degradation toward the Bell-local bound when the $c_f$ channel cannot span the wings within the measurement window, or a derivation showing why the obstruction is evaded while no-signalling survives. Either is testable, which is the point. Detail belongs to [Bell's Theorem](../philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../philosophy-history/theory-bridges/entanglement-nonlocality.md).
+This makes the finite-speed obstruction a real closure burden rather than a footnote. The route has two possible forms of closure: it may predict measurable degradation toward the Bell-local bound when the $c_f$ channel cannot span the wings within the measurement window, or it may supply a theorem showing that the Bancal assumptions do not apply while observer no-signalling survives. Only the first is itself an empirical prediction; the second is a mathematical burden with separately testable consequences. Detail belongs to [Bell's Theorem](../philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../philosophy-history/theory-bridges/entanglement-nonlocality.md).
 
 Routing:
 

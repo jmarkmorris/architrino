@@ -3,7 +3,7 @@
 
 **Literary note:** This is a counterfactual chain of perspectives. It is not a historical quotation, real interview, endorsement, attribution, or evidence about any actual person's views. The essay treats Architrino Assembly Architecture, hereafter the Architrino architecture, as a challenger theory with a serious claim to resolve deep problems in fundamental physics and cosmology. It then adopts a retrospective convention: read the history of physics as it would look if the architecture eventually earned broad acceptance. That convention is a device for historical interpretation and case-building.
 
-For the lane's current claim-placement discipline, read this essay with [Philosophy and History](philosophy-history.md), [Theory Inheritance Discipline](theory-inheritance-discipline.md), and [Philosophy of Science](philosophy-of-science.md). Technical authority remains with the linked domain owners, including the [Master Equation](../dynamics/master-equation.md), [Measurement Ontology](../quantum/measurement-ontology.md), [Emergent Metric](../spacetime/emergent-metric.md), and [Failure Criteria](../validation/failure-criteria.md).
+For the current claim-placement discipline of the Philosophy and History section, read this essay with [Philosophy and History](philosophy-history.md), [Theory Inheritance Discipline](theory-inheritance-discipline.md), and [Philosophy of Science](philosophy-of-science.md). Technical authority remains with the linked domain owners, including the [Master Equation](../dynamics/master-equation.md), [Measurement Ontology](../quantum/measurement-ontology.md), [Emergent Metric](../spacetime/emergent-metric.md), and [Failure Criteria](../validation/failure-criteria.md).
 
 ### Opening Frame
 

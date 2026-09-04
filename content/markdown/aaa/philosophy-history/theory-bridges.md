@@ -1,6 +1,6 @@
 # Theory Bridges
 
-This lane owns detailed mappings between inherited physics frameworks and the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer.
+The Theory Bridges section is the home for detailed mappings between inherited physics frameworks and the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer.
 
 A theory bridge is not a neutral encyclopedia entry and it is not the canonical owner of the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. Its job is to take a mature external framework, preserve the mathematics that works, relocate its ontology when required, and state the closure targets needed to turn a comparison into a derivation.
 
@@ -8,7 +8,7 @@ The bridge must move in both directions. It should tell a reader what the inheri
 
 ## Scope
 
-Use this lane for documents that:
+Use this section for documents that:
 
 - compare an inherited theory or formalism with the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack in detail,
 - need more space or mathematics than [Theory Mapping](theory-mapping.md) or [Theory Differentials](theory-differentials.md),
@@ -16,7 +16,7 @@ Use this lane for documents that:
 - identify which pieces are recovered, reinterpreted, rejected, or still open,
 - and link back to the canonical domain chapters that own the underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ claims.
 
-Do not use this lane as the primary home for:
+Do not use this section as the primary home for:
 
 - substrate ontology; use [Foundations](../foundations/ontology.md),
 - assembly definitions; use [Assemblies](../noether-braid/noether-braid.md),

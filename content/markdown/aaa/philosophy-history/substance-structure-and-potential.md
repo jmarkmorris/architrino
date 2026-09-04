@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document gives a philosophical orientation for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction: what exists as primitive substance, what exists as causal structure, and what remains only an effective description. It belongs in the philosophy-history lane because it explains the level discipline behind the ontology. The canonical technical owners remain [Ontology](../foundations/ontology.md), [Architrino](../foundations/architrino.md), [Euclidean Void](../foundations/euclidean-void.md), [Noether sea](../spacetime/noether-sea.md), and [Master Equation](../dynamics/master-equation.md).
+This document gives a philosophical orientation for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction: what exists as primitive substance, what exists as causal structure, and what remains only an effective description. It belongs in the Philosophy and History section because it explains the level discipline behind the ontology. The canonical technical owners remain [Ontology](../foundations/ontology.md), [Architrino](../foundations/architrino.md), [Euclidean Void](../foundations/euclidean-void.md), [Noether sea](../spacetime/noether-sea.md), and [Master Equation](../dynamics/master-equation.md).
 
 The guiding problem is that modern physics often lets predictive objects carry more ontology than their derivation warrants. A metric, field, vacuum state, wavefunction, mass parameter, or particle label may be indispensable within its regime while still failing to identify the implementation layer that produces the observed behavior. The task here is not to dismiss those formalisms. It is to separate their effective success from the stronger claim that their native objects are the fundamental furniture of reality.
 
@@ -73,7 +73,7 @@ This does not make modern vacuum calculations disposable. It gives them a migrat
 
 ## Methodological Use
 
-The substance-structure distinction gives the philosophy-history lane a clean test for inherited theories:
+The substance-structure distinction gives the Philosophy and History section a clean test for inherited theories:
 
 - What does the theory treat as substance?
 - What does it treat as geometry or structure?

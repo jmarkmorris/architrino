@@ -14,7 +14,7 @@ Absolute timespace is not relativistic spacetime. It is the formal product of [A
 
 Absolute timespace is the non-dynamical background for all physical phenomena: the direct product of absolute time and the Euclidean void.
 
-That product is a **foliated structure** — think of a deck of cards, where each card is a complete snapshot of all of space at one instant, and the deck is stacked in time order. Each such card is called a *leaf* or a *slice*, and the universal time parameter $T$ says which one you are on.
+That product is a **foliated structure** — think of a deck of cards, where each card is all of space at one instant and the deck is stacked in time order. Each such card is called a *leaf* or a *slice*, and the universal time parameter $T$ says which one you are on. The physical state is indexed on a slice; it is not identical to the geometric slice.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
@@ -75,7 +75,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e40c37105a39c7cc)
 
-Worldlines are graphs over $T$: for each instant there is exactly one position, and time always advances. There is no admissible way to parametrize a worldline so that $T$ decreases.
+Worldlines are graphs over $T$: for each instant there is exactly one position. Admissible physical evolution is future-directed, so it is followed toward increasing $T$. Reversing an auxiliary curve parameter would merely retrace the same geometric curve and would not define a second physical evolution.
 
 That single structural fact rules out a whole family of problems by construction. Closed timelike curves — paths looping back to their own past, which established general relativity permits in certain exotic solutions — cannot exist here, because a worldline that returned to an earlier $T$ would not be a graph. Backward-in-time propagation is excluded the same way. Nothing has to be forbidden by a separate rule; the geometry simply has no room for it.
 
@@ -95,9 +95,9 @@ covering every architrino position, velocity, and polarity, plus the path-histor
 
 This is emphatically not an observer's measurement record. Observers sample or coarse-grain this state through assemblies and their coupling to the medium, and that distinction is what keeps absolute simultaneity from being confused with clocks that have been synchronized by some procedure.
 
-The same distinction blocks a common objection from relativity. A slice $\Sigma_T$ is a real element of the ontology, but it is not a readable global present. Observers recover simultaneity through clock phases, ruler records, photon channels, and local medium state — and those channels may hide the preferred frame well enough to reproduce exactly the special-relativistic conclusion that no global "now" is observable. Cosmological records such as the rest frame of the microwave background supply an approximate effective slicing, but that is an inferred chart, not the substrate slice.
+The same distinction blocks a common objection from relativity. A slice $\Sigma_T$ is a real element of the ontology, but it is not a readable global present. Observers recover simultaneity through clock phases, ruler records, photon channels, and local medium state. The closure target is that those channels reproduce the special-relativistic absence of an invariant observer-accessible global "now" within measured precision. Cosmological records such as the rest frame of the microwave background supply an approximate effective slicing, but that is an inferred chart, not the substrate slice.
 
-Because the master equation depends on path history, the complete state is not merely a list of current positions and velocities. In established mechanics a system is called **Markovian** when the present state alone determines the future; this one is not, because a receiver may be responding to any past moment of a transmitter's motion. So the slice state carries more:
+Because the master equation depends on path history, the complete state is not merely a list of current positions and velocities. In established mechanics a system is called **Markovian** when the present state alone determines the future; this one is not in an instantaneous-state description, because a receiver may respond to earlier transmitter events retained by the admitted causal-root domain. So the slice state carries more:
 
 $$
 S(T)
@@ -112,7 +112,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b8f87e751d9129e0)
 
-where $X(T)$ holds the instantaneous architrino and assembly data, $H_T$ is the retained path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local medium state, and $\mathcal{B}_T$ records which branch chart or regularization is currently active. Determinism applies to this complete object, not to a history-free snapshot.
+where $X(T)$ holds the instantaneous architrino and assembly data, $H_T$ is the retained path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local medium state, and $\mathcal{B}_T$ records the dynamically occupied branch and active root labels. A numerical regularization may accompany this state in a calculation, but it is not thereby promoted into ontology. Determinism applies to the complete physical state on a chart where the initial-history problem is well posed, not to a history-free snapshot.
 
 ## Newton-Cartan Data
 
@@ -150,9 +150,9 @@ $$
 
 and it acts only on displacements lying within a slice. Time and space are therefore carried separately by the pair $(dT,h)$, which is the whole point of the arrangement.
 
-### The connection, and why it is not free
+### The connection is additional substrate data
 
-A **connection** $\nabla$ is the rule for comparing vectors at different points — what "parallel" and "unaccelerated" mean. A flat, torsion-free one satisfies
+A **connection** $\nabla$ is the rule for comparing vectors at different points — what "parallel" and "unaccelerated" mean. The substrate connection is required to be flat and torsion-free and to satisfy the compatibility conditions
 
 $$
 \nabla dT=0,
@@ -162,11 +162,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5e8d2d2a37022aee)
 
-meaning it preserves both the time structure and spatial distances, and "torsion-free" meaning it introduces no twist.
+meaning it preserves both the time structure and spatial distances. "Torsion-free" means that the connection has no antisymmetric displacement defect; infinitesimal parallelograms close under parallel transport. Flatness is the separate condition that its curvature vanishes.
 
-Here is a subtlety that does not arise in relativity. In ordinary Newton-Cartan geometry those conditions **do not pin down the connection**. The same $(dT,h)$ admits many compatible connections, differing by exactly the terms that describe rotating or accelerating frames. Geometry alone cannot say which frame is unaccelerated.
+Unlike the nondegenerate metric case, these compatibility conditions **do not pin down a unique connection**. The same degenerate time-and-space data admit many compatible torsion-free connections, with their difference commonly encoded by Newton–Coriolis two-form data. Those alternatives need not all be flat, and they are not all coordinate descriptions of one connection.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ the physics settles it. The pair $(dT,h)$ supplies the slicing and the distances; the *interaction law* picks out the frame in which the wake speed $c_f$ is the same in every direction. In the resulting rest coordinates the connection has
+The theory therefore supplies a flat connection as an additional substrate commitment. In Cartesian coordinates adapted to that connection,
 
 $$
 \Gamma^\lambda_{\mu\nu}=0
@@ -174,17 +174,19 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ced9e1e9a19afbc8)
 
-so all the correction terms vanish, covariant derivatives become ordinary partial derivatives, and straight lines within a slice are the unaccelerated paths. Nonzero coefficients introduced by a rotating or accelerating chart describe the same fixed substrate from a spinning viewpoint. They are not curvature.
+so covariant derivatives reduce to ordinary partial derivatives and straight constant-velocity worldlines are unaccelerated. The wake law then selects a preferred inertial rest frame within this flat affine structure: the frame in which $c_f$ is isotropic. It does not derive the connection from $(dT,h)$ alone.
 
-Geometrically, the leftover freedom is a **gauge** freedom — a choice of description carrying no physical content. Relative to a chosen flat rest connection, its rotational part is captured by rotation-valued 1-forms,
+Time-dependent rotating or accelerating coordinates can describe this same flat connection with nonzero Christoffel symbols. For a rotating orthonormal frame, the local rotational chart data are represented by a connection 1-form valued in infinitesimal rotations,
 
 $$
+\omega_{\mathrm{rot}}
+\in
 \Omega^1(\mathcal{M})\otimes\mathfrak{so}(3)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-92b456bc0c19791a)
 
-where $\mathfrak{so}(3)$ is the set of infinitesimal rotations in three dimensions, with boost and acceleration terms supplying the rest of the non-inertial chart data. The family of compatible descriptions has no preferred member on geometric grounds alone — it is a set of equivalent alternatives with no origin — and the wake law selects the unique flat representative. Rotating-frame Christoffel symbols are pure gauge, and their curvature remains zero.
+where $\mathfrak{so}(3)$ is the space of infinitesimal rotations. These coordinate-induced coefficients are descriptive and leave the curvature zero. They must not be conflated with the full family of Newton–Cartan-compatible connections, whose members can encode different inertial or gravitational structure rather than a mere change of chart.
 
 ### Non-Inertial Coordinate Terms
 
@@ -203,7 +205,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-99a7e5771cb12c88)
 
-The three extra terms are familiar from established mechanics: the Coriolis term $2\boldsymbol{\Omega}\times\mathbf V'$, which deflects anything moving in a rotating frame; the centrifugal term $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf X')$, pushing outward from the axis; and the Euler term from changing rotation rate. None adds curvature to the void, and none introduces a substrate magnetic field.
+The three extra terms are familiar from established mechanics. In the displayed expression for inertial-frame acceleration, $2\boldsymbol{\Omega}\times\mathbf V'$ is the Coriolis kinematic term, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf X')$ points inward toward the rotation axis, and the last term is the Euler contribution from changing rotation rate. When the equation is solved for $\mathbf A'$, their negatives are the familiar fictitious Coriolis, outward centrifugal, and Euler accelerations. None adds curvature to the void or introduces a substrate magnetic field.
 
 Their value here is diagnostic. They show how equations full of transverse, velocity-dependent terms can arise purely from a choice of chart, while the substrate stays $\mathbb{R}\times\mathbb{R}^3$ with its flat connection.
 
@@ -230,7 +232,7 @@ Consequently:
 - Proper time is not a substrate quantity.
 - Effective metric language belongs to observer-level reconstruction.
 
-The Newton-Cartan data $(dT,h,\nabla)$ encode the substrate kinematics completely: absolute ordering, Euclidean geometry, and the selected rest-frame connection. Metric language enters only after clocks, rulers, and signal channels have been reconstructed.
+The declared data $(dT,h,\nabla)$ encode the substrate kinematics: absolute ordering, Euclidean geometry, and the additional flat affine connection. The wake law selects the preferred rest frame within that structure. Relativistic metric language enters only after clocks, rulers, and signal channels have been reconstructed.
 
 ## Measurement and Geometry
 
@@ -361,7 +363,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e2f115e364e4de37)
 
-averaging the assembly's framing directions and subtracting the isotropic part, so that $Q_A$ vanishes exactly when there is no preferred axis.
+averaging the assembly's framing directions and subtracting the isotropic part. $Q_A=0$ means there is no **quadrupolar** preferred-axis moment in this statistic; higher multipoles or other anisotropy measures may still survive.
 
 ### Framing-Quadrupole Economy Theorem Target
 
@@ -390,7 +392,7 @@ $$
 
 taking the worst direction, measuring how far the response departs from pure scalar mass, and dividing by $m$ to make it a fractional figure.
 
-The benchmark is not one universal number, because translations into the standard catalogue of Lorentz-violation coefficients are species- and channel-dependent. Hughes–Drever and clock-comparison rows reach roughly the $10^{-27}$ level in several spin-coupling channels. Passing therefore means driving the projected response below that measured row, not asserting isotropy in prose.
+The benchmark is not one universal number, because translations into the standard catalogue of Lorentz-violation coefficients are species- and channel-dependent and often dimensionful. Some proton-sector clock-comparison coefficients are bounded near $10^{-27}\,\mathrm{GeV}$; that number is not a dimensionless ceiling on $\epsilon_M^{\mathrm{HD}}$. Passing requires an explicit projection from the assembly response to the experimental coefficient being compared. The maintained [Data Tables for Lorentz and CPT Violation](https://arxiv.org/abs/0801.0287) provide the channel-by-channel limits.
 
 ## Galilean Kinematic Structure
 
@@ -597,7 +599,7 @@ the rate at which the emission time being heard advances as the reception time a
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](absolute-time.md#causality-and-finite-propagation-speed): a declared branch-chart bound, not a universal constant, coordinate parameter, or regulator width.
 
-### Superluminal architrinos are permitted; backward influence is not
+### Exceeding the wake speed is permitted; backward influence is not
 
 The geometry does not forbid a point architrino from exceeding $c_f$. It forbids influence travelling backward in time. Those are different prohibitions, and only the second is structural.
 
@@ -605,9 +607,9 @@ This separates kinematic freedom from dynamical stability. The substrate imposes
 
 In observer-level wave language causality is usually diagnosed by front velocity rather than group or phase velocity. The substrate statement is sharper: the causal front is the first nonzero wake support in absolute time, full stop. Group-speed and phase-speed effects are summaries of how an already-causal record is sampled, and cannot override the support condition.
 
-For ordinary matter the relativistic speed limit is a closure *result* about assembly structure and channel dressing, expressed with $c_\star$ or with $c_0$ in the weak homogeneous branch. It constrains the recovered observer branch, not the admissible velocities of individual architrinos.
+For ordinary matter the relativistic speed limit is a closure *target* for assembly structure and channel dressing, expressed with $c_\star$ or with $c_0$ in the weak homogeneous branch. Once derived, it constrains the recovered observer branch, not the admissible velocities of individual architrinos.
 
-At the primitive level, as constituent speeds approach $c_f$, constituents increasingly outrun the interactions that hold them together. The leading side of an assembly meets a strongly asymmetric wake ledger while the trailing structure stays tied to older contributions. The result is severe mechanical deformation — a structural failure, not a prohibition written into the background.
+At the primitive level, approaching $c_f$ can make the leading and trailing constituents sample increasingly asymmetric delayed ledgers. The theorem target is to show, for each retained assembly class, whether that asymmetry produces severe deformation, phase loss, or dissociation. The background itself supplies no speed prohibition, and the qualitative ledger asymmetry is not yet a proof of structural failure.
 
 ### A diagnostic for that failure
 
@@ -686,7 +688,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d47aad562c4e8ad1)
 
-with **rapidity** $\varphi_{\text{eff}}$ — the natural boost parameter, which unlike velocity simply adds when boosts are composed — and a single generator $K$ producing both the shape change and the clock rate. If the length response and the clock response need *independent* generators, the branch has not recovered Lorentzian structure even if one scalar speed happens to match. That is the sharpest form of the test, and it is much harder to pass by accident.
+with **rapidity** $\varphi_{\text{eff}}$ — the natural boost parameter, which unlike velocity adds under composition of collinear boosts — and a single generator $K$ producing both the shape change and the clock rate. Non-collinear boosts also include a rotation and cannot be summarized by scalar rapidity addition. If the length response and the clock response need *independent* generators, the branch has not recovered Lorentzian structure even if one scalar speed happens to match. That is the sharpest form of the test, and it is much harder to pass by accident.
 
 The target fails if stable matter classes acquire composition-dependent limiting speeds, if the photon channel stays independently dressed from matter transport, or if the leading deformation is non-Lorentzian once $c_0$ is calibrated. The observer speed limit is a structural barrier only after all of this closes.
 
@@ -805,7 +807,7 @@ This is an admissibility condition: a branch is well-defined only when the limit
 
 There is one important case where convergence can be proved rather than assumed. Its scope is a background result: it covers a statistically neutral far population, not every coherent assembly embedded in one.
 
-Suppose the far population is statistically homogeneous, isotropic, locally neutral, and mixing, with correlation length $\ell$. The mixing needed is on the *vector* sum, not merely on polarity counts, because contributions could cancel in sign while still adding up in direction. After subtracting the local mean:
+Suppose the far population is statistically homogeneous, isotropic, locally neutral, and mixing, with correlation length $\ell$. The mixing needed is on the *vector* sum, not merely on polarity counts, because contributions could cancel in sign while still add coherently in direction. After subtracting the local mean, a useful cell-covariance hypothesis is
 
 $$
 \left|
@@ -821,9 +823,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7e63fec8490556b9)
 
-meaning contributions from cells further apart than $\ell$ are essentially uncorrelated.
+meaning correlations between well-separated cell contributions decay exponentially. This condition motivates the shell scaling below, but it does not by itself make different shells independent or prove almost-sure convergence.
 
-Now partition space outside a local ball into shells of thickness $\ell$, grouped into neutral cells of diameter $O(\ell)$, and let $S_n$ be shell $n$'s contribution after subtracting the mean. A shell at radius $r_n\sim n\ell$ holds $N_n=O(n^2)$ independent cells. Because the cells are independent their signed contributions add like a random walk rather than in step, growing as $\sqrt{N_n}=O(n)$, while each carries the inverse-square factor $O(n^{-2})$. So
+Now partition space outside a local ball into shells of thickness $\ell$, grouped into neutral cells of diameter $O(\ell)$, and let $S_n$ be shell $n$'s contribution after subtracting the mean. Exponential cell mixing, together with uniform moment bounds, gives the target variance estimate for a shell with $N_n=O(n^2)$ cells: incoherent vector fluctuations scale as $O(\sqrt{N_n})=O(n)$ while each cell carries an inverse-square factor $O(n^{-2})$. Thus
 
 $$
 \mathbb{E}\|S_n\|^2=O(n^{-2})
@@ -839,9 +841,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1036eabe49f53f39)
 
-since $\sum n^{-2}$ converges. That is enough for the shell series to converge, both in the mean-square sense and with probability one.
+since $\sum n^{-2}$ converges. To obtain the stated mean-square and almost-sure conclusion, add the explicit probabilistic hypothesis that the centered shell increments form a martingale-difference sequence relative to the growing receiver-centered filtration. Their partial sums are then an $L^2$-bounded martingale, so the martingale convergence theorem gives convergence both almost surely and in $L^2$. Without that hypothesis, one must instead prove a suitable summable cross-shell covariance or other convergence theorem, and may claim only what that theorem supplies.
 
-The randomness is what saves it. A uniform sea contributes nothing coherent, and its fluctuations grow too slowly to overcome the inverse-square falloff.
+The proved mechanism is cancellation under the declared statistical hypotheses. A zero coherent mean and controlled shell correlations make the fluctuations grow too slowly to overcome inverse-square falloff.
 
 That is also exactly why the theorem does not extend. A coherent far dipole texture, long-range orientational correlation, or anisotropic source family can defeat vector cancellation even with perfect polarity neutrality — the shells would add in step rather than at random. Every coherent assembly or correlated medium feature on top of the background must supply its own shielding, screening, finite horizon, or explicit subtraction before its sum may be treated as closed.
 
@@ -883,7 +885,7 @@ $$
 
 with $A>0$ and $B_{ij}$ symmetric positive definite. The factor $A$ is how fast a local clock runs, $B_{ij}$ is how local rulers measure distance, and $u^i_{\mathrm{sea,eff}}$ is the medium's flow, subtracted so that distance is measured relative to the medium rather than the chart.
 
-Equivalently, in component form:
+Equivalently, define $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$. In that convention the component form is
 
 $$
 g^{\mathrm{eff}}_{00}
@@ -917,4 +919,4 @@ Absolute timespace is the background in which all architrino dynamics unfold:
 
 Postulate 3 fails if any accepted substrate interaction requires breaking the constant-$T$ slicing — for instance through a time coordinate $T'=T+f(\mathbf X)$ — or requires a fundamental non-degenerate four-metric. Effective clock synchronization, proper time, and metric reconstruction may mix observer coordinates after recovery; they cannot replace the substrate product structure without replacing this postulate.
 
-> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are recovery targets: when the assembly and Noether sea closure programs succeed, they are emergent descriptions within absolute timespace, not properties of the background itself.
+> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$, Euclidean spatial metric $h_{ij}=\delta_{ij}$, and a compatible flat torsion-free product connection $\nabla$. These data define a global foliation into simultaneous Euclidean slices indexed by universal time and an affine rule for comparing positions and velocities across slices. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame within that structure. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are recovery targets: when the assembly and Noether sea closure programs succeed, they are emergent descriptions within absolute timespace, not properties of the background itself.

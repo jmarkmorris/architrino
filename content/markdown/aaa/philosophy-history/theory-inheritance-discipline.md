@@ -372,7 +372,7 @@ This distinction is why virial, thermodynamic, hydrodynamic, cosmological, and d
 
 [Theory Differentials](theory-differentials.md) should remain the classification catalog. It locates each concept in the comparative stack and the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the mapping target.
 
-[Theory Bridges](theory-bridges.md) should remain the detailed bridge lane. A bridge may use this chapter's transfer record to keep its mathematical handoff disciplined, but the bridge still has to point back to the domain chapters that own the underlying mechanism.
+[Theory Bridges](theory-bridges.md) should remain the detailed Theory Bridges section. A bridge may use this chapter's transfer record to keep its mathematical handoff disciplined, but the bridge still has to point back to the domain chapters that own the underlying mechanism.
 
 [Failure Criteria](../validation/failure-criteria.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Constraint Ledger](../validation/constraint-ledger.md) remain the places where validation records, benchmark families, and null-result pressure are made operational. This chapter should not duplicate those ledgers.
 

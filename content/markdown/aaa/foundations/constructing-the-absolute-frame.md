@@ -16,7 +16,7 @@ The coordinate system built here is a workbench tool. It lets the theory write e
 
 The useful image is graph paper laid over a drawing that already exists. The paper helps you measure and compare; it did not create the distances, the rest condition, the wakes, or the paths. That is why the reconstruction can be mathematically exact while remaining unavailable as a laboratory procedure to an observer made of assemblies.
 
-So the claim is narrow, and stating its narrowness is the point. From the complete-state perspective — knowing every architrino position exactly — a unique oriented basis can be defined once an ordered set of reference architrinos and a handedness convention are fixed. That is an existence proof. It is not a protocol anyone inside the system can carry out.
+So the claim is narrow, and stating its narrowness is the point. From the complete-state perspective — with exact positions plus the tagged wake and history data used to identify the rest structure and origin — a unique oriented basis can be defined once an ordered set of reference architrinos and a handedness convention are fixed. That is an existence proof. It is not a protocol anyone inside the system can carry out.
 
 The mathematics is small. The Euclidean metric plus a well-chosen ordered triple supplies an origin, two axes, and a handedness convention. What matters is the lemma, the precise conditions under which it fails, and one distinction that is easy to lose: coordinate handedness is not physical handedness.
 
@@ -117,7 +117,7 @@ The left side is the sine of the angle between the two displacements, and dividi
 
 When that floor is small the subtraction defining $\hat{\mathbf e}_2$ removes almost everything, leaving a small remainder dominated by rounding error, and the completed $\hat{\mathbf e}_3$ amplifies it. A simulator should pick a better-conditioned tuple rather than treating a nearly-collinear basis as an ordinary success.
 
-This floor is one instance of a pattern used throughout the foundations, and the shared idea is worth naming once: **do not trust a reconstruction that would change wildly under a tiny perturbation.** For causal-root charts the guard is a transversality floor such as $\lvert\partial_{T_t}F_{ij}\rvert\ge\kappa_{\mathrm{hit}}$; for basin partitions it is a separatrix floor; here it is the angle between two normalized directions. In every case the mathematical content is controlled local invertibility — the map has a bounded inverse on the retained chart, so small changes in the data cannot produce a different frame or a different branch.
+This floor is one instance of a pattern used throughout the foundations: **do not trust a reconstruction that changes wildly under a tiny perturbation.** Here the angle floor bounds the inverse frame construction. A causal-root transversality floor instead supports the implicit-function continuation of a root, while a basin-separator floor regularizes a branch boundary. These are related nondegeneracy conditions, but they do not certify one common inverse map.
 
 ### The fourth marker
 
@@ -131,7 +131,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-60b3c28cbc6bba07)
 
-The quantity $V_{\mathrm{vol}}$ is the volume of the parallelepiped the three displacements span, and it vanishes precisely when they are flat. Its sign says which side of the oriented plane the fourth marker sits on.
+The scalar triple product $V_{\mathrm{vol}}$ is the **signed** volume of the parallelepiped; its geometric volume is $|V_{\mathrm{vol}}|$. It vanishes precisely when the three displacements are coplanar, and its sign says which side of the oriented plane the fourth marker occupies.
 
 That sign reports a convention. It does not, on its own, make anything physically handed — a distinction the chapter returns to below, because it is the easiest error to make here.
 
@@ -180,13 +180,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b3e9e39386cbd52e)
 
-for a closed framed trace. This splits total linking into two parts: the **writhe** $\operatorname{Wr}$, counting how the curve coils around itself in space, and the **twist** $\operatorname{Tw}$, counting how the frame rotates as you travel along it. Each can change under deformation; their sum cannot. The linking number between distinct worldlines serves the same purpose.
+for the two disjoint edges of a closed, nonsingular framed ribbon. This is the Călugăreanu–White–Fuller relation: the integer linking number is the sum of geometric writhe and framing twist. Writhe and twist may change under a smooth ribbon deformation, while their sum remains fixed so long as the two edges remain disjoint and the framing stays regular. Dennis and Hannay give a geometric account in [*Geometry of Călugăreanu's theorem* (2005)](https://doi.org/10.1098/rspa.2005.1527). Linking between distinct closed worldline traces is a related invariant, but it must be defined on the actual retained closure.
 
 If the branch record supplies a nonzero handed marker, a simulation may choose its coordinate convention so that $\operatorname{sgn}(V_{\mathrm{vol}})$ matches $\operatorname{sgn}(Lk)$. If the linking row is zero, uncomputed, or not protected under branch-preserving deformation, then coordinate parity is a reporting convention carrying no physical content.
 
 There is a real restriction on when this is available. The self-linking row is defined only on a closed return cycle or an explicitly closed, nonsingular framed trace. An open worldline carries no deformation-invariant writhe on its own, and a near self-hit or a fold crossing is exactly where the framing degenerates.
 
-So chirality is a regular-branch certificate: admissible where the retained roots and the frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ on the relevant rows. At a fold, a reconnection, or a framing slip, $Lk$ can jump — and that jump is a physical branch transition, not a change of convention.
+So chirality is a regular-branch certificate: admissible where the retained roots and the frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ on the relevant rows. A causal-root fold alone does not change $Lk$. The linking certificate can change only when the retained closure is replaced or when the ribbon passes through a collision, reconnection, or framing singularity; such an event is a physical branch transition rather than a coordinate convention.
 
 ## Coordinate Frames Are Not Ontology
 
@@ -202,11 +202,11 @@ Origin, first axis, and plane suffice for distances, derivatives, scalar product
 
 A final distinction separates three layers that are easy to run together. The substrate holds architrinos, wakes, absolute time, the void, and the contents of the Noether sea. Complete-state bookkeeping can infer a frame from that full record. Observers reach only effective records, through clocks, rulers, and signals that are themselves assemblies.
 
-**Complete-state reconstruction** has every position and can compute wake geometry exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
+**Complete-state reconstruction** has every position together with the transmitter identities, emission times, and retained path histories needed to reconstruct tagged wake geometry. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
-**Observer access** cannot do this. An observer's rulers and clocks are assemblies, deformed by motion and by coupling to the medium. What they measure is proper time $\tau$ rather than absolute time $T$, effective coordinates from local rulers, and relative velocities from Doppler shifts and aberration.
+**Observer access** does not automatically supply this complete-state construction. An observer's rulers and clocks are assemblies, deformed by motion and by coupling to the medium. They record proper time $\tau$, effective ruler coordinates, and signal-based relative-motion data. Whether a sufficiently extended time series can infer any preferred-frame leakage is an empirical closure question, not something the existence lemma decides.
 
-The obstruction is structural rather than practical, which is why no improved technique defeats it. No operation on the summed received potential recovers the transmitter-tagged center set $\{\mathbf Z_a(T_t)\}$ without provenance already in hand. Transmitter identity, emission time, and wake-center tags are complete-state entries; once an observer holds only the sum, no cleverer reconstruction restores them.
+At one event, an unrestricted summed potential does not uniquely determine the transmitter-tagged center set $\{\mathbf Z_a(T_t)\}$: different tagged source histories can give the same local sum. Transmitter identity, emission time, and wake-center tags are complete-state entries. Extended detector arrays, time series, or a restricted source model may recover partial information, but that is a separate inverse problem and cannot be claimed from the local sum alone.
 
 Stated as a map, let $\mathcal{T}$ be the tagged record and
 
@@ -218,10 +218,10 @@ $$
 
 the operation that forgets the labels only complete-state bookkeeping retains. The observer's record lives on the far side of that map.
 
-Reconstructing the absolute frame would require inverting it — choosing, for each unlabeled record, which tagged configuration produced it. No such choice is determined by the summed potential, because many different tagged configurations produce the same unlabeled record, and nothing in the record distinguishes them. This is the same label-erasure structure that appears in the provenance-leakage bound of [Architrino](architrino.md#provenance-and-persistence).
+The quotient map erases the tags by definition, so it has no unique inverse on unrestricted tagged histories. A physical observer map may retain other correlations from multiple locations or times, and those can distinguish some quotient classes. The exact conclusion is therefore non-identifiability from the erased record alone, not a theorem that every operational inference must fail. This is the same label-erasure structure that appears in the provenance-leakage bound of [Architrino](architrino.md#provenance-and-persistence).
 
 So the reconstruction here is a **foundational consistency proof**. It shows the theory has the structure needed to define absolute rest and an absolute frame **in principle**, from complete data. It claims nothing about an embedded observer's ability to do it.
 
-The matching closure target sits at the other end: moving-assembly deformation, clock and ruler retuning, and two-way signal synchronization must bound preferred-frame leakage tightly enough that observers cannot detect the absolute frame operationally — while the frame remains the background beneath their effective geometry. Both halves are needed. A frame that observers could detect would contradict a century of null results; a frame that could not exist would leave the theory without a substrate.
+The matching closure target sits at the other end: moving-assembly deformation, clock and ruler retuning, and two-way signal synchronization must bound preferred-frame leakage below the declared experimental limits while the frame remains the background beneath effective geometry. Both halves are needed. Nagel and collaborators' rotating-resonator experiment reported no significant orientation-dependent frequency shift at the $10^{-18}$ scale; see [*Direct terrestrial test of Lorentz symmetry in electrodynamics to $10^{-18}$* (2015)](https://doi.org/10.1038/ncomms9174). A detectable excess would falsify the proposed observer-hiding closure. Failure of this reconstruction would instead falsify the stated reconstruction lemma or its data assumptions; it would not by itself disprove a preferred frame defined directly by the propagation law.
 
 For the effective layer built on this scaffold, see [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Emergent Metric](../spacetime/emergent-metric.md).

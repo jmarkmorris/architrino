@@ -1,8 +1,8 @@
 # Corpus Dragnet
 
-`Corpus Dragnet` is a read-only correlation and organization-discovery lane. It scans published corpus material and internal repository material for evidence-backed candidates that may deserve later human triage. It does not move, rewrite, promote, merge, delete, regrade, or otherwise change the material it inspects.
+`Corpus Dragnet` is a correlation and organization-discovery workstream. It scans published corpus material and internal repository material for evidence-backed candidates and may inventory, route, or implement bounded changes when the accepted queue item grants that authority. It does not independently change a scientific claim grade, promote material, or reorganize ownership beyond the scope accepted in that item.
 
-The lane is model-neutral. An economical model such as Codex Luna is an appropriate default worker for bounded, repeatable passes; model output is not authority for a corpus decision.
+The workstream is model-neutral. An economical model such as Codex Luna is an appropriate default worker for bounded, repeatable actions; model output is not authority for a corpus decision.
 
 ## Files
 

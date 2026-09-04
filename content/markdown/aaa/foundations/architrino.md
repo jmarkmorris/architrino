@@ -1,24 +1,24 @@
 # Architrino
 
-An **architrino** is a point in space that carries a sign, remembers where it has been, continuously broadcasts a record of its own motion outward in every direction, and continuously receives the broadcasts that other points sent it long ago. That is the entire object. It is the only fundamental thing in $\mathbb{A}\mathbb{A}\mathbb{A}$, and everything else in the theory is built from many of them.
+An **architrino** is a point in space that carries a sign, remembers where it has been, continuously broadcasts a record of its own motion outward in every direction, and continuously receives the causal-root contributions that reach it from other architrinos or, where a same-transmitter root exists, from its own earlier wake. That is the entire object. It is the sole primitive material entity in $\mathbb{A}\mathbb{A}\mathbb{A}$; absolute time and the Euclidean void are the non-material substrate in which architrinos exist and move.
 
 Three words in that sentence carry the weight, so take them one at a time.
 
-**Point** means it has no size. Not "very small" — genuinely zero extent, a location and nothing more. It has no radius, no inside, no surface, and no volume.
+**Point** means its spatial support has no size. Not "very small" — genuinely zero extent. It has no radius, no inside, no surface, and no volume. That geometric statement does not erase its other primitive data: identity, polarity, velocity, and path history.
 
 **Sign** means it is one of exactly two kinds, which this theory calls **polarity**. One kind is positive, the other negative. Two architrinos of the same sign push apart; two of opposite signs pull together. That is all polarity does at this level, and it is the seed from which electric charge is later assembled.
 
 **Broadcast** means that as an architrino moves, it leaves behind an expanding record of where it was. That record is called a **wake**. Drop a stone in a pond and a ring spreads outward from the point of impact; drag the stone along and you get a train of rings, each centered where the stone was at the moment it made that ring. An architrino's wake is that, in three dimensions and without pause: a continuous nested family of expanding spheres, each one centered on the position the architrino occupied at the instant it emitted that sphere.
 
-The analogy stops at the water. A pond ripple is a disturbance *in* something — the water is a material medium, and the ripple is water moving. An architrino's wake is not a disturbance in any material. There is no ether, no fluid, and nothing being displaced. The wake is a geometric structure that carries the information "an architrino of this sign was at this place at this time," and its only job is to reach other architrinos later and tell them so.
+The analogy stops at the water. A pond ripple is a disturbance *in* something — the water is a material medium, and the ripple is water moving. An architrino's wake is not a disturbance in any material. There is no ether, no fluid, and nothing being displaced. The wake is a source-dependent physical causal record supported on an expanding geometric surface. It carries the information "an architrino of this sign was at this place at this time," but it is not an independently specifiable substance.
 
-The word **transceiver** covers both halves at once: an architrino transmits its own wake and receives everyone else's, always, without switching between the two. There is no tuning, no selection, and no off state.
+The word **transceiver** covers both halves at once: an architrino continuously transmits its own wake and admits every other architrino's contribution whenever a causal root reaches it, without tuning or an off state.
 
 ## Why the delay is the whole idea
 
 A wake travels outward at a finite speed, written $c_f$, and it never travels faster. So when an architrino is affected by another one, it is not responding to where that other architrino *is*. It is responding to where that other architrino *was*, at whatever earlier moment emitted the particular wake sphere that is arriving right now.
 
-This is worth pausing on, because almost everything distinctive about $\mathbb{A}\mathbb{A}\mathbb{A}$ follows from it. In the physics most people meet first, objects pull on each other across a distance according to how far apart they are *now*. Here, nothing is ever influenced by *now*. Every influence is a message that left some time ago and has only just arrived. The moment of emission is called the **emission time**, and the geometric condition picking out which past moment is currently being heard — the moment whose expanding sphere has grown exactly large enough to reach you — is called a **causal root**.
+This is worth pausing on, because almost everything distinctive about $\mathbb{A}\mathbb{A}\mathbb{A}$ follows from it. In elementary instantaneous-force models, objects respond according to how far apart they are *now*. Here, the receiver's current event is paired with a transmitter's earlier event. No distant transmitter contributes through its simultaneous position. The moment of emission is called the **emission time**, and the geometric condition picking out which past moment is currently being heard — the moment whose expanding sphere has grown exactly large enough to reach the receiver — is called a **causal root**.
 
 A single receiver may be hearing many past moments of the same transmitter at once, if that transmitter's motion arranged it so. Working out which past moments those are, and what each contributes, is the business of the [Master Equation](../dynamics/master-equation.md). This chapter states only what must exist before that calculation can begin.
 
@@ -42,7 +42,7 @@ Its primitive commitments are:
 - Always active: it continuously emits a causal wake and continuously receives wakes.
 - Polarity-bearing: it has a definite positive or negative sign, written in electric bookkeeping as $q_a=\pm\epsilon$.
 - Persistent: it has a continuous, identity-bearing path through space and time. This particular architrino stays this particular architrino forever.
-- Deterministic: its motion is fixed by the [Master Equation](../dynamics/master-equation.md), with more than one stable outcome possible near certain thresholds.
+- Deterministic: on a branch chart where the delayed initial-history problem is well posed, its motion is fixed by the [Master Equation](../dynamics/master-equation.md). Distinct stable outcomes may coexist only where their stability has separately been established.
 
 Architrinos live in [absolute timespace](absolute-timespace.md): a universal time $T$ that ticks the same everywhere, together with the Euclidean void. Both are fixed background, not participants. Clocks that run at different rates, rulers that contract, and curved spacetime are all downstream effects that the theory must eventually reproduce from architrino behavior — they are targets, not ingredients.
 
@@ -54,7 +54,7 @@ Here is a consequence that surprises most readers, and it changes the shape of e
 
 In familiar mechanics, you predict motion with $\mathbf F = m\mathbf a$: a force acts on a mass and produces an acceleration. That statement needs a mass. An architrino has none — not zero mass as a special case, but no such property at all.
 
-So the primitive law cannot be a force law. It is an **acceleration law**: the interaction delivers an acceleration directly, with no mass standing between cause and effect. Force is a perfectly good concept at the assembly level, once many architrinos are bound together and behave like an object with inertia. It has no meaning for one architrino.
+So the primitive law cannot be a force law. It is an **acceleration law**: the interaction delivers an acceleration directly, with no mass standing between cause and effect. Force may be introduced later as effective assembly bookkeeping once an assembly response coefficient has been derived or declared. It has no primitive meaning for one architrino.
 
 The universal coupling strength in that acceleration law is $\kappa>0$:
 
@@ -79,7 +79,7 @@ $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the **delayed separation**, an
 
 $\hat{\mathbf{r}}_{ij}$ is the direction, pointing from the transmitter's emission point $\mathbf X_j(T_t)$ toward the receiver's position $\mathbf X_i(T_r)$. Again: from where it *was*, not from where it is.
 
-$D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the **transmitter-side factor**, and it accounts for the transmitter having been in motion at the moment of emission. If the transmitter was moving toward the receiver, successive wake spheres left from progressively closer positions and arrive bunched together; if it was moving away, they arrive spread apart. $D_t$ measures that bunching. A companion quantity $D_{r,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T_r)$ describes the receiver's own motion.
+$D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the **transmitter-side factor**, and it measures how the root condition changes when the emission time is varied. Transmitter motion compresses or stretches the geometric spacing of successive emitted supports along the receiver direction. A companion quantity $D_{r,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T_r)$ describes how receiver motion changes the same root map from the reception side.
 
 The strength of the acceleration depends on $D_t$ only. The receiver-side factor does not set how hard the receiver is pushed; it appears in the separate question of how the root moves as time advances, through the signed playback derivative $m_{ij}=D_{r,ij}/D_{t,ij}$, which along with root-counting data is dynamics-level material owned by the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form).
 
@@ -89,7 +89,7 @@ The requirement "the wake sphere has just now reached the receiver" can be writt
 
 The rate at which that condition changes as you vary the emission time is $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$, called the transmitter-side **transversality Jacobian** — "transversality" meaning the condition crosses zero cleanly rather than grazing it, and "Jacobian" being the standard name for a derivative that measures how a change of variable stretches or compresses. Multiplying by the wake speed recovers the transmitter-side factor exactly: $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$.
 
-That identity is why $D_t$ appears in the acceleration weight $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$. The weight is not an extra physical ingredient. It is the geometric consequence of the emission cadence being uniform in time, so that when emission times get compressed into a shorter arrival window, more of them land per unit of receiving time.
+That identity is why $D_t$ appears in the acceleration weight $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$. The weight is not an extra physical ingredient. It is the transmitter-side Jacobian induced by uniform emission in $T$. The rate at which the selected emission time advances with reception time is the separate ratio $D_r/D_t$, so arrival playback cannot be attributed to $D_t$ alone.
 
 This form is valid away from a special set where the condition does not cross zero cleanly:
 
@@ -99,7 +99,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-756246cb5822ff4b)
 
-On that set — the **Whitney-fold set**, named for the mathematician who classified how smooth families of solutions can fold over on themselves — the condition is zero *and* its derivative is zero at the same moment. Geometrically, two causal roots are merging into one, or one is splitting into two. The denominator $|D_t|$ heads toward zero and the simple formula above stops being trustworthy. Approaching that set moves the calculation into a fold-resolution treatment, and using this denominator at all requires first checking the transversality floor $\kappa_{\mathrm{hit}} > 0$ stated above.
+On that set — the **Whitney-fold set**, named for the mathematician who classified how smooth families of solutions can fold over on themselves — the condition and its first emission-time derivative vanish together. A generic fold has one double root at contact; crossing it creates or destroys a pair of simple roots. The denominator $|D_t|$ heads toward zero and the simple formula above stops being trustworthy. Approaching that set moves the calculation into a fold-resolution treatment, and using this denominator at all requires first checking the transversality floor $\kappa_{\mathrm{hit}} > 0$ stated above.
 
 ### The coupling constant
 
@@ -113,7 +113,7 @@ $$
 
 reading as length cubed per time squared per polarity-unit squared, where $\mathrm{Q}$ is the polarity unit. It is recorded in the [Parameter Ledger](../validation/parameter-ledger.md#layer-i-substrate-and-kernel-parameters) and defined by the [Master Equation](../dynamics/master-equation.md). Any force-like quantity introduced later is bookkeeping that arrives with an assembly response coefficient; it is never primitive architrino inertia.
 
-This gives the theory a built-in universality at the substrate level. Because no architrino carries its own inertial coefficient, every architrino on the same branch responds to the same acceleration normalization — there is no per-object dial to set. Whether that universality survives coarse-graining into assemblies, so that assembly inertia and gravitational response stay inside the tight experimental limits on objects of different composition falling identically, remains something the mass-map and Noether sea programs must demonstrate; see [General Relativity](../spacetime/general-relativity.md) and [Particle Masses](../assemblies/particle-masses.md).
+This gives the primitive law a common acceleration normalization: no architrino carries a separate inertial coefficient or a per-object coupling dial. That is a substrate definition, not a derivation of observer-level universality. Whether assembly inertia and gravitational response remain composition-independent after coarse-graining is a separate mass-map and Noether sea closure target; see [General Relativity](../spacetime/general-relativity.md) and [Particle Masses](../assemblies/particle-masses.md).
 
 This definition is ontological rather than effective. It assigns an individual architrino no rest mass, no Standard Model particle type, and no field degree of freedom. Those descriptions become available only after architrinos form assemblies whose collective wake behavior can be read by an observer.
 
@@ -159,15 +159,15 @@ The two polarities have names:
 - **Electrino:** a negative-polarity architrino, bookkeeping label $q_a=-\epsilon$.
 - **Positrino:** a positive-polarity architrino, bookkeeping label $q_a=+\epsilon$.
 
-Like polarities repel and unlike polarities attract, exactly as the sign factor $\sigma_{ij}$ in the acceleration law encodes. At the assembly level, electric charge is the coarse summary of the signed inventory. The fractional charges of quarks, for instance, come out as whole-number counts of $\epsilon$ units held in stable assembly patterns, rather than from any separate charge substance.
+Like polarities repel and unlike polarities attract, exactly as the sign factor $\sigma_{ij}$ in the acceleration law encodes. At the assembly level, electric charge is the proposed coarse summary of the signed inventory. Under the convention $|e|=6\epsilon$, the familiar quark charge ratios correspond to whole-number polarity counts: $+2e/3=+4\epsilon$ and $-e/3=-2\epsilon$. This arithmetic does not derive quark assemblies or show that a retained branch carries those inventories.
 
-This relocation keeps both halves of the inherited word *charge* honest. The measured charge table stays exactly as observed; what changes is its basis, which becomes a polarity inventory rather than a distinct charge substance glued onto a miniature Standard Model particle.
+This relocation proposes a substrate basis for the inherited word *charge*. The convention reproduces the observed charge-unit ratios algebraically; matching the measured particle table still requires stable assembly maps, reaction bookkeeping, and conservation closure.
 
 ### The factor of six is an input, not yet a result
 
 Take the numbers seriously for a moment. If $|e|=6\epsilon$, then an electron's charge is six polarity units, and the up quark's $+2/3$ and down quark's $-1/3$ come out as $+4\epsilon$ and $-2\epsilon$ — whole numbers, which is the point of the convention.
 
-But **the six is currently put in by hand.** It is an input parameter and a high-priority explanatory target, not something the theory has yet derived. Stating that plainly matters, because a convention that produces tidy integers can easily look like an explanation when it is really a placeholder.
+But **the six is put in by hand.** It is an input parameter and an unresolved explanatory target, not a derived result. Stating that plainly matters, because a convention that produces tidy integers can easily look like an explanation when it is really a placeholder.
 
 What the theory is reaching for is a *protected six-unit polarity inventory*: six sign-carrying architrinos, or six retained polarity slots, whose signed total supplies observer-level charge. That parent target does not yet decide whether the six units sit inside the Noether braid — the theory's candidate structure for a stable charged particle — or couple to it externally, or live in its retained path history, or arrive through some other branch.
 
@@ -237,7 +237,7 @@ The labels *even* and *odd* refer to reversing the receiver's polarity, and noth
 
 Be careful about what the matched pair is. Any real architrino has one fixed sign. The two hypothetical receivers are a measuring instrument made of arithmetic, not two objects sitting in the same place.
 
-Now the payoff. If the shared part vanishes in some regime, the two polarities receive exactly equal and opposite accelerations from the same source — which is precisely the behavior an electric field is supposed to produce. So the electric sign structure is already visible in the raw causal-hit record, before any field has been defined. It arrives as a decomposition of what was already there, not as an imported $q\mathbf E/m$ law.
+Now the payoff. If the shared part vanishes in some regime, the two polarities receive equal and opposite accelerations from the same source. That polarity-odd parity is a necessary sign property of an electric-like response, but it is not a complete derivation of an electric field, its Lorentz transformation, or its coupling to assemblies. The decomposition exposes the candidate sign structure without importing a primitive $q\mathbf E/m$ law.
 
 Magnetic behavior does not appear this way. A single radial hit contains no primitive magnetic vector at all. Magnetic readouts must be recovered from organized structure: many sources, many roots, moving or circulating assembly geometry, whatever the Noether sea and boundary contribute, and finally an observer-level projection. Whether the sea is essential to that recovery, merely modifies it, or stays within its balanced reference tolerance is an open constitutive question rather than a definition.
 
@@ -256,9 +256,9 @@ The distinction is worth stating twice because it is easy to blur:
 - **Conservation** says an inventory is preserved.
 - **Provenance** says which exact entities realize that preserved inventory.
 
-Many effective conservation rules read as summaries of this deeper identity continuity. Conservation of electric charge, for example, is just preservation of the signed architrino inventory under rearrangement. The effective law is what an observer can track; provenance is the substrate claim about which persistent entities make the tracking possible.
+Many effective conservation rules may descend from this deeper identity continuity. The signed substrate polarity inventory is preserved under rearrangement by postulate. Observer-level electric-charge conservation follows only after the charge map is shown to depend solely on that preserved inventory and all reaction and boundary channels close. Provenance is the sharper substrate claim about which persistent entities realize the inventory.
 
-Provenance does not replace **Noether's theorem** — the established result that every continuous symmetry of a physical law comes with a matching conserved quantity, which is where conservation of energy, momentum, and angular momentum come from in the first place. Energy conservation here still depends on the law being unchanged under a shift in time, and momentum and angular momentum still depend on shifts in position and rotation. Provenance supplies the ontological basis that makes microscopic conservation statements sharp; symmetry still supplies the theorems.
+Provenance does not replace **Noether's theorem**. For a differentiable action, each continuous variational symmetry yields a conserved current or charge, subject here to the delayed action's boundary and history terms. Energy conservation therefore requires time-translation invariance of the complete action, while momentum and angular momentum require spatial-translation and rotation invariance. Provenance makes the microscopic accounting sharp; symmetry plus a closed delayed action supplies the theorem.
 
 ### Why identical particles are still identical
 
@@ -337,7 +337,7 @@ The kernel $K$ is a placeholder here. The actual causal-root sets, transmitter-s
 
 Point objects that interact through delayed signals carry a well-known family of problems, and it would be dishonest to introduce one without naming them.
 
-Classical electrodynamics — the established, highly successful theory of electric and magnetic behavior — runs into trouble when it treats a charged particle as a true point. The particle's own field, evaluated at its own location, diverges: a point charge has infinite self-energy, because the field it makes grows without bound as you approach zero radius. Attempts to include the particle's response to its own field produce further defects. The Abraham–Lorentz–Dirac equation, the standard formulation of that self-response, admits **runaway solutions**, in which a particle accelerates ever faster with no force applied, and **pre-acceleration**, in which it begins moving *before* the force arrives.
+Classical electrodynamics — the established, highly successful theory of electric and magnetic behavior — runs into trouble when it treats a charged particle as a true point. The particle's self-field is singular at its own location, and the classical radiation-reaction equation admits runaway and pre-response solutions. These are comparison warnings, not premises imported into the architrino law; see Dirac's original [*Classical theory of radiating electrons* (1938)](https://doi.org/10.1098/rspa.1938.0124).
 
 Naming the architrino a primitive does not make any of that go away. This chapter does not solve those problems; it routes them to the dynamics layer, where coincidence handling, self-hit admissibility, regularized or weak-limit kernels, transversality floors, and energy-momentum accounting must either remove or quarantine each channel in whatever branch is being used.
 
@@ -351,7 +351,7 @@ If either finite self-response or simple-root transversality fails, the branch i
 
 Ontologically, the causal wake is a **dynamical geometry**: an interaction structure carrying transmitter provenance, generated by the transmitter's path history. It is not a material ether and not a hidden fluid filling the Euclidean void.
 
-Wakes therefore pass straight through each other. Distinct wakes superpose perfectly — they add, and that is all. They do not scatter off one another, bind together, fragment, or interact as substances would.
+At fixed transmitter histories, the declared wake representation is additive: distinct wake contributions superpose and do not directly scatter, bind, or fragment as independent substances. The full dynamics is nevertheless nonlinear because receivers change the later histories that generate subsequent wakes.
 
 That linearity is a statement about wakes among themselves, not about the theory as a whole. A wake can act on any architrino, including the very one that emitted it, and that receiver response is what makes the dynamics nonlinear. The entire substrate content of a wake remains computable from the path history of the architrino that emitted it.
 
@@ -361,7 +361,7 @@ Emission is uniform in absolute time. Each architrino lays down its wake at a co
 
 > **Constant-time emission measure.** The emission measure along a transmitter worldline is $dT_t$ — ordinary uniform measure in absolute time — with a motion-independent per-wavefront amplitude. This is a postulate about the transceiver, not a derived result.
 
-This postulate is the canonical home of the emission rule used throughout the theory, and it is what makes every moving-transmitter effect purely **geometric**. Because the cadence is constant in $T$, none of the velocity dependence in a received pattern comes from the transmitter emitting differently when it moves. All of it comes from the transmitter having changed position between equally spaced emission instants — which is exactly what produces the transmitter-side factor $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_t$ and the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ met earlier.
+This postulate is the canonical home of the emission rule used throughout the theory. Within the declared kernel scaffold, it makes the moving-transmitter dependence of the emission cadence geometric: none comes from changing per-wavefront amplitude with speed. The transmitter's changing position between equally spaced emission instants produces the factor $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_t$ and the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$. Additional receiver, assembly, medium, or boundary dependence remains separate and must be derived where used.
 
 It is also one of the two declared conditions of the narrowed master-equation proposal, the other being an assumed kernel scaffold. The master-equation chapter uses this measure by reference rather than restating it.
 
@@ -437,9 +437,9 @@ Their canonical homes are:
 
 ## Determinism and Multistability
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ is deterministic in its laws. Given the complete set of architrino identities, positions, velocities, polarities, and the relevant path history on a slice of absolute time, everything afterward is fixed by the [Master Equation](../dynamics/master-equation.md).
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is deterministic in its laws. On a declared branch chart for which the delayed initial-history problem is well posed, the complete set of architrino identities, positions, velocities, polarities, relevant path history, and branch data fixes subsequent evolution through the [Master Equation](../dynamics/master-equation.md).
 
-Determinism is not the same as predictability, and conflating them causes trouble. The dynamics are **nonlinear**, meaning small differences can grow rather than stay small, and **non-Markovian**, meaning the future depends on the whole history rather than just the present state — which is unavoidable when influences arrive from arbitrarily far back. Near certain thresholds several stable outcomes coexist, and which one is realized depends on the exact microscopic state.
+Determinism is not the same as predictability, and conflating them causes trouble. The dynamics are **nonlinear**, meaning the response of the complete evolving state is not a linear superposition of complete-state solutions; sensitive dependence, where small differences grow, is a separate property that must be established for the branch in question. They are also **non-Markovian** in an instantaneous-state description, because the next motion depends on the retained path history rather than on current positions and velocities alone. Where distinct stable branches and their basins have been established, one microscopic history may select a different outcome from a nearby one.
 
 That is deterministic multistability. It is not randomness in the ontology, and it is not a probability postulate slipped in at the primitive level.
 

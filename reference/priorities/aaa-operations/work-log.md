@@ -6,6 +6,17 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-03 — OPS-017 local repository document surface accepted
+
+- Closed OPS-017 by explicit operator acceptance of the delivered local-only repository document browser.
+- The accepted surface indexes `reference/` and `content/markdown/aaa/` to depth 3 under a synthetic repository node, uses a fixed six-column desktop grid, renders Markdown with KaTeX and Mermaid, rewrites indexed Markdown links, and uses the shared standalone-application navigation chrome.
+- `scripts/build-reference-surface.mjs` owns the ignored manifest; `reference.html` and `src/apps/reference/ReferenceSurfaceRuntime.js` own the page and runtime; generated-runtime configuration prepares the manifest for local development; and the `index.html` entry remains probe-gated so it appears only when the local manifest exists.
+- `scripts/build-static-site.mjs` excludes the page, runtime, and generated manifest from Pages. Direct exclusion checks and stub-DOM checks were recorded during delivery; a fresh `tests/reference-surface-math-rendering.test.js` run passed 1 of 1 on 2026-09-03.
+- The current ignored-manifest check reports staleness because repository documents have changed. Regeneration remains on demand and does not gate closure; no generator write was run during this closeout.
+- Removed OPS-017 from the live queue. Acceptance changes no public deployment, authored source, corpus prose, or scientific claim.
+
+Plainly: the local document browser is accepted as complete, its public-deployment exclusion remains intact, and any future manifest refresh is routine local maintenance rather than unfinished OPS-017 work.
+
 ### 2026-09-02 — GitHub Actions major-version maintenance
 
 - Consolidated the five open GitHub Actions Dependabot proposals into one reviewable workflow change: `actions/checkout` 7.0.1, `actions/setup-node` 7.0.0, `actions/upload-pages-artifact` 5.0.0, `actions/configure-pages` 6.0.0, and `actions/deploy-pages` 5.0.0.

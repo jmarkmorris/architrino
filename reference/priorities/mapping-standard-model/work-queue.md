@@ -15,6 +15,17 @@ This is the canonical execution ledger for geometry-first Standard Model recover
 9. `lattice_qcd_direct_assembly_comparison` — Status: `Deferred / blocked`.
 10. `e8_redundancy_heuristic_audit` — Status: `Deferred / blocked`.
 11. `quark_vortex_coupling_simulation` — Status: `Deferred / blocked`.
+12. `non_decoupling_falsifier_siting` — Status: `Queued`.
+
+### SMC — Non-decoupling falsifier siting
+
+- **Status:** Queued
+- **Priority object:** `non_decoupling_falsifier_siting`
+- **Request / acceptance:** Decoupling makes most precision data unable to discriminate one substrate from any other substrate producing the same effective coefficients, which is a property of the map rather than a weakness of any particular program, and is why the regime-capture treatment in [theory-differentials.md](../../../content/markdown/aaa/philosophy-history/theory-differentials.md) is correct. The channels where decoupling fails are therefore where falsifier effort is worth spending, because there the inverse problem is not many-to-one. Site them explicitly as a group, with [failure-criteria.md](../../../content/markdown/aaa/validation/failure-criteria.md) as the likely destination.
+- **Candidate channels, each to be confirmed or rejected individually:** anomaly matching, where the neutral-pion two-photon rate reads off the quark colour count with no suppression; the dimension-5 neutrino operator; the symmetry-breaking pattern and light-species count; confinement, where the identity of the low-energy constituents changes rather than truncates; and the two naturalness failures, scalar mass and vacuum energy.
+- **Evidence / blocker:** Partly present already and must not be duplicated. [gauge-symmetries.md](../../../content/markdown/aaa/assemblies/gauge-symmetries.md) already retains pion-to-photon anomaly matching as an observer-level recovery target, and [one-nature-many-theories.md](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) already carries the decoupling account with its sources. The missing element is the grouping and its consequence for where falsifiers are sited, not the individual facts.
+- **Claim discipline:** the group is `inferred` as a falsifier-siting judgment. Each channel's physics is an observer-level constraint entering as a recovery target, never as a premise.
+- **Completion:** Each candidate channel is either sited with an operator-checkable falsifier or rejected with a reason, and no existing owner's material is restated rather than linked.
 
 ## Queued
 

@@ -2,7 +2,7 @@
 
 Start with the thing that does not change.
 
-The **Euclidean void** is the fixed space that everything in $\mathbb{A}\mathbb{A}\mathbb{A}$ happens inside. It is ordinary three-dimensional space — the space of rulers, straight lines, and the distance formula you already know. It supplies location, distance, volume, and directions. It supplies nothing else: no matter, no curvature, no expansion, no memory, and no response of any kind to what happens in it.
+The **Euclidean void** is the fixed space that everything in $\mathbb{A}\mathbb{A}\mathbb{A}$ happens inside. It is ordinary three-dimensional Euclidean geometry — straight lines, fixed angles, and the familiar distance formula. It supplies location, distance, volume, and directions. It supplies nothing else: no matter, no curvature, no expansion, no memory, and no response of any kind to what happens in it. Physical rulers belong to the effective observer layer and need not reproduce that geometry until their response has been derived.
 
 The void is a stage, and it is a stage that never moves.
 
@@ -108,11 +108,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-850d59a011af5621)
 
-The first says the metric does not change with absolute time. The second says the **Riemann curvature tensor** vanishes — that object measures how much a direction gets rotated when carried around a small closed loop, and it is zero exactly when space is flat. The third says the distance between any two fixed points is constant forever.
+The first says the metric does not change with absolute time. The second says the **Riemann curvature tensor** vanishes — that object measures the local failure of parallel transport to return a vector unchanged around an infinitesimal loop. Its vanishing makes the metric locally flat; together with the declared global space $\mathbb{R}^3$ and its Euclidean metric, it gives the global flat geometry used here. The third says the distance between any two fixed points is constant forever.
 
 One consequence follows immediately and matters enormously for cosmology. A cosmological scale variable cannot be a time-dependent factor multiplying this metric, because the metric has no time dependence at all. Whatever a scale factor turns out to be here, it must be a summary of the medium's state, of transport history, or of what observers recorded — never a property of the container.
 
-That gives a clean accounting identity for effective geometry:
+That gives a schematic dependency map for effective geometry:
 
 $$
 \mathcal{R}^{\mathrm{eff}}[g^{\mathrm{eff}}]
@@ -164,7 +164,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-574414a3aaaead6d)
 
-meaning lengths and angles do not change under parallel transport, and it is torsion-free, meaning it introduces no twist. In Cartesian coordinates all its **Christoffel symbols** — the correction terms that appear when coordinates themselves curve — vanish:
+meaning lengths and angles do not change under parallel transport. It is also torsion-free: infinitesimal displacement directions close without the antisymmetric defect measured by torsion. In Cartesian coordinates all its **Christoffel symbols** — the correction terms that appear when coordinates themselves curve — vanish:
 
 $$
 \Gamma^i{}_{jk}=0
@@ -184,7 +184,7 @@ with $s$ measuring arclength along the path. Zero second derivative means consta
 
 Topologically the void stays $\mathbb{R}^3$ throughout: contractible, simply connected, with no substrate-level topology change ever. The interesting topology in this theory is not in the container. It is in the paths architrinos trace and the configurations assemblies adopt inside it.
 
-That has a consequence for how stability works. Topological protection in $\mathbb{A}\mathbb{A}\mathbb{A}$ cannot come from loops or twisting in the ambient space, because there are none. Linking, framing, and topological charge labels are invariants of worldline and braid configurations sitting in a completely trivial ambient space. Their protection has to come from somewhere else: barriers to deformation that preserve a branch, folds in the causal-root structure, floors on collision and transversality, and finite gaps in action or energy.
+That has a consequence for how stability works. The ambient void contains many closed loops, but every such loop can be contracted to a point; the void itself supplies no nontrivial loop class or twist. Linking, framing, and topological charge labels instead belong to collision-excluded worldline and braid configuration spaces embedded in that trivial container. Their dynamical protection requires branch-preserving deformation barriers, collision and transversality floors, and finite gaps in action or energy.
 
 ## Canonical Coordinates and Event Identity
 
@@ -198,7 +198,7 @@ $$
 
 laid over the void.
 
-Here is a sharp difference from **General Relativity**, the established theory in which gravity is the curvature of a combined spacetime. GR has *diffeomorphism invariance*: you may smoothly relabel the coordinates however you like, and the physics is unchanged, which means a coordinate label carries no physical identity of its own. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it does. Once a Cartesian chart is declared, its labels name fixed locations in the substrate. The chart remains a representation — a way of writing components and addressing simulation cells — and not an extra ingredient of reality. But coordinate points do not move, curve, or stretch.
+Here is a sharp difference from **General Relativity**, the established theory in which gravity is represented by a dynamical spacetime metric. In both frameworks coordinate labels are conventional: a smooth relabeling does not change the physical point. $\mathbb{A}\mathbb{A}\mathbb{A}$ adds a fixed substrate identity of place, represented by the canonical product structure and its rest connection. Once a Cartesian chart is declared, one label names one fixed void point throughout the calculation, but the physical identity belongs to that point, not to the written coordinates.
 
 That gives a plain rule for what it means to be the same place:
 
@@ -422,7 +422,7 @@ which is what makes each an **isometry**, a transformation preserving distance.
 
 The container-level consequences follow directly:
 
-- The laws are identical at any two locations.
+- The container geometry is identical at any two locations. The laws share that translation symmetry only when their own dynamical terms do.
 - Space has no center and no edge.
 - No direction is preferred by the substrate.
 - Translation symmetry supplies the kinematic basis for momentum conservation, provided the delayed action and wake-ledger channels preserve the same symmetry.
@@ -430,7 +430,7 @@ The container-level consequences follow directly:
 
 Those last two are deliberately conditional. Symmetry of the container is necessary for a conservation law but not sufficient — the interaction must respect it too, which for a delayed interaction is a real question rather than a formality.
 
-Reflections are container symmetries, and the primitive wake law is parity-even: the expanding surfaces are spheres, and the received acceleration follows $\hat{\mathbf{r}}_{ij}/r_{ij}^2$, which is unchanged under mirroring. That evenness is proved for the declared causal kernel in [Coincident-Axis Three-Binary Symmetry](../noether-braid/coincident-axis-three-binary-symmetry.md#discrete-symmetry-structure).
+Reflections are container symmetries, and the primitive wake law is parity-even: the expanding surfaces are spheres, and the received acceleration follows $\hat{\mathbf{r}}_{ij}/r_{ij}^2$, which transforms equivariantly under mirroring so that the law keeps the same form. That evenness is proved for the declared causal kernel in [Coincident-Axis Three-Binary Symmetry](../noether-braid/coincident-axis-three-binary-symmetry.md#discrete-symmetry-structure).
 
 So chirality bookkeeping — the signs attached to writhe and linking, which record handedness — is conventional at the container level. Which means the observed parity violation of established weak-interaction physics cannot come from the void being handed. It must be recovered as selection at the assembly and branch level; see [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md).
 
@@ -453,7 +453,7 @@ starting position plus velocity times elapsed time. Only a physical interaction 
 A curved path in the void is not curvature of the void:
 
 - A circular orbit is a curved path in perfectly flat space.
-- A forced trajectory is a dynamical effect, not a geometric one.
+- An accelerated trajectory is a dynamical effect, not a curvature of the container.
 - The void stays flat no matter how trajectories bend within it.
 
 Every deviation from straight-line motion therefore arises from causal wakes, self-interaction, assembly structure, or medium response. None of it arises from spatial curvature, because there is none.
@@ -472,9 +472,9 @@ At the level of the full background, [absolute timespace](absolute-timespace.md)
 
 But they describe the product structure, not the geometry of one slice. Restricted to a fixed slice $\Sigma_{T_\ast}$, a Galilean boost is just the translation $\mathbf X\mapsto\mathbf X+\mathbf V_0T_\ast$; its boost character only shows up when different slices are compared. The wake equation still picks out the frame in which $c_f$ is the same in all directions, and [Absolute Timespace](absolute-timespace.md) carries the resulting non-invariance under boosted coordinates.
 
-Forbidden as substrate symmetries:
+Forbidden as substrate symmetries, although some remain legitimate coordinate rewritings:
 
-- Scalings or shears that change distances or angles.
+- Scalings or shears are not isometries of $h_{ij}$; they may be used as coordinate changes only with the transformed metric written explicitly.
 - **Lorentz boosts** as fundamental transformations of the void. These are the transformations of established special relativity, which mix space and time and make simultaneity depend on the observer. Here they are a target to recover, not a starting assumption.
 - Any transformation mixing spatial coordinates with absolute time as though the background were a single relativistic geometry.
 - Anything introducing a preferred direction at the substrate level.
@@ -532,13 +532,15 @@ which would be an expanding void. The substrate metric remains $h_{ij}=\delta_{i
 
 Refusing an expanding void creates a specific and heavy observational burden, and stating it honestly is more useful than asserting the commitment. Established cosmology explains a family of measurements with a scale factor, and any medium-and-observer mechanism here must recover every one of them:
 
-- **Tolman surface-brightness scaling.** The apparent brightness per unit area of a standard object falls as $(1+z)^{-4}$ with redshift $z$ — a steep and distinctive falloff, after the declared distance map is applied.
-- **Supernova light-curve time dilation.** Distant supernovae are observed to brighten and fade more slowly, by exactly the factor $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$.
-- **Microwave background temperature scaling.** The background radiation was hotter in the past, following $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$.
-- **Frequency independence.** The fractional redshift is the same across clean spectral-line families, so a mechanism that reddens blue light more than red is excluded.
-- **Photon-channel dispersion** below the admitted time-of-flight tolerance.
+- **Tolman surface-brightness scaling.** In an expanding metric, bolometric surface brightness has the theoretical factor $(1+z)^{-4}$. Data comparisons require distance, bandpass, population, and luminosity-evolution corrections; the measured result is consistency with the expansion scaling, not an exact raw power law.
+- **Supernova light-curve time dilation.** Type Ia supernova light curves show the expected approximate stretching $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, within population and fitting uncertainties.
+- **Microwave background temperature scaling.** Measurements at nonzero redshift test the standard relation $T_{\mathrm{CMB}}(z)=T_0(1+z)$ and constrain deviations from it.
+- **Spectral consistency.** A candidate transport law must not introduce line-dependent redshift residuals inconsistent with multi-line source fits.
+- **Photon-channel dispersion.** Any energy-dependent propagation delay must stay below the bound for the declared signal and source model.
 
-The filter that most candidate mechanisms fail is transport versus loss. An admissible redshift must retune the signal's clock rate, through medium transport or clock and ruler response, and it must come with matching distance and intensity bookkeeping. It cannot be mere attenuation. Propagation loss can dim a signal, but dimming supplies neither the time dilation nor the thermal scaling above. A fixed-void model offering redshift through generic scattering, phase degradation, or "photon fatigue" falls into the **tired-light** class, which those measurements already exclude.
+The filter that most candidate mechanisms fail is transport versus loss. An admissible redshift must retune the signal's clock rate, through medium transport or clock and ruler response, and it must come with matching distance and intensity bookkeeping. It cannot be mere attenuation. Propagation loss can dim a signal, but dimming supplies neither the time dilation nor the thermal scaling above. Simple **tired-light** mechanisms based only on scattering, phase degradation, or photon energy loss fail this joint benchmark; excluding every possible fixed-void transport law would require testing the law's complete predictions rather than its label.
+
+Sources for these comparison benchmarks: Lubin and Sandage, [*The Tolman Surface Brightness Test for the Reality of the Expansion. IV* (2001)](https://arxiv.org/abs/astro-ph/0106566), reports consistency with expansion after luminosity-evolution modeling; Goldhaber and collaborators, [*Observation of cosmological time dilation using Type Ia supernovae as clocks* (1996)](https://doi.org/10.1016/S0920-5632(96)00493-8), reports the supernova stretching test; the Planck-oriented temperature study [*Probing the Evolution of the Cosmic Microwave Background Temperature with Planck Data* (2012)](https://doi.org/10.1088/0004-637X/757/2/144) states the $T(z)$ benchmark and deviation parameterization; and the Fermi collaboration's [GRB 090510 analysis](https://doi.org/10.1038/nature08574) bounds a linear energy dependence of photon speed under its stated emission assumptions. These are observer-level constraints, not premises of the substrate theory.
 
 Positive recovery is owned by the cosmology branch: [Cosmology Ontology](../cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../cosmology/CMB.md) carries the temperature and spectrum tests.
 
@@ -560,7 +562,7 @@ $$
 
 Each member is a pair: which architrino $a$, and at what emission time $T_t$. The condition selects exactly those emissions whose expanding surface reaches this point at this moment. It is an index of sources, not a field — it has no state variables, no stress, no energy, and no equation of motion of its own.
 
-There is a real question hiding in it. Summing contributions over that set must converge, once the transmitter-side weights, inverse-square distance factors, and transversality floors are applied. If it did not, a point would receive an infinite response from the population of the universe. That convergence is not a property of the void. It is a condition on how many provenance labels are present and how they are weighted.
+There is a real question hiding in it. An admissible many-source branch must make the weighted sum over that set converge. Transmitter-side weights, inverse-square dilution, and transversality floors do not guarantee this by themselves; the source population also needs cancellation, screening, a finite horizon, or a declared subtraction rule. That convergence is not a property of the void. It is a condition on the provenance-bearing source record and its summation prescription.
 
 In this precise sense the void is a **Plenum of Potential**: materially empty, relationally available to the whole causal history around it. The phrase is explanatory rather than ontological. It adds no substance between the void and the Noether sea and creates no fourth layer. It names one fact: an empty location can still lie within the superposed wake history of the architrino population. Sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; the set $\mathcal{P}(\mathbf X,T)$ names only which wake histories are available at that point.
 

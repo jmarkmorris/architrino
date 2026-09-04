@@ -36,9 +36,14 @@ function formatDate(iso) {
 // markdown-it does not know about math, so math spans are lifted out before
 // rendering and restored afterwards. Fenced and inline code are protected first
 // so a dollar sign inside a code sample is never treated as a delimiter.
-function renderMarkdownWithMath(source, markdownRenderer) {
+export function renderMarkdownWithMath(
+  source,
+  markdownRenderer,
+  katexRuntime = globalThis.katex,
+) {
   const codeStore = [];
   const mathStore = [];
+  const mathToken = (index) => `MATHSEGMENTTOKEN${index}X`;
 
   let working = source.replace(/```[\s\S]*?```|~~~[\s\S]*?~~~|`[^`\n]*`/gu, (match) => {
     codeStore.push(match);
@@ -46,29 +51,37 @@ function renderMarkdownWithMath(source, markdownRenderer) {
   });
   working = working.replace(/\$\$([\s\S]+?)\$\$/gu, (_m, body) => {
     mathStore.push({ body, display: true });
-    return ` MATH${mathStore.length - 1} `;
+    return `\n\n${mathToken(mathStore.length - 1)}\n\n`;
   });
   working = working.replace(/(?<!\\)\$([^$\n]+?)(?<!\\)\$/gu, (_m, body) => {
     mathStore.push({ body, display: false });
-    return ` MATH${mathStore.length - 1} `;
+    return mathToken(mathStore.length - 1);
   });
   working = working.replace(/ CODE(\d+) /gu, (_m, index) => codeStore[Number(index)]);
 
-  return markdownRenderer.render(working).replace(/ MATH(\d+) /gu, (_m, index) => {
-    const entry = mathStore[Number(index)];
-    if (!entry) return "";
+  let rendered = markdownRenderer.render(working);
+  mathStore.forEach((entry, index) => {
+    const token = mathToken(index);
     const fence = entry.display ? "$$" : "$";
-    if (!globalThis.katex?.renderToString) return `<code>${fence}${entry.body}${fence}</code>`;
-    try {
-      return globalThis.katex.renderToString(entry.body, {
-        displayMode: entry.display,
-        throwOnError: false,
-        output: "html",
-      });
-    } catch {
-      return `<code>${entry.body}</code>`;
+    let mathHtml = `<code>${fence}${entry.body}${fence}</code>`;
+    if (katexRuntime?.renderToString) {
+      try {
+        mathHtml = katexRuntime.renderToString(entry.body, {
+          displayMode: entry.display,
+          throwOnError: false,
+          output: "html",
+        });
+      } catch {
+        mathHtml = `<code>${entry.body}</code>`;
+      }
     }
+    if (entry.display) {
+      const paragraphPattern = new RegExp(`<p>\\s*${token}\\s*</p>`, "gu");
+      rendered = rendered.replace(paragraphPattern, mathHtml);
+    }
+    rendered = rendered.split(token).join(mathHtml);
   });
+  return rendered;
 }
 
 export function createReferenceSurfaceRuntime({

@@ -42,7 +42,7 @@ These rows decompose the case at draft grade. They are not executable queue auth
 1. `boundary_mode_record` — Define the mode restriction induced by material boundary assemblies. Status: `draft`.
 2. `force_ledger` — Close plate force, recoil, material response, and medium update without untracked energy. Status: `draft`.
 3. `regularization_gate` — Separate physical boundary subtraction from arbitrary divergent vacuum energy. Status: `draft`.
-4. `vacuum_effect_bundle_handoff` — Project the shared vacuum-effect carrier into the Casimir boundary-mode and force rows without using Casimir as a general vacuum-energy proof. Status: `draft`.
+4. `vacuum_effect_bundle_handoff` — Project the shared vacuum-effect carrier into the Casimir boundary-mode and plate-response rows without using Casimir as a general vacuum-energy proof. Status: `draft`.
 
 ## Closure Objects
 

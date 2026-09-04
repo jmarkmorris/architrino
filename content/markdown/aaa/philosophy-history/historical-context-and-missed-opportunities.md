@@ -381,7 +381,7 @@ No new measured $\mathbb{A}\mathbb{A}\mathbb{A}$ result is claimed in this episo
 
 ### Recovery Target
 
-Gauge recovery remains owned by the assembly lane. [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target) owns the map from retained assembly, causal-wake, axial-layer, and Noether sea records to effective connections and curvatures. [Gauge Symmetries](../assemblies/gauge-symmetries.md#standard-model-recovery-gate) owns the theorem-facing recovery gate for the Standard Model representation, coupling-running, chirality, anomaly, holonomy, and null-channel record. This episode adds no competing gauge mechanism.
+Gauge recovery remains owned by the assembly chapters. [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target) owns the map from retained assembly, causal-wake, axial-layer, and Noether sea records to effective connections and curvatures. [Gauge Symmetries](../assemblies/gauge-symmetries.md#standard-model-recovery-gate) owns the theorem-facing recovery gate for the Standard Model representation, coupling-running, chirality, anomaly, holonomy, and null-channel record. This episode adds no competing gauge mechanism.
 
 The historical closure condition is therefore an ownership condition. Gauge-equivalent observer records must be passive relabelings of one retained physical history, while gauge-invariant loop, charge, anomaly, and reaction records must be projections of that same history. The assembly gauge chapters own the derivation and acceptance tests; this episode owns only why the distinction became historically easy to overlook.
 

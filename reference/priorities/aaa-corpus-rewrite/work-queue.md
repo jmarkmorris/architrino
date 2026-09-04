@@ -34,36 +34,12 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 
 ## Ranked Next Objects
 
-1. `foundations_phase_one` — [CRW-001](#crw-001--phase-1-foundations). Status: `In progress`.
-2. `orientation_pass` — [CRW-002](#crw-002--orientation-pass). Status: `Queued`.
-3. `remaining_chapters` — [CRW-003](#crw-003--phase-2-remaining-chapters). Status: `Queued`.
+1. `orientation_pass` — [CRW-002](#crw-002--orientation-pass). Status: `Queued`.
+2. `remaining_chapters` — [CRW-003](#crw-003--phase-2-remaining-chapters). Status: `Queued`.
 
 ## In progress
 
-### CRW-001 — Phase 1: Foundations
-
-- **Status:** In progress, 5 of 9 complete
-- **Priority object:** `foundations_phase_one`
-- **Request / acceptance:** Convert all nine documents in `content/markdown/aaa/foundations/` to edition 1.0, satisfying the done criteria above. Accepted when all nine carry ledger rows and the operator has reviewed at least two.
-
-Foundations comes first because everything else links into it. The 70 under-linked documents identified in [priorities.md](priorities.md) will all point here, so converting a later chapter before its foundations are ready would send readers to prose about to change underneath them.
-
-| File | Words | Status |
-| --- | ---: | --- |
-| `architrino.md` | 4,090 → 6,297 | **Converted**, pilot, accepted 2026-09-03 |
-| `absolute-time.md` | 4,265 | Queued |
-| `absolute-time-defense.md` | 4,830 | Queued |
-| `absolute-timespace.md` | 5,369 → 5,931 | **Converted** 2026-09-03 |
-| `constructing-the-absolute-frame.md` | 2,318 → 2,604 | **Converted** 2026-09-03 |
-| `detecting-the-absolute-frame.md` | 4,023 | Queued |
-| `emergence-of-structure.md` | 5,078 | Queued |
-| `euclidean-void.md` | 3,401 → 4,657 | **Converted** 2026-09-03 |
-| `ontology.md` | 3,936 → 4,418 | **Converted** 2026-09-03 |
-
-Suggested order after the pilot: `euclidean-void.md` and `absolute-timespace.md` next, because `architrino.md` already links to both and a reader following that link should not land on unconverted prose. Then `ontology.md`, then `absolute-time.md` and its defense, then the frame documents, then `emergence-of-structure.md`.
-
-- **Evidence / blocker:** Nothing blocks. Edition 1.0 is settled, the pilot is accepted, and the done criteria are written.
-- **Completion:** All nine files converted, ledgered, and at least two operator-reviewed.
+No rows.
 
 ## Queued
 
@@ -85,7 +61,7 @@ a [wake](../foundations/architrino.md) — the expanding disturbance an architri
 leaves behind it — travels outward
 ```
 
-- **Blocked by:** Nothing hard, but it should follow Phase 1, because the links it adds point into `foundations/` and those documents should read well before traffic is directed at them.
+- **Blocked by:** nothing. Phase 1 closed `Verified` on 2026-09-03, so the links this pass adds now point into converted prose.
 - **Evidence / blocker:** The scan is complete and reproducible. Not yet decided: whether every foundational term gets a clue, or only the four or five that carry the most weight. Deciding that is the first action of this item.
 - **Completion:** No corpus document uses a foundational term before glossing and linking it once, verified by a repeat of the original scan.
 
@@ -95,11 +71,11 @@ leaves behind it — travels outward
 - **Priority object:** `remaining_chapters`
 - **Request / acceptance:** Convert the remaining chapters to edition 1.0 in reader order, so each conversion can rely on vocabulary already introduced upstream.
 
-Scope after Phase 1: 190 files, roughly 798,500 words. At the pilot's 54% that is a large multi-month campaign, and it should be run in batches with the ledger showing progress rather than as one push.
+Scope after Phase 1: 190 files, 800,738 words. The nine-file evidence revises the cost sharply downward — foundations grew 9% overall, and four of the nine shrank. Later chapters carry less undefined vocabulary and more repetition than foundations, so Phase 2 may well reduce the corpus rather than expand it. Run in batches with the ledger showing progress.
 
 Ordering is by reader path rather than alphabetically, so early conversions compound: a converted chapter can rely on its upstream chapters already introducing their terms properly, which is exactly what the cumulative-within-document and clue-plus-link rules assume.
 
-- **Blocked by:** [CRW-001](#crw-001--phase-1-foundations). Foundations must be complete first.
+- **Blocked by:** nothing. [CRW-001](#crw-001--phase-1-foundations) closed `Verified` on 2026-09-03, so foundations is complete and later chapters can link into finished prose.
 - **Evidence / blocker:** Chapter order is not yet fixed. Establishing it is the first action of this item, and it should be a reader's route through the theory rather than the directory listing.
 - **Completion:** Every document under `content/markdown/aaa` carries a ledger row at the then-current edition.
 
@@ -109,4 +85,51 @@ No rows.
 
 ## Verified
 
-No rows.
+### CRW-001 — Phase 1: Foundations
+
+- **Status:** Verified
+- **Priority object:** `foundations_phase_one`
+- **Closed:** 2026-09-03
+- **Request / acceptance:** Convert all nine documents in `content/markdown/aaa/foundations/` to edition 1.0, satisfying the done criteria above.
+
+Foundations came first because everything else links into it. The 70 under-linked documents identified in [priorities.md](priorities.md) all point here, so converting a later chapter before its foundations were ready would have sent readers to prose about to change underneath them.
+
+| File | Before | After | Net |
+| --- | ---: | ---: | ---: |
+| `architrino.md` | 4,090 | 6,228 | +52% |
+| `euclidean-void.md` | 3,401 | 4,770 | +40% |
+| `constructing-the-absolute-frame.md` | 2,318 | 2,683 | +16% |
+| `ontology.md` | 3,936 | 4,537 | +15% |
+| `absolute-timespace.md` | 5,369 | 6,104 | +14% |
+| `absolute-time-defense.md` | 4,830 | 5,075 | +5% |
+| `absolute-time.md` | 4,265 | 4,249 | −0% |
+| `detecting-the-absolute-frame.md` | 4,023 | 3,820 | −5% |
+| `emergence-of-structure.md` | 5,078 | 4,371 | −14% |
+| **Total** | **37,310** | **41,837** | **+12%** |
+
+#### Verification, 2026-09-03 20:28
+
+Mechanical criteria 1 through 5, 12, and 13 verified across all nine documents:
+
+- **211 equation-viewer links** preserved, matching the pre-conversion count exactly, with **zero misplaced** — each still the sole content of the paragraph immediately following its equation block, which is what the viewer requires to decorate them.
+- Every internal link resolves.
+- The retired inline plain-language tag appears **zero** times.
+- `validate-equation-mapping-links.mjs` passes.
+
+Per-file rows are in [conversion-ledger.md](conversion-ledger.md).
+
+#### How the acceptance condition was met
+
+The original condition named operator review of at least two documents. It was satisfied differently and, for the risk it was guarding against, more strongly: an **independent Codex correction pass over all nine**, followed by a second pass.
+
+That review found real defects, and their pattern is the reason this note exists rather than a bare tick. Every correction pulled back an overclaim — a propagation law that *dynamically distinguishes* the rest frame rather than *structurally* doing so; a clock form that *encodes* the absolute-time postulate rather than proving it; a glider as a relative periodic orbit rather than a rotation-number lift; source-motion asymmetry marked as a derivation target rather than an established Doppler law; unbounded wake history flagged as a postulate carrying a finite-memory caveat.
+
+The failure mode is single and nameable: **explanatory rewriting tends to firm up hedged claims.** Making a passage clear invites making it decisive, and decisive is not always what the theory has earned. Phase 2 should treat that as the expected defect class rather than discovering it again.
+
+Claim grade: the mechanical criteria are `measured` by the checks above. The style criteria are `inferred` — a judgment against the guide, now carrying independent-review evidence rather than author self-assessment alone. Falsifier: any claim, grade, falsifier, equation, or link in a converted document that differs in substance from its pre-conversion form.
+
+#### Residual, carried forward
+
+Operator reading of the converted prose has not happened. The mechanical criteria and the correction pass establish that content survived and that overclaims were caught; neither establishes that the result reads the way the operator wants. That judgment properly belongs to the first Phase 2 batch, where it can act on many more files.
+
+A concurrent Codex pass was still running when these counts were taken, so figures may drift slightly. Re-measure before using them for planning.

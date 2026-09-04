@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1583
+      "sections": 1589
     }
   },
   "tocRoot": {
@@ -670,10 +670,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Case for Absolute Time ($T$)",
+                "title": "The Case for Absolute Time",
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
-                "markdownSection": "The Case for Absolute Time ($T$)",
-                "sectionKey": "the case for absolute time t",
+                "markdownSection": "The Case for Absolute Time",
+                "sectionKey": "the case for absolute time",
                 "headingLevel": 2
               },
               {
@@ -682,6 +682,54 @@
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
                 "markdownSection": "Absolute Time, Global Foliation, and Proper Time",
                 "sectionKey": "absolute time global foliation and proper time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Clock Universality: The Hard Part",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Clock Universality: The Hard Part",
+                "sectionKey": "clock universality the hard part",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Lorentz-Closure Target",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "The Lorentz-Closure Target",
+                "sectionKey": "the lorentz closure target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Preferred-Frame Leakage Closure",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Preferred-Frame Leakage Closure",
+                "sectionKey": "preferred frame leakage closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Metric Handoff",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Effective Metric Handoff",
+                "sectionKey": "effective metric handoff",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Key Point",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Key Point",
+                "sectionKey": "key point",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Falsifiability Wall",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Falsifiability Wall",
+                "sectionKey": "falsifiability wall",
                 "headingLevel": 2
               }
             ]
@@ -828,10 +876,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Emergence in the Architrino Universe: Continuous Delay Dynamics",
+                "title": "Emergence in Continuous Delay Dynamics",
                 "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
-                "markdownSection": "Emergence in the Architrino Universe: Continuous Delay Dynamics",
-                "sectionKey": "emergence in the architrino universe continuous delay dynamics",
+                "markdownSection": "Emergence in Continuous Delay Dynamics",
+                "sectionKey": "emergence in continuous delay dynamics",
                 "headingLevel": 2
               },
               {

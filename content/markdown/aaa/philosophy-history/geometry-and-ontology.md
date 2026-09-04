@@ -129,4 +129,4 @@ Whenever a document invokes geometry, the reader should be able to answer five q
 
 For the Euclidean void, the invariant is flat spatial metric structure: $\partial_T h_{ij}=0$ and $R^i{}_{jkl}(h)=0$. For causal wakes, the invariant is finite-speed delayed intersection: $r=c_f(T-T_t)$. For effective spacetime, the invariant target is operational agreement across clock, ruler, signal, and gravity records under one shared constitutive map.
 
-This gives the philosophy-history lane a clean answer to the original worry. $\mathbb{A}\mathbb{A}\mathbb{A}$ is geometric, but it is not geometrically naive. It treats geometry as a layered explanatory instrument and refuses to let an effective observer geometry replace the substrate generator it is supposed to recover.
+This gives the Philosophy and History section a clean answer to the original worry. $\mathbb{A}\mathbb{A}\mathbb{A}$ is geometric, but it is not geometrically naive. It treats geometry as a layered explanatory instrument and refuses to let an effective observer geometry replace the substrate generator it is supposed to recover.

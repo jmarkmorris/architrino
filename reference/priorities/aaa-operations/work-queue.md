@@ -7,7 +7,6 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 1. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
 2. `plainly_convention_document_migration` — [OPS-015](#ops-015--plainly-convention-document-migration). Status: `Blocked`, on corpus-wide standards readiness.
 3. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
-4. `local_repository_document_surface` — [OPS-017](#ops-017--local-repository-document-surface). Status: `Awaiting verification`.
 
 ## Queued task records
 
@@ -100,7 +99,7 @@ Plainly: stop copying policy by hand and let a generator do it; keep behavior ru
 - **Status:** Blocked, on corpus-wide standards readiness
 - **Priority object:** `plainly_convention_document_migration`
 - **Blocked by:** Operator decision that the explanation standards are ready to apply across all corpus markdown. That gate is later and higher than OPS-014 finalization: OPS-014 settles where guidance lives, while this waits until the operator judges the standards themselves settled enough to rewrite a published book against. Converting documents to a convention still being tuned would mean converting them twice. The operator opens this gate; an agent may not infer it from OPS-014 closing.
-- **Sweep instrument:** [Corpus dragnet](../aaa-corpus-dragnet/priorities.md) owns the read-only correlation pass that inventories occurrences and their contexts. Dragnet workers are read-only outside their own lane by charter, so they supply findings and never perform the conversion. Execution belongs to this item.
+- **Sweep instrument:** [Corpus Dragnet](../aaa-corpus-dragnet/priorities.md) owns correlation actions that inventory occurrences and their contexts. Each accepted Dragnet item declares whether it supplies findings, routes owner work, or performs a bounded conversion. This item executes only the occurrences retained within its own scope.
 - **Request / acceptance:** Decide, tier by tier, which existing documents should be converted from the retired inline `Plainly:` tag to the plain-by-default interleaved explanation the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) now requires, and execute only the tiers that earn it. The measured occurrence count is not the work item; reader visibility is.
 
 The [operator explanation standard](../../op/operator-explanation-standard.md) already states that documents written under the retired convention keep their form and that conversion happens opportunistically during substantial revision. This item exists because that default is right for the working record and wrong for two specific surfaces, which are identified below.
@@ -168,12 +167,12 @@ Claim grade: `measured` by a recursive walk of the parsed JSON, distinguishing k
 
 - **Status:** Queued
 - **Priority object:** `reference_equation_mapping_surface`
-- **Request / acceptance:** Give operator-facing documents under `reference/` the same symbol-definition viewer the corpus already has, so a document carrying display equations can be read with every symbol resolvable on demand rather than only from the prose around it. Acceptance requires a second registry that builds and validates alongside the corpus registry, without modifying any source file and without creating links from `content/markdown/aaa` into `reference/`.
+- **Request / acceptance:** Give operator-facing documents under `reference/` the same symbol-definition viewer the corpus already has, so a document carrying display equations can be read with every symbol resolvable on demand rather than only from the prose around it. Acceptance requires a second registry that builds and validates alongside the corpus registry, with any source changes governed by a declared write mode and explicit target set, and without creating links from `content/markdown/aaa` into `reference/`.
 - **Origin:** Operator request, 2026-09-03, during calibration of the [operator explanation standard](../../op/operator-explanation-standard.md): the corpus has a view-equation mode showing every symbol's definition, and operator-facing documents do not.
 
-#### Operator decision, 2026-09-03
+#### Source-write policy, 2026-09-03
 
-The builder leaves reference source files untouched. The viewer resolves symbols on its own. Corpus behavior is unchanged: `[View →]` chips continue to be injected into `content/markdown/aaa`. The reason for the split is that policy and procedure files under `reference/` are read as plain markdown in a terminal at least as often as in a browser, and injected chips are noise there.
+The reference builder follows the write authority of the executing queue item. An authorized item may update explicitly scoped reference sources; other runs remain check-only. Corpus behavior is unchanged: `[View →]` chips continue to be injected into `content/markdown/aaa`. Policy and procedure files under `reference/` are read as plain markdown in a terminal at least as often as in a browser, so any injected reference-surface markers must be explicitly accepted and validated rather than added as an incidental generator side effect.
 
 #### Current implementation, read 2026-09-03
 
@@ -184,12 +183,12 @@ The builder leaves reference source files untouched. The viewer resolves symbols
 1. Parameterize the scan root into a set of roots, each with its own registry path, viewer route, and write policy. Not a one-line change: the root constant is also used at line 515 to derive a document's area from the path segment following it.
 2. Add a second registry output for `reference/`, with its own `generated-runtime-assets.json` entry so it builds and stays untracked.
 3. Supply a navigation fallback. Reference documents have no entry in `content/graph/scene_graph.json` or `content/graph/textbook_toc.json`, which the builder joins against for back-links.
-4. Honor the read-only decision above: the reference pass must not invoke the line-708 write path.
+4. Parameterize the line-708 write path by target policy so an authorized reference action can update only its explicitly scoped sources while ordinary reference builds remain check-only.
 5. Keep the two registries separate rather than merged. A merged surface would place reference targets inside corpus pages and can manufacture the `content/markdown/aaa` → `reference/priorities` links AGENTS.md forbids.
 6. Teach the integrity gate and the link validator about the second surface.
 
-- **Evidence / blocker:** The implementation facts above are `measured` by direct reading of the named files and line numbers. Not established: whether the viewer can resolve symbols for a document that carries no injected chips, which is what work item 4 depends on and has not been checked in `src/apps/equation-mapping/`. No blocker beyond that.
-- **Completion:** A reference registry builds, validates, and is `--check` gated; reference documents render with resolvable symbols; no reference source file is modified by the build; and no link from `content/markdown/aaa` into `reference/` is created.
+- **Evidence / blocker:** The implementation facts above are `measured` by direct reading of the named files and line numbers. Not established: whether the viewer can resolve symbols for a document that carries no injected chips, or whether the line-708 write path can be constrained to an explicit reference target set; work item 4 must establish both modes in `src/apps/equation-mapping/`. No blocker beyond that.
+- **Completion:** A reference registry builds, validates, and is `--check` gated; reference documents render with resolvable symbols; any reference-source update requires declared write mode, an explicit target set, and validation; and no link from `content/markdown/aaa` into `reference/` is created.
 
 ## In progress
 
@@ -197,45 +196,7 @@ No rows.
 
 ## Awaiting verification
 
-### OPS-017 — Local repository document surface
-
-- **Status:** Awaiting verification
-- **Priority object:** `local_repository_document_surface`
-- **Request / acceptance:** Give the operator a browsable local view of the repository's markdown using the existing webapp conventions, so navigating internal documents does not require an editor preview. The surface must be structurally incapable of reaching a Pages deployment, must not add tracked build output, and must reuse the shared application chrome rather than inventing navigation.
-- **Origin:** Operator request, 2026-09-03, during the explanation-standard work: reading `reference/` documents through editor previews was the friction, and the webapp's own grid navigation was the wanted shape.
-
-The surface indexes two roots — `reference/` and `content/markdown/aaa/` — three directory levels below each, presented under a synthetic repository node. Measured on build: 1,138 documents across 123 directories, 2,922,026 words. Home offers Reference and Corpus; below that the tree mirrors the filesystem.
-
-#### Delivered
-
-| Component | Path |
-| --- | --- |
-| Manifest generator, `--write` and `--check`, `--depth N` | `scripts/build-reference-surface.mjs` |
-| Application runtime | `src/apps/reference/ReferenceSurfaceRuntime.js` |
-| Page | `reference.html` |
-| Generated manifest, ignored | `content/generated/reference/reference-surface.v1.json` |
-| Deployment exclusion | `scripts/build-static-site.mjs`, `INTERNAL_DEVELOPER_HARNESS_PATHS` |
-| Ignore rule | `.gitignore` |
-| Runtime-asset registration, so `npm run dev` builds it | `scripts/config/generated-runtime-assets.json` |
-| Probe-gated entry control | `index.html` |
-
-Documents render with markdown-it, KaTeX, and mermaid. Internal `.md` links are rewritten to stay in the surface when the target is indexed and marked as leaving it when not. Navigation uses `createStandaloneAppNavigationRuntime` in `#scene-hud-tools`, the same shared top-right chrome as every other standalone application, constructed inside a try/catch so a chrome failure degrades to a working viewer rather than a blank page.
-
-The entry control on `index.html` is a probe rather than a hidden link: it issues a `HEAD` request for the manifest and reveals itself only on success. The manifest does not exist in a deployment, so the control never appears there and no dead link ships. Obscurity is not the mechanism; absence is.
-
-The grid is fixed at six columns by operator decision, with no narrow-window breakpoints, because the surface is used only on a large desktop monitor.
-
-Claim grade: `measured`. The deployment exclusion was verified by calling `isPagesDeploymentExcluded` directly on the three paths and confirming each returns excluded while `index.html` and `photon.html` do not. The manifest counts are the generator's own output. The runtime was exercised against a stub DOM covering home, directory, breadcrumb, and absent-chrome paths. Falsifier: a Pages build whose output contains `reference.html`, the runtime directory, or the generated manifest.
-
-#### Not done
-
-- No lane owns whether the surface should index roots beyond `reference/` and `content/markdown/aaa/`.
-- The generator's `--check` is not part of the content-integrity gate, so a stale manifest is never reported. It is a local aid and staleness only means the tree is out of date, but the omission is deliberate rather than overlooked.
-- The filename `reference.html` is historical and now narrower than what the surface indexes. Retained deliberately: renaming touches the exclusion list, the ignore rule, the `index.html` probe, and the generator output path, for no benefit the operator sees. The visible titles say `Repository Documents`.
-- No test covers the runtime. The stub-DOM exercise was a development check, not a committed test.
-
-- **Evidence / blocker:** Nothing blocks use; the surface works. Verification is outstanding only in the sense that it has not yet been used across enough sessions to know whether the depth limit, the two roots, and the six-column grid are right.
-- **Completion:** The surface survives repeated operator use without a change request, or its outstanding questions above are answered and closed.
+No rows.
 
 ## Verified
 
