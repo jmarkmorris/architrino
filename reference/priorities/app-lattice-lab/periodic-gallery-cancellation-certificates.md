@@ -2,7 +2,9 @@
 
 ## Scope
 
-This packet covers the deterministic repeating gallery cases:
+This packet establishes only stationary, release-time acceleration cancellation under each case's declared periodic exhaustion. It does not use the visible crop as a calculation domain and does not establish motion, stability, energy, conservation, or a physical medium.
+
+It covers the deterministic repeating gallery cases:
 
 - BCC two-sublattice;
 - FCC alternating planes;
@@ -15,6 +17,8 @@ The spherical envelope is a viewing crop only. It contributes no rows and define
 Plainly: the deterministic result comes from the declared infinite repeat, not from the architrinos that happen to be visible inside the sphere.
 
 ## Stationary Row
+
+Picture one receiver held at the origin of a repeating lattice while every other architrino remains fixed at its declared site. The calculation maps each transmitter's receiver-centered offset through the display deformation and then adds the resulting signed acceleration contribution.
 
 For a receiver-centered source offset \(\mathbf r\ne\mathbf0\), relative polarity sign \(\sigma=1\) for matching polarity and \(\sigma=-1\) for opposite polarity, and the static display map
 
@@ -60,6 +64,8 @@ $$
 
 The orbit sum is therefore fixed by all of \(G\), so condition 4 makes it exactly zero. Every finite admitted exhaustion has zero residual, and its declared exhaustion limit is zero.
 
+Claim grade: `derived` on the declared stationary history and complete symmetry-orbit exhaustion. Falsifier: any admitted orbit with a nonzero acceleration sum, any missing receiver orbit, or failure of one of the four stated group conditions overturns the corresponding cancellation result.
+
 Plainly: the calculation includes the full repeating pattern in complete symmetry groups. Each complete group cancels before another group is added, so the visible crop never enters the result.
 
 ## Case Certificates
@@ -93,5 +99,7 @@ Plainly: local rows help inspect the arithmetic. The certificate, not two shells
 The independent instrument is `scripts/verify-lattice-lab-periodic-gallery.mjs`. It reconstructs the five groups without importing the production certificate module, checks both inequivalent receiver orbits, verifies lattice/polarity preservation and group closure, recomputes displayed local rows, and tests complete sample orbits at the undeformed and supported deformed settings. It also requires the deformed HCP certificate to fail and includes tampered-symmetry and tampered-row negative controls.
 
 The certificate is overturned if a declared symmetry fails to preserve the translation lattice or polarity decoration, if a receiver orbit is missing, if the group has a nonzero fixed vector, if the group fails to commute with the claimed deformation, if a complete orbit has nonzero acceleration sum, or if the independent local-row calculation disagrees.
+
+Claim grade: `measured` for the verifier outcomes over its declared five-case, two-receiver-orbit domain. The instrument checks the certificate construction and displayed local arithmetic independently of the production certificate module; it does not extend the theorem beyond the declared stationary history or establish later dynamics.
 
 Plainly: the verifier checks the geometry, both polarity receiver types, the actual acceleration rows, and deliberate failures. None of these checks makes a claim about motion, stability, energy, conservation, or later evolution.

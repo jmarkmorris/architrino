@@ -21,7 +21,7 @@ Edition 1.0 settled three rules that most of the corpus does not currently follo
 
 The audience is a reader who holds neither the theory nor the established physics it must recover, so both are explained rather than named. Where a document uses a concept developed elsewhere, it gives a brief clue in place and links to the full treatment, rather than assuming the reader arrived through the earlier chapter. And length is not a constraint, because the corpus is published for online access with no printed edition, which leaves the prose free to be accessible and technical at once.
 
-Measured on 2026-09-03, **70 documents totalling 428,706 words use foundational vocabulary and link to `foundations/` zero times.** More than half the corpus, by words, currently assumes a reader who started at page one. Almost nobody does: readers arrive from a search result, an external link, or the application, on an arbitrary page.
+Measured on 2026-09-03, **70 documents use foundational vocabulary and link to `foundations/` zero times.** Most of the corpus currently assumes a reader who started at page one. Almost nobody does: readers arrive from a search result, an external link, or the application, on an arbitrary page.
 
 Claim grade: `measured` by scanning every corpus document outside `archie/` and `foundations/` for foundational vocabulary against the presence of any `foundations/` link. Falsifier: a repeat scan returning materially fewer such files, which would mean the gap is being closed by other work.
 
@@ -29,9 +29,9 @@ Claim grade: `measured` by scanning every corpus document outside `archie/` and 
 
 Phase 1 is complete. All nine `foundations/` documents, beginning with [Ontology](../../../content/markdown/aaa/foundations/ontology.md), were rewritten against edition 1.0 and then independently reviewed against their 2026-09-01 baselines. The first Phase 2 batch is also complete at authored-source level: all six `dynamics/` documents, beginning with the [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md), have undergone the same rewrite and correction sequence.
 
-The fifteen converted documents grew from 115,735 to 122,716 words after review, an increase of **6%**. Foundations account for most of that expansion; the dynamics batch grew only 3%, while its review still required substantive corrections to signs, coefficients, normalization, claim boundaries, and source support. Word growth therefore remains useful for publication-size planning but is not a measure of review difficulty.
+Fifteen of 199 documents are converted at edition 1.0. Document length is not tracked and is not a concern for this campaign: the corpus is published online with no printed edition, so a conversion is judged on whether the content survived and whether the prose now meets the guide, never on what it cost in words.
 
-The authored dynamics sources pass whitespace, strict content, equation-mapping-link, and equation-mapping-corpus checks. Generated textbook navigation and reading copies are stale and remain for the authorized regeneration or final branch process. Per-file measurements and the current projection are recorded in [conversion-ledger.md](conversion-ledger.md).
+The authored dynamics sources pass whitespace, strict content, equation-mapping-link, and equation-mapping-corpus checks. Generated textbook navigation and reading copies are stale and remain for the authorized regeneration or final branch process. Per-file rows are recorded in [conversion-ledger.md](conversion-ledger.md).
 
 ## Ownership Boundaries
 
@@ -48,7 +48,7 @@ The authored dynamics sources pass whitespace, strict content, equation-mapping-
 Foundations first, and not as a matter of taste. Every one of the 70 under-linked documents will link *into* `foundations/`, so converting a later chapter before its foundations are ready sends readers to prose that is itself about to change. Foundations is upstream of everything.
 
 1. **Phase 1 — Foundations.** Complete: 9 files, independently reviewed.
-2. **Orientation pass.** Queued: the 70 under-linked documents get a clue and a link at first use of each foundational term.
+2. **Term lookup and orientation.** Queued: make the glossary reachable and complete so a reader on any document can look a word up, rather than editing 70 documents to link every first use. Reformulated 2026-09-03 after an audit found the reader can navigate but cannot look a term up.
 3. **Phase 2 onward.** In progress: the 6-file dynamics batch is complete at authored-source level; remaining chapters continue in reader order so each conversion can rely on vocabulary already introduced upstream.
 
 ## Work Queue

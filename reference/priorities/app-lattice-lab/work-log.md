@@ -1,6 +1,6 @@
 # Architrino Lattice Lab Work Log
 
-This file records dated planning, implementation status, validation evidence, failed paths, and handoffs for `app-lattice-lab`. Keep strategy and claim boundaries in [priorities.md](priorities.md), accepted executable work in [work-queue.md](work-queue.md), and provisional concepts in [brainstorming.md](brainstorming.md).
+This file records dated planning, implementation status, validation evidence, failed paths, and handoffs for `app-lattice-lab`. Keep strategy and claim boundaries in [priorities.md](priorities.md), accepted executable work in [work-queue.md](work-queue.md), and provisional concepts in [brainstorming.md](brainstorming.md). Entries remain in dated order as historical provenance; an editorial pass may clarify this purpose or append a new record, but it must not rewrite, delete, or reorder earlier events.
 
 ### 2026-08-01 — Workstream Archived Dormant-Deferred
 
@@ -9,6 +9,26 @@ This file records dated planning, implementation status, validation evidence, fa
 - Closed the immediate implementation lane. The retained queue is parked and non-executable unless the operator explicitly reactivates this owner.
 
 ## Log Entries
+
+### 2026-09-03 — Edition 1.0 Operator-Document Pilot
+
+- Measured the complete live `reference/priorities/**/*.md` inventory before editing by sorting the path list in byte order. The scan returned `757` files; the newline-terminated list has SHA-256 `a667d973a34fd7cc7bd5613791b2c11ef39aad10da0d63bcc4ed6b38b58124e0`.
+- Selected this lane because one ownership boundary contains all required pilot functions: strategic tracker, work queue, brainstorming record, work log, mathematical certificate, requirements/design packet, audit record, and deterministic calculation contract.
+- Deferred the other `749` inventory paths at the operator-review gate required by the campaign brief. This is a campaign-stage disposition, not a per-file conformance judgment; no hierarchy-wide conversion or review began.
+- Preserved every earlier log entry and its order. No queue state, ranking, requirement, equation, code-form algorithm step, exact former Primer quotation, numerical result, evidence boundary, or claim authority changed.
+
+| Pilot file | Original role and claim boundary | Disposition | Editorial result |
+| --- | --- | --- | --- |
+| `priorities.md` | Strategic owner for app purpose, active state, routing, and the boundary between display evidence and physical claims. | already conforming | No edit; the concise tracker already separates current state, ownership, executable routing, and promotion limits. |
+| `work-queue.md` | Canonical lifecycle ledger for four executable rows, two deferred rows, verified history, dependencies, evidence, and completion conditions. | already conforming | No edit; exact task identifiers, order, states, acceptance conditions, and historical dispositions remain unchanged. |
+| `brainstorming.md` | Provisional synthesis that records no open idea and creates no queue item. | already conforming | No edit; its provisional status, evidence distinctions, ownership links, and promotion boundary are explicit. |
+| `work-log.md` | Dated chronology of decisions, failures, validation, and handoffs. | converted in this pilot | Added the preservation rule and this append-only pilot record without altering or reordering earlier history. |
+| `periodic-gallery-cancellation-certificates.md` | Derived stationary-release cancellation packet for five periodic gallery cases; no later-motion, stability, energy, conservation, or medium claim. | converted in this pilot | Added a picture-before-symbol setup, stated the exact theorem grade and falsifier, and bounded what the independent verifier measures. All equations and existing explanatory passages are unchanged. |
+| `requirements-design.md` | Cumulative requirements and design packet containing accepted constraints alongside explicitly candidate, exploratory, future, and potential material. | converted in this pilot | Added a document-state map that separates normative requirements, proposals, implementation status, and the uniform evidence boundary. No requirement or design detail changed. |
+| `lattice-primer-removal-audit-2026-09-02.md` | Historical audit of exact former Primer paragraphs and their surviving owners; no geometry, calculation, certificate, control, or evidence-authority change. | converted in this pilot | Defined the three disposition labels and added the measured claim grade, instrument boundary, and falsifier. Exact quoted paragraphs and dispositions are unchanged. |
+| `random-finite-configuration-contract.md` | Deterministic 88-site finite assignment and residual contract; no periodic, all-space, motion, stability, energy, or conservation claim. | converted in this pilot | Defined the imported SplitMix32 apparatus, explained its limited role before the algorithm, and added the verification grade and falsifier. Algorithm steps, identifiers, seeds, counts, and provenance fields are unchanged. |
+
+The style judgments above are `inferred` against edition 1.0 of the academic style guide. Their falsifier is a passage in a pilot file that still obscures its function, imports load-bearing apparatus without definition, or changes a baseline claim while appearing clearer. Mathematical and semantic preservation are checked separately against the pre-edit Git baseline; a clean structural validator alone does not establish either judgment.
 
 ### 2026-09-02 — Workstream Reactivated
 

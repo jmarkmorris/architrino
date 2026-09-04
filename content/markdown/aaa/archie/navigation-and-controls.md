@@ -86,9 +86,10 @@ Sphere labels may also use more than one text row when the scene author provides
 - Toggle layout (1/2 column): layout icon in the global document controls
 - Open full document from section/index: document icon in the global document controls
 - Export the open reading surface: PDF icon in the global document controls
+- Close the panel: `Close` (×) icon at the right of the panel header
 - In two-column mode, read down the left column and then the right column; the next two-column spread continues below, using ordinary vertical scrolling.
 
-The main scene markdown panel has no dedicated `Close` button. It is replaced when navigation opens another scene or reading surface. Some standalone applications use their own markdown overlay with an explicit close control; that local control does not imply one exists in the main scene shell.
+The panel also closes on its own when navigation opens another scene or reading surface, so closing it explicitly is a way to return to the scene beneath rather than the only way to leave the document.
 
 When a split or tree source is section-based, opening the full document is often the fastest way to regain the surrounding overview before returning to the local node.
 

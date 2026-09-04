@@ -6,6 +6,12 @@
 
 The lab is not initially a physical model of a void-filling medium, a stability solver, or an EOM closure instrument. It must distinguish a candidate construction, a finite visual calculation, and a certified exact result.
 
+## Document State and Authority
+
+This packet contains the original first-version design together with later accepted refinements. Normative statements using `must` or `do not` are requirements; sections explicitly labeled as candidate, exploratory, future, or potential remain proposals. The current implementation and lifecycle state are recorded in [work-log.md](work-log.md) and [work-queue.md](work-queue.md), so appearance in this packet alone does not mean that a proposed control or gallery case has been implemented or accepted.
+
+The evidence boundary is uniform across both accepted and proposed design: display geometry can explain a configuration, but only a declared calculation or certificate can support an acceleration result. Neither presentation state establishes later motion, stability, conservation, energy, retention, or a physical Noether sea model.
+
 ## Audience and Experience
 
 The app should let a curious user see why lattice geometry, polarity population, and boundary treatment are separate choices. A user chooses a case, looks around the three-dimensional arrangement, selects a site, and inspects the geometric contributions that do—or do not—cancel.

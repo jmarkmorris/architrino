@@ -6,6 +6,10 @@ This audit closes the paragraph-inventory requirement of LAT-095 without changin
 
 The finite Random 50/50 case is not listed below because it was added after the Primer removal and never had `primerTitle` or `primerParagraphs` fields. Its population, finite scope, and result authority remain in the case summary, Shared Display Conventions, Boundary treatment, and Site Ledger.
 
+The audit compares two surfaces: the exact pre-removal paragraphs preserved in the table and the narrower owners present in the canonical app after removal. A disposition of `already stated` means the fact survives in a named owner; `retain as non-Primer authority` means the evidence boundary remains elsewhere; and `drop` means the removed sentence added only repetition, an unnecessary analogy, or a duplicated disclaimer.
+
+Claim grade: `measured` by comparing the last pre-removal case data in the parent of commit `2b4126c2a` with the canonical post-removal sources and their owner fields. Falsifier: a former Primer fact required by the current app that is absent from every named surviving owner, or any live Primer or `What You Are Seeing` source, runtime, style, or accessibility hook missed by the audit.
+
 ## All-case paragraph matrix
 
 | Case | Exact former Primer paragraph | Classification | Duplicate or surviving owner search | Disposition |

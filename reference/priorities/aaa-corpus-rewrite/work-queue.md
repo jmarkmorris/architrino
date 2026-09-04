@@ -28,15 +28,15 @@ Every conversion in this lane, in any phase, satisfies all of the following. An 
 
 13. `node scripts/validate-equation-mapping-links.mjs` passes.
 14. Generated artifacts that consume the file are regenerated or their drift is reported.
-15. A ledger row is added recording file, edition, before and after word counts, growth percentage, and date.
+15. A ledger row is added recording file, edition, date, and a note on what the conversion changed. Do not record word counts or growth percentages; size was removed from this campaign's concerns by operator decision on 2026-09-03, and [conversion-ledger.md](conversion-ledger.md) says why.
 
 Claim grade for a completed conversion: `measured` for the preservation checks, which are mechanically verifiable, and `inferred` for the style checks, which are a judgment against the guide. Falsifier for any conversion: a claim, grade, falsifier, equation, or link that differs from the pre-conversion document.
 
 ## Ranked Next Objects
 
 1. `remaining_chapters` — [CRW-003](#crw-003--phase-2-remaining-chapters). Status: `In progress`.
-2. `orientation_pass` — [CRW-002](#crw-002--orientation-pass). Status: `Queued`.
-3. `retired_tag_retirement` — [CRW-004](#crw-004--retired-plain-language-tag-retirement). Status: `Queued`.
+2. `orientation_pass` — [CRW-002](#crw-002--term-lookup-and-orientation). Status: `Queued`, reformulated 2026-09-03 as an affordance and glossary fix.
+3. `retired_tag_retirement` — [CRW-004](#crw-004--retired-plain-language-tag-retirement). Status: `In progress`, startup path done, corpus riding on CRW-003.
 
 ## In progress
 
@@ -46,7 +46,7 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 - **Priority object:** `remaining_chapters`
 - **Request / acceptance:** Convert the remaining chapters to edition 1.0 in reader order, so each conversion can rely on vocabulary already introduced upstream.
 
-Scope after Phase 1 was 190 files and 800,738 baseline words. The first Phase 2 batch is complete at authored-source level: all six `dynamics/` documents were rewritten and independently reviewed against the 2026-09-01 baseline. Their combined count moved from 78,425 words before conversion to 80,879 after review and raw-anchor cleanup, a 3% increase. The review corrected mathematics, claim boundaries, and source support; generated textbook navigation and reading copies remain stale and are reported rather than regenerated during the ordinary source-edit batch.
+Scope after Phase 1 was 190 files. The first Phase 2 batch is complete at authored-source level: all six `dynamics/` documents were rewritten and independently reviewed against the 2026-09-01 baseline. The review corrected mathematics, claim boundaries, and source support; generated textbook navigation and reading copies remain stale and are reported rather than regenerated during the ordinary source-edit batch.
 
 Ordering is by reader path rather than alphabetically, so early conversions compound: a converted chapter can rely on its upstream chapters already introducing their terms properly, which is exactly what the cumulative-within-document and clue-plus-link rules assume.
 
@@ -56,37 +56,13 @@ This item absorbs the corpus half of [CRW-004](#crw-004--retired-plain-language-
 
 Criterion 12 as amended is the whole instruction, and its second sentence is the part that matters: fold the plain-language sentence up into the paragraph above it. Do not delete it.
 
-Two files hold 122 of the 172 — `noether-braid/2d-braid-assemblies.md` at 82 and `noether-braid/3d-braid-assemblies.md` at 40 — and those same two documents top [CRW-002](#crw-002--orientation-pass)'s under-linked scan at 79 and 42 uses of unglossed foundational vocabulary. A document that restates itself in plain language 82 times while never once linking to what a wake is has a single underlying problem, and whichever of these two items reaches it first should expect to fix both. Batch them together rather than separately.
+Two files hold 122 of the 172 — `noether-braid/2d-braid-assemblies.md` at 82 and `noether-braid/3d-braid-assemblies.md` at 40 — and those same two documents top [CRW-002](#crw-002--term-lookup-and-orientation)'s under-linked scan at 79 and 42 uses of unglossed foundational vocabulary. A document that restates itself in plain language 82 times while assuming its reader already holds the vocabulary has a single underlying problem, so expect both symptoms in the same passages when this batch reaches them.
 
 CRW-004 fails if this item completes with the corpus count above zero, so the count belongs in each batch's ledger note.
 
 - **Blocked by:** nothing. Foundations and dynamics are complete at authored-source level.
 - **Evidence / blocker:** Fifteen of 199 documents now carry conversion-ledger rows. The remaining reader order beyond dynamics is not yet fixed; establishing the next batch is the next action of this item.
 - **Completion:** Every document under `content/markdown/aaa` carries a ledger row at the then-current edition.
-
-## Queued
-
-### CRW-002 — Orientation pass
-
-- **Status:** Queued
-- **Priority object:** `orientation_pass`
-- **Request / acceptance:** For each document that uses foundational vocabulary without linking to `foundations/`, add a brief clue plus a link at the first use of each such term. Accepted when no corpus document uses a foundational term before glossing and linking it once.
-
-This is deliberately **not** a rewrite, and keeping the two apart is the point. A rewrite reworks a whole document against every rule; the first fifteen conversions average 6% growth but range from a 14% reduction to a 52% increase. This pass touches only first occurrences, adds a clause and a link, and should grow a document by one to three percent. It buys most of the accessibility for a small fraction of the work, and it can run while the rewrite continues through later phases.
-
-Measured scope, 2026-09-03: **70 files, 428,706 words.** Worst cases by usage count are `3d-braid-assemblies.md` at 79 uses across 16,721 words, `braid-analysis-methodology.md` at 72 uses, and `2d-braid-assemblies.md` at 42 uses across 14,153 words. A reader landing on any of those from a search result currently has no route to what a wake is.
-
-The shape of an edit is one clause and one link, not a paragraph. Written as it appears in the corpus file, with the link target relative to that file rather than to this queue:
-
-```markdown
-the substrate has absolute time, a Euclidean void, and a finite speed at which
-a [wake](../foundations/architrino.md) — the expanding disturbance an architrino
-leaves behind it — travels outward
-```
-
-- **Blocked by:** nothing. Phase 1 closed `Verified` on 2026-09-03, so the links this pass adds now point into converted prose.
-- **Evidence / blocker:** The scan is complete and reproducible. Not yet decided: whether every foundational term gets a clue, or only the four or five that carry the most weight. Deciding that is the first action of this item.
-- **Completion:** No corpus document uses a foundational term before glossing and linking it once, verified by a repeat of the original scan.
 
 ### CRW-004 — Retired plain-language tag retirement
 
@@ -117,8 +93,8 @@ Markdown only, excluding `.tmp`, `.local-data`, `.git`, and `node_modules`.
 | `reference/op` | 4 | 9 | Convert — startup path |
 | `reference/research-office/cto/prompts` | 2 | 7 | Convert — startup path |
 | `.agents/skills` | 1 | 2 | Convert — startup path |
-| `reference/priorities` | 352 | 4,198 | Leave; opportunistic only |
-| `reference/architectural-decisions` | 2 | 4 | Leave; opportunistic only |
+| `reference/priorities` | 352 | 4,198 | Leave — operator decision, 2026-09-03 |
+| `reference/architectural-decisions` | 2 | 4 | Leave — operator decision, 2026-09-03 |
 
 Earlier scans of the same day recorded 223 and then 225 corpus occurrences across 23 and 25 files. The count is now 172 across 16, and the fall is explained: nine foundations documents were converted in between, and criterion 12 removed their tags as part of the rewrite rather than as a separate pass. That is the mechanism this item is betting on for the rest of the corpus.
 
@@ -128,7 +104,7 @@ Claim grade: `measured` by filesystem scan on 2026-09-03. Falsifier: a repeat sc
 
 All 172 remaining corpus occurrences sit in chapters that [CRW-003](#crw-003--phase-2-remaining-chapters) will convert, and none sit in foundations. Running a separate tag-removal pass over them would touch those files twice, once for the tag and once for the rewrite, and the second pass would rewrite the passages the first pass just edited.
 
-The concentration is extreme and worth knowing when Phase 2 sequences its batches. Two files hold 122 of the 172 — `noether-braid/2d-braid-assemblies.md` at 82 and `noether-braid/3d-braid-assemblies.md` at 40 — and six files hold 153. Those same two documents are also the worst cases in [CRW-002](#crw-002--orientation-pass)'s under-linked scan. A document that restates itself 82 times in plain language and never once links to what a wake is has one underlying problem, not two, and converting it should fix both.
+The concentration is extreme and worth knowing when Phase 2 sequences its batches. Two files hold 122 of the 172 — `noether-braid/2d-braid-assemblies.md` at 82 and `noether-braid/3d-braid-assemblies.md` at 40 — and six files hold 153. Those same two documents are also the worst cases in [CRW-002](#crw-002--term-lookup-and-orientation)'s under-linked scan, which is one underlying problem showing two symptoms.
 
 So this item schedules no corpus work. It carries the number, and it fails if Phase 2 completes with the number above zero.
 
@@ -154,11 +130,17 @@ Claim grade: `measured` — a repeat scan across the three roots returns zero. F
 
 Claim grade for the reinstatement mechanism this pass was meant to stop: `inferred`. It is a reading of how sessions pick up conventions, not a measurement, and the pass does not prove the reading was right. Falsifier: the tag appearing in newly authored documents despite the startup path now being clean.
 
-#### Working record — deliberately left alone
+#### Working record — unconverted for now, by operator decision 2026-09-03
 
-`reference/priorities`, `reference/architectural-decisions`, `reference/research-office/research-history`, and the fixtures under `src` and `tests` keep the tag. The [operator explanation standard](../../op/operator-explanation-standard.md) already rules that documents written under a retired convention keep their form, and that conversion happens opportunistically when a document is under substantial revision for other reasons.
+`reference/priorities` (4,198 occurrences across 352 files), `reference/architectural-decisions` (4), `reference/research-office/research-history`, and the fixtures under `src` and `tests` keep the tag.
 
-Four thousand occurrences across 352 analysis packets is a mechanical diff with real review cost and no reader on the other end. These are dated records of what was thought at the time, and the tag is part of that record. Not converting them is the decision, not a deferral.
+**This is a decision, not a backlog item.** An agent finding the tag in these files should leave it there and should not open a sweep. The [operator explanation standard](../../op/operator-explanation-standard.md) already rules that a document written under a retired convention keeps its form and is converted only opportunistically, when it is under substantial revision for some other reason; that rule governs here and needs no separate item to enforce it.
+
+The reasoning, so a later reader can judge whether it still holds. These files have no public reader and are not on the startup path, so neither of the two arguments that justified the other surfaces applies. They are dated records of what was thought at the time, and the tag is part of how that thinking was written down. Converting them would be a mechanical diff across 352 files that changes no conclusion, costs real review attention, and runs into the defect class the Codex pass identified — explanatory rewriting tends to firm up hedged claims. That risk is worth carrying for the textbook, where a reader is on the other end. It is not worth carrying for a review packet whose value is precisely that it records an earlier state of belief.
+
+The decision was given as **unconverted for now**, so it is revisitable rather than permanent. Two things would properly reopen it: evidence that the tag is being newly authored into working-record documents despite the startup path being clean, which would mean the record is still teaching the convention to somebody; or a decision to publish or otherwise expose any part of `reference/priorities` to a reader outside the project, which would move those files into the reader-facing argument. Absent either, leave them.
+
+Claim grade: `measured` for the counts. The judgment that these files carry no reinstatement risk is `inferred`, and shares its falsifier with the startup-path finding above.
 
 #### Discharged blocker: search-index dependency, checked 2026-09-03
 
@@ -173,9 +155,63 @@ Claim grade: `measured` by a recursive walk of the parsed JSON distinguishing ke
 The [corpus dragnet](../aaa-corpus-dragnet/priorities.md) owns the correlation actions that inventory occurrences and their contexts, and is read-only outside its own lane by charter. It supplies the counts above; it does not perform the conversions.
 
 - **Blocked by:** nothing. Both original gates — operator readiness and the Tier 1 canon decision — are discharged above.
-- **Evidence / blocker:** The census is reproducible, both style authorities have been checked, and the search-index dependency is discharged. The one open judgment is whether the startup-path pass runs now or waits for Phase 2 to finish, and the argument above is that it should run now, because its cost is one short pass and its benefit is stopping the tag from being re-authored while conversions are still removing it.
-- **Completion:** The startup-path scan returns zero across those seven files; the corpus scan returns zero when [CRW-003](#crw-003--phase-2-remaining-chapters) completes; the working record is confirmed unconverted by decision rather than by omission; and a repeat scan shows no occurrences in documents authored after edition 1.0 was adopted.
+- **Evidence / blocker:** Nothing owed by the operator. The census is reproducible, both style authorities have been checked, the search-index dependency is discharged, the startup-path pass is executed and scans clean, and the working-record decision is recorded. One condition remains open and it is not this item's to close: the corpus count, which reaches zero when [CRW-003](#crw-003--phase-2-remaining-chapters) finishes converting the sixteen files that still carry the tag.
+- **Completion:** The startup-path scan returns zero across those seven files — **met 2026-09-03**; the working record is recorded as unconverted by decision, with its reopening conditions named — **met 2026-09-03**; the corpus scan returns zero when [CRW-003](#crw-003--phase-2-remaining-chapters) completes — **open**; and a repeat scan shows no occurrences in documents authored after edition 1.0 was adopted — **open, and the last to close**.
 
+## Queued
+
+### CRW-002 — Term lookup and orientation
+
+- **Status:** Queued
+- **Priority object:** `orientation_pass`
+- **Reformulated:** 2026-09-03, by operator decision, from a 70-file inline-linking pass to an affordance and glossary fix. The reformulation is recorded below because the original framing rested on a reader model that turned out to be wrong in one direction and right in another, and a later reader should be able to check the correction rather than inherit it.
+- **Request / acceptance:** Give a reader who lands on an arbitrary corpus document a working route from a term to its definition, by making the glossary reachable and complete rather than by editing 70 documents. Accepted when the glossary is reachable from a document view without prior knowledge that it exists, covers the load-bearing foundational vocabulary, and the corpus-side work is confined to terms that carry an argument.
+
+#### What was measured, 2026-09-03
+
+The scan that opened this item stands: **70 documents use foundational vocabulary and link to `foundations/` zero times.** Worst cases by usage count are `3d-braid-assemblies.md` at 79 unglossed uses, `braid-analysis-methodology.md` at 72, and `2d-braid-assemblies.md` at 42.
+
+What did not stand is the conclusion drawn from it. The item previously asserted that a reader landing on one of those documents has no route to what a wake is. **That is false, and the correction matters for what the work should be.** Every document view keeps a persistent toolbar — TOC, Back, Forward, Home, Search — plus textbook page arrows, so the reader is one click from the full table of contents and `foundations/` is in it. The reader is not stranded.
+
+The real gap is narrower and was verified in code on 2026-09-03:
+
+| Affordance | State | Evidence |
+| --- | --- | --- |
+| Scene search | Metadata only — `name`, `id`, `path`, `nodeType` across 586 entries; no body text | `src/runtime/SceneSearchRuntime.js`, `content/graph/scene_graph.json` |
+| Glossary reachability | Not in the toolbar, not in the textbook TOC, not on the page arrows; reachable only via the Archie scene path or by searching the literal word "glossary" | `index.html`, `content/generated/markdown/textbook/toc.md`, `content/graph/textbook_toc.json` |
+| Term decoration | None. Markdown decoration is limited to images, local asset links, `View →` equation rows, and the TOC page | `src/runtime/MarkdownRuntime.js` |
+| Glossary coverage | 145 entries. `architrino`, `absolute time`, `path history`, `assembly` present. **`wake` present only as `Causal Wake` and `Wake Equation`; `causal root` has no entry** | `content/markdown/aaa/archie/comparative-glossary.md` |
+
+So the reader can navigate but cannot look a word up. Search will not find a term, the glossary is hidden behind knowledge of its own name, nothing decorates terms in the prose, and the two terms most likely to be looked up are the two the glossary handles worst.
+
+Claim grade: `measured`, by reading the named source files. Falsifier: any affordance in the shipped app that resolves a term to a definition from a document view and was missed by this audit.
+
+#### Why the work moved off the documents
+
+Editing 70 documents fixes a lookup problem one occurrence at a time, and only where an author remembered. The two routes below fix it for all 199 documents at once, leave corpus prose untouched, and stay correct as the corpus changes.
+
+**Make the glossary reachable and complete.** One navigation change plus a handful of glossary rows. This is the whole of the accessibility gain for a small fraction of the cost, and it needs no corpus edit at all.
+
+**Decorate terms at render time.** `src/runtime/MarkdownEquationMapRuntime.js` already proves the pattern: it finds rendered `View →` links and decorates the equation block above them. The same hook point in `MarkdownRuntime.js` could decorate glossary terms on first occurrence per document, driven by the glossary table itself.
+
+What survives on the corpus side is small and pedagogical rather than mechanical: an inline clue is better than a lookup **where the term carries the argument**, because it explains the word in the context the reader met it without navigating away. That is a case-by-case judgment on a handful of passages, not a pass over 70 files, and CRW-003's criterion 8 already covers it for every document the rewrite reaches.
+
+Claim grade: `inferred` for the judgment that a decorator beats 70 document edits. It rests on the equation-map precedent working for a different matching problem and has not been prototyped. Falsifier: a decorator that cannot disambiguate terms well enough to avoid mislinking — for example linking `assembly` in its ordinary English sense — which would push the work back into the documents.
+
+#### Deliverables
+
+1. **Glossary gap fill.** Add a `Wake` entry as a first-class term, add `Causal Root`, and audit the remaining foundational vocabulary against the first column rather than against the definitions. Corpus content, so it is subject to the academic style guide and to canon review.
+2. **Glossary reachability.** Make the glossary reachable from a document view without prior knowledge of it. The toolbar and the textbook TOC are both candidates and the choice is a UI decision, not a foregone one; the [UI guidelines](../../../content/markdown/aaa/archie/ui-guidelines.md) govern.
+3. **Term decorator, scoped and prototyped before committed.** A render-time decorator on the `MarkdownRuntime.js` hook, driven by the glossary table. Prototype the matching before building the feature; the disambiguation question decides whether this is worth doing at all.
+4. **Selective inline clues.** Only where a term carries the argument of the passage. Not a sweep.
+
+Deliverables 1 and 2 are independent of 3 and 4 and should not wait on them.
+
+The implementation prompt is [crw-002-dispatch.md](crw-002-dispatch.md). It carries the verified affordance findings, the ordering, the disambiguation traps for deliverable 3, and the report contract; dispatch an agent with that document rather than with this section.
+
+- **Blocked by:** nothing. Deliverables 1 and 2 can start immediately.
+- **Evidence / blocker:** The affordance audit is complete and reproducible. The original open question — whether every foundational term gets a clue or only the load-bearing few — is resolved by the reformulation: neither, because the corpus is no longer the primary surface. The live open question is deliverable 3's disambiguation, which a prototype settles.
+- **Completion:** The glossary covers the load-bearing foundational vocabulary as first-class terms; a reader on an arbitrary document can reach it without knowing it exists; the decorator is either shipped or declined with its prototype result recorded; and the 70-file scan is repeated to confirm what, if anything, still warrants an inline clue.
 ## Awaiting verification
 
 No rows.
@@ -191,18 +227,7 @@ No rows.
 
 Foundations came first because everything else links into it. The 70 under-linked documents identified in [priorities.md](priorities.md) all point here, so converting a later chapter before its foundations were ready would have sent readers to prose about to change underneath them.
 
-| File | Before | After | Net |
-| --- | ---: | ---: | ---: |
-| `architrino.md` | 4,090 | 6,228 | +52% |
-| `euclidean-void.md` | 3,401 | 4,770 | +40% |
-| `constructing-the-absolute-frame.md` | 2,318 | 2,683 | +16% |
-| `ontology.md` | 3,936 | 4,537 | +15% |
-| `absolute-timespace.md` | 5,369 | 6,104 | +14% |
-| `absolute-time-defense.md` | 4,830 | 5,075 | +5% |
-| `absolute-time.md` | 4,265 | 4,249 | −0% |
-| `detecting-the-absolute-frame.md` | 4,023 | 3,820 | −5% |
-| `emergence-of-structure.md` | 5,078 | 4,371 | −14% |
-| **Total** | **37,310** | **41,837** | **+12%** |
+All nine converted at edition 1.0 on 2026-09-03: `architrino.md`, `euclidean-void.md`, `constructing-the-absolute-frame.md`, `ontology.md`, `absolute-timespace.md`, `absolute-time-defense.md`, `absolute-time.md`, `detecting-the-absolute-frame.md`, and `emergence-of-structure.md`. Per-file rows are in [conversion-ledger.md](conversion-ledger.md).
 
 #### Verification, 2026-09-03 20:28
 
