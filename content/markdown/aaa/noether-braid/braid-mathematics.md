@@ -56,6 +56,7 @@ c_\star^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-813718eb5b450e1e)
+
 Thus an observer-export clock or ruler row must extract
 $$
 \frac{c_{\perp}}{c_\star}
@@ -64,6 +65,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-06d44856fc2aaa8a)
+
 from the same retained branch record, not append it as an independent Lorentz factor. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
 
 ### Transverse Internal-Motion Speed-Budget Lemma
@@ -156,6 +158,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-692ba4f073f377a6)
+
 with delay constraints (causal roots):
 $$
 \|\mathbf X_j(T_{p,k})-\mathbf X_i(T)\|=c_f\,(T-T_{p,k}), \quad
@@ -163,6 +166,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-16b10a9ff072c882)
+
 where $\mathbf{a}_{i,i}^{\mathrm{active}}$ is a shorthand for the sum over retained self-hit roots in $\mathcal{C}_{ii}(T)$, not an instantaneous switch $H(s-1)$. Self-hit remains path-history dependent: roots emitted during an earlier super-field-speed interval can stay active after the current speed has changed. The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf X_i(T)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
 
 and $s=\|\mathbf V\|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
@@ -171,12 +175,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0751d8f251047510)
+
 with no self-hit solution for $s\le 1$ and a small-root branch $\tilde{\delta}_s\to 0^+$ for $s>1$. The radial/tangential split then reads
 $$
 \ddot r-r\dot\theta^2=A_{\text{rad}}(\delta_p,\delta_s), \qquad r\ddot\theta+2\dot r\dot\theta=T(\delta_p,\delta_s)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4fa3a02b273b8067)
+
 The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
 
 The working guess that the self-hit regime may change the effective action-step scale from $\Delta L_c$ to $2\Delta L_c$ is a theorem burden for the broader causal-closure program. This chapter keeps only the local hinge geometry needed to state the dynamical branch condition.
@@ -189,12 +195,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-734d14f24aba55d3)
+
 for a constant $K>0$. Then
 $$
 \mathcal E_R=\frac12\dot R^2-\frac{K}{R}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-66a2f296a9e85423)
+
 is nondecreasing, because
 $$
 \frac{d\mathcal E_R}{dT}
@@ -204,12 +212,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b18d6235a0cd67f2)
+
 If at some $T_\ast$,
 $$
 \dot R(T_\ast)^2>\frac{2K}{R(T_\ast)},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f70a0ffb870211fa)
+
 then $\mathcal E_R(T_\ast)>0$ and $\dot R$ cannot later reach zero while the hypotheses remain valid. This is an escape certificate for that scalar chart, not a family-general no-binding theorem.
 
 A braid application must derive $R$ and the bound $K$ from the actual retained acceleration ledger. A speed cap, separation floor, acceleration-weight cap, and polarity inventory can supply such a bound only when their projection covers every retained root contribution on the same interval. Failure of any bound suspends the certificate. The phase-compensated equal-geometry locus isolated-release channel is one conditional application route; see [phase-compensated equal-geometry locus Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
@@ -224,6 +234,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-887f9f2ccc91af88)
+
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
 The ambient Noether sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.

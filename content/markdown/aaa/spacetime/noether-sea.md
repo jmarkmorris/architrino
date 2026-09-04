@@ -14,6 +14,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e6849e85f4f768ac)
+
 where $W_\ell$ is a smoothing window over Noether braid center variables $\mathbf X_s(T)$. The Noether sea stress, delay factor, and orientation variables then depend on each braid's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether braid geometry, not primitive geometric postulates.
 
 The homogeneous Noether sea also supplies the first constructive convergence case for the infinite many-source wake sum. In a statistically homogeneous, isotropic, locally neutral population with neutrality correlation length $\ell$, receiver-centered shell contributions have square-summable fluctuations: a shell of radius $r_n\sim n\ell$ contains $O(n^2)$ neutral cells, signed fluctuations scale as $O(n)$, and inverse-square wake dilution contributes $O(n^{-2})$. The shell variance is therefore $O(n^{-2})$. The required mixing condition is summable cross-shell covariance,
@@ -26,6 +27,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c848c934bb2c4609)
+
 where $\Delta\mathbf A_n$ is the signed fluctuation of shell $n$'s wake-acceleration contribution about its neutral ensemble mean. The condition prevents correlations from rebuilding a divergent coherent tail from individually decaying shells. Under that condition the neutral far-population contribution converges in the receiver-centered exhaustion sense. This exhaustion is fixed by the receiver event's causal-root ledger and expanding receiver-centered shells, not by an arbitrary rearrangement of a conditionally convergent spatial series. This is a weak homogeneous medium result, not a blanket convergence claim for coherent strong-field regions or unneutralized source populations.
 
 It also controls only fluctuations about a zero shell mean. For a weak density gradient
@@ -36,12 +38,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9659291f3d9667a1)
+
 the additional gravity-side obligation is to compute the neutral-cell multipole and prove convergence of
 $$
 \sum_n\mathbb E[\Delta\mathbf A_n\mid\mathbf g_\rho].
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bee72957ddd0c7a0)
+
 That mean row, rather than the homogeneous variance proof, must supply the leading constitutive response to $\mathbf g_\rho$. Until the neutral-cell multipole and its shell falloff are derived, the homogeneous result does not settle the weak-gradient or Seeliger problem.
 
 The spacetime recovery stack depends on four load-bearing hypotheses that must remain visible:
@@ -89,6 +93,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d76a9ae891b38256)
+
 without changing the identity of the underlying void point.
 
 ## Absolute Record and Observer Readout
@@ -175,7 +180,7 @@ The Noether sea changes how isolated assembly calculations should be read. A tru
 
 At the ontology level, a matter braid embedded in the Noether sea is an open assembly, not an isolated clockwork object. It exchanges angular momentum and causal-wake structure with neighboring neutral braids while preserving its own closure ledger. The exact boundary between assembly-locked and ambient contributions is the channel-dependent [assembly-Noether sea interface diagnostic](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic), $D_{a,X}$; spatial proximity alone does not decide which record owns a contribution.
 
-The current coincident-axis three-binary braid evidence sharpens that picture without closing the full medium problem. coincident-axis three-binary braid here means the prescribed chart with one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense; per-binary radii, axial half-separations, transverse orbit radii, and phases remain independent. At measurement level, the forward torque to the source-record circulation channel and the axial support supplied by a phase-matched responsive sea are readings of the prescribed response records, pending a linked instrument record; the tested axially organized responses do not supply the missing equatorial support. At mechanism-estimate level, this motivates an angular-momentum metabolism: the sea feeds an assembly channel, internal wake transport redistributes that input, and outgoing wake returns angular momentum to the sea's orientation order. A self-consistent closed loop has not yet been derived, so the metabolism is a constitutive closure target rather than a retained-branch theorem.
+The current coincident-axis three-binary braid evidence sharpens that picture without closing the full medium problem. The coincident-axis three-binary braid here means the prescribed chart with one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense; per-binary radii, axial half-separations, transverse orbit radii, and phases remain independent. At measurement level, the forward torque to the source-record circulation channel and the axial support supplied by a phase-matched responsive sea are readings of the prescribed response records, pending a linked instrument record; the tested axially organized responses do not supply the missing equatorial support. At mechanism-estimate level, this motivates an angular-momentum metabolism: the sea feeds an assembly channel, internal wake transport redistributes that input, and outgoing wake returns angular momentum to the sea's orientation order. A self-consistent closed loop has not yet been derived, so the metabolism is a constitutive closure target rather than a retained-branch theorem.
 
 The static cage result gives the complementary effective picture. When a braid's support deficit selects a polar-covering neighbor cage, the acceleration-balanced candidate is a braid-plus-cage complex (stability ledger open), closer to a molecule in a solvent than to a point object fixed at a lattice site. That comparison is effective framing, not ontology: the underlying objects remain Noether braid assemblies and causal wakes, and the cage still requires its own reciprocal acceleration and stability ledger. Together, the metabolism and cage pictures explain why the Noether sea is part of the assembly's physical boundary conditions rather than decorative background.
 
@@ -232,6 +237,7 @@ N_{\mathrm{return}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fb5f0b1586fb1ce1)
+
 Each term must be tied to the same identity, energy, momentum, angular-momentum, and causal-wake ledger used by the local reaction. If a reaction changes apparent particle inventory while leaving the Noether sea row undeclared, the source story is incomplete rather than closed.
 
 This does not require solving the entire universe before studying one assembly. It does require a controlled embedding record. The useful analytic hierarchy is:
@@ -318,6 +324,7 @@ R_{\rho,V}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2cdb14f548990969)
+
 Equivalently, on resolved windows,
 $$
 \partial_T\rho_{\text{NS}}
@@ -344,6 +351,7 @@ S_{\mathrm{prod}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-56308d668fdad17a)
+
 Production, return, recruitment, dissociation, reclassification, and relaxation are not separate ontologies. They are bookkeeping channels for how neutral Noether braid content enters, leaves, breaks apart, or changes class inside the local Noether sea population. A long-time Noether sea model is credible only when these rows share one continuity ledger with the energy and reaction records.
 
 Strong-field recycling and pair-channel activity sharpen the production row in the same requirement. A compact source may be a net source, sink, or reclassifier of Noether sea content only after the local balance separates diffuse medium loading from collimated release and from visible pair-channel products. One useful refinement is
@@ -356,6 +364,7 @@ S_{\mathrm{BH,diff}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-867c6a730ed0b892)
+
 which gives the full source balance
 $$
 S_{\rho}
@@ -371,6 +380,7 @@ S_{\mathrm{BH,diff}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d91bf9fe72198358)
+
 Here $S_{\mathrm{BH,diff}}$ denotes broad medium loading, $S_{\mathrm{BH,col}}$ denotes collimated or jet-like release that later couples back to the medium, and $S_{\mathrm{pair}}$ denotes pair-channel participation controlled by local density, cadence, excitation, and threshold state. None of these terms creates substrate from nothing. Each is a projection of architrino and Noether braid inventory through a declared reaction, release, or relaxation record.
 
 The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether braid population dynamics, causal wakes, and branch ledgers.
@@ -391,6 +401,7 @@ f_N
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f97f10f76fd2e40f)
+
 where $e_{\mathrm{sea}}$ is the retained medium energy density and $\boldsymbol\theta_{\mathrm{sea}}$ packages the declared orientation, delay, and envelope variables as a reduced projection of the full state. The moment-closure residual is
 $$
 \mathcal R_{\mathrm{mom}}
@@ -411,6 +422,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9a83480fab7acf04)
+
 with $a$ ranging over the retained density, momentum, energy, cadence, and orientation moments. This residual is the guardrail against closing the Noether sea by naming a fluid-like equation while hiding unresolved causal-wake memory in fitted coefficients.
 
 Analogue-gravity comparisons sharpen this point. In an ordinary acoustic medium, the effective metric seen by small sound perturbations is fixed by medium density, flow, and sound speed, for example schematically
@@ -425,6 +437,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c2bb582175c96dd9)
+
 The comparison is useful because it keeps the levels separated: the perturbation metric is a constitutive readout, while the underlying medium still obeys its own dynamics. The Noether sea target has the same form of obligation,
 $$
 g_{\mu\nu}^{\mathrm{eff}}
@@ -434,6 +447,7 @@ g_{\mu\nu}^{\mathrm{eff}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cf4fb3734d788a00)
+
 where $\mathcal{G}_{\mu\nu}$ must be derived from the retained density, flow, cadence, orientation, strain, and causal-wake records. A metric row that fits clock, signal, pressure, or lensing behavior with separate coefficients for each observable is not yet a Noether sea constitutive law.
 
 Hu's stochastic-gravity comparison sharpens the next rung above moment closure. Mean-field variables are not enough; fluctuations and correlations carry information about the mesoscopic state. Let $\delta T_A^{\mathrm{eff}}$ denote observer-level stress, cadence, or response-channel fluctuations induced by a branch record $\theta$, and let $C_{AB}^{\theta}(x,y)$ be the corresponding two-point correlation:
@@ -447,6 +461,7 @@ C_{AB}^{\theta}(x,y)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f60c4068da720fa2)
+
 The Noether sea side must supply this from unresolved deterministic histories, not from an independent stochastic metric postulate. A compact correlation-hierarchy residual is
 $$
 \mathcal{R}_{\mathrm{corr},n}(\theta)
@@ -462,6 +477,7 @@ n=2,3,\ldots
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3b70202295912d83)
+
 Here $\Pi_{\mathrm{corr}}^{(n)}$ is the declared projection from retained Noether sea histories to the $n$-point observer-level correlation. Passing the $n=2$ test is the analogue of the noise-kernel step in stochastic gravity; higher $n$ tests are the kinetic-theory route toward mesoscopic closure.
 
 Constitutive response must be stated as a map from the same state variables. Here $\chi_{AB}$ is a response susceptibility indexed by observable channels; it is not the scalar delay factor $\chi_{\mathrm{sea}}$. A weak linear row has the schematic form
@@ -475,6 +491,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0a7d7ba6210bcb46)
+
 where $X_B$ are declared perturbations of $\mathcal{N}_{\mathrm{sea}}$ and $Y_A$ are observer-channel readouts such as delay factor, stress, cadence, or clock response. Causality requires the time-domain kernel to have delayed support only, which becomes an analyticity and dispersion check in frequency space. The practical residual is
 $$
 \mathcal R_{\mathrm{KK}}(\chi_{AB})
@@ -494,6 +511,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7946aae635691658)
+
 where $\mathcal H$ is the principal-value Hilbert transform used by the packet. A nonzero residual means the proposed response row is not yet a causal Noether sea constitutive law.
 
 ## Equilibrium Transport Hypothesis
@@ -1102,6 +1120,7 @@ Y_{X,E\to R}^{\mathrm{freq}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-93c03e23f010138f)
+
 $$
 Y_{X,E\to R}^{\mathrm{dur}}
 =
@@ -1112,6 +1131,7 @@ Y_{X,E\to R}^{\mathrm{dur}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-795bec180afc5ceb)
+
 The same segmented path record must predict both. Their mismatch is the duration-side falsifier that rules out a frequency-only loss law even when that law reproduces a redshift curve.
 
 The path term is thus phase-cadence retiming read from $S(T)$: it may change the energy a receiver assigns through $E=h\nu_{\mathrm{obs}}$, but it is not an untracked energy sink along the path.

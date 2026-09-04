@@ -20,6 +20,7 @@ h=\frac{R}{\sqrt3}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fc7bcb8b643c7fc8)
+
 and transverse radius
 $$
 \rho=R\sqrt{\frac23},
@@ -28,6 +29,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fdf6b8e61333862d)
+
 The three equal-radius path pairs have that axis, one angular frequency and circulation sense, and phases separated by $120^\circ$. Under common-frequency co-rotation about $\hat{\mathbf n}$ they therefore occupy a cyclic-symmetric coincident-axis three-binary sublocus. The same prescribed worldlines admit a phase-compensated orthogonal-axis description and a coincident-axis description; these are coordinate structures over one physical inventory, not duplicate assemblies.
 
 This overlap is independent of the orthogonal-axis three-binary $\lambda=1$ boundary. It also does not certify retention. The fixed-plane lemma below derives axial no-balance for a polarity-segregated interior two-ring chart on every ordinary simple-root branch chart, without imposing a member-speed ceiling. The all-equatorial boundary remains the only fixed-coordinate coincident-axis three-binary locus-family locus not excluded by that axial argument, but it still requires the full retained-branch certificate.

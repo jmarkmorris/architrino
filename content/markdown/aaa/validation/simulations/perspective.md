@@ -1,6 +1,6 @@
 # Simulation Perspective and Closure Targets
 
-This chapter separates the mechanisms already defined by the Master Equation from the recovery claims that simulation must still test. The primitive inputs are the two architrino polarities, delayed line-of-action acceleration, transmitter-side causal-surface weighting, and same-transmitter causal-root branches. Stability, scale selection, inertia, gauge-sector behavior, and quantum-like statistics are downstream closure targets rather than consequences licensed by naming those inputs.
+This chapter separates the mechanisms already defined by the Master Equation from the recovery claims that simulation must still test. The primitive inputs are the [two architrino polarities](../../foundations/architrino.md), which set the sign of each interaction, delayed line-of-action acceleration, transmitter-side causal-surface weighting, and same-transmitter causal-root branches. Stability, scale selection, inertia, gauge-sector behavior, and quantum-like statistics are downstream closure targets rather than consequences licensed by naming those inputs.
 
 General relativity and quantum mechanics supply observer-level recovery targets. A simulation supports such a recovery only when an independently specified observable map and benchmark residual pass; resemblance of internal geometry is not evidence by itself.
 
@@ -43,6 +43,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-c1c370d5a364709f)
+
   is nonempty and the active root passes the transversality/Jacobian floor and carries a retained transmitter-side acceleration weight. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).
 
@@ -142,7 +143,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - Rigorous conditions for uniqueness/multiplicity of causal roots in accelerated motion and their contribution to stability.
 - Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-consistent effective cones emerge from moving-assembly deformation, clock/ruler retuning, and Noether sea response, and with what characteristic speed relative to the declared branch speed $c_\star$?
 
-Plain language summary: radial hits, causal delay, constant per-wavefront amplitude, and admitted self-hit roots define a compact simulation mechanism. Stable branches, natural scales, inertial response, and magnetic-like observables are the results that mechanism must still earn.
+Radial hits, causal delay, constant per-wavefront amplitude, and admitted self-hit roots define the simulation mechanism. Stable branches, natural scales, inertial response, and magnetic-like observables are results that the mechanism must still earn.
 
 ---
 
@@ -169,7 +170,7 @@ Observability axioms:
 Bayesian operational stance:
 - State update = conditioning on new hit histories; active interventions (changing receiver geometry/filters) alter future histories and thus the posterior over ledger classes.
 
-Plain language: a receiver never sees the full ledger of who emitted what; it sees only a time series of acceleration vectors. The appropriate language is therefore statistical over source and polarity histories that fit those vectors.
+A receiver never sees the full transmitter ledger; it sees only a time series of acceleration vectors. The appropriate description is therefore statistical over source and polarity histories that fit those vectors.
 
 ---
 
@@ -200,7 +201,7 @@ Measurement procedures are interventions that condition future hit histories:
 - Let $F,G$ be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates). Because they modify trajectories and thus the set of future causal roots, their composition generally satisfies $F\circ G\ne G\circ F$ at the level of observed statistics.
 - Contextuality: the distribution over ledger classes that best explains data depends on which filters were applied and in what order; the outcomes are context-dependent without invoking microscopic cross-product acceleration terms.
 
-Plain language: a present intervention changes which pushes will be recorded later; doing $A$ then $B$ is not generally the same as doing $B$ then $A$.
+A present intervention changes which acceleration contributions will be recorded later; applying $A$ and then $B$ is therefore not generally equivalent to applying $B$ and then $A$.
 
 ---
 
@@ -211,7 +212,7 @@ Linear wake superposition nominates, but does not derive, an effective complex-a
 - The Born-like target is to derive an intensity proportional to $|A_{\mathrm{mode}}|^2$ from that detector map and an independently specified ensemble measure.
 - The polarization target is to recover Malus’s $\cos^2\theta$ benchmark from a retained planar-mode and analyzer interaction record. Geometric projection alone is implementation scaffolding until the record-forming dynamics supply the measure.
 
-Plain language: planar-mode overlap supplies a candidate geometry for interference, while the amplitude-squared measure and analyzer statistics remain explicit recovery tests.
+Planar-mode overlap supplies a candidate geometry for interference, while the amplitude-squared measure and analyzer statistics remain explicit recovery tests.
 
 ---
 
@@ -247,4 +248,4 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 - Multi-receiver triangulation under ambiguity: show that two-sided localization from unoriented lines plus time series reduces, but does not eliminate, sign/side and distance–speed degeneracies—matching Step 9 limits.
 - Bell-type correlation target (open): assess whether planar-mode phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product acceleration terms; treat Tsirelson-like bounds as a stringent benchmark.
 
-Plain language: we can test the framework by checking order effects, interference weakening when we scramble coherence, and how much multiple receivers really help; reproducing quantum correlations is the toughest, and we flag it as an explicit target.
+Together these tests check order effects, the weakening of interference under disrupted coherence, and the information gained from multiple receivers. Reproducing quantum correlations is the most demanding target and remains explicitly open.

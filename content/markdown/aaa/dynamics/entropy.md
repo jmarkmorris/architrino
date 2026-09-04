@@ -110,6 +110,7 @@ D_{\mathrm{KL}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-545fdfd3ca357464)
+
 Projection cannot increase the retained record's ability to distinguish the two candidate history ensembles; this is the data-processing inequality for relative entropy, whose classical form uses the divergence introduced by [Kullback and Leibler (1951)](https://doi.org/10.1214/aoms/1177729694). This loss of distinguishability is not automatically an increase of Shannon or thermodynamic entropy; an entropy-growth claim still requires the fixed reference measure, coarse-graining, access window, and boundary ledger declared above.
 
 For a discrete coarse partition with probabilities $p_\alpha$, the record entropy takes the Gibbs/Shannon form introduced for communication ensembles by [Shannon (1948)](https://doi.org/10.1002/j.1538-7305.1948.tb01338.x):
@@ -787,6 +788,7 @@ f_{\mathrm{early}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-de56fe84878a628b)
+
 Its exponent inherits the chosen cosmological entropy budget and must be recomputed if that budget changes.
 
 ## Heat Death and Its Escapes

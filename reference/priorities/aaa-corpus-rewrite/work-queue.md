@@ -34,25 +34,32 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 
 ## Ranked Next Objects
 
-1. `remaining_chapters` — [CRW-003](#crw-003--phase-2-remaining-chapters). Status: `In progress`.
-2. `orientation_pass` — [CRW-002](#crw-002--term-lookup-and-orientation). Status: `Queued`, reformulated 2026-09-03 as an affordance and glossary fix.
-3. `retired_tag_retirement` — [CRW-004](#crw-004--retired-plain-language-tag-retirement). Status: `In progress`, startup path done, corpus riding on CRW-003.
+No open objects. CRW-003 and CRW-004 are verified below.
 
 ## In progress
 
+No rows.
+
+## Awaiting verification
+
+No rows.
+
+## Verified
+
 ### CRW-003 — Phase 2: Remaining chapters
 
-- **Status:** In progress
+- **Status:** Verified
+- **Closed:** 2026-09-04
 - **Priority object:** `remaining_chapters`
 - **Request / acceptance:** Convert the remaining chapters to edition 1.0 in reader order, so each conversion can rely on vocabulary already introduced upstream.
 
-Scope after Phase 1 was 190 files. The first two Phase 2 batches are complete at authored-source level: all six `dynamics/` documents were rewritten and independently reviewed against the 2026-09-01 baseline, and all fourteen `noether-braid/` documents were converted against their immediate pre-conversion sources. The Noether-braid pass preserved every display equation and all 417 `View →` links exactly, retained all 146 formerly labelled explanatory restatements in substance, and reduced repeated specialist terminology without promoting prescribed geometry, root counts, symmetry channels, or bounded searches into retention or stability claims. Generated equation-mapping data, textbook navigation, and reading copies remain stale and are reported rather than regenerated during the ordinary source-edit batch.
+Scope after Phase 1 was 190 files. All Phase 2 reader-order batches are complete at authored-source level: all six `dynamics/` documents were rewritten and independently reviewed against the 2026-09-01 baseline, and the `noether-braid/`, `spacetime/`, `assemblies/`, `nuclear-atomic/`, `reactions/`, `quantum/`, `cosmology/`, `validation/`, `philosophy-history/`, and `archie/` batches were converted against their immediate pre-conversion sources. Frozen-source audits preserved the equations, viewer-link anchors, prior link targets, claim grades, and falsifiers. The final corpus scan finds 199 Markdown files, 4,657 equation-viewer links, no non-standalone viewer paragraph, and no retired plain-language tag. Generated equation-mapping data, scene graph, textbook navigation, and reading copies remain stale and are reported rather than regenerated during the ordinary source-edit batch.
 
 Ordering is by reader path rather than alphabetically, so early conversions compound: a converted chapter can rely on its upstream chapters already introducing their terms properly, which is exactly what the cumulative-within-document and clue-plus-link rules assume.
 
 #### Carried scope: the retired tag
 
-This item absorbs the corpus half of [CRW-004](#crw-004--retired-plain-language-tag-retirement). **Twenty-eight occurrences of the retired `Plainly:` tag remain across nine files, all outside the converted foundations, dynamics, and Noether-braid batches,** and criterion 12 removes them as part of each conversion rather than in a separate pass. No agent should run a standalone tag sweep over the corpus; it would touch those files twice and the rewrite would overwrite the sweep's edits.
+This item absorbs the corpus half of [CRW-004](#crw-004--retired-plain-language-tag-retirement). **At the 2026-09-03 measurement, twenty-eight occurrences of the retired `Plainly:` tag remained across nine files, all outside the converted foundations, dynamics, and Noether-braid batches.** Criterion 12 removes them as part of each conversion rather than in a separate pass. No agent should run a standalone tag sweep over the corpus; it would touch those files twice and the rewrite would overwrite the sweep's edits.
 
 Criterion 12 as amended is the whole instruction, and its second sentence is the part that matters: fold the plain-language sentence up into the paragraph above it. Do not delete it.
 
@@ -60,13 +67,14 @@ The former concentration in `noether-braid/2d-braid-assemblies.md` and `noether-
 
 CRW-004 fails if this item completes with the corpus count above zero, so the count belongs in each batch's ledger note.
 
-- **Blocked by:** nothing. Foundations, dynamics, and Noether braid are complete at authored-source level.
-- **Evidence / blocker:** Twenty-nine of 199 documents now carry conversion-ledger rows. The remaining reader order beyond Noether braid is not yet fixed; establishing the next batch is the next action of this item.
-- **Completion:** Every document under `content/markdown/aaa` carries a ledger row at the then-current edition.
+- **Blocked by:** nothing.
+- **Evidence:** The 2026-09-04 ledger audit finds 199 live corpus paths and exactly 199 unique edition-1.0 rows, with no missing, extra, or duplicate path. Strict content validation and equation-mapping-link validation pass. Generated consumers remain stale and are named in the conversion ledger rather than regenerated without authorization.
+- **Completion:** Met 2026-09-04. Every document under `content/markdown/aaa` carries one ledger row at edition 1.0.
 
 ### CRW-004 — Retired plain-language tag retirement
 
-- **Status:** In progress. The startup-path pass is complete; the corpus condition rides on [CRW-003](#crw-003--phase-2-remaining-chapters).
+- **Status:** Verified
+- **Closed:** 2026-09-04
 - **Priority object:** `retired_tag_retirement`
 - **Moved here:** 2026-09-03, from `OPS-015` in the [operations queue](../aaa-operations/work-queue.md), reformulated. The original item was written when removing the tag looked like a standalone cleanup with its own operator gate. It is not one any more, and that is why it moved: [done criterion 12](#done-criteria) of this lane already forbids the tag, so most of the work is a by-product of conversions this queue is running anyway. What is left is a residual to track and one small pass outside the corpus.
 - **Request / acceptance:** Retire the inline `Plainly:` tag from the two surfaces where a reader or a new agent still meets it, and confirm the working record is left alone. Accepted when the corpus scan returns zero, the startup-path scan returns zero, and a later scan shows the tag is not being newly authored.
@@ -96,15 +104,15 @@ Markdown only, excluding `.tmp`, `.local-data`, `.git`, and `node_modules`.
 | `reference/priorities` | 352 | 4,198 | Leave — operator decision, 2026-09-03 |
 | `reference/architectural-decisions` | 2 | 4 | Leave — operator decision, 2026-09-03 |
 
-Earlier scans of the same day recorded 223 and then 225 corpus occurrences across 23 and 25 files. The count fell first to 172 across 16 after the foundations conversion and is now 28 across nine after the dynamics and Noether-braid batches. Criterion 12 removed the tags as part of each document's rewrite rather than as a separate pass. That remains the mechanism for the rest of the corpus.
+Earlier scans of the same day recorded 223 and then 225 corpus occurrences across 23 and 25 files. The count fell first to 172 across 16 after the foundations conversion, then to 28 across nine after the dynamics and Noether-braid batches, to 22 across eight after the spacetime and assemblies batches, and now to 20 across six after the reactions batch. Criterion 12 removed the tags as part of each document's rewrite rather than as a separate pass. That remains the mechanism for the rest of the corpus.
 
 Claim grade: `measured` by filesystem scan on 2026-09-03. Falsifier: a repeat scan returning a count that has risen rather than fallen, which would mean the tag is still being authored into new documents and the standard is not being followed.
 
 #### Corpus residual — absorbed, not scheduled
 
-All 28 remaining corpus occurrences sit in documents that [CRW-003](#crw-003--phase-2-remaining-chapters) will convert, and none sit in foundations, dynamics, or Noether braid. Running a separate tag-removal pass over them would touch those files twice, once for the tag and once for the rewrite, and the second pass would rewrite the passages the first pass just edited.
+At the final 2026-09-04 recheck, the corpus occurrence count is zero. The explanatory substance formerly carried by each label was integrated during its document's conversion rather than removed by a separate tag sweep.
 
-The residual is now diffuse. `philosophy-history/one-nature-many-theories.md` holds ten occurrences and `spacetime/lorentz-kinematics.md` holds six; the other seven files hold four or fewer each. The count should continue to fall through ordinary document conversion rather than a separate sweep.
+The residual is concentrated in `philosophy-history/one-nature-many-theories.md`, which holds ten occurrences. The other seven files hold four or fewer each. The count should continue to fall through ordinary document conversion rather than a separate sweep.
 
 So this item schedules no corpus work. It carries the number, and it fails if Phase 2 completes with the number above zero.
 
@@ -155,15 +163,15 @@ Claim grade: `measured` by a recursive walk of the parsed JSON distinguishing ke
 The [corpus dragnet](../aaa-corpus-dragnet/priorities.md) owns the correlation actions that inventory occurrences and their contexts, and is read-only outside its own lane by charter. It supplies the counts above; it does not perform the conversions.
 
 - **Blocked by:** nothing. Both original gates — operator readiness and the Tier 1 canon decision — are discharged above.
-- **Evidence / blocker:** Nothing owed by the operator. The census is reproducible, both style authorities have been checked, the search-index dependency is discharged, the startup-path pass is executed and scans clean, and the working-record decision is recorded. One condition remains open and it is not this item's to close: the corpus count, which reaches zero when [CRW-003](#crw-003--phase-2-remaining-chapters) finishes converting the nine files that still carry the tag.
-- **Completion:** The startup-path scan returns zero across those seven files — **met 2026-09-03**; the working record is recorded as unconverted by decision, with its reopening conditions named — **met 2026-09-03**; the corpus scan returns zero when [CRW-003](#crw-003--phase-2-remaining-chapters) completes — **open**; and a repeat scan shows no occurrences in documents authored after edition 1.0 was adopted — **open, and the last to close**.
+- **Evidence:** Nothing is owed by the operator. The census is reproducible, both style authorities have been checked, the search-index dependency is discharged, the startup-path pass remains clean, the working-record decision is recorded, and the final corpus scan returns zero occurrences.
+- **Completion:** The startup-path scan returns zero across the seven files — **met 2026-09-03**; the working record is recorded as unconverted by decision, with its reopening conditions named — **met 2026-09-03**; the corpus scan returns zero — **met 2026-09-04**; and the repeat scan shows no occurrences in documents authored after edition 1.0 was adopted — **met 2026-09-04**.
 
-## Queued
 
 ### CRW-002 — Term lookup and orientation
 
-- **Status:** Queued
+- **Status:** Verified
 - **Priority object:** `orientation_pass`
+- **Closed:** 2026-09-04
 - **Reformulated:** 2026-09-03, by operator decision, from a 70-file inline-linking pass to an affordance and glossary fix. The reformulation is recorded below because the original framing rested on a reader model that turned out to be wrong in one direction and right in another, and a later reader should be able to check the correction rather than inherit it.
 - **Request / acceptance:** Give a reader who lands on an arbitrary corpus document a working route from a term to its definition, by making the glossary reachable and complete rather than by editing 70 documents. Accepted when the glossary is reachable from a document view without prior knowledge that it exists, covers the load-bearing foundational vocabulary, and the corpus-side work is confined to terms that carry an argument.
 
@@ -207,16 +215,17 @@ Claim grade: `inferred` for the judgment that a decorator beats 70 document edit
 
 Deliverables 1 and 2 are independent of 3 and 4 and should not wait on them.
 
+#### Closure evidence, 2026-09-04
+
+All four deliverables are closed. The comparative glossary gained first-class `Wake`, `Causal Root`, `Complete State / Universe State`, `Polarity`, `Physical Observer`, and `Worldline` entries. The persistent document controls expose an accessible Glossary route in the UI-guideline slot after Search. The render-time decorator was declined after a 30-context ambiguity sample produced 10 false positives. The current-state corpus scan and manual audit identified two already-converted opening passages where the term carried the argument; both now contain a brief clue and an owning foundation link.
+
+The integrated evidence, scan specification, false-positive table, deferred existing-row audit, browser QA, validation receipts, and generated-drift boundary are recorded in [crw-002-term-lookup-result.md](crw-002-term-lookup-result.md).
+
 The implementation prompt is [crw-002-dispatch.md](crw-002-dispatch.md). It carries the verified affordance findings, the ordering, the disambiguation traps for deliverable 3, and the report contract; dispatch an agent with that document rather than with this section.
 
-- **Blocked by:** nothing. Deliverables 1 and 2 can start immediately.
-- **Evidence / blocker:** The affordance audit is complete and reproducible. The original open question — whether every foundational term gets a clue or only the load-bearing few — is resolved by the reformulation: neither, because the corpus is no longer the primary surface. The live open question is deliverable 3's disambiguation, which a prototype settles.
-- **Completion:** The glossary covers the load-bearing foundational vocabulary as first-class terms; a reader on an arbitrary document can reach it without knowing it exists; the decorator is either shipped or declined with its prototype result recorded; and the 70-file scan is repeated to confirm what, if anything, still warrants an inline clue.
-## Awaiting verification
-
-No rows.
-
-## Verified
+- **Blocked by:** nothing.
+- **Evidence / blocker:** The accepted UI path, glossary coverage, declined decorator, and selective clue edits are implemented and validated. The historical 70-document measurement could not be repeated exactly because its term list, parser, command, and file list were not retained; the result record replaces it with an explicit current 149-document scan and does not claim a before-and-after delta.
+- **Completion:** **Met 2026-09-04.** The glossary covers the audited load-bearing foundation vocabulary as first-class terms; a reader on an arbitrary scene or document can reach it without knowing it exists; the decorator is declined with its prototype result recorded; and the replacement current-state scan identifies the selective inline-clue scope.
 
 ### CRW-001 — Phase 1: Foundations
 

@@ -2,7 +2,7 @@
 
 This chapter explains how cosmological expansion language is translated into a fixed-void ontology. Its purpose is to replace geometric container expansion with medium evolution, clock-rate comparison, and effective scale-factor bookkeeping while preserving contact with the standard observational vocabulary. It is the main cosmology bridge from [Cosmology Ontology](./cosmology-ontology.md) to [CMB](./CMB.md), [Structure Formation](./structure-formation.md), and [Dark Energy](./dark-energy.md).
 
-The sections below move from the core idea to redshift, photon propagation, dark-energy language, tension interfaces, and the effective Friedmann comparison layer.
+The core idea is developed through redshift, photon propagation, dark-energy language, tension interfaces, and the effective Friedmann comparison layer.
 
 Here `expansion` is comparison language. The chapter keeps the standard cosmology word because readers, data products, and equations are organized around it, but the native claim is different: ledgers, photons, clocks, and structures move through a changing Noether sea inside a fixed Euclidean void.
 
@@ -51,6 +51,7 @@ P\gg Q
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8aa5960f3b4c4fe3)
+
 In this framework that expression is only a projection of Noether sea state recurrence, source recycling, and clock or transport response. It does not describe expansion of the Euclidean void. Such a branch is admissible only if the same Noether sea state record supplies the source term, redshift-transfer map, CMB thermal record, and BBN yield record.
 
 ### Exponential Scale History as a Comparison Limit
@@ -63,12 +64,14 @@ H_{\mathrm{eff}}=H_*
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dd7b6d658a9d21b0)
+
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not evidence that the Euclidean void expands. It is a special homogeneous projection in which the corrected redshift-transfer slope is constant over the comparison interval. In the endpoint-subtracted propagation language below, the nearby homogeneous limit must satisfy
 $$
 \bar{\alpha}_X=\frac{H_*}{c_0}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d09afaecdf3a8df3)
+
 after endpoint cadence, source-branch change, and relative launch motion have been removed.
 
 The steady-state lesson is a conservation check on this limit. Holding an effective matter density constant while $a_{\mathrm{eff}}$ grows requires a source term
@@ -77,6 +80,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-783b6eebc7bac4e1)
+
 and that source must be routed through the same assembly and Noether sea provenance record that computes the redshift-transfer slope. A constant $H_*$ fit without this ledger is only a kinematic comparison curve.
 
 ## Clock-Rate Redshift Interpretation
@@ -290,6 +294,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c52689ebe78f0047)
+
 This bound constrains the integrated gravitational-wave and photon-channel propagation records for that event; it does not identify either substrate speed with the primitive wake speed $c_f$. Any Noether sea dispersion or clock reconstruction used for cosmological redshift must preserve this near-coincidence on the same path.
 
 The global form also assumes that the total energy on the constant-$T$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
@@ -1001,6 +1006,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-da56b058855e655b)
+
 with $E_\gamma=h\nu_\gamma$ on the retained photon-channel ledger. Conservation then requires a compensating path row
 $$
 \mathcal R_{E,\mathrm{prop}}
@@ -1021,6 +1027,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-70e189905e6faf6c)
+
 that vanishes in a valid propagation-redshift segment. The term $E_{\mathrm{sea,path}}$ is the Noether sea uptake or release associated with the same local transport record; $E_{\mathrm{recoil/path}}$ and $E_{\mathrm{rem/path}}$ are retained only when the path segment crosses material, strong-gradient, or nontransparent regions. In transparent cosmological use those latter rows should be negligible, and the surviving energy transfer must still preserve image sharpness and $(1+z)$ time dilation. This keeps propagation redshift from becoming untracked photon energy loss under another name.
 
 ### First-Order Coefficient Constraints
@@ -1423,6 +1430,7 @@ d_L=(1+z)^2D_A
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-05ee791efa619244)
+
 For a low-redshift effective FRW projection this becomes
 $$
 d_L(z)
@@ -1434,6 +1442,7 @@ z+\frac12(1-q_{0,\mathrm{eff}})z^2+O(z^3)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ec98bfcd4c8c4d62)
+
 In the fixed-void reading, $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coefficients of the corrected transport and clock-comparison map. A branch that fits redshift but fails the two flux factors, time-dilation factor, or angular-distance reciprocity has not recovered the cosmological distance ladder.
 
 ### Local Redshift-Transfer Curve
@@ -1565,6 +1574,7 @@ Y_{\mathrm{endpoint},X}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2d63baa0d5860730)
+
 with each $\Delta Y_{X,j}$ allowed to be positive, negative, or negligible only when its energy, medium-update, and coherence rows close in the same transport record. This segment form is the mathematical place for galaxy-local expansion-like regions, contraction-like regions, cluster crossings, void paths, and strong-source recycling environments. A fitted Hubble-like slope is then a coarse derivative of this path sum, not a primitive universal constant.
 
 ### $\Lambda\mathrm{CDM}$ Reference Curve
@@ -1809,6 +1819,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9bd4b54d525ce466)
+
 or declare the residual source term supplied by Noether sea transport.
 
 This equation is a comparison layer for the homogeneous and isotropic limit. It does not by itself justify the assumption that supernovae, BAO, CMB distances, and local-ladder calibrations all share one isotropic background. That shared background must be recovered as a limit of the Noether sea state model or replaced by an explicitly directional effective map.

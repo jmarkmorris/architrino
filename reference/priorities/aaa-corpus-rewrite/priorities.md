@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Rank: `active editorial owner`
-- Status: `phase-2-in-progress`
+- Status: `complete`
 - Claim level: `editorial-priority`
 - Standard edition: [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) edition 1.0, settled 2026-09-03
 - Scope: reader-facing prose under `content/markdown/aaa`
@@ -27,11 +27,11 @@ Claim grade: `measured` by scanning every corpus document outside `archie/` and 
 
 ## Current State
 
-Phase 1 is complete. All nine `foundations/` documents, beginning with [Ontology](../../../content/markdown/aaa/foundations/ontology.md), were rewritten against edition 1.0 and then independently reviewed against their 2026-09-01 baselines. The first two Phase 2 batches are also complete at authored-source level: all six `dynamics/` documents, beginning with the [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md), and all fourteen `noether-braid/` documents, beginning with [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), have been converted and checked against their immediate pre-conversion sources.
+Phase 1 and Phase 2 are complete. All nine `foundations/` documents, beginning with [Ontology](../../../content/markdown/aaa/foundations/ontology.md), were rewritten against edition 1.0 and then independently reviewed against their 2026-09-01 baselines. Every later reader-order batch—`dynamics/`, `noether-braid/`, `spacetime/`, `assemblies/`, `nuclear-atomic/`, `reactions/`, `quantum/`, `cosmology/`, `validation/`, `philosophy-history/`, and `archie/`—has been converted and checked against its immediate pre-conversion source.
 
-Twenty-nine of 199 documents are converted at edition 1.0. Document length is not tracked and is not a concern for this campaign: the corpus is published online with no printed edition, so a conversion is judged on whether the content survived and whether the prose now meets the guide, never on what it cost in words.
+At the final 2026-09-04 recheck, all 199 documents are recorded at edition 1.0. The ledger contains exactly 199 unique live corpus paths, with no missing, extra, or duplicate row. Document length is not tracked and is not a concern for this campaign: the corpus is published online with no printed edition, so a conversion is judged on whether the content survived and whether the prose meets the guide, never on what it cost in words.
 
-The authored sources pass whitespace, strict content, and equation-mapping-link checks. The Noether-braid batch preserves every display equation and all 417 `View →` links exactly. The equation-mapping corpus registry, generated textbook navigation, and generated reading copies are stale and remain for the authorized regeneration or final branch process. Per-file rows are recorded in [conversion-ledger.md](conversion-ledger.md).
+The authored sources pass whitespace, strict content, and equation-mapping-link checks. The current corpus contains 4,657 equation-viewer links; all are standalone rendered paragraphs, and no retired plain-language tag remains. The equation-mapping corpus registry, scene graph, generated textbook navigation, and generated reading copies are stale and remain for the authorized regeneration or final branch process. Per-file rows are recorded in [conversion-ledger.md](conversion-ledger.md).
 
 ## Ownership Boundaries
 
@@ -40,7 +40,7 @@ The authored sources pass whitespace, strict content, and equation-mapping-link 
 | [Academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) | Owns every rule this campaign applies. This lane executes; it does not set style policy. A rule that proves unworkable is reported back, not locally overridden. |
 | [Operator explanation standard](../../op/operator-explanation-standard.md) | Owns operator-facing mechanics. Not applied to corpus prose. |
 | [Corpus dragnet](../aaa-corpus-dragnet/priorities.md) | May supply read-only inventories and correlation findings. Read-only outside its own lane by charter, so it never performs a conversion. |
-| [OPS-015](../aaa-operations/work-queue.md#ops-015--plainly-convention-document-migration) | Its Tier 1, the retired inline tag in corpus files, executes inside this campaign rather than separately. OPS-015 retains the operator-facing tiers. |
+| [OPS-015](../aaa-operations/work-queue.md#ops-015--moved-to-the-corpus-rewrite-lane) | Its Tier 1, the retired inline tag in corpus files, executes inside this campaign rather than separately. OPS-015 retains the operator-facing tiers. |
 | Theory lanes | Own every claim in the documents being rewritten. A conversion that would change a claim stops and routes to the owning lane. |
 
 ## Phasing
@@ -48,8 +48,8 @@ The authored sources pass whitespace, strict content, and equation-mapping-link 
 Foundations first, and not as a matter of taste. Every one of the 70 under-linked documents will link *into* `foundations/`, so converting a later chapter before its foundations are ready sends readers to prose that is itself about to change. Foundations is upstream of everything.
 
 1. **Phase 1 — Foundations.** Complete: 9 files, independently reviewed.
-2. **Term lookup and orientation.** Queued: make the glossary reachable and complete so a reader on any document can look a word up, rather than editing 70 documents to link every first use. Reformulated 2026-09-03 after an audit found the reader can navigate but cannot look a term up.
-3. **Phase 2 onward.** In progress: the 6-file dynamics batch and 14-file Noether-braid batch are complete at authored-source level; remaining chapters continue in reader order so each conversion can rely on vocabulary already introduced upstream.
+2. **Term lookup and orientation.** Complete: the glossary covers the audited foundation terms, a persistent Glossary control provides lookup from any scene or document, the ambiguous render-time decorator was declined after a 33.3% false-positive sample, and two load-bearing passages received selective inline clues. The [CRW-002 result](crw-002-term-lookup-result.md) records the evidence and remaining glossary-canon follow-up.
+3. **Phase 2 onward.** Complete: all remaining reader-order batches, including the 39 `archie/` reference documents that followed the two earlier reader-support conversions, are recorded at edition 1.0.
 
 ## Work Queue
 

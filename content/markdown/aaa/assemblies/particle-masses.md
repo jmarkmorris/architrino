@@ -123,6 +123,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7e076692c993e259)
+
 The trace-free exposed leakage is
 $$
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A)
@@ -138,6 +139,7 @@ h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A)=0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ad437ad30fc323d5)
+
 The exposed-response tensor is therefore
 $$
 \mathcal{Z}_{A}^{ab}
@@ -164,6 +166,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-047c310d8f606320)
+
 and set
 $$
 \mathsf{I}_{A}^{ab}
@@ -177,6 +180,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2c21b541a5e5b621)
+
 The scalar mass readout is the rotational trace
 $$
 m_{\mathrm{tr}}(A)
@@ -185,6 +189,7 @@ m_{\mathrm{tr}}(A)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7b2652e107ea2b60)
+
 In the homogeneous isotropic limit this reduces to the roadmap scalar formula. Pure exposure anisotropy changes direction-dependent inertia without changing the scalar trace unless it contracts with a trace-free part of the medium response. Antisymmetric response residue belongs to orientation, transport, loss accounting, or branch transition, not to scalar rest mass.
 
 #### Reference-Normalized Mass Ratio
@@ -197,6 +202,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b19242f2265b8038)
+
 then the scalar roadmap implies
 $$
 \frac{m_{\text{inertial}}(A)}{m_{\text{inertial}}(B)}
@@ -206,6 +212,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1a2c7aa2b56fb289)
+
 Equivalently, once a reference assembly $A_{\mathrm{ref}}$ fixes $\alpha_{\mathrm{m}}$ in that regime, every later scalar mass prediction must factor through
 $$
 m_{\text{inertial}}(A)
@@ -271,6 +278,7 @@ q_a(\bar A)=-q_a(A)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c4a0d9cff74a57a0)
+
 Here $q_a$ is a polarity ledger entry in the charged-sector projection. Electrino/Positrino polarity is not the matter/antimatter label.
 
 If the mass-facing ledger depends on polarity through even data such as $q_aq_b$, $|q_a|$, causal-root topology, shielding, and polarity-neutral medium response, then complete conjugation leaves the scalar mass trace invariant:
@@ -285,12 +293,14 @@ m_{\mathrm{tr}}(\bar A)=m_{\mathrm{tr}}(A)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e8af38430122f13c)
+
 The odd channel is the exposed charge-like projection,
 $$
 Q_{\mathrm{eff}}(\bar A)=-Q_{\mathrm{eff}}(A)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3c8eb1f27cbf7400)
+
 not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: complete branch-record conjugation preserves every internal pair product, every polarity-even exposure term, and the identity-bearing history rows. The constraint does not permit arbitrary partial polarity replacement, and it does not identify Electrino versus Positrino with matter versus antimatter. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, the causal-root ledger, and the wake-history provenance, so it is generally a different assembly rather than the antiparticle of $A$.
 
 Thus a candidate mass map fails if an accepted matter branch and its complete anti-branch receive different scalar rest masses in the same neutral Noether sea environment, unless the model explicitly supplies a conjugation-odd medium or branch-asymmetry term and keeps the resulting mass splitting within the declared particle-antiparticle bounds.
@@ -305,6 +315,7 @@ E_{\mathrm{branch}}^\theta(A)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3c205d7d4ed5ded5)
+
 computed from the same causal ledger, shielding, and Noether sea response record as the mass map. A compact comparison residual is
 $$
 \mathcal{R}_{\mathrm{gap}\to m}(A;\theta)
@@ -327,6 +338,7 @@ M_{\mathrm{sh}}(A;\theta)c_{\text{eff}}^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-06d1c731faa6c767)
+
 If this residual is small, the gap comparison supports the mass-map thesis. If it is small only after choosing a separate gap for each particle species, the comparison has merely renamed the observed mass table.
 
 #### Sector Exposure Quotient
@@ -398,6 +410,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1b083692a826a4db)
+
 Any discarded channel above tolerance blocks promotion of the sector response. It cannot be absorbed into shielding, fitted by the benchmark, or left as an unnamed hidden variable.
 
 #### Scalar Mass-Trace Composition
@@ -531,6 +544,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-acc3bb7c3af299b6)
+
 - **Generational Hierarchy:** Heavier generations (Gen II, Gen III) are hypothesized to have **reduced shielding** because one or two declared indexed supports are depleted on the branch lifetime window. With fewer coherent supports, more of the high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement over the persistent binary indices, not a deletion of the axial frame that carries color and electroweak bookkeeping.
 
 #### Medium-Dressed Inertial Response
@@ -544,6 +558,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-6dcdd1c349fd9872)
+
   Language about velocity-dependent inertia should therefore be read as the moving center-of-mass response of the dressed assembly ledger, not as a change in scalar rest mass.
 - **Environment Dependence:** Local variations in Noether sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
 
@@ -679,6 +694,7 @@ y_f^{\mathrm{eff}}(\theta)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-052d6145db06a3d1)
+
 after $M_{\mathrm{sh}}$, $v_{\mathrm{EW}}^{\mathrm{eff}}$, and the scalar coupling derivative are all fixed by one shared record. A compact benchmark residual is
 $$
 \mathcal{R}_{\mathrm{Higgs\,match}}(\theta)
@@ -735,6 +751,7 @@ Z_c^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)-Z_c^{\mathrm{ledger}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-65b6ac76aab7ff42)
+
 Here $\mu_H^{\mathrm{eff}}$ is the observer-level production-and-branching normalization, and $Z_c$ records the channel significance or equivalent likelihood contribution for the high-resolution $ZZ^{(*)}\to4\ell$, $\gamma\gamma$, and $WW^{(*)}$ channels. The $\gamma\gamma$ channel also protects the scalar-vs-vector distinction: it supports a spin-$0$-compatible comparison and rules against treating the Higgs benchmark as another photon or massive-vector corridor.
 
 ### Naturalness Comparison: QCD Running
@@ -762,6 +779,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e637a5d9e0127ad3)
+
 with $\Pi_{\mathrm{mass}}$ fixed by the sector exposure quotient. A derivation of this ratio from the accepted branch would explain why large internal scales can coexist with small exposed masses without fine tuning.
 
 ### Generation-Mass Fitting Packet
@@ -774,6 +792,7 @@ a\in\{0,1,2\}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0b6e1f08fd1e5e44)
+
 where $a=0,1,2$ label Generations I, II, and III through the shielding quotient in [Quantum Number Mapping](./fermions/quantum-number-mapping.md#candidate-generation-operator). For one family representative $A_{f,0}$, define
 $$
 A_{f,a}
@@ -797,6 +816,7 @@ E_{\mathrm{sector}}(A_{f,a};\theta)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4a315581fd3ade46)
+
 Here $\zeta_{\mathrm{sh}}$ depends on the shielding class, $\alpha_{\mathrm{m}}$ is a single mass normalization for the declared weak homogeneous regime, and $E_{\mathrm{sector}}$ is zero for charged leptons while quark contributions must be derived from the same color/topology and strong-sector ledger used in the hadronic chapters. The allowed family dependence is therefore carried by axial inventory, color/topology, and internal-energy bookkeeping, not by changing the shielding law.
 
 The first hierarchy residual should be ratio-first. It is evaluated only after the branch ledger, scalar exposure quotient, internal energy, sector term, and shared response record have emitted predicted values $M_{\mathrm{sh}}(A_c;\theta)$ without using the observed mass table. Let $c=(f,a)$ range over the nine generation channels, write $A_c=A_{f,a}$ and $m_c^{\mathrm{obs}}=m_{f,a}^{\mathrm{obs}}$, and fix a reference channel $c_{\mathrm{ref}}$ before evaluating the benchmark rather than choosing it to improve the residual. For quark channels, $m_c^{\mathrm{obs}}$ denotes the predeclared scheme-and-scale benchmark row with its covariance, not a scheme-free constituent mass. The ratio residual is
@@ -816,6 +836,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b3a73b131a76ee79)
+
 The shared factor $\alpha_{\mathrm{m}}/c_{\mathrm{eff}}^2$ cancels inside each predicted ratio when the channels share one homogeneous weak-field response record. The displayed denominator is the diagonal approximation to the log-ratio covariance; a full comparison should replace it by the covariance matrix on the ratio vector when shared benchmark uncertainties matter. The absolute scale is therefore a separate reference calibration,
 $$
 \mathcal{R}_{\mathrm{gen\,scale}}(\theta)
@@ -831,6 +852,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9e444af88363b31c)
+
 and the combined benchmark residual is
 $$
 \mathcal{R}_{\mathrm{gen\,mass}}(\theta)
@@ -849,6 +871,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-10de69537538e40c)
+
 Here $\theta_f$ denotes the record that would be used if family $f$ were fit separately, while $\theta_{\mathrm{shared}}$ is the one promoted record. The split term is the no-retuning guard: it penalizes any attempt to fit charged leptons, up-type quarks, and down-type quarks with different shielding maps or different medium-response coefficients. The null-result term prevents the fit from improving the observed masses by adding partner branches, extra gauge modes, or proton-instability channels that are not independently suppressed.
 
 The first benchmark is not exact mass prediction. It is monotone hierarchy and shared-map survival:
@@ -861,6 +884,7 @@ M_{\mathrm{sh}}(A_{f,2};\theta)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-623963cfffd565bc)
+
 for $f=\ell,u,d$, while the same $\zeta_{\mathrm{sh}}$, $\alpha_{\mathrm{m}}$, and $\mathcal{M}_{\text{sea}}^{ab}$ remain in force. If the charged-lepton hierarchy can be fit only by changing the map that fits quarks, or if quarks require independent per-generation shielding factors after color/topology terms are included, generation-by-shielding has not closed.
 
 ## Speculative Charged-Lepton Benchmark: Koide
@@ -873,6 +897,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5337186ea8f93a53)
+
 The empirical Koide relation can be written as
 $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}
@@ -940,7 +965,7 @@ The accepted $A_0$ branch must have small closure residuals over at least one cl
 
 Compact-carrier diagnostics have reached a finite-coordinate no-go for the compact branch chart tested so far. That result is a branch-certificate status blocker, not a mass result: $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, and the baseline mass prediction remain unavailable until a predeclared branch-chart revision and an accepted branch packet pass the same gates above. Even if a branch-chart checker clears a revised coordinate, the clearance authorizes only a Tier 1 rerun candidate; it does not accept the branch, supply accepted $A_0$ history, or make the downstream mass-facing quantities available.
 
-The canonical chapter should carry this interface but not the detailed simulation protocol. Its role is to state the mass thesis, define the terms, and make clear which derivations remain open; implementation details belong with the simulation and proof-program material once the $A_0$ state vector and output schema are formalized.
+This chapter carries the interface needed to state the mass thesis, define its terms, and identify the open derivations. The linked simulation chapter owns the detailed protocol for the $A_0$ state vector and output schema.
 
 ---
 

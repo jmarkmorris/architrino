@@ -1,10 +1,6 @@
 # Convergence Tests for Non-Markovian Dynamics
 
-This chapter defines the convergence standard for simulations that include self-hit structure and other delayed-memory effects. Its role is to specify which observables are checked, which refinement ladders are required, and what pass/fail thresholds count as numerical control rather than artifact.
-
-Convergence means the result is not a trick of the mesh, time step, history buffer, root solver, or regulator. For delayed dynamics that matters especially, because a tiny bookkeeping error in the past can return later as a fake branch, fake stability window, or fake invariant.
-
-Because self-hit dynamics are especially prone to fake structure under poor time or history resolution, this document should be read as a validation gate rather than as optional numerical hygiene.
+The convergence standard specifies which observables are checked, which refinement ladders are required, and what pass/fail thresholds distinguish numerical control from artifacts in simulations with [self-hit structure](../../foundations/architrino.md), where an architrino encounters its own earlier wake, and other delayed-memory effects. Convergence means that a reported result is not produced by the mesh, time step, history buffer, root solver, or regulator. This requirement is especially important for delayed dynamics, because a small bookkeeping error in the past can return later as a spurious branch, stability window, or invariant. The standard is therefore a validation gate, not optional numerical hygiene.
 
 All convergence claims in this chapter are finite-window claims. Passing the gates below validates the declared observables on the analysis window, with the stated detector set, history horizon, and regulator choices. It does not decide unbounded reachability questions for the full delayed dynamics; those would require a separate theorem about the global flow rather than a stronger convergence plot.
 
@@ -29,6 +25,7 @@ E_{\mathrm{rel}}(Y;A,B)\equiv
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5d43236ba1f86777)
+
 Here $R$ is restriction of the finer run to the coarser sampling grid, and $\varepsilon_{0,Y}$ is a predeclared floor with the same units as the norm of $Y$. A bare dimensionless constant must not be added to a dimensional channel.
 
 For provenance distributions of solved `t_emit`, define:
@@ -39,6 +36,7 @@ D_{JS}\equiv \mathrm{JSD}(P_A\|P_B)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-72d15bc24c00f4fb)
+
 where $W_1$ is 1-Wasserstein distance, JSD uses logarithm base $2$, and $\varepsilon_T$ is a predeclared absolute-time floor.
 
 For delayed source-state interpolation, the run must declare an order-$q$ history interpolation operator $I_{\Delta H_{\mathrm{hist}}}^q$. On a fixed analysis window $W$, define
@@ -53,6 +51,7 @@ E_{\mathrm{hist}}(S_\eta;\Delta H_{\mathrm{hist}},\Delta H_{\mathrm{hist}}/2;W)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6beb3447a5cd62ba)
+
 The weights $w_m\ge0$ are predeclared quadrature or sample weights normalized by $\sum_{m\in W}w_m=1$, and $\varepsilon_{0,S}$ has the same units as the weighted state norm.
 
 For nonsmooth state-dependent delay windows, define the jump residual rows
@@ -68,6 +67,7 @@ R_{\mathrm{jump},a}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-98702b057ef78ec6)
+
 Here $\xi_a$ is a sampled reception time in the transition window, $k_a$ is the tracked root index, $\ell_a$ is its branch/root-class label, and $\pi(a)$ is the predeclared matching permutation into the comparison run. The map $T_{0,\ell_a}(\xi_a)$ returns the matched transition time for that labeled root. A row is invalid if the matching rule or permutation is chosen after inspecting the residual.
 
 ### Required refinements with pass/fail thresholds
@@ -81,6 +81,7 @@ p_{\mathrm{obs}}(Y)=\log_2\!\frac{E_{\mathrm{rel}}(Y;\Delta T,\Delta T/2)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b32cc921fe0fef67)
+
 Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$ or $\|\nabla\Phi\|$).
 
 2. History-resolution refinement (history step halved or interpolation order increased):
@@ -108,6 +109,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-c74a4352b28ee9e6)
+
 - The moment-closure residual must decrease under temporal, history, and spatial refinement. A continuum plot is not promotion evidence if the next unresolved moment grows or if the memory-current residual is absorbed into fitted constants.
 
 6. Stochastic and response refinement when a run adds Langevin, Fokker-Planck, or fluctuation-response summaries:
@@ -119,6 +121,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-aac85420eb464059)
+
 - If a diffusion tensor $D^{ij}(z)$ is inferred from jump or ledger increments, require it to remain positive semidefinite on the retained domain and stable under refinement.
 - If a response kernel $\chi_{AB}$ is promoted, require the causal dispersion residual $\mathcal R_{\mathrm{KK}}(\chi_{AB})\le0.05$ on the declared frequency band and require any fluctuation-dissipation residual to be reported from the same record.
 
@@ -135,6 +138,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-1bce23587507a703)
+
   or an explicitly justified equivalent if a linear hat matrix $H$ is not available.
 - Branch identity must persist under temporal refinement, history-window refinement, regulator refinement when a regulator is used, and root-ledger refinement. A coordinate that only improves the fitted residual while changing the active branch identity fails model selection.
 
@@ -159,6 +163,7 @@ E_\eta(Y;\eta,\eta/2)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4ef903e8a02b096f)
+
 It also records whether active root-ledger entries match between $\eta$ and $\eta/2$ after matching source, receiver, root class, and branch status. A convergence plot is not promotion evidence unless the table row containing the plotted quantity is present and tied to the campaign artifact hash.
 
 Regulator extrapolation fits must report the fitted observable, the regulator ladder, the assumed asymptotic form, excluded points if any, stability under fit-window changes, endpoint or singular-window controls when they affect the extrapolation, and a negative-control observable. A fit that behaves smoothly but has no declared observable map, topology, normalization, volume or window estimate when relevant, remainder bound, or independent continuum reconstruction remains below theorem-grade evidence.

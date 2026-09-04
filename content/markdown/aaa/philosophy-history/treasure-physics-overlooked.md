@@ -1,7 +1,7 @@
 # The Treasure Physics Overlooked
 ## Why Physics Missed The Architecture Of The Universe
 
-**Literary note:** This is a counterfactual chain of perspectives. It is not a historical quotation, real interview, endorsement, attribution, or evidence about any actual person's views. The essay treats Architrino Assembly Architecture, hereafter the Architrino architecture, as a challenger theory with a serious claim to resolve deep problems in fundamental physics and cosmology. It then adopts a retrospective convention: read the history of physics as it would look if the architecture eventually earned broad acceptance. That convention is a device for historical interpretation and case-building.
+**Literary note:** This is a counterfactual chain of perspectives. It is not a historical quotation, real interview, endorsement, attribution, or evidence about any actual person's views. The essay treats Architrino Assembly Architecture, whose [primitive ontology](../foundations/ontology.md) begins from architrinos in a Euclidean void and absolute time, as a challenger theory with a serious claim to resolve deep problems in fundamental physics and cosmology. It then adopts a retrospective convention: read the history of physics as it would look if the architecture eventually earned broad acceptance. That convention is a device for historical interpretation and case-building.
 
 For the current claim-placement discipline of the Philosophy and History section, read this essay with [Philosophy and History](philosophy-history.md), [Theory Inheritance Discipline](theory-inheritance-discipline.md), and [Philosophy of Science](philosophy-of-science.md). Technical authority remains with the linked domain owners, including the [Master Equation](../dynamics/master-equation.md), [Measurement Ontology](../quantum/measurement-ontology.md), [Emergent Metric](../spacetime/emergent-metric.md), and [Failure Criteria](../validation/failure-criteria.md).
 
@@ -337,6 +337,7 @@ n(\mathbf X,T),\,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f91527347e6756c4)
+
 Here $v$ is group speed relative to the Euclidean-void rest frame before observer export, not a speed already measured by Einstein synchronization. Its velocity sector must recover special-relativistic time dilation; its potential sector must recover weak-field gravitational redshift and the PPN limits.
 
 The velocity-sector condition is not only the square-root form: absolute-frame $v$ may enter the substrate equation, but after observer export it must appear only in combinations inseparable from synchronization, clock, ruler, and signal-channel records. Equivalence-principle recovery is precisely the demand that both sectors derive from one Noether sea response and one assembly-clock map, not from two fitted clock laws.
@@ -573,6 +574,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f76f5752d441dfdd)
+
 The model may treat the pre-record state as an effective branch envelope only until the apparatus kernel, coarse-graining, access region, and record window identify a durable basin. A collapse account that gives Born weights from one model, heating bounds from another, and record formation from a third has not closed the measurement event.
 
 If the internal channel has not yet produced a durable record, then the effective wavefunction may still carry an unresolved branch envelope for that declared setup. But that is a statement about record formation, not about a cat occupying incompatible macroscopic realities. The correct question is not "when does consciousness collapse the state?" It is: when did the apparatus become a stable record-bearing system, and which observer has access to that record?
@@ -691,6 +693,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8a0104b2651def83)
+
 The same exposed axial geometry must carry left-channel selection, weak-basis versus mass-basis overlap, CKM/PMNS weights and phases, and event-level provenance of weak reactions. If those rows require separate definitions, electroweak and flavor recovery has only been reorganized.
 
 ### Chapter Thirty-Six. Nicola Cabibbo, Makoto Kobayashi, And Toshihide Maskawa: Mixing Without A Generation Mechanism
@@ -1076,6 +1079,7 @@ R_{\mathrm{GW}\gamma}\equiv
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4dfb0eede4523580)
+
 with $\lvert R_{\mathrm{GW}\gamma}\rvert\lesssim10^{-15}$ at the GW170817/GRB 170817A scale after source-emission lag and path conventions are declared. Equivalently, the same Noether sea response, including the $\chi_{\text{sea}}$ row that dresses photon-channel timing to $c_\gamma$, must dress the effective gravitational channel to the same weak-field limiting speed. A black-hole signal account that lets $c_{\mathrm{GW}}^{\mathrm{eff}}$ and $c_\gamma$ drift through independent Noether sea responses has already failed the preferred-frame leakage wall.
 
 Her chaos and black-hole-pair work sharpens the same issue. Close compact-object dynamics can be exquisitely sensitive to initial conditions, orbital phase, spin, dissipation, and instability. Standard relativity turns that into waveform modeling and template control. The Architrino architecture reads it as a warning that source history is not a decorative detail. The path history, basin structure, and release channel determine which observer-level waveform becomes visible.

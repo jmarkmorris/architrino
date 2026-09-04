@@ -2,7 +2,7 @@
 
 ---
 
-## Overview
+## The Modern Ontological Network
 
 This document defines the modern ontological network above $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at substrate level.
 
@@ -53,7 +53,7 @@ Scope rule:
 
 ### Theory-Like Concepts and Cross-Cutting Constructs
 
-This document should not be limited to named theories, schools, or research programs. Some of the most important ontological confusions in physics are carried by **theory-like concepts** that appear across many theories and are often treated as if their meaning were obvious.
+The network is not limited to named theories, schools, or research programs. Some of the most important ontological confusions in physics are carried by **theory-like concepts** that appear across many theories and are often treated as if their meaning were obvious.
 
 These concepts should also be included in the differential analysis when they function as:
 
@@ -225,7 +225,7 @@ Concepts are grouped by scientific role rather than chronology. The inventory is
 
 **Limiting tension.** Point fields, primitive charge coupling, and continuum vacuum bookkeeping cannot be imported into the substrate layer.
 
-**Recovery or comparison test.** Recover the QED amplitude and precision-observable family, including running coupling and lepton magnetic moments, from polarity, assembly, causal-wake, and observer-response records.
+**Recovery or comparison test.** Recover the QED amplitude and precision-observable family, including running coupling and lepton magnetic moments, from [polarity](../foundations/architrino.md), the sign carried by each architrino, together with assembly, causal-wake, and observer-response records.
 
 ### Classical Electromagnetism - Maxwell-Faraday
 
@@ -494,6 +494,7 @@ P(a\mid x,\lambda)P(b\mid y,\lambda),
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8fa7e41e818e3476)
+
 under the stated locality and measurement-independence assumptions.
 
 **Limiting tension.** Bell constrains causal factorization; it neither supplies an ontology nor licenses pair provenance followed by independent local readout.

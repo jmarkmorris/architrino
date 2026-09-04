@@ -2,11 +2,7 @@
 
 This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. The reader should keep one distinction in view from the start: nuclear binding is not the same thing as opening the internal structure of a proton or neutron. Ordinary nuclear energy comes from rearranging a multi-nucleon assembly ledger, not from exposing the deeply shielded branch energy of the surviving nucleons.
 
-The purpose is to say what the binding ingredients are, what level of coarse-graining is being used, and what kinds of nuclear questions the shared language is meant to support before any precision model exists.
-
-## Purpose
-
-This chapter states the first effective-level nuclear-binding picture for $\mathbb{A}\mathbb{A}\mathbb{A}$. The aim is not yet a precision nuclear model. The aim is to define the binding ingredients clearly enough that deuteron-scale, alpha-scale, fission, fusion, and saturation questions can be posed in one shared language.
+The account is not yet a precision nuclear model. It defines the binding ingredients and coarse-graining level clearly enough that deuteron-scale, alpha-scale, fission, fusion, and saturation questions can be posed in one shared language.
 
 ## Binding-Energy Intuition
 
@@ -14,7 +10,7 @@ The traditional nuclear-binding curve compares how much energy is missing from a
 
 The core intuition is this: nature releases exposed nuclear energy when a reaction moves the nucleon inventory toward a cheaper assembly ledger. Light nuclei can release energy by joining into better-packed states. Very heavy nuclei can release energy by splitting into less overburdened daughter states. Both paths move toward the same total-energy basin.
 
-The plain-language picture is that a nucleus is not only a list of protons and neutrons. It is a packed nuclear assembly whose nucleons share short-range residual-strong corridors and polarize the surrounding Noether sea. Good packing lowers the total energy because the shared corridor and sea-polarization state is cheaper than the same nucleons held in less favorable arrangements. Bad packing raises the total energy because Coulomb repulsion, short-range exclusion, deformation, and shell mismatch leave energy in a stressed nuclear configuration.
+A nucleus is not only a list of protons and neutrons. It is a packed nuclear assembly whose nucleons share short-range residual-strong corridors and polarize the surrounding Noether sea. Good packing lowers the total energy because the shared corridor and sea-polarization state is cheaper than the same nucleons held in less favorable arrangements. Bad packing raises the total energy because Coulomb repulsion, short-range exclusion, deformation, and shell mismatch leave energy in a stressed nuclear configuration.
 
 Fusion releases energy on the light side of the curve because very light nuclei are under-bound. Bringing them together can create more favorable proton-neutron corridor sharing and a cheaper shared Noether sea polarization record, while Coulomb and exclusion costs are still manageable. The final nucleus has lower total energy than the separated reactants, so the difference must leave through reaction products, recoil, radiation, neutrinos when weak channels participate, or heating of the surrounding medium.
 
@@ -111,6 +107,7 @@ E_{\text{nuc}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3cd4f815f3736a71)
+
 with $A=Z+N$.
 
 Here:
@@ -165,6 +162,7 @@ V_{\text{res-strong}}(r)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6c62adeb884f6273)
+
 for separations in the nuclear window, with the attraction strongest where meson-like exchange is cheap but direct core overlap is still avoided.
 
 ### Short-range exclusion
@@ -188,6 +186,7 @@ V_{\text{Coul}}(r)\approx +\frac{e^2}{4\pi\epsilon_{\text{eff}}\,r}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9a4ce224fa6d1c9f)
+
 at effective level. Here $\epsilon_{\text{eff}}$ is an in-medium dressing of the observer-level $\epsilon_0$ response described in [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md), not the polarity unit $\epsilon=|e|/6$. Nuclear binding must therefore come from the residual strong and sea-polarization channels, not from any cancellation trick in the electric sector.
 
 ### Sea polarization
@@ -213,12 +212,14 @@ V_{\text{excl}}(r)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8eaaf6a3deb8ae12)
+
 where $c \in \{pp, pn, nn\}$ labels the two-nucleon channel and $V_{\text{Coul}}$ is present only in the $pp$ channel, with
 $$
 V_{\pi/\text{corr}}(r)+V_{\text{sea-pol}}(r)<0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d5ff97bc4d848a7b)
+
 through the binding window.
 
 This is enough structure to explain why nuclei are finite-sized bound objects rather than collapsed lumps or diffuse neutral gases.
@@ -339,6 +340,7 @@ n \to p + e^- + \bar\nu_e
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-53d27094f56b1c47)
+
 or by the proton-side channels, positron emission $p \to n + e^+ + \nu_e$ and electron capture $p + e^- \to n + \nu_e$, inside the bound environment.
 
 So a realistic nuclear theory here must eventually combine:

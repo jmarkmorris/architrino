@@ -1,12 +1,12 @@
 # Wavefunction Ontology
 
-This chapter states what the wavefunction is and is not within the framework. Its purpose is to relocate $\psi$ from fundamental ontic field status to an effective epistemic description while still explaining why standard quantum formalism remains operationally useful.
+This chapter states what the wavefunction is and is not within the framework. It relocates $\psi$ from fundamental ontic field status to an effective epistemic description, maps the standard operators into that effective chart, and explains why standard quantum formalism remains operationally useful.
 
 Its nearest companion notes are [Superposition Mechanism](../philosophy-history/theory-bridges/superposition-mechanism.md), [Measurement Ontology](measurement-ontology.md), [Measurement Problem and Collapse](../philosophy-history/theory-bridges/measurement-problem-and-collapse.md), [Entanglement and Nonlocality](../philosophy-history/theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../philosophy-history/theory-bridges/pilot-wave-character.md).
 
-## Purpose and Scope
+## Claim Boundary
 
-This document states the ontological interpretation of the quantum wavefunction ($\psi$) within $\mathbb{A}\mathbb{A}\mathbb{A}$ and sets out an effective comparison mapping for the fundamental operators of quantum mechanics. The proposed mapping translates the standard quantum formalism, traditionally treated as axiomatic, into deterministic, non-Markovian dynamics governed by the master equation.
+The proposed mapping translates the standard quantum formalism, traditionally treated as axiomatic, into deterministic, non-Markovian dynamics governed by the master equation. The mapping remains a recovery program until the effective state chart and operator record are derived from retained substrate dynamics.
 
 The framework explicitly separates the **ontic reality** of architrino trajectories and causal wake surfaces from the **epistemic description** captured by the wavefunction. Reframing measurement as dynamical threshold resolution does not by itself complete the quantum closure program, but it relocates the measurement problem onto a mechanical basis involving uncertainty, superposition, and the standard particle-wave duality comparison.
 
@@ -37,6 +37,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8765300b403ebfee)
+
 where $\mathbf X_{\mathrm{asm}}$ denotes the localized assembly coordinates retained by the chart, $\mathcal{W}_\vartheta$ denotes the causal-wake/path-history data still relevant to the record channel, and $\Xi_\vartheta$ denotes retained Noether sea and apparatus-environment context (written $\Xi$ to keep $Z$ reserved for proton number). Localization and countable detector records belong primarily to the assembly and apparatus basin. Interference and phase transport belong primarily to unresolved wake history in $\mathcal{W}_\vartheta$.
 
 The double-slit lesson is therefore not that an ontic particle becomes a wave before becoming a particle again. The lesson is that a localized assembly can leave and receive distributed wake structure whose path history remains live until an apparatus creates a restartable record. If no which-path record has formed at the slit plane, the effective wavefunction must continue to carry the unresolved branch envelope. If a which-path apparatus forms a durable record, the record channel changes and interference is removed by apparatus coupling, not by an observer's act of looking.
@@ -55,6 +56,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7ac3a3fc8600816f)
+
 The effective state is a normalized ray,
 $$
 \|\psi\|_\vartheta^2=1,
@@ -63,6 +65,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d35e8a1ef2c9f320)
+
 because a constant nonzero complex rescaling does not change the record statistics after normalization. On a spatial chart define $\gamma_{\mathrm{sp}}\equiv\det(\gamma_{ij}^{\mathrm{eff}})$. The measure is
 $$
 d\nu_\vartheta
@@ -71,6 +74,7 @@ d\nu_\vartheta
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1b502bf411f5cb8d)
+
 unless the chart declares a different density explicitly. A spatially varying phase is different: it changes momentum, current, and interference data, so it cannot be quotiented away by the same rule. The Aharonov-Bohm phase is an observer-level benchmark for this non-removable holonomy; its derivation belongs to the [holonomy recovery program](../philosophy-history/theory-bridges/quantum-operator-mapping.md), not to a substrate potential postulate in this chapter.
 
 If a declared apparatus channel is represented by a self-adjoint effective operator $\hat O_\vartheta$ with orthonormal eigenstates $\{\phi_n\}$, then the standard comparison expansion is
@@ -83,6 +87,7 @@ a_n=\langle\phi_n|\psi\rangle_\vartheta,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-97f45a7ab9dadc1e)
+
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive the chart, the inner product, the admissible operator, and the coefficients from the retained deterministic flow and apparatus kernel. If those objects are inserted independently of the record-forming dynamics, the formal Hilbert-space description has been assumed rather than recovered.
 
 ### Representation and Decomposition Discipline
@@ -97,6 +102,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-329790be2b3233b8)
+
 for system, apparatus, and environment. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this factorization is accepted only where the same retained flow supplies stable subsystem boundaries, local transport or bounded causal coupling, and record persistence for the apparatus channel. It is not enough to choose factors that look like objects or spatial cells after the fact. The chosen decomposition must be compatible with $\mathcal{K}_A$, $\mu_{*,T_W}$, the action-to-envelope residual, and the record-autonomy tests in [Measurement Ontology](measurement-ontology.md).
 
 This keeps the useful part of Hilbert-space formalism while reversing its ontological priority. Bases, observables, and tensor-product factors are recovery products. If they are assumed before the branch record is derived, the calculation may still be a useful comparison, but it has not shown that the wavefunction is fundamental or that space, particles, systems, and environments have been recovered from substrate dynamics.
@@ -128,6 +134,7 @@ P_{\mathrm{obs}}(\cdot\mid C)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0e04fc26bfd9bbda)
+
 The first term tests the effective operator or channel residual against the loop benchmark; the second tests the actual recorded statistics. Passing this residual licenses the perturbative virtual-particle description as an economical calculation layer. It does not license a substrate claim that additional short-lived particles are being created and erased between records.
 
 ### Density-Current Closure Target
@@ -143,6 +150,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e93645f88799c566)
+
 and
 $$
 \partial_{t_{\mathrm{std}}}\rho_{\psi,\mathrm{std}}+\nabla_{\mathrm{std}}\cdot\mathbf{J}_{\psi,\mathrm{std}}=0
@@ -162,6 +170,7 @@ J_{\psi,\mathrm{eff}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cd0d94c63d036a34)
+
 $$
 \partial_{t_{\mathrm{eff}}}\!\left(
 \sqrt{\gamma_{\mathrm{sp}}}\rho_{\psi,\mathrm{eff}}
@@ -174,6 +183,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3c4aacf9a9865e77)
+
 Here $(\gamma_{\mathrm{eff}}^{-1})^{ij}$ is the inverse effective spatial metric of the declared observer chart, reducing to $\delta^{ij}$ in its flat weak-response limit. This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $J_{\mathrm{rec}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T_W}$ through the deterministic assembly flow and the declared position projection, and define
 $$
 \mathcal C_{\mathrm{rec}}
@@ -191,6 +201,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b2a6d14a731aeee4)
+
 A Born-current recovery should report
 $$
 \mathcal{R}_{\rho J}(W,\mathcal T_{\mathrm{eff}};\vartheta)
@@ -204,6 +215,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-133b32c4260b2e7e)
+
 The first term checks Born density, the second checks local conservation for the derived record flow, and the third checks the standard probability-current benchmark. The continuity term is a projection, boundary, and coarse-graining leakage diagnostic; exact conservation of a full deterministic pushforward would make it an identity and would not independently validate the extracted current. The norm $\|\cdot\|_{\mathrm{BL}^*(W)}$ is the dual bounded-Lipschitz, or flat, norm on finite signed scalar or vector measures: it tests against functions with bounded amplitude and Lipschitz constant. It supplies a finite, weakly stable tolerance for measure-valued residuals without relying on the delicate $p=1$ endpoint of a negative-order Sobolev space. A model that matches $|\psi|^2$ only after allowing probability to disappear from one region and reappear elsewhere before a record has formed has not recovered Schrödinger continuity.
 
 The same target can be sharpened into a guidance-ratio test. Wherever $\rho_{\psi,\mathrm{eff}}>0$, the effective quantum velocity field is
@@ -215,6 +227,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3a057e41a70928a3)
+
 Let $\mathbf{v}_{\mathrm{rec}}$ be the velocity field obtained by projecting the deterministic assembly-flow current through the same record chart. The local guidance residual is
 $$
 \mathcal{R}_{\mathrm{guid}}(W,\mathcal T_{\mathrm{eff}};\vartheta)
@@ -231,6 +244,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a0c0bd6a74f49738)
+
 This is a stricter recovery target than Born density alone. It asks whether the extracted wavefunction gives the same local transport law as the underlying causal-wake basin flow, not merely the same final histogram.
 
 The phrase "the system is in a superposition" is therefore not a standalone ontological claim in this chapter. It is an effective statement relative to a declared representation and record channel. If the preparation, apparatus kernel, retained coarse-graining, or access region changes, the apparent basis in which a branch expansion is written may change while the underlying assembly and causal-wake history do not. The substrate claim remains the same: one deterministic history is unfolding, while the effective wavefunction carries alternatives that have not yet become autonomous records.
@@ -270,6 +284,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0820ebd952e29e27)
+
 For a free retained chart, the same packet must move and spread with the standard effective kinematics,
 $$
 \left\|
@@ -293,6 +308,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a51f7da516400be9)
+
 Here $\Delta_{x,\mathrm{eff}}^{2,\mathrm{QM}}(t_{\mathrm{eff}})$ is the standard Gaussian spreading benchmark for the same initial covariance. If the derived envelope violates this bound in ordinary free-packet regimes, then the uncertainty explanation has remained qualitative rather than becoming a quantum closure.
 
 The WKB comparison supplies the corresponding semi-classical envelope test. For a one-dimensional retained effective chart with effective momentum
@@ -301,6 +317,7 @@ p_\vartheta(x_{\mathrm{eff}};E)=\sqrt{2m_{\mathrm{eff}}\left(E-V_{\mathrm{eff}}(
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8a61f5b486fc21cd)
+
 the standard oscillatory benchmark away from turning points is
 $$
 \psi_{\mathrm{WKB}}(x_{\mathrm{eff}})
@@ -310,6 +327,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3c4e58465a32bf66)
+
 with validity only when the effective wavelength varies slowly across one wavelength. A closure packet should therefore report a WKB-envelope residual on the declared access interval $W$:
 $$
 \mathcal{R}_{\mathrm{WKB}}(W,E;\vartheta)
@@ -323,6 +341,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e0f56d1c9a3f2dbf)
+
 Here $\varphi_{\mathrm{rec}}$ is the phase extracted with the same phase-amplitude map that produces the effective envelope from the retained action field; it is not a phase assigned to the real density $\rho_{\mathrm{rec}}$. The final term is the turning-point matching check: near $E=V_{\mathrm{eff}}(x_{\mathrm{eff}})$ the effective chart must pass through the Airy-function benchmark rather than pretending the WKB expression remains valid at $p_\vartheta=0$. This makes the semi-classical wavefunction comparison a falsifiable envelope recovery, not a visual analogy.
 
 For a metastable barrier, the same comparison gives a tunneling-action benchmark. If $x_0$ and $x_1$ are the effective turning points bounding the forbidden region, the standard exponent is
@@ -336,6 +355,7 @@ T_{\mathrm{WKB}}\sim e^{-2S_{\mathrm{tun}}/\hbar_{\mathrm{eff}}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5cbac40922d628e8)
+
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ target is to derive $S_{\mathrm{tun}}$ from the action accumulated by deterministic assembly histories that cross the retained separatrix tube. A fitted barrier exponent that is not tied to the same $\mu_{*,T_W}$, apparatus kernel, and path-history flow used for record probabilities is only a comparison curve.
 
 Weak probes sit below the record-forming part of this back-action. They may perturb the target and apparatus by a small amount, but they do not by themselves force the target across a separatrix or create a durable apparatus/environment asymmetry. In the notation of [Measurement Ontology](measurement-ontology.md#weak-probe-limit), the retained weak-probe window satisfies
@@ -344,6 +364,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5910a4a9bd58d868)
+
 while an ensemble pointer displacement remains $O(\epsilon)$. The wavefunction remains useful in that regime because it tracks the still-accessible coarse-grained branch envelope rather than a completed record.
 
 Post-selection should be read as conditioning on a later ordinary record, not as a backward-in-time substrate influence. The conditional ensemble
@@ -354,6 +375,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a9c1523359c69be2)
+
 may reveal weak-probe structure that is invisible in single trials, but it does not change the underlying rule that architrino and assembly histories evolve forward in absolute time.
 
 This is also the correct home for anomalous signed weak-probe averages. A weak-value calculation may assign a negative or otherwise counterintuitive sign to the conditional pointer shift, but the wavefunction-side interpretation remains effective: the signed response is a property of the post-selected ensemble and the still-live branch envelope. The validation target belongs to [Measurement Ontology](measurement-ontology.md#weak-probe-limit): reproduce the normalized conditional response $\bar{Y}_{\epsilon\mid\mathcal{R}_f}$ from the deterministic weak-probe flow while keeping each retained trial below the record-forming threshold. The sign should not be promoted into a negative-mass entity, a retrocausal substrate process, or a completed intermediate record.
@@ -386,12 +408,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-58f260d47ff088a1)
+
 maps the retained record-window section to observer records, then the record probability must be
 $$
 P_n(T_W)=\mu_{*,T_W}\!\left(\pi_{T_W}^{-1}(R_n)\right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d55ae145f48052de)
+
 with $\mu_{*,T_W}$ derived from the finite-window coarse-grained measure of the same dynamics that supplies the effective wave equation. A free-standing external geometric measure, by contrast, is only a scaffold until it is tied to the Master Equation, record formation, and the retained measurement channel.
 
 Subsystem decomposition carries the same burden. A useful comparison may speak about probability moving between subsystems, but the native statement is not a free tensor-factor flow. The preparation, apparatus kernel, coarse-graining, access region, and record window must first determine which reduced metastable coordinates and boundary data are retained. Only then can $\mu_{*,T_W}$ assign weights to the record basins $\pi_{T_W}^{-1}(R_n)$, and only the same retained transfer law may decide whether those weights are restartable after a record or still carry unresolved path-history influence before a record.
@@ -416,6 +440,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cc304e7a7e34575d)
+
 not the stronger claim that no substrate history exists. The substrate-side question remains whether $B_i$ is a completed, recordable basin for the declared setup $\theta$, not whether one coordinate chart happens to give a vanishing expansion coefficient.
 
 The boundary between an unresolved branch envelope and a completed record should therefore be tested by the record-autonomy residual in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record), not by a metaphysical decision about how many worlds exist. Record-channel times $t$ inherited from that chapter are effective-chart times throughout. In the wavefunction description, interference remains live while
@@ -424,6 +449,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fec0dcc811de0caf)
+
 because the candidate alternatives still affect the record channel at observable scale. A record-facing wavefunction update is justified only after the relevant apparatus basin satisfies $\Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}}$ across the persistence window. This keeps the useful lesson from decoherence language while rejecting branching as substrate ontology.
 
 This also prevents the branch picture from becoming a literal one-way tree. Before record autonomy, two coarse branch tubes can separate and later overlap again in the retained readout channel. For candidate branch basins $B_i$ and $B_j$, define a recoherence residual
@@ -440,6 +466,7 @@ N_\varepsilon(\Phi_t(B_i))\cap N_\varepsilon(\Phi_t(B_j))
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3ab694ef74e30552)
+
 where $N_\varepsilon$ denotes an $\varepsilon$-thickened tube in the retained coarse-grained record coordinates. If $\Delta_{\mathrm{recoh}}=O(1)$ before the persistence window closes, the alternatives have not become independent records; the effective wavefunction must continue to carry their mutual influence. A completed record requires both $\Delta_{\mathrm{rec}}\le\varepsilon_{\mathrm{rec}}$ and recoherence residuals below the apparatus-class tolerance for competing basin pairs.
 
 For a declared apparatus kernel, coarse-graining, access region, and record window $(\mathcal{K}_A,\mathcal{Q},W,T_W)$, a candidate branch $B_i$ may be counted as an independent observer-level alternative only when the same retained window clears the basin, recoherence, Born-weight, and thermodynamic projection tests:
@@ -450,6 +477,7 @@ N_{\mathcal{Q},W}(B_i)\ge 1,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d90bfa0d81e9535a)
+
 $$
 \Delta_{\mathrm{Born}}(T_W)\le\varepsilon_{\mathrm{Born}},
 \qquad
@@ -457,6 +485,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-162f7d2da4efa764)
+
 This condition keeps the useful Everettian lesson that branch descriptions become robust through dynamics, while refusing to count a formal Hilbert-space expansion as a substrate event. If any line fails, the effective wavefunction still carries an unresolved branch envelope; it has not earned a completed record or an independent outcome count in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 Equivalently, for this declared record setup $\theta$, the effective branch family available for record counting is
@@ -473,6 +502,7 @@ B_i:
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5038e2d3f237657d)
+
 Only basins in $\mathcal{B}_{\mathrm{rec}}(\theta)$ may be counted as completed observer-level alternatives. Formal components outside this family may remain useful for calculation, but they are unresolved envelope structure rather than independent outcomes.
 
 The same boundary can be checked from the effective transition law. Let $\mathcal{T}^{\mathcal{Q},W}_{a\to b}$ denote the observer-level transition operator induced by the same deterministic substrate flow after coarse-graining by $\mathcal{Q}$ and restricting to access region $W$. For $t_0<t_1<t_2$, define the coarse-grained divisibility residual
@@ -488,6 +518,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c320ac1e81bb5f27)
+
 When $\Delta_{\mathrm{div}}=O(1)$, the coarse-grained state has not retained enough path-history information to be restarted at $t_1$ without loss; in the wavefunction representation, that missing history appears as live phase, coherence, or interference structure. After a valid record, the retained record channel should satisfy $\Delta_{\mathrm{div}}\le\varepsilon_{\mathrm{div}}$ on the same persistence window used for $\Delta_{\mathrm{rec}}$. This is a closure diagnostic for the effective description, not a new substrate law.
 
 This restartability test is the $\mathbb{A}\mathbb{A}\mathbb{A}$-native way to use comparisons with stochastic or transition-law reformulations. If an external framework says that interference appears when a process cannot be split into independent intermediate-time transitions, the retained content is not the external ontology. The retained content is the diagnostic: the effective wavefunction must carry whatever path-history the reduced transition operator loses. A proposed coarse-graining therefore earns its quantum interpretation only by showing where $\Delta_{\mathrm{div}}$ is order one before a record and why it falls below tolerance after record autonomy.
@@ -498,6 +529,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-46bd3b88d8b67ad5)
+
 In that regime the effective wavefunction must continue to carry the branch envelope, and interference remains an observer-level consequence of incomplete restartability. If a which-path apparatus creates a record channel $R_h$ satisfying the record-autonomy test, the retained coarse-graining changes. The accepted closure condition becomes
 $$
 \Delta_{\mathrm{rec}}(t_h;k)\le\varepsilon_{\mathrm{rec}},
@@ -506,6 +538,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f6dd5c3a04344607)
+
 The disappearance of interference is then attributed to a completed record and a restartable reduced description, not to an ontological wave splitting and then collapsing.
 
 ## Indivisible Stochastic Reformulations
@@ -546,12 +579,14 @@ d_{\mathrm{TV}}\!\left((\Phi_{T_W})_*\mu_{*,T_W},\,\mu_{*,T_W}\right)\le\varepsi
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-20b8dc2146c2112f)
+
 For record-forming attractor basins $\{B_n^{(T_W)}\}$,
 $$
 P_n(T_W)=\int_{B_n^{(T_W)}} d\mu_{*,T_W}(\Gamma)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cb38af313db73a86)
+
 Here $B_n^{(T_W)}$ means a record-forming basin for the declared apparatus channel, not every formal component of a Hilbert-space expansion. If the channel carries candidate branches that have not yet satisfied the record-autonomy, persistence, event-ledger, and energy-residual tests in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record), the Born-side weight is computed only after applying that record filter:
 $$
 P_n(T_W)
@@ -585,6 +620,7 @@ P_n(T_W)-\int_{\Omega_n^\theta}|\psi_\theta(q)|^2\,d\nu_\theta(q)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4cd37d81d5708cff)
+
 in the same regime where the envelope dynamics reduce to effective Schrödinger evolution.
 
 Equivalently, the native basin measure must push forward to the effective Hilbert-envelope density,
@@ -617,6 +653,7 @@ p_i
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-94eb5ce56040c37b)
+
 within the finite-window error budget. A representative acceptance bound is
 $$
 \left|
@@ -646,6 +683,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a5fa9d869a17cb0b)
+
 for $\mu_*$-typical preparations, together with a finite-sample error bound for the actual protocol. If a model cannot select one measure or cannot establish this convergence, its basin labels do not yet supply an observer-level probability law. If it assigns branch weights that are not the basin measures of the same record-forming flow, it has added an untracked transition kernel, an external interpretive rule, or a hidden ensemble change.
 
 The same measure must also survive thermodynamic projection checks. When the measurement story uses apparatus entropy, decoherence rates, or environment summaries, those quantities may not be fitted by a second ensemble unrelated to the Born-rule basin measure. The finite-window version $\mu_{*,T_W}$ in [Quantum Operator Mapping](../philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence) must project to the thermodynamic summary used by the same record channel, within an explicitly declared tolerance.
@@ -665,6 +703,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-12be7cd8e72cdd1d)
+
 This residual is not an additional probability postulate. It is the finite-window acceptance test for treating the effective wavefunction as having updated to a completed record rather than to an unresolved branch envelope.
 
 ### Lower Bound on Recordable Basin Measure
@@ -687,6 +726,7 @@ B\subset\Gamma_{\mathrm{eff}}^{(T_W)}:
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0473fecbdd805a55)
+
 The lower measure unit must come from an independent apparatus calibration, not from taking the infimum over the same candidate family that it later classifies. Let $\mathcal{C}_{\mathrm{cal}}(\mathcal{Q},W)$ be a predeclared set of calibration cells whose false-accept and false-reject rates have been measured for this apparatus class. Define
 $$
 \mu_{\min}^{\mathrm{cal}}(\mathcal{Q},W)
@@ -696,12 +736,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c1ef686ac8731390)
+
 with the required closure condition
 $$
 0<\mu_{\min}^{\mathrm{cal}}(\mathcal{Q},W)<\infty
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-188911929e14f8ee)
+
 When this condition holds, the resolved-state count of a basin is
 $$
 N_{\mathcal{Q},W}(B)
@@ -710,7 +752,8 @@ N_{\mathcal{Q},W}(B)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-34636787abf3100b)
-Basins with $N_{\mathcal{Q},W}(B)<1$ fall below the independently calibrated apparatus resolution and are not independent record states in the declared window. Basins in the calibrated family need not exhaust the candidate family, so the test is no longer true by definition. Plain language: the state count is not an information-theory primitive; it is a derived claim about which basins the actual apparatus dynamics can separate, lock, and preserve as records.
+
+Basins with $N_{\mathcal{Q},W}(B)<1$ fall below the independently calibrated apparatus resolution and are not independent record states in the declared window. Basins in the calibrated family need not exhaust the candidate family, so the test is no longer true by definition. The state count is not an information-theory primitive; it is a derived claim about which basins the actual apparatus dynamics can separate, lock, and preserve as records.
 
 This is a closure target, not a completed derivation of the action quantum. In an effective canonical chart with $n$ conjugate pairs, the stronger result would be a derivation that relates the lower basin measure to the standard action cell,
 $$
@@ -718,6 +761,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7678243636565a5b)
+
 with the normalization factor $C_{\mathcal{Q},W}$ fixed by the same assembly and apparatus reduction rather than chosen after the fact. If the infimum is zero, if $\mu_{\min}^{\mathrm{cal}}$ changes arbitrarily with readout convention, or if the resulting cell fails to match the observer-level $h,\hbar$ benchmarks in the parameter ledger, this route does not close the quantum state-counting problem.
 
 Bohr-Sommerfeld or geometric-quantization comparisons are useful only at this effective chart level. Counting integer action-angle leaves can serve as a benchmark for the recordable state count, but it is not the native ontology and not a replacement for the basin-record construction above. The native requirement is that the Master-Equation reduction, root-ledger admissibility, apparatus coupling, and record-autonomy tests derive the finite basin family first; only then may an action-angle chart summarize that family by an $h^n$ cell. If a singular chart or a changed polarization produces an infinite or apparatus-dependent count while $\mathcal{B}_{\mathcal{Q},W}^{\mathrm{rec}}$ remains finite, the comparison chart has overcounted unresolved substructure rather than discovered new record states.

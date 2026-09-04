@@ -1,6 +1,6 @@
 # Photon Guide
 
-The photon app is an inspection workbench, not a proof document. It visualizes a prescribed, contra-rotating planar pair. The current state uses the same polarity assignment on both braids rather than the canonical polarity-conjugate carrier relation, so it is not a physical photon referent.
+The photon app is an inspection workbench, not a proof document. It visualizes a prescribed, contra-rotating planar pair. The current state gives both braids the same [polarity](../foundations/architrino.md#polarity-and-electric-bookkeeping), the primitive two-sign label that sets the direction of an architrino's acceleration response, rather than the canonical polarity-conjugate carrier relation. It is therefore not a physical photon referent.
 
 Read this alongside:
 
@@ -15,7 +15,7 @@ Read this alongside:
 | --- | --- | --- | --- |
 | Runtime formulas and controls | `measured` at display-only-visualization grade | The named browser runtime produces the documented prescribed-path readouts. | A current browser run or source inspection shows a different formula, control, provenance row, or label. |
 | Candidate geometry and polarization fit | `guessed` | The display can identify settings worth separate analysis. It does not establish force balance, retention, binding, stability, or physical realization. | An independent analysis shows that the displayed diagnostic is not produced from the declared source record, or that its reported fit cannot be reproduced from the exported samples. |
-| Physical photon branch | referent-pending | No polarity-conjugate EOM-retained photon branch has been exhibited. A prescribed circular history cannot supply that missing referent. | An independently accepted branch certificate exhibits the canonical carrier relation, complete causal-root ledger, force balance, retained evolution, stability, and photon observables from one record. |
+| Physical photon branch | referent-pending | No polarity-conjugate EOM-retained photon branch has been exhibited. A prescribed circular history cannot supply that missing referent. | An independently accepted branch certificate exhibits the canonical carrier relation, complete [causal-root ledger](../dynamics/master-equation.md#definition-of-causal-emission-times), meaning all accepted emission events whose wake surfaces reach each receiver event, force balance, retained evolution, stability, and photon observables from one record. |
 
 ## What This App Shows
 

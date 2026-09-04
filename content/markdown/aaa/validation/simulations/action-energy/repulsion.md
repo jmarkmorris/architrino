@@ -1,13 +1,17 @@
 # Like-Polarity Symmetric Repulsion
 
-Setup:
+Two [like architrino polarities](../../../foundations/architrino.md), whose interaction sign is repulsive, initially at rest accelerate apart along their common line under the delayed law. Their causal times enter implicitly, and no exact closed-form solution is currently known.
+
+## Setup
 - Two identical-polarity architrinos (for example, $q_1=q_2=+\epsilon$) placed at separation $r_0$ with $V_1=V_2=0$ and symmetry about the midpoint.
 
-Objectives:
+## Objectives
 - Delay-only formulation of the equations of motion (DDEs).
 - Exact analytic solutions if available; otherwise, status of solvability.
 
-Delay differential equations (two-body, $c_f=1$):
+## Delay Differential Equations
+
+For the two-body system, set $c_f=1$.
 - Causal times:
   - $T_t^{(2\to 1)}\in\mathcal{C}_2(T)$ solves $\lvert X_1(T)-X_2(T_t)\rvert = T-T_t$.
   - $T_t^{(1\to 2)}\in\mathcal{C}_1(T)$ solves $\lvert X_2(T)-X_1(T_t)\rvert = T-T_t$.
@@ -22,6 +26,7 @@ Delay differential equations (two-body, $c_f=1$):
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-6f74f489f538e74a)
+
   $$
   A_2(T)
   \;=\;
@@ -32,14 +37,13 @@ Delay differential equations (two-body, $c_f=1$):
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-667f2aac178100cf)
+
 - $W_{12}^{\mathrm{acc}}$ and $W_{21}^{\mathrm{acc}}$ are the corresponding transmitter-side acceleration weights. A root with a failed transmitter-side floor is a branch-transition or caustic case, not an ordinary stable row of this two-body DDE.
 - Because the two line-of-action signs are opposite, symmetry implies $X_1(T)=-X_2(T)$ and $A_1(T)=-A_2(T)$ for all $T$ given symmetric initial data.
 
-Solvability status:
+## Solvability Status
 - No exact closed-form solution is presently known for the coupled DDE system under mutual repulsion with delay.
 
-Deliverables:
+## Deliverables
 - Exact DDE statements and causal-root definitions suitable for analysis and computation.
 - Notes on symmetry and qualitative properties without invoking approximations.
-
-Plain language: Two like polarities at rest push apart along the line under the delayed law; the governing equations are implicit in the causal times, and no closed-form solution is currently known.

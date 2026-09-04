@@ -2,14 +2,14 @@
 
 This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [General Relativity](./general-relativity.md) and constrained by [Constraint Ledger](../validation/constraint-ledger.md).
 
-Interface chapters:
+Three interface chapters supply the metric map, weak-field parameter bounds, and broader phenomenology used here:
 - Effective metric map: [Emergent Metric](./emergent-metric.md)
 - PPN closure and refractive weak field: [PPN Parameters](./ppn-parameters.md)
 - Phenomenology summary: [General Relativity](./general-relativity.md)
 
 ## Weak-Field Setup
 
-Assume an effective metric
+At the observer level, write the effective metric as a flat comparison metric plus a small perturbation:
 $$
 g_{\mu\nu}^{\text{eff}}=\eta_{\mu\nu}+h_{\mu\nu},
 \qquad
@@ -17,7 +17,8 @@ g_{\mu\nu}^{\text{eff}}=\eta_{\mu\nu}+h_{\mu\nu},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b9ed8fe3f6ed8143)
-with background Noether sea state homogeneous and isotropic at leading order.
+
+Here $\eta_{\mu\nu}$ is the Minkowski comparison metric of linearized general relativity and $h_{\mu\nu}$ is the small observer-level departure reconstructed from the Noether sea. Neither is a metric of the Euclidean substrate. The comparison assumes that the background Noether sea state is homogeneous and isotropic at leading order.
 
 Define trace-reversed perturbation
 $$
@@ -26,9 +27,10 @@ h=\eta^{\alpha\beta}h_{\alpha\beta}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-60e4e1d7e2fb4dd3)
+
 Here $h_{\mu\nu}$, $\bar h_{\mu\nu}$, and the trace $h$ are observer-sector perturbation variables of $g_{\mu\nu}^{\text{eff}}$. They are distinct from the native Euclidean spatial metric $h_{ij}=\delta_{ij}$ on $\Sigma_T$, which does not appear below.
 
-Impose Lorenz gauge
+Impose the Lorenz gauge, the divergence-free coordinate condition used to remove redundant components of the linearized perturbation,
 $$
 \partial^\mu \bar h_{\mu\nu}=0
 $$
@@ -45,6 +47,7 @@ R_{\mathrm{GW}\gamma}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a47965dc1f32587c)
+
 at the GW170817/GRB 170817A scale, after source-emission lag and propagation-path conventions are declared. A model that gives the effective gravitational channel and the photon channel independently tunable limiting speeds has failed this row before any black-hole or cosmological interpretation can use the gravitational-wave record.
 
 The same row is also a $\chi_{\text{sea}}$ identity condition. The Noether sea delay factor that dresses photon-channel timing to $c_\gamma$ cannot split into a photon-only value and a tensor-only value; it must dress the effective gravitational channel to $c_{\mathrm{GW}}^{\mathrm{eff}}$ within the declared multimessenger tolerance. Otherwise the branch has preserved the language of one medium while using two transport laws.
@@ -74,12 +77,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a11345c5d2a49b99)
+
 so plane waves satisfy
 $$
 \omega^2=(c_{\text{GW}}^{\mathrm{eff}})^2k^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1cec7192fcc802c0)
+
 to leading order (higher-order dispersive corrections are constitutive and model-dependent).
 
 Finite-range comparison models may introduce gravitational-wave dispersion, but here that is only a deviation diagnostic. Define the group speed
@@ -88,6 +93,7 @@ v_{\mathrm{g,GW}}\equiv\frac{\partial\omega}{\partial k}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-97498bc03ef91bbc)
+
 In validated frequency bands the constitutive map must satisfy
 $$
 \left|\frac{v_{\mathrm{g,GW}}-c_0}{c_0}\right|<\epsilon_{\mathrm{GW}},
@@ -96,6 +102,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a5ceef2cd831fb52)
+
 so $\epsilon_{\mathrm{disp}}$ is a dimensionless band tolerance. The integrated phase drift across the source distance must remain below the detector residual bound. A finite-range cosmological response is not acceptable if it leaks into already-tested gravitational-wave timing as measurable dispersion.
 
 The same finite-range comparison must also supply a low-frequency forecast rather than leaving drift unconstrained below current ground-based event bands. For a declared pulsar-timing or space-interferometer band $\mathcal{B}_{\mathrm{low}}$, define the accumulated phase drift
@@ -111,6 +118,7 @@ k_{\mathrm{GR}}(f,x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b8be6f7e350de9ec)
+
 where $\Gamma$ is the observer-level propagation path used by the comparison. A useful low-frequency residual is
 $$
 \mathcal{R}_{\mathrm{GW,low}}(\theta)
@@ -127,6 +135,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-552eef65801a0562)
+
 This is a forecast and comparison gate. It does not license a massive-graviton ontology; it only says that any cosmological-scale weakening channel must remain compatible with the low-frequency strain and timing residuals that would test long-wavelength dispersion.
 
 ## Medium-Transport Perturbation
@@ -180,6 +189,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-db5522b8794b4a6c)
+
 The numerator collects non-TT detector power after known instrumental and astrophysical residuals are removed.
 
 The tolerance $\epsilon_{\mathrm{pol}}$ must be attached to a declared detector analysis rather than inferred from the two-mode count. For example, the three-detector GW170814 pure-polarization comparison favored the pure-tensor hypothesis over pure-vector and pure-scalar alternatives by Bayes factors of order $2\times10^2$ and $10^3$, respectively. Those model-selection factors constrain the pure alternatives; they are not by themselves a bound on a small non-TT admixture. A mixed-mode power limit requires the corresponding tensor-plus-extra-mode likelihood and detector network response.
@@ -232,6 +242,7 @@ s_a-\mathcal{P}_{D_a}h^\theta
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8111838f90ffa02e)
+
 This residual is the modern version of the separated-detector check: a signal must be coherent across instruments after antenna response, timing, calibration, and background rejection are fixed. An isolated excess in one detector, or a coincidence that requires an implausible source energy after the same response projection, remains a candidate disturbance rather than an accepted gravitational-wave record.
 
 Public GWOSC/LVK claims must also pass the packet protocol in [Simulation Run Protocols](../validation/simulations/run-protocols.md#public-gravitational-wave-benchmark-protocol) before they support strong-field or effective-metric claims. The public packet fixes event version, strain files, detector masks, parameter-estimation release, waveform family, calibration notes, analysis window, nuisance record, and artifact hashes before residual evaluation. This makes the detector-side gate replayable rather than a general statement that gravitational-wave observations are available.
@@ -256,6 +267,7 @@ N_{\mathrm{occ}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6450dc70a1b9634e)
+
 The accepted gravitational-wave record is therefore classical whenever $N_{\mathrm{occ}}\gg1$. A separate single-quantum claim would need a detector-side packet $\theta_{\mathrm{1g}}$ satisfying
 $$
 \mathcal{R}_{\mathrm{1g}}(\theta_{\mathrm{1g}})
@@ -271,6 +283,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8333391f05bfbc94)
+
 with $\delta_{\mathrm{req}}\sim L_{\mathrm{P}}$ for a single-graviton interferometric distance readout, $\delta_{\mathrm{det}}$ the achieved distance uncertainty, $M_{\mathrm{det}}$ and $D_{\mathrm{det}}$ the detector mass and size, $S_{\mathrm{1g}}$ the predicted single-graviton count, $B_{\mathrm{th}}$ the relevant thermal or particle-background count, and $\epsilon_N$ the allowed occupation-window tolerance. The compactness term prevents a sensitivity claim from hiding a black-hole detector; the background term prevents a thermal-graviton claim from being promoted when statistical scatter in known backgrounds dominates the putative count. Failure of this residual does not refute gravitons as a comparison basis and does not add graviton ontology to $\mathbb{A}\mathbb{A}\mathbb{A}$; it only blocks the stronger detector claim that an observed strain or thermal count has directly resolved individual quanta.
 
 The detector-side packet should also declare which single-quantum route is being claimed. A direct interferometric route must satisfy the Planck-scale distance row without violating the compactness bound. An absorption or scattering route must show that the interaction cross-section and exposure yield a count above neutrino, thermal, and apparatus-background channels. A photon/gravity conversion route must show that the magnetic-field and coherence conditions needed for conversion do not themselves destroy the shared photon-channel and tensor-channel record through pair production, vacuum polarization, or phase decoherence. These are not separate ontologies; they are route-specific projections of the same single-quantum residual.
@@ -304,6 +317,7 @@ d_{\mathrm{shared}}(\theta_H,\theta_{\mathrm{GW}},\theta_{\mathrm{BH}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fd58b35783fa5107)
+
 Here $Q_f$ is the final exterior charge/no-hair label in the Kerr-Newman comparison, not a quadrupole-deviation tensor. The projection $\mathcal{P}_{\mathrm{det}}$ is the detector projection, and $d_{\mathrm{shared}}$ penalizes any fit that uses one state record for the strain channel, another for the horizon-interface label, and another for the black-hole entropy or release ledger. The gate is satisfied only if $\mathcal{R}_{\mathrm{merge}}(\theta_H)$ is below the declared tolerance while preserving the validated inspiral limit, the two tensor polarizations, and the final exterior no-hair coarse-graining. A predicted deviation is admissible only as a bounded residual or a falsifiable template, not as permission to loosen already-tested gravitational-wave recovery.
 
 The GWTC-5.0 release and GW250114 sharpen the event-packet version of this gate. The catalog count, population reconstruction, standard-siren distance inference, high signal-to-noise ringdown, Kerr-mode and overtone tests, Hawking-area comparison, recoil extraction from higher modes, and any proposed near-horizon "direct wave" signature are not independent facts that can be fit from separate records. In $\mathbb{A}\mathbb{A}\mathbb{A}$ they define one strong-field recovery target: source quadrupole, calibrated detector strain, remnant mass and spin, ringdown labels, horizon-interface entropy bookkeeping, recoil or higher-mode rows, and any distance-redshift row must remain bound to one source-event ledger and one Noether sea/effective-metric record.
@@ -322,6 +336,7 @@ d_{\mathrm{shared}}\!\left(\theta_{\mathrm{GW}},\theta_{\mathrm{BBN}},\theta_{\m
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2795400919ed5893)
+
 where $\mathcal{B}_{\mathrm{det}}$ is the validated detector band and $d_{\mathrm{shared}}$ penalizes any branch that requires a gravitational-wave source record inconsistent with the BBN, CMB, or structure-formation records. A positive stochastic signal would become observational pressure on the early medium history; a null result closes only the corresponding branch amplitude, not the whole cosmology program.
 
 ## Energy Flux
@@ -337,6 +352,7 @@ P_{\mathrm{GW}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7152e6632c7b77e4)
+
 with $Q_{ij}$ the trace-free mass quadrupole of the effective source record in the validated weak-field limit. A native Noether sea wave model must therefore explain why scalar monopole leakage, vector dipole leakage, and non-TT power remain below detector bounds rather than adding them as free source channels.
 
 Binary-pulsar orbital decay is the generation-side benchmark for this row. The same source ledger must use the recovered $G_{\mathrm{eff}}$, $c_{\mathrm{GW}}$, and quadrupole moment to predict the observed secular period change after independently modeled kinematic and environmental corrections. Define
@@ -357,6 +373,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b6f57e2ac8c61513)
+
 The weak-field source branch must fit the orbital-decay row while keeping $\mathcal R_{\mathrm{dip}}$ below the binary-system bound. Composition-dependent Noether sea coupling that produces a leading dipole channel is therefore linked directly to the strong-equivalence-principle burden; it cannot be hidden in the detector-side tensor projection.
 
 **Closure Target 3 (leading-order GW flux).** In the same regime, the cycle-averaged flux is
@@ -368,4 +385,5 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-60add69d28a26c9a)
+
 This polarization-summed normalization follows from $\dot h_{ij}^{\mathrm{TT}}\dot h_{\mathrm{TT}}^{ij} =2(\dot h_+^2+\dot h_\times^2)$ in the Isaacson comparison flux. It is the quantity used for binary-orbit energy-loss consistency checks. Energy localization for gravitational waves is an observer-level effective description: the packet may use cycle-averaged fluxes and asymptotic energy loss, but it should not promote a gauge-dependent local gravitational energy density into substrate ontology.

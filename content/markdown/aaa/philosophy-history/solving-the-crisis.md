@@ -1,6 +1,6 @@
 # Solving the Crisis With $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-## Overview
+## From Diagnosis to Resolution Tests
 
 This document is the problem-by-problem accountability layer paired with [Crisis in Physics](crisis-in-physics.md). It turns the crisis diagnosis into resolution tests, claim levels, and concrete derivation burdens.
 
@@ -75,7 +75,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The architectural move is not to quantize an independent spacetime manifold. The native layer is assembly dynamics with path history, causal roots, event ledgers, causal wakes, and Noether sea response. The metric is a recovered observer-level object. Quantum behavior is routed through basin measures, detector response, and path-history phase over the same underlying dynamics. The quantum-gravity problem becomes a recovery problem: one substrate must recover both effective metric behavior and quantum benchmark records.
 
-**Detailed architecture route.** The $\mathbb{A}\mathbb{A}\mathbb{A}$ route would relocate quantum-gravity and renormalizability pressure by denying that the Euclidean void is a continuum field that must itself be quantized. The effective metric called General Relativity would instead be a coarse-grained description of Noether sea response across indexed binary rows and externally exposed assembly envelopes, while gravitons would be collective deformation-wave excitations in an effective limit. That move only becomes closure if it derives the GR limit, recovers the controlled long-distance quantum correction to Newtonian gravity, identifies the ultraviolet cutoff from maximal-curvature assembly structure, and shows how singularity and high-frequency gravitational-wave behavior are replaced by finite substrate dynamics. Concrete falsifiers remain appropriate: data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would rule out this gravity-as-assembly-mechanics path.
+**Detailed architecture route.** The $\mathbb{A}\mathbb{A}\mathbb{A}$ route would relocate quantum-gravity and renormalizability pressure by denying that the [Euclidean void](../foundations/euclidean-void.md), the fixed three-dimensional spatial container, is a continuum field that must itself be quantized. The effective metric called General Relativity would instead be a coarse-grained description of Noether sea response across indexed binary rows and externally exposed assembly envelopes, while gravitons would be collective deformation-wave excitations in an effective limit. That move only becomes closure if it derives the GR limit, recovers the controlled long-distance quantum correction to Newtonian gravity, identifies the ultraviolet cutoff from maximal-curvature assembly structure, and shows how singularity and high-frequency gravitational-wave behavior are replaced by finite substrate dynamics. Concrete falsifiers remain appropriate: data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would rule out this gravity-as-assembly-mechanics path.
 
 **Resolution tests.** Demand one shared closure record for gravitational redshift, Shapiro delay, lensing, perihelion precession, gravitational-wave propagation, quantum phase, detector records, and the controlled low-energy quantum correction to Newtonian gravity. Data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would falsify this route.
 
@@ -501,6 +501,7 @@ P(A,B\mid a,b,\lambda)\ne P(A\mid a,\lambda)P(B\mid b,\lambda),
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-33641f115dae2045)
+
 for the completed retained record $\lambda$, while preserving measurement independence and setting-independent one-wing marginals. A shared preparation is not sufficient if it merely screens the two apparatus responses into independent local laws.
 
 **Resolution tests.** Use loophole-free Bell tests, CHSH values, analyzer-angle dependence, Malus' law, delayed-choice variants, detector efficiencies, and source statistics. Closure must show why the model does not allow controllable superluminal signaling.

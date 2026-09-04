@@ -1,6 +1,6 @@
 # Architrino Simulation Tests
 
-This note records the minimum tier-1 simulation tests that should be passed before any strong self-hit or non-Markovian claims are trusted numerically. Its purpose is narrow: establish provenance-resolved propagation, baseline diagnostics, and a workable history-buffer strategy before moving to richer dynamics.
+The minimum tier-1 tests establish provenance-resolved propagation, baseline diagnostics, and a workable history-buffer strategy before any strong [self-hit](../../foundations/architrino.md) claim—one in which an architrino encounters its own earlier wake—or other delayed-memory claim is trusted numerically.
 
 The reader should treat this as the simulator's first honesty check. Before the code is allowed to talk about rich self-hit behavior, it has to show that causal rings arrive in the right order, source identities are preserved, and history lookups are not quietly inventing the past.
 

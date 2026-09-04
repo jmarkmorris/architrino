@@ -1,6 +1,6 @@
 # Bell-Family Record-Measure Harness
 
-This protocol gives the Bell-family residuals in [No-Go Theorems](../no-go-theorems.md) their first executable scaffold. It is not a closure proof. It is a probability-table harness that checks whether a proposed record table preserves the standard benchmark shape before any claim is made about deriving that table from architrino dynamics, pair provenance, detector kernels, and finite-time basin measures.
+This protocol gives the Bell-family residuals in [No-Go Theorems](../no-go-theorems.md) their first executable scaffold. It is not a closure proof. It is a probability-table harness that checks whether a proposed record table preserves the standard benchmark shape before any claim is made about deriving that table from [architrino dynamics](../../foundations/architrino.md), where two polarity classes interact through delayed line-of-action acceleration, pair provenance, detector kernels, and finite-time basin measures.
 
 The simple point is that one Bell number is not enough. A candidate table may look good on a CHSH average while failing no-signaling, GHZ parity, Hardy structure, or measurement-independence accounting. This harness keeps those checks in one place before the deeper dynamics are allowed to claim success.
 

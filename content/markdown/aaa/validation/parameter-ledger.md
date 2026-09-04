@@ -43,6 +43,7 @@ c_f
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fd14eacc9dd4bd4a)
+
 as the canonical symbol for the physical wake speed. Numerical instantiations use $c_f=1$; a generic velocity symbol must not replace it.
 
 ### Parameter versus field
@@ -108,6 +109,7 @@ Z_X
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-513d15a756279280)
+
 where $u(X)$ is the quoted standard uncertainty. If $X$ is exact by SI definition, the residual is not a measurement residual. The closure test is instead whether the same substrate-to-observer unit map recovers the exact convention while also passing the adjusted measured rows that depend on it.
 
 The uncertainty convention is also fixed. A standard uncertainty $u(y)$ is an estimated standard deviation for the result $y$, and the relative standard uncertainty is
@@ -116,6 +118,7 @@ u_r(y)=\frac{u(y)}{|y|}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f39bec73110a44c8)
+
 for $y\ne0$. When the quoted distribution is approximately Gaussian, $y\pm u(y)$ is the one-standard-uncertainty comparison interval, not a broad tolerance band to be enlarged after a fit.
 
 Useful 2022 CODATA rows for the closure stack are:
@@ -169,6 +172,7 @@ M_H^{\mathrm{ledger}}=126.0\,\mathrm{GeV},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f283da4c13fc3b29)
+
 with the channel set
 $$
 \mathcal{C}_{H}^{\mathrm{ATLAS\,2012}}
@@ -177,6 +181,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-797be6d4c83539ce)
+
 The corresponding validation contribution is
 $$
 \mathcal{R}_{H,\mathrm{ATLAS\,2012}}(\theta)
@@ -201,6 +206,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4e92a4c55241055e)
+
 Here $M_H^{\mathrm{breath}}(\theta)$ is the predicted scalar or breathing-mode mass from the same branch record, $\mu_H^{\mathrm{eff}}(\theta)$ is the observer-level production-and-branching normalization, and $Z_c$ records the declared channel significance or likelihood contribution. This row does not identify the Higgs with a named native mode, does not update to a current world-average mass, and must not be used as a branch-search, shielding, or mass-map input. Higgs-sector closure requires the residual to close after the branch, shielding, channel, and detector-provenance records have been fixed independently.
 
 ### Naturalness and sensitivity
@@ -212,6 +218,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3d0c9994146c3809)
+
 as the default sensitivity diagnostic.
 
 Here $\Delta p/p$ is the fractional perturbation of a parameter or closure output, and $\Delta \mathrm{obs}/\mathrm{obs}$ is the resulting fractional perturbation of the observable being tested. Values $\mathrm{FTQ}(p)>10$ should be treated as fine-tuning pressure unless a discrete topology, symmetry, attractor basin, or measured benchmark explains the sensitivity.
@@ -234,6 +241,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6762729b0329ae98)
+
 spans the base dimensions $(\mathrm{L},\mathrm{T},\mathrm{Q})$ because
 $$
 [c_f]=\mathrm{L}\,\mathrm{T}^{-1},
@@ -244,6 +252,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-91f5f3fec832e76d)
+
 It therefore defines canonical two-body units
 $$
 Q_*=\epsilon,
@@ -254,12 +263,14 @@ T_*=\frac{R_*}{c_f}=\frac{\kappa\epsilon^2}{c_f^3}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2b6eafb45d37a37a)
+
 For $\tilde{\mathbf X}=\mathbf X/R_*$, $\tilde T=T/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
 $$
 \tilde R_{ij}=\tilde T-\tilde T_t
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f4ca714a9893ed48)
+
 and
 $$
 \frac{d^2\tilde{\mathbf X}_i}{d\tilde T^2}
@@ -272,6 +283,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ec1cfba383b1b28c)
+
 up to the separately declared regulator ratio $\eta/R_*$ when a mollified surrogate is being used.
 
 Consequently, every dimensionless output of the isolated bare two-body problem is a pure branch-geometry result: root multiplicities, branch-birth thresholds, maximum-curvature speed ratios, residual signs, and any certified radius in units of $R_*$. This does not certify that a stable maximum-curvature binary exists. It says that if a certified two-body branch produces such a number, that number is computed by the root ledger and stability problem rather than fitted by changing a Layer-I dimensionless constant.
@@ -348,6 +360,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dc8084e941317a8f)
+
 A representative regularized form is
 $$
 \frac{d^2\mathbf X_a}{dT^2}
@@ -371,6 +384,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-83891c7a130507c1)
+
 with canonical normalization choice
 $$
 Z_e=1
@@ -390,6 +404,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e6cb05ef8b933aa2)
+
 and
 $$
 \Phi_{\text{eff}}(x_{\mathrm{eff}}^i)
@@ -423,6 +438,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b18b7ff2a38aea93)
+
 and
 $$
 \beta_{\mathrm{PPN}}=\frac{1+2C_2}{2}
@@ -447,6 +463,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a89e0bc1240ed7ec)
+
 The coefficient $\Xi_4$ is not constrained by this three-parameter map. Full zero-leakage closure additionally requires either the independent condition $\Xi_4=0$ or a separately declared observable that extracts $\Xi_4$.
 
 ### 5. Mass map
@@ -459,6 +476,7 @@ m_{\text{inertial}}(A)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ba82b34369d50270)
+
 with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit separately for each particle.
 
 This relation means that $m_{\text{inertial}}(A)$ is not a primitive parameter. It is an output of shielding, internal energy, and medium response.
@@ -487,9 +505,10 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fe1b1bb03918ffaa)
+
 together with the unresolved constants and response-map assumptions needed to turn that dimensionless coefficient into an observer-level mass prediction.
 
-The compact finite-coordinate no-go is a status blocker inside $\mathcal{P}_{A_0}$, not an additional free parameter and not a benchmark input. It requires a predeclared branch-chart revision before Tier 1 continuation can be interpreted as progress toward the mass-facing output above.
+The compact finite-coordinate no-go blocks further interpretation inside $\mathcal{P}_{A_0}$; it is neither an additional free parameter nor a benchmark input. Tier 1 continuation can count as progress toward the mass-facing output above only after a branch-chart revision has been declared in advance.
 
 ### 6. Planck-alignment map
 
@@ -503,6 +522,7 @@ I_{\text{align}} \stackrel{\text{hyp.}}{\approx} \hbar,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-568a4acff58ea768)
+
 and the effective gravity-side alignment estimate
 $$
 G_{\text{eff}}
@@ -524,6 +544,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cbd33793a8a0a990)
+
 and the discrete axial-frame branch hypothesis
 $$
 \alpha_n=n\,\theta_W^{\text{bare}}
@@ -583,6 +604,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-889bfc545ab9c36b)
+
 where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive set that survives particle, spacetime, and quantum-side tests simultaneously.
 
 ## Related Chapters

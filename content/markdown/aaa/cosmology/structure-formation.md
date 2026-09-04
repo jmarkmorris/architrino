@@ -1,6 +1,6 @@
 # Structure Formation
 
-This chapter translates standard structure-formation language into medium-and-assembly evolution inside a fixed Euclidean void. Its purpose is to explain how overdensity growth, effective expansion variables, and dark-sector clustering are meant to fit together when the Noether sea replaces metric expansion as the underlying ontology. It should be read as the growth-side continuation of [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), and [Dark Matter](./dark-matter.md).
+This chapter translates standard structure-formation language into medium-and-assembly evolution inside a fixed Euclidean void. It explains how overdensity growth, effective expansion variables, and dark-sector clustering fit together when the Noether sea replaces metric expansion as the underlying ontology. The growth-side foundations are [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), and [Dark Matter](./dark-matter.md).
 
 ## Scope and Physical Picture
 
@@ -38,6 +38,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2700ac5bdc03bb3c)
+
 The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation is
 $$
 \frac{d^2\delta_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}
@@ -97,6 +98,7 @@ T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-61c91d955cd3ead3)
+
 up to the declared baryon acoustic, neutrino/free-streaming, and nonlinear corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an import of metric expansion ontology. It is the observer-level shape test that the same Noether sea state history must pass while computing $G_{\text{eff}}(a,k)$, CMB lensing, $f\sigma_8$, and high-redshift halo statistics.
 
 ### Component Transfer and Free-Streaming Interface
@@ -114,6 +116,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9c7129902b2d41dd)
+
 where $\delta_x$ is the density contrast, $\theta_x$ is the velocity-divergence variable, $\sigma_x$ is the anisotropic-stress variable, and $\delta p_x$ is the pressure perturbation. A transfer-function branch is then a map
 $$
 \mathbf{y}_x^\theta(k,z)
@@ -127,6 +130,7 @@ T_x^\theta(k,z)T_y^\theta(k,z)P_{\mathrm{seed}}^\theta(k)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2b281c6178c9dc12)
+
 with the same $\theta_{\mathrm{sea}}$ used for CMB lensing, BAO, BBN, and low-redshift growth. In an adiabatic comparison packet the initial component contrasts must satisfy
 $$
 \frac{\delta\rho_x^\theta}
@@ -145,6 +149,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4de833ac52f80e51)
+
 unless the branch explicitly declares an isocurvature source and carries it through the CMB, BBN, and matter-power residuals.
 
 Neutrino and warm-dark-sector signals sharpen the small-scale transfer test. For ordinary massive neutrinos,
@@ -162,6 +167,7 @@ f_\nu^\theta
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5870b21b4b669e6d)
+
 below the free-streaming scale. For a sterile-neutrino or warm neutral-assembly comparison branch, retain the production-history dependence explicitly:
 $$
 \lambda_{\mathrm{FS}}^\theta
@@ -175,6 +181,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f26dcb882346e448)
+
 The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
 
 Cosmological neutrino-mass bounds also depend on the late matter-source accounting used by the expansion fit. A DESI-era matter-conversion comparison can relax or shift $\Sigma m_\nu$ constraints because converting part of the late matter budget into an effective dark-energy component changes the nonrelativistic matter inventory sampled by BAO, CMB, and growth. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the lesson is not that the neutrino branch has changed ontology. The lesson is that any bound on $\Sigma m_\nu^\theta$ must be read together with the same late-time source term, baryon-accounting record, and Noether sea transport history used for expansion and structure formation.
@@ -323,6 +330,7 @@ W_{\mathrm{kSZ}}=[30,230]\,\mathrm{Mpc}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4c5aaaf80578ac1f)
+
 The structure-formation residual is then
 $$
 \mathcal{R}_{\mathrm{kSZ}\text{-}force}(\theta)
@@ -339,6 +347,7 @@ d_{\mathrm{shared}}\!\left(
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-45ff932993554856)
+
 This residual protects the level distinction. A Noether sea response may still modify galaxy-scale low-acceleration behavior, but it cannot become a free large-scale modified-gravity law. On the ACT/SDSS halo-pair window the same $\theta_{\mathrm{sea}}$ must recover an approximately inverse-square effective pull while preserving CMB lensing, weak lensing, redshift-space distortions, and the matter power spectrum.
 
 The Lyman-$\alpha$ forest supplies a small-scale transfer gate on the same branch. Let $P_F^\theta(k,z)$ be the transmitted-flux power spectrum projected from the matter, thermal, ionization, and photon-transfer record. Then
@@ -355,6 +364,7 @@ P_F^\theta(k,z)-P_F^{\mathrm{obs}}(k,z)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ef499dbcee5e6c46)
+
 This is an observer-level recovery target, not a direct matter-power measurement. A branch fails if it fits the CMB optical depth with one ionization history while changing the thermal or small-scale growth record for the forest.
 
 Pre-BBN comparison branches enter structure formation only through the transfer record they leave behind. For any branch $X$ retained by [Inflation Model](./inflation-model.md#pre-bbn-comparison-gate) and [BBN Constraints](./BBN-constraints.md#pre-bbn-handoff-gate), the growth-side observable is
@@ -367,6 +377,7 @@ P(k,z\mid \theta_{\mathrm{sea}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-54d06df6116df70e)
+
 This quantity must be evaluated with the same $\theta_{\mathrm{sea}}$ used for BBN, CMB, cluster offsets, weak lensing, and redshift-space distortions. If a weakly coupled component is invisible to light elements only by acquiring a free-streaming length, abundance, or interaction history that later changes independently in $P(k,z)$, $C_L^{\phi\phi}$, or halo statistics, the comparison branch fails the shared-record gate.
 
 ### High-Redshift Structure
@@ -400,6 +411,7 @@ Z^\theta[
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3e148cfbdad91ebb)
+
 Here the first term tests whether the shared source history can grow the compact object, while the second tests whether the same source-to-receiver and selection records support the reported redshift. A branch fails this row if quasar growth is repaired by changing the age, redshift-transfer, or Noether sea state independently of the growth, CMB, lensing, and source-history records.
 
 Little-red-dot spectra add the obscured-accretion side of the same early-growth test. In a system such as GLIMPSE-17775, the compact red source is not interpreted from brightness alone: lensing reconstruction, deep JWST spectroscopy, line-profile modeling, host decomposition, gas density, optical depth, fluorescence, absorption, and X-ray or radio suppression all help determine whether the object is a rapidly accreting black hole hidden inside a dense gas envelope. If electron scattering and radiative transfer set much of the broad-line profile, then the inferred black-hole mass and Eddington ratio are coupled to gas-state modeling rather than to virial motion alone. The structure-formation branch must therefore explain the compact source, its host contribution, and its line-formation environment with one source-history record instead of treating little red dots as either overmassive galaxies or ordinary exposed quasars.
@@ -441,6 +453,7 @@ Y_{\mathrm{gal/AGN}}^{\mathrm{obs}},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7e000792d8d28181)
+
 where $Y_{\mathrm{gal/AGN}}^{\mathrm{obs}}$ denotes the chosen galaxy or AGN observable packet and $\Pi_{\mathrm{gal/AGN}}$ projects the shared history model onto the observables being compared. The same $\theta_{\mathrm{sea}}$ must also supply the growth, redshift, CMB, lensing, and dark-sector rows. If jet morphology or host evolution can be fit only by changing the Noether sea state independently of the cosmology packet, the branch is a local fit rather than a shared history.
 
 ---
@@ -493,6 +506,7 @@ K(a)\,\delta_{ij}\,\theta
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-500a4a13cf59a017)
+
 with bulk modulus $K$, shear modulus $S$, and viscosities $(\zeta_{\text{bulk}},\eta)$. The subscript prevents confusion with the shielding factor $\zeta(A)$ used in assembly-mass closure.
 
 For scalar/longitudinal modes in Fourier space, the linear response equation is
@@ -503,6 +517,7 @@ g_m(a)\,\delta\rho_m(a,k,\omega)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ab273ab17ca69d13)
+
 where
 $$
 M_L(a)\equiv K(a)+\frac{4}{3}S(a),
@@ -511,6 +526,7 @@ M_L(a)\equiv K(a)+\frac{4}{3}S(a),
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6624ca6af422330f)
+
 and $m_L(a)$ is the finite-range restoring scale (equivalently $k_\ast(a)^2=m_L^2/M_L$).
 
 Use the Fourier convention $e^{-i\omega t_{\mathrm{eff}}}$. For a stable static response, $M_Lk^2+m_L^2>0$. Under the displacement convention above, an overdensity $\delta\rho_m>0$ produces compression when $\theta<0$, so the positive-response branch requires $g_m<0$. Then $\delta u_{\mathrm{sea}}=-\bar u_{\mathrm{sea}}\theta>0$ and $\mu_{\mathrm{sea}}>0$, enhancing $G_{\mathrm{eff}}$. Increasing $M_L$ or $m_L$ reduces the response magnitude but cannot reverse its sign.
@@ -525,6 +541,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-19ee86226b43db38)
+
 with susceptibility
 $$
 \mu_{\text{sea}}(a,k,\omega)
@@ -543,6 +560,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-db5c7368c777da5e)
+
 Therefore
 $$
 G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr],
@@ -573,6 +591,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3dc324e5bcd8ddaf)
+
 $$
 \mu_0(a)\equiv-\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}{m_L^2(a)},
 \qquad
@@ -593,12 +612,14 @@ G_N\left[1+\mu(a,k)S_{\mathrm{loc}}(\mathcal{I}_{\mathrm{loc}})\right],
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-059cf9517a79ca91)
+
 For every validated solar-system, binary-pulsar, lensing, and gravitational-wave record $r$, the recovery requirement is
 $$
 \left|\mu(a_r,k_r)S_{\mathrm{loc}}(\mathcal{I}_r)\right|<\epsilon_r
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f7d6c88b62143c87)
+
 Cosmological deviations are viable only when the same coefficient record also fits BAO, CMB lensing, supernova distances, and $f\sigma_8$ growth without retuning $S_{\mathrm{loc}}$ by observational channel.
 
 Late-time growth suppression requires $\mu<0$ on the relevant scales. With the conventions and stable denominator above, that sign requires $g_m>0$, which is opposite to the positive-density compression branch, or an additional constitutive term that changes sign with scale or epoch. Cooling or increased stiffness alone reduces $|\mu|$; it does not produce negative $\mu$. Deriving the required sign change from one stable Noether sea constitutive law is therefore an explicit closure burden for any proposed $S_8$ explanation.

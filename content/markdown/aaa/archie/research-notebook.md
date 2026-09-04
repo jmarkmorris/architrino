@@ -102,6 +102,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bfdfc700a8e12ddd)
+
 Unless a local document has already derived the needed row, $\chi_{\mathrm{eff}}$ remains a closure target. It cannot be smuggled into a derivation by reusing bare $t$, $x^i$, $dt$, or $dx^i$ as if the absolute and observer charts had already been identified.
 
 This notation change matters because it protects the central architecture of $\mathbb{A}\mathbb{A}\mathbb{A}$. The theory keeps absolute time, the Euclidean void, and the Euclidean-void rest frame at the substrate level, while still requiring Physical Observers to recover Lorentz-consistent records inside tested regimes. The notation now forces each calculation to say which side it is on: substrate dynamics in the absolute frame, or observer-accessible Lorentz/GR comparison after clock, ruler, signal, and Noether sea response have been projected into an effective chart.
@@ -167,6 +168,7 @@ s_a,\,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4a7a0324f6e9e216)
+
 Here $f_a$ is the layer frequency or return rate, $r_a$ is the characteristic radius or retained lever arm, $E_a$ is the retained branch-energy row, $s_a=\|\mathbf{v}_a\|$ is the scalar speed or speed statistic, $\phi_a$ is the phase offset, $\hat{\mathbf n}_a$ is the plane-normal or principal-direction row, and $\mathcal{L}_a$ is the active causal-root ledger. On a circular carrier chart one has $s_a=2\pi f_a r_a$, but that identity is only a chart relation. It does not make frequency, radius, speed, energy, phase, or ledger complexity subordinate to one fixed ordering.
 
 This generalization changes the search program. Instead of asking first whether the doubling-frequency `4:2:1` pattern, the role-assigned $(f+2,f,f-1)$ binary-2 closure candidate, or another named row is correct, the solver should search the labeled but unordered domain
@@ -179,6 +181,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f45d1884465ade21)
+
 and then attach any `I:M:O` role map only after a retained branch supplies the evidence for inner, middle, and outer roles. The symmetric group $S_3$ acts on the three support-row records, so repeated solutions under relabeling are not waste. They are confirmation that the search has found a symmetric sector. A quotient-sector summary may be useful later, but the raw search should not discard a row simply because a permuted copy has already appeared.
 
 The practical output of this search should be an atlas rather than a single row. Each candidate region should report the unsorted ratios
@@ -193,6 +196,7 @@ s_1:s_2:s_3,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-15e6c51fb55e5a05)
+
 along with phase offsets, plane-orientation determinant, causal-root ledgers, response-center motion, group velocity, total momentum, total angular momentum, and assembly topological charge. Stable retained branches can then be compared by energy differentials $\Delta E_{ab}=E_a-E_b$, wake-history decomposition, sea stability, and accessory-architrino capture behavior. This is the beginning of a systematic periodic-table program for the Noether braid: classify stable six-body branches by topological labels and dynamical margins, then ask which architectures can bind additional architrinos without destroying the retained braid ledger.
 
 The iso-frequency possibility became important in this wider space. A candidate can satisfy
@@ -201,6 +205,7 @@ f_1=f_2=f_3
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e87a038acac89fa7)
+
 without requiring equal radii, equal energies, equal speeds, equal phases, or equal root ledgers. In a circular comparison chart, different lever arms at common frequency give
 $$
 s_1:s_2:s_3
@@ -209,6 +214,7 @@ r_1:r_2:r_3
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0cba6c3f676ea5cf)
+
 when the same angular-frequency convention is used. Thus an iso-frequency branch can naturally contain one or more super-field-speed carrier rows if a retained lever arm is large enough, while the primitive causal wake speed remains $c_f$. That is not a signal-speed violation. It is a branch-geometry statement: the transmitter trajectory can enter regimes with additional self-hit or partner-hit roots, Jacobian sign changes, folds, and caustic behavior.
 
 This insight changes how the current candidates should be read. Doubling-frequency locks, source records that assign a closure role to binary 2, and iso-frequency rows are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of the Noether braid architecture. The iso-frequency row is especially valuable because it separates a common clock or return-frequency condition from the energy, radius, velocity, phase, and ledger data that may actually distinguish the three binaries. If such a branch exists, the energy differentials and speed regimes would be consequences of branch energy placement and retained lever-arm geometry, not of an imposed frequency hierarchy.
@@ -361,6 +367,7 @@ v_k=2\pi f_k r_k=\beta_k c_f
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b5dad870567909c2)
+
 and then states explicitly the four assumptions that are actually doing the work.
 
 The first assumption is the one that now carries the regime claim: outside the black-hole event horizon, and through the horizon-transition regime, source-record binary 2 is pinned at the field speed,
@@ -369,6 +376,7 @@ v_2=c_f
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b78868cd05f358b7)
+
 The second assumption is exact integer phase closure relative to the binary-3 period, $f_3:f_2:f_1=1:m:n$ with $1 < m < n$, so that when binary 3 completes one cycle, binaries 2 and 1 also return to cycle start. The third assumption is fixed relative phase lock, and the fourth is a selection principle: among admissible integer locks, the realized one should be the one that maximizes cycle-averaged cancellation of the low-order far-field or effective potential signal.
 
 Under these assumptions, the geometry is controlled by the integer pair $(m,n)$ together with the remaining speed factors $\beta_3$ and $\beta_1$. The immediate formulas are
@@ -379,6 +387,7 @@ r_1=\frac{\beta_1}{n\beta_3}\,r_3
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c57b996082b116f1)
+
 So even if one later tests the doubling-frequency candidate $(m,n)=(2,4)$, the frequency lock $1:2:4$ does not force equal speeds and does not force self-similar radii.
 
 The conceptual gain is that the note now separates three different burdens cleanly. Kinematics gives the exact identity above. Integer phase closure gives commensurate frequencies. The cancellation principle is then the extra ingredient that might select one preferred integer lock from the commensurate lattice.
@@ -408,6 +417,7 @@ W_{ij}^{\mathrm{acc}}=\frac{c_f}{|D_{t,ij}|}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0132142e58e2d710)
+
 with
 $$
 D_{t,ij}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf r}_{ij}(T_r;T_t),
@@ -416,6 +426,7 @@ D_{r,ij}=c_f-\mathbf V_i(T_r)\cdot\hat{\mathbf r}_{ij}(T_r;T_t).
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a2b5cc65ac89d344)
+
 The transmitter emits according to the same constant-cadence rule. Transmitter motion changes how the emitted wake surfaces bunch or dilate through $D_t$. Receiver motion changes the signed playback of successive emission times through $D_r/D_t$, but it does not change the acceleration strength of a surface that has already arrived.
 
 Receiver velocity appears in signed root playback through $D_{r,ij}/D_{t,ij}$ and affects later reception geometry. Magnetic-like behavior remains an emergent closure target built from delayed geometry, transmitter-side acceleration weight, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product acceleration.
@@ -518,6 +529,7 @@ t & 0.00845 & 0.04029 & 0.99915
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-06abf8ac8bcfb338)
+
 with the starred entries used as calibration anchors. The remaining entries $\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are algebraic consequences of the imported standard three-angle parametrization. The table is therefore a comparison-grade reconstruction, not six independent $\mathbb{A}\mathbb{A}\mathbb{A}$ predictions.
 
 The non-trivial model content is the holonomy relation
@@ -526,4 +538,5 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-068528654591af70)
+
 which gives $\delta = 66.35^\circ$ and $J = 3.04 \times 10^{-5}$ from those inputs. The claim is restricted to that phase relation and its Jarlskog output; it is not full flavor closure.

@@ -1,6 +1,6 @@
 # Candidate Braid Analysis Methodology
 
-This chapter defines an analytical method for prescribed braid records. Its purpose is controlled comparison: every candidate is evaluated with the same causal-wake formula, probe set, retained-history rule, return window, and scoring rules before one geometry is said to cancel or expose more wake than another.
+This chapter defines an analytical method for prescribed braid records. Its purpose is controlled comparison: every candidate is evaluated with the same [causal-wake formula](../foundations/architrino.md#the-wake-is-geometry-not-fluid), which constructs the source-dependent delayed geometry emitted by architrinos, and with the same probe set, retained-history rule, return window, and scoring rules before one geometry is said to cancel or expose more wake than another.
 
 A prescribed record supplies known transmitter paths from which the delayed roots, wake superposition, virtual-probe response, cancellation, angular structure, and spectra can be evaluated at any event $(T,\mathbf X)$. The method concerns only those analytical consequences of the declared paths. It does not assess assembly stability, environmental support, or any unprescribed motion.
 

@@ -20,7 +20,7 @@ Failure of a compact coordinate chart does not falsify every possible $A_0$ bran
 
 ## Quotient-Coordinate Row
 
-The reduced coordinate $z_\Lambda$ describes the geometry after quotienting away global rotations, the common $S^1_{\mathbf{k}}$ phase gauge, and allowed discrete relabelings $\Gamma_\Lambda$ that preserve polarity assignment, layer roles, speed ordering, and causal-root branch class.
+The reduced coordinate $z_\Lambda$ describes the geometry after quotienting away global rotations, the common $S^1_{\mathbf{k}}$ phase gauge, and allowed discrete relabelings $\Gamma_\Lambda$ that preserve polarity assignment, layer roles, speed ordering, and the [causal-root](../../foundations/architrino.md) branch class identifying which earlier emissions reach the receiver.
 
 For this protocol only, the source-record layer aliases map to persistent indices by
 $$
@@ -28,6 +28,7 @@ I\leftrightarrow1,\qquad M\leftrightarrow2,\qquad O\leftrightarrow3.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cf884bbe20f012b6)
+
 Persistent indices identify the binaries. The aliases describe the declared radial role on this one chart and do not relabel the taxonomy.
 
 | Geometric information | Meaning |
@@ -75,6 +76,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ae45d430bea6eace)
+
 Each component has a stated tolerance and interpretation. An uncomputed component is explicitly identified as uncomputed, not assigned zero.
 
 The Tier 0 residual surface deliberately includes entries that are not computed at Tier 0:

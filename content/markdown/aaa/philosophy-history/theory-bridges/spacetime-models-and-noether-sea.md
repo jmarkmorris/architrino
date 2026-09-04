@@ -2,7 +2,7 @@
 
 This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether sea](../../spacetime/noether-sea.md), [Emergent Metric](../../spacetime/emergent-metric.md), [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md), [PPN Parameters](../../spacetime/ppn-parameters.md), and [General Relativity](../../spacetime/general-relativity.md).
 
-The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether sea`.
+Historically important models remain available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether sea`.
 
 The chapter is therefore a translation table, not a museum of metaphors. Each outside model is useful only to the extent that it tells the reader which job must be done: recover a signal cone, a clock map, a stress response, a boundary condition, a leakage bound, or an entropy ledger. Once that job is named, the wording must return to the native stack: absolute time, Euclidean void, Noether sea, assemblies, causal wakes, and effective observer geometry.
 
@@ -146,6 +146,7 @@ v_c^{\mathrm{cmp}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9a964a662ac2f6a3)
+
 In the source model the gap was identified with rest energy and a Compton-scale estimate pushed the critical velocity toward $c_0$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is only a comparison test. A Noether sea branch may borrow the structure only after it defines a native excitation gap, explains which assemblies or collective modes carry it, and shows that any low-dissipation or transparent regime follows from $v_{\mathrm{rel}}<v_c^\theta$ rather than from naming the medium a superfluid.
 
 The longer Berezhiani-Khoury theory paper sharpens the comparison into source-side technical criteria. Its useful contribution for this bridge is not the dark-matter ontology, but the way it ties phase behavior, an order-parameter phase, a phonon effective action, a two-component finite-temperature description, and observational failure modes into one calculable structure:
@@ -340,7 +341,7 @@ The most important failure mode is hidden synonym drift. If a comparison term st
 
 ## External Anchor Points
 
-This document is an internal bridge, not a bibliography, but several external mathematical anchors fix the comparison classes:
+The comparison is selective rather than bibliographic, but several external mathematical anchors fix the comparison classes:
 
 | Anchor | Use in this bridge |
 | --- | --- |

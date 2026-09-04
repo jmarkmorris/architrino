@@ -1,16 +1,16 @@
 # UI Guidelines
 
-This document is the contributor-facing reference for reader-facing UI standards across Architrino applications and application-like surfaces. Its purpose is to provide one place where interface preferences can be recorded deliberately instead of being scattered across code, scenes, and ad hoc decisions.
+This guide is the canonical contributor-facing reference for reader-facing UI standards across Architrino applications and application-like surfaces. It keeps interface preferences in one deliberate authority rather than scattering them across code, scenes, and ad hoc decisions.
 
 Interface rules are part of explanation. A reader who is wrestling with unfamiliar physics should not also have to decode inconsistent controls, unclear navigation, or mixed visual language.
 
-This document is intentionally lightweight. It uses a grouped inventory of UI elements and their preferred treatment, with undecided preferences left blank until they are explicitly decided.
+The guide uses a grouped inventory of UI elements and their preferred treatment, with undecided preferences left blank until they are explicitly decided.
 
 The third column is a comma-separated ledger of known web-facing docs or app surfaces that do not yet match the preferred treatment. It can remain blank until those mismatches are audited.
 
 ## Document Role
 
-This document is the canonical UI preference reference. It governs applications; it is not itself a product application. Its scene entry is an intentional documentation route, not an Applications-list entry or standalone-app launch target. It may also carry a short implementation-audit ledger, but the two roles should remain separate.
+The guide governs applications; it is not itself a product application. Its scene entry is an intentional documentation route, not an Applications-list entry or standalone-app launch target. It may also carry a short implementation-audit ledger, but the policy and audit roles remain separate.
 
 - [Branding and Marketing](branding-and-marketing.md) owns the favored brand palette, logo treatment, public visual identity, contact card, and marketing presentation. This guide owns how that identity is applied inside the webapp.
 - [Navigation and Controls](navigation-and-controls.md) explains accepted controls from the reader's perspective. This guide owns the shared standards those controls implement.

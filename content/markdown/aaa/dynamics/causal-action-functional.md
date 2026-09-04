@@ -16,6 +16,7 @@ W_{ij}^{\mathrm{acc}}(T_r;T_t)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-590fe06025cd1656)
+
 with
 $$
 D_{t,ij}
@@ -68,6 +69,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1c3f87e44bcd0f9a)
+
 on the same retained branch record. A scalar extremum of $\bar{\mathcal A}_{\mathrm{rec}}$ is therefore only a candidate branch label until the vector residuals close.
 
 ## Geometric/Topological Framework
@@ -124,6 +126,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dbf48509e929cd9b)
+
 If $|\beta_f(T)|\le\beta_{\max}<\infty$ uniformly, then the active circular self-hit count is uniformly bounded:
 $$
 N_{\mathrm{self}}(T)
@@ -132,12 +135,14 @@ N_{\mathrm{self}}(T)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a320e7a66f6e837c)
+
 where $C_{\mathrm{circ}}$ is an absolute endpoint-count constant for the circular root equation. On a one-sign subchart this has the sharper asymptotic form
 $$
 N_{\mathrm{self}}^{(+)}(\beta_f)=\frac{\beta_f}{\pi}+O(1).
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2376285d1dd4b77c)
+
 The estimate follows from the circular self-root equation $2\beta_f|\sin(\delta/2)|=\delta$. Every positive root lies in the compact interval $0<\delta\le 2\beta_f$, and each half-winding contributes only a bounded number of intersections with the line $\delta/(2\beta_f)$. The number of available half-windings therefore grows linearly with $\beta_f$, which gives the stated bound and one-sign asymptotic count.
 
 The branch births occur at tangencies of the circular root equation, so the root census, Jacobian-null thresholds, and inactive-gap changes are one topological ledger. On the non-translating circular chart, $D_r=D_t$, so the playback ratio is one. The acceleration weight is instead $W^{\mathrm{acc}}=c_f/|D_t|=1/|J|$ in normalized units and is not generally one. The branch-count theorem therefore uses the root structure and does not certify acceleration balance, action closure, or stability. The detailed circular derivations are in [Master Equation](master-equation.md) and the winding-index census in [Binary Dynamics](binary-dynamics.md#root-multiplicity-vs-speed).

@@ -1,6 +1,6 @@
-# Self-energy and regularization notes
+# Self-Energy and Regularization
 
-Purpose: explain why classical "point-charge self-energy" divergences do not arise in this framework, and summarize the role of measure-valued causal surfaces, the $H(0)=0$ convention, and $\eta$-mollification.
+The canonical ontology does not attach a permanent $1/r$ field to an [architrino](../../../foundations/architrino.md), the massless polarity carrier of the substrate law. Measure-valued expanding causal surfaces, the $H(0)=0$ endpoint convention, and $\eta$-mollification therefore exclude the classical static point-charge self-energy construction from an admitted finite-$\eta$ branch chart. Finite-width boundedness and the zero-width limit still require their own convergence tests.
 
 ## Classical self-energy pathology (contrast)
 
@@ -13,7 +13,7 @@ This project does not posit a static near field. Instead:
 - Measure-valued expanding causal surfaces (no static $1/r$ near field):
   - Each emission is a razor-thin causal isochron with surface density $q/(4\pi r^2)$, represented by $\rho(T,T_t)=(q/(4\pi r^2))\delta(r-c_f\Delta)H(\Delta)$. The support at fixed $T$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](background-and-simple-action.md).
 
-- $H(0)=0$ (no coincident self-kick):
+- $H(0)=0$ (no coincident self-acceleration):
   - The instantaneous emission $(\Delta=0)$ contributes no acceleration to the transmitter; $r=0$ roots beyond $\Delta=0$ do not exist because $r=c_f(T_r-T_t)$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
 
 - $\eta$-mollification (finite, well-defined work over resolved windows):
@@ -39,5 +39,3 @@ An additional numerical caution is worth stating explicitly: a Noether sea regio
 - For this reason, diagnostics should track sign-resolved contributions whenever possible rather than relying only on net-potential summaries.
 
 This matters especially for shielding claims. A strongly shielded assembly may look energetically modest from afar while still containing substantial internal positive/negative activity whose cancellation is only effective after superposition. Sign-resolved ledgers therefore help distinguish true low-energy states from high-content states hidden by cancellation.
-
-Plain language: We do not keep a permanent $1/r$ field attached to an architrino. Thin expanding causal surfaces and the $H(0)=0$ endpoint rule remove the classical static self-energy construction from the admitted chart, while finite-width and zero-width limits still have to pass their own boundedness and convergence tests.

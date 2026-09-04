@@ -2,7 +2,7 @@
 
 This chapter states the basic cosmological ontology of $\mathbb{A}\mathbb{A}\mathbb{A}$ before the topic branches split into expansion, CMB, BBN, and structure-formation details. Its purpose is to make clear what is fundamental in the cosmology stack, what is effective observer-level bookkeeping, and how the fixed Euclidean container is related to evolving Noether sea state.
 
-The opening sections define the absolute-frame picture and the document set that grows out of it. Later sections record the working classification axes, interface variables, and boundary conditions against nearby cosmological families.
+The cosmology stack is organized by an absolute-frame picture, three classification distinctions, shared interface variables, and explicit boundary conditions against nearby cosmological families.
 
 ## Cosmology in the Absolute Frame
 
@@ -105,6 +105,7 @@ H_{\mathrm{eff}}^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fbb07bf38039cf5d)
+
 $$
 \frac{d\rho_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
@@ -126,6 +127,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f503ba14ec668301)
+
 For a component recorded first as an energy density $u_i^\theta$, use
 $$
 \Omega_i^\theta(t_{\mathrm{eff}})
@@ -135,6 +137,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a51fc2eb96ffe4d1)
+
 These $\Omega_i$ variables are data-product coordinates. They do not say that the Euclidean void contains independent density fluids. They say that the same Noether sea state and assembly record has been projected into the standard component language at the observer epoch.
 
 A compact inventory residual is
@@ -149,6 +152,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-15f238ff7cdbed95)
+
 where $\mathcal{I}_{\mathrm{cos}}$ includes only declared comparison rows, such as dark energy, neutral assemblies, baryons, radiation, neutrinos, binding-energy entries, kinetic or plasma entries, and wake-history or medium-response entries when the local branch has supplied them. Passing this residual means the effective inventory closes; it does not identify the substrate carrier of each row.
 
 The stronger test is cross-row provenance. Let $Q_i^\theta$ and $Q_j^\theta$ be two inventory quantities that should be related by an energy-transfer, reaction, transport, or remnant ledger, and let $\mathcal{T}_{ij}^\theta$ be the declared transfer map between them. Then
@@ -161,6 +165,7 @@ Q_i^\theta-\mathcal{T}_{ij}^\theta Q_j^\theta
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d3446ef967cf8dab)
+
 Examples include nuclear binding versus radiation and neutrino backgrounds, baryon density versus BBN and CMB inference, quasar luminosity versus massive-black-hole remnant density, and lensing mass versus galaxy luminosity and clustering. A component row that cannot be connected to the rest of the ledger remains an interpretation placeholder.
 
 ### Steady-State Failure Test for Effective Variables
@@ -174,6 +179,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8171e93602eadc6c)
+
 If one imposes $d\rho_{m,\mathrm{eff}}/dt_{\mathrm{eff}}=0$ while $H_{\mathrm{eff}}\ne0$, the equation forces $\rho_{m,\mathrm{eff}}=0$. A nontrivial constant-density branch therefore requires
 $$
 \frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
@@ -188,6 +194,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-90de70e5c3dbc51f)
+
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm{eff}}$ cannot mean matter produced by the Euclidean void. It must be a projection of assembly association, dissociation, recycling, transport, or Noether sea exchange already present in the absolute record $S(T)$. If no such provenance route is supplied, the model is only an effective parameter fit and fails as cosmology closure.
 
 For a recycling or cyclical comparison branch, this source term must also close over the declared cycle window:
@@ -202,6 +209,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-be92b99610e5da53)
+
 The pass condition is not a preferred external cosmology. It is that $\Delta M_{\mathrm{eff}}$ be supplied by assembly association, dissociation, transport, recycling, or Noether sea exchange in the same absolute record. Otherwise the branch has kept an effective density constant by inserting a source without provenance.
 
 ### Steady-State Thermodynamic Ledger
@@ -333,6 +341,7 @@ c_0\left.\frac{\partial z_X}{\partial D}\right|_{D\to0}.
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b928b32709bd5438)
+
 These are retained comparison quantities. They do not say that the Euclidean void expands, that absolute time began, or that the full architrino inventory was created at the observer-era boundary. They say that a successful fixed-void branch must reproduce the calibrated distance ladder, redshift catalogue, effective Hubble slope, CMB thermal record, and BBN yields through one shared Noether sea and assembly record. A unique global origin becomes a promoted claim only if the same record removes the ambiguity described in the global-reconstruction test below.
 
 ### Effective Observer-Era Age Boundary
@@ -361,6 +370,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0f7ff88195a8e1c8)
+
 where $\Pi_v$ includes the declared Noether sea flow, density, delay, clock-rate, CMB-frame, and local-calibration terms. A historical rotation-like comparison can then be expressed only as a residual template,
 $$
 T_i(x_{\mathrm{eff},c}^i,\boldsymbol{\omega},g)
@@ -373,6 +383,7 @@ g(D_i)\,\boldsymbol{\omega}\times(x_{\mathrm{eff},i}^i-x_{\mathrm{eff},c}^i)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2b8645b0395fb52a)
+
 with the center $x_{\mathrm{eff},c}^i$, angular-rate vector $\boldsymbol{\omega}$, and distance profile $g$ declared as comparison parameters rather than new ontology. The corresponding all-sky antisymmetric-flow residual on a survey shell $S$ is
 $$
 \mathcal{R}_{\mathrm{rot}}(\theta_{\mathrm{sea}};S)
@@ -391,6 +402,7 @@ W_S=\sum_{i\in S}w_i
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d3838b965cc75861)
+
 This diagnostic protects the fixed-void ontology in both directions. If the best-fit template is insignificant or survey-dependent, the rotation story is rejected. If a stable double-sine, dipole, quadrupole, or higher directional pattern remains, it must be derived from the same $\theta_{\mathrm{sea}}$ that also fits expansion, CMB transfer, BBN, growth, lensing, and calibration; it cannot be absorbed silently into $H(z)$, $w(z)$, or a new global-rotation premise.
 
 A scale-neutral homogeneity check should also be part of the shared ledger. For a large effective comparison window $W_{\mathrm{eff}}\subset\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}$ with resolved tracer index set $I_{W_{\mathrm{eff}}}(t_{\mathrm{eff}})$ and $N_{W_{\mathrm{eff}}}=\lvert I_{W_{\mathrm{eff}}}(t_{\mathrm{eff}})\rvert$, define the root-mean-square separation scale
@@ -403,6 +415,7 @@ L_{W_{\mathrm{eff}}}^2(t_{\mathrm{eff}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-59ccbbe9e080798e)
+
 The corresponding dimensionless pair-separation distribution is
 $$
 \widehat{\mu}_{W_{\mathrm{eff}},t_{\mathrm{eff}}}(u)
@@ -415,6 +428,7 @@ u-\frac{\|x_{\mathrm{eff},i}^i(t_{\mathrm{eff}})-x_{\mathrm{eff},j}^i(t_{\mathrm
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b39d66efd92a7aa7)
+
 For a declared family of same-scale windows $\mathcal{W}_L(t_{\mathrm{eff}})$ and a declared distribution distance $d$, a candidate Noether sea state record should expose
 $$
 \mathcal{R}_{\mathrm{hom}}(\theta_{\mathrm{sea}};L,t_{\mathrm{eff}})
@@ -424,6 +438,7 @@ d\!\left(\widehat{\mu}_{W_a,t_{\mathrm{eff}}},\widehat{\mu}_{W_b,t_{\mathrm{eff}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e100df1da74bec64)
+
 Large-scale homogeneity is accepted only when this residual remains within the declared tolerance while the same $\theta_{\mathrm{sea}}$ also passes the expansion, CMB, BBN, growth, lensing, and calibration gates. This is a scale-neutral diagnostic over observer-facing data products, not an import of a shape-first cosmology or a replacement for the fixed Euclidean void.
 
 The same rule applies across modules. A promoted cosmology claim must preserve one shared Noether sea state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The dark-energy branch states this as a shared residual gate in [dark-energy.md](./dark-energy.md#inference-dependency-and-calibration-gates), while [Cosmology Shared Residual Fit](../validation/simulations/cosmology-shared-residual-fit.md) owns the cross-module packet schema and residual-vector protocol. This page does not duplicate those operational definitions.
@@ -446,6 +461,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2c8a362044fc01b1)
+
 where the entries are respectively the Noether sea state, initial basin, source or release record, thermalization record, path-history record, growth/lensing record, and frame record. Let $\mathcal{R}_{\mathcal{D}_{\mathrm{cos}}}(\theta_{\mathrm{cosmo}};o)$ be the shared residual over the declared cosmology data-product family. The allowed-output neighborhood is
 $$
 \mathcal{O}_{\epsilon}(\theta_{\mathrm{cosmo}})
@@ -460,6 +476,7 @@ o \in \mathcal{O}_{\mathrm{near}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ed7fe7f5dcce7dec)
+
 Fitting asks only that the observed packet belongs to this set. Predictive closure asks that the set be narrow under the declared comparison measure,
 $$
 \mu\!\left(\mathcal{O}_{\epsilon}(\theta_{\mathrm{cosmo}})\right)
@@ -468,6 +485,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bc09aabda5a7f51a)
+
 This criterion does not require zero flexibility. It requires the branch record to exclude nearby alternatives before a data fit is counted as a cosmology claim.
 
 Initial-condition specialness is the companion burden. Let $\Gamma_{\mathrm{init}}$ be the declared initial state or path-history chart for the branch, with measure $\mu_{\mathrm{init}}$ internal to that chart. Define
@@ -484,6 +502,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ca87a2f9c5e670ca)
+
 and report the basin burden
 $$
 \mathcal{S}_{\mathrm{init}}
@@ -497,6 +516,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-14b520c046689b68)
+
 A high $\mathcal{S}_{\mathrm{init}}$ means the smoothing or release explanation has been moved into a small allowed initial basin. A low value means the declared mechanism is robust under the chosen chart. This is a diagnostic on the branch record, not an external probability assigned after the dynamics.
 
 Penrose-style estimates of early-universe specialness are retained here at exactly this level. The familiar order-of-magnitude claim that a smooth low-gravitational-entropy early record occupies a fraction near $1/10^{10^{123}}$ of a maximum-entropy comparison space is not imported as a literal sampling story for the Euclidean void. It is a scale warning: if a cosmology branch recovers CMB smoothness, low gravitational free-mode content, and later black-hole-dominated entropy only by selecting an exponentially tiny $\mathcal{B}_{\mathrm{obs}}$, then the branch has relocated the arrow-of-time problem into $\theta_{\mathrm{init}}$ rather than deriving it from Noether sea dynamics.
@@ -510,6 +530,7 @@ I_{\mathrm{init}}(\theta)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f17225fa08bcbe35)
+
 Here $C_{\mathrm{cos}}$ is the declared cosmology constraint set, $B_\theta$ is the subset of admissible Noether sea and path-history states that project to the observed CMB, BBN, growth/lensing, and frame packet, and $\mu_{\mathrm{state}}$ is the branch-internal state measure conditioned on $C_{\mathrm{cos}}$. A branch that explains smoothness only by making $\mu_{\mathrm{state}}(B_\theta\mid C_{\mathrm{cos}})$ tiny has relocated the burden into initial selection rather than deriving it from Noether sea dynamics.
 
 Claims about observer selection, anthropic conditioning, or typicality belong inside the same inference ledger. They should not be promoted as cosmological facts unless their weights are projected from the declared data-product family and the same shared Noether sea state record. For an observer-accessible datum $D_a$ on a window $W$, write
@@ -520,6 +541,7 @@ P_{\theta_{\mathrm{sea}},W}(D_a)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9bdb7766de22d075)
+
 with $\mu_{\theta_{\mathrm{sea}},W}$ conditioned by the same $\theta_{\mathrm{sea}}$ used for expansion, CMB, BBN, growth, lensing, and calibration. A compact selection-admissibility guardrail is
 $$
 \mathcal{R}_{\mathrm{sel}}(\theta_{\mathrm{sea}},W)
@@ -534,6 +556,7 @@ d_{\mathcal{D}_{\mathrm{cos}}}\!\left(
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3fca0a30e9795388)
+
 Here $\widehat{\mu}_{\mathcal{D}_{\mathrm{cos}},W}$ is the empirical distribution of the declared cosmology data products on the same window. If $\mathcal{R}_{\mathrm{sel}}$ is large, the corpus should retain the observable data product and classify the typicality claim as interpretation rather than cosmology closure.
 
 ### Global-Reconstruction Promotion Gate
@@ -556,6 +579,7 @@ d_{\mathcal{D}_{\mathrm{cos}}}\!\left(
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4186cc48098d3021)
+
 For a proposed global cosmology claim $P_{\mathrm{glob}}$, define
 $$
 \Delta_{\mathrm{glob}}(P_{\mathrm{glob}};\theta_{\mathrm{sea}})
@@ -568,6 +592,7 @@ P_{\mathrm{glob}}(\theta_1)\ne P_{\mathrm{glob}}(\theta_2)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0a1596b31a0b1c50)
+
 A claim about a unique global chronology, asymptotic de Sitter state, global topology, or one-time origin is promoted only when this ambiguity indicator vanishes or when a native derivation selects that claim without using the fitted data products as the selection rule. Otherwise the corpus should retain the observational data product and classify the global statement as an effective reconstruction.
 
 Flatness constraints require the same layer discipline. CMB, BAO, lensing, and large-scale-structure fits may strongly constrain the effective curvature parameter used in observer reconstructions, but that is not by itself a proof of global topology or of the Euclidean void postulate. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void is an ontological background claim, while $\Omega_k$ or any fitted curvature variable is a data-product coordinate exported by the effective metric and inference pipeline. A successful cosmology must therefore recover near-flat observer data without converting the data product into a topology proof.

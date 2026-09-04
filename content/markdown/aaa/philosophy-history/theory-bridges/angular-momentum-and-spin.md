@@ -6,9 +6,7 @@ This bridge explains how angular momentum, spin, helicity, and the constants $h$
 - Angular momentum becomes a conserved history functional when architrino motion is organized inside the rotationally symmetric Euclidean void.
 - Spin becomes an effective transformation class of stable assemblies, especially ordered orthogonal-axis three-binary, coincident-axis three-binary braid, and planar vector-channel structures.
 
-The result is not that angular momentum and spin are unreal. The result is that their ontological status is emergent. They are indispensable higher-level ledgers and measurement labels, but the fundamental ontology still consists of architrinos, polarity, position, velocity, absolute time, Euclidean void, causal wakes, and path history.
-
-In plain terms, the chapter separates two questions that ordinary language often blends. Does the primitive object carry an intrinsic spin axis? No. Can organized motion in a rotationally symmetric world produce conserved angular momentum, spin-like detector responses, and helicity labels? Yes, but only after the motion, wake history, and assembly orientation are specified. The point is not to demote spin; it is to put the burden in the right place.
+The result is not that angular momentum and spin are unreal. Their ontological status is emergent: they are indispensable higher-level ledgers and measurement labels, but the fundamental ontology still consists of architrinos, polarity, position, velocity, absolute time, Euclidean void, causal wakes, and path history. The distinction separates two questions that ordinary language often blends. The primitive object does not carry an intrinsic spin axis. Organized motion in a rotationally symmetric world can produce conserved angular momentum, spin-like detector responses, and helicity labels only after the motion, wake history, and assembly orientation are specified. The point is not to demote spin; it is to put the burden in the right place.
 
 This makes the bridge strict. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ spin account must recover the measured transformation behavior, quantized response, magnetic-moment systematics, Stern-Gerlach branching, and weak-channel handedness without inserting intrinsic spin as a primitive label. Until that is done, spin language remains an effective ledger and recovery target.
 
@@ -46,6 +44,7 @@ S=I\omega,\qquad I=\alpha m_e R^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3e5a77a3da1ab2dc)
+
 then its equatorial surface speed would be
 $$
 v_{\mathrm{surf}}
@@ -56,6 +55,7 @@ R\omega
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3c05c41ec6403f8b)
+
 For the classical electron radius $r_e=e^2/(4\pi\epsilon_0 m_e c^2)$ and $S\sim\hbar$, this is of order hundreds of times $c$. If $R$ is enlarged enough to keep $v_{\mathrm{surf}}<c$, the electron is no longer a small localized charged constituent on atomic scales; if $R\to0$, the rigid-body angular momentum vanishes. The experimental lesson is therefore not that electron spin is unreal. It is that the magnetic moment, Stern-Gerlach response, anomalous Zeeman structure, and spin-$\tfrac{1}{2}$ label must be recovered from an internal transformation and response ledger, not from a literal rotating point or sphere.
 
 The important qualification is that angular momentum still becomes mandatory once the dynamics are studied as an isolated rotationally symmetric system. The Euclidean void is invariant under spatial rotations. For the action-derived delayed model, rotational symmetry gives a conserved angular-momentum functional. That functional is not a new substance; it is the Noether ledger associated with organized motion and in-flight causal-wake history.
@@ -591,6 +591,7 @@ c_f-\mathbf V_{\ell,\alpha}(T)\cdot
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6646898e17b66c59)
+
 and
 $$
 W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
@@ -2239,6 +2240,7 @@ h_{\mathrm{eff}},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a41fdad1445dc7e1)
+
 where $\Lambda_{\mathrm{cm}}$ is the reduced coincident-midpoint orthogonal-axis braid closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
 $$
 C_{\mathrm{eff}}^2
@@ -2255,6 +2257,7 @@ T_{\mathrm{eff}}^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e9f853584a11995f)
+
 They must then satisfy the observer-record residual
 $$
 \mathcal{R}_{\mathrm{CPT}}(A;\theta)
@@ -2273,6 +2276,7 @@ d_{\mathrm{inv}}\!\left(
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ff588bbe21063448)
+
 with $\mathfrak{f}_{\bar A}$ the effective antiparticle record and $\mathcal{R}_{\mathrm{weak/flavor}}$ carrying the observed C, P, T, CP, and flavor-sector violations that are allowed before the combined benchmark is tested. The residual passes only if the combined operation is admissible without erasing the weak chirality and generation/mixing ledgers.
 
 The component action table makes the proof obligation explicit:
@@ -2398,6 +2402,7 @@ h^n
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7f9a0a878cbc7a74)
+
 This is not yet a derivation of quantum discreteness. It is the theorem target that would let a finite recordable basin measure reduce to $\mu_0(\mathcal{Q},W)\to C_{\mathcal{Q},W}h^n$, with $C_{\mathcal{Q},W}$ fixed by quotienting, apparatus coupling, inaccessible root-ledger variables, and the declared coarse-graining rather than chosen after the fact.
 
 To make the chart test explicit, the reduced action-angle variables should report a local canonical-chart residual before any action-cell count is accepted:
@@ -2413,6 +2418,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-063b21052327fd8b)
+
 Here $\{\cdot,\cdot\}_{\mathcal{Q},W,T_W}$ is the effective bracket induced by the retained coarse-graining on the same record window used for the basin-measure claim. The chart is admissible for action-cell comparison only when $\epsilon_{\mathrm{can}}\le\varepsilon_{\mathrm{can}}$ and the variables are fixed by Master-Equation closure, root-ledger admissibility, and apparatus recordability rather than by a representation chosen to produce a desired count.
 
 The corresponding state-count residual should compare physical basin records with action cells in a declared record domain $D$:
@@ -2427,6 +2433,7 @@ N_{\mathrm{cell}}(D)+1
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-38301fcabf165a95)
+
 Here $N_{\mathrm{basin}}(D)$ counts independently recordable basin alternatives derived from the delayed dynamics, while $N_{\mathrm{cell}}(D)$ counts the $h^n$ action cells that remain after quotienting inaccessible root-ledger and apparatus-equivalent variables. A small $\Delta_{\mathrm{cell}}$ supports an effective action-cell comparison; it does not by itself promote the chart to substrate ontology.
 
 The action-angle chart should therefore be treated as a comparison chart selected after the recordable basin family has been fixed, not as a free quantization rule. In ordinary Bohr-Sommerfeld language one counts integral action leaves. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure route, the corresponding count is accepted only when the same Master-Equation branch record, root-ledger admissibility, and apparatus channel already identify the leaves as independently recordable alternatives. A singular or representation-dependent action-angle chart that changes the count without changing those physical records is a failed effective chart, not a new state sector.

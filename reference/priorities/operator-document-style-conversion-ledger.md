@@ -1,12 +1,12 @@
 # Operator Document Style Conversion Ledger
 
-Status: author editorial pass complete for the measured baseline; an independent correction pass remains required before campaign closure.
+Status: author editorial pass in progress; 755 of 758 accounted files are adjudicated, three active corpus-rewrite owner paths remain blocked, and an independent correction pass remains required before campaign closure.
 
 ## Scope And Authority
 
-This ledger accounts for every Markdown file discovered beneath `reference/priorities/` in the byte-sorted baseline inventory measured on 2026-09-03. It records editorial disposition only. It does not promote priority material, advance a queue item, change a claim grade, or supply scientific evidence.
+This ledger accounts for every Markdown file discovered beneath `reference/priorities/` in the byte-sorted baseline inventory measured on 2026-09-03 and every post-baseline Markdown file discovered during the campaign. It records editorial disposition only. It does not promote priority material, advance a queue item, change a claim grade, or supply scientific evidence.
 
-The baseline contains 757 paths. The newline-terminated byte-sorted path list has SHA-256 `a667d973a34fd7cc7bd5613791b2c11ef39aad10da0d63bcc4ed6b38b58124e0`. This ledger was created after that measurement and is therefore not one of the 757 baseline paths; it conforms by construction and exists only to make the campaign accounting reviewable.
+The original baseline contains 757 paths. Its newline-terminated byte-sorted path list has SHA-256 `a667d973a34fd7cc7bd5613791b2c11ef39aad10da0d63bcc4ed6b38b58124e0`. The CRW-002 result was created after that measurement, bringing the current accounted inventory to 758 paths with SHA-256 `ac657ebddcc1c6780a77403a9ed9f10e6f23b50e6406691889af41407a0ece60`. This ledger is outside both path lists; it conforms by construction and exists only to make the campaign accounting reviewable.
 
 Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 of the academic style guide as imported by the operator explanation standard, plus the mathematics and terminology authorities named by the campaign. It does not grade the underlying scientific claims. Falsifier: an independently identified passage in a path marked `already conforming` that violates those authorities, or a baseline comparison showing that a conversion changed mathematics, technical meaning, evidence scope, queue state, chronology, source support, or claim authority.
 
@@ -17,25 +17,25 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 - `protected or append-only` applies to chronological work logs whose existing entries must not be rewritten; the campaign preserved their order and text except for the two explicitly converted logs, where only a preservation statement and new campaign record were added.
 - `generated` applies only to a file that identifies its generator and is not an authored edit target.
 - `historical evidence requiring byte preservation` covers dated evidence, audits, reviews, archived records, source-mining records, handoffs, receipts, predeclarations, closeouts, and other provenance-bearing snapshots. Clearer current prose does not justify altering their recorded bytes.
-- `blocked by concurrent editing` applies when a live Git-state recheck shows that another process is editing the file. The campaign makes no overlapping change or conformance claim.
+- `blocked by concurrent editing` applies when a live Git-state recheck shows that another process is editing the file. The campaign stops editing when the collision is detected and makes no conformance claim.
 - `deferred for owner or authority reason` applies to dormant owners and the consolidated simulation-protocol packet. Editorial clarity does not reactivate dormant work, and the simulation packet advances only through its canonical owners.
 
-## Baseline Accounting
+## Current Accounting
 
 | Disposition | Files |
 | --- | ---: |
-| converted in this campaign | 18 |
-| already conforming | 313 |
+| converted in this campaign | 19 |
+| already conforming | 315 |
 | protected or append-only | 51 |
 | generated | 1 |
 | historical evidence requiring byte preservation | 227 |
-| blocked by concurrent editing | 5 |
+| blocked by concurrent editing | 3 |
 | deferred for owner or authority reason | 142 |
-| **Total baseline inventory** | **757** |
+| **Total accounted inventory** | **758** |
 
 ## File Dispositions
 
-| Baseline path | Disposition | Basis |
+| Accounted path | Disposition | Basis |
 | --- | --- | --- |
 | `reference/priorities/README.md` | converted in this campaign | Added a concise route to this exhaustive editorial accounting surface and repaired one stale heading fragment without duplicating procedure or changing priority ownership. |
 | `reference/priorities/aaa-corpus-dragnet/README.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
@@ -44,10 +44,11 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 | `reference/priorities/aaa-corpus-dragnet/recommendations.md` | historical evidence requiring byte preservation | Provenance-bearing evidence, audit, review, archive, or source record; preserved without rewrite. |
 | `reference/priorities/aaa-corpus-dragnet/work-log.md` | protected or append-only | Chronological log; existing dated entries remain byte-preserved and in order. |
 | `reference/priorities/aaa-corpus-dragnet/work-queue.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
-| `reference/priorities/aaa-corpus-rewrite/conversion-ledger.md` | blocked by concurrent editing | Live Git-state recheck showed an overlapping modification; no campaign edit or conformance claim. |
-| `reference/priorities/aaa-corpus-rewrite/crw-002-dispatch.md` | blocked by concurrent editing | Live Git-state recheck showed an overlapping modification; no campaign edit or conformance claim. |
-| `reference/priorities/aaa-corpus-rewrite/priorities.md` | blocked by concurrent editing | Live Git-state recheck showed an overlapping modification; no campaign edit or conformance claim. |
-| `reference/priorities/aaa-corpus-rewrite/work-queue.md` | blocked by concurrent editing | Live Git-state recheck showed an overlapping modification; no campaign edit or conformance claim. |
+| `reference/priorities/aaa-corpus-rewrite/conversion-ledger.md` | blocked by concurrent editing | The active corpus-conversion task continues to own this live progress record; no overlapping campaign edit or conformance claim. |
+| `reference/priorities/aaa-corpus-rewrite/crw-002-dispatch.md` | converted in this campaign | Updated the former implementation prompt after CRW-002 completion so its four deliverable dispositions and current result owner are explicit while the original dispatch remains preserved as non-executable provenance. |
+| `reference/priorities/aaa-corpus-rewrite/crw-002-term-lookup-result.md` | already conforming | Post-baseline completed result; its evidence sources, measured and inferred boundaries, falsifiers, unresolved canon follow-up, generated drift, and closure status are explicit. |
+| `reference/priorities/aaa-corpus-rewrite/priorities.md` | blocked by concurrent editing | The active corpus-conversion task continues to update campaign state and reader-order routing; overlapping campaign prose is not certified. |
+| `reference/priorities/aaa-corpus-rewrite/work-queue.md` | blocked by concurrent editing | The active corpus-conversion task continues to update CRW-003 evidence and next-batch routing; overlapping campaign prose is not certified. |
 | `reference/priorities/aaa-operations/brainstorming.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/aaa-operations/dependency-and-public-security-review-2026-09-01.md` | historical evidence requiring byte preservation | Provenance-bearing evidence, audit, review, archive, or source record; preserved without rewrite. |
 | `reference/priorities/aaa-operations/domain-dns-and-certificate-inventory-2026-09-01.md` | historical evidence requiring byte preservation | Provenance-bearing evidence, audit, review, archive, or source record; preserved without rewrite. |
@@ -740,7 +741,7 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 | `reference/priorities/master-equation-closure/analysis-independent-causal-wake-state.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/master-equation-closure/brainstorming.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/master-equation-closure/characteristic-tail.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
-| `reference/priorities/master-equation-closure/coincide-or-not.md` | blocked by concurrent editing | Live Git-state recheck showed an overlapping modification; no campaign edit or conformance claim. |
+| `reference/priorities/master-equation-closure/coincide-or-not.md` | already conforming | After the coincidence-research task became idle, a frozen complete-file review found its picture-before-symbol exposition, assumptions, instrument boundaries, nonclaims, claim grades, and falsifiers conforming; all 83 display-math blocks and 10 relative links passed structural checks, and its 21 existing `Plainly:` passages were preserved. |
 | `reference/priorities/master-equation-closure/diagonal-birth-lineage-causal-wake-candidate.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/master-equation-closure/history/branch-closure-program.md` | historical evidence requiring byte preservation | Provenance-bearing evidence, audit, review, archive, or source record; preserved without rewrite. |
 | `reference/priorities/master-equation-closure/history/receiver-normal-branch-strength-certificate.md` | historical evidence requiring byte preservation | Provenance-bearing evidence, audit, review, archive, or source record; preserved without rewrite. |
@@ -799,16 +800,21 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 
 The pilot and App Photon records identify their file-specific improvements. The hierarchy-wide continuation made nine additional bounded conversions: it replaced one disallowed causal-delay term in the Braid energy-ledger falsifier, removed the remaining prohibited legacy causal-delay term from the App Photon audit while preserving its grep-verified negative finding, divided dense status paragraphs in the Braid, Field-Speed Ceiling, Master-Equation Closure, App UI Guidelines, Operations, and Equation Mapping owners at changes of subject, added a concise route from the priority README to this accounting ledger, and repaired three stale heading fragments in two edited files. The paragraph edits preserve every sentence and its order; they make distinct evidence stages and authority boundaries independently scannable. The README and fragment repairs change navigation only.
 
-No queue file changed in this continuation. No lifecycle state, dependency, rank, score, acceptance condition, date, identifier, command, code block, equation, numerical result, source, URL, anchor, or claim grade changed. The one earlier App Photon correction remains explicit: its dated code review enumerates eleven modules, so the introductory count was corrected from ten to eleven without changing the list or any finding.
+The first retry converted one formerly blocked file after its live path became clean. The CRW-002 dispatch initially distinguished implemented deliverables 1 and 2 from open deliverables 3 and 4 while preserving the then-current `Queued` state and full completion condition. After the lane owner recorded CRW-002 complete, this campaign updated the dispatch boundary again: all four final dispositions now route to the CRW-002 result, while the original implementation specification remains preserved as non-executable provenance. The active corpus task continues to own the conversion ledger, tracker, and queue; those three paths remain blocked from this campaign while that task is active.
+
+The second retry adjudicated the Master-Equation coincidence packet after its owning research task became idle and the file held a stable byte snapshot. A complete-file review found no further useful edition 1.0 edit: the packet establishes the picture before each mathematical construction, names its assumptions and symbols, separates prescribed controls from EOM measurements and accepted reachability, follows its equations with interpretation, and closes with an exhaustive claim register and nonclaim boundary. Its 83 display-math blocks are balanced, all 10 relative links resolve, no prohibited terminology appears, and all 21 inherited `Plainly:` passages remain preserved.
+
+In the completed dispatch retry, no lifecycle state, dependency, rank, score, acceptance condition, date, identifier, command, code block, equation, numerical result, source, or claim grade changed. The one earlier App Photon correction remains explicit: its dated code review enumerates eleven modules, so the introductory count was corrected from ten to eleven without changing the list or any finding.
 
 ## Validation And Remaining Review
 
 - `node scripts/validate-content.mjs --check --strict`: passed with zero errors and zero warnings.
 - `node scripts/validate-priority-ranking.mjs`: passed; 25 active owners have queues and all 14 ranked rows align.
 - `node scripts/validate-equation-mapping-links.mjs`: passed; all 23 registered equation links resolve.
-- Scoped link and structure audit: all 254 relative links in the 18 converted baseline files and this ledger resolve; Markdown fences and display-math delimiters are balanced; every pre-existing display equation and fenced code block remains present in order.
-- Active-document source audit: all 331 files classified as converted or already conforming contain no prohibited legacy causal-delay term and no manually hard-wrapped ordinary prose; the only multiline candidate is an intentional indented geometry diagram.
+- Current inventory audit: all 758 accounted priority Markdown paths have one unique disposition, with no omissions or extras; the campaign ledger is the 759th live Markdown file and remains outside its own accounting table.
+- Scoped link and structure audit: all 256 relative links in the 19 converted baseline files and this ledger resolve; Markdown fences and display-math delimiters are balanced; every pre-existing display equation and fenced code block remains present in order.
+- Active-document source audit: all 334 files classified as converted or already conforming contain no prohibited legacy causal-delay term and no manually hard-wrapped ordinary prose.
 - `git diff --check` and `git diff --cached --check`: passed.
-- `node scripts/build-scene-graph.mjs --check --strict`: reported drift only in `content/graph/textbook_toc.json` and `content/generated/markdown/textbook/toc.md`, with zero errors and zero warnings. The campaign did not run a generator write.
+- `node scripts/build-scene-graph.mjs --check --strict`: reported drift only in `content/graph/scene_graph.json`, `content/graph/textbook_toc.json`, and `content/generated/markdown/textbook/toc.md`, with zero errors and zero warnings. The campaign did not run a generator write.
 
-The editorial and semantic preservation judgments above are author review, not independent review. The five concurrently edited paths remain unadjudicated by this campaign, and a later independent correction pass must inspect every converted file for mathematical errors, lost source support, or hardened claims before the campaign can be called closed.
+The editorial and semantic preservation judgments above are author review, not independent review. The corpus-rewrite conversion ledger, tracker, and queue remain under active concurrent ownership and are the three unadjudicated baseline paths. A later independent correction pass must inspect every converted file for mathematical errors, lost source support, or hardened claims before the campaign can be called closed.

@@ -427,6 +427,7 @@ N_s(\Lambda_{\mathrm{cm}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0224bdc46eb807e1)
+
 $$
 M_p(\Lambda_{\mathrm{cm}})
 =
@@ -436,6 +437,7 @@ M_p(\Lambda_{\mathrm{cm}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3a928c7281453dbf)
+
 Here $\mathcal G_a$ carries the within-binary self and partner roots, while $\mathcal G_{ab}$ carries the directed cross-binary roots. Any compressed count must reproduce these transmitter-identity partitions.
 
 This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{\mathrm{cm}}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the entry that the later causal-writhe or ordered-frame proof must fill.
@@ -454,6 +456,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-167197368d858bea)
+
 These sets preserve the binary indices and derive their roles from the retained record. The alignment-restricted label is the theorem-target restriction
 $$
 \Lambda_{\mathrm{cm}}^{\mathrm{align}}
@@ -468,6 +471,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bd44ee6068b2a48b)
+
 with the remaining admissible entries inherited from the binary ledgers, inter-binary ledgers, chirality entry, and emitted wake envelope. For a connected block $U$ of alignment-area patches, the local label set to be counted has the schematic form
 $$
 \mathcal{L}_U(\theta_{\mathrm{env}})
@@ -484,6 +488,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7ce5f2a90fb08bba)
+
 Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block. This expression does not yet derive the entropy coefficient. It identifies the native object whose block entropy density must be computed before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
 
 ### Geometry and Exclusion Envelope

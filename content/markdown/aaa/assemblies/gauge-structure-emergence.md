@@ -103,6 +103,7 @@ d_Q(Q_\theta,Q_{\mathrm{SM}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f84f42dd11cd785a)
+
 Here $\theta$ is the retained Noether sea state and assembly branch record, $d_Q$ measures charge-table mismatch, $d_{\mathrm{mix}}$ measures electroweak-coupling and weak-mixing mismatch, $d_{\mathrm{chiral}}$ measures failure of the weak-coupling-triad exposure record to recover observed handedness, and $\mathcal{R}_{\mathrm{null}}$ penalizes any added low-energy channel that is not observed. This residual is not a new ontology; it names the observer-level recovery burden.
 
 ## Standard Model Recovery Discipline
@@ -140,6 +141,7 @@ N_{2,\mathrm{Weyl}}\bmod2,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b4788a5e559fd7ac)
+
 This does not make the Standard Model variables substrate ontology. It says that any accepted Noether sea state and axial-layer branch must project to the same anomaly-free effective gauge record; otherwise the branch cannot be the observer-level Standard Model limit.
 
 From the $\mathbb{A}\mathbb{A}\mathbb{A}$ side, that means the Noether sea state and assembly variables must first reproduce the known gauge bookkeeping. Larger group unification, supersymmetric partner bookkeeping, or extra-dimensional geometry may be useful comparison languages, but none of them is native ontology here. They become relevant only if a branch record derives the Standard Model pattern and also explains why every added observable channel is absent without using a separate suppression parameter for each failed prediction.
@@ -165,6 +167,7 @@ m_b^\theta,\,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e6f37b5a2cb4360c)
+
 where $J_b^\theta$ is the recovered spin label, $P_b^\theta$ the parity or transverse/longitudinal projector record when applicable, $m_b^\theta$ the mass or gap, $\omega_b^\theta(k)$ the dispersion, and $\mathcal{C}_b^\theta$ the coupling ledger to fermion, photon, weak, color, or gravitational channels. A collective-mode interpretation is admissible only when one Noether sea state and assembly branch supplies $\mathcal{M}_b^\theta$ while also suppressing unobserved scalar, vector, tensor, mirror, or hidden channels. Otherwise "boson as excitation" is an analogy, not gauge-structure emergence.
 
 ## Gauge-Covariance Recovery Target
@@ -177,6 +180,7 @@ F_{\mu\nu}^\theta=\frac{i}{g_\theta}[D_\mu^\theta,D_\nu^\theta]
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-df1219703d066871)
+
 If $U(x)$ is an allowed effective gauge relabeling, then the record should transform as
 $$
 \Psi_\theta' = U\Psi_\theta,
@@ -187,6 +191,7 @@ F_{\mu\nu}^{\theta'}=U F_{\mu\nu}^\theta U^{-1}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1f0df80ad99c0dd6)
+
 This is a redundancy test. It asks whether different gauge charts describe the same observer-level channel, not whether the Noether sea itself has been changed.
 
 The passive/active distinction is load-bearing here. A gauge relabeling is passive when it changes only the effective bookkeeping basis and leaves the retained assembly, causal-wake, axial-layer, and Noether sea record fixed. An active physical change belongs in the branch record $\theta$ itself: it may alter medium response, exposed axial inventory, apparatus coupling, or causal-wake provenance. Gauge covariance is recovered only when passive relabelings preserve the same record. It cannot be used to hide a changed physical branch behind a different chart.
@@ -206,6 +211,7 @@ D^{\theta'}(U\Psi)-U D^\theta\Psi
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8940befe85a0dceb)
+
 The electroweak or color branch passes only when this residual stays below its declared tolerance on the same record domain used for charge, chirality, mixing, and null-channel tests. If covariance appears only after changing the physical branch ledger, the construction has not recovered gauge redundancy; it has renamed a different physical state.
 
 The same discipline applies to holonomy. For a closed observer-level loop $\gamma$, the non-Abelian comparison object is
@@ -220,6 +226,7 @@ i g_\theta\oint_\gamma A_{\mathrm{eff},\mu}^\theta\,d\ell^\mu
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-53b01f7c197128b8)
+
 This Wilson-loop language is useful because it tests gauge-invariant loop content. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the loop value must be reconstructed from the closed causal-wake and axial-layer provenance sampled by the apparatus channel. It is not a claim that the loop integral is fundamental ontology.
 
 Topological sectors supply a stronger global guardrail. In an effective non-Abelian chart, a standard comparison integer is
@@ -237,6 +244,7 @@ k_\theta
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2c0fbae2c6d5f3b8)
+
 This target belongs to the gauge recovery map only after $\mathcal{D}_\theta$, $F_{\mathrm{eff}}$, and the apparatus-accessible sector have been declared. It passes when the integer sector is fixed by the same branch record that supplies the local gauge response. It fails if the winding number is imported as an external bundle label while the assembly and Noether sea provenance remain silent.
 
 The same topological-sector map must recover the strong-$CP$ null result. Let $\bar\theta_{\mathrm{eff}}(\theta)$ be the observer-level $CP$-odd strong-sector angle extracted from the declared assembly and Noether sea branch. The target is
@@ -269,6 +277,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e6f8542bcb5cf0dd)
+
 This equation is a locality-emergence test. It says that a boundary of the event-window description must reduce to two lower-channel records connected by the same accepted transient channel $h$. If the pole residue cannot be traced to a replayable branch-boundary decomposition, the amplitude has been fitted but not derived.
 
 Color/kinematics duality supplies a sharper optional comparison. Whenever an oriented color triple satisfies a Jacobi relation, the corresponding kinematic numerators should satisfy the matched relation on a closed representation,
@@ -279,6 +288,7 @@ n_i^\theta+n_j^\theta+n_k^\theta\to0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4cd36298b163af16)
+
 The native value of this test is not the formal identity by itself. The value is whether the indexed color-exceptionality relation $Q_1+Q_2+Q_3=0$ and the scattering numerator ledger can be derived as two projections of the same branch geometry.
 
 Positive-geometry amplitude work adds one more useful guardrail. If an amplitude is represented by a positive-coordinate auxiliary geometry, then physical boundaries should carry the factorization residues above, while spurious cell boundaries should cancel in the sum. In native terms, a positive-geometry chart is admissible only as a certificate for boundary factorization, spurious-pole cancellation, and record-domain consistency. It does not replace the causal-wake and assembly derivation.
@@ -341,24 +351,28 @@ N_+ + N_- = 6,\qquad N_+,N_- \in \{0,1,\dots,6\}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cc4af1db2fb4e01f)
+
 The net observer-level charge carried by the six-slot inventory is
 $$
 Q=\epsilon(N_+ - N_-)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-426c0f692b15e8a3)
+
 Using $N_-=6-N_+$,
 $$
 Q=\epsilon(2N_+ - 6)=\frac{|e|}{3}(N_+ - 3)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e5052cd60fa821c3)
+
 Since $N_+$ is an integer from $0$ to $6$, $(N_+-3)\in\{-3,-2,-1,0,1,2,3\}$, so
 $$
 Q\in\left\{-|e|,-\frac{2|e|}{3},-\frac{|e|}{3},0,\frac{|e|}{3},\frac{2|e|}{3},|e|\right\}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fc9c725b3a71b1d7)
+
 No other values are possible. Different permutations with the same $(N_+,N_-)$ have identical total $Q$; they only change micro-geometry, not net charge.
 
 ### Loop-Phase Quantization Target
@@ -373,12 +387,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b7971fadbf8c5a5b)
+
 with the physical ambiguity only
 $$
 \Theta_\gamma(Q)-2\pi N_\gamma \to 0,\qquad N_\gamma\in\mathbb{Z}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3cbabbd3e60c1476)
+
 The six-unit charge inventory, and in the axial-layer realization the axial bookkeeping, must make this a charge-compatibility condition, not a separately imposed monopole postulate. A compact residual for the allowed six-slot charge set is
 $$
 \mathcal{R}_{\mathrm{loop}\text{-}Q}
@@ -392,6 +408,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f64b6fdc10e1e4e1)
+
 This residual belongs to the observer-level recovery map. It passes only when the same Noether sea state and axial-layer branch record that supplies local electromagnetic force and phase transport also yields $\mathcal{R}_{\mathrm{loop}\text{-}Q}\le\varepsilon_{\mathrm{loop}\text{-}Q}$ for the benchmark loop family. If a branch recovers the charge table locally but cannot make closed-loop phase globally consistent, the six-site quantization proof is only combinatorial and has not yet recovered the gauge-topological content of charge quantization.
 
 A magnetic-charge comparison branch must also separate formation from capture. In observer-level language a magnetically charged compact object can form with charge or later capture charged defects. The $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge map should not import either story as ontology, but it can retain the provenance distinction as a residual on the effective flux record:
@@ -408,6 +425,7 @@ Q_{m,\mathrm{form}}^\theta
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-633c706466aa96f1)
+
 The loop-phase target above then requires the same branch record to support both the effective magnetic-flux label and the allowed electric axial-layer charge set. A compact object that solves a monopole-abundance problem by hiding charge in an untracked capture channel has not recovered gauge structure; it has moved the charge ledger outside the derivation.
 
 ## Observer-Level Electroweak Closure Map (Working)
@@ -456,12 +474,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7e073514a964601a)
+
 with
 $$
 D_\mu=\partial_\mu-i g\frac{\tau^a}{2}W_\mu^a-i g'\frac{Y}{2} B_\mu
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cd2f81d27ae52b9b)
+
 The leading composite correction is modeled as
 $$
 \mathcal{L}_{\text{comp}}
@@ -471,6 +491,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d62995ddba0279d8)
+
 where $R_{\mathrm{comp}}$ is the declared composite scale extracted from the indexed binary record.
 
 For the formal closure layer beneath this working map, see [Gauge Symmetries](./gauge-symmetries.md) and [Effective Lagrangian](../dynamics/effective-lagrangian.md).
@@ -483,6 +504,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3be08633ce7cc70b)
+
 This is separate from the dimensionful electromagnetic coupling normalization used by the force-response map:
 $$
 \mathcal{G}_{\mathrm{em}}
@@ -491,6 +513,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-48c6c52b7fdbbf12)
+
 where $Z_e$ is the coarse-graining normalization factor ($Z_e=1$ under canonical normalization choice). In dimensional units $\mathcal{G}_{\mathrm{em}}$ scales as $[\epsilon]\sqrt{[\kappa][c_f]}$ rather than as electric charge, so it must not be identified with the charge label $e$.
 
 Weak mixing is represented as a geometric overlap functional:
@@ -503,6 +526,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-370d941b7462b1c3)
+
 This dictionary entry carries branch-increment-hypothesis grade; the graded derivation, its conditionality, and the falsifier live in [Weak Mixing Angle](fermions/weak-mixing-angle.md).
 
 Mass channels are mapped by
@@ -512,18 +536,21 @@ m_Z^2=\frac{1}{4}(g^2+g'^2)\,v_{\text{eff}}^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-063e3ef562bf5d9c)
+
 so
 $$
 \frac{m_W}{m_Z}=\cos\theta_W
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-eba4396e8d774cc4)
+
 Fermion masses are targeted as cycle-averaged attractor energies, conditional on a retained attractor branch — an open closure item:
 $$
 m_f \approx \frac{\langle E_{\mathrm{kin}}+U_{\text{pot}}\rangle_f}{c_{\text{eff}}^2}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-599f68fccc5a7ce8)
+
 in the weak homogeneous branch where the scalar mass-map roadmap applies. The sharper closure still belongs to the medium-response tensor and shielding map in [Particle Masses: Emergent Inertia in the Noether Sea](particle-masses.md).
 
 ### Precision Interface to Measured Quantities
@@ -554,6 +581,7 @@ F(s)=1-\frac{sR_{\mathrm{comp}}^2}{4},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f636e3e786ad8dd5)
+
 For $R_{\mathrm{comp}}\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at $\sqrt{s}=10.58\,\text{GeV}$ but a deviation of order the explicit $10^{-3}$ first falsification tolerance below near the $Z$ pole at $\sqrt{s}=91.19\,\text{GeV}$. Calling the $Z$-pole shift negligible requires a substantially smaller composite scale, for example $R_{\mathrm{comp}}\lesssim3\times10^{-20}\,\text{m}$.
 
 ### Falsification Gates for This Map

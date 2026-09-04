@@ -30,6 +30,7 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 >    $$
 
 >    [View →](../../../../../equation-mapping.html#corpus-equation-ce76abe9949ade35)
+>
 >    so for orthogonal components near $c_f$ ($v_{\text{eff}} \approx \sqrt{2}\,c_f$), $\theta \approx 45^\circ$.
 > 4. The wedge modifies the delay-feedback geometry, constraining which loops can close; the terminal aligned mode is the last wedge-compatible, phase-locked configuration.
 > 5. The assembly acquires the **minimum closed-cycle action** $\mathcal{A}_{\text{align}}^{\text{cycle}}$, identified with the universal quantum $h$ (not a system-specific lower bound), together with the radian-normalized rotational-action variable $I_{\text{align}}=\mathcal{A}_{\text{align}}^{\text{cycle}}/(2\pi)$, and an **alignment radius** $R_{\text{align}}$, defined by the Planck-alignment circumference $2\pi R_{\text{align}} = \ell_P$:
@@ -46,7 +47,7 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 
 These identifications are **conjectured mappings**, not definitions. They must eventually be derived from the master equations and compared to empirical values.
 
-In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly’s internal geometry snaps into a universal, planar lock, forward-sector updates are starved, and no smaller stable mode remains.
+Within this conjectured mapping, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly's internal geometry enters a universal planar lock, forward-sector updates are starved, and no smaller stable mode remains.
 
 This also fixes how Planck-unit language should be read. The Planck relations are benchmark natural measures, not evidence that the Euclidean void is pixelated or that substrate motion is discontinuous. They become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the corresponding cadence, radius, and action. The Planck-alignment program therefore has to derive those quantities from one retained coincident-midpoint orthogonal-axis braid branch, rather than treating $\ell_P$, $t_P$, or $h$ as primitive measuring devices.
 
@@ -77,7 +78,7 @@ $$
 
 Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This motivates testing $\ell_P$ as the observed trace of a coincident-midpoint orthogonal-axis braid alignment horizon rather than treating it as proof that spacetime is made of smaller static beads.
 
-In plain terms, the probe argument says that "looking smaller" is not a neutral act. A higher-energy probe both sharpens the wavelength and loads more stress into the region being probed. The observed lower bound is therefore a joint readout of resolution, energy loading, and horizon-facing response. In this chapter that joint readout becomes a branch test: the coincident-midpoint orthogonal-axis braid account must explain why the same attempted compression becomes alignment or horizon behavior instead of an ordinary smaller ruler.
+The probe argument makes "looking smaller" a physical intervention rather than a neutral act. A higher-energy probe both sharpens the wavelength and loads more stress into the region being probed. The observed lower bound is therefore a joint readout of resolution, energy loading, and horizon-facing response. Here that joint readout becomes a branch test: the coincident-midpoint orthogonal-axis braid account must explain why the same attempted compression becomes alignment or horizon behavior instead of an ordinary smaller ruler.
 
 The same operational limit can be written as a generalized-uncertainty comparison. A probe with momentum uncertainty $\Delta p$ carries an ordinary localization term and a gravitational back-action term:
 $$
@@ -89,6 +90,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8839b4806295f0ad)
+
 The first term is the standard wavelength or Fourier-localization limit; the second is the displacement or horizon-facing uncertainty induced by concentrating the probe energy into the same region. Minimizing this comparison gives
 $$
 \Delta p_{\mathrm{cross}}^2\sim\frac{\hbar c_f^3}{G},
@@ -97,6 +99,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1421dba4163b077c)
+
 In this chapter the formula is not a new uncertainty postulate and not evidence for primitive spatial discreteness. It is a second route to the same recovery target: any branch that claims sub-Planck localization must explain why the same action scale, effective gravitational coupling, and observer-channel speed do not turn the attempted measurement into horizon-interface or alignment behavior.
 
 The dimensional-analysis route reaches the same comparison scale. Up to convention factors, the only length built from $G$, $\hbar$, and $c_f$ is
@@ -105,6 +108,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e101ac2c84d0c1a8)
+
 In this chapter, that relation is a benchmark object rather than an ontology postulate. The derivation burden is to show why one retained alignment branch supplies the effective gravitational coupling, action scale, and low-energy photon-channel speed that enter the observer-level estimate.
 
 The same collapse-and-crossing logic supplies a power-output comparison. For a region of size $R$, the fastest ordinary exterior export has crossing time
@@ -113,18 +117,21 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8939547d6e728cc7)
+
 while the largest energy localized before black-hole formation is, up to convention factors,
 $$
 E_{\max}\sim \frac{R c^4}{G}.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8a6023c4623a2907)
+
 Dividing cancels the size of the region:
 $$
 L_P\sim \frac{E_{\max}}{\Delta t_{\min}}\sim \frac{c^5}{G}.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-626420e59ba7003f)
+
 For a radiationlike channel with $p=E/c$, the associated momentum-flow scale is
 $$
 F_P\sim\frac{L_P}{c}\sim\frac{c^4}{G}.
@@ -140,6 +147,7 @@ L_H\sim\frac{\hbar c^6}{G^2M^2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-20059cfdda18115e)
+
 approaches $c^5/G$ when $M$ is estimated by the Planck mass, but that substitution sits exactly where semiclassical black-hole theory is no longer trusted. It should be used as a consistency pressure on terminal release, not as a completed endpoint model.
 
 **Regime clarification (to prevent speed-label conflicts):**
@@ -158,6 +166,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b7c45990b0a8f56e)
+
 So the Planck length maps to the **declared alignment circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
 With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant. Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
@@ -168,6 +177,7 @@ G \propto \frac{c_f^3 (\text{alignment geometry})}{h}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0991b825730743a5)
+
 Geometrically, a single alignment area sets the coupling scale; with $R_{\text{align}} = \ell_P/(2\pi)$ and $h = 2\pi\hbar$, this matches $G \sim c^3 \ell_P^2/\hbar$ up to the expected $2\pi$ factors. Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
 
 This leaves three coherent origin stories to keep in view:
@@ -216,12 +226,14 @@ v_{\text{trans}} \to c_f \quad \text{and} \quad v_{\text{orb}}^{\text{tan}}(\the
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-02979d1415f8f591)
+
 so the component speeds approach the wake-speed limit at the onset of flattening. The combined forward-sector speed is a separate diagnostic:
 $$
 v_{\text{eff}}(\theta)=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\|
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-74ba6ae243b70343)
+
 When $v_{\text{eff}}>c_f$, the same geometry supports the Mach-wedge analysis used above; when $v_{\text{eff}}\lesssim c_f$, the claim is only one-way update starvation along the saturated forward component.
 
 At this point, **one-way** forward-sector updates (new field information emitted ahead) cannot overtake the architrino. This is a necessary condition for horizon-like behavior, but not sufficient for a stable aligned state. The sufficiency comes from the **round-trip response**: the one-way delay distorts phase closure until the final aligned mode becomes the only stable lock.
@@ -236,6 +248,7 @@ Actual Planck alignment requires closure of the **action-response loop**:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-d07d4e7d7d290d4e)
+
 - **Round-trip response**: the full delay between an emitted wake and its subsequent influence on the emitter’s own trajectory after the assembly has responded and moved.
 
 A stable, phase-locked mode must satisfy a **closure condition** on this round-trip delay combined with orbital motion. Schematic:
@@ -372,6 +385,7 @@ Because a coincident-midpoint orthogonal-axis braid can carry several internal f
 > $$
 
 > [View →](../../../../../equation-mapping.html#corpus-equation-a3debc8e9fb5f284)
+>
 > is proposed to **coincide with** the Planck action quantum $h$:
 > $$
 >   \mathcal{A}_{\text{align}}^{\text{cycle}} \stackrel{\text{hyp.}}{\approx} h,
@@ -380,6 +394,7 @@ Because a coincident-midpoint orthogonal-axis braid can carry several internal f
 > $$
 
 > [View →](../../../../../equation-mapping.html#corpus-equation-297f22d69fd18d11)
+>
 > This must ultimately be derived from the architrino master equation and checked numerically.
 
 If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, or if different retained frequency rows require incompatible action quanta after the same record partition is declared, this identification fails.
@@ -394,6 +409,7 @@ Q_{\mathrm{align}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-473e6bac00905d55)
+
 denote the retained topological and phase-lock data of the aligned coincident-midpoint orthogonal-axis braid branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
 $$
 \mathcal{A}_{\text{cycle}}[\Gamma]
@@ -402,12 +418,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4c019f7d379850b6)
+
 for all admissible histories
 $$
 \Gamma
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dbc6f4ea00fc0953)
+
 in the same sector. Planck alignment would become much stronger if the terminal aligned mode were shown to saturate the bound,
 $$
 \mathcal{A}_{\text{align}}^{\text{cycle}}
@@ -416,6 +434,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-69e8caff8df663a5)
+
 and if the saturation equations reduced to explicit first-order delay-geometry closure conditions, such as field-speed component saturation, finite branch ledger closure, and zero holonomy after one cycle.
 
 The failure test is equally important. If no sectorwise lower bound exists, or if the aligned branch is not the minimizer within its own
@@ -424,12 +443,14 @@ Q_{\mathrm{align}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-473e6bac00905d55-2)
+
 sector, then the identification
 $$
 \mathcal{A}_{\text{align}}^{\text{cycle}}\stackrel{\text{hyp.}}{\approx}h
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a582512424358de5)
+
 remains only a dimensional and operational mapping rather than a dynamical derivation.
 
 ### Alignment Radius: $R_{\text{align}}$ and $\ell_P$
@@ -457,6 +478,7 @@ $$
 > $$
 
 > [View →](../../../../../equation-mapping.html#corpus-equation-ff9450b7d0b47137)
+>
 > assuming A-cf-match.
 
 Equivalently, within the architrino theory we can invert the relation to define an **effective gravitational constant**:
@@ -512,6 +534,7 @@ a_{\theta}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b0e706d900ae41ea)
+
 where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal coincident-midpoint orthogonal-axis braid alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
 
 We deliberately use “condensate-like” here; a full condensate claim would require:

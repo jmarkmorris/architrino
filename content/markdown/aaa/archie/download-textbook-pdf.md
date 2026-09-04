@@ -4,7 +4,7 @@ This scene is the PDF review shelf for textbook reading copies. The released web
 
 Think of the PDF as a snapshot. It is useful when a reader wants a stable packet, but it is generated from the living source flow and should not be treated as a hand-authored canon file.
 
-## Overview
+## Generated Review Copies
 
 Use the scene nodes to open generated PDF review copies. The PDF layer is generated from the same textbook reading-copy Markdown that feeds the reader package; it is not the source of record.
 

@@ -1,6 +1,6 @@
 # Substance Structure and Potential
 
-## Overview
+## Substance, Causal Structure, and Effective Description
 
 This document gives a philosophical orientation for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction: what exists as primitive substance, what exists as causal structure, and what remains only an effective description. It belongs in the Philosophy and History section because it explains the level discipline behind the ontology. The canonical technical owners remain [Ontology](../foundations/ontology.md), [Architrino](../foundations/architrino.md), [Euclidean Void](../foundations/euclidean-void.md), [Noether sea](../spacetime/noether-sea.md), and [Master Equation](../dynamics/master-equation.md).
 

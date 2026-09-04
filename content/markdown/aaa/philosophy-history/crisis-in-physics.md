@@ -2,7 +2,7 @@
 
 ---
 
-## Overview
+## Predictive Success and Ontological Debt
 
 Modern foundational physics carries a persistent tension between predictive success and conceptual clarity. The formal machinery is powerful, yet many of its deepest objects remain operationally effective without being ontologically settled.
 
@@ -12,7 +12,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not a complaint about science fail
 
 The sharper accountability question is whether modern physics has sometimes mistaken precision inside bounded measured regimes for authority over ontology itself. That would be a methodological failure, not a failure of measurement. The risk appears when regime-limited equations become standards of admissible explanation even though they depend on restricted energy, velocity, curvature, density, coupling, or observer-access conditions. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, the inherited stack remains useful as effective theory while its variables stay open to substrate-level reinterpretation. The proposed substrate account must earn that reinterpretation by recovering the successful records; it cannot treat the diagnosis itself as evidence that its replacement is correct.
 
-This document should map the main crisis-axes rather than collapse them into one slogan. The point is to separate:
+The crisis map separates the main axes rather than collapsing them into one slogan:
 
 - where prediction outran explanation,
 - where effective success hardened into ontology,
@@ -51,6 +51,7 @@ N_{\mathrm{posthoc}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-20120c37783a8539)
+
 Here $N_{\mathrm{ind}}$ counts independent successful benchmark families, $N_{\mathrm{free}}$ counts unconstrained parameters, $N_{\mathrm{shared\ nuisance}}$ counts nuisance assumptions reused across supposedly independent rows, and $N_{\mathrm{posthoc}}$ counts repairs introduced after seeing the target data. The formula is not a universal philosophy of science. It is a working discipline for this corpus: a substrate claim should not be treated as established until its effective successes outnumber its adjustable and nuisance-dependent supports across multiple measurement families.
 
 ## Crisis-to-Solution Cross-Map
@@ -265,13 +266,14 @@ P(A\mid a,\lambda)P(B\mid b,\lambda)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ecb330e1c4987036)
+
 A shared creation event by itself does not meet this obligation: under measurement independence, an ordinary local common cause is exactly the kind of $\lambda$ for which the product form is tested. The missing derivation must therefore identify a genuinely nonfactorizable dependence in the retained dynamics, show why it is compatible with the observed local marginals, and recover the measured setting-angle correlation.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directionally constrained**, not yet dynamically resolved. The intended move is to deny Bell factorization while preserving realism, forward causal order, measurement independence, and operational no-signaling. Pair provenance may be part of the required state, but shared provenance followed only by independent local readout remains a Bell-local common-cause model and is insufficient. The Master Equation must supply the nonfactorizable dependence rather than the chapter assigning it by interpretation.
 
-Transition relevance is very high because Bell results are often treated as closing off deterministic or substrate-first programs when they more precisely close off only narrower classes. A careful architrino treatment would need to show not only that such nonlocal dependence is conceptually allowed, but that the Master Equation actually yields the observed correlation law while preserving no-signaling. Until that derivation is complete, the Bell crisis is clarified in direction but not fully closed.
+Transition relevance is very high because Bell results are often treated as closing off deterministic or substrate-first programs when they more precisely close off only narrower classes. A careful [architrino](../foundations/architrino.md) treatment, grounded in the substrate's massless polarity carriers and their delayed interactions, would need to show not only that such nonlocal dependence is conceptually allowed, but that the Master Equation actually yields the observed correlation law while preserving no-signaling. Until that derivation is complete, the Bell crisis is clarified in direction but not fully closed.
 
 ### What Would Count As Resolution
 

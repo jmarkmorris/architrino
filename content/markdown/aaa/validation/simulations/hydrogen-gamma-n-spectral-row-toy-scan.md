@@ -194,6 +194,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-75cb6c62dd8f8dee)
+
 The current toy scaffold sets the correction terms to zero by declaration and therefore tests only the shared-row handling of the leading Rydberg factor. A non-toy packet must report a residual-separation check
 $$
 \mathcal{R}_{\mathrm{H,res}}^{(\ell)}
@@ -213,6 +214,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6fd6aa7d88433d84)
+
 This prevents the coefficient scan from passing by absorbing known spectral physics into the cadence-stretch row. It also fixes the degeneracy burden: the leading Coulomb target must recover the $n^2$ orbital degeneracy before correction channels split it, while the fine-structure channel may depend on $j$ and the hyperfine channel may depend on nuclear-spin records.
 
 ## Compensated-Row Readout
@@ -529,6 +531,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8b633f489c34b06c)
+
 where $\mathbf a^{G}=(a_n,a_\chi,a_\lambda,a_R)$ is the static Noether sea response row for the same cell and $\boldsymbol{\tau}$ collects the declared tolerances.
 
 The certificate residual vector is
@@ -545,6 +548,7 @@ b_\xi^{\mathrm{spec}}-1,\,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-eb0cef5d6dcf9a1c)
+
 with
 $$
 \mathcal R_{\mathrm{line}}
@@ -562,6 +566,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f393c7f4c4feebe7)
+
 and
 $$
 \mathcal R_{\mathrm{ref}}
@@ -582,6 +587,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-44e1ef7dd7312079)
+
 Here $\mathbf b_{N,\mathrm{stat}}^{\mathrm{spec}}=(b_n^{\mathrm{spec}},b_\chi^{\mathrm{spec}},b_\lambda^{\mathrm{spec}},b_R^{\mathrm{spec}})$ is the four-entry static endpoint subrow. The packet passes only if every component of $\mathcal R_{\mathrm H}^{\Gamma}$ is within its declared tolerance and all packet inputs share the same provenance ledger $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ and the same static Noether sea cell. Otherwise it fails with the first violated row: provenance, $b_\xi$, endpoint, line-set, refinement, or residual separation.
 
 ## Failure Tests

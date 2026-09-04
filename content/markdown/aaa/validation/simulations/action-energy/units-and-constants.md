@@ -1,8 +1,8 @@
 # Units and Constants
 
-This note fixes the unit and symbol conventions used by the action-energy simulation notes. We work in normalized wake-speed units with $c_f=1$ unless stated otherwise, use $\kappa>0$ for the universal coupling, and use $\eta>0$ as the default regularization thickness for causal isochrons.
+The action-energy simulations measure speeds in normalized units with $c_f=1$, the speed of a [wake](../../../foundations/architrino.md), the expanding disturbance emitted by an architrino. They use $\kappa>0$ to set the scale of every per-hit acceleration, $\eta>0$ to thicken ideal causal isochrons for regularized calculus, and $\epsilon>0$ as the polarity unit. Each acceleration contribution lies along the line from the emission point to the receiver and has received strength shaped by the transmitter-side weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; like polarities accelerate apart and unlike polarities accelerate together.
 
-Core symbols:
+## Core Symbols
 
 - $c_f=1$: wake speed in normalized units.
 - $\kappa>0$: universal coupling constant.
@@ -22,7 +22,7 @@ Core symbols:
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $P_0$ shift accordingly through the dynamical balance that defines them.
 
 - Regularization width ($\eta>0$):
-  - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\Delta)$. It converts impulsive hits into brief, smooth pushes so pointwise quantities such as gradients are defined. The evolution remains a delayed-history problem; an ordinary instantaneous-state ODE solver is insufficient unless the retained history and root reconstruction are supplied explicitly.
+  - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\Delta)$. It converts impulsive hits into brief, smooth acceleration contributions so pointwise quantities such as gradients are defined. The evolution remains a delayed-history problem; an ordinary instantaneous-state ODE solver is insufficient unless the retained history and root reconstruction are supplied explicitly.
   - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver's instantaneous curvature radius along its path and the local receiver-transmitter separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
 
 - Polarity-unit magnitude ($\epsilon>0$):
@@ -46,12 +46,14 @@ Core symbols:
     $$
 
     [View →](../../../../../../equation-mapping.html#corpus-equation-0a0bc5d65e8e1afd)
+
     and, for circular binary scans, the existing speed factor
     $$
     s=\frac{R\omega}{c_f}
     $$
 
     [View →](../../../../../../equation-mapping.html#corpus-equation-dac301d02838fb90)
+
     A branch scan must state whether the sampled histories remain below, cross, or remain above the self-hit onset $\beta_f=1$.
   - **Delay/window ratio:** use
     $$
@@ -59,6 +61,7 @@ Core symbols:
     $$
 
     [View →](../../../../../../equation-mapping.html#corpus-equation-22dec982b4dd6f58)
+
     where $\Delta T_{\max}$ is the longest active causal lookback time and $T_{\mathrm{win}}$ is the averaging, diagnostic, or return-map window. The stored history horizon $h$ must satisfy $h\ge\Delta T_{\max}$ on the scanned branch chart.
   - **Regularization thickness:** use
     $$
@@ -66,6 +69,7 @@ Core symbols:
     $$
 
     [View →](../../../../../../equation-mapping.html#corpus-equation-1f5196ad240d203b)
+
     with local checks such as $\eta/r_{\min}$ against the smallest resolved separation. A scan is numerically meaningful only when branch counts and averaged observables stabilize as $\hat{\eta}$ is reduced while the causal wakes remain resolved.
   - **Coupling scale:** compare the per-hit acceleration scale with the reference acceleration $L_\star/T_\star^2$:
     $$
@@ -77,6 +81,7 @@ Core symbols:
     $$
 
     [View →](../../../../../../equation-mapping.html#corpus-equation-bdfce55a112e1b3c)
+
     In field-speed units this reduces to $g_\kappa=\kappa\epsilon^2/L_\star$.
   - **Branch/root tolerances:** for the causal-root residual
     $$
@@ -86,6 +91,7 @@ Core symbols:
     $$
 
     [View →](../../../../../../equation-mapping.html#corpus-equation-328277424a05be28)
+
     accept a root only when $|g_{ij}|/L_\star\le\varepsilon_{\mathrm{root}}$, keep distinct roots separated by $|\Delta T_a-\Delta T_b|/T_\star>\varepsilon_{\mathrm{sep}}$, and treat $|J|\le\varepsilon_J$ as a branch-birth or caustic zone rather than an ordinary stable branch.
   - A branch-scan report should therefore include at least
     $$
@@ -93,6 +99,5 @@ Core symbols:
     $$
 
     [View →](../../../../../../equation-mapping.html#corpus-equation-aaa8556681b2a511)
-    together with the active causal-root ledger. This prevents a change in units, regularization, or root finder tolerance from masquerading as a new physical branch.
 
-Plain language: We measure speeds in units where the field speed is one, use $\kappa$ to set how hard every hit pushes, use $\eta$ to slightly thicken the razor-thin isochrons so calculus works, and use $\epsilon$ as the basic unit of polarity. The push is always straight along the line back to where the isochron was emitted, but its received strength is shaped by the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; like polarities push out, unlike polarities pull in.
+    together with the active causal-root ledger. This prevents a change in units, regularization, or root finder tolerance from masquerading as a new physical branch.

@@ -237,6 +237,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1be1255a6bb5bbd5)
+
 coaxial-separated co-rotating two-component configuration through coaxial two-planar-braid counter-rotating configuration may expose two exact coincident-axis three-binary locus or planar common-center three-binary locus component ledgers, but those component rows do not replace the 132-pair two-component circular ledger unless a proved reduction map accounts for every cross-component pair. An associated Accessory Configuration remains a separate inventory and certificate input rather than part of these twelve defining worldlines.
 
 The certificate should report the first blocking row as

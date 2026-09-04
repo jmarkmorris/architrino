@@ -1,6 +1,6 @@
 # Branding and Marketing
 
-Architrino presents an independent fundamental-physics research program whose public identity should make difficult ideas inviting without making them look more established than their evidence permits. The brand therefore combines a distinctive purple visual field with disciplined claims, inspectable sources, and direct paths into the work.
+Architrino presents an independent fundamental-physics research program whose public identity should make fundamental ideas inviting without making them look more established than their evidence permits. The brand therefore combines a distinctive purple visual field with disciplined claims, inspectable sources, and direct paths into the work.
 
 ## Purpose and Ownership
 
@@ -24,7 +24,7 @@ Marketing may invite readers into a question, explanation, visualization, source
 
 ## Favored Color Palette
 
-Purple is the favored Architrino brand color. The palette uses a saturated primary purple over deep purple-black foundations, with lighter violet and lilac for accents and actionable light. Red and blue retain their established polarity and path/wake roles; they are supporting identity colors rather than replacements for the primary purple. Every color outside the red-to-blue spectrum and its purple blends is grayscale.
+Purple is the favored Architrino brand color. The palette uses a saturated primary purple over deep purple-black foundations, with lighter violet and lilac for accents and actionable light. Red and blue retain the two-sign [polarity and causal-wake roles](../foundations/architrino.md#polarity-and-electric-bookkeeping) established for architrinos; they are supporting identity colors rather than replacements for the primary purple. Every color outside the red-to-blue spectrum and its purple blends is grayscale.
 
 | Role | Color | Value | Use |
 | --- | --- | --- | --- |
@@ -39,7 +39,7 @@ Purple is the favored Architrino brand color. The palette uses a saturated prima
 | Neutral white | White | `#F5F5F5` | Essential text and marks on dark brand fields |
 | Neutral gray | Gray | `#A3A3A3` | Quiet information, unavailable states, and grayscale structure |
 
-Plainly: `#6A0DAD` is the main Architrino purple. `#0D0A17` gives it a dark foundation, while `#8873DD`, `#BDAEFF`, and `#D8C6FF` provide progressively lighter emphasis. Electric purple is deliberately rare. Red and blue keep their specific explanatory jobs; all remaining structure is neutral gray, white, or black.
+`#6A0DAD` is the main Architrino purple. `#0D0A17` gives it a dark foundation, while `#8873DD`, `#BDAEFF`, and `#D8C6FF` provide progressively lighter emphasis. Electric purple is deliberately rare. Red and blue keep their specific explanatory jobs; all remaining structure is neutral gray, white, or black.
 
 ### Palette Discipline
 
@@ -62,7 +62,7 @@ The preferred hue set contains seven swatches: the fixed center `#6A0DAD` and th
 
 Red-side and blue-side are equal-status labels. A presentation may mirror the two sides without changing meaning. Do not describe the set with start/end, forward/reverse, positive/negative, pure-color, or degree-coordinate language. Use these seven colors when a design needs a controlled polarity blend; otherwise use the named brand tokens or grayscale.
 
-Plainly: the central purple has three equally spaced partners on each side. Swapping the red and blue sides changes no meaning and signals no preference.
+The central purple has three equally spaced partners on each side. Swapping the red and blue sides changes no meaning and signals no preference.
 
 ### Fades, Transparency, and Glow
 
@@ -72,7 +72,7 @@ Purple, red, and blue keep their hue identity while their opacity falls. When pa
 
 Action halos use the light lilac with approximately `30%` ring opacity and a restrained `22%` outer glow. A halo marks an available action; it is not a general decoration. Deep glass surfaces retain more of the purple-black foundation: strong panels are approximately `98%` opaque, ordinary panels approximately `88%`, and compact controls approximately `82%`.
 
-Plainly: the color stays red, blue, or purple while it disappears. A fade should look like the same light becoming less present, not like the color is being mixed with white paint.
+The color stays red, blue, or purple while it disappears. A fade should look like the same light becoming less present, not like the color is being mixed with white paint.
 
 ## Logo and Mark Treatment
 
@@ -130,7 +130,7 @@ Review the public presence once each month. The review covers:
 
 Each review distinguishes measured facts from inference. Visual consistency can be inspected directly; audience growth, trust, conversion, and marketing effectiveness require analytics or another declared instrument. Compare with the previous month, identify improvements and regressions, and rank the next actions by expected impact and implementation effort.
 
-Plainly: the monthly review asks whether every public doorway still looks like Architrino, says the same honest thing, leads somewhere useful, and works for the reader. It does not treat a polished profile as proof that the profile is attracting or persuading people.
+The monthly review asks whether every public doorway still looks like Architrino, says the same honest thing, leads somewhere useful, and works for the reader. It does not treat a polished profile as proof that the profile is attracting or persuading people.
 
 ## Related Guides
 

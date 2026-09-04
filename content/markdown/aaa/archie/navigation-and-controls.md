@@ -1,16 +1,10 @@
 # Navigation & Controls
 
-This note explains how a reader actually moves through the scene-driven interface once the webapp is open. It is the practical companion to the broader architectural guides: less about why the system is organized this way, more about what the controls do and how to use them without losing context.
+This guide explains how a reader moves through the scene-driven interface, how sphere-based hierarchy works, and how document controls behave at runtime. It is the practical companion to the broader architectural guides: less about why the system is organized this way, more about using the controls without losing context.
 
 If the interface feels unfamiliar, remember one rule first: spheres are the main doors. The buttons around them help with history, search, detail, and notes; the spheres carry the reader through the knowledge graph.
 
-The sections below move from the basic navigation model to specific interaction patterns in scenes, markdown panels, search, and reader workflow.
-
-## Purpose
-
-This note explains how to move through the webapp, how sphere-based hierarchy works, and how document reading controls behave at runtime.
-
-The [UI Guidelines](ui-guidelines.md) own the shared interface standards applied across applications. This note is their reader-facing operating companion: it explains what accepted controls do without redefining the standards, duplicating application-specific copies, or constituting an application itself.
+The [UI Guidelines](ui-guidelines.md) own the shared interface standards applied across applications. This guide is their reader-facing operating companion: it explains what accepted controls do without redefining the standards, duplicating application-specific copies, or constituting an application itself.
 
 ## Navigation Model
 
@@ -61,8 +55,9 @@ Sphere labels may also use more than one text row when the scene author provides
 1. Click a glowing sphere to descend.
 2. Use `Back` / `Forward` to move through scene history.
 3. Use `Home` to return to root.
-4. Open the current full document with the document icon when available.
-5. Select the `Archie` sphere for app help, project references, downloads, support, comics, and future guided question modes.
+4. Use `Glossary` to look up an unfamiliar term from any scene or document.
+5. Open the current full document with the document icon when available.
+6. Select the `Archie` sphere for app help, project references, downloads, support, comics, and future guided question modes.
 
 ## Camera and Interaction
 
@@ -76,6 +71,7 @@ Sphere labels may also use more than one text row when the scene author provides
 - `Forward`: step forward in history
 - `Home`: jump to root scene
 - `Search` (magnifier): open scene search
+- `Glossary` (documents): open the comparative glossary
 - `TOC`: open the textbook table of contents
 - `Open full document` (document): open the complete source behind the current section
 - `Save markdown as PDF`: export the open reading surface

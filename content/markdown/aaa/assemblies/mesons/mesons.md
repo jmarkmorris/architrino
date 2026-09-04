@@ -21,12 +21,13 @@ Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. 
 
 While the Standard Model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the transient particles, primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons), are the functional machinery of the strong interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$, these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether braids](../../noether-braid/noether-braid.md) connected by color flux tubes.
 
-Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations. The implementation burden is to say which branch record forms, which corridor carries the exchange, how long the basin remains stable, and where the ledger goes when the meson dissociates.
+At the observer level, these states mediate interactions, preserve quantum-number accounting through high-energy transitions, and participate in flavor mixing between generations. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation must identify which branch record forms, which corridor carries the exchange, how long the basin remains stable, and where every conserved ledger entry goes when the meson dissociates.
 
 ### Geometric variational lens
 The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether sea to topological defects (fermions). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are modeled as stable minima — attractor status that remains an open closure target of the braid program — while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the Noether sea.
 
-Plainly, the meson is the temporary bridge state the strong sector can afford. It is stable enough to carry a corridor, but not necessarily stable enough to become an ordinary long-lived matter assembly.
+The meson is the temporary bridge state the strong sector can afford. It is stable enough to carry a corridor, but not necessarily stable enough to become an ordinary long-lived matter assembly.
+
 * **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. **Dissociation** means the trajectory reaches a region where that action loses its minimum, so gradient flow carries the system toward another basin and into a new assembly pattern.
 
 **Confinement as topological shear (nonlinear elasticity lens)**

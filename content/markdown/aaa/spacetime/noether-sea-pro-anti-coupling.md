@@ -31,6 +31,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8b71698c0f19606e)
+
 $$
 n(\mathbf X,T)\equiv \frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$

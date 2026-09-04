@@ -1,6 +1,6 @@
 # Information and the Wake
 
-## Overview
+## Wake Records and Inference
 
 This document gives a philosophical orientation for what a causal wake can and cannot carry, and for what that implies about information, conservation bookkeeping, and the limits of inference in $\mathbb{A}\mathbb{A}\mathbb{A}$. It belongs in the Philosophy and History section because it organizes level discipline around one arc: the wake as record, superposition as lossless transport, reception as lossy projection, and inherited physics as compression. The canonical technical owners remain [Architrino](../foundations/architrino.md), [Master Equation](../dynamics/master-equation.md), [Energy](../dynamics/energy.md), [Observer Framework](../spacetime/observer-framework.md), and [Measurement Ontology](../quantum/measurement-ontology.md).
 

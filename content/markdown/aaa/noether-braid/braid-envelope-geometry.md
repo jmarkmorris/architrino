@@ -753,6 +753,7 @@ H_a(\hat{\mathbf m};W)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-89aafdc4b2c8e842)
+
 and the full path-history support by
 $$
 H_{\mathrm{env}}(\hat{\mathbf m};W)
@@ -761,6 +762,7 @@ H_{\mathrm{env}}(\hat{\mathbf m};W)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a95f5f4756939763)
+
 An index is boundary-leading in direction $\hat{\mathbf m}$ only when it attains this maximum on the retained record. The maximizer may depend on direction or time, may be nonunique, and does not relabel the binary. Under the prescribed compression response, the union of all six paths produces the flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
 
 In low-stress coincident-midpoint orthogonal-axis locus prose, "coincident-midpoint orthogonal-axis locus envelope" means this effective path-history envelope, not a literal material surface.
@@ -861,6 +863,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3d77ce3fdd0bd0f3)
+
 so $\xi=1$ denotes a spherical envelope, $\xi>1$ denotes a fusiform envelope elongated along the parallel axis, and $\xi<1$ denotes an oblate spheroidal envelope compressed along the parallel axis. A family label must accompany any rest-envelope value of $\xi$.
 
 Use
@@ -869,6 +872,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ce95cf622b5d9db6)
+
 for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to braid envelope geometry: $\xi$ records shape and $\lambda$ records scale.
 
 The oblate spheroidal envelope volume is
@@ -910,6 +914,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3070bac4118bc111)
+
 but this is a moving-branch closure target linking the clock channel to the envelope projection. It should not be used to define $\xi$, and it does not determine coincident-axis three-binary locus's rest-envelope aspect ratio.
 
 ## Lorentz Projection Role
@@ -926,6 +931,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-59914dc6e5c6b742)
+
 but the branch $q$ is accepted only when all three binary ledgers also retune consistently with clock closure, conservation, and preferred-frame leakage bounds.
 
 The direct Lorentz-to-geometry map comes from a closed return cycle. In a homogeneous cell, define
@@ -936,6 +942,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bd38f42906e3952d)
+
 Let $P_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
 P_{\parallel}
@@ -948,6 +955,7 @@ P_{\parallel}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f4371071956b229d)
+
 while the transverse causal-budget return time is
 $$
 P_{\perp}
@@ -956,6 +964,7 @@ P_{\perp}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e661dcb2facaa3ca)
+
 Requiring $P_{\parallel}=P_{\perp}+O(\epsilon_{\mathrm{LV}}P_{\mathrm{ref}})$ gives
 $$
 \xi_q(v)
@@ -967,6 +976,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-54df338e8e9033cd)
+
 The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
 
 This distinction prevents a single-binary shortcut. A branch-derived boundary-leading channel can estimate one visible deformation contribution, while a mature Lorentz closure must show that the same branch update also determines the clock factor
@@ -987,6 +997,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-277a6d51ffcecf41)
+
 The envelope is therefore the visible projection of the retained causal-root ledger, not an independently assigned Lorentz surface.
 
 ## Retuning Projection to Envelope Variables

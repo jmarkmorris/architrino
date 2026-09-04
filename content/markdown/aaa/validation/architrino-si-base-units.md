@@ -2,7 +2,7 @@
 
 This chapter examines how the modern SI system interfaces with $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
 
-It should be read together with [Parameter Ledger](parameter-ledger.md), [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
+The required parameter, action, mass, scale, and spectroscopy interfaces are developed in [Parameter Ledger](parameter-ledger.md), [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
 
 ## Executive Summary
 
@@ -51,6 +51,7 @@ u_r(\alpha)\approx1.51\times10^{-10}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6fb75e10f6253f63)
+
 while the Newtonian constant is
 $$
 G=6.67430\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}},
@@ -59,6 +60,7 @@ u_r(G)\approx2.25\times10^{-5}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3ba8046cca4fb71f)
+
 Thus $\alpha$ is a much sharper dimensionless target than $G$, while Planck-unit rows such as $\ell_P$, $m_P$, and $t_P$ inherit roughly half of the relative uncertainty of $G$ through square-root dependence. A Planck-alignment claim should therefore not over-read the apparent precision of derived Planck-unit numbers.
 
 The standard uncertainty convention matters for scoring. For a measured or adjusted row $X$, use
@@ -69,6 +71,7 @@ Z_X
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8086133e73d9fc7c)
+
 when the same observable has been derived from the same record. For exact SI rows, do not form a false zero-uncertainty residual; instead test whether the unit map and the adjusted rows that depend on it close simultaneously.
 
 ---
@@ -159,6 +162,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f61b3d6b23fd83d3)
+
 where $c$ is the speed of light.
 
 **Architrino Interpretation:**
@@ -201,6 +205,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-31393e5ede6a895d)
+
 via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
@@ -224,6 +229,7 @@ h = 2\pi\hbar
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-30d92a90f0b0e032)
+
 where $\kappa\epsilon^2/c_f$ has units of specific action and $\mathcal J_3$ is a dimensionless branch output built from the declared indexed geometry and causal-root record. The normalization $\mu_{\text{arch}}$ must be fixed before comparison with $h$. This is a candidate internal braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The particle assignment and action role are source-record hypotheses, not meanings of index 3 or of a coincident-midpoint orthogonal-axis braid taxonomy label.
 
 **Derivation pathway:**
@@ -349,6 +355,7 @@ m_u=\frac{m({}^{12}\mathrm C)}{12}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4b4a0af04b5029f5)
+
 where $m_u$ is the unified atomic mass constant and $M_u$ is the molar-mass constant. The proton mass is not one twelfth of the carbon-12 mass.
 
 **What we must derive:**
@@ -461,6 +468,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
      $$
 
      [View →](../../../../equation-mapping.html#corpus-equation-3760e7503aee13bf)
+
      where $\mu_0$ is the reference probe scale and $\theta_{\mathrm{sea}}$ denotes the fixed Noether sea record for the comparison window.
    - Running with probe scale must be recovered as an effective electromagnetic response:
      $$
@@ -471,6 +479,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
      $$
 
      [View →](../../../../equation-mapping.html#corpus-equation-f87315c0fab0a87f)
+
      where $\mathcal K_{\mathrm{EM}}$ carries wake dressing, shielding exposure, and vacuum-polarization-like response, while $I_\mu$ records the charged thresholds visible at scale $\mu$.
    - In architrino terms, the fixed part of the low-energy anchor must be derived from $\epsilon$, the geometry-derived action period $h_\vartheta$, the photon-channel speed $c_\gamma$, and the declared Noether sea record; the scale-dependent part belongs in $\mathcal K_{\mathrm{EM}}$ and $I_\mu$, not in hidden retuning of $c_f$, $h_\vartheta$, the observer charge convention, or the Noether sea state.
    - Derive numerically; explain why $\alpha_{\mathrm{ref}}\ll 1$ and why $\alpha(\mu)$ runs with energy without changing the primitive wake speed or the action-period carrier.

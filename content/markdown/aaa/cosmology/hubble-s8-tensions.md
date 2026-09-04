@@ -2,11 +2,7 @@
 
 This note frames the $H_0$ and $S_8$ problems as coupled symptoms inside one Noether sea cosmology story rather than as unrelated anomalies. Its purpose is to give the reader a single conceptual entry point before the detailed growth and expansion modules are considered separately.
 
-It is best read together with [Cosmology Ontology](cosmology-ontology.md), [Expansion Mechanism](expansion-mechanism.md), [Structure Formation](structure-formation.md), [CMB](CMB.md), [Dark Matter](dark-matter.md), and [Dark Energy](dark-energy.md).
-
-## Core Idea
-
-This document frames $H_0$ and $S_8$ as linked conceptual problems inside a single cosmological ontology.
+The coupled reconstruction is developed through [Cosmology Ontology](cosmology-ontology.md), [Expansion Mechanism](expansion-mechanism.md), [Structure Formation](structure-formation.md), [CMB](CMB.md), [Dark Matter](dark-matter.md), and [Dark Energy](dark-energy.md).
 
 ## Tension Meanings
 
@@ -53,6 +49,7 @@ c_0\,\partial_D Z_{\mathrm{prop},X}^{E}(D,\hat{\mathbf{k}}).
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-77f839463513e38c)
+
 Here $E$ denotes the source, host, line-of-sight, and observer-environment class after catalogue corrections. A local ladder can be promoted to a universal $H_0$ coefficient only after the residual scatter in $H_{\mathrm{eff},X}^{E}$ is either bounded or derived from the same Noether sea density, delay, flow, and calibration record used by CMB, BAO, and growth.
 
 Gravitational-wave standard sirens add an independent distance channel, but not an ontology shortcut. A GWTC-style $H_0$ estimate combines luminosity distances inferred from calibrated strain with redshift information inferred from host association, an electromagnetic counterpart, or population features such as the mass spectrum. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is valuable because photon-ladder calibration is not the only distance route. The comparison still belongs to the same corrected transfer problem: gravitational-wave propagation, detector calibration, host or population redshift inference, photon redshift correction, and the Noether sea state must be carried together before a discrepancy is read as physical $H_0$ structure.
@@ -168,6 +165,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-06c9a134aa9ebba0)
+
 without assigning separate Noether sea states to each inference pipeline. If the preferred $w(a)$ trend requires one state for distance data and another for growth, the cosmology branch has only hidden the tension.
 
 This is the local form of the shared calibration gate in [Dark Energy](dark-energy.md#inference-dependency-and-calibration-gates). The sets $\mathcal{C}_{H_0}$, $\mathcal{C}_{S_8}$, $\mathcal{C}_{\mathrm{BAO/SN/CMB}}$, and $\mathcal{C}_{\mathrm{growth}}$ should be read as constraints on projections of one $\theta_{\mathrm{sea}}$, not as independent fit islands. A low distance residual paired with an incompatible growth projection is therefore not a win for the Noether sea relaxation interpretation; it is evidence that the interpretation has not yet closed.
@@ -255,6 +253,7 @@ z+\frac12(1-q_{0,\mathrm{eff}})z^2+O(z^3)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3cf237f25239d2e6)
+
 where $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coefficients of the corrected redshift-transfer map. For the growth side, retain
 $$
 f\sigma_8(z,k)
@@ -266,6 +265,7 @@ S_8=\sigma_8\sqrt{\Omega_m/0.3}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-39420ac076bfa912)
+
 A compact shared-state diagnostic is
 $$
 \mathcal{R}_{H_0S_8}(\theta_{\mathrm{sea}})
@@ -280,6 +280,7 @@ d_{\mathrm{shared}}\!\left(
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-abbb0cbc57720547)
+
 A distance improvement that raises the shared-state penalty or worsens $f\sigma_8$ is therefore not a resolution of the tension pair. It is a sign that the fit has separated the background and growth projections.
 
 ## Low-Acceleration Scale Coupling

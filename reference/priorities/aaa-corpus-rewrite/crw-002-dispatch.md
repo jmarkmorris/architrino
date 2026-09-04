@@ -4,6 +4,14 @@ Closure goal: a reader who lands on an arbitrary corpus document can resolve an 
 
 This is the implementation prompt for [CRW-002](work-queue.md#crw-002--term-lookup-and-orientation). Read that item first; this document does not restate its reasoning, only what to build and how the work will be judged.
 
+## Current Execution Boundary
+
+CRW-002 is complete. Deliverables 1 and 2 added the audited glossary rows and persistent Glossary route; deliverable 3 was declined after its ambiguity sample produced a 33.3% false-positive rate; and deliverable 4 closed with two selective inline clues. The [CRW-002 result](crw-002-term-lookup-result.md) owns the current evidence, validation, remaining glossary-canon follow-up, and final claim boundary.
+
+The remainder of this file preserves the original implementation specification and its dated pre-implementation findings. It is provenance, not an executable dispatch; do not repeat its completed work or treat its earlier interface description as current state.
+
+Claim grade: `measured` by the current lane owner and CRW-002 result. Falsifier: either owner returning CRW-002 to an open lifecycle state or showing that one of the four deliverables lacks its recorded disposition.
+
 ## Before anything else
 
 Follow the repository's own startup route: read `AGENTS.md` in full, then the generated router it names at `reference/op/agent-startup-orientation.generated.md`, then the live owner for the workflow you select. Do not skip this because the task looks like a small UI change — deliverables 1 and 4 touch reader-facing corpus content, which is governed canon.
@@ -13,7 +21,7 @@ Two standing constraints that will bite this task specifically:
 - **Never run any git command and never read `.git`.** Git belongs to Codex. The working tree is shared and a dirty tree is normal; report unrelated dirty state only if it blocks you or creates overwrite risk.
 - **Do not run generators with `--write`** unless the operator authorizes it or you are inside the branch/PR process. Report drift instead. `content/graph/scene_graph.json` and the generated textbook navigation are already stale from an unrelated batch; that is not yours to repair.
 
-## The problem, stated once
+## The Pre-Implementation Problem, Measured 2026-09-03
 
 The reader is not stranded. Every document view carries a persistent toolbar — TOC, Back, Forward, Home, Search — plus textbook page arrows, so the full table of contents is one click away from any page.
 
@@ -28,6 +36,8 @@ Treat all four as `measured` findings you may rely on, and re-verify any one you
 
 ## Deliverable 1 — Fill the glossary gaps
 
+Implementation status: complete in the current source. Verify and preserve the first-class entries rather than adding duplicates.
+
 Add `Wake` and `Causal Root` as first-class entries in the term column of `content/markdown/aaa/archie/comparative-glossary.md`, then audit the rest of the foundational vocabulary the same way: **by scanning the first column as a reader would**, not by searching the whole file. A term whose definition exists only inside another row's prose is not covered.
 
 The vocabulary to audit against is whatever `content/markdown/aaa/foundations/` actually introduces. Those nine documents were converted to edition 1.0 and independently reviewed, so they are the current authority on what each term means. Draw the definitions from them rather than composing new ones, and keep the glossary's own three-column contract: the middle column names the standard-framework comparison, the right column states the $\mathbb{A}\mathbb{A}\mathbb{A}$ meaning and says explicitly whether the mapping is substrate ontology, a derived or effective recovery, a closure target, or a heuristic comparison. An unlabelled resemblance is not an identification.
@@ -39,6 +49,8 @@ Watch for the defect class the Codex review pass identified across the foundatio
 Do not silently widen or narrow an existing entry while you are in the file. If an existing row looks wrong, report it; do not fix it as a side effect of this task.
 
 ## Deliverable 2 — Make the glossary reachable
+
+Implementation status: complete through the persistent Glossary control. Verify and preserve that route rather than adding a second affordance.
 
 Give a reader on an arbitrary document a route to the glossary that does not require knowing it exists. Two candidate surfaces, and the choice is yours to propose rather than mine to dictate:
 

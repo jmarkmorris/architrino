@@ -1,6 +1,6 @@
 # Receiver velocity and work
 
-Because $\mathbf A_{o'\leftarrow o}(T_r;T_t)\parallel\hat{\mathbf{r}}$, a single hit changes only the velocity component along its instantaneous line of action:
+For an [architrino](../../../foundations/architrino.md), the substrate's massless polarity carrier, $\mathbf A_{o'\leftarrow o}(T_r;T_t)\parallel\hat{\mathbf{r}}$. A single hit therefore changes only the velocity component along its instantaneous line of action; the perpendicular component is unchanged by that contribution. The signed specific-power row follows directly from acceleration and velocity, while an energy claim additionally requires the declared bookkeeping conversion and the applicable history-aware energy construction:
 $$
 \left.\frac{d}{dT_r}\mathbf V_\perp\right|_{\text{this hit}}=\mathbf{0},
 \qquad
@@ -27,5 +27,3 @@ $$
 
 - Local trend via $1/r^2$:
   - If $V_r<0$ (moving inward), near-future hits tend to be stronger because $r$ shrinks between events; if $V_r>0$, they tend to weaken.
-
-Plain language: Each hit changes only the along-the-line speed at that event; sideways speed is untouched by that contribution. The signed specific-power row follows directly from acceleration and velocity, while an energy claim additionally needs the declared bookkeeping conversion and the applicable history-aware energy construction.
