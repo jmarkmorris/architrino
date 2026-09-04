@@ -76,7 +76,7 @@ The future intake object must be one JSON-compatible record with schema `aaa-equ
 | --- | --- | --- |
 | `theta_gamma_packet` | packet id, finite window $W$, source endpoint $E$, receiver endpoint $R$, `commonCarrierId`, source path, retained status, and local mirror hash | blocked |
 | `photon_branch_packet` | photon branch identity, phase/frequency row, packet momentum row, and branch ledger on the selected event/window | blocked |
-| `gate_a_kinematics_row` | $E_\gamma=h\nu$, $p=h/\lambda$, null mass shell, no rest branch, and $c_\gamma$ convention from the same extraction | blocked |
+| `gate_a_kinematics_row` | $E_\gamma=h\nu$, $p_\gamma=h/\lambda_\gamma$, null mass shell, no rest branch, phase-wavelength/geometry separation, and $c_\gamma$ convention from the same extraction | blocked |
 | `gate_b_transverse_row` | two-transverse-mode handoff, polarization or helicity basis, analyzer handoff when present, and no accepted free longitudinal photon mode | blocked |
 | `gate_c_event_routing_row` | emission, absorption or scattering route, declared out-of-window channels, and receiver/capture route | blocked |
 | `emission_source_row` | source endpoint, source depletion or launch cadence, source branch state, and source provenance | blocked |

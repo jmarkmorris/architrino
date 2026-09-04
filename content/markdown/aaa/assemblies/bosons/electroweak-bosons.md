@@ -66,13 +66,15 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Energy-Frequency:** For a periodic source $\omega=2\pi\nu$, the closure target is the photon-channel relation $E_\gamma=h\nu$; the cycle being counted is the propagating planar-mode phase cycle, not a rest-state volumetric clock.
 *   **Malus' Law:** Gate B must derive this as the geometric projection of the transverse planar-mode profile onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
 
+Gate A uses $p_\gamma=\|\mathbf p_\gamma\|$ for the photon-channel momentum magnitude and $\lambda_\gamma$ for the phase wavelength along the propagation axis. On the weak homogeneous nondispersive branch, the three recovery targets $E_\gamma=h\nu$, $E_\gamma=p_\gamma c_\gamma$, and $p_\gamma=h/\lambda_\gamma$ imply $\lambda_\gamma=c_\gamma/\nu$: the phase pattern advances by one spatial period during one phase cycle. This wavelength is not the transverse radius of either planar braid, the leading--trailing pair spacing $d$, the packet's total longitudinal extent, or an exclusion-envelope size. Any equality between $\lambda_\gamma$ and one of those geometric quantities requires a separate relation derived from the retained branch dynamics; it cannot be inferred from energy and frequency alone.
+
 ### Photon Closure Interface
 
 The photon description above is the ontology-level target. The theorem-level program should be kept in three closure gates so the chapter does not treat open derivations as already complete.
 
 | Gate | Closure target | Required recovery |
 | :--- | :--- | :--- |
-| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating polarity-conjugate planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
+| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating polarity-conjugate planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p_\gamma=h/\lambda_\gamma$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
 | **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
 | **Gate C: vertices and transitions** | Map emission, absorption, the photoelectric effect, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating polarity-conjugate planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, photoelectric thresholds, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
@@ -119,7 +121,7 @@ with finite branch constant $\Lambda_\gamma$. This branch keeps $\omega d/(c_f-c
 
 Gate A is closed only when this branch proves the following recoveries in the same speed convention:
 - The planar-pair mode has no rest-state volumetric clock and therefore imports no rest proper-time branch from massive Noether braid assemblies.
-- The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p=h/\lambda$ recovered from the phase-cycle ledger.
+- The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p_\gamma=h/\lambda_\gamma$ recovered from the phase-cycle ledger.
 - The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
 - The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
 
