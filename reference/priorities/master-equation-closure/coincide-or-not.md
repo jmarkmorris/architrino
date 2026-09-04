@@ -5,7 +5,7 @@
 - Kind: `priority`
 - Queue item: `MEC-008`
 - Priority object: `same_transmitter_coincidence_domain_reachability`
-- Claim level: `framework survey, two steel-man cases, and one decisive open question; no continuation law claimed`
+- Claim level: `derived leading secular sign, derived regularization obstruction, bounded EOM arc measurement, and unresolved MEC-008 acceptance; no continuation law claimed`
 - Workstream: [master-equation-closure](priorities.md)
 - Current lifecycle status: `In progress`
 - Promotion status: not promoted
@@ -37,7 +37,7 @@ An assertion that the Master Equation simply stops before the boundary is classi
 
 MEC-008's required controls are: (1) the existing isolated collinear birth as a singular analytical control; (2) a minimally noncollinear three-or-more-architrino EOM-evolved control with complete root census; (3) perturbations of population, geometry, and retained prehistory testing whether the boundary is avoided robustly or only by fine tuning; and (4) a local chord expansion separating the necessary $\|\mathbf V_i\|=c_f$ contact condition from curvature-dependent higher-order terms. Every numerical instantiation uses $c_f=1$.
 
-This packet supplies the analytical frame for controls (2) and (3) and identifies the quantity control (2) must measure. It executes none of the four controls.
+This packet supplies the analytical frame for controls (2) and (3), derives the leading signed pair contribution, rules out a nontrivial time-rescaled exceptional-sphere flow on the declared regular chart, and records a bounded EOM-evolved three-architrino arc. The EOM arc does not complete a turn, so required control (2) remains open.
 
 Neither the near-diagonal self-root stratum nor a chance pair encounter is privileged here. MEC-008 covers both the same-transmitter case, in which an architrino's own path history produces a vanishing-delay root, and the two-body case, in which two distinct architrinos approach coincidence. The transverse analysis below addresses the two-body case directly; its bearing on the self-root case runs through ceiling rigidity, recorded as O6.
 
@@ -68,6 +68,34 @@ Plainly: the equation only knows how to move forward in time by less than the sh
 The corresponding solver behavior is the halt code `minimum_step_exhausted` in [`src/eom/src/CoupledEvolution.cpp`](../../../src/eom/src/CoupledEvolution.cpp). Under this reframing that halt should be read as a faithful report of a structural fact rather than as an instrument limitation to be engineered away.
 
 Claim grade: the equivalence $r=0\iff\Delta=0$ is `derived` from the root condition. The causality-horizon collapse is `derived` and already owned by GD-5. The reclassification of `minimum_step_exhausted` as structural is `inferred`; it is falsified by an explicit causal stepping construction that remains well defined with $\inf r=0$, which the delay identity appears to forbid.
+
+### Same-time coincidence is not the same problem as different-time path crossing
+
+Two distinct questions are easy to run together, and only one of them is hard.
+
+**Same-time coincidence** asks whether $\mathbf X_i(T)=\mathbf X_j(T)$ for some absolute time $T$ — two architrinos at one point on one slice. That is the subject of this packet.
+
+**Different-time crossing** asks whether one architrino later occupies a point another once occupied, at a different time. That is not a hazard at all. It is the theory's **normal mode of interaction.**
+
+The reason is the root condition itself. Every admitted contribution is a receiver meeting a surface emitted from a transmitter's past position, so architrinos are continuously arriving at places other architrinos have been. Ordinary interaction *is* different-time crossing, and it happens at every root of every pair at every instant.
+
+The two questions therefore differ in what they impose. Same-time coincidence is three scalar conditions $\mathbf X_i(T)=\mathbf X_j(T)$ against one free parameter $T$, hence codimension two, and it degenerates the delay as recorded above. Different-time crossing imposes only that the root condition hold, which is what the acceleration row requires anyway, and it degenerates nothing.
+
+Stating the distinction matters because an intuition that "architrinos are constantly running into each other's positions" is correct, and it does not bear on coincidence at all. What makes coincidence hard is simultaneity, not proximity.
+
+Claim grade: `derived` from the root structure. Falsified by exhibiting an admitted root whose contribution requires the transmitter and receiver to occupy the same point at the same absolute time, which the $H(0)=0$ endpoint convention excludes.
+
+### Conjecture: three-body coincidence should be more strongly excluded than two-body
+
+Simultaneous coincidence of **three** architrinos imposes six scalar conditions — $\mathbf X_i(T)=\mathbf X_j(T)$ and $\mathbf X_j(T)=\mathbf X_k(T)$ — against the same single free parameter $T$. That is codimension five, against codimension two for a pair.
+
+If codimension counting has any force here, a triple coincidence is far more strongly excluded than a pair coincidence, and an $n$-fold coincidence more strongly still, giving a hierarchy rather than a single threshold.
+
+Two cautions keep this a conjecture rather than a result, and both are the same caution recorded in Framework 4 below. Codimension counting establishes non-genericity within a family of systems, and $\mathbb{A}\mathbb{A}\mathbb{A}$ is one specific system whose flow is free to live on a thin set. More seriously, the count assumes nothing is driving the surplus conditions toward zero — and a bound three-architrino assembly is precisely a mechanism that holds several separations small and correlated. Symmetric configurations may collapse the effective count exactly as the collinear case collapses it for a pair.
+
+Claim grade: `guessed`. Falsifier: a symmetric three-architrino configuration whose retained dynamics drives all three separations to zero together, which would show the effective codimension is lower than the naive count and that the hierarchy does not hold.
+
+The useful form of this conjecture is not the ordering itself but what it predicts for the transverse analysis below: if the barrier argument survives for pairs, it should survive *more easily* for triples, because more transverse conditions must be held simultaneously. A result showing the opposite would indicate that the pair analysis has missed a cooperative channel.
 
 ## Assessment Of The Current Null-Action Convention
 
@@ -173,7 +201,7 @@ Plainly: instead of asking whether the motion hits a bad point, inflate the poin
 
 What this buys is decisive rather than descriptive. The rescaled flow on the exceptional set has fixed points, and their stability in the $\rho$ direction answers the reachability question directly: if every fixed point repels in $\rho$, coincidence is unreachable and the ruling-out case is proved; if some attract, coincidence is reachable and the attracting $\hat u$ enumerate the only admissible approach directions, which is exactly the data a continuation law would need.
 
-Claim grade: this is a `method`, not a claim. Its applicability here requires that the rescaled field extend continuously, which is not established for a state-dependent delay system and must be checked before the construction can be trusted. That check is the first concrete deliverable this packet recommends.
+Claim grade: this is a `method`, not a claim. The admissibility check below rules out its nondegenerate application on the declared bounded-velocity regular chart: every acceleration-regularizing time scaling freezes the geometric sphere and sends the root's rescaled memory span to infinity.
 
 ### Framework 3 — Regularization and its obstruction
 
@@ -183,7 +211,7 @@ There is a specific structural reason to doubt removability here, and it is nati
 
 Plainly: the usual trick for surviving a singularity is to change clocks until the motion looks smooth. Here the clock is not a convenience — it is what decides who hears whom. You cannot change it without changing the physics.
 
-Claim grade: `inferred`, and checkable. Falsified by exhibiting a reparameterization that leaves the causal-root admission set invariant while regularizing the coincidence endpoint. Existing corroborating evidence sits on the same side: the straight-through mirror trial in [the continuation scratchpad](../field-speed-ceiling/coincidence-continuation-scratchpad.md) yields a $\delta^{-2}$ obstruction rather than a clean passage, and [the endpoint-residue result](../field-speed-ceiling/coincidence-open-interval-convergence-and-endpoint-residue.md) establishes that ordinary receiver measures cannot converge to a finite vector-Radon measure on any neighborhood containing the endpoint.
+Claim grade: the universal reparameterization result is `derived` below: with fixed $c_f$, only absolute-time translations preserve the canonical admission equation over the declared history class, and a translation cannot regularize vanishing delay. Existing corroborating evidence sits on the same side: the straight-through mirror trial in [the continuation scratchpad](../field-speed-ceiling/coincidence-continuation-scratchpad.md) yields a $\delta^{-2}$ obstruction rather than a clean passage, and [the endpoint-residue result](../field-speed-ceiling/coincidence-open-interval-convergence-and-endpoint-residue.md) establishes that ordinary receiver measures cannot converge to a finite vector-Radon measure on any neighborhood containing the endpoint.
 
 ### Framework 4 — Codimension and transversality, with its limits
 
@@ -235,13 +263,216 @@ Therefore the verdict reduces to a single quantity:
 
 > **Does the delay-induced transverse row carry a secular component in the areal rate $h$, and if so, what is its sign?**
 
-A secular drain removing areal rate makes $h=0$ an attractor, and coincidence is generic for bound opposite-polarity pairs. A secular gain, or a vanishing secular part, leaves the transverse barrier intact and confines coincidence to a set that a populated environment never holds.
+A secular drain removing areal rate makes $h=0$ an attractor and would make coincidence generic for bound opposite-polarity pairs on this local model. A secular gain repels from $h=0$, while a vanishing secular part leaves the central barrier unchanged. Either non-drain outcome supports the exact-aim case locally, but only an invariant-region theorem can establish populated-domain exclusion.
 
-Plainly: whether two architrinos can ever touch comes down to whether the time lag steadily bleeds away their sideways swing, or merely rocks it back and forth. Steady bleeding means they eventually stop swinging and fall straight in. Rocking means they always turn away in time.
+Plainly: the local question has three answers. The delay can bleed away the sideways swing, rock it back and forth with no net change, or steadily enlarge it. Only the first drives the pair toward exact aim.
 
-Claim grade: the central-case barrier $\ddot d=h^{2}/d^{3}-a(d)$ and the reversal at $d\approx h^{2}/C$ are `derived` for exactly central rows. The $d$-independence of $\alpha$ is `derived` under the near-field lemma's hypotheses. The power-versus-logarithm comparison is `derived` given those scalings. The reduction of the whole verdict to the secular part of $\dot h$ is `inferred` and is this packet's principal claim. It is falsified by exhibiting a populated approach in which the barrier fails while the secular part of $\dot h$ vanishes, or survives while a one-signed secular drain is present.
+Claim grade: the central-case barrier $\ddot d=h^{2}/d^{3}-a(d)$ and the reversal at $d\approx h^{2}/C$ are `derived` for exactly central rows. The $d$-independence of $\alpha$ is `derived` under the near-field lemma's hypotheses. The power-versus-logarithm comparison is `derived` given those scalings. Reduction of the local pair verdict to the secular part of $\dot h$ is `derived`; extension from that local verdict to the full populated domain remains `inferred` and is not claimed. A populated approach in which coincidence is reached while the leading pair coefficient remains positive would falsify the sufficiency of the local reduction for the global domain question.
 
-A consistency check points toward the barrier surviving: the workstream's own bound-pair behavior settles to a characteristic separation rather than collapsing, which requires the secular transverse part to vanish or reverse at that separation. This is corroboration by internal coherence, not independent evidence, and it must not be counted as such.
+The earlier consistency expectation that a characteristic separation required the secular term to vanish or reverse was too narrow. A positive secular pair term is also compatible with non-collapse because it strengthens the transverse barrier; whether a retained bound branch exists still requires its own complete-ledger stability certificate.
+
+## Signed Secular Calculation
+
+The turn average does not vanish. On the regular first-root chart, the leading mutual opposite-polarity contribution has the same sign as the areal rate itself. It therefore increases $\lvert h\rvert$ rather than draining it.
+
+Write the relative position and velocity as
+
+$$
+\mathbf d=d\hat{\mathbf n},
+\qquad
+\mathbf w=\mathbf v_i-\mathbf v_j,
+\qquad
+\mathbf h=\mathbf d\times\mathbf w.
+$$
+
+The vector $\mathbf h$ is the three-dimensional form of the signed planar areal rate $h=d^2\dot\theta$. Begin with the declared symmetric absolute-frame control $\mathbf v_i=\mathbf w/2$ and $\mathbf v_j=-\mathbf w/2$; this is a physical restriction, not a change of frame. Impose the same local hypothesis used by the near-field magnitude lemma: each transmitter velocity is constant to leading order across the first-root delay. The two ordered roots then have the same delay $\Delta$, delayed range $r=c_f\Delta$, and positive transmitter factor $D_t$. Their delayed line-of-action vectors are opposite. For the row received by $i$,
+
+$$
+\widehat{\mathbf r}_{ij}
+=
+\frac{d\hat{\mathbf n}-\mathbf w\Delta/2}{c_f\Delta},
+\qquad
+K
+=
+\frac{\kappa\lvert q_iq_j\rvert c_f}{r^2D_t}.
+$$
+
+Opposite polarity gives $\mathbf A_i=-K\widehat{\mathbf r}_{ij}$ and $\mathbf A_j=+K\widehat{\mathbf r}_{ij}$. The mutual relative acceleration is therefore $\mathbf a_{ij}^{\mathrm{rel}}=-2K\widehat{\mathbf r}_{ij}$, and its contribution to the areal-rate derivative is
+
+$$
+\begin{aligned}
+\dot{\mathbf h}_{ij}
+&=
+\mathbf d\times\mathbf a_{ij}^{\mathrm{rel}}\\
+&=
+-2Kd\hat{\mathbf n}\times
+\frac{d\hat{\mathbf n}-\mathbf w\Delta/2}{c_f\Delta}\\
+&=
+\frac{K}{c_f}\mathbf h\\
+&=
+\frac{\kappa\lvert q_iq_j\rvert}{r^2D_t}\mathbf h.
+\end{aligned}
+$$
+
+Every scalar multiplying $\mathbf h$ is positive on the declared regular chart. The result is not an oscillatory torque whose two half-turns cancel: reversing the direction of the pair's turn reverses both $h$ and $\dot h$, so the magnitude grows in either orientation. Using $r\approx d/D_t$ gives the leading present-separation form
+
+$$
+\boxed{
+\dot h_{ij}^{\mathrm{sec}}
+\approx
++\frac{\kappa\lvert q_iq_j\rvert D_t}{d^2}\,h
+}
+$$
+
+and hence
+
+$$
+\operatorname{sgn}\!\left(\dot h_{ij}^{\mathrm{sec}}\right)
+=
+\operatorname{sgn}(h),
+\qquad
+\frac{d\lvert h\rvert}{dT}
+\approx
+\frac{\kappa\lvert q_iq_j\rvert D_t}{d^2}\lvert h\rvert.
+$$
+
+The leading coefficient is independent of $D_r$. Receiver-side playback never enters the magnitude or sign.
+
+### Turn average and magnitude
+
+On a planar turn, $\dot\theta=h/d^2$. Division by this kinematic identity gives
+
+$$
+\frac{dh}{d\theta}
+\approx
+\kappa\lvert q_iq_j\rvert D_t.
+$$
+
+Consequently one oriented turn contributes
+
+$$
+\Delta h_{ij}^{\mathrm{sec}}
+\approx
+\kappa\lvert q_iq_j\rvert
+\oint D_t\,d\theta.
+$$
+
+For nearly constant $D_t$, the magnitude is $\lvert\Delta h_{ij}^{\mathrm{sec}}\rvert\approx2\pi\kappa\lvert q_iq_j\rvert D_t$, with the sign of the incoming $h$. In the lowest-order symmetric sub-field chart $D_t=1+O(\lVert\mathbf v\rVert^2/c_f^2)$, so the leading increment is $2\pi\kappa\lvert q_iq_j\rvert$ per turn. The time average over a period $P$ has the equivalent form
+
+$$
+\left\langle\dot h_{ij}\right\rangle_P
+\approx
+\frac{\kappa\lvert q_iq_j\rvert}{P}
+\int_0^P\frac{D_t h}{d^2}\,dT,
+$$
+
+which has the sign of $h$ whenever $h$ does not reverse on the turn.
+
+This also corrects the earlier interpretation of the logarithmic estimate. If the misalignment angle is frozen as an externally prescribed constant, integrating $\lvert\dot h\rvert\sim\alpha C/d$ along a constant-speed radial approach gives the stated logarithm. For the mutual pair, however, the misalignment is generated by the pair's own transverse velocity, $\alpha\asymp\lvert h\rvert/(2c_fD_td)$. Substitution gives the multiplicative law above. If $\dot d\approx-u<0$ and $D_t$ is nearly constant over a radial subinterval, then
+
+$$
+\ln\!\frac{\lvert h(d)\rvert}{\lvert h(d_0)\rvert}
+\approx
+\frac{\kappa\lvert q_iq_j\rvert D_t}{u}
+\left(\frac{1}{d}-\frac{1}{d_0}\right).
+$$
+
+The secular term is therefore parametrically stronger than the fixed-angle logarithm on that prescribed approach, but it has the protective sign: positive feedback for $\lvert h\rvert$. The approximation ceases to describe the trajectory once the growing transverse term reverses the radial approach.
+
+The common absolute-translation velocity cancels from the first-order mutual term. Acceleration rows from other architrinos remain bounded relative to the pair's $d^{-2}$ row so long as no third-party separation or transmitter factor becomes singular. Their contribution can tilt $\mathbf h$ and can create a nonzero $\mathbf h$ from exact aim, but it cannot reverse the displayed leading pair coefficient on that regular near-field chart.
+
+Plainly: the delayed attractive direction points slightly ahead in the sense of the pair's existing turn. Each architrino is accelerated along its own sideways motion, so the turn grows rather than being bled away. The target $h=0$ is a repelling set for the leading pair contribution, not an attractor.
+
+Claim grade: `derived` on the pair-center, first-root, positive-$D_t$, locally constant-transmitter-velocity chart. The present-separation and full-turn formulas are leading-order consequences of the same hypotheses as the near-field lemma. Falsifier: a compliant opposite-polarity chart on which the complete two-row mutual contribution has $\mathbf h\cdot\dot{\mathbf h}<0$, or a full turn with fixed sign of $h$ and $D_t>0$ whose mutual contribution satisfies $\Delta\lvert h\rvert\le0$.
+
+### Decider verdict
+
+The calculated secular part is one-signed but has the opposite sign from the proposed attractor branch. It is a secular **gain**, not a secular drain. Therefore the transmitter-side pair row does not drive $h$ through zero. It strengthens the transverse barrier and confines pair coincidence, at this leading local order, to exact aim or to a separate non-pair contribution that cancels the nonzero $h$ at a particular event.
+
+This is not yet MEC-008's accepted domain-exclusion theorem. The derivation is local, assumes the regular first-root chart, and does not quantify every populated retained history through a finite interval. It decides the R2/R3 secular-sign hinge but does not prove a population-stable invariant admissible region.
+
+## Blow-Up Admissibility
+
+No nondegenerate exceptional-sphere flow exists within the declared regular finite-speed chart. The obstruction can be stated without importing an instantaneous collision law.
+
+Let the leading relative acceleration have the near-field form $\dot{\mathbf w}=\rho^{-2}\mathbf F+o(\rho^{-2})$, with $\rho=d$, bounded physical relative velocity $\mathbf w$, and nonzero bounded $\mathbf F$ on a positive-$D_t$ chart. Rescale absolute time by $dT/ds=\rho^p$. The blown-up kinematic equations are
+
+$$
+\rho'
+=
+\rho^p\hat{\mathbf u}\cdot\mathbf w,
+\qquad
+\hat{\mathbf u}'
+=
+\rho^{p-1}
+\left(\mathbf I-\hat{\mathbf u}\hat{\mathbf u}^{\mathsf T}\right)\mathbf w,
+\qquad
+\mathbf w'
+=
+\rho^{p-2}\mathbf F+o(\rho^{p-2}),
+$$
+
+where a prime means differentiation in $s$. Continuity of the acceleration equation with bounded physical velocity requires $p\ge2$. For every such $p$, both geometric equations vanish at $\rho=0$, and the radial linearization also vanishes. The exceptional sphere is frozen rather than carrying fixed points with attracting or repelling $\rho$ directions. It therefore supplies no $\rho$-stability classification.
+
+The alternative nondegenerate inverse-square scaling introduces $\mathbf z=\rho^{1/2}\mathbf w$ and $dT/ds=\rho^{3/2}$. A nonzero boundary value of $\mathbf z$ then requires $\lVert\mathbf w\rVert\asymp\rho^{-1/2}$, which exits every finite-speed, transmitter-factor-bounded chart before $\rho=0$. It is not an admitted blow-up of the Master Equation regime being analyzed.
+
+The state-dependent delay adds a second obstruction. Since $\Delta T\asymp\rho$ while $dT/ds=\rho^p$, the same root spans
+
+$$
+\Delta s\asymp\rho^{1-p}.
+$$
+
+For the only bounded-velocity scalings that regularize the acceleration, $p\ge2$, the required source point recedes to unbounded $s$-history as $\rho\to0$. The boundary value therefore cannot be a closed continuous vector field on $(\rho,\hat{\mathbf u},\mathbf w)$ or on any finite-memory extension of those variables. Retaining the complete absolute-time history preserves the original delayed problem but does not construct an ordinary flow on the exceptional sphere.
+
+Claim grade: `derived` for power-law time rescalings on the declared bounded-velocity, positive-$D_t$, first-root near-field chart. Falsifier: a blow-up with bounded physical velocities whose rescaled field is continuous and nondegenerate at $\rho=0$, retains a finite rescaled memory horizon, and preserves the original absolute-time causal-root set.
+
+## Reparameterization Invariance
+
+Only translations of absolute time preserve the canonical causal-root admission set for the full history class. Let $T=\phi(s)$ be a strictly increasing change of parameter. Passive relabeling preserves the physical roots only if the root condition continues to use the stored absolute-time difference,
+
+$$
+\left\lVert
+\mathbf X_i(\phi(s_r))-\mathbf X_j(\phi(s_t))
+\right\rVert
+=
+c_f\left[\phi(s_r)-\phi(s_t)\right].
+$$
+
+To recover the same canonical equation in the new parameter with the same fixed $c_f$, one would need
+
+$$
+\phi(s_r)-\phi(s_t)=s_r-s_t
+$$
+
+for every admitted pair. Stationary separated histories realize every positive delay, so the identity must hold for every $s_t$ and every positive increment. Hence $\phi(s)=s+T_0$. A constant translation neither slows the coincidence approach nor removes the vanishing delay. A scaling would change the numerical wake speed, and any state-dependent scaling would change which emission and reception events satisfy the root equation.
+
+A passive nonuniform relabeling can carry absolute time as an additional state and continue evaluating roots with $\phi(s_r)-\phi(s_t)$. That leaves the admission set intact, but it leaves the singular absolute-time equation intact as well; it is bookkeeping, not regularization.
+
+Claim grade: `derived` for invariance over the declared history class with fixed $c_f$. Falsifier: a strictly increasing non-translation $\phi$ that preserves the admitted emission-reception pairs for every stationary separated control and every moving retained history while keeping the canonical root equation and the same $c_f$.
+
+## MEC-008 Control (2): Bounded EOM-Evolved Arc
+
+The existing EOM solver and its pre-existing root-accounting output were used without modifying either instrument. The control initialized an opposite-polarity pair at $\mathbf X_a=(0.05,0,0)$ and $\mathbf X_b=(-0.05,0,0)$ with velocities $(0,0.2,0)$ and $(0,-0.2,0)$, plus a third positive architrino at $(0.3,0.2,0.7)$ with zero velocity. The retained inertial prehistory covered $[-2,0]$, $c_f=1$, $\kappa\lvert q_aq_b\rvert=0.008$, and the EOM solver evolved the complete three-path state from $T=0$ to $T=0.2$ at fixed step $0.001$.
+
+All 200 steps were accepted with no rejected step. Each step certified all nine ordered receiver-transmitter rows, including root-free complements, no unresolved traversal row, and no memory-boundary contact: 1,800 ordered root-accounting rows in total. The pair's areal-rate vector changed from
+
+$$
+\mathbf h(0)=(0,0,0.04)
+$$
+
+to
+
+$$
+\mathbf h(0.2)
+=
+(-0.0001861421810,\ 0.0004307294674,\ 0.0465138089981).
+$$
+
+The component along the initial turn normal therefore increased by $0.0065138089981$, or $16.2845\%$, while the separation direction advanced by $0.8493798015$ radians, or $0.135183$ turns. The sign agrees with the derived secular gain over this certified arc.
+
+Claim grade: `measured` by the pre-existing EOM solver's coupled-evolution, complete-root-accounting, and published-history outputs over the declared $0\le T\le0.2$ control only. The cross product used to read $\mathbf h$ is its defining kinematic expression, not an acceleration oracle. Falsifier: replay of the declared request yielding a non-complete accepted-step root census or a nonpositive change in the initial-normal component of $\mathbf h$.
+
+This does not complete required control (2). The arc covers only $13.5183\%$ of a turn, and the initial retained history is prescribed rather than EOM-produced. Earlier fixed-step attempts to extend a comparable three-path request through a full turn exceeded their bounded process time without returning a retained final record. Two later adaptive requests did return fail-closed records: the original-scale control halted at $0.366036$ turns and a faster-turning sub-field control halted at $0.294148$ turns. In both cases the next candidate step exhausted the root-completeness precision budget at an evolving published-history joint. Their accepted prefixes continued to increase the initial-normal component of $\mathbf h$, but the overall responses were failed and cannot supply a turn average. The required full-turn EOM measurement and an independently retained successful replay artifact therefore remain open.
 
 ## Steel-Man: Ruling Coincidence In
 
@@ -275,22 +506,20 @@ Stated at full strength, without hedging, so that it can be defeated on its meri
 
 ## Adjudication
 
-The ruling-out case is currently the stronger of the two, and the reason is specific rather than a matter of weight of argument. O1 and O4 are polarity-independent: the first concerns the degradation of the solution concept, the second concerns what the environment can and cannot do. The ordinary intuition that a barrier protects only like-polarity pairs does not limit either one. O6 additionally converts the strongest ruling-in argument, R5, into an exact-aim condition, which places it under the same protection as O3.
+The signed calculation closes the R2/R3 secular-sign hole in favor of the transverse barrier. The opposite-polarity pair row supplies a secular gain with $\mathbf h\cdot\dot{\mathbf h}>0$, not a drain. The pair therefore does not steer itself toward exact aim; it steers away from it. The blow-up and reparameterization results independently strengthen O1 and O5 by showing why an ordinary exceptional-sphere regularization cannot be constructed without leaving the declared causal-root problem.
 
-The ruling-in case retains one argument that the ruling-out case has not answered: R2 combined with R3. For an opposite-polarity pair there is no repulsive barrier at all, and the transverse barrier that would replace it is a scaling statement whose sufficiency depends entirely on the secular question posed above. Until the secular part of $\dot h$ is computed, the ruling-out case rests on an unproven scaling and the adjudication is not closed.
+The adjudication still does not meet MEC-008's domain-exclusion acceptance condition. A local repelling coefficient is not an invariant-region theorem over all populated retained histories. Third-party rows can create, tilt, or cancel $\mathbf h$, root topology can change outside the first-root chart, and the bounded EOM control covers only part of one turn. Reachability is likewise unproved because no certified EOM history reaches the boundary.
 
-Plainly: the case against coincidence is winning, and it is winning for reasons that survive whichever polarities are involved. But it has exactly one hole, and the hole is the ordinary attracting pair, which is also the most common configuration in the universe. That is not a hole one can leave open.
+Plainly: the ordinary attracting pair closes the one hole in the local barrier argument, but local repulsion from exact aim is not yet a theorem that every populated history misses coincidence.
 
-## Recommended Dispatch
+## Deliverable Disposition
 
-Four deliverables, in dependency order. The first three are analytical and belong to this packet; the fourth is MEC-008's required control (2) and belongs to the EOM solver.
+1. **Secular transverse row — derived.** The leading signed contribution is $\dot h_{ij}^{\mathrm{sec}}\approx+\kappa\lvert q_iq_j\rvert D_t h/d^2$. It increases $\lvert h\rvert$ and makes $h=0$ repelling on the declared chart.
+2. **Blow-up admissibility — obstructed.** A bounded-velocity rescaling needs $dT/ds=O(\rho^p)$ with $p\ge2$; this freezes the exceptional sphere and makes the rescaled root-memory span diverge. The nondegenerate inverse-square velocity scaling exits the finite-speed regular chart.
+3. **Reparameterization invariance — derived negatively.** Only $T=s+T_0$ preserves the canonical root equation for the full history class with fixed $c_f$, and this translation does not regularize coincidence.
+4. **Minimally noncollinear EOM control — partially executed, not accepted.** The unchanged EOM instrumentation gives a complete nine-row census and positive $h$ increment over a certified $0.135183$-turn arc. No full-turn retained result was obtained, so the required turn average remains open.
 
-1. **Secular transverse row.** Compute the secular part of $\dot h=d\,a_\perp$ for an opposite-polarity pair under the transmitter-side row, averaged over a turn, to leading order in the near-field regime. Report its sign. This single result closes or reopens the adjudication.
-2. **Blow-up admissibility check.** Determine whether the rescaled field of Framework 2 extends continuously to $\rho=0$ for a state-dependent delay system. If it does, construct the flow on the exceptional set and classify its fixed points by $\rho$-stability. If it does not, record the obstruction, because that obstruction is itself a ruling-out result of type O1.
-3. **Reparameterization invariance test.** Determine whether any change of evolution parameter leaves the causal-root admission set invariant. A negative result upgrades Framework 3 from `inferred` to `derived`.
-4. **Minimally noncollinear EOM control.** Execute MEC-008 control (2) with a complete root census, instrumented to report the turn-averaged transverse contribution that deliverable 1 predicts, so the analytical sign and the evolved sign are produced by separately authored instruments. Under the evidence-independence rule this pairing is evidence only if the analytical calculation and the solver instrumentation are not authored in the same change; if they are, the agreement tests implementations rather than the scaling claim.
-
-Deliverable 1 is the decider and should be dispatched first, because it tells deliverable 4 what to measure. Deliverables 2 and 3 strengthen the ruling-out case but cannot by themselves close the R2/R3 hole, and neither satisfies MEC-008's exclusion criterion on its own: an invariant-region theorem on the populated retained-history phase space is still required, with explicit quantifiers over population, initial histories, regular-root margins, and finite evolution interval.
+The remaining closure path is not another sign calculation. It is a full-turn independently retained EOM control followed by an invariant-region theorem with explicit quantifiers over population, initial histories, regular-root margins, and finite evolution interval.
 
 ## Claim Register
 
@@ -302,20 +531,26 @@ Deliverable 1 is the decider and should be dispatched first, because it tells de
 | Transmitter factor suppresses rather than amplifies after root substitution | `derived` under the same hypotheses | as above |
 | Delay misalignment angle $\alpha$ is independent of $d$ | `derived` under the same hypotheses | a compliant approach on which $\alpha$ vanishes or diverges with $d$ |
 | Exactly central rows give a transverse turning point at $d\approx h^{2}/C$ for $h\neq0$ | `derived` | an exactly central case with $h\neq0$ reaching $d=0$ |
-| Barrier threshold falls as $\sqrt{d}$ while transverse drain accumulates as $\ln(1/d)$ | `derived` given the above scalings | a compliant approach violating either rate |
-| Verdict reduces to the secular part of $\dot h$ | `inferred` — principal claim | barrier failing with vanishing secular part, or surviving with one-signed secular drain |
+| Barrier threshold falls as $\sqrt{d}$ while a prescribed fixed-angle transverse magnitude accumulates as $\ln(1/d)$ | `derived` given the above scalings | a compliant approach violating either rate |
+| Leading opposite-polarity mutual row gives $\dot h_{ij}^{\mathrm{sec}}\approx+\kappa\lvert q_iq_j\rvert D_t h/d^2$ | `derived` on the declared chart | a compliant complete two-row calculation with $\mathbf h\cdot\dot{\mathbf h}\le0$ |
+| One-turn secular increment is approximately $\kappa\lvert q_iq_j\rvert\oint D_t\,d\theta$ | `derived` on the declared chart | a compliant full turn with fixed-sign $h$ and positive $D_t$ but nonpositive $\Delta\lvert h\rvert$ |
+| $h=0$ is repelling under the leading pair contribution | `derived` locally | a negative linear coefficient of $h$ on the declared chart |
+| Bounded-velocity blow-up does not yield a nondegenerate exceptional-sphere flow | `derived` for power-law time rescalings on the declared chart | a continuous nondegenerate boundary field preserving bounded velocity, finite rescaled memory, and the original roots |
 | Vanishing-delay spectral escape obstructs finite-regularity continuation | `inferred` — transfer from constant-lag systems unproven | a continuation with bounded local regularity across a coincidence event |
-| Regularization is structurally narrowed by absolute-time root admission | `inferred` | a reparameterization preserving the admission set and regularizing the endpoint |
+| Only absolute-time translations preserve canonical root admission for the full history class at fixed $c_f$ | `derived` | a non-translation preserving every stationary and moving retained-history root pair |
+| Three-architrino EOM control increases the initial-normal $h$ component by $0.0065138089981$ over $0.135183$ turns | `measured` on the declared bounded arc | replay with incomplete accepted-step census or nonpositive increment |
 | Codimension two implies coincidence is non-generic | `derived`, and explicitly insufficient alone | not applicable; the limitation is stated rather than claimed |
+| Different-time path crossing is the normal interaction mode, not a coincidence hazard | `derived` | an admitted root requiring transmitter and receiver at the same point at the same absolute time |
+| Three-body coincidence is codimension five, so more strongly excluded than pairwise | `guessed` | a symmetric three-architrino configuration whose retained dynamics drives all three separations to zero together |
 | Coincidence is unreachable in a populated universe | **not claimed** | — |
 | Coincidence occurs in a populated universe | **not claimed** | — |
 
 ## Nonclaims
 
-This packet establishes no continuation, passage, rebound, coordinate-crossing outcome, outgoing history, boundary value, event semantics, conserved account, stability verdict, physical realization, MEC closure, or EOM solver acceptance. It does not reopen MEC-006 or MEC-007, does not modify the canonical transmitter-side acceleration row, and treats every receiver-side factor strictly as signed playback rather than as acceleration strength, per the workstream's revocation boundary. It asserts neither that coincidence occurs nor that it cannot; it establishes what would settle the question and which single computation decides it.
+This packet establishes no continuation, passage, rebound, coordinate-crossing outcome, outgoing history, boundary value, event semantics, conserved account, global stability verdict, physical realization, MEC closure, or EOM solver acceptance. It does not reopen MEC-006 or MEC-007, does not modify the canonical transmitter-side acceleration row, and treats every receiver-side factor strictly as signed playback rather than as acceleration strength, per the workstream's revocation boundary. It asserts neither that coincidence occurs nor that it cannot; it establishes that the leading pair secular term repels from exact aim and records why that local result is not a global domain theorem.
 
 It does not close MEC-008. Neither MEC-008 acceptance condition is met: no invariant-region theorem over the populated retained-history phase space has been derived, and no independently certified EOM-evolved counterexample exists. MEC-008 remains open, and MEC-002 and MEC-003 may not cite domain exclusion as a solution on the strength of anything in this document.
 
-This document does not answer whether two architrinos can touch. It does establish that the answer is decided by one computable quantity, and it names that quantity.
+This document does not answer whether two architrinos can touch on every admissible populated history. It does answer the local decider: the transmitter-side mutual pair contribution is a secular gain in $\lvert h\rvert$, not a drain.
 
 Closure goal: replace the null-action convention at $r=0$ with an adjudicated verdict by computing the secular transverse areal-rate contribution for an opposite-polarity pair, thereby either proving a populated transverse barrier or exposing coincidence as a dynamical attractor requiring a derived event rule.

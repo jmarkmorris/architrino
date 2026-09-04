@@ -1,8 +1,8 @@
 # Entropy
 
-Entropy asks what a finite record has forgotten. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a primitive substance, not a field in the Euclidean void, not the generator of absolute time, and not an independent gravitational mechanism. It is a functional of the histories a declared observer, apparatus, simulation packet, or effective description retains after the complete deterministic state has been projected into a finite record.
+Entropy asks what a finite record has forgotten. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a primitive substance, not a field in the [Euclidean void](../foundations/euclidean-void.md)—the fixed three-dimensional spatial container—not the generator of [absolute time](../foundations/absolute-time.md), and not an independent gravitational mechanism. It is a functional of the histories a declared observer, apparatus, simulation record, or effective description retains after the complete deterministic state has been projected into a finite record.
 
-This chapter collects the entropy rule used across time, energy, measurement, computation, horizon, and cosmology discussions. The central discipline is the same-record rule: a packet may not fit entropy, temperature, flux, probability weights, apparatus cost, or horizon labels from separate hidden ensembles. If a thermal, quantum, horizon, or computational comparison is claimed, the entropy appearing in that comparison must be a projection of the same record that supplies the other quantities.
+This chapter collects the entropy rule used across time, energy, measurement, computation, horizon, and cosmology discussions. The central discipline is the same-record rule: an analysis may not fit entropy, temperature, flux, probability weights, apparatus cost, or horizon labels from separate hidden ensembles. If a thermal, quantum, horizon, or computational comparison is claimed, the entropy appearing in that comparison must be a projection of the same record that supplies the other quantities.
 
 ## Plain-Language Reading
 
@@ -10,9 +10,9 @@ A simple way to read entropy is: entropy measures how many hidden detailed stori
 
 This is also why visible disorder is only a shortcut, not the definition. A jagged, broken, or visually mixed object can still have lower entropy than a smoother thermal state if fewer complete histories are compatible with its retained record. In this chapter, disorder language is acceptable only when it tracks the declared measure, macrostate partition, and unresolved history count.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, inherited entropy language usually measures unresolved path history without naming it that way. Heat spreading, phase scrambling, apparatus irreversibility, and horizon bookkeeping all express the same pressure: a finite record no longer retains enough exact architrino, assembly, causal-wake, boundary, and Noether sea history to reconstruct one unique detailed past.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, inherited entropy language usually measures unresolved path history without naming it that way. An [architrino](../foundations/architrino.md) is a primitive pointlike entity carrying one polarity, and its causal wake is the expanding record emitted along its path. Heat spreading, phase scrambling, apparatus irreversibility, and horizon bookkeeping all express the same pressure: a finite record no longer retains enough exact architrino, assembly, causal-wake, boundary, and Noether sea history to reconstruct one unique detailed past.
 
-Entropy remains useful because it audits coarse descriptions. It asks whether a measurement record is really stable, whether heat and work bookkeeping close, whether computation or memory reset has a physical cost, whether a horizon label count comes from real boundary records, and whether a packet is using one hidden record for entropy while using another for temperature, flux, or probability. In that sense, entropy is not fundamental ontology, but it is a powerful test of whether an effective description is physically honest.
+Entropy remains useful because it audits coarse descriptions. It asks whether a measurement record is really stable, whether heat and work bookkeeping close, whether computation or memory reset has a physical cost, whether a horizon label count comes from real boundary records, and whether an analysis is using one hidden record for entropy while using another for temperature, flux, or probability. In that sense, entropy is not fundamental ontology, but it is a powerful test of whether an effective description is physically honest.
 
 For a fixed coarse-graining and access window, entropy is determined by universe path history. The complete path history determines the retained record, the compatible alternatives, and the boundary exchanges. The entropy value is not just a bare property of the universe by itself; it is the value obtained after declaring which histories are being distinguished and which histories are being grouped together.
 
@@ -36,7 +36,7 @@ $$
 
 This is the official reading of $\mu_T$ in this chapter: probabilities describe unresolved retained history under a declared preparation, not stochastic substrate law. Deterministic multistability becomes important because $\nu_{\mathrm{prep}}$ can spread over multiple basins before the flow sharpens it into a record-limited outcome distribution.
 
-Let $W(T)$ be the access window and let $\mathcal{Q}$ be the coarse-graining used by a Physical Observer, apparatus, or simulation packet. The record projection
+Let $W(T)$ be the access window and let $\mathcal{Q}$ be the coarse-graining used by a Physical Observer, apparatus, or simulation record. The record projection
 
 $$
 \Pi_{\mathcal{Q},W}:\Gamma_T\longrightarrow \mathcal{Z}_{\mathcal{Q},W}
@@ -110,9 +110,9 @@ D_{\mathrm{KL}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-545fdfd3ca357464)
-Projection cannot increase the retained record's ability to distinguish the two candidate history ensembles. This loss of distinguishability is not automatically an increase of Shannon or thermodynamic entropy; an entropy-growth claim still requires the fixed reference measure, coarse-graining, access window, and boundary ledger declared above.
+Projection cannot increase the retained record's ability to distinguish the two candidate history ensembles; this is the data-processing inequality for relative entropy, whose classical form uses the divergence introduced by [Kullback and Leibler (1951)](https://doi.org/10.1214/aoms/1177729694). This loss of distinguishability is not automatically an increase of Shannon or thermodynamic entropy; an entropy-growth claim still requires the fixed reference measure, coarse-graining, access window, and boundary ledger declared above.
 
-For a discrete coarse partition with probabilities $p_\alpha$, this reduces to the familiar Gibbs/Shannon form
+For a discrete coarse partition with probabilities $p_\alpha$, the record entropy takes the Gibbs/Shannon form introduced for communication ensembles by [Shannon (1948)](https://doi.org/10.1002/j.1538-7305.1948.tb01338.x):
 
 $$
 S_{\mathcal{Q}}
@@ -122,21 +122,25 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-07a57793d3877ba2)
 
-For a microcanonical retained window, the same idea is written as
+For a microcanonical retained window, let $\lambda$ be the declared counting or phase-volume measure and let $\lambda_0$ be the reference cell that makes the count dimensionless. Then define
 
 $$
+\Omega_{\mathcal{Q},W}(T)
+=
+\frac{\lambda\!\left(\Gamma_{\mathcal{Q},W(T)}\right)}{\lambda_0},
+\qquad
 S_{\mathcal{Q},W}(T)
 =
-k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(T)}\right)
+k_B\log \Omega_{\mathcal{Q},W}(T)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3004d4ff5fe0f531)
 
-where $\Gamma_{\mathcal{Q},W(T)}$ is the set of complete microhistories compatible with the retained macroscopic records in that window.
+where $\Gamma_{\mathcal{Q},W(T)}$ is the set of complete microhistories compatible with the retained macroscopic records in that window. The measure $\lambda$ is not the normalized preparation probability $\mu_T$: inserting a probability directly into $k_B\log\mu_T(\Gamma)$ would give a nonpositive log-probability rather than a Boltzmann count.
 
-Plain language: entropy is not counted over reality in the abstract. It is counted over the alternatives left unresolved after the record map, measure, coarse-graining, and access window have been specified.
+Entropy is not counted over reality in the abstract. It is counted over the alternatives left unresolved after the record map, measure, coarse-graining, and access window have been specified.
 
-The exact-record limit is useful as a guardrail. If the retained partition distinguishes one complete deterministic history from every other complete deterministic history, then the active cell has probability one and the corresponding entropy is zero. That does not mean thermodynamics has disappeared from the world. It means the record has been refined until it no longer asks a thermodynamic question. A thermodynamic macrostate is a physically declared grouping of histories: a pressure, temperature, density, spectral, boundary, apparatus, or control-relevant record that a real system can retain and use.
+The exact-record limit is useful as a guardrail, but it depends on the measure class. In a discrete conditional record containing exactly one admissible history, the sole cell has probability one and Shannon entropy zero. In a continuous history space, a singleton generally has zero measure and differential entropy is not defined by assigning that singleton probability one; the reference measure and limiting partition must remain explicit. In either case, refining the record until it distinguishes complete histories has stopped asking the ordinary thermodynamic question. A thermodynamic macrostate is a physically declared grouping of histories: a pressure, temperature, density, spectral, boundary, apparatus, or control-relevant record that a real system can retain and use.
 
 Equivalently, entropy is a functional on the quotient $\Gamma_T/\!\sim_{\mathcal Q,W}$. Refining the quotient shrinks fibers and cannot increase the active-cell log-fiber measure when the underlying preparation measure is held fixed; coarsening the quotient merges fibers and can increase it. The number therefore has physical content only after the quotient map, measure, access window, and comparison job are declared.
 
@@ -153,7 +157,7 @@ $$
 
 where $\mathcal{Z}_{\eta}$ is the declared regularized state space for $\mathsf Z=(\mathbf X,\mathbf V)$; a finite-dimensional Galerkin or return-section chart is another admissible setting when its projection error is included in the record. The preparation measure must be defined on that domain, and the delayed flow must at least be measurable on the retained window.
 
-Conservation of fine-grained entropy requires more. The branch must supply an invariant or suitably quasi-invariant history measure for the declared flow, with its regularization, endpoints, and memory-boundary convention fixed. Determinism alone does not provide a Liouville theorem for a state-dependent or neutral delayed system. Extending a finite-memory or regularized claim to $h\to\infty$ or $\eta\to0$ is therefore a closure target, not a consequence of the entropy definition.
+Conservation of fine-grained entropy requires more. The branch must supply an invariant or suitably quasi-invariant history measure for the declared flow, with its regularization, endpoints, and memory-boundary convention fixed. Determinism alone does not provide a Liouville theorem for a state-dependent or distributed-delay system. Extending a finite-memory or regularized claim to $h\to\infty$ or $\eta\to0$ is therefore a closure target, not a consequence of the entropy definition.
 
 ### Receiver Inference Fibers and Provenance Graphs
 
@@ -199,15 +203,15 @@ $$
 
 This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation](master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(T)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
 
-When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(T)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
+When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(T)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not defined for that record.
 
 For windows with many retained roots, define the causal-wake provenance graph $G_{\mathrm{prov}}(W)$: vertices are retained causal roots in $W$, and two vertices are joined when their roots trace to a common transmitter worldline segment in the compatible complete histories. This graph is the common native carrier for three entropy uses below: its connectedness supplies history-backed concordance, its edge cuts supply access-cut entropy, and its boundary-crossing edges supply the wake-escapement contribution to the arrow-of-time ledger.
 
-More precisely, $G_{\mathrm{prov}}(W)$ is the 1-skeleton of the receiver-transmitter provenance complex retained by the packet. Its connected components give the local concordance structure, its cut space gives access-cut entropy, and its boundary operator records which provenance edges leave the retained window. The graph is therefore not an analogy for information. It is the combinatorial record of which transmitter labels and path-history distinctions remain recoverable after the hit record has been projected.
+More precisely, $G_{\mathrm{prov}}(W)$ is the 1-skeleton of the receiver-transmitter provenance complex retained in the record. Its connected components give the local concordance structure, its cut space gives access-cut entropy, and its boundary operator records which provenance edges leave the retained window. The graph is therefore not an analogy for information. It is the combinatorial record of which transmitter labels and path-history distinctions remain recoverable after the hit record has been projected.
 
 ## Minimum Specification
 
-Every entropy statement in $\mathbb{A}\mathbb{A}\mathbb{A}$ should declare five ingredients before the number is treated as physical. First, it should name the preparation and measure $\mu_T$ on compatible deterministic histories. Second, it should name the access window $W(T)$ and retained record carrier: apparatus state, boundary wake data, Noether sea state, Physical Observer record, or simulation packet. Third, it should name the coarse-graining $\mathcal{Q}$ and the projection $\Pi_{\mathcal{Q},W}$. Fourth, it should state the comparison job: work availability, heat flow, coding, measurement locking, horizon label counting, cosmology, or another defined use. Fifth, for open windows, it should include boundary flux and record-change residuals rather than silently treating the window as isolated.
+Every entropy statement in $\mathbb{A}\mathbb{A}\mathbb{A}$ should declare five ingredients before the number is treated as physical. First, it should name the preparation and measure $\mu_T$ on compatible deterministic histories. Second, it should name the access window $W(T)$ and retained record carrier: apparatus state, boundary wake data, Noether sea state, Physical Observer record, or simulation record. Third, it should name the coarse-graining $\mathcal{Q}$ and the projection $\Pi_{\mathcal{Q},W}$. Fourth, it should state the comparison job: work availability, heat flow, coding, measurement locking, horizon label counting, cosmology, or another defined use. Fifth, for open windows, it should include boundary flux and record-change residuals rather than silently treating the window as isolated.
 
 This checklist is not extra ontology. It is the minimum context needed for an entropy claim to say something definite. Without these ingredients, a phrase such as "the entropy increased," "the system is maximally entropic," or "information was lost" has not yet specified which alternatives were unresolved, which record retained them, or which comparison class made the claim meaningful.
 
@@ -248,7 +252,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e50470a88034bb5c)
 
-A kinetic temperature is a special limit of the same rule, not a separate ontology. It is available only when the accessible velocity or mode distribution has thermalized under the local interaction rules. For example, a Maxwell-Boltzmann comparison may be used only after the retained packet shows
+A kinetic temperature is a special limit of the same rule, not a separate ontology. It is available only when the accessible velocity or mode distribution has thermalized under the local interaction rules. For example, a Maxwell-Boltzmann comparison may be used only after the retained record shows
 
 $$
 f_{\mathcal Q}(\mathbf{v};\theta_{\text{sea}})
@@ -280,7 +284,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9e9e516ea1e74787)
 
-This is a diagnostic, not a new substrate property. In a closed isothermal comparison, the useful work extractable from the retained packet is bounded by the decrease of this same-record availability,
+This is a diagnostic, not a new substrate property. In a closed isothermal comparison, the useful work extractable from the retained record is bounded by the decrease of this same-record availability,
 
 $$
 W_{\mathrm{useful}}
@@ -292,9 +296,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3adfd7250e4ba0ba)
 
-up to declared control and boundary residuals. A packet that conserves $E_{\mathcal{Q},W}$ while increasing $S_{\mathcal{Q},W}$ has not lost energy. It has lost retained work availability in that comparison channel.
+up to declared control and boundary residuals. A record that conserves $E_{\mathcal{Q},W}$ while increasing $S_{\mathcal{Q},W}$ has not lost energy. It has lost retained work availability in that comparison channel.
 
-For resource-theory uses, the maximum work must also be indexed by the allowed apparatus control and readout class. Let $\mathcal{C}^{\mathrm{ctrl}}_W$ denote the declared controls, measurements, feedback operations, and reset operations available in the window, and let $R_f$ denote the required final record. Then the same physical packet supports the diagnostic
+For resource-theory uses, the maximum work must also be indexed by the allowed apparatus control and readout class. Let $\mathcal{C}^{\mathrm{ctrl}}_W$ denote the declared controls, measurements, feedback operations, and reset operations available in the window, and let $R_f$ denote the required final record. Then the same physical system supports the diagnostic
 
 $$
 W_{\max}\!\left(\theta_W;\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
@@ -424,9 +428,9 @@ Clausius entropy, $dS=\delta Q_{\mathrm{rev}}/T_{\mathrm{temp}}$, is licensed on
 The Clausius definition also has a direction of dependence that must not be reversed. A cycle statement can be made without entropy:
 
 $$
-\oint \frac{\delta Q}{T}\le 0,
+\oint \frac{\delta Q}{T_{\mathrm{temp}}}\le 0,
 \qquad
-\oint_{\mathrm{rev}}\frac{\delta Q_{\mathrm{rev}}}{T}=0
+\oint_{\mathrm{rev}}\frac{\delta Q_{\mathrm{rev}}}{T_{\mathrm{temp}}}=0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-eb3ae6f3bd77fe38)
@@ -436,14 +440,14 @@ for the declared heat reservoirs, temperature scale, and reversible comparison c
 $$
 \Delta S_{\mathrm{Cl}}
 =
-\int_{A}^{B}\frac{\delta Q_{\mathrm{rev}}}{T}
+\int_{A}^{B}\frac{\delta Q_{\mathrm{rev}}}{T_{\mathrm{temp}}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-427412577e15da0c)
 
 become path-independent. In this chapter, a claim that "entropy broke the second law" must therefore specify which entropy is being used. If the Clausius integrability condition fails, the thermodynamic entropy used in that comparison was not well-defined in the first place.
 
-The framework also conditionally expects, on a certified sea branch, where this integrability fails. Let the Noether sea retuning lag on a thermodynamic cycle be
+One candidate obstruction to integrability is a Noether sea response that fails to return over the thermodynamic cycle. Let the sea-retuning lag be
 
 $$
 \Lambda_{\text{sea}}(W)
@@ -457,9 +461,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-de8aeecf345df1bf)
 
-where $T_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $P_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T_{\mathrm{temp}}$ is not a well-defined state function for that record.
+where $T_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the record and $P_{\text{cycle}}$ is the duration of the reversible-comparison cycle. The condition $\Lambda_{\text{sea}}\ll1$ is neither necessary nor sufficient by itself for a state function; it is a scale-separation diagnostic. When $\Lambda_{\text{sea}}\gtrsim1$, cycle-scale hysteresis becomes likely and must be measured. A nonzero period $\oint\delta Q_{\mathrm{rev}}/T_{\mathrm{temp}}$ on the declared comparison cycle, not the timescale ratio alone, is the obstruction to path independence.
 
-In differential-form language, $\delta Q/T_{\mathrm{temp}}$ is an exact 1-form only in the fast-retuning regime where the Noether sea response closes before the comparison cycle completes. When $\Lambda_{\text{sea}}\gtrsim1$, the same form acquires a nonzero period around the cycle: the hysteresis-loop area is the observable obstruction to treating thermodynamic entropy as a state function on that packet. The predicted simulation signature is a loop area that grows with the sea-retuning lag rather than with an independently assigned entropy defect.
+In differential-form language, $\delta Q/T_{\mathrm{temp}}$ is an exact 1-form on the admitted state domain only if its integral is path-independent, equivalently if its periods vanish together with the required local closure conditions. Fast retuning may support that limit but does not prove it. The measurable candidate signature is a hysteresis-loop period that varies systematically with the sea-retuning lag rather than with an independently assigned entropy defect.
+
+> Claim grade: guessed for Noether sea lag as the controlling source of the hysteresis period. Falsifier: a certified sea branch with large $\Lambda_{\mathrm{sea}}$ and vanishing periods, or small $\Lambda_{\mathrm{sea}}$ with a regulator-stable nonzero period after other state variables are retained, would refute the proposed one-parameter control.
 
 Boltzmann entropy, $S=k_B\log \Omega$, maps to the count or measure of complete architrino and assembly histories compatible with the retained macrostate. The textbook counting form is the uniform-weight special case of Gibbs/Shannon entropy:
 
@@ -477,7 +483,7 @@ Thus the count is not licensed by cardinality alone. It also assumes the measure
 
 Elementary thermal examples often count energy-quanta arrangements: one macrostate may specify only how much energy lies in each body, while many bond-level or molecule-level allocations remain unresolved. The $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement is the same mathematical role with a deeper state space: count complete deterministic histories compatible with the retained energy, wake, boundary, apparatus, and Noether sea records.
 
-Gibbs and Shannon entropies map to pushed-forward measures over unresolved alternatives. They are useful for apparatus states, basin weights, branch records, and coding descriptions, but they become thermodynamic only when the apparatus, environment, boundary exchange, and work or heat ledger are physical parts of the same packet. Gibbs entropy is the natural comparison when the retained measure encodes uncertainty over alternatives that change available work under a declared control class; Boltzmann entropy is tied to the retained macrostate partition itself. Both are valid only with their intended job stated.
+Gibbs and Shannon entropies map to pushed-forward measures over unresolved alternatives. They are useful for apparatus states, basin weights, branch records, and coding descriptions, but they become thermodynamic only when the apparatus, environment, boundary exchange, and work or heat ledger are physical parts of the same system. Gibbs entropy is the natural comparison when the retained measure encodes uncertainty over alternatives that change available work under a declared control class; Boltzmann entropy is tied to the retained macrostate partition itself. Both are valid only with their intended job stated.
 
 At deterministic-multistability points, the same measure gives the effective branch weights a record-limited observer must assign. If the unresolved preparation fiber is $\Gamma_{\mathrm{prep}}$ and the deterministic basins $\{B_k\}$ partition the post-event branch outcomes, define
 
@@ -551,9 +557,23 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dbca934e3fdd96a1)
 
-The global record can remain pure or closed because $G_{\mathrm{prov}}$ is connected in the complete history, while the retained subregion is mixed because the edge cut has hidden the complementary provenance.
+The global record can remain closed while the retained subregion is mixed because the edge cut has hidden complementary provenance. Connectivity of $G_{\mathrm{prov}}$ alone does not establish purity or measure preservation; those properties require the global state and its evolution to be specified.
 
-This gives a native area-law route. The access-cut entropy is bounded by the crossing-edge capacity $|E_{\Sigma}|$: it cannot exceed the log of the compatible assignments carried by provenance edges that thread the cut. For a horizon interface, the terminal-alignment target becomes the special case in which the crossing-edge density is set by aligned Noether braid patches and their admissible labels $(\chi_u,N_{s,u},M_{p,u})$. The $1/4$ coefficient is then a statement about cut capacity per retained patch area, not a coefficient fitted after a separate horizon entropy has been assumed.
+This supplies a candidate area-law route only after each crossing edge has a finite label capacity. If edge $e$ admits at most $d_e$ independent labels, then the assignment count obeys
+
+$$
+\left|\operatorname{Assign}(G_{\mathrm{prov}}(\Sigma),\mathcal B_\Sigma)\right|
+\le
+\prod_{e\in E_\Sigma}d_e,
+\qquad
+S_\Sigma^{\mathrm{rec}}
+\le
+k_B\sum_{e\in E_\Sigma}\log d_e.
+$$
+
+An entropy proportional to area follows only if the edge density per area and the average $\log d_e$ approach finite, regulator-stable limits. For a horizon interface, the terminal-alignment target is the special case in which aligned Noether braid patches and their admissible labels $(\chi_u,N_{s,u},M_{p,u})$ determine those limits. The $1/4$ coefficient remains a recovery target for cut capacity per retained patch area; it is not fixed by edge counting alone.
+
+> Claim grade: derived for the finite-alphabet counting bound and guessed for its realization by terminal Noether braid patches. Falsifier: unbounded per-edge label capacity, non-area scaling of the crossing-edge density, or failure to recover the required coefficient under refinement would reject this area-law route.
 
 For a coding record with source distribution $P=\{p_i\}$, the Shannon entropy in bits is
 
@@ -665,11 +685,13 @@ $$
 
 on a fixed coarse-graining and boundary convention. In words: observer-window entropy production equals the retained-history distinctions lost to escaping wakes plus the declared interior production and projection-residual terms. The thermodynamic arrow is therefore a theorem target about the same causal-wake boundary ledger used by finite-window energy bookkeeping, not a second primitive arrow.
 
-The same memory-boundary flux has several readings in the dynamics stack. As an energy 0-form it is wake escapement; as a corrected symplectic 2-form it is the $\omega_{\mathrm{mem}}$ leak in [Effective Lagrangian](effective-lagrangian.md#effective-hamiltonian-domain-gate); as a momentum 1-form it is the response-center drift obstruction in [Energy](energy.md#energy-conservation-and-exchange); and as a record count it is entropy production. A retained branch is energy-flat, Hamiltonian-promotable, response-center stable, and entropy-flat only when this memory-boundary flux is recurrent over the return window. A secular boundary flux is the common source of apparent dissipation, non-Hamiltonian projection, center drift, and observer-window entropy growth.
+The dynamics stack proposes a common memory-boundary origin for several residuals: wake escapement in the energy ledger, the $\omega_{\mathrm{mem}}$ leak in [Effective Lagrangian](effective-lagrangian.md#effective-hamiltonian-domain-gate), response-center drift in [Energy](energy.md#energy-conservation-and-exchange), and lost distinctions in the entropy record. These objects have different mathematical types and cannot be identified merely by analogy. The closure target is a single boundary functional whose distinct projections reproduce each residual on the same retained branch. A secular boundary record is a candidate common source of apparent dissipation, non-Hamiltonian projection, center drift, and observer-window entropy growth.
+
+> Claim grade: guessed for the existence of one boundary functional producing all four projections. Falsifier: two residuals that remain nonzero on independently closed, mutually incompatible boundary records, or a proof that their boundary terms cannot be projections of one functional, would reject the proposed unification.
 
 ## Second Law and Same-Record Monotonicity
 
-The traditional second law has several equivalent-looking forms only after the comparison class has been fixed. Clausius uses a cycle or reversible-comparison statement, Kelvin-Planck forbids a cyclic device from converting heat from one reservoir wholly into work, Boltzmann says overwhelmingly many compatible microstates lie in larger macrostates, and Maxwell-demon analyses require memory and reset costs to be included. These are not four independent substances called entropy. They are four projections of the same discipline: the complete thermodynamic packet must not shrink the retained compatible-history record for free.
+The traditional second law has several equivalent-looking forms only after the comparison class has been fixed. Clausius uses a cycle or reversible-comparison statement, Kelvin-Planck forbids a cyclic device from converting heat from one reservoir wholly into work, Boltzmann says overwhelmingly many compatible microstates lie in larger macrostates, and Maxwell-demon analyses require memory and reset costs to be included. These are not four independent substances called entropy. They are four projections of the same discipline: the complete thermodynamic system must not shrink the retained compatible-history record for free.
 
 The traditional slogan that entropy increases is therefore a shorthand. The safer statement is that, for an admissible isolated comparison with fixed record class and no hidden boundary or apparatus reset, the retained entropy must not decrease beyond the allowed finite-window fluctuation. It can remain constant in an ideal reversible comparison, and it can be exactly zero for a singleton exact-history partition that has stopped asking a thermodynamic question. Irreversibility enters when the retained macrostate loses access to distinctions that the complete deterministic history still contains.
 
@@ -693,7 +715,7 @@ $$
 
 Here $\Delta S_{\mathcal{Q},W}$ is the retained entropy change inside the window, $\Delta S_{\mathcal{Q},\partial W+\mathrm{env}}$ is the boundary and environmental entropy change assigned by the same record, $\mathcal{R}_{\mathcal{Q}}$ records changes in the retained coarse-graining or record set, and $\epsilon_{\mathrm{fluc}}$ allows finite-window statistical fluctuations. In the macroscopic thermodynamic regime, $\epsilon_{\mathrm{fluc}}$ is negligible for ordinary comparisons. In microscopic or short-time windows it is not.
 
-This formula explains how the familiar readings fit together. For an isolated macroscopic packet with fixed coarse-graining and no boundary term, it reduces to the usual effective statement $\Delta S\gtrsim0$. For a refrigerator, cell, planet, or reaction network, $\Delta S_{\mathcal{Q},W}$ may be negative while the boundary and environment term is larger and positive. For an ideal reversible comparison, the inequality is saturated. For an irreversible comparison, the residual is positive. For a Maxwell-demon packet, the memory, actuator, partition, target, and reset channel must all be included in the same $\theta_W$, or the apparent violation is a split-record error.
+This formula explains how the familiar readings fit together. For an isolated macroscopic system with fixed coarse-graining and no boundary term, it reduces to the usual effective statement $\Delta S\gtrsim0$. For a refrigerator, cell, planet, or reaction network, $\Delta S_{\mathcal{Q},W}$ may be negative while the boundary and environment term is larger and positive. For an ideal reversible comparison, the inequality is saturated. For an irreversible comparison, the residual is positive. For a Maxwell-demon system, the memory, actuator, partition, target, and reset channel must all be included in the same $\theta_W$, or the apparent violation is a split-record error.
 
 Record-circularity pressure lands exactly here. The second law does not by itself prove that a present record descends from a low-entropy past; it uses a low-defect boundary condition and ordinary history-backed records to make the second-law inference trustworthy. In this chapter that burden is not hidden. The path-history measure, boundary-condition prior, and observer record all belong in $\theta_W$, and the Boltzmann-brain residual $\mathcal{R}_{\mathrm{BB}}(\theta)$ below is the extreme test of whether isolated observer-fluctuation records have been suppressed relative to shared history-backed records.
 
@@ -701,7 +723,7 @@ What survives from the traditional interpretation is strong: thermodynamics is n
 
 ## Same-Record Closure Rule
 
-A thermodynamic packet has one declared record. In a local horizon, measurement, computation, or near-equilibrium simulation, write that record schematically as
+A thermodynamic analysis has one declared record. In a local horizon, measurement, computation, or near-equilibrium simulation, write that record schematically as
 
 $$
 \theta_W
@@ -737,11 +759,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-543128a06c7e474c)
 
-where all listed quantities are projections of the same $\theta_W$. If entropy is computed from one $\theta_W$, temperature from another, Born-style basin weights from a third, and flux from a fourth, the packet has not derived a closure. It has fitted separate descriptions.
+where all listed quantities are projections of the same $\theta_W$. If entropy is computed from one $\theta_W$, temperature from another, Born-style basin weights from a third, and flux from a fourth, the analysis has not established their compatibility. It has fitted separate descriptions.
 
 This rule is why entropy appears as a discipline across many chapters. It protects the Born-rule program from using one ensemble for outcome weights and another for apparatus thermodynamics. It protects horizon thermodynamics from assigning independent entropy, temperature, and stress records. It protects computation-cost claims from treating logical form as a free physical process.
 
-In the language of the core definition, the same-record rule says that entropy, temperature, heat flux, basin weights, and record costs must all factor through one projection of the same fiber. Fitting them from separate ensembles is a split-fiber error: the quantities may be individually meaningful, but the packet has not shown that they are compatible projections of one physical record.
+In the language of the core definition, the same-record rule says that entropy, temperature, heat flux, basin weights, and record costs must all factor through one projection of the same fiber. Fitting them from separate ensembles is a split-fiber error: the quantities may be individually meaningful, but the analysis has not shown that they are compatible projections of one physical record.
 
 ## Entropy and Absolute Time
 
@@ -753,27 +775,27 @@ The arrow-of-time closure problem is therefore sharper than a generic second-law
 
 The past-hypothesis comparison also depends on the partition. A nearly uniform early matter record can look high entropy under a non-gravitating gas coarse-graining and low entropy under a gravitational coarse-graining, because gravitational clumping, potential-energy release, and horizon labels open far larger compatible records later. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the lesson is not that gravity is entropy. It is that a cosmological entropy statement must name whether its macrostate includes Noether sea state, potential gradients, causal-wake boundary data, and horizon-interface records.
 
-The standard cosmology comparison gives a useful scale check for this distinction. Standard-literature estimates often summarize a radiation-only CMB count as $S_{\gamma,\mathrm{CMB}}\sim10^{89}k_B$, the present observable universe as black-hole dominated with $S_{\mathrm{BH,pop}}\sim10^{104}k_B$, and a rough maximum black-hole-like entropy for the same mass-energy budget near $S_{\max}\sim10^{123}k_B$. In this chapter those numbers are not treated as substrate entropy of the Euclidean void. They are comparison-scale records: the closure target is to recover the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ only after the radiation, matter, Noether sea, and horizon-interface coarse-grainings are all declared. The corresponding Penrose-style initial-state fraction is a benchmark for the size of the compatible-history fiber,
+The standard cosmology comparison gives a useful scale check for this distinction. The entropy budget of [Egan and Lineweaver (2010)](https://doi.org/10.1088/0004-637X/710/2/1825) estimates the observable-universe total at about $10^{104}k_B$, dominated by supermassive black holes, and the current cosmic-event-horizon entropy at about $10^{122}k_B$; radiation estimates are many orders of magnitude smaller. These estimates are model- and horizon-dependent, so the chapter uses only the robust ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\mathrm{horizon}}$ as a comparison target. They are not substrate entropy of the Euclidean void. The corresponding exponential expression below is a sensitivity illustration for the size of a compatible-history fiber, not a measured probability that an external random draw selected the universe:
 $$
 f_{\mathrm{early}}
 \sim
 \exp\!\left[-\frac{S_{\max}-S_{\mathrm{early}}}{k_B}\right]
 \approx
-\exp(-10^{123})
+\exp(-10^{122})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-de56fe84878a628b)
-not proof that an external random draw selected the universe.
+Its exponent inherits the chosen cosmological entropy budget and must be recomputed if that budget changes.
 
 ## Heat Death and Its Escapes
 
-Claim level: the first escape is conditional on a measure-preservation certificate for the retained delayed-history flow; the negative-heat-capacity and horizon comparisons are standard physics observations stated at effective grade. A cyclic or recycling cosmology that would use them remains an open target.
+> Claim grade: inferred for the three possible openings below; none is a derived cyclic mechanism. Falsifier: show that every admissible late-time branch with the declared matter content and boundary conditions approaches one fixed maximum-entropy macrostate, or show that the proposed openings cannot be represented by the same retained history measure and boundary ledger.
 
-A pure relaxation to maximum entropy — classical heat death — is not forced in this framework, and three openings keep the arrow from having to terminate. First, on a retained regularized branch for which the delayed flow is invertible and preserves the declared history measure, the fine-grained entropy is constant while coarse-grained observer-window entropy can rise. That is a conditional measure-preservation result, not a consequence of determinism alone; without the certificate, fine-grained entropy conservation remains a closure target and cannot yet support a globally reversible cosmological history. Second, self-gravitating systems have negative heat capacity and no equilibrium maximum-entropy state — the horizon-labelled records keep growing, as the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ above already shows — so the premise that every gradient equilibrates and all shedding stops may simply be false. Third, a cosmological de Sitter-like horizon carries an entropy that grows with its area, so the accessible ceiling $S_{\max}(T)$ can recede at least as fast as $S(T)$ climbs; the record chases a moving bound rather than reaching a fixed one.
+A pure relaxation to one fixed maximum-entropy macrostate is not derived here. Three conditional openings remain. First, if a retained regularized branch is invertible and preserves the declared history measure, fine-grained entropy is constant while coarse-grained observer-window entropy can rise; without that measure-preservation certificate, even this statement remains open. Second, gravitating systems can exhibit negative heat capacity and horizon formation, so an ordinary extensive equilibrium picture cannot be assumed without specifying the boundary and ensemble. Third, a de Sitter-like cosmological horizon has an area entropy in the standard comparison framework of [Gibbons and Hawking (1977)](https://doi.org/10.1103/PhysRevD.15.2738), but whether an analogous accessible ceiling changes along an $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmological history must be derived rather than assumed.
 
 These are openings, not a mechanism. Any concrete cyclic or recycling cosmology that would exploit them must still close a global entropy ledger — every local decrease over-paid by disorder exported elsewhere — and that accounting, together with a named substrate driver, remains open work rather than a result asserted here.
 
-Boltzmann-brain pressure exposes the same rule in extreme form. A retained observer record cannot certify the low-entropy history that is then used to certify the retained observer record. The packet must separate the internal consistency of a memory record from the boundary-condition claim that the record descends from a shared low-defect universe path history. Let $\Gamma_{\mathrm{hist}}$ denote compatible complete histories in which observer records, cosmological traces, and low-defect boundary data descend from one shared path-history record. Let $\Gamma_{\mathrm{BB}}$ denote compatible complete histories in which an observer record is an isolated high-entropy fluctuation with no shared supporting cosmological record. The corresponding fluctuation residual is
+Boltzmann-brain pressure exposes the same rule in extreme form. A retained observer record cannot certify the low-entropy history that is then used to certify the retained observer record. The analysis must separate the internal consistency of a memory record from the boundary-condition claim that the record descends from a shared low-defect universe path history. Let $\Gamma_{\mathrm{hist}}$ denote compatible complete histories in which observer records, cosmological traces, and low-defect boundary data descend from one shared path-history record. Let $\Gamma_{\mathrm{BB}}$ denote compatible complete histories in which an observer record is an isolated high-entropy fluctuation with no shared supporting cosmological record. The corresponding fluctuation residual is
 
 $$
 \mathcal{R}_{\mathrm{BB}}(\theta)
@@ -812,7 +834,7 @@ with the denominator restricted to the retained incoming roots in the declared w
 
 ## Measurement and Computation
 
-Measurement records require entropy locking. For a declared apparatus/environment channel,
+Measurement records require physical persistence, but persistence does not impose a universal positive entropy-production threshold. For a declared apparatus/environment channel, define the same-record entropy change
 
 $$
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}
@@ -824,7 +846,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-152e11c0be2d33aa)
 
-is the entropy change associated with the candidate record, with $T_{\mathrm{rec},0}$ the start of the record-formation window. A strong record candidate satisfies
+with $T_{\mathrm{rec},0}$ the start of the record-formation window. A particular irreversible apparatus may require a positive locking threshold
 
 $$
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}
@@ -834,12 +856,14 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-970ce7dd80e2198c)
 
-with $S_{\mathrm{lock}}$ fixed by the apparatus class and readout channel. This is not a collapse law. It is the requirement that the branch has exported enough unresolved apparatus/environment history that coherent reversal is no longer part of the retained measurement window.
+with $S_{\mathrm{lock}}$ measured for that apparatus class and readout channel. This is neither a collapse law nor a universal condition on measurement. A reversible measurement model, a metastable record, or a record stabilized by an energy barrier can have a different entropy ledger. The physical requirement is that the declared persistence and readout tests pass while all work, heat, and boundary terms remain on the same record.
 
-Resetting a memory-bearing apparatus with $N$ distinguishable retained record classes also requires a physical entropy ledger:
+> Claim grade: guessed for any positive $S_{\mathrm{lock}}$ criterion and measured only after a named apparatus determines it. Falsifier: a record in the same declared apparatus class that passes the persistence and readout tests with $\Delta S_{\mathcal Q,W}^{\mathrm{app+env}}<S_{\mathrm{lock}}$ would reject that threshold.
+
+Resetting a memory-bearing apparatus with $N$ equiprobable retained record classes requires the erased record entropy to appear in the environment and boundary ledger under the logically irreversible, thermal reset assumptions of [Landauer's principle](https://doi.org/10.1147/rd.53.0183):
 
 $$
-\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}
+\Delta S_{\mathrm{env}}+\Delta S_{\mathrm{boundary}}
 \ge
 k_B\log N-k_B\varepsilon_\mu,
 \qquad
@@ -850,25 +874,11 @@ $$
 
 with $\varepsilon_\mu$ the declared measure/readout tolerance.
 
-For a non-uniform retained distribution, $k_B\log N$ is replaced by $-k_B\sum_i p_i\log p_i$.
+For a non-uniform retained distribution, $k_B\log N$ is replaced by $-k_B\sum_i p_i\log p_i$. The apparatus memory entropy decreases during reset, so the bound is written on the environment and boundary increase rather than on the combined apparatus-plus-environment entropy.
 
-A Maxwell-demon packet therefore has two admissible readings. If the demon does not reset, it spends a low-entropy blank-memory record as a resource and converts that resource into a pressure, temperature, or sorting record. If the demon is required to act cyclically, the memory, actuator, partition, target system, and boundary environment must return to the same physical record. A cyclic packet that claims to sort a broad complete-history region into a narrower one while preserving the same boundary and memory record is not a thermodynamic miracle. It is a failed same-record closure.
+A Maxwell-demon system therefore has two admissible readings. If the demon does not reset, it spends a low-entropy blank-memory record as a resource and converts that resource into a pressure, temperature, or sorting record. If the demon is required to act cyclically, the memory, actuator, partition, target system, and boundary environment must return to the same physical record. A cyclic model that claims to sort a broad complete-history region into a narrower one while preserving the same boundary and memory record is not a thermodynamic miracle. It fails the same-record condition.
 
-The same logic applies to computation. For an implemented step $s$ with completion probability $p_s$, a lower-bound claim must attach to the device and boundary records:
-
-$$
-\Delta S_{\mathrm{env},s}
-+
-\Delta S_{\mathrm{target},s}
-+
-\Delta S_{\mathrm{boundary},s}
-\ge
-k_B\log(1/p_s)-\epsilon_s
-$$
-
-[View →](../../../../equation-mapping.html#corpus-equation-b97fdcb000af71bb)
-
-The inequality is not a new law of symbols. It states the burden that the same physical record defining success must also supply the entropy, heat, work, and boundary terms used to claim a cost.
+The same logic applies to computation, but completion probability alone supplies no universal thermodynamic lower bound. A probabilistic implemented step must identify the logical map, input distribution, accepted output set, device transition, reset convention, and boundary ledger. Only the logically erased information in that physical implementation can enter a Landauer-style bound. A formula proportional solely to $\log(1/p_s)$ would confuse outcome surprise with erased information and is not an admissible cost claim.
 
 ## Horizons and Emergent Gravity
 
@@ -966,15 +976,15 @@ Another failure mode is disembodied information. Shannon uncertainty over symbol
 
 A third failure mode is entropic gravity as a substitute for the mass mechanism. Thermodynamic or entropic derivations of force are comparison benchmarks, but inertial mass remains open until the assembly ledger supplies closed internal causal history, shielding extraction, Noether sea response, and acceleration response.
 
-A fourth failure mode is fitted horizon bookkeeping. If a black-hole or local-horizon packet uses one record for entropy, another for temperature, another for stress, and another for release channels, the apparent agreement is not a native closure.
+A fourth failure mode is fitted horizon bookkeeping. If a black-hole or local-horizon analysis uses one record for entropy, another for temperature, another for stress, and another for release channels, the apparent agreement is not a native derivation.
 
 The fifth failure mode is promoting entropy into time. Entropy can diagnose an emergent arrow inside a stated physical and inferential window. It does not supply the absolute ordering parameter $T$.
 
 A sixth failure mode is confusing entropy with complexity. Low entropy can be simple, maximum entropy can be simple, and complex organized structures normally belong to driven intermediate windows that export more entropy than they locally suppress. For $\mathbb{A}\mathbb{A}\mathbb{A}$, biological or self-organizing examples are open-window bookkeeping, not exceptions to deterministic dynamics.
 
-A seventh failure mode is record circularity. If a packet uses retained records to infer a low-entropy past while also using that inferred low-entropy past to justify the reliability of the retained records, it has not closed the arrow-of-time problem. It must expose the same-record path-history measure and boundary-condition prior that suppress isolated observer-fluctuation records relative to history-backed observer records.
+A seventh failure mode is record circularity. If an analysis uses retained records to infer a low-entropy past while also using that inferred low-entropy past to justify the reliability of the retained records, it has not resolved the arrow-of-time problem. It must expose the same-record path-history measure and boundary-condition prior that suppress isolated observer-fluctuation records relative to history-backed observer records.
 
-An eighth failure mode is treating "entropy never decreases" as a primitive second law. Clausius entropy depends on a reversible-cycle integrability condition, statistical entropy can fluctuate in small or finite windows, and resource entropy depends on the declared control/readout class. A packet must state which second-law form it is invoking before monotonicity has content.
+An eighth failure mode is treating "entropy never decreases" as a primitive second law. Clausius entropy depends on a reversible-cycle integrability condition, statistical entropy can fluctuate in small or finite windows, and resource entropy depends on the declared control/readout class. An analysis must state which second-law form it is invoking before monotonicity has content.
 
 A ninth failure mode is quoting entanglement entropy without declaring the factorization and access cut. A subsystem entropy is not automatically entropy of the whole universe. It is a statement about what remains after a complement has been excluded from the retained record.
 
@@ -985,3 +995,13 @@ A tenth failure mode is promoting present human or laboratory macrostates into t
 The energy-side residuals are stated in [Energy](energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../foundations/absolute-time.md#time-orientation-and-causal-ordering). Measurement locking is stated in [Measurement Ontology](../quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual](../validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../spacetime/black-holes.md#horizon-interface).
 
 The consolidated rule is simple: entropy is accepted only as a declared projection of retained deterministic histories, and every effective entropy claim must name the record that makes the projection physical.
+
+## References
+
+- Jacob D. Bekenstein, “Black Holes and Entropy,” *Physical Review D* 7 (1973): 2333–2346, [doi:10.1103/PhysRevD.7.2333](https://doi.org/10.1103/PhysRevD.7.2333).
+- Chas A. Egan and Charles H. Lineweaver, “A Larger Estimate of the Entropy of the Universe,” *The Astrophysical Journal* 710 (2010): 1825–1834, [doi:10.1088/0004-637X/710/2/1825](https://doi.org/10.1088/0004-637X/710/2/1825).
+- G. W. Gibbons and S. W. Hawking, “Cosmological Event Horizons, Thermodynamics, and Particle Creation,” *Physical Review D* 15 (1977): 2738–2751, [doi:10.1103/PhysRevD.15.2738](https://doi.org/10.1103/PhysRevD.15.2738).
+- S. W. Hawking, “Particle Creation by Black Holes,” *Communications in Mathematical Physics* 43 (1975): 199–220, [doi:10.1007/BF02345020](https://doi.org/10.1007/BF02345020).
+- Solomon Kullback and Richard A. Leibler, “On Information and Sufficiency,” *The Annals of Mathematical Statistics* 22 (1951): 79–86, [doi:10.1214/aoms/1177729694](https://doi.org/10.1214/aoms/1177729694).
+- Rolf Landauer, “Irreversibility and Heat Generation in the Computing Process,” *IBM Journal of Research and Development* 5 (1961): 183–191, [doi:10.1147/rd.53.0183](https://doi.org/10.1147/rd.53.0183).
+- Claude E. Shannon, “A Mathematical Theory of Communication,” *Bell System Technical Journal* 27 (1948): 379–423, 623–656, [part I](https://doi.org/10.1002/j.1538-7305.1948.tb01338.x) and [part II](https://doi.org/10.1002/j.1538-7305.1948.tb00917.x).
