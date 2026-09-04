@@ -4117,7 +4117,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-d936b10b2fdaae96)
 Thus $B_\theta>0$ means that the wakes are adding angular momentum. It does not mean that the binary is moving outward. Radial direction is carried separately by the changing radius.
 
-The signed pitch packages the direction into one number:
+The signed logarithmic-spiral pitch packages the radial direction into one dimensionless number; it is a tightness variable, not the axial distance-per-turn pitch of a translating helix:
 $$
 p\equiv-\frac{\dot r}{r\omega},
 \qquad

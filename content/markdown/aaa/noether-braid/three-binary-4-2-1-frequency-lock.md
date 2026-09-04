@@ -1,6 +1,6 @@
 # Three-Binary 4:2:1 Frequency Lock
 
-This chapter owns the specialized axially separated orthogonal-axis three-binary configuration with 4:2:1 frequency ratio doubling-frequency $4{:}2{:}1$ lock study inside the broader [Noether Braid Configuration Space](noether-braid-configuration-space.md). The persistent indices $a\in\{1,2,3\}$ identify the three axially separated orthogonal-axis three-binary configuration binaries, with $f_1:f_2:f_3=4:2:1$ in axially separated orthogonal-axis three-binary configuration with 4:2:1 frequency ratio. The zero-axial-offset coincident-midpoint orthogonal-axis three-binary configuration with 4:2:1 frequency ratio member is the $h_1=h_2=h_3=0$ locus of the same frequency chart. The candidate is definitionally frequency-separated and tests that chart under explicit support, field-speed-carrier, phase-return, and stability assumptions. It does not order the radii, make doubling frequency the default Noether braid frequency, certify axially separated orthogonal-axis three-binary configuration dynamics from kinematics, or generalize to coincident-axis three-binary locus, whose iso-frequency common-axis structure has no doubling ladder to lock.
+This chapter studies the doubling-frequency $4{:}2{:}1$ lock within the axially separated orthogonal-axis three-binary configuration of the broader [Noether Braid Configuration Space](noether-braid-configuration-space.md). The persistent indices $a\in\{1,2,3\}$ identify its three binaries, and the frequency condition is $f_1:f_2:f_3=4:2:1$. Setting $h_1=h_2=h_3=0$ gives the zero-axial-offset, coincident-midpoint member of the same frequency chart. The candidate is definitionally frequency-separated and is tested under explicit support, field-speed-carrier, phase-return, and stability assumptions. The chart does not order the radii, make doubling frequency the default Noether braid frequency, certify the dynamics of the axially separated configuration from kinematics, or generalize to the coincident-axis three-binary locus, whose iso-frequency common-axis structure has no doubling ladder to lock.
 
 It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [axially separated orthogonal-axis three-binary configuration with 4:2:1 frequency ratio](3d-braid-assemblies.md#axially-separated-three-axis-circular-chart-constrained-variants), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), and [Mapping the Planck Scale](../philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md), which provide the assembly scaffold, zero-offset subset, geometry, and scale-setting context for the lock relations derived here.
 
@@ -38,7 +38,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e60fb027d3fbd019)
 
-Plain language: for any one binary carrier, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
+For any one binary carrier, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
 
 This identity is exact. It is not an assumption, and it does not select a lock by itself. The logical spine is therefore:
 
@@ -110,9 +110,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b8f2660b620aa775)
 
-Therefore the indexed frequency triplet is $f_1:f_2:f_3=n:m:1$, with $f_2=m f_3$ and $f_1=n f_3$.
-
-Plain language: after one binary-3 revolution, binaries 2 and 1 have completed whole numbers of revolutions as well, so the three-binary pattern closes exactly. Binary 3 is the phase reference because the axially separated orthogonal-axis three-binary configuration with 4:2:1 frequency ratio row assigns it the base frequency, not because it is geometrically outer.
+Therefore the indexed frequency triplet is $f_1:f_2:f_3=n:m:1$, with $f_2=m f_3$ and $f_1=n f_3$. After one binary-3 revolution, binaries 2 and 1 have completed whole numbers of revolutions as well, so the three-binary pattern closes exactly. Binary 3 is the phase reference because the axially separated orthogonal-axis three-binary configuration with 4:2:1 frequency ratio row assigns it the base frequency, not because it is geometrically outer.
 
 This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether braid closure problem, the simple phases $\theta_a(T)=q_a\omega_3 T+\phi_a$, with $(q_1,q_2,q_3)=(n,m,1)$ and $\omega_3=2\pi f_3$, are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
 
@@ -131,7 +129,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-b8a789367e3abbdf)
 with constants $\phi_{23}^\ast,\phi_{13}^\ast$.
 
-Plain language: the binaries keep the same timing relationship cycle after cycle rather than drifting through one another.
+The binaries keep the same timing relationship cycle after cycle rather than drifting through one another.
 
 ## Bundle Holonomy Reading
 

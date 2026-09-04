@@ -30,17 +30,18 @@ test("main and Animator mount one generated bar while reading controls stay pane
   assert.match(html, /id="animator-top-dynamic-control-bar-mount"/u);
   assert.match(animatorHtml, /id="animator-top-dynamic-control-bar-mount"/u);
   for (const staticHtml of [html, animatorHtml]) {
-    assert.doesNotMatch(staticHtml, /id="(?:textbook-toc-button|scene-nav-history|nav-up|nav-forward|home-button|scene-search-toggle)"/u);
+    assert.doesNotMatch(staticHtml, /id="(?:textbook-toc-button|scene-nav-history|nav-up|nav-forward|home-button|scene-search-toggle|comparative-glossary-button)"/u);
   }
 
   const actionBlock = runtimeSource.match(
     /const topDynamicControlBarRuntime = createTopDynamicControlBar\(\{[\s\S]*?document: globalThis\.document/u,
   )?.[0] ?? "";
-  const actionIndexes = ["toc", "back", "forward", "home", "search"].map((kind) =>
+  const actionIndexes = ["toc", "back", "forward", "home", "search", "documents"].map((kind) =>
     actionBlock.indexOf(`kind: "${kind}"`),
   );
   assert.ok(actionIndexes.every((index) => index > -1));
   assert.deepEqual(actionIndexes, [...actionIndexes].sort((a, b) => a - b));
+  assert.match(actionBlock, /kind: "documents",\s*id: "comparative-glossary-button",\s*label: "Open comparative glossary"/u);
 
   assert.ok(sceneHudToolsIndex < markdownPanelIndex);
   assert.ok(markdownPanelIndex < markdownDocButtonIndex);

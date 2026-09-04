@@ -46,22 +46,22 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 - **Priority object:** `remaining_chapters`
 - **Request / acceptance:** Convert the remaining chapters to edition 1.0 in reader order, so each conversion can rely on vocabulary already introduced upstream.
 
-Scope after Phase 1 was 190 files. The first Phase 2 batch is complete at authored-source level: all six `dynamics/` documents were rewritten and independently reviewed against the 2026-09-01 baseline. The review corrected mathematics, claim boundaries, and source support; generated textbook navigation and reading copies remain stale and are reported rather than regenerated during the ordinary source-edit batch.
+Scope after Phase 1 was 190 files. The first two Phase 2 batches are complete at authored-source level: all six `dynamics/` documents were rewritten and independently reviewed against the 2026-09-01 baseline, and all fourteen `noether-braid/` documents were converted against their immediate pre-conversion sources. The Noether-braid pass preserved every display equation and all 417 `View →` links exactly, retained all 146 formerly labelled explanatory restatements in substance, and reduced repeated specialist terminology without promoting prescribed geometry, root counts, symmetry channels, or bounded searches into retention or stability claims. Generated equation-mapping data, textbook navigation, and reading copies remain stale and are reported rather than regenerated during the ordinary source-edit batch.
 
 Ordering is by reader path rather than alphabetically, so early conversions compound: a converted chapter can rely on its upstream chapters already introducing their terms properly, which is exactly what the cumulative-within-document and clue-plus-link rules assume.
 
 #### Carried scope: the retired tag
 
-This item absorbs the corpus half of [CRW-004](#crw-004--retired-plain-language-tag-retirement). **172 occurrences of the retired `Plainly:` tag remain across 16 files, all of them in Phase 2 chapters and none in foundations,** and criterion 12 removes them as part of each conversion rather than in a separate pass. No agent should run a standalone tag sweep over the corpus; it would touch those files twice and the rewrite would overwrite the sweep's edits.
+This item absorbs the corpus half of [CRW-004](#crw-004--retired-plain-language-tag-retirement). **Twenty-eight occurrences of the retired `Plainly:` tag remain across nine files, all outside the converted foundations, dynamics, and Noether-braid batches,** and criterion 12 removes them as part of each conversion rather than in a separate pass. No agent should run a standalone tag sweep over the corpus; it would touch those files twice and the rewrite would overwrite the sweep's edits.
 
 Criterion 12 as amended is the whole instruction, and its second sentence is the part that matters: fold the plain-language sentence up into the paragraph above it. Do not delete it.
 
-Two files hold 122 of the 172 — `noether-braid/2d-braid-assemblies.md` at 82 and `noether-braid/3d-braid-assemblies.md` at 40 — and those same two documents top [CRW-002](#crw-002--term-lookup-and-orientation)'s under-linked scan at 79 and 42 uses of unglossed foundational vocabulary. A document that restates itself in plain language 82 times while assuming its reader already holds the vocabulary has a single underlying problem, so expect both symptoms in the same passages when this batch reaches them.
+The former concentration in `noether-braid/2d-braid-assemblies.md` and `noether-braid/3d-braid-assemblies.md` is now discharged. Those two chapters accounted for 122 tags, and the complete Noether-braid batch removed 143 `Plainly:` tags plus three equivalent `Plain language:` labels while preserving every explanatory sentence in substance.
 
 CRW-004 fails if this item completes with the corpus count above zero, so the count belongs in each batch's ledger note.
 
-- **Blocked by:** nothing. Foundations and dynamics are complete at authored-source level.
-- **Evidence / blocker:** Fifteen of 199 documents now carry conversion-ledger rows. The remaining reader order beyond dynamics is not yet fixed; establishing the next batch is the next action of this item.
+- **Blocked by:** nothing. Foundations, dynamics, and Noether braid are complete at authored-source level.
+- **Evidence / blocker:** Twenty-nine of 199 documents now carry conversion-ledger rows. The remaining reader order beyond Noether braid is not yet fixed; establishing the next batch is the next action of this item.
 - **Completion:** Every document under `content/markdown/aaa` carries a ledger row at the then-current edition.
 
 ### CRW-004 — Retired plain-language tag retirement
@@ -89,22 +89,22 @@ Markdown only, excluding `.tmp`, `.local-data`, `.git`, and `node_modules`.
 
 | Surface | Files | Occurrences | Disposition |
 | --- | ---: | ---: | --- |
-| `content/markdown/aaa` | 16 | 172 | Absorbed into CRW-003; tracked here |
+| `content/markdown/aaa` | 9 | 28 | Absorbed into CRW-003; tracked here |
 | `reference/op` | 4 | 9 | Convert — startup path |
 | `reference/research-office/cto/prompts` | 2 | 7 | Convert — startup path |
 | `.agents/skills` | 1 | 2 | Convert — startup path |
 | `reference/priorities` | 352 | 4,198 | Leave — operator decision, 2026-09-03 |
 | `reference/architectural-decisions` | 2 | 4 | Leave — operator decision, 2026-09-03 |
 
-Earlier scans of the same day recorded 223 and then 225 corpus occurrences across 23 and 25 files. The count is now 172 across 16, and the fall is explained: nine foundations documents were converted in between, and criterion 12 removed their tags as part of the rewrite rather than as a separate pass. That is the mechanism this item is betting on for the rest of the corpus.
+Earlier scans of the same day recorded 223 and then 225 corpus occurrences across 23 and 25 files. The count fell first to 172 across 16 after the foundations conversion and is now 28 across nine after the dynamics and Noether-braid batches. Criterion 12 removed the tags as part of each document's rewrite rather than as a separate pass. That remains the mechanism for the rest of the corpus.
 
 Claim grade: `measured` by filesystem scan on 2026-09-03. Falsifier: a repeat scan returning a count that has risen rather than fallen, which would mean the tag is still being authored into new documents and the standard is not being followed.
 
 #### Corpus residual — absorbed, not scheduled
 
-All 172 remaining corpus occurrences sit in chapters that [CRW-003](#crw-003--phase-2-remaining-chapters) will convert, and none sit in foundations. Running a separate tag-removal pass over them would touch those files twice, once for the tag and once for the rewrite, and the second pass would rewrite the passages the first pass just edited.
+All 28 remaining corpus occurrences sit in documents that [CRW-003](#crw-003--phase-2-remaining-chapters) will convert, and none sit in foundations, dynamics, or Noether braid. Running a separate tag-removal pass over them would touch those files twice, once for the tag and once for the rewrite, and the second pass would rewrite the passages the first pass just edited.
 
-The concentration is extreme and worth knowing when Phase 2 sequences its batches. Two files hold 122 of the 172 — `noether-braid/2d-braid-assemblies.md` at 82 and `noether-braid/3d-braid-assemblies.md` at 40 — and six files hold 153. Those same two documents are also the worst cases in [CRW-002](#crw-002--term-lookup-and-orientation)'s under-linked scan, which is one underlying problem showing two symptoms.
+The residual is now diffuse. `philosophy-history/one-nature-many-theories.md` holds ten occurrences and `spacetime/lorentz-kinematics.md` holds six; the other seven files hold four or fewer each. The count should continue to fall through ordinary document conversion rather than a separate sweep.
 
 So this item schedules no corpus work. It carries the number, and it fails if Phase 2 completes with the number above zero.
 
@@ -155,7 +155,7 @@ Claim grade: `measured` by a recursive walk of the parsed JSON distinguishing ke
 The [corpus dragnet](../aaa-corpus-dragnet/priorities.md) owns the correlation actions that inventory occurrences and their contexts, and is read-only outside its own lane by charter. It supplies the counts above; it does not perform the conversions.
 
 - **Blocked by:** nothing. Both original gates — operator readiness and the Tier 1 canon decision — are discharged above.
-- **Evidence / blocker:** Nothing owed by the operator. The census is reproducible, both style authorities have been checked, the search-index dependency is discharged, the startup-path pass is executed and scans clean, and the working-record decision is recorded. One condition remains open and it is not this item's to close: the corpus count, which reaches zero when [CRW-003](#crw-003--phase-2-remaining-chapters) finishes converting the sixteen files that still carry the tag.
+- **Evidence / blocker:** Nothing owed by the operator. The census is reproducible, both style authorities have been checked, the search-index dependency is discharged, the startup-path pass is executed and scans clean, and the working-record decision is recorded. One condition remains open and it is not this item's to close: the corpus count, which reaches zero when [CRW-003](#crw-003--phase-2-remaining-chapters) finishes converting the nine files that still carry the tag.
 - **Completion:** The startup-path scan returns zero across those seven files — **met 2026-09-03**; the working record is recorded as unconverted by decision, with its reopening conditions named — **met 2026-09-03**; the corpus scan returns zero when [CRW-003](#crw-003--phase-2-remaining-chapters) completes — **open**; and a repeat scan shows no occurrences in documents authored after edition 1.0 was adopted — **open, and the last to close**.
 
 ## Queued

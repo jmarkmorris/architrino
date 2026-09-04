@@ -1,12 +1,12 @@
 # Coordinate-Axis Six-Point Symmetry and Return Response
 
-The phase-compensated equal-geometry orthogonal-axis three-binary configuration is defined in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md#phase-compensated-equal-geometry-orthogonal-axis-three-binary-configuration). This specialist chapter owns the mathematics and retention analysis unique to its exact face-opposite reference fixture: the invariant symmetry channels, the two-ring projection, the axial polarity dipole, the momentum screw, the near-antipodality diagnostic, and the isolated and sea-embedded return-response questions.
+The phase-compensated equal-geometry orthogonal-axis three-binary configuration is defined in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md#phase-compensated-equal-geometry-orthogonal-axis-three-binary-configuration). This specialist chapter owns the mathematics and retention analysis unique to that configuration's exact face-opposite reference fixture: the invariant symmetry channels, two-ring projection, axial polarity dipole, momentum screw, near-antipodality diagnostic, and isolated and sea-embedded return-response questions.
 
-The chapter does not redefine phase-compensated equal-geometry orthogonal-axis three-binary configuration and does not certify a retained branch. Its exact results constrain the declared phase-compensated equal-geometry orthogonal-axis three-binary configuration fixture under their stated hypotheses. The realization-independent retention contract remains in [Braid Recovery Requirements](braid-recovery-requirements.md), and the family-general speed split remains in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-lemma).
+The chapter does not redefine this configuration and does not certify a retained branch. Its exact results constrain the declared fixture under their stated hypotheses. The realization-independent retention contract remains in [Braid Recovery Requirements](braid-recovery-requirements.md), and the family-general speed split remains in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-lemma).
 
 ## Invariant Channels and Equivariant Reductions
 
-The sharpest currently proved structure for phase-compensated equal-geometry orthogonal-axis three-binary configuration is a symmetry channel, not a retained branch. The face-opposite seed places the three electrinos opposite the three positrinos on the positive coordinate axes,
+The sharpest currently proved structure for this configuration is a symmetry channel, not a retained branch. The face-opposite seed places the three electrinos opposite the three positrinos on the positive coordinate axes,
 
 $$
 \epsilon_{+,x}=(R,0,0),

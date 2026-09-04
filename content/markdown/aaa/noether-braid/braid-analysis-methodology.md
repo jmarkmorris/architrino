@@ -334,9 +334,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bfbe66e65d843015)
 
-at every evaluation time. This follows directly by summing the individual equations of motion; it introduces no force, mass, momentum, return-map, or stability assumption.
-
-Plainly: the prescribed pair accelerations cancel before the interaction law is evaluated, so the complete evaluated acceleration sum must also cancel at each instant if that exact history solves the equations.
+at every evaluation time. This follows directly by summing the individual equations of motion; it introduces no force, mass, momentum, return-map, or stability assumption. The prescribed pair accelerations cancel before the interaction law is evaluated, so the complete evaluated acceleration sum must also cancel at each instant if that exact history solves the equations.
 
 A value of $\|\mathbf S_A(T)\|$ beyond the declared numerical tolerance and convergence allowance falsifies only that exact isolated prescribed history under the certified inventory. A zero value is recorded only as not falsified by this screen. It does not establish a branch, a taxonomy member, stability, retention, or physical realization. If the same-worldline contribution, root inventory, or another contribution inside the declared isolated system is not certified complete, the screen is inapplicable rather than partial.
 
@@ -363,9 +361,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-114a9d058c00b424)
 
-where $G_W$ is the declared time grid in window $W$. Any sampled member residual above the declared numerical threshold falsifies that exact isolated prescribed history even when $\sum_i\mathbf R_i^{\mathrm{path}}=0$. A sampled near-zero is only a search diagnostic and must survive time-grid refinement and independent causal-root residual checks.
-
-Plainly: two wrong accelerations can cancel in the total. Checking every architrino separately prevents that cancellation from hiding a bad prescribed record.
+where $G_W$ is the declared time grid in window $W$. Any sampled member residual above the declared numerical threshold falsifies that exact isolated prescribed history even when $\sum_i\mathbf R_i^{\mathrm{path}}=0$. A sampled near-zero is only a search diagnostic and must survive time-grid refinement and independent causal-root residual checks. Two wrong accelerations can cancel in the total. Checking every architrino separately prevents that cancellation from hiding a bad prescribed record.
 
 For a declared cycle split into first and second halves, $W_P=W_{1/2}^{(1)}\cup W_{1/2}^{(2)}$, the same-grid reductions obey
 
@@ -396,9 +392,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2bc4b23304c70db2)
 
-Thus one half-cycle is useful only as a staged early rejector. Candidate search minimizes the refined full-cycle $E_\infty$ first and refined full-cycle $E_2$ second, while retaining both half-cycle peaks and their imbalance as diagnostics. One favorable half cannot support positive selection; both halves are required, and the window split changes no return-symmetry or taxonomy contract.
-
-Plainly: the full-cycle worst error is exactly the worse half's worst error. Testing one half can save work when it already fails, but passing one half says nothing about the other half.
+Thus one half-cycle is useful only as a staged early rejector. Candidate search minimizes the refined full-cycle $E_\infty$ first and refined full-cycle $E_2$ second, while retaining both half-cycle peaks and their imbalance as diagnostics. One favorable half cannot support positive selection; both halves are required, and the window split changes no return-symmetry or taxonomy contract. The full-cycle worst error is exactly the worse half's worst error. Testing one half can save work when it already fails, but passing one half says nothing about the other half.
 
 ## Probe Geometry
 
@@ -452,9 +446,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 
 Minimum separation is a validity diagnostic, not a claim that architrinos are hard objects. A zero separation may make the $1/r^2$ response singular or expose an undeclared coincidence in the chart. A small separation warns that a reported score may be dominated by a near-singular pair. It should normally be a validity condition or an annotation, not a reward to maximize.
 
-Envelope extraction follows [Braid Envelope Geometry](braid-envelope-geometry.md#exact-support-and-centered-path-second-moments). Report $H_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ from the same declared source record and emission window, refine both temporal sampling and the support-direction grid, and preserve rank loss or repeated-eigenvalue ambiguity rather than inventing a three-dimensional principal frame. A quadratic fit is reportable only when its angular quadrature, optimizer, deterministic tie-break, and tolerance were fixed before inspection and $\mathcal R_Q$ passes that tolerance. Agreement between the support fit and the second moment is same-record implementation consistency, not independent confirmation; disagreement falsifies only the proposed single-quadratic compression for the intended geometric approximation.
-
-Plainly: the maximum-reach envelope and the dwell-weighted tensor are two readings of the same paths. Refinement checks whether those readings were computed accurately, but their mutual agreement cannot prove that the prescribed paths are dynamically retained or physically realized.
+Envelope extraction follows [Braid Envelope Geometry](braid-envelope-geometry.md#exact-support-and-centered-path-second-moments). Report $H_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ from the same declared source record and emission window, refine both temporal sampling and the support-direction grid, and preserve rank loss or repeated-eigenvalue ambiguity rather than inventing a three-dimensional principal frame. A quadratic fit is reportable only when its angular quadrature, optimizer, deterministic tie-break, and tolerance were fixed before inspection and $\mathcal R_Q$ passes that tolerance. Agreement between the support fit and the second moment is same-record implementation consistency, not independent confirmation; disagreement falsifies only the proposed single-quadratic compression for the intended geometric approximation. The maximum-reach envelope and the dwell-weighted tensor are two readings of the same paths. Refinement checks whether those readings were computed accurately, but their mutual agreement cannot prove that the prescribed paths are dynamically retained or physically realized.
 
 The **prescribed-period closure residual** checks only that the declared orbital path formulas return to the same position relative to the declared common translating center, and to the same velocity and phase, after $P_{\mathrm{ret}}$. The absolute displacement of a translating source is recorded separately as $\mathbf V_{\mathrm{grp}}P_{\mathrm{ret}}$ and is subtracted before computing the orbital position residual. Closure is often zero by construction and is an integrity check on the chart and selected period, not a stability measure. Root and wake ledgers may also be checked for periodicity, but their endpoint differences remain analytical consistency diagnostics.
 
@@ -680,16 +672,16 @@ The coordinate types recur across the taxonomy, but they are not all independent
 | Binary radius $R_a$ and transverse orbit radius $\rho_a$ | Present in every binary record | $R_a$ and $\rho_a$ coincide only when $h_a=0$. An axial binary with $\rho_a=0$ has no circular path even if $R_a>0$. |
 | Binary frequency $f_a$ | Present in every binary record | The two endpoints of one neutral binary share a frequency. Equal-frequency and fixed-ratio members reduce several frequency coordinates to one scale. At $\rho_a=0$, frequency remains a record label but does not change the path. |
 | Binary phase $\phi_a$ | Present in every binary record and required in addition to radius and frequency | Phase is measured relative to the common braid-level zero point. Some members fix the relative phases. At $\rho_a=0$, phase does not change the path. |
-| Binary midpoint and axis data | Present in every braid record | orthogonal-axis three-binary configurations constrains three axes through $\lambda_A$; coincident-axis three-binary locus makes the three axes and midpoints coincide; two-component circular configurations orders twelve architrino worldlines on one common axis. |
-| Group velocity $\mathbf V_{\mathrm{grp}}$ | Present at assembly level | The common scalar taxonomy coordinate is $s_{\mathrm{grp}}=\|\mathbf V_{\mathrm{grp}}\|$. orthogonal-axis three-binary configurations fixes its direction to $\hat{\mathbf u}_A$; axial coincident-axis three-binary locus is a specialization rather than the whole coincident-axis three-binary locus class. |
+| Binary midpoint and axis data | Present in every braid record | Orthogonal-axis three-binary configurations constrain three axes through $\lambda_A$; the coincident-axis three-binary locus makes the three axes and midpoints coincide; two-component circular configurations order twelve architrino worldlines on one common axis. |
+| Group velocity $\mathbf V_{\mathrm{grp}}$ | Present at assembly level | The common scalar taxonomy coordinate is $s_{\mathrm{grp}}=\|\mathbf V_{\mathrm{grp}}\|$. Orthogonal-axis three-binary configurations fix its direction to $\hat{\mathbf u}_A$; the axial coincident-axis three-binary locus is a specialization rather than the whole coincident-axis three-binary locus class. |
 | Circulation sense and endpoint polarity assignment | Required discrete source choices | A member may lock circulation within or between braids. Neutrality fixes one electrino and one positrino per binary, but which persistent endpoint carries each polarity still changes the signed source record. |
 | Architrino worldline count and binary grouping | Record-defining discrete choices | The six-architrino records contain three neutral binaries. Two-component circular records contain twelve worldlines in six neutral binaries and require an explicit fixed-point-free counterpart map. |
-| Axial spacing | Not universal | axially separated orthogonal-axis locus and coincident-axis three-binary locus use binary axial half-separations $h_a$ along their respective binary axes. two-component circular configurations carries the complete ordered spacing vector $\mathbf d_C$; coaxial-separated co-rotating two-component configuration through coaxial two-planar-braid counter-rotating configuration additionally carry the coincident-axis three-binary locus-component center separation $d_C$. General orthogonal-axis three-binary configurations has no single common axis on which all orbits can be spaced. |
+| Axial spacing | Not universal | The axially separated orthogonal-axis locus and coincident-axis three-binary locus use binary axial half-separations $h_a$ along their respective binary axes. Two-component circular configurations carry the complete ordered spacing vector $\mathbf d_C$; the coaxial-separated co-rotating through coaxial two-planar-braid counter-rotating configurations additionally carry the coincident-axis three-binary locus-component center separation $d_C$. General orthogonal-axis three-binary configurations have no single common axis on which all orbits can be spaced. |
 | Orbit order along one axis | Not an independent universal coordinate | In a coaxial chart, order is derived by sorting the signed axial positions. Persistent binary indices do not change when two radii, frequencies, or axial positions cross. Order becomes a separate discrete choice only when assigning different path or polarity data to the ordered sites changes the source record. |
 
 Thus radius, frequency, phase, and group translation are the common kinematic coordinate types. Axis and midpoint data, circulation, and endpoint polarity assignment are also required source coordinates. Axial spacing and axial order belong only to charts that actually have a common axis; they must not be imposed on every candidate.
 
-The member-level inventory below describes the admissible taxonomy space. A orthogonal-axis three-binary sample restricted to $\lambda_A=0$ covers only that subspace; conclusions about variable flattening require sampling the wider orthogonal-axis three-binary coordinate.
+The member-level inventory below describes the admissible taxonomy space. An orthogonal-axis three-binary sample restricted to $\lambda_A=0$ covers only that subspace; conclusions about variable flattening require sampling the wider orthogonal-axis three-binary coordinate.
 
 | Exact configuration description | Independent continuous coordinates beyond the common radius, frequency, phase, and group-translation columns | Relations that add or remove freedom |
 | --- | --- | --- |
@@ -730,7 +722,7 @@ A deterministic counter-based sampler supplies a reproducible bounded reference 
 | General coincident-center co-rotating two-component configuration/coincident-center counter-rotating two-component configuration axial geometry | Draw eleven positive adjacent orbit-center gaps independently and uniformly in $[0.035,0.075]$, center the ordered set on the common axis, pair adjacent centers into six neutral binaries, and assign persistent binary identities by a seeded permutation. |
 | coaxial-separated co-rotating two-component configuration through coaxial two-planar-braid counter-rotating configuration component spacing | Multiply the reference coaxial component-center separation by a uniform factor in $[0.65,0.80]$. |
 | Circulation and polarity | Draw every permitted independent sign from a balanced two-point distribution, then impose exact same-sense or opposite-sense member relations. |
-| Common translation | Draw a permitted direction and a speed uniformly from zero to one-half of the conservative envelope-safe speed. orthogonal-axis three-binary configurations uses its declared translation direction. The resulting exact source must remain inside radius $0.99$ through the retained record. |
+| Common translation | Draw a permitted direction and a speed uniformly from zero to one-half of the conservative envelope-safe speed. Orthogonal-axis three-binary configurations use their declared translation direction. The resulting exact source must remain inside radius $0.99$ through the retained record. |
 
 The sampler constructs the constrained coordinates directly and checks the defining member relations. A draw that violates those relations is a sampling error, not evidence against that member. Reproducibility requires the seed, member identifier, sample ordinal, complete drawn coordinates, and results of the constraint checks.
 
@@ -797,7 +789,7 @@ A reproducible result identifies both the sampled configuration and the calculat
 | Result | Evaluated measures, uncertainty, convergence behavior, and any unresolved interval or failed validity condition |
 | Independent support | A named analytical reference or independently authored calculation or measurement that supports the stated conclusion |
 
-Plainly: a seed alone is insufficient: a changed parameterization or sampling algorithm can map it to a different source. Reproducing a result requires the source coordinates and analysis protocol as well as the numerical method. Repeating the same implementation establishes repeatability; correctness requires an independent check.
+A seed alone is insufficient: a changed parameterization or sampling algorithm can map it to a different source. Reproducing a result requires the source coordinates and analysis protocol as well as the numerical method. Repeating the same implementation establishes repeatability; correctness requires an independent check.
 
 ### Screening Resolution and Independent Verification
 
@@ -805,9 +797,7 @@ Broad sampling and detailed evaluation answer different questions. A coarse calc
 
 Selected favorable points, points near validity boundaries, anomalous results, and a stratified sample of the remaining population require evaluation at the full declared resolution. A separate sample of coarse-screen rejections tests for false negatives: configurations discarded at coarse resolution that satisfy the conditions when evaluated more accurately. The observed disagreement estimates screening error under that sampling measure; it is not a guarantee about unsampled configurations.
 
-Calibration compares identical sources at coarse and refined resolution, distinguishing agreement, false positives, false negatives, and unresolved evaluations. This comparison measures sensitivity to numerical resolution. It does not independently verify the underlying formulas, because both calculations may share the same implementation error.
-
-Plainly: a faster calculation can help locate candidates, but its selection errors must be measured. Refining the same calculation checks resolution; an independent calculation or derivation checks whether the method itself is correct.
+Calibration compares identical sources at coarse and refined resolution, distinguishing agreement, false positives, false negatives, and unresolved evaluations. This comparison measures sensitivity to numerical resolution. It does not independently verify the underlying formulas, because both calculations may share the same implementation error. A faster calculation can help locate candidates, but its selection errors must be measured. Refining the same calculation checks resolution; an independent calculation or derivation checks whether the method itself is correct.
 
 A sample quota requires statistical justification under the declared measure and desired uncertainty. The number of completed samples alone does not establish adequate coverage or a bound on the probability of missing a favorable region.
 

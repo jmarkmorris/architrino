@@ -12,9 +12,7 @@ This chapter owns the shared mathematical machinery of the braid family: the sub
 
 These statements do not bound an omitted finite-width Gaussian tail, cover an undeclared transmitter, or extend automatically to a drifting enclosure or an unbounded past. Without a separately checked quantitative tail theorem, the certified quantity stops at the declared retained-interval integral.
 
-Scalar rows extracted from the history are diagnostics. They may distinguish a declared negative control, but they do not by themselves classify topology, prove persistence or stability, identify a physical assembly, or select a particle interpretation. Those conclusions require their own branch and reconstruction certificates.
-
-Plainly: a finite history can be classified exactly within its stated window. Nothing in that classification silently supplies the missing past or turns a diagnostic number into a physical fate.
+Scalar rows extracted from the history are diagnostics. They may distinguish a declared negative control, but they do not by themselves classify topology, prove persistence or stability, identify a physical assembly, or select a particle interpretation. Those conclusions require their own branch and reconstruction certificates. A finite history can be classified exactly within its stated window. Nothing in that classification silently supplies the missing past or turns a diagnostic number into a physical fate.
 
 ## Substrate and Effective Levels
 

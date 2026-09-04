@@ -2,7 +2,7 @@
 
 This chapter owns the coincident-axis three-binary locus harmonic-matching hypothesis, discrete-symmetry derivations, and open retention burden. The prescribed common-center, common-axis path geometry and its equatorial, axial, and axial-translation loci are defined in [Braid coincident-axis three-binary configurations](3d-braid-assemblies.md).
 
-The status discipline of the braid stack binds throughout. coincident-axis three-binary locus is a prescribed member, not a retained branch. The kernel-covariance results below are derivations within their declared scope; physical formation, self-support, retention, selection, and observer-level symmetry recovery remain open. The retained-branch certificate target of [Braid Recovery Requirements](braid-recovery-requirements.md) governs those claims.
+The status discipline of the braid stack binds throughout. The coincident-axis three-binary locus is a prescribed member, not a retained branch. The kernel-covariance results below are derivations within their declared scope; physical formation, self-support, retention, selection, and observer-level symmetry recovery remain open. The retained-branch certificate target of [Braid Recovery Requirements](braid-recovery-requirements.md) governs those claims.
 
 ## The Harmonic-Matching Hypothesis
 

@@ -1,6 +1,6 @@
 # Noether Braid
 
-The **Noether braid** is the reader-facing class of neutral assembly scaffolds used by the Noether sea chapters and particle-architecture chapters. The simplest studied configurations begin with six architrinos; other records contain two six-architrino component braids in a twelve-worldline coaxial assembly. This is the first place where the reader should think in terms of a retained many-body branch rather than a pair, point particle, or ordinary orbit.
+The **Noether braid** is the class of neutral assembly scaffolds used by the Noether sea chapters and particle-architecture chapters. The simplest studied configurations begin with six architrinos; other records contain two six-architrino component braids in a twelve-worldline coaxial assembly. Unlike a pair, a point-particle approximation, or an ordinary orbit, a Noether braid is a candidate retained many-body branch.
 
 A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a polarity-neutral six-body branch whose architrino paths lie on closed support curves with speed factors bounded above and below. In that branch, three negative-polarity architrinos (electrinos) and three positive-polarity architrinos (positrinos) maintain a persistent causal-return ledger.
 

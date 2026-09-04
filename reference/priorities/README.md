@@ -6,12 +6,14 @@ Use it for live workstream priority lists and for supporting guidance on priorit
 
 Current priority staging should favor core geometrical theory closure: master-equation work, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, and Noether sea constitutive response. Stage broad prose, app, presentation, or coordination items here only when they directly serve that theory stack or the operator/developer explicitly selects them.
 
-For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-07-16), then use the owning packet for the actual pass/fail fields.
+For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-07-26), then use the owning packet for the actual pass/fail fields.
 
 
 Use `aaa-operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
 
 Use `aaa-corpus-rewrite/` for the editorial campaign bringing `content/markdown/aaa` into line with the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md). It changes how the corpus explains and never what it claims; a conversion that would alter a claim stops and routes to the owning theory lane.
+
+The [operator-document style conversion ledger](operator-document-style-conversion-ledger.md) records the separate edition 1.0 disposition of every Markdown file in the measured `reference/priorities/` baseline. It is an editorial accounting surface, not a priority owner, queue, or scientific authority.
 
 Use the operations [Simulation Protocol Routing Index](../op/simulation-protocol-routing-index.md) to assign preserved simulation definitions to EOM, scientific-campaign, and proof-acceptance owners. The legacy `app-simulation/` directory is a compatibility location outside the priority-owner and product-application inventories.
 

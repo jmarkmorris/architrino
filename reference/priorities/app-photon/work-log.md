@@ -1,10 +1,31 @@
 # App Photon Work Log
 
-This file is the chronological work log for the `app-photon` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
+This file is the chronological work log for the `app-photon` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker. Entries remain in dated order as historical provenance; an editorial pass may clarify this purpose or append a new record, but it must not rewrite, delete, or reorder earlier events.
 
 Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text when this priority area has one. Use `priorities.md` for strategy, status, blockers, and promotion routing, and use `work-queue.md` for accepted executable tasks and their local order. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
 
 ## Log Entries
+
+### 2026-09-03 Edition 1.0 Operator-Document Batch 2
+
+- Re-measured the complete live `reference/priorities/**/*.md` inventory before editing. The byte-sorted scan still contains `757` files.
+- Reviewed all ten Markdown documents in `reference/priorities/app-photon/` under one ownership boundary. The other `739` inventory paths remain deferred at the campaign's bounded-batch gate; this is a campaign-stage disposition, not a per-file conformance judgment.
+- Preserved all equations, code-form identifiers, control values, task states, queue order, acceptance conditions, test results, dated findings, source references, claim boundaries, and earlier log entries except for one independently established scope-count correction in the dated code review: the enumerated list contains eleven modules, not ten.
+
+| Batch file | Original role and claim boundary | Disposition | Editorial result |
+| --- | --- | --- | --- |
+| `absolute-source-history-self-hit-admission.md` | Measured display-only root-admission packet; no self-interaction, retention, phase-lock, stability, or photon-branch conclusion. | already conforming | No edit; the packet already supplies the picture, symbols, ordered conditions, instrument, acceptance boundaries, and falsifiers. |
+| `brainstorming.md` | Provisional synthesis with no accepted task and no scientific ownership. | already conforming | No edit; routing and promotion boundaries are explicit. |
+| `configuration-search-deep-comparison.md` | Workflow and provenance packet for a non-independent deep search path. | converted in this batch | Recast the existing measured statement in the standard `Claim grade:` form and named the focused test instrument without changing its reach. |
+| `moving-apparatus-delta-x-mapping.md` | Measured display-only moving-history and root-age diagnostic; no physical separation, retention, stability, or constitutive conclusion. | already conforming | No edit; geometry, thresholds, bounded no-root distinctions, instrument, and falsifiers are already explicit. |
+| `photon-code-review-2026-07-24.md` | Dated code-review evidence and remediation ordering, not current implementation authority or photon theory. | converted in this batch | Added the historical-snapshot boundary and claim grades, and corrected the internally inconsistent module count from ten to eleven while preserving the enumerated scope and every finding. |
+| `priorities.md` | Strategic app tracker mixing deployed behavior, accepted requirements, candidate interpretation, open design burdens, and deferred work. | converted in this batch | Added an authority map separating those states and explained the analyzer symbols and evidence limit after the equations. |
+| `reusable-absolute-history-facade.md` | Measured display/reference facade packet with independent analytic fixtures; no production-solver or physical-photon authority. | already conforming | No edit; ownership, supported domain, closed-form check, acceptance criteria, and falsifiers are explicit. |
+| `substrate-mapping-refinement.md` | Measured display-only I/M/O contribution and harmonic-ledger packet. | already conforming | No edit; it separates modes, defines symbols, explains each equation and residual, and states coverage and physical limits. |
+| `work-log.md` | Dated implementation, validation, failure, and handoff chronology. | converted in this batch | Added the preservation rule and this batch record without altering or reordering earlier history. |
+| `work-queue.md` | Canonical executable state, dependency, blocker, acceptance, and completion ledger. | already conforming | No edit; identifiers, order, lifecycle states, blockers, claim grades, and completion conditions remain exact. |
+
+The style dispositions are `inferred` against edition 1.0 of the academic style guide. Their falsifier is a passage in this ten-file lane that still obscures its function, leaves load-bearing imported apparatus undefined, or changes a baseline claim while appearing clearer. Mechanical preservation and the one explicit count correction are checked separately against the pre-edit Git baseline.
 
 ### 2026-09-02 PHO-001 Reusable Absolute-History Facade Closure
 

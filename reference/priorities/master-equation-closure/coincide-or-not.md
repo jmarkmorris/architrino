@@ -348,6 +348,81 @@ $$
 
 The leading coefficient is independent of $D_r$. Receiver-side playback never enters the magnitude or sign.
 
+### Why this is repelling rather than attractive
+
+`Transverse` means perpendicular to the instantaneous line joining the pair. Split the relative velocity into a radial part, which changes the separation $d$, and a transverse part, which changes the direction of the separation vector:
+
+$$
+\mathbf w
+=
+\mathbf w_{\parallel}+\mathbf w_{\perp},
+\qquad
+\mathbf w_{\parallel}=(\mathbf w\mathbin{\cdot}\hat{\mathbf n})\hat{\mathbf n},
+\qquad
+\mathbf w_{\perp}\mathbin{\cdot}\hat{\mathbf n}=0.
+$$
+
+Head-on motion has $\mathbf w_{\perp}=0$ and therefore $h=0$. Any sideways motion has $\mathbf w_{\perp}\ne0$ and
+
+$$
+\lvert h\rvert
+=
+\lvert\mathbf d\times\mathbf w\rvert
+=
+d\lVert\mathbf w_{\perp}\rVert.
+$$
+
+Plainly: radial motion is motion directly toward or away from the other architrino; transverse motion is the sideways miss that makes the joining line rotate.
+
+Here `repelling` describes the behavior of the exact-aim state $h=0$ in the pair's position-velocity state space; it does not mean that the opposite-polarity radial acceleration has become spatially repulsive. To leading order, write
+
+$$
+\dot h=\lambda(T)h,
+\qquad
+\lambda(T)=\frac{\kappa\lvert q_iq_j\rvert}{r^2D_t}>0.
+$$
+
+On any interval that remains in the declared regular chart, this scalar equation has the solution
+
+$$
+h(T)
+=
+h(T_0)
+\exp\!\left(\int_{T_0}^{T}\lambda(S)\,dS\right).
+$$
+
+The exponential factor is greater than one for every forward interval of positive duration. If $h(T_0)=+\varepsilon$, then $h$ becomes more positive. If $h(T_0)=-\varepsilon$, then $h$ becomes more negative. In both cases $\lvert h\rvert$ grows. The exactly aimed state $h=0$ remains a solution of this isolated leading equation, but any arbitrarily small nonzero transverse perturbation moves away from it. That is the precise local meaning of a repelling invariant set here.
+
+The geometry fixes the sign. In the symmetric pair control, the delayed line from transmitter $j$ to receiver $i$ is proportional to
+
+$$
+d\hat{\mathbf n}-\frac{\Delta}{2}\mathbf w.
+$$
+
+Opposite polarity reverses this line to give the attractive acceleration received by $i$. Its radial part points inward, while its transverse part is $+\mathbf w$-directed. The other ordered row supplies the matching contribution, so the relative transverse acceleration is aligned with the existing relative transverse velocity. A counterclockwise turn is accelerated counterclockwise; a clockwise turn is accelerated clockwise. The causal delay therefore feeds the existing turn rather than damping it.
+
+The radial attraction and phase-space repulsion from exact aim coexist. The inward term tries to reduce $d$, while the transverse term enlarges $\lvert h\rvert$. Since the kinematic barrier scales as $h^2/d^3$, enlarging $\lvert h\rvert$ strengthens the term that reverses radial approach. The derived statement is local and pairwise: it establishes instability of $h=0$ under the leading mutual row on the regular chart, not a global theorem that every populated trajectory moves monotonically away from the full exact-aim manifold.
+
+Claim grade: `derived` under the signed-secular calculation's stated symmetric, first-root, positive-$D_t$, locally constant-transmitter-velocity hypotheses. Falsifier: a compliant chart with $\lambda>0$ in which a nonzero solution of the displayed leading scalar equation decreases in magnitude, or an exact evaluation of the same two ordered transmitter-side rows yielding a relative transverse acceleration opposite to $\mathbf w_\perp$.
+
+### Does every transverse perturbation prevent coincidence?
+
+For the isolated leading mutual-pair equation, yes, within the regular near-field chart: any nonzero $h$ at a finite separation is multiplied by a positive growth factor and is driven away from $h=0$. Exact collinearity of both the relative velocity and the mutual acceleration leaves $h=0$ invariant, but an arbitrarily small transverse velocity perturbation gives $h\ne0$ and activates the gain.
+
+For a populated history, that statement needs one qualification. Collinearity at one instant is not enough: every subsequent relative acceleration contribution must also remain collinear, or its transverse component immediately creates nonzero $h$. Conversely, a transverse perturbation at one instant is not by itself a global exclusion proof, because later third-party rows could be correlated so as to cancel it. The conditional populated-barrier theorem below proves the sharper available result: if the population remainder is bounded as stated there, every monotone approach whose transverse relative velocity eventually lies outside
+
+$$
+\lVert\mathbf w_\perp\rVert=O(d^2)
+$$
+
+is captured by the protected region and cannot reach coincidence while the hypotheses remain valid. A still-unexcluded approach must make the sideways velocity vanish at least quadratically with separation and must maintain that cancellation throughout the remaining approach.
+
+The phrase “as $h\to0$” requires care because $h=d\lVert\mathbf w_\perp\rVert$ in magnitude. The factor $d\to0$ can make $h\to0$ even when the sideways velocity does not straighten. What matters for reachability is the rate of that decrease. The central barrier threshold is $h^2\sim Cd$, whereas the populated capture result leaves only $\lVert\mathbf w_\perp\rVert=O(d^2)$, equivalently $h=O(d^3)$, unexcluded. Merely having $h\to0$ therefore does not establish exact aim or coincidence.
+
+Plainly: an isolated pair must be perfectly aimed and stay perfectly aimed. In a populated universe, any ordinary sideways disturbance is protective, but the present theorem cannot exclude a specially coordinated sequence of later contributions that cancels the disturbance ever more precisely. That shrinking cancellation set, not ordinary collinearity, is MEC-008's remaining domain question.
+
+Claim grade: the isolated-pair perturbation statement is `derived` under the signed-secular hypotheses; the $O(d^2)$ populated threshold is `derived` under the conditional theorem's explicit bounds. The assertion that every physically populated history necessarily leaves that shrinking cone is `not claimed`. Falsifier: a compliant isolated-pair solution with nonzero $h$ that reaches coincidence while retaining the positive pair coefficient, or a populated solution satisfying the conditional bounds that reaches coincidence after leaving the stated cone.
+
 ### Turn average and magnitude
 
 On a planar turn, $\dot\theta=h/d^2$. Division by this kinematic identity gives

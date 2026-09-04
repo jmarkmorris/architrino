@@ -29,7 +29,7 @@ Plainly: An exported row says exactly which search path and filters produced it.
 
 ## Claim Grade And Falsifiers
 
-The implementation claim is measured by the focused Photon runtime tests. Those tests establish that the path filters normalized candidates, yields between candidates, reports progress, evaluates both history modes, and preserves provenance through JSON export and import. They do not establish a physical photon branch, phase-lock retention, stability, Malus-law recovery, helicity recovery, or an independent validation of the prescribed-path analysis.
+Claim grade: `measured` by the focused [Photon runtime tests](../../../tests/photon-runtime.test.js) over the declared deep-comparison workflow. Those tests establish that the path filters normalized candidates, yields between candidates, reports progress, evaluates both history modes, and preserves provenance through JSON export and import. They do not establish a physical photon branch, phase-lock retention, stability, Malus-law recovery, helicity recovery, or an independent validation of the prescribed-path analysis.
 
 The implementation is falsified if any of these operator-checkable observations occurs:
 

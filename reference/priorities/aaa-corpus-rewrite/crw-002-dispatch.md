@@ -34,7 +34,7 @@ The vocabulary to audit against is whatever `content/markdown/aaa/foundations/` 
 
 This is reader-facing corpus content, so it is governed by `content/markdown/aaa/archie/academic-style-guide.md` at edition 1.0 and by the same done criteria as any conversion in this lane. In particular: no claim added, removed, weakened, or strengthened relative to what foundations says; every claim grade and falsifier preserved; and no dense-then-restate construction.
 
-Watch for the defect class the Codex review pass identified across all fifteen conversions so far: **explanatory writing tends to firm up hedged claims.** A glossary row is a compressed statement, and compression is exactly where a "candidate" quietly becomes a "is". If foundations hedges a term, the glossary row hedges it too.
+Watch for the defect class the Codex review pass identified across the foundations and dynamics conversions: **explanatory writing tends to firm up hedged claims.** A glossary row is a compressed statement, and compression is exactly where a "candidate" quietly becomes an "is." If foundations hedges a term, the glossary row hedges it too.
 
 Do not silently widen or narrow an existing entry while you are in the file. If an existing row looks wrong, report it; do not fix it as a side effect of this task.
 
