@@ -156,11 +156,12 @@ test("full-width markdown blocks stay between vertical spreads", () => {
   assert.deepEqual(markdownBody.childNodes, nodes);
 });
 
-test("equation-map rows retain the full-width display-equation layout", () => {
+test("equation-map rows use full width when their math overflows a column", () => {
   const first = createFakeNode({ height: 300, text: "First" });
   const equationRow = createFakeNode({ height: 240, text: "Equation" });
   equationRow.className = "markdown-equation-map-row";
   equationRow.matches = selector => selector.includes(".markdown-equation-map-row");
+  equationRow.querySelectorAll = () => [{ scrollWidth: 700, clientWidth: 400 }];
   const second = createFakeNode({ height: 300, text: "Second" });
   const { markdownBody, runtime } = createRuntime([first, equationRow, second]);
 
@@ -168,6 +169,43 @@ test("equation-map rows retain the full-width display-equation layout", () => {
 
   assert.equal(markdownBody.childNodes[1].classList.contains("markdown-column-wide-block"), true);
   assert.equal(markdownBody.childNodes[1].childNodes[0], equationRow);
+});
+
+test("fitting equations stay with prose in columns and remeasure after resizing", () => {
+  const introduction = createFakeNode({ height: 100, text: "Manifold and Metric" });
+  const equation = createFakeNode({ height: 50, text: "R cubed" });
+  equation.matches = selector => selector.includes(".markdown-equation-map-row");
+  const math = { scrollWidth: 30, clientWidth: 400 };
+  equation.querySelectorAll = () => [math];
+  const explanation = createFakeNode({ height: 100, text: "A location is a point" });
+  const nodes = [introduction, equation, explanation];
+  const { markdownBody, runtime } = createRuntime(nodes);
+
+  for (const count of [2, 3, 2]) {
+    runtime.apply(count);
+    assert.equal(markdownBody.childNodes.length, 1);
+    assert.deepEqual(markdownBody.childNodes[0].childNodes[0].childNodes, nodes);
+  }
+  math.scrollWidth = 700;
+  runtime.refresh();
+  assert.equal(markdownBody.childNodes[1].childNodes[0], equation);
+  math.scrollWidth = 30;
+  runtime.refresh();
+  assert.deepEqual(markdownBody.childNodes[0].childNodes[0].childNodes, nodes);
+  runtime.clear();
+  assert.deepEqual(markdownBody.childNodes, nodes);
+});
+
+test("a wide first equation does not leave an empty spread", () => {
+  const equation = createFakeNode({ height: 50 });
+  equation.matches = selector => selector.includes(".markdown-math-block");
+  equation.querySelectorAll = () => [];
+  equation.scrollWidth = 700;
+  equation.clientWidth = 400;
+  const { markdownBody, runtime } = createRuntime([equation]);
+  runtime.apply(2);
+  assert.equal(markdownBody.childNodes.length, 1);
+  assert.equal(markdownBody.childNodes[0].childNodes[0], equation);
 });
 
 test("short passages between equations do not reserve a viewport of blank space", () => {

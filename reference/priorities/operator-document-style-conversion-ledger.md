@@ -24,13 +24,13 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 
 | Disposition | Files |
 | --- | ---: |
-| converted in this campaign | 21 |
+| converted in this campaign | 22 |
 | already conforming | 316 |
 | protected or append-only | 51 |
 | generated | 1 |
 | historical evidence requiring byte preservation | 227 |
 | blocked by concurrent editing | 0 |
-| deferred for owner or authority reason | 142 |
+| deferred for owner or authority reason | 141 |
 | **Total accounted inventory** | **758** |
 
 ## File Dispositions
@@ -408,7 +408,7 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 | `reference/priorities/dormant-deferred/app-causal-delay-feedback/priorities.md` | deferred for owner or authority reason | Dormant owner; prose conversion does not reactivate or advance the packet. |
 | `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-brainstorming.md` | deferred for owner or authority reason | Dormant owner; prose conversion does not reactivate or advance the packet. |
 | `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-mode-plan.md` | deferred for owner or authority reason | Dormant owner; prose conversion does not reactivate or advance the packet. |
-| `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-requirements-and-design.md` | deferred for owner or authority reason | Dormant owner; prose conversion does not reactivate or advance the packet. |
+| `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-requirements-and-design.md` | converted in this campaign | Operator-authorized dormant-file test: rewrote the proposed linked-view lesson for picture-before-symbol explanation, explicit authority limits, and readable requirements; preserved 54 TeX expressions exactly, corrected five stale `D_s` expressions to canonical transmitter-side `D_t` under the linked Master Equation authority, and preserved both relative links, dormant queue state, implementation restrictions, and unresolved design decisions. |
 | `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-work-log.md` | deferred for owner or authority reason | Dormant owner; prose conversion does not reactivate or advance the packet. |
 | `reference/priorities/dormant-deferred/app-causal-delay-feedback/v1-product-requirements.md` | deferred for owner or authority reason | Dormant owner; prose conversion does not reactivate or advance the packet. |
 | `reference/priorities/dormant-deferred/app-causal-delay-feedback/work-log.md` | protected or append-only | Chronological log; existing dated entries remain byte-preserved and in order. |
