@@ -22,7 +22,7 @@ Every conversion in this lane, in any phase, satisfies all of the following. An 
 9. Load-bearing terms are restated where the argument turns on them, not on a counter.
 10. No dense passage followed by a plainer restatement; technical prose reads plainly on its own.
 11. Every symbol is named in words; every equation is followed by prose saying what it is and why it holds.
-12. The retired inline plain-language tag does not appear.
+12. The retired inline `Plainly:` tag does not appear, and it was removed by folding its sentence up into the technical prose above it rather than by deleting that sentence. Deleting the plain-language restatement and leaving the dense paragraph standing satisfies this criterion literally while violating criterion 10 and removing exactly the explanation this lane exists to add. Check 12 against 10, not on its own.
 
 **Verification.**
 
@@ -34,12 +34,35 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 
 ## Ranked Next Objects
 
-1. `orientation_pass` — [CRW-002](#crw-002--orientation-pass). Status: `Queued`.
-2. `remaining_chapters` — [CRW-003](#crw-003--phase-2-remaining-chapters). Status: `Queued`.
+1. `remaining_chapters` — [CRW-003](#crw-003--phase-2-remaining-chapters). Status: `In progress`.
+2. `orientation_pass` — [CRW-002](#crw-002--orientation-pass). Status: `Queued`.
+3. `retired_tag_retirement` — [CRW-004](#crw-004--retired-plain-language-tag-retirement). Status: `Queued`.
 
 ## In progress
 
-No rows.
+### CRW-003 — Phase 2: Remaining chapters
+
+- **Status:** In progress
+- **Priority object:** `remaining_chapters`
+- **Request / acceptance:** Convert the remaining chapters to edition 1.0 in reader order, so each conversion can rely on vocabulary already introduced upstream.
+
+Scope after Phase 1 was 190 files and 800,738 baseline words. The first Phase 2 batch is complete at authored-source level: all six `dynamics/` documents were rewritten and independently reviewed against the 2026-09-01 baseline. Their combined count moved from 78,425 words before conversion to 80,879 after review and raw-anchor cleanup, a 3% increase. The review corrected mathematics, claim boundaries, and source support; generated textbook navigation and reading copies remain stale and are reported rather than regenerated during the ordinary source-edit batch.
+
+Ordering is by reader path rather than alphabetically, so early conversions compound: a converted chapter can rely on its upstream chapters already introducing their terms properly, which is exactly what the cumulative-within-document and clue-plus-link rules assume.
+
+#### Carried scope: the retired tag
+
+This item absorbs the corpus half of [CRW-004](#crw-004--retired-plain-language-tag-retirement). **172 occurrences of the retired `Plainly:` tag remain across 16 files, all of them in Phase 2 chapters and none in foundations,** and criterion 12 removes them as part of each conversion rather than in a separate pass. No agent should run a standalone tag sweep over the corpus; it would touch those files twice and the rewrite would overwrite the sweep's edits.
+
+Criterion 12 as amended is the whole instruction, and its second sentence is the part that matters: fold the plain-language sentence up into the paragraph above it. Do not delete it.
+
+Two files hold 122 of the 172 — `noether-braid/2d-braid-assemblies.md` at 82 and `noether-braid/3d-braid-assemblies.md` at 40 — and those same two documents top [CRW-002](#crw-002--orientation-pass)'s under-linked scan at 79 and 42 uses of unglossed foundational vocabulary. A document that restates itself in plain language 82 times while never once linking to what a wake is has a single underlying problem, and whichever of these two items reaches it first should expect to fix both. Batch them together rather than separately.
+
+CRW-004 fails if this item completes with the corpus count above zero, so the count belongs in each batch's ledger note.
+
+- **Blocked by:** nothing. Foundations and dynamics are complete at authored-source level.
+- **Evidence / blocker:** Fifteen of 199 documents now carry conversion-ledger rows. The remaining reader order beyond dynamics is not yet fixed; establishing the next batch is the next action of this item.
+- **Completion:** Every document under `content/markdown/aaa` carries a ledger row at the then-current edition.
 
 ## Queued
 
@@ -49,7 +72,7 @@ No rows.
 - **Priority object:** `orientation_pass`
 - **Request / acceptance:** For each document that uses foundational vocabulary without linking to `foundations/`, add a brief clue plus a link at the first use of each such term. Accepted when no corpus document uses a foundational term before glossing and linking it once.
 
-This is deliberately **not** a rewrite, and keeping the two apart is the point. A rewrite reworks a whole document against every rule at roughly 54% growth. This pass touches only first occurrences, adds a clause and a link, and should grow a document by one to three percent. It buys most of the accessibility for a small fraction of the work, and it can run while the rewrite is still working through earlier phases.
+This is deliberately **not** a rewrite, and keeping the two apart is the point. A rewrite reworks a whole document against every rule; the first fifteen conversions average 6% growth but range from a 14% reduction to a 52% increase. This pass touches only first occurrences, adds a clause and a link, and should grow a document by one to three percent. It buys most of the accessibility for a small fraction of the work, and it can run while the rewrite continues through later phases.
 
 Measured scope, 2026-09-03: **70 files, 428,706 words.** Worst cases by usage count are `3d-braid-assemblies.md` at 79 uses across 16,721 words, `braid-analysis-methodology.md` at 72 uses, and `2d-braid-assemblies.md` at 42 uses across 14,153 words. A reader landing on any of those from a search result currently has no route to what a wake is.
 
@@ -65,19 +88,93 @@ leaves behind it — travels outward
 - **Evidence / blocker:** The scan is complete and reproducible. Not yet decided: whether every foundational term gets a clue, or only the four or five that carry the most weight. Deciding that is the first action of this item.
 - **Completion:** No corpus document uses a foundational term before glossing and linking it once, verified by a repeat of the original scan.
 
-### CRW-003 — Phase 2: Remaining chapters
+### CRW-004 — Retired plain-language tag retirement
 
-- **Status:** Queued
-- **Priority object:** `remaining_chapters`
-- **Request / acceptance:** Convert the remaining chapters to edition 1.0 in reader order, so each conversion can rely on vocabulary already introduced upstream.
+- **Status:** In progress. The startup-path pass is complete; the corpus condition rides on [CRW-003](#crw-003--phase-2-remaining-chapters).
+- **Priority object:** `retired_tag_retirement`
+- **Moved here:** 2026-09-03, from `OPS-015` in the [operations queue](../aaa-operations/work-queue.md), reformulated. The original item was written when removing the tag looked like a standalone cleanup with its own operator gate. It is not one any more, and that is why it moved: [done criterion 12](#done-criteria) of this lane already forbids the tag, so most of the work is a by-product of conversions this queue is running anyway. What is left is a residual to track and one small pass outside the corpus.
+- **Request / acceptance:** Retire the inline `Plainly:` tag from the two surfaces where a reader or a new agent still meets it, and confirm the working record is left alone. Accepted when the corpus scan returns zero, the startup-path scan returns zero, and a later scan shows the tag is not being newly authored.
 
-Scope after Phase 1: 190 files, 800,738 words. The nine-file evidence revises the cost sharply downward — foundations grew 9% overall, and four of the nine shrank. Later chapters carry less undefined vocabulary and more repetition than foundations, so Phase 2 may well reduce the corpus rather than expand it. Run in batches with the ledger showing progress.
+The tag was an operator-communication convention: a paragraph of technical prose followed by a labelled plain-language restatement of the same thing. Edition 1.0 of the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) retired it in favour of writing plainly in the first instance, which is the same idea done once rather than twice.
 
-Ordering is by reader path rather than alphabetically, so early conversions compound: a converted chapter can rely on its upstream chapters already introducing their terms properly, which is exactly what the cumulative-within-document and clue-plus-link rules assume.
+#### Why it needs a work item at all
 
-- **Blocked by:** nothing. [CRW-001](#crw-001--phase-1-foundations) closed `Verified` on 2026-09-03, so foundations is complete and later chapters can link into finished prose.
-- **Evidence / blocker:** Chapter order is not yet fixed. Establishing it is the first action of this item, and it should be a reader's route through the theory rather than the directory listing.
-- **Completion:** Every document under `content/markdown/aaa` carries a ledger row at the then-current edition.
+The tag leaked. Neither authority that governs reader-facing text ever asked for it — the academic style guide prescribed explanatory prose, a compact map, and equations followed by plain-language symbol meanings, and never named the tag; the [UI guidelines](../../../content/markdown/aaa/archie/ui-guidelines.md) did not mention it. It arrived in the textbook by imitation from operator-facing writing, and the generated iOS reading package carries it onward to readers.
+
+Silence in the style guide is what allowed that, so the original item held a canon gate: decide explicitly whether the guide endorses, forbids, or ignores the tag before touching corpus prose. **That gate is now discharged.** Edition 1.0 forbids it, and done criterion 12 of this lane states the rule in executable form. No further canon decision is owed.
+
+The original item was also `Blocked` on an operator decision that the standards were settled enough to rewrite a published book against. That gate is discharged too: the operator opened the corpus-wide rewrite, and [CRW-001](#crw-001--phase-1-foundations) closed `Verified`.
+
+Claim grade for the leak finding: `measured` by reading both style authorities for any mention of the tag and finding none. Falsifier: any ratified reader-facing style authority, at any edition, that prescribes the tag.
+
+#### Measured scope, 2026-09-03
+
+Markdown only, excluding `.tmp`, `.local-data`, `.git`, and `node_modules`.
+
+| Surface | Files | Occurrences | Disposition |
+| --- | ---: | ---: | --- |
+| `content/markdown/aaa` | 16 | 172 | Absorbed into CRW-003; tracked here |
+| `reference/op` | 4 | 9 | Convert — startup path |
+| `reference/research-office/cto/prompts` | 2 | 7 | Convert — startup path |
+| `.agents/skills` | 1 | 2 | Convert — startup path |
+| `reference/priorities` | 352 | 4,198 | Leave; opportunistic only |
+| `reference/architectural-decisions` | 2 | 4 | Leave; opportunistic only |
+
+Earlier scans of the same day recorded 223 and then 225 corpus occurrences across 23 and 25 files. The count is now 172 across 16, and the fall is explained: nine foundations documents were converted in between, and criterion 12 removed their tags as part of the rewrite rather than as a separate pass. That is the mechanism this item is betting on for the rest of the corpus.
+
+Claim grade: `measured` by filesystem scan on 2026-09-03. Falsifier: a repeat scan returning a count that has risen rather than fallen, which would mean the tag is still being authored into new documents and the standard is not being followed.
+
+#### Corpus residual — absorbed, not scheduled
+
+All 172 remaining corpus occurrences sit in chapters that [CRW-003](#crw-003--phase-2-remaining-chapters) will convert, and none sit in foundations. Running a separate tag-removal pass over them would touch those files twice, once for the tag and once for the rewrite, and the second pass would rewrite the passages the first pass just edited.
+
+The concentration is extreme and worth knowing when Phase 2 sequences its batches. Two files hold 122 of the 172 — `noether-braid/2d-braid-assemblies.md` at 82 and `noether-braid/3d-braid-assemblies.md` at 40 — and six files hold 153. Those same two documents are also the worst cases in [CRW-002](#crw-002--orientation-pass)'s under-linked scan. A document that restates itself 82 times in plain language and never once links to what a wake is has one underlying problem, not two, and converting it should fix both.
+
+So this item schedules no corpus work. It carries the number, and it fails if Phase 2 completes with the number above zero.
+
+#### Startup-path pass — executed 2026-09-03
+
+**18 occurrences across 7 files, now zero:**
+
+- `reference/op/simulation-protocol-routing-index.md`, `textbook-review-exports.md`, `machine-artifact-retention.md`, `git/continuous-development-during-pr-review.md`
+- `reference/research-office/cto/prompts/start-research.md`, `start-pi.md`
+- `.agents/skills/math-preview/SKILL.md`
+
+Small in volume, disproportionate in effect, and the reason is position rather than size. These are files a new session reads while routing itself at startup, before it has read the explanation standard. A retained `Plainly:` in one of them is a worked example of the retired pattern shown to the next agent as if it were current practice, so the convention teaches itself back into the repository faster than conversions remove it. Eighteen occurrences is a single short pass.
+
+The edit is the same one the corpus conversions make: fold the labelled restatement into the technical prose that precedes it so the prose reads plainly on its own, rather than deleting the plain-language sentence and leaving the dense one standing.
+
+**Executed 2026-09-03.** No plain-language sentence was deleted. Each was folded upward in one of three shapes, and the shapes are worth recording because Phase 2 will meet all three:
+
+- **Merged into the preceding paragraph** where the tag restated that paragraph. The retention rule in `machine-artifact-retention.md` now closes its own dense paragraph with the rule it was previously restating underneath.
+- **Promoted above a list** where the tag summarized steps that followed it. Both research prompts had this: the startup list in `start-pi.md` now opens with what it is for instead of explaining itself afterward.
+- **Split and distributed** where one tag carried several unrelated points. The Actions-publishing tag in `machine-artifact-retention.md` held a build claim, a testing claim, and a repair claim; each went to the paragraph that owned it, and one of the three was already stated verbatim in the section, so that copy was dropped rather than duplicated.
+
+Claim grade: `measured` — a repeat scan across the three roots returns zero. Falsifier: the tag appearing in a newly authored startup-path file, which would mean the convention has a source not identified here.
+
+Claim grade for the reinstatement mechanism this pass was meant to stop: `inferred`. It is a reading of how sessions pick up conventions, not a measurement, and the pass does not prove the reading was right. Falsifier: the tag appearing in newly authored documents despite the startup path now being clean.
+
+#### Working record — deliberately left alone
+
+`reference/priorities`, `reference/architectural-decisions`, `reference/research-office/research-history`, and the fixtures under `src` and `tests` keep the tag. The [operator explanation standard](../../op/operator-explanation-standard.md) already rules that documents written under a retired convention keep their form, and that conversion happens opportunistically when a document is under substantial revision for other reasons.
+
+Four thousand occurrences across 352 analysis packets is a mechanical diff with real review cost and no reader on the other end. These are dated records of what was thought at the time, and the tag is part of that record. Not converting them is the decision, not a deferral.
+
+#### Discharged blocker: search-index dependency, checked 2026-09-03
+
+`apps/ios/ArchitrinoReader/GeneratedTextbookPackage/textbook_bundle_search_index.json` contains the literal string `Plainly:`, which raised the question of whether the search machinery keys on it — if it did, removing the tag from the corpus would break search rather than just clean prose. It does not. The file is `{schema_version, total_entries, entries}`, and a full walk of the parsed structure found the string **62 times, every occurrence inside `entries[N].text`, and zero occurrences as a key**. It is indexed prose, not structure.
+
+The index and the whole iOS package are generated from the corpus and are an on-demand development snapshot rather than a routine output, so they carry whatever the corpus says at the next authorized export. No separate conversion work is owed for them.
+
+Claim grade: `measured` by a recursive walk of the parsed JSON distinguishing key positions from string values. Falsifier: any consumer that reads the literal `Plainly:` as a delimiter, section marker, or lookup key rather than as displayed text.
+
+#### Sweep instrument
+
+The [corpus dragnet](../aaa-corpus-dragnet/priorities.md) owns the correlation actions that inventory occurrences and their contexts, and is read-only outside its own lane by charter. It supplies the counts above; it does not perform the conversions.
+
+- **Blocked by:** nothing. Both original gates — operator readiness and the Tier 1 canon decision — are discharged above.
+- **Evidence / blocker:** The census is reproducible, both style authorities have been checked, and the search-index dependency is discharged. The one open judgment is whether the startup-path pass runs now or waits for Phase 2 to finish, and the argument above is that it should run now, because its cost is one short pass and its benefit is stopping the tag from being re-authored while conversions are still removing it.
+- **Completion:** The startup-path scan returns zero across those seven files; the corpus scan returns zero when [CRW-003](#crw-003--phase-2-remaining-chapters) completes; the working record is confirmed unconverted by decision rather than by omission; and a repeat scan shows no occurrences in documents authored after edition 1.0 was adopted.
 
 ## Awaiting verification
 

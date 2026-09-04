@@ -21,7 +21,7 @@ Prose written around a preview, and the response that delivers it, follow [the o
    node .agents/skills/math-preview/scripts/render-preview.mjs --input INPUT.md --output OUTPUT.html --serve
    ```
 
-   Plainly: the helper creates one self-contained HTML snapshot and prints its local preview URL. It serves only that output file, not a repository directory.
+   The helper creates one self-contained HTML snapshot and prints its local preview URL. It serves only that single output file, not a repository directory.
 
 4. Read the JSON receipt: source hash, selected section, math count, image omissions, output path, and server URL. Rendering failures stop before replacing an existing preview; report the offending expression without silently changing it. Check `--help` for options. `--section "Exact heading text"` includes that heading and its subsections, stopping before the next peer or parent heading. An absent or ambiguous heading is an error.
 5. For a long document, keep the full HTML and render a second output with `--section` for the requested image. Avoid one extremely tall screenshot with unreadable text. The preview intentionally disables source links and lists images without fetching them; tell the user if those omissions matter. Navigation within the preview remains usable.
@@ -32,9 +32,7 @@ Prose written around a preview, and the response that delivers it, follow [the o
 - Keep the helper's command session and printed PID associated with this task. Reuse an owned preview server by rendering to the same registered output and reloading the tab. It reads that exact HTML file on each request. Never stop another task's server. A saved HTML file remains usable after its preview server stops; the URL is temporary.
 - Open or claim the appropriate preview tab. Check the visible page, KaTeX error elements, and font readiness before taking the screenshot. Use the normal browser viewport or a full-page capture of a bounded excerpt; do not resize solely to make a screenshot prettier.
 - Save the screenshot as PNG in the artifact directory, then inspect it. Verify legible subscripts, superscripts, bold vectors, fractions, white math on purple, and unclipped table content. Fix presentation issues in the preview template, not in the source mathematics. A parse pass alone does not establish visual quality.
-- Leave the full document open as a browser deliverable when the user wants it. Include the PNG inline in the final reply and link the standalone HTML. Distinguish source preservation and rendering checks from mathematical correctness. State that these are snapshots; rerender after source edits.
-
-Plainly: readers receive the full document for browsing and a clear image for the conversation. The original remains authoritative, and the screenshot is a checked view of a particular source version.
+- Leave the full document open as a browser deliverable when the user wants it. Include the PNG inline in the final reply and link the standalone HTML, so the reader gets the full document for browsing and a legible image inside the conversation. Distinguish source preservation and rendering checks from mathematical correctness. State that these are snapshots; rerender after source edits. The Markdown source stays authoritative, and the screenshot is a checked view of one particular version of it.
 
 ## Maintain
 

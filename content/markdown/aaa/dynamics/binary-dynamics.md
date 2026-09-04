@@ -245,7 +245,7 @@ and the architrino is the transmitter of the causal wake surface emitted at $T_t
 - On any interval with strict sub-field-speed motion, self-hit is absent by the triangle-inequality root test, unless older path-history emissions from a prior super-field-speed interval remain active.
 - As velocities exceed $c_f$ on curved histories, emission isochrons can catch up with the transmitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing accelerations depending on configuration.
 - In generic trajectories, once an architrino has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions because the active record is non-Markovian.
-- For binary and Noether braid assemblies, repeated self-hit events are a proposed outward barrier against collapse. Stable radii, frequencies, limit cycles, and attractors require separate tangential, radial, wake-boundary, and return-map closure.
+- For binary and Noether braid assemblies, repeated outward self-hit contributions are candidate ingredients of a lower-radius barrier. Stable radii, frequencies, limit cycles, and attractors require separate tangential, radial, wake-boundary, and return-map closure.
 
 For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Binary — Circular**.
 
@@ -275,7 +275,7 @@ The geometric question is whether an opposite-polarity pair can trace a smallest
 
 #### The Maximum-Curvature Binary (MCB) as Fundamental Unit
 
-The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be reachable first by one declared persistent binary index of a candidate Noether braid. On the super-field-speed circular chart, certified same-transmitter roots can supply only the outward barrier against collapse; centripetal and tangential closure must come from the complete signed ledger. This mechanism does not by itself assign a braid-taxonomy member. If the branch is certified as a stable and reproducible attractor, it would supply candidate **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
+The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be reachable first by one declared persistent binary index of a candidate Noether braid. On the super-field-speed circular chart, certified same-transmitter roots supply outward radial contributions but do not by themselves establish a lower-radius barrier; centripetal and tangential closure must come from the complete signed ledger. This mechanism does not by itself assign a braid-taxonomy member. If the branch is certified as a stable and reproducible attractor, it would supply candidate **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
 
 **Universal cap target (explicit):** If a stable MCB branch is certified, it would define a single limit state with one radius/speed pair. Binaries may sit below that limit, but the claim that no binary can exceed the MCB curvature or pass beyond its defining radius/speed remains conditional on the full signed-root ledger and stability certificate.
 
@@ -997,7 +997,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-5ee2d900406f5b30)
 where $h_{\mathrm{act}}$ is the declared action unit used by the branch record and the second equality assumes a uniform circular benchmark. It is distinct from the retained-history depth $h$. If the primitive kinetic scalar is used instead of the quadratic proxy, the same record must replace $\mu_{\text{arch}}$ by the declared $\mu_K$ entry. A bare two-body circular closure can pass only when this class is cancelled by an explicitly retained signed sheet, causal wake-state, boundary, or multi-body exchange entry.
 
-**Plain language**: On the same-sheet chart, the isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every certified root accelerates the same way. The stable-branch question is whether one causal wake-state or multi-body update closes that drive without destroying the retained branch. This is a primary test of the MCB attractor hypothesis.
+Concretely, the same-sheet chart gives the isolated pair persistent tangential drive at the per-hit level because every certified root contributes with the same tangential sign. The stable-branch question is whether one causal wake-state or multi-body update closes that drive without destroying the retained branch. This is a primary test of the MCB attractor hypothesis.
 
 ---
 
@@ -1077,7 +1077,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-159a10b5ae5d31fe)
 
-In this view, any ruler or clock built from architrino assemblies ultimately reduces to multiples of $(d_0, P_0)$. Measurement standards are therefore **dynamical invariants** of the two-body attractor: they persist because the underlying limit cycle (if realized) is stable and reproducible across assemblies.
+If the proposed attractor exists and is reproducible, any ruler or clock built from these architrino assemblies would reduce to multiples of $(d_0,P_0)$. The corresponding measurement standards would then be dynamical invariants of the two-body attractor rather than primitive lengths or periods.
 
 A certified MCB would also define the first handedness marker. In the binary plane set
 $$
@@ -1926,7 +1926,7 @@ Equivalently, $\partial_\Delta g_{ij}=-D_{t,ij}$. The simple-root condition is t
 #### Definition 3 (Regularized Acceleration Functional)
 The finite-width wake model replaces the surface delta by a smooth mollifier $\delta_\eta$. On the declared finite history window its acceleration functional is
 $$
-F_i(\phi)=\sum_j\kappa\sigma_{ij}|q_iq_j|\int_{-h}^{0}
+\mathcal A_i^{(\eta)}(\phi)=\sum_j\kappa\sigma_{ij}|q_iq_j|\int_{-h}^{0}
 \frac{\phi_{X,i}(0)-\phi_{X,j}(\theta)}{\|\phi_{X,i}(0)-\phi_{X,j}(\theta)\|^3}
 c_f\,\delta_\eta\!\left(\|\phi_{X,i}(0)-\phi_{X,j}(\theta)\|+c_f\theta\right)d\theta.
 $$
@@ -1971,11 +1971,11 @@ $$
 *Proof.*  
 Define
 $$
-\mathcal{G}(\phi)=(\phi_V(0),F(\phi)).
+\mathcal{G}(\phi)=\left(\phi_V(0),\mathcal A^{(\eta)}(\phi)\right).
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-42e5134853c2c76e)
-with $F$ from Definition 3.
+Here $\mathcal A^{(\eta)}$ collects the components from Definition 3.
 
 1. By Assumption 2, every denominator in the interaction kernel is bounded away from zero on the admissible neighborhood; therefore the map
    $$
@@ -1986,7 +1986,7 @@ with $F$ from Definition 3.
    is $C^1$ there with bounded derivative.
 2. By Assumption 1, composition with $\delta_\eta$ preserves continuous differentiability and bounded derivatives on that neighborhood.
 3. Finite summation and integration over $[-h,0]$ preserve local Lipschitz continuity; hence $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}_0$ containing $\phi^0$.
-4. Standard existence and uniqueness theory for finite-delay functional differential equations gives the claimed local solution and maximal continuation.
+4. The standard local existence and uniqueness result for a locally Lipschitz finite-delay functional differential equation then gives the claimed local solution and maximal continuation; the solution-manifold framework of [Walther (2003)](https://doi.org/10.1016/j.jde.2003.07.001) supplies a stronger smooth setting when compatibility and differentiability of the history functional are required.
 
 This proves the proposition for the auxiliary finite-width, finite-window model. It does not prove well-posedness of the sharp root-resolved Master Equation. $\square$
 
@@ -2163,6 +2163,8 @@ $$
 \le \sum_i\mu_{\text{arch}}\|\mathbf V_i\|\,\|\mathbf A_i\|
 \le N\mu_{\text{arch}}V_{\max}A_{\max}(\eta).
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-02e103cb9089a138)
 
 Spatial confinement alone does not imply the required speed bound.
 

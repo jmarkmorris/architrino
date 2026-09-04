@@ -5,7 +5,7 @@
 - Kind: `priority`
 - Queue item: `MEC-008`
 - Priority object: `same_transmitter_coincidence_domain_reachability`
-- Claim level: `derived leading secular sign, derived regularization obstruction, bounded EOM arc measurement, and unresolved MEC-008 acceptance; no continuation law claimed`
+- Claim level: `derived leading secular sign, conditional populated invariant tube, derived local self-chord expansion, derived regularization obstruction, bounded EOM arc measurement, and unresolved MEC-008 acceptance; no continuation law claimed`
 - Workstream: [master-equation-closure](priorities.md)
 - Current lifecycle status: `In progress`
 - Promotion status: not promoted
@@ -23,7 +23,17 @@ The declared objects are: a reframing of coincidence as delay vanishing rather t
 
 The collinear head-on case is already settled and owned elsewhere. This document is about the ordinary case, where two architrinos among many drift near each other with no special alignment, and it exists to decide whether that case can ever end in exact contact.
 
-This packet derives no continuation law, selects no boundary value, assigns no event semantics, and closes no conserved account. It is an adjudication frame and a dispatch target.
+This packet derives no continuation law, selects no boundary value, assigns no event semantics, and closes no conserved account. It does derive a conditional local invariant tube around nonzero areal rate and a same-transmitter chord expansion that quantifies how population-induced transverse motion protects the regular domain. Those results narrow the unresolved set without proving global populated-domain exclusion.
+
+## Three Distinct Mathematical Questions
+
+The word `possible` separates into three questions that must not be merged.
+
+1. **Kinematic compatibility:** can two freely prescribed point paths be assigned the same coordinate at the same absolute time? Yes, but this says nothing about the Master Equation because arbitrary prescribed paths need not be its solutions.
+2. **Dynamical reachability:** can an admissible EOM-evolved retained history attain $d(T_\ast)=0$? This is MEC-008's question. The open approach interval is not a substitute for reachability; it is where reachability is decided, because the accumulated acceleration before $T_\ast$ determines whether the path can arrive.
+3. **Boundary definition and continuation:** if an admissible history reaches $d=0$, what event object is defined there and which outgoing retained history follows? These are downstream of reachability. Assigning a value at the single endpoint neither proves arrival nor selects a continuation.
+
+Thus the run-up and reachability are the same analytical subproblem viewed from evolution and endpoint perspectives, while reachability and continuation are different problems. A domain-exclusion theorem closes MEC-008 without an event rule; a boundary-reaching counterexample makes a derived event rule and continuation theorem unavoidable.
 
 ## MEC-008 acceptance conditions
 
@@ -37,7 +47,7 @@ An assertion that the Master Equation simply stops before the boundary is classi
 
 MEC-008's required controls are: (1) the existing isolated collinear birth as a singular analytical control; (2) a minimally noncollinear three-or-more-architrino EOM-evolved control with complete root census; (3) perturbations of population, geometry, and retained prehistory testing whether the boundary is avoided robustly or only by fine tuning; and (4) a local chord expansion separating the necessary $\|\mathbf V_i\|=c_f$ contact condition from curvature-dependent higher-order terms. Every numerical instantiation uses $c_f=1$.
 
-This packet supplies the analytical frame for controls (2) and (3), derives the leading signed pair contribution, rules out a nontrivial time-rescaled exceptional-sphere flow on the declared regular chart, and records a bounded EOM-evolved three-architrino arc. The EOM arc does not complete a turn, so required control (2) remains open.
+This packet supplies the analytical frame for controls (2) and (3), derives the leading signed pair contribution, rules out a nontrivial time-rescaled exceptional-sphere flow on the declared regular chart, records a bounded EOM-evolved three-architrino arc, and completes control (4) at the local $C^4$ chord-expansion level. The EOM arc does not complete a turn, so required control (2) remains open. Control (3) is narrowed to a quantified shrinking exact-aim cone but is not complete over arbitrary populated histories.
 
 Neither the near-diagonal self-root stratum nor a chance pair encounter is privileged here. MEC-008 covers both the same-transmitter case, in which an architrino's own path history produces a vanishing-delay root, and the two-body case, in which two distinct architrinos approach coincidence. The transverse analysis below addresses the two-body case directly; its bearing on the self-root case runs through ceiling rigidity, recorded as O6.
 
@@ -391,6 +401,116 @@ The calculated secular part is one-signed but has the opposite sign from the pro
 
 This is not yet MEC-008's accepted domain-exclusion theorem. The derivation is local, assumes the regular first-root chart, and does not quantify every populated retained history through a finite interval. It decides the R2/R3 secular-sign hinge but does not prove a population-stable invariant admissible region.
 
+## Conditional Populated-Barrier Theorem
+
+The statement that a populated universe continually perturbs every pair can be made quantitative without treating the perturbations as random. Let $H=\lVert\mathbf h\rVert$, and suppose an approaching opposite-polarity pair remains on a regular near-field interval $0<d\le d_\ast$ on which its exact areal-rate equation can be decomposed as
+
+$$
+\dot{\mathbf h}
+=
+\lambda(T)\mathbf h+\boldsymbol\eta(T),
+\qquad
+\lambda(T)\ge\frac{L}{d^2},
+\qquad
+\lVert\boldsymbol\eta(T)\rVert\le Bd,
+$$
+
+for constants $L>0$ and $B\ge0$. The first term is the hypothesized exact continuation of the derived positive pair coefficient. The remainder $\boldsymbol\eta$ contains third-party transverse contributions and any controlled higher-order pair remainder. A finite population with uniformly bounded charge products and root count, whose third-party root ranges and transmitter factors have positive lower bounds, supplies a bounded relative third-party acceleration; crossing that bounded acceleration with $\mathbf d$ gives precisely the $Bd$ torque bound. Assume also the finite relative-speed bound $\lVert\mathbf w\rVert\le V$.
+
+For any $\beta>0$, define
+
+$$
+Q_\beta=H^2-\beta d.
+$$
+
+On the boundary $Q_\beta=0$, where $H=\sqrt{\beta d}$,
+
+$$
+\begin{aligned}
+\dot Q_\beta
+&=
+2\mathbf h\mathbin{\cdot}\dot{\mathbf h}-\beta\dot d\\
+&\ge
+\frac{2L\beta}{d}
+-2B\sqrt{\beta}\,d^{3/2}
+-\beta V.
+\end{aligned}
+$$
+
+Choose $d_\ast>0$ small enough that
+
+$$
+\frac{2L\beta}{d_\ast}
+>
+2B\sqrt{\beta}\,d_\ast^{3/2}+\beta V.
+$$
+
+Then $\dot Q_\beta>0$ everywhere on $Q_\beta=0$ with $0<d\le d_\ast$. A first-crossing argument proves that the region
+
+$$
+\mathcal R_{\beta,d_\ast}
+=
+\left\{0<d\le d_\ast:\ H^2\ge\beta d\right\}
+$$
+
+is forward invariant across its $Q_\beta=0$ boundary while the declared bounds remain valid. Moreover, $H=\lVert\mathbf d\times\mathbf w\rVert\le dV$, so every state in this region obeys
+
+$$
+d\ge\frac{\beta}{V^2}>0.
+$$
+
+This is a genuine local domain-exclusion theorem: a pair inside $\mathcal R_{\beta,d_\ast}$ cannot reach coordinate coincidence before leaving the regular chart or violating one of the stated population bounds. It is conditional rather than MEC-008-complete because the current corpus has not yet proved the decomposition and constants uniformly over every admissible populated history.
+
+### Capture outside the shrinking exact-aim cone
+
+The theorem also identifies how fine the unprotected aim must become. On a monotone approach with $\dot d\le0$, the norm inequality gives
+
+$$
+\dot H
+\ge
+\frac{L}{d^2}H-Bd.
+$$
+
+For $B>0$, set $\Gamma=2B/L$. At the boundary $H=\Gamma d^3$,
+
+$$
+\dot H\ge Bd,
+\qquad
+\frac{d}{dT}\left(\Gamma d^3\right)=3\Gamma d^2\dot d\le0.
+$$
+
+Therefore an approaching solution that satisfies $H\ge\Gamma d^3$ at one time cannot cross back below that threshold. Within it,
+
+$$
+\dot H\ge\frac{L}{2d^2}H.
+$$
+
+Using $-\dot d\le V$ along the monotone approach gives
+
+$$
+H(d)
+\ge
+H(d_0)
+\exp\!\left[
+\frac{L}{2V}
+\left(\frac{1}{d}-\frac{1}{d_0}\right)
+\right].
+$$
+
+Thus $H^2/d$ must cross any prescribed positive $\beta$ before $d$ can vanish, after which the invariant tube supplies the positive separation floor. When $B=0$, the same growth conclusion holds from any $H>0$, leaving only exact aim $H=0$ unprotected. For $B>0$, any still-unexcluded approach must remain inside
+
+$$
+H<\Gamma d^3,
+\qquad
+\lVert\mathbf w_\perp\rVert=\frac{H}{d}<\Gamma d^2.
+$$
+
+Plainly: a populated trajectory does not merely need a small transverse miss to reach coincidence. It must continually cancel the miss until the transverse relative velocity shrinks at least quadratically with separation. Any perturbation asymptotically larger than that scale is captured by the repelling pair term and moved into the protected region.
+
+This result gives rigorous content to the populated-universe intuition but does not convert it into probability. No probability measure on retained histories has been defined, so `almost surely` is not an available claim. A deterministic population could in principle correlate its rows so that $\boldsymbol\eta$ holds the pair inside the $O(d^2)$ cone, or another root range or transmitter factor could lose its positive margin. Those cases are now the entire remaining pairwise reachability target rather than an unstructured appeal to perturbations.
+
+Claim grade: the invariant-tube and capture statements are `derived` from the displayed quantitative hypotheses. Their application to every populated Master Equation history is `not claimed`; proving uniform $L$, $B$, and $V$ bounds from the exact retained-history update is the remaining theorem burden. Falsifier: a solution satisfying the displayed decomposition, bounds, and monotone-approach hypotheses that crosses from $Q_\beta\ge0$ to $Q_\beta<0$, or that begins with $H\ge\Gamma d^3$ and reaches $d=0$ without a declared chart or margin failure.
+
 ## Blow-Up Admissibility
 
 No nondegenerate exceptional-sphere flow exists within the declared regular finite-speed chart. The obstruction can be stated without importing an instantaneous collision law.
@@ -450,6 +570,66 @@ A passive nonuniform relabeling can carry absolute time as an additional state a
 
 Claim grade: `derived` for invariance over the declared history class with fixed $c_f$. Falsifier: a strictly increasing non-translation $\phi$ that preserves the admitted emission-reception pairs for every stationary separated control and every moving retained history while keeping the canonical root equation and the same $c_f$.
 
+## Same-Transmitter Local Chord Expansion
+
+Required control (4) can be completed directly from the path geometry. Let one path be $C^4$ from the past at reception time $T$, and write its velocity, acceleration, and jerk as $\mathbf V$, $\mathbf A$, and $\mathbf J$ at $T$. For a prospective self root of delay $\tau>0$,
+
+$$
+\mathbf X(T)-\mathbf X(T-\tau)
+=
+\mathbf V\tau
+-\frac12\mathbf A\tau^2
++\frac16\mathbf J\tau^3
++O(\tau^4).
+$$
+
+Writing $v=\lVert\mathbf V\rVert>0$, the self-root residual $G(\tau)=\lVert\mathbf X(T)-\mathbf X(T-\tau)\rVert-c_f\tau$ has the expansion
+
+$$
+\begin{aligned}
+G(\tau)
+&=
+(v-c_f)\tau
+-\frac{\mathbf V\mathbin{\cdot}\mathbf A}{2v}\tau^2\\
+&\quad+
+\left[
+\frac{\lVert\mathbf A\rVert^2}{8v}
++\frac{\mathbf V\mathbin{\cdot}\mathbf J}{6v}
+-\frac{(\mathbf V\mathbin{\cdot}\mathbf A)^2}{8v^3}
+\right]\tau^3
++O(\tau^4).
+\end{aligned}
+$$
+
+Three local cases follow under the primitive path-speed ceiling $\lVert\mathbf V(S)\rVert\le c_f$ on a left neighborhood of $T$.
+
+1. If $v<c_f$, then $G(\tau)<0$ for all sufficiently small positive $\tau$; there is no near-diagonal self root.
+2. If $v=c_f$ and $\mathbf V\mathbin{\cdot}\mathbf A>0$, then the quadratic term is negative. This is the one-sided approach to the cap from lower speed, and again no sufficiently small positive self root exists.
+3. If $v=c_f$ and $\mathbf V\mathbin{\cdot}\mathbf A=0$, the one-sided speed maximum gives $\mathbf V\mathbin{\cdot}\mathbf J\le-\lVert\mathbf A\rVert^2$. Hence
+
+$$
+G(\tau)
+\le
+-\frac{\lVert\mathbf A\rVert^2}{24c_f}\tau^3
++O(\tau^4).
+$$
+
+Any nonzero curvature acceleration at the cap therefore opens a cubic root-free gap. If $\mathbf A=0$ but $\mathbf V\mathbin{\cdot}\mathbf J<0$, the cubic coefficient is still strictly negative. The cubic-order unresolved case must have $v=c_f$, $\mathbf V\mathbin{\cdot}\mathbf A=0$, $\mathbf A=0$, and $\mathbf V\mathbin{\cdot}\mathbf J=0$, with higher jets likewise required not to bend or slow the chord. Ceiling rigidity supplies the nonlocal completion: equality for a positive delay requires a straight, exactly cap-speed segment throughout that delay interval.
+
+An exact circular control checks the cubic coefficient without using the expansion itself. A path moving at cap speed on a circle of radius $R$ has chord length
+
+$$
+2R\sin\!\left(\frac{c_f\tau}{2R}\right)
+=
+c_f\tau-\frac{c_f^3}{24R^2}\tau^3+O(\tau^5).
+$$
+
+Since $\lVert\mathbf A\rVert=c_f^2/R$, the cubic deficit is exactly $-\lVert\mathbf A\rVert^2\tau^3/(24c_f)$, matching the general coefficient. This is a same-author closed-form consistency check, not independent evidence for the Master Equation's path regularity.
+
+Plainly: reaching the speed cap is necessary but not sufficient for a newborn self root. Approaching the cap from below misses at quadratic order, and turning at the cap misses at cubic order. A populated acceleration contribution protects against self-root birth whenever it produces nonzero curvature; only exact cancellation to a straight cap-speed chord remains.
+
+Claim grade: `derived` for $C^4$ paths satisfying the primitive speed ceiling on a left neighborhood. This completes MEC-008 control (4) at local order. It does not prove that every populated EOM path has nonzero curvature at every cap contact. Falsifier: a compliant $C^4$ path whose residual violates the displayed coefficients, or a cap-speed path with $\mathbf A\ne0$ and positive self roots accumulating at $\tau=0$.
+
 ## MEC-008 Control (2): Bounded EOM-Evolved Arc
 
 The existing EOM solver and its pre-existing root-accounting output were used without modifying either instrument. The control initialized an opposite-polarity pair at $\mathbf X_a=(0.05,0,0)$ and $\mathbf X_b=(-0.05,0,0)$ with velocities $(0,0.2,0)$ and $(0,-0.2,0)$, plus a third positive architrino at $(0.3,0.2,0.7)$ with zero velocity. The retained inertial prehistory covered $[-2,0]$, $c_f=1$, $\kappa\lvert q_aq_b\rvert=0.008$, and the EOM solver evolved the complete three-path state from $T=0$ to $T=0.2$ at fixed step $0.001$.
@@ -508,9 +688,11 @@ Stated at full strength, without hedging, so that it can be defeated on its meri
 
 The signed calculation closes the R2/R3 secular-sign hole in favor of the transverse barrier. The opposite-polarity pair row supplies a secular gain with $\mathbf h\cdot\dot{\mathbf h}>0$, not a drain. The pair therefore does not steer itself toward exact aim; it steers away from it. The blow-up and reparameterization results independently strengthen O1 and O5 by showing why an ordinary exceptional-sphere regularization cannot be constructed without leaving the declared causal-root problem.
 
-The adjudication still does not meet MEC-008's domain-exclusion acceptance condition. A local repelling coefficient is not an invariant-region theorem over all populated retained histories. Third-party rows can create, tilt, or cancel $\mathbf h$, root topology can change outside the first-root chart, and the bounded EOM control covers only part of one turn. Reachability is likewise unproved because no certified EOM history reaches the boundary.
+The conditional populated-barrier theorem upgrades the local sign into an actual invariant region for every interval on which the exact row admits uniform constants $L$, $B$, and $V$. It also shrinks every still-unexcluded pair approach to the cone $\lVert\mathbf w_\perp\rVert=O(d^2)$. The self-chord expansion separately proves that a same-transmitter near-diagonal root requires cap speed and survives neither sub-cap motion nor nonzero cap curvature. Together these results give mathematical content to the claim that population-induced perturbations protect the regular domain.
 
-Plainly: the ordinary attracting pair closes the one hole in the local barrier argument, but local repulsion from exact aim is not yet a theorem that every populated history misses coincidence.
+The adjudication still does not meet MEC-008's global domain-exclusion acceptance condition. The exact Master Equation has not yet been shown to provide the required uniform pair coefficient and bounded remainder on every admissible populated retained history, and deterministic third-party rows could in principle hold a pair inside the shrinking cone. Root topology can also change outside the first-root chart, and the bounded EOM control covers only part of one turn. Reachability is likewise unproved because no certified EOM history reaches the boundary.
+
+Plainly: ordinary populated approaches are now protected unless their transverse velocity is continually cancelled down to order $d^2$. The remaining question is whether the exact retained-history update can ever enforce that cancellation all the way to the boundary.
 
 ## Deliverable Disposition
 
@@ -518,8 +700,10 @@ Plainly: the ordinary attracting pair closes the one hole in the local barrier a
 2. **Blow-up admissibility — obstructed.** A bounded-velocity rescaling needs $dT/ds=O(\rho^p)$ with $p\ge2$; this freezes the exceptional sphere and makes the rescaled root-memory span diverge. The nondegenerate inverse-square velocity scaling exits the finite-speed regular chart.
 3. **Reparameterization invariance — derived negatively.** Only $T=s+T_0$ preserves the canonical root equation for the full history class with fixed $c_f$, and this translation does not regularize coincidence.
 4. **Minimally noncollinear EOM control — partially executed, not accepted.** The unchanged EOM instrumentation gives a complete nine-row census and positive $h$ increment over a certified $0.135183$-turn arc. No full-turn retained result was obtained, so the required turn average remains open.
+5. **Conditional populated invariant tube — derived.** Under a positive pair-coefficient floor, bounded population remainder, and finite relative speed, $H^2\ge\beta d$ is forward invariant at sufficiently small $d$ and enforces $d\ge\beta/V^2$. Every monotone approach outside this region is captured unless it remains in the shrinking cone $H=O(d^3)$, equivalently $\lVert\mathbf w_\perp\rVert=O(d^2)$.
+6. **Same-transmitter chord expansion — derived.** Sub-cap motion has a linear root deficit, one-sided arrival at cap speed has a quadratic deficit, and nonzero curvature at the cap has a cubic deficit. A positive-delay self root requires the remaining straight exact-cap chord case.
 
-The remaining closure path is not another sign calculation. It is a full-turn independently retained EOM control followed by an invariant-region theorem with explicit quantifiers over population, initial histories, regular-root margins, and finite evolution interval.
+The remaining closure path is not another sign calculation or codimension argument. It is a proof that the exact retained-history update supplies uniform $L$, $B$, and $V$ bounds—or else a construction showing their failure—followed by adjudication of the shrinking $O(d^2)$ exact-aim cone. A full-turn independently retained EOM control remains required numerical evidence but cannot replace that theorem.
 
 ## Claim Register
 
@@ -535,9 +719,13 @@ The remaining closure path is not another sign calculation. It is a full-turn in
 | Leading opposite-polarity mutual row gives $\dot h_{ij}^{\mathrm{sec}}\approx+\kappa\lvert q_iq_j\rvert D_t h/d^2$ | `derived` on the declared chart | a compliant complete two-row calculation with $\mathbf h\cdot\dot{\mathbf h}\le0$ |
 | One-turn secular increment is approximately $\kappa\lvert q_iq_j\rvert\oint D_t\,d\theta$ | `derived` on the declared chart | a compliant full turn with fixed-sign $h$ and positive $D_t$ but nonpositive $\Delta\lvert h\rvert$ |
 | $h=0$ is repelling under the leading pair contribution | `derived` locally | a negative linear coefficient of $h$ on the declared chart |
+| $H^2\ge\beta d$ is a local invariant coincidence-exclusion region under the displayed $L$, $B$, and $V$ bounds | `derived` conditionally | a compliant first crossing into $H^2<\beta d$ or boundary reach without a hypothesis failure |
+| Every monotone approach with $B>0$ and $H\ge(2B/L)d^3$, or with $B=0$ and $H>0$, is captured by an invariant tube before coincidence | `derived` conditionally | a compliant approach remaining uncaptured through $d=0$ |
+| A still-unexcluded pair approach must satisfy $\lVert\mathbf w_\perp\rVert=O(d^2)$ | `derived` under the same bounds | a compliant boundary-reaching approach with transverse relative velocity asymptotically larger than $d^2$ |
 | Bounded-velocity blow-up does not yield a nondegenerate exceptional-sphere flow | `derived` for power-law time rescalings on the declared chart | a continuous nondegenerate boundary field preserving bounded velocity, finite rescaled memory, and the original roots |
 | Vanishing-delay spectral escape obstructs finite-regularity continuation | `inferred` — transfer from constant-lag systems unproven | a continuation with bounded local regularity across a coincidence event |
 | Only absolute-time translations preserve canonical root admission for the full history class at fixed $c_f$ | `derived` | a non-translation preserving every stationary and moving retained-history root pair |
+| A same-transmitter near-diagonal root is excluded at sub-cap speed, during one-sided arrival at the cap, and at nonzero cap curvature through linear, quadratic, and cubic residual deficits respectively | `derived` for $C^4$ ceiling-admissible paths | a compliant path violating the chord coefficients or a curved cap path with roots accumulating at zero delay |
 | Three-architrino EOM control increases the initial-normal $h$ component by $0.0065138089981$ over $0.135183$ turns | `measured` on the declared bounded arc | replay with incomplete accepted-step census or nonpositive increment |
 | Codimension two implies coincidence is non-generic | `derived`, and explicitly insufficient alone | not applicable; the limitation is stated rather than claimed |
 | Different-time path crossing is the normal interaction mode, not a coincidence hazard | `derived` | an admitted root requiring transmitter and receiver at the same point at the same absolute time |
@@ -547,10 +735,10 @@ The remaining closure path is not another sign calculation. It is a full-turn in
 
 ## Nonclaims
 
-This packet establishes no continuation, passage, rebound, coordinate-crossing outcome, outgoing history, boundary value, event semantics, conserved account, global stability verdict, physical realization, MEC closure, or EOM solver acceptance. It does not reopen MEC-006 or MEC-007, does not modify the canonical transmitter-side acceleration row, and treats every receiver-side factor strictly as signed playback rather than as acceleration strength, per the workstream's revocation boundary. It asserts neither that coincidence occurs nor that it cannot; it establishes that the leading pair secular term repels from exact aim and records why that local result is not a global domain theorem.
+This packet establishes no continuation, passage, rebound, coordinate-crossing outcome, outgoing history, boundary value, event semantics, conserved account, global stability verdict, physical realization, MEC closure, or EOM solver acceptance. It does not reopen MEC-006 or MEC-007, does not modify the canonical transmitter-side acceleration row, and treats every receiver-side factor strictly as signed playback rather than as acceleration strength, per the workstream's revocation boundary. It asserts neither that coincidence occurs nor that it cannot globally; it establishes that the leading pair secular term repels from exact aim, proves a conditional local invariant region, and reduces the still-unexcluded populated pair approaches to a shrinking $O(d^2)$ transverse-velocity cone.
 
-It does not close MEC-008. Neither MEC-008 acceptance condition is met: no invariant-region theorem over the populated retained-history phase space has been derived, and no independently certified EOM-evolved counterexample exists. MEC-008 remains open, and MEC-002 and MEC-003 may not cite domain exclusion as a solution on the strength of anything in this document.
+It does not close MEC-008. The conditional invariant theorem has not been lifted to the complete populated retained-history phase space because its uniform bounds and shrinking-cone exclusion remain unproved, and no independently certified EOM-evolved counterexample exists. MEC-008 remains open, and MEC-002 and MEC-003 may not cite domain exclusion as a solution on the strength of anything in this document.
 
-This document does not answer whether two architrinos can touch on every admissible populated history. It does answer the local decider: the transmitter-side mutual pair contribution is a secular gain in $\lvert h\rvert$, not a drain.
+This document does not answer whether two architrinos can touch on every admissible populated history. It does answer the local decider, proves exclusion outside a quantified shrinking exact-aim cone under explicit population bounds, and completes the local same-transmitter chord expansion.
 
-Closure goal: replace the null-action convention at $r=0$ with an adjudicated verdict by computing the secular transverse areal-rate contribution for an opposite-polarity pair, thereby either proving a populated transverse barrier or exposing coincidence as a dynamical attractor requiring a derived event rule.
+Closure goal: replace the null-action convention at $r=0$ with an adjudicated verdict by proving that the exact populated retained-history update excludes the shrinking exact-aim cone, or by exhibiting one independently certified EOM history that reaches coincidence.

@@ -571,7 +571,9 @@ S_\Sigma^{\mathrm{rec}}
 k_B\sum_{e\in E_\Sigma}\log d_e.
 $$
 
-An entropy proportional to area follows only if the edge density per area and the average $\log d_e$ approach finite, regulator-stable limits. For a horizon interface, the terminal-alignment target is the special case in which aligned Noether braid patches and their admissible labels $(\chi_u,N_{s,u},M_{p,u})$ determine those limits. The $1/4$ coefficient remains a recovery target for cut capacity per retained patch area; it is not fixed by edge counting alone.
+[View →](../../../../equation-mapping.html#corpus-equation-fb24ad351d46fbe8)
+
+An entropy proportional to area follows only if the edge density per area and the average $\log d_e$ approach finite, regulator-stable limits. For a horizon interface, the terminal-alignment target is the special case in which aligned Noether braid patches and their admissible labels $(\chi_u,N_{s,u},M_{p,u})$ determine those limits. The black-hole area-law coefficient remains a recovery target for cut capacity per physical patch area; it is not fixed by edge counting alone.
 
 > Claim grade: derived for the finite-alphabet counting bound and guessed for its realization by terminal Noether braid patches. Falsifier: unbounded per-edge label capacity, non-area scaling of the crossing-edge density, or failure to recover the required coefficient under refinement would reject this area-law route.
 
@@ -685,7 +687,7 @@ $$
 
 on a fixed coarse-graining and boundary convention. In words: observer-window entropy production equals the retained-history distinctions lost to escaping wakes plus the declared interior production and projection-residual terms. The thermodynamic arrow is therefore a theorem target about the same causal-wake boundary ledger used by finite-window energy bookkeeping, not a second primitive arrow.
 
-The dynamics stack proposes a common memory-boundary origin for several residuals: wake escapement in the energy ledger, the $\omega_{\mathrm{mem}}$ leak in [Effective Lagrangian](effective-lagrangian.md#effective-hamiltonian-domain-gate), response-center drift in [Energy](energy.md#energy-conservation-and-exchange), and lost distinctions in the entropy record. These objects have different mathematical types and cannot be identified merely by analogy. The closure target is a single boundary functional whose distinct projections reproduce each residual on the same retained branch. A secular boundary record is a candidate common source of apparent dissipation, non-Hamiltonian projection, center drift, and observer-window entropy growth.
+The dynamics stack proposes a common memory-boundary origin for several residuals: wake escapement in the energy ledger, the $\omega_{\mathrm{mem}}$ leak in [Effective Lagrangian](effective-lagrangian.md#effective-hamiltonian-domain-criterion), response-center drift in [Energy](energy.md#energy-conservation-and-exchange), and lost distinctions in the entropy record. These objects have different mathematical types and cannot be identified merely by analogy. The closure target is a single boundary functional whose distinct projections reproduce each residual on the same retained branch. A secular boundary record is a candidate common source of apparent dissipation, non-Hamiltonian projection, center drift, and observer-window entropy growth.
 
 > Claim grade: guessed for the existence of one boundary functional producing all four projections. Falsifier: two residuals that remain nonzero on independently closed, mutually incompatible boundary records, or a proof that their boundary terms cannot be projections of one functional, would reject the proposed unification.
 
@@ -830,7 +832,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ae0767b0c14ea807)
 
-with the denominator restricted to the retained incoming roots in the declared window. Equivalently, $\mathcal{K}$ is the local edge-connectivity fraction of $G_{\mathrm{prov}}$: it measures how many retained incoming roots share transmitter-worldline edges with neighboring receivers' roots. History-backed records are expected to have $\mathcal{K}\to1$ because the same matter and Noether sea transmitters illuminate a neighborhood with correlated causal timing. Isolated fluctuation records have $\mathcal{K}\to0$ unless they also fabricate shared-transmitter concordance across neighboring receivers. Thus low-$\mathcal{K}$ configurations are measure-suppressed rather than forbidden by provenance mismatch, and high-$\mathcal{K}$ fluctuation records are costly because they require coherent transmitter-history coincidences, not only a memory snapshot. At this claim level, high-$\mathcal K$ fluctuations are treated as measure-suppressed rather than forbidden; forbiddance would require a separate theorem that no compatible transmitter-history assignment exists.
+with the denominator restricted to the retained incoming roots in the declared window. Equivalently, $\mathcal{K}$ is the local edge-connectivity fraction of $G_{\mathrm{prov}}$: it measures how many retained incoming roots share transmitter-worldline edges with neighboring receivers' roots. The proposed discriminator is that history-backed records approach $\mathcal{K}=1$ because shared matter and Noether sea transmitters illuminate neighboring receivers with correlated causal timing, whereas isolated fluctuation records approach $\mathcal{K}=0$ unless their compatible histories also contain shared-transmitter concordance. A measure-suppression claim additionally requires a declared measure on those compatible histories; provenance mismatch alone does not forbid high-$\mathcal K$ fluctuations.
+
+> Claim grade: guessed for $\mathcal K$ as a discriminator between history-backed and isolated-fluctuation records. Falsifier: overlapping $\mathcal K$ distributions for the two independently constructed history classes under the same receiver neighborhood, window, and preparation measure would reject the discriminator.
 
 ## Measurement and Computation
 
@@ -927,18 +931,18 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cba6c463de59bfe3)
 
-when the limit exists after boundary corrections. The required coefficient is area-normalized:
+when the limit exists after boundary corrections. Let $a_{\theta}$ be the physical area represented by one aligned patch in the recovered effective metric, and let $\ell_{\mathrm{eff}}$ be the effective area scale entering the recovered black-hole entropy law. The dimensionally complete target is
 
 $$
 \frac{s_{\mathrm{align}}(\theta)}
 {a_{\theta}}
 \longrightarrow
-\frac{1}{4}
+\frac{1}{4\ell_{\mathrm{eff}}^2}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2bef8565d46260ad)
 
-This target avoids a false one-patch interpretation. The coefficient is a block entropy density and patch-area normalization, not a literal independent count on one microscopic patch.
+This target avoids a false one-patch interpretation. The coefficient is a block entropy density and patch-area normalization, not a literal independent count on one microscopic patch. Writing the right-hand side as $1/4$ is valid only after areas have been nondimensionalized by $\ell_{\mathrm{eff}}^2$.
 
 The label set is not arbitrary. At terminal alignment an orthogonal-axis three-binary braid collapses its binary-axis directions onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
 
@@ -962,7 +966,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9ff215aa6d15e556)
 
-where $\chi_u$ is the retained terminal-alignment handedness label and $(N_{s,u},M_{p,u})$ is the local self-hit and partner-hit root-ledger index. The $1/4$ coefficient is therefore a falsifiable statement about the per-patch admissible ledger multiplicity and the patch area $a_{\theta}$ in the accepted alignment units, not a coefficient to fit after the fact.
+where $\chi_u$ is the retained terminal-alignment handedness label and $(N_{s,u},M_{p,u})$ is the local self-hit and partner-hit root-ledger index. The coefficient $1/(4\ell_{\mathrm{eff}}^2)$ is therefore a falsifiable statement about the per-patch admissible ledger multiplicity, the physical patch area $a_{\theta}$, and the independently recovered effective area scale, not a coefficient to fit after the fact.
 
 Page-curve, island, replica-wormhole, Ryu-Takayanagi, and AdS/CFT calculations remain high-value comparison mathematics. They sharpen the required entropy and unitarity bookkeeping. They do not provide the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism unless their constraints are recovered from horizon-interface labels, path-history bookkeeping, Noether sea storage, and release-channel selection.
 

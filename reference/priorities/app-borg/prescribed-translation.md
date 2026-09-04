@@ -26,7 +26,7 @@ The visual inspiration is a translating object with circulating internal filamen
 
 Read these live sources before editing:
 
-- [Braid Analysis Methodology — Borg Analysis Surface](../../../content/markdown/aaa/noether-braid/braid-analysis-methodology.md#borg-analysis-surface)
+- [Braid Analysis Methodology — Visualization of Analytical Results](../../../content/markdown/aaa/noether-braid/braid-analysis-methodology.md#visualization-of-analytical-results)
 - [Borg priorities](priorities.md)
 - [Borg assembly-viewer requirements](assembly-viewer-requirements.md)
 - [Software Architecture and Maintenance](../../../content/markdown/aaa/archie/software-architecture-and-maintenance.md)

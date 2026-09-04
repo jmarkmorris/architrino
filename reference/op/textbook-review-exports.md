@@ -19,7 +19,7 @@ node scripts/build-textbook-md-pdf.mjs --write
 node scripts/build-textbook-review-pdfs.mjs --write
 ```
 
-The equation step maintains functional equation links and their search context. The PDF exporter rebuilds its review set as a unit. Check the same outputs afterward:
+The equation step maintains functional equation links and their search context. The PDF exporter rebuilds its review set as a unit. The order matters: refresh the source-derived indexes first, then assemble the reading copies from them, then verify that the exported documents match the inputs they were built from. Check the same outputs afterward:
 
 ```bash
 node scripts/build-scene-graph.mjs --check --strict
@@ -27,8 +27,6 @@ node scripts/build-equation-mapping-corpus.mjs --check
 node scripts/build-textbook-md-pdf.mjs --check
 node scripts/build-textbook-review-pdfs.mjs --check
 ```
-
-Plainly: refresh the source-derived indexes before assembling reading copies, then verify that the exported documents match their inputs.
 
 When the public source-index snapshot is part of the authorized refresh, rebuild it after reading copies with `node scripts/archie-service/build-full-corpus-source-index.mjs --write` and rerun the corresponding `--check`. Its copied content needs publication review separately from its machine integrity metadata.
 

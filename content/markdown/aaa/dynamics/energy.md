@@ -119,7 +119,7 @@ The ontology assigns no particle-specific substrate mass to individual architrin
 - A kinetic scalar and momentum are candidate bookkeeping functions constrained by work-power and branch consistency.
 - The substrate law is written in **acceleration-first** form.
 - A quadratic-kinetic chart may introduce one universal coefficient $\mu_{\text{arch}}$, but this is not a particle-specific inertial mass.
-- "Mass" in the usual observer sense appears **only at the assembly level** as a derived property of how a large internal energy distribution responds to external forcing in the Noether sea.
+- "Mass" in the usual observer sense is sought only at the assembly level as an effective response property of a large internal causal-history record coupled to the Noether sea.
 
 ---
 
@@ -1179,7 +1179,7 @@ Cross-links:
 
 In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
 
-- Self-hit repulsion supplies an internal **outward floor** against collapse in Noether braids and more complex assemblies. On the uniform-circular chart it cannot supply centripetal support, and its tangential contribution is signed, so stability requires the other retained branch and wake-boundary entries.
+- On the uniform-circular chart, each canonical self-hit contribution is radially outward and therefore cannot supply centripetal support. Whether the corresponding self-hit branches provide a lower radial boundary in a Noether braid or more complex assembly depends on the complete vector balance and continuation record; it is not implied by the circular sign alone.
 - Under a candidate signed wake account, energy represented in an architrino's causal wake and local Noether sea response would be partially routed back through delayed self-interaction. The exchange between internal kinetic energy and wake/medium energy is candidate bookkeeping pending an accepted signed account on the same causal-root record.
 
 If an accepted causal action with a proved delay-compatible Noether theorem supplies both the acceleration contributions and the signed energy accounts on one provenance-complete record, then global conservation would follow and self-hit would route energy along more complex paths (architrino → causal isochron → local Noether sea → back to architrino/assembly) without net creation or loss. That action, theorem, account construction, pairwise provenance result, and boundary-flux closure remain open; until they close, self-hit routing is a candidate bookkeeping picture rather than an established conservation result.
@@ -1204,7 +1204,7 @@ Architrinos, their causal histories, and their assemblies are the variables to w
   - Effective inertia (mass),
   - Shielded external wake signatures (tiny apparent energy compared to internal),
   - Generation dependence through which declared support rows remain active and how their shielding map changes,
-  - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior. Macroscopic quietness follows from superposition and shielding: incoherent populations cancel statistically, while phase-locked assemblies such as collinear breathers preserve localized, non-canceling wake structure.
+  - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior. The proposed quiet macroscopic limit requires both small mean response and controlled fluctuations after superposition and shielding; it has not been derived merely from incoherence. Phase-locked assemblies such as collinear breathers remain candidates for localized, non-canceling wake structure.
 
 - **For spacetime and gravity:**
   
@@ -1277,15 +1277,15 @@ $$U(r) = B_{\max} - B(r).$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-176c8c556150fe31)
 
-Then total energy bookkeeping is:
+Then total energy bookkeeping is
 
-$$E_{\text{total}} = K(r) + U(r), \qquad U(r) \ge 0.$$
+$$E_{\text{total}} = K(r) + U(r).$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f91f6ff9a16feefa)
 
-At the minimum radius, the gauge identity gives
+The additional inequality $U(r)\ge0$ holds only if $B(r_{\min})$ is proved to be the maximum binding value on the admitted branch. At the minimum radius, the gauge identity gives
 
-$$E_{\text{total}} = K_{\max}, \quad U(r_{\min}) = 0.$$
+$$E_{\text{total}} = K(r_{\min}), \quad U(r_{\min}) = 0.$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-82fb0af67261acf9)
 
@@ -1301,13 +1301,13 @@ $$V_{\text{eff}}(r) = V(r) + \frac{L^2}{2 m_{\text{eff}} r^2} + V_{\text{self-hi
 
 Here $m_{\text{eff}}$ is an **effective inertial scale** (a bookkeeping proxy for mass in the coarse-grained description), not a primitive architrino mass.
 
-The convention above fixes:
+If an effective-potential comparison needs the same displayed zero, define the separately shifted quantity
 
-$$V_{\text{eff}}(r_{\min}) = 0.$$
+$$\widetilde V_{\text{eff}}(r)\equiv V_{\text{eff}}(r)-V_{\text{eff}}(r_{\min}),\qquad \widetilde V_{\text{eff}}(r_{\min})=0.$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-aaaf2218ee120aa3)
 
-This does not change the dynamics; it sets a convenient branch-local reference. Its physical usefulness depends on certification of the branch and potential.
+This additive shift does not change the effective radial equation. It is distinct from proving that $r_{\min}$ minimizes $V_{\text{eff}}$ or that the effective-potential reduction is valid for the delayed branch.
 
 ### Self-Hit Branch Changes and Discrete Ledgers
 
@@ -1371,11 +1371,33 @@ Notation in the table:
 - $K_1, U_1$ = binary-1 kinetic and potential energies.
 - Superscripts $(f-1)$, $(f_{\psi})$, and $(f)$ denote the state index (one-step update).
 
-Per-step increments (explicit, no deltas):
+Per-step increments are defined without overloaded delta notation.
 
-- Binary-3 step energy: $\varepsilon_3 \equiv \omega_3 \hbar$ with $$k_3 \equiv \chi_3\,\varepsilon_3,\quad u_3 \equiv (1-\chi_3)\,\varepsilon_3,$$ [View →](../../../../equation-mapping.html#corpus-equation-a35196e899147084) so $k_3 + u_3 = \varepsilon_3$.
-- Binary-1 step energy: $\varepsilon_1 \equiv \omega_1 \hbar$ with $$k_1 \equiv \chi_1\,\varepsilon_1,\quad u_1 \equiv (1-\chi_1)\,\varepsilon_1,$$ [View →](../../../../equation-mapping.html#corpus-equation-0b910a5e36da23c3) so $k_1 + u_1 = \varepsilon_1$. Because binary 1 takes **two steps** in this source record, it adds $2k_1$ and $2u_1$.
-- Binary-2 adjustment energy: $\varepsilon_2$ is whatever is needed to close the ledger. Here $\varepsilon_w$ denotes the **causal-wake exchange energy** during the step: $$\varepsilon_2 \equiv \varepsilon_w - 2\varepsilon_1,$$ [View →](../../../../equation-mapping.html#corpus-equation-3af21b70c4a6036c) and we split it as $$k_2 \equiv \chi_2\,\varepsilon_2,\quad u_2 \equiv (1-\chi_2)\,\varepsilon_2.$$
+**Binary-3 step energy.** Set $\varepsilon_3 \equiv \omega_3 \hbar$ and split it by
+
+$$k_3 \equiv \chi_3\,\varepsilon_3,\quad u_3 \equiv (1-\chi_3)\,\varepsilon_3,$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-a35196e899147084)
+
+so $k_3 + u_3 = \varepsilon_3$.
+
+**Binary-1 step energy.** Set $\varepsilon_1 \equiv \omega_1 \hbar$ and split it by
+
+$$k_1 \equiv \chi_1\,\varepsilon_1,\quad u_1 \equiv (1-\chi_1)\,\varepsilon_1,$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-0b910a5e36da23c3)
+
+so $k_1 + u_1 = \varepsilon_1$. Because binary 1 takes **two steps** in this source record, it adds $2k_1$ and $2u_1$.
+
+**Binary-2 adjustment energy.** Let $\varepsilon_w$ denote the **causal-wake exchange energy** during the step and define the amount needed to close the ledger by
+
+$$\varepsilon_2 \equiv \varepsilon_w - 2\varepsilon_1,$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-3af21b70c4a6036c)
+
+then split it by
+
+$$k_2 \equiv \chi_2\,\varepsilon_2,\quad u_2 \equiv (1-\chi_2)\,\varepsilon_2.$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5334a3bc018c97a8)
 
@@ -1425,7 +1447,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, a certified hard inner bound permits a conv
 | --- | --- | --- | --- |
 | $r = r_{\min}$ | branch-dependent | 0 by gauge | Inner radial boundary; ground-state status unproved |
 | $r > r_{\min}$ | branch-dependent | branch-dependent | Same-ledger continuation required |
-| escape limit | 0 | $B_{\max}$ | Free (unbound) |
+| escape limit | set by the asymptotic branch state | $B_{\max}$ if the integral converges | Unbound comparison state |
 
 ### One-Line Rule
 

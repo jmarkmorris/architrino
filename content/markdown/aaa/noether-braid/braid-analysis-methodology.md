@@ -1000,8 +1000,6 @@ One candidate dominates another only when it is no worse on every declared objec
 
 Separate grades are required for a parameterized chart and for a particular exact instantiation. A strong instantiation supports existence within a sampled region; it does not establish that the whole chart has the same performance.
 
-<a id="borg-analysis-surface"></a>
-
 ## Visualization of Analytical Results
 
 Fixed or moving probes at specified $(T,\mathbf X)$ coordinates provide complementary views of the same prescribed source. Useful visualizations include:

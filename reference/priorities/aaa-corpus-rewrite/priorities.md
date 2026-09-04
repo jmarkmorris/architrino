@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Rank: `active editorial owner`
-- Status: `phase-1-in-progress`
+- Status: `phase-2-in-progress`
 - Claim level: `editorial-priority`
 - Standard edition: [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) edition 1.0, settled 2026-09-03
 - Scope: reader-facing prose under `content/markdown/aaa`
@@ -27,13 +27,11 @@ Claim grade: `measured` by scanning every corpus document outside `archie/` and 
 
 ## Current State
 
-The pilot is complete. [`foundations/architrino.md`](../../../content/markdown/aaa/foundations/architrino.md) was rewritten against edition 1.0 on 2026-09-03 and accepted by the operator.
+Phase 1 is complete. All nine `foundations/` documents, beginning with [Ontology](../../../content/markdown/aaa/foundations/ontology.md), were rewritten against edition 1.0 and then independently reviewed against their 2026-09-01 baselines. The first Phase 2 batch is also complete at authored-source level: all six `dynamics/` documents, beginning with the [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md), have undergone the same rewrite and correction sequence.
 
-It grew from 4,090 to 6,297 words, an increase of **54%**, while preserving all 17 equation-viewer links, every equation, all 16 internal links, and every claim.
+The fifteen converted documents grew from 115,735 to 122,716 words after review, an increase of **6%**. Foundations account for most of that expansion; the dynamics batch grew only 3%, while its review still required substantive corrections to signs, coefficients, normalization, claim boundaries, and source support. Word growth therefore remains useful for publication-size planning but is not a measure of review difficulty.
 
-That figure is the planning basis for the campaign. The corpus measured 835,848 words across 199 files immediately before the pilot; it measures 840,255 today, the difference being the pilot's own growth plus the concurrent expansion of the style guide, which is itself a corpus document. Applying 54% to the unconverted remainder projects a finished corpus of roughly 1.29 million words.
-
-Treat 54% as one data point rather than a rate. Foundations chapters carry the most undefined vocabulary and should run higher; dense technical chapters that already define their own terms should run lower. The ledger records actual growth per file so the estimate improves as the campaign proceeds.
+The authored dynamics sources pass whitespace, strict content, equation-mapping-link, and equation-mapping-corpus checks. Generated textbook navigation and reading copies are stale and remain for the authorized regeneration or final branch process. Per-file measurements and the current projection are recorded in [conversion-ledger.md](conversion-ledger.md).
 
 ## Ownership Boundaries
 
@@ -49,9 +47,9 @@ Treat 54% as one data point rather than a rate. Foundations chapters carry the m
 
 Foundations first, and not as a matter of taste. Every one of the 70 under-linked documents will link *into* `foundations/`, so converting a later chapter before its foundations are ready sends readers to prose that is itself about to change. Foundations is upstream of everything.
 
-1. **Phase 1 — Foundations.** 9 files. One complete; the eight remaining hold 33,220 words.
-2. **Orientation pass.** The 70 under-linked documents get a clue and a link at first use of each foundational term. Cheap, independent of the rewrite, and runnable in parallel once Phase 1 lands.
-3. **Phase 2 onward.** Remaining chapters in reader order, so each conversion can rely on vocabulary already properly introduced upstream.
+1. **Phase 1 — Foundations.** Complete: 9 files, independently reviewed.
+2. **Orientation pass.** Queued: the 70 under-linked documents get a clue and a link at first use of each foundational term.
+3. **Phase 2 onward.** In progress: the 6-file dynamics batch is complete at authored-source level; remaining chapters continue in reader order so each conversion can rely on vocabulary already introduced upstream.
 
 ## Work Queue
 

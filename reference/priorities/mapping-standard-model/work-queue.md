@@ -54,5 +54,6 @@ No rows.
 
 No rows.
 
-<a id="smc-012--geometric-phase-and-holonomy-exploration"></a>
-The completed SMC-012 introductory exploration is recorded in the [work log](work-log.md#2026-08-28--smc-012-geometric-phase-and-holonomy-exploration); this retained navigation anchor is not a live queue item or gauge-recovery result.
+### SMC-012 — Geometric Phase and Holonomy Exploration
+
+The completed SMC-012 introductory exploration is recorded in the [work log](work-log.md#2026-08-28--smc-012-geometric-phase-and-holonomy-exploration); it is not a live queue item or gauge-recovery result.

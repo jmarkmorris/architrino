@@ -1,8 +1,8 @@
 # Master Equation
 
-This chapter answers the first dynamics question: given architrinos moving in absolute time through the Euclidean void, what exactly makes one of them accelerate? The answer is the delayed, receiver-local law used throughout the dynamics branch. It defines what counts as a causal hit, how path history selects the active emission events, and how those hits sum into the acceleration of the receiver.
+This chapter answers the first dynamics question: given [architrinos](../foundations/architrino.md)—primitive pointlike entities carrying polarity—moving in [absolute time](../foundations/absolute-time.md) through the [Euclidean void](../foundations/euclidean-void.md), what exactly makes one of them accelerate? The answer is the delayed, receiver-local law used throughout the dynamics branch. It defines what counts as a causal hit, how path history selects the active emission events, and how those hits sum into the acceleration of the receiver.
 
-For the primitive-entity ontology, see [Architrino](../foundations/architrino.md). This chapter begins where ontology becomes motion. A causal wake is not a vague field surrounding a transmitter; it is a delayed contact condition between a past emission event and a receiver event. When that condition closes, the receiver samples a line-of-action contribution whose strength is set by the density of emitted causal surfaces at the receiver event.
+The [Architrino](../foundations/architrino.md) chapter supplies the complete primitive-entity ontology; this chapter begins where ontology becomes motion. A causal wake is not a vague field surrounding a transmitter; it is the expanding path-history record emitted by an architrino. A causal hit occurs when one such wake intersects a receiver event. At that intersection, the receiver samples a line-of-action acceleration contribution whose magnitude is set by the density of emitted causal surfaces at the receiver event.
 
 The chapter is long because it plays several roles at once: foundational law, theorem spine, analytic benchmark source, and numerical reference. The opening establishes the causal geometry and canonical equation. Later sections develop the delay differential equation form, self-hit structure, analytic regimes, and the energy-symmetry-conservation interface needed by binaries, Noether braids, effective geometry, and quantum closure.
 
@@ -30,7 +30,7 @@ The level distinction used throughout the chapter is:
 | --- | --- | --- |
 | Substrate ontology | Architrinos move in absolute time through the Euclidean void and emit causal wakes. | No fundamental spacetime metric, continuum field substance, or observer reconstruction is assumed. |
 | Dynamics | Acceleration is the receiver-local sum over delayed causal-root hits. | A plotted orbit or numerical residual is not a proof unless its branch chart is certified. |
-| Effective description | Potentials, fields, one-forms, metrics, and wave functions may be reconstructed after coarse-graining. | Effective variables are not promoted to substrate ontology by their predictive usefulness. |
+| Effective description | Potentials, fields, one-forms, metrics, and wave functions may be reconstructed after coarse-graining. | Predictive usefulness does not make effective variables part of the substrate ontology. |
 | Inference and observation | A receiver or observer may infer transmitter configurations from hit records and assembly responses. | Inference does not determine the full ontic history unless the missing path-history data are supplied. |
 
 **Claim grading.** Explicit evidence statements use the grades **derived**, **measured**, **inferred**, and **guessed**. The Master Equation itself is a postulate rather than an evidence grade. Conditional assumptions, numerical certification scope, remaining proof burdens, and falsifiers are stated separately where they matter.
@@ -390,7 +390,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-556dc1a80dd8f272)
-inside a declared one- or multi-parameter branch family. The finite-impulse lemma covers the fold stratum $\Sigma^1$, where $\partial_{T_tT_t}g\ne0$ and the control parameter crosses the fold transversely. Cusp and higher strata, such as $\Sigma^{1,1}$, require extra degeneracy conditions and are not ordinary acceleration contributions. They may merge or split more than one opposite-sign root pair at once, so their ledger transition is not certified by the generic $\Delta N=\pm2,\ \Delta D=0$ fold law until a separate regularized normal form is supplied. Thus $\Sigma^1$ routes to finite impulse plus transition metadata, while $\Sigma^{1,1}$ or deeper routes to a singular-stratum chart before promotion.
+inside a declared one- or multi-parameter branch family. The finite-impulse lemma covers the fold stratum $\Sigma^1$, where $\partial_{T_tT_t}g\ne0$ and the control parameter crosses the fold transversely. Cusp and higher strata, such as $\Sigma^{1,1}$, require extra degeneracy conditions and are not ordinary acceleration contributions. They may merge or split more than one opposite-sign root pair at once, so their ledger transition is not certified by the generic $\Delta N=\pm2,\ \Delta D=0$ fold law until a separate regularized normal form is supplied. Thus $\Sigma^1$ admits a finite-impulse account plus transition metadata, while $\Sigma^{1,1}$ or deeper requires a singular-stratum chart before acceptance.
 
 The word "set" in $\mathcal{C}_{ij}(T_r)$ should therefore be read as a root set extracted from a continuous path-history integral, not as a replacement for that history. The transmitter path is continuous data. In the sharp causal-wake limit the delta constraint collapses the received contribution to the emission times in $\mathcal{C}_{ij}(T_r)$; with $\eta > 0$ mollification, the received contribution comes from finite-width neighborhoods of those roots. A single transmitter can contribute more than one root at the same receiver event when its worldline crosses the receiver's backward causal surface more than once, especially in curved or super-field-speed history. The same bookkeeping applies to nontrivial self-history roots when $j=i$.
 
@@ -494,11 +494,11 @@ A chart that changes only receiver velocity at a fixed reception event does not 
 
 **Action residual.** The variational-action question adds an independent proof burden. On a regularized action chart,
 $$
-\mu_{\text{arch}}\mathbf A_i(T)
+\mathbf A_i(T)
 =
 \sum_j\kappa\,\sigma_{ij}|q_iq_j|
 \left(
-\mathbf F_{ij,\mathrm{scale}}^{(\eta)}(T)
+\mathbf A_{ij,\mathrm{scale}}^{(\eta)}(T)
 +
 \mathbf C_{ij}^{(\eta)}(T)
 \right),
@@ -568,9 +568,9 @@ The inactive-gap condition means that nearby discarded causal roots remain separ
 
 A branch chart is the replayable local record that says which causal roots are active, which nearby roots stay inactive, how much history is needed, and whether the returned section remains stable under small errors.
 
-Equivalently, $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ is the local trivialization data for the causal-root sheaf near the retained history. Promotion requires more than naming the active roots: the map from retained history and section coordinates to active roots, receiver-side branch acceleration contributions, and wake-history increment records must be locally invertible onto the declared chart image, with inverse conditioning controlled by $\nu_J$, $\nu_{\mathrm{rec}}$, the inactive gaps, the finite memory margin, and $\lambda_{\mathrm{sec}}$. A plotted orbit with no controlled inverse is a trace, not a branch chart.
+Equivalently, $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ is the local trivialization data for the causal-root sheaf near the retained history. Acceptance requires more than naming the active roots: the map from retained history and section coordinates to active roots, receiver-side branch acceleration contributions, and wake-history increment records must be locally invertible onto the declared chart image, with inverse conditioning controlled by $\nu_J$, $\nu_{\mathrm{rec}}$, the inactive gaps, the finite memory margin, and $\lambda_{\mathrm{sec}}$. A plotted orbit with no controlled inverse is a trace, not a branch chart.
 
-**Local promotion lemma.** If a candidate history supplies $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ with positive active-root floors, positive inactive gaps, finite memory, bounded return residual, and stable section monodromy, then the history may support a local master-equation closure claim on that section. The lemma does not prove global closure, eliminate all folds, control the $\eta\to0$ limit, or certify unrelated histories. It only promotes the branch chart from a numerical trace to a locally replayable causal-root closure record.
+**Local replayability lemma.** If a candidate history supplies $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ with positive active-root floors, positive inactive gaps, finite memory, bounded return residual, and stable section monodromy, then the history may support a local Master Equation claim on that section. The lemma does not prove global closure, eliminate all folds, control the $\eta\to0$ limit, or certify unrelated histories. It establishes only that the branch chart is more than a numerical trace: it is a locally replayable causal-root record.
 
 #### State-Dependent Delay Compatibility
 
@@ -604,7 +604,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-e439e87c3594cee5)
 and if every inactive complement remains separated by the declared positive gap. Under these conditions the implicit-function theorem gives $C^1$ dependence of $\theta_\ell$ on the retained history, so the branch acceleration, root-transport residual, transmitter-side acceleration-weight record, and wake-history Noether increments are functionals on one local history chart rather than pointwise records that only happen to close at one evaluation time. This is the reconstruction-regularity content of the branch chart: the root reconstruction has an inverse bound controlled by the transversality floor, schematically $\|D\theta_\ell\|\lesssim (c_f\nu_J)^{-1}$ times the history-evaluation norm, until a fold or chart boundary is reached.
 
-This compatibility condition is a theorem-target requirement, not a new acceleration law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive transmitter-side Jacobian floor, bounded transmitter-side acceleration-weight record, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
+This compatibility condition is a theorem-target requirement, not a new acceleration law. It says that an accepted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive transmitter-side Jacobian floor, bounded transmitter-side acceleration-weight record, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
 
 #### Local-To-Global Branch-Chart Gluing Target
 
@@ -749,7 +749,7 @@ First shrink the artificial wake thickness while the roots remain isolated, then
 
 Branch-resolved formulas are the authoritative sharp law on their admitted regular domain, while the auxiliary integral supplies a controlled route through finite-width or singular-chart calculations. It must not replace the canonical definition or be used to assign a value at a causal fold, caustic transit, coordinate coincidence, or chart boundary without the corresponding convergence and event certificates.
 
-The two regulators quarantine different singular loci. The width $\eta$ regularizes the causal-surface collapse, branch folds, and caustic-transit impulse; the core scale $\epsilon_c$ regularizes the coincidence or diagonal collision locus. A theorem packet may refine them together for computation, but a sharp-limit claim must state which of $\eta\to0^+$ and $\epsilon_c\to0^+$ is being taken, and why the other singular locus remains controlled during that limit.
+The two regulators quarantine different singular loci. The width $\eta$ regularizes the causal-surface collapse, branch folds, and caustic-transit impulse; the core scale $\epsilon_c$ regularizes the coincidence or diagonal collision locus. A theorem may refine them together for computation, but a sharp-limit claim must state which of $\eta\to0^+$ and $\epsilon_c\to0^+$ is being taken, and why the other singular locus remains controlled during that limit.
 
 Coordinate coincidence is also a provenance question, not an annihilation rule. Two architrinos may share $\mathbf X_i(T)=\mathbf X_j(T)$ on one absolute-time slice only as a boundary case of the retained history record; the next admissible update is determined by their identities, polarities, velocities, past causal-wake ledgers, and the same $\eta,\epsilon_c$ convention. If two like-polarity records agree through the retained memory window up to label permutation, the deterministic law is quotient-degenerate: relabeling the records changes no acceleration contribution until a provenance-visible history distinguishes them. If the polarities, velocities, or retained path histories differ, later incoming causal wakes can separate the records even though their current coordinates coincided. Thus the $r=0$ stratum is not a contact interaction or annihilation channel. It is a regularized or quarantined branch condition whose continuation must preserve provenance.
 
@@ -771,7 +771,7 @@ The admissibility assumptions are:
 4. The regularized right-hand side is locally Lipschitz on the retained history tube, so the finite-$\eta$ state-dependent delay problem has existence, uniqueness, and continuation until a declared boundary of the admissible class is reached.
 5. The same regularized action or compatible realized-trajectory reconstruction supplies the acceleration contribution, wake-history energy, momentum, and angular-momentum records. Endpoint leakage, omitted branch records, and period-cut terms must appear as residuals rather than hidden corrections.
 
-Under these assumptions, the finite-$\eta$ theorem packet should prove the following local conclusions.
+Under these assumptions, a finite-$\eta$ theorem should prove the following local conclusions.
 
 - **Divergent self-energy is quarantined.** There is no accepted instantaneous self-kick, no unregularized $r=0$ self-root inside the chart, and every retained self-hit contribution is bounded by the declared $d$, $\epsilon_c$, $\eta$, $\nu_J$, and transmitter-side acceleration-weight data. Any remaining divergence is therefore a failure of the branch floor, core convention, memory window, or $\eta\to0^+$ convergence claim, not an accepted finite-$\eta$ state. A coincident same-transmitter root birth is not an accepted transition under this theorem target.
 - **Runaway solution branches are quarantined.** If the same action-level bookkeeping gives
@@ -787,7 +787,7 @@ Under these assumptions, the finite-$\eta$ theorem packet should prove the follo
 - **Caustic and Jacobian blow-up are quarantined.** Simple-root charts require $\nu_J > 0$. A finite-order caustic may be crossed only through the auxiliary dual-mollified regulator with finite integrated impulse and stable transition metadata. Persistent $J=0$, cusp behavior outside a finite-order normal form, simultaneous collision-floor failure, or regulator-dependent transition observables are chart failures rather than ordinary acceleration contributions.
 - **Finite deterministic multistability is routed, not quarantined.** At a fold boundary, if the regularized post-transit data supply exactly one admissible continuation chart, the event is an ordinary branch transition. If they supply two or more inequivalent admissible charts with positive floors and finite memory, the complete microstate still selects one deterministic continuation, but a record-limited comparison must route the event to a finite basin-weight or multistability record. Multistability is a failure only when the finite continuation family is empty, infinite, unlabeled, or lacks the common branch data needed for comparison.
 
-The failure boundary for the theorem packet is the union of the following conditions:
+The theorem's failure boundary is the union of the following conditions:
 $$
 \partial\mathcal{A}_\eta
 =
@@ -817,9 +817,9 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-881fed3da323b266)
-where $\Sigma_{\mathrm{transit}}$ has a unique finite post-transit chart, $\Sigma_{\mathrm{bif}}^{\mathrm{multi}}$ has a finite labeled family of admissible continuations, and $\Sigma_{\mathrm{sing}}^{\mathrm{fail}}$ lacks a promoted finite chart. A trajectory crossing this boundary is not promoted as a closed Master Equation solution until the appropriate route is certified. It is routed to branch transition, finite multistability, caustic transit, core-regularization repair, finite-window leakage, or $\eta$-ladder failure according to which boundary component is reached.
+where $\Sigma_{\mathrm{transit}}$ has a unique finite post-transit chart, $\Sigma_{\mathrm{bif}}^{\mathrm{multi}}$ has a finite labeled family of admissible continuations, and $\Sigma_{\mathrm{sing}}^{\mathrm{fail}}$ lacks an accepted finite chart. A trajectory crossing this boundary is not an accepted closed Master Equation solution until the appropriate continuation is certified. The applicable condition is branch transition, finite multistability, caustic transit, core-regularization failure, finite-window leakage, or $\eta$-ladder failure according to which boundary component is reached.
 
-The validation residuals consumed by this theorem target are the root residual, root-transport residual, active transmitter-side Jacobian floor, transmitter-side acceleration-weight interval, inactive-gap residual, finite-memory residual, return residual, finite-window energy residual $\mathcal{R}_E$, momentum residual $\mathcal{R}_P$, angular-momentum residual $\mathcal{R}_J$, Euler residual of the same action, endpoint or period-cut leakage, transition-observable residuals across $\eta$ refinement, and the symplectic residual $\mathcal{R}_{\Omega}$ when the branch is promoted to a reduced Hamiltonian chart. The theorem is finite-$\eta$ only; any zero-width or infinite-system statement requires the separate convergence boundary stated in the regularization package.
+The residuals required by this theorem target are the root residual, root-transport residual, active transmitter-side Jacobian floor, transmitter-side acceleration-weight interval, inactive-gap residual, finite-memory residual, return residual, finite-window energy residual $\mathcal{R}_E$, momentum residual $\mathcal{R}_P$, angular-momentum residual $\mathcal{R}_J$, Euler residual of the same action, endpoint or period-cut leakage, transition-observable residuals across $\eta$ refinement, and the symplectic residual $\mathcal{R}_{\Omega}$ when the branch is represented by a reduced Hamiltonian chart. The theorem is finite-$\eta$ only; any zero-width or infinite-system statement requires the separate convergence boundary stated in the regularization analysis.
 
 ---
 
@@ -1090,7 +1090,7 @@ c_f-\frac{d_{\min}}{h}.
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b3d1eaa2840f3e77)
-Thus starvation is a root-complex obstruction before it is a speed slogan: if the assembly requires that forward generator, the bare causal kernel cannot carry the same branch chart through $u_{\mathrm{crit}}$. Any promoted supra-$u_{\mathrm{crit}}$ branch must show a Noether-sea or assembly reorganization that removes or replaces the forward root without hiding a memory-window failure.
+Thus starvation is a root-complex obstruction before it is a speed slogan: if the assembly requires that forward generator, the bare causal kernel cannot carry the same branch chart through $u_{\mathrm{crit}}$. Any accepted supra-$u_{\mathrm{crit}}$ branch must show a Noether-sea or assembly reorganization that removes or replaces the forward root without hiding a memory-window failure.
 
 This is not the same event as the interior fold law of Proposition 3. A generic interior fold creates or removes one positive and one negative generator and therefore preserves the signed degree $D_{ij}$. Forward-root starvation is a memory-boundary event: a generator leaves the retained interval $[T_r-h,T_r)$ because its required delay has crossed the available history depth. The finite-window signed degree $D_{ij}^{(h)}$ may therefore change unless a replacement generator enters through the boundary or the branch chart is reorganized by the Noether sea. The retained branch ledger records this as boundary-exit degree bookkeeping, not as a $\Delta N=\pm2,\Delta D=0$ fold.
 
@@ -1543,9 +1543,7 @@ $$
 
 The branch sign converts the signed derivative of $1/r_b$ into the absolute transmitter-side weight in the canonical acceleration ledger. This is an exact local rewrite of the existing row, not a new response based on slope or curvature.
 
-The claim grade is **derived on one connected regular moving-simple-root chart**. A separately structured $c_f=1$ circular-history check computes the scalar gradient from freshly solved roots and finite differences, while the ledger vector comes from an unchanged causal-root record and the canonical row. Across five step refinements, the largest component residual was $2.12\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because its radial scaling is wrong. The check is recorded in `verify-moving-single-root-scalar-gradient.mjs`.
-
-The proof supplies the identity, and an independently structured calculation checks its numerical realization on one moving regular chart. A nonzero scalar-gradient-versus-ledger residual on any certified point would falsify the claimed local representation.
+> Claim grade: derived for the identity on one connected regular moving-simple-root chart; measured for the circular-history check in normalized units with $c_f=1$. The check solves the roots afresh, computes the scalar gradient by finite differences, and compares it with the canonical ledger vector on the unchanged root record. Across five step refinements, the largest component residual was $2.12\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because its radial scaling is wrong. Falsifier: a nonzero scalar-gradient-versus-ledger residual on any certified regular point would refute the local representation; failure to reproduce the stated residuals on the same circular-history domain would refute the measurement.
 
 **Finite-ledger scalar-superposition theorem (conditional derivation).** Fix the retained histories, root selections, regularization, and boundary convention of that chart. If every row $b\in\mathcal B$ has a differentiable receiver-local scalar representative $\Phi_b$ on the same chart satisfying
 
@@ -2123,7 +2121,7 @@ Within this fixed point-cloud ansatz, the often-used $c_f/v_{\mathrm{int}}$ scal
 
 A nonzero residual forbids indefinite translation of that fixed point cloud, but it does not by itself say whether visible deformation takes one cycle or many.
 
-The independent reference for the pair formula is direct closed-form addition of the two ordered roots in Proposition 5. The point-cloud analyzer `scripts/equation-mapping/analyze-fixed-point-cloud-residual.mjs` separately checks the matrix identity, planar nulls, and the tetrahedral negative control. It is not a Borg-catalog evaluator. Sampling a prescribed orbit at frozen phases while discarding its internal velocities does not evaluate that orbit's history and supplies no necessary condition for a moving assembly.
+The independent reference for the pair formula is direct closed-form addition of the two ordered roots in Proposition 5. A separately implemented point-cloud analyzer checks the matrix identity, planar nulls, and the tetrahedral negative control. It is not a Borg-catalog evaluator. Sampling a prescribed orbit at frozen phases while discarding its internal velocities does not evaluate that orbit's history and supplies no necessary condition for a moving assembly.
 
 The point-cloud analyzer checks the algebra above and nothing more. It cannot pass or fail an orbiting candidate.
 
@@ -2617,7 +2615,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 #### Self-Hit as an Outward Barrier Mechanism
 
-**Role in binary formation:** Self-hit provides a **repulsive radial contribution** that opposes the attractive pull of opposite-polarity partners. On the uniform circular chart, this contribution is always outward, so it can furnish a floor against collapse but cannot furnish the centripetal acceleration needed to maintain the circle. This competition produces:
+**Role in binary formation:** Self-hit provides a **repulsive radial contribution** that opposes the attractive pull of opposite-polarity partners. On the uniform circular chart, this contribution is always outward, so it cannot furnish the centripetal acceleration needed to maintain the circle. Whether it contributes to a lower radial boundary depends on the complete partner, self, and boundary balance rather than on the radial sign alone. This competition defines:
 
 - **Maximum-curvature candidates**: the circular toy model identifies where a minimum-radius barrier must be analyzed.
 - **Transmitter-side fold boundary**: $D_t=0$ is a transmitter-side pole. Ordinary folds require finite-impulse certification; coincident same-transmitter birth and undeclared higher singularities fail closed.
@@ -2625,11 +2623,13 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 **Self-hit root existence is field-speed gated.** On any stored interval with $\|\mathbf V_i\|\le c_f-\sigma$ for $\sigma>0$, the exact bound $\|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|\le(c_f-\sigma)(T_r-T_t)<c_f(T_r-T_t)$ forbids a nontrivial same-transmitter causal root. Therefore a candidate self-hit orbit must reach field speed somewhere in its retained history. This is a root-existence condition, not a damping theorem or a proof of binding. Under the transmitter-side law the receiver-velocity resistance term does not exist; stabilization, if present, must be demonstrated by the full delayed branch geometry, singular-event routing, and conserved wake-state accounts.
 
-**Connection to quantum behavior:** At this chapter's claim level, non-Markovian memory and deterministic-but-complex self-hit dynamics are a candidate substrate mechanism for effective quantum-like behavior, not yet a derivation of the quantum formalism:
+**Candidate connection to quantum behavior.** Non-Markovian memory and deterministic-but-complex self-hit dynamics are proposed as substrate ingredients for effective quantum-like behavior, not as a derivation of the quantum formalism:
 
 - effective guidance by self-interference and causal-wake history,
 - discrete stable states as attractors in phase space,
 - measurement uncertainty as receiver-level informational ambiguity.
+
+> Claim grade: guessed for the proposed connection. Falsifier: a derived coarse-graining in which the retained self-hit history cannot reproduce the required guidance, discrete-state, or receiver-inference structures would reject this mechanism; matching any one qualitative analogy would not establish the others.
 
 An important open problem is to map the phase-space attractor landscape for self-hit binaries, including basin size for maximum-curvature orbits, escape conditions, and the existence of secondary attractors such as long-lived elliptical families.
 
@@ -2659,7 +2659,7 @@ $$
 
 where the factor of 2 comes from the symmetry when both sides consume the same retained partner record. The stripped inverse-square form is only the near-rest, single-branch calibration $W_p^{\mathrm{acc}}\approx1$, not a canonical proof record.
 
-**Solution structure:** The slow, single-branch calibration has the same quadrature structure as Keplerian radial fall. A promoted branch must keep the same-record $D_t$, $D_r$, and $W^{\mathrm{acc}}$ record.
+**Solution structure:** The slow, single-branch calibration has the same quadrature structure as Keplerian radial fall. An accepted branch must keep the same-record $D_t$, $D_r$, and $W^{\mathrm{acc}}$ record.
 
 **Key insight:** Partner attraction dominates; no self-hit (speeds remain sub-field-speed for moderate $d_0$).
 
@@ -3538,7 +3538,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8b1b77533dc41262)
-These are formal simple-root transmitter-side sums, not accepted global acceleration certificates, because their treatment of fold neighborhoods and coincident branch births is incomplete. The signed tangential constants must be recomputed with the same regulated event convention before any cancellation estimate is promoted.
+These are formal simple-root transmitter-side sums, not accepted global acceleration certificates, because their treatment of fold neighborhoods and coincident branch births is incomplete. The signed tangential constants must be recomputed with the same regulated event convention before any cancellation estimate is accepted.
 
 The full signed $|\sin\xi|$ circular chart uses $s=\operatorname{sign}(\sin\xi)$ and
 $$
@@ -3590,7 +3590,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-a63159e1cf54b435)
 The three-angle positive-sine census omits the two roots at $413.6433^\circ$ and $632.7112^\circ$. The additional pairs can reverse the sign of the summed self tangential contribution: on the formal simple-root chart, the first post-birth reversal occurs at $\beta_f\approx4.6914503106$, with analogous reversals after later births. Because every pair is born at $J=0$, these sign reversals are branch-chart measurements rather than accepted finite-event dynamics.
 
-The independently executable instrument `scripts/equation-mapping/analyze-circular-self-hit-binary.mjs` enumerates each monotone half-lobe, checks every root against the Euclidean chord residual, and evaluates acceleration from the position and velocity vectors rather than replaying the scalar component formulas. In units $\kappa|q^2|/R^2$ with outward radial sign positive, its scan over $1<\beta_f<20$ gives two distinct results:
+The independently executable circular self-hit analyzer enumerates each monotone half-lobe, checks every root against the Euclidean chord residual, and evaluates acceleration from the position and velocity vectors rather than replaying the scalar component formulas. In units $\kappa|q^2|/R^2$ with outward radial sign positive, its scan over $1<\beta_f<20$ gives two distinct results:
 
 1. With the principal partner root plus every physical self root, the tangential total has no zero; its measured minimum is approximately $0.2389668633$ at $\beta_f\approx1.7972747766$. The radial total crosses from outward to inward at $\beta_f\approx1.8471246228$, so that crossing is real but has no exact relation to $\pi/2$.
 2. With every physical partner root and every physical self root, the simple-root circular ledger does have simultaneous tangential-zero and inward-radial points. The first occurs at
@@ -3605,7 +3605,7 @@ The independently executable instrument `scripts/equation-mapping/analyze-circul
    [View →](../../../../equation-mapping.html#corpus-equation-ea7f82246f7ddeb6)
    and the radial equation selects $R/R_*\approx0.0869416735$. The partner-root Jacobian floor at this point is approximately $0.7071$.
 
-These are measured algebraic facts of the unregularized uniform-circular simple-root chart, not retained-branch or stability results. The null result for the restricted principal-partner ledger is not a theorem on $(1,\infty)$, while the first full-ledger result establishes a numerical zero of the prescribed algebraic ledger inside the searched interval. Promotion to a circular MCB requires the same finite singular-event convention for the folds that created the older roots, a retained-history certificate, wake-boundary closure, and a stable return map.
+These are measured algebraic facts of the unregularized uniform-circular simple-root chart, not retained-branch or stability results. The null result for the restricted principal-partner ledger is not a theorem on $(1,\infty)$, while the first full-ledger result establishes a numerical zero of the prescribed algebraic ledger inside the searched interval. Acceptance as a circular MCB requires the same finite singular-event convention for the folds that created the older roots, a retained-history certificate, wake-boundary closure, and a stable return map.
 
 The line-of-action sensitivity can be recomputed without changing the causal-root measure. In the counterfactual inertially extrapolated construction, retain the actual roots, emission-site distance, and canonical transmitter-side acceleration weight, but replace the acceleration direction by
 $$
@@ -3691,7 +3691,7 @@ C\left(\frac{4}{\pi^2}-\frac{1}{12}\right)\beta_f,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d76edda03c5a0739)
-belong to the formal simple-root transmitter-side chart. They remain useful for comparing root families, but they do not certify a global acceleration residual or a large-$\beta_f$ circular exclusion until fold neighborhoods and coincident births share one accepted event convention. The complete unregularized simple-root sum has now been recomputed over $1<\beta_f<20$: the restricted principal-partner ledger stays tangentially positive, while the full partner-plus-self ledger has algebraic zeros after older partner-root births. The regulated chart must still be recomputed before either pattern is promoted to retained dynamics.
+belong to the formal simple-root transmitter-side chart. They remain useful for comparing root families, but they do not certify a global acceleration residual or a large-$\beta_f$ circular exclusion until fold neighborhoods and coincident births share one accepted event convention. The complete unregularized simple-root sum has now been recomputed over $1<\beta_f<20$: the restricted principal-partner ledger stays tangentially positive, while the full partner-plus-self ledger has algebraic zeros after older partner-root births. The regulated chart must still be recomputed before either pattern is accepted as retained dynamics.
 
 Thus the equal-magnitude bare circular chart remains an obstruction benchmark, not a closed no-go theorem. A retained constant-radius exclusion still requires positive transmitter-side floors, inactive gaps, finite memory depth, the receiver-side branch records, and signed radial/tangential residual closure on the same branch chart.
 
@@ -4166,7 +4166,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-38b4dc36e8f1e8ab)
-In plain language, $\Gamma$ is the outward centrifugal requirement and $B_r$ is the signed radial wake contribution. If their sum is positive, the radius has reached a minimum and rebounds outward. If their sum is negative, the radius has reached a maximum and turns inward. The equality case is radially tangent and requires the next derivative. This is the closed-form in-versus-out decision rule.
+In words, $\Gamma$ is the outward centrifugal requirement and $B_r$ is the signed radial wake contribution. If their sum is positive, the radius has reached a minimum and rebounds outward. If their sum is negative, the radius has reached a maximum and turns inward. The equality case is radially tangent and requires the next derivative. This is the closed-form in-versus-out decision rule.
 
 The simplest proposed spiral assumes that its tightness and angular rate never change. In symbols, its signed pitch is constant, $p=p_\star$, and its angular rate is constant. Under those assumptions, the two compatibility conditions reduce to
 $$
@@ -4272,7 +4272,7 @@ r_\ast\dot\theta_\ast^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dc4642a647ac1ef1)
-This is a theorem target, not a closure proof. It supplies the concrete falsification gate: enumerate the admissible partner and self roots on a variable-pitch candidate, certify their transmitter-side floors and same-record transmitter-side acceleration-weight intervals, and test both the radial turn inequality and the weighted tangential sum. If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
+This is a theorem target, not a closure proof. It supplies the concrete falsification criterion: enumerate the admissible partner and self roots on a variable-pitch candidate, certify their transmitter-side floors and same-record transmitter-side acceleration-weight intervals, and test both the radial turn inequality and the weighted tangential sum. If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
 
 For a retained chart at a turn center, the radial record can be normalized by the common acceleration factor, but that normalization separates the branch sum from the independent acceleration ratio. In the equal-magnitude opposite-polarity case, one may write
 $$
@@ -4296,7 +4296,7 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-7e81d09e5a25186a)
 The subscript $\mathrm{rs}$ identifies this retained-spiral benchmark. The retained branch chart must emit same-record $D_t$, $D_r$, transmitter-side acceleration weights, and signed root-playback records before $B_r^{\mathrm{rec}}$ exists as acceleration evidence. It does not determine $\Gamma_{\mathrm{rs}}$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived acceleration-ratio interval after the transmitter-side branch sum exists or report the radial result as blocked.
 
-A fixed retained-chart benchmark illustrates this burden without supplying canonical dynamics. Let $a_{\mathrm{rs}}=0.204$ be the prescribed pitch amplitude, $b_\ast=7/2$ the prescribed turn-center speed ratio, and $C_{\mathrm{rs}}$ the complete fixed record consisting of those inputs, the interval $I_\ast=[-\pi/6,\pi/6]$, three retained partner-root tubes $P_1,P_2,P_3$, one retained self-root tube $S_1$, and the associated inactive-gap and finite-memory data. The labels $P_k$ and $S_1$ identify those root tubes only; they are not particle or persistent-braid indices. Every equation below that consumes $C_{\mathrm{rs}}$, $a_{\mathrm{rs}}$, or $b_\ast$ is a diagnostic for this prescribed benchmark, not a derived Master EOM result. Promotion requires same-record $c_f/|D_t|$ acceleration-weight intervals and $D_r/D_t$ playback intervals on all four tubes.
+A fixed retained-chart benchmark illustrates this burden without supplying canonical dynamics. Let $a_{\mathrm{rs}}=0.204$ be the prescribed pitch amplitude, $b_\ast=7/2$ the prescribed turn-center speed ratio, and $C_{\mathrm{rs}}$ the complete fixed record consisting of those inputs, the interval $I_\ast=[-\pi/6,\pi/6]$, three retained partner-root tubes $P_1,P_2,P_3$, one retained self-root tube $S_1$, and the associated inactive-gap and finite-memory data. The labels $P_k$ and $S_1$ identify those root tubes only; they are not particle or persistent-braid indices. Every equation below that consumes $C_{\mathrm{rs}}$, $a_{\mathrm{rs}}$, or $b_\ast$ is a diagnostic for this prescribed benchmark, not a derived Master EOM result. Acceptance requires same-record $c_f/|D_t|$ acceleration-weight intervals and $D_r/D_t$ playback intervals on all four tubes.
 
 If the same turn-center radial curve is allowed a variable angular rate, with $\omega_\ast=\dot\theta(0)>0$ and $\alpha_\ast=\ddot\theta(0)$, then $r'(0)=0$ and the local kinematic targets become
 $$
@@ -4440,10 +4440,10 @@ This regime is analytically tractable and important for:
 
 ### Analytic footholds and remaining targets
 
-Several analytic checks provide footholds for the remaining closure targets. Root-existence, inactive-gap, and transmitter-side transversality records remain usable as topology inputs; radial/tangential acceleration balance, action, power, and finite-window conservation records must be recomputed with $W_{ij}^{\mathrm{acc}}$ before they can be promoted.
+Several analytic checks provide footholds for the remaining closure targets. Root-existence, inactive-gap, and transmitter-side transversality records remain usable as topology inputs; radial/tangential acceleration balance, action, power, and finite-window conservation records must be recomputed with $W_{ij}^{\mathrm{acc}}$ before they can be accepted.
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
-2. **Uniform circular self-hit ($v>c_f$)** has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, transmitter-side diagnostic large-$\beta_f$ estimates, and a same-record acceleration-recomputation target for promoted sums.
+2. **Uniform circular self-hit ($v>c_f$)** has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, transmitter-side diagnostic large-$\beta_f$ estimates, and a same-record acceleration-recomputation target for accepted sums.
 3. **Variable-pitch spiral retained-chart benchmarks** expose both branch-chart records and prescribed-history compatibility records. The fixed retained-spiral constant-$\Omega$ history has active-root, inactive-gap, transmitter-side Jacobian-floor, finite-memory, and root-transport records, but its acceleration-balance and outward-constant records require transmitter-side acceleration-weight intervals on the same branch cells before they can act as closure evidence. The retained spiral is therefore a prescribed-history diagnostic, not an acceleration-balance no-go, until the retained chart is recomputed with $W_{ij}^{\mathrm{acc}}$.
 
 The remaining analytic targets are sharper:
@@ -4452,7 +4452,7 @@ The remaining analytic targets are sharper:
 2. coarse-grain the master equation around a homogeneous Noether sea and extract the linear response and dispersion relation $\omega(k)$;
 3. prove which regularized energy diagnostic is actually induced by a symmetry-preserving action-level regularization.
 
-These targets keep the bridge between the formal law and the broader closure program mathematical: a branch chart, a conserved charge, or a response equation must be supplied before a stability or mass claim is promoted.
+These targets keep the bridge between the formal law and the broader closure program mathematical: a branch chart, a conserved charge, or a response equation must be supplied before a stability or mass claim is accepted.
 
 ---
 
@@ -5353,7 +5353,7 @@ These diagnostics operationalize the symmetry constraints and provide early warn
 
 #### Closure Interface: Coarse-Graining Gate to Effective Quantum Envelope
 
-For integration with the quantum closure program, the master equation provides the microscopic gate:
+For integration with the quantum recovery program, the Master Equation provides the microscopic criterion:
 $$
 \frac{d^2\mathbf X_i}{dT_r^2}=\text{delayed causal-hit sum over }\mathcal{C}_{ij}(T_r)
 $$
@@ -5375,7 +5375,7 @@ Closure condition for this interface:
 - the same coarse-graining window that preserves validated dynamical invariants must recover the effective Schrödinger limit in the non-relativistic, weak-field, fixed-particle-number regime;
 - residual non-Markovian terms must be explicitly retained as correction operators, not absorbed into uncontrolled fitting.
 
-**Return-map symplectic residual for action-derived branch promotion.** When a replayable branch chart is promoted to an action-derived reduced Hamiltonian chart, the section return map must preserve the reduced symplectic structure. Let $z=(Q^a,\Pi_a)$ be local reduced coordinates after the retained root constraints and section condition have been solved, let
+**Return-map symplectic residual for an action-derived branch.** When a replayable branch chart admits an action-derived reduced Hamiltonian description, the section return map must preserve the reduced symplectic structure. Let $z=(Q^a,\Pi_a)$ be local reduced coordinates after the retained root constraints and section condition have been solved, let
 $$
 \mathcal{P}_{\mathcal{S}}:z_n\mapsto z_{n+1},
 \qquad

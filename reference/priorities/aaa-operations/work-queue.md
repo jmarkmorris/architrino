@@ -5,8 +5,7 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 ## Ranked Next Objects
 
 1. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
-2. `plainly_convention_document_migration` — [OPS-015](#ops-015--plainly-convention-document-migration). Status: `Blocked`, on corpus-wide standards readiness.
-3. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
+2. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
 
 ## Queued task records
 
@@ -94,74 +93,17 @@ Plainly: stop copying policy by hand and let a generator do it; keep behavior ru
 - **Evidence / blocker:** Inventory C is established by direct reading. Inventory A is established for every row except organization instructions. Inventory B is largely unverified and is the first remaining blocker. Recommendation 1 is not started: no generator exists for the `CLAUDE.md` floor, so that mirror is still hand-maintained and can drift. Recommendation 6 is not started: Inventories A, B, and C live only in this queue row and carry no per-row verification dates.
 - **Completion:** The surface inventory is verified for both clients and carries per-row verification dates; the length-and-density conflict is resolved by a stated precedence rule in `operator-explanation-standard.md`; the output registers are named with distinct density rules; the `CLAUDE.md` floor is generated and `--check` gated against `AGENTS.md`; and at least one calibration round has been run with its outcome recorded, with any round that was not blind labelled as such.
 
-### OPS-015 — Plainly convention document migration
+### OPS-015 — Moved to the corpus rewrite lane
 
-- **Status:** Blocked, on corpus-wide standards readiness
-- **Priority object:** `plainly_convention_document_migration`
-- **Blocked by:** Operator decision that the explanation standards are ready to apply across all corpus markdown. That gate is later and higher than OPS-014 finalization: OPS-014 settles where guidance lives, while this waits until the operator judges the standards themselves settled enough to rewrite a published book against. Converting documents to a convention still being tuned would mean converting them twice. The operator opens this gate; an agent may not infer it from OPS-014 closing.
-- **Sweep instrument:** [Corpus Dragnet](../aaa-corpus-dragnet/priorities.md) owns correlation actions that inventory occurrences and their contexts. Each accepted Dragnet item declares whether it supplies findings, routes owner work, or performs a bounded conversion. This item executes only the occurrences retained within its own scope.
-- **Request / acceptance:** Decide, tier by tier, which existing documents should be converted from the retired inline `Plainly:` tag to the plain-by-default interleaved explanation the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) now requires, and execute only the tiers that earn it. The measured occurrence count is not the work item; reader visibility is.
+- **Status:** Moved, 2026-09-03
+- **Priority object:** `plainly_convention_document_migration`, retired here and reformulated as `retired_tag_retirement`
+- **Now owned by:** [CRW-004 — Retired plain-language tag retirement](../aaa-corpus-rewrite/work-queue.md#crw-004--retired-plain-language-tag-retirement)
 
-The [operator explanation standard](../../op/operator-explanation-standard.md) already states that documents written under the retired convention keep their form and that conversion happens opportunistically during substantial revision. This item exists because that default is right for the working record and wrong for two specific surfaces, which are identified below.
+This item held the migration away from the retired inline `Plainly:` tag while that looked like a standalone cleanup with its own operator gate. It stopped being one. Edition 1.0 of the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) forbids the tag, and done criterion 12 of the corpus rewrite lane states that rule in executable form, so the bulk of the removal is now a by-product of conversions that lane is already running rather than work anyone schedules separately.
 
-#### Tier 1 reassigned, 2026-09-03
+Both of this item's blockers are discharged, and the record of that lives in CRW-004 rather than being restated here: the operator opened the corpus-wide rewrite, which was the readiness gate, and edition 1.0 settled the canon question of whether the reader-facing style authority should say anything about the tag.
 
-The operator decided on a corpus-wide rewrite of all 199 `content/markdown/aaa` documents against the merged explanation standard, whether or not they carry the retired tag. That campaign now has a lane: [corpus explanation rewrite](../aaa-corpus-rewrite/priorities.md), with the pilot complete and accepted.
-
-**Tier 1 is reassigned there** and is no longer this item's work. Removing the tag from 23 corpus files is a subset of rewriting all 199 against the same standard, and running it separately would touch those files twice. This item retains Tiers 2 and 3, the operator-facing surfaces, and its own gate is unchanged.
-
-#### Measured scope, 2026-09-03
-
-| Area | Files | Occurrences | Character |
-| --- | ---: | ---: | --- |
-| `content/markdown/aaa` | 23 | 223 | Reader-facing textbook prose |
-| `apps/ios/.../GeneratedTextbookPackage` | 8 | ~311 | Generated from the corpus; not authored |
-| `apps/ios/ArchitrinoReader/README.md` | 1 | small | Authored |
-| `reference/research-office` | 22 | 473 | Live prompts and review packets |
-| `reference/op` | 5 | 12 | Live procedure files |
-| `.agents/skills` | 1 | 2 | Live skill router |
-| `reference/priorities` | 353 | 4,193 | Working record and analysis packets |
-| `reference/architectural-decisions` | 2 | 4 | Decision record |
-| `src`, `tests` | 7 | 26 | Fixtures and strings |
-
-Counts come from a direct `Plainly:` scan excluding `.tmp`, `.git`, and `node_modules`. Roughly 1,064 markdown files in the checkout contain the tag somewhere. That headline number is misleading and is the reason this item is tiered rather than run as a single pass.
-
-Claim grade: `measured` by filesystem scan on 2026-09-03. Falsified by a repeat scan returning materially different counts, which would mean the tag is still being written into new documents and the standard is not being followed.
-
-Repeat scan, 2026-09-03, markdown only, excluding `.tmp` and `.local-data`: `content/markdown/aaa` holds 225 occurrences across 25 files, against the 223 across 23 files recorded above. The drift is two files and two occurrences on the same day, which is small but not zero and is the signal the falsifier above was written to catch; a third scan showing further growth would mean the tag is still being authored. The `apps/ios` figure is not comparable — this scan counted markdown only and returned 163 occurrences across 9 files, while the row above counts the package's HTML as well.
-
-#### Finding: the tag leaked into reader-facing prose
-
-`Plainly:` is an operator-communication convention. Neither of the two authorities that actually govern reader-facing text asks for it: the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) prescribes explanatory prose, a compact map, and an equation followed by plain-language symbol meanings, and never names the tag; the [UI guidelines](../../../content/markdown/aaa/archie/ui-guidelines.md) do not mention it at all.
-
-So the 223 corpus occurrences are an operator convention that migrated into the textbook without its own style authority ever authorizing it, and the generated iOS reading copies carry it onward to readers. The concentration is narrow: 140 of the 223 sit in the four `noether-braid` documents and 38 more in `dynamics/master-equation.md`, so six files hold most of it.
-
-This is the part of the migration with an actual reader on the other end, and it is the part with an independent justification that does not depend on the operator standard at all.
-
-#### Tiers
-
-**Tier 1 — reader-facing corpus.** `content/markdown/aaa`, 23 files. Convert to the academic style guide's own pattern rather than to the operator standard's, because the corpus is outside the operator standard's scope. The generated iOS reading copies need no separate work; they are derived and will carry the change at the next authorized export, which is on demand and not part of routine work.
-
-**Tier 2 — live procedure and prompt files.** `reference/op` (12 occurrences, 5 files), `reference/research-office/cto/prompts` (7 occurrences, 2 files), and `.agents/skills` (2 occurrences, 1 file): **21 occurrences across 8 files in total.** Small in volume but disproportionate in effect, because these are the files a new session reads during startup routing. A retained `Plainly:` in a startup-path file is a worked example of the retired pattern shown to the next agent before it has read the standard, so the convention reinstates itself. Volume is irrelevant here; position is the whole argument, and 21 occurrences is a single short pass.
-
-The 464 occurrences under `research-office/research-history` are review packets — dated historical records that no session reads at startup — and belong in Tier 3, not here.
-
-**Tier 3 — working record.** `reference/priorities`, `reference/architectural-decisions`, `src`, `tests`, and the research-history packets. Do not convert. The standard's opportunistic rule already covers these: a document under substantial revision for other reasons may be converted as part of that revision. A dedicated pass here would be a four-thousand-line mechanical diff with no reader benefit and real review cost.
-
-#### Gate on Tier 1
-
-Tier 1 changes reader-facing corpus prose, so it is a canon question, not a cleanup. AGENTS.md requires that Archie canon be treated as a controlled reference and that a proposed style-policy change be discussed with its downstream effects before broad corpus updates. Tier 1 therefore needs an explicit operator decision on whether the academic style guide should say anything about the tag — endorse it, forbid it, or stay silent — before any corpus file is touched. Silence in the guide is what allowed the leak, so leaving it silent is a choice with consequences and should be made deliberately.
-
-#### Discharged blocker: search-index dependency, checked 2026-09-03
-
-`apps/ios/ArchitrinoReader/GeneratedTextbookPackage/textbook_bundle_search_index.json` contains the literal string `Plainly:`, which raised the question of whether the search machinery keys on it. It does not. The file is `{schema_version, total_entries, entries}`, and a full walk of the structure found the string **62 times, every occurrence inside `entries[N].text`, and zero occurrences as a key**. It is indexed prose, not structure.
-
-The index is also a generated artifact derived from the corpus, and the iOS package is an on-demand development snapshot rather than a routine output, so it carries whatever the corpus says at the next authorized export. No separate conversion work is needed for it.
-
-Claim grade: `measured` by a recursive walk of the parsed JSON, distinguishing key positions from string values. Falsifier: any consumer that reads the literal `Plainly:` as a delimiter, section marker, or lookup key rather than as displayed text.
-
-- **Evidence / blocker:** The occurrence census is complete, the two governing style authorities have been checked and do not prescribe the tag, and the search-index dependency is discharged above. Two blockers remain: the operator's corpus-wide readiness decision, and an operator canon decision on Tier 1 — though Tier 1 is now expected to execute inside the corpus rewrite campaign rather than here.
-- **Completion:** Tier 2 is converted and the startup-path files no longer demonstrate the retired pattern; Tier 1 is either converted under an explicit canon decision or explicitly declined with that decision recorded; Tier 3 is confirmed as opportunistic-only; and a repeat scan shows no new `Plainly:` occurrences in documents authored after the standard was adopted.
+The measured census, the finding that the tag leaked into reader-facing prose without any reader-facing authority ever prescribing it, the tiering by reader visibility, and the discharged search-index dependency all moved with the item. Nothing was dropped in the move. The residual pass over the startup-path files in `reference/op`, `reference/research-office/cto/prompts`, and `.agents/skills` went there too, even though those are operations surfaces rather than corpus, because splitting one retirement across two queues would leave neither queue able to say when it is finished.
 
 ### OPS-016 — Reference equation-mapping surface
 
