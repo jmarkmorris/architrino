@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-03 — OPS-014 generated Claude bootstrap floor
+
+- Replaced the hand-maintained pre-read floor in `CLAUDE.md` with a generated projection owned by `scripts/build-claude-bootstrap-floor.mjs`. The generator fingerprints `AGENTS.md`, the operator explanation standard, and the academic style guide; `--check` fails when the projection or any fingerprinted source changes, and regeneration changes only the floor section.
+- Added the floor check to the full content-integrity runner. The fingerprint is deliberately a drift alarm rather than a semantic proof: after an authority changes, the compact projection still requires review before `--write` is accepted.
+- Aligned the authored `CLAUDE.md` startup route with the readable-checkout and unavailable-checkout branches in `AGENTS.md`, while retaining the Claude-only per-action write-permission rule as the sole policy unique to that file.
+- Removed the stale `AGENTS.md` line count from OPS-014 rather than replacing it with another volatile count, added per-row verification dates to all three guidance-surface inventories, and corrected the progress description from treating repetition as a feature to treating it as a cost justified only when it buys clarity.
+- Targeted validation passed: generator and integrity-runner syntax checks, the generated-floor `--check`, strict content validation with zero errors and zero warnings, priority-ranking validation, and `git diff --check`. The existing generated startup-orientation target remains stale from changes to its own source set and was not regenerated during this ordinary edit batch.
+
 ### 2026-09-03 — OPS-017 local repository document surface accepted
 
 - Closed OPS-017 by explicit operator acceptance of the delivered local-only repository document browser.

@@ -28,28 +28,28 @@ Both defects are now closed in the standard itself. What remains open in this it
 
 #### Inventory A — Claude surfaces outside the repository
 
-| Surface | Where it is set | Scope | Current content |
-| --- | --- | --- | --- |
-| Instructions for Claude | Initials, lower left → Settings → Instructions for Claude | Account-wide, every conversation | Architrino project block: layer discipline, no-mass/no-force, causal-delay terms, claim grading, $c_f=1$, no git, `Plainly:`, `Closure goal:`, question format |
-| Response style | Style selector in the chat composer; built-in Normal, Concise, Explanatory, Formal, plus custom styles | Per conversation or as a default | `Concise` — the source of the brevity instruction in the conflict above |
-| Cowork Global instructions | Settings → Cowork → Global instructions | Every Cowork session | Cleared by the operator on 2026-09-03; previously the pointer `see AGENTS.md` |
-| Project instructions | The project itself | Chats inside that project only | Repo description and webapp/Pages context |
-| User skills | Settings → Skills | On demand or by trigger | Not currently used for Architrino style |
-| Session memory | Written by the agent, persists across conversations | Cowork sessions | Session index plus per-fact files; behavioral guidance appears here incidentally rather than by design |
-| Organization instructions | Admin settings, Team and Enterprise plans only | Every member of the organization | Not applicable to this account as far as this session can establish |
+| Surface | Where it is set | Scope | Current content | Last verified |
+| --- | --- | --- | --- | --- |
+| Instructions for Claude | Initials, lower left → Settings → Instructions for Claude | Account-wide, every conversation | Architrino project block: layer discipline, no-mass/no-force, causal-delay terms, claim grading, $c_f=1$, no git, `Plainly:`, `Closure goal:`, question format | 2026-09-03 |
+| Response style | Style selector in the chat composer; built-in Normal, Concise, Explanatory, Formal, plus custom styles | Per conversation or as a default | `Concise` — the source of the brevity instruction in the conflict above | 2026-09-03 |
+| Cowork Global instructions | Settings → Cowork → Global instructions | Every Cowork session | Cleared by the operator on 2026-09-03; previously the pointer `see AGENTS.md` | 2026-09-03 |
+| Project instructions | The project itself | Chats inside that project only | Repo description and webapp/Pages context | 2026-09-03 |
+| User skills | Settings → Skills | On demand or by trigger | Not currently used for Architrino style | 2026-09-03 |
+| Session memory | Written by the agent, persists across conversations | Cowork sessions | Session index plus per-fact files; behavioral guidance appears here incidentally rather than by design | 2026-09-03 |
+| Organization instructions | Admin settings, Team and Enterprise plans only | Every member of the organization | Not applicable to this account as far as this session can establish | Unverified |
 
 Claim grade: `measured` by direct reading of the settings surfaces named in the [Claude personalization documentation](https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features), except the organization row, which is `inferred` from plan type and must be confirmed by the operator.
 
 #### Inventory B — Codex surfaces
 
-| Surface | Location | Scope | Status in this repo |
-| --- | --- | --- | --- |
-| Global agent instructions | Codex home directory, outside this checkout | Every Codex session for this user | Present or absent unverified by this session |
-| Repository root `AGENTS.md` | [`AGENTS.md`](../../../AGENTS.md) | Whole checkout | Present, 154 lines, the governing authority |
-| Nested `AGENTS.md` | Any subdirectory | Nearest ancestor wins for files under it | None present; the repository deliberately keeps a single root policy |
-| Client configuration | Codex home directory | Model, approval mode, sandboxing | Outside repository control |
-| Repository hooks | [`.codex/hooks.json`](../../../.codex/hooks.json) | Codex lifecycle events in this checkout | Present |
-| Saved prompts | Codex home directory | Reusable prompt library | Unverified |
+| Surface | Location | Scope | Status in this repo | Last verified |
+| --- | --- | --- | --- | --- |
+| Global agent instructions | Codex home directory, outside this checkout | Every Codex session for this user | Present or absent unverified by this session | Unverified |
+| Repository root `AGENTS.md` | [`AGENTS.md`](../../../AGENTS.md) | Whole checkout | Present and governing | 2026-09-03 |
+| Nested `AGENTS.md` | Any subdirectory | Nearest ancestor wins for files under it | None present; the repository deliberately keeps a single root policy | 2026-09-03 |
+| Client configuration | Codex home directory | Model, approval mode, sandboxing | Outside repository control | Unverified |
+| Repository hooks | [`.codex/hooks.json`](../../../.codex/hooks.json) | Codex lifecycle events in this checkout | Present | 2026-09-03 |
+| Saved prompts | Codex home directory | Reusable prompt library | Unverified | Unverified |
 
 Claim grade: `inferred` for every row marked unverified. Confirming this table against current Codex documentation and the operator's actual home-directory contents is an explicit deliverable of this item, not a precondition for opening it.
 
@@ -57,25 +57,25 @@ Plainly: Claude and Codex each read guidance from several places, and only some 
 
 #### Inventory C — In-repository surfaces
 
-| Surface | Path | Role |
-| --- | --- | --- |
-| Governing policy | [`AGENTS.md`](../../../AGENTS.md) | Sole authored authority; 154 lines |
-| Session bootstrap | [`CLAUDE.md`](../../../CLAUDE.md) | Routes to `AGENTS.md`; carries the Claude-only write-permission rule and a hand-maintained mirror of the policy floor |
-| Generated router | [`agent-startup-orientation.generated.md`](../../op/agent-startup-orientation.generated.md) | Workflow cards, standing rules, prompt index; regenerated and `--check` gated, with source fingerprints |
-| Explanation standard | [`operator-explanation-standard.md`](../../op/operator-explanation-standard.md) | Sole authority for operator-facing output; audience, plain-by-default explanation, repetition, structure, expected tools, analogy, registers, length precedence, `Open items:`, response mechanics, self-check |
-| Operator feedback backlog | [`README-op.md`](../../op/README-op.md) | One-line workflow behaviors under Method, Efficiency, Clarity, Multi-Agent Use, Technical Closure |
-| Procedure index | [`README.md`](../../op/README.md) | Index for the rest of `reference/op/` |
-| Prompt template | [`codex-goal-seeking-prompt-template.md`](../../op/codex-goal-seeking-prompt-template.md) | Communication and reporting procedure |
-| Corpus style authorities | `content/markdown/aaa/archie/`: `academic-style-guide.md`, `mathematics-style-guide.md`, `mathematics-terminology.md`, `terminology-usage.md`, `comparative-glossary.md` | Reader-facing corpus prose and notation |
-| End-user language | `content/markdown/aaa/archie/`: `ui-guidelines.md`, `navigation-and-controls.md` | App-facing wording |
-| Role prompts | `reference/research-office/cto/prompts/` — 14 prompts plus `README.md` | Per-role behavior for research, review, convergence, promotion, adjudication |
-| Repository skills | `.agents/skills/` — `aaa-corpus-advancement`, `corpus-review-workflow`, `math-preview`, `research-exploration` | Discovery routers into the live procedures; three carry an `agents/openai.yaml` |
+| Surface | Path | Role | Last verified |
+| --- | --- | --- | --- |
+| Governing policy | [`AGENTS.md`](../../../AGENTS.md) | Sole authored authority | 2026-09-03 |
+| Session bootstrap | [`CLAUDE.md`](../../../CLAUDE.md) | Routes to `AGENTS.md`; carries the Claude-only write-permission rule and a generated, fingerprint-gated projection of the pre-read policy floor | 2026-09-03 |
+| Generated router | [`agent-startup-orientation.generated.md`](../../op/agent-startup-orientation.generated.md) | Workflow cards, standing rules, prompt index; regenerated and `--check` gated, with source fingerprints | 2026-09-03 |
+| Explanation standard | [`operator-explanation-standard.md`](../../op/operator-explanation-standard.md) | Sole authority for operator-facing output; audience, plain-by-default explanation, repetition, structure, expected tools, analogy, registers, length precedence, `Open items:`, response mechanics, self-check | 2026-09-03 |
+| Operator feedback backlog | [`README-op.md`](../../op/README-op.md) | One-line workflow behaviors under Method, Efficiency, Clarity, Multi-Agent Use, Technical Closure | 2026-09-03 |
+| Procedure index | [`README.md`](../../op/README.md) | Index for the rest of `reference/op/` | 2026-09-03 |
+| Prompt template | [`codex-goal-seeking-prompt-template.md`](../../op/codex-goal-seeking-prompt-template.md) | Communication and reporting procedure | 2026-09-03 |
+| Corpus style authorities | `content/markdown/aaa/archie/`: `academic-style-guide.md`, `mathematics-style-guide.md`, `mathematics-terminology.md`, `terminology-usage.md`, `comparative-glossary.md` | Reader-facing corpus prose and notation | 2026-09-03 |
+| End-user language | `content/markdown/aaa/archie/`: `ui-guidelines.md`, `navigation-and-controls.md` | App-facing wording | 2026-09-03 |
+| Role prompts | `reference/research-office/cto/prompts/` — 14 prompts plus `README.md` | Per-role behavior for research, review, convergence, promotion, adjudication | 2026-09-03 |
+| Repository skills | `.agents/skills/` — `aaa-corpus-advancement`, `corpus-review-workflow`, `math-preview`, `research-exploration` | Discovery routers into the live procedures; three carry an `agents/openai.yaml` | 2026-09-03 |
 
 There is exactly one authored `AGENTS.md` and exactly one `CLAUDE.md` in the repository, both at the root. Other copies found under `.tmp/` belong to unrelated vendored checkouts and are not project policy.
 
 Claim grade: `measured` by filesystem enumeration on 2026-09-03. Falsified by a second authored `AGENTS.md` or `CLAUDE.md` outside `.tmp/`.
 
-Plainly: inside the repository the policy story is already tidy — one governing file, one bootstrap file, and a set of specialised guides beneath them. The mess is at the seams: the bootstrap file hand-copies part of the governing file, and the client applications hold rules that the repository cannot see.
+Plainly: inside the repository the policy story is now one governing file, one bootstrap file with a generated safety projection, and a set of specialised guides beneath them. The remaining seam is outside the repository, where client applications can hold rules that other agents cannot see.
 
 #### Recommended approach
 
@@ -88,9 +88,9 @@ Plainly: inside the repository the policy story is already tidy — one governin
 
 Plainly: stop copying policy by hand and let a generator do it; keep behavior rules in the repository where every agent can see them; give short updates and long proofs different rules instead of one; write down which rule wins when two disagree; pick the settings by blind test rather than by argument; and keep one list of where everything lives.
 
-- **Progress, 2026-09-03:** Recommendations 3 and 4 are complete. [`operator-explanation-standard.md`](../../op/operator-explanation-standard.md) was rewritten to replace the AP-STEM audience model with an expert-in-theory, non-specialist-in-imported-framework model; to retire the inline `Plainly:` tag in favor of plain-by-default interleaved explanation; to require mechanism as well as significance; to state that repetition of definitions is a feature because omission costs comprehension while redundancy costs a scan; to add structure and expected-tool rules; to add the four-register table; and to declare precedence over client-level brevity settings by name. Recommendation 2 is partly complete: the operator cleared Cowork Global instructions on 2026-09-03, and the account-level `Concise` response style is now explicitly overridden by the standard rather than silently conflicting with it. Duplicated style guidance was reduced to pointers in `AGENTS.md`, `CLAUDE.md`, `codex-goal-seeking-prompt-template.md`, `adjudication.md`, and the `start-research.md` report template.
+- **Progress, 2026-09-03:** Recommendations 1, 3, and 4 are complete, and recommendation 6 has its durable per-row verification-date structure. [`operator-explanation-standard.md`](../../op/operator-explanation-standard.md) was rewritten to replace the AP-STEM audience model with an expert-in-theory, non-specialist-in-imported-framework model; to retire the inline `Plainly:` tag in favor of plain-by-default interleaved explanation; to require mechanism as well as significance; to treat repetition as a cost worth paying only when it buys clarity; to add structure and expected-tool rules; to add the four-register table; and to declare precedence over client-level brevity settings by name. The `CLAUDE.md` pre-read floor is now generated by `scripts/build-claude-bootstrap-floor.mjs`, fingerprinted against `AGENTS.md`, the explanation standard, and the academic style guide, and checked by the full content-integrity runner. Its authored bootstrap route now carries the same readable-checkout and unavailable-checkout branches as `AGENTS.md`. Recommendation 2 is partly complete: the operator cleared Cowork Global instructions on 2026-09-03, and the account-level `Concise` response style is now explicitly overridden by the standard rather than silently conflicting with it. Duplicated style guidance was reduced to pointers in `AGENTS.md`, `CLAUDE.md`, `codex-goal-seeking-prompt-template.md`, `adjudication.md`, and the `start-research.md` report template.
 - **Calibration rounds, 2026-09-03.** Recommendation 5 was run as two labelled rounds rather than the blind protocol it specifies, because the operator was refining the standard rather than being tested against it and needed to comment on the varied dimension directly. Round 1 held one technical unit fixed — the $D_{t,ij}$ against $D_{r,ij}$ asymmetry in `dynamics/master-equation.md` — and varied analogy-carried against map-abstraction-carried explanation. Both were rejected: the extended analogy lost the reader partway, and the abstraction-carried version was judged less explanatory. Round 2 varied continuous prose against a verdict-first case split over the same unit. Continuous prose won, described as readable straight through. Three preferences were stated and are now written into the standard: define terms more, accepting redundancy from section to section; carry mechanism in configuration and symbol rather than in analogy; and deliver visualization, logic, definitions, and words before the equation. Claim grade: `measured` by direct operator response, on one technical unit across two rounds. Falsified by a third round on different source material reversing any of the three preferences. The result is not blind and is not evidence about which profile the operator would choose without knowing the axis.
-- **Evidence / blocker:** Inventory C is established by direct reading. Inventory A is established for every row except organization instructions. Inventory B is largely unverified and is the first remaining blocker. Recommendation 1 is not started: no generator exists for the `CLAUDE.md` floor, so that mirror is still hand-maintained and can drift. Recommendation 6 is not started: Inventories A, B, and C live only in this queue row and carry no per-row verification dates.
+- **Evidence / blocker:** Inventory C and the repository-visible rows of Inventory B were verified directly on 2026-09-03. Inventory A retains its earlier direct-reading dates, with organization instructions unverified. The remaining completion blocker is the Codex client and home-directory portion of Inventory B; its rows are now explicitly marked `Unverified` rather than inheriting a date from nearby measurements. The generator check detects a changed source fingerprint or an edited projection, but regeneration still requires review of whether the compact floor accurately reflects the changed authorities; the fingerprint is a drift alarm, not a semantic proof.
 - **Completion:** The surface inventory is verified for both clients and carries per-row verification dates; the length-and-density conflict is resolved by a stated precedence rule in `operator-explanation-standard.md`; the output registers are named with distinct density rules; the `CLAUDE.md` floor is generated and `--check` gated against `AGENTS.md`; and at least one calibration round has been run with its outcome recorded, with any round that was not blind labelled as such.
 
 ### OPS-015 — Moved to the corpus rewrite lane
