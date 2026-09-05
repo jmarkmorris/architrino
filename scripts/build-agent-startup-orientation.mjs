@@ -14,7 +14,7 @@ const SOURCE_PATHS = [
   ".githooks/pre-commit",
   ".githooks/pre-push",
   "scripts/check-content-integrity.mjs",
-  "reference/op/README.md",
+  "reference/op/brainstorming.md",
   "reference/op/operator-explanation-standard.md",
   "reference/op/codex-goal-seeking-prompt-template.md",
   "reference/op/codex-multiprompt.md",
@@ -47,7 +47,7 @@ const WORKFLOWS = [
     name: "Default thread startup",
     use: "Choose the smallest live procedure that fits the requested work, then read only the linked files needed for that procedure.",
     read: [
-      "reference/op/README.md",
+      "reference/op/brainstorming.md",
       "reference/op/codex-goal-seeking-prompt-template.md",
       "selected specialized procedure",
     ],
@@ -97,7 +97,7 @@ const WORKFLOWS = [
   },
   {
     name: "Review comment integration",
-    use: "Classify review comments, integrate the valid ones, run an independent closure-quality review, and stage larger issues in priorities.",
+    use: "Classify review comments, integrate the valid ones, perform a full-document editorial self-review, and stage larger issues in priorities. Independent validation requires a separate mathematical reference or instrument.",
     read: [
       "reference/research-office/cto/prompts/integrator-reviewer.md",
       "target document",

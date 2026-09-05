@@ -66,9 +66,7 @@ Use $T_t$ for transmitter emission time, $T_r$ for receiver reception time, and 
 
 For every new numerical calculation, protocol, fixture, test, tolerance, or operator-facing example, set $c_f=1$. Keep $c_f$ symbolic when its dependence matters in a derivation. Never combine a provenance-bound legacy result at another numerical field speed with current evidence without rerunning it at $c_f=1$.
 
-The per-hit acceleration uses the transmitter-side weight $W^{\mathrm{acc}}=c_f/|D_t|$. The receiver-side factor enters signed root playback through $D_r/D_t$; it does not multiply the instantaneous arriving acceleration. Sum every admitted causal root. If root completeness, retained-history coverage, a fold/caustic route, precision, or regulator convergence is unresolved, fail closed.
-
-Plainly: transmitter motion controls how densely emitted wake surfaces arrive, receiver motion controls how the same root is replayed as reception time advances, and missing roots cannot be silently treated as zero contributions.
+The per-hit acceleration uses the transmitter-side weight $W^{\mathrm{acc}}=c_f/|D_t|$: transmitter motion controls how densely emitted wake surfaces arrive. The receiver-side factor enters signed root playback through $D_r/D_t$, describing how the same root is replayed as reception time advances; it does not multiply the instantaneous arriving acceleration. Sum every admitted causal root; missing roots cannot be silently treated as zero contributions. If root completeness, retained-history coverage, a fold/caustic route, precision, or regulator convergence is unresolved, fail closed.
 
 The causal action functional is a branch statistic on a declared retained record. It does not replace the vector Master Equation and does not establish a variational principle merely because it has a scalar extremum.
 

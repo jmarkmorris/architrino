@@ -1,5 +1,7 @@
 # Parallel Codex Thread Procedure
 
+Responses and working-document capture follow the [operator explanation standard](operator-explanation-standard.md); explanatory prose follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).
+
 Use this file when a task should be split across multiple Codex threads. The default meta-optimization wrapper lives in [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md); this file inherits that procedure and adds the Architrino-specific rules for safe parallel work.
 
 ## When To Split
@@ -37,7 +39,7 @@ Before launching worker threads:
 - assign each worker preferred write files and nearby files to avoid;
 - decide which thread owns integration, conflict resolution, and final technical judgment;
 - decide whether each worker should implement, review, explore, verify, or report only;
-- set the reasoning effort for each worker: low, medium, high, or extra high.
+- preserve inherited model and reasoning settings unless an applicable instruction authorizes an override; use only settings supported by the current host.
 
 ## Worker Prompt Skeleton
 
@@ -53,7 +55,7 @@ Context:
 - Priority item, issue, or target file: [exact path and item number when applicable]
 - Preferred write ownership: [files or directories this worker may touch]
 - Avoid touching: [files, reports, generated outputs, or priority items owned by another thread]
-- Reasoning effort: [low / medium / high / extra high]
+- Reasoning effort: [inherited, or an explicitly authorized supported override]
 
 Method:
 1. Inspect the current files before proposing changes.
@@ -74,7 +76,7 @@ Return:
 
 ## Reasoning Effort Guidance
 
-Suggested defaults:
+Where an override is authorized and supported by the host, these are workload recommendations rather than automatic setting changes:
 
 - `high` or `extra high` for core geometrical theory closure, proof-route design, master-equation reasoning, branch certificates, and Lorentz/effective-metric derivations;
 - `medium` for UI legibility, app-shell work, contract-shape edits, and most scoped refactor tasks;
@@ -86,7 +88,7 @@ Suggested defaults:
 The main thread owns integration. It should:
 
 - compare worker findings against the live tree before applying or accepting them;
-- resolve conflicts by preserving the stronger mathematical or implementation claim, not by averaging reports;
+- resolve conflicts against live owners and independent evidence, preserving the narrowest supported claim while disagreement remains and stating the unresolved proof or validation obligation;
 - keep shared files under one writer whenever possible;
 - rerun the relevant validation after combining worker outputs;
 - make the final capture decision for theory advancements.

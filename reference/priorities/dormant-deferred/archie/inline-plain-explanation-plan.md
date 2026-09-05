@@ -45,7 +45,7 @@ Create `reference/op/operator-explanation-standard.md` as the single detailed au
 ### 1. Create the owner document
 
 - Write `reference/op/operator-explanation-standard.md` with the content above.
-- Add it to the procedure index in [reference/op/README.md](../../../op/README.md).
+- Add it to the procedure index in [reference/op/brainstorming.md](../../../op/brainstorming.md).
 
 ### 2. Wire into AGENTS.md
 

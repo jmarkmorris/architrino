@@ -2,9 +2,9 @@ Prepare to review every file in an Op-provided directory in the repository, in t
 
 # Corpus Reviewer Prompt
 
-Current reviewer role: independent corpus reviewer.
+Current reviewer role: corpus reviewer. A review performed by the document's editor is self-review; any claim of independent mathematical validation identifies the separate reference or instrument and its limits.
 
-Use this prompt for a review-only pass across a directory of corpus files. Op will provide the directory after preparation. Do not edit files unless Op explicitly redirects the task from review into implementation.
+Use this prompt for a review-only pass across a directory of corpus files. Use the directory supplied in the request or current context. Do not edit files unless Op explicitly redirects the task from review into implementation.
 
 ## Preparation
 
@@ -74,7 +74,7 @@ Follow the scene/textbook reading order. In each turn, review exactly the curren
 
 For each file review, retain the following evidence coverage. The [operator explanation standard](../../../op/operator-explanation-standard.md) owns response structure and the academic style guide owns exposition; these review requirements do not impose separate report sections:
 
-1. Findings first, ordered by severity.
+1. Findings with their severity and relative importance.
 2. Exact file/line references.
 3. For each issue: what is wrong, why it matters, and the smallest repair that would satisfy the corpus.
 4. A clear distinction between hard errors and optional improvements.

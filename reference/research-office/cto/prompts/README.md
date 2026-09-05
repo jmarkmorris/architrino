@@ -27,6 +27,19 @@ All prompts that select, review, or promote sources apply the [About Architrino 
 | [brainstorming.md](brainstorming.md) | Capture-first cross-lane brainstorming session: engage each idea at its strongest defensible claim level and capture every insight to the priority lane or memory. |
 | [adjudication.md](adjudication.md) | Decision-hub session: judge finished work from parallel builder/analyst threads, hold claim levels honest, decide and parallelize next steps, and summarize for the operator in plain language. |
 
+## Repository Skill Entry Points
+
+Skills select these live procedures; they do not grant additional write authority. Choose by the requested outcome, using the current request and context to distinguish review, implementation, and exploration.
+
+| Repository skill | Procedures selected |
+| --- | --- |
+| [Corpus Convergence and Source Mining](../../../../.agents/skills/aaa-corpus-advancement/SKILL.md) | Convergence campaigns, including their audit/report and exploration modes; source mining when requested |
+| [Corpus Review Workflow](../../../../.agents/skills/corpus-review-workflow/SKILL.md) | Directory review; assessment of supplied comments; integration of feedback; verification against a prior review; focused theorem review |
+| [Research Brainstorming](../../../../.agents/skills/research-exploration/SKILL.md) | Open-ended research discussion and provisional idea capture |
+| [Math Preview](../../../../.agents/skills/math-preview/SKILL.md) | On-demand KaTeX presentation and visual verification |
+
+The remaining prompts can be selected directly from this library. They do not require a dedicated skill merely because they are distinct workflows. A link to an external source does not by itself request source mining, and a request to assess feedback does not request its implementation.
+
 ## Related Procedure Owners
 
 These procedures and specialized prompts retain their canonical homes. Link to their live owners rather than maintaining mirrored copies.

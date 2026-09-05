@@ -1,5 +1,7 @@
 # Simulation Protocol Routing Index
 
+Responses and working-document capture follow the [operator explanation standard](operator-explanation-standard.md); explanatory prose follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).
+
 Classification: internal operations documentation.
 
 This index routes preserved simulation protocols to the workstream that owns execution, scientific campaign design, or acceptance. It is not a product application, application runtime, independently ranked priority owner, proof certificate, or source of scientific authority.

@@ -1,5 +1,7 @@
 # Codex Authentication
 
+Responses and working-document capture follow the [operator explanation standard](operator-explanation-standard.md); explanatory prose follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).
+
 Use this note to choose, check, or change the local Codex sign-in method. It is an operator procedure, not a credential store.
 
 ## Security Rule
@@ -47,5 +49,3 @@ API-key usage follows the OpenAI Platform account's billing and data-handling se
 4. In managed environments, confirm whether workspace policy restricts the login method or workspace.
 
 For current command behavior and credential-storage details, see the official [Codex authentication guide](https://learn.chatgpt.com/docs/auth).
-
-use a supported sign-in method while keeping all credential values and credential caches outside repository documentation.

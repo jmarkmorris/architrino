@@ -21,7 +21,7 @@ For each finished result, decide accept, accept-with-caveat, or reject, and stat
 
 - Reconcile the result with the live state across lanes: what it confirms, what it retires, what it reframes. Agreement supports a conclusion only when the underlying derivations, instruments, or references are independent; separate thread identities do not establish that independence.
 - Name the next concrete step or steps. Prefer the cheapest decisive test. Explicitly separate work that is independent — route it to parallel side threads and say so — from work that must stay on the decision hub.
-- Write or request the paste-ready prompts for the next steps, each stating the concrete task.
+- Prepare reusable assignment prompts when they help execute the next step, following the operator explanation standard.
 
 ## Keep the record honest
 

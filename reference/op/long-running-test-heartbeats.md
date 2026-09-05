@@ -1,5 +1,7 @@
 # Long-Running Job Policy and Heartbeat Notes
 
+Responses and working-document capture follow the [operator explanation standard](operator-explanation-standard.md); explanatory prose follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).
+
 This file owns the operating procedure and recurrence evidence for long-running tests, simulations, rebuilds, and analytical campaigns. Keep the [README-op.md](README-op.md) checklist concise; put operational detail and dated evidence here.
 
 ## Operating Procedure
@@ -44,7 +46,7 @@ node scripts/dev/owned-compute-supervisor.mjs prune --older-than-seconds <second
 
 Do not place credentials or private tokens in command-line arguments because the exact command is retained in the local lease. The source-inventory checker detects literal `detached: true` additions; the policy prohibition on shell backgrounding and computed detachment remains a review obligation rather than a closed-world source theorem.
 
-The procedure does not advance: silence is not progress unless a separately observed process state proves the job is still healthy.
+A live process establishes liveness, not progress. Use advancing heartbeat data to establish progress; investigate a stalled heartbeat before interpreting silence as a healthy computation.
 
 The `Stop` hook establishes task-closeout enforcement only for repository-trusted Codex sessions whose supervised launches use the matching `CODEX_SESSION_ID`. It does not run for subagents, replace explicit closeout in other hosts, establish scientific acceptance, or prevent processes launched outside repository-controlled wrappers.
 

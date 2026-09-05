@@ -22,7 +22,7 @@ The active branch series for this repo is currently the minerals/gemstones seque
 - Series item names used in branch names must be lowercase branch tokens with no blanks.
 - When a source item contains blanks, concatenate the words with hyphens for the branch token: use `codex/north-dakota` for the state name North Dakota, and `codex/salt-lake-city` for the city name Salt Lake City.
 - When rolling over to the next branch, explicitly tell the operator/developer which series item was chosen and include a short factual blurb about that item.
-- The blurb should be a short paragraph, not just the branch name by itself.
+- Present the branch-item facts under the operator explanation standard; they are required subject coverage rather than a separate response template.
 - For an element branch, the blurb should identify the element name, symbol, and atomic number, then give one or two concise factual notes.
 - For a non-element branch, the blurb should identify the canonical item name, the active series, the item's place in that sequence, and one or two concise factual notes.
 
@@ -436,7 +436,7 @@ Only continue to PR checks after this gate passes.
 - A branch can have clean local validation and passing PR checks and still be unmergeable because `main` moved underneath it.
 - Do not open or keep a ready PR on a branch that GitHub reports as conflicted with the current base branch.
 - Use the current remote base, not stale local `main`, for this gate.
-- If the branch is not mergeable, stop PR publication, merge or rebase the current base branch into the working branch, resolve conflicts deliberately, rerun validation, push again, and only then return to PR work.
+- If the branch is not mergeable, stop PR publication under the mandatory pause boundary. Obtain any required reconciliation authority before a merge, rebase, or conflict repair; then rerun validation and repeat the publish checks.
 
 Suggested local preflight:
 
@@ -536,7 +536,7 @@ Interpretation:
 - if `gh pr checks --watch` finishes with all required checks passing, the ready PR gate has passed;
 - if any required check fails, do not leave the branch represented as review-ready; fix the issue or convert the PR back to draft until it is genuinely ready;
 - if `gh pr view --json mergeStateStatus` reports `DIRTY` or another conflicted state, the ready PR gate has not passed even if checks are green;
-- in that conflicted case, close or convert the PR to draft as appropriate, reconcile the branch with current `origin/main`, rerun validation, push, and repeat the publish gate;
+- in that conflicted case, convert the PR to draft and apply the mandatory pause boundary before reconciliation; closing the PR requires a separate operator decision;
 - if GitHub connectivity or authentication is broken, treat the ready-PR publish step as incomplete and resolve that before declaring success.
 
 ### 7. Record the publish handoff receipt
@@ -748,8 +748,8 @@ This makes the next branch the new canonical branch in the series.
 
 - All new commits for the next unit of work should land there.
 - Open the next PR only when the branch has a coherent reviewable unit.
-- In the operator/developer-facing rollover response, include the series-item paragraph required by [Final Response Requirements](#final-response-requirements).
-- That paragraph should appear after the new branch has been created and published, so the explanation refers to the actual canonical branch now in use.
+- In the operator/developer-facing rollover response, include the series-item information required by [Final Response Requirements](#final-response-requirements).
+- Report the item only after the new branch has been created and published, so the explanation identifies the actual branch in use.
 
 Commands:
 
@@ -811,14 +811,14 @@ Stop and resolve deliberately rather than pushing ahead if any of these are true
 
 ## Final Response Requirements
 
-When this procedure is executed, the final response should not stop at generic git status reporting.
+When this procedure is executed, preserve the following handoff evidence and branch-item information. The [operator explanation standard](../operator-explanation-standard.md) owns response structure and live capture; the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) owns exposition.
 
 - Summarize the branch/PR outcome, cleanup state, and next-branch rollover state clearly enough that the operator/developer can verify the procedure actually completed.
 - At the ready-PR handoff, report the publish handoff receipt: PR number and URL, `headRefName`, `headRefOid`, base SHA, local validation state, remote check state, mergeability state, and all four permission counters.
 - At the post-merge handoff, identify the exact PR number used for verification and state whether local `HEAD` matched its reviewed `headRefOid` before deletion, then report all four permission counters for the second handoff.
 - If a new branch was created, include the exact new branch name and whether it was published to `origin`.
-- If a new branch was created from a named branch series, include one substantive paragraph about the item named by that branch.
-- For a periodic-table branch, that element paragraph should include, when applicable and known:
+- If a new branch was created from a named branch series, explain the item named by that branch.
+- For a periodic-table branch, the element explanation includes, when applicable and known:
   - the atomic number,
   - the chemical symbol,
   - the broad classification such as noble gas, alkali metal, alkaline earth metal, transition metal, halogen, lanthanide, actinide, metalloid, or nonmetal,
@@ -826,8 +826,8 @@ When this procedure is executed, the final response should not stop at generic g
   - the usual electron-orbital configuration or shell/orbital description,
   - common ion or oxidation states,
   - and a few physically or chemically distinctive traits that help identify the element.
-- For a non-element branch, the paragraph should identify the item name, the active series, the item's place or ordering rule in that series, and a few distinctive facts that make the item memorable.
-- The branch-item paragraph should be detailed enough to be informative, not just a one-line gloss.
+- For a non-element branch, identify the item name, the active series, its place or ordering rule, and verified distinctive facts.
+- Explain enough to identify the item and its significance; the operator standard determines the appropriate length and presentation.
 
 ## Expected Outcome
 

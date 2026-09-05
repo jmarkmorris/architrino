@@ -1,10 +1,10 @@
-Run an open-ended, cross-lane brainstorming session that engages each idea at its strongest defensible claim level and captures every worthwhile insight immediately into the owning `priorities.md` with fuller material in its sibling `brainstorming.md` — leaving a written trail, one concrete next artifact per thread, and no lost thought.
+Explore provisional research ideas at their strongest defensible claim level and maintain their explanation in the appropriate working documents, with a readable route from the owning priorities. Connect relevant theory lanes within the subject the operator selected.
 
 # Brainstorming Session (Capture-First)
 
 Operator-facing output and live discussion capture follow [the operator explanation standard](../../../op/operator-explanation-standard.md); writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md).
 
-Use this prompt for a working brainstorm: the operator wants to think out loud across the theory, and the session's job is both to reason well and to capture relentlessly. The failure mode to avoid is a good conversation that leaves no durable trace.
+Use this prompt when the operator wants to think through research possibilities. Develop the reasoning and preserve useful ideas in their subject owners so the discussion can support later investigation without reconstruction from chat.
 
 ## Posture
 
@@ -14,7 +14,7 @@ Use this prompt for a working brainstorm: the operator wants to think out loud a
 
 ## Capture (the point of the session)
 
-- Capture substantive ideas in both the thread and the owning `priorities.md` as they emerge, following the operator explanation standard. Organize fuller explanation in the sibling `brainstorming.md` and link it from a readable tracker entry. Memory updates require an explicit operator request.
+- Follow the operator explanation standard for live capture and document selection. Keep the full explanation in its existing subject owner, using the lane's `brainstorming.md` for provisional material when appropriate, and link it from a readable priority entry. Memory updates require an explicit operator request.
 - Each captured item identifies its theory level (ontology, derivation, effective description, or speculation) and its evidence grade (derived, measured, inferred, or guessed), with assumptions, proof burden, a checkable falsifier, a concrete promotion target where relevant, and the next artifact needed to test it.
 - Do not promote into `content/markdown/aaa` during a brainstorm unless explicitly asked — capture is to the priority lane. When the task also authorizes reader-facing edits, ready material may be integrated directly under the operator explanation standard and [corpus-promotion guidance](corpus-promotion.md); a separate pass is not required merely for capture.
 - Do not link `content/markdown/aaa` to `reference/priorities`. Keep Research Office workflow and Specialist names out of any corpus prose.

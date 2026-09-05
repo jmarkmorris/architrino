@@ -1,5 +1,7 @@
 # Machine Artifact Retention
 
+Responses and working-document capture follow the [operator explanation standard](operator-explanation-standard.md); explanatory prose follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).
+
 Tracked machine records must remain reviewable, reproducible, and proportionate to their current consumer.
 
 The repository retains authored sources, protocols, compact evidence receipts, and independently necessary fixtures. A runtime consumer alone does not justify tracking an expanded generated payload: build easily regenerated data during setup and deployment. Bulk search rows, raw ledgers, superseded result versions, benchmark output, and other analytical payloads belong under the ignored `.local-data/` hierarchy or in durable artifact storage. A compact evidence receipt must bind an untracked research artifact by SHA-256 and record its byte and line counts, reproduction command, claim boundary, and relevant source or protocol identity. Pure runtime build outputs need their canonical source and generator, not a newly versioned receipt for every rebuild. The single rule underneath all of that: Git retains what a reader needs to understand, test, and reproduce a result, and does not retain every verbose intermediate row merely because JSON happened to be the producer's easiest output format.
