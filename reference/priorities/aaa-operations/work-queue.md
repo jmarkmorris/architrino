@@ -136,13 +136,7 @@ The reference builder follows the write authority of the executing queue item. A
 
 ## In progress
 
-### OPS-018 — Sequential office document standards review
-
-- **Status:** In progress
-- **Priority object:** `office_document_standards_review`
-- **Request / acceptance:** The operator requested one agent to review and update Research Office and Learning Office one document at a time on 2026-09-04. Complete a deterministic disposition for every inventoried document; make safe current-guidance edits, preserve protected evidence and production material, and verify scoped changes. This is explicitly selected operations work, without a theory-score change.
-- **Evidence / blocker:** The [review ledger](office-document-standards-review.md) records the complete baseline and current individual dispositions. Pending documents remain unreviewed; preservation is distinct from scientific revalidation.
-- **Completion:** Every current document is accounted for, safe edits are validated, and any substantive decision or concurrent-ownership blocker is explicit. Remove this task when the authorized review is complete and retain its durable record.
+No rows.
 
 ## Awaiting verification
 

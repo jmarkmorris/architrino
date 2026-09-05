@@ -1,35 +1,36 @@
 # Operator Explanation Standard
 
-This document owns operator-facing response structure, questions, corrections, live priority capture, and recommended next actions. **Writing style is defined by the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).** Its academic standard applies equally to the ideas explained in the thread and to their durable priority material, so substantive prose can be prepared for eventual corpus promotion.
-
-It owns none of the content rules. Those live in the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md), which this document imports wholesale.
+This document owns operator-facing response structure, questions, corrections, live maintenance of working documents, and recommended next actions. **Writing style is defined by the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).** Its academic standard applies equally to the ideas explained in the thread and to their durable working documents, so substantive prose can be prepared for eventual corpus promotion.
 
 ## Import
 
-**Every content rule in the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md) applies to operator-facing output and to every operator-facing Markdown artifact that carries technical or theory information.** The imported edition is **1.1**; when that guide advances an edition, this import follows it without needing an edit here. That guide is the single authority for audience, plain-by-default prose, what an explanation must do, definition at first use, clarity and the cost of repetition, scope of assumed knowledge, structure, and the expected tools of analogy, worked numbers, signposting, and picture-before-symbol.
+**Every content rule in that guide applies to operator-facing output and to every operator-facing Markdown artifact that carries technical or theory information.** The current imported edition is **1.1**. When the guide advances an edition, the new edition governs; update the edition number recorded here and review this document for consistency. That guide is the single authority for audience, plain-by-default prose, what an explanation must do, definition at first use, clarity and the cost of repetition, scope of assumed knowledge, structure, and the expected tools of analogy, worked numbers, signposting, and picture-before-symbol.
 
 The import is wholesale and is not restated here, because a summary would drift from its source. Read the style guide. Technical or theory content does not receive a lesser prose standard because it appears in `reference/`, a dormant lane, a queue, a brainstorming file, a work log, a requirements packet, a design record, a prompt, or an operator report. Artifact purpose still controls structure, chronology, lifecycle fields, and appropriate density. This document adds only what a published textbook has no use for.
 
-### The audience rule applied to operator output
+### Audience and review surfaces
 
-The style guide's audience rule is a test, not a fixed answer: **define what the reader of this artifact plausibly lacks.** Its table assigns a reader to each artifact class. Two rows govern operator-facing work, and this is the row the table does not have room to state, since chat is not a corpus surface:
+The academic style guide’s audience rule applies to the material’s purpose. A full academic treatment prepared in a working document is an explanatory reference for its intended eventual reader, even while it lives under `reference/`. Its location does not make the operator’s knowledge or this conversation available to that reader. Operational records accompanying the treatment retain their own audience and structure.
 
-| Artifact class | Reader | May assume | Must define |
-| --- | --- | --- | --- |
-| Priority packet, analysis, findings report | Operator and repository agents | $\mathbb{A}\mathbb{A}\mathbb{A}$, repository vocabulary | imported apparatus, material from another lane |
-| Chat response | The operator | $\mathbb{A}\mathbb{A}\mathbb{A}$, repository vocabulary, this thread | imported apparatus, anything load-bearing |
+| Surface | Reader and purpose | Required explanation |
+| --- | --- | --- |
+| Chat response | The operator, following the current discussion | Follow the [flexible response structure](#flexible-response-structure): lead with the main result or idea, explain its significance and the reasoning needed for the immediate discussion, identify material limitations, and link directly to the full treatment. Close substantive final responses with [Next possible actions](#next-possible-actions), numbered and accompanied by a recommendation and reason for each. |
+| Academic treatment in a working document | The intended eventual reader, independently of the chat | Complete definitions, assumptions, reasoning, equations, evidence, and limitations needed to understand and assess the subject |
+| Additional working material | Operator and repository agents maintaining the work | Open questions, alternatives, decisions, task status, and validation records, clearly separated from the academic treatment |
 
-So operator-facing output assumes the theory and defines the imports. Architrinos, causal roots, path history, wake, polarity, the transmitter-side row, the master equation, absolute time, the Euclidean void, and claim grading need no introductory tutorial; the operator knows them better than the agent does. They are still restated in a clause when their meaning carries the local argument. Anything brought in from outside — a class of differential equation, a geometric construction, a numerical method, a term of art such as *secular* or *areal rate* or *codimension* — is defined completely, in place.
-
-The style guide's three refinements apply unchanged and matter most here. The **load-bearing override** means a term decisive for the claim being made right now gets a restating clause even though the operator knows it. **Never define a term the operator has just used**: if it appeared in their message, they hold it. And **redundancy cost scales with the artifact**, so a chat response tolerates an unneeded definition far better than a corpus chapter does.
-
-One surface difference changes what a rule requires rather than whether it applies. Corpus prose carries `View →` links into the equation viewer, so a symbol needs only to be named in words where it is used. A chat response has no such channel, so there a symbol is defined in words wherever it appears.
+In chat, established shared knowledge may shorten the explanation when comprehension is preserved. In the full academic treatment, do not omit necessary definitions or reasoning because the operator already knows them or has just used a term. Use the academic guide’s chapter and explanatory-reference audience rules for material intended for corpus promotion. Define the concepts and symbols the eventual reader needs, and make assumptions and evidence boundaries explicit. An operational queue row may link to that treatment; the treatment must not require reconstruction from queue entries or chat history.
 
 ## Scope
 
-These mechanics apply to all operator-facing output from any agent working in this repository: chat responses, adjudications, findings reports, closeouts, milestone reports, completion reports, priority and analysis packets under `reference/priorities`, and the reporting sections of generated or recommended prompts. The imported academic content standard additionally applies to all authored operator-facing Markdown containing technical or theory information, including trackers, work queues, brainstorming documents, work logs, proof and evidence packets, requirements, designs, contracts, protocols, audits, and source-mining records.
+This standard governs the agent’s chat responses and the ongoing maintenance of the operator-facing working documents affected by the discussion. Substantive ideas, explanations, findings, and decisions are recorded and organized in their appropriate documents so the operator can read the current account without reconstructing the conversation. The academic style guide defines writing style for both surfaces. Chat response mechanics, including the final action list, apply to responses; working documents retain the structure required by their purpose.
 
-They do not apply to reader-facing corpus prose under `content/markdown/aaa`, nor to end-user application chrome, which follows the [UI guidelines](../../content/markdown/aaa/archie/ui-guidelines.md). Those surfaces take the style guide's content rules without these mechanics.
+Choose the destination according to the material and the task:
+
+- **Working documents:** Keep the relevant analyses, procedures, requirements, designs, priority trackers, and evidence records current as the discussion develops. These usually live under `reference/`, but the existing subject owner may be elsewhere. Write their explanatory content under the academic style guide.
+- **Reader-facing corpus:** When the task authorizes changes under `content/markdown/aaa`, write ready corrections, improvements, or insights directly into the appropriate document. Follow the corpus authoring and promotion rules; an intermediate working copy is not required for material already ready for publication.
+- **Application content:** When the task authorizes application changes, update the relevant content. Use the academic style guide for substantive explanations and the UI guidance named below for interface wording and controls.
+- **Edit boundaries:** Routine discussion capture authorizes maintenance of working documents. It does not, by itself, expand the task to include corpus or application edits. Use authority already granted by the task without asking again, and respect explicit read-only instructions.
+
 
 Historical evidence, append-only chronology, exact quotations, generated artifacts, code, commands, schemas, identifiers, and machine-readable records retain their preservation rules. Existing protected bytes are not rewritten for tone; academically written framing, companion synthesis, and new entries carry the explanation when clarification is needed.
 
@@ -58,28 +59,50 @@ There is no separate completion-report template. Completion uses the same flexib
 
 Progress updates explain a meaningful finding, change of direction, or unresolved dependency. They need no closing block. A substantive final response closes with the numbered next-action list defined below. Acknowledgments and routine tool-progress notices are not substantive final responses.
 
-## Length and precedence
+## Explanation length and the primary review surface
 
-Give enough explanation for the operator to understand and assess the answer. Expand where reasoning is necessary; omit background the operator already holds, repetition, and unrelated implications. Completeness is measured against the question and its evidence obligations. Do not shorten away a necessary derivation or add exposition merely because the subject is technical.
+The chat response presents the main result, its significance, and any decision needed, with enough explanation to support the current discussion. Link directly to the document and section containing the full academic treatment, whether it is a working document or an authorized reader-facing update. Omit background the operator already holds only from the chat response, and only when doing so preserves comprehension. Expand the thread explanation when the operator asks to work through the reasoning there.
 
-The academic style guide governs writing style and explanatory rigor. This document governs response mechanics within higher-priority instructions and the operator’s explicit task direction. Repository guidance does not override system or developer instructions. A default brevity preference does not justify an explanation the operator cannot follow.
+The document containing the full treatment is the primary review surface for the explanation. It provides a self-contained academic treatment for its intended eventual reader: definitions, assumptions, reasoning, equations, evidence, and limitations. Do not omit necessary material because it appeared in the chat or because the operator knows it. Completeness is measured against the subject and its evidence obligations, not the amount needed for an immediate chat decision. Additional development information may accompany the treatment, clearly separated according to its purpose.
+
+When the task authorizes reader-facing edits and a correction, improvement, or insight meets the applicable mathematical, evidentiary, and publication standards, the thread agent may write it directly into the appropriate reader-facing document. No intermediate working-document copy or separate promotion pass is required merely to satisfy discussion capture. Confidence alone does not establish readiness; preserve the supported claim level and any required review boundary. Keep development notes, decisions, and validation history in their non-reader-facing owners, and link the completed corpus treatment from the relevant priority entry. Material that is not ready for publication continues to develop in the working documents.
+
+Both surfaces follow the academic style guide. Their difference is the amount of the treatment presented and where it is reviewed. A concise thread response does not justify an abbreviated academic treatment, and a complete document does not justify an unexplained verdict in the thread.
+
+## Instruction precedence
+
+This document governs response mechanics within higher-priority instructions and the operator’s explicit task direction. Repository guidance does not override system or developer instructions. A default brevity preference does not justify an explanation the operator cannot follow.
 
 ## Live discussion and priority capture
 
-Durable findings produced by a write-authorized task should be captured in the existing owning workstream as they are established. The thread still explains the result in full enough to follow it, while the tracker supplies an organized, current reading path for material that must outlive the conversation. A file link alone is not an explanation, and durable work left only in chat has not been captured.
+Substantive working discussion is captured automatically as it develops. This standard provides standing direction to maintain the relevant non-reader-facing documents; a separate implementation request is not needed merely to record an idea, explanation, finding, recommendation, correction, decision, or unresolved question. Present the main result and discussion-relevant reasoning in the thread, and maintain the full academic treatment in its subject owner, using working documents or an authorized reader-facing destination as described above. A file link alone is not an explanation, and substantive work left only in chat has not been captured.
 
-Report-only reviews, read-only diagnostics, transient questions, and ordinary explanations do not authorize repository writes and do not require creation of priority material. Capture is also unnecessary when the information is already recorded accurately in its owner and the response adds no durable result. Do not manufacture an artifact merely because a conversation occurred.
+An explicit read-only or no-file-edit instruction takes precedence within its stated scope. Do not treat a request for an explanation or review as an automatic exemption from capture. A restriction on editing the reviewed document still permits capture elsewhere when that is within the request’s boundaries; a restriction on all repository writes does not. When capture is prohibited or unavailable, provide the proposed capture and destination in the thread and state the limitation. Acknowledgments, transient logistics, and information already recorded accurately need no duplicate artifact.
 
-- **Capture during the work when authorized.** When a task authorizes writes and produces a durable idea, finding, correction, recommendation, decision, or unresolved question within scope, update its owner before the final response. Do not defer authorized capture to a separate completion report.
-- **Read and organize the owner.** Before capturing a finding, select the relevant workstream using the [priority guidance](../priorities/README.md), reread its live tracker, and integrate the material under the appropriate subject. Merge duplicates, connect related ideas, and revise the current synthesis as understanding changes. Preserve concurrent work and provenance. Organize by subject, dependencies, and established priority rules rather than by message arrival.
-- **Keep captured ideas visible in `priorities.md`.** Include a readable statement of the idea, its significance, current disposition, and any decision or next step needed to understand its state. Use a stable heading or existing identifier when useful. A bare link or unexplained identifier is insufficient.
-- **Use the existing document split.** The tracker holds the current synthesis and links to fuller academic explanation in `brainstorming.md` or a focused sibling document, executable tasks in `work-queue.md`, and dated provenance in `work-log.md`. Detailed material remains accessible from the idea’s tracker entry. Follow the priority guide for task acceptance, ranking, renumbering, completion, and cross-workstream routing.
-- **Preserve status and authority.** Label proposals, accepted decisions, open questions, rejected ideas, and deferred work accurately. Recording an idea is not acceptance of its claim or authorization to implement it. Preserve assumptions, evidence limits, claim grades, and falsifiers where relevant. Do not silently promote a proposal or reactivate a deferred task.
-- **Keep both surfaces consistent.** Corrections update the current priority synthesis and are stated explicitly in the response; preserve earlier evidence and chronology in their proper records. Link the affected tracker entry from the response so the operator can review the organized material directly.
-- **Capture across lanes without inventing ownership.** Use each durable finding’s existing owner and link related entries. If no owner fits, report the ownership gap; create a new priority home only when the task authorizes that artifact. Do not create a separate completion report or an unorganized conversation transcript.
-- **Respect authority and access.** If a write is outside the request, unavailable, or explicitly prohibited, keep the answer self-contained in the thread and identify any durable capture that remains advisable. Never claim a priority update was saved when it was not.
+### Choosing the documents to update
 
-The academic style guide governs the explanatory material on both surfaces. Keep operational status and decision records separate from prose intended for publication, so promotion preserves prepared explanation and its honest claim level.
+Update the existing document that owns the subject. Read the relevant guidance and the live owner before editing; document ownership is determined by responsibility, not by which directory is easiest to append to. Use the [priority guidance](../priorities/README.md) to organize priority material. The following destinations preserve that organization while covering working documents beyond priority directories:
+
+| Material discussed | Destination |
+| --- | --- |
+| A publication-ready correction, improvement, or insight within the task’s reader-facing edit authority | The appropriate reader-facing document, with development records retained in non-reader-facing owners |
+| An explanation, derivation, or provisional idea | Full academic treatment in the existing analysis, `brainstorming.md`, or focused working document, with provisional claims identified explicitly |
+| A procedure or accepted operating decision | The document that owns that procedure or decision; proposals remain visibly provisional in working material until accepted |
+| Current priorities and unresolved choices | `priorities.md`, with a readable synthesis and links to the full account |
+| Accepted executable work | `work-queue.md`, following the priority guide’s acceptance and ranking rules |
+| Chronology and validation history | `work-log.md` or the existing evidence record |
+
+Keep substantive ideas discoverable from the relevant `priorities.md` with enough explanation to understand their significance, current disposition, and remaining decision. The tracker provides an organized reading path; fuller explanation belongs in its subject owner and is linked from the tracker without duplicating the entire account. When no owner exists, create the smallest appropriate working document under the applicable guidance, within the authorized scope. Do not create a competing owner or a separate completion report.
+
+### Keeping the discussion and documents current
+
+- **Capture during the discussion.** Develop the full academic treatment in the relevant working document as each substantive idea emerges, before moving to the next substantial topic and before the final response. A transcript, summary, or file link does not substitute for the complete explanation. Do not defer the treatment until completion.
+- **Organize when capturing.** Integrate by subject, dependencies, and established priority rules. Merge duplicates, connect related ideas, and revise the current synthesis as understanding changes. Preserve concurrent work; reread the exact live passage before patching shared documents.
+- **Preserve status and authority.** Distinguish proposals, accepted decisions, open questions, rejected ideas, and deferred work. Capture does not accept a claim, authorize implementation, change a score, reactivate a deferred task, or grant permission to alter controlled canon. Preserve assumptions, evidence limits, claim grades, and falsifiers where relevant.
+- **Keep both surfaces consistent.** Keep the thread’s result, scope, and limitations faithful to the full treatment. State corrections explicitly in the thread and update the current written account. Preserve earlier evidence and chronology in their proper records. Link the affected owner and priority entry so the operator can review the organized material directly.
+- **Respect preservation and access.** Keep generated artifacts, protected evidence, and append-only history under their existing rules. Explain any actual write limitation and never claim a document was updated when it was not.
+
+Keep open questions, alternatives, operational status, decisions, and validation history clearly separated from the academic treatment. Subsequent authorized promotion preserves prepared explanation at its honest claim level and leaves development records in their appropriate working locations. Academic prose alone does not establish mathematical or evidentiary readiness for promotion.
 
 ## Next possible actions
 
@@ -87,7 +110,7 @@ End every substantive final response with `Next possible actions:` followed by a
 
 Distinguish decisions required now from optional follow-ups. For a required decision, state what is needed and what remains blocked if it is deferred or declined. Optional suggestions do not create approval gates. Continue already-authorized work without stopping at an action menu.
 
-When an owning priority artifact exists and the task authorizes writes, keep outstanding durable decisions recorded there until resolved. Carry current blockers into the numbered list; link deferred decisions when relevant rather than repeating an accumulating backlog. Do not repeat completed actions as possible next actions. When no useful continuation remains, use one numbered item recommending no further action and briefly explain why.
+Keep outstanding durable decisions recorded in their appropriate working documents and indexed in the relevant priority material until resolved, subject to explicit read-only boundaries. Carry current blockers into the numbered list; link deferred decisions when relevant rather than repeating an accumulating backlog. Do not repeat completed actions as possible next actions. When no useful continuation remains, use one numbered item recommending no further action and briefly explain why.
 
 There is no separate `Open items:` block or required `Closure goal:` line. Generated and recommended prompts begin directly with a concrete task; no fixed opening label is required. Provide a detailed reusable prompt only when it helps the operator act, rather than expanding every next action into a full prompt.
 
@@ -109,11 +132,11 @@ A closing recap is permitted but never substitutes for explanation delivered as 
 
 ## Short examples
 
-These examples illustrate response mechanics for tasks in which durable capture is authorized; their placeholder findings are not project evidence.
+These examples illustrate response mechanics and routine working-document capture; their placeholder findings are not project evidence.
 
 ### Explanation
 
-“The condition excludes this case because [mechanism and necessary reasoning]. Its scope is [assumptions and limitation]. The explanation and open question are organized in [owning priority entry].”
+“The condition excludes this case because [mechanism and necessary reasoning]. Its scope is [assumptions and limitation]. The full academic treatment is in [working document and section], with the open question indexed in [owning priority entry].”
 
 Next possible actions:
 
@@ -147,8 +170,8 @@ Next possible actions:
 ## Self-check
 
 1. The response answers the request directly and follows the academic style guide.
-2. Reasoning, definitions, evidence, and limitations are sufficient without redundant exposition.
-3. When the task produced a durable finding and authorized repository capture, the finding appears in both the response and an organized, current entry in its owner; report-only and transient answers did not create unnecessary artifacts.
+2. The chat supports the immediate discussion and links directly to the full treatment; the working document supplies the complete academic explanation for its intended eventual reader, independently of the chat.
+3. Substantive working discussion appears in both the response and its appropriate, organized working documents, with a readable route from the relevant priority material. Explicit read-only boundaries are respected, and transient or already-recorded information has not produced duplicate artifacts.
 4. Proposals, decisions, deferred work, and accepted tasks retain their actual status and authority.
 5. Reported quantities were verified, corrections are explicit, and validation claims name checks actually performed.
 6. The final response ends with numbered next possible actions, each with a recommendation and reason; necessary decisions are distinct from optional follow-ups.

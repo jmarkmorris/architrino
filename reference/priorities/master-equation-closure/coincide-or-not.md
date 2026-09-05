@@ -23,7 +23,7 @@ The declared objects are: a reframing of coincidence as delay vanishing rather t
 
 The collinear head-on case is already settled and owned elsewhere. This document is about the ordinary case, where two architrinos among many drift near each other with no special alignment, and it exists to decide whether that case can ever end in exact contact.
 
-This packet derives no continuation law, selects no boundary value, assigns no event semantics, and closes no conserved account. It derives a conditional local invariant tube around nonzero areal rate, a uniform-sub-field radial first-exit obstruction, a locally affine root-existence classification, and a same-transmitter chord expansion. It also corrects the secular-sign scope: the positive sign is derived on the symmetric pair-center chart, while a general absolute-frame expansion and a periodic prescribed-path control prove that the complete pair contribution is not universally one-signed. The root classification identifies a two-sided super-field inbound causal shadow in which both recent partner roots are absent. An explicit noncollinear four-Architrino retained history then supplies fourteen simple older roots, a bounded acceleration bootstrap, and a unique EOM continuation to first coordinate coincidence. This proves mathematical reachability on an exact reflection-symmetric set without making coincidence a dynamical attractor; an unchanged independent oracle verifies the complete pre-contact evolution and topology bracket, while formal certificate review and continuation remain open.
+This packet derives no continuation law, selects no boundary value, assigns no event semantics, and closes no conserved account. It derives a conditional local invariant tube around nonzero areal rate, a uniform-sub-field radial first-exit obstruction, a locally affine root-existence classification, and a same-transmitter chord expansion. It also corrects the secular-sign scope: the positive sign is derived on the symmetric pair-center chart, while a general absolute-frame expansion and a periodic prescribed-path control prove that the complete pair contribution is not universally one-signed. The root classification identifies a two-sided super-field inbound causal shadow in which both recent partner roots are absent. An explicit noncollinear four-Architrino retained history then supplies fourteen simple older roots, a bounded acceleration bootstrap, and a unique EOM continuation to first coordinate coincidence. Moving one target transversely by $10^{-6}$ changes that collision to a complete-root near-pass with separation approximately $10^{-6}$. This proves mathematical reachability on an exact reflection-symmetric set without making coincidence a dynamical attractor; an unchanged independent oracle verifies the complete pre-contact evolution and measures the perturbed near-pass, while formal certificate review, continuation, and the deterministic infinite-population absolute-history limit remain open.
 
 ## Three Distinct Mathematical Questions
 
@@ -47,7 +47,7 @@ An assertion that the Master Equation simply stops before the boundary is classi
 
 MEC-008's required controls are: (1) the existing isolated collinear birth as a singular analytical control; (2) a minimally noncollinear three-or-more-architrino EOM-evolved control with complete root census; (3) perturbations of population, geometry, and retained prehistory testing whether the boundary is avoided robustly or only by fine tuning; and (4) a local chord expansion separating the necessary $\|\mathbf V_i\|=c_f$ contact condition from curvature-dependent higher-order terms. Every numerical instantiation uses $c_f=1$.
 
-This packet supplies the analytical frame for controls (2) and (3), derives the signed pair contribution first on the symmetric pair-center chart and then on a general locally affine absolute-frame chart, proves the inverse-square blow-up obstruction and the causal-shadow one-sided exceptional-sphere flow, records bounded EOM-evolved three- and four-Architrino controls, and completes control (4) at the local $C^4$ chord-expansion level. The turning arc does not complete a turn, so the full-turn numerical check remains open. The exact noncollinear four-Architrino construction proves EOM reachability to first contact and proves that nearby collision histories have local codimension two on an explicit retained-history perturbation slice. Control (3) therefore has a precise local answer on that chart—generic transverse perturbations in the slice miss, but exact symmetric populated data reach—without yet classifying every arbitrary populated history.
+This packet supplies the analytical frame for controls (2) and (3), derives the signed pair contribution first on the symmetric pair-center chart and then on a general locally affine absolute-frame chart, proves the inverse-square blow-up obstruction and the causal-shadow one-sided exceptional-sphere flow, records bounded EOM-evolved three- and four-Architrino controls, and completes control (4) at the local $C^4$ chord-expansion level. The turning arc does not complete a turn, so the full-turn numerical check remains open. The exact noncollinear four-Architrino construction proves EOM reachability to first contact and proves that nearby collision histories have local codimension two on an explicit retained-history perturbation slice. A one-target transverse perturbation realizes the predicted miss in an unchanged-oracle evolution. Control (3) therefore has a precise local answer on that chart—generic transverse perturbations in the slice miss, but exact symmetric populated data reach—without yet classifying a universe-wide set of complete real-valued histories or proving that the infinite transmitter-side acceleration sum exists.
 
 Neither the near-diagonal self-root stratum nor a chance pair encounter is privileged here. MEC-008 covers both the same-transmitter case, in which an architrino's own path history produces a vanishing-delay root, and the two-body case, in which two distinct architrinos approach coincidence. The transverse analysis below addresses the two-body case directly; its conditional bearing on the self-root case runs through the additional speed-bound rigidity hypothesis recorded as O6.
 
@@ -1249,6 +1249,147 @@ Claim grade: the update equivariance, exact fourteen-root census, bounded-accele
 
 Claim grade: the zero-probability statement is `derived conditionally` for ensemble measures absolutely continuous in the two transverse coordinates; no physical ensemble or actual-universe probability is claimed. Falsifier: positive collision probability under such an absolutely continuous local measure, or proof that the collision set has positive two-dimensional area in the displayed slice.
 
+### One-target transverse perturbation
+
+The exact collision changes to a near-pass when one target is moved by a small real-valued transverse amount. Keep the left target and both environmental histories unchanged. On the right target's joining interval, where $s=T+1$, add
+
+$$
+y_+(T)=\varepsilon b(s),
+\qquad
+b(s)=3s^2-2s^3,
+\qquad
+-1\le T\le0,
+$$
+
+and retain $y_+(T)=0$ for $T\le-1$. The bump and its first derivative vanish at the stationary-shelf join, while $b(1)=1$ and $b'(1)=0$. The perturbed history is therefore $C^1$ on the entire declared absolute-time past, and at the release cut the right target has position $(0.01,\varepsilon,0)$ and velocity $(-2,0,0)$. The other target remains at $(-0.01,0,0)$ with velocity $(2,0,0)$.
+
+For the instantiated perturbation $\varepsilon=10^{-6}$, the strict root and inactive-gap margins of the four-path construction persist. At fixed receiver and emission times, moving one endpoint by $10^{-6}$ changes a distance residual by no more than $10^{-6}$, while the smallest forward joining-segment gap used above is $0.005$. The active stationary-shelf roots therefore remain simple, their $D_t$ values remain $1$, and the joining segments remain root-free. Active ranges change by at most $10^{-6}$ from the earlier lower bound $1.6$, so the deliberately loose acceleration bound $\lVert\mathbf A_i\rVert<2\times10^{-6}$ also persists on $0\le T\le0.005$. If $Y(T)=y_+(T)-y_-(T)$ is the targets' transverse separation, then $Y(0)=\varepsilon$, $\dot Y(0)=0$, and $\lvert\ddot Y\rvert<4\times10^{-6}$. Hence
+
+$$
+Y(T)
+\ge
+\varepsilon-2\times10^{-6}T^2
+\ge
+9.9995\times10^{-7},
+\qquad
+0\le T\le0.005.
+$$
+
+This positive transverse separation is a derived exclusion of coordinate coincidence over the displayed interval. It does not depend on assigning a value at the diagonal or on the numerical evolution below.
+
+The unchanged independent Python EOM oracle was then given this perturbed four-history request with $c_f=1$, $\kappa=10^{-6}$, 80-decimal arithmetic, sharp roots, and five fixed steps of width $0.001$. All five steps were accepted. The three corrected substeps and two endpoint snapshots per step produced $5\times3\times2\times16=480$ ordered root-accounting rows; every row was `certified_complete`, none touched the retained-history boundary, and all 60 target-partner rows retained one old root. At $T=0.005$ the target relative state was
+
+$$
+\mathbf d
+=
+\left(
+-2.10340366178144\times10^{-11},
+9.99999999999967\times10^{-7},
+0
+\right),
+$$
+
+$$
+\mathbf w
+=
+\left(
+-4.00000000841359,
+-1.00151156348874\times10^{-17},
+0
+\right).
+$$
+
+Thus the targets had exchanged their $x$ ordering while remaining separated by $1.00000000022118\times10^{-6}$. Their areal-rate vector had $h_z=4.00000000841346\times10^{-6}$, compared with the exact release value $h_z=4\times10^{-6}$. The request input digest was `14752d3c1c9b81b6d3b4a209158f2eb690d21e9daccc58e9e4a933afcd48ed5b`.
+
+Claim grade: the positive lower bound on $Y$ and the absence of coincidence through $T=0.005$ are `derived` from the preserved acceleration bound. The endpoint, complete-root census, separation, and areal rate are `measured` by the unchanged oracle, but this request assembly was authored with the present calculation and is not credited as an independent acceptance certificate. Falsifier: loss of a strict root margin, violation of $\lvert\ddot Y\rvert<4\times10^{-6}$, a zero of $Y$ on the interval, or a replay of the displayed digest with a non-complete row or a different endpoint state.
+
+This control remains a four-Architrino toy model. It demonstrates the local mechanism behind codimension two: one untuned transverse coordinate is already enough to produce a miss. It does not establish how a universe-wide deterministic population supplies, cancels, or amplifies transverse history.
+
+### Absolute-history populated-universe target
+
+A populated-universe calculation requires more than adding a large number of stationary points to the finite control. Let $\mathcal I$ be a finite or countably infinite Architrino label set and assign every label a complete real-valued past at an evolution cut,
+
+$$
+\mathbf X_a:(-\infty,T_0]\longrightarrow\mathbb R^3.
+$$
+
+The future is not part of this input. A complete EOM solution would extend these past histories beyond $T_0$ by the update itself and would thereby produce paths on a larger absolute-time interval.
+
+For receiver $i$ at absolute time $T$, define the complete positive-delay causal-root set
+
+$$
+\mathcal C_{ij}(T)
+=
+\left\{
+s<T:
+\left\lVert\mathbf X_i(T)-\mathbf X_j(s)\right\rVert=T-s
+\right\},
+$$
+
+where $c_f=1$. The universe-wide transmitter-side update would be
+
+$$
+\mathbf A_i(T)
+=
+\sum_{j\in\mathcal I}
+\sum_{s\in\mathcal C_{ij}(T)}
+\kappa\sigma_{ij}\lvert q_iq_j\rvert
+\frac{\hat{\mathbf r}_{ij}(T,s)}{r_{ij}(T,s)^2\lvert D_{t,ij}(T,s)\rvert}.
+$$
+
+For infinite $\mathcal I$, this expression is not defined merely because every individual row is defined. A deterministic populated-history class must specify a summation rule and prove that distant rows have a unique limit. One sufficient, deliberately strong condition on a compact receiver-time interval $J$ is the uniform absolute-tail bound
+
+$$
+\mathcal T_i(R;J)
+=
+\sup_{T\in J}
+\sum_{j\in\mathcal I}
+\sum_{\substack{s\in\mathcal C_{ij}(T)\\r_{ij}(T,s)>R}}
+\kappa\lvert q_iq_j\rvert
+\frac{1}{r_{ij}(T,s)^2\lvert D_{t,ij}(T,s)\rvert}
+\longrightarrow0
+\quad\text{as }R\to\infty,
+$$
+
+together with local finiteness of the remaining roots. Continuous dependence on the histories additionally requires a corresponding uniform tail bound for the history derivative of the acceleration rows. These conditions make the infinite sum independent of the order in which distant Architrinos are added and permit the finite-root regular-chart argument to extend by a uniform limit.
+
+This requirement is nontrivial for a spatially persistent population. If a shell of radius $R$ contains order $R^2\,dR$ active rows, each of order $R^{-2}$ with transmitter factors bounded away from zero, its absolute contribution is order $dR$ rather than a decaying tail. Pairing opposite polarities cancels the leading far row only when their delayed geometry remains paired. If the pair separation is bounded, the paired delayed directions and transmitter factors differ by $O(R^{-1})$, and the transmitter factors have a uniform positive floor, the paired remainder is $O(R^{-3})$; its shellwise absolute magnitude is then $O(dR/R)$ and still has a logarithmically divergent integral. These are derived counting scalings under the stated shell-count, regularity, and pairing hypotheses, not a claim that the actual universe realizes them. They show why polarity balance alone does not yet define the infinite update. A stronger cancellation structure, a canonical non-absolute summation prescription, a finite population, or another derived global condition is required.
+
+The finite reachability result nevertheless extends conditionally to an arbitrarily populated exact-symmetry class. Suppose the label set carries an involution $\pi$ with
+
+$$
+\mathbf X_{\pi(a)}(T)=S\mathbf X_a(T),
+\qquad
+q_{\pi(a)}=-q_a,
+\qquad
+S(x,y,z)=(-x,y,z),
+$$
+
+and suppose the complete acceleration series and its local history derivative converge uniformly, the active roots retain regular margins, and the resulting history evolution is unique. Exhaust the population through finite subsets that contain each reflection-polarity pair together. Every finite partial sum is then equivariant under reflection plus polarity reversal, so its uniform limit is equivariant as well. The target symmetry is preserved. If the target pair also retains the displayed super-field recent-root exclusion and a finite total $x$-acceleration bound $M$ with $x_0<U^2/(2M)$, the same crossing estimate forces coordinate coincidence. Population size alone therefore cannot exclude coincidence: an exactly paired finite or infinite deterministic population can preserve it.
+
+Small nonsymmetric perturbations have the opposite local effect whenever the infinite acceleration and derivative tails satisfy the stated bounds and the relative-position derivative keeps rank three. The collision set then remains codimension two after collision time is allowed to vary. More population supplies more perturbation directions; it does not create attraction without an additional dynamical mechanism. This statement is conditional on a well-defined differentiable infinite-history flow. Root accumulation, failure of the acceleration sum, loss of uniqueness, or rank loss would invalidate it and must be studied rather than treated as noise.
+
+Claim grade: the order-independent absolute-tail condition is a `derived` sufficient admissibility condition, not a necessary law selected by the theory. The shell and paired-shell estimates are `derived` under their displayed population-count assumptions. The infinite-population symmetry extension and codimension-two persistence are `derived conditionally` under uniform convergence, regular-root, uniqueness, bounded-acceleration, and rank hypotheses. Falsifier: an order-dependent acceleration sum satisfying the absolute-tail condition, a uniformly convergent paired population that breaks the displayed equivariance, failure of the crossing estimate under its stated bounds, or loss of codimension two while the differentiable rank-three hypotheses remain true.
+
+The next non-toy object is therefore a deterministic absolute-history exhaustion: a sequence of nonstationary, increasingly populated full histories on expanding spatial domains, with complete causal-root provenance, a canonical far-population summation rule, and uniform convergence of the local acceleration and its history derivative. Write $\mathcal I_N$ for the first $N$ finite populations and $\mathbf A_i^{(N)}(\mathcal H;T)$ for their complete transmitter-side acceleration functionals evaluated on a history $\mathcal H$ at time $T$. Let $\mathcal U$ be a fixed neighbourhood of admissible histories around the candidate target evolution. An operator-checkable Cauchy condition on a compact interval $J$ is
+
+$$
+\eta_N(J)
+=
+\sup_{M>N}
+\sup_{\mathcal H\in\mathcal U}
+\sup_{T\in J}
+\max_{i\in\{+,-\}}
+\left\lVert
+\mathbf A_i^{(M)}(\mathcal H;T)-\mathbf A_i^{(N)}(\mathcal H;T)
+\right\rVert
+\longrightarrow0,
+$$
+
+with the same condition imposed on the local history derivatives and with uniform root margins. Start each exhaustion with the same target histories at the evolution cut. The regular method-of-steps estimate then gives a constant $C_J$, independent of $M$ and $N$, for which each target trajectory differs by at most $C_J\eta_N(J)$. This estimate integrates the acceleration difference and applies Gronwall's inequality, the bound that limits the growth of a quantity satisfying an integral self-bound, to the common Lipschitz history functional. A finite-exhaustion miss with minimum separation larger than $2C_J\eta_N(J)$ therefore remains a miss in the limiting history. A collision conclusion requires the complementary transversality argument or an exact invariant symmetry; sampled minimum separation alone cannot prove a zero.
+
+Convergence of the target-pair minimum separation and root topology under this bounded error would address physical robustness. Another finite symmetric example would not. Failure of the Cauchy condition would be a direct global-admissibility obstruction: the current infinite-population Master Equation would not assign a unique acceleration even before coincidence is considered.
+
 ## Blow-Up Admissibility
 
 The answer is chart-dependent. A surviving inverse-square partner row has no nondegenerate bounded-velocity blow-up, while the incoming causal-shadow chart has a one-sided continuous blow-up because its relative acceleration remains bounded. Neither construction supplies a two-sided continuation across the change in root admission.
@@ -1587,6 +1728,8 @@ Plainly: the transverse sign by itself does not settle coincidence. Ordinary reg
 9. **Bounded super-field self-root and regular-chart DDE lemmas — derived.** A super-field reception state with a sufficiently deep bounded retained past necessarily has a positive-delay self root. Such a root can be regular, as the constant-speed circular example proves. A finite simple-root census with positive range, transmitter-factor, inactive-gap, and history margins gives a unique short method-of-steps extension; it does not cross a margin loss.
 10. **Populated causal-shadow reachability — derived.** The explicit radius-$2.5$, depth-$5.5$ four-Architrino history has fourteen simple $D_t=1$ roots, two empty stationary self channels, no joining-segment roots, and a unique bounded-acceleration EOM future whose first target coincidence obeys $0.0049999999875\ldots<T_\ast<0.005$. The collision set has local codimension two on the displayed retained-history perturbation slice and is not an attractor there.
 11. **Causal-shadow EOM probes — mixed prefix evidence, no accepted endpoint.** The independent oracle accepted the bounded shelf history through separation $0.0007999999806150332$ at $T=0.0048$ with 1152 complete rows; a straddling request rejected after a complete candidate census detected the predicted partner-root topology change. The production solver's affine request advanced to separation $3.9999997915\times10^{-5}$ but violated its declared spatial envelope, while its bounded circular and shelf replacements accepted no step. These boundaries do not negate the exact reachability theorem.
+12. **One-target transverse perturbation — derived miss and measured near-pass.** Adding the $C^1$ bump $10^{-6}(3s^2-2s^3)\mathbf e_y$ to one target gives $Y(T)>9.9995\times10^{-7}$ through $T=0.005$, so coordinate coincidence is analytically excluded on that interval. The unchanged oracle accepted five fixed steps and all 480 ordered root rows through the former collision time, where the targets had exchanged $x$ ordering at separation $1.00000000022118\times10^{-6}$ and $h_z=4.00000000841346\times10^{-6}$.
+13. **Absolute-history populated-universe extension — formulated with conditional results.** A finite or countably infinite population is an admitted dynamical input only after its complete real-valued histories give a well-defined universe-wide acceleration sum. Uniform absolute acceleration and history-derivative tails are sufficient; ordinary inverse-square shell counts do not supply those tails without stronger cancellation. Under uniform convergence, regular roots, unique evolution, and bounded total acceleration, exact reflection-plus-polarity symmetry still permits collision at arbitrary population size, while rank-three nonsymmetric perturbations preserve the local codimension-two miss result.
 
 The mathematical domain question is answered by existence: coordinate coincidence is reachable, although it is locally nongeneric rather than attractive on the exhibited chart. The remaining MEC-008 work is evidentiary and numerical: independently adjudicate whether the theorem plus unchanged-oracle prefix/topology record meets the formal reachability certificate, and obtain the requested full-turn areal-rate measurement without changing the analytical instrument in the same change. Downstream MEC-002/MEC-003 work must derive what the theory does at or after the reached boundary.
 
@@ -1617,6 +1760,10 @@ The mathematical domain question is answered by existence: coordinate coincidenc
 | Finite simple roots with uniform range, $D_t$, inactive-gap, and history margins admit a unique short DDE extension | `derived` conditionally | loss of local root uniqueness or solution uniqueness before any displayed margin closes |
 | The explicit bounded four-Architrino shelf history has fourteen simple roots, and its unique EOM future has first target coincidence in $0.0049999999875\ldots<T_\ast<0.005$ | `derived` | an additional root, a listed root with $D_t\ne1$, failure of either acceleration comparison bound, or a compliant EOM continuation with no first contact in the bracket |
 | Collision histories near the shelf-history event have local codimension two on the displayed transverse-bump slice and are not an attracting open set there | `derived` on the regular pre-contact flow and stated retained-history slice | failure of rank three for the relative-position map in joint history/time space, or an open neighborhood in that slice attracted to contact while the same smooth chart remains active |
+| Moving one target transversely by $10^{-6}$ keeps $Y>9.9995\times10^{-7}$ through $T=0.005$ and excludes coordinate coincidence on that interval | `derived` under the preserved root margins and acceleration bound | a zero of $Y$, loss of a stated margin, or violation of $\lvert\ddot Y\rvert<4\times10^{-6}$ on the interval |
+| The unchanged oracle evolves that perturbation through $T=0.005$ with 480 complete rows, separation $1.00000000022118\times10^{-6}$, and $h_z=4.00000000841346\times10^{-6}$ | `measured` exploratory evidence; the request assembly is not an independent acceptance instrument | replay of digest `14752d3c1c9b81b6d3b4a209158f2eb690d21e9daccc58e9e4a933afcd48ed5b` with an incomplete row or different endpoint |
+| A universe-wide acceleration is order-independent under the displayed uniform absolute-tail condition | `derived` as a sufficient admissibility condition | an order-dependent sum satisfying that tail condition |
+| An exactly reflection-plus-polarity paired finite or countably infinite population preserves the target collision when the row series and derivative converge uniformly and all stated regularity, uniqueness, root, and acceleration bounds hold | `derived conditionally` | a population satisfying every displayed hypothesis that breaks equivariance or avoids the crossing estimate |
 | Collision has zero local probability for an ensemble absolutely continuous in the two transverse bump coordinates | `derived conditionally`; no physical ensemble selected | positive collision probability under such a measure or positive two-dimensional area of the local collision set |
 | Four-body affine causal-shadow probe reaches separation $3.9999997915\times10^{-5}$ with empty target-partner root sets before the endpoint request halts | `measured diagnostic`; invalid as reachability evidence because its declared spatial envelope is violated | replay with a different prefix, partner-root count, or halt code |
 | The unchanged solver certifies all sixteen initial shelf-history channels and fourteen $D_t=1$ roots but rejects the first step on the target self channels | `measured diagnostic`; not reachability evidence | replay with another root census, factor enclosure, or halt route |
@@ -1637,10 +1784,10 @@ The mathematical domain question is answered by existence: coordinate coincidenc
 
 ## Nonclaims
 
-This packet establishes no continuation, passage, rebound, coordinate-crossing outcome after first contact, outgoing history, boundary value, event semantics, conserved account, global stability verdict, physical-frequency estimate, or production EOM solver acceptance of the contact boundary. It does not reopen MEC-006 or MEC-007, does not modify the canonical transmitter-side acceleration row, and treats every receiver-side factor strictly as signed playback rather than as acceleration strength, per the workstream's revocation boundary. It establishes first-contact reachability on one exact populated symmetry set, not generic attraction or positive-measure physical incidence. It also establishes a symmetric pair-center repeller, disproves a universal pair-sign claim, preserves a conditional invariant region on positive-coefficient subclasses, and proves radial first exit on uniformly sub-field regular charts.
+This packet establishes no continuation, rebound, outgoing history after first contact, boundary value, event semantics, conserved account, global stability verdict, physical-frequency estimate, or production EOM solver acceptance of the contact boundary. It does not reopen MEC-006 or MEC-007, does not modify the canonical transmitter-side acceleration row, and treats every receiver-side factor strictly as signed playback rather than as acceleration strength, per the workstream's revocation boundary. It establishes first-contact reachability on one exact populated symmetry set, not generic attraction or positive-measure physical incidence. Its one-target perturbation establishes only a local near-pass through $T=0.005$ and makes no claim about later re-encounter. Its absolute-history section does not establish that an infinite homogeneous population has a convergent acceleration sum, that one summation prescription is canonically selected, or that the actual universe belongs to the conditional differentiable history class. The packet also establishes a symmetric pair-center repeller, disproves a universal pair-sign claim, preserves a conditional invariant region on positive-coefficient subclasses, and proves radial first exit on uniformly sub-field regular charts.
 
 The derived construction answers MEC-008's mathematical domain question in favor of reachability and rules out domain exclusion as the global resolution. MEC-008 remains `In progress` only because the theorem-plus-unchanged-oracle hybrid certificate has not received a separate independence adjudication. The independent oracle now accepts twelve fixed steps through $T=0.0048$ with 1152 complete rows and fails closed on a separate request whose next fixed step straddles the predicted topology boundary; the production solver's separate shelf request still rejects before its first step. MEC-002 and MEC-003 may cite reachability as a derived theorem target input, but may not claim formal MEC-008 acceptance, continuation, or a selected boundary rule.
 
-This document answers that two architrinos can touch on an admissible populated EOM history. It simultaneously proves that the event is locally codimension two on the exhibited smooth chart, so a generic transverse perturbation causes a miss rather than attraction. The secular sign is history-dependent outside the symmetric chart, and uniformly sub-field regular approaches remain excluded.
+This document answers that two architrinos can touch on an admissible populated EOM history. It simultaneously proves that the event is locally codimension two on the exhibited smooth chart, and the explicit $10^{-6}$ one-target displacement produces the predicted miss. The secular sign is history-dependent outside the symmetric chart, and uniformly sub-field regular approaches remain excluded. Extension to a universe-wide set of complete real-valued histories first requires a mathematically defined infinite acceleration sum; under a uniformly convergent exact-symmetry limit, population size does not remove collision, while nonsymmetric regular perturbations remain locally codimension two.
 
-Closure goal: independently adjudicate the exact first-contact theorem together with the unchanged-oracle accepted prefix and topology-change record; if accepted, close MEC-008 and hand reachability to MEC-002/MEC-003 for a terminal or continuation rule. Separately complete the full-turn areal-rate control without co-authoring its analytical and numerical instruments.
+Closure goal: independently adjudicate the exact first-contact theorem together with the unchanged-oracle accepted prefix and topology-change record; if accepted, close MEC-008 and hand reachability to MEC-002/MEC-003 for a terminal or continuation rule. Treat the deterministic absolute-history population limit as a separate physical-incidence extension requiring a canonical convergent acceleration sum, and complete the full-turn areal-rate control without co-authoring its analytical and numerical instruments.

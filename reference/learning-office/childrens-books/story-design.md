@@ -2,6 +2,8 @@
 
 The children's book series teaches a single cumulative story: children notice nature, ask a concrete question, test what happens, and discover one lawful pattern at a time.
 
+The developmental bands are curriculum design targets, not measured learning outcomes. Physical play supplies analogies and questions; it does not establish the substrate law. Recovery topics retain their current corpus claim levels. Preserve approved manuscripts and source artwork during procedural maintenance; record substantive story or theory revisions for a dedicated review.
+
 ## Core Aim
 
 The umbrella story is **The Wonder of Nature and the Universe**. The series should treat each child as a knowledge-seeker: someone who notices, wonders, tries something, compares what happened, and learns one new thing about nature or the universe.
@@ -11,7 +13,7 @@ The series should teach children to see nature as lawful, active, and geometrica
 - there are two fundamental entity types;
 - entities transmit and receive influence;
 - emitted potential waves travel at a finite field speed;
-- reception changes action, force, and acceleration;
+- reception contributes directly to acceleration;
 - path is fundamental from the beginning: presence here, intended motion there, and return through remembered places;
 - path-history later turns lived path into physical bookkeeping;
 - assemblies form when interactions close into stable patterns;
@@ -247,7 +249,7 @@ Do not map:
 - neutral balance to social compromise;
 - assembly to community or family morals.
 
-Characters may be representative of children worldwide in informal play, but the story meaning remains physical: motion, potential, transmission, reception, force, acceleration, path-history, and assembly.
+Characters may be representative of children worldwide in informal play, but the story meaning remains physical: motion, potential, transmission, reception, acceleration, path-history, and assembly.
 
 ## Response-Type Metaphors
 
@@ -285,7 +287,7 @@ For Books 9-11, introduce `response type`:
 
 For Books 12+, connect the metaphor back to formal language:
 
-> The child-facing inward/outward response maps to the sign of the interaction term in the force law. The story avoids social language, but the mathematical content remains directional acceleration along the line of action.
+> The child-facing inward/outward response maps to the sign of the acceleration contribution in the master equation. The story avoids social language, but the mathematical content remains directional acceleration along the line of action.
 
 ## Directional Vocabulary Modalities
 
@@ -356,8 +358,8 @@ Preferred cast rule:
 | A tiny listener | Reception | A receiver responds when a potential wave reaches it. |
 | A traveling message | Potential wave | Finite-speed propagation of emitted potential structure. |
 | The message has a speed | Field speed | Potential waves propagate at field speed. |
-| The message changes the path | Action / force | Reception changes acceleration along the line of action. |
-| The path bends | Acceleration | Force changes velocity over time. |
+| The message changes the path | Acceleration contribution | Reception changes acceleration along the line of action. |
+| The path bends | Acceleration | Acceleration is the rate of change of velocity. |
 | The old path still matters | Path-history | Present action depends on admissible prior transmitter positions. |
 | Many messages meet | Superposition | Received influences add at the receiver. |
 | A quiet pattern holds | Assembly | Stable interacting entities form persistent structure. |
@@ -389,7 +391,7 @@ Each initial-line book has a wonder question, a knowledge-seeking story, and a s
 
 ### Text-Only Manuscript Set
 
-The current series review pass has one text-only manuscript file for every initial-line book. Image prompts, PDFs, page exports, and social derivatives are intentionally out of scope for this pass.
+The series retains one manuscript file for every initial-line book. The [production procedure](production/README.md) owns approved pilot artwork and requested export scope; this story-design guide does not authorize illustration generation or export.
 
 | Book | Manuscript |
 | --- | --- |
@@ -442,7 +444,6 @@ Use canonical terms in parent/teacher notes and older books:
 - potential wave;
 - field speed;
 - action;
-- force;
 - acceleration;
 - path-history;
 - causal wake;
