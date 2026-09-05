@@ -6,6 +6,16 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-05 — Feedback sphere in User Interface
+
+Added the Webapp Feedback sphere, its scene descriptor, and the scene-ID/path mappings in the canonical standalone route resolver. A local browser rendering confirms the sphere alongside the existing User Interface entries. Content validation reports no authored errors; the new scene causes expected scene-index and graph drift, left for authorized regeneration. The standalone-launch suite passed 23 tests and failed its existing UI Guidelines placement assertion: that sphere was absent from the User Interface source before this edit. The feedback change preserves that unrelated placement.
+
+### 2026-09-05 — Public feedback navigation
+
+Replaced the Applications text link with the canonical standalone controls: table of contents, Back, Forward, Home, and scene search. Home explicitly resolves to the site root. Scoped form CSS preserves the shared control styling, and narrow headers reserve space above the title. Nine focused feedback and shared-navigation tests passed. A local headless Edge check at widths 1440, 390, and 320 CSS pixels exercised Home, table of contents, Forward, and search, found all five controls and no horizontal overflow or page errors, and checked title/control separation. Desktop and phone-width captures were visually inspected.
+
+The release checker reports a dependency-set mismatch, and the performance checker reports changed source bytes. The shared dependency set also exceeds the old release size ceiling and uses the canonical 32-pixel controls rather than the former 42-pixel feedback floor. These are recorded in the [navigation account](privacy-safe-feedback-intake.md#navigation) and [tracker](priorities.md#webapp-release-gate-baseline) for profile review and fresh measurement before publication. Historical evidence and accepted thresholds were preserved; this change is not a release receipt.
+
 ### 2026-09-05 — Workflow and skill organization accepted
 
 The operator approved the completed 97-file campaign and final review. Recorded acceptance in [Operator Brainstorming](../../op/brainstorming.md#final-review--2026-09-05) and removed the completed discussion from the active priority tracker; no numbered queue item was assigned to this campaign. Prior validation, scientific holds, historical preservation, and bounded behavioral evidence retain their stated scope. The recommended next step is the explicit branch/PR publication procedure, then ordinary workflow use with concrete defects captured in README-op.md. Approval of this campaign does not itself invoke publication. The acceptance edit changes the startup-router source fingerprint; defer `node scripts/build-agent-startup-orientation.mjs --write` and its subsequent `--check` to the designated publication runner or an explicit refresh request.

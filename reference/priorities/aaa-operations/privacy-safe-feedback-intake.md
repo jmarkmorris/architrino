@@ -10,9 +10,21 @@ OPS-012 is closed by one reproducible public intake path:
 4. Open the dedicated public GitHub issue form and paste the reviewed manifest.
 5. Review the complete public issue before submitting it.
 
-The machine-checkable boundary is [feedback-intake-policy.v1.json](feedback-intake-policy.v1.json). Opening the feedback page does not create an issue, send analytics, contact GitHub, or read the clipboard. The page requests only the same-origin public scene index, markdown index, and scene graph. GitHub is contacted only after the reader selects the issue link, and GitHub does not receive anything until the reader submits its form.
+The machine-checkable boundary is [feedback-intake-policy.v1.json](feedback-intake-policy.v1.json). Opening the feedback page does not create an issue, send analytics, contact GitHub, or read the clipboard. The diagnostic generator requests only the same-origin public scene index, markdown index, and scene graph. GitHub is contacted when the reader selects the issue link; the report is submitted only when the reader submits its form.
 
-Plainly: the diagnostic report is visible before it leaves the browser. The reader controls copying, opening GitHub, editing the report, and final submission.
+The diagnostic report is visible before it leaves the browser. The reader controls copying, opening GitHub, editing the report, and final submission.
+
+## Navigation
+
+From the home scene, follow **Archie → User Interface → Webapp Feedback**. The Webapp Feedback sphere launches `feedback.html` through the canonical standalone-app route resolver. The Contact link in About the Webapp remains an additional entry point.
+
+The authored sphere and route are implemented. The generated scene index and graph require refresh with `node scripts/validate-content.mjs --write --strict` followed by `node scripts/build-scene-graph.mjs --write --strict`, then their corresponding `--check --strict` commands. Until that refresh, generated search discovery does not include the new scene.
+
+The feedback page uses the shared standalone navigation bar for table of contents, Back, Forward, Home, and scene search. Home opens the site root because feedback is reached from documentation and can concern any public page. Back and Forward follow browser history, allowing the reader to return to the referring document. The former Applications text link incorrectly implied that feedback belonged to the application launcher.
+
+The shared runtime owns the icons, accessible labels, keyboard behavior, and search panel. Feedback styles are scoped to the form so they do not replace the shared controls' appearance. The narrow layout reserves a row above the title for the controls. Scene search loads the same public scene graph used by the diagnostic generator. Home and table-of-contents navigation use the shared session return marker; that navigation record is not included in the diagnostic manifest.
+
+The navigation update has scoped browser verification, but it does not inherit the older release and performance receipts. The release profile declares a four-file code dependency set and a 32,768-byte ceiling; shared navigation expands that set to fifteen files and exceeds that ceiling. Its canonical controls are 32 CSS pixels tall, below the feedback profile's older 42-pixel floor. Before publication, review these profile assumptions against the shared-navigation requirement and collect new source-bound evidence. Preserve the historical receipts; changing their hashes or relaxing thresholds alone would not establish a passing release.
 
 ## Reproducibility Fields
 

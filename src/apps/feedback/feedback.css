@@ -46,6 +46,14 @@ textarea {
   border-bottom: 1px solid var(--feedback-border);
   background: rgba(45, 0, 78, 0.94);
   backdrop-filter: blur(14px);
+  padding-right: max(260px, env(safe-area-inset-right));
+}
+
+.feedback-navigation {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(12px, env(safe-area-inset-right));
+  z-index: 3;
 }
 
 .feedback-eyebrow {
@@ -62,9 +70,8 @@ textarea {
   font-size: clamp(20px, 3vw, 28px);
 }
 
-.feedback-home,
 .feedback-issue-link,
-button {
+.feedback-actions button {
   display: inline-flex;
   min-height: 42px;
   align-items: center;
@@ -79,12 +86,10 @@ button {
   cursor: pointer;
 }
 
-.feedback-home:hover,
-.feedback-home:focus-visible,
 .feedback-issue-link:hover,
 .feedback-issue-link:focus-visible,
-button:hover,
-button:focus-visible {
+.feedback-actions button:hover,
+.feedback-actions button:focus-visible {
   border-color: var(--feedback-blue);
   outline: none;
   background: var(--feedback-panel-strong);
@@ -170,13 +175,13 @@ button:focus-visible {
   font-weight: 850;
 }
 
-label {
+.feedback-main label {
   font-size: 13px;
   font-weight: 800;
 }
 
-input,
-textarea {
+.feedback-main input,
+.feedback-main textarea {
   width: 100%;
   border: 1px solid var(--feedback-border);
   border-radius: 8px;
@@ -184,12 +189,12 @@ textarea {
   color: var(--feedback-text);
 }
 
-input {
+.feedback-main input {
   min-height: 44px;
   padding: 0 12px;
 }
 
-textarea {
+.feedback-main textarea {
   min-height: 320px;
   padding: 13px;
   resize: vertical;
@@ -198,8 +203,8 @@ textarea {
   line-height: 1.5;
 }
 
-input:focus-visible,
-textarea:focus-visible {
+.feedback-main input:focus-visible,
+.feedback-main textarea:focus-visible {
   border-color: var(--feedback-blue);
   outline: 2px solid rgba(132, 168, 255, 0.32);
   outline-offset: 1px;
@@ -238,7 +243,6 @@ code {
 }
 
 @media (max-width: 760px) {
-  .feedback-header,
   .feedback-intro {
     grid-template-columns: 1fr;
   }
@@ -246,9 +250,7 @@ code {
   .feedback-header {
     position: static;
     align-items: stretch;
-  }
-
-  .feedback-home {
-    width: 100%;
+    padding-top: calc(58px + env(safe-area-inset-top));
+    padding-right: max(22px, env(safe-area-inset-right));
   }
 }

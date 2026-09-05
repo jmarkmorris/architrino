@@ -1,9 +1,5 @@
 # Technical Brief: Master Equation And Validation Burden
 
-## Current Review Status
-
-This brief requires scientific correction before use as a current-law introduction or promotion. Its branch-resolved section retains an older receiver-weighted acceleration expression that conflicts with the live [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md). The current law uses transmitter-side acceleration weighting and keeps receiver root playback separate. The integral and branch normalization must be reconciled together against that owner. This standards review preserves the existing mathematics for a focused correction; it does not validate the retained equations or authorize their use in calculations.
-
 ## Audience And Scope
 
 For advanced undergraduate physics readers, recent physics graduates, and doctoral students who can read ordinary mechanics, field-theory notation, and delayed-interaction equations. The brief is not a full proof of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is a compact technical orientation to the proposed substrate ontology, the master equation, the meaning of its symbols, and the validation burden that follows if the equation is taken seriously.
@@ -63,7 +59,7 @@ The term $\mathbf A_{ij}$ means the total received acceleration on $i$ from tran
 
 ## Integral Form
 
-The path-history version of the law is:
+The path-history representation of the postulated [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md#path-history-sum-and-integral-representation) is written here with the wake-speed normalization explicit:
 
 $$
 \frac{d^2 \mathbf X_i}{dT_r^2}
@@ -72,7 +68,7 @@ $$
 \int_{-\infty}^{T_r}dT_t\,
 \frac{\hat{\mathbf{r}}_{ij}(T_r;T_t)}
 {r_{ij}^2(T_r;T_t)}
-\delta\!\left(g_{ij}(T_r;T_t)\right).
+c_f\,\delta\!\left(g_{ij}(T_r;T_t)\right).
 $$
 
 The definitions are:
@@ -100,13 +96,15 @@ $$
 \sigma_{ij}=\operatorname{sign}(q_iq_j).
 $$
 
-The delta function enforces the causal constraint $g_{ij}=0$. Transmitter events that do not lie on the receiver's backward causal wake condition do not contribute to the acceleration at that receiver event. The inverse-square factor is the geometric surface-density factor of the wake contribution. The unit vector fixes the line of action from the transmitter's emission position to the receiver's reception position. The sign $\sigma_{ij}$ encodes repulsion for like polarity and attraction for unlike polarity under the radial convention used here. The coupling $\kappa$ sets the universal interaction scale, absorbing normalization constants.
+The delta function enforces the causal constraint $g_{ij}=0$. Transmitter events that do not lie on the receiver's backward causal wake condition do not contribute to the acceleration at that receiver event. The inverse-square factor is the geometric surface-density factor of the wake contribution. The unit vector fixes the line of action from the transmitter's emission position to the receiver's reception position. The sign $\sigma_{ij}$ encodes repulsion for like polarity and attraction for unlike polarity under the radial convention used here. The coupling $\kappa$ is the same interaction scale in the integral and branch sum below; the explicit $c_f$ makes the integral weight dimensionless and fixes the static-transmitter normalization. Every numerical instantiation uses $c_f=1$.
 
-This equation should be read as a delayed path-history equation, not as a standard instantaneous central-force law. The transmitter position in the numerator and denominator is $\mathbf X_j(T_t)$, not $\mathbf X_j(T_r)$. The receiver is evaluated at $\mathbf X_i(T_r)$. The interaction is event-local at the receiver but history-dependent through the transmitter.
+This is a delayed path-history acceleration equation. The transmitter position in the numerator and denominator is $\mathbf X_j(T_t)$, not $\mathbf X_j(T_r)$. The receiver is evaluated at $\mathbf X_i(T_r)$. The interaction is event-local at the receiver but history-dependent through the transmitter.
+
+The displayed integral applies on an ordinary domain: causal hits have positive separation, the relevant roots are simple, and the history contribution and sum over transmitters converge. A same-transmitter term includes only nontrivial past roots; the coincident endpoint $T_t=T_r$ is excluded. Coincidence and degenerate roots require the separate regularized or singular-chart treatment specified by the current law, rather than substitution into this expression.
 
 ## Branch-Resolved Form
 
-If the causal roots are simple, the delta integral collapses into a sum over the active emission times:
+A causal emission root is simple when the derivative of the arrival constraint with respect to emission time is nonzero. On that domain, the delta integral collapses into a sum over the active emission times:
 
 $$
 \mathcal{C}_{ij}(T_r)
@@ -127,17 +125,17 @@ W_{ij}^{\mathrm{acc}}(T_r;T_t)
 \hat{\mathbf{r}}_{ij}(T_r;T_t),
 $$
 
-where the transmitter-side factor, receiver-side factor, and receiver-weighted acceleration factor are
+where the transmitter-side factor, receiver-side factor, and dimensionless acceleration weight are
 
 $$
 D_{t,ij}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}_{ij},
 \qquad
 D_{r,ij}=c_f-\mathbf V_i(T_r)\cdot\hat{\mathbf{r}}_{ij},
 \qquad
-W_{ij}^{\mathrm{acc}}=\left|\frac{D_{r,ij}}{D_{t,ij}}\right|.
+W_{ij}^{\mathrm{acc}}=\frac{c_f}{|D_{t,ij}|}.
 $$
 
-The transmitter-side factor is not a decorative correction. It measures how transmitter motion compresses or dilates the causal-root spacing. Formally, it comes from
+The transmitter velocity $\mathbf V_j(T_t)$ enters through its projection along the emission-to-reception direction $\hat{\mathbf r}_{ij}$. The factor $D_{t,ij}$ measures how a change of emission time changes the arrival constraint at a fixed reception event. Receiver velocity $\mathbf V_i(T_r)$ enters $D_{r,ij}$, which will describe motion along the selected root branch. Differentiating at fixed reception time gives
 
 $$
 \partial_{T_t}g_{ij}(T_r;T_t)
@@ -147,9 +145,31 @@ c_f-\hat{\mathbf{r}}_{ij}(T_r;T_t)\cdot\mathbf V_j(T_t)
 D_{t,ij}(T_r;T_t),
 $$
 
-with the factor $c_f^{-1}$ absorbed into the normalization convention for $\kappa$.
+The absolute value enters because the delta integral counts contributions from both orientations of a simple root. For any smooth numerator $f$ supported near isolated simple roots, change variables from emission time to the causal constraint in each root neighborhood. The differential transforms as $|dg|=|D_{t,ij}|\,dT_t$ at the root, so
 
-The branch-resolved form is the most useful technical entry point because it exposes what a simulation or proof must track. For each receiver $i$, each transmitter $j$, and each reception time $T_r$, one must identify the active causal roots, check the transmitter-side floor, evaluate the receiver-side factor on the same root record, evaluate the radial vector, and sum the signed inverse-square contributions weighted by $W^{\mathrm{acc}}$. The signed ratio remains separately available as the exact root-playback derivative $dT_t/dT_r=D_r/D_t$.
+$$
+c_f\int dT_t\,f(T_t)\,\delta(g_{ij}(T_r;T_t))
+=
+\sum_{T_{t,\ell}\in\mathcal C_{ij}(T_r)}
+\frac{c_f f(T_{t,\ell})}{|D_{t,ij}(T_r;T_{t,\ell})|}.
+$$
+
+Here $\ell$ labels a causal root, $T_{t,\ell}$ is its emission time, and $f$ is the remaining numerator of the integrand. Applying this identity component by component to the radial acceleration kernel yields exactly the branch sum above. The normalization is consistent with a stationary transmitter: its velocity vanishes, so $D_{t,ij}=c_f$ and $W_{ij}^{\mathrm{acc}}=1$. This fixes the inverse-square coefficient to $\kappa|q_iq_j|$ under the stated polarity convention.
+
+Receiver playback follows a different differentiation. Let the emission root vary with reception time, $T_t=T_{t,\ell}(T_r)$, while remaining simple. Differentiating the root identity along that branch gives
+
+$$
+0=\frac{d}{dT_r}g_{ij}(T_r;T_{t,\ell}(T_r))
+=-D_{r,ij}+D_{t,ij}\frac{dT_{t,\ell}}{dT_r},
+\qquad
+\frac{dT_{t,\ell}}{dT_r}=\frac{D_{r,ij}}{D_{t,ij}}.
+$$
+
+The signed derivative $dT_{t,\ell}/dT_r$ is the rate at which the selected emission time advances along the receiver path. It can be positive, zero, or negative. It is not the acceleration weight. At a fixed receiver position and reception time with fixed transmitter history, changing receiver velocity changes this playback derivative but does not change the arriving hit's acceleration. Receiver motion still changes later reception positions and hence later root geometry.
+
+The integral-to-sum conversion and playback identity are derived on the declared simple-root domain. A nonzero residual in either identity for the same smooth paths and simple root would contradict the corresponding calculation. They establish consistency of these representations of the postulated law, not existence of a retained assembly, global well-posedness, or validity at a degenerate root.
+
+The branch-resolved form is the most useful technical entry point because it exposes what a simulation or proof must track. For each receiver $i$, each transmitter $j$, and each reception time $T_r$, one must identify the active causal roots, check the transmitter-side floor, evaluate the radial vector, and sum the signed inverse-square contributions weighted by $W^{\mathrm{acc}}$. Track the receiver-side factor separately on the same root record to verify playback. A positive lower bound on $|D_t|$ protects the simple-root calculation; losing that bound requires a different chart, not a change from acceleration weighting to playback weighting.
 
 ## Relation To Familiar Equations
 
@@ -175,20 +195,22 @@ The main symbols are as follows.
 | $\mathbf V_i(T_r)$ | Velocity $d\mathbf X_i/dT_r$. |
 | $q_i=\pm\epsilon$ | Polarity bookkeeping unit carried by architrino $i$. |
 | $c_f$ | Finite wake propagation speed in the substrate law. |
-| $\kappa$ | Universal interaction scale, including normalization choices. |
+| $\kappa$ | Interaction scale shared by the displayed integral and sum, with $c_f$ explicit. |
 | $T_t$ | Transmitter emission time selected from path history. |
 | $r_{ij}$ | Euclidean separation between receiver-at-reception and transmitter-at-emission. |
 | $\hat{\mathbf{r}}_{ij}$ | Unit vector from transmitter-at-emission to receiver-at-reception. |
 | $g_{ij}$ | Causal constraint function; roots satisfy wake arrival. |
 | $\mathcal{C}_{ij}(T_r)$ | Active causal emission-time root set for transmitter $j$ and receiver $i$. |
-| $J_{ij}$ | Causal Jacobian from the delay map. |
+| $D_{t,ij}$ | Emission-time derivative of the causal constraint, evaluated at the selected root. |
+| $D_{r,ij}$ | Negative reception-time partial derivative of that constraint. |
+| $W_{ij}^{\mathrm{acc}}$ | Dimensionless acceleration weight $c_f/\lvert D_{t,ij}\rvert$. |
 | $\sigma_{ij}$ | Polarity sign selecting attraction or repulsion. |
 
 Three interpretations are important for technical readers.
 
 First, this is a finite-propagation law. The equation rejects instantaneous action at a distance at the substrate level. The receiver responds only to wake intersections that reach it at time $T_r$.
 
-Second, the equation is deterministic but not memoryless. Given a complete state plus the needed path-history ledger, the future is fixed by the law. But a reduced instantaneous state is insufficient, because delayed roots depend on past transmitter positions and velocities.
+Second, deterministic evolution requires a well-posed history problem: an admissible initial history, existence, and uniqueness within the stated domain. The current law supplies conditional finite-width results; it does not establish a globally unique sharp-limit evolution for every history. A reduced instantaneous state is insufficient because delayed roots depend on past transmitter positions and velocities.
 
 Third, the equation is branch-sensitive. Depending on path geometry, a transmitter can contribute zero, one, or multiple causal roots at the same receiver event. Near degenerate roots, the branch chart can fail even when the regularized dynamics remain meaningful. Therefore a plotted trajectory is not yet a proof of a stable branch. The proof object must include the root ledger, Jacobian behavior, regularization status, and convergence claims.
 
@@ -198,7 +220,7 @@ The equation is only the microscopic candidate law. To become a physics architec
 
 The first target is stable two-body or few-body behavior. Opposite-polarity attraction, like-polarity repulsion, delay, and self-hit structure must produce stable or metastable branch patterns rather than immediate collapse, explosion, or pathological caustic behavior. This includes ordinary partner-hit regimes and same-transmitter self-hit regimes, with clear conditions for when each branch is admissible.
 
-The second target is assembly structure. A Noether braid is a neutral six-architrino assembly class with polarity balance and a persistent causal-return ledger. The stronger nested shell braid program asks whether organized radial support bands can supply stable scaffolds for particle-like behavior. Those structures must be derived as retained branches of the master equation, not simply drawn as plausible diagrams.
+The second target is assembly structure. A [Noether braid](../../../content/markdown/aaa/noether-braid/noether-braid.md) is a candidate neutral assembly class described by persistent architrino paths and their common causal-return record. Its base case contains three architrinos of each polarity; that inventory does not itself establish dynamical retention or exact binary substructure. The stronger nested shell braid program asks whether organized radial support bands can supply stable scaffolds for particle-like behavior. Those structures must be derived as retained branches of the master equation, not simply drawn as plausible diagrams.
 
 The third target is effective particle bookkeeping. Stable assemblies must expose conserved records that can map to observed charge, mass, spin, interaction channels, and identity behavior. The architrino inventory is fixed at the substrate level, so particle production, association, dissociation, and reaction language must be interpreted as repartitioning of persistent architrinos into different assemblies.
 
@@ -216,7 +238,7 @@ The validation burden is the central reason to state the law explicitly. A serio
 
 3. **Energy and symmetry accounting:** Show how conserved quantities or controlled exchange ledgers arise from the delayed law. Persistent architrino identity gives provenance; it does not automatically prove energy, momentum, or angular momentum conservation.
 
-4. **Assembly retention:** Demonstrate that candidate binaries, neutral braids, and nested shell braids remain bounded, recover from perturbations, and close their causal-return ledgers under declared tolerances.
+4. **Assembly retention:** Demonstrate that candidate binaries, neutral braids, and nested shell braids remain bounded and close their causal-return ledgers under declared tolerances. State and establish the claimed response to perturbations; bounded response does not imply asymptotic recovery.
 
 5. **Effective recovery:** Derive particle-like records, effective fields, clock behavior, quantum statistics, and Lorentz-like observer limits from assemblies and coarse-graining. Do not assume the effective theories as hidden inputs.
 
@@ -228,7 +250,7 @@ This posture is intentionally strict. The master equation is not public decorati
 
 A fair first test should not attempt to recover every known physical theory at once. It should choose one tightly scoped branch problem and ask whether the architecture can certify it end to end.
 
-A minimal example would be a two-body opposite-polarity branch with declared regularization, declared memory depth, and a stated ordered transmitter-receiver pair policy. The test should report the root set $\mathcal{C}_{ij}(T_r)$ over a time window, the Jacobian floor, the radial residual, energy or action bookkeeping under the chosen convention, and convergence behavior as numerical resolution improves. If the branch is claimed to be stable, the report must also show boundedness and perturbation recovery rather than only a visually appealing orbit.
+A minimal example would be a two-body opposite-polarity branch with declared regularization, a justified history window or controlled history-tail error, and a stated ordered transmitter-receiver pair policy. The test should report the root set $\mathcal{C}_{ij}(T_r)$ over a time window, the Jacobian floor, the radial residual, energy or action bookkeeping under the chosen convention, and convergence behavior as numerical resolution improves. If the branch is claimed to be stable, state the precise stability property and establish it over the declared scope. Bounded response is distinct from asymptotic return after a perturbation. An equilibrium spectrum requires verified acceleration balance; a periodic-orbit analysis requires an actual periodic solution and its retained history. A prescribed drawing supplies neither.
 
 A stronger test would move to a neutral six-architrino braid. There the question is not whether a symmetric configuration can be drawn, but whether all ordered transmitter-receiver pairs close one causal-return ledger under the same assumptions. The retained-branch claim should survive changes in timestep, regularization width, phase sampling, and perturbation size within declared tolerance. A failed branch is still useful if it narrows the admissible architecture and prevents overclaiming.
 
@@ -238,7 +260,7 @@ This style of test is the bridge between public explanation and technical seriou
 
 A technical reader can evaluate the program without first accepting its broader conclusions. Start with four questions.
 
-First, is the ontology internally clear? The terms architrino, causal wake, absolute time, Euclidean void, Noether sea, assembly, effective field, and Physical Observer must stay level-aware.
+First, is the ontology internally clear? Keep primitive architrinos, causal wakes, absolute time, and Euclidean void distinct from assemblies, the Noether sea as ambient assembly contents, effective fields, and observer-level reconstruction.
 
 Second, is the master equation mathematically intelligible as a delayed causal-root law? The root set, Jacobian, inverse-square factor, polarity sign, and path-history dependence should be inspectable.
 

@@ -478,3 +478,54 @@ Strict content validation and priority-ranking validation passed, as did the whi
 | [reference/learning-office/presentations/powerpoint-production-notes.md](../../learning-office/presentations/powerpoint-production-notes.md) | Preserved | Full-read first-person production notebook with dated 2023 decisions, device experiments and contradictory observed failures; historical operational provenance retained, not current software instructions. | `1308b5ca6c101f8c10c87572dfa728efe237831f2c741ba9709684e079e72dca` |
 | [reference/learning-office/presentations/Resolving-the-Crisis-of-150-Years-of-Physics-Misinterpretations.pptx](../../learning-office/presentations/Resolving-the-Crisis-of-150-Years-of-Physics-Misinterpretations.pptx) | Asset preserved | Non-Markdown source, data, or artwork; no prose edit authorized. | `b23ead1aba5d141eb4559b294d3567e690d09d9983c6d0b1ea5812104027767d` |
 | [reference/learning-office/README.md](../../learning-office/README.md) | Updated | Full review distinguished educational objectives from unsupported audience estimates, linked current style/response authorities, and protected audience-specific teaching forms and production provenance. | `2edf7b4dcae0958bafed035a0b76cffa24c0d49ca853e37cc2f39cc207914fd1` |
+
+## Explanation of the First Two Follow-ups
+
+This section records the findings before the operator authorized correction on 2026-09-05. The reconciliation receipt below records their subsequent disposition; references to the earlier equations and holds describe that pre-correction state.
+
+### Technical brief: acceleration weighting and normalization
+
+The [technical brief](../../research-office/cto/technical-brief-master-equation.md#branch-resolved-form) assigns a causal hit the acceleration weight $|D_r/D_t|$. The [current Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) assigns it $c_f/|D_t|$ and uses the signed ratio $D_r/D_t$ for the rate at which a selected emission time changes as reception time advances. This is a measured document discrepancy established by direct comparison of the two authored equations on 2026-09-05; a matching current expression in the brief would overturn the discrepancy finding.
+
+Here $c_f$ is wake propagation speed, $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_t$ is the transmitter-side factor, and $D_r=c_f-\hat{\mathbf r}\cdot\mathbf V_r$ is the receiver-side factor. The vector $\hat{\mathbf r}$ points from the transmitter's emission position to the receiver's reception position; $\mathbf V_t$ is transmitter velocity at emission and $\mathbf V_r$ is receiver velocity at reception. The dot products select velocity along that direction. These definitions apply to a simple causal root, where $D_t\ne0$.
+
+The distinction is between acceleration at a fixed reception event and progression through emission history along a receiver path. In the current law, changing receiver velocity while holding the reception position and transmitter history fixed changes the playback derivative but does not multiply the arriving hit's acceleration by an additional receiver factor. In the older expression, it does. Therefore replacing one weight by the other changes the dynamical equation, not merely its notation. This is a derived comparison of the displayed expressions, not a claim that receiver motion cannot change subsequent geometry or root reception.
+
+Normalization is a second, related consistency obligation. For the brief's causal constraint $g=r-c_f(T_r-T_t)$, the simple-root delta identity gives $\int f(T_t)\delta(g(T_t))\,dT_t=\sum_\ell f(T_{t,\ell})/|D_{t,\ell}|$. Here $T_r$ is reception time, $T_t$ is emission time, $r$ is their spatial separation, $f$ is the nonsingular integrand, and the sum runs over simple emission roots. The denominator follows from differentiating $g$ with respect to emission time at fixed reception time. No receiver factor arises in this collapse. To express the result using the dimensionless weight $c_f/|D_t|$, the integral coefficient must include the corresponding $c_f$, or the coupling convention must explicitly absorb it. A universal constant cannot absorb $D_r$, which varies with receiver velocity and geometry. This conclusion is derived from the simple-root delta identity; a failure of root simplicity lies outside its scope and requires separate treatment.
+
+The proposed correction is to align the integral, branch expression, coupling convention, and explanatory prose with the current owner while retaining the distinction between playback and acceleration. The review placed the brief on hold; it did not perform this mathematical correction or establish anything about solver implementation.
+
+### Legacy Specialist briefs: proposals embedded in instructions
+
+The eight [legacy role briefs](../../research-office/specialists/roles-og-entourage/) combine useful disciplinary responsibilities with inherited mechanism proposals, numerical targets, historical chapter maps, and acceptance language. The review corrected response and authority guidance and added explicit limits on using the retained material. Those limits do not themselves reconcile each proposal with current scientific owners.
+
+| Brief | Main unresolved material |
+| --- | --- |
+| Alfa | Geometric exclusion, nuclear binding, fixed binary roles, and precision targets |
+| Cami | Lorentz and measurement interpretations, instantaneous-correlation shortcuts, and insufficient present-state descriptions |
+| Cos | Fixed inner/middle/outer identities, speed assignments, and clock or metric recovery sketches |
+| Dyna | The receiver-weighted legacy equation, state-space sketches, alignment conditions, and certificate proposals |
+| Phe | Geometry-to-particle identifications, spin-statistics, confinement, masses, and benchmark thresholds |
+| Red | Bell examples, benchmark assumptions, numerical thresholds, costs, and schedules |
+| Sig | Observational bounds, anomaly significances, and proposed stopping criteria |
+| Sol | Simulation scales, numerical tolerances, physical targets, and legacy certification deliverables |
+
+This inventory is measured from the individual dispositions and the briefs' current scope notices. It does not establish that every inherited proposal is false. The practical risk is an inference: an agent following a role brief can treat a suggested mechanism as a premise or a proposed threshold as an accepted test. Reconciliation should inspect each substantive statement against its actual owner and classify it as supported current guidance, an open research proposal, a superseded instruction, or preserved attributed history. Current instructions should point to the relevant evidence and authority; historical notes retain provenance. No new physical assumption follows from a role assignment.
+
+Correcting the technical brief is recommended first because it presents an explicit conflicting equation as a technical introduction. The legacy roles can then be reconciled individually, prioritizing those actually being used and beginning with Dyna when resolving the same weighting discrepancy.
+
+## 2026-09-05 — Technical Brief and Legacy Role Reconciliation
+
+The operator authorized correcting the technical brief and reconciling every legacy role brief. This follow-up has a separate scope from the original 292-document editorial audit; the original inventory, baseline hashes, and dispositions above remain its historical record.
+
+### Technical brief
+
+The [Master Equation technical brief](../../research-office/cto/technical-brief-master-equation.md) now uses the canonical transmitter-side acceleration weight and includes the matching wake-speed factor in its integral. It derives the simple-root delta collapse and the signed receiver playback derivative separately, defines both event roles, and states the stationary-transmitter normalization. The current-use hold is resolved by this source reconciliation. The [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) remains the unchanged scientific owner.
+
+The explanation now limits the formulas to positive separation, nontrivial causal roots, simple-root charts, and convergent history contributions. It distinguishes conditional history-problem well-posedness from a global determinism claim, a candidate neutral braid from a retained solution, bounded perturbation response from asymptotic return, and actual equilibrium or periodic histories from prescribed drawings. These are scope corrections; no new physical law or assembly-retention result is asserted.
+
+An independent affine-path calculation differentiates the causal constraint symbolically and recovers the transmitter derivative and signed playback ratio. Three local Gaussian delta-integral quadratures at normalized wake speed reproduce the analytically evaluated isolated-root weights with relative errors approximately 3.09e-14, 3.75e-7, and 6.00e-6. The reference is the closed-form affine root and delta change-of-variable identity, not an EOM solver output. These checks test the two representations on those prescribed paths; they do not certify the postulated law, root completeness for general histories, or a dynamical assembly. A residual beyond the declared quadrature approximation or a differing exact symbolic derivative would overturn the corresponding check.
+
+For reproducibility, the local scalar check fixes reception time to zero and uses transmitter position $uT_t$, receiver position $x$, separation $r=|x-uT_t|$, and causal constraint $g=r+T_t$. The Gaussian delta approximation has width 0.001. The triples $(x,u,T_t)$ are $(2,0,-2)$, $(1,0.5,-2)$, and $(-1,2,-1)$, integrated within root-neighborhood half-widths 0.4, 0.4, and 0.15 respectively. The reference magnitudes are 0.25, 0.5, and 1. The local support isolates each selected root and makes no all-history completeness claim. SymPy supplies the symbolic differentiation and SciPy quadrature evaluates the mollified integral; both run in the repository's shared Python environment.
+
+The equation audit identifies two revised display blocks, two added derivation blocks, and nine preserved blocks. Browser inspection of the on-demand KaTeX preview verifies legible equations and the symbol table; final structural checks are recorded with the completed role review below.
