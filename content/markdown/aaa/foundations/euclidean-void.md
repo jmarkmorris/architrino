@@ -232,7 +232,7 @@ That condition is unchanged if you translate or rotate your chart, because both 
 
 Cartesian coordinates are the natural default, but the same flat geometry can be written in other coordinate systems when a problem has a symmetry worth exploiting.
 
-In spherical coordinates $(r,\theta,\phi)$ with $r\geq0$, $\theta\in[0,\pi]$, and $\phi\in[0,2\pi)$,
+Spherical coordinates $(r,\theta,\phi)$ label a point by distance from the origin, polar angle, and azimuth. The usual parameter ranges $r\geq0$, $\theta\in[0,\pi]$, and $\phi\in[0,2\pi)$ cover space with repeated angular labels at the origin and polar axis. For a regular coordinate chart, restrict to $r>0$, $0<\theta<\pi$, and an open azimuth interval such as $0<\phi<2\pi$. This also removes a chosen angular seam. On that chart,
 
 $$
 h=dr^2+r^2d\theta^2+r^2\sin^2\theta\,d\phi^2
@@ -253,7 +253,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-30c4fd8263c17e84)
 
-In cylindrical coordinates $(\rho,\phi,z)$,
+In cylindrical coordinates $(\rho,\phi,z)$, a regular chart similarly requires $\rho>0$, $z\in\mathbb R$, and an open azimuth interval such as $0<\phi<2\pi$. On that chart,
 
 $$
 h=d\rho^2+\rho^2d\phi^2+dz^2,
@@ -268,6 +268,8 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-468ca128cc62b125)
 
+The spherical matrix has determinant $r^4\sin^2\theta$, and the cylindrical matrix has determinant $\rho^2$. Their vanishing at the excluded origin or axes records a failure of the coordinate labels: at a spherical pole, for example, every azimuth names the same point. The Euclidean metric itself remains nondegenerate there. Use Cartesian coordinates or an overlapping regular chart at those locations and across the chosen angular seam; formulas requiring an inverse metric apply only where the chart is regular.
+
 The components look different, and that is worth being unbothered by. The $r^2$ appears because a step in angle covers more distance when you are further out — a fact about the labelling, not about the space. The geometry is untouched, and curvature is independent of the labels used to describe it, so
 
 $$
@@ -276,7 +278,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2eb51da7a56c1da7)
 
-in every coordinate system without exception.
+on every regular coordinate chart, including Cartesian charts through the locations excluded by these spherical or cylindrical coordinates.
 
 ## Index Notation and Tensor Operations
 
@@ -546,7 +548,7 @@ Refusing an expanding void creates a specific and heavy observational burden, an
 
 The filter that most candidate mechanisms fail is transport versus loss. An admissible redshift must retune the signal's clock rate, through medium transport or clock and ruler response, and it must come with matching distance and intensity bookkeeping. It cannot be mere attenuation. Propagation loss can dim a signal, but dimming supplies neither the time dilation nor the thermal scaling above. Simple **tired-light** mechanisms based only on scattering, phase degradation, or photon energy loss fail this joint benchmark; excluding every possible fixed-void transport law would require testing the law's complete predictions rather than its label.
 
-Sources for these comparison benchmarks: Lubin and Sandage, [*The Tolman Surface Brightness Test for the Reality of the Expansion. IV* (2001)](https://arxiv.org/abs/astro-ph/0106566), reports consistency with expansion after luminosity-evolution modeling; Goldhaber and collaborators, [*Observation of cosmological time dilation using Type Ia supernovae as clocks* (1996)](https://doi.org/10.1016/S0920-5632(96)00493-8), reports the supernova stretching test; the Planck-oriented temperature study [*Probing the Evolution of the Cosmic Microwave Background Temperature with Planck Data* (2012)](https://doi.org/10.1088/0004-637X/757/2/144) states the $T(z)$ benchmark and deviation parameterization; and the Fermi collaboration's [GRB 090510 analysis](https://doi.org/10.1038/nature08574) bounds a linear energy dependence of photon speed under its stated emission assumptions. These are observer-level constraints, not premises of the substrate theory.
+Sources for these comparison benchmarks: Lubin and Sandage, [*The Tolman Surface Brightness Test for the Reality of the Expansion. IV* (2001)](https://arxiv.org/abs/astro-ph/0106566), reports consistency with expansion after luminosity-evolution modeling; Goldhaber and collaborators, [*Observation of cosmological time dilation using Type Ia supernovae as clocks* (1996)](https://doi.org/10.1016/S0920-5632(96)00493-8), reports the supernova stretching test; de Martino and collaborators’ [*Measuring the Redshift Dependence of the Cosmic Microwave Background Monopole Temperature with Planck Data* (2012)](https://doi.org/10.1088/0004-637X/757/2/144) presents the $T(z)$ benchmark and deviation parameterization in a method and sensitivity study forecasting Planck measurement accuracy using simulated clusters and measured X-ray cluster properties; and the Fermi collaboration's [GRB 090510 analysis](https://doi.org/10.1038/nature08574) bounds a linear energy dependence of photon speed under its stated emission assumptions. These are observer-level constraints, not premises of the substrate theory.
 
 Positive recovery is owned by the cosmology branch: [Cosmology Ontology](../cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../cosmology/CMB.md) carries the temperature and spectrum tests.
 

@@ -292,7 +292,7 @@ A concurrent Codex pass was still running when these counts were taken, so figur
 
 The operator requested a fresh complete review of every Markdown file under `content/markdown/aaa/foundations/`, in textbook order, with discussion after each small batch. This review assesses mathematics, conceptual coherence, evidence, exposition, and useful deductions under the current academic style guide, edition 1.1. It is separate from the historical edition-1.0 conversion and from CRW-005's 190-document assurance denominator. Historical conversion rows and acceptance records above remain unchanged. The live corpus-reviewer procedure governs this work, with the operator's batch instruction replacing its one-document default.
 
-The initial request authorized review records and discussion capture only. The operator subsequently accepted all batch-1 recommendations and directed their implementation before batch 2; the dated integration record below owns that acceptance and verification. Batch-2 findings remain discussion-only. Controlled canon, application changes, generated artifacts, and reactivation of deferred theory work remain outside this task. A later instruction to continue means the next review batch unless implementation is also requested.
+The initial request authorized review records and discussion capture only. The operator subsequently accepted all batch-1 recommendations and directed their implementation before batch 2; the dated integration record below owns that acceptance and verification. Later dated receipts below record acceptance and verification through batch 3, including the supplemental quadrupole clarification. The current batch-4 findings remain discussion-only. Controlled canon, application changes, generated artifacts, and reactivation of deferred theory work remain outside this task. A later instruction to continue means the next review batch unless implementation is also requested.
 
 Baseline Git HEAD: `d1eab6a51f20a2490031d77fd60f4563192a8f04`. Initial `git diff --check` passed. Foundations and this lane were clean at baseline and immediately before the first batch reading. Unrelated concurrent changes were present and were left untouched. Hashes below identify the actual source bytes; HEAD alone would not identify an independently modified working file.
 
@@ -315,13 +315,13 @@ All nine files occur in `content/graph/textbook_toc.json` and as Markdown nodes 
 | Batch | Documents in reading order | Current disposition |
 | --- | --- | --- |
 | 1 | [Ontology](../../../content/markdown/aaa/foundations/ontology.md), [Architrino](../../../content/markdown/aaa/foundations/architrino.md) | Accepted corrections verified after full-document self-review |
-| 2 | [Absolute Time](../../../content/markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../content/markdown/aaa/foundations/euclidean-void.md) | Both read completely; Absolute Time corrections verified; Euclidean Void partially integrated; F2-1 through F2-5 accepted corrections verified; F2-6 and F2-7 awaiting decision |
-| 3 | [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md) | Not yet reviewed as a campaign target; single batch for mathematical density |
-| 4 | [Absolute Time Defense](../../../content/markdown/aaa/foundations/absolute-time-defense.md) | Not yet reviewed; single batch for evidence and proof burden |
+| 2 | [Absolute Time](../../../content/markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../content/markdown/aaa/foundations/euclidean-void.md) | Both read completely; all F2-1 through F2-7 accepted corrections verified; response-scalar insight under discussion |
+| 3 | [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md) | F3-1 through F3-7 and supplemental quadrupole clarification accepted and verified |
+| 4 | [Absolute Time Defense](../../../content/markdown/aaa/foundations/absolute-time-defense.md) | Completely reviewed; all F4-1 through F4-4 accepted corrections verified |
 | 5 | [Detecting the Absolute Frame](../../../content/markdown/aaa/foundations/detecting-the-absolute-frame.md), [Constructing the Absolute Frame](../../../content/markdown/aaa/foundations/constructing-the-absolute-frame.md) | Not yet reviewed as campaign targets |
 | 6 | [Emergence of Structure](../../../content/markdown/aaa/foundations/emergence-of-structure.md) | Not yet reviewed; separate synthesis and branch-selection burden |
 
-Reading a later chapter as a required foundation anchor does not count as its completed review. Coverage is 4 of 9 complete readings: 3 chapters with all recommended corrections accepted and verified, 1 partially integrated chapter awaiting further decisions, 0 reviewed with no recommended change, 0 files explicitly deferred or blocked, and 5 not yet reviewed. F2-1 through F2-5 have verified corrections; the physical response identifications discussed in F2-2 remain open recovery obligations. Scientific closure is not implied by any coverage status.
+Reading a later chapter as a required foundation anchor does not count as its completed review. Coverage is 6 of 9 complete readings: 6 chapters with all recommended corrections accepted and verified, 0 wholly unimplemented chapters with findings awaiting decision, 0 partially integrated chapters awaiting correction decisions, 0 reviewed with no recommended change, 0 files explicitly deferred or blocked, and 3 not yet reviewed. F2-1 through F2-7 have verified corrections; the physical response identifications discussed in F2-2 and the supplemental batch-3 quadrupole assessment remain open recovery obligations. Scientific closure is not implied by any coverage status.
 
 | Path within Foundations | Baseline SHA-256 |
 | --- | --- |
@@ -666,6 +666,8 @@ The mathematical reference is the explicit orthogonal-matrix determinant argumen
 
 #### F2-6 — The curvilinear formulas need regular chart domains
 
+**Current disposition:** accepted, implemented, and verified on 2026-09-05. The original finding and pre-acceptance discussion below are preserved; the integration receipt supersedes their pending status.
+
 **Location:** `euclidean-void.md:235–279`. **Classification:** missing domain conditions, with otherwise correct formulas. **Smallest repair:** distinguish spherical coordinate parameter ranges from a regular chart, state the excluded axes/origin and angular seam, and refer to Cartesian or overlapping charts there.
 
 The spherical matrix has determinant $r^4\sin^2\theta$, so it is singular at $r=0$ and at $\theta=0,\pi$. Those values are included in the listed ranges. At a pole, changing $\phi$ names the same point, so the coordinate map is not one-to-one and its differential is not invertible. Cylindrical coordinates similarly have determinant $\rho^2$ and fail on the axis. A periodic angular range also requires a seam or multiple charts. These failures are coordinate degeneracies, not degeneracies of the Euclidean metric.
@@ -680,7 +682,17 @@ The zero factors in the displayed matrices describe that loss of coordinate rank
 
 The chapter currently supplies broad parameter ranges that cover these exceptional points without distinguishing them from the regular chart domain. The sufficient repair is to retain the metric formulas, state the regular spherical domain away from the origin, polar axis, and chosen angular seam, state the analogous cylindrical exclusions, and use Cartesian or overlapping regular charts at excluded locations. The flatness claim remains exact on valid charts. This is a domain and explanation correction; no physical singularity, curvature, or EOM solver defect is established. F2-6 awaits operator decision and was not implemented with F2-5.
 
+##### Accepted F2-6 integration — 2026-09-05
+
+The operator's “do 1” accepted the preceding recommendation to apply F2-6 and then explain F2-7. The live chapter matched the F2-5 result before editing: SHA-256 `272aa8e7c1782209ff38d72ecb832d261cb51196bb20127b01754c5f45d994a3`. The integration used the live integrator-reviewer procedure. The edit states regular spherical and cylindrical chart domains, explains the coordinate determinants and angular seam, and directs readers to Cartesian or overlapping regular charts at excluded locations. The metric formulas and the flat Euclidean geometry retain their meaning.
+
+The complete resulting 598-line chapter was reread and compared with the immediate baseline. SHA-256 after integration is `2fc39b063eb969a4aeb7253eb367e89a9e185955dda9c9f2ac4ba5c7b93736f9`. The vendored KaTeX parser accepted all 140 mathematical expressions; all 37 display blocks are byte-identical to baseline, all prior links are retained, and all 53 local file-link occurrences resolve to existing files. The existing coordinate-map and determinant derivations supply the local mathematical reasoning. This is author self-review with syntax and structural instruments, not independent mathematical validation or a rendered-page visual audit.
+
+Scoped whitespace validation passed. The strict content check reported 0 errors and 1 warning: existing generated drift at `content/scenes/scenes_index.json`. Regeneration remains with the established regeneration or PR owner; the reported command is `node scripts/validate-content.mjs --write`, which was not run. F2-7 and the response-scalar deduction remain unaccepted. No generated artifact, controlled canon, application code, or additional corpus chapter was changed.
+
 #### F2-7 — The CMB source has the wrong title and needs its method scope stated
+
+**Current disposition:** accepted, implemented, and verified on 2026-09-05. The original finding and discussion below retain their pre-acceptance scope; the integration receipt supersedes their pending status.
 
 **Location:** `euclidean-void.md:543`, supporting the benchmark at line 537. **Classification:** verified bibliographic error and evidence-scope clarification. **Smallest repair:** identify de Martino and collaborators by the published title, retain the correct DOI, and describe this source as a method and sensitivity study for the temperature-redshift benchmark.
 
@@ -690,15 +702,43 @@ The inspected author abstract and paper introduce a deviation parameter for the 
 
 Claim grade: `measured` for the source identity and study scope, using primary author material and publisher-deposited metadata. Falsifier: publisher metadata establishing the displayed title as an alternate title of this same work, or a source passage showing the purported new measurement. Access failures at the publisher and NASA PDF endpoints were worked around using the author-hosted arXiv paper; no source claim relies on an AI summary.
 
+##### Discussion explanation — source identity and what was tested
+
+The current passage is [Euclidean Void, source note](../../../content/markdown/aaa/foundations/euclidean-void.md), line 551 in the F2-6 result. Its immediate assertion—that this paper states the temperature-redshift benchmark and deviation parameterization—is supported. The demonstrated defect is the displayed title. The additional recommendation is to identify the study type so a reader can distinguish a sensitivity forecast from a reported measurement of temperature evolution.
+
+The authors' [paper introduction](https://arxiv.org/pdf/1203.1825), page 2, explicitly describes testing a pipeline on simulated clusters and using measured X-ray cluster properties to predict the accuracy of future Planck measurements. The calculation therefore combines observational inputs with a forecast; it does not itself report the new direct Planck temperature-evolution measurement that a reader might infer from an imprecise citation description. The author record and PDF were checked again during this discussion; the NASA record endpoint returned an access error on this recheck. The earlier publisher-metadata identity check remains recorded at its original scope.
+
+The smallest repair is to correct the title, identify de Martino and collaborators, retain the DOI, and say that this method and sensitivity study presents the benchmark and deviation parameterization. No change to the substrate ontology, benchmark equation, or cosmological recovery requirement follows. A forecast mislabeled as an observation would overstate empirical support, but the present chapter does not explicitly make that stronger claim. F2-7 remains awaiting acceptance.
+
+##### Accepted F2-7 integration — 2026-09-05
+
+The operator's “do 1” accepted the recommendation to apply F2-7 and then explain the remaining batch-2 insight. The live chapter matched the F2-6 result before editing: SHA-256 `2fc39b063eb969a4aeb7253eb367e89a9e185955dda9c9f2ac4ba5c7b93736f9`. Under the live integrator-reviewer procedure, the source note now identifies de Martino and collaborators, uses the published title, retains the DOI, and describes the method and sensitivity study's simulated clusters and measured X-ray cluster inputs. The publisher-deposited Crossref record was retrieved directly and confirmed the full title and DOI; the author paper's page-2 introduction confirmed its forecasting scope. These are independent primary sources for bibliographic identity and study purpose, not independent mathematical validation of the paper's results.
+
+The complete resulting 598-line chapter was reread, with a final reread of the corrected sentence after a possessive-grammar adjustment. The immediate-baseline comparison confines F2-7 to the source note. Final SHA-256 is `1b561ec1b1ad6ebbe40533b262c3c584abc5ac1813cb874dbcfa94d035022a02`. KaTeX accepts 140 mathematical expressions, all 37 display blocks remain byte-identical, all previous link targets are retained, and 53 local file-link occurrences resolve. Author self-review found no further required corpus correction in this pass. Scoped whitespace validation passed. The strict content check reported 0 errors and 1 warning (exit status 1): existing `content/scenes/scenes_index.json` drift. The small possessive adjustment changes no structural input to that check. Regeneration remains with its established regeneration or PR owner; `node scripts/validate-content.mjs --write` was not run.
+
+All seven numbered batch-2 findings now have accepted corrections verified at their recorded scope. The response-scalar insight is retained for discussion below; it has not been promoted to the corpus or accepted as a physical identification. No application code, controlled canon, generated artifact, or other corpus chapter was changed by this integration.
+
 ### Batch 2 deduction for discussion: scalar scale depends on the retained response
 
 **Trigger:** F2-2's ambiguity between linear stretch, squared length, and a direction average. **Candidate insight:** a derived ruler map can supply an invariant volume-equivalent scale, while its trace supplies a different directional summary. Their difference is controlled by anisotropy; the choice cannot be made by notation alone.
 
-Assume a positive-definite symmetric linear stretch map $S$ on a common Euclidean reference tangent space. Its positive eigenvalues $s_1,s_2,s_3$ are the length multipliers in three principal directions. Its directional mean is $\tfrac13\operatorname{tr}S$, whereas a unit volume changes by $\det S$. The corresponding volume-equivalent length factor is $a_V=(\det S)^{1/3}$. If the measured object is instead the squared-length metric $\gamma=S^{\mathsf T}hS$, then the same factor is $a_V=(\det\gamma/\det h)^{1/6}$. These are geometric identities conditional on that response definition, not a derived cosmology.
+Assume a positive-definite symmetric linear stretch map $S$ on a common Euclidean reference tangent space. Its positive eigenvalues $s_1,s_2,s_3$ are the length multipliers in three principal directions. The mean of those three principal stretches is $\tfrac13\operatorname{tr}S$, whereas a unit volume changes by $\det S$. The corresponding volume-equivalent length factor is $a_V=(\det S)^{1/3}$. If the measured object is instead the squared-length metric $\gamma=S^{\mathsf T}hS$, then the same factor is $a_V=(\det\gamma/\det h)^{1/6}$. These are geometric identities conditional on that response definition, not a derived cosmology.
 
 The elementary check uses normalized units $c_f=1$ and $S=\operatorname{diag}(2,1,1)$. The trace mean is $4/3$, while the volume-equivalent length factor is $\sqrt[3]{2}$. They agree in the isotropic case $S=aI$. More generally, the arithmetic-geometric mean inequality gives $(\det S)^{1/3}\le\operatorname{tr}S/3$, with equality precisely at isotropy.
 
 The first physical proof step would be to derive a common retained ruler map, identify whether its observable is a stretch or metric, and determine which scalar enters the jointly recovered distance, redshift, intensity, and clock relations. Homogeneity, transport, and observer calibration remain additional requirements. Neither scalar is automatically the observed cosmological scale factor. Claim grade: `derived` for the determinant and trace identities; `inferred` for their usefulness as a route to fixing the ambiguity. Falsifier of the proposed application: the actual response is not a positive linear stretch on a common reference space, or the recovered observational map selects a different scalar. No new response law or experimental claim is promoted.
+
+##### Discussion explanation — the quantity being preserved selects the average
+
+Imagine a reference unit cube under a hypothetical effective ruler map that doubles one principal length and leaves the other two unchanged. With $c_f=1$, its principal stretch factors are $(2,1,1)$. The arithmetic mean of those factors is $(2+1+1)/3=4/3$. Its reconstructed volume is twice the reference volume. An isotropic cube with that same volume must have side factor $a_V$ satisfying $a_V^3=2$, hence $a_V=sqrt[3]{2}$. Isotropically applying $4/3$ would instead give volume factor $64/27$, which is not 2. Both averages are mathematically valid; they preserve different features of the response. This example concerns a hypothetical effective map within a fixed void, not a deformation of the substrate.
+
+The general formulas follow by diagonalizing the positive, self-adjoint map $S$ in an $h$-orthonormal basis. The trace sums its three principal stretches, and the determinant multiplies them. A volume element therefore changes by $det S$, while an isotropic length factor changes volume by its cube. If the response is expressed as $gamma=S^{mathsf T}hS$, taking determinants gives $detgamma=(det S)^2det h$, which supplies the sixth-root expression above. The determinant ratio is independent of a common coordinate relabeling because numerator and denominator acquire the same squared Jacobian factor. The arithmetic-geometric mean inequality gives the ordering, with equality exactly when all three positive stretches agree. These deductions are author-derived local geometry; no simulation or new constitutive law is involved.
+
+A clarification to the original discussion's phrase “directional mean” is necessary. The trace mean equals the uniform spherical average of the longitudinal projection $h(mathbf n,Smathbf n)$ for $h(mathbf n,mathbf n)=1$, since the sphere average of $n^in^j$ is $h^{ij}/3$. It is generally different from the mean actual length multiplier $|Smathbf n|_h$. For the same example and $mathbf n=(1,1,0)/sqrt2$ in Cartesian coordinates, the projection is $3/2$ and the length multiplier is $sqrt{5/2}$. Cauchy–Schwarz gives the projection no larger than that length; anisotropy makes the inequality strict on a set of directions of positive area. The working discussion now calls the trace quantity the mean principal stretch, preserving the determinant comparison while removing that ambiguity. This clarification changes no accepted F2-2 formula, which already defines its averaged response explicitly as a quadratic form.
+
+The useful theoretical route is conditional: derive a physical ruler or metric response first, then determine whether the consumer needs a mean directional projection, a length average, a volume-equivalent scale, or another observable. A determinant-based scale is a natural candidate when the required summary preserves local reconstructed volume. Cosmological distance, redshift, intensity, and clock comparisons need their own jointly consistent derivation before that candidate can be identified with a cosmological scale factor. A response that is nonlocal, history-dependent without a sufficient local state, or not representable by the assumed positive linear map defeats this proposed application even though the geometric identities remain true.
+
+Recommendation for this discussion: retain the result here as a provisional proof route and proceed to the next review batch after operator discussion. The repaired chapter already explains why the response definition matters; no further Foundations correction is required merely to add this optional example. The physical response-recovery obligations remain open, and this turn does not authorize batch 3.
 
 ### Batch 2 complete-reading assessment, source checks, and limits
 
@@ -720,4 +760,669 @@ No empirical reanalysis, independent solver comparison, global root-completeness
 
 ### Current discussion boundary after batch 2
 
-Coverage is 4 of 9 complete reviews: 3 chapters with all recommended corrections accepted and verified (Ontology, Architrino, Absolute Time), 1 partially integrated chapter awaiting further decisions (Euclidean Void), 0 reviewed unchanged with no recommended correction, 0 explicitly deferred or blocked files, and 5 not yet reviewed. F2-1 through F2-5 have accepted, implemented, and verified corrections. F2-6, F2-7, and the response-scalar deduction await discussion. The current discussion is F2-6; no next batch is authorized by this correction request. The next planned target is Absolute Timespace alone. Its later review must preserve the now-explicit F2-2 boundary: neither a cosmological scale nor a clock-comparison residual follows from a generic tensor trace without the physical response map. The existing response-recovery obligations remain open. Completed reading coverage and corrected exposition do not close those scientific obligations.
+Coverage is 4 of 9 complete reviews: 4 chapters with all recommended corrections accepted and verified (Ontology, Architrino, Absolute Time, Euclidean Void), 0 partially integrated chapters awaiting correction decisions, 0 reviewed unchanged with no recommended correction, 0 explicitly deferred or blocked files, and 5 not yet reviewed. All F2-1 through F2-7 corrections are accepted, implemented, and verified. The current discussion is the response-scalar insight; its physical application remains provisional, and no next batch is authorized by this correction request. The next planned target is Absolute Timespace alone. Its later review must preserve the F2-2 boundary: neither a cosmological scale nor a clock-comparison residual follows from a generic tensor trace without the physical response map. The existing response-recovery obligations remain open. Completed reading coverage and corrected exposition do not close those scientific obligations.
+
+## Foundations batch 3 — Absolute Timespace review, 2026-09-05
+
+### Scope, authority, and reviewed version
+
+The operator's “do 1” accepted the recommendation to proceed to batch 3 while retaining the batch-2 response-scalar insight as a provisional proof route. This authorizes review and discussion capture, not corpus implementation. The live corpus-reviewer procedure was used with the operator's small-batch override. Absolute Timespace is the sole target because of its mathematical density. The preceding batch-2 discussion boundary is a historical snapshot; this section owns the current boundary.
+
+The deterministic recursive inventory still contains the same nine Markdown paths, and the live textbook traversal still places Absolute Timespace fifth, with no missing path. All 922 lines of [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md) were read. The reviewed SHA-256 is `f0fce6751a516b7d1c117f82b7b0af18e810052830036c331bc861d33ea8437c`, matching the campaign baseline and unchanged at the end of review. Git HEAD at startup was `6597f62a05e4d91a0c1719e32a4b50e917ef408f`. The working set already contained the preceding Euclidean Void integration and the two campaign owners; that work was preserved. All locations below refer to this reviewed target hash.
+
+The earlier Foundations conversion entry, its verification and correction history, and the current batch-1 and batch-2 decisions were consulted. The historical conversion's 55 equation blocks remain present, but historical correction and conversion receipts are not evidence that the present prose is correct. Dependencies included the corrected Absolute Time and Euclidean Void, the Master Equation's delay-map theorem pack, Lorentz Kinematics' Theorem G, the Noether Sea convergence discussion, and current mathematical and terminology authorities. These dependency reads do not extend completed campaign coverage beyond Foundations.
+
+### Findings for discussion
+
+#### F3-1 — The root-floor explanation repeats the corrected singularity and root-count overstatement
+
+**Location:** `absolute-timespace.md:559–600`, especially line 585; the related cycle diagnostic is at lines 616–634. **Classification:** demonstrated overstatement and contradiction with the accepted F2-1 correction; consequential for interpreting root diagnostics. **Disposition:** accepted by the operator; correction implemented and verified in the integration receipt below.
+
+The derivative formula is correct. A positive declared floor bounds local conditioning; violating that chosen floor does not establish a zero derivative, and a floor alone does not prevent roots leaving the retained history interval. At normalized wake speed $c_f=1$, take a transmitter $X_j(s)=s/2$ and a receiver event $(T_r,X_i)=(2,3/2)$, restricted to a neighborhood of $s=1$. Then $F(2,s)=(s-1)/2$. Its root has derivative $1/2$ and is perfectly simple, even if the calculation declares a floor $3/4$. There is no fold at this event. This is a prescribed-history local counterexample to the prose implication, not an evolved assembly example.
+
+For a separate endpoint check, a stationary transmitter at the origin and receiver at distance 1 have root $s=T_r-1$ and derivative 1. On a fixed retained interval $[0,2]$, that root leaves through the upper endpoint as $T_r$ increases through 3, with no derivative degeneration. The Master Equation explicitly separates boundary regularity R1 from simple-root regularity R2. The same target chapter correctly mentions boundary and memory-window exits at line 634, so line 585 also conflicts with its own later explanation.
+
+The smallest repair is to carry F2-1's accepted distinction into this chapter: nonzero derivative permits local continuation; the chosen margin supplies quantitative conditioning; actual derivative zero requires singular analysis; constant inventory additionally requires controlled boundaries, pair set, and history domain. Preserve the derivative and playback equations. Also make the cycle diagnostic explicitly a reception-time-indexed inventory followed through one declared cycle. The displayed sum is a root count at a receiver time, not a finite count of all continuously received rows over a cycle; counting sampled rows would depend on sampling density.
+
+Claim grade: `derived` from the two elementary root examples and the live theorem conditions. Falsifier: a declared domain restriction or additional hypothesis that excludes both examples from the sentence's intended scope. Until corrected, do not use this paragraph to classify a numerical margin failure as a physical caustic or an assembly failure. No change to the Master Equation is recommended.
+
+#### F3-2 — A common Lorentz action does not require the observed deformation factors themselves to form an exponential group
+
+**Location:** `absolute-timespace.md:681–691`. **Classification:** undefined mathematical object and overstated necessity in a recovery target. **Disposition:** accepted by the operator; correction implemented and verified in the integration receipt below.
+
+The passage introduces $\mathcal D=\exp(\varphi_{\mathrm{eff}}K)$ as a moving branch's deformation family, but gives neither the space on which $K$ acts nor the maps extracting length and clock observables. An exponential with one fixed linear generator obeys a composition law. The Lorentz contraction observable does not obey that law under ordinary multiplication. Writing its target value as $f(\varphi)=\operatorname{sech}\varphi$, choose $\cosh\varphi=2$. Then $f(\varphi)=1/2$, while $f(2\varphi)=1/7$ and $f(\varphi)^2=1/4$. Thus even the intended Lorentz factor is a counterexample if the displayed exponential is meant to act directly on these scalar deformation factors. This is algebra in an explicitly labeled observer-level comparison, not an imported substrate law; numerical checking used $c_f=1$.
+
+A full boost action can be represented by an exponential, with length and clock readings obtained by different projections and simultaneity selections. Different observable spaces can also carry different representations of the same abstract generator. Distinct matrices or response functions therefore do not, by themselves, establish failure of Lorentz recovery. The live Theorem G requires a common retained causal record and consistent dressing; it does not impose the undefined stronger matrix-identification test made here.
+
+The smallest repair is to preserve the common-record requirement and treat the exponential as an optional representation on a declared full state or event-record space, accompanied by the observable maps. If that representation is not supplied here, replace the exponential assertion with the precise common-record recovery condition and leave constructing an equivariant representation as a proof route. Do not declare physical recovery failed merely because the reduced clock and length maps have different generators or nonlinear forms.
+
+Claim grade: `derived` for the composition counterexample; `open` for construction of a shared representation and observation maps. Falsifier: a declared state space, group action, and projection maps that make the exponential well-defined and establish the claimed necessity. The concern does not reject Lorentz recovery or common microscopic provenance.
+
+#### F3-3 — The shape test needs a rest-shape normalization
+
+**Location:** `absolute-timespace.md:661–679`. **Classification:** missing definition and normalization; false as a universal raw aspect-ratio requirement. **Disposition:** accepted by the operator; correction implemented and verified in the integration receipt below.
+
+The equation uses $R_\parallel/R_\perp$ without defining these quantities as normalized deformation factors or restricting the reference branch to a spherical envelope. At zero observer speed its right-hand side is 1, so a raw-radius interpretation requires every tested branch to have equal longitudinal and transverse radii at rest. Relativistic contraction does not impose that rest shape. A reference body with radii 2 and 1 has ratio 2 at rest and ratio $2/\gamma_0$ after ideal longitudinal contraction; it fails the displayed test despite exactly following the stated comparison law. The example fixes $c_f=1$ and concerns observer geometry only.
+
+The live Theorem G uses deformation factors $a_\parallel/a_\perp$, which can refer to changes relative to a reference branch. The sufficient repair is to define positive reference radii and use $[R_\parallel(v)/R_\parallel(0)]/[R_\perp(v)/R_\perp(0)]$, or use explicitly defined deformation factors. Alternatively, restrict the equation to the intended isotropic reference-envelope class. Hold internal excitation, medium state, and the branch comparison convention fixed. Define the velocity domain $|v_{\mathrm{eff}}|<c_0$ and clarify how the displayed residual budget is controlled near its endpoint. The clock ratio likewise presumes a calibrated rest clock in the declared weak homogeneous observer chart.
+
+Claim grade: `derived` from the zero-speed limit and an arbitrary rest aspect ratio. Falsifier: an explicit earlier definition making these particular $R$ symbols normalized factors or restricting the tested class to equal rest radii. No such definition occurs in the target. This is an important limit on a recovery test, not a predicted failure of real assemblies.
+
+#### F3-4 — The filled cone is a passage-by-time construction, not an established domain for every causal influence
+
+**Location:** `absolute-timespace.md:489–533`, especially lines 523–533. **Classification:** ambiguous reachability claim that becomes false under a general causal-domain interpretation. **Disposition:** accepted by the operator; correction implemented and verified in the integration receipt below.
+
+For one emission, the equality gives actual direct support. The inequality says a fixed spatial location is reached no later than the listed time; interior spacetime events are not later direct hits of that same emission. With $c_f=1$, an emission at $(0,0)$ reaches location $X=1$ at $T=1$. The interior event $(2,1)$ does not receive that same wake again. The inequality therefore describes locations already passed by a given time, not additional direct support.
+
+Nor has the text established that this cone bounds all indirect influence. The chapter permits super-$c_f$ constituents. A kinematically allowed recipient meeting that emission at $(1,1)$ and then moving at speed 2 reaches $(2,3)$ outside the original cone, while its later history can still depend on the received interaction. This demonstrates the missing hypothesis in a geometry-only inference; it does not certify an EOM solution, a realizable signaling channel, or an observer-level faster-than-light experiment. Wake-only chains with every segment limited by $c_f$ do satisfy the cone bound by the triangle inequality, but that premise cannot silently exclude transport along constituent histories.
+
+The smallest repair is to define the filled set as a passage-by-time or geometric envelope construction, retain equality as direct wake support, and keep general history-mediated influence separate. If a genuine operational reachability set is wanted, specify admissible relays, transport, and persistence and derive it from them. This continues F2-3's accepted separation of direct contributions from indirect dependence. Claim grade: `derived` for the support distinction and kinematic counterexample; general physical signaling remains `open`. Falsifier: a proved bound on every admitted influence-carrying channel that supplies the missing premise.
+
+#### F3-5 — The causal arrow comes from admissibility and support rules, not the product manifold alone
+
+**Location:** `absolute-timespace.md:50`, `78–80`, and `602–608`. **Classification:** incorrect explanatory inference and a smaller ordering-terminology error. **Disposition:** accepted by the operator; correction implemented and verified in the integration receipt below.
+
+A graph over $T$ assigns one position to each time; it does not itself select the direction in which a history is physically admitted. The product manifold contains curves traversed toward decreasing $T$, and the same manifold supports a hypothetical future-supported interaction law. Those possibilities are excluded here by the stated future-directed evolution rule and the actual $T_t<T_r$ support rule. Absolute Time explicitly assigns the causal orientation to the law's support convention. Line 80's claim that no separate rule is needed contradicts its own preceding admissibility sentence.
+
+The intended exclusion of causal loops is sound once these rules are imposed: every link of an admissible finite causal chain strictly increases $T$, so the chain cannot return to its starting event. The repair is to explain that proof and credit its premises. It does not add a new arrow postulate; it identifies the rule already present.
+
+Line 50 also calls the ordering a total order of events. Distinct simultaneous events have the same time, so the relation $A\preceq B$ defined by $T_A\le T_B$ is a total preorder on events, not an antisymmetric total order. The simplest reader-facing repair is “a total ordering of instants or simultaneity slices.” Claim grade: `derived` from the definitions. Falsifier: a definition of an event ordering that distinguishes simultaneous events, or an independent geometric restriction supplying the arrow without the already stated admissibility rule. Such a distinction is not part of this ontology.
+
+#### F3-6 — The statistical convergence route needs a covariance bound that includes the full received-cell weight
+
+**Location:** `absolute-timespace.md:810–846`, with the exhaustion prescription at lines 789–804. **Classification:** missing definition and proof hypothesis; the final martingale implication is correct conditionally. **Disposition:** accepted by the operator; correction implemented and verified in the integration receipt below.
+
+The prose uses inverse-square decay to obtain shell variance $O(n^{-2})$, but the displayed bound on $\delta\mathbf a_{\mathrm{cell}}$ includes only separation decay. It does not identify whether that variable is an undiluted cell source or the complete acceleration received from all its admitted roots. Uniform moments of already received contributions do not supply their radial decay: independent unit-variance cell contributions satisfy the displayed exponential separation bound, yet summing $O(n^2)$ of them gives variance $O(n^2)$. This counterexample addresses the displayed hypothesis alone; it does not refute the stronger inverse-square weighted hypothesis the surrounding prose appears to intend.
+
+For the actual wake sum, per-hit inverse-square dilution also does not automatically bound a whole cell if admitted root multiplicity or transmitter-side weights grow without control. State the moment or covariance hypothesis for the complete weighted, centered contribution, with the root ledger included. One sufficient formulation for cells $k,l$ outside a local ball is
+
+$$
+\left|\mathbb E[\delta\mathbf a_k\cdot\delta\mathbf a_l]\right|
+\le C r_k^{-2}r_l^{-2}e^{-d_{kl}/\ell}.
+$$
+
+Here $r_k$ is receiver-to-cell distance, $d_{kl}$ is cell separation, and a bounded cell-packing density is also assumed. For a shell $I_n$ at radius comparable to $n\ell$, that density makes $\sup_k\sum_l e^{-d_{kl}/\ell}$ finite. Consequently
+
+$$
+\mathbb E\left\|\sum_{k\in I_n}\delta\mathbf a_k\right\|^2
+\le C' n^{-4}\sum_{k\in I_n}\sum_{l\in I_n}e^{-d_{kl}/\ell}
+\le C''n^{-4}|I_n|
+=O(n^{-2}).
+$$
+
+This is the missing local derivation. It can instead be obtained from normalized undiluted cell variables and explicitly bounded weights, provided the same full-root obligation is retained. The displayed repair is sufficient, not claimed necessary, and is not claimed to follow already from neutral Noether sea dynamics.
+
+The chapter correctly adds a martingale-difference hypothesis for the centered shell increments. Given it and summable variances, orthogonality of increments bounds the second moment of the partial sums, and the $L^2$ martingale convergence theorem gives both mean-square and almost-sure convergence. This theorem was checked against [Scott Sheffield's probability lectures, slides 21–24](https://math.mit.edu/~sheffield/2016175/Lecture19.pdf). Mixing alone does not prove that conditional-mean hypothesis; the chapter already says so. The result is for the declared receiver-centered exhaustion and does not establish arbitrary rearrangement independence. Specify what an allowed refinement preserves, or restrict the statement to completed shell sums.
+
+The smallest repair is to define the weighted cell variable, state a sufficient weighted covariance and packing hypothesis, include the variance estimate, and keep the existing martingale and physical-recovery limits. Claim grade: `derived` for the conditional estimate and counterexample to the weaker displayed bound; the physical statistical hypotheses remain `open`. Falsifier: an existing precise definition that already supplies the missing radial and complete-root moment bounds. This finding does not establish divergence of the actual sea, and the weaker mean-square covariance route in Noether Sea is not promoted to an almost-sure theorem.
+
+#### F3-7 — The ten-generator group is Poincare, not Lorentz
+
+**Location:** `absolute-timespace.md:657`. **Classification:** demonstrated terminology error with an otherwise correct count. **Disposition:** accepted by the operator; correction implemented and verified in the integration receipt below.
+
+The seven connected substrate generators are three spatial translations, three rotations, and one time translation. Adding three boosts gives the ten generators of the Poincare group. The Lorentz group itself has six: three rotations and three boosts. Reflections add disconnected transformations, not continuous generators. The same count is already used correctly in the local coordinate-framework owners and is confirmed in [Silvia Nagy's group-theory discussion, sections 2.3–2.4](https://www.maths.dur.ac.uk/users/silvia.nagy/QFT.html).
+
+Replace “ten-generator Lorentz structure” with “ten-generator Poincare structure,” while preserving the distinction between symmetry recovery, algebra closure, and conserved charges. Claim grade: `derived` by counting the stated transformations; the external notes independently confirm the established group names. Falsifier: an explicit definition using “Lorentz structure” for the affine extension, which would still be needlessly inconsistent with the local canonical term. No new symmetry has been proved by counting generators.
+
+### Additional theoretical insight — common provenance and sufficient response variables
+
+**Trigger:** the one-generator necessity in F3-2, the framing-quadrupole target at lines 368–376, and the batch-2 distinction between different summaries of one physical response. **Candidate insight:** a single microscopic record can support several different observable maps without requiring one scalar statistic or one identical matrix representation to contain them all. The valuable common-record condition is consistency of those maps with the same underlying dynamics.
+
+The proposed $Q_A$ economy is a useful conditional route rather than an established universal sufficiency result. A framing distribution equally supported on the six signed Cartesian axes has $\langle n_i n_j\rangle=\delta_{ij}/3$ and hence $Q_A=0$, just as a uniform sphere does. But the first distribution has $\langle n_x^4\rangle=1/3$, whereas the uniform sphere gives $\tfrac12\int_{-1}^{1}u^4du=1/5$. Thus the same quadrupole can coexist with different higher directional information. This is a moment calculation at $c_f=1$, not an assertion that either distribution is a retained physical assembly. The target itself already acknowledges higher multipoles at line 366, so this is not a newly demonstrated contradiction in that definition.
+
+A concrete first proof step is to derive the response of each channel to variations of the shared record, identify which part is controlled by $Q_A$, and bound everything discarded. For channel $k$, an estimate of the form $\|\mathcal R_k^{\mathrm{aniso}}\|\le C_k\|Q_A\|+\eta_k$ would make a common quadrupole certificate useful only after the gain $C_k$ and omitted-response bound $\eta_k$ are derived at the tested scale. The gains need not be equal for matter, clocks, and rulers. The candidate fails as a sufficient description if two admissible records with the same $Q_A$ give observably different residuals beyond the declared $\eta_k$ bounds. Its physical application is `inferred` and remains provisional; the moment identities are `derived`. No additional required closure target or corpus edit is authorized by retaining this discussion.
+
+### Explanation — one history, different measurements
+
+A complete physical record is like a movie containing the assembly's constituent positions through absolute time, its admitted causal-root contributions and their weights, its internal cycles, and the relevant medium history. A measurement asks a specified question of that record. A clock procedure identifies successive repetitions of an internal cycle. A ruler procedure compares spatial extents under a declared simultaneity and calibration convention. A signal procedure compares emission and reception events. These procedures use common underlying history while selecting different information from it.
+
+Let $H$ denote the complete relevant history, and fix each measurement protocol, reference branch, and calibration. An observable map is the rule that extracts the reported quantity. Denote these rules by
+
+$$
+O_{\mathrm{clock}}[H],\qquad O_{\mathrm{ruler}}[H],\qquad O_{\mathrm{signal}}[H].
+$$
+
+The common-history requirement says that these outputs must follow from mutually consistent applications of the same dynamics and medium state. It does not say that a cycle duration, a spatial length, and an arrival-time comparison are equal quantities, or even that they have the same units. Independently adjusting a separate response parameter for each measurement can reproduce agreement without deriving that common origin. Deriving the separate maps from one history is a stronger and physically meaningful requirement.
+
+#### When a tensor is a sufficient summary
+
+A reduced tensor $Q[H]$ retains selected information about the full history. To say that this one tensor is sufficient for a set of observables requires more than saying that it was computed from their common source. For exact sufficiency there must be maps $f_k$ such that
+
+$$
+O_k[H]=f_k(Q[H])
+$$
+
+for every admitted history in the declared regime, with all other allowed conditioning variables fixed or explicitly included. Thus two admitted histories with the same $Q$ must produce the same observable. Conversely, if an observable is constant over every set of histories sharing $Q$, its value defines a map on the realized values of $Q$. This elementary factorization criterion identifies the actual proof burden. The different $f_k$ need not be identical.
+
+For approximate sufficiency, specify the norm and channel-specific error $\eta_k$ in $\|O_k[H]-f_k(Q[H])\|\le\eta_k$. Two histories with the same $Q$ must then have outputs separated by no more than $2\eta_k$, by the triangle inequality. A larger separation falsifies that error claim. Bounds may depend on a declared scale, branch class, or medium regime; those dependencies cannot be hidden in a supposedly universal tensor.
+
+The preceding quadrupole example illustrates information loss. The six signed Cartesian directions and the uniform sphere have identical second moments and vanishing quadrupole, but different fourth moments. That is a derived mathematical counterexample to universal sufficiency for all directional statistics. It is not a counterexample involving two demonstrated physical assemblies. To establish that $Q_A$ controls particular physical anisotropy channels, derive those channels and bound their dependence on the information omitted from $Q_A$. Different channel gains and remainder bounds are compatible with a shared physical origin.
+
+#### Why the matrices can differ too
+
+An abstract symmetry transformation and its matrix on a chosen kind of data are different objects. Consider only a passive relabeling of Euclidean spatial axes by an orthogonal matrix $R$. A direction vector transforms as $\mathbf n'=R\mathbf n$. A second-moment tensor $Q=\langle\mathbf n\mathbf n^{\mathsf T}\rangle$ transforms as
+
+$$
+Q'=\langle(R\mathbf n)(R\mathbf n)^{\mathsf T}\rangle=RQR^{\mathsf T}.
+$$
+
+Both formulas describe the same coordinate relabeling. Their operations differ because a vector and a second-moment tensor retain different kinds of information. This identity follows by substitution and linearity of averaging. It assumes no physical rotation of the assembly relative to its medium and imports no substrate dynamical law.
+
+F3-2 applies the same distinction to an explicitly observer-level recovery target. A full collinear Lorentz boost has an exponential representation on event coordinates. A clock reading or simultaneous length comparison is obtained by a further observation procedure. Its scalar factor need not inherit the matrix multiplication law: the previously derived example gives $\operatorname{sech}(2\varphi)=1/7$ when $\operatorname{sech}\varphi=1/2$, whereas multiplying the two scalar factors gives $1/4$. This does not break Lorentz composition. It shows why that scalar factor is not the full boost transformation.
+
+#### Significance and remaining physical question
+
+The general distinction between a record, a summary, a symmetry action, and an observable map is mathematical. The provisional physical insight is that the matter, clock, ruler, and signal channels may admit a useful common reduced description without sharing one identical response matrix. The first proof step is to derive their separate maps from the same admitted histories and identify the retained variables and controlled remainders. The sufficiency claim fails if two admitted histories agree on those retained variables but differ in a measured channel beyond its declared error. A failure of the common dynamical account occurs if the derived maps cannot jointly reproduce the required observations within their stated regime.
+
+This protects the strong idea of physical unity while placing the proof obligation on the actual measurement relations. It also prevents an unjustified scalar or tensor compression from concealing a missing response channel. No universal sufficiency theorem for $Q_A$, physical Lorentz recovery, or new assembly result is established by this explanation.
+
+### Operator correction — lossy compression does not establish physical sufficiency
+
+The operator challenged the suggestion that a tensor remains correct when its construction discards information. The objection is accepted at the level of physical sufficiency: no argument in this review establishes that the framing quadrupole is sufficient for the matter, clock, and ruler responses. Calling it a compression supplies no justification. The earlier explanation moved too quickly from the mathematical possibility of several observation maps to the possible usefulness of a reduced tensor. These are separate claims, and the first gives no evidence for the second. Batch 4 remains paused for this discussion.
+
+A tensor can be correctly defined as a particular statistic while being inadequate for a proposed physical use. In the live chapter, $Q_A^{ij}=\langle\hat n^i\hat n^j-h^{ij}/3\rangle_A^{\mathrm{frame}}$ records a trace-free second directional moment under the declared average. Once the distribution and averaging rule are specified, this definition determines that statistic. It does not establish that the statistic contains all information relevant to an assembly response. The chapter explicitly distinguishes vanishing quadrupole from absence of every anisotropy, then introduces the stronger three-channel control statement as a theorem target. The latter remains unproved in this review.
+
+The loss is concrete: the signed-axis distribution and the uniform sphere both give $Q_A=0$, although their fourth directional moments differ, as derived above. Thus $Q_A$ cannot reconstruct the full framing distribution. This demonstrates information loss at the distribution level. It neither demonstrates that those two distributions are physically admitted assembly histories nor decides whether a specific physical response depends on the lost information. Those are additional dynamical questions.
+
+A lossy summary can still be exact for a restricted question. For example, an arithmetic mean discards the individual entries but determines their total when their count is supplied. It does not determine their variance. Likewise, a reduced tensor is justified for a specified observable only after deriving that observable's dependence on the retained information and proving that changes in the discarded information cannot change the result, or can change it only within a declared error bound. If the tensor is intended to evolve autonomously, one must additionally establish that histories sharing its present value have the same reduced evolution under the admitted conditions. A correct instantaneous statistic alone does not close that evolution.
+
+The exact sufficiency falsifier is a pair of admitted histories with identical retained variables and different target observables. For an approximate factorization with uniform error $\eta_k$ per history, a difference greater than $2\eta_k$ refutes that bound. A claim only to bound a residual, rather than determine it, instead fails when the residual exceeds its proposed bound; unequal residuals alone need not refute an upper bound. The chapter's leading-order quadrupole target therefore needs a specified expansion or regime and control of omitted terms, not a demand that the quadrupole reconstruct every detail of the history.
+
+The tensor transformation rule is a further independent issue. Being a tensor does not itself imply compression: an invertible coordinate transformation loses no information, and a tensor field may encode far more data than a single averaged tensor. The loss in this example arises from retaining only the averaged second moment. The vector-versus-tensor rotation example explains different representations of one coordinate change; it cannot validate discarding physical information.
+
+Current conclusion: $Q_A$ is a defined quadrupole statistic, not a verified sufficient physical description of the three response channels. The general observation-map distinction is derived mathematics. Physical adequacy of the proposed reduction remains unestablished. If derivation shows dependence on omitted variables, the appropriate repair is to retain those variables or narrow the approximation and its domain. No tensor reduction is endorsed by this discussion, and no additional corpus edit is made.
+
+### Supplemental quadrupole assessment — definition, geometry, and physical response
+
+The operator's “do 1” requests examination of the actual framing-quadrupole claim. This is a focused theorem-target review within batch 3, using the corpus-review-workflow skill's live core-geometry-theorem-reviewer procedure. The campaign's explicit authorization of review records and discussion capture permits this account in the existing owners; no reviewed corpus or dependency is edited. Batch 4 remains paused. The complete Absolute Timespace reread from the accepted integration remains attributable to its unchanged SHA-256 `51c8388d72a767588b03e2fd983afde15f8c000818c0b919c3cd09b08291a1ea`.
+
+#### What the live documents assert
+
+[Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md), lines 332–350, first makes the assembly response depend on internal history, shielding, medium state, and orientation. Lines 353–366 then introduce $Q_A$ as a symmetric trace-free framing average and explicitly acknowledge that higher anisotropy can survive $Q_A=0$. Lines 368–377 propose a stronger result: a bound on this one tensor should control the matter-sector orientation residual, clock-orientation residual, and trace-free ruler response. The section is a theorem target, not an established theorem. The phrase “The carrier is” at line 353 and the demand that all three effects “descend from the same framing tensor” at line 377 nevertheless need the missing response derivation; they are not consequences of the definition.
+
+[Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy), lines 637–696, supplies a finite three-frame representative and separates nonorthogonality from unequal weights. Its last paragraph repeats the proposed physical suppression and explicitly says no measured family comparison bears on these targets. The [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md), line 1352, calls $Q_A$ a schematic quadrupole leakage of the moving internal delay record. A quadrupole of a delay record is not automatically the same quantity as an average of framing normals: relating their measures and weights is itself part of the missing derivation.
+
+The [Lorentz residual handoff](../master-equation-closure/lorentz-test-residual-handoff.md), lines 5–11 and 47–65, is schema-complete but population-blocked. It requires histories, root data, clock and ruler records, and medium-response inputs in addition to framing quadrupoles. It supplies no populated three-channel sufficiency certificate. [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), lines 2048–2092, also labels the nearby hierarchy/averaging route a conditional lemma target whose averaging computation is open. Neither a repeated target nor a schema field is independent evidence that the reduction works.
+
+#### Definition: what can already be proved
+
+Work in an orthonormal Cartesian spatial chart, so $h^{ij}=\delta^{ij}$. Once a normalized framing average is declared, define $S=\langle\hat{\mathbf n}\hat{\mathbf n}^{\mathsf T}\rangle$ and $Q_A=S-I/3$, with unit framing directions. Then $Q_A$ is symmetric, and
+
+$$
+\operatorname{tr}Q_A=\langle\|\hat{\mathbf n}\|^2\rangle-1=0.
+$$
+
+For any unit probe direction $\mathbf e$,
+
+$$
+\left\langle(\mathbf e\cdot\hat{\mathbf n})^2\right\rangle
+=\frac13+\mathbf e^{\mathsf T}Q_A\mathbf e.
+$$
+
+Thus $Q_A=0$ is exactly isotropy of this second directional moment. It establishes neither full distributional isotropy nor isotropy of a physical response. These statements are derived directly from the definition, assuming a normalized average with directions and averaging protocol fixed.
+
+For a physical assembly, that protocol needs more specification. The finite-frame owner writes $Q_A=\sum_a w_a(\hat{\mathbf n}_a\hat{\mathbf n}_a^{\mathsf T}-I/3)$ with $\sum_a w_a=1$, and permits weights supplied by retained action, energy, or angular-momentum tensor data. The cited sections do not select which extraction and normalization supplies the single tensor needed by the three-channel claim. Such prescriptions need not agree. If a probability-average interpretation is used, nonnegative weights must also be established. The algebraic trace identity needs normalization; a physical interpretation and a repeatable computed value need the actual extraction rule. This is a missing definition for the proposed physical theorem, not a demonstrated contradiction in the formal tensor formula.
+
+#### Geometry: the available result stops at the tensor
+
+Let $N$ have the three unit framing normals as columns, and let $\lambda_a=w_a-1/3$. The configuration-space decomposition is the exact identity
+
+$$
+Q_A=\frac13(NN^{\mathsf T}-I)
++\sum_{a=1}^{3}\lambda_a
+\left(\hat{\mathbf n}_a\hat{\mathbf n}_a^{\mathsf T}-\frac13I\right).
+$$
+
+In particular, an orthonormal frame gives $Q_A=N\operatorname{diag}(w_1-1/3,w_2-1/3,w_3-1/3)N^{\mathsf T}$. Equal weights therefore give zero exactly; orthogonality alone does not. For a quantitative bound, use the Frobenius norm, the square root of the sum of squared matrix entries. A unit-direction projector minus $I/3$ has squared Frobenius norm $2/3$, giving
+
+$$
+\|Q_A\|_F\le\frac13\|NN^{\mathsf T}-I\|_F
++\sqrt{\frac23}\sum_a|w_a-1/3|.
+$$
+
+This follows from the triangle inequality. The determinant limit in the owner is also geometrically sound: unit-column matrices lie in a compact set, and equality in the unit-volume determinant bound requires mutually orthogonal columns. Consequently $|\det N|\to1$ forces $NN^{\mathsf T}\to I$; combining that with $w_a\to1/3$ gives $Q_A\to0$. No delayed-dynamics premise or assembly-stability result enters these algebraic implications. Establishing that retained physical branches approach those limits remains a separate task.
+
+#### A stronger illustration of the information loss
+
+The loss already occurs within the three-frame representation. Take equal weights and the Cartesian triad, then rotate all three normals through $\pi/4$ about the third axis, keeping an external probe direction $\mathbf e=(1,0,0)$ fixed. Both frames are orthonormal, both have determinant 1, and both have $Q_A=0$. The second directional average is $1/3$ in each case. However, the fourth directional average is
+
+$$
+\frac13\sum_a(\mathbf e\cdot\hat{\mathbf n}_a)^4
+=\frac13\quad\text{for the Cartesian triad},
+\qquad
+=\frac16\quad\text{for the rotated triad}.
+$$
+
+In the rotated triad, the first two projections have magnitude $1/\sqrt2$ and the third is zero, giving $(1/4+1/4)/3=1/6$. Hence even exact frame orthogonality and equal weights do not establish isotropy of every directional statistic. The probe kernel $(\mathbf e\cdot\hat{\mathbf n})^4$ respects a simultaneous rotation of probe and frame, so rotational covariance alone does not exclude it. This is a mathematical diagnostic, not a claimed physical clock or ruler law and not a pair of certified EOM histories. No physical failure follows until a response derived from the master equation actually couples to such discarded information. Numerical arithmetic was checked with $c_f=1$; the example itself is dimensionless geometry.
+
+#### The physical link still required for each channel
+
+| Channel | What the current owner defines | What a quadrupole-control theorem still needs |
+| --- | --- | --- |
+| Matter orientation | Absolute Timespace lines 332–350 and 381–395: a history-, shielding-, and medium-dependent response matrix and its normalized directional deviation from scalar response | A derivation linking that deviation to the specified framing average, with fixed branch/medium conditions, normalization, and a bound on every remaining anisotropic contribution |
+| Clock orientation | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), lines 13–36: a counted phase rate depending on relative medium velocity, geometry, medium state, and history | A specified clock branch and orientation comparison; a derived effect of the framing tensor on cycle frequency; control of delay, phase, and medium information that the tensor omits |
+| Ruler orientation | Absolute Timespace lines 370–375: the trace-free part of the effective spatial response $B_{ij}$ | A ruler extraction and calibration from the same retained histories, with a derived response to framing and a bound on other medium, shape, and strain contributions |
+
+“Leading” needs a named asymptotic parameter and regime. Small $Q_A$ alone is not that parameter: higher moments can remain nonzero while $Q_A$ vanishes. A small input moment also needs a bounded response gain before it yields a small output residual. The physical target is therefore not theorem-ready until these definitions and estimates are supplied. Its coherence is conditional; the inspected records do not establish its truth or its falsity for actual branches.
+
+#### A narrow sufficient lemma and the first dynamical test
+
+A simple derived lemma shows exactly what would justify discarding higher directional moments for a particular question. Suppose a dimensionless channel response, after fixing its other inputs and deriving its reduction from the full history, has the form
+
+$$
+O_k(\mathbf e)=a_k+b_k
+\left\langle(\mathbf e\cdot\hat{\mathbf n})^2\right\rangle
++\rho_k(\mathbf e),
+\qquad
+\sup_{\|\mathbf e\|=1}|\rho_k(\mathbf e)|\le\eta_k.
+$$
+
+Here the averaging measure is the declared framing measure, $a_k,b_k$ are direction-independent coefficients, and the remainder bound is uniform in probe direction on the declared branch regime. Substitution gives
+
+$$
+\sup_{\|\mathbf e\|=1}
+\left|O_k(\mathbf e)-\left(a_k+\frac{b_k}{3}\right)\right|
+\le |b_k|\,\|Q_A\|_{\mathrm{op}}+\eta_k,
+$$
+
+where the operator norm is the largest absolute eigenvalue of this symmetric tensor. This is a proved conditional averaging identity, not a newly derived physical response law. It answers one narrow question: a quadratic directional response is controlled by the second moment, provided the remainder is independently bounded. The fourth-moment example demonstrates why the quadratic-response premise cannot be inferred from orthogonality or rotational covariance.
+
+The strongest next physical foothold is to derive one channel's response on an already admitted branch before claiming all three. A clock channel is a concrete first candidate because its observable is the counted phase rate. Hold branch identity, medium conditions, comparison protocol, and retained-history conventions fixed. Derive its orientation sensitivity from the full delayed return problem, without replacing the input by $Q_A$ in advance. Then determine whether changes of admissible history that leave the chosen framing moment unchanged alter that frequency. For a differentiable exact reduction, a necessary local condition is that every allowed variation $\delta H$ satisfying $DQ_A[\delta H]=0$ also satisfies $DO_{\mathrm{clock}}[\delta H]=0$. Finding a violating variation refutes first-order sufficiency at that branch. Passing this test is necessary only; global control and higher-order errors still require proof. Use a valid recurrent branch and its actual variational problem, never a stability analysis around an unoccupied equilibrium.
+
+The reduced description fails as an exact predictor if equal retained variables yield different target responses. A proposed upper-bound certificate instead fails when a response exceeds its stated gain-plus-remainder bound. If lost information matters, retain it or restrict the claim's regime. Neither outcome requires abandoning the common microscopic dynamics.
+
+#### Disposition and smallest sufficient repair
+
+The geometric identities above are derived. The actual three-channel reduction and a unique physical weighting prescription remain unestablished in the inspected owners. The newly identified actionable clarification is supplemental to the completed F3-1 through F3-7 corrections: describe $Q_A$ as a candidate quadrupole diagnostic, make the averaging prescription a declared branch input, and state that its control of the three responses requires derived channel maps and uniform remainder estimates. Do not make this particular tensor economy a necessary condition of physical recovery unless that necessity is separately established. At assessment time this recommendation awaited operator discussion and authorization, and the corpus was unchanged. The subsequent accepted integration below supersedes that pending disposition. It does not authorize choosing convenient weights, changing the master equation, or opening a new theory campaign.
+
+The proof search used exact-symbol and framing/quadrupole searches across the live corpus and priority Markdown, followed by reads of the relevant owner passages. It is evidence about those identified owners, not a claim to have excluded every unpublished derivation or alternate notation. The existing three-frame geometry, the master equation's schematic delay quadrupole, the open averaging route, and the blocked handoff do not complete the missing physical implication. The two-triad arithmetic was checked directly and with Node; this is author self-check against the displayed exact identities, not independent physical validation.
+
+Reviewed dependency SHA-256 values: configuration-space `9a51cc3a0e2bd5652d0c869a651dc6622f5fbf2303382fc62b3252d7d4b36ccb`; Master Equation `dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d`; Proper Time and Time Dilation `1c9e2edf73ff74dfa6a66492e1b4b03e17d892796e2502811e531f7f7c74a51b`; Lorentz Kinematics `42400ee4ee2bdebe5575a24ae46d74607eee5b96f1053c60fac18de778c8ef53`; residual handoff `71160e2385464b406e74e4b37f4910045841cfe5923a84680d1f037e1a550a61`. No generated artifact, code, or controlled canon was edited. Dependency reads do not count as new Foundations campaign coverage.
+
+The new assessment was reread; its 44 mathematical expressions parsed with the vendored KaTeX instrument, its local file targets resolved, and `git diff --check` passed. The reviewed Foundations source hash remained unchanged. These checks validate document syntax and preservation, not the proposed physical reduction.
+
+### Complete-reading assessment and verification limits
+
+The chapter substantially succeeds at separating fixed geometry, complete-history state, physical medium content, and observer reconstruction. The product manifold and slice definitions, fixed distance and duration formulas, and Cartesian derivative operators are correct. Spatial arclength assumes the forward interval $T_1\le T_2$ and an integrable speed; the regularity section supplies the intended future-directed setting. The low-speed momentum and energy formulas are explicitly at assembly/observer level and are not imported as architrino mass. No mass derivation is claimed by their appearance. The response and experimental projections remain open.
+
+The Newton-Cartan discussion is defensible as written: $h$ is explicitly a metric on $\ker dT$, not a nondegenerate spacetime metric. Compatibility means preservation of that spatial subbundle metric. It does not fix all mixed connection components, so the additional flat torsion-free connection remains needed. This interpretation agrees with the intrinsic formulation in [Bekaert and Morand](https://arxiv.org/abs/1412.8212). A criticism based on silently extending $h$ to a different full covariant four-tensor would target an object the chapter did not declare. No canon change or import of Newtonian gravity is recommended.
+
+The rotating-frame formula follows by differentiating $\mathbf X=R\mathbf X'$ twice and defining $R^{\mathsf T}\dot R\,\mathbf y=\boldsymbol\Omega\times\mathbf y$ in the rotating axes. This produces the displayed Coriolis, centripetal, and Euler signs. Explaining that convention for $\boldsymbol\Omega$ would be helpful but is a small exposition preference rather than a demonstrated sign error. The passive boost substitution gives exactly the displayed $+\mathbf U(T_r-T_t)$ root term; it preserves the spherical radius while shifting the center by $-\mathbf U(T_r-T_t)$ from the emission coordinate. No curvature or primitive magnetic interaction follows from those coordinate effects.
+
+The signed playback derivative is also correct: implicit differentiation gives $-F_{T_r}/F_{T_t}=(c_f-\hat{\mathbf r}\cdot\mathbf V_i)/(c_f-\hat{\mathbf r}\cdot\mathbf V_j)$. The target's $F$ is $c_f$ times the Master Equation's delay-map function, so its signed roots agree for $c_f>0$. Generic folds preserve the local signed degree and change the unsigned count by two; boundary events are a separate mechanism. F3-1 must be resolved before stronger root-diagnostic interpretations are used, and none is accepted here. Assembly survival, common limiting speeds, and photon or gravitational-wave recovery remain theorem targets, not results of this review.
+
+The effective metric components follow exactly by expanding the displayed shifted spatial square after setting $x^0_{\mathrm{eff}}=c_0t_{\mathrm{eff}}$. The cross term has the stated negative sign and factor $1/c_0$. Positive $A$ and positive-definite $B$ yield Lorentzian signature; along a physical clock trajectory, the right-hand side of the proper-time equation must be positive. The metric ansatz still requires a derived clock/ruler/signal response and supplies no cosmological scale identification on its own, consistent with F2-2.
+
+The sole external numerical benchmark was checked in the January 2026 [Data Tables for Lorentz and CPT Violation](https://arxiv.org/pdf/0801.0287): Table D10, PDF page 38, includes proton-sector H-maser bounds at $2\times10^{-27}$ GeV and an Hg/Cs comparison at $10^{-27}$ GeV. This supports the chapter's qualified order-of-magnitude statement, not a universal dimensionless bound on its response tensor. The table mixes coefficient combinations and model-dependent interpretations; no primary experimental records were reanalyzed, and the chapter correctly requires a channel-specific projection. No extra reference is recommended merely for citation count.
+
+The vendored KaTeX instrument parsed all 204 mathematical expressions. All 55 display blocks and all target bytes are unchanged; all 67 local file-link occurrences resolve to existing targets. These are syntax, preservation, and file-target checks, not a rendered-page visual audit or comprehensive fragment validation. The local root, boost-composition, and rest-shape examples were checked directly and with elementary Node arithmetic; the arithmetic is author self-check, not an independent mathematical oracle. The cited mathematical sources are independent references only for their identified background statements. No EOM simulation, independent assembly validation, global history well-posedness proof, experimental reanalysis, or scientific closure is claimed.
+
+### F3-1 through F3-7 accepted integration — 2026-09-05
+
+The operator explicitly requested application of all seven findings and an explanation of the common-record insight. The live integrator-reviewer procedure governed this integration. Immediately before editing, the target matched the reviewed SHA-256 `f0fce6751a516b7d1c117f82b7b0af18e810052830036c331bc861d33ea8437c`; a baseline copy was retained for comparison. All seven findings were accepted and implemented. No finding was rejected or deferred. No correction outside those findings was added. The original review, examples, source checks, and baseline locations above remain the historical basis of the decisions.
+
+| Finding | Implemented correction | Resulting source location |
+| --- | --- | --- |
+| F3-1 | Separate a conditioning margin from a singular root; control retained boundaries and pair set; define the signed inventory at each reception time | [Root conditioning](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry), lines 561–643 |
+| F3-2 | Declare the boost action on recovered event coordinates and distinguish it from clock, ruler, and signal extraction maps | [Theorem target](../../../content/markdown/aaa/foundations/absolute-timespace.md), lines 684–698 |
+| F3-3 | Normalize positive radii to rest values, fix comparison conditions and clock calibration, and state the velocity and residual domains | [Rest-branch comparison](../../../content/markdown/aaa/foundations/absolute-timespace.md), lines 661–682 |
+| F3-4 | Define the filled set as passage by time; distinguish direct support from history-mediated influence | [Causal wake geometry](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry), lines 489–538 |
+| F3-5 | Order instants and slices; derive exclusion of backward causal loops from admissibility and wake support | [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md), lines 50, 80, and 606 |
+| F3-6 | Define complete weighted cell fluctuations, state covariance and packing bounds, derive the shell estimate, and delimit martingale convergence and exhaustion | [Conditional convergence](../../../content/markdown/aaa/foundations/absolute-timespace.md#when-the-lemma-becomes-a-theorem), lines 811–852 |
+| F3-7 | Name the ten-generator Poincare group and distinguish its six-generator Lorentz subgroup | [Symmetry recovery](../../../content/markdown/aaa/foundations/absolute-timespace.md), line 659 |
+
+All 928 resulting lines were reread, and the complete diff was compared with the preserved baseline. The resulting SHA-256 is `51c8388d72a767588b03e2fd983afde15f8c000818c0b919c3cd09b08291a1ea`. The 55 display blocks remain in their original order; exactly four changed, at one-based display indices 40, 42, 51, and 52, implementing the reception-time inventory, normalized shape ratio, weighted covariance, and expanded shell-variance derivation. The other 51 display blocks are byte-identical. All link targets and labels were preserved. All 240 mathematical expressions parse with the vendored KaTeX instrument, and all 67 local file-link occurrences resolve. These are syntax and target-existence checks, not a rendered-page visual audit or comprehensive fragment validation. The equation-mapping link validator passed for its 23 registered links; that registry check does not claim exhaustive validation of all 55 chapter viewer anchors.
+
+The root and support counterexamples, normalized zero-speed limit, boost-composition distinction, covariance expansion, and conditional martingale argument were rechecked as author self-review. The independently authored probability lectures and group-theory notes cited in the original review support only the respective mathematical background statements. No EOM simulation, independent physical validation, recovery theorem, or proof that the actual Noether sea satisfies the statistical hypotheses was produced. The target's remaining common-response, conservation, experimental-projection, and physical statistical obligations retain their original open status.
+
+The strict content check returned 0 errors and 1 warning, exiting 1 because `content/scenes/scenes_index.json` lacks the existing `content/scenes/archie/feedback.json` entry. Its regeneration command is `node scripts/validate-content.mjs --write`, reserved for the established regeneration or PR owner. The equation-registry freshness check also exited 1 and reported `content/generated/equation-mapping/corpus-equations.json` stale; its regeneration command is `node scripts/build-equation-mapping-corpus.mjs --write`, likewise reserved for the established regeneration or PR owner. Existing equation-registry drift predates this integration, and the four accepted display changes now also require the normal generated refresh. No generated artifact was written. `git diff --check` passed after the source and record edits.
+
+### Supplemental quadrupole clarification accepted and verified — 2026-09-05
+
+The operator's “1” accepts the immediately preceding recommendation to clarify the Foundations passage. The live integrator-reviewer procedure governed the edit. Absolute Timespace matched the assessment hash `51c8388d72a767588b03e2fd983afde15f8c000818c0b919c3cd09b08291a1ea` immediately before editing, and a baseline copy was retained for comparison. Four targeted passage replacements at resulting lines 353–381 identify $Q_A$ as a candidate diagnostic, declare unit framing directions and normalized averaging with a fixed extraction/interval/weight prescription, preserve the distinction between zero quadrupole and physical isotropy, and make the three-channel theorem conditional on derived responses and controlled omitted terms. The text no longer makes sufficiency of this particular tensor necessary for the underlying physical account. It selects no physical weights and claims no new physical reduction.
+
+All 932 resulting lines were reread. The complete incremental diff is confined to those passages. All 55 display equations, all link labels and targets, and all source text outside the four replaced passages are preserved relative to this immediate baseline. All 245 mathematical expressions parsed with the vendored KaTeX instrument; all 67 local file-link occurrences resolve. The registered equation-link checker passed for its 23 entries. These checks establish syntax and file-target validity, not comprehensive fragment or rendered-page visual validation. The clarification was checked against the direct geometric identities and explicit counterexamples in the preceding assessment as author self-review. No independent physical validation, branch evolution, or clock/ruler response derivation is claimed.
+
+The resulting SHA-256 is `6dfc68496c19792463d3093f1f160ebd519496e4149190bcded0c971c3d7c603`. The strict content check again reported 0 errors and 1 warning, exiting 1 for the existing `content/scenes/scenes_index.json` drift. Its repair command remains `node scripts/validate-content.mjs --write` under the regeneration or PR owner. The previously recorded equation-registry drift remains with that owner; its freshness check was not repeated for this passage-only clarification. No generated artifact was written. `git diff --check` passed after the source and record edits.
+
+The supplemental correction is complete. The mathematical question of which physical weights and response maps are justified remains open, and downstream reviews must inherit that limit. No canon, dependency chapter, application code, or generated artifact was edited. The campaign remains at five reviewed Foundations files; Absolute Time Defense has not been started.
+
+### Current discussion boundary after batch 3
+
+Coverage is 5 of 9 complete target readings: 5 chapters with their accepted corrections verified, including the supplemental quadrupole clarification; 0 chapters have findings awaiting implementation decisions, 0 reviewed unchanged with no recommended correction, 0 explicitly deferred or blocked files, and 4 not yet reviewed. F3-1 through F3-7 are integrated. The explanation of the common-record insight is recorded above; its physical sufficiency and response-map questions remain provisional and open, separate from coverage and correction completion.
+
+This integration edits only Absolute Timespace and the two existing campaign records. Prior Euclidean Void work is preserved. The next planned review is Absolute Time Defense alone. This turn stops for discussion; it does not start batch 4. A subsequent “next” or “continue” authorizes that review, not unaccepted corpus implementation. No controlled canon, application code, or generated artifact was changed.
+
+## Foundations batch 4 — Absolute Time Defense review, 2026-09-05
+
+The operator's “do 1” accepts the preceding recommendation to resume batch 4. The live corpus-reviewer procedure governs this complete single-document review; the campaign authorizes findings and discussion capture in these existing working documents. It does not authorize implementation of this batch's findings. All 785 lines of [Absolute Time Defense](../../../content/markdown/aaa/foundations/absolute-time-defense.md) were read. Baseline and end-of-review SHA-256 are `ecc01d492409e390ac8c31669754c17b91dcb6e41e6fe9c1ebdf9fe37c641a6b`; the chapter remained byte-identical to the retained review snapshot. Git HEAD was `6597f62a05e4d91a0c1719e32a4b50e917ef408f`. Existing Absolute Timespace and Euclidean Void edits were preserved.
+
+The recursive inventory still contains the same nine documents. Textbook traversal, the human-readable TOC, and scene order continue to put this chapter sixth, after Absolute Timespace. The historical Foundations conversion and review records were consulted at their recorded scope. Their previous equation-preservation and review receipts do not settle the present arguments. Dependencies included the corrected Foundations chapters, the Master Equation, Proper Time and Time Dilation, Lorentz Kinematics, Emergent Metric, the framing discussion in Noether Braid Configuration Space, and the effective-Hamiltonian memory discussion. These are dependency reads, not additional completed campaign targets.
+
+### Findings awaiting discussion
+
+| Finding | Classification and importance | Reviewed source location | Smallest sufficient repair |
+| --- | --- | --- | --- |
+| F4-1 | Demonstrated algebraic inconsistency; high | `absolute-time-defense.md:325–354`, compared with `555–564`, `582`, and `738–740` | Make the clock target agree with its declared metric by including the clock factor squared in the velocity denominator; state the timelike domain. |
+| F4-2 | Unsupported response identification and conflict with the accepted compression boundary; high | `absolute-time-defense.md:356–390` | Treat the framing quadrupole as a specified candidate statistic and its scalar-gain response formula as conditional; require the channel derivation and control of omitted information. |
+| F4-3 | An open Hamiltonian condition is promoted to a universal clock condition; high | `absolute-time-defense.md:165–176` | Keep phase repeatability as the clock requirement, label the memory-flux construction as an open condition for a proposed Hamiltonian description, and remove the unproved implication to secular frequency drift. |
+| F4-4 | Missing explanation connecting recurrence to elapsed-time frequency; medium | `absolute-time-defense.md:127–143` | Supply the physical phase lift and return-time data needed to turn rotation per return into a clock rate. |
+
+#### F4-1 — The clock and metric predict different rates
+
+A clock equation and a metric claimed to describe that clock must assign the same elapsed time to the same path. The chapter uses the same clock function $A$, ruler tensor $B_{ij}$, effective time, and relative velocity in both places. At zero declared residuals, its clock target is
+
+$$
+r_{\mathrm{clock}}=A\sqrt{1-q},
+\qquad
+q=\frac{B_{ij}w^iw^j}{c_0^2}.
+$$
+
+Here $r=d\tau/dt_{\mathrm{eff}}$, and $q$ is dimensionless. Dividing the metric at lines 555–564 by $dt_{\mathrm{eff}}^2$ instead gives
+
+$$
+r_{\mathrm{metric}}^2=A^2-q,
+\qquad
+r_{\mathrm{metric}}=A\sqrt{1-\frac{q}{A^2}}
+$$
+
+on the positive-rate branch with $A>0$ and $q<A^2$. Squaring the first formula gives $A^2-A^2q$, so the squared rates differ by $(1-A^2)q$. They agree at rest or at $A=1$, but not for general moving clocks in a dressed medium. There is no stated redefinition of $B_{ij}$ between these formulas. The metric also agrees with the declared form in [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), lines 135–171.
+
+A numerical comparison uses normalized wake-speed units $c_f=1$ and, solely for this effective comparison chart, chooses $c_0=1$, $A=1/2$, $B_{ij}=\delta_{ij}$, and $\mathbf w=(1/4,0,0)$. This choice of $c_0$ is not a physical identification of dressed and primitive speeds. Both square roots are real, but the chapter's clock gives $\sqrt{15}/8\approx0.484123$, while its metric gives $\sqrt{3}/4\approx0.433013$. These are direct evaluations of two declared targets, not simulated assembly clocks.
+
+The discrepancy cannot generally be hidden in the fourth-order velocity remainder. For fixed positive $A$ and small $q$, the two expansions are $A-Aq/2+O(q^2)$ and $A-q/(2A)+O(q^2)$: the difference already occurs at second order in velocity. In a joint weak-field expansion where $A-1$ is also small, the discrepancy is a mixed higher-order term. Consequently the chapter's correctly signed first-order weak-field benchmark at lines 444–476 does not need to be rejected along with the general formula.
+
+The same defect reaches signal comparison. The original clock square root vanishes at $q=1$, whereas the metric null condition is $q=A^2$. The photon speed at lines 738–740 follows the latter. A common clock/ruler/signal account cannot retain both thresholds under the present shared definitions.
+
+The smallest repair is to put $A^2(\mathcal N_{\mathrm{sea}})c_0^2$ in the denominator inside the clock square root, preserve its residual bracket and recovery-target status, and explain the domain $B_{ij}w^iw^j<A^2c_0^2$. The positivity explanation at line 582 also needs this qualification: positive $A$ gives the rest-clock lapse, while positive elapsed proper time along a moving clock additionally requires a timelike path and a valid advancing phase. This corrects internal algebra; it does not derive the metric from the Master Equation.
+
+Claim grade: derived contradiction between the displayed formulas. A falsifier would be an explicit, consistently applied distinction between the two ruler tensors or velocity normalizations that makes the expressions identical; the reviewed definitions supply none. Resolve this finding before interpreting later preferred-frame measurements through this clock target.
+
+#### F4-2 — A framing moment is not yet the clock response
+
+The chapter correctly notes that a vanishing quadrupole does not exclude higher directional moments, correctly separates harmonic degree from a small-angle power, and explicitly states the reciprocity assumption needed to omit odd harmonics. Those qualifications should be preserved. The stronger opening assertion at line 356 nevertheless identifies orientation leakage with the framing quadrupole, and the formula at lines 373–384 assigns its entire retained quadrupolar clock response to one scalar multiple of that statistic.
+
+A quadrupole describes a selected second directional moment. A clock response describes what the clock's dynamics does when its environment or orientation changes. Their equality requires a response derivation. Being symmetric trace-free tensors does not make two tensors proportional. For example, in one Euclidean orthonormal frame, the statistic $Q=\operatorname{diag}(1/6,-1/6,0)$ is realized by axis weights $(1/2,1/6,1/3)$. The possible mathematical response coefficient $C=\operatorname{diag}(0,1,-1)$ is also symmetric and trace-free, but no scalar $\lambda$ satisfies $C=\lambda Q$. This is a counterexample to the tensor-type inference, not evidence that an actual clock has coefficient $C$.
+
+The accepted batch-3 example supplies the complementary information-loss check. Equal weights on an orthonormal triad give $Q=0$. Rotating two axes through 45 degrees leaves $Q=0$, but changes the fourth directional moment along a fixed first-axis probe from $1/3$ to $1/6$. Small or zero $Q$ therefore does not bound all information that an as-yet-underived clock response may use. Nor does small $Q$ alone bound a response with an uncontrolled gain $\lambda_{\mathcal A}$.
+
+The framing average must specify unit directions, normalized weights with $\langle1\rangle=1$, and the physical sampling window. Those choices are especially material when different branches or probes are compared. A geometric weighting, an action weighting, and a causal-hit weighting cannot be interchanged merely because each produces a second-rank tensor. The corrected Absolute Timespace discussion at lines 353–381 already states this boundary and leaves physical weighting and response sufficiency open.
+
+The smallest repair is an explanatory clarification: identify $Q$ as a candidate diagnostic under a declared averaging prescription, label the scalar-gain equation as a conditional leading-response ansatz, and require the dynamics to derive its gain and the influence of omitted moments or other history variables. Preserve the common-record proposal at its defensible level. The last sentence at line 390 also needs the response-map and remainder-control conditions before small framing anisotropy can constrain the four named measurement channels. Geometric near-orthogonality and nearly equal weights alone do not establish that inference.
+
+Claim grade: the second-moment identities and non-proportional-tensor counterexample are derived; physical sufficiency is an open obligation. The insufficiency concern for a selected channel would be discharged by an actual branch-response derivation proving dependence through this statistic to a declared error, with a bounded gain and omitted terms. A pair of admissible histories with equal declared $Q$ but clock responses differing above that error would falsify the proposed reduction. The earlier common-record insight remains held at the operator's requested boundary; this review does not revive it as evidence for compression.
+
+#### F4-3 — Memory bookkeeping does not by itself determine clock drift
+
+A repeatable clock phase and a conserved symplectic structure answer different questions. The first concerns the rate of a recurring observable. The second concerns the geometric structure used to represent a system by Hamiltonian mechanics. At lines 165–176 the chapter calls the memory-flux condition another form of the clock certificate, requires it of every valid clock, and infers secular rate drift from uncompensated leakage. Neither equivalence nor the frequency implication has been derived there.
+
+The live [Effective Lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) owner is more limited. Lines 903–933 introduce a candidate memory-corrected symplectic two-form and explicitly leave construction of its kernel and the boundary-flux identity open. Lines 935–946 discuss validity of a Hamiltonian description and failure to conserve the corrected symplectic form or apparent energy ledger when relevant memory is omitted. That is not a theorem that every persistent phase needs such a description, or that any defect in it must cause the phase frequency to drift. The present finding concerns the promotion in Foundations; it does not edit or certify the upstream construction.
+
+A simple mathematical comparison separates the two properties. On a cylinder with angular coordinate $\theta\in\mathbb R/(2\pi\mathbb Z)$ and transverse coordinate $r$, consider
+
+$$
+\frac{d\theta}{dt_{\mathrm{eff}}}=\Omega,
+\qquad
+\frac{dr}{dt_{\mathrm{eff}}}=-\kappa(r-r_0),
+\qquad
+\Omega>0,\quad\kappa>0.
+$$
+
+The closed orbit $r=r_0$ has constant phase rate $\Omega$ and period $2\pi/\Omega$. A transverse displacement decreases as $\exp(-\kappa t_{\mathrm{eff}})$, and the two-dimensional area form $dr\wedge d\theta$ is multiplied by the same factor under the flow. Thus constant clock phase is mathematically compatible with a contracting reduced chart. In normalized wake-speed units $c_f=1$, choosing $\Omega=1$, $\kappa=1$, and $r_0=1$ gives period $2\pi$ and area multiplier $e^{-2\pi}\approx0.00186744$ per period, with no frequency drift. This is an illustrative dynamical system, not an architrino solution, a derived dissipative mechanism, or a realization of the proposed memory-flux object. It refutes the general inference from failure of symplectic preservation to frequency drift; any special implication for the delayed dynamics still needs proof.
+
+The notation for the memory-boundary expression also needs an operational definition before its size can be checked: identify the transported quantity, its evaluation or contraction over a return, the retained window and boundary convention, and the norm and scale behind $\epsilon_\omega$. Because the boundary object itself has not been defined, this review does not assert that the displayed integral has a demonstrated differential-form type error. It identifies a missing construction rather than guessing its intended type.
+
+The smallest repair is to preserve repeatability of the relevant phase and history as the clock criterion; describe memory-corrected symplectic replay as an additional, currently open condition for the proposed Hamiltonian representation; and replace the categorical frequency-drift statement with the need to compute the influence of omitted or exchanged history on the phase. The existing warning to include external driving and exported fluxes remains useful.
+
+Claim grade: unsupported promotion, with a derived mathematical separation of the two properties. A falsifier of the concern would be a theorem from the declared delayed dynamics connecting the defined boundary residual to loss of phase repeatability or a quantified secular clock-rate change. No such theorem was found in the cited owner. Until it exists, failure of this proposed Hamiltonian chart cannot by itself be used to reject an otherwise demonstrated recurring clock branch.
+
+#### F4-4 — Rotation per return needs a physical time scale
+
+A rotation number says how much a phase advances when the section is crossed again. A frequency says how much phase advances per unit time. The formula at lines 127–133 supplies the former modulo one, but the adjoining clock explanation does not supply the physical turn count and return durations needed for the latter. The orientation-preserving circle-homeomorphism case is a valid sufficient setting for the stated rotation-number limit; the proposed repair does not discard that result or conflate it with a periodic-orbit clock.
+
+Let $\theta\in\mathbb R/\mathbb Z$ measure phase in cycles. A lift $\tilde P:\mathbb R\to\mathbb R$ satisfies $\tilde P(x+1)=\tilde P(x)+1$ and retains unwrapped phase. Lifts differing by an integer give the same circle map. For example, $\tilde P_1(x)=x+1/4$ and $\tilde P_2(x)=x+5/4$ both give rotation number $1/4$ modulo one while recording different complete turn counts. The continuous physical phase between returns must select the lift; a convention that discards turns cannot recover them later.
+
+The elapsed effective time between returns must also be retained. Write $r(\theta)>0$ for this duration, and $\theta_k=P^k(\theta)$. If the unwrapped phase advance per return has a limit and the mean return duration has a finite positive limit, then the mean angular frequency is
+
+$$
+\overline\Omega
+=
+2\pi\lim_{n\to\infty}
+\frac{\tilde P^{\,n}(\theta)-\theta}
+{\sum_{k=0}^{n-1}r(\theta_k)}.
+$$
+
+The numerator counts cycles; the denominator measures elapsed effective time. In units with $c_f=1$, the same unwrapped advance of $1/4$ cycle per return with return durations one and two gives $1/4$ and $1/8$ cycle per unit time. No change in the circle map is needed. This direct rescaling demonstrates why its rotation number alone is insufficient.
+
+The smallest repair is a short explanation of the physical lift and return-time function, with the frequency relation and its existence conditions. The full retained trajectory can contain both; the issue is their absence from the stated reduction, not evidence that such data do not exist. Mean frequency also does not by itself prove bounded timing jitter or a continuously advancing instantaneous phase; those remain part of the phase-coherence certificate.
+
+Claim grade: derived information requirement and missing explanation. A falsifier of the insufficiency claim would be a rule recovering a unique unwrapped phase rate from the same modulo-one return map without any physical turn-count or elapsed-time information; the explicit examples exclude that possibility in the stated mathematical class. For a particular assembly, supplying those data and checking phase coherence would discharge the explanatory gap without proving universality across clock species.
+
+### Complete-reading assessment and source support
+
+The opening ontology and state discussion, lines 1–118, separates the substrate projection $T$, a state indexed on its slice, and an assembly readout. The product-space projection makes $dT$ nonvanishing; an arbitrary global scalar function would not suffice, so that earlier product-coordinate premise is material. The state explicitly retains history, and determinism is restricted to well-posed charts. No standard-physics equation is needed as a substrate premise for these statements. The local phase-rate formula explicitly uses effective time for both rates. When relating it to a source using phase per absolute time, the ordinary chain rule supplies the conversion; the explicit convention is not an algebraic contradiction.
+
+Lines 119–213 distinguish periodic and invariant-circle clocks and keep transverse persistence separate from contraction of the complete history flow. Those distinctions are valuable; F4-3 and F4-4 address the remaining overstatement and explanation gap. The medium tuple contains an ellipsis and explicitly denies that one delay scalar supplies the state. It should continue to be understood as a record whose relevant contents need specification, rather than as proof that the displayed finite descriptors are sufficient.
+
+Lines 215–323 describe universality as an open target. The connected-moduli route correctly needs reference agreement, controlled transport, and holonomy control, not just a vanishing local commutator. The spectral route explicitly assumes a controlled low-frequency reduction and leaves its contamination estimate conditional. Disconnected branches defeat one proof route without logically forcing different effective coefficients. No new finding is needed to weaken these already qualified claims. None supplies a computed medium gap, a constitutive map, or a universality theorem.
+
+Lines 325–547 distinguish clock composition from differential free fall, retain the negative Newtonian potential convention, and treat Lorentz and gravitational formulas as observer-level targets. The first-order weak-field square-root expansion has the stated signs. The round-trip speed has the right distance-over-time units under its declared path convention. Reciprocal path reversal removes odd directional harmonics, but does not by itself bound the retained even harmonics. F4-1 and F4-2 identify the substantive remaining defects in this portion.
+
+The numerical source checks are independent checks of attribution, not independent experimental reanalysis or validation of the proposed theory. The [MICROSCOPE publication](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.129.121102) supports the quoted platinum/titanium differential-acceleration result and its statistical/systematic uncertainties. The instrument was the satellite's differential electrostatic accelerometry; it did not measure the clock-composition residual. The [Nagel author abstract](https://arxiv.org/abs/1412.6954) supports the quoted resonator frequency result and 95% confidence interval. It supplies an orientation-sensitive oscillator benchmark, not a universal bound on every clock or material response.
+
+The five historical PPN values match Table 4, printed page 46, in the [published 2014 Will review](https://s3.cern.ch/inspire-prod-files-0/0c108cd9f65d955d209cb441fc3da582). The initially retrieved March 2014 arXiv draft has a different $\alpha_1$ entry; the published version linked by the chapter confirms its $4\times10^{-5}$ value. This version difference is not a chapter error. The review compiles different instruments and includes strong-field pulsar interpretations, as the chapter states; it is not an original five-parameter experiment or a current-limit claim. The [Data Tables author record](https://arxiv.org/abs/0801.0287) confirms a coefficient-specific catalogue across matter, photon, neutrino, and gravity sectors, with a 2026 edition available. No particular modern coefficient was selected or imported as a substrate premise, and no new claim about the tightest current bound is made.
+
+Lines 549–785 export the effective metric, state its conditional affine-equivalence lemma, separate forward reduction from recovery of discarded microscopic information, and limit the final falsification claim to the proposed recovery branch. Direct substitution verifies the constant-coefficient transformation: $dt'_{\mathrm{eff}}=A\,dt_{\mathrm{eff}}$ and $dy^a_{\mathrm{eff}}=L^a{}_i(dx^i_{\mathrm{eff}}-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}})/c_0$ reproduce the stated metric when $B=L^TL$. Expanding it verifies the signs and factors of $g_{00}$, $g_{0i}$, and $g_{ij}$, and its null condition gives the displayed directional photon speed. These checks establish algebra conditional on the assumed universal metric; they do not derive that metric, eliminate the substrate frame, or establish global preferred-frame hiding.
+
+The singular-value floor is meaningful for conditioning on the declared reduced complement: it limits amplification when reconstructing those retained directions. It does not bound the largest forward derivative or recover omitted history. The prose's general word “sensitivity” could be made more explicit as an optional editorial clarification, but no separate finding is needed to replace its already qualified reduced-chart scope. The final experimental ceiling must continue to be read with the chapter's declared species, channel, and coefficient map; there is no license to apply one resonator number to arbitrary clock observables. Any later application must make that mapping explicit.
+
+### Validation, dependencies, and current discussion boundary
+
+The unchanged chapter contains 40 display blocks and 117 mathematical expressions accepted by the vendored KaTeX parser. Its 51 local file-link occurrences resolve to existing targets. These are syntax and file-target checks, not a visual rendering audit, comprehensive fragment validation, or physical verification. The clock comparison, directional-moment example, phase-flow example, and return-time example were checked directly and evaluated with elementary Node arithmetic. That arithmetic is author self-check of the displayed derivations, not a separately authored mathematical oracle. No EOM simulation, clock-response computation, raw experimental reanalysis, or independent physical validation was performed.
+
+Dependency hashes at review completion: Absolute Timespace `6dfc68496c19792463d3093f1f160ebd519496e4149190bcded0c971c3d7c603`; Effective Lagrangian `9d974db22027ba28beeadcaca9ed1d01b9a00b345434f33a0da690bf33336aed`; Emergent Metric `0f970b44565e9dfcfd2407e4344341d4f44ad0c0d582290ed38f93ea8d504f72`. The first retains the accepted lossy-compression boundary; the second leaves its memory construction open; the third supports the metric convention used in F4-1. These dependencies do not authorize edits outside Foundations or close their theory obligations.
+
+Coverage is 6 of 9 complete target readings: 5 chapters with accepted corrections verified, 1 chapter with findings awaiting decision, 0 reviewed unchanged with no recommended correction, 0 explicitly deferred or blocked files, and 3 not yet reviewed. F4-1 through F4-4 remain unaccepted and unimplemented. Batch 5 contains Detecting the Absolute Frame and Constructing the Absolute Frame, followed by Emergence of Structure in batch 6. Resolve F4-1 before reviewing any inference that depends on the conflicting clock/metric convention; if the operator defers it, carry both formulas and the resulting interpretation limit explicitly. The physical response-map and memory-construction obligations remain open independently of review coverage.
+
+The complete new assessment was reread. Its 85 mathematical expressions parsed with the vendored KaTeX instrument, its three local file-link occurrences resolved, and `git diff --check` passed. The final inventory reconciliation found no omitted TOC or scene-graph path. These record checks do not add scientific evidence to the findings.
+
+This turn changes only the two existing campaign records. It stops for operator discussion. Previously reported generated scene-index and equation-registry drift remains with its established regeneration or PR owner; no generated freshness check or regeneration was needed for this unchanged corpus target. No corpus source, controlled canon, application code, or generated artifact was edited.
+
+### F4-1 discussion — One clock, two elapsed-time predictions
+
+The operator selected the explanation of F4-1. This instruction authorizes discussion capture, not the proposed corpus correction. The chapter was rechecked against its reviewed hash `ecc01d492409e390ac8c31669754c17b91dcb6e41e6fe9c1ebdf9fe37c641a6b` and remains unchanged. The finding concerns consistency between two declared effective descriptions. It does not establish the physical validity or sufficiency of either description.
+
+Imagine one clock carried along one specified path through a locally uniform medium. The chapter gives two ways to calculate how much that clock advances: a clock-rate formula and an effective metric. A metric here is a quadratic rule combining elapsed effective time and spatial displacement to assign elapsed clock time along the path. If the two descriptions are to represent the same clock under the same conditions, their answers must agree.
+
+To expose the discrepancy without tensor notation, specialize to a medium-rest effective chart, motion along one spatial axis, and $B_{ij}=\delta_{ij}$. Write $w=dx_{\mathrm{eff}}/dt_{\mathrm{eff}}$ for velocity along that axis. This is a permitted special case of the displayed general formulas, not a claim that every medium is isotropic. Set the declared correction bracket to one to compare the leading targets. The symbols have distinct roles: $\tau$ is elapsed clock time; $t_{\mathrm{eff}}$ is the effective coordinate time used for comparison; $A>0$ is the clock-rate factor at rest in this chart; and $c_0$ is the effective speed calibration. The absolute substrate time $T$ and primitive wake speed $c_f$ are not being replaced by these effective quantities.
+
+The chapter's direct clock formula becomes
+
+$$
+\frac{d\tau}{dt_{\mathrm{eff}}}
+=A\sqrt{1-\frac{w^2}{c_0^2}}.
+$$
+
+At rest, it gives $d\tau/dt_{\mathrm{eff}}=A$. In motion, it multiplies that rest rate by a square-root factor comparing velocity to $c_0$.
+
+The chapter's metric becomes
+
+$$
+d\tau^2=A^2dt_{\mathrm{eff}}^2-\frac{dx_{\mathrm{eff}}^2}{c_0^2}.
+$$
+
+Divide by $dt_{\mathrm{eff}}^2$, substitute the definition of $w$, and take the positive square root:
+
+$$
+\left(\frac{d\tau}{dt_{\mathrm{eff}}}\right)^2
+=A^2-\frac{w^2}{c_0^2},
+\qquad
+\frac{d\tau}{dt_{\mathrm{eff}}}
+=\sqrt{A^2-\frac{w^2}{c_0^2}}
+=A\sqrt{1-\frac{w^2}{A^2c_0^2}}.
+$$
+
+Factoring $A^2$ out of a square root requires dividing every remaining term inside by $A^2$. The current clock formula omits that divisor on the velocity term. The metric alone therefore fixes the proposed correction without an additional physical law or empirical fit.
+
+The earlier numerical example makes the two answers visible. In normalized wake-speed units $c_f=1$, choose the illustrative effective calibration $c_0=1$, rest-clock factor $A=1/2$, and velocity $w=1/4$. Both formulas give a rate of $1/2$ at rest. For the moving clock, the current direct formula gives about $0.484123$ clock-time units per effective-time unit, while the metric gives about $0.433013$. The values of $A$ and $w$ are comparison inputs; no assembly calculation has produced this example. Choosing $c_0=1$ here does not establish a general equality of effective and primitive speeds.
+
+The effect is not confined to a numerical discrepancy in clock rates. In this isotropic example the metric's null condition gives a local signal speed $Ac_0$ relative to the medium. The compatible clock factor is consequently $A\sqrt{1-w^2/(Ac_0)^2}$. The existing direct formula instead uses $c_0$ as that scale regardless of $A$. In the general directional case, the metric gives the scale $c_0A/\sqrt{B_{ij}\hat k^i\hat k^j}$, exactly as the chapter's photon expression states. This interpretation is conditional on clocks and signals sharing the declared quadratic form. The formal zero of a clock expression is a comparison of target equations, not evidence that a physical clock branch persists all the way to that speed.
+
+Both leading formulas are identical when $A=1$, and agree at $w=0$ for any positive $A$. Checks restricted to either case therefore miss the defect. Their positive-rate domain also matters: under the metric, a moving clock must satisfy $B_{ij}w^iw^j<A^2c_0^2$, in addition to retaining a valid advancing phase. Positivity of $A$ by itself is insufficient for an arbitrary path.
+
+There are algebraically possible alternative conventions. Keeping the old direct clock formula would require a spatial coefficient $A^2B_{ij}$ in its associated metric, or a clearly distinguished velocity-response tensor. That would change the declared meaning of $B_{ij}$ and require corresponding changes to the metric components, photon formula, and downstream uses. The present chapter and Emergent Metric consistently use $B_{ij}$ itself as the spatial coefficient. Correcting the clock denominator is therefore the smallest repair consistent with the live shared convention; it is not an argument that the metric must be physically correct because it appears elsewhere.
+
+The derivation establishes a narrow result: the two current leading targets cannot both describe the same clock with the same stated variables. Physical derivation of $A$, $B_{ij}$, and their adequacy for clock and signal responses remains open. A consistent explicit redefinition that removes the mismatch would overturn the convention-based finding; none is present in the reviewed source. This correction would leave the absolute-time ontology and the separate lossy-compression question untouched. F4-1 remains awaiting acceptance, and F4-2 through F4-4 remain awaiting discussion.
+
+### F4-1 accepted integration — 2026-09-05
+
+The operator selected “Apply F4-1, then explain F4-2.” F4-1 is accepted and implemented through the live integrator-reviewer procedure. Immediately before editing, Absolute Time Defense matched the reviewed SHA-256 `ecc01d492409e390ac8c31669754c17b91dcb6e41e6fe9c1ebdf9fe37c641a6b`; its immediate baseline was retained. The correction changes the velocity denominator inside the clock square root to $A^2(\mathcal N_{\mathrm{sea}})c_0^2$, adds the short derivation and timelike domain at line 356, and clarifies at line 584 that a positive rest-clock factor alone does not certify every moving path. The existing metric, photon formula, residual bracket, and recovery-target claim grade are preserved. F4-2 through F4-4 are not implemented by this acceptance.
+
+The complete resulting 787-line chapter was reread, and its complete diff was compared with the immediate baseline. All 40 display equations remain in their original order; only display 15 changes, by the accepted denominator correction. The other 39 displays and every link label and target remain byte-identical. All 123 mathematical expressions parse with the vendored KaTeX instrument, and all 51 local file-link occurrences resolve. The registered equation-link checker passed for its 23 entries. These are syntax, preservation, and file-target checks, not a visual rendering audit or exhaustive viewer-fragment validation.
+
+The revised algebra was checked against direct division of the unchanged metric and the closed-form identity established in the preceding F4-1 explanation. In the previously declared example with $c_f=1$, $c_0=1$, $A=1/2$, and $w=1/4$, both revised clock and metric give $\sqrt3/4\approx0.433013$. Elementary Node evaluation confirms that arithmetic as author self-check; it is not an independent physical validation. The comparison metric was not changed with the clock target. No derivation of the effective constitutive functions, EOM simulation, or physical clock measurement is claimed. Full-document self-review found no further correction needed within the accepted F4-1 scope; F4-2 through F4-4 retain their recorded unresolved status.
+
+The strict content check reported 0 errors and 1 warning, exiting 1 for `content/scenes/scenes_index.json`, which lacks the existing `content/scenes/archie/feedback.json` entry. The repair command is `node scripts/validate-content.mjs --write`. The equation-registry check also exited 1 for stale `content/generated/equation-mapping/corpus-equations.json`; its repair command is `node scripts/build-equation-mapping-corpus.mjs --write`. Both outputs were already stale, and the accepted clock-equation change now also belongs in the next normal registry refresh. Regeneration remains with its established regeneration or PR owner; neither command was run in write mode. Whitespace validation passed.
+
+Resulting Absolute Time Defense SHA-256: `aaf23089c52edf5c07483c8336057362c4a3d984f7a52b5ae8723fd72df30036`. This turn edits that chapter and the two existing campaign records. Existing Absolute Timespace and Euclidean Void work is preserved. No controlled canon, application code, generated artifact, or dependency was edited. Coverage remains 6 of 9 complete readings: 5 chapters fully corrected at the accepted scope, 1 partially integrated chapter awaiting decisions on F4-2 through F4-4, and 3 unread campaign targets. F4-1 no longer blocks the clock/metric convention; its physical recovery remains open. Batch 5 has not started.
+
+### F4-2 discussion — What must connect framing to clock rate
+
+F4-2 concerns the physical response identification still present in Absolute Time Defense, now at lines 358–392. It is the same lossy-compression concern the operator raised in the batch-3 discussion. The corrected Absolute Timespace already separates the geometric statistic from the claim that it adequately describes a measured response. This chapter needs the same distinction.
+
+A framing quadrupole summarizes the weighted directional distribution of an assembly's retained frames. To make its meaning explicit, let $\hat{\mathbf m}_a$ be unit framing directions, with nonnegative weights $p_a$ summing to one in a declared averaging window. In Euclidean orthonormal coordinates the corresponding statistic is
+
+$$
+Q^{ij}=\sum_a p_a m_a^i m_a^j-\frac13\delta^{ij},
+\qquad
+\sum_a p_a=1.
+$$
+
+The indices label spatial components, and $\delta^{ij}$ is the identity tensor. The trace is zero because each direction has unit length. The expression retains second directional moments and discards information about the distribution beyond those moments. Specifying and computing this statistic does not establish that the selected directions, weights, or window are the ones controlling the clock's dynamics.
+
+A clock-orientation response is a different quantity: the fractional change in the clock rate associated with a declared change in orientation under fixed comparison conditions. The chapter connects the two through a scalar gain $\lambda_{\mathcal A}$ and a probe direction $\hat{\mathbf n}$. Since $Q$ is trace-free, its retained quadrupolar expression can be written
+
+$$
+\Delta_{\mathcal A}^{\mathrm{ori}}(\hat{\mathbf n})
+=\lambda_{\mathcal A}Q_{\mathcal A}^{ij}n_i n_j
++R_{\mathcal A}(\hat{\mathbf n}).
+$$
+
+This is the existing expression with the trace contraction simplified and the omitted contribution named $R_{\mathcal A}$ for discussion. The scalar gain sets the strength of the proposed clock response. The chapter labels its remainder by higher even spherical-harmonic degrees under reciprocity; that label does not give a numerical bound, establish a small expansion parameter, or prove that the clock's quadrupolar response is proportional to this framing statistic. The use of distinct symbols for framing and probe directions here only clarifies their roles; it proposes no canon change.
+
+The missing step is a calculation of the clock's cycle or phase rate from the assembly's delayed dynamics and medium coupling that yields this dependence. It must explain why the framing quadrupole controls the retained response, derive or bound its gain, and control every omitted contribution over the stated regime. Two tensors can both describe directional anisotropy and still have different principal directions or component ratios. The explicit non-proportional-tensor example in the original F4-2 assessment shows why matching their mathematical type does not derive the scalar-gain relation.
+
+The loss of higher moments is a separate obstruction to sufficiency. In the accepted equal-weight triad example, two arrangements both have $Q=0$, yet their fourth directional moments differ. A clock response that depends on that omitted moment would distinguish them even though this quadrupole cannot. That geometric example does not show that actual architrino clocks have such a dependence. It shows that the proposed statistic cannot exclude it. The physical test is to derive the response and determine whether the omitted information matters, rather than assume it does not.
+
+The phrase at line 358 identifying the orientation response with the quadrupole is therefore too strong. The final sentence at line 392 also makes small framing anisotropy carry four different physical responses before those connections have been established. Without the missing derivations, neither small $Q$ nor geometric near-orthogonality establishes small clock, matter, mass, or period anisotropy. The experimental ceiling is on a specified observable; it cannot be transferred to the framing statistic without the response map.
+
+The recommended repair preserves the statistic and the proposed formula as a conditional response model. It specifies the averaging prescription, replaces the categorical identification with its actual unproved status, and states that the response calculation must determine the gain and bound omitted information before the model supports an observable limit. This is not acceptance of the compression as physically adequate. Its adequacy remains an open question; if it fails, the response description must retain the missing information or restrict its regime with a justified error bound.
+
+Claim grade: the moment calculation and the logical distinction are derived; the claimed clock response remains unestablished. A concrete falsifier of the reduction is a pair of admissible histories with the same declared quadrupole and retained response parameters but clock-orientation responses differing beyond the proposed error bound. A derivation that rules out such differences within a stated regime would supply the needed justification. F4-2 awaits acceptance of this explanatory repair; F4-3 and F4-4 remain pending. The broader common-record insight is not being promoted or reopened as a proof of sufficiency.
+
+### F4-2 accepted integration — 2026-09-05
+
+The operator selected “Apply F4-2's clarification, then explain F4-3.” The live integrator-reviewer procedure governed this accepted explanatory correction. Immediately before editing, Absolute Time Defense matched the prior verified SHA-256 `aaf23089c52edf5c07483c8336057362c4a3d984f7a52b5ae8723fd72df30036`; the immediate baseline was retained. The revised passage at lines 358–394 defines the normalized framing average, treats the clock-response expression as a conditional ansatz, explains the scalar gain and proportionality assumption, and requires a physical response derivation with control of omitted information. It removes the inference that small framing quadrupole alone constrains the four named physical responses. Acceptance of this repair does not establish that the lossy statistic is physically adequate.
+
+The complete resulting 789-line chapter was reread, and the complete incremental diff was checked against the immediate baseline. All 40 display equations, every link label and target, and the earlier F4-1 correction remain byte-identical to that baseline. The new prose is confined to the quadrupole passage. All 129 mathematical expressions parsed with the vendored KaTeX instrument; all 51 local file-link occurrences resolve. The registered equation-link checker passed for its 23 entries. These checks establish syntax, preservation, and file-target validity, not a visual rendering audit or exhaustive viewer-fragment validation. The interpretation was checked against the accepted Absolute Timespace treatment and the explicit moment and tensor counterexamples in the existing review as author self-review. No independent physical validation or clock-response derivation is claimed.
+
+The strict content check reported 0 errors and 1 warning, exiting 1 for the existing `content/scenes/scenes_index.json` drift, which lacks `content/scenes/archie/feedback.json`. Its repair command remains `node scripts/validate-content.mjs --write` under the established regeneration or PR owner. The previously recorded `content/generated/equation-mapping/corpus-equations.json` drift remains with that owner; its command is `node scripts/build-equation-mapping-corpus.mjs --write`. The registry freshness check was not repeated for this prose-only clarification. No generated file was written. Whitespace validation passed.
+
+Resulting SHA-256: `352b11d5cbf233f82795fb1060da392cc06358b45379e6e4d6e47cd4a4a5e33a`. F4-1 and F4-2 now have accepted corrections verified. F4-3 and F4-4 remain pending, so Absolute Time Defense remains partially integrated. Coverage is still 6 of 9 complete readings: 5 fully corrected chapters at their accepted scope, 1 partially integrated chapter, and 3 unread campaign targets. This turn edits only Absolute Time Defense and the two existing campaign records; previous Absolute Timespace and Euclidean Void work is preserved. No dependency, controlled canon, application code, or generated artifact was edited. Batch 5 has not started.
+
+### F4-3 discussion — A memory-description failure is not yet a clock-rate failure
+
+The operator requested an explanation of F4-3 after the F4-2 integration. The unresolved passage remains at Absolute Time Defense lines 165–176. It identifies negligible memory-boundary flux with the clock certificate and asserts that uncompensated leakage leaves secular rate drift. The concern is the missing implication from this proposed condition on a reduced description to the behavior of the physical clock.
+
+A clock supplies a phase: a coordinate indicating how far it has progressed through a repeatable cycle. Its instantaneous phase rate is $\Omega=d\varphi/dt_{\mathrm{eff}}$, measured against the chapter's declared effective time. Under fixed comparison conditions, a stable timing reference needs a repeatable phase evolution and controlled departures from that rate. A systematic change in this rate over successive cycles would be rate drift. Merely observing that some other state variable or some property of a reduced mathematical description changes does not establish such drift.
+
+The history condition concerns another object. Delayed dynamics depends on earlier states, and a finite description may retain only a window of duration $h$, represented in history-age coordinates by $[-h,0]$. The zero endpoint is the current state and the other endpoint is the oldest retained age. As the system evolves, the retained window moves. Crossing this representation boundary is not, by itself, destruction of physical history or a demonstrated loss of physical energy. Actual exchange of wake effects with a surrounding medium is another physical question. The mathematical identity connecting such exchange, history truncation, and any observer-level balance must be established rather than inferred from the word “leakage.”
+
+The live Effective Lagrangian discussion at lines 903–946 proposes a memory-corrected symplectic structure. A symplectic two-form measures oriented area on pairs of infinitesimal state variations; in a Hamiltonian description, evolution preserves the relevant two-form. Its memory correction is intended to include the delayed degrees of freedom that an instantaneous description omits. The owner explicitly leaves construction of the kernel and its boundary-flux identity open. Its stated consequence concerns the validity of the proposed Hamiltonian representation and its conservation account, not an already proved change in clock frequency. The word “flux” here must not be silently read as an independently derived physical energy flux.
+
+The chapter makes two extra steps: it treats that open Hamiltonian condition as necessary for every clock, and then treats failure of the condition as sufficient evidence of secular clock-rate drift. Neither step follows from the owner. The stronger implication may hold in a particular derived branch regime, but it would need a theorem connecting the defined boundary term to the clock's phase evolution.
+
+The elementary comparison in the original F4-3 assessment isolates why this distinction matters. Let $\theta$ be an angular phase modulo $2\pi$, let $r$ be a transverse state coordinate, and let $\Omega$ and $\kappa$ be positive constants. Consider
+
+$$
+\frac{d\theta}{dt_{\mathrm{eff}}}=\Omega,
+\qquad
+\frac{dr}{dt_{\mathrm{eff}}}=-\kappa(r-r_0).
+$$
+
+Its exact solution is
+
+$$
+\theta(t_{\mathrm{eff}})=\theta(0)+\Omega t_{\mathrm{eff}}\pmod{2\pi},
+\qquad
+r(t_{\mathrm{eff}})=r_0+[r(0)-r_0]e^{-\kappa t_{\mathrm{eff}}}.
+$$
+
+The phase completes a cycle in $2\pi/\Omega$ every time. Meanwhile neighboring values of $r$ move closer together, and a patch measured by $dr\wedge d\theta$ shrinks by $e^{-\kappa t_{\mathrm{eff}}}$. Thus the displayed area form is not preserved while the phase rate stays constant. The equations have no explicit time dependence; the example needs no explicitly prescribed external driving term. It is an abstract mathematical system, however, not evidence for a physically closed dissipative architrino assembly. No physical source of contraction, memory flux, or energy balance is inferred from it.
+
+This comparison refutes a general implication from failure of the displayed symplectic preservation to clock-rate drift. It does not evaluate the chapter's still-unconstructed memory-boundary term or prove that memory effects leave real clocks unchanged. In a real branch calculation, omitted history may change the rate, shift its calibration, produce transient timing errors, destroy the phase, or have no material effect on the selected observable. Those outcomes require the phase response to be computed. The original normalized numerical example remains an illustration in units $c_f=1$, not a solver result.
+
+The smallest repair preserves two useful requirements separately. The clock certificate requires repeatable phase evolution with the relevant history and exchanges accounted for. A proposed Hamiltonian reduction additionally requires its memory-corrected symplectic construction and boundary balance to be established. The memory condition should be presented at that open, conditional scope. The categorical statement that leakage necessarily causes secular rate drift should be replaced by a requirement to determine its effect on the clock phase. The existing requirement to account for actual external driving and exported fluxes remains appropriate.
+
+This matters because an inadequate reduced description must not be used, without the missing argument, to declare that a physical assembly cannot serve as a clock or that its proper time is undefined. Equally, a stable phase alone does not certify a Hamiltonian description or universal agreement with other clocks. The revision would separate these obligations without resolving either by assertion.
+
+Claim grade: the separation of phase rate and area preservation is derived in the explicit comparison; the special connection between the proposed memory residual and physical clock failure is unestablished. A theorem from the delayed dynamics defining that residual and proving a quantitative clock-phase consequence would discharge the concern. The Effective Lagrangian dependency was reread unchanged at SHA-256 `9d974db22027ba28beeadcaca9ed1d01b9a00b345434f33a0da690bf33336aed`. This discussion does not amend or validate its candidate construction. F4-3 awaits acceptance of the scoped clarification; F4-4 remains pending.
+
+### F4-3 accepted integration — 2026-09-05
+
+The operator selected “Apply F4-3's clarification, then explain F4-4.” The live integrator-reviewer procedure governed the correction. The immediate baseline matched SHA-256 `352b11d5cbf233f82795fb1060da392cc06358b45379e6e4d6e47cd4a4a5e33a` and was retained before editing. The revised passage at lines 165–178 separates repeatable phase evolution from the additional requirements of a proposed Hamiltonian representation, defines the intended history-age interval and candidate boundary contribution, and states that its construction and quantitative evaluation remain open. It removes the inference from a symplectic-balance defect alone to clock-rate drift while preserving the need to account for relevant history, actual driving, and exchanges. A direct relative link to Effective Lagrangian supplies the dependency whose open scope controls this claim.
+
+The complete resulting 791-line chapter was reread, and the full incremental diff was compared with the retained baseline. All 40 display equations are byte-identical to that baseline. All prior link labels and targets are preserved, and exactly one new link, to Effective Lagrangian, was added. All 133 mathematical expressions parsed with the vendored KaTeX instrument; all 52 local file-link occurrences resolve. The registered equation-link checker passed for its 23 entries. These are syntax, preservation, and target-existence checks, not a visual rendering audit or comprehensive fragment validation. Author self-review checked the distinction against the unchanged dependency and the explicit phase-flow counterexample already recorded; it does not constitute independent physical validation or construction of the proposed memory term. F4-4 remains the only unimplemented finding in this batch.
+
+The strict content check returned 0 errors and 1 warning, exiting 1 for the existing `content/scenes/scenes_index.json` drift, which lacks `content/scenes/archie/feedback.json`. Its repair command is `node scripts/validate-content.mjs --write`. Previously recorded `content/generated/equation-mapping/corpus-equations.json` drift remains with the same established regeneration or PR owner; its command is `node scripts/build-equation-mapping-corpus.mjs --write`. The registry freshness check was not repeated for this prose-only correction. No generated artifact was written. Whitespace validation passed.
+
+Resulting target SHA-256: `1f13b32d109164ef58a5d3bdab1d07ed09766fd36e7742d2cf32fdeb46627810`. F4-1 through F4-3 are accepted and verified at their correction scope. The physical clock/ruler response maps and memory construction remain open. Coverage is 6 of 9 complete readings: 5 fully corrected chapters at their accepted scope, 1 partially integrated chapter awaiting F4-4, and 3 unread campaign targets. This turn edits only Absolute Time Defense and the two existing campaign records, preserves the previous Absolute Timespace and Euclidean Void work, and does not start batch 5. No dependency, controlled canon, application code, or generated artifact was edited.
+
+### F4-4 discussion — Counting returns does not measure their duration
+
+The remaining finding concerns the invariant-circle clock explanation at Absolute Time Defense lines 127–143. Its rotation number describes mean phase advance per return, reduced modulo one. A clock frequency instead requires phase advance per unit elapsed time. This is a missing connection in the exposition, not a contradiction in the rotation-number theorem or proof that a proposed assembly cannot be a clock.
+
+A return map records the state each time a trajectory crosses a chosen section again. For a motion with more than one phase, one can picture observing a rotating pointer whenever another recurring feature reaches a reference position. The resulting sequence tells us where the pointer appears on each observation. Unless the record includes timing and continuous phase information, it does not tell us how long the pointer took to get there or how many complete turns it made between observations.
+
+There are two independent losses. First, phase on a circle records position modulo one full turn. Advancing one quarter of a turn and advancing one and one quarter turns give the same final pointer position. Repeating the same increment therefore gives the same sequence of circle positions despite different total rotation. A physical phase lift preserves the running count of full turns; it must be selected from the continuous trajectory rather than reconstructed from the circle positions alone.
+
+Second, a map that advances a quarter turn at each return is unchanged if every return takes twice as long. Its frequency is halved. In normalized wake-speed units $c_f=1$, the following are abstract timing examples in a declared effective time unit, not measured assembly results:
+
+| Actual phase advance per return | Effective time per return | Frequency in cycles per effective-time unit |
+| --- | --- | --- |
+| $1/4$ cycle | $1$ | $1/4$ |
+| $1/4$ cycle | $2$ | $1/8$ |
+| $5/4$ cycles | $1$ | $5/4$ |
+
+All three produce the same quarter-turn circle map when only the phase at returns is retained. The first two isolate missing duration; the first and third isolate missing whole turns. The same argument applies to an irrational advance $\alpha$ and $\alpha+1$, and to rescaling return times for quasiperiodic motion. The simple rational values above are chosen only to make the information loss visible.
+
+To recover frequency, let $\theta\in\mathbb R/\mathbb Z$ be phase measured in cycles, and let $\tilde P$ be a lift of the return map satisfying $\tilde P(x+1)=\tilde P(x)+1$. The physical lift retains full turn counts. Let $\delta t(\theta)>0$ be the elapsed effective time until the next return, and write $\theta_k=P^k(\theta)$. After $n$ returns, the counted phase advance is $\tilde P^{\,n}(\theta)-\theta$, while the elapsed effective time is the sum of the return durations. Their ratio supplies the mean frequency, when the limit exists:
+
+$$
+\overline\nu
+=\lim_{n\to\infty}
+\frac{\tilde P^{\,n}(\theta)-\theta}
+{\sum_{k=0}^{n-1}\delta t(\theta_k)},
+\qquad
+\overline\Omega=2\pi\overline\nu.
+$$
+
+Here $\overline\nu$ is cycles per effective-time unit and $\overline\Omega$ is angular phase per effective-time unit. If the real phase advance per return converges and the mean return duration has a finite, positive limit, the ratio is their quotient. A zero, divergent, or nonconvergent mean duration does not provide the stated finite frequency by this argument. If one frequency is claimed across the branch, dependence on initial phase and the relevant uniformity must also be controlled. A unique mean frequency alone does not certify small timing jitter or continuous positive instantaneous phase rate; those remain phase-coherence requirements.
+
+The full delayed trajectory may already contain the needed lift and return times. The finding does not assert that the underlying dynamics has lost them. It says that the reduced quantity displayed in this section is insufficient by itself, and the reader needs the explicit connection back to the time-bearing trajectory before it can support the clock-rate definition. The periodic-orbit case remains distinct: its repeat period directly gives a frequency once the physical cycle and the time convention are fixed.
+
+The smallest repair is to retain the existing rotation-number formula and its sufficient circle-homeomorphism assumptions, explain the physical lift and positive return durations, and give the frequency ratio with its existence conditions. This supplies the missing explanation without a new law or a claim that universality has been derived. It also keeps the distinction between substrate time $T$ and the chapter's effective time explicit: rates must use a declared parameter, with the corresponding conversion supplied when comparing them.
+
+Claim grade: derived information requirement and explanatory omission. The equal-map examples show directly why modulo-one rotation per return cannot uniquely determine a phase rate. Supplying the physical turn-count and return-time extraction for the selected assembly, together with the needed limits and phase control, would discharge the gap. No EOM simulation or physical frequency measurement was performed. F4-4 awaits acceptance of this explanatory repair; F4-1 through F4-3 remain implemented and verified.
+
+### F4-4 accepted integration and batch-4 closeout — 2026-09-05
+
+The operator selected “Apply F4-4’s explanatory correction.” The live integrator-reviewer procedure governed the scoped edit. The immediate baseline matched SHA-256 `1f13b32d109164ef58a5d3bdab1d07ed09766fd36e7742d2cf32fdeb46627810` and was retained before editing. The revised [clock explanation](../../../content/markdown/aaa/foundations/absolute-time-defense.md#when-is-something-actually-a-clock) defines circle phase in cycles, its physical lift and full turn count, positive elapsed effective return times, and the mean-frequency ratio. It states sufficient limit conditions, the additional requirement for independence from initial phase when claiming one frequency across the branch, and the distinction between mean frequency and coherent advancing instantaneous phase. The periodic-orbit case remains separate. The original rotation-number equation and its sufficient circle-homeomorphism assumptions are preserved. No new physical postulate or measured clock result is introduced.
+
+The mathematical check is author self-review: dividing total turn count and total elapsed time by the number of returns gives the quotient of the two limiting means when the denominator limit is finite and positive. Adding a whole turn preserves the circle map but changes the counted frequency; multiplying every return duration by a positive constant preserves the map but inversely rescales the frequency. These direct checks support the information requirement and the ratio under its stated assumptions. They are not independent physical validation, a construction of an assembly phase, or proof of clock universality. No EOM simulation was performed.
+
+The complete resulting 808-line chapter was reread, and the full incremental diff was compared with the retained baseline. All 40 previous display equations are byte-identical and occur in their original order; one mean-frequency display was added, for 41 total. All prior link labels and targets are unchanged. All 147 mathematical expressions parsed with the vendored KaTeX instrument, and all 52 local file-link occurrences resolve. The registered equation-link checker passed for its 23 entries; its coverage does not include every chapter equation. These checks establish syntax, preservation, and file-target existence, not a visual rendering audit or comprehensive fragment validation.
+
+The strict content check returned 0 errors and 1 warning, exiting 1 for the existing `content/scenes/scenes_index.json` drift, which lacks `content/scenes/archie/feedback.json`. Its repair command is `node scripts/validate-content.mjs --write`. The equation-corpus freshness check exited 1 for stale `content/generated/equation-mapping/corpus-equations.json` and the new equation `corpus-equation-bec62a39745a7416` missing its canonical source viewer link. The established regeneration command is `node scripts/build-equation-mapping-corpus.mjs --write`. These remain with the established regeneration or PR owner; no generated artifact or viewer link was manually written. Whitespace validation passed.
+
+Resulting target SHA-256: `7f1416cb91707f0619634ab6f8034504d41c242946f4ed3a69271b3782dd72f5`. F4-1 through F4-4 are accepted, implemented, and verified at their correction scope. The physical clock/ruler response maps, memory construction, phase extraction, and universality proof remain open. Coverage is 6 of 9 complete readings, with all accepted corrections verified in those 6 chapters and 3 unread campaign targets. No finding is explicitly deferred. This turn edits only Absolute Time Defense and the two existing campaign records, preserves the earlier Absolute Timespace and Euclidean Void work, and does not start batch 5. The next review batch is Detecting the Absolute Frame and Constructing the Absolute Frame, following textbook order. No dependency, controlled canon, application code, or generated artifact was edited.
