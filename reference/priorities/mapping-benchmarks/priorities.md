@@ -31,6 +31,7 @@ The [Shared Equation And Mapping Architecture](../mapping/mapping-method.md) gov
 
 | Lane | Draft cases | Primary AAA pressure |
 | --- | --- | --- |
+| Effective spacetime structure | [spacetime-structure-experiment-suite](spacetime-structure-experiment-suite.md) | Separates metric reconstruction, propagation, correlated displacement searches, global topology, and mediated-entanglement witnesses; constrains one shared Noether-sea record through independent instrument projections. |
 | Redshift, clock, and transport | [gravitational-redshift-clock-tests](gravitational-redshift-clock-tests.md), [cosmological-redshift-distance-ladder](cosmological-redshift-distance-ladder.md) | Clock-rate comparison, Noether sea delay, cosmology transfer functions, effective observer variables. |
 | Lorentz and preferred-frame tests | [lorentz-invariance-test-suite](lorentz-invariance-test-suite.md) | Moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, preferred-frame leakage. |
 | Rotating and moving media | [sagnac-effect](sagnac-effect.md), [fizeau-moving-medium](fizeau-moving-medium.md) | Path-history phase, rotation, medium transport, moving-medium effective velocity addition. |
