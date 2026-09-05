@@ -179,6 +179,13 @@ function main() {
   }
 
   fs.mkdirSync(path.dirname(outputAbsolute), { recursive: true });
+  if (
+    fs.existsSync(outputAbsolute) &&
+    stripVolatile(fs.readFileSync(outputAbsolute, "utf8")) === stripVolatile(next)
+  ) {
+    process.stdout.write(`[reference-surface] ${OUTPUT_PATH} is current; preserved existing output\n`);
+    return;
+  }
   fs.writeFileSync(outputAbsolute, next);
   const { directories, files, words } = manifest.totals;
   process.stdout.write(
