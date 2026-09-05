@@ -24,7 +24,7 @@ In chat, established shared knowledge may shorten the explanation when comprehen
 
 This standard governs the agent’s chat responses and the ongoing maintenance of the operator-facing working documents affected by the discussion. Substantive ideas, explanations, findings, and decisions are recorded and organized in their appropriate documents so the operator can read the current account without reconstructing the conversation. The academic style guide defines writing style for both surfaces. Chat response mechanics, including the final action list, apply to responses; working documents retain the structure required by their purpose.
 
-Choose the destination according to the material and the task:
+Choose the appropriate destinations according to the material and the task:
 
 - **Working documents:** Keep the relevant analyses, procedures, requirements, designs, priority trackers, and evidence records current as the discussion develops. These usually live under `reference/`, but the existing subject owner may be elsewhere. Write their explanatory content under the academic style guide.
 - **Reader-facing corpus:** When the task authorizes changes under `content/markdown/aaa`, write ready corrections, improvements, or insights directly into the appropriate document. Follow the corpus authoring and promotion rules; an intermediate working copy is not required for material already ready for publication.
@@ -179,6 +179,8 @@ Next possible actions:
 
 ## Existing documents
 
-Documents written under the retired inline plain-language tag keep those passages unless a scoped rewrite improves the surrounding explanation. Do not run a mechanical tag-removal campaign; the objective is academic explanation, not deletion of a historical formatting habit.
+Existing explanatory documents must meet the academic style guide, including those in inactive workstreams. Bring them into compliance through scoped, reviewable edits. This requirement does not authorize a repository-wide rewrite or reactivate deferred work.
 
-New writing follows this standard and the style guide it imports. Existing authored Markdown whose purpose includes technical or theory information is also a conversion obligation, whether active or dormant. Carry out that work through reviewable editorial campaigns that preserve exact mathematics, technical meaning, evidence boundaries, claim grades, source support, queue state, chronology, provenance, functional anchors, and operational purpose. Generated artifacts and provenance-bearing historical bytes remain controlled by their own preservation rules rather than being rewritten for stylistic uniformity.
+Improve the explanation while preserving exact mathematics, technical meaning, evidence limits, claim grades, sources, task status, chronology, provenance, working links and anchors, and the document’s purpose. Generated files follow their generation procedures. Protected historical records retain their original content; add clarification in accompanying prose when needed.
+
+For example, when revising a passage with an old `Plainly:` label, integrate its useful explanation into the surrounding academic prose. Removing the label alone does not improve the explanation, and useful content must not be discarded merely to remove the old format.
