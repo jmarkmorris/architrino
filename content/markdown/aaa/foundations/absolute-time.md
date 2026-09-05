@@ -332,7 +332,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5cbd1d920a3685bc)
 
-Requiring this bounded away from zero requires $F_{ij}$ to cross zero at a definite rate rather than grazing it. Failure marks a caustic-like regime and must be routed to branch-chart or regularization analysis — not treated as an ordinary small perturbation.
+The derivative compares neighboring candidate emission times while holding the reception event fixed. Requiring its magnitude to stay above a positive floor makes $F_{ij}$ cross zero at a definite rate rather than graze it. Every candidate still satisfies $T_t<T_r$; this crossing compares past emissions and uses no future support. Falling below the declared floor means that the chart has lost its certified margin. It requires reassessment, but does not by itself establish a caustic: the derivative may remain nonzero.
 
 For self-hits the shared root function hides extra geometry. When $i=j$, a root means the worldline has re-entered its own expanding wake. In general that is a condition on the curvature, torsion, and return geometry of the path, not a speed test. A segment faster than the wake speed is a warning that self-hit roots may exist, but the accepted branch is still defined by root existence together with the transversality floor and the retained transmitter-side weight.
 
@@ -340,7 +340,7 @@ For self-hits the shared root function hides extra geometry. When $i=j$, a root 
 
 $\kappa_{\mathrm{hit}}$ is not a universal coupling constant and not the regularization width $\eta$. It is a declared positive lower bound for one retained branch chart, certificate, or regularized model, after units, root labels, endpoint convention, and memory window have been fixed. Branch packets may report the same condition as a certified Jacobian floor such as $J_0$ or $\nu_J$. Having a positive floor is part of admissibility; its numerical value belongs to the branch record rather than the universal parameter ledger. It cannot be removed by relabeling.
 
-Generically, losing the floor is a **codimension-one fold** of the root manifold — a failure that one-parameter families can cross. At the fold there is one degenerate double root; crossing the fold creates or destroys a pair of simple roots. So the floor is not just a guard against small denominators. It certifies that the *number* of simple roots and their arrangement are stable on the retained chart; when it fails, the event is a bifurcation or chart transition.
+The floor protects local continuation of admitted simple roots under smooth changes of the histories and reception event. Stability of the complete root count requires more: a complete root inventory on the retained interval and control preventing roots from crossing its endpoints. On a compact interval, simplicity prevents roots from merging in the interior, while endpoint separation prevents them from entering or leaving through the boundary. Together these conditions keep the count fixed along a smooth connected family. A root can otherwise leave a selected history window while remaining perfectly simple; that changes the retained count without creating a physical singularity. The separate boundary and simple-root conditions are stated in the [Master Equation](../dynamics/master-equation.md#delay-map-theorem-pack-formalized).
 
 The caustic set for a pair of histories is
 
@@ -352,7 +352,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-177db29a2a4a5a62)
 
-where the root condition holds and its derivative vanishes simultaneously. On a generic one-parameter branch this is a Whitney fold, the simplest way a smooth family of solutions can turn back on itself. Higher events such as a cusp, where the second derivative also vanishes, are codimension-two — rarer still, and warning that the catalogue of branches is itself changing. In simulation, fold contact is the first alarm that the floor has failed; cusp contact is the stronger one.
+where the root condition holds and its derivative actually vanishes. An ordinary **Whitney fold** additionally has a nonzero second emission-time derivative and a control that crosses the singular set transversely. It has one double root at contact; crossing it creates or destroys a pair of simple roots. Such folds are codimension one in generic families, so a single control can encounter them. A cusp also requires a vanishing second derivative and further nondegeneracy and unfolding conditions; ordinary cusps are codimension two in generic families. Higher singularities require their own analysis. These are statements about actual singular roots, not diagnoses obtained merely by crossing a chosen positive numerical floor.
 
 This is one instance of a discipline running through the foundations: **non-degeneracy floors turn exact failure sets into graded admissibility certificates.** The root Jacobian floor here, the basin-separatrix floor in [Emergence](emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](constructing-the-absolute-frame.md#reconstruction-existence-lemma) all do the same job for different objects. They are margins attached to declared charts, not universal constants.
 

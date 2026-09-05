@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-05 — Technical-brief verification and definitions refined
+
+Applied both accepted focused-review findings to the [technical brief](../../research-office/cto/technical-brief-master-equation.md). The proposed test now checks full vector dynamics with explicit interval and sampling scope, and the text defines the retained-branch and evidence terminology in place. The [review record](office-document-standards-review.md#authorized-refinements-completed) records resolution; the priority tracker no longer lists these as open refinements. Existing equations and historical material retain their prior scope.
+
+### 2026-09-05 — Optional feedback diagnostics
+
+Renamed the diagnostic section to “Optional: include diagnostic details” and used a native disclosure that starts collapsed. The GitHub issue form now permits leaving those details blank, with the policy recording that submission does not require them. Page copy explains that the reader writes and submits the report on GitHub, and runtime status messages use the same plain-language terminology. Five focused policy tests passed. Local browser checks at 1440 and 390 CSS pixels verified the collapsed default, opening and closing, diagnostic refresh, the available issue link, and absence of horizontal overflow. Scoped whitespace validation passed. Existing publication and regeneration obligations remain recorded in the tracker.
+
 ### 2026-09-05 — Technical brief and all legacy roles reconciled
 
 Completed the operator-authorized correction of the Master Equation technical brief and sequential reconciliation of all ten legacy role documents. The brief now derives canonical transmitter-side acceleration weighting and separate signed playback with consistent integral normalization. Independent affine-path symbolic and local quadrature checks support this representation correction within their stated scope. All role briefs now use live scientific and operational owners, preserve distinct research questions and attributed notes, and remove obsolete active laws, fixed mechanism assignments, and unsupported acceptance authority. The [existing review record](office-document-standards-review.md#2026-09-05--technical-brief-and-legacy-role-reconciliation) contains the derivation explanation, reproducible check parameters, and all ten dispositions. The [priority tracker](priorities.md#office-document-standards-review) records completion and keeps only the separate story and play-surface recommendations for future selection.

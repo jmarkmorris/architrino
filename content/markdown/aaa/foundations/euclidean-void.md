@@ -508,7 +508,9 @@ where $\mathcal{N}_{\mathrm{sea}}(T)$ is the relevant sea state and $O(t_{\mathr
 
 It produces a single global scale factor only under a condition that is easy to assume without noticing. The retained sea record and the observer family must be statistically homogeneous and isotropic across the averaging cell. Without that, the honest output is a local or tensorial summary — a full $g^{\mathrm{eff}}_{\mu\nu}$, or a direction-dependent response $a_{\mathrm{eff},ij}$ — rather than one number per time.
 
-When a tensorial response is retained, the familiar single-number version is its trace:
+A directional response can be summarized by its average and its variation with direction, once the measured quantity and its calibration have been specified. For the decomposition below, suppose a selected dimensionless response admits the symmetric quadratic representation $R(\mathbf n)=a_{\mathrm{eff},ij}n^in^j$, where $\mathbf n$ is a direction with $h_{ij}n^in^j=1$. The tensor $a_{\mathrm{eff},ij}$ contains the coefficients of this retained response; it is not assigned a universal clock, ruler, or metric meaning. The response and reference metric must be expressed in the same spatial chart. In the displayed effective coordinates, $h_{ij}$ therefore means the fixed Euclidean reference metric carried into that chart, and $h^{ij}$ is its inverse. This representation is conditional on a derived response having the stated directional form; it supplies no constitutive law for the sea.
+
+The directional average and the trace-free remainder are
 
 $$
 a_0(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})=\frac{1}{3}h^{ij}a_{\mathrm{eff},ij}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),
@@ -518,7 +520,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9f412c51252b80d8)
 
-The first equation averages the response over directions; the second collects what the average threw away. That leftover $a_{\langle ij\rangle}$ is the obstruction, and the scalar summary is admissible only where it falls below the declared isotropy tolerance. The same quantity shows up as ruler anisotropy in response tensors and as the orientational residuals bounded by Hughes–Drever experiments, which test whether physics depends on which way an apparatus points. It is a question about medium and assembly response, not a hidden anisotropy of the void.
+The first equation averages $R(\mathbf n)$ uniformly over the reference unit sphere, since the directional average of $n^in^j$ is $h^{ij}/3$. The second collects the directional dependence discarded by that average. Replacing the retained response by one scalar is justified only when $a_{\langle ij\rangle}n^in^j$ stays within the declared response tolerance over the directions of interest. Directional structure outside the assumed quadratic representation also requires a separate error bound. These are conditions for summarizing a specified response, not a derivation of a global cosmological scale.
+
+The distinction between lengths and squared lengths illustrates why the response definition matters. An isotropic linear stretch by a positive factor $a$ has tensor $a h_{ij}$ and trace mean $a$; the corresponding squared-length metric has tensor $a^2h_{ij}$ and trace mean $a^2$. The same effective length change therefore gives different trace means in the two descriptions. Identifying $a_0$ with the scale factor in [Cosmology Ontology](../cosmology/cosmology-ontology.md#effective-frw-variable-ledger) requires a derived response definition, reference normalization, and a consistent clock, ruler, and signal reconstruction. Homogeneity and isotropy alone do not provide those identifications.
+
+Laboratory comparison requires another explicit map. A directional medium response affects a clock record through the assembly and apparatus dynamics; it cannot be equated directly with a measured frequency residual. Connecting $a_{\langle ij\rangle}$ to the Hughes–Drever and clock-comparison constraints discussed in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) requires deriving that apparatus response and its normalization. The cosmological and laboratory connections remain recovery obligations. They concern medium and assembly behavior within the fixed void.
 
 None of this may be read as
 

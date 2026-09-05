@@ -558,3 +558,35 @@ The frozen role inventory contains exactly ten Markdown documents. The role-only
 Priority ranking and whitespace checks passed. Strict content validation reports zero authored errors but does not pass while the shared scene index omits the separately added feedback scene. The drift is in `content/scenes/scenes_index.json`, missing `content/scenes/archie/feedback.json`; the required generation command is `node scripts/validate-content.mjs --write --strict`, followed by `node scripts/validate-content.mjs --check --strict`. This follow-up did not authorize or perform that generated write. A directory-link warning in the earlier explanation was corrected to the shared role index.
 
 These checks establish source reconciliation, preserved recorded text, resolving links, and rendered mathematical syntax at this checkpoint. They do not establish physical recovery, solver correctness, observational acceptance, or readiness of the separate educational/product proposals.
+
+
+## Focused Review of the Technical Brief and Shared Instructions
+
+On 2026-09-05, the operator selected a focused review of the corrected technical brief followed by the shared role instructions. This is source review, including self-review of the technical brief, rather than an independent physical or solver certification. The two reviewed documents remain unchanged in this pass.
+
+The original acceleration-weight and normalization findings are resolved. Direct comparison with the current Master Equation confirms the same explicit wake-speed factor in the integral, transmitter-side acceleration weight, and separate signed receiver playback derivative. The simple-root derivation differentiates the causal constraint with respect to the correct event times and preserves positive separation and root-simplicity boundaries. The shared instructions correctly route present assignments, style, law, and acceptance authority to their live owners. Their historical material is explicitly non-authoritative; no new conflicting active instruction was found.
+
+### Technical-test finding at review
+
+The [minimal technical test](../../research-office/cto/technical-brief-master-equation.md#minimal-technical-test) requests a radial residual while describing certification of a two-body delayed trajectory. This is an incomplete test specification: the Master Equation is a vector equation. Define the acceleration residual as the trajectory's second time derivative minus the full causal-root acceleration sum. Its projection onto one radial unit vector can vanish even when a perpendicular component is nonzero. For example, a residual with Cartesian components $(0,b,0)$, where $b$ is a nonzero acceleration, has zero projection onto the direction $(1,0,0)$. This algebraic example does not claim that a particular dynamical trajectory realizes that residual; it demonstrates why a scalar projection alone cannot certify the vector equation.
+
+Recommendation: require the full vector residual, componentwise bounds or a declared norm over the test interval, and the causal-root and playback residuals. Retain the radial projection as an additional diagnostic. A scalar-only criterion is sufficient only if a separate argument proves that every omitted component vanishes on the tested history family. This is a derived verification gap, not a renewed objection to the corrected acceleration formula. It would be resolved by the explicit vector requirement or that missing reduction proof.
+
+### Explanatory finding at review
+
+The brief's assembly and validation sections use retained branch, causal-return ledger, and branch certificate as load-bearing concepts without a compact in-place explanation connecting them. The academic style guide requires project-specific concepts to be explained for the brief's stated external technical audience. Recommendation: explain that a retained branch is a family of histories continuing to satisfy the stated dynamics and causal-root conditions; its causal-return record tracks the relevant emission/reception identities and return conditions; and a certificate supplies the stated bounds and evidence supporting the particular claim. Avoid suggesting that any ledger alone proves stability. This is an editorial finding from the current text; existing definitions sufficient for that audience would overturn it.
+
+### Shared-instruction assessment
+
+The shared prompt's current instructions are coherent with the revised role briefs and current policy. The preserved snapshots and external consolidation procedure remain clearly labeled as historical, so their old formulas and workflow directives are not active scientific guidance. An optional usability improvement is to move those exact historical bytes to a linked archival companion, leaving the current instruction file focused on present use. This is an organizational preference, not a correctness blocker or authorization to delete provenance; retaining the current explicit separation is also acceptable.
+
+The preferred next step is a bounded technical-brief revision addressing the vector test and definitions. The archive move is optional and can be deferred. No mathematical owner, implementation, historical block, or generated artifact was edited during this review.
+
+
+### Authorized refinements completed
+
+The operator selected both technical-brief refinements. Both findings are resolved in the source: the minimal test requires the full vector acceleration residual with componentwise or declared-norm bounds for each receiver over the stated interval, distinguishes sampled evidence from between-sample bounds, and keeps radial projection, root admission, and signed playback as separate checks. A radial-only reduction requires proof that omitted components vanish. The brief defines a retained dynamical branch separately from an emission-root branch, explains root and causal-return ledgers at their first use, and defines a branch certificate through its assumptions, supporting evidence, bounds, and claim domain. A record alone does not establish stability.
+
+The full-document editorial self-review preserved the existing law, equations, claim boundaries, headings, and links. The optional archival move was not selected and no role brief or historical block was changed.
+
+Verification of the refinements: all 105 existing TeX spans match the pre-refinement source exactly, the technical brief’s relative links resolve, and the whitespace check passes. Strict content validation reports zero authored errors and the same separate feedback-scene index warning recorded above. No generated write was performed. Earlier HTML and image previews are snapshots of the pre-refinement prose; the current Markdown is the review surface.

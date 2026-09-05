@@ -165,6 +165,33 @@ textarea {
   align-items: start;
 }
 
+.feedback-diagnostics {
+  display: block;
+}
+
+.feedback-diagnostics summary {
+  cursor: pointer;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.feedback-diagnostics summary:focus-visible {
+  outline: 2px solid var(--feedback-blue);
+  outline-offset: 4px;
+}
+
+.feedback-diagnostics-content {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.feedback-diagnostics-content > p:first-child {
+  margin: 0;
+  color: var(--feedback-muted);
+  line-height: 1.55;
+}
+
 .feedback-step {
   display: inline-grid;
   width: 36px;

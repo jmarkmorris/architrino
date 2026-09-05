@@ -10,6 +10,7 @@
     "userReviewRequired": true
   },
   "manifest": {
+    "requiredForSubmission": false,
     "schema": "architrino.public-feedback-manifest.v1",
     "included": [
       "reported public pathname",

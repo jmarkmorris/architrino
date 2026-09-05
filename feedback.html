@@ -22,7 +22,7 @@
       <section class="feedback-intro" aria-labelledby="feedback-intro-title">
         <div>
           <h2 id="feedback-intro-title">Make the problem reproducible without exposing private workflow</h2>
-          <p>This page builds a small diagnostic manifest in your browser. Nothing is sent automatically. Review the manifest, copy it if you choose, then open the public GitHub issue form and paste it there.</p>
+          <p>Write and submit your report using the public GitHub issue form. Nothing is sent automatically. You can optionally review and copy diagnostic details below to help us investigate.</p>
         </div>
         <aside class="feedback-public-notice" aria-label="Public issue notice">
           <strong>GitHub issues are public.</strong>
@@ -42,28 +42,25 @@
         <input id="feedback-page-path" name="feedback-page-path" type="text" inputmode="url" autocomplete="off" placeholder="/index.html" />
       </section>
 
-      <section class="feedback-card" aria-labelledby="feedback-manifest-title">
-        <div class="feedback-card-heading">
-          <span class="feedback-step">2</span>
-          <div>
-            <h2 id="feedback-manifest-title">Review the sanitized manifest</h2>
-            <p>It contains coarse browser and device categories plus public scene, markdown, and graph manifest counts. It deliberately omits the raw user agent and fingerprinting data.</p>
-          </div>
-        </div>
+      <details class="feedback-card feedback-diagnostics">
+        <summary id="feedback-manifest-title">Optional: include diagnostic details</summary>
+        <div class="feedback-diagnostics-content">
+        <p>These details describe your browser, approximate screen size, and whether the site's content indexes loaded. Review them before copying and pasting them into the GitHub form. You can submit feedback without them.</p>
         <textarea id="feedback-manifest" rows="20" readonly aria-labelledby="feedback-manifest-title" aria-describedby="feedback-status"></textarea>
         <div class="feedback-actions">
-          <button id="feedback-refresh" type="button">Refresh manifest</button>
-          <button id="feedback-copy" class="feedback-primary" type="button">Copy sanitized manifest</button>
+          <button id="feedback-refresh" type="button">Refresh diagnostic details</button>
+          <button id="feedback-copy" class="feedback-primary" type="button">Copy diagnostic details</button>
         </div>
-        <p id="feedback-status" class="feedback-status" role="status" aria-live="polite">Preparing manifest…</p>
-      </section>
+        <p id="feedback-status" class="feedback-status" role="status" aria-live="polite">Preparing diagnostic details…</p>
+        </div>
+      </details>
 
       <section class="feedback-card" aria-labelledby="feedback-submit-title">
         <div class="feedback-card-heading">
-          <span class="feedback-step">3</span>
+          <span class="feedback-step">2</span>
           <div>
             <h2 id="feedback-submit-title">Open the public issue form</h2>
-            <p>The issue form asks for what happened, how to reproduce it, what you expected, and the manifest you reviewed above. Opening the form does not submit it.</p>
+            <p>On GitHub, describe what happened, how to reproduce it, and what you expected. Add diagnostic details if you choose, then review and submit your report there. Opening the form does not submit it.</p>
           </div>
         </div>
         <a id="feedback-open-issue" class="feedback-issue-link" href="https://github.com/jmarkmorris/architrino/issues/new?template=public-webapp-feedback.yml" target="_blank" rel="noopener noreferrer">Open public GitHub issue form</a>

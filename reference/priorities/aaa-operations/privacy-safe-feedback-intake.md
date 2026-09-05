@@ -6,13 +6,15 @@ OPS-012 is closed by one reproducible public intake path:
 
 1. Open [the feedback page](../../../feedback.html).
 2. Identify the affected public pathname without a query string or fragment.
-3. Review and optionally copy the locally generated `architrino.public-feedback-manifest.v1` record.
-4. Open the dedicated public GitHub issue form and paste the reviewed manifest.
+3. Optionally expand **Optional: include diagnostic details**, review the locally generated `architrino.public-feedback-manifest.v1` record, and copy it.
+4. Open the dedicated public GitHub issue form, write the report there, and optionally paste the reviewed diagnostic details.
 5. Review the complete public issue before submitting it.
 
 The machine-checkable boundary is [feedback-intake-policy.v1.json](feedback-intake-policy.v1.json). Opening the feedback page does not create an issue, send analytics, contact GitHub, or read the clipboard. The diagnostic generator requests only the same-origin public scene index, markdown index, and scene graph. GitHub is contacted when the reader selects the issue link; the report is submitted only when the reader submits its form.
 
 The diagnostic report is visible before it leaves the browser. The reader controls copying, opening GitHub, editing the report, and final submission.
+
+Diagnostic details are collapsed by default and optional both on the feedback page and in the GitHub form. They help reproduce browser or deployment problems, but their absence does not prevent submission. The feedback page prepares optional troubleshooting information and links to the form; the reader writes and submits the issue on GitHub. Details are not automatically attached to that form.
 
 ## Navigation
 

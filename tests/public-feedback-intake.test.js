@@ -160,5 +160,10 @@ test("feedback page and issue form preserve explicit public submission", () => {
   assert.equal(policy.channel.automaticSubmission, false);
   assert.equal(policy.channel.userReviewRequired, true);
   assert.equal(policy.manifest.schema, PUBLIC_FEEDBACK_MANIFEST_SCHEMA);
+  assert.equal(policy.manifest.requiredForSubmission, false);
+  assert.match(html, /<details class="feedback-card feedback-diagnostics">/u);
+  assert.match(html, /Optional: include diagnostic details/u);
+  const diagnosticField = issueForm.split("id: sanitized_manifest")[1].split("- type: checkboxes")[0];
+  assert.match(diagnosticField, /required: false/u);
   assert.deepEqual(policy.manifest.omitted, [...PUBLIC_FEEDBACK_PRIVACY_OMISSIONS]);
 });
