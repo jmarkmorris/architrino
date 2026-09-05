@@ -1,19 +1,14 @@
-Closure goal: Verify whether another agent's edits correctly resolve a specified review on a target file, and report any remaining issues without editing files.
+Verify whether another agent's edits correctly resolve a specified review on a target file, and report any remaining issues without editing files.
 
 # Review Closure Verifier Prompt
+
+Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and live priority capture.
 
 Use this prompt when Op asks whether another agent's edits correctly resolved a prior numbered review. This is review-only by default.
 
 ## Startup
 
-Run:
-
-```bash
-git status --short --untracked-files=all
-git diff -- [TARGET_FILE]
-```
-
-Then read:
+Read `AGENTS.md`, the generated startup router, and the selected live workflow owner before inspecting the working set and target changes. Use only mechanisms permitted for the current agent; the repository's Claude git prohibition remains in force. Then read:
 
 1. The relevant sections of `[TARGET_FILE]`.
 2. The original review items Op supplied.
@@ -40,9 +35,9 @@ For each original review item:
 
 Pay special attention to notation substitutions, index conventions, sign conventions, coordinate conventions, orientation/parity clauses, and source/receiver labels. These often appear fixed locally while still conflicting with the surrounding corpus.
 
-## Output
+## Verification coverage
 
-Findings first, ordered by severity. Use exact file and line references.
+Preserve severity and exact source references in the findings. The operator explanation standard owns response structure, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) owns writing style.
 
 For each original review item, state:
 
@@ -51,7 +46,7 @@ For each original review item, state:
 - any remaining issue
 - whether a new issue was introduced
 
-Then include:
+The verification also records:
 
 - new issues introduced by the edits
 - any nearby-corpus consistency risks

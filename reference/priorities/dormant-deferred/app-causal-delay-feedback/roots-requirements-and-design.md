@@ -1,68 +1,84 @@
 # Deferred Roots Teaching Requirements And Design
 
-## Purpose
+## Status And Authority
 
-This deferred packet explores a linked-view lesson inside Causal Delay Feedback for the causal-root fold described in [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse): as a source's velocity component toward a receiver crosses $c_f$, the delay-map function $g$ develops a new pair of zero-crossings (causal roots), the wake surfaces emitted by the source visibly compress on the approach side, the active-root count steps by $\pm2$, and the per-hit acceleration spikes but integrates to a finite velocity change. The proposed design renders all four as one synchronized 2x2 grid driven by a small shared control set, so a reader can watch one fold appear simultaneously as an algebraic fact, a geometric picture, a counting ledger, and a bounded kinematic consequence.
+This document preserves a proposed advanced lesson inside Causal Delay Feedback. The lesson remains `dormant-deferred`: no implementation is scheduled, no queue row is executable, and this design does not authorize a separate evaluator, runtime, product route, or EOM solver path.
 
-The challenge is not missing computation. It is teaching four coupled representations without overwhelming the learner or implying that a schematic view independently proves the Master EOM behavior. The current app already has a canonical causal-root evaluator and a live Roots mode within `causal-delay-feedback.html`; this packet does not authorize another evaluator, standalone product route, runtime, or implementation pass.
+The proposal is a teaching design, not scientific evidence. Its synchronized views would render consequences of the closed forms already presented in [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse); agreement among those views would show that the app applies one shared model consistently, but it would not independently prove the Master EOM, certify a physical branch, or establish stability.
 
-**Notation.** This packet writes receiver time as $T_r$ and transmit (emission) time as $T_t$, rather than `master-equation.md`'s bare $T$ and $T_{\mathrm{em}}$, so every pane and control can name "receiver" and "transmit" explicitly. Fold instants carry the same subscript pattern: $T_{r,\ast}$ is the receiver-time instant of the fold, $T_{t,\ast}$ the paired transmit-time instant. Drop the `r`/`t` subscripts to recover the `master-equation.md` symbols.
+## The Fold Before The Symbols
+
+Picture a receiver at one event and a moving transmitter that has emitted expanding causal-wake surfaces throughout its earlier path. A causal root is a past emission event whose wake reaches the receiver at the selected receiver time. As the transmitter's velocity component toward the receiver crosses $c_f$, two such emission events can appear or disappear together. The same ordinary fold then has four linked descriptions: the delay-map function $g$ gains or loses a pair of zero-crossings, the emitted wake surfaces compress on the approach side, the active-root count changes by $\pm2$, and the pointwise acceleration grows sharply while its accumulated velocity change remains finite.
+
+The proposed lesson shows these four descriptions in one synchronized 2x2 grid. The learner sees one fold as an algebraic event, a geometric construction, a counting transition, and a bounded kinematic consequence rather than as four unrelated plots.
+
+The main difficulty is explanatory rather than computational. Four coupled representations must remain legible without implying that a schematic display independently establishes the dynamics. The current app already supplies the canonical causal-root evaluator and a live Roots mode within `causal-delay-feedback.html`; this packet neither replaces that implementation nor reopens it.
+
+**Notation.** Receiver time is $T_r$, and transmitter emission time is $T_t$. These symbols correspond to the bare $T$ and $T_{\mathrm{em}}$ used in `master-equation.md`, but the role subscripts let every pane name the receiver and emission events directly. The fold occurs at the paired instants $T_{r,\ast}$ and $T_{t,\ast}$ in those two time coordinates. Dropping the `r` and `t` subscripts recovers the notation used in `master-equation.md`.
 
 ## Requirements Before Reopening
 
-1. All four panes share one time cursor and one source-kinematics state; moving any shared control redraws all four panes together, not just one.
-2. The fold event (where $D_{s,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j$ crosses zero) must be visually identifiable in every pane at the same instant: a zero-crossing pair-creation in Pane A, a compression crest in Pane B, a step in Pane C, and the divergent-then-bounded spike in Pane D.
-3. The scene must support both a sub-$c_f$ source ($\beta=v/c_f<1$, single root throughout, no fold) and a super-$c_f$ source ($\beta>1$, fold pair visible), so the qualitative before/after is directly comparable.
-4. No pane may imply an infinite physical kick. Pane D must show the time-integrated $\Delta\mathbf V$ staying finite through the transit, per the finite-impulse lemma.
-5. Root count, $D_s$ value, and $\beta$ must also appear as plain numeric readouts, not only as curves, so the panes are checkable rather than purely impressionistic.
-6. Follows Theory-Layer Constraints below in all labels, tooltips, and captions.
+1. All four panes must consume one time cursor and one transmitter-kinematics state. Moving any shared control redraws every pane from that same state rather than updating one representation in isolation.
+2. Every pane must identify the same fold event, defined here by the transmitter-side diagnostic $D_{t,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j$ crossing zero. At that receiver-time instant, Pane A shows a zero-crossing pair appearing or disappearing, Pane B shows the wake-compression crest, Pane C shows the corresponding count step, and Pane D shows the pointwise spike together with its bounded accumulation.
+3. The scene must support a sub-$c_f$ transmitter with $\beta=v/c_f<1$, which has one root throughout and no fold, and a super-$c_f$ transmitter with $\beta>1$, which makes the fold pair visible. Showing both cases under the same controls supplies the qualitative comparison.
+4. No pane may imply an infinite physical kick. Pane D must show the time-integrated $\Delta\mathbf V$ remaining finite through the transit, as required by the finite-impulse lemma.
+5. Root count, the $D_t$ value, and $\beta$ must appear as plain numerical readouts as well as curves. The readouts make the displayed relationships checkable rather than purely impressionistic.
+6. Every label, tooltip, and caption must obey the Theory-Layer Constraints below.
 
-## 2x2 Pane Layout
+These are reopening conditions, not evidence that the deferred lesson has already met them.
+
+## Four Synchronized Views
+
+Each pane presents a different representation of the same transmitter history and receiver event. Their values must come from the shared state described above.
 
 | Pane | Content | Governing object |
 | --- | --- | --- |
-| A. Delay-map roots | $g(T_r;T_t)$ plotted against $T_t$ at the current receiver time $T_r$; zero-crossings marked as active causal roots. | `master-equation.md` fold normal form $g\approx\alpha(T_t-T_{t,\ast})^2+\lambda(T_r-T_{r,\ast})$ |
-| B. Wake scene | Source worldline and the expanding causal-wake circles (2D) it has emitted, receiver marked as a fixed point; wake spacing visibly compresses ahead of the source and opens up behind it. | Causal wake surfaces, `master-equation.md` "Master EOM" |
-| C. Root-count ledger | Step plot of active root count $N(T_r)$ over receiver time, with $\pm2$ transitions marked at each fold. | Fold law $\Delta N=\pm2$, $\Delta D=0$ (`master-equation.md`, $\Sigma^1$ stratum) |
-| D. Impulse pane | Per-hit acceleration magnitude near the fold (schematic $\propto(T_{r,\ast}-T_r)^{-1/2}$ divergence) overlaid with the cumulative integrated $\Delta\mathbf V$, showing the integral stays bounded. | Finite-impulse lemma, $\int\|\mathbf A_{ij,+}+\mathbf A_{ij,-}\|\,dT_r\le4C\sqrt\varepsilon$ |
+| A. Delay-map roots | Plot $g(T_r;T_t)$ against $T_t$ at the current receiver time $T_r$, with every zero-crossing marked as an active causal root. | The `master-equation.md` fold normal form $g\approx\alpha(T_t-T_{t,\ast})^2+\lambda(T_r-T_{r,\ast})$ |
+| B. Wake scene | Draw the transmitter worldline, its expanding causal-wake circles in two dimensions, and the receiver as a fixed point. The spacing between wakes compresses ahead of the transmitter and opens behind it. | Causal wake surfaces and the `master-equation.md` “Master EOM” |
+| C. Root-count ledger | Plot the active root count $N(T_r)$ over receiver time and mark each $\pm2$ transition at a fold. | The ordinary-fold law $\Delta N=\pm2$ with $\Delta D=0$ on the `master-equation.md` $\Sigma^1$ stratum |
+| D. Impulse pane | Overlay the schematic near-fold per-hit acceleration magnitude, with divergence $\propto(T_{r,\ast}-T_r)^{-1/2}$, and the cumulative integrated $\Delta\mathbf V$. | The finite-impulse bound $\int\|\mathbf A_{ij,+}+\mathbf A_{ij,-}\|\,dT_r\le4C\sqrt\varepsilon$ |
 
-Pane A and Pane C should read as one statement in two forms: the number of zero-crossings visible in A at time $T_r$ must equal $N(T_r)$ read off C at that same $T_r$. This cross-check is the app's main pedagogical payload and should be treated as a correctness requirement, not a nice-to-have.
+Pane A and Pane C express one count in two forms. At any selected $T_r$, the number of zero-crossings visible in Pane A must equal $N(T_r)$ in Pane C at that same $T_r$. This equality is the lesson's main internal correctness check, not an optional visual correspondence. It checks consistency among displays that share one model; it does not provide an independent derivation of the fold law.
 
-## Controls
+## Shared Controls
 
-Primary:
+### Primary Controls
 
-- **Velocity slider ($\beta=v/c_f$).** Drives the source's constant speed along its straight-line pass. Range roughly $0$ to $3$, with a visibly marked threshold at $\beta=1$. This is the single control the user is expected to reach for first; all four panes redraw live as it moves.
-- **Time cursor / scrub bar**, with play, pause, reset, and slow/fast rate, consistent with the transport controls already used in the Photon app. Needed because Panes A and B are instantaneous-$T_r$ views while Panes C and D are history views with a moving read-time marker.
+- **Velocity slider ($\beta=v/c_f$).** This slider drives the transmitter at constant speed along the straight-line pass. Its approximate range is $0$ to $3$, with the threshold $\beta=1$ visibly marked. It is the first control the learner is expected to use, and moving it redraws all four panes.
+- **Time cursor and scrub bar.** Play, pause, reset, and slow/fast rate controls must match the transport controls already used in the Photon app. Panes A and B show the instantaneous state at $T_r$, whereas Panes C and D show histories with a moving read-time marker; the shared cursor keeps those views synchronized.
 
-Secondary:
+### Secondary Controls
 
-- **Impact parameter slider ($b$)**, the source's perpendicular offset from the receiver on its straight-line pass. Does not change whether a fold exists (that is governed by $\beta$ alone, since $\hat{\mathbf r}_{ij}\cdot\mathbf V_j\to v$ as the source position on its line goes to $\pm\infty$, so any $\beta>1$ guarantees a fold region regardless of $b$), but changes when the fold occurs and how compressed Pane B's wake spacing gets at closest approach.
-- **Source path toggle: straight-line pass vs. circular orbit.** V1 default is the straight-line pass (simplest fold demonstration). A circular-orbit mode is a stretch goal tied to the principal-partner root certificate in [Binary Dynamics](../../../../content/markdown/aaa/dynamics/binary-dynamics.md#principal-partner-root-certificate) and may ship after V1.
-- **Snap-to-fold step control.** Jumps the time cursor directly to the next or previous root-count transition, since the fold window can be brief relative to the full pass and is easy to scrub past.
-- **Pane overlay toggles.** Show/hide the $D_s$ floor trace on Pane A, and show/hide the cumulative-$\Delta V$ overlay on Pane D, so a first-time viewer can start simpler and add detail.
+- **Impact-parameter slider ($b$).** The impact parameter is the transmitter's perpendicular offset from the receiver during the straight-line pass. Within this constant-speed, unbounded-line model, it changes when the fold occurs and how strongly Pane B compresses near closest approach, but it does not decide whether a fold exists; that condition is governed by $\beta$ alone. The reason is that $\hat{\mathbf r}_{ij}\cdot\mathbf V_j\to v$ as the transmitter position approaches $\pm\infty$ along its line, so any $\beta>1$ guarantees a fold region regardless of $b$.
+- **Transmitter-path toggle: straight-line pass or circular orbit.** The straight-line pass is the V1 default because it gives the simplest fold demonstration. The circular-orbit mode is a stretch goal tied to the principal-partner root certificate in [Binary Dynamics](../../../../content/markdown/aaa/dynamics/binary-dynamics.md#principal-partner-root-certificate) and may follow V1.
+- **Snap-to-fold step control.** This control moves directly to the next or previous root-count transition. The fold window may be brief relative to the complete pass and otherwise easy to skip while scrubbing.
+- **Pane-overlay toggles.** These controls show or hide the $D_t$ floor trace in Pane A and the cumulative-$\Delta V$ overlay in Pane D. A learner can begin with the simpler views and expose the diagnostics when needed.
 
-Numeric readout strip (not a fifth pane, a compact status row): current $\beta$, current $D_s$, current active root count $N$, and time-to-next-fold.
+A compact numerical strip, rather than a fifth pane, reports the current $\beta$, current $D_t$, current active root count $N$, and time to the next fold.
 
 ## Theory-Layer Constraints
 
-- Architrinos carry no mass; describe the source and receiver kinematically (position, velocity, causal-root count) and speak of **acceleration**, never force, per `AGENTS.md` theory-layer discipline.
-- Do not introduce a standard-physics shock-front or Mach-cone picture as a premise. The wake-compression half-angle in Pane B may be compared to that picture only in a clearly labeled, dismissible caption, never as the core explanation; the core explanation is the delay-map fold derived inside $\mathbb{A}\mathbb{A}\mathbb{A}$.
-- A super-$c_f$ individual source speed is not a violation of anything at this layer: the substrate law places no a priori speed cap on an architrino, and any emergent Lorentz-like speed limit is a recovery target for later observer-level chapters, not an axiom available here. Captions should not read as though $\beta>1$ is exotic or forbidden.
-- Use `source` / `receiver` / `causal root` as the canonical terms; avoid ad hoc substitutes such as "transmitter" or "signal" in UI labels, captions, or code identifiers.
+- Architrinos carry no mass. Describe the transmitter and receiver through position, velocity, and causal-root count, and use acceleration rather than force, as required by `AGENTS.md`.
+- Do not import a standard-physics shock front or Mach cone as the mechanism. Pane B may mention that visual comparison only in a clearly labeled, dismissible caption. The core explanation remains the delay-map fold derived within $\mathbb{A}\mathbb{A}\mathbb{A}$.
+- A transmitter with speed above $c_f$ is not forbidden at the architrino layer. The substrate law imposes no a priori speed cap on an individual architrino, while an emergent Lorentz-like speed limit remains a later observer-level recovery target. Captions must therefore avoid presenting $\beta>1$ as intrinsically exotic or prohibited.
+- Use `transmitter`, `receiver`, and `causal root` consistently in UI labels and captions. Preserve established `source`-prefixed machine identifiers where they are existing interfaces, but do not use “source” or “signal” as an alternate causal-role label in new prose.
 
-## Implementation Boundaries (for when this is scoped for a build)
+## Implementation Boundaries If The Lane Reopens
 
-- Implement Roots as a Causal Delay Feedback mode; retain `causal-delay-feedback.html?mode=roots` as its direct link and do not create a separate `roots.html` product.
-- Put mode logic behind focused Causal Delay Feedback modules for the shared kinematics state, Pane A (delay-map), Pane B (wake scene), Pane C (root ledger), Pane D (impulse), and the shared control strip.
-- Reuse the app's canonical source, receiver, retained-history state, causal-root evaluator, and wake renderer.
+- Implement Roots only as a Causal Delay Feedback mode. Retain `causal-delay-feedback.html?mode=roots` as the direct link; do not create a separate `roots.html` product.
+- Keep the mode behind focused Causal Delay Feedback modules for shared kinematics, Pane A, Pane B, Pane C, Pane D, and the shared control strip.
+- Reuse the app's canonical source and receiver state, retained history, causal-root evaluator, and wake renderer.
 - Do not add new behavior to root `app.js`.
-- Do not introduce a production solver path or new EOM integrator for this app; the fold quantities needed here (the local normal-form $g$, $D_s$, the $(T_{r,\ast}-T_r)^{-1/2}$ schematic magnitude, and the bounded integral) can be computed directly from the closed forms already derived in `master-equation.md` without dispatching the EOM solver.
+- Do not introduce a production solver path or a new EOM integrator. The lesson needs only the closed-form quantities already derived in `master-equation.md`: the local normal-form $g$, $D_t$, the schematic magnitude $(T_{r,\ast}-T_r)^{-1/2}$, and its bounded integral.
 
-## Open Design Questions (discussion-scoped)
+These restrictions preserve one implementation and one evidence boundary. A future build may visualize the declared closed forms, but it may not turn display agreement into solver or scientific authority.
 
-- Whether Pane B should stay 2D (circles) for V1 or go straight to a 3D wake-surface scene comparable to `app-photon`/`app-borg` rendering.
-- Whether the circular-orbit transmitter mode ships in V1 or is deferred as noted above.
-- Whether the numeric readout strip should expose both $W_{r\leftarrow t}^{\mathrm{acc}}=c_f/|D_t|$ and signed root playback $D_r/D_t$, or stay limited to $\beta$, $D_t$, $N$, and time-to-fold for V1 simplicity.
+## Open Design Questions
 
-Status of all three: deferred. No new implementation is scheduled.
+- Should Pane B remain two-dimensional, using circles, for V1, or move directly to a three-dimensional wake-surface scene comparable to the `app-photon`/`app-borg` renderers?
+- Should the circular-orbit transmitter mode ship in V1, or remain deferred as described above?
+- Should the numerical strip expose both $W_{r\leftarrow t}^{\mathrm{acc}}=c_f/|D_t|$ and the signed root-playback derivative $D_r/D_t$, or remain limited to $\beta$, $D_t$, $N$, and time to the fold for V1 simplicity?
+
+All three decisions remain deferred, and no implementation is scheduled.
+
+The transmitter-side factor is written consistently as `D_t`, following the current Master Equation authority. The sibling Roots plan still contains the earlier `D_s` form and must be reconciled separately before a future implementation pass consumes both documents.

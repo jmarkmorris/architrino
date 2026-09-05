@@ -6,9 +6,7 @@ Experimental procedure. This documents a controlled test of continuing new work 
 
 ## Purpose
 
-After a parent PR is ready for review, create its named successor from the parent's exact reviewed head and continue work immediately on that successor. The parent PR remains frozen for review. The operator may continue using squash merge.
-
-Plainly: the next branch begins as a copy of the exact work sent for review, then receives only the new work. The PR being reviewed does not keep changing.
+After a parent PR is ready for review, create its named successor from the parent's exact reviewed head and continue work immediately on that successor. The next branch therefore begins as a copy of exactly the work that was sent for review, and receives only the new work on top of it, so the PR under review does not keep changing while someone is reading it. The parent PR remains frozen for review. The operator may continue using squash merge.
 
 ## When To Use This Procedure
 
@@ -56,7 +54,7 @@ At this point the operator resumes ordinary work on the successor. The parent PR
 
 ### 4. Align after squash merge
 
-Once the operator squash-merges the parent PR:
+A squash merge gives `main` a new commit identity rather than the parent's original commits, so the successor has to be re-seated on top of that new identity without re-submitting the parent work it already contains. Once the operator squash-merges the parent PR:
 
 1. Verify the parent PR is merged and record its reviewed head and GitHub squash-merge commit.
 2. Preserve the exact successor tip under a temporary recovery ref before any history rewrite.
@@ -65,8 +63,6 @@ Once the operator squash-merges the parent PR:
 5. Verify every intended successor-only commit is present, no parent-only commit is duplicated, and the successor diff against `main` contains only the new work.
 6. Run the exact-state validation gate again, then update the successor remote with the guarded non-destructive equivalent for this alignment.
 7. Keep the recovery ref until the successor head, remote head, validation, and expected commit set all agree.
-
-Plainly: squash merge gives `main` a new commit identity. Alignment puts the new work on top of that new identity, without re-submitting the already merged parent work.
 
 ## Mandatory Stops
 

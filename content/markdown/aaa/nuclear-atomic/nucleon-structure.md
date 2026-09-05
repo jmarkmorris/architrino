@@ -4,9 +4,7 @@ This chapter fixes the proton and neutron picture used by the nuclear branch. A 
 
 This is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Mesons](../assemblies/mesons/mesons.md). Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time.
 
-## Purpose
-
-This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in assembly language and which geometric features matter most for nuclear physics.
+## Claim Boundary
 
 The guiding rule is level discipline. Quark branch structure matters inside the proton or neutron, but atomic and nuclear calculations should see one nucleon envelope that is stable at the observer level as a declared coarse-grained input unless the calculation is explicitly resolving the strong-sector interior. Here `stable` names the observer-level nucleon record to be recovered by the interface; it is not a certification of a retained architrino branch. Color-singlet occupancy is necessary bookkeeping, while retained-branch existence and strong-sector residual closure remain separate theorem targets.
 
@@ -48,6 +46,7 @@ Q_d=-\frac{1}{3}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-89f41ebbbbfbe6ac)
+
 one immediately gets
 $$
 Q_p = 2Q_u+Q_d = +1,
@@ -67,6 +66,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-30014fffc3ef5a2f)
+
 or equivalently Red, Green, Blue. A baryon singlet uses each exceptional-axis sector once, so the net color flux closes.
 
 This is the nucleon-level meaning of
@@ -287,6 +287,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2fb0c1ee7e228847)
+
 with the realized proton spin axis defined as $\hat{\mathbf J}_p=\mathbf J_p(Q)/\lVert\mathbf J_p(Q)\rVert$; alignment of that axis with an external quantization direction is a measurement-layer question, not part of this residual. This is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of the proton-spin puzzle. Standard quark-spin, gluon-spin, sea, and orbital fractions are useful resolution-dependent comparison data, but "gluon spin" should map to color-corridor and flux-tube angular-momentum rows rather than to a standalone point-particle spin inserted into the proton.
 
 ## Proton and Neutron as Color-Singlet Baryon Assemblies
@@ -306,6 +307,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f1acf7d0d19927d4)
+
 which gives net charge
 $$
 \frac{12-6}{6}e=+e
@@ -323,6 +325,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-13e321745905b9db)
+
 so the net charge is
 $$
 \frac{9-9}{6}e=0
@@ -346,6 +349,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a4fe2acddb657279)
+
 The second condition is the neutron's neutral axial inventory $(9\epsilon_+ + 9\epsilon_-)$; it cancels net charge but does not by itself prove that the first moment vanishes. For a declared neutron envelope scale $R_n$ and spin direction $\hat{\mathbf{J}}_n$, define the dimensionless CP-odd axial imbalance
 $$
 \vartheta_n
@@ -450,6 +454,7 @@ J=\frac{1}{2}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8f500787531a71d1)
+
 for the coupled color-singlet baryon assembly. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
@@ -485,6 +490,7 @@ m_n-m_p
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-994ce4a6ba086d9e)
+
 where:
 
 - $\Delta E_{\text{down-up}}$ is the core/axial-layer energy shift from replacing one up-type branch with one down-type branch,

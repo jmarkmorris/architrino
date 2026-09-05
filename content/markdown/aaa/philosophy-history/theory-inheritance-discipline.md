@@ -16,7 +16,7 @@ The strongest safe use is therefore not "this maps to $\mathbb{A}\mathbb{A}\math
 4. define the residual that would count as recovery,
 5. name the failure mode that would show the mapping has overreached.
 
-Plain language: the inherited theory can tell the program what must be recovered, but it cannot tell the program what the world is made of.
+the inherited theory can tell the program what must be recovered, but it cannot tell the program what the world is made of.
 
 ## Transfer Record
 
@@ -88,7 +88,7 @@ Inherited concepts enter the corpus in five different ways.
 
 | Transfer class | Authority level | Typical use | Burden |
 | --- | --- | --- | --- |
-| Native substrate commitment | Highest, but only when already part of $\mathbb{A}\mathbb{A}\mathbb{A}$ | Absolute time, Euclidean void, architrinos, causal wakes, path history | Must be stated by the native ontology and dynamics, not borrowed from a historical analogy |
+| Native substrate commitment | Highest, but only when already part of $\mathbb{A}\mathbb{A}\mathbb{A}$ | [Absolute time](../foundations/absolute-time.md), the universal temporal order; Euclidean void; architrinos; causal wakes; path history | Must be stated by the native ontology and dynamics, not borrowed from a historical analogy |
 | Direct mathematical tool | Formal, not ontological | Calculus, distributions, Jacobians, norms, variational language, residuals | Must not import the ontology of the theory where the tool was historically used |
 | Validated benchmark record | Empirical and operational | SM spectra, QED precision rows, Lorentz tests, PPN bounds, BBN/CMB rows | Must be recovered as an output of one declared branch record |
 | Effective-limit concept | Conditional | Wavefunction, thermodynamics, entropy, hydrodynamics, effective metric, cosmology variables | Must declare coarse-graining, regime, and residual |
@@ -276,7 +276,7 @@ A historical audit of prize-recognized discoveries reinforces the same rule: mid
 
 Proof route: a verbal or diagrammatic mapping establishes only a relation between labels. Benchmark recovery requires an output comparison. Implementation closure requires a generator. If the generator is not declared, the concept still sits at the comparison layer. If the generator changes between benchmark families, the result is hidden tuning. If the generator is native and shared across the relevant sectors, then the inherited concept has been recovered as an effective limit rather than merely named.
 
-Plain language: a map is not a mechanism. A mechanism is a native record that keeps working after the comparison target changes.
+a map is not a mechanism. A mechanism is a native record that keeps working after the comparison target changes.
 
 ## Reasoning Provenance Below Existing Theory
 
@@ -372,7 +372,7 @@ This distinction is why virial, thermodynamic, hydrodynamic, cosmological, and d
 
 [Theory Differentials](theory-differentials.md) should remain the classification catalog. It locates each concept in the comparative stack and the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the mapping target.
 
-[Theory Bridges](theory-bridges.md) should remain the detailed bridge lane. A bridge may use this chapter's transfer record to keep its mathematical handoff disciplined, but the bridge still has to point back to the domain chapters that own the underlying mechanism.
+[Theory Bridges](theory-bridges.md) should remain the detailed Theory Bridges section. A bridge may use this chapter's transfer record to keep its mathematical handoff disciplined, but the bridge still has to point back to the domain chapters that own the underlying mechanism.
 
 [Failure Criteria](../validation/failure-criteria.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Constraint Ledger](../validation/constraint-ledger.md) remain the places where validation records, benchmark families, and null-result pressure are made operational. This chapter should not duplicate those ledgers.
 

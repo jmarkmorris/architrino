@@ -2,7 +2,7 @@
 
 This protocol defines the mathematical and numerical evidence for the $A_0$ reference attractor described in [Particle Masses](../../assemblies/particle-masses.md#reference-attractor-gate), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), and [Energy](../../dynamics/energy.md). It specializes the general [Simulation Run Protocols](run-protocols.md) to the first neutral rest-branch mass-map candidate constrained to coincident-midpoint orthogonal-axis braid coordinates: persistent indices, independently assignable positive radii and frequencies, mutually orthogonal near-rest axes, the declared orthogonal-axis three-binary response direction, and explicit remaining binary coordinates. No computed $A_0$ branch is reported here. Retention and stability require the stated conditions to hold on the same evolved history.
 
-The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale causal-root ledger before energy, shielding, Noether sea response, or mass comparisons enter.
+The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale [causal-root](../../foundations/architrino.md) ledger, whose entries identify the earlier emissions that reach a receiver at an evaluation time, before energy, shielding, Noether sea response, or mass comparisons enter.
 
 ## Master-Equation Handoff Boundary
 
@@ -55,6 +55,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4b5f8d0c47ae2134)
+
 Tier 0 may evaluate only part of this vector. Every omitted component remains explicitly uncomputed, together with the later analysis needed to determine it. A missing tolerance is not evidence that a residual is small.
 
 ### Self-Hit Energy And Action-Spacing Order
@@ -86,6 +87,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e6bd9714da63ff7a)
+
 define
 $$
 D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
@@ -98,6 +100,7 @@ D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-56322f39346f96b8)
+
 $$
 Q^{ij}_{A_0}
 =
@@ -109,6 +112,7 @@ Q^{ij}_{A_0}-\frac{1}{3}h^{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f022c55f30d3b266)
+
 Here $h_{mn}=\delta_{mn}$ is the Euclidean spatial metric on $\Sigma_T$ and $h^{ij}=\delta^{ij}$ is its inverse, so the denominator is the Euclidean trace of $D^{ij}_{A_0}$. This tensor measures motion-induced or probe-induced Noether braid deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
 
 ## Tier 0: Algebraic Branch Search
@@ -228,12 +232,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-aee97242a02ad6b6)
+
 The rerun may proceed toward monodromy only if
 $$
 \mathcal{R}_{\mathrm{1per}}\le 0.02
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7579aacacf0ef4a6)
+
 with $\mathbf D_\ell(T)$, the basis terms $\mathbf A_{a,B}$, the coefficient rule for $\alpha_B$, and any held-out interval declared before fitting. A scalar-basis no-go is therefore a chart or basis failure; it does not become an attractor failure unless every admissible corrected carrier and branch-native basis inside the declared search class fails the same residual boundary.
 
 ## Tier 2: Energy and Shielding

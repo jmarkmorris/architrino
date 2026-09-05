@@ -89,7 +89,7 @@ Per-item, the falsifier is named above (a fixture for S2, profile numbers for S3
 
 # Reporting
 
-Follow `reference/op/operator-explanation-standard.md`: inline `Plainly:` interludes after every technical unit, never more than three consecutive technical paragraphs without one. A closing recap does not substitute.
+Follow [`reference/op/operator-explanation-standard.md`](../../../op/operator-explanation-standard.md). It is the whole of operator-facing communication policy — audience, explanation density, response length, structure, register, question format, the `Closure goal:` line, and the `Open items:` block — and this prompt restates none of its rules.
 
 On completion, report: executive summary; per-S-item disposition (fixed / measured / returned to operator, with evidence); the S3 profile numbers before and after; which verification suites ran and their results; key decisions, especially the S4 iterator-tag choice and the S5 rebase-or-delete choice with the evidence behind each; durable capture decision — update `reference/priorities/app-solver/archive/eom-code-review-2026-07-24.md` status header and note anything worth promoting; and a `Closure goal:` line naming the next objective or `none required`.
 

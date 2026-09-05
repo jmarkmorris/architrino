@@ -1,6 +1,6 @@
 # Thermodynamic Residual
 
-This protocol turns the local-horizon target in [Emergent Metric](../../spacetime/emergent-metric.md#local-horizon-recovery-target) into a validation scaffold. It does not assume that gravity is thermodynamic at the substrate level. It tests whether one Noether sea state and observer-channel record can supply the three observer-level quantities used in the Jacobson comparison: boundary entropy, local temperature, and boost-energy flux.
+This protocol turns the local-horizon target in [Emergent Metric](../../spacetime/emergent-metric.md#local-horizon-recovery-target) into a validation scaffold. It does not assume that gravity is thermodynamic at the substrate level. It tests whether one [Noether sea](../../spacetime/noether-sea.md) state—the ambient assembly medium—and observer-channel record can supply the three observer-level quantities used in the Jacobson comparison: boundary entropy, local temperature, and boost-energy flux.
 
 The protocol is a proof-and-simulation target, not an empirical claim. A successful packet would show that the same record that recovers weak-field ADM/Cartan and PPN behavior also makes the local Clausius residual small in the equilibrium comparison regime.
 
@@ -61,6 +61,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6d0011c0615ed3d5)
+
 where $U$ is the declared connected patch block and $\mathcal{B}_{U}^{(O)}$ retains only labels accessible to the same observer record. When $|U|$ is physical patch area, $\widehat{s}_{U}^{(O)}$ has inverse-area units and the large-block target is
 $$
 \widehat{s}_{U}^{(O)}
@@ -69,6 +70,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f2a9596dff16070c)
+
 after boundary corrections. The dimensionless value $1/4$ applies only when the packet has explicitly normalized $A_{\text{align}}=1$; it is not a literal one-patch cardinality.
 
 Area scaling is a recovery target, not a definition. Compare neighboring patches or refinements with the same observer and record:
@@ -127,6 +129,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4010deace7face00)
+
 Here $\sigma_b$ is the signed crossing convention, $E_b^{(O)}$ is the observer-level energy assigned by the same channel that builds $T_{\mu\nu}^{\mathrm{eff}}$, and $\omega_b^{(O)}$ is the declared quadrature or coarse-graining weight.
 
 The measured local-horizon residual is then
@@ -191,6 +194,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-919e2119526aa9ec)
+
 and the same $\theta$ also satisfies the weak-field metric gates relevant to the run. A packet that fits $\widehat{S}$, $\widehat{T}_U$, and $\widehat{dQ}$ with independent records fails even if each scalar looks plausible by itself.
 
 ## Free-Energy and Response Consistency
@@ -205,6 +209,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4f8237eae20a7ef1)
+
 On a relaxation window with no declared external work, the free-energy residual is
 $$
 \widehat{\mathcal R}_{F}^{(O)}
@@ -223,6 +228,7 @@ W_{\mathrm{ext},z}^{(O)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-57d7414d9ab567f8)
+
 The gate is optional unless the packet uses free-energy minimization, order-parameter relaxation, or Landau-Ginzburg language. If invoked, it must pass with the same $\theta$ that supplies $\widehat{\mathcal{R}}_{\mathrm{thermo}}^{(O)}$.
 
 If the packet includes stochastic or fluctuation claims, it must report a response/noise residual rather than fitting noise independently. For a declared observable pair $(A,B)$, use the measured fluctuation spectrum $S_{AB}^{(O)}(\omega)$ and the dissipative response $\chi_{AB}^{\prime\prime(O)}(\omega)$:
@@ -252,6 +258,7 @@ S_{AB}^{(O)}(\omega)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6a2d20c88edfa0f8)
+
 Here $\mathcal F_{\widehat T_z}$ is the packet's declared classical or quantum fluctuation-dissipation map. This check is a same-record discipline for equilibrium response. It does not assert that Noether sea dynamics is fundamentally stochastic.
 
 ## Proof Route

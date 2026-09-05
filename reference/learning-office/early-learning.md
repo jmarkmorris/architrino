@@ -2,6 +2,8 @@
 
 Begin with relationship, not equations: position, motion, memory, influence, delay, and stable pattern. Children should first feel that nature is lawful before they are asked to name the law.
 
+The age bands and classroom activities below are curriculum proposals, not measured developmental findings. Everyday demonstrations illustrate selected features of a model; they do not establish architrino dynamics. Recovery topics retain the claim level and open obligations of their current corpus sources. Authored exposition follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md); collaboration about this curriculum follows the [operator explanation standard](../op/operator-explanation-standard.md).
+
 ## Teaching Premise
 
 The curriculum should introduce nature's fundamentals in four slow layers:
@@ -32,7 +34,7 @@ This broad map is not the book list itself. It shows the developmental clusters 
 | 5-8 | Books 6-8 | Concrete causal reasoning: before, after, near, far, faster, slower, and stable pattern. | Messages take time to arrive; farther messages arrive later; direction matters; many lawful messages can fit. | Domino lines, rope waves, hallway signal games, marble tracks, arrows from transmitter to receiver. | Animate delays and let children change distance, speed, or direction. | "A message from motion takes time to arrive. Farther messages arrive later." |
 | 8-11 | Books 9-11 | Rule discovery and model building. | Architrino as point transceiver; polarity; attraction and repulsion; line of action; superposition; assembly. | Magnet maps, arrow addition, simple grid simulations, "one source, two sources, many sources" comparisons. | Help students predict a result, run a model, and compare prediction with outcome. | "An architrino sends and receives influence. Many tiny influences can add into one larger motion." |
 | 11-14 | Books 12-14 | Threshold thinking, measurement discipline, and record formation. | Potential landscape; measurement interaction; deterministic multistability; basin of attraction; Noether sea as surrounding medium, not empty space. | Balancing pencils, tipping points, double-pendulum simulations, repeated trials with tiny starting differences. | Show many nearby starting states and reveal when they settle into different stable outcomes. | "The law can be definite even when the result is hard to predict, because tiny hidden differences can choose different stable paths." |
-| 14-16 | Books 15-16 | First formal dynamics and capstone recovery of familiar physics from substrate physics. | $\mathbb{U}_{\text{now}}=S(t)$ as complete universe state; path-history; causal set; causal-root ledger; master equation; self-hit; nested shell braid; effective metric; clock and ruler response; photon channel; mass-map; observer-level records. | Code delayed-interaction toys, track valid past emissions, compare partner-only and self-hit regimes, test branch sensitivity, inspect toy recovery limits. | Act as a simulation tutor and notation checker, while requiring students to explain each variable and claim level in plain language. | "What matters now includes which past emissions can reach this receiver now. The familiar world is recovered, not assumed." |
+| 14-16 | Books 15-16 | First formal dynamics and capstone recovery of familiar physics from substrate physics. | $\mathbb{U}_{\text{now}}=S(t)$ as complete universe state, including admissible causal history rather than positions alone; path-history; causal set; causal-root ledger; master equation; self-hit; nested shell braid; effective metric; clock and ruler response; photon channel; mass-map; observer-level records. | Code delayed-interaction toys, track valid past emissions, compare partner-only and self-hit regimes, test branch sensitivity, inspect toy recovery limits. | Act as a simulation tutor and notation checker, while requiring students to explain each variable and claim level in plain language. | "What matters now includes which past emissions can reach this receiver now. The familiar world is recovered, not assumed." |
 
 ## Concept Ladder
 
@@ -75,7 +77,7 @@ Later bridge:
 
 ### Age 7: The Delayed Message Game
 
-One child sends a hand clap across a line of children. Each child claps only after hearing the previous clap. Move the children farther apart and notice that the message takes longer.
+One child sends a hand clap across a line of children. Each child claps only after hearing the previous clap. Record the delay through the line. Human reaction time also contributes, so this activity illustrates sequential transmission; it does not isolate the dependence of propagation time on distance.
 
 Child-facing sentence:
 
@@ -87,7 +89,7 @@ Later bridge:
 
 ### Age 10: The Arrow Table
 
-Give students a receiver point and several source points. For each source, draw an arrow along the line of action. Let nearby sources draw longer arrows and far sources draw shorter arrows. Add the arrows.
+Give students a receiver point and several source points. For each source, draw an arrow along the line of action. Choose an explicitly stated toy rule for arrow lengths, then add the arrows. Distances alone do not determine the current causal-root acceleration contributions: emission geometry and transmitter motion also matter.
 
 Child-facing sentence:
 

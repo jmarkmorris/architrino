@@ -214,7 +214,7 @@ This stationary condition is a comparison-layer summary of the same $c_\gamma$ a
 
 ### Rows Needed
 
-1. Gate A kinematics: $E_\gamma=h\nu$, $p=h/\lambda$, null mass shell, no rest branch, no free-space dispersion, and common-limit compatibility with $c_{\text{eff}}$.
+1. Gate A kinematics: $E_\gamma=h\nu$, $p_\gamma=h/\lambda_\gamma$, null mass shell, no rest branch, no free-space dispersion, phase-wavelength/geometry separation, and common-limit compatibility with $c_{\text{eff}}$.
 2. Gate B transverse ledger: helicity, exactly two transverse modes, no free longitudinal photon mode, analyzer response, and transverse leakage residual.
 3. Gate C event routing: emission, absorption, Compton-like exchange, pair thresholds, transition vertices, blackbody ensemble behavior, and effective QED/Maxwell limits.
 4. Source-path-receiver transfer: source depletion, recoil, remnant, Noether sea path response, receiver coupling, and unresolved residual.

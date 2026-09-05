@@ -2,7 +2,7 @@
 
 Cosmic censorship, holography, and the anti-de Sitter/conformal field theory correspondence (AdS/CFT) ask different questions about gravitational predictability and information. Cosmic censorship concerns the visibility of singular behavior and the extent to which initial data determine evolution. Holography concerns lower-dimensional descriptions of gravitational systems. AdS/CFT supplies a concrete bulk-boundary correspondence in specified theoretical settings. These ideas illuminate one another, but none is a synonym for the others.
 
-This chapter uses them as comparison mathematics and questions for $\mathbb{A}\mathbb{A}\mathbb{A}$, not as imported ontology. A native horizon-interface account requires its own derivation from architrino histories, candidate braid alignment, and Noether sea response. The mechanism owners are [Black Holes](../spacetime/black-holes.md), [Horizon Chirality](../spacetime/horizon-chirality.md), and [Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry](theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md). The purpose here is to distinguish what the inherited mathematics says from what the candidate assembly picture still has to establish.
+This chapter uses them as comparison mathematics and questions for $\mathbb{A}\mathbb{A}\mathbb{A}$, not as imported ontology. A native horizon-interface account requires its own derivation from [architrino](../foundations/architrino.md) histories—the paths of the substrate's massless polarity carriers—candidate braid alignment, and Noether sea response. The mechanism owners are [Black Holes](../spacetime/black-holes.md), [Horizon Chirality](../spacetime/horizon-chirality.md), and [Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry](theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md). The purpose here is to distinguish what the inherited mathematics says from what the candidate assembly picture still has to establish.
 
 ## Conceptual View
 
@@ -21,7 +21,7 @@ $$
 
 Here $Z_{\mathrm{grav}}$ denotes the bulk gravitational partition functional with boundary data $\phi_0$, while $Z_{\mathrm{CFT}}$ denotes the boundary conformal field theory's generating functional with the corresponding source. The equality is schematic: its use requires a specified pair of theories, matched boundary conditions, and the appropriate approximation and renormalization prescriptions. It is not an equality between the spatial inside and outside of a black hole.
 
-Plainly: the two sides calculate corresponding observables using different descriptions. This chapter does not substitute architrino variables into that equality, because no native bulk-boundary dictionary has been derived.
+the two sides calculate corresponding observables using different descriptions. This chapter does not substitute architrino variables into that equality, because no native bulk-boundary dictionary has been derived.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ View
 

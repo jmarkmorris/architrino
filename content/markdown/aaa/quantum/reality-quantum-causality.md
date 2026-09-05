@@ -42,6 +42,7 @@ At the absolute level, any local neighborhood is crowded:
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-589e939b80cc180d)
+
   while one Cartesian component of the acceleration-kernel sum has
   $$
   \operatorname{Var}A_x(R)
@@ -53,6 +54,7 @@ At the absolute level, any local neighborhood is crowded:
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-d1683b47e66d4fc1)
+
   The potential variance is infrared divergent, whereas the acceleration variance converges at large $R$ and is controlled by nearby sources. Because the master equation consumes acceleration contributions, the dynamically relevant screening claim belongs to the acceleration sum; the scalar potential remains a conditionally defined reconstruction unless a separate summation prescription is declared.
 
 "Stable" particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are retained stable or metastable branch structures, not static beads; they qualify as attractor-basin structures only where reduced-flow contraction and exported-flux accounting have been established.
@@ -90,6 +92,7 @@ At the fundamental level:
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-1978c3603ab166f9)
+
 - The acceleration at time $T$ of a given architrino depends only on:
   - Its own past trajectory (self-hit),
   - Other architrinos' past trajectories, via wakes that have reached the point by $T$.
@@ -148,7 +151,7 @@ At the assembly level (Noether braids, atoms, etc.):
 
 We use "threshold" and "separatrix" in several regimes. A separatrix is a boundary between basins of attraction in phase space. The table below gives a plain-language boundary description and the typical dynamical-systems term used in models (in parentheses). It is a classification guide, not a proof of global topology.
 
-| Context | Boundary (plain language) | Typical term in models | Example anchor |
+| Context | Boundary | Typical term in models | Example anchor |
 | --- | --- | --- | --- |
 | Outer $f$-step | Boundary between resonant island families | Separatrix between island chains (heteroclinic in maps) | Island-chain boundary |
 | Same-transmitter root onset | Boundary where an admissible self-hit root ledger appears | Root-onset or homoclinic-like threshold in a reduced chart | Entry into a validated wake-coupled regime |
@@ -171,6 +174,7 @@ S(T_0):\Phi_{T_0\to T_1}(S(T_0))\in\mathcal{A}_k
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4e0253263e707c5a)
+
 Here $B_k$ is the basin of initial path-history states that resolve to outcome branch $\mathcal{A}_k$ over the declared window. Apparent randomness enters through observer access to the basin boundary, not through a break in absolute-time causality.
 
 ### Chaos and Effective Unpredictability
@@ -324,6 +328,7 @@ k_B T_{\mathrm{temp}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e3107e9accbef65b)
+
 for the declared reset protocol. A reliably retained bit gives the familiar comparison floor $k_BT_{\mathrm{temp}}\log2$ up to the error allowance. Agency is therefore a thermodynamic process with an operator-checkable memory cost, not merely a qualitative requirement to export entropy.
 
 ---
@@ -505,6 +510,7 @@ P_{c_\Omega,u,T_W}(i)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8e18ca22bd7b49c0)
+
 A Switch claim requires two preparations $u_a,u_b$ such that
 $$
 D\!\left(
@@ -516,6 +522,7 @@ P_{c_\Omega,u_b,T_W}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7fbcc844222b7add)
+
 where $D$ is a declared statistical distance — total variation in the first pass — so that $\epsilon_{\mathrm{sw}}$ has definite meaning, while the boundary context $c_\Omega$ is held fixed and the work ledger remains finite. This knob sweep establishes only a Switch response. A Decider claim additionally requires a record-sensitive internal update map $u_{n+1}=G(u_n,r_n,\chi_n)$, a retained hold time, the reset-cost bound above, and later basin weights that differ above tolerance under the same fixed external context.
 
 Here $\mu_{c_\Omega,u,T_W}$ is the normalized restriction of the branch-wide finite-window measure $\mu_{*,T_W}$ to the fixed boundary context $c_\Omega$ and preparation $u$. The variable $r_n$ is the retained outcome record from cycle $n$, while $\chi_n$ is the declared coarse environment/context summary supplied to the next feedback update.

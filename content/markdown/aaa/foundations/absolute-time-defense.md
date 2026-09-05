@@ -1,38 +1,54 @@
 # Absolute Time Defense
 
-This chapter states why absolute time is the theory's fundamental evolution parameter. The key distinction is simple but load-bearing: absolute time is the variable used by the [master equation](../dynamics/master-equation.md); a simultaneity slice is the complete substrate state at one value of that variable; proper time is the derived readout of a physical clock assembly.
+This chapter argues why absolute time is the theory's fundamental evolution parameter, and — more importantly — states precisely what would falsify the proposed recovery of observed clock, ruler, and signal behavior from that choice.
 
-The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution on those simultaneity slices. Only after those claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Ontology](./ontology.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+One distinction carries the whole argument:
 
-## The Case for Absolute Time ($T$)
+- **Absolute time** $T$ is the variable the [master equation](../dynamics/master-equation.md) evolves in.
+- A **simultaneity slice** $\Sigma_T$ is the geometric copy of space at one value of that variable; the complete substrate state $S(T)$ is indexed on it.
+- **Proper time** is what a physical clock reads.
 
-1. **Fundamental evolution parameter**: Absolute time $T$ is the unique evolution parameter of the master equation.
-2. **Product substrate**: The kinematic background is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with clock projection $\pi_T:\mathcal{M}\to\mathbb{R}$.
-3. **Unique foliation**: The simultaneity slice at fixed $T_\ast$ is the level set
+The three are routinely conflated, and keeping them apart is necessary for a coherent statement of the theory.
+
+The sequence is layered deliberately. First the ontological claim about absolute time and the [Euclidean void](euclidean-void.md). Then the dynamical claim about how states evolve on slices. Only after those are fixed does proper time appear, along with clock-rate extraction and relativistic inference. This is the argumentative companion to [Ontology](./ontology.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+
+## The Case for Absolute Time
+
+1. **Fundamental evolution parameter.** $T$ is the unique parameter the master equation evolves in.
+2. **Product substrate.** The background is $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$ with a projection $\pi_T$ reading off the time coordinate.
+3. **Unique foliation.** The slice at fixed $T_\ast$ is everything sharing that time:
+
    $$
    \Sigma_{T_\ast} = \pi_T^{-1}(\{T_\ast\}) = \{T_\ast\}\times \mathbb{R}^3
    $$
 
    [View →](../../../../equation-mapping.html#corpus-equation-5e84fc71ef931610)
-4. **Substrate clock form**: The substrate clock form $dT$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $T$, it fixes the tangent planes to the slices $\Sigma_T$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
-5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of Noether braid internal phase dynamics.
 
-The list separates what exists at the substrate level from what embedded observers can read. Absolute time, the Euclidean void, and the slices $\Sigma_T$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
+4. **Substrate clock form.** The theory postulates a global function $T$; its differential $dT$ is therefore exact, closed, and nowhere vanishing. Those properties encode the postulate and its foliation consistently, but they do not independently prove that nature supplies such a function.
+5. **Derived clock time.** Proper time $\tau$ is not fundamental. It is a functional of a clock assembly's internal phase dynamics.
 
-A useful comparison with relativistic block-universe arguments is the distinction between absolute time, the substrate-level simultaneity slice, and the observer-readable present. Absolute time $T$ is fundamental. The complete slice $\mathbb{U}_{\text{now}}\equiv S(T)$ is substrate-level: it is the full universe state at one value of $T$, not a clock reading available to embedded observers. Special relativity correctly removes any observer-accessible global three-space: a Physical Observer cannot synchronize distant records into one public present without using clocks, rulers, and signal conventions that must themselves satisfy Lorentz tests. The observer-facing obligation is therefore to show why attempts to read the absolute foliation through matter clocks, photon synchronization, CMB rest-frame comparison, or gravitational channels collapse to an effective Lorentz or metric reconstruction with preferred-frame leakage below the declared bounds.
+The list separates what exists from what can be read. Absolute time, the void, and the slices are substrate commitments. Proper time, synchronization, and simultaneity judgments are readouts produced by assemblies embedded in the medium.
 
-A cosmological frame such as the CMB rest frame can be a useful effective foliation for data reduction, but it is not absolute time itself and does not expose the substrate clock form. It supplies a large-scale observer record only after photon transport, source evolution, and receiver cadence are modeled; it cannot by itself license an exact observer-readable global present.
+So the defense does **not** deny observed clock dilation. It relocates it — from the nature of time to the behavior of clocks.
+
+### The block-universe comparison
+
+Special relativity is usually taken to show there is no global present. That conclusion is correct as far as it goes, and it goes exactly as far as observers.
+
+Absolute time $T$ is fundamental. The complete state $\mathbb{U}_{\text{now}}\equiv S(T)$ is indexed on the slice $\Sigma_T$: it is the full state at one $T$, not a reading available to anyone. What special relativity denies as an invariant observable is a public simultaneity assignment shared by all inertial frames; an observer cannot reconstruct the substrate slice without clocks, rulers, and signal conventions that must themselves pass Lorentz tests.
+
+The obligation this creates is specific rather than philosophical. Every attempt to read the absolute slicing — through matter clocks, photon synchronization, comparison against the cosmic microwave background rest frame, or gravitational channels — must be shown to collapse into an effective Lorentz reconstruction with leakage below declared bounds. Not argued to. Shown.
+
+A cosmological frame such as the microwave background rest frame is a useful effective slicing for data reduction, and it is not absolute time. It supplies a large-scale record only after photon transport, source evolution, and receiver cadence are modeled, and it licenses no exact global present.
 
 ## Absolute Time, Global Foliation, and Proper Time
 
-**Absolute time $T$ and universe state**
-- The $\mathbb{U}_{\text{now}}$ perspective indexes the exact microstate as $S(T)$ on each slice $\Sigma_T$.
-- On each $\Sigma_T$, the spatial metric is Euclidean: $h_{ij}=\delta_{ij}$.
-- Absolute time is substrate structure, not a coordinate gauge choice.
+On each slice $\Sigma_T$ the spatial metric is Euclidean, $h_{ij}=\delta_{ij}$, and the state is indexed as $S(T)$. Absolute time is substrate structure, not a coordinate choice.
 
-At this level, $\mathbb{U}_{\text{now}}\equiv S(T)$ is not an observer's reconstruction of events. It is the complete ontic universe state on a simultaneity slice, including constituent positions, velocities, polarities, path-history data, and any branch information required by the delayed dynamics. Observers infer only a coarse-grained portion of this state through clocks, rulers, signals, and records.
+$\mathbb{U}_{\text{now}}\equiv S(T)$ is not a reconstruction of events. It is the complete state on a slice: positions, velocities, polarities, path histories, and any branch data the delayed dynamics needs. Observers infer a coarse fraction of it.
 
-Because the master equation is path-history dependent, the complete state on a slice is not merely an instantaneous Markov projection. The precise schematic form is
+Because the master equation depends on path history, the state on a slice is not just an instantaneous snapshot:
+
 $$
 S(T)
 =
@@ -45,20 +61,23 @@ H_T,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-32ba4361fc774e61)
-where $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
-The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_T$ is ontic only insofar as it records the dynamically occupied branch, active causal-root labels, and regularization regime of the deterministic history $H_T$. Where a reduced subsystem has a proved contraction after its exported fluxes are included, the record may also identify its attractor basin. A different analyst may choose different coordinates for describing the branch, but cannot choose a different occupied branch without changing $S(T)$ itself.
+with instantaneous data $X(T)$, the history and provenance ledger $H_T$, the retained medium state, and $\mathcal{B}_T$ recording the dynamically occupied branch and active roots. A numerical regularization may accompany a calculation without becoming part of the physical state. Determinism applies where this complete physical state defines a well-posed initial-history problem.
 
-**Deterministic evolution and branch selection**
-- The delay-differential master equation is deterministic: where the declared branch chart or regularization makes the evolution well posed, a fully specified $\mathbb{U}_{\text{now}}\equiv S(T_\ast)$, including the required path-history and provenance ledger, generates a unique trajectory $S(T)$ for $T>T_\ast$.
-- Apparent branching is multistability, not stochastic evolution: near separatrices, infinitesimal perturbations in initial microstate direct trajectories into different stable branch neighborhoods.
-- Therefore the general statement is branch selection under deterministic flow, not a "distribution of allowed configurations" from one exact state. The stronger phrase *attractor-basin selection* is reserved for a declared retained subsystem whose contraction and exported wake, Noether sea, and memory-boundary fluxes have been established.
+The branch entry is not analyst bookkeeping smuggled into the ontology. $\mathcal{B}_T$ is real insofar as it records which branch the deterministic history actually occupies and which roots are active. Chart labels and regularization parameters used to represent that state remain descriptive. A different analyst may use different coordinates, but cannot choose a *different occupied branch* without changing the physical state itself.
 
-This is a claim about deterministic selection in the complete history state, not a classification of the exact full flow as dissipative or attracting. A finite observer may lack the path-history resolution needed to know which branch the system occupies, but that ignorance is inferential. It does not convert a single exact state into many simultaneous ontic futures.
+### Deterministic evolution and branch selection
 
-**Proper time $\tau$ for physical observers**
+The delay-differential master equation is deterministic. Where the declared chart makes evolution well posed, a fully specified state — including its history ledger — generates a unique trajectory forward.
 
-Physical clocks are Noether braid assemblies. Their ticks are internal periodic-branch phase advances, so the primary definition is phase extraction, not an arbitrary scalar fit:
+Where distinct stable neighbourhoods and their separatrix have been established, apparent branching is **multistability**, not stochasticity: arbitrarily small differences on opposite sides can send trajectories to different outcomes. More generally the honest phrase is branch selection under deterministic flow, never "a distribution of allowed configurations" from one exact state. The stronger term *attractor-basin selection* is reserved for a subsystem whose contraction and exported fluxes have actually been established.
+
+A finite observer may lack the resolution to know which branch is occupied. That ignorance is **inferential**. It does not convert one exact state into many simultaneous futures.
+
+### Proper time for physical observers
+
+Physical clocks are assemblies. Their ticks are internal phase advances, so the definition is phase extraction rather than a fitted scalar:
+
 $$
 d\tau_{\mathcal A}
 =
@@ -80,7 +99,11 @@ H_{\mathcal A}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-105e00cb4ffec320)
-Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $R_{\mathcal A}$ is the clock assembly orientation and geometry record, and $H_{\mathcal A}$ is the relevant path-history ledger. Both $\Omega_{\mathcal A}$ and $\Omega_{\mathcal A}^{(0)}$ are phase rates per unit effective time $t_{\mathrm{eff}}$, so the ratio is dimensionless. The velocity relative to the local Noether sea flow in the observer-level bookkeeping map is
+
+Elapsed clock time is phase advanced divided by the rate at rest, and the rate at which the clock runs relative to effective time is its current rate over its rest rate. The rate depends on velocity relative to the medium, the medium state, the clock's orientation and geometry $R_{\mathcal A}$, and its history $H_{\mathcal A}$. Both rates are phases per unit effective time, so the ratio is a pure number.
+
+Velocity relative to the local medium flow is
+
 $$
 w^i_{\mathcal A}
 =
@@ -90,9 +113,17 @@ u^i_{\mathrm{sea,eff}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5ab406531d40bca2)
-for the clock worldline $x^i_{\mathcal A,\mathrm{eff}}(t_{\mathrm{eff}})$.
 
-This phase extraction is admissible only on a clock branch whose internal return map retains a normally hyperbolic invariant cycle with a unique rotation number. In plain terms, the assembly must keep returning to the same countable cycle before it can function as a clock. More explicitly, let $P_{\mathcal A}$ be the Poincare return map on the retained clock branch and let $\tilde P_{\mathcal A}$ be a lift of its action on the invariant phase circle. The clock rotation number is
+the clock's own velocity minus the medium's. This variable isolates motion through the medium in the proposed clock map; any additional dependence on absolute motion remains part of the preferred-frame residual and cannot be discarded by definition.
+
+### When is something actually a clock?
+
+Phase extraction is not always available, and saying so precisely is what keeps this from being circular.
+
+An assembly can serve as a clock only if it carries a persistent phase. For a periodic branch, a **Poincaré return map** records successive crossings of a transverse section and a stable fixed or periodic point supplies repeatable returns. For a quasiperiodic invariant circle, an orientation-preserving circle map may instead carry a well-defined rotation number. These are distinct clock cases and must not be collapsed into one criterion.
+
+For the invariant-circle case, the average advance is measured by the **rotation number**:
+
 $$
 \rho_{\mathcal A}
 =
@@ -102,9 +133,19 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-21cce4f28c680633)
-defined mod 1 through the choice of lift. When $P_{\mathcal A}$ restricted to the retained clock circle is an orientation-preserving homeomorphism, this limit exists and is independent of $\theta$; that invertibility is the real hypothesis. If the restriction is only degree-one and non-invertible, the rotation set can be an interval rather than a point, and clock validity requires it to collapse to a point. The clock-validity domain is the parameter region where $P_{\mathcal A}$ restricted to the clock circle is topologically conjugate to a rigid rotation, or reduces to a unique normally hyperbolic periodic orbit with a well-defined phase advance. In that regime $\varphi_{\mathcal A}$ can be chosen continuously and $\Omega_{\mathcal A}$ is a branch observable. If the moving or dressed branch loses normal hyperbolicity through a saddle-node of cycles, torus breakdown, quasiperiodic transition, loss of return-map invertibility with an open rotation interval, or collapse of the cycle-stability floor, then a single rotation number no longer exists and $d\tau_{\mathcal A}$ is undefined for that branch. That event is a clock-failure mode, not a new proper-time law; in simulation it appears as a Floquet or Lyapunov-spectrum sign change in the transverse clock-cycle directions.
 
-In the Noether-braid clock class, this is the observer-side use of the [candidate and certified braid](../noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids) distinction. A physical clock is an admitted branch whose retained record returns under the delayed return map, modulo only true neutral symmetries, with a positive non-symmetry Floquet margin. Its declared clock phase $\varphi_{\mathcal A}$ is the rotation coordinate of that relative periodic orbit. Thus the clock-validity certificate can be written schematically as
+apply the return map $n$ times, see how far around the cycle you have gone, divide by $n$. The average fraction of a cycle per return.
+
+The real hypothesis in that case is invertibility. When the return map restricted to an invariant circle is an orientation-preserving homeomorphism, the limit exists and does not depend on where one starts. If the circle map is non-invertible, a rotation set rather than one rotation number may be required. A periodic clock does not need this circle-map construction: its phase is defined by repeatable return along its periodic orbit.
+
+So the clock-validity domain has at least two controlled cases: a stable periodic orbit with repeatable return, or a normally stable invariant circle with a unique rotation number and coherent phase. There the phase can be chosen continuously and the rate is a candidate observable.
+
+If a moving or dressed branch loses every admissible phase structure — through destruction of a periodic orbit, breakup of an invariant circle, loss of circle-map invertibility, or collapse of transverse stability — then **proper time is undefined for that branch.** A transition from periodic to quasiperiodic motion is not automatically a failure; it is a failure only when no unique, stable phase functional survives.
+
+### The clock certificate
+
+In the braid clock class this is the observer-side use of the [candidate and certified braid](../noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids) distinction. For a periodic branch, a physical clock is a record that returns under the delayed map, up to genuine symmetries only, with a positive transverse Floquet margin. Its phase is the coordinate along that periodic orbit:
+
 $$
 \mathcal R_{\mathrm{cert}}(\mathcal A)
 \le
@@ -114,9 +155,15 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-860738cb635545d8)
-The certificate condition is open: a normally hyperbolic phase-locked cycle with positive Floquet margin persists under small perturbations of the dressing and retained record, which is why certified clocks are robust standards rather than fine-tuned branches. This certificate establishes transverse persistence on the retained clock branch; it does not by itself prove contraction of the complete history flow. The stronger word *attracting* applies only after a declared reduced clock subsystem includes the wake, Noether sea, and memory-boundary fluxes crossing its retained boundary and proves the required contraction. Loss of the clock certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
 
-The same condition has a memory-boundary form. A valid clock branch must replay the retained path-history window over one return, so that the memory-corrected symplectic flux has no secular remainder:
+the return residual is small, and the **Floquet** margin for transverse perturbations of the periodic orbit is strictly positive. An invariant-circle clock requires the corresponding normal-hyperbolicity and phase-coherence certificate rather than this periodic-orbit Floquet row.
+
+The positive transverse-margin condition is **open**: a stable phase-locked cycle with strictly positive margin survives sufficiently small perturbations of its dressing and record. A certificate also needs strict slack below the chosen return-residual ceiling; a record sitting exactly on that ceiling has no such robustness guarantee.
+
+The certificate establishes transverse persistence on the retained branch. It does **not** prove contraction of the complete history flow, and the word *attracting* applies only after a reduced subsystem includes the wake, medium, and memory-boundary fluxes crossing its boundary and proves contraction with those included.
+
+The same condition has a memory-boundary form. A valid clock must replay its retained history window over one return with nothing leaking:
+
 $$
 \oint_{\mathrm{return}}
 \omega_{\mathrm{mem},\partial[-h,0]}
@@ -125,9 +172,13 @@ O(\epsilon_{\omega}).
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-13b3921c2e458f6a)
-This is the clock-sector reading of the branch-symplectic-promotion condition in [Effective Lagrangian](../dynamics/effective-lagrangian.md#effective-hamiltonian-domain-gate). A branch that leaks energy, symplectic area, or wake momentum through the memory boundary per cycle may still be a transient oscillator, but it is not a stable proper-time standard because its rotation number drifts.
 
-The full local Noether sea state is the retained state record $\mathcal{N}_{\mathrm{sea}}$, for example
+the accumulated flux around one cycle is negligible rather than systematically nonzero. A branch with uncompensated memory-boundary leakage may still oscillate, but it is not an autonomous time standard because a secular rate drift remains. An externally maintained clock requires the driving and exported fluxes to be included in the same repeatability account.
+
+### The medium state
+
+The full local medium record is
+
 $$
 \mathcal{N}_{\mathrm{sea}}
 =
@@ -143,11 +194,12 @@ Q^{\text{sea}}_{ij},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-60bfdf3c6a2e0b4e)
-The scalar $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$ is only the Noether sea delay factor extracted for a specified channel. It is not the full Noether sea state.
 
-A broad constitutive expression $d\tau=F(\cdots)dt_{\mathrm{eff}}$ may still be used as a schematic summary after the clock channel has been declared, but the closure target is the extracted phase functional above. Proper time is not a free scalar function assigned independently of assembly dynamics.
+density, normalized Noether braid density $n$, flow, orientation, stress, gradients, and more. The single scalar $\chi_{\text{sea}}\equiv c_f/c_{\text{eff}}$ is only a delay factor for one declared channel, not the state.
 
-The integral clock-frequency form is
+A broad expression $d\tau=F(\cdots)dt_{\mathrm{eff}}$ may summarize things once a channel is declared, but the closure target is the extracted phase functional. Proper time is not a free scalar assigned independently of the dynamics.
+
+The integral form is
 
 $$
 \tau(t_{\mathrm{eff},1})-\tau(t_{\mathrm{eff},0})=\int_{t_{\mathrm{eff},0}}^{t_{\mathrm{eff},1}}\frac{\omega_{\text{clk}}(t_{\mathrm{eff}})}{\omega_0}\,dt_{\mathrm{eff}}
@@ -155,9 +207,14 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d21e5fbcfc3a642b)
 
-where $\omega_{\text{clk}}(t_{\mathrm{eff}})$ is the phase rate extracted from the declared Noether braid clock channel and $\omega_0$ is its rest-branch reference frequency; this is the integral form of the same phase extraction, with $\omega_{\text{clk}}=\Omega_{\mathcal A}$ and $\omega_0=\Omega_{\mathcal A}^{(0)}$ on the declared branch. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
+accumulating the rate ratio over the interval. What hides inside the rate is the local root ledger, the relevant history, and the same medium variables the metric handoff uses.
 
-This definition avoids assigning proper time as an independent scalar, but it does not by itself prove relativity-compatible clock behavior. The non-circular closure statement is stronger: after phase extraction, all admitted low-energy clock and ruler assemblies in a tested comparison class must reduce to the same observer-level clock/ruler map. Equivalently, for each clock assembly $\mathcal A$,
+## Clock Universality: The Hard Part
+
+Defining proper time this way avoids assigning it arbitrarily. It does **not** prove relativity-compatible behavior, and the gap is where the defense is genuinely exposed.
+
+The requirement is stronger: every admitted low-energy clock and ruler in a tested comparison class must reduce to the *same* observer-level map. For each assembly,
+
 $$
 A_{\mathcal A}
 =
@@ -169,7 +226,9 @@ B_{ij}+\delta B_{ij}^{(\mathcal A)}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e9e0a48dfe4c1487)
-with the assembly-dependent remainders bounded by the clock-comparison, composition, and Lorentz-test rows below. The residual universality condition can be written schematically as
+
+a common clock function and ruler tensor plus a small assembly-specific remainder. The universality residual is
+
 $$
 \epsilon_{\mathrm{univ}}
 \equiv
@@ -191,26 +250,38 @@ B^{(\mathcal B)}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bce23479e117f7c9)
-with $\epsilon_{\mathrm{univ}}$ forced below the relevant residual ceilings for the comparison being made. The proposed mechanism is primitive-wake commonality: atomic, nuclear, and mechanical clocks are all architrino assemblies whose stable translating branches are solved from the same causal-wake law, causal-root ledger grammar, and Noether sea state. A moving branch should therefore deform its closed return cycles, clock periods, and ruler scales together rather than receiving separate Lorentz factors by definition.
 
-A useful sufficient-condition target is connected-moduli dressing. Let $\mathfrak M_{\mathrm{clk}}$ denote the retained moduli component for the admitted low-energy clock and ruler branches in a comparison class, and let $\Phi_\lambda$ be the Noether sea dressing flow on that component. If all admitted clock branches lie in one connected component of $\mathfrak M_{\mathrm{clk}}$, and if the generator $D_{\mathrm{dress}}$ of $\Phi_\lambda$ preserves the topological branch labels carried by the causal-root ledger and framing data, then clock universality reduces to the failure of dressing and branch-label transport to commute:
+the worst fractional disagreement between any two clocks or rulers in the class. It must fall below the relevant experimental ceiling.
+
+The proposed mechanism is **common origin**: atomic, nuclear, and mechanical clocks are all architrino assemblies solved from the same wake law, the same root grammar, and the same medium state. The program asks whether a moving branch deforms their cycles, periods, and scales *together*, rather than assigning each a Lorentz factor by fiat. Common origin alone does not guarantee that result.
+
+### Route one: connected moduli
+
+Let $\mathfrak M_{\mathrm{clk}}$ be the space of admitted clock and ruler branches — their **moduli**, the parameter space of all such configurations — and let $\Phi_\lambda$ be the medium dressing flow acting on it.
+
+If every admitted clock lies in one connected piece of that space, and the dressing generator preserves the topological labels carried by the root ledger and framing, a useful local obstruction is the failure of two operations to commute:
+
 $$
-\epsilon_{\mathrm{univ}}
-=
-O\!\left(
+\mathcal K_{\mathrm{dress,br}}
+\equiv
 \sup_{\mathcal A\in\mathfrak M_{\mathrm{clk}}}
 \left\|
 [D_{\mathrm{dress}},D_{\mathrm{br}}]_{\mathcal A}
 \right\|
-\right)
-+
-O(\epsilon_{\mathrm{chart}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-31a569f78e0dfb28)
-Here $D_{\mathrm{br}}$ denotes transport along the retained branch-label flow and $\epsilon_{\mathrm{chart}}$ collects declared chart and regularization remainders. This is not yet a proof of universality; it states the topological route by which a single dressing map could move every admitted clock and ruler branch together.
 
-The topological route also needs a spectral separation condition. Primitive-wake commonality alone does not imply one effective clock/ruler channel. Let $\Delta_{\mathrm{sea,gap}}>0$ be the lowest frequency gap from the shared long-wavelength Noether sea sector to any other collective sector that couples to the admitted clock and ruler branches, and let $\omega_{\mathrm{test}}$ be the highest frequency in the declared comparison regime. The single-sector reduction requires
+The commutator compares dressing then moving along the branch with moving then dressing. Its vanishing is an infinitesimal path-independence condition, not a universality theorem. A theorem also needs agreement at a reference branch, regular transport over paths of controlled length, and trivial or quantitatively bounded holonomy around closed paths, together with chart-error control. Only after those ingredients are supplied may $\epsilon_{\mathrm{univ}}$ be bounded by the corresponding reference, commutator, holonomy, and chart terms.
+
+This is not yet a proof. It is the topological route by which one dressing map could move every clock together.
+
+### Route two: spectral separation
+
+Common ingredients are not sufficient, and this is the subtler requirement.
+
+Let $\Delta_{\mathrm{sea,gap}}>0$ be the lowest frequency gap between the shared long-wavelength medium sector and any *other* collective sector that couples to clocks, and let $\omega_{\mathrm{test}}$ be the highest frequency in the comparison. Single-sector reduction requires
+
 $$
 \frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}}
 \ll
@@ -218,30 +289,41 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a393148bda4b7213)
-and can be organized schematically as
+
+the experiment must probe far below any competing response. If a controlled low-frequency reduction has been proved for those sectors, then
+
 $$
 \epsilon_{\mathrm{univ}}
 \le
 \epsilon_{\mathrm{intra}}
 +
-\epsilon_{\mathrm{mix}}
-\left(
-\frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}}
-\right),
+\epsilon_{\mathrm{mix}}(r),
+\qquad
+ r=\frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}},
 \qquad
 \lim_{r\to0}\epsilon_{\mathrm{mix}}(r)=0,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3bdffce6e2e36133)
-where $\epsilon_{\mathrm{intra}}$ is the connected-moduli commutator and chart remainder above, while $\epsilon_{\mathrm{mix}}$ measures contamination by the gapped sectors. This is a conditional reduction target, not an automatic consequence of one microscopic law. A second gapless sector with a nonzero species-dependent leading coupling makes $\Delta_{\mathrm{sea,gap}}=0$ for this purpose and structurally defeats this route to clock universality.
 
-Plainly: common microscopic ingredients are not enough. The tested clocks and rulers must share one low-frequency medium response, while every competing response either decouples or remains above the tested frequency band.
+with $\epsilon_{\mathrm{intra}}$ the transport, holonomy, and chart remainder, and $\epsilon_{\mathrm{mix}}(r)$ the contamination from other sectors, required by the reduction theorem to vanish as the frequency ratio $r$ does.
 
-This is the clock-side analogue of the mass-map universality residual $\mathcal R_{\alpha}$ in [Energy](../dynamics/energy.md#emergent-inertia-mass-from-shielded-energy). Both are flatness conditions over the connected component of realized assembly moduli: $\epsilon_{\mathrm{univ}}$ tests whether clock and ruler functionals $(A,B_{ij})$ are transported together, while $\mathcal R_{\alpha}$ tests whether the exposed inertial coefficient is transported together. If compared species lie in one connected dressed certified-braid component, the two residuals should be controlled by the same holonomy and chart remainders. If they lie in disconnected assembly topological charge sectors, composition-dependent clock leakage and mass-map non-universality can become one inter-class obstruction rather than two unrelated failures.
+This is conditional, not automatic. **A second gapless sector with a species-dependent coupling sets the gap to zero and defeats this route entirely** — different clocks would then sample different responses with nothing suppressing the difference.
 
-The dressing caveat is essential. The simple common-wake argument works only after the Noether sea dressing map descends to a shared clock/ruler channel. If one apparatus samples $c_\star=c_{\text{eff}}^{(1)}$ and another samples a different dressed channel $c_\star=c_{\text{eff}}^{(2)}$ without a common reduction to the same $A$ and $B_{ij}$, the mismatch is not hidden by the definition of $\tau$. It appears as $\Delta_{\mathcal A}^{\mathrm{comp}}$, $\Delta_{\mathcal A}^{\mathrm{ori}}$, or $\Delta_{\mathcal A}^{\mathrm{PF}}$ and must be carried as a failure pressure on the Lorentz-closure program. The clock universality row is therefore one component of the structural-integrity common-limit closure in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), not a standalone proper-time definition.
+Common microscopic ingredients are not enough. The tested clocks and rulers must share one low-frequency medium response, while every competing response either decouples or sits above the tested band.
 
-The low-energy Lorentz-closure target for a declared clock branch has the form
+This is the clock-side analogue of the mass-map universality residual in [Energy](../dynamics/energy.md#emergent-inertia-mass-from-shielded-energy). Both can be expressed as transport problems over branch space. They are controlled by the same holonomy only after one shared connection or dressing transport has been derived for both clock/ruler and inertial-response functionals. Disconnected sectors remove the continuous-path argument, but do not by themselves prove a nonzero residual: separate sectors could still map to the same effective coefficients.
+
+### The dressing caveat
+
+The common-origin argument works only after the dressing map descends to a shared channel. If one apparatus samples one dressed channel and another samples a different one without a common reduction, the mismatch is not hidden by the definition of $\tau$. It appears as a residual and must be carried as pressure on the Lorentz-closure program.
+
+Clock universality is therefore one component of the common-limit closure in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), not a standalone definition.
+
+## The Lorentz-Closure Target
+
+For a declared clock branch:
+
 $$
 \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
 =
@@ -268,7 +350,11 @@ O(w^4/c_0^4)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3f62541724b9b224)
-The residuals record orientation leakage, composition dependence, and preferred-frame leakage. They must be bounded by clock-comparison and Lorentz-test rows rather than hidden inside the constitutive function. The leading orientation row should be read as the trace-free quadrupole of the clock branch's framed trajectory bundle, not as an independent nuisance. If $Q_{\mathcal A}^{ij}$ is the symmetric trace-free framing tensor
+
+The square root is the required relativistic target ansatz for the declared branch. It is derived only when the assembly and medium calculation produces this form and closes the residuals. The bracket collects three residuals — orientation leakage, composition dependence, and preferred-frame leakage — which must be bounded by experiment rather than absorbed into the constitutive function.
+
+The orientation row is not an independent nuisance. It is the quadrupole of the clock's framed trajectory bundle:
+
 $$
 Q_{\mathcal A}^{ij}
 =
@@ -280,7 +366,9 @@ Q_{\mathcal A}^{ij}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-985e981bcb83865e)
-then the lowest anisotropic clock response has the schematic form
+
+averaging the framing directions and removing the isotropic part. Its vanishing removes the quadrupolar preferred-axis moment in this statistic, but does not exclude higher multipoles or other anisotropy measures. The lowest retained anisotropic response is then
+
 $$
 \Delta_{\mathcal A}^{\mathrm{ori}}(\hat{\mathbf n})
 =
@@ -296,15 +384,23 @@ O_{\ell\ge4}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b77dc16ee840f76f)
-The same $Q_{\mathcal A}^{ij}$ is the matter-response source constrained by Hughes-Drever-type anisotropy tests, so the clock orientation row and the inertial-response anisotropy row are two exports of one branch certificate.
 
-For Noether braid candidates, [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy) supplies the corresponding geometric order parameter. The theorem target is sharper than near-orthogonality alone: $|D_{\mathrm{plane}}|\to1$ suppresses the non-orthogonal-frame part of the trace-free framing quadrupole $Q_{\mathcal A}^{ij}$, while small total $\|Q_{\mathcal A}\|$ also requires near-degenerate retained spectral weights, shielding, or branch averaging in the same frame extraction. If those conditions close for a clock assembly, the strict orientation row, Hughes-Drever matter anisotropy, scalar-mass anisotropy, and translating-loop Lorentz period anisotropy become different projections of one $\ell=2$ framing-isotropy condition rather than separately tuned residuals.
+where $O_{\ell\ge4}$ denotes spherical-harmonic multipoles of degree four and above, not fourth order in a small angle. This even-multipole expansion assumes the observable is reciprocal under $\hat{\mathbf n}\mapsto-\hat{\mathbf n}$; without that symmetry, odd multipoles must be retained too. The same tensor is a candidate common source for matter-response and clock anisotropy. Establishing that economy requires deriving both projections from the same record; it cannot be assumed from notation alone.
 
-The residual budget is not symmetric. The defense is most exposed in the composition channel: $\Delta_{\mathcal A}^{\mathrm{comp}}$ is the residual that can survive if two stable clock species sample inequivalent dressed $c_{\text{eff}}$ channels even after each has an internally consistent phase definition. The common-channel reduction must therefore prove that atomic, nuclear, mechanical, and material clock/ruler assemblies descend to the same $A$ and $B_{ij}$ in the tested regime, or else carry the mismatch as a failed universality row. Once that reduction holds, $\Delta_{\mathcal A}^{\mathrm{ori}}$ and $\Delta_{\mathcal A}^{\mathrm{PF}}$ become branch-geometry and medium-drift leakage rows bounded by the orientation, two-way anisotropy, and PPN tests below.
+For braid candidates, [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy) supplies the geometric order parameter. The target is sharper than near-orthogonality: driving the plane parameter to unity suppresses the non-orthogonal part of the framing quadrupole, while making the whole tensor small also needs near-degenerate spectral weights, shielding, or averaging in the same extraction. If those close, the orientation row, matter anisotropy, mass anisotropy, and Lorentz period anisotropy become four projections of one isotropy condition.
 
-The composition row has a topological floor when clock species live in disconnected dressed components. Let $\mathfrak M_{\mathrm{clk}}^{(a)}$ and $\mathfrak M_{\mathrm{clk}}^{(b)}$ be the retained moduli components containing two compared clock species. If there is a continuous dressing path between them that preserves the certified-braid certificate and the relevant assembly topological charge data, then $\Delta_{\mathcal A}^{\mathrm{comp}}$ is bounded by the holonomy and chart error along that path. If every such path crosses a phase-lock jump, root-fold sector change, $D_{\mathrm{plane}}=0$ frame wall, or memory-boundary failure, then the composition residual has an irreducible inter-component floor. The defense fails in that case unless the compared species are removed from the same clock-universality class.
+### The composition channel is where this is most exposed
 
-Equivalence-principle differential acceleration is a separate observer-level residual. For two test assemblies $A$ and $B$ falling toward a source $S$, use the Eötvös row owned by [General Relativity](../spacetime/general-relativity.md#equivalence-principle-channels):
+The residual budget is not symmetric, and it is worth saying which way it leans.
+
+$\Delta_{\mathcal A}^{\mathrm{comp}}$ can survive even when every clock has an internally consistent phase definition, if two species sample inequivalent dressed channels. The common-channel reduction must prove that atomic, nuclear, mechanical, and material assemblies descend to the same functions — or carry the mismatch as a failed row. Once that holds, the other two residuals become branch-geometry and drift terms bounded by the tests below.
+
+Connected branch space offers a transport route for comparing species: if a certificate-preserving path exists, its holonomy bounds the mismatch. If every path crosses a phase-lock jump, fold-sector change, frame wall, or memory-boundary failure, that route is unavailable. Disconnectedness alone does not impose a positive **topological floor**, because separate components may still export identical clock functions. The residual is irreducible only after the component-wise maps are computed and shown to disagree.
+
+### Equivalence-principle residual
+
+Differential free-fall is a separate observer-level test. For two assemblies falling toward a source:
+
 $$
 \eta_{AB}^{S}
 =
@@ -312,69 +408,89 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6527952b172a86b7)
-The MICROSCOPE experiment platinum/titanium result supplies a $10^{-15}$-class benchmark for this free-fall row, not for $\Delta_{\mathcal A}^{\mathrm{comp}}$. The two residuals may be linked only after a formal cross-map derives both the gravitational/inertial response and the clock/ruler maps $(A,B_{ij})$ from the same retained assembly and Noether sea record.
 
-These scales are experimental requirements and bookkeeping ceilings, not framework-predicted amplitudes by themselves:
+the fractional difference in their accelerations, zero when composition does not matter. This is the **Eötvös ratio**. The MICROSCOPE final result for titanium and platinum was $\eta(\mathrm{Ti},\mathrm{Pt})=[-1.5\pm2.3\,(\mathrm{stat})\pm1.5\,(\mathrm{syst})]\times10^{-15}$ at one standard deviation; see Touboul and collaborators, [*MICROSCOPE Mission: Final Results of the Test of the Equivalence Principle* (2022)](https://doi.org/10.1103/PhysRevLett.129.121102).
+
+That benchmark applies to free fall, **not** to the clock composition residual. The two may be linked only after a formal cross-map derives both the gravitational response and the clock and ruler maps from the same record. Treating one bound as covering the other would be exactly the shortcut this chapter exists to prevent.
+
+### The ceilings
+
+These are experimental requirements and bookkeeping ceilings, not amplitudes the framework predicts:
 
 | Residual | Meaning | Required low-energy ceiling | Framework-predicted scale |
 | --- | --- | --- | --- |
-| $\Delta_{\mathcal A}^{\mathrm{ori}}$ | Orientation leakage in clock/ruler response | typically $10^{-16}\text{--}10^{-18}$, with the strictest resonator rows at the $10^{-18}$ scale | Must be computed from branch-chart, hierarchy, dressing, and regularization residuals; no value is predicted by the phase definition alone. |
-| $\Delta_{\mathcal A}^{\mathrm{comp}}$ | Composition dependence across atomic, nuclear, mechanical, or material clock/ruler assemblies | bounded by the declared composition-sensitive clock-comparison row for the selected species and channel; no universal equivalence-principle ceiling is assigned | Must descend from a common $A$ and $B_{ij}$ after dressing; channel-dependent $c_{\text{eff}}$ maps contribute directly to this residual. |
-| $\eta_{AB}^{S}$ | Composition-dependent differential acceleration of test assemblies $A$ and $B$ toward source $S$ | bounded by the declared equivalence-principle instrument and material pair; MICROSCOPE supplies a $10^{-15}$-class platinum/titanium benchmark | Must descend from the effective gravitational and inertial response maps. It constrains $\Delta_{\mathcal A}^{\mathrm{comp}}$ only after the formal cross-map stated above is derived. |
-| $\Delta_{\mathcal A}^{\mathrm{PF}}$ | Preferred-frame leakage from the Euclidean-void rest frame into observer observables | projected into the two-way anisotropy and PPN rows below unless a sharper channel-specific bound is declared | Must be traced to named branch-chart, medium-drift, or dressing terms rather than fitted as an independent nuisance. |
+| $\Delta_{\mathcal A}^{\mathrm{ori}}$ | Orientation leakage in clock/ruler response | channel-specific; the cited Nagel resonator result reaches the $10^{-18}$ scale | Must be computed from branch-chart, hierarchy, dressing, and regularization residuals; no value is predicted by the phase definition alone. |
+| $\Delta_{\mathcal A}^{\mathrm{comp}}$ | Composition dependence across atomic, nuclear, mechanical, or material assemblies | bounded by the declared composition-sensitive clock-comparison row for the selected species and channel; no universal equivalence-principle ceiling is assigned | Must descend from a common $A$ and $B_{ij}$ after dressing; channel-dependent maps contribute directly. |
+| $\eta_{AB}^{S}$ | Composition-dependent differential acceleration toward source $S$ | bounded by the declared instrument and material pair; MICROSCOPE supplies a $10^{-15}$-class platinum/titanium benchmark | Must descend from the effective gravitational and inertial response maps. Constrains the composition residual only after the cross-map above is derived. |
+| $\Delta_{\mathcal A}^{\mathrm{PF}}$ | Preferred-frame leakage into observables | projected into the two-way anisotropy and PPN rows below unless a sharper bound is declared | Must be traced to named branch-chart, drift, or dressing terms rather than fitted as a nuisance. |
 
-Required emergent limits:
-- Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../noether-braid/braid-mathematics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. In this sense $c_0$ is the deformation-invariant fixed point of the dressing flow as $\mathcal{N}_{\mathrm{sea}}$ approaches the homogeneous neutral background, not a second primitive speed. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
-- Homogeneous medium, low velocities:
-  $$
-  \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
-  \qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}
-  $$
+For the resonator benchmark, Nagel and collaborators reported an orientation-dependent relative frequency change of $(9.2\pm10.7)\times10^{-19}$ at 95% confidence in [*Direct terrestrial test of Lorentz symmetry in electrodynamics to $10^{-18}$* (2015)](https://doi.org/10.1038/ncomms9174). Clock and matter limits are channel- and species-dependent; the [Data Tables for Lorentz and CPT Violation](https://arxiv.org/abs/0801.0287) should be used to select the coefficient actually exported by a proposed map.
 
-  [View →](../../../../equation-mapping.html#corpus-equation-03a877c70273e6a2)
-  In the weak homogeneous sea-rest branch, $u^i_{\text{sea}}=0$, so $\mathbf{w}=\mathbf{v}$.
-- Weak field, low velocities, after the clock-channel potential has been matched to the Newtonian benchmark:
-  $$
-  \Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2),
-  \qquad
-  \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}
-  $$
+### Required emergent limits
 
-  [View →](../../../../equation-mapping.html#corpus-equation-53bfef88e39b1d25)
-  Here $\Phi_N$ is the conventional negative Newtonian potential. If a positive PPN potential $U_N\ge0$ is used, set
-  $$
-  \Phi_N=-U_N
-  $$
+**Speed convention.** $c_f$ is the primitive wake speed inside delayed-root equations. Observer-level limits use the declared channel speed $c_\star$, equal to the dressed effective speed for clocks and rulers, with $c_0$ the measured low-energy calibration in the weak homogeneous limit. The claim that a dressing flow approaches $c_0$ is a closure target, not the definition of $c_0$. Set $c_\star=c_f$ only for a primitive chart, or after deriving that a specific cycle is governed by the undressed speed.
 
-  [View →](../../../../equation-mapping.html#corpus-equation-56e423932ee52960)
-  so the first-order clock expansion reads
-  $$
-  \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
-  \approx
-  1+\frac{\Phi_N}{c_0^2}
-  -\frac{\|\mathbf{w}\|^2}{2c_0^2}
-  =
-  1-\frac{U_N}{c_0^2}
-  -\frac{\|\mathbf{w}\|^2}{2c_0^2}
-  $$
+Homogeneous medium, low velocities:
 
-  [View →](../../../../equation-mapping.html#corpus-equation-06d0e5181bfb5d54)
+$$
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
+\qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}
+$$
 
-**Speed convention table**
+[View →](../../../../equation-mapping.html#corpus-equation-03a877c70273e6a2)
+
+In the medium-rest branch the flow vanishes, so velocity relative to the medium is just velocity.
+
+Weak field, low velocities, after the clock-channel potential is matched to the Newtonian benchmark:
+
+$$
+\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2),
+\qquad
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-53bfef88e39b1d25)
+
+with $\Phi_N$ the conventional negative Newtonian potential. If a positive convention is used instead, set
+
+$$
+\Phi_N=-U_N
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-56e423932ee52960)
+
+so the first-order expansion reads
+
+$$
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
+\approx
+1+\frac{\Phi_N}{c_0^2}
+-\frac{\|\mathbf{w}\|^2}{2c_0^2}
+=
+1-\frac{U_N}{c_0^2}
+-\frac{\|\mathbf{w}\|^2}{2c_0^2}
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-06d0e5181bfb5d54)
+
+which is the required first-order observer benchmark: clocks run slower deeper in a gravitational well and when moving. The displayed expansion states the target after matching; the $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery is complete only when the same assembly and medium record derives it.
+
+### Speed convention table
 
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
-| $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
-| $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
-| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration and dressing-flow fixed-point target |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a medium state and direction | derived |
+| $c_{\text{eff}}$ | Effective signal or clock-channel speed for a dressed branch | derived/contextual |
+| $c_\star$ | Local comparison speed in a declared branch | branch-dependent |
+| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration target |
 
-These symbols must not be identified unless the local regime and derivation have been stated.
+None may be identified with another until the regime and derivation are stated.
 
-**Preferred-frame leakage closure**
+## Preferred-Frame Leakage Closure
 
-The operational two-way photon-speed diagnostic is
+The operational diagnostic is two-way photon speed:
+
 $$
 c_{2w}(\hat{\mathbf n})
 =
@@ -382,7 +498,11 @@ c_{2w}(\hat{\mathbf n})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e41b35d34629c42b)
-In ordinary low-energy conditions its anisotropy must fit
+
+round-trip distance over round-trip time. Two-way rather than one-way because one-way measurement requires synchronized clocks at both ends, which presupposes the convention under test.
+
+Its anisotropy must fit
+
 $$
 \frac{c_{2w}(\hat{\mathbf n})-c_0}{c_0}
 =
@@ -397,7 +517,11 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a7d979a4d966f967)
-with the trace-free anisotropy below the current hard-wall row in the constraint ledger, presently of order $|\zeta_{ij}^{\mathrm{TF}}|\lesssim10^{-17}$ and, for the strictest cavity rows, at the $10^{-18}$ scale. The PPN export must also pass the componentwise bound vector
+
+an isotropic piece plus a direction-dependent piece. The coefficient must be compared with a declared contemporary instrument and coefficient map; the Nagel benchmark cited above reached the $10^{-18}$ scale for its resonator channel.
+
+The parameterized post-Newtonian export must also pass:
+
 $$
 \left(
 |\gamma_{\mathrm{PPN}}-1|,
@@ -417,13 +541,17 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5330b39dbced67eb)
-Any screening mechanism must be included before exporting the observer-level PPN and Lorentz-test coefficients. The exported coefficients themselves must pass the ledger bounds. Preferred-frame hiding is therefore a numerical closure condition, not a prose reassurance.
 
-The trace-free coefficient $\zeta_{ij}^{\mathrm{TF}}$ is the photon-channel projection of the Noether sea framing quadrupole. It is parallel to, but not identical with, the matter framing tensor $Q_{\mathcal A}^{ij}$ above: matter leakage tests the retained assembly framing, while photon and PPN leakage test the sea-response framing sampled by the signal channel. Translation and rotation invariance forbid leading $\ell=1$ preferred-axis leakage in the homogeneous rest branch, so the first dangerous rows are $\ell=2$ trace-free projections. The preferred-frame budget is therefore a collection of framing-isotropy conditions on matter assemblies and on the Noether sea response, with the two-way photon row measuring the sea-side quadrupole.
+The **parameterized post-Newtonian (PPN) framework** is the standard weak-field catalogue of ways a metric gravity theory can differ from general relativity. The displayed inequality is interpreted component by component and records representative bounds compiled in Will's 2014 [review of experimental tests of general relativity](https://doi.org/10.12942/lrr-2014-4), not a timeless or automatically current bound vector. Its entries summarize different experiments and, for some preferred-frame parameters, include strong-field pulsar analyses rather than five independent measurements of one system. The first two entries test spatial curvature per unit mass and nonlinear superposition; $\alpha_1$, $\alpha_2$, and $\alpha_3$ parameterize preferred-frame or related nonconservative effects. Any present comparison must select the current coefficient-specific constraint and state its assumptions.
 
-**Effective metric handoff**
+Any screening must be included before exporting these coefficients, and the exported values must pass. Preferred-frame hiding is a numerical closure condition, not a prose reassurance.
 
-The clock/ruler handoff to effective metric language can be written locally as
+The trace-free photon coefficient is the proposed photon-channel projection of the medium framing quadrupole. It is parallel to but distinct from the matter tensor: matter leakage tests assembly framing, while photon and PPN leakage test the medium response sampled by the signal. For a reciprocal two-way observable, reversing the path direction removes odd directional multipoles, so a dipole term is absent and the leading anisotropic row is quadrupolar. Translation and rotation invariance alone would not establish that cancellation. The projection from medium state to each coefficient remains a derivation target.
+
+## Effective Metric Handoff
+
+Locally:
+
 $$
 d\tau^2
 =
@@ -436,7 +564,9 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0f9a5b68a09b6135)
-The metric handoff is admissible only on branches where
+
+The handoff is admissible only where
+
 $$
 A>0,
 \qquad
@@ -448,9 +578,15 @@ B_{ij}\xi^i\xi^j>0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d47797a6f7809924)
-These inequalities have a physical meaning. $A>0$ says the declared clock phase remains monotone in absolute time, so the branch still supplies a usable clock. Positive-definite $B_{ij}$ says the local ruler/signal compliance remains an ordinary spatial quadratic form, so one observer-level light cone can be exported from the branch. The handoff fails when a certified clock cycle is lost, when a separator or branch-chart transition makes the causal-root ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive, birefringent, or multi-valued enough that no single $B_{ij}$ represents the local response. In those regimes the effective metric description is suspended and the analysis must return to finite branch data, as in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and the strong-field continuation criteria in [Singularity Resolution](../spacetime/singularity-resolution.md).
 
-**Conditional uniform-flow affine-equivalence lemma.** Suppose that, on one comparison window, $A$ is a positive constant, $B_{ij}$ is a constant symmetric positive-definite matrix, and $u^i_{\mathrm{sea,eff}}$ is constant. Suppose also that every admitted clock, ruler, and signal in that window couples only through this same effective handoff. Choose a constant matrix $L^a{}_i$ satisfying
+These have physical content rather than being technical hygiene. $A>0$ says the clock phase still advances monotonically, so the branch supplies a usable clock. Positive-definiteness of $B_{ij}$ says every spatial direction has positive measured length. A single light cone additionally requires a nondispersive, nonbirefringent signal law governed by this same tensor.
+
+The handoff fails when a certified cycle is lost, when a branch transition makes the ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive or **birefringent** — splitting a signal by polarization so no single response tensor describes it. There the metric description is suspended and analysis returns to finite branch data, as in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and [Singularity Resolution](../spacetime/singularity-resolution.md).
+
+### Conditional uniform-flow affine-equivalence lemma
+
+Suppose on one window that $A$ is a positive constant, $B_{ij}$ is a constant positive-definite matrix, the medium flow is constant, and every admitted clock, ruler, and signal couples only through this handoff. Choose a constant matrix satisfying
+
 $$
 B_{ij}
 =
@@ -458,7 +594,9 @@ B_{ij}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ebb791623df657c4)
-and define
+
+a square root of the ruler tensor, and define
+
 $$
 t'_{\mathrm{eff}}
 =
@@ -476,7 +614,9 @@ u^i_{\mathrm{sea,eff}}t_{\mathrm{eff}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f1f3c9c3e04165e5)
-The handoff then becomes
+
+rescaling time by the clock rate and moving to coordinates that drift with the medium. Then
+
 $$
 d\tau^2
 =
@@ -487,9 +627,16 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9622f4df7a4487ec)
 
-Plainly: a uniform sea flow with constant universal clock, ruler, and signal response is removable from the effective record by an affine coordinate change. This lemma does not remove the substrate preferred frame or establish universality. It localizes observable preferred-frame leakage to gradients or time dependence in the sea record, dispersion, non-universal assembly coupling, or channels not captured by the single metric handoff.
+flat Minkowski form on that window, with the constant coefficients absorbed into the chosen effective coordinates.
 
-Equivalently, the metric handoff is a local-invertibility claim. Let the reduced clock/ruler branch map be written schematically as
+A uniform medium flow with constant universal response is **coordinate-removable** within this local quadratic handoff. This lemma shows that those constant coefficients alone do not create an observable local anisotropy for channels satisfying its hypotheses. It does not prove global preferred-frame hiding or explain why the required universal coefficients arise.
+
+But note what it does not do. It does not remove the substrate frame, and it does not establish universality — it assumed it. What it does is localize observable leakage to the places where its hypotheses fail: gradients or time dependence in the medium, dispersion, non-universal coupling, or channels outside the single handoff.
+
+### Forward regularity and inverse identifiability
+
+The handoff first requires a well-defined forward map. Write it as
+
 $$
 \Psi_{\mathrm{cr}}
 :
@@ -499,7 +646,9 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d13e1ce133948a4e)
-On a regular branch, $\Psi_{\mathrm{cr}}$ has the fixed rank needed to export one clock rate and one positive spatial quadratic response. The failure set is the branch-fold locus
+
+from branch, history, and medium data to one clock rate and one ruler tensor. Many microscopic records may legitimately produce the same effective pair, so the map need not be invertible. What the export needs is single-valued continuity and sufficient differential rank in the output directions being varied. A rank-deficiency set may be written
+
 $$
 \mathfrak{F}_{\mathrm{cr}}
 =
@@ -511,7 +660,9 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-855b8fb677f47adc)
-The conditioning face of the same admissibility condition is a singular-value floor:
+
+and the conditioning face is a singular-value floor:
+
 $$
 \sigma_{\min}
 \left(
@@ -522,17 +673,25 @@ D\Psi_{\mathrm{cr}}\big|_{\mathrm{reg}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b59763c66090a8a4)
-The inequalities $A>0$ and $B_{ij}\succ0$ are the positivity face of this condition, while the rank and singular-value bounds are the local-invertibility face. A branch can therefore fail metric export either by losing clock/ruler positivity or by becoming so ill-conditioned that the effective metric is locally multivalued under small retained-record perturbations.
 
-For a generic finite-dimensional retained branch chart, the regular clock/ruler region is the open complement of a stratified failure set. Its top stratum is expected to be codimension one: a fold hypersurface across which $\Psi_{\mathrm{cr}}$ loses local invertibility and the metric handoff must be suspended. Higher-codimension strata correspond to cusp, multiple-fold, or simultaneous clock/ruler degeneracies. The preceding list gives coordinate descriptions of the same loss of one-to-one branch structure. This is the clock/ruler version of the fold and non-degeneracy-floor discipline used for causal-root charts in [Master Equation](../dynamics/master-equation.md#causal-time-map-and-root-topology).
+The smallest retained **singular value** measures the most compressed direction in a chosen complement to the expected coarse-graining fibers. Bounding it away from zero controls sensitivity of the exported variables on that reduced chart; it does not recover the erased microscopic data.
 
-Define the Lorentzian observer metric by
+Positivity and forward regularity are separate admissibility conditions. A branch can fail by losing clock or ruler positivity, by making the forward export discontinuous or multivalued, or by losing rank in an output direction required by the effective chart. Inverse identification of microscopic state from $(A,B_{ij})$ is a different problem and is not required for coarse-graining.
+
+The geometry of the failure set depends on the dimensions and the rank condition. A scalar fold is generically codimension one, but determinantal rank varieties can have higher codimension. No universal codimension follows from the notation above. Each clock-and-ruler chart must state its dimensions, regular rank, and failure geometry rather than importing the fold count from the causal-root problem.
+
+### Export
+
+Define
+
 $$
 ds_{\mathrm{eff}}^2=-c_0^2d\tau^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-142d1bd421e3f1b2)
-With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the exported components are
+
+With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the components are
+
 $$
 g^{\mathrm{eff}}_{00}
 =
@@ -540,6 +699,7 @@ g^{\mathrm{eff}}_{00}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-077f6f96b2236e09)
+
 $$
 g^{\mathrm{eff}}_{0i}
 =
@@ -547,7 +707,9 @@ g^{\mathrm{eff}}_{0i}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e0931c21a6845226)
+
 and
+
 $$
 g^{\mathrm{eff}}_{ij}
 =
@@ -555,7 +717,11 @@ B_{ij}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-58d9d410e1c1b17a)
-Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether sea state rather than assigned independently:
+
+The time-time component carries the clock rate corrected for flow, the mixed components carry the flow itself, and the spatial components are the ruler tensor.
+
+Photon closure then reads the null condition of that form, with the photon speed derived from the same medium state:
+
 $$
 \frac{dx_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}}
 =
@@ -565,6 +731,9 @@ c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})\hat k^i
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-53d3b79421c051ab)
+
+light is carried by the medium flow and travels through it at
+
 $$
 c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
 =
@@ -572,9 +741,15 @@ c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b386c818670a88e7)
-The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\mathrm{sea,eff}}\to0$.
 
-The same-record rule is stricter than using one symbol $\mathcal{N}_{\mathrm{sea}}$ in several equations. The clock/ruler map must consume the same Noether sea response record that supplies $G_{\mathrm{eff}}$ in the gravity inventory, $c_{\text{eff}}$ in the matter limiting-speed and mass-shell rows, and $c_\gamma$ in the photon channel:
+the clock rate over the ruler length in the direction of travel. The weak homogeneous branch requires the clock function to approach one, the ruler tensor to approach the identity, and the flow to vanish.
+
+### The same-record rule
+
+This is stricter than using one symbol in several equations, and it is the strongest structural constraint in the chapter.
+
+The clock and ruler map must consume the **same** medium record that supplies the effective gravitational constant, the matter limiting speed, and the photon speed:
+
 $$
 \Theta_{\mathrm{sea}}
 \longmapsto
@@ -588,10 +763,23 @@ c_\gamma
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-30f59d13f3892938)
-If these projections require separate sea records or independently tuned response tensors, the effective metric is fitted rather than derived. The closure burden is therefore one sea-constitutive object with clock, ruler, gravity, matter-speed, and photon projections, not a separate clock-sector construction.
 
-**Key point**
+one object, five projections. If these require separate records or independently tuned tensors, the effective metric is **fitted rather than derived**. It may still summarize data, but it does not provide the claimed common-origin explanation. The burden is one constitutive object with five projections.
 
-Relativity of simultaneity and time dilation are emergent observer-level effects of assembly dynamics. The $\mathbb{U}_{\text{now}}$ formalism evolves in absolute time $T$; proper time $\tau$ is a derived clock functional. The closure burden is therefore not to remove the preferred foliation, but to derive clock, ruler, and signal behavior that bounds preferred-frame leakage to the required precision in the effective observer sector.
+## Key Point
 
-The converse is a hard falsifiability wall. The defense fails if $\Delta_{\mathcal A}^{\mathrm{comp}}$ cannot be driven to the declared clock-comparison ceiling by a common-channel reduction. A sharp topological obstruction is disconnected clock moduli: if physically realized clock species occupy different deformation classes of the Noether braid atlas and no shared dressing path identifies their $A$ and $B_{ij}$ maps, then the composition residual is irreducible rather than a small correction. The defense also fails if a stable low-energy clock or ruler species retains orientation or preferred-frame leakage after branch-chart, dressing, and regularization terms have been accounted for, with residuals exceeding the relevant cavity or two-way anisotropy row, in particular at the $10^{-18}$ scale for the strictest resonator comparisons. Such leakage would not be an alternate interpretation of proper time; it would be a failed Lorentz-closure branch.
+Relativity of simultaneity and time dilation are emergent observer-level effects of assembly dynamics. The formalism evolves in absolute time; proper time is a derived functional.
+
+The closure burden is therefore not to remove the preferred foliation. It is to derive clock, ruler, and signal behavior that bounds leakage to the required precision.
+
+## Falsifiability Wall
+
+The defense fails in three specific ways, and none is a matter of interpretation.
+
+**It fails** if the composition residual cannot be driven below the declared clock-comparison ceiling by a common-channel reduction.
+
+**The connected-moduli route fails** if realized clock species occupy different deformation classes with no certificate-preserving dressing path between them. That does not by itself prove a nonzero composition residual; the defense fails only if their separately computed effective maps disagree above the declared ceiling.
+
+**It fails** if a stable low-energy clock or ruler retains orientation or preferred-frame leakage after branch-chart, dressing, and regularization terms are accounted for, with residuals above the relevant cavity or two-way anisotropy row — in particular at the $10^{-18}$ scale for the strictest resonator comparisons.
+
+Such leakage would not be an alternative reading of proper time. It would falsify the proposed Lorentz-recovery branch. Persistent failure across every admissible branch would make this absolute-time realization incompatible with the measured observer sector; it would not constitute a purely logical disproof of every possible absolute-time model.

@@ -6,9 +6,11 @@ This folder holds research-findings and proposed-changes packets assembled from 
 
 The intent is to use the AI persona as a disciplined review lens. A packet routed to an Emmy Noether-style agent should emphasize symmetry, invariants, and conservation law; a Terence Tao-style agent should emphasize analysis and well-posedness; a Hendrik Lorentz-style agent should emphasize frame mapping and emergent relativity. The value is the perspective, not an attribution claim.
 
-Each packet should frame the research question, preserve the mathematical findings and evidence boundaries, and propose exact changes to reader-facing corpus files or priority records. Prompt text, response transcripts, and round-by-round dialogue are working material and do not belong in the durable packet.
+Existing dated packets are historical evidence records. Preserve their mathematics, results, recorded status, and provenance; the status labels below describe the records and do not establish current queue or canon state. Check the live corpus and owning priorities before relying on a packet for a current conclusion.
 
-## Active Packets
+Each new packet should frame the research question, preserve the mathematical findings and evidence boundaries, and propose exact changes to reader-facing corpus files or priority records. Prompt text, response transcripts, and round-by-round dialogue are working material and do not belong in the durable packet.
+
+## Recorded Packets
 
 | Packet | AI persona lens | Status |
 | --- | --- | --- |
@@ -24,7 +26,7 @@ Each packet should frame the research question, preserve the mathematical findin
 ## Packet Discipline
 
 - Keep packets self-contained.
-- Start the packet body with a `Closure goal:`.
+- State the research question and scope in the opening. Authored exposition follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md); communication with the operator follows the [operator explanation standard](../../../op/operator-explanation-standard.md).
 - Begin with research framing, scope, assumptions, and claim authority.
 - Organize the body around findings, derivations, counterexamples, evidence boundaries, and unresolved questions.
 - End with proposed changes that name the reader-facing corpus or priority destination and the intended claim grade.

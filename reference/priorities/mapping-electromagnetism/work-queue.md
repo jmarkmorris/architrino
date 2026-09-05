@@ -2,7 +2,7 @@
 
 This is the canonical execution ledger for accepted electromagnetic recovery and inverse-geometry tasks.
 
-The report-only [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md) packet supplies the shared pre-derivation method and requirement ledger used by these objects. Creating or expanding that packet does not change a queue state, equation score, or retained-evidence decision.
+The [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md) packet supplies the shared pre-derivation method and requirement ledger used by these objects. Work on that packet follows the edit authority declared by the executing request or queue item. Creating or expanding it does not by itself change a queue state, equation score, or retained-evidence decision.
 
 ## Ranked Next Objects
 

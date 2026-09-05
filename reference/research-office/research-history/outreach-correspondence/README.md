@@ -10,4 +10,6 @@ The send history is intentionally lightweight. Keep only date, target draft, sta
 | [Ahlen, Tarle, Croker, Farrah, and collaborators: DESI DR2 and positive neutrino masses](2026-07-02-ahlen-tarle-desi-neutrino-matter-conversion-letter.md) | [arXiv:2504.20338](https://arxiv.org/abs/2504.20338) | Respond to the DESI DR2/SFRD matter-conversion proposal by emphasizing source-history covariance and perturbation-level bookkeeping. |
 | [Cadoni, De Lima, Pitzalis, Rodrigues, and Sanna: regular horizons](2026-07-02-cadoni-de-lima-regular-horizons-letter.md) | [arXiv:2601.03296](https://arxiv.org/abs/2601.03296) | Respond to the regular-horizon cosmological-embedding paper by emphasizing finite-boundary-data regularity, mass splitting, apparent horizons, and backreaction. |
 
-Before sending, retrieve current author contact details from each arXiv page and adjust salutation, institutional signature, and any claim-level wording to match the chosen outreach posture.
+Preserve dated drafts and send records as correspondence provenance. The operator must explicitly authorize sending a message; a stored draft or this procedure is not send authorization.
+
+For an authorized send, retrieve current author contact details from each arXiv page and adjust salutation, institutional signature, and any claim-level wording to match the chosen outreach posture.

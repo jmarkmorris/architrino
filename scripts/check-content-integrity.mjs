@@ -73,6 +73,10 @@ const CHECKS = [
     args: ["scripts/build-agent-startup-orientation.mjs", "--check"],
   },
   {
+    name: "Validate generated Claude pre-read floor",
+    args: ["scripts/build-claude-bootstrap-floor.mjs", "--check"],
+  },
+  {
     name: "Validate generated textbook reading copies",
     args: ["scripts/build-textbook-md-pdf.mjs", "--check"],
   },

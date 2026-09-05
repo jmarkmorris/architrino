@@ -2,9 +2,7 @@
 
 This chapter collects worked records classified as spatial (3D) under [Braid Taxonomy](braid-taxonomy.md): every declared component braid in a complete, disjoint partition has complete paths that do not lie in one fixed plane. Whole-assembly span is reported separately. The chapter applies the canonical identification rules to exact coordinates, prescribed histories, and bounded evidence.
 
-A chart or display record does not establish EOM-solver release, retention, stability, binding, or particle identity. Each result below retains its stated claim grade and falsifier.
-
-Plainly: this chapter groups worked configurations by the geometry of each braid, not by a parent template or by whether the whole assembly looks spherical.
+A chart or display record does not establish EOM-solver release, retention, stability, binding, or particle identity. Each result below retains its stated claim grade and falsifier. This chapter groups worked configurations by the geometry of each braid, not by a parent template or by whether the whole assembly looks spherical.
 
 The orthogonal-axis three-binary records prescribe one braid whose three binary axes are mutually orthogonal at the near-rest endpoint and converge toward the group-translation direction as the prescribed flattening coordinate increases. The canonical characteristics are defined in [Braid Taxonomy](braid-taxonomy.md#coordinate-constraints-used-by-worked-configurations). This chapter explains the coincident-midpoint, phase-compensated equal-geometry, and axially separated coordinate loci.
 
@@ -18,19 +16,19 @@ Every orthogonal-axis three-binary member is one complete Noether braid composed
 
 At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the orthogonal-axis three-binary translation direction. The complete braid translates along that direction, and its group speed is distinct from the internal architrino speeds.
 
-Every orthogonal-axis three-binary Borg catalog representative uses this near-rest endpoint: $\lambda=0$, source axes along $x$, $y$, and $z$, and corresponding binary orbit planes yz, xz, and xy. This prescribed display selection does not remove the intermediate and flat response geometries from the wider orthogonal-axis three-binary taxonomy.
+Every orthogonal-axis three-binary Borg catalog representative uses this near-rest endpoint: $\lambda_A=0$, source axes along $x$, $y$, and $z$, and corresponding binary orbit planes yz, xz, and xy. This prescribed display selection does not remove the intermediate and flat response geometries from the wider orthogonal-axis three-binary taxonomy.
 
-The prescribed flattening coordinate $\lambda$ connects two endpoint geometries:
+The prescribed flattening coordinate $\lambda_A$ connects two endpoint geometries:
 
-| $\lambda$ | Binary-axis relation | Envelope description |
+| $\lambda_A$ | Binary-axis relation | Envelope description |
 | --- | --- | --- |
 | $0$ | Three mutually orthogonal axes | Nearly spherical near-rest endpoint in the declared weak-gradient environment. |
-| $0 < \lambda < 1$ | Three axes converging toward the translation direction | Increasingly oblate intermediate geometry. |
+| $0 < \lambda_A < 1$ | Three axes converging toward the translation direction | Increasingly oblate intermediate geometry. |
 | $1$ | Three coincident axes along the translation direction | Flat orthogonal-axis three-binary response geometry used as prescribed input in event-horizon and photon-channel response studies. |
 
 This response is prescribed taxonomy. An EOM-solver derivation of the path through these geometries, including either physical endpoint assignment, remains open.
 
-The coincident-axis endpoint is also a geometric boundary with coincident-axis three-binary configurations. A orthogonal-axis three-binary record does not become a coincident-axis three-binary record away from that boundary, and coincidence at one endpoint does not establish a shared dynamical branch.
+The coincident-axis endpoint is also a geometric boundary with coincident-axis three-binary configurations. An orthogonal-axis three-binary record does not become a coincident-axis three-binary record away from that boundary, and coincidence at one endpoint does not establish a shared dynamical branch.
 
 ## Coincident-Midpoint Orthogonal-Axis Three-Binary Configuration
 
@@ -63,17 +61,17 @@ Each constrained variant uses the coincident-midpoint orthogonal-axis three-bina
 | `coincident-midpoint orthogonal-axis three-binary configuration with 4:2:1 frequency ratio` | Indexed frequency ratio $f_1:f_2:f_3=4:2:1$. | Independently assignable radii and unconstrained phases; the ratio does not order the radii. |
 | `coincident-midpoint orthogonal-axis three-binary configuration with 3:2:1 frequency ratio` | Indexed frequency ratio $f_1:f_2:f_3=3:2:1$. | Independently assignable radii and unconstrained phases; the ratio does not order the radii. |
 
-The exact radius, frequency, phase, axial-half-separation, and transverse-orbit-radius rows are carried only by the [Individual Binary Master Table](braid-taxonomy.md#individual-binary-master-table).
+The exact radius, frequency, phase, axial-half-separation, and transverse-orbit-radius rows are carried by the [coordinate constraints](braid-taxonomy.md#coordinate-constraints-used-by-worked-configurations) and the member's exact source record.
 
 ## Phase-Compensated Equal-Geometry Orthogonal-Axis Three-Binary Configuration
 
 The phase-compensated equal-geometry orthogonal-axis three-binary configuration is the fully symmetric orthogonal-axis three-binary member. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. No binary is distinguished. A $120^\circ$ rotation about the orthogonal-axis three-binary translation direction cyclically permutes the three binaries.
 
-An exact near-rest reference fixture places the three binary axes on an orthonormal frame. At one common reference time, each positrino lies at distance $R$ from the braid center along one positive frame axis and its electrino partner lies at the antipodal point. This is the face-opposite seed used by the invariant-channel analysis in [phase-compensated equal-geometry orthogonal-axis three-binary configuration Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md#invariant-channels-and-equivariant-reductions).
+An exact near-rest reference fixture places the three binary axes on an orthonormal frame. At one common reference time, each positrino lies at distance $R$ from the braid center along one positive frame axis and its electrino partner lies at the antipodal point. This is the face-opposite seed used by the invariant-channel analysis in [Coordinate-Axis Six-Point Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md#invariant-channels-and-equivariant-reductions).
 
 The fixture is one exact phase-compensated equal-geometry orthogonal-axis three-binary configuration representative, not the whole phase-compensated equal-geometry orthogonal-axis three-binary configuration coordinate space. At that reference instant it uses axial half-separation $h=R$ and transverse orbit radius $\rho=0$. In the taxonomy motion about each binary's own fixed axis, that snapshot is static because $\rho=0$; the body-diagonal rotating channel is a distinct prescribed motion of the same six positions. The phase-compensated equal-geometry orthogonal-axis three-binary configuration taxonomy permits any common pair $(h,\rho)$ satisfying the binary-radius relation, provided all three binaries share that geometry and the other phase-compensated equal-geometry orthogonal-axis three-binary configuration constraints.
 
-The member-specific symmetry lemma, reduced channels, two-ring geometry, axial polarity-dipole identity, momentum-screw alignment, and retention questions are developed in [phase-compensated equal-geometry orthogonal-axis three-binary configuration Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md). Those results constrain the fixture under their stated assumptions; they do not certify phase-compensated equal-geometry orthogonal-axis three-binary configuration retention.
+The member-specific symmetry lemma, reduced channels, two-ring geometry, axial polarity-dipole identity, momentum-screw alignment, and retention questions are developed in [Coordinate-Axis Six-Point Symmetry and Return Response](coordinate-axis-six-point-symmetry-and-return-response.md). Those results constrain the fixture under their stated assumptions; they do not certify phase-compensated equal-geometry orthogonal-axis three-binary configuration retention.
 
 ## Axially Separated Orthogonal-Axis Three-Binary Configuration
 
@@ -135,11 +133,11 @@ The coincident-midpoint equal-radius orthogonal-axis three-binary configuration 
 
 The orthogonal-axis three-binary definitions are prescribed. They would be falsified as EOM-solver branch claims by a same-record evolution showing that the declared coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability rows. Until such a record exists, these loci supply exact display geometry and explicit closure targets, not a retained physical braid.
 
+## Coincident-Axis Three-Binary Geometry
+
 The coincident-axis three-binary records prescribe one braid whose three binary axes are the same oriented line. Their canonical characteristics are defined in [Braid Taxonomy](braid-taxonomy.md#coordinate-constraints-used-by-worked-configurations). This chapter gives the exact path geometry, its coordinate boundaries, and its intersections with orthogonal-axis records.
 
 This is a geometry-and-motion definition. It does not establish that a matching record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
-
-## Coincident-Axis Three-Binary Geometry
 
 Every coincident-axis three-binary member is one complete Noether braid composed of three neutral binaries. The binaries share one oriented axis $\hat{\mathbf n}_B$. The source-defined coincident-axis three-binary locus chart also gives them one common midpoint, the braid center $\mathbf C(T)$.
 
@@ -182,7 +180,7 @@ $$
 
 These equations make the coincident-axis three-binary locus restrictions explicit: the endpoints of each neutral binary remain antipodal about the common braid center; all three binaries use the same axis, frequency, and circulation sense; and the radii, axial half-separations, transverse orbit radii, and phases may differ by binary.
 
-The radius decomposition $R_a^2=h_a^2+\rho_a^2$ is defined in the [Individual Binary](braid-taxonomy.md#individual-binary) coordinate section. The internal speed of either endpoint of binary $a$ is
+The radius decomposition $R_a^2=h_a^2+\rho_a^2$ is part of the [coordinate constraints](braid-taxonomy.md#coordinate-constraints-used-by-worked-configurations). The internal speed of either endpoint of binary $a$ is
 
 $$
 s_a=2\pi f\rho_a.
@@ -256,13 +254,11 @@ The equatorial and axial depictions are coordinate boundaries of the coincident-
 
 The planar common-center three-binary chart all-equatorial display sets $h_a=0$ for all three binaries. Mixed boundary records are also permitted by the coincident-axis three-binary locus coordinates and remain active-candidate eligible when at least one $\rho_a$ is nonzero.
 
-At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but no longer change that binary's endpoint positions because its transverse orbit radius is zero. Two axial records that differ only in those labels therefore depict the same path geometry unless another retained record gives the labels an independent dynamical role.
+At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but do not change that binary's endpoint positions because its transverse orbit radius is zero. Two axial records that differ only in those labels therefore depict the same path geometry unless another retained record gives the labels an independent dynamical role.
 
 ### Planar Balance Locus
 
-The equal-radius, phase-symmetric all-equatorial restriction and its complete acceleration-balance evidence are owned by [Planar (2D) Braid Assemblies](2d-braid-assemblies.md#equal-radius-planar-three-binary-velocity-search). Here it marks only a coordinate boundary of the spatial coincident-axis chart. The exact circular continuation, finite release prefix, unequal-phase and unequal-radius open domains, and fixed axial-translation result retain the separate grades stated there.
-
-Plainly: a spatial coordinate chart can meet the planar chart at an exact boundary. The planar chapter owns the balance calculation, and crossing that boundary does not transfer a retention or stability result back to the spatial chart.
+The equal-radius, phase-symmetric all-equatorial restriction and its complete acceleration-balance evidence are owned by [Planar (2D) Braid Assemblies](2d-braid-assemblies.md#equal-radius-planar-three-binary-velocity-search). Here it marks only a coordinate boundary of the spatial coincident-axis chart. The exact circular continuation, finite release prefix, unequal-phase and unequal-radius open domains, and fixed axial-translation result retain the separate grades stated there. A spatial coordinate chart can meet the planar chart at an exact boundary. The planar chapter owns the balance calculation, and crossing that boundary does not transfer a retention or stability result back to the spatial chart.
 
 ### All-Axial Boundary
 
@@ -306,33 +302,29 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b1c5b16e8a9576b1)
 
-each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-lemma). A mechanism that fixes the total speed budget remains an open branch hypothesis.
+each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-premise-and-consequence). A mechanism that fixes the total speed budget remains an open branch hypothesis.
 
-Axial translation is a coincident-axis three-binary locus specialization, not a coincident-axis three-binary requirement. A record whose group velocity is not parallel to $\hat{\mathbf n}_B$ retains the same internal coincident-axis three-binary locus geometry but is not an axial screw path.
-
-Plainly: axial translation carries the center along the common axis while every non-axial endpoint continues circling it. The resulting helix is not obtained by simply adding a harmless velocity label: delayed separations and arrival directions change along the entire history.
+Axial translation is a coincident-axis three-binary locus specialization, not a coincident-axis three-binary requirement. A record whose group velocity is not parallel to $\hat{\mathbf n}_B$ retains the same internal coincident-axis three-binary locus geometry but is not an axial screw path. Axial translation carries the center along the common axis while every non-axial endpoint continues circling it. The resulting helix is not obtained by simply adding a harmless velocity label: delayed separations and arrival directions change along the entire history.
 
 ### Fixed Axial-Translation Control
 
-The fixed $0.1c_f$ screw-path study and its interval-certified bounded nonexistence result are owned by [Planar (2D) Braid Assemblies](2d-braid-assemblies.md#fixed-axial-translation-study). This spatial chapter retains only the generic screw-path coordinates above; it does not duplicate the numerical ledger. Other axial speeds and broader unequal-radius or phase-deformed charts remain open.
-
-Plainly: the cited control rejects one declared translated planar chart, not axial translation for every coincident-axis configuration.
+The fixed $0.1c_f$ screw-path study and its interval-certified bounded nonexistence result are owned by [Planar (2D) Braid Assemblies](2d-braid-assemblies.md#fixed-axial-translation-study). This spatial chapter retains only the generic screw-path coordinates above; it does not duplicate the numerical ledger. Other axial speeds and broader unequal-radius or phase-deformed charts remain open. The cited control rejects one declared translated planar chart, not axial translation for every coincident-axis configuration.
 
 ## Boundary with Orthogonal-Axis Three-Binary Configurations
 
-Orthogonal-axis and coincident-axis three-binary configurations share a coordinate boundary. At $\lambda=1$, the three orthogonal-axis binary axes coincide with the translation direction. A common-frequency orthogonal-axis record with one common circulation sense then satisfies the coincident-axis chart's axis, frequency, and circulation relations. It reaches the source-defined common-center locus only if its three binary midpoints also coincide with the braid center.
+Orthogonal-axis and coincident-axis three-binary configurations share a coordinate boundary. At $\lambda_A=1$, the three orthogonal-axis binary axes coincide with the translation direction. A common-frequency orthogonal-axis record with one common circulation sense then satisfies the coincident-axis chart's axis, frequency, and circulation relations. It reaches the source-defined common-center locus only if its three binary midpoints also coincide with the braid center.
 
-The phase-compensated equal-geometry orthogonal-axis three-binary configuration face-opposite seed supplies a second exact overlap: common-frequency co-rotation about its body diagonal occupies the [cyclic-symmetric orthogonal-axis/coincident-axis sublocus](coincident-axis-three-binary-symmetry.md#cyclic-symmetric-orthogonal-axiscoincident-axis-overlap), independently of $\lambda=1$. These overlaps are coordinate-locus statements. They do not identify orthogonal-axis three-binary configurations with coincident-axis three-binary configurations away from the shared loci and do not establish a physical transition between them.
+The phase-compensated equal-geometry orthogonal-axis three-binary configuration face-opposite seed supplies a second exact overlap: common-frequency co-rotation about its body diagonal occupies the [cyclic-symmetric orthogonal-axis/coincident-axis sublocus](coincident-axis-three-binary-symmetry.md#cyclic-symmetric-orthogonal-axiscoincident-axis-overlap), independently of $\lambda_A=1$. These overlaps are coordinate-locus statements. They do not identify orthogonal-axis three-binary configurations with coincident-axis three-binary configurations away from the shared loci and do not establish a physical transition between them.
 
 ## Coincident-Axis Claim Boundary
 
-The coincident-axis three-binary locus equations define prescribed paths exactly. The equal-radius phase-symmetric planar common-center three-binary chart locus above also carries an accepted prescribed acceleration-balance ladder under the stated complete-root calculations. These statements would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or fixed-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. coincident-axis three-binary locus therefore supplies exact display geometry, an acceleration-balanced prescribed ladder on one sublocus, and explicit closure targets, not a retained physical braid.
+The coincident-axis three-binary locus equations define prescribed paths exactly. The equal-radius phase-symmetric planar common-center three-binary chart locus above also carries an accepted prescribed acceleration-balance ladder under the stated complete-root calculations. These statements would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or fixed-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. The coincident-axis three-binary locus therefore supplies exact display geometry, an acceleration-balanced prescribed ladder on one sublocus, and explicit closure targets, not a retained physical braid.
+
+## Two-Component Circular Coordinate Chart
 
 The two-component circular records prescribe twelve coaxial architrino worldlines. Their canonical characteristics are defined in [Braid Taxonomy](braid-taxonomy.md#coordinate-constraints-used-by-worked-configurations). This chapter gives the exact common-axis path chart, the neutral-binary pairing contract, and the co-rotating and counter-rotating peer configurations.
 
 This is a geometry-and-motion definition. It does not establish that a two-component circular record is generated, bound, retained, stable, or physically realized under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
-
-## Two-Component Circular Coordinate Chart
 
 Choose one oriented orthonormal frame
 
@@ -430,7 +422,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8de2892fd5227395)
 
-The twelve radii $\rho_m>0$, angular frequencies $\omega_m>0$, phases $\phi_m$, and circulation senses $q_m$ are independently declared unless a member row constrains them. A complete-return record must declare a period $P_C>0$ satisfying
+The twelve radii $\rho_m>0$, angular frequencies $\omega_m>0$, phases $\phi_m$, and circulation senses $q_m$ are independently declared unless a member row constrains them. A shape-return record must declare a period $P_C>0$ satisfying
 
 $$
 \frac{\omega_mP_C}{2\pi}\in\mathbb Z
@@ -438,7 +430,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-75d719c7d6c79a80)
 
-for every $m$.
+for every $m$. A complete-history return additionally requires the retained causal-root and wake ledgers to return on the same period; commensurate visible paths alone do not establish that stronger condition.
 
 ## Neutral-Binary Pairing
 
@@ -610,21 +602,19 @@ This equation is exact for the prescribed chart and generally transcendental bec
 
 The two-component circular chart supplies a generic prescribed coordinate space for twelve coaxial architrino worldlines. A particle or transport hypothesis occupies a constrained locus only after its extra polarity, phase, frequency, accessory, propagation, action, and angular-momentum relations are stated explicitly.
 
-In particular, the photon-channel hypothesis is a **coaxial contra-rotating polarity-conjugate planar pair**. counter-rotating coincident-center two-component circular configuration supplies only a twelve-worldline counter-rotation chart. It does not by itself establish the photon-side planar decomposition, polarity conjugation, propagation-axis relation, null propagation, polarization, helicity, action target, binding, retention, or physical realization. Those obligations remain owned by [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#the-photon-gamma-coaxial-contra-rotating-polarity-conjugate-planar-pair) and its closure gates.
+In particular, the photon-channel hypothesis is a **coaxial contra-rotating polarity-conjugate planar pair**. The counter-rotating coincident-center two-component circular configuration supplies only a twelve-worldline counter-rotation chart. It does not by itself establish the photon-side planar decomposition, polarity conjugation, propagation-axis relation, null propagation, polarization, helicity, action target, binding, retention, or physical realization. Those obligations remain owned by [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#the-photon-gamma-coaxial-contra-rotating-polarity-conjugate-planar-pair) and its closure gates.
 
 ## Two-Component Claim Boundary
 
 The two-component circular equations are exact prescribed paths. A prescribed-path residual candidate is falsified when its declared causal-root, minimum-separation, speed, complete-cycle acceleration-balance, refinement, or independent-reconstruction requirements fail. Such a result remains analytical: it does not establish or refute stability, retention, binding, photon identity, quantization, or physical realization.
 
+## The Co-Spherical Chart
+
 A co-spherical assembly is a prescribed collection of architrinos whose worldlines remain on one common sphere: one fixed center, one radius, and every member at that radius for all time. This spatial chart extends the planar cases in [Planar (2D) Braid Assemblies](2d-braid-assemblies.md). A co-spherical record receives braid characteristics only when its exact member inventory, component membership, polarity pairing, centers, axes, frequencies, and circulation support them. Co-sphericity alone is an appearance; taxonomy follows the coordinate record.
 
-Co-sphericity organizes exact intersections with the braid taxonomy and permits comparisons among restricted acceleration-balance results. It does not itself imply balance. The circular-path subset contains prescribed balanced histories, while several nonplanar co-spherical families have bounded exclusions or measured residuals. Those results must be stated at their individual scopes; they do not establish a general obstruction to co-spherical motion.
-
-Plainly: every moving member must remain the same distance from one center. This geometric condition describes a family of possible histories; the acceleration law decides which histories, if any, satisfy it.
+Co-sphericity organizes exact intersections with the braid taxonomy and permits comparisons among restricted acceleration-balance results. It does not itself imply balance. The circular-path subset contains prescribed balanced histories, while several nonplanar co-spherical families have bounded exclusions or measured residuals. Those results must be stated at their individual scopes; they do not establish a general obstruction to co-spherical motion. Every moving member must remain the same distance from one center. This geometric condition describes a family of possible histories; the acceleration law decides which histories, if any, satisfy it.
 
 The results below distinguish derived chart algebra and taxonomy intersections, a sign-based exclusion for latitude-segregated two-ring words, a finite enumeration of balanced vertex colourings, and measured results cited from their originating analyses. None establishes retained motion, binding, stability, particle identity, effective mass, or formation.
-
-## The Co-Spherical Chart
 
 Choose a fixed center $\mathbf C$, a radius $R>0$, and $2N$ distinct members. The chart requires
 
@@ -634,9 +624,7 @@ $$\|\mathbf X_k(T)-\mathbf C\|=R\qquad\text{for all }k\text{ and all }T.$$
 
 A balanced $N{:}N$ polarity word assigns $N$ sites each polarity, so $q_k\in\{+\epsilon,-\epsilon\}$ and $\sum_k q_k=0$, in the sense already canon for the multiply occupied circle. Compatible scale is reported as $R/R_*$ with $R_*=\kappa\epsilon^2/c_f^2$, and every numerical result uses normalized units with $c_f=1$. Global rotation about $\mathbf C$ and global polarity conjugation are gauge; reflection is a valid reduction only together with the applicable circulation reversal and only after that covariance is checked.
 
-**The condition is on members, and only on members.** This has to be said at the definition rather than in a footnote, because an assembly can carry several distinguishable spheres at once and only one of them qualifies. `asymmetric counter-breathing representative` already documents the hazard in its own terms: its four track centers lie on a track-center circumsphere of radius $|h_\sigma|$, while the complete circular tracks lie on the generally larger orbit spherical envelope of radius $\sqrt{h_\sigma^2+\rho_\sigma^2}$, and the two coincide only when $\rho_\sigma=0$. A configuration whose *track centers* are co-spherical, or whose centers form a regular polyhedron, is not thereby a co-spherical assembly. Only $\|\mathbf X_k(T)-\mathbf C\|=R$ on the architrino worldlines admits a record to this chart.
-
-Plainly: the moving architrinos have to be on the sphere. It is not enough that the centers of their orbits are, and mistaking one for the other is the easiest way to think a candidate belongs here when it does not.
+**The condition is on members, and only on members.** This has to be said at the definition rather than in a footnote, because an assembly can carry several distinguishable spheres at once and only one of them qualifies. `asymmetric counter-breathing representative` already documents the hazard in its own terms: its four track centers lie on a track-center circumsphere of radius $|h_\sigma|$, while the complete circular tracks lie on the generally larger orbit spherical envelope of radius $\sqrt{h_\sigma^2+\rho_\sigma^2}$, and the two coincide only when $\rho_\sigma=0$. A configuration whose *track centers* are co-spherical, or whose centers form a regular polyhedron, is not thereby a co-spherical assembly. Only $\|\mathbf X_k(T)-\mathbf C\|=R$ on the architrino worldlines admits a record to this chart. The moving architrinos have to be on the sphere. It is not enough that the centers of their orbits are, and mistaking one for the other is the easiest way to think a candidate belongs here when it does not.
 
 The multiply occupied circle is the degenerate case. Any circle lies on a sphere, so every circular-path record is a co-spherical record whose members happen to be coplanar with the center. The converse fails, and the way it fails is the whole content of this chapter.
 
@@ -646,9 +634,7 @@ $$\beta_{f,k}=\frac{|\Omega|R\sin\theta_k}{c_f}=\beta_f^{\mathrm{eq}}\sin\theta_
 
 [View →](../../../../equation-mapping.html#corpus-equation-24d59da58ba53cf6)
 
-The rigid co-rotating multiply occupied circle has one member speed. On a co-spherical configuration, the speed generally varies with latitude, from zero at the poles to $\beta_f^{\mathrm{eq}}$ at the equator. Equal member speeds remain possible when all occupied latitudes have the same $\sin\theta_k$, including two mirror latitudes. Even then, equal speed does not remove the axial acceleration conditions or reduce the full vector balance to the circular-path scalar equation.
-
-Plainly: distance from the rotation axis determines speed. Two rings at equal northern and southern latitudes can have the same speed, but their members must still satisfy acceleration conditions that a planar circle does not have.
+The rigid co-rotating multiply occupied circle has one member speed. On a co-spherical configuration, the speed generally varies with latitude, from zero at the poles to $\beta_f^{\mathrm{eq}}$ at the equator. Equal member speeds remain possible when all occupied latitudes have the same $\sin\theta_k$, including two mirror latitudes. Even then, equal speed does not remove the axial acceleration conditions or reduce the full vector balance to the circular-path scalar equation. Distance from the rotation axis determines speed. Two rings at equal northern and southern latitudes can have the same speed, but their members must still satisfy acceleration conditions that a planar circle does not have.
 
 Two immediate corollaries follow. Setting $\theta_k=\pi/2$ for every member recovers the single-speed case and reduces the chart to one multiply occupied circle; the equal-radius planar common-center three-binary locus is therefore the planar boundary of this co-spherical chart. Setting $\theta_k\in\{0,\pi\}$ for every member sends every speed to zero and collapses the arrangement onto two points, so the all-axial three-binary boundary cannot be a nondegenerate co-spherical configuration at equal radii.
 
@@ -664,9 +650,7 @@ A stationary co-spherical arrangement is the zero-motion limit. Uniform translat
 
 A degree of freedom here is a geometric coordinate, discrete assembly choice, or retained path-history function that may be varied while the Master Equation and its normalization remain fixed. The circular-path inventory does not transfer by adding a dimension, and the differences run in both directions: the sphere opens coordinates the circle does not have, and it opens obligations the circle discharges for free.
 
-**[derived; coordinate count]** Fix the center and the rotation axis by global translation and rotation, leaving one rotation about the axis to remove a common longitude. A rigid co-rotating co-spherical configuration with $2N$ members then carries $2N$ fixed colatitudes $\theta_k$, $2N-1$ relative longitudes, the common radius $R$, and the common rate $\Omega$: **$4N+1$ continuous coordinates**. The same reduction on the multiply occupied circle leaves $2N-1$ relative phases, $R$, and $\Omega$: $2N+1$. The sphere therefore adds exactly $2N$ coordinates, and every one of them is a colatitude. For six members that is seven coordinates against thirteen.
-
-Plainly: on a circle you can only slide members around the ring. On a sphere you can also slide each one north or south, and that second freedom is the entire difference in the count.
+**[derived; coordinate count]** Fix the center and the rotation axis by global translation and rotation, leaving one rotation about the axis to remove a common longitude. A rigid co-rotating co-spherical configuration with $2N$ members then carries $2N$ fixed colatitudes $\theta_k$, $2N-1$ relative longitudes, the common radius $R$, and the common rate $\Omega$: **$4N+1$ continuous coordinates**. The same reduction on the multiply occupied circle leaves $2N-1$ relative phases, $R$, and $\Omega$: $2N+1$. The sphere therefore adds exactly $2N$ coordinates, and every one of them is a colatitude. For six members that is seven coordinates against thirteen. On a circle you can only slide members around the ring. On a sphere you can also slide each one north or south, and that second freedom is the entire difference in the count.
 
 **[derived; axial balance]** Under rigid co-rotation the required acceleration for member $k$ is centripetal toward the rotation axis. Writing $\mathbf r_k=\mathbf X_k-\mathbf C$, the residual is $\boldsymbol{\mathcal R}_k=\mathbf A_k^{\mathrm{ME}}+\Omega^2\bigl[\mathbf r_k-(\mathbf r_k\cdot\hat{\mathbf n})\hat{\mathbf n}\bigr]$. The centripetal term has no component along $\hat{\mathbf n}$, so the axial delayed acceleration must vanish for every member. The planar circle discharges this condition because every delayed line of action remains in its plane. Distinct latitudes require additional axial equations; their algebraic independence depends on the configuration's symmetries.
 
@@ -674,9 +658,7 @@ Plainly: on a circle you can only slide members around the ring. On a sphere you
 
 > In a two-latitude rigid co-rotating co-spherical configuration, at least one ring must carry both polarities. Latitude-segregated polarity words are excluded.
 
-This is exactly the octahedron exclusion in general form, and it generalizes usefully: with three or more rings, contributions from rings above and below a receiver can cancel against each other, so segregation is no longer automatically fatal. Scope and falsifier follow the corpus statement it generalizes — the argument covers admitted simple roots only, caustic and collision events lie outside it, and an admitted root with a negative canonical acceleration weight, or a nonzero axial same-ring line of action, would overturn it.
-
-Plainly: if the northern members are all one polarity and the southern members all the other, every north-south pull leans the same way and nothing can cancel it. Mixing the polarities within a ring, or using three rings instead of two, restores the possibility of cancellation. This is a real filter and it can be applied today.
+This is exactly the octahedron exclusion in general form, and it generalizes usefully: with three or more rings, contributions from rings above and below a receiver can cancel against each other, so segregation is not automatically fatal. Scope and falsifier follow the corpus statement it generalizes — the argument covers admitted simple roots only, caustic and collision events lie outside it, and an admitted root with a negative canonical acceleration weight, or a nonzero axial same-ring line of action, would overturn it. If the northern members are all one polarity and the southern members all the other, every north-south pull leans the same way and nothing can cancel it. Mixing the polarities within a ring, or using three rings instead of two, restores the possibility of cancellation. This gives a direct exclusion test for the two-ring chart.
 
 It bears directly on `co-rotating coaxial two-planar-braid chart`/`counter-rotating coaxial two-planar-braid chart`, which are two-ring objects: their co-spherical sub-locus is live only if the component rings are not polarity-segregated.
 
@@ -705,9 +687,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-66ca38ea57691f74)
 
-with $\Theta_k(T)=\theta_k+\delta\theta_k(T)$ and $\Phi_k(T)=\Omega T+\phi_k+\delta\phi_k(T)$. The rigid chart has constant $\mathbf C$ and frame with $\delta r_k=\delta\theta_k=\delta\phi_k=0$. This notation is a search scaffold, not an assertion that any listed variation contains a balanced or retained solution.
-
-Plainly: $\delta\theta_k$ slides a member in latitude and $\delta\phi_k$ slides it in longitude — both keep it on the sphere. Only $\delta r_k$ takes it off. That asymmetry is the important one.
+with $\Theta_k(T)=\theta_k+\delta\theta_k(T)$ and $\Phi_k(T)=\Omega T+\phi_k+\delta\phi_k(T)$. The rigid chart has constant $\mathbf C$ and frame with $\delta r_k=\delta\theta_k=\delta\phi_k=0$. This notation is a search scaffold, not an assertion that any listed variation contains a balanced or retained solution. $\delta\theta_k$ slides a member in latitude and $\delta\phi_k$ slides it in longitude — both keep it on the sphere. Only $\delta r_k$ takes it off. That asymmetry is the important one.
 
 **[derived; chart-preserving deformation]** A fixed circle permits displacement along its one-dimensional track; a displacement normal to that track leaves the circle chart. A fixed sphere additionally permits latitude drift $\delta\theta_k(T)$ while preserving co-sphericity. Both charts admit phase rearrangement along their tracks, but only the sphere admits meridional displacement without leaving its defining surface.
 
@@ -724,7 +704,7 @@ Plainly: $\delta\theta_k$ slides a member in latitude and $\delta\phi_k$ slides 
 | Per-ring angular rates | Independent $\Omega_\ell$ per latitude ring | Distinct fixed latitudes separate the corresponding circles | Represent independent counterflow without the same-circle coincidence of persistent opposed circulation |
 | Per-ring circulation senses | $s_\ell=\operatorname{sgn}\Omega_\ell$ | New; open | Test counter-rotation between latitudes, handedness, and reflection covariance with the applicable circulation reversal |
 | Common radius | $R$, or $R/R_*$ | Open | Determine the compatible assembly scale |
-| Per-sector or per-ring radii | $R_\sigma$, $R_\ell$ | **Activating this exits the chart.** The `scoped-negative circular control`-to-`asymmetric counter-breathing representative` evidence indicates the dynamics moves this way when released | Document the exit route honestly rather than treating co-sphericity as preserved under release |
+| Per-sector or per-ring radii | $R_\sigma$, $R_\ell$ | Activating this exits the chart. The cited tangent-projection comparison uses the larger allowed tangent space and supplies no evolved dynamical direction. | Represent a possible exit chart without treating co-sphericity as preserved under release. |
 | Common radial breathing | $\delta r_k(T)=\delta R(T)$ for every member | Extension beyond fixed $R$; preserves a common time-varying radius | Test coherent expansion and contraction without separating the sector radii |
 | Latitude drift | $\delta\theta_k(T)$ | **New; chart-preserving, with no circle analogue** | Test latitude exchange, meridional shear, and internal deformation that does not leave the sphere |
 | Longitude modulation | $\delta\phi_k(T)$ | Open | Test phase locking, angular shear, and collision-free speed exchange within a ring |
@@ -737,7 +717,7 @@ Plainly: $\delta\theta_k$ slides a member in latitude and $\delta\phi_k$ slides 
 
 > Scope note: this table identifies coordinates and possible extensions, not balanced or retained solutions. The latitude-segregated two-ring exclusion has the simple-root scope stated above. Other balance claims require the complete moving-history residual described under [Open Mathematical Questions](#open-mathematical-questions).
 
-Plainly: the most direct next searches are three-ring latitude partitions, non-segregated two-ring words, and independent per-ring rates. The first two ask whether the axial obligation can be discharged at all. The third asks whether the sphere delivers the counterflow the circle cannot.
+The most direct next searches are three-ring latitude partitions, non-segregated two-ring words, and independent per-ring rates. The first two ask whether the axial obligation can be discharged at all. The third asks whether the sphere delivers the counterflow the circle cannot.
 
 A nonplanar co-spherical configuration can support a three-dimensional body frame, while separated latitude circles permit independent counterflow without sharing the same circular track. These are geometric possibilities beyond the rigid co-rotating circle chart. Their compatibility with delayed acceleration balance remains a separate question.
 
@@ -745,9 +725,7 @@ A nonplanar co-spherical configuration can support a three-dimensional body fram
 
 The sphere is a prescribed geometric condition, not an external mechanical constraint.
 
-**[derived; constraint-acceleration requirement]** Maintaining $\|\mathbf X_k(T)-\mathbf C\|=R$ requires a particular normal acceleration. That component must be produced by the Master Equation itself; no supplementary constraint acceleration is supplied by the prescribed sphere. A co-spherical history is a solution only when its complete acceleration residual vanishes. The stationary six-point and rotating phase-compensated controls below make the same distinction for constrained spherical histories.
-
-Plainly: writing down a sphere and putting architrinos on it does not make them stay there. The sphere is a description of a candidate motion, and the candidate has to earn it from the acceleration law like anything else.
+**[derived; constraint-acceleration requirement]** Maintaining $\|\mathbf X_k(T)-\mathbf C\|=R$ requires a particular normal acceleration. That component must be produced by the Master Equation itself; no supplementary constraint acceleration is supplied by the prescribed sphere. A co-spherical history is a solution only when its complete acceleration residual vanishes. The stationary six-point and rotating phase-compensated controls below make the same distinction for constrained spherical histories. Writing down a sphere and putting architrinos on it does not make them stay there. The sphere is a description of a candidate motion, and the candidate has to earn it from the acceleration law like anything else.
 
 An exclusion can reject a declared history. A vanishing prescribed residual establishes balance at the scope actually verified, but does not by itself establish persistence under perturbation, stability, or formation.
 
@@ -764,14 +742,12 @@ For an orthogonal-axis three-binary or coincident-axis three-binary configuratio
 | `coincident-midpoint orthogonal-axis three-binary configuration`, `coincident-midpoint common-frequency orthogonal-axis three-binary configuration`, `coincident-midpoint orthogonal-axis three-binary configuration with 4:2:1 frequency ratio`, `coincident-midpoint orthogonal-axis three-binary configuration with 3:2:1 frequency ratio`, `axially separated orthogonal-axis three-binary configuration`, `axially separated common-frequency orthogonal-axis three-binary configuration`, `axially separated orthogonal-axis three-binary configuration with 4:2:1 frequency ratio`, `axially separated orthogonal-axis three-binary configuration with 3:2:1 frequency ratio` | sub-locus | $R_1=R_2=R_3$ |
 | Coincident-axis three-binary reference, axial-transverse interior, and high-axial interior | sub-locus | $R_1=R_2=R_3$, with $h_a^2+\rho_a^2$ equal across binaries |
 | `planar common-center three-binary chart` | degenerate sub-locus | $R_1=R_2=R_3$ with $h_a=0$ collapses to one multiply occupied **circle** |
-| `all-axial three-binary boundary` (deprecated) | barred | equal radii with $\rho_a=0$ produce coordinate coincidence at $\pm R\hat{\mathbf n}_B$ |
+| `all-axial three-binary boundary` | barred | equal radii with $\rho_a=0$ produce coordinate coincidence at $\pm R\hat{\mathbf n}_B$ |
 | `co-rotating coincident-center two-component circular configuration`, `counter-rotating coincident-center two-component circular configuration` | sub-locus | $\exists\,\zeta,R$ with $(\xi_m-\zeta)^2+\rho_m^2=R^2$ for all twelve worldlines, center on $\hat{\mathbf n}_C$ |
 | `co-rotating coaxial two-component circular configuration`, `counter-rotating coaxial two-component circular configuration` | constrained sub-locus | component centers are separated by $d_C>0$, so at most one component center can be the sphere center and the other component must be all-equatorial |
 | `co-rotating coaxial two-planar-braid chart`, `counter-rotating coaxial two-planar-braid chart` | sub-locus | equal radii *within* each component; the two components need not share a radius |
 
-**[derived geometry; open balance question]** `co-rotating coaxial two-planar-braid chart` and `counter-rotating coaxial two-planar-braid chart` declare $h_{ba}=0$ within each component, so their co-spherical sub-locus resolves into two parallel latitude circles on one sphere, offset along the common axis by $d_C$, with the sphere center at $\zeta=(d_C^2+R_2^2-R_1^2)/2d_C$ and $R^2=\zeta^2+R_1^2$. This is a concrete nonplanar extension of the circular-path geometry. For rigid co-rotation, the [two-ring segregation exclusion](#degrees-of-freedom-and-search-directions) requires a polarity assignment not segregated by latitude. Existence of a balanced mixed-polarity history remains open; the geometry alone does not establish it.
-
-Plainly: many braid configurations become co-spherical when their radii are equal, while some coordinate charts require that equality. The two-planar-braid configurations yield two rings at different heights on one sphere, a geometry unavailable to a single-circle chart and therefore a distinct balance target.
+**[derived geometry; open balance question]** `co-rotating coaxial two-planar-braid chart` and `counter-rotating coaxial two-planar-braid chart` declare $h_{ba}=0$ within each component, so their co-spherical sub-locus resolves into two parallel latitude circles on one sphere, offset along the common axis by $d_C$, with the sphere center at $\zeta=(d_C^2+R_2^2-R_1^2)/2d_C$ and $R^2=\zeta^2+R_1^2$. This is a concrete nonplanar extension of the circular-path geometry. For rigid co-rotation, the [two-ring segregation exclusion](#degrees-of-freedom-and-search-directions) requires a polarity assignment not segregated by latitude. Existence of a balanced mixed-polarity history remains open; the geometry alone does not establish it. Many braid configurations become co-spherical when their radii are equal, while some coordinate charts require that equality. The two-planar-braid configurations yield two rings at different heights on one sphere, a geometry unavailable to a single-circle chart and therefore a distinct balance target.
 
 ## Inventory Of Evaluated Co-Spherical Objects
 
@@ -792,9 +768,7 @@ Each row is owned by the document named; this chapter collects dispositions and 
 
 Two entries deserve to be read together rather than as separate rows.
 
-**[measured; owned by asymmetric counter-breathing representative geometry]** `scoped-negative circular control` is the single-sphere specialization of `asymmetric counter-breathing representative`, and the Master Equation rejected it in an unusually informative way. Projection of the evaluated acceleration onto the common three-coordinate tangent of the fixed shared-radius history leaves $68.408\%$ of the acceleration norm outside that tangent. Granting the two polarity sectors separate axial, radial, and phase histories — that is, releasing the single co-spherical configuration into two independently breathing sector envelopes — reduces the measured normal fraction to $2.31\times10^{-15}$.
-
-Plainly: the larger, polarity-resolved set of allowed motions fits the measured acceleration much better at the evaluated state. This is a tangent-projection comparison, not an evolved departure from the sphere and not evidence that the larger history is retained.
+**[measured; owned by asymmetric counter-breathing representative geometry]** `scoped-negative circular control` is the single-sphere specialization of `asymmetric counter-breathing representative`, and the Master Equation rejected it in an unusually informative way. Projection of the evaluated acceleration onto the common three-coordinate tangent of the fixed shared-radius history leaves $68.408\%$ of the acceleration norm outside that tangent. Projection onto the larger six-coordinate tangent that grants the two polarity sectors separate axial, radial, and phase directions reduces the measured normal fraction to $2.31\times10^{-15}$. Because the larger tangent contains the smaller tangent, part of this reduction is guaranteed by the additional allowed dimensions. The comparison therefore establishes only that the evaluated acceleration is nearly tangent to the larger chart at that state; it does not establish an evolved departure from the sphere, select a dynamical direction, or show that the larger history is retained.
 
 **[inference; limited to the listed nonplanar examples]** The axial sign argument, interval-certified bounded exclusion, tangent-projection residual, and stationary-strata exclusions provide distinct reasons that particular co-spherical prescriptions fail. Their union is not a theorem about all co-spherical histories, and the balanced circular-path subset already prevents such a blanket conclusion. A nonplanar acceleration-balanced history would disprove any stronger conjecture that co-sphericity itself is obstructed outside the planar subset.
 
@@ -804,9 +778,7 @@ The remaining mathematical requirements concern collision clearance, complete ca
 
 The five convex regular polyhedra provide a finite set of co-spherical vertex geometries. Their use here is geometric: they define prescribed arrangements on which balanced polarity assignments can be classified. Regularity does not supply an acceleration law, select a physical assembly, or establish retained motion.
 
-The finite vertex and polarity classification must be distinguished from the continuous motion problem. A rotation axis, angular rate, radius, and complete source history still have to be specified. Enumerating every polarity word therefore completes one discrete coordinate, not the dynamical classification.
-
-Plainly: the regular solids give a finite list of shapes and plus-minus patterns. They do not give a finite list of all possible motions of those shapes.
+The finite vertex and polarity classification must be distinguished from the continuous motion problem. A rotation axis, angular rate, radius, and complete source history still have to be specified. Enumerating every polarity word therefore completes one discrete coordinate, not the dynamical classification. The regular solids give a finite list of shapes and plus-minus patterns. They do not give a finite list of all possible motions of those shapes.
 
 ### Balanced Polarity Assignments
 
@@ -828,9 +800,7 @@ The vertex counts can be compared with familiar member inventories without ident
 | Icosahedron | 12 | 6:6 | 6 | two-component circular configurations, twelve worldlines |
 | Dodecahedron | 20 | 10:10 | 10 | no braid identification asserted |
 
-**[inference; geometric significance unestablished]** The six-, eight-, and twelve-member inventories coincide with the octahedral, cubic, and icosahedral vertex counts. Count equality does not imply equality of coordinates, histories, or symmetry groups. A symmetry-selection claim would require a retained history with the corresponding polyhedral stabilizer; a retained history at another count would refute any claim that these counts are necessary.
-
-Plainly: having eight members does not make an assembly a cube. The positions and motion must establish that geometry independently.
+**[inference; geometric significance unestablished]** The six-, eight-, and twelve-member inventories coincide with the octahedral, cubic, and icosahedral vertex counts. Count equality does not imply equality of coordinates, histories, or symmetry groups. A symmetry-selection claim would require a retained history with the corresponding polyhedral stabilizer; a retained history at another count would refute any claim that these counts are necessary. Having eight members does not make an assembly a cube. The positions and motion must establish that geometry independently.
 
 ### Embedding Platonic Vertex Sets in Periodic Lattices
 
@@ -848,9 +818,7 @@ $$\operatorname{tr}Q=1+2\cos\!\left(\frac{2\pi}{r}\right)\in\mathbb Z.$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-804449d883113249)
 
-Since a three-dimensional rotation has trace in $[-1,3]$, integrality restricts $\cos(2\pi/r)$ to $-1,-1/2,0,1/2$, or $1$. The only possible finite rotation orders are therefore $r\in\{1,2,3,4,6\}$. The fivefold rotations of the icosahedron and dodecahedron are incompatible with an exact vertex embedding in any rank-three lattice. The conclusion also covers the body-centered cubic, face-centered cubic, diamond-cubic, ideal hexagonal-close-packed, alternating-plane simple-cubic, and finite simple-cubic point sets below: each is contained in a rank-three lattice after, where necessary, a finite refinement of its translation basis.
-
-Plainly: the regular solid need not be a symmetry of the whole crystal. However, its vertices generate their own difference lattice, and every symmetry of the solid must preserve that generated lattice. A fivefold rotation cannot preserve a three-dimensional translation lattice, so exact regular icosahedral and dodecahedral vertex sets cannot occur in these point sets.
+Since a three-dimensional rotation has trace in $[-1,3]$, integrality restricts $\cos(2\pi/r)$ to $-1,-1/2,0,1/2$, or $1$. The only possible finite rotation orders are therefore $r\in\{1,2,3,4,6\}$. The fivefold rotations of the icosahedron and dodecahedron are incompatible with an exact vertex embedding in any rank-three lattice. The conclusion also covers the body-centered cubic, face-centered cubic, diamond-cubic, ideal hexagonal-close-packed, alternating-plane simple-cubic, and finite simple-cubic point sets below: each is contained in a rank-three lattice after, where necessary, a finite refinement of its translation basis. The regular solid need not be a symmetry of the whole crystal. However, its vertices generate their own difference lattice, and every symmetry of the solid must preserve that generated lattice. A fivefold rotation cannot preserve a three-dimensional translation lattice, so exact regular icosahedral and dodecahedral vertex sets cannot occur in these point sets.
 
 Crystallographic compatibility is only a necessary condition. Positive embedding claims require explicit coordinates. For the simple-cubic lattice $a\mathbb Z^3$, with standard basis vectors $\mathbf e_1,\mathbf e_2,\mathbf e_3$ and any positive integer $n$, the following sets give a cube of edge $na$, an octahedron of edge $\sqrt2na$, and a tetrahedron of edge $\sqrt2na$:
 
@@ -876,9 +844,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-90b6ad887fd400e5)
 
-but another graph may connect a longer shell, only the edges of a selected polyhedron, or no pairs at all. Changing $E$ changes the displayed or analyzed relationships without moving any point of $\Lambda$. In particular, a line called a “bond” in a crystallographic diagram is an adjacency convention, not an additional part of the lattice definition and not, by itself, an $\mathbb{A}\mathbb{A}\mathbb{A}$ interaction law. A Master Equation evaluation still requires the declared path histories and complete causal-root acceleration contributions; a nearest-neighbor drawing does not restrict those contributions unless a separately justified approximation explicitly does so.
-
-Plainly: the dots, the selected Platonic corners, and the lines drawn between dots are three separate choices. The same dots can support several different Platonic selections and several different line drawings without changing the underlying lattice.
+but another graph may connect a longer shell, only the edges of a selected polyhedron, or no pairs at all. Changing $E$ changes the displayed or analyzed relationships without moving any point of $\Lambda$. In particular, a line called a “bond” in a crystallographic diagram is an adjacency convention, not an additional part of the lattice definition and not, by itself, an $\mathbb{A}\mathbb{A}\mathbb{A}$ interaction law. A Master Equation evaluation still requires the declared path histories and complete causal-root acceleration contributions; a nearest-neighbor drawing does not restrict those contributions unless a separately justified approximation explicitly does so. The dots, the selected Platonic corners, and the lines drawn between dots are three separate choices. The same dots can support several different Platonic selections and several different line drawings without changing the underlying lattice.
 
 #### Integer Ladders, Common Centers, and Lattice Shells
 
@@ -890,9 +856,7 @@ $$ma\{(1,1,1),(1,-1,-1),(-1,1,-1),(-1,-1,1)\}.$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-697459c486c7a958)
 
-Their edge lengths are respectively $2ma$, $\sqrt2ma$, and $2\sqrt2ma$. Thus the octahedral family retains every integer $m$ about a lattice-point center, while the common-center cube and tetrahedron correspond to the even-index members of the original $n$ ladder.
-
-Plainly: every positive integer gives a valid cube, octahedron, and tetrahedron somewhere in the simple-cubic lattice. If the center must remain fixed, the octahedron can grow one lattice step at a time, but the cube and tetrahedron grow by two edge-index steps because their vertices must remain on lattice points.
+Their edge lengths are respectively $2ma$, $\sqrt2ma$, and $2\sqrt2ma$. Thus the octahedral family retains every integer $m$ about a lattice-point center, while the common-center cube and tetrahedron correspond to the even-index members of the original $n$ ladder. Every positive integer gives a valid cube, octahedron, and tetrahedron somewhere in the simple-cubic lattice. If the center must remain fixed, the octahedron can grow one lattice step at a time, but the cube and tetrahedron grow by two edge-index steps because their vertices must remain on lattice points.
 
 Vertex nesting still does not shell the lattice. Across all $m$, the cube vertices occupy eight body-diagonal rays, the octahedron vertices occupy the three coordinate axes, and the tetrahedron vertices occupy four body-diagonal rays. All other lattice sites are absent from those vertex sets. To shell the complete simple-cubic point set, define
 
@@ -915,9 +879,7 @@ Each family is disjoint in $m$ and its union over $m\geq0$ is the complete simpl
 | Octahedral, $\mathcal S_m^{\mathrm O}$ | $4m^2+2$ | $6$ | $4m^2-4$ |
 | Tetrahedral, $\mathcal S_m^{\mathrm T}$ | $8m^2+2$ | $4$ | $8m^2-2$ |
 
-The sites in the last column are not additional vertices of the regular solid. They are lattice sites on its edges or face interiors. Sites on shells with index smaller than $m$ lie inside the solid. A vertex-only prescribed assembly excludes all of them from its member inventory; a lattice assembly does not. In the latter case, every nonvertex boundary site and every interior site requires its own polarity, path history, and complete delayed-acceleration sum.
-
-Plainly: the nested solids can divide the grid points into complete cubical, octahedral, or tetrahedral layers, but only when every point on each layer is counted. Keeping only the four, six, or eight corner sites leaves nearly the entire lattice unused and does not make a shell.
+The sites in the last column are not additional vertices of the regular solid. They are lattice sites on its edges or face interiors. Sites on shells with index smaller than $m$ lie inside the solid. A vertex-only prescribed assembly excludes all of them from its member inventory; a lattice assembly does not. In the latter case, every nonvertex boundary site and every interior site requires its own polarity, path history, and complete delayed-acceleration sum. The nested solids can divide the grid points into complete cubical, octahedral, or tetrahedral layers, but only when every point on each layer is counted. Keeping only the four, six, or eight corner sites leaves nearly the entire lattice unused and does not make a shell.
 
 #### Space-Filling Honeycombs and the Three-Shape Boundary
 
@@ -984,15 +946,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-34e2ce03ac4a6abb)
 
-This is the tetrahedral–octahedral honeycomb, also called the alternated cubic honeycomb. Nicholas Matteo's classification of face-to-face two-orbit tilings identifies the same honeycomb as the three-dimensional quasiregular case; see *Two-Orbit Convex Polytopes and Tilings*, *Discrete & Computational Geometry* **55** (2016), 296–313, [doi:10.1007/s00454-015-9754-2](https://doi.org/10.1007/s00454-015-9754-2), [arXiv:1403.2125](https://arxiv.org/abs/1403.2125). The coordinate construction above independently establishes the particular realization used here.
-
-Plainly: the even checkerboard sites are the complete vertex set of a gapless three-dimensional jigsaw made from regular tetrahedra and octahedra of one edge length. There are exactly two tetrahedral cells for every octahedral cell.
+This is the tetrahedral–octahedral honeycomb, also called the alternated cubic honeycomb. Nicholas Matteo's classification of face-to-face two-orbit tilings identifies the same honeycomb as the three-dimensional quasiregular case; see *Two-Orbit Convex Polytopes and Tilings*, *Discrete & Computational Geometry* **55** (2016), 296–313, [doi:10.1007/s00454-015-9754-2](https://doi.org/10.1007/s00454-015-9754-2), [arXiv:1403.2125](https://arxiv.org/abs/1403.2125). The coordinate construction above independently establishes the particular realization used here. The even checkerboard sites are the complete vertex set of a gapless three-dimensional jigsaw made from regular tetrahedra and octahedra of one edge length. There are exactly two tetrahedral cells for every octahedral cell.
 
 The unused checkerboard class has an exact geometric role. Every $\mathbf u\in\Lambda_1$ is the center of the octahedral cell $\mathcal O_{\mathbf u}$, while its six nearest neighbors in $\Lambda_0$ are that octahedron's vertices. Conversely, every site in $\Lambda_0$ has six nearest neighbors in $\Lambda_1$. Thus the complete checkerboard simple-cubic point set has the same two-interpenetrating-FCC and sixfold opposite-class coordination geometry as the conventional rock-salt structure. This is a point-set comparison only: it imports neither a chemical bond rule nor a physical selection mechanism into $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-The distinction between a honeycomb and a lattice assembly remains essential. The tetrahedral–octahedral honeycomb uses $\Lambda_0$ as its vertex set; the sites in $\Lambda_1$ are cell centers, not additional honeycomb vertices. If both parity classes are occupied by architrinos, the center sites become additional assembly members and require their own polarities, histories, and complete delayed-acceleration sums.
-
-Plainly: the second polarity class is not geometrically unexplained, but including it physically changes the member inventory. In the honeycomb it labels octahedron centers; in a full checkerboard assembly those centers are occupied sites as well.
+The distinction between a honeycomb and a lattice assembly remains essential. The tetrahedral–octahedral honeycomb uses $\Lambda_0$ as its vertex set; the sites in $\Lambda_1$ are cell centers, not additional honeycomb vertices. If both parity classes are occupied by architrinos, the center sites become additional assembly members and require their own polarities, histories, and complete delayed-acceleration sums. The second polarity class is not geometrically unexplained, but including it physically changes the member inventory. In the honeycomb it labels octahedron centers; in a full checkerboard assembly those centers are occupied sites as well.
 
 The full simple-cubic point set separately supports the ordinary cubic honeycomb
 
@@ -1006,31 +964,21 @@ $$
 
 The cubic and tetrahedral–octahedral honeycombs are two complete decompositions of the same Euclidean space, not cell sets that can be superposed without overlap. More strongly, an intact regular cube cannot occur together with intact regular tetrahedral or octahedral cells in one connected face-to-face honeycomb. Every cube facet is a square, whereas every tetrahedron and octahedron facet is a triangle. A cube facet must therefore meet another cube facet. The facet-adjacency graph of a face-to-face honeycomb of connected Euclidean space is connected, so the presence of one cube forces every facet-adjacent cell, and hence every cell, to be a cube. This obstruction does not depend on a common edge length.
 
-The conclusion is scoped to intact regular cells in a face-to-face honeycomb. It does not classify non-face-to-face contacts, subdivided cube faces, compound supercells, truncated or deformed cells, or other nonregular space fillings. Those are different tiling problems and cannot be inferred from the two honeycombs above.
-
-Plainly: cubes tile space, and regular tetrahedra plus regular octahedra tile space, but the three regular cell types cannot all participate in one ordinary face-matched honeycomb. A construction that cuts faces into smaller pieces or changes the cells leaves that theorem's domain.
+The conclusion is scoped to intact regular cells in a face-to-face honeycomb. It does not classify non-face-to-face contacts, subdivided cube faces, compound supercells, truncated or deformed cells, or other nonregular space fillings. Those are different tiling problems and cannot be inferred from the two honeycombs above. Cubes tile space, and regular tetrahedra plus regular octahedra tile space, but the three regular cell types cannot all participate in one ordinary face-matched honeycomb. A construction that cuts faces into smaller pieces or changes the cells leaves that theorem's domain.
 
 > Claim grade: derived. The coordinate construction, face incidences, cell densities, volumes, and exact dihedral-angle identity establish the tetrahedral–octahedral honeycomb and its $2:1$ cell ratio. The square-versus-triangle facet argument excludes any connected face-to-face honeycomb containing all three intact regular cell types. A coordinate point lying in two cell interiors, an uncovered positive-volume region, an incorrect face incidence or density, or a face-to-face counterexample containing a regular cube together with a regular tetrahedron or octahedron would overturn the corresponding claim. The rock-salt identification is a geometric comparison and is falsified by failure of either parity class to form an FCC lattice or failure of sixfold opposite-class nearest-neighbor coordination.
 
 #### Packing, Vertex Ownership, and Assembly Interpretation
 
-A polyhedral packing imposes disjoint interiors but does not require the cells to cover the Euclidean void. It therefore provides the appropriate geometric model when each polyhedral cell is to carry its own vertex inventory. Starting from either space-filling honeycomb above, let $K_\alpha$ be a cell with interior center $\mathbf c_\alpha$ and replace it by the homothetic copy $K_\alpha(s)=\mathbf c_\alpha+s(K_\alpha-\mathbf c_\alpha)$ for one common factor $0 < s < 1$. Every contracted cell lies strictly inside the interior of its parent cell. Distinct contracted cells consequently have disjoint convex hulls and disjoint vertex coordinates, while remaining regular and preserving the parent cell-type and cell-count ratios. Because three-dimensional volume scales cubically, the occupied volume fraction is $\phi(s)=s^3$ for a packing obtained from a complete honeycomb. The gaps close as $s\to 1^{-}$; at $s=1$ the construction returns to the honeycomb and its boundary vertices are shared again.
-
-Plainly: shrinking every cell about its own center gives each solid private vertices and opens empty space between neighboring solids. The packing can approach complete filling as closely as desired, but exact filling restores shared boundaries.
+A polyhedral packing imposes disjoint interiors but does not require the cells to cover the Euclidean void. It therefore provides the appropriate geometric model when each polyhedral cell is to carry its own vertex inventory. Starting from either space-filling honeycomb above, let $K_\alpha$ be a cell with interior center $\mathbf c_\alpha$ and replace it by the homothetic copy $K_\alpha(s)=\mathbf c_\alpha+s(K_\alpha-\mathbf c_\alpha)$ for one common factor $0 < s < 1$. Every contracted cell lies strictly inside the interior of its parent cell. Distinct contracted cells consequently have disjoint convex hulls and disjoint vertex coordinates, while remaining regular and preserving the parent cell-type and cell-count ratios. Because three-dimensional volume scales cubically, the occupied volume fraction is $\phi(s)=s^3$ for a packing obtained from a complete honeycomb. The gaps close as $s\to 1^{-}$; at $s=1$ the construction returns to the honeycomb and its boundary vertices are shared again. Shrinking every cell about its own center gives each solid private vertices and opens empty space between neighboring solids. The packing can approach complete filling as closely as desired, but exact filling restores shared boundaries.
 
 Packing also removes the face-compatibility restriction that governs a honeycomb. A sufficiently large repeat region can contain a separated finite mixture of regular tetrahedra, cubes, octahedra, dodecahedra, and icosahedra, although its packing fraction and optimal arrangement become separate questions. In such a periodic packing, the translation lattice repeats a multi-vertex motif; the vertices of one motif need not all belong to one rank-three translational lattice. The crystallographic obstruction to embedding an entire dodecahedral or icosahedral vertex set in one lattice therefore does not exclude those solids as independently placed packing motifs.
 
-When polyhedral vertices are mapped to architrinos, the packing and honeycomb constructions define different member inventories. In the packing, each cell $K_\alpha(s)$ supplies a disjoint finite vertex set and can seed a separate braid or higher-assembly candidate with its own polarities and worldlines. Geometric separation does not by itself prove dynamical independence. For a member $u$ assigned to candidate $\alpha$, its total acceleration still separates as $\mathbf A_u=\mathbf A_u^{(\alpha)}+\mathbf A_u^{(\mathrm{cross})}$, where the cross term contains every causal-root contribution from members assigned to other cells. Exact independence requires $\mathbf A_u^{(\mathrm{cross})}=\mathbf0$ throughout the complete history; an approximate independence claim requires a declared norm bound and tolerance over a declared time domain. Distance alone does not delete causal wakes.
+When polyhedral vertices are mapped to architrinos, the packing and honeycomb constructions define different member inventories. In the packing, each cell $K_\alpha(s)$ supplies a disjoint finite vertex set and can seed a separate braid or higher-assembly candidate with its own polarities and worldlines. Geometric separation does not by itself prove dynamical independence. For a member $u$ assigned to candidate $\alpha$, its total acceleration still separates as $\mathbf A_u=\mathbf A_u^{(\alpha)}+\mathbf A_u^{(\mathrm{cross})}$, where the cross term contains every causal-root contribution from members assigned to other cells. Exact independence requires $\mathbf A_u^{(\mathrm{cross})}=\mathbf0$ throughout the complete history; an approximate independence claim requires a declared norm bound and tolerance over a declared time domain. Distance alone does not delete causal wakes. Private vertices create separate candidate braids, not automatically independent braids. Independence begins only when the delayed influence of every other packed cell cancels or is demonstrably below a stated threshold.
 
-Plainly: private vertices create separate candidate braids, not automatically independent braids. Independence begins only when the delayed influence of every other packed cell cancels or is demonstrably below a stated threshold.
+In a honeycomb, by contrast, coincident boundary vertices are identified as one geometric site and map to one architrino, not to one duplicate member per incident cell. The physical vertex inventory is the union of all cell vertices after equal coordinates are identified. A shared architrino can participate in several tetrahedral, octahedral, or cubic incidence relations, but its total acceleration is evaluated once against the global member set. Summing cell-local acceleration contributions would double-count members shared by several cells. If the whole honeycomb vertex set is taken as one history-bearing inventory, the natural model is therefore a collective assembly organized by a repeating incidence network rather than a collection of cell-owned assemblies. Shared incidence does not by itself establish balance, binding, retention, or stability; those remain complete-history dynamical questions. Packing treats the polyhedra as separate candidate objects. A honeycomb treats the polyhedra as overlapping descriptions of one connected member network.
 
-In a honeycomb, by contrast, coincident boundary vertices are identified as one geometric site and map to one architrino, not to one duplicate member per incident cell. The physical vertex inventory is the union of all cell vertices after equal coordinates are identified. A shared architrino can participate in several tetrahedral, octahedral, or cubic incidence relations, but its total acceleration is evaluated once against the global member set. Summing cell-local acceleration contributions would double-count members shared by several cells. If the whole honeycomb vertex set is taken as one history-bearing inventory, the natural model is therefore a collective assembly organized by a repeating incidence network rather than a collection of cell-owned assemblies. Shared incidence does not by itself establish balance, binding, retention, or stability; those remain complete-history dynamical questions.
-
-Plainly: packing treats the polyhedra as separate candidate objects. A honeycomb treats the polyhedra as overlapping descriptions of one connected member network.
-
-This distinction supplies a disciplined version of the proposed spacetime interpretation. At the substrate level, neither construction packs or tiles spacetime itself: each specifies architrino positions on spatial slices of the Euclidean void and must be extended through absolute time by declared worldlines. A packing of retained braid histories whose cross-assembly acceleration terms vanish could model a population of effectively independent assemblies. A retained honeycomb history could model a collective assembly or Noether-sea organization whose shared network contributes to an emergent spacetime description. Identifying either construction with effective spacetime requires an additional coarse-graining map from assembly and wake dynamics to observer-level geometry; geometry alone does not supply that recovery.
-
-Plainly: the packing-versus-tiling distinction gives two serious microscopic models for exploration. It does not yet prove that either model produces the spacetime geometry reconstructed by observers.
+This distinction supplies a disciplined version of the proposed spacetime interpretation. At the substrate level, neither construction packs or tiles spacetime itself: each specifies architrino positions on spatial slices of the Euclidean void and must be extended through absolute time by declared worldlines. A packing of retained braid histories whose cross-assembly acceleration terms vanish could model a population of effectively independent assemblies. A retained honeycomb history could model a collective assembly or Noether-sea organization whose shared network contributes to an emergent spacetime description. Identifying either construction with effective spacetime requires an additional coarse-graining map from assembly and wake dynamics to observer-level geometry; geometry alone does not supply that recovery. The packing-versus-tiling distinction gives two serious microscopic models for exploration. It does not yet prove that either model produces the spacetime geometry reconstructed by observers.
 
 > Claim grade: derived for the homothetic packing construction and its volume fraction. A contracted cell leaving its parent interior, two contracted hulls intersecting for $0 < s < 1$, a coincident pair of contracted vertices, or an occupied fraction different from $s^3$ would falsify the corresponding geometric claim. The independent-braid and collective-spacetime readings are inferred modeling programs, not derived physical identifications. A nonzero cross-assembly acceleration term falsifies exact independence, while failure of a retained collective history or of a coarse-graining map to effective geometry blocks the collective interpretation.
 
@@ -1046,9 +994,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a079617cd58851da)
 
-The first map makes each plane of constant $k$ monochromatic and alternates polarity between adjacent planes along $Z$. The second changes polarity across every axial nearest-neighbor step. Its two polarity classes are the even- and odd-coordinate-sum subsets of $\mathbb Z^3$; after multiplication by $a$, each class is an FCC lattice with conventional cubic side $2a$, and the two classes are translates of one another. A lattice translation changes at most the names of the two polarities: translating by $(r,s,t)$ multiplies the plane map by $(-1)^t$ and the checkerboard map by $(-1)^{r+s+t}$. The polarity counts below are therefore translation-invariant even when the polarity names exchange.
-
-Plainly: alternating planes cut the grid into monochromatic slabs. The checkerboard instead splits the same grid into two interpenetrating three-dimensional point sets. Neither decoration changes which lattice positions exist.
+The first map makes each plane of constant $k$ monochromatic and alternates polarity between adjacent planes along $Z$. The second changes polarity across every axial nearest-neighbor step. Its two polarity classes are the even- and odd-coordinate-sum subsets of $\mathbb Z^3$; after multiplication by $a$, each class is an FCC lattice with conventional cubic side $2a$, and the two classes are translates of one another. A lattice translation changes at most the names of the two polarities: translating by $(r,s,t)$ multiplies the plane map by $(-1)^t$ and the checkerboard map by $(-1)^{r+s+t}$. The polarity counts below are therefore translation-invariant even when the polarity names exchange. Alternating planes cut the grid into monochromatic slabs. The checkerboard instead splits the same grid into two interpenetrating three-dimensional point sets. Neither decoration changes which lattice positions exist.
 
 The following table evaluates the axis-aligned sets $C_n$, $O_n$, and $T_n$ exactly as displayed above. The origin is an anchoring vertex of $C_n$ and $T_n$, but it is the center of $O_n$; for odd $n$, the cube and tetrahedron centers are half-cell points rather than polarity-labelled lattice sites.
 
@@ -1060,9 +1006,7 @@ The following table evaluates the axis-aligned sets $C_n$, $O_n$, and $T_n$ exac
 
 These entries follow directly by evaluating the two exponents at every displayed vertex. They also delimit neutrality. For equal-magnitude opposite polarities, the alternating-plane cube at odd $n$, the alternating-plane tetrahedron at odd $n$, and the checkerboard cube at odd $n$ are neutral. The alternating-plane octahedron at odd $n$ is not neutral, and none of the monochromatic cases is neutral.
 
-For odd $n$, both cube decorations are also antipodal-alternating: opposite cube vertices have opposite polarities. The alternating-plane map groups those polarities by opposite faces, whereas the checkerboard map groups them into the two tetrahedra below. By contrast, opposite octahedral vertices always have the same parity because $-n\equiv n\pmod2$, so neither decoration produces an antipodal-alternating octahedron. The tetrahedron has no antipodal vertex pairs.
-
-Plainly: the checkerboard tetrahedron and octahedron stay within one polarity class at each scale. The odd checkerboard cube is the exceptional case in which the eight corners divide into two complete, oppositely labelled tetrahedra.
+For odd $n$, both cube decorations are also antipodal-alternating: opposite cube vertices have opposite polarities. The alternating-plane map groups those polarities by opposite faces, whereas the checkerboard map groups them into the two tetrahedra below. By contrast, opposite octahedral vertices always have the same parity because $-n\equiv n\pmod2$, so neither decoration produces an antipodal-alternating octahedron. The tetrahedron has no antipodal vertex pairs. The checkerboard tetrahedron and octahedron stay within one polarity class at each scale. The odd checkerboard cube is the exceptional case in which the eight corners divide into two complete, oppositely labelled tetrahedra.
 
 For odd $n$, define the two checkerboard subsets of the cube by
 
@@ -1083,15 +1027,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fc4b8f8cf4650318)
 
-which is the regular octahedron whose six vertices are the cube's face centers. Thus “stella octangula” names the union of the dual tetrahedra, while their common filled region is the central octahedron.
-
-Plainly: the opposite-polarity tetrahedra use all eight cube corners and pass through one another. The star compound is their union, not their set intersection; the volume shared by the two solid tetrahedra has the shape of an octahedron.
+which is the regular octahedron whose six vertices are the cube's face centers. Thus “stella octangula” names the union of the dual tetrahedra, while their common filled region is the central octahedron. The opposite-polarity tetrahedra use all eight cube corners and pass through one another. The star compound is their union, not their set intersection; the volume shared by the two solid tetrahedra has the shape of an octahedron.
 
 This is a prescribed polarity geometry, not by itself a physical realization. In particular, an acceleration result for the complete infinite checkerboard or alternating-plane lattice cannot be transferred to the eight-site cube by deleting every other lattice site: that deletion changes the complete causal-root acceleration sum. The compound therefore remains a geometric and polarity construction until a declared path history is evaluated for precisely its member inventory.
 
-The exact static assembly is available in [Borg](../../../../borg.html?assemblyId=asm-242282e6154b97b00ac9d8e5123cde46&modelRevisionSha256=242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8). Its twelve displayed edges are the two tetrahedral edge sets; the stationary record carrier supplies no motion, and no braid classification is assigned.
-
-Plainly: Borg now shows the eight cube-corner members as two interlocked tetrahedra. The picture identifies the static geometry only; it does not claim that the members trace a braid.
+The exact static assembly is available in [Borg](../../../../borg.html?assemblyId=asm-242282e6154b97b00ac9d8e5123cde46&modelRevisionSha256=242282e6154b97b00ac9d8e5123cde4664abac9f364e214babbe2e7d0bdc89a8). Its twelve displayed edges are the two tetrahedral edge sets; the stationary record carrier supplies no motion, and no braid classification is assigned. Borg shows the eight cube-corner members as two interlocked tetrahedra. The picture identifies the static geometry only; it does not claim that the members trace a braid.
 
 The app's other periodic polarity decorations give additional exact consequences for the Platonic constructions displayed in this section.
 
@@ -1103,9 +1043,7 @@ The app's other periodic polarity decorations give additional exact consequences
 | Ideal HCP, opposite A/B stacking positions | The scalable constructions confined to one A or B sublattice are monochromatic. The local packing tetrahedron described below is $3{:}1$, while the local octahedron is balanced $3{:}3$ with one monochromatic triangular face from each stacking position. |
 | Finite simple-cubic random $50/50$ configuration | No deterministic parity classification follows. Each candidate solid must be tested against the realized finite assignment and crop. |
 
-The checkerboard rule has no nearest-neighbor-opposite analogue on an FCC or HCP nearest-neighbor graph because each graph contains triangles. For the app's FCC alternating-plane decoration, an FCC site has four same-polarity and eight opposite-polarity nearest neighbors. For the app's ideal-HCP A/B decoration, a site has six same-polarity in-plane and six opposite-polarity out-of-plane nearest neighbors. BCC and diamond are different: their nearest-neighbor graphs are bipartite under the app's two-sublattice polarity assignments.
-
-Plainly: “two sublattices” does not imply the same polarity geometry in every lattice. BCC and diamond can reverse polarity across every nearest-neighbor edge. FCC and HCP cannot, because their nearest-neighbor triangles force at least one same-polarity edge.
+The checkerboard rule has no nearest-neighbor-opposite analogue on an FCC or HCP nearest-neighbor graph because each graph contains triangles. For the app's FCC alternating-plane decoration, an FCC site has four same-polarity and eight opposite-polarity nearest neighbors. For the app's ideal-HCP A/B decoration, a site has six same-polarity in-plane and six opposite-polarity out-of-plane nearest neighbors. BCC and diamond are different: their nearest-neighbor graphs are bipartite under the app's two-sublattice polarity assignments. “two sublattices” does not imply the same polarity geometry in every lattice. BCC and diamond can reverse polarity across every nearest-neighbor edge. FCC and HCP cannot, because their nearest-neighbor triangles force at least one same-polarity edge.
 
 > Claim grade: derived. The simple-cubic table follows by substituting the displayed vertex coordinates into $s_{\mathrm{plane}}$ and $s_{\mathrm{check}}$. The stella-octangula statement follows from the two parity classes and their pairwise distances; the intersection formula follows from the eight facet inequalities of the two tetrahedra. The BCC, FCC, diamond, and HCP rows follow from the displayed coset or stacking-position assignments. Falsifier: a vertex whose evaluated parity gives a different table count, unequal pairwise edge lengths within either $P_+$ or $P_-$, a point belonging to exactly one side of the displayed convex-hull intersection equality, or a nearest-neighbor triangle admitting an opposite-polarity label on all three edges would invalidate the corresponding claim.
 
@@ -1135,9 +1073,7 @@ $$
 
 Thus BCC, FCC, and diamond cubic contain respectively two, four, and eight translated copies of the same simple-cubic point set. These are conventional-cell coset decompositions, not claims that BCC or FCC ceases to be a distinct Bravais lattice. They also explain why the nearest-neighbor graph can look unlike a simple-cubic graph. In BCC, for example, nearest-neighbor edges join the two cosets along conventional-cell body diagonals even though either coset taken alone is simple cubic.
 
-Every site of one coset can be made a vertex of infinitely many cubes, octahedra, and tetrahedra. If $\mathbf p\in a(\boldsymbol\delta+\mathbb Z^3)$, translating $C_n$ or $T_n$ by $\mathbf p$ makes $\mathbf p$ their displayed zero vertex. Translating $O_n$ so that its center is $\mathbf p-na\mathbf e_1$ makes $\mathbf p$ its $+\mathbf e_1$ vertex. Repeating this construction on every coset proves that no BCC, FCC, or diamond-cubic site is omitted from all such vertex families.
-
-Plainly: choosing only the corner-type simple-cubic subset leaves the other site types unused in that one construction. It does not leave them unusable. Each omitted site belongs to another translated cubic grid, and the same cube, octahedron, and tetrahedron recipe can be started from that grid.
+Every site of one coset can be made a vertex of infinitely many cubes, octahedra, and tetrahedra. If $\mathbf p\in a(\boldsymbol\delta+\mathbb Z^3)$, translating $C_n$ or $T_n$ by $\mathbf p$ makes $\mathbf p$ their displayed zero vertex. Translating $O_n$ so that its center is $\mathbf p-na\mathbf e_1$ makes $\mathbf p$ its $+\mathbf e_1$ vertex. Repeating this construction on every coset proves that no BCC, FCC, or diamond-cubic site is omitted from all such vertex families. Choosing only the corner-type simple-cubic subset leaves the other site types unused in that one construction. It does not leave them unusable. Each omitted site belongs to another translated cubic grid, and the same cube, octahedron, and tetrahedron recipe can be started from that grid.
 
 The face-centered cubic lattice also supplies smaller tetrahedral and octahedral scales. One corner together with the three adjacent face centers forms a regular tetrahedron, and the six face centers surrounding a cell center form a regular octahedron, both with edge $a/\sqrt2$. Diamond cubic contains two face-centered cubic sublattices, so it inherits those scalable constructions; the four nearest neighbors of any diamond site additionally form the familiar local regular tetrahedron.
 
@@ -1147,9 +1083,7 @@ $$\frac{ma}{2}\{\mathbf0,\mathbf e_1+\mathbf e_2,\mathbf e_1+\mathbf e_3,\mathbf
 
 [View →](../../../../equation-mapping.html#corpus-equation-5c4f983ca7bc530b)
 
-form a regular tetrahedron of edge $ma/\sqrt2$ for every $m\geq1$. With $\mathbf c_m=m(\mathbf e_1+\mathbf e_2+\mathbf e_3)$, the six sites $(a/2)\{\mathbf c_m\pm m\mathbf e_i\}_{i=1}^3$ form a regular octahedron of the same edge. Diamond cubic inherits both ladders from either of its FCC sublattices. No corresponding all-integer claim is made here for other BCC orientations or for the separate nearest-neighbor adjacency orientation in diamond cubic.
-
-Plainly: a cubic skeleton supplies three reusable constructions. Eight corners give a cube, the six positive and negative coordinate-axis sites give an octahedron, and four alternating cube corners give a tetrahedron. BCC, FCC, and diamond cubic contain such a skeleton even though their complete point sets contain additional sites.
+form a regular tetrahedron of edge $ma/\sqrt2$ for every $m\geq1$. With $\mathbf c_m=m(\mathbf e_1+\mathbf e_2+\mathbf e_3)$, the six sites $(a/2)\{\mathbf c_m\pm m\mathbf e_i\}_{i=1}^3$ form a regular octahedron of the same edge. Diamond cubic inherits both ladders from either of its FCC sublattices. No corresponding all-integer claim is made here for other BCC orientations or for the separate nearest-neighbor adjacency orientation in diamond cubic. A cubic skeleton supplies three reusable constructions. Eight corners give a cube, the six positive and negative coordinate-axis sites give an octahedron, and four alternating cube corners give a tetrahedron. BCC, FCC, and diamond cubic contain such a skeleton even though their complete point sets contain additional sites.
 
 Coset-wise vertex coverage is not one fixed-center shelling of the complete host lattice. It is a collection of translated ladder families with different centers. Within any one selected polyhedron, almost every host-lattice site remains a nonvertex site; across the complete collection, every site occurs as a vertex somewhere. A complete common-center host-lattice shelling would still need one explicit layer index for every site rather than a union of overlapping translated constructions.
 
@@ -1201,9 +1135,7 @@ $$
 
 Thus the eight sums $i\mathbf u+j\mathbf v+k\mathbf w$, with $i,j,k\in\{0,1\}$, form a cube of edge $6\sqrt2a$; multiplying all three generators by any positive integer gives arbitrarily large cubes. These HCP constructions use the ideal ratio $c/a=\sqrt{8/3}$. They do not establish the same embeddings for an independently deformed hexagonal lattice.
 
-The coefficient matrix of $(\mathbf u,\mathbf v,\mathbf w)$ relative to $(\mathbf a_1,\mathbf a_2,\mathbf a_3)$ has determinant $432$ in absolute value. Hence $K=\mathbb Z\mathbf u+\mathbb Z\mathbf v+\mathbb Z\mathbf w$ has index $432$ in the HCP A sublattice. The A sublattice is therefore the disjoint union of $432$ cosets of the simple-cubic lattice $K$, and the shifted B sublattice supplies another $432$. Applying the simple-cubic constructions within each of these $864$ cosets proves that every ideal-HCP site, not merely the sites of one sparse cube, belongs to infinitely many cube, octahedron, and tetrahedron vertex families. The number $864$ records this explicit decomposition; no minimality claim is made.
-
-Plainly: ideal HCP contains large exact examples of all three crystallographically allowed Platonic solids. Its lack of a global fourfold axis does not exclude a sparse cube. The tetrahedral and octahedral constructions likewise repeat at unbounded scales rather than occurring only in the nearest-neighbor packing motif.
+The coefficient matrix of $(\mathbf u,\mathbf v,\mathbf w)$ relative to $(\mathbf a_1,\mathbf a_2,\mathbf a_3)$ has determinant $432$ in absolute value. Hence $K=\mathbb Z\mathbf u+\mathbb Z\mathbf v+\mathbb Z\mathbf w$ has index $432$ in the HCP A sublattice. The A sublattice is therefore the disjoint union of $432$ cosets of the simple-cubic lattice $K$, and the shifted B sublattice supplies another $432$. Applying the simple-cubic constructions within each of these $864$ cosets proves that every ideal-HCP site, not merely the sites of one sparse cube, belongs to infinitely many cube, octahedron, and tetrahedron vertex families. The number $864$ records this explicit decomposition; no minimality claim is made. Ideal HCP contains large exact examples of all three crystallographically allowed Platonic solids. Its lack of a global fourfold axis does not exclude a sparse cube. The tetrahedral and octahedral constructions likewise repeat at unbounded scales rather than occurring only in the nearest-neighbor packing motif.
 
 The resulting site-coverage statement is separate from the existence table below.
 
@@ -1218,7 +1150,7 @@ The resulting site-coverage statement is separate from the existence table below
 | Simple cubic checkerboard | 1 geometrically | yes; polarity labels are a separate restriction |
 | Finite simple-cubic 50/50 configuration | not an infinite coset decomposition | not guaranteed after cropping |
 
-Plainly: for every infinite deterministic point set in the table, no site is permanently excluded from all three allowed Platonic vertex families. That is a coverage result obtained by moving the selected solid among translated sublattices. It is not a claim that one nested sequence uses every site, that the solids tile space, or that every site belongs to one common-center shell as a Platonic vertex.
+For every infinite deterministic point set in the table, no site is permanently excluded from all three allowed Platonic vertex families. That is a coverage result obtained by moving the selected solid among translated sublattices. It is not a claim that one nested sequence uses every site, that the solids tile space, or that every site belongs to one common-center shell as a Platonic vertex.
 
 | Point set | Cube | Octahedron | Tetrahedron | Dodecahedron or icosahedron |
 |---|---|---|---|---|
@@ -1235,9 +1167,7 @@ The first seven rows are periodic configurations, not seven distinct lattice typ
 
 > Claim grade: derived. The negative icosahedral and dodecahedral result follows from the difference-lattice trace argument above. The positive cube, octahedron, and tetrahedron results follow from the displayed coordinates and the stated sublattice inclusions. The common-center parity rule follows from requiring the coordinates $\mathbf c\pm(na/2)\mathbf e_i$ to remain lattice points, and the shell counts follow from the three displayed level-set definitions. The BCC, FCC, and diamond site-coverage result follows from their displayed two-, four-, and eight-coset decompositions; the ideal-HCP coverage result follows from the orthogonal equal-length generators and their index-$432$ coefficient determinant in each of the two HCP sublattices. Falsifier: an exact icosahedral or dodecahedral vertex set in any listed point set would contradict the obstruction; an unequal asserted edge length, a displayed coordinate outside its claimed lattice, a host-lattice site outside every stated coset, a lattice site belonging to zero or two shells of one shell family, or a shell count differing from the stated polynomial would invalidate the corresponding positive claim.
 
-The uncoloured embedding rows are geometric results only. The polarity-decoration subsection additionally selects and classifies particular polarity words, but neither level specifies a rotation axis or complete path history, establishes delayed acceleration balance for the isolated polyhedron, or shows that any lattice-selected polyhedron is retained under the Master Equation.
-
-Plainly: a large lattice can supply exact vertices for cubes, octahedra, and tetrahedra in every deterministic lattice family listed here, including ideal HCP. It cannot supply exact regular dodecahedral or icosahedral vertex sets. The point set does not choose polarity; the displayed decorations make particular choices, and dynamics remains a separate problem.
+The uncoloured embedding rows are geometric results only. The polarity-decoration subsection additionally selects and classifies particular polarity words, but neither level specifies a rotation axis or complete path history, establishes delayed acceleration balance for the isolated polyhedron, or shows that any lattice-selected polyhedron is retained under the Master Equation. A large lattice can supply exact vertices for cubes, octahedra, and tetrahedra in every deterministic lattice family listed here, including ideal HCP. It cannot supply exact regular dodecahedral or icosahedral vertex sets. The point set does not choose polarity; the displayed decorations make particular choices, and dynamics remains a separate problem.
 
 ### The Discrete Inventory
 
@@ -1274,7 +1204,7 @@ One of the cube's three antipodal-alternating classes is the tetrahedral pair as
 
 **[derived; exclusion scope]** For the declared face-center rotation axis, the octahedral vertices form two triangular rings at $\pm h$. Assigning one polarity to each ring gives the excluded segregated word. Mixed-polarity assignments on those rings are not covered by that sign argument. The two colouring classes in the enumeration quotient vertex sets by the full point group; classifying moving histories additionally requires the axis and history, so a result for one axis-word pair must not be extended to an entire motion family.
 
-The stationary analysis now exhausts the two balanced polarity classes on the regular octahedron. It does not classify deformed six-point geometries or transfer to a moving history.
+The stationary analysis exhausts the two balanced polarity classes on the regular octahedron. It does not classify deformed six-point geometries or transfer to a moving history.
 
 The cited analyses provide no moving-history balance result for the other four solids. The enumeration does not fill that gap.
 
@@ -1284,17 +1214,11 @@ A balance calculation must evaluate the prescribed worldlines, including their i
 
 The fixed-point-cloud common-mode residual has the different ansatz $\mathbf X_i(T)=\mathbf R_i+\mathbf UT$ for every member: one common constant velocity, zero internal velocity relative to the group center, and constant pair distances. Sampling an orbit at frozen phases while discarding its internal velocities does not evaluate that orbit's history and supplies no necessary condition for its balance.
 
-An orbiting co-spherical history has nonzero internal velocities. Rigid co-rotation preserves pair distances, but it still changes the source emission positions relative to a frozen point cloud. More general spherical histories can also change pair distances. Applying the frozen-translation criterion to a snapshot therefore answers a different question and supplies no necessary balance condition for the orbiting history.
+An orbiting co-spherical history has nonzero internal velocities. Rigid co-rotation preserves pair distances, but it still changes the source emission positions relative to a frozen point cloud. More general spherical histories can also change pair distances. Applying the frozen-translation criterion to a snapshot therefore answers a different question and supplies no necessary balance condition for the orbiting history. A delayed interaction depends on where a source was when it emitted the wake. A still picture of an orbit cannot replace that history.
 
-Plainly: a delayed interaction depends on where a source was when it emitted the wake. A still picture of an orbit cannot replace that history.
+**[derived; conditional symmetry reduction]** If a second-rank residual tensor is constructed equivariantly from the complete motion record, its symmetry is constrained by the stabilizer of that record. An irreducible three-dimensional symmetry action can force an invariant tensor to be scalar. This reduces the balance question but does not answer it: a scalar residual can vanish without a geometrically degenerate configuration. An exclusion requires a separate proof that the relevant scalar cannot vanish. The polarity word, rotation axis, and history must all be included when identifying the stabilizer. Symmetry can make several residual components equal. It does not, by itself, prove that their common value is nonzero.
 
-**[derived; conditional symmetry reduction]** If a second-rank residual tensor is constructed equivariantly from the complete motion record, its symmetry is constrained by the stabilizer of that record. An irreducible three-dimensional symmetry action can force an invariant tensor to be scalar. This reduces the balance question but does not answer it: a scalar residual can vanish without a geometrically degenerate configuration. An exclusion requires a separate proof that the relevant scalar cannot vanish. The polarity word, rotation axis, and history must all be included when identifying the stabilizer.
-
-Plainly: symmetry can make several residual components equal. It does not, by itself, prove that their common value is nonzero.
-
-The Platonic Moving-History Reduction makes this principle exact for the octahedron. It defines the coloured complete-history stabilizer using the axial-vector action on angular velocity, proves the residual equivariance theorem, enumerates every special rotation-axis stratum and every high-symmetry axis orbit for both balanced words, and derives the exact number of independent scalar residual channels. For rigid histories with every member below $c_f=1$, it also proves one and only one partner root per ordered pair, no nontrivial self-hit root, a positive transmitter-side Jacobian floor, collision clearance $\sqrt2R$, and sufficient prehistory depth $2R$. Exact channel arguments then exclude every vertex-axis orbit and the five-channel difference-edge-axis stratum.
-
-Plainly: the octahedral moving problem is no longer an unspecified search over six vector equations. Each word and axis has an exact reduced channel count and a complete root ledger, and the smallest special-axis cases already fail. The next unresolved rigid systems have nine scalar channels.
+The Platonic Moving-History Reduction makes this principle exact for the octahedron. It defines the coloured complete-history stabilizer using the axial-vector action on angular velocity, proves the residual equivariance theorem, enumerates every special rotation-axis stratum and every high-symmetry axis orbit for both balanced words, and derives the exact number of independent scalar residual channels. For rigid histories with every member below $c_f=1$, it also proves one and only one partner root per ordered pair, no nontrivial self-hit root, a positive transmitter-side Jacobian floor, collision clearance $\sqrt2R$, and sufficient prehistory depth $2R$. Exact channel arguments then exclude every vertex-axis orbit and the five-channel difference-edge-axis stratum. The octahedral moving problem has an exact reduced channel count and complete root ledger for each word and axis; the smallest special-axis cases fail, and the next unresolved rigid systems have nine scalar channels.
 
 ### Enumeration Method
 
@@ -1308,7 +1232,7 @@ A balanced polarity word assigns equal numbers of the two polarities to the memb
 
 ### Complete balance on moving histories
 
-The full residual must include every cross-transmitter causal root and every nontrivial same-transmitter root in the declared history domain. The rigid sub-field-speed octahedral chart now has a complete thirty-partner-root ledger and no nontrivial self roots, as derived in the moving-history reduction packet. Latitude-dependent speeds can give different root and fold structures for non-rigid members. The circular-path scalar reduction and the frozen-point-cloud criterion cannot be assumed to apply. The two-ring sign exclusion remains valid within its stated simple-root assumptions without a complete numerical balance calculation.
+The full residual must include every cross-transmitter causal root and every nontrivial same-transmitter root in the declared history domain. The rigid sub-field-speed octahedral chart has a complete thirty-partner-root ledger and no nontrivial self roots, as derived in the moving-history reduction. Latitude-dependent speeds can give different root and fold structures for non-rigid members. The circular-path scalar reduction and the frozen-point-cloud criterion cannot be assumed to apply. The two-ring sign exclusion remains valid within its stated simple-root assumptions without a complete numerical balance calculation.
 
 ### Collision clearance and latitude structure
 
@@ -1318,7 +1242,7 @@ The two-latitude `co-rotating coaxial two-planar-braid chart`/`counter-rotating 
 
 ### Polyhedral motion and symmetry
 
-The stationary octahedral exclusion now covers both balanced word classes. The rigid-axis census closes every special symmetry stratum and the continuous generic stratum at the level of equation reduction. Dynamically, the monochromatic-face history, every vertex-axis orbit, and the five-channel antipodal-alternating difference-edge-axis history are excluded at their stated speed scopes. The remaining nine- and eighteen-channel scalar systems, together with non-rigid histories, remain separate questions. The tetrahedral, cubic, icosahedral, and dodecahedral word classes have no moving-history result in the cited inventory. Any complete moving claim must cover both the finite colouring classes and the declared continuous motion parameters.
+The stationary octahedral exclusion covers both balanced word classes. The rigid-axis census closes every special symmetry stratum and the continuous generic stratum at the level of equation reduction. Dynamically, the monochromatic-face history, every vertex-axis orbit, and the five-channel antipodal-alternating difference-edge-axis history are excluded at their stated speed scopes. The remaining nine- and eighteen-channel scalar systems, together with non-rigid histories, remain separate questions. The tetrahedral, cubic, icosahedral, and dodecahedral word classes have no moving-history result in the cited inventory. Any complete moving claim must cover both the finite colouring classes and the declared continuous motion parameters.
 
 ### Nonplanar co-sphericity
 

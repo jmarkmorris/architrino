@@ -32,8 +32,7 @@ This document distinguishes three audience scopes:
 
 ### Workspace Identity
 
-- Do not address the agent by name in prompts or operator/developer communication. Start directly with the task or `Closure goal:`.
-- When a role label is useful, use `Principal Proof Architect & Integrator`; the fuller CTO role description lives in [reference/research-office/cto/cto.md](reference/research-office/cto/cto.md).
+- The fuller CTO role description lives in [reference/research-office/cto/cto.md](reference/research-office/cto/cto.md).
 - For all Python work, including live PDG commands, use the shared venv exposed as `$AAA_VENV`, falling back to the repo-adjacent `../.venv`; prefer `VIRTUAL_ENV="${AAA_VENV:-../.venv}"` and `"${AAA_VENV:-../.venv}/bin/python"` over system `python` or `python3`.
 
 ### Math and TeX Rendering
@@ -47,10 +46,8 @@ This document distinguishes three audience scopes:
 
 ### Operator/Developer Communication
 
-- Use [reference/op/codex-goal-seeking-prompt-template.md](reference/op/codex-goal-seeking-prompt-template.md) for the detailed communication and reporting procedure.
-- Follow [reference/op/operator-explanation-standard.md](reference/op/operator-explanation-standard.md) for plain-language explanation: every technical unit (equation stack, derivation step, dense table, jargon-dense paragraph, code or measurement block) is immediately followed by an inline `Plainly:` passage at AP-STEM-senior/sophomore-EE level, with never more than three consecutive technical paragraphs between interludes. A closing recap never substitutes for inline explanation. Define other technical terms in one clause at first use.
-- Ask necessary questions one at a time. Put fixed choices in ranked order with the preferred choice first and end with the explicit option prompt, such as `(y/n)` or `(a/b)`.
-- Include a concise `Closure goal:` line near the end of every substantive response and at the start of every generated or recommended prompt.
+- Use [reference/op/codex-goal-seeking-prompt-template.md](reference/op/codex-goal-seeking-prompt-template.md) for the execution procedure.
+- Read [reference/op/operator-explanation-standard.md](reference/op/operator-explanation-standard.md) and follow it. It is the whole of operator-facing communication policy — audience, explanation density, response length, structure, register, question format, agent naming, live priority capture, recommended next actions, completion content, phrasing constraints, and corrections. Nothing about how to write to the operator is stated anywhere else, including here; the only exception is the labeled pre-read floor in CLAUDE.md, which exists because a session must behave correctly before it reaches that file.
 - Use established project terminology. Resolve overlapping terms against canon, and ask before introducing a new project term.
 - Refer to the endorsed solver under `src/eom` as the `EOM solver` in operator/developer communication, end-user UI, and prose. Do not call it the `native solver` or `native EOM solver`. Preserve `native` only in established code identifiers, executable names, schema fields, provenance tokens, and literal compatibility interfaces where renaming would change a machine contract.
 - Maintain recurring operator/developer workflow feedback as one-line tasks in [README-op.md](reference/op/README-op.md); detailed procedures belong under `reference/op/`.
@@ -68,7 +65,6 @@ Before attempting the repository bootstrap reads, determine whether the current 
 - The operator often runs many agents in this same checkout at the same time. Treat a dirty working tree as normal ambient state, not as an exceptional condition by itself.
 - The operator does not use git worktrees for this repo because they do not meet the workflow requirements. Do not propose or request a git worktree as the default isolation strategy unless the operator explicitly asks for one.
 - Claude must not execute any git command, including read-only ones such as `git status`, `git diff`, and `git log`, and must not read `.git` directly. Git operations belong exclusively to Codex. To observe the working set, use non-git tools (for example `ls`, file reads, or search) and keep the write set scoped to the files the current task owns. Report unrelated dirty files only when they block the task, create overwrite risk, affect validation, or matter for staging, committing, pushing, or PR publication.
-- In closeouts, distinguish scoped edits from ambient multi-agent worktree state. Avoid generic warnings such as "the broader working tree has additional user changes" unless those changes alter the next action.
 - Treat operator/developer implementation input as a request for an across-the-board, reproducible feature or rule across the relevant app, renderer, corpus path, or workflow class. Do not satisfy such input with one-off local customization unless the operator/developer explicitly scopes it that way; any exception, per-item override, or special case must be negotiated with the operator/developer before implementation.
 - Follow [reference/op/long-running-test-heartbeats.md](reference/op/long-running-test-heartbeats.md) for long-running jobs: rebuild first, keep the job watched or observably detached, and emit a fixed-cadence heartbeat.
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
@@ -145,7 +141,6 @@ This section governs every claim in this repository, at every tier, in code, pro
 
 - Always inspect the relevant code paths and rendered structure before proposing or applying a fix. Find the actual code causing the issue rather than inferring the solution from symptoms or screenshots alone when the implementation can be examined directly.
 - After identifying the real cause, search for other instances of the same or similar code elsewhere in the codebase that could produce the same class of problem.
-- In operator/developer-facing communication, avoid the phrase `instead of guessing`.
 
 ## Commit Audits
 

@@ -26,12 +26,12 @@ That procedural ordering does not replace the About policy for references and so
 
 Source mining inherits the shared convergence campaign protocol instead of redefining it here. In practice, that means:
 
-- generated prompts and follow-up prompts begin with `Closure goal:`;
+- operator responses, generated prompts, and live priority capture follow the operator explanation standard;
 - active source-mining threads default to safe scoped edits unless the operator/developer explicitly requests audit/report mode;
 - mined material is triaged as promote now, defer with blocker, discussion-needed, priority-only, duplicate, irrelevant, or too speculative;
 - approval boxes are used only for work outside safe scoped edit authority, such as canonizing a new theory leap, changing terminology policy, updating Archie canon, adding new hurdle infrastructure, or making broad multi-file rewrites;
 - numbered follow-up options use the inherited detailed prompt format;
-- final responses use the inherited handoff fields and include a concise `Closure goal:` line.
+- source-specific evidence is reported under the operator explanation standard.
 
 This file should not duplicate those formats. It supplies the source-family steps and the source-specific output additions that plug into the shared protocol.
 
@@ -65,7 +65,6 @@ The completed target list lives in [source-mining-history.md](../priorities/sour
 Use this skeleton for every source family. Add one source-family prompt addendum from the sections below, or write a small custom addendum when the source is mixed.
 
 ```text
-Closure goal:
 Mine the supplied source for high-quality AAA insights, linkages, mappings, source leads, and theory-advancement candidates, then make safe scoped corpus edits when authorized.
 
 Use the compatibility-identifier `aaa-corpus-advancement` skill in edit-batch mode.
@@ -211,7 +210,6 @@ Selection criteria:
 Prompt addendum:
 
 ```text
-Closure goal:
 Mine this long-form video for material that can add value to the AAA corpus without importing another theory as doctrine or introducing new terminology.
 
 YouTube link:
@@ -247,7 +245,6 @@ Acquisition steps:
 Prompt addendum:
 
 ```text
-Closure goal:
 Mine the deck as a visual, textual, and speaker-context source, including Notes pages as first-class source material.
 
 Deck path or URL:
@@ -288,7 +285,6 @@ Use archive-level mining mode when the operator needs a full legacy-archive map 
 Prompt addendum:
 
 ```text
-Closure goal:
 Mine the site as a development-path source and recover durable insights, source leads, theory-advancement candidates, and abandoned paths.
 
 Site root or seed URLs:
@@ -310,7 +306,6 @@ Source-specific output additions:
 Topic-sweep prompt addendum:
 
 ```text
-Closure goal:
 Reconstruct what the legacy archive says about one topic across all relevant posts or artifacts, then identify the source cluster and current-canon value before ordinary per-source mining.
 
 Topic:
@@ -355,7 +350,6 @@ Acquisition steps:
 Prompt addendum:
 
 ```text
-Closure goal:
 Mine the paper, book chapter, report, or arXiv source as a structured technical source without importing the author's framework as AAA doctrine.
 
 Research document path, DOI, arXiv id, or URL:
@@ -390,7 +384,6 @@ Acquisition steps:
 Prompt addendum:
 
 ```text
-Closure goal:
 Use the encyclopedia page for orientation, vocabulary, topic boundaries, historical context, and source discovery, not as direct authority for AAA corpus claims.
 
 Page URL or title:
@@ -425,7 +418,6 @@ Acquisition steps:
 Prompt addendum:
 
 ```text
-Closure goal:
 Mine the portal for measurement provenance, benchmark values, uncertainty language, release structure, official review summaries, data products, and source leads.
 
 Portal, release, table, dataset, or review URL:
@@ -468,7 +460,6 @@ Deferred legacy material classes:
 Prompt addendum:
 
 ```text
-Closure goal:
 Mine legacy material for original intuition, source leads, naming decisions, reader-facing bridges, analogy seeds, and theory-advancement candidates.
 
 Legacy source paths or URLs:

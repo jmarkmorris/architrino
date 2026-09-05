@@ -1,6 +1,8 @@
 # Numerical recipe and stability
 
-Event-aware integration (practical algorithm):
+At each reception time, the algorithm finds which past emissions can reach the receiver, computes how the transmitter laid down the [wake](../../../foundations/architrino.md)—the expanding disturbance that carries the delayed contribution—and how the receiver crosses it, sums the radial acceleration contributions with $W^{\mathrm{acc}}/r^2$ strength, and advances either through sharp changes at exact hit times or through thin mollified wake surfaces for smooth integration.
+
+## Event-Aware Integration
 
 1. Root finding:
    - For each transmitter $o$ (including $o'=o$ for potential self-hits), solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|-(T_r-T_t)=0$ for $T_t<T_r$.
@@ -13,6 +15,7 @@ Event-aware integration (practical algorithm):
      $$
 
      [View →](../../../../../../equation-mapping.html#corpus-equation-af40ad24c32aee01)
+
    - Sum over all transmitters and all roots (superposition).
 
 3. Time stepping:
@@ -31,5 +34,3 @@ Event-aware integration (practical algorithm):
    - For a candidate electrino:positrino binary, emit the signed branch ledger $b$, regulator $\eta$, step or collocation scale $\Delta T_{\mathrm{step}}$, candidate period $P_b$, and the canonical residual tuple owned by [Binary Dynamics](../../../dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target). This recipe does not define a second tuple or field order.
    - Do not advance the candidate if the signed ledger changes during the reported period, an active transmitter-side Jacobian floor or inactive-root gap vanishes, the transmitter-side acceleration weight leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
    - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
-
-Plain language: At each reception time, find which past emissions can reach the receiver, compute how the transmitter laid down the wake and how the receiver crosses it, sum the radial acceleration contributions with $W^{\mathrm{acc}}/r^2$ strength, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.

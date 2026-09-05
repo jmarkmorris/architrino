@@ -257,5 +257,5 @@ Integration notes for the executable certificate:
 - Use $B_{\mathrm{mem}}^{\mathrm{VP1}}$ as the memory-depth bound and reject any retained active enclosure whose upper endpoint reaches this bound.
 - Import the active tube rows from the VP-1 root/Jacobian proof packet before constructing inactive complements.
 - Replace the floating seed gaps above with outward interval rows on slabbed boxes.
-- Evaluate $\widehat{\mathcal{R}}_{\mathrm{tr},\alpha}$ using the same active root identities, Jacobian rows, and receiver/source velocity projections as the force rows.
+- Evaluate $\widehat{\mathcal{R}}_{\mathrm{tr},\alpha}$ using the same active root identities, Jacobian rows, and receiver/source velocity projections as the acceleration rows.
 - Do not promote VP-1 or mark `spiral_branch_chart_test` complete from this packet alone; the radial-turn and weighted tangential-drive verdicts are owned by the separate drive-verdict lane.

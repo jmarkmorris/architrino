@@ -4,8 +4,11 @@ const WIDE_BLOCK_SELECTOR = [
   "h1",
   "table",
   ".markdown-image-block",
+  ".markdown-mermaid",
   "pre",
   "blockquote",
+].join(", ");
+const EQUATION_BLOCK_SELECTOR = [
   ".math-block",
   ".markdown-math-block",
   ".markdown-equation-map-row",
@@ -33,6 +36,21 @@ function isWideBlock(node) {
     node?.nodeType === 1 &&
     typeof node.matches === "function" &&
     node.matches(WIDE_BLOCK_SELECTOR)
+  );
+}
+
+function equationOverflowsColumn(node) {
+  if (node?.nodeType !== 1) {
+    return false;
+  }
+  // Measure in the actual column, including the equation's View control.
+  // Scroll containers inside the row can hide overflow from the row itself.
+  const equations = [...(node.querySelectorAll?.(EQUATION_BLOCK_SELECTOR) ?? [])];
+  if (node.matches?.(EQUATION_BLOCK_SELECTOR)) {
+    equations.push(node);
+  }
+  return equations.some(
+    element => element.scrollWidth > element.clientWidth + 1
   );
 }
 
@@ -128,7 +146,20 @@ export function createMarkdownColumnPaginationRuntime({
     let pageState = null;
     let columnIndex = 0;
 
+    const finishPage = () => {
+      if (!pageState) {
+        return;
+      }
+      // Fixed heights are packing limits, not space to reserve after packing.
+      // A full-width equation can end a spread after just one short paragraph.
+      pageState.page.style.setProperty("--markdown-column-page-height", "0px");
+      pageState.columns.forEach((column) => {
+        column.style.height = "auto";
+      });
+    };
+
     const startPage = () => {
+      finishPage();
       pageState = createColumnPage(columnCount, pageHeight);
       columnIndex = 0;
     };
@@ -142,6 +173,7 @@ export function createMarkdownColumnPaginationRuntime({
 
     sourceNodes.forEach((node) => {
       if (isWideBlock(node)) {
+        finishPage();
         pageState = null;
         columnIndex = 0;
         appendWideBlock(node);
@@ -160,6 +192,18 @@ export function createMarkdownColumnPaginationRuntime({
       let column = pageState.columns[columnIndex];
       const hadRenderableContent = [...column.childNodes].some(hasRenderableContent);
       column.appendChild(node);
+      if (equationOverflowsColumn(node)) {
+        column.removeChild(node);
+        if (!pageState.columns.some(item => [...item.childNodes].some(hasRenderableContent))) {
+          markdownBody.removeChild(pageState.page);
+        } else {
+          finishPage();
+        }
+        pageState = null;
+        columnIndex = 0;
+        appendWideBlock(node);
+        return;
+      }
       if (column.scrollHeight <= pageState.capacity + 1) {
         return;
       }
@@ -178,6 +222,7 @@ export function createMarkdownColumnPaginationRuntime({
       }
     });
 
+    finishPage();
     return true;
   }
 

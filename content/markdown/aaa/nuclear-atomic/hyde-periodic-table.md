@@ -152,7 +152,7 @@ In technical reading, the Hyde linework can be interpreted as layered semantic s
 
 ---
 
-## $\mathbb{A}\mathbb{A}\mathbb{A}$ Working Hypothesis Collection (Draft)
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Geometric-Periodicity Hypotheses
 
 The points below are collected as a framework-internal research program, not as established consensus chemistry.
 

@@ -124,6 +124,7 @@ d_L=(1+z_X)^2D_A
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ed2d332ff83e42bf)
+
 These are observer-level distance-ladder diagnostics. A path law that shifts line frequencies but does not dilate packet cadence, or that loses flux without the two redshift factors and angular-distance reciprocity, is not an acceptable cosmological redshift replacement.
 
 ## Input Packet

@@ -85,7 +85,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-425758b6e3c675ca)
 
-This is the big conversion. A frequency ratio becomes a scale-factor ratio. Once that conversion is accepted, $z$ becomes more than a line shift. It becomes the coordinate used to infer distance, lookback time, source volume, population history, matter density, dark energy, curvature, neutrino masses, and the age of the observable universe.
+This identification converts a frequency ratio into a scale-factor ratio. Once it is accepted, $z$ becomes more than a line shift: it becomes the coordinate used to infer distance, lookback time, source volume, population history, matter density, dark energy, curvature, neutrino masses, and the age of the observable universe.
 
 In a standard comparison model,
 
@@ -151,7 +151,7 @@ $$
 
 This is why redshift is so important. A measured line shift becomes $z$. The model turns $z$ into $H(z)$, $d_L(z)$, $d_A(z)$, lookback time, source volume, and population history. The fitted parameters then support statements about cosmic acceleration, dark energy, matter density, curvature, neutrino masses, and cosmic age.
 
-The power is real. The danger is also real: the same received photon record can be used first to define redshift, then to infer distance, then to infer source luminosity or event class, then to infer the expansion history used to interpret the same source population.
+This reconstruction is powerful, but it carries a circularity risk: the same received photon record can be used first to define redshift, then to infer distance, then to infer source luminosity or event class, and finally to infer the expansion history used to interpret the same source population.
 
 ## What Redshift Means In $\mathbb{A}\mathbb{A}\mathbb{A}$
 

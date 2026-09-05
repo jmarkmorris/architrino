@@ -17,6 +17,9 @@ export const WEB_KATEX_DIRECTORY = "apps/ios/ArchitrinoReader/ArchitrinoReader/R
 const INTERNAL_DEVELOPER_HARNESS_PATHS = [
   "solver-gpu-harness.html",
   "src/apps/solver-gpu-harness/",
+  "reference.html",
+  "src/apps/reference/",
+  "content/generated/reference/",
 ];
 const INTERNAL_SERVICE_PROTOCOL_PATHS = [
   "src/archie-service/",

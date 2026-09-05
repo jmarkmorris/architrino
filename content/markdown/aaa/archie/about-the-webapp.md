@@ -1,18 +1,8 @@
 # About the Webapp
 
-This note is the reader-facing orientation to the Architrino webapp as a whole. Its purpose is to explain what the runtime is trying to be, how scenes and markdown cooperate, and why the project treats navigation, reading, and conceptual structure as one integrated system rather than as separate layers.
+The webapp makes the Architrino Assembly Architecture straightforward to explore by presenting it as a connected body of scenes, prose, visualizations, and specialized tools rather than a flat pile of documents. A reader can move through the architecture spatially, open the explanation when needed, and return to the surrounding conceptual neighborhood. This orientation explains the supported content and interactions and the runtime model that joins them; it presents the reader-facing system rather than its development history.
 
-The simple idea is that a difficult theory should not be trapped in a flat pile of documents. The webapp lets the reader move through the architecture spatially, open the prose when needed, and return to the surrounding graph without losing the conceptual neighborhood.
-
-Read this as the top conceptual overview of the app before drilling into navigation rules, scene taxonomy, or file-structure details.
-
-## Purpose
-
-This note explains what the Architrino webapp is, what kinds of content and interaction it supports, and how its runtime content model is organized.
-
-It is a reader-facing orientation document, not a development log.
-
-This guide should be read alongside:
+The adjacent guides are:
 
 - [navigation-and-controls.md](navigation-and-controls.md)
 - [software-architecture-and-maintenance.md](software-architecture-and-maintenance.md)
@@ -117,23 +107,15 @@ The current webapp stack includes:
 
 These technologies matter operationally because they shape what kinds of scenes, mathematical notation, and document behaviors the runtime can support directly.
 
-## Project Status
+## Current Scope
 
-The environment is active and still evolving.
-
-That means:
-
-- content depth may increase,
-- scene bindings may continue to improve as documents are reorganized,
-- supporting Archie references may expand as the public surface becomes more explicit,
-- additional presentation types may be added over time.
-- some material or apps may not be complete
+The environment is active and still evolving. Content depth and scene bindings vary, supporting Archie references and presentation types are not uniform, and some material or applications remain incomplete.
 
 The governing architecture, however, is already clear: scenes organize the reader-facing graph, markdown carries the long-form content, and generated manifests stabilize runtime access.
 
 ## What This Document Is Not
 
-This note is not:
+This orientation does not replace:
 
 - a style guide,
 - a scene taxonomy specification,

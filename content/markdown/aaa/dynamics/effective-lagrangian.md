@@ -1,14 +1,14 @@
 # Effective Lagrangian
 
-This chapter asks whether the delayed Master EOM can be recovered from an action principle. In ordinary mechanics, a Lagrangian is useful because varying one scalar history functional gives the equations of motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the target is harder: the functional must remember delayed causal roots, transmitter identities, boundary terms, and transmitter-side acceleration weight.
+This chapter asks whether the delayed Master Equation of Motion can be recovered from an action principle. An action is a scalar assigned to an entire trial history; a Lagrangian is the quantity integrated to obtain it. In ordinary local mechanics, requiring the action to be stationary under small fixed-endpoint path changes gives the equations of motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the target is harder because the functional must retain delayed causal roots, transmitter identities, boundary terms, and transmitter-side acceleration weight. A causal root is an earlier emission event whose expanding wake reaches the receiver at the event being evaluated.
 
-The validity condition is simple. Any variational scaffold in this chapter that does not produce transmitter-side acceleration weight is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced acceleration law carries $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ on the same retained roots as the Master EOM. Transmitter-side factors remain transversality diagnostics until paired with the receiver-side factor and checked by the stated residuals.
+The validity condition is exact: any variational scaffold in this chapter that does not produce transmitter-side acceleration weight is invalid as closure evidence. The required path-history functional must reduce to an acceleration law carrying $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ on the same retained roots as the Master Equation. Here $c_f$ is the causal-wake propagation speed and $D_t$ measures how the transmitter crosses the causal-root condition. Transmitter-side factors remain transversality diagnostics until they are paired with the receiver-side factor and checked by the stated residuals.
 
 Variational proof work therefore begins from this canonical receiver-side target. No prior action stationarity, energy balance, or Noether wake-history verdict is inherited unless the same derivation reproduces the receiver-side branch law on the retained record.
 
 The bridge is deliberately conditional. The Master EOM remains the primary dynamics at the substrate level; an action or Lagrangian chart becomes theorem-grade only after its variation, boundary, and conservation residuals close on the retained branch chart. Until then, the effective Lagrangian is a disciplined inference device rather than an independent ontology.
 
-### Ordinary Lagrangian Orientation
+## Ordinary Lagrangian Orientation
 
 In a standard comparison form for ordinary local mechanics, one chooses generalized coordinates $q_{\mathrm{std}}^a(t_{\mathrm{std}})$ and writes a Lagrangian $L_{\mathrm{std}}(q_{\mathrm{std}},dq_{\mathrm{std}}/dt_{\mathrm{std}},t_{\mathrm{std}})$, often in the simple form
 $$
@@ -16,18 +16,21 @@ L_{\mathrm{std}} = K - V
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-87d3a21a45134235)
+
 where $K$ is kinetic energy and $V$ is potential energy. The corresponding action is
 $$
 S_{\mathrm{std}}[q_{\mathrm{std}}]=\int_{t_{\mathrm{std},a}}^{t_{\mathrm{std},b}}L_{\mathrm{std}}\!\left(q_{\mathrm{std}},\frac{dq_{\mathrm{std}}}{dt_{\mathrm{std}}},t_{\mathrm{std}}\right)\,dt_{\mathrm{std}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-34b0c8d6f27f9862)
+
 and fixed-endpoint stationarity,
 $$
 \delta S_{\mathrm{std}}=0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c6139ede77af1ab2)
+
 gives the Euler-Lagrange equation
 $$
 \frac{d}{dt_{\mathrm{std}}}\frac{\partial L_{\mathrm{std}}}{\partial (dq_{\mathrm{std}}^a/dt_{\mathrm{std}})}
@@ -37,6 +40,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d885015918a12c61)
+
 for each coordinate $q_{\mathrm{std}}^a$. This equation is not a separate force postulate. It is the recovery condition that the chosen scalar $L_{\mathrm{std}}$ must satisfy if the action is to generate the equations of motion.
 
 Operationally, stationarity is tested by nearby trial paths $q_{\mathrm{std},\epsilon}^a(t_{\mathrm{std}})=q_{\mathrm{std}}^a(t_{\mathrm{std}})+\epsilon\xi^a(t_{\mathrm{std}})$ with $\xi^a(t_{\mathrm{std},a})=\xi^a(t_{\mathrm{std},b})=0$. Because $\xi^a$ is otherwise arbitrary, setting the first variation of $S_{\mathrm{std}}$ to zero forces the Euler-Lagrange expression itself to vanish. The action is therefore a history functional with units of energy times time, not an instruction to minimize instantaneous energy.
@@ -49,18 +53,21 @@ L_{\mathrm{std}}\!\left(x_{\mathrm{std}},\frac{dx_{\mathrm{std}}}{dt_{\mathrm{st
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f73274cc845a9a02)
+
 so the Euler-Lagrange equation gives
 $$
 \frac{d}{dt_{\mathrm{std}}}\left(m\frac{dx_{\mathrm{std}}}{dt_{\mathrm{std}}}\right)-(-kx_{\mathrm{std}})=0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-96b5c507dc3ce54f)
+
 or equivalently
 $$
 m\frac{d^2x_{\mathrm{std}}}{dt_{\mathrm{std}}^2}=-kx_{\mathrm{std}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dd9f79c7c52bcad6)
+
 which is the same equation obtained from Newton's law and Hooke's law. The value of the example is not that Lagrangian mechanics replaces the tested motion, but that it recovers the same equation from an energy scalar and generalizes cleanly to many coordinates.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ correction to this toy example is more informative than the recovery itself. A real assembly-level spring is a delayed restoring channel, so the first effective model is not exactly $m_{\mathrm{eff}}d^2x_{\mathrm{eff}}/dt_{\mathrm{eff}}^2=-k_{\mathrm{eff}}x_{\mathrm{eff}}$ but
@@ -91,7 +98,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5ac5ba28c095b6b8)
 
-on a slowly varying branch. The leading correction is therefore sign-definite once the branch delay orientation is fixed. For the causal restoring convention displayed above it is anti-damping, an analogous local pattern to the one that appears as positive tangential work in the circular binary. The mass-like coefficient is also shifted by the delayed response. This does not prove the full assembly mass map, but it shows in the simplest chart why inertia and dissipation-like terms are delayed-response quantities rather than primitive architrino constants.
+on a slowly varying branch. The leading correction is sign-definite once the branch delay orientation is fixed. For the causal restoring convention displayed above it is anti-damping: the velocity term feeds the motion rather than opposing it. The mass-like coefficient is also shifted by the delayed response. This toy expansion does not prove the assembly mass map. It shows only that one delayed effective restoring channel produces linked inertia-like and anti-damping coefficients instead of two independent constants.
 
 The two displayed corrections are not independent parameters. They are the first even and odd moments of the same delayed restoring channel:
 
@@ -109,7 +116,7 @@ $$
 
 where $m_{\mathrm{delay}}$ denotes the mass-like shift and $\Gamma_{\mathrm{delay}}$ denotes the signed anti-damping coefficient for this convention. On a fixed branch, their ratio is a kernel-shape consequence of the same causal-wake delay, not two fitted material constants. This toy calculation is the finite-dimensional seed of the continuum statement below: even-frequency kernel moments feed inertia-like response, while odd-frequency moments feed dissipation or anti-damping channels.
 
-Historically, the route into this form matters. Newtonian force balance can be projected along fixed-endpoint variations as virtual work. For conservative interactions, $\mathbf{F}=-\nabla V$ turns the work term into a variation of potential energy, while the inertial term supplies a variation of kinetic energy plus an endpoint term. When the endpoint variation vanishes, Hamilton's construction turns that differential relation into the stationary action of $K-V$. The useful condition is therefore stationarity of the action, not a literal minimum in every case.
+Historically, the route into this form matters. Newtonian force balance can be projected along fixed-endpoint variations as virtual work. For conservative interactions, $\mathbf{F}=-\nabla V$ turns the work term into a variation of potential energy, while the inertial term supplies a variation of kinetic energy plus an endpoint term. When the endpoint variation vanishes, the construction developed by [Hamilton (1834)](https://doi.org/10.1098/rstl.1834.0017) turns that differential relation into stationary action. The useful condition is therefore stationarity, not a literal minimum in every case.
 
 The same idea survives in $\mathbb{A}\mathbb{A}\mathbb{A}$ only after changing the object being varied. The Master EOM is not local in the instantaneous native variables $(\mathbf X_i(T),\mathbf V_i(T))$: receiver acceleration depends on delayed transmitter coordinates, causal-root branches, transmitter-side acceleration weights, and the retained causal-wake history. A local expression $L(\mathbf X,\mathbf V,T)$ therefore cannot be the substrate-level action for the exact law. The appropriate candidate is a multi-time path-history functional whose variation must reproduce the delayed receiver-side branch law.
 
@@ -117,12 +124,12 @@ The operational bridge is:
 
 1. ordinary mechanics uses $L_{\mathrm{std}}(q_{\mathrm{std}},dq_{\mathrm{std}}/dt_{\mathrm{std}},t_{\mathrm{std}})$ and tests $\delta S_{\mathrm{std}}=0$;
 2. $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a regularized delayed action $S_\eta[\{\mathbf X_i\}]$ over path history;
-3. the action is promoted only if its variation yields the Master EOM on the retained branch chart;
+3. the action is accepted as a generator only if its variation yields the Master EOM on the retained branch chart;
 4. failure is measured by the variation residual $\mathbf{R}_i^{(\eta)}(T)$ and the window diagnostic $\epsilon_{\mathrm{var}}^{(\eta)}(W)$ defined below.
 
 Thus the Lagrangian question in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not whether one can write a familiar-looking $T-V$ expression. The question is whether a delayed action with the same causal-root, transmitter-side factor, transmitter-side acceleration-weight, boundary, and wake-history conventions as the Master EOM has a stationary variation whose residual closes. Only then do Noether-style energy, momentum, and angular-momentum statements become theorem-grade rather than diagnostic.
 
-### Ordinary Hamiltonian Orientation
+## Ordinary Hamiltonian Orientation
 
 Hamiltonian mechanics repackages the same standard comparison dynamics into coordinates and canonical momenta. Starting from a local Lagrangian $L_{\mathrm{std}}(q_{\mathrm{std}},dq_{\mathrm{std}}/dt_{\mathrm{std}},t_{\mathrm{std}})$, define the canonical momentum
 $$
@@ -130,12 +137,14 @@ p_a\equiv\frac{\partial L_{\mathrm{std}}}{\partial (dq_{\mathrm{std}}^a/dt_{\mat
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-08dbb70e53657502)
+
 and, when the velocity-momentum map can be inverted, define the Hamiltonian by the Legendre transform
 $$
 H_{\mathrm{std}}(q_{\mathrm{std}},p,t_{\mathrm{std}})=p_a\frac{dq_{\mathrm{std}}^a}{dt_{\mathrm{std}}}-L_{\mathrm{std}}\!\left(q_{\mathrm{std}},\frac{dq_{\mathrm{std}}}{dt_{\mathrm{std}}},t_{\mathrm{std}}\right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b129e45a1f0edf36)
+
 with the velocities rewritten in terms of $(q_{\mathrm{std}},p,t_{\mathrm{std}})$. Hamilton's equations are
 $$
 \frac{dq_{\mathrm{std}}^a}{dt_{\mathrm{std}}}=\frac{\partial H_{\mathrm{std}}}{\partial p_a},
@@ -144,6 +153,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8dd2f4e54fcdbbd3)
+
 so one second-order equation in $q_{\mathrm{std}}^a$ becomes a first-order flow on phase space $(q_{\mathrm{std}}^a,p_a)$. In simple time-independent mechanical systems $H_{\mathrm{std}}$ is often the total energy $K+V$, but the defining statement is the Legendre transform and the canonical flow, not the energy slogan by itself.
 
 The same equations can also be read from the phase-space action
@@ -152,6 +162,7 @@ S_H[q_{\mathrm{std}},p]=\int_{t_{\mathrm{std},a}}^{t_{\mathrm{std},b}}\left(p_a\
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-eb1d4529cd8f5d09)
+
 when variations in both $q_{\mathrm{std}}^a$ and $p_a$ are admitted and endpoint variations of $q_{\mathrm{std}}^a$ vanish. Variation with respect to $p_a$ gives $dq_{\mathrm{std}}^a/dt_{\mathrm{std}}=\partial H_{\mathrm{std}}/\partial p_a$, while variation with respect to $q_{\mathrm{std}}^a$ gives $dp_a/dt_{\mathrm{std}}=-\partial H_{\mathrm{std}}/\partial q_{\mathrm{std}}^a$. This is the action-level form of the canonical flow, and it is the part that matters when asking whether a reduced $\mathbb{A}\mathbb{A}\mathbb{A}$ chart is genuinely Hamiltonian rather than only an energy-like fit.
 
 The conjugate momenta are more than bookkeeping in ordinary mechanics. When a coordinate is cyclic, the corresponding conjugate momentum is conserved; the same coordinate-momentum pairing later becomes the classical object used in Bohr-Sommerfeld action integrals and in canonical commutation rules. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these are recovery targets for a reduced effective chart, not permission to quantize the substrate variables directly.
@@ -166,6 +177,7 @@ z_{\mathfrak B}=(Q^A,\Pi_A,\theta^\alpha,I_\alpha)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7c787d8a7da2b0a9)
+
 where $\theta^\alpha$ records the sub-assembly phase and $I_\alpha$ is the conjugate action variable for that phase. Each retained phase-locked sub-assembly adds its own phase-action pair. Surrounding influences are admissible only when they are represented as fixed branch data, slow parameters, or additional coordinates over the comparison window; otherwise the chart is a driven open system rather than a closed Hamiltonian phase space.
 
 On a single periodic channel, the action variable is not an arbitrary label once the chart is required to be canonical and the angle is required to advance uniformly. With the local $2\pi$ convention, the reduced action is the closed-cycle integral of the canonical one-form,
@@ -177,6 +189,7 @@ I_\alpha
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-23ef1ea9c1ab82a4)
+
 and the frequency readout is
 $$
 \omega_\alpha
@@ -185,6 +198,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9700d8bcef28fc29)
+
 on that reduced chart. The value of this comparison is methodological: a replayable branch can expose frequency and harmonic content before the full path-history solution is written, but only if the same causal-root ledger and retained branch record make the closed-cycle integral and canonical residual stable.
 
 The action variables are local objects unless the phase torus is globally unobstructed. For a three-binary orthogonal-axis three-binary chart, the indexed phase circles need not form a trivial $T^3$ bundle over the retained branch family. Choose any declared ordering $(a,b,c)$ of the persistent binary indices. A retained return cycle of binary $a$ can carry a phase-entry degree pair rather than a single scalar winding. With $\rho_a:S^1_a\to\mathfrak B$ denoting that return cycle,
@@ -202,9 +216,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a0bfe0d7c31089ab)
 
-when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Three-Binary 4:2:1 Frequency Lock](../noether-braid/three-binary-4-2-1-frequency-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
+when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Three-Binary 4:2:1 Frequency Lock](../noether-braid/three-binary-4-2-1-frequency-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally valid only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
 
-More precisely, the action variables $I_\alpha$ are sections of a flat action bundle over the retained branch family. They are globally defined only when the return holonomy is trivial on the admitted observables; equivalently, the phase-return degree pair closes by integer multiples of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is therefore admissible only on this trivial-holonomy locus:
+The proposed global interpretation is that the action variables $I_\alpha$ form sections of a flat action bundle over the retained branch family. This interpretation is not derived by the local action-angle construction. It requires the return holonomy to be trivial on the admitted observables and the phase-return degree pair to close by integer multiples of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is admissible only after those conditions have been established:
 
 $$
 \oint_{\gamma_\alpha}\Pi\,dQ
@@ -216,7 +230,9 @@ $$
 
 Outside that locus, the action integral is multivalued under the return map, so the apparent integer is a local chart artifact rather than a branch invariant.
 
-### Regularized Nonlocal Action and Variation
+> Claim grade: guessed for the flat-bundle and trivial-holonomy identification. Falsifier: a branch with the stated integer phase return but nontrivial action-variable holonomy, or a branch with trivial observable holonomy that fails the proposed phase-degree condition, would refute the claimed equivalence. The displayed integral is a recovery condition, not a derived quantization law.
+
+## Regularized Nonlocal Action and Variation
 
 The Master Equation of Motion for architrinos is non-Markovian, driven by intersections between receiver trajectories and past causal wake surfaces. Consequently, any action-level scaffold for this law cannot be a local integral over instantaneous states. It must be a multi-time functional over path history, and its variation residual must be identified before the scaffold is treated as an exact action derivation. If that residual does not vanish or reduce to a declared boundary term, the proposed action does not derive the Master EOM.
 
@@ -234,6 +250,7 @@ S_\eta[\{\mathbf X_i\}]
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cefa429262156257)
+
 $$
 \tilde g_{ij}(T,T_t)\equiv T-T_t-\frac{r_{ij}(T;T_t)}{c_f},
 \qquad
@@ -246,21 +263,21 @@ $$
 
 With $[\tilde g]=T$ and $[\delta(\tilde g)]=T^{-1}$, the coefficient $\mu_{\text{arch}}\kappa$ gives the interaction term the same action dimension as the quadratic bookkeeping term. A factor $\kappa/c_f$ would instead leave the kernel with acceleration dimensions before time integration.
 
-Plainly: the same universal conversion used in the kinetic row must also multiply the interaction row; dividing by the wake speed does not repair the units.
+The same universal conversion used in the kinetic row must also multiply the interaction row; dividing by the wake speed does not repair the units.
 
 The displayed action uses the quadratic bookkeeping kinetic Lagrangian $\ell_\mu(s)=\frac12\mu_{\text{arch}}s^2$. It therefore derives only the quadratic conjugate momentum $\mu_{\text{arch}}\mathbf V$ on the charts where the complete delayed variation succeeds. For a general kinetic-energy scalar $K(s)$, [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino) owns the work-power compatibility conditions and the reconstruction $\ell_K(s)=sP(s)-K(s)$.
 
-Plainly: the energy scalar $K$ cannot be substituted directly for the kinetic Lagrangian. A generalized kinetic chart must use the reconstructed $\ell_K$ and then rederive the complete action variation, including the interaction normalization, constraint residual, boundary charge, and momentum and energy functionals. No general conservation claim follows from the quadratic calculation without that revariation.
+The energy scalar $K$ cannot be substituted directly for the kinetic Lagrangian. A generalized kinetic chart must use the reconstructed $\ell_K$ and then rederive the complete action variation, including the interaction normalization, constraint residual, boundary charge, and momentum and energy functionals. No general conservation claim follows from the quadratic calculation without that revariation.
 
 Here:
 - $\mathbf X_i(T)$ is the trajectory of architrino $i$.
 - $T$ is the generic dummy variable of the action integral. At a retained causal hit it takes the receiver role $T_r$, while $T_t$ remains the transmitter emission time.
-- $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, not a particle-specific inertial mass.
+- $\mu_{\text{arch}}$ is the universal kinetic/action bookkeeping coefficient, not a particle-specific inertial mass.
 - $r_{ij}(T;T_t)$ is the Euclidean separation between reception and emission events.
 - $\delta_\eta$ is a mollified delta function of width $\eta > 0$. It supports Lipschitz control only together with the collision floor, finite-branch, transversality, and integrability assumptions below.
 - $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ enforces attraction for opposite polarities and repulsion for like polarities.
 
-#### Regularization and Admissibility Assumptions
+### Regularization and Admissibility Assumptions
 
 The derivation below is valid under:
 
@@ -271,7 +288,7 @@ The derivation below is valid under:
 - **(EL5)** Integrability on the chosen history window, either by finite support or sufficient tail falloff, so differentiation under the time integrals is justified.
 - **(EL6)** Delayed branch convention: only $T_t\le T$ contributes (equivalently, the $\Theta(T-T_t)$ branch of the causal selector).
 
-#### Kernel Variation and Branch Reduction
+### Kernel Variation and Branch Reduction
 
 This subsection isolates the exact step at which a variational scaffold can fail. Set $\mathbf X_i^\varepsilon=\mathbf X_i+\varepsilon\boldsymbol{\xi}_i$ and differentiate at $\varepsilon=0$.
 
@@ -294,6 +311,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f46e64acd074075b)
+
 the receiver-coordinate gradient is
 $$
 \nabla_{\mathbf X_i(T)}\mathcal{K}_{ij}
@@ -312,7 +330,7 @@ This receiver-side gradient is one ingredient in a complete first variation, but
 
 On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the transmitter-side delayed acceleration law
 $$
-\mu_{\text{arch}}\mathbf A_i(T)
+\mathbf A_i(T)
 =
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
 \sum_{T_t\in\mathcal{C}_{ij}(T)}
@@ -324,6 +342,7 @@ W_{ij}^{\mathrm{acc}}(T;T_t)\,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2219499d5f2ea7af)
+
 where $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ is computed on the same retained root record. This includes nontrivial self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
@@ -334,6 +353,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6e473cc76623b4ad)
+
 any branch-local smooth $f$ satisfies
 $$
 \lim_{\eta\to0^+}\int_{-\infty}^{T} f(T_t)\phi_\eta\!\big(\tilde g_{ij}(T,T_t)\big)\,dT_t
@@ -344,11 +364,12 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-412295f81bc71acc)
+
 provided the active roots are simple and separated from collision support.
 
 Equivalently, in the finite-$\eta$ branch-selector form one may write
 $$
-\mu_{\text{arch}}\mathbf A_i(T)
+\mathbf A_i(T)
 =
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
 \int_{-\infty}^{T}dT_t\,
@@ -357,31 +378,33 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e3232fa0259734af)
+
 with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate. Its weak limit must be recomputed so that the retained branch law carries the transmitter-side factor $W^{\mathrm{acc}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is cleared only after the full delayed variation is assembled and the branch reduction is performed. If it survives in the interior, this action candidate fails to derive the Master EOM.
 
 A derivation, reduction, or simulation that claims action-derived dynamics must therefore report the variation residual
 $$
-\mathbf{R}_i^{(\eta)}(T)
+\mathbf{R}_{A,i}^{(\eta)}(T)
 =
-\mu_{\text{arch}}\mathbf A_i(T)
+\mathbf A_i(T)
 -
 \sum_j\kappa\,\sigma_{ij}|q_iq_j|
-\mathbf{F}_{ij,\mathrm{scale}}^{(\eta)}(T)
+\mathbf{A}_{ij,\mathrm{scale}}^{(\eta)}(T)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-898560791bbbde22)
-using the scale term and constraint residual defined in [Master Equation](./master-equation.md#exact-nonlocal-lagrangian). The dimensionless window diagnostic is
+
+using the scale term and constraint residual defined in [Master Equation](./master-equation.md#candidate-nonlocal-lagrangian-and-its-variation-obstruction). The dimensionless window diagnostic is
 $$
 \epsilon_{\mathrm{var}}^{(\eta)}(W)
 =
 \frac{
-\sum_i\int_W\|\mathbf{R}_i^{(\eta)}(T)\|\,dT
+\sum_i\int_W\|\mathbf{R}_{A,i}^{(\eta)}(T)\|\,dT
 }{
 \sum_i\int_W
 \left(
-\mu_{\text{arch}}\|\mathbf A_i(T)\|
+\|\mathbf A_i(T)\|
 +
-\|\mathbf{F}_{i,\mathrm{act}}^{(\eta)}(T)\|
+\|\mathbf{A}_{i,\mathrm{act}}^{(\eta)}(T)\|
 \right)dT
 +
 \varepsilon
@@ -389,14 +412,16 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3c8b7f134ec4fa3a)
+
 The transmitter-side branch target is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. Otherwise the local effective Lagrangian remains a fitted chart. The surviving derivative-of-constraint term is evidence against this action candidate; it does not license a new acceleration term, a vector potential, or a magnetic-like mechanism.
 
-The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [Master Equation](./master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. A useful receiver-coordinate identity is obtained by integrating along the causal characteristic. With
+The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [Master Equation](./master-equation.md#candidate-nonlocal-lagrangian-and-its-variation-obstruction): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. A useful receiver-coordinate identity is obtained by integrating along the causal characteristic. With
 $$
 u=\tilde g+\frac{r}{c_f}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4ab76a315be4dffa)
+
 the endpoint-clear candidate is
 $$
 K_{\mathrm{eff}}^{(\eta)}(r,\tilde g)
@@ -408,6 +433,7 @@ ds
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a07a5490ecc8bcab)
+
 or the finite-endpoint variant with lower limit $-h_{+}$ after the characteristic gauge has cancelled the endpoint-clearance term. It satisfies
 $$
 \left(
@@ -420,6 +446,7 @@ K_{\mathrm{eff}}^{(\eta)}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7a782c98fe0924b5)
+
 so the receiver-coordinate derivative contains the accepted inverse-square scale term without a derivative-of-constraint remainder.
 
 The operator in this identity is the derivative along the causal characteristic. With
@@ -432,9 +459,10 @@ u=\tilde g+\frac{r}{c_f},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fcf20579bf465a11)
+
 one has $D_{\mathrm{char}}u=0$. The kernel is therefore a characteristic integral of the regularized hit density along $u=\mathrm{const}$. This establishes a local receiver-gradient construction only. It is not an accepted action, a causal-wake update, or a source of Noether charges. Effective Lagrangian reductions therefore inherit the Master EOM from retained solutions and must derive any action and conservation boundary functional independently.
 
-### Symmetries and History-Aware Conservation Laws
+## Symmetries and History-Aware Conservation Laws
 
 The regularized action $S_\eta$ is invariant under the fundamental symmetry group of the substrate when the mollifier, history window, and self-branch cutoff preserve those symmetries: the Euclidean group $E(3)$ and absolute time translations $\mathbb{R}_{\text{time}}$; the exact statement is recovered in the $\eta\to0^+$ limit. If the regularization is inserted only at the equation-of-motion level or uses a non-invariant window, the associated energy, momentum, and angular-momentum expressions become diagnostics rather than proved Noether charges.
 
@@ -457,6 +485,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-55035c3eafba0d92)
+
 with
 $$
 p_a=\frac{\partial L_{\mathrm{std}}}{\partial (dq_{\mathrm{std}}^a/dt_{\mathrm{std}})},
@@ -465,9 +494,10 @@ H_{\mathrm{std}}=p_a\frac{dq_{\mathrm{std}}^a}{dt_{\mathrm{std}}}-L_{\mathrm{std
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a1670016d06beaff)
-On a stationary path, the interior term vanishes. Spatial translation symmetry then compares endpoint momentum, while absolute-time translation symmetry compares the Hamiltonian energy. This is the standard Noether route: a conserved quantity is the boundary charge induced by a continuous symmetry of the action, not an independently imposed storage rule.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ this identity is a recovery template, not a substrate replacement. A delayed action is promoted only if the same split appears on the retained causal-root chart: the interior term must reduce to the Master EOM residual, and the endpoint term must become the wake-history boundary functional on the same branch record. Spatial translation invariance then protects $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ only when the wake momentum record is retained, and absolute-time translation protects $K+E_{\mathrm{wake}}$ only when the endpoint leakage record is declared. Dropping the interior residual, the wake-history endpoint term, or the boundary flux turns the Noether statement back into a diagnostic comparison.
+On a stationary path, the interior term vanishes. Spatial translation symmetry then compares endpoint momentum, while absolute-time translation symmetry compares the Hamiltonian energy. This is the variational symmetry route established by [Noether (1918)](https://eudml.org/doc/59024): a conserved quantity is the boundary charge induced by a continuous symmetry of the action, not an independently imposed storage rule.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ this identity is a recovery template, not a substrate replacement. A delayed action is accepted as a generator only if the same split appears on the retained causal-root chart: the interior term must reduce to the Master EOM residual, and the endpoint term must become the wake-history boundary functional on the same branch record. Spatial translation invariance then protects $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ only when the wake momentum record is retained, and absolute-time translation protects $K+E_{\mathrm{wake}}$ only when the endpoint leakage record is declared. Dropping the interior residual, the wake-history endpoint term, or the boundary flux turns the Noether statement back into a diagnostic comparison.
 
 The more general local Noether form also matters. For an infinitesimal active transformation
 $$
@@ -475,6 +505,7 @@ q_{\mathrm{std}}^a\mapsto q_{\mathrm{std}}^a+\epsilon X^a(q_{\mathrm{std}},t_{\m
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ec8d962586991540)
+
 the action variation is unchanged when the Lagrangian changes at most by a total time derivative,
 $$
 \delta L
@@ -483,12 +514,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-509138bb258fe13d)
+
 On stationary paths this gives the conserved charge
 $$
 \frac{d}{dt_{\mathrm{std}}}\left(p_aX^a-G\right)=0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-44f731886c2fe3a9)
+
 Spatial translations have $G=0$ and recover momentum. Rotations recover angular momentum. Time translations are the case where the total-derivative term supplies the Hamiltonian energy. In the delayed chart, the same pattern is admissible only after $X^a$, $G$, and the boundary functional are replaced by history-aware branch quantities from the retained causal-root record.
 
 **Energy Functional:** Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
@@ -497,6 +530,7 @@ E_{\text{tot}}(T)=K(T)+E_{\text{wake}}(T)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8a6963cef3c0a396)
+
 where the action-level nonlocal Noether charge can be written with the weighted causal kernel from [Master Equation](./master-equation.md#action-level-wake-energy-functional-at-a-time-boundary). To avoid confusing the receiver-gradient kernel above with the Noether-energy kernel, write
 $$
 \mathcal{K}_{ij}^{E}(T_1,T_t)
@@ -508,6 +542,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-98c72a643a2228d4)
+
 Then:
 
 $$
@@ -523,7 +558,7 @@ $$
 
 The outer minus sign matches the action convention $S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the sharp static like-polarity pair charge positive. Reversing that sign would contradict the positive work required to bring a repelling like-polarity pair closer.
 
-Plainly: the boundary charge must inherit both the units and the sign of the same action kernel.
+The boundary charge must inherit both the units and the sign of the same action kernel.
 
 For compatible trajectory reconstruction one may use the work-integral form
 $$
@@ -531,6 +566,7 @@ U(T)=U_\ast-\int_{T_\ast}^{T}\sum_i \mu_{\text{arch}}\,\mathbf A_i(T')\cdot\math
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5c605fb8c4cd0e0e)
+
 when it is derived from the same action-level acceleration law and boundary convention. Otherwise $U(T)$ is a diagnostic history functional, not an independently proved Noether charge.
 
 The corresponding finite-window energy residual is
@@ -555,11 +591,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4a57b4bb29eb73f9)
-Here $\mathcal{B}_E^{(\eta)}$ is the declared endpoint or period-cut leakage. For isolated period-matched tests, $\epsilon_{\mathrm{var}}^{(\eta)}\to0$, $\mathcal{B}_E^{(\eta)}\to0$, and $\epsilon_E^{(\eta)}\to0$ are the minimal conservation checks before the effective Hamiltonian is promoted beyond a diagnostic fit.
+
+Here $\mathcal{B}_E^{(\eta)}$ is the declared endpoint or period-cut leakage. For isolated period-matched tests, $\epsilon_{\mathrm{var}}^{(\eta)}\to0$, $\mathcal{B}_E^{(\eta)}\to0$, and $\epsilon_E^{(\eta)}\to0$ are the minimal conservation checks before the effective Hamiltonian is accepted as more than a diagnostic fit.
 
 The energy residual above is theorem-level only after the chart declares one symmetry-preserving action or independently derived causal-wake update, its endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same construction and boundary convention.
 
-**Generalized Momentum:** Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
+**Generalized momentum target.** If a symmetry-preserving delayed action is shown to generate the Master Equation and its boundary variation is retained, spatial translation invariance yields a conserved total momentum of the form $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$. The wake term must be derived from that same action and cannot be inserted merely to cancel a mechanical residual. Boundedness of a history-aware energy is likewise a diagnostic against runaway behavior only after the energy and its boundary flux have been constructed on the same record.
+
+> Claim grade: inferred as the required Noether form, conditional on an action and boundary functional not yet derived for the canonical Master Equation. Falsifier: a symmetry-preserving generating action whose translation boundary charge cannot be decomposed into the declared mechanical and wake records would refute this form; failure of the present action candidate's variation does not refute the Master Equation.
 
 For an effective reduction to promote a retained chart rather than fit it, it must also report vector residuals for the same branch pullback:
 $$
@@ -583,6 +622,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0ba4bd8ad6f57dca)
+
 and
 $$
 \epsilon_J^{(\eta)}(W)
@@ -605,9 +645,10 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-99a9f4f7031036a2)
+
 Small $\epsilon_E^{(\eta)}$, $\epsilon_P^{(\eta)}$, and $\epsilon_J^{(\eta)}$ are conservation diagnostics when the regularization is inserted at the equation-of-motion level. They become Noether-charge tests only when the action regularization itself preserves time translation, spatial translation, and rotation symmetry on the retained chart.
 
-### Coarse-Graining: The Effective Continuum Lagrangian
+## Coarse-Graining: The Effective Continuum Lagrangian
 
 The continuum Lagrangian belongs to a coarse-grained level. To describe emergent behavior of the Noether sea and complex assemblies, the description passes from discrete trajectories to continuum densities on native slices. Define a coarse-grained architrino polarity density $\rho_q(\mathbf X,T)$ and current density $\mathbf{j}_q(\mathbf X,T)$, smoothed over a scale much larger than the Noether braid scale but smaller than macroscopic gradients. This notation is deliberately distinct from Noether braid density variables such as $\rho_{\text{NS}}$ and $n$.
 
@@ -620,12 +661,14 @@ S_{\text{int}}^{\text{cg}} = - \frac{\mu_{\text{arch}}\kappa}{2} \int dT \int d^
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3c5cdf8fe6291707)
+
 with delayed transmitter time
 $$
 T' = T - \frac{\|\mathbf X-\mathbf X'\|}{c_f}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5bcc1e7cd872a604)
+
 propagation direction
 $$
 \hat{\mathbf{n}}(\mathbf X,\mathbf X')=
@@ -633,6 +676,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1b972556a7cd8af2)
+
 coarse transport velocity
 $$
 \mathbf{u}(\mathbf X',T')
@@ -642,9 +686,12 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7de07e9ecefe01d1)
+
 Here $\rho_q$ has polarity-density units. The emission-time delta collapse has already been absorbed into the delayed Eulerian density, and the discrete action uses the time-normalized causal constraint. No additional $1/c_f$ therefore remains in the continuum prefactor; the same universal $\mu_{\text{arch}}\kappa$ conversion that supplies the discrete interaction action supplies this coarse-grained row.
 
-This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional transmitter-side factor: the delayed density $\rho_q(\mathbf X',T')$ already carries the transmitter-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point transmitter, the familiar transmitter-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. A corrected delayed action must reproduce the canonical inverse-square acceleration density weighted by $W^{\mathrm{acc}}=c_f/|D_t|$. Receiver velocity may enter the full variation, root playback, and conserved accounts, but it may not reappear as an extra multiplier on the instantaneous acceleration.
+This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. The proposed reading contains no additional transmitter-side factor because the delayed density $\rho_q(\mathbf X',T')$ is intended to carry the compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. That inheritance has not yet been derived for the full branch-changing dynamics. For a point transmitter, the transmitter-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into an already collapsed Eulerian density kernel. A valid continuum action must reproduce the canonical inverse-square acceleration density weighted by $W^{\mathrm{acc}}=c_f/|D_t|$. Receiver velocity may enter the full variation, root playback, and conserved accounts, but it may not reappear as an extra multiplier on the instantaneous acceleration.
+
+> Claim grade: guessed for the continuum inheritance of transmitter-side compression by $\rho_q$. Falsifier: a controlled discrete-to-continuum limit in which the pushed-forward density fails to reproduce $c_f/|D_t|$, or reproduces it only after an additional factor, would reject this kernel as written.
 
 The remaining action correction is also one continuum location where delayed pairwise mechanical acceleration fails to cancel. The branch chart must distinguish transmitter-side acceleration weight from receiver-side root playback, so the receiver/transmitter exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
 
@@ -677,6 +724,7 @@ R_{\rho}^{\mathrm{cg}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-69a0d2ac8a3910ec)
+
 and the first two kinetic moments must close through a declared momentum-current tensor and energy-flux vector,
 $$
 \partial_T(\rho_q u^i)
@@ -686,6 +734,7 @@ f_q^i+R_{P,q}^i
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-56f42458a943fe02)
+
 $$
 \partial_T e_q
 +\nabla_{\mathbf X}\cdot\mathbf{J}_{e,q}
@@ -695,7 +744,8 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5062ac5690b6ba0a)
-Here $\Pi_q^{ij}$ and $\mathbf{J}_{e,q}$ are coarse-history summaries of the retained causal-wake record, not new substrate fields. The effective action is a promoted continuum chart only when $R_{\rho}^{\mathrm{cg}}$, $R_{P,q}^i$, and $R_{E,q}$ are small under history, spatial, and regulator refinement. Otherwise the chart has reproduced only low-order moments while leaving unresolved memory in the omitted kinetic hierarchy.
+
+Here $\Pi_q^{ij}$ and $\mathbf{J}_{e,q}$ are coarse-history summaries of the retained causal-wake record, not new substrate fields. The effective action is a valid continuum chart only when $R_{\rho}^{\mathrm{cg}}$, $R_{P,q}^i$, and $R_{E,q}$ are small under history, spatial, and regulator refinement. Otherwise the chart has reproduced only low-order moments while leaving unresolved memory in the omitted kinetic hierarchy.
 
 For near-equilibrium reductions, a constitutive response may be written schematically as
 $$
@@ -713,6 +763,7 @@ E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-09968b456a04e06c)
+
 where $E^{ij}=\frac{1}{2}(\partial_{X^i}u^j+\partial_{X^j}u^i)$ and $\mathring E^{ij}=E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}$ is the deviatoric strain-rate tensor. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the acceleration law. The subscript in $\eta_{\mathrm{cg}}$ marks a coarse-grained viscosity-like coefficient and is distinct from the regulator $\eta$ in $\delta_\eta$.
 
 The constructive route is to read the transport coefficients as low-frequency moments of the delayed response kernel, not as independent material constants. If $\widetilde K_{\mathrm{shear}}(\omega)$ and $\widetilde K_{\mathrm{bulk}}(\omega)$ are the shear and bulk projections of the same branch-derived causal kernel, then the leading near-equilibrium coefficients have the schematic form
@@ -739,7 +790,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9b2d16601638704f)
 
-and $\Pi_{\mathrm{mem}}^{ij}$ carries the finite-frequency remainder. This makes the viscosity-like channel an odd-frequency readout of the delayed acceleration kernel. The ratio between $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and the acceleration-law coupling $\kappa$ is therefore a kernel-shape consequence on a certified branch, not an additional parameter family.
+and $\Pi_{\mathrm{mem}}^{ij}$ carries the finite-frequency remainder. In this expansion the viscosity-like channel is an odd-frequency readout of the delayed acceleration kernel. A derived ratio between $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and the acceleration-law coupling $\kappa$ would therefore have to follow from the kernel shape on a certified branch; no such universal ratio has been established here.
 
 This is the continuum version of the delayed oscillator expansion. A branch-derived response kernel has one Taylor structure:
 
@@ -782,6 +833,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f7d1b01b63153dd5)
+
 This residual prevents ordinary viscous loss language from replacing the exact wake-history energy ledger. A nonzero positive quadratic term is allowed as a coarse channel for coherent-to-incoherent transfer, but the transferred content must appear in the retained wake, heat, or medium-response record.
 
 By defining an effective scalar potential $\Phi_{\text{wake}}(\mathbf X,T)$ and a vector transport potential $\mathbf{A}_{\text{wake}}(\mathbf X,T)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping variables for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
@@ -801,6 +853,7 @@ S[\varphi]
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-de37b7be766d1bc4)
+
 Fixed-boundary variation gives the field Euler-Lagrange expression
 $$
 \frac{\partial \mathcal{L}}{\partial \varphi_{\mathrm{eff}}^A}
@@ -814,9 +867,10 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-04b6dbbd41f78abe)
+
 This is the common effective grammar behind Maxwell, Einstein-Hilbert, and Standard Model action formulations. For $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a license to treat fields as substrate objects. It is the recovery grammar a local chart must satisfy after the delayed branch record has been coarse-grained into admitted fields and after its Euler-Lagrange residual has been checked against the same causal-wake, boundary, and transmitter-side acceleration-weight records.
 
-### Effective Hamiltonian Domain Gate
+## Effective Hamiltonian Domain Criterion
 
 A local Hamiltonian or local Lagrangian description is admissible only after the path-history law has been reduced to a finite set of coarse variables that preserve the relevant state-counting measure over the comparison window. This is an inference condition: it tests whether exact histories can be represented by local canonical coordinates without losing the invariants under comparison. Let $\mathcal{Q}$ be the coarse-graining from exact histories $\Gamma(T)$ to effective coordinates $z=(\rho_q,\mathbf{j}_q,\ldots)$, and let $\mathcal{P}_{\Delta T}^{\mathrm{eff}}$ be the induced effective flow. The local canonical approximation must supply a measure $\mu_{\mathcal{Q}}$ such that
 $$
@@ -827,6 +881,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-debb4171db332304)
+
 on the retained regime. This measure condition is necessary but not sufficient for canonical mechanics. The same handoff must also control a bracket or symplectic residual, for example
 $$
 \left\|
@@ -839,6 +894,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-12af1e91038b7a1a)
+
 for the retained two-form $\omega_{\mathcal{Q}}$, or an equivalent Poisson-bracket residual on the admitted observables. If $\epsilon_{\mathcal{Q}}$ or $\epsilon_{\omega}$ is not controlled, the local Hamiltonian is only a fitting chart, not a derived mechanics.
 
 For a replayable branch chart, this measure condition is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of Liouville's theorem. In ordinary finite-dimensional Hamiltonian mechanics the phase-space flow is divergence-free, $\nabla_z\cdot\dot z=0$, so a phase-space volume element may stretch and fold but is not compressed by the exact flow. In the delayed setting, the analogous statement is valid only after $\mathcal{Q}$ retains the phase variables, causal-root ledger, wake-history record, and surrounding context that actually control the return map. Dropping an active sub-assembly phase can make a closed chart look dissipative or probabilistic merely because the chart has thrown away one of the variables that carries the recurrence.
@@ -874,9 +930,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-032c65b1cf93ee48)
 
-where $h$ is the retained memory depth and $\mathcal K_{\mathrm{symp}}$ is built from the same branch causal kernel that supplies the acceleration. The explicit construction of $\mathcal K_{\mathrm{symp}}$ and the boundary-flux identity below are open obligations of the Hamiltonian-promotion gate. The residual $\epsilon_{\omega}$ is small only when this memory term is replayable: after one return, the retained history segment $[-h,0]$ must map to a congruent segment with the same branch records and boundary convention. This is why phase-locked branches are the natural Hamiltonian domain. They replay the history window that carries $\omega_{\mathrm{mem}}$, while off-lock branches leak symplectic content through the memory boundary and can look dissipative after projection.
+where $h$ is the retained memory depth and $\mathcal K_{\mathrm{symp}}$ is built from the same branch causal kernel that supplies the acceleration. The explicit construction of $\mathcal K_{\mathrm{symp}}$ and the boundary-flux identity below are open requirements for Hamiltonian validity. The residual $\epsilon_{\omega}$ is small only when this memory term is replayable: after one return, the retained history segment $[-h,0]$ must map to a congruent segment with the same branch records and boundary convention. This is why phase-locked branches are the natural Hamiltonian domain. They replay the history window that carries $\omega_{\mathrm{mem}}$, while off-lock branches leak symplectic content through the memory boundary and can look dissipative after projection.
 
-Equivalently, $\omega_{\mathrm{mem}}$ is the symplectic flux through the boundary of the retained memory interval. A Hamiltonian-promotable branch must make that boundary periodic under the return map:
+Equivalently, $\omega_{\mathrm{mem}}$ is the symplectic flux through the boundary of the retained memory interval. A branch admitting a Hamiltonian description must make that boundary periodic under the return map:
 
 $$
 \oint_{\mathrm{return}}
@@ -887,9 +943,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bc15e350deb87913)
 
-after quotienting only true zero-Floquet neutral directions. If the memory-boundary flux has a secular component, the projected chart can conserve neither the corrected symplectic form nor the apparent energy ledger without adding the missing history variable. This is the same branch-symplectic promotion condition used by the scalar causal-action return-map residual and by binary or doubling-frequency return-map packets: preserve $\omega_0+\omega_{\mathrm{mem}}$ on the retained delayed chart, not merely the instantaneous phase volume.
+after quotienting only true zero-Floquet neutral directions. If the memory-boundary flux has a secular component, the projected chart can conserve neither the corrected symplectic form nor the apparent energy ledger without adding the missing history variable. This is the same branch-symplectic validity condition used by the scalar causal-action return-map residual and by binary or doubling-frequency return-map records: preserve $\omega_0+\omega_{\mathrm{mem}}$ on the retained delayed chart, not merely the instantaneous phase volume.
 
-This gate keeps the exact and effective levels separate. The Master Equation owns the delayed causal dynamics; the effective Hamiltonian owns only those regimes where internal wake memory, branch changes, and unresolved Noether sea exchange have been compressed without losing the observer-level invariants being compared.
+This criterion keeps the exact and effective levels separate. The Master Equation owns the delayed causal dynamics; the effective Hamiltonian owns only those regimes where internal wake memory, branch changes, and unresolved Noether sea exchange have been compressed without losing the observer-level invariants being compared.
 
 The same domain restriction applies before translating an effective Hamiltonian chart into quantum operators. The admissible observable set in [Quantum Operator Mapping](../philosophy-history/theory-bridges/quantum-operator-mapping.md#admissible-quantization-domain-guardrail) must be derived from this retained coarse-graining and record window, not chosen afterward as a free quantization convention.
 
@@ -915,7 +971,7 @@ $$
 
 with the integer tied to the phase-return degree pair above. Thus quantization in this reduction is a topological single-valuedness condition on a retained phase-locked bundle, not a global quantization convention imposed on every smooth effective observable.
 
-### Topological Constraints and Assembly Stability
+## Topological Constraints and Assembly Stability
 
 The delayed action, after branch reduction to causal-locus and root-ledger data, constrains the allowed topological configurations of architrino assemblies in the Noether sea. Stable assemblies, such as maximum-curvature candidates inside orthogonal-axis three-binary braids, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or continuum topological defects.
 
@@ -939,12 +995,12 @@ $$
 
 where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta_1,\theta_2,\theta_3]$ is the phase-return degree pair of the resonance-locked Noether braid chart in persistent-index order. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
 
-The corresponding mass-gap target is therefore native and computable. The gap is the minimum action cost to change $[\mathfrak B]$ by an admissible branch transition, such as a $\Delta N_s=\pm2$ root birth or death under the same Jacobian floor and boundary convention. In a caustic-grazing transition this cost should be estimated from the finite impulse and wake-history increment across the fold. If that minimum vanishes under refinement, the action chart has no protected assembly gap; if it remains positive, the gap is a property of the branch ledger and delayed action, not an imported continuum-defect assumption.
+The corresponding computable object is a branch-barrier diagnostic. It is the minimum value of the receiver-side statistic required to change $[\mathfrak B]$ by an admissible branch transition, such as a $\Delta N_s=\pm2$ root birth or death under the same Jacobian floor and boundary convention. Because $B_{\mathrm{rec}}$ has inverse-area units and is not a proved action or energy, it cannot by itself be called a mass gap. A physical gap would require a derived map from this statistic to the action-level boundary charge or an independently defined energy difference.
 
 In the action-counting notation of [Causal Action Functional](causal-action-functional.md#branch-barrier-and-transition-cost), let $\mathfrak B_{\lambda_0(\eta)}$ and $\mathfrak B_{\lambda_1(\eta)}$ be retained finite-regulator branch charts on opposite sides of a path that crosses the specific codimension-one wall $\Sigma_{\mathrm{fold}}$. The same target is
 
 $$
-\Delta_{\mathrm{gap}}
+\Delta_{\mathrm{branch}}^{(\mathrm{rec})}
 =
 \liminf_{\eta\to0^+}
 B_{\mathrm{rec}}(\lambda_0(\eta),\lambda_1(\eta))
@@ -954,9 +1010,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7a787cfbfd45cc1b)
 
-for the wall that changes the targeted entry of the assembly topological charge. The wall may be a causal-root fold, a phase-lock wall, or a frame-degeneracy wall. The mass gap is positive exactly when the receiver-side fold-crossing cost survives regulator refinement with the finite memory and regulator state declared by those charts; this is the action view of the same uniform-in-$\eta$ fold-survival problem that stability packets test through Conley, Lyapunov, or Floquet data.
+for the wall that changes the targeted entry of the assembly topological charge. The wall may be a causal-root fold, a phase-lock wall, or a frame-degeneracy wall. A positive $\Delta_{\mathrm{branch}}^{(\mathrm{rec})}$ means only that this receiver-side statistic retains a nonzero fold-crossing barrier under regulator refinement with the declared memory and regulator state. Establishing a mass or energy gap requires the additional dimensional and variational map described above.
 
-### Closure Interface: Action-to-Envelope Reduction
+> Claim grade: derived for the dimensional limitation and guessed for the use of $B_{\mathrm{rec}}$ as a useful branch-barrier diagnostic. Falsifier: a derivation showing that $B_{\mathrm{rec}}$ itself is the correctly normalized action or energy difference would remove the limitation; collapse of the barrier to zero under regulator or path refinement would reject the proposed diagnostic gap.
+
+## Closure Interface: Action-to-Envelope Reduction
 
 This chapter supplies the variational bridge used by the quantum closure chain. The bridge remains effective and comparative: it tests when a signed polarity/current history can be compressed into a nonnegative envelope without erasing memory terms.
 
@@ -967,6 +1025,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e7da832232253a9d)
+
 Here $m_{\mathrm{eff}}$ is the retained envelope mass parameter of the benchmark chart, not a primitive architrino mass. The projection from the signed polarity/current data $(\rho_q,\mathbf{j}_q)$ to the nonnegative envelope channel must be declared before $\rho_{\mathrm{env}}$ is interpreted as $|\psi|^2$.
 
 That projection has a topological cost. The signed polarity density carries a polarity-sign sheet
@@ -994,9 +1053,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d82ceea8512a3fe8)
 
-where $N_{\mathrm{wall}}(\gamma)$ is the parity count of enclosed polarity-domain-wall intersections in the retained projection. The memory current is therefore not generic residue in this regime. Its circulation classifies the polarity-domain-wall topology that the nonnegative envelope has forgotten. A spin-$\tfrac12$-like double-valued envelope can be promoted only if this $\mathbb{Z}_2$ sign-sheet circulation is recovered from the same $(\rho_q,\mathbf{j}_q)$ history and persists under branch-preserving deformation.
+where $N_{\mathrm{wall}}(\gamma)$ is the parity count of enclosed polarity-domain-wall intersections in the retained projection. The proposed interpretation is that the memory-current circulation carries the polarity-sign information discarded by the nonnegative envelope. This is not yet a derivation of spin. A spin-$\tfrac12$-like double-valued envelope is supported only if the $\mathbb{Z}_2$ sign-sheet circulation is recovered from the same $(\rho_q,\mathbf{j}_q)$ history and persists under branch-preserving deformation.
 
-This is a hard wall for the spinor and exchange-statistics program and is the action-side realization of the [exchange-loop hard wall](../foundations/ontology.md#the-fundamental-entity). The nonnegative envelope forgets an orientation double cover of the signed-density configuration space; the polarity domain walls are the branch locus of that cover. If the parity $N_{\mathrm{wall}}(\gamma)\pmod 2$ can change without crossing a certified fold, reconnection, or declared surgery event in the retained branch record, then the half-integer envelope response has been fitted rather than derived. Conversely, a deformation-stable $\mathbb{Z}_2$ holonomy gives a concrete substrate carrier for the $-1$ sign under an exchange cycle, provided the exchange cycle is computed from the same signed polarity/current history rather than from an imposed quantum label.
+This is a hard test for the spinor and exchange-statistics program and connects to the [exchange-loop hard wall](../foundations/ontology.md#the-fundamental-entity). The candidate double-cover picture treats polarity domain walls as the branch locus of the sign information forgotten by the nonnegative envelope. If the parity $N_{\mathrm{wall}}(\gamma)\pmod 2$ can change without crossing a certified fold, reconnection, or declared surgery event in the retained branch record, then the half-integer envelope response has been fitted rather than derived. Even deformation-stable $\mathbb{Z}_2$ holonomy would supply only a candidate substrate carrier for the $-1$ sign under an exchange cycle; the exchange response must still be derived from the same signed polarity/current history rather than imposed as a quantum label.
+
+> Claim grade: guessed for the polarity-wall double cover and its relation to spin-$\tfrac12$ exchange. Falsifier: a retained exchange cycle whose sign response disagrees with the wall-parity holonomy, or a wall-parity change without a branch event, would refute the proposed carrier.
 
 The handoff must report the continuity residual
 $$
@@ -1008,6 +1069,7 @@ R_{\mathrm{cg}}=\partial_T\rho_{\mathrm{env}}+\nabla_{\mathbf X}\cdot\mathbf{j}_
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-08a294e6fc0fc7dd)
+
 and keep the memory current
 $$
 \mathbf{j}_{\mathrm{mem}}
@@ -1016,6 +1078,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fc40dcf37b468c39)
+
 as an explicit residual rather than absorbing it into fitted constants. Equivalently, with $\Delta\rho=\rho_q-\rho_{\mathrm{env}}$,
 $$
 \partial_T\rho_q+\nabla_{\mathbf X}\cdot\mathbf{j}_q
@@ -1028,6 +1091,7 @@ R_{\mathrm{cg}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-989217797594e8c1)
+
 Thus a small $R_{\mathrm{cg}}$ by itself does not prove envelope closure; the projection mismatch and memory-current divergence must be controlled as well.
 
 For the non-relativistic, fixed-particle-number benchmark, the same envelope must also admit a phase chart
@@ -1038,6 +1102,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-39600a63328a7b86)
+
 Define
 $$
 K_{\mathrm{env}}=\frac{\|\nabla_{\mathbf X} S_{\mathrm{env}}\|^2}{2m_{\mathrm{eff}}},
@@ -1049,6 +1114,7 @@ Q_{\mathrm{env}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a21c9b500c69bd9c)
+
 and test the corresponding Hamilton-Jacobi residual
 $$
 R_{\mathrm{HJ}}
@@ -1060,7 +1126,8 @@ R_{\mathrm{HJ}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-23da802de9bf92c6)
-This is the current form-level quantum recovery. The residual-controlled envelope chart reproduces the Madelung/Hamilton-Jacobi structure of the non-relativistic Schrödinger equation, and the action-bundle single-valuedness condition above supplies the Bohr-Sommerfeld integer on a resonance-locked branch. Those statements are chart recoveries, not full quantum closure: the Born rule still requires the finite-window basin measure to push forward to $|\psi|^2$ on record-forming apparatus channels, and spin-$\tfrac{1}{2}$ exchange still requires the polarity-domain-wall $\mathbb{Z}_2$ holonomy to remain deformation-stable on the same retained branch.
+
+This is a form-level quantum recovery target. The residual-controlled envelope chart has the hydrodynamic Hamilton-Jacobi structure introduced by [Madelung (1927)](https://doi.org/10.1007/BF01400372) for the non-relativistic Schrödinger equation, while the proposed action-bundle single-valuedness condition would supply a Bohr-Sommerfeld integer on a resonance-locked branch. These are chart conditions, not full quantum closure: the Born rule still requires the finite-window basin measure to push forward to $|\psi|^2$ on record-forming apparatus channels, and spin-$\tfrac{1}{2}$ exchange still requires the polarity-domain-wall $\mathbb{Z}_2$ holonomy to be derived and remain deformation-stable on the same retained branch.
 
 The effective Schrödinger/Madelung chart is licensed on a retained window only when
 $$
@@ -1076,9 +1143,21 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3229e5449d3897a5)
-This is a comparison residual, not a new ontology. If it fails, the wave function and Hamiltonian remain useful fitting charts for that window rather than promoted quantum closure.
+
+This is a comparison residual, not a new ontology. If it fails, the wave function and Hamiltonian remain useful fitting charts for that window rather than an established quantum recovery.
 
 The interface is closed only when:
+
 - the Euler-Lagrange equations of the coarse action reproduce the effective envelope equation used in [pilot-wave-character](../philosophy-history/theory-bridges/pilot-wave-character.md);
 - the phase-amplitude chart reports $\mathcal{R}_{\mathrm{env}}$ rather than assuming the Schrödinger limit;
 - memory contributions $\mathbf{j}_{\mathrm{mem}}$ remain explicit as controlled correction terms rather than hidden parameter absorbs.
+
+## What the Effective Lagrangian Establishes
+
+The exact achievement of this chapter is a set of admissibility and residual tests for candidate delayed actions and effective Hamiltonian charts. The displayed regularized action has not been shown to generate the canonical Master Equation because its complete variation still carries a constraint-derivative obstruction unless that term becomes a valid boundary contribution. Consequently, its energy, momentum, symplectic, quantization, gap, and spin constructions remain conditional recovery structures. They become derived only when one same-record calculation closes the variation, boundary, regulator, and branch residuals without importing an observer-level law as substrate input.
+
+## References
+
+- William Rowan Hamilton, “On a General Method in Dynamics,” *Philosophical Transactions of the Royal Society of London* 124 (1834): 247–308, [doi:10.1098/rstl.1834.0017](https://doi.org/10.1098/rstl.1834.0017).
+- Erwin Madelung, “Quantentheorie in hydrodynamischer Form,” *Zeitschrift für Physik* 40 (1927): 322–326, [doi:10.1007/BF01400372](https://doi.org/10.1007/BF01400372).
+- Emmy Noether, “Invariante Variationsprobleme,” *Nachrichten von der Königlichen Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse* (1918): 235–257, [original publication](https://eudml.org/doc/59024).

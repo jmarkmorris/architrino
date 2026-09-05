@@ -1,38 +1,38 @@
 # Zero-Axial-Offset Three-Binary Dynamics and Interpretation
 
-This specialist chapter carries the retention, phase-closure, cadence-retuning, scaling, strong-field, and downstream interpretation hypotheses specific to coincident-midpoint orthogonal-axis three-binary configuration. The coincident-midpoint orthogonal-axis three-binary configuration coordinates and constrained variants are defined in [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md#coincident-midpoint-three-axis-circular-chart); the realization-independent proof contract is defined in [Braid Recovery Requirements](braid-recovery-requirements.md).
+This specialist chapter carries the retention, phase-closure, cadence-retuning, scaling, strong-field, and downstream interpretation hypotheses specific to the coincident-midpoint orthogonal-axis three-binary configuration. Its coordinates and constrained variants are defined in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md#coincident-midpoint-orthogonal-axis-three-binary-configuration); the realization-independent proof contract is defined in [Braid Recovery Requirements](braid-recovery-requirements.md).
 
-Nothing in this chapter establishes an EOM-solver-retained coincident-midpoint orthogonal-axis three-binary configuration branch. Derived identities, conditional results, hypotheses, and observer-level mappings keep their stated claim grades.
+Nothing in this chapter establishes that the EOM solver retains such a branch. Derived identities, conditional results, hypotheses, and observer-level mappings keep their stated claim grades.
 
 ## Claim-Ownership Classification
 
-The claims in this chapter have three distinct scopes: Coincident-midpoint orthogonal-axis three-binary configuration-specific hypotheses, family-general recovery requirements stated in coincident-midpoint orthogonal-axis three-binary configuration coordinates, and physical assignments that are not established for coincident-midpoint orthogonal-axis three-binary configuration. The table classifies scope, not truth.
+The claims in this chapter have three distinct scopes: hypotheses specific to the coincident-midpoint configuration, family-general recovery requirements expressed in its coordinates, and physical assignments not established for it. The table classifies scope, not truth.
 
 | Claim unit | Classification | Consequence |
 | --- | --- | --- |
-| Symmetry-distance diagnostic relative to phase-compensated equal-geometry orthogonal-axis three-binary configuration | coincident-midpoint orthogonal-axis three-binary configuration-specific hypothesis | The diagnostic depends on coincident-midpoint orthogonal-axis three-binary configuration's departure from the phase-compensated equal-geometry orthogonal-axis three-binary configuration symmetry channel and does not generalize to every family. |
-| Retention, causal-root closure, perturbation recovery, and same-record shielding tests | Family-general recovery requirements | coincident-midpoint orthogonal-axis three-binary configuration is one instantiation. The proof contract belongs to [Braid Recovery Requirements](braid-recovery-requirements.md), and the common analysis record belongs to [Candidate Braid Analysis Methodology](braid-analysis-methodology.md). |
-| Integer phase return and root-ledger return | Family-general recovery requirement with a coincident-midpoint orthogonal-axis three-binary configuration-specific coordinate form | Return is required for every periodic candidate; $(k_1,k_2,k_3)$ and $\Lambda_{\mathrm{cm}}$ are coincident-midpoint orthogonal-axis three-binary configuration chart coordinates. |
-| Cadence-scale retuning map and rest-level scaling curve | coincident-midpoint orthogonal-axis three-binary configuration-specific hypothesis | The maps depend on $\Lambda_{\mathrm{cm}}$ and cannot be assigned to another member without a separate derivation. |
+| Symmetry-distance diagnostic relative to the phase-compensated equal-geometry orthogonal-axis three-binary configuration | Coincident-midpoint-specific hypothesis | The diagnostic depends on departure from the phase-compensated equal-geometry symmetry channel and does not generalize to every family. |
+| Retention, causal-root closure, perturbation recovery, and same-record shielding tests | Family-general recovery requirements | The coincident-midpoint configuration is one instantiation. The proof contract belongs to [Braid Recovery Requirements](braid-recovery-requirements.md), and the common analysis record belongs to [Candidate Braid Analysis Methodology](braid-analysis-methodology.md). |
+| Integer phase return and root-ledger return | Family-general recovery requirement with a coincident-midpoint-specific coordinate form | Return is required for every periodic candidate; $(k_1,k_2,k_3)$ and $\Lambda_{\mathrm{cm}}$ are coordinates of this chart. |
+| Cadence-scale retuning map and rest-level scaling curve | Coincident-midpoint-specific hypothesis | The maps depend on $\Lambda_{\mathrm{cm}}$ and cannot be assigned to another member without a separate derivation. |
 | Fold-set action clicks | Family-general hypothesis | The machinery is owned by [Braid Mathematics](braid-mathematics.md#action-clicks-at-the-fold-set), not by coincident-midpoint orthogonal-axis three-binary configuration. |
-| Reduced closure label $\Lambda_{\mathrm{cm}}$ and its alignment restriction | coincident-midpoint orthogonal-axis three-binary configuration-specific hypothesis | The label is available for coincident-midpoint orthogonal-axis three-binary configuration branch comparison only and does not establish a retained branch. |
-| Dynamic exclusion-envelope export | Family-general export requirement with a coincident-midpoint orthogonal-axis three-binary configuration realization | The shared interface is owned by [Braid Envelope Geometry](braid-envelope-geometry.md). |
-| Three-support-row shielding mapped to fermion generations | Unsupported coincident-midpoint orthogonal-axis three-binary configuration assignment | No retained branch, shielding extraction, or particle map currently establishes the assignment. |
-| orthogonal-axis three-binary axis convergence under the prescribed response | coincident-midpoint orthogonal-axis three-binary configuration-specific prescribed response and dynamical recovery target | The endpoint is part of the coincident-midpoint orthogonal-axis three-binary configuration chart; evolved convergence remains unproved. |
-| Event-horizon, Planck-scale, and dipole-quiet identifications | Unsupported coincident-midpoint orthogonal-axis three-binary configuration assignments | These remain comparison hypotheses until coincident-midpoint orthogonal-axis three-binary configuration-specific moment and strong-field records establish them. The phase-compensated equal-geometry orthogonal-axis three-binary configuration dipole theorem cannot be transferred to coincident-midpoint orthogonal-axis three-binary configuration by analogy. |
-| A Noether braid as the structural candidate for fermion recovery | Family-general recovery requirement | Assigning coincident-midpoint orthogonal-axis three-binary configuration, rather than another retained member, to a fermion class remains unsupported. |
+| Reduced closure label $\Lambda_{\mathrm{cm}}$ and its alignment restriction | Coincident-midpoint-specific hypothesis | The label is available for comparison within this chart only and does not establish a retained branch. |
+| Dynamic exclusion-envelope export | Family-general export requirement with a coincident-midpoint realization | The shared interface is owned by [Braid Envelope Geometry](braid-envelope-geometry.md). |
+| Three-support-row shielding mapped to fermion generations | Unsupported coincident-midpoint assignment | No retained branch, shielding extraction, or particle map currently establishes the assignment. |
+| Orthogonal-axis convergence under the prescribed response | Coincident-midpoint-specific prescribed response and dynamical recovery target | The endpoint is part of this chart; evolved convergence remains unproved. |
+| Event-horizon, Planck-scale, and dipole-quiet identifications | Unsupported coincident-midpoint assignments | These remain comparison hypotheses until moment and strong-field records specific to this configuration establish them. The phase-compensated equal-geometry dipole theorem cannot be transferred here by analogy. |
+| A Noether braid as the structural candidate for fermion recovery | Family-general recovery requirement | Assigning the coincident-midpoint configuration, rather than another retained member, to a fermion class remains unsupported. |
 
-An unsupported coincident-midpoint orthogonal-axis three-binary configuration assignment is not part of the coincident-midpoint orthogonal-axis three-binary configuration definition and must not be consumed downstream as a coincident-midpoint orthogonal-axis three-binary configuration property. It remains an explicitly graded hypothesis awaiting derivation or rejection.
+An unsupported assignment is not part of the coincident-midpoint configuration's definition and must not be used downstream as one of its properties. It remains an explicitly graded hypothesis awaiting derivation or rejection.
 
 ## Retention and Interpretation
 
-The coincident-midpoint orthogonal-axis three-binary configuration geometry, persistent binary indices, and constrained variants are defined in [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md#coincident-midpoint-three-axis-circular-chart). The remaining material below concerns phase closure, retuning, dynamics, shielding, and downstream interpretations. It does not add coordinates to the coincident-midpoint orthogonal-axis three-binary configuration definition.
+The geometry, persistent binary indices, and constrained variants are defined in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md#coincident-midpoint-orthogonal-axis-three-binary-configuration). The remaining material concerns phase closure, retuning, dynamics, shielding, and downstream interpretations. It does not add coordinates to that definition.
 
 All equations use the persistent indices $a\in\{1,2,3\}$. The indices do not encode a radius order or preassign a field-speed carrier, self-hit channel, shielding rank, or envelope-leading path. Any such diagnostic must be extracted from the same retained branch record used by the equation in which it appears.
 
 ### Symmetry-Distance Diagnostic
 
-Phase-compensated equal-geometry orthogonal-axis three-binary configuration's exact threefold channel pins its kinematic angular momentum along the orthogonal-axis three-binary translation direction. Coincident-midpoint orthogonal-axis three-binary configuration does not require the equal geometry and cyclic binary-permutation symmetry used by that theorem, so the same pinning result does not apply to a general coincident-midpoint orthogonal-axis three-binary configuration record. The resulting hypothesis is that nonzero precession may diagnose distance from the phase-compensated equal-geometry orthogonal-axis three-binary configuration symmetry channel, while decaying precession may diagnose relaxation toward it. This is an inferred diagnostic, not a proof that coincident-midpoint orthogonal-axis three-binary configuration precesses, that coincident-midpoint orthogonal-axis three-binary configuration relaxes toward phase-compensated equal-geometry orthogonal-axis three-binary configuration, or that either member is retained. A retained evolution would falsify the diagnostic if its measured precession failed to track an independently defined symmetry-distance residual.
+The exact threefold channel of the phase-compensated equal-geometry orthogonal-axis three-binary configuration pins its kinematic angular momentum along the orthogonal-axis three-binary translation direction. The coincident-midpoint configuration does not require the equal geometry and cyclic binary-permutation symmetry used by that theorem, so the same pinning result does not apply to a general record in this chart. The resulting hypothesis is that nonzero precession may diagnose distance from the equal-geometry symmetry channel, while decaying precession may diagnose relaxation toward it. This is an inferred diagnostic, not a proof that the coincident-midpoint configuration precesses, relaxes toward the equal-geometry configuration, or is retained. A retained evolution would falsify the diagnostic if its measured precession failed to track an independently defined symmetry-distance residual.
 
 ### Retention and Shielding Hypotheses
 
@@ -427,6 +427,7 @@ N_s(\Lambda_{\mathrm{cm}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0224bdc46eb807e1)
+
 $$
 M_p(\Lambda_{\mathrm{cm}})
 =
@@ -436,6 +437,7 @@ M_p(\Lambda_{\mathrm{cm}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3a928c7281453dbf)
+
 Here $\mathcal G_a$ carries the within-binary self and partner roots, while $\mathcal G_{ab}$ carries the directed cross-binary roots. Any compressed count must reproduce these transmitter-identity partitions.
 
 This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{\mathrm{cm}}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the entry that the later causal-writhe or ordered-frame proof must fill.
@@ -454,6 +456,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-167197368d858bea)
+
 These sets preserve the binary indices and derive their roles from the retained record. The alignment-restricted label is the theorem-target restriction
 $$
 \Lambda_{\mathrm{cm}}^{\mathrm{align}}
@@ -468,6 +471,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bd44ee6068b2a48b)
+
 with the remaining admissible entries inherited from the binary ledgers, inter-binary ledgers, chirality entry, and emitted wake envelope. For a connected block $U$ of alignment-area patches, the local label set to be counted has the schematic form
 $$
 \mathcal{L}_U(\theta_{\mathrm{env}})
@@ -484,7 +488,8 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7ce5f2a90fb08bba)
-Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block. This expression does not yet derive the entropy coefficient. It identifies the native object whose block entropy density must be computed before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
+
+Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block, while $|U|$ counts alignment-area patches under the declared patch-to-area normalization. This expression does not derive the Bekenstein-Hawking coefficient; the coefficient $1/4$ is an observer-level comparison target owned by the [horizon interface](../spacetime/black-holes.md#horizon-interface). It identifies the native object whose block entropy density and area map must be derived before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
 
 ### Geometry and Exclusion Envelope
 
@@ -520,7 +525,7 @@ The alignment limit also has a proposed wake-signature reading, but the availabl
 
 The Noether braid class supplies a family-general structural candidate for the fermion program. Different closure labels, shielding tiers, energy records, and surrounding axial/wake structures may map to Standard Model flavors and generations, but no current result selects coincident-midpoint orthogonal-axis three-binary configuration or establishes that mapping. It remains a derivation target until retained branch labels, shielding ledgers, and apparatus-coupling records have been recovered from the dynamics.
 
-The collective motion, or **group velocity**, of a Noether braid assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md): volumetric Noether braid envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
+The collective motion, or **group velocity**, of a Noether braid assembly is one variable shaping its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that hypothesis is developed in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md): volumetric Noether braid envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
 
 
 ### Coincident-Midpoint Orthogonal-Axis Three-Binary Dynamics

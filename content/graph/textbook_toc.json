@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1580
+      "sections": 1633
     }
   },
   "tocRoot": {
@@ -116,6 +116,22 @@
             "scenePath": "content/scenes/foundations/architrino.json",
             "markdownPath": "content/markdown/aaa/foundations/architrino.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Why the delay is the whole idea",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Why the delay is the whole idea",
+                "sectionKey": "why the delay is the whole idea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What an architrino is not",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "What an architrino is not",
+                "sectionKey": "what an architrino is not",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Core Definition",
@@ -386,6 +402,14 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Three layers that get confused",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Three layers that get confused",
+                "sectionKey": "three layers that get confused",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Core Concept",
                 "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
                 "markdownSection": "Core Concept",
@@ -646,10 +670,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Case for Absolute Time ($T$)",
+                "title": "The Case for Absolute Time",
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
-                "markdownSection": "The Case for Absolute Time ($T$)",
-                "sectionKey": "the case for absolute time t",
+                "markdownSection": "The Case for Absolute Time",
+                "sectionKey": "the case for absolute time",
                 "headingLevel": 2
               },
               {
@@ -658,6 +682,54 @@
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
                 "markdownSection": "Absolute Time, Global Foliation, and Proper Time",
                 "sectionKey": "absolute time global foliation and proper time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Clock Universality: The Hard Part",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Clock Universality: The Hard Part",
+                "sectionKey": "clock universality the hard part",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Lorentz-Closure Target",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "The Lorentz-Closure Target",
+                "sectionKey": "the lorentz closure target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Preferred-Frame Leakage Closure",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Preferred-Frame Leakage Closure",
+                "sectionKey": "preferred frame leakage closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Metric Handoff",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Effective Metric Handoff",
+                "sectionKey": "effective metric handoff",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Key Point",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Key Point",
+                "sectionKey": "key point",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Falsifiability Wall",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Falsifiability Wall",
+                "sectionKey": "falsifiability wall",
                 "headingLevel": 2
               }
             ]
@@ -804,10 +876,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Emergence in the Architrino Universe: Continuous Delay Dynamics",
+                "title": "Emergence in Continuous Delay Dynamics",
                 "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
-                "markdownSection": "Emergence in the Architrino Universe: Continuous Delay Dynamics",
-                "sectionKey": "emergence in the architrino universe continuous delay dynamics",
+                "markdownSection": "Emergence in Continuous Delay Dynamics",
+                "sectionKey": "emergence in continuous delay dynamics",
                 "headingLevel": 2
               },
               {
@@ -927,10 +999,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Analytic Regimes and Research Roadmap",
+                "title": "Analytic Regimes and Remaining Derivations",
                 "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
-                "markdownSection": "Analytic Regimes and Research Roadmap",
-                "sectionKey": "analytic regimes and research roadmap",
+                "markdownSection": "Analytic Regimes and Remaining Derivations",
+                "sectionKey": "analytic regimes and remaining derivations",
                 "headingLevel": 2
               },
               {
@@ -939,6 +1011,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
                 "markdownSection": "Energy, Symmetry, and Conservation",
                 "sectionKey": "energy symmetry and conservation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
                 "headingLevel": 2
               }
             ]
@@ -1033,10 +1113,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Intuition (Plain Language)",
+                "title": "Mechanism in One Picture",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Intuition (Plain Language)",
-                "sectionKey": "intuition plain language",
+                "markdownSection": "Mechanism in One Picture",
+                "sectionKey": "mechanism in one picture",
                 "headingLevel": 2
               },
               {
@@ -1053,6 +1133,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
                 "markdownSection": "Appendix A: Energy Zero and Bookkeeping",
                 "sectionKey": "appendix a energy zero and bookkeeping",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
                 "headingLevel": 2
               }
             ]
@@ -1072,6 +1160,14 @@
                 "scenePath": "content/scenes/validation/action_model.json",
                 "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
                 "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Setup and Assumptions",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Setup and Assumptions",
+                    "sectionKey": "setup and assumptions",
+                    "headingLevel": 2
+                  },
                   {
                     "kind": "markdown-section",
                     "title": "Time-based PDE (wave equation with a moving point source term)",
@@ -1130,6 +1226,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Implementation Summary",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Implementation Summary",
+                    "sectionKey": "implementation summary",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Sibling Derivation Notes",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
                     "markdownSection": "Sibling Derivation Notes",
@@ -1144,7 +1248,33 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/analytic_baselines.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Models",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+                    "markdownSection": "Models",
+                    "sectionKey": "models",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Methodological Priority",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+                    "markdownSection": "Methodological Priority",
+                    "sectionKey": "methodological priority",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Deliverables",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+                    "markdownSection": "Deliverables",
+                    "sectionKey": "deliverables",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__attraction",
@@ -1152,7 +1282,49 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/attraction.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Setup",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Setup",
+                    "sectionKey": "setup",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Objectives",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Objectives",
+                    "sectionKey": "objectives",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Canonical Delayed-Law Conditions",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Canonical Delayed-Law Conditions",
+                    "sectionKey": "canonical delayed law conditions",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Equations of Motion",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Equations of Motion",
+                    "sectionKey": "equations of motion",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Deliverables",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Deliverables",
+                    "sectionKey": "deliverables",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__background_simple_action",
@@ -1280,7 +1452,17 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/numerical_recipe_stability.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Event-Aware Integration",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+                    "markdownSection": "Event-Aware Integration",
+                    "sectionKey": "event aware integration",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__radial_attraction",
@@ -1288,7 +1470,57 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/radial_attraction.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Setup",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Setup",
+                    "sectionKey": "setup",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Objectives",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Objectives",
+                    "sectionKey": "objectives",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Delay Equation and Exact Reduction",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Delay Equation and Exact Reduction",
+                    "sectionKey": "delay equation and exact reduction",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Solvability Status",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Solvability Status",
+                    "sectionKey": "solvability status",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Receiver-Velocity Dependence",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Receiver-Velocity Dependence",
+                    "sectionKey": "receiver velocity dependence",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Validation Use",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Validation Use",
+                    "sectionKey": "validation use",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__receiver_velocity_work",
@@ -1314,7 +1546,49 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/repulsion.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Setup",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Setup",
+                    "sectionKey": "setup",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Objectives",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Objectives",
+                    "sectionKey": "objectives",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Delay Differential Equations",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Delay Differential Equations",
+                    "sectionKey": "delay differential equations",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Solvability Status",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Solvability Status",
+                    "sectionKey": "solvability status",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Deliverables",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Deliverables",
+                    "sectionKey": "deliverables",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__self_energy",
@@ -1404,6 +1678,14 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
+                    "title": "Core Symbols",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+                    "markdownSection": "Core Symbols",
+                    "sectionKey": "core symbols",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Dynamical Geometry",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
                     "markdownSection": "Dynamical Geometry",
@@ -1422,10 +1704,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Impulses Versus Smooth Pushes",
+                    "title": "Impulses Versus Smooth Acceleration",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
-                    "markdownSection": "Impulses Versus Smooth Pushes",
-                    "sectionKey": "impulses versus smooth pushes",
+                    "markdownSection": "Impulses Versus Smooth Acceleration",
+                    "sectionKey": "impulses versus smooth acceleration",
                     "headingLevel": 2
                   },
                   {
@@ -1575,6 +1857,14 @@
                 "markdownSection": "Interfaces",
                 "sectionKey": "interfaces",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
+                "headingLevel": 2
               }
             ]
           },
@@ -1596,18 +1886,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Spiral Momentum Budget Across the Hinge (Speculative)",
+                "title": "Candidate Spiral Momentum Budget Across the Hinge",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Momentum Budget Across the Hinge (Speculative)",
-                "sectionKey": "spiral momentum budget across the hinge speculative",
+                "markdownSection": "Candidate Spiral Momentum Budget Across the Hinge",
+                "sectionKey": "candidate spiral momentum budget across the hinge",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Spiral Binary Field-Speed Symmetry-Breaking Point",
+                "title": "Circular Self-Hit Threshold at the Wake Speed",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Binary Field-Speed Symmetry-Breaking Point",
-                "sectionKey": "spiral binary field speed symmetry breaking point",
+                "markdownSection": "Circular Self-Hit Threshold at the Wake Speed",
+                "sectionKey": "circular self hit threshold at the wake speed",
                 "headingLevel": 2
               },
               {
@@ -1656,6 +1946,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
                 "markdownSection": "Summary",
                 "sectionKey": "summary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
                 "headingLevel": 2
               }
             ]
@@ -1726,10 +2024,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Summary and Status",
+                "title": "What the Functional Establishes",
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Summary and Status",
-                "sectionKey": "summary and status",
+                "markdownSection": "What the Functional Establishes",
+                "sectionKey": "what the functional establishes",
                 "headingLevel": 2
               }
             ]
@@ -1740,7 +2038,89 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/effective_lagrangian.json",
-            "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
+            "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Ordinary Lagrangian Orientation",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Ordinary Lagrangian Orientation",
+                "sectionKey": "ordinary lagrangian orientation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ordinary Hamiltonian Orientation",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Ordinary Hamiltonian Orientation",
+                "sectionKey": "ordinary hamiltonian orientation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regularized Nonlocal Action and Variation",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Regularized Nonlocal Action and Variation",
+                "sectionKey": "regularized nonlocal action and variation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Symmetries and History-Aware Conservation Laws",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Symmetries and History-Aware Conservation Laws",
+                "sectionKey": "symmetries and history aware conservation laws",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Coarse-Graining: The Effective Continuum Lagrangian",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Coarse-Graining: The Effective Continuum Lagrangian",
+                "sectionKey": "coarse graining the effective continuum lagrangian",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Hamiltonian Domain Criterion",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Effective Hamiltonian Domain Criterion",
+                "sectionKey": "effective hamiltonian domain criterion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Topological Constraints and Assembly Stability",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Topological Constraints and Assembly Stability",
+                "sectionKey": "topological constraints and assembly stability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Interface: Action-to-Envelope Reduction",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Closure Interface: Action-to-Envelope Reduction",
+                "sectionKey": "closure interface action to envelope reduction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What the Effective Lagrangian Establishes",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "What the Effective Lagrangian Establishes",
+                "sectionKey": "what the effective lagrangian establishes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
+                "headingLevel": 2
+              }
+            ]
           }
         ]
       },
@@ -5093,10 +5473,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Working Summary",
+                    "title": "Summary",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
-                    "markdownSection": "Working Summary",
-                    "sectionKey": "working summary",
+                    "markdownSection": "Summary",
+                    "sectionKey": "summary",
                     "headingLevel": 2
                   }
                 ]
@@ -5346,10 +5726,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Purpose",
+                "title": "Claim Boundary",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Purpose",
-                "sectionKey": "purpose",
+                "markdownSection": "Claim Boundary",
+                "sectionKey": "claim boundary",
                 "headingLevel": 2
               },
               {
@@ -5466,14 +5846,6 @@
             "scenePath": "content/scenes/nuclear/nuclear_binding.json",
             "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
             "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Purpose",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
-                "markdownSection": "Purpose",
-                "sectionKey": "purpose",
-                "headingLevel": 2
-              },
               {
                 "kind": "markdown-section",
                 "title": "Binding-Energy Intuition",
@@ -5662,10 +6034,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Purpose",
+                "title": "Derivation Boundary",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
-                "markdownSection": "Purpose",
-                "sectionKey": "purpose",
+                "markdownSection": "Derivation Boundary",
+                "sectionKey": "derivation boundary",
                 "headingLevel": 2
               },
               {
@@ -6331,10 +6703,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Mapping (Provisional)",
+                "title": "Provisional $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Map",
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Mapping (Provisional)",
-                "sectionKey": "mathbb a mathbb a mathbb a ontology mapping provisional",
+                "markdownSection": "Provisional $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Map",
+                "sectionKey": "provisional mathbb a mathbb a mathbb a ontology map",
                 "headingLevel": 2
               },
               {
@@ -6347,26 +6719,26 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Anticipated Mapping Targets",
+                "title": "Open Mapping Targets",
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
-                "markdownSection": "Anticipated Mapping Targets",
-                "sectionKey": "anticipated mapping targets",
+                "markdownSection": "Open Mapping Targets",
+                "sectionKey": "open mapping targets",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Explanatory Gain (Provisional)",
+                "title": "Possible Explanatory Gain",
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
-                "markdownSection": "Explanatory Gain (Provisional)",
-                "sectionKey": "explanatory gain provisional",
+                "markdownSection": "Possible Explanatory Gain",
+                "sectionKey": "possible explanatory gain",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Why Reinterpret (Theory Payoff)",
+                "title": "Conditions for a Useful Reinterpretation",
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
-                "markdownSection": "Why Reinterpret (Theory Payoff)",
-                "sectionKey": "why reinterpret theory payoff",
+                "markdownSection": "Conditions for a Useful Reinterpretation",
+                "sectionKey": "conditions for a useful reinterpretation",
                 "headingLevel": 2
               }
             ]
@@ -6390,10 +6762,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Current Status",
+                "title": "Open Quantum Obligations",
                 "markdownPath": "content/markdown/aaa/quantum/quantum-summary.md",
-                "markdownSection": "Current Status",
-                "sectionKey": "current status",
+                "markdownSection": "Open Quantum Obligations",
+                "sectionKey": "open quantum obligations",
                 "headingLevel": 2
               },
               {
@@ -6514,10 +6886,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Purpose and Scope",
+                "title": "Claim Boundary",
                 "markdownPath": "content/markdown/aaa/quantum/wavefunction-ontology.md",
-                "markdownSection": "Purpose and Scope",
-                "sectionKey": "purpose and scope",
+                "markdownSection": "Claim Boundary",
+                "sectionKey": "claim boundary",
                 "headingLevel": 2
               },
               {
@@ -7917,14 +8289,6 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Core Idea",
-                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
-                "markdownSection": "Core Idea",
-                "sectionKey": "core idea",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
                 "title": "Tension Meanings",
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
                 "markdownSection": "Tension Meanings",
@@ -8528,14 +8892,6 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Purpose",
-                "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
-                "markdownSection": "Purpose",
-                "sectionKey": "purpose",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
                 "title": "Severity Scale",
                 "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
                 "markdownSection": "Severity Scale",
@@ -8897,10 +9253,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Simulation Frame: Virtual $\\mathbb{U}_{\\text{now}}$ Perspective",
+                    "title": "Simulation Frame and the $\\mathbb{U}_{\\text{now}}$ Universe-State Perspective",
                     "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
-                    "markdownSection": "Simulation Frame: Virtual $\\mathbb{U}_{\\text{now}}$ Perspective",
-                    "sectionKey": "simulation frame virtual mathbb u text now perspective",
+                    "markdownSection": "Simulation Frame and the $\\mathbb{U}_{\\text{now}}$ Universe-State Perspective",
+                    "sectionKey": "simulation frame and the mathbb u text now universe state perspective",
                     "headingLevel": 2
                   },
                   {
@@ -9893,10 +10249,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Methods for Interpreting Theory and Evidence",
                 "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Methods for Interpreting Theory and Evidence",
+                "sectionKey": "methods for interpreting theory and evidence",
                 "headingLevel": 2
               },
               {
@@ -10030,11 +10386,29 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Overview",
+                    "title": "Comparative Map",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                    "markdownSection": "Overview",
-                    "sectionKey": "overview",
-                    "headingLevel": 2
+                    "markdownSection": "Comparative Map",
+                    "sectionKey": "comparative map",
+                    "headingLevel": 2,
+                    "children": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Four Relocations At A Glance",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Four Relocations At A Glance",
+                        "sectionKey": "four relocations at a glance",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Four Interactions As Sector Projections",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Four Interactions As Sector Projections",
+                        "sectionKey": "four interactions as sector projections",
+                        "headingLevel": 3
+                      }
+                    ]
                   },
                   {
                     "kind": "markdown-section",
@@ -10448,11 +10822,77 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Overview",
+                    "title": "The Modern Ontological Network",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Overview",
-                    "sectionKey": "overview",
-                    "headingLevel": 2
+                    "markdownSection": "The Modern Ontological Network",
+                    "sectionKey": "the modern ontological network",
+                    "headingLevel": 2,
+                    "children": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Dual-Stack Mapping Frame",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Dual-Stack Mapping Frame",
+                        "sectionKey": "dual stack mapping frame",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Theory-Like Concepts and Cross-Cutting Constructs",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Theory-Like Concepts and Cross-Cutting Constructs",
+                        "sectionKey": "theory like concepts and cross cutting constructs",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Unification Filter: Symmetry Container Is Not Enough",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Unification Filter: Symmetry Container Is Not Enough",
+                        "sectionKey": "unification filter symmetry container is not enough",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Ontological Area",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Ontological Area",
+                        "sectionKey": "ontological area",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Sub-Ontological Area",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Sub-Ontological Area",
+                        "sectionKey": "sub ontological area",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Concept Status",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Concept Status",
+                        "sectionKey": "concept status",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Relation Type",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Relation Type",
+                        "sectionKey": "mathbb a mathbb a mathbb a relation type",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "How to Read a Differential",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "How to Read a Differential",
+                        "sectionKey": "how to read a differential",
+                        "headingLevel": 3
+                      }
+                    ]
                   },
                   {
                     "kind": "markdown-section",
@@ -12803,10 +13243,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Where Geometry Belongs",
                 "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Where Geometry Belongs",
+                "sectionKey": "where geometry belongs",
                 "headingLevel": 2
               },
               {
@@ -12869,10 +13309,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Substance, Causal Structure, and Effective Description",
                 "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Substance, Causal Structure, and Effective Description",
+                "sectionKey": "substance causal structure and effective description",
                 "headingLevel": 2
               },
               {
@@ -12943,10 +13383,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Wake Records and Inference",
                 "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Wake Records and Inference",
+                "sectionKey": "wake records and inference",
                 "headingLevel": 2
               },
               {
@@ -13017,10 +13457,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Historical and Conceptual Scope",
                 "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Historical and Conceptual Scope",
+                "sectionKey": "historical and conceptual scope",
                 "headingLevel": 2
               },
               {
@@ -13609,10 +14049,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Comparative Scope",
                 "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Comparative Scope",
+                "sectionKey": "comparative scope",
                 "headingLevel": 2
               },
               {
@@ -13787,10 +14227,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Information, Computation, and Ontology",
                 "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Information, Computation, and Ontology",
+                "sectionKey": "information computation and ontology",
                 "headingLevel": 2
               },
               {
@@ -13935,10 +14375,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Historical Near-Misses and Recovery Burdens",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Historical Near-Misses and Recovery Burdens",
+                "sectionKey": "historical near misses and recovery burdens",
                 "headingLevel": 2
               },
               {
@@ -14097,10 +14537,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Predictive Success and Ontological Debt",
                 "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Predictive Success and Ontological Debt",
+                "sectionKey": "predictive success and ontological debt",
                 "headingLevel": 2
               },
               {
@@ -14211,10 +14651,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "From Diagnosis to Resolution Tests",
                 "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "From Diagnosis to Resolution Tests",
+                "sectionKey": "from diagnosis to resolution tests",
                 "headingLevel": 2
               },
               {

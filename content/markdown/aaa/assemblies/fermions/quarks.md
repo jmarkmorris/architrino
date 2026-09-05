@@ -37,12 +37,14 @@ N_{\text{quark}} = N_{\text{braid}} + 6
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0195af62a01fdc6b)
+
 with
 $$
 N_{\text{braid}} \in \{6,4,2\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cca1c4e5c36b7bb5)
+
 for Generations I, II, and III respectively. Here $N_{\text{braid}}$ counts coherent shielding-scaffold architrinos in the promoted branch, not every transient residue of an ablated or relocking tier. This gives:
 
 - Generation I quark: 12 architrinos.
@@ -76,6 +78,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b1f7a88e9029bf66)
+
 That gives net charge
 $$
 Q = \frac{5-1}{6}e = +\frac{2}{3}e
@@ -103,6 +106,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ca8bdff68a4533c4)
+
 That gives net charge
 $$
 Q = \frac{2-4}{6}e = -\frac{1}{3}e
@@ -118,6 +122,7 @@ The down-type sector admits two allowed axis-pattern families:
    $$
 
    [View →](../../../../../equation-mapping.html#corpus-equation-9d1e411e23a32c36)
+
 2. Family II: one negative-polarity dyad and two mixed-polarity dyads, i.e. permutations of
    $$
    \big((\epsilon_-,\epsilon_-),(\epsilon_+,\epsilon_-),(\epsilon_+,\epsilon_-)\big)
@@ -141,6 +146,7 @@ For right-handed quarks:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-e021f2a9523c201b)
+
 - and the weak hypercharge is determined directly by
   $$
   Y = 2Q
@@ -175,6 +181,7 @@ In this bookkeeping:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-ba25e79f03f58d30)
+
 - the down-type branch carries
   $$
   T_3 = -\frac{1}{2}, \qquad Y = +\frac{1}{3}
@@ -210,6 +217,7 @@ Start by mapping the quark axial inventories to their charged-sector conjugate r
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-56fe0008e30972a9)
+
 - anti-down family $(\bar d,\bar s,\bar b)$:
   $$
   4\epsilon_+,2\epsilon_-,\qquad Q=+\frac{1}{3}
@@ -270,6 +278,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-462a99f3f8bceb14)
+
 while electric charge appears on the diagonal through
 $$
 Q = T_3 + \frac{Y}{2}
@@ -348,6 +357,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0e011ea95dd2d916)
+
 where $|q_1\rangle$, $|q_2\rangle$, and $|q_3\rangle$ mean that the exceptional axis sits on indexed axis 1, 2, or 3 respectively.
 
 This basis may be identified with the conventional color labels by the fixed phase convention
@@ -356,11 +366,13 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f742ed0a807cbf75)
+
 $$
 |q_2\rangle \leftrightarrow \text{Green} \leftrightarrow 120^\circ
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b2f63c07975910a3)
+
 $$
 |q_3\rangle \leftrightarrow \text{Blue} \leftrightarrow 240^\circ
 $$
@@ -402,6 +414,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c7f61d2fe99d2f12)
+
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
 The corresponding antiquark is obtained by the charged-sector conjugate axial pattern together with the polarity-conjugate antimatter branch, giving the anti-red, anti-green, and anti-blue states. Its pro/anti ordered orientation is inherited unchanged under that conjugation.
@@ -474,6 +487,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-57dafda2a8c456dc)
+
 and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion. For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate exceptionality among indexed axes 1, 2, and 3, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
 
 ### Generator picture
@@ -484,6 +498,7 @@ U \in SU(3)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a8ee260cc9e6e344)
+
 because the transformation must preserve norm, remain within the one-axis-exceptionality sector, and have unit determinant after removing the unobservable overall phase.
 
 The eight gluon modes are then the eight traceless generators of this action. In axis language:

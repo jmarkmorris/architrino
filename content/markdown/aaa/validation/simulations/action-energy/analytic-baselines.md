@@ -1,17 +1,15 @@
 # Analytic Baselines
 
-Purpose:
-- State the delay differential equations (DDEs) that govern canonical interactions under the delayed line-of-action law with transmitter-side acceleration weight.
-- Record exact analytical solutions only where they exist; otherwise, state solvability status without approximations.
+The analytic baselines state the delay differential equations that govern canonical [architrino interactions](../../../foundations/architrino.md), in which earlier emissions contribute acceleration along the transmitter-to-receiver line with transmitter-side weighting. They give exact solutions where those solutions exist, as in the fixed-source case, and state the absence of a known exact solution without introducing approximations for mutual interaction.
 
-Models:
+## Models
 - Fixed center (one receiver, one stationary transmitter):
   - For unlike polarities, $\sigma_{qq'}=-1$. The causal root is explicit and $D_t=c_f$, so $W^{\mathrm{acc}}=1$ independently of receiver velocity. The canonical radial equation is $\ddot r=-K/r^2$ with $K=\kappa |q q'|>0$. This is an exact fixed-transmitter attraction baseline for the corrected delayed law.
 - Two-body mutual interaction (opposite or equal charges):
   - Coupled DDEs with causal roots $T_t$ defined by $|X_i(T)-X_j(T_t)|=T-T_t$ ($c_f=1$); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{acc}}/r^2$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.
 
-Methodological priority:
+## Methodological Priority
 - Treat the two-point-potential problem as the canonical first laboratory for the delayed theory.
 - Any proposed energy, momentum, virial-like, or kinetic/potential closure claim should be checked here before being generalized to assemblies or Noether sea response arguments.
 - In practice this means: solve the fixed-center and symmetric two-body cases first, then ask which familiar ODE identities survive, which acquire delay corrections, and which fail outright.
@@ -31,6 +29,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-bf602e9a8aeaade5)
+
   with the same replacement by $\mu_K(\|\mathbf V_i\|)$ when the primitive kinetic scalar is used. For a circular branch, the period-averaged integrand reduces to $\mu_{\text{arch}}s_b\langle A_{\eta,b}^{\mathrm{tan}}\rangle_{P_b}$ in the quadratic proxy.
 - The adiabatic consistency check is branch preservation under slow drift. Along a quasi-static path $\gamma:\lambda\mapsto(R(\lambda),s(\lambda),b)$ that does not cross a root-ledger threshold, the work-integral energy change should match the energy difference inferred from the neighboring solved branch family:
   $$
@@ -52,6 +51,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-e723374df0c8beb5)
+
   Here $E_b^{(\eta)}(\lambda)$ denotes the candidate branch energy extracted at fixed $\lambda$ by the same declared construction route. The test is valid only while the same signed causal-root ledger persists with positive Jacobian and inactive-root gap floors. A jump in the ledger is a bifurcation, not a failure of adiabatic energy consistency.
   - Branch-virial theorem target: separate the kinematic virial identity from the stronger classical potential virial theorem. On a fixed finite-$\eta$ branch chart $b$ over an averaging window $W=[T_a,T_b]$, define the branch virial diagnostic
   $$
@@ -63,6 +63,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-1676e7d52ade38b1)
+
   and the quadratic kinetic bookkeeping scalar
   $$
   T_{\mu,b}^{(\eta)}(T)
@@ -74,6 +75,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-8bc11bdeb4e4414f)
+
   Before the branch average is formed, retain the root-resolved virial rows
   $$
   V_{i\leftarrow j,T_t}^{(\eta)}(T)
@@ -85,6 +87,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-e5ad6762bf0280ae)
+
   and the corresponding delivered-power rows
   $$
   P_{i\leftarrow j,T_t}^{(\eta)}(T)
@@ -96,6 +99,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-b5085d10a50323f5)
+
   for every retained source/root hit $T_t\in\mathcal C_{ij,b}^{(\eta)}(T)$. The net virial term is then the ledger-preserving sum
   $$
   \sum_i
@@ -109,6 +113,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-7e4ad858f88cfece)
+
   on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time, Jacobian, transmitter-side acceleration weight, and receiver radial power have survived aggregation over the retained records. When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
   $$
   \left\langle
@@ -129,6 +134,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-8c35f444d2dc9497)
+
   The branch-virial closure target is the special bounded or periodic case in which the right-hand side is zero or below the declared tolerance:
   $$
   \mathcal{R}_{\mathrm{vir},b}^{(\eta)}(W)
@@ -147,6 +153,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-71d5f0000e02ad98)
+
   This is not yet the classical potential statement. The reduction to $\langle 2T-pU\rangle=0$ additionally requires a branch-local potential $U_b^{(\eta)}$ whose scale variation is controlled by a homogeneity degree $p$,
   $$
   U_b^{(\eta)}(\lambda\mathbf X)
@@ -155,6 +162,7 @@ Methodological priority:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-81cfa99d0635cea7)
+
   together with a proof that the same branch acceleration is generated by that potential over $W$. A scale/virial residual that contains zero is therefore diagnostic only until it supplies the same-domain scale generator, homogeneity degree, and branch coordinate needed for this stronger reduction.
 - Velocity-regime scope for the branch-virial target:
   - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits, transmitter-side factors, and transmitter-side acceleration weights still remain in the acceleration term.
@@ -173,12 +181,14 @@ Symmetric two-body on a line (exact DDE; challenges):
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-e3608150113cf43c)
+
   or, writing $\Delta(T)=T-T_t>0$ implicitly,
   $$
   r(T) + r\!\big(T-\Delta(T)\big) \;=\; 2\,\Delta(T)
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-beb22c39a4d20983)
+
 - For opposite polarities, the exact relative-coordinate equation is the state-dependent DDE
   $$
   \frac{d^2 r}{dT^2} \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(T) + r(T-\Delta(T))\big)^2}
@@ -186,9 +196,10 @@ Symmetric two-body on a line (exact DDE; challenges):
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-450e0dfa223303b2)
+
   with $\Delta(T)$ determined by the implicit constraint above. For equal charges, the sign is reversed.
 
-Integral (delta) form selecting the causal root:
+### Integral Form Selecting the Causal Root
 - For particle 1 one may write
   $$
   A_1(T) \;=\; -\,\kappa\,\epsilon^2 \int_{0}^{\infty}
@@ -198,9 +209,10 @@ Integral (delta) form selecting the causal root:
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-aed5720ddeb2bf44)
+
   whose evaluation selects the causal delay $\Delta(T)$. The delta change of variables contributes $c_f/\lvert c_f-\hat{\mathbf r}\cdot\mathbf V_2(T-\Delta)\rvert=W^{\mathrm{acc}}$ automatically. Multiplying by another $W^{\mathrm{acc}}$ after evaluating the integral would double-count the transmitter-side Jacobian.
 
-Why closed-form solutions are unlikely (even with symmetry):
+### Why Closed-Form Solutions Are Unlikely
 - The delay is state-dependent: the unknown $r(T)$ appears both in the right-hand side and in the implicit constraint defining $\Delta(T)$, making the problem a nonlinear functional equation rather than an ODE.
 - Even linear constant-delay DDEs rarely admit elementary closed forms; state-dependent delays are generically non-integrable. The fixed-center problem is a special case that collapses to an ODE (see [Radial Attraction](radial-attraction.md)).
 
@@ -218,7 +230,7 @@ Solution techniques (toolbox for delayed, radial DDEs):
 - A posteriori error control: use defect/residual of collocation, step halving with history re-interpolation, and event-time error estimates for adaptive step and tolerance selection.
 - Fixed-point frameworks: establish local existence/uniqueness by contraction on history spaces $C([-\Delta T_{\max},0])$ (or their mollified variants); use Picard iterations as a solver preconditioner.
 
-Deliverables:
+## Deliverables
 - Precise DDE forms and causal-root conditions for use in analysis and computation.
 - Cross-references to sections with receiver-side baseline equations and status notes.
 - A minimal benchmark ladder for closure tests:
@@ -227,5 +239,3 @@ Deliverables:
   - finite-$\eta$ two-body binary closure packet with branch floors and characteristic frequency extraction,
   - work-energy balance on resolved windows,
   - branch-virial residuals where periodic, quasi-periodic, or bounded-drift regimes exist.
-
-Plain language: We give only the exact delayed equations; where an exact solution exists (fixed source), we present it, and where it does not (mutual interaction), we say so without approximations.

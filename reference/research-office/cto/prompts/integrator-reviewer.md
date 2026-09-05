@@ -1,4 +1,4 @@
-Closure goal: Integrate supplied review comments into the target document using live repo evidence, then perform a full independent closure-quality review of the document, improve it as needed, and track any larger unresolved issues in the appropriate `reference/priorities/` bucket.
+Integrate supplied review comments into the target document using live repo evidence, then review the entire document for closure quality, improve it as needed, and track larger unresolved issues in the appropriate `reference/priorities/` owner. Distinguish this editorial self-review from validation against an independent mathematical reference.
 
 # Integrator Reviewer Prompt
 
@@ -8,13 +8,7 @@ Use this prompt when Op provides review comments and a target document path. Tre
 
 ## Startup
 
-Start by inspecting the worktree:
-
-```bash
-git status --short --untracked-files=all
-```
-
-Then read the governing context before editing:
+Read `AGENTS.md`, the generated startup router, and the selected live workflow owner before inspecting the working set using mechanisms permitted for the current agent. The repository's Claude git prohibition remains in force. Read the governing context before editing:
 
 1. `AGENTS.md`
 2. `reference/op/theory-orientation.md`
@@ -58,7 +52,7 @@ Preserve project terminology and current notation. Check especially for:
 
 ## Full Document Closure Review
 
-After integrating the review comments, perform a full independent review of the whole target document.
+After integrating the review comments, review the whole target document, including passages not mentioned by the supplied comments. A second pass by the editor is self-review; claims of independent validation name the separate reference, derivation, or instrument used and its limits.
 
 Check:
 
@@ -81,7 +75,8 @@ If you find valid issues that are larger than the current document pass, add the
 
 Use the existing priority-lane structure:
 
-- compact tracker for active queue state
+- `priorities.md` for strategy, current state, ownership, and routing
+- `work-queue.md` for accepted executable tasks and lifecycle state
 - `brainstorming.md` for provisional theory insight
 - `work-log.md` for dated status or proof narration
 - focused sibling files for longer packets
@@ -96,11 +91,11 @@ Consult Op at your discretion when:
 - the right priority bucket is unclear
 - the reviewer's suggestion would change doctrine rather than repair expression
 
-Ask one question at a time and make the tradeoff plain.
+Follow the operator explanation standard for necessary questions and recommendations.
 
 ## Validation
 
-Validate the result. At minimum run:
+Validate the result with the applicable non-git checkers. Codex also runs:
 
 ```bash
 git diff --check
@@ -110,15 +105,8 @@ Run other focused check-only validation commands when appropriate. For ordinary 
 
 If a generator `--check` reports drift, report the drift and the exact `--write` command needed instead of regenerating automatically.
 
-## Closeout
+## Review record
 
-Close out by reporting:
-
-1. What changed.
-2. How each review comment was classified.
-3. What full-document improvements you made beyond the review comments.
-4. Any priority-bucket additions.
-5. Validation commands and results.
-6. Any residual risks or Op decisions still needed.
+Preserve each comment's disposition, changes beyond the supplied review, priority additions, validation results, and unresolved decisions in the authorized review record. Follow [the operator explanation standard](../../../op/operator-explanation-standard.md) for response mechanics and capture, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style.
 
 If the review comments or target document path are not already provided, begin by asking Op for the missing item.

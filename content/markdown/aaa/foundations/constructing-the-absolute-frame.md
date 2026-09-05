@@ -1,30 +1,39 @@
 # Constructing the Absolute Frame
 
-This chapter answers a simple question: if the Euclidean void has no grid painted into it, how can the theory ever use coordinates? The answer is reconstruction. A usable frame is built from complete-state wake geometry, not assumed as a label already attached to space. The ontological data are architrino worldlines, transmitter-tagged causal wakes, Euclidean distances on an absolute-time slice, and the path-history records needed to compare them. The coordinate frame reconstructed from those data is a mathematical and computational representation, not an additional constituent of the ontology.
+This chapter answers a question that sounds like an objection: if the [Euclidean void](euclidean-void.md) — the fixed, featureless space that everything in $\mathbb{A}\mathbb{A}\mathbb{A}$ happens inside — has no grid painted onto it, how can the theory ever use coordinates?
+
+The answer is reconstruction. A usable frame is *built* from the geometry that is already there, rather than assumed as a label space came with. The raw material is the paths [architrinos](architrino.md) trace, the transmitter-tagged wakes they emit, ordinary Euclidean distances measured on one slice of absolute time, and the path-history records needed to compare them. The coordinate frame that comes out is a mathematical and computational representation — a convenience — and not an additional ingredient of reality.
 
 ## Overview
 
-The previous chapter showed how transmitter-tagged wake centers identify the preferred rest structure, and how a stationary architrino can supply one convenient material origin when available. The next task is more ordinary but just as important: construct a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0." Those absences are not defects in the ontology. They are the reason coordinates must be inferred from complete-state geometry rather than treated as primitive labels attached to the void.
+The previous chapter showed how transmitter-tagged wake centers identify the preferred rest structure, and how a stationary architrino can supply a convenient material origin when one happens to be available. The next task is more ordinary and just as necessary: build a complete coordinate system.
 
-The conceptual sequence is: [Detecting the Absolute Frame](detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](absolute-time-defense.md) defends the global temporal ledger, and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) explains how observer-level clocks arise once the coordinate frame is in place.
+The void provides no intrinsic markers. There is no point labeled "here," no arrow painted "this way," and no universal clock reading "now = 0." Those absences are not defects. They are exactly why coordinates have to be inferred from geometry rather than treated as something space came equipped with.
 
-The coordinate system reconstructed here is a workbench tool. It lets the theory state equations in components, run simulations, and compare descriptions. The universe itself requires none of it. Architrinos interact through transmitter-tagged causal wakes according to invariant laws that can exhibit deterministic multistability at self-hit thresholds. The physics continues whether or not any Physical Observer labels the axes.
+The conceptual sequence runs across three chapters. [Detecting the Absolute Frame](detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](absolute-time-defense.md) defends the global temporal record, and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) explains how the clocks an observer actually reads arise once a frame is in place.
 
-The reader should therefore treat the construction like assigning graph paper after the geometry is already there. The graph paper helps calculate and compare; it does not create the distances, the rest condition, the causal wakes, or the architrino worldlines. This is why the reconstruction can be mathematically exact at the complete-state level while still being unavailable as a direct laboratory procedure for an embedded observer.
+The coordinate system built here is a workbench tool. It lets the theory write equations in components, run simulations, and compare descriptions. The universe requires none of it. Architrinos interact through their wakes according to laws that make no reference to axes, and the physics proceeds whether or not anyone labels anything.
 
-The claim is therefore narrow. From the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective, a unique oriented basis can be defined after a nondegenerate ordered architrino tuple and parity convention are fixed. That is a mathematical existence proof. It is not an operational laboratory protocol for Physical Observers made of assemblies.
+The useful image is graph paper laid over a drawing that already exists. The paper helps you measure and compare; it did not create the distances, the rest condition, the wakes, or the paths. That is why the reconstruction can be mathematically exact while remaining unavailable as a laboratory procedure to an observer made of assemblies.
 
-The mathematical content is small but useful. The Euclidean metric plus a nondegenerate ordered tuple supplies an origin, two axes, and a parity convention. The important points are the lemma, the exact failure conditions, and the fact that coordinate parity is not dynamical chirality.
+So the claim is narrow, and stating its narrowness is the point. From the complete-state perspective — with exact positions plus the tagged wake and history data used to identify the rest structure and origin — a unique oriented basis can be defined once an ordered set of reference architrinos and a handedness convention are fixed. That is an existence proof. It is not a protocol anyone inside the system can carry out.
+
+The mathematics is small. The Euclidean metric plus a well-chosen ordered triple supplies an origin, two axes, and a handedness convention. What matters is the lemma, the precise conditions under which it fails, and one distinction that is easy to lose: coordinate handedness is not physical handedness.
 
 ## Reconstruction Existence Lemma
 
-Fix one absolute-time slice $\Sigma_{T_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice. Let $\mathbf X_O(T_\ast)$ denote that fixed Euclidean-void point, whether it is occupied by a stationary architrino or reconstructed from a transmitter-tagged emission center and carried to $\Sigma_{T_\ast}$ by spatial identity. Now choose two architrinos $A$ and $B$ whose positions on $\Sigma_{T_\ast}$ satisfy
+Fix one slice of absolute time, $\Sigma_{T_\ast}$ — a complete snapshot of space at one instant. Suppose the wake geometry identifies an origin point $O$ on that slice, and write $\mathbf X_O(T_\ast)$ for that fixed point of the void. It may be occupied by a stationary architrino, or reconstructed from a tagged emission center and carried to this slice by the fact that void points keep their identity forever.
+
+Now choose two architrinos $A$ and $B$ whose positions satisfy
+
 $$
 \mathbf{d}_1=\mathbf X_A(T_\ast)-\mathbf X_O(T_\ast)\ne\mathbf{0}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-703cdd1a293f81c3)
-and
+
+so the first one is not sitting on the origin, and
+
 $$
 \mathbf{d}_2=\mathbf X_B(T_\ast)-\mathbf X_O(T_\ast),
 \qquad
@@ -32,12 +41,19 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9d9f0c637c1adaba)
-Then the first two unit axes are fixed by
+
+so the two displacements are not parallel. The cross product $\mathbf{d}_1\times\mathbf{d}_2$ has length equal to the area of the parallelogram they span, so requiring it nonzero is requiring that they actually span a plane rather than lying along one line.
+
+The first axis is then just the first displacement, scaled to unit length:
+
 $$
 \hat{\mathbf e}_1=\frac{\mathbf{d}_1}{\|\mathbf{d}_1\|}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9ab08029dbdf3267)
+
+and the second axis is what remains of the second displacement after removing everything pointing along the first:
+
 $$
 \mathbf{d}_2^{\perp}=\mathbf{d}_2-(\mathbf{d}_2\cdot\hat{\mathbf e}_1)\hat{\mathbf e}_1,
 \qquad
@@ -45,22 +61,39 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a0ffdb7086cc4c79)
-Read the first displacement as the first arrow from the origin, and the second displacement as the arrow that fixes the plane. Once those are nondegenerate, only one binary choice remains. The remaining completion has exactly two signs. Once an orientation convention is declared, the right-handed completion is
+
+Read it as two arrows. The first displacement is the first arrow out of the origin. The second fixes which plane you are working in. Subtracting the component along $\hat{\mathbf e}_1$ leaves something perpendicular to it, and normalizing gives the second axis.
+
+With two perpendicular axes fixed, only one choice remains, and it is binary: the third axis is perpendicular to both, and there are exactly two directions available. Declaring an orientation convention picks one, and the right-handed completion is
+
 $$
 \hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ca4ef3def46df100)
 
-Geometrically, the lemma constructs a section of the orthonormal frame bundle over the selected Euclidean point from a nondegenerate ordered tuple. In plainer language, the tuple removes the freedom to slide the origin around and spin the axes freely. The continuous freedoms removed are the translations and rotations of the special Euclidean group:
+### What the tuple actually removes
+
+Geometrically, the lemma picks one specific frame out of all possible frames at that point. In plainer terms, the ordered triple removes the freedom to slide the origin anywhere and spin the axes freely.
+
+Those continuous freedoms are the translations and rotations of the special Euclidean group:
+
 $$
 SE(3)=\mathbb{R}^3\rtimes SO(3)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b399e459906d0fd5)
-This is the identity component of the full Euclidean group $E(3)=\mathbb{R}^3\rtimes O(3)$, while the remaining parity choice is the connected-component label of the full orthogonal group, $\pi_0(O(3))\cong\mathbb{Z}_2$. Thus the two signs are not an extra dynamical datum. They are the residual component choice left after the ordered tuple fixes the connected Euclidean-frame freedom.
 
-The construction fails only when the chosen reference data do not actually define a plane. That happens when the first displacement is coincident with the origin or the first two displacements are collinear:
+three directions to slide combined with three-dimensional rotation, and the $\rtimes$ recording that the order of the two operations matters. This is the part of the full symmetry group $E(3)=\mathbb{R}^3\rtimes O(3)$ that can be reached by continuous motion from doing nothing.
+
+The remaining handedness choice is the part that cannot. Reflections are disconnected from rotations — no amount of turning converts a left hand into a right one — and that disconnection is exactly the two-element set $\pi_0(O(3))\cong\mathbb{Z}_2$.
+
+So the two signs are not a hidden physical fact awaiting discovery. They are the leftover discrete choice after the ordered tuple has used up all the continuous freedom.
+
+### Where it fails
+
+The construction fails in exactly one circumstance: the reference data do not define a plane. That happens if the first architrino sits on the origin, or if the two displacements are parallel:
+
 $$
 \|\mathbf{d}_1\|=0
 \qquad\text{or}\qquad
@@ -68,7 +101,9 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5e179351141d1a8a)
-For simulation and finite-precision reconstruction, exact nondegeneracy is not enough. The ordered tuple should also carry a conditioning floor
+
+For simulation on finite-precision arithmetic, exact nondegeneracy is not enough, because *nearly* parallel is nearly as bad as parallel. The tuple should carry a conditioning floor:
+
 $$
 \frac{\|\mathbf{d}_1\times\mathbf{d}_2\|}
 {\|\mathbf{d}_1\|\,\|\mathbf{d}_2\|}
@@ -77,11 +112,17 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4d911da3b862103f)
-on the retained reconstruction window. If this floor is small, the projection defining $\hat{\mathbf e}_2$ is ill-conditioned and the completed $\hat{\mathbf e}_3$ amplifies roundoff or perturbation error. The simulator should then choose a better-conditioned tuple rather than treating the near-collinear basis as an ordinary pass.
 
-This floor is one instance of the non-degeneracy floors used throughout the foundation stack. The common idea is simple: do not trust a reconstruction that would change wildly under a tiny perturbation. In each case the retained chart is accepted only when the relevant reconstruction map has a scale-appropriate nonzero floor. For causal-root charts this is the transversality floor, such as $\lvert\partial_{T_t}F_{ij}\rvert\ge\kappa_{\mathrm{hit}}$; for basin partitions it is the separatrix floor; for this frame construction the scale-free floor is the conditioning of the normalized direction pair $(\mathbf{d}_1/\|\mathbf{d}_1\|,\mathbf{d}_2/\|\mathbf{d}_2\|)$, recorded above by the sine of their angle. The common mathematical content is controlled local invertibility: the map has a bounded inverse-Lipschitz constant on the retained chart, so small perturbations of the complete-state data do not create a different branch or frame.
+The left side is the sine of the angle between the two displacements, and dividing by both lengths makes it dimensionless so the test does not depend on how far away the reference architrinos happen to be.
 
-If a fourth architrino $C$ is introduced, it is non-coplanar with the first three exactly when
+When that floor is small the subtraction defining $\hat{\mathbf e}_2$ removes almost everything, leaving a small remainder dominated by rounding error, and the completed $\hat{\mathbf e}_3$ amplifies it. A simulator should pick a better-conditioned tuple rather than treating a nearly-collinear basis as an ordinary success.
+
+This floor is one instance of a pattern used throughout the foundations: **do not trust a reconstruction that changes wildly under a tiny perturbation.** Here the angle floor bounds the inverse frame construction. A causal-root transversality floor instead supports the implicit-function continuation of a root, while a basin-separator floor regularizes a branch boundary. These are related nondegeneracy conditions, but they do not certify one common inverse map.
+
+### The fourth marker
+
+If a fourth architrino $C$ is introduced, it lies off the plane of the first three exactly when
+
 $$
 \mathbf{d}_3=\mathbf X_C(T_\ast)-\mathbf X_O(T_\ast),
 \qquad
@@ -89,36 +130,48 @@ V_{\mathrm{vol}}=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-60b3c28cbc6bba07)
-Here $V_{\mathrm{vol}}\ne0$ is the structural non-coplanarity test for basis completion. The sign $\operatorname{sgn}(V_{\mathrm{vol}})$ reports which side of the already oriented plane the marker occupies relative to a declared orientation. It does not by itself turn coordinate parity into a dynamical chirality claim.
 
-This lemma is an existence claim at the complete-state level. It does not say that the Euclidean void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough invariant structure to construct a coordinate basis for calculation.
+The scalar triple product $V_{\mathrm{vol}}$ is the **signed** volume of the parallelepiped; its geometric volume is $|V_{\mathrm{vol}}|$. It vanishes precisely when the three displacements are coplanar, and its sign says which side of the oriented plane the fourth marker occupies.
+
+That sign reports a convention. It does not, on its own, make anything physically handed — a distinction the chapter returns to below, because it is the easiest error to make here.
+
+This lemma is an existence claim at the complete-state level. It does not say the void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough structure to build a basis for calculation.
 
 ## Minimal Reconstruction Procedure
 
-The lemma above is the full construction. Complete-state bookkeeping performs four choices. Each choice adds a piece of coordinate language without adding a new physical ingredient:
+The lemma is the whole construction. Complete-state bookkeeping makes four choices, and each adds coordinate language without adding physics:
 
-1. Choose an origin point $O$ on $\Sigma_{T_\ast}$. A stationary architrino can supply a material origin, but a reconstructed transmitter-tagged emission center also suffices. If the emission time is $T_t\ne T_\ast$, the origin on $\Sigma_{T_\ast}$ is the same fixed Euclidean-void point carried by spatial identity across slices, not the original event on $\Sigma_{T_t}$.
-2. Choose a non-coincident architrino $A$ and set $\hat{\mathbf e}_1=\mathbf{d}_1/\|\mathbf{d}_1\|$. This fixes a reference direction but not a physically preferred direction; the tuple choice is conventional once the complete-state geometry is available.
-3. Choose a non-collinear architrino $B$ and use the orthogonal projection of $\mathbf{d}_2$ to define $\hat{\mathbf e}_2$. This fixes the remaining continuous roll around $\hat{\mathbf e}_1$.
-4. Declare a parity convention and set $\hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2$, or use a non-coplanar fourth architrino only as a side marker for reporting the chosen convention.
+1. **Choose an origin** $O$ on $\Sigma_{T_\ast}$. A stationary architrino supplies a material origin, but a reconstructed emission center works too. If that emission happened at $T_t\ne T_\ast$, the origin is the same fixed void point carried across slices by spatial identity — not the original event on its own slice.
+2. **Choose a non-coincident architrino** $A$ and set $\hat{\mathbf e}_1=\mathbf{d}_1/\|\mathbf{d}_1\|$. This fixes a reference direction, not a physically preferred one.
+3. **Choose a non-collinear architrino** $B$ and project out the part of $\mathbf{d}_2$ along the first axis to define $\hat{\mathbf e}_2$. This removes the remaining freedom to roll around $\hat{\mathbf e}_1$.
+4. **Declare a handedness convention** and set $\hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2$, optionally using a fourth architrino as a marker for reporting which convention was chosen.
 
-The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The spatial basis does not need to be re-derived on every slice: once the chart is fixed on $\Sigma_{T_\ast}$, it transports identically across absolute-time slices because Euclidean-void points have fixed identity. In the selected $c_f$-isotropic rest frame, the dynamically completed Newton-Cartan connection is the flat representative described in [Absolute Timespace](absolute-timespace.md#newton-cartan-data), so this transport has trivial holonomy and is path-independent. The delayed root condition $\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)$ therefore compares positions at different times inside the same spatial chart, not inside separately reconstructed per-slice frames.
+The freedoms removed are translation and rotation. Choosing where time zero falls remains a separate convention.
 
-The reconstruction fails only for degenerate or ill-conditioned reference data: $\|\mathbf{d}_1\|=0$, $\|\mathbf{d}_1\times\mathbf{d}_2\|=0$, or a violated conditioning floor. In that case complete-state bookkeeping must choose a different ordered tuple. The failure belongs to the selected chart data, not to the Euclidean void.
+The basis does not need rebuilding on each slice. Once fixed on $\Sigma_{T_\ast}$ it transports unchanged across all absolute-time slices, because void points keep their identity. In the rest frame where the wake speed is the same in every direction, the completed connection is flat, so that transport is path-independent — carrying the frame by one route or another gives the same answer, as described in [Absolute Timespace](absolute-timespace.md#newton-cartan-data).
+
+That matters for delayed interactions specifically. The root condition $\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)$ compares positions at two different times, so it only means anything if both are expressed in the same spatial chart. A single transported frame provides that; separately reconstructed per-slice frames would not.
+
+The procedure fails only on degenerate or ill-conditioned reference data. In that case bookkeeping picks a different tuple. The failure belongs to the chosen data, never to the void.
 
 ## Parity Convention and Dynamical Chirality
 
-Coordinate handedness is a basis convention. It chooses which side of the already-defined plane is called positive $\hat{\mathbf e}_3$. A complete-state side marker $C$ can report that choice through
+This is the section the chapter exists to get right, because conflating these two things is a genuine error rather than a matter of wording.
+
+Coordinate handedness is a convention. It chooses which side of an already-defined plane gets called positive $\hat{\mathbf e}_3$. A marker architrino $C$ reports the choice through
+
 $$
 V_{\mathrm{vol}}=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ac975a3834957f4d)
-with $V_{\mathrm{vol}}>0$ and $V_{\mathrm{vol}}<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V_{\mathrm{vol}}$ does not turn coordinate parity into a dynamical handedness law.
 
-Equivalently, $\operatorname{sgn}(V_{\mathrm{vol}})$ is gauge data for the selected coordinate chart, while dynamical chirality must be an invariant of the retained branch record. Coordinate parity lives in $\pi_0(O(3))$ for the chart; dynamical chirality lives in the connected-component data of framed worldline or assembly-branch configuration space. A simulation may align these signs as a reporting convention, but a nonzero $V_{\mathrm{vol}}$ does not imply that the assembly itself is chiral.
+with positive and negative values selecting opposite sides once an orientation has been declared. The sign of $V_{\mathrm{vol}}$ does not make anything physically handed.
 
-Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether braid handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as a framed self-linking sign
+The two live in different places. Coordinate handedness is a property of the chart — a label you assigned. **Dynamical chirality** is a property of the physical configuration, and would have to be an invariant of the retained branch record, surviving any smooth deformation that preserves the branch. A simulation may line the two signs up as a reporting convention, but a nonzero $V_{\mathrm{vol}}$ never implies that the assembly is chiral.
+
+Dynamical chirality is reserved for a handed marker carried by the assembly itself. Ordered precession, axial-frame exposure, reaction provenance, and braid handedness may all feed such a marker, but the deformation-stable object should be a topological invariant — for example a framed self-linking sign,
+
 $$
 Lk(\gamma,\gamma^{\mathrm{fr}})
 =
@@ -126,45 +179,49 @@ Lk(\gamma,\gamma^{\mathrm{fr}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b3e9e39386cbd52e)
-for a closed framed constituent trace, or the linking number of distinct constituent worldlines. If that branch record supplies a nonzero handed marker, a simulation may choose the coordinate parity convention so that $\operatorname{sgn}(V_{\mathrm{vol}})$ reports the same sign as $\operatorname{sgn}(Lk)$. If the framed self-linking or linking row is zero, uncomputed, or not protected under branch-preserving deformation, the coordinate parity remains a reporting convention with no dynamical chirality content.
 
-The self-linking row is defined only on a regular closed return cycle or on an explicitly closed and nonsingular framed trace. A raw open worldline does not by itself carry a deformation-invariant writhe, and a near self-hit or fold crossing is exactly where the framing can degenerate. Chirality is therefore a regular-branch certificate: it is admissible where the retained roots and nonsingular frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ for the relevant causal-root rows. At a fold, reconnection, or framing slip, $Lk$ can jump; that jump is a branch-transition event, not a change in coordinate convention.
+for the two disjoint edges of a closed, nonsingular framed ribbon. This is the Călugăreanu–White–Fuller relation: the integer linking number is the sum of geometric writhe and framing twist. Writhe and twist may change under a smooth ribbon deformation, while their sum remains fixed so long as the two edges remain disjoint and the framing stays regular. Dennis and Hannay give a geometric account in [*Geometry of Călugăreanu's theorem* (2005)](https://doi.org/10.1098/rspa.2005.1527). Linking between distinct closed worldline traces is a related invariant, but it must be defined on the actual retained closure.
+
+If the branch record supplies a nonzero handed marker, a simulation may choose its coordinate convention so that $\operatorname{sgn}(V_{\mathrm{vol}})$ matches $\operatorname{sgn}(Lk)$. If the linking row is zero, uncomputed, or not protected under branch-preserving deformation, then coordinate parity is a reporting convention carrying no physical content.
+
+There is a real restriction on when this is available. The self-linking row is defined only on a closed return cycle or an explicitly closed, nonsingular framed trace. An open worldline carries no deformation-invariant writhe on its own, and a near self-hit or a fold crossing is exactly where the framing degenerates.
+
+So chirality is a regular-branch certificate: admissible where the retained roots and the frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ on the relevant rows. A causal-root fold alone does not change $Lk$. The linking certificate can change only when the retained closure is replaced or when the ribbon passes through a collision, reconnection, or framing singularity; such an event is a physical branch transition rather than a coordinate convention.
 
 ## Coordinate Frames Are Not Ontology
 
-The Euclidean void has no preferred origin, no intrinsic axis labels, and no substrate-level marker for clockwise versus counterclockwise. At the ontological level, architrinos move and interact through Euclidean separations, transmitter-tagged causal wakes, and line-of-action hits. Coordinates describe those relations; they do not cause them.
+The void has no preferred origin, no intrinsic axis labels, and no substrate marker for clockwise against counterclockwise. At the ontological level architrinos move and interact through Euclidean separations, tagged wakes, and the directions along which those wakes act. Coordinates describe those relations; they do not cause them.
 
-The reconstruction procedure serves theory-building and simulation:
-- writing the master equation in component form,
-- running numerical simulations,
-- communicating results,
-- and comparing frames.
+The procedure serves theory-building and simulation: writing the master equation in components, running numerical work, communicating results, and comparing frames.
 
-The coordinate-invariant content of the laws does not depend on the selected frame. A left-handed coordinate system and a right-handed one produce identical predictions for measurable quantities, differing only in the coordinate signs assigned to pseudovectors and pseudoscalars.
+None of the invariant content depends on the frame. A left-handed coordinate system and a right-handed one give identical predictions for every measurable quantity, differing only in the signs attached to pseudovectors and pseudoscalars — quantities that flip under reflection precisely because handedness was baked into their definition.
 
-The universe does not require a coordinate frame. Theory and simulation use one because the relevant relationships need a stable component language. Origin, first axis, and plane are enough for distances, derivatives, scalar products, and component equations. Handedness matters only when reporting cross products, pseudovectors, pseudoscalars, or parity-sensitive coordinate quantities.
+Origin, first axis, and plane suffice for distances, derivatives, scalar products, and component equations. Handedness matters only when reporting cross products and other parity-sensitive coordinate quantities.
 
 ## Complete-State and Physical-Observer Access
 
-This final distinction separates three layers that are easy to confuse. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether sea. Complete-state bookkeeping can infer a coordinate frame from that full record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
+A final distinction separates three layers that are easy to run together. The substrate holds architrinos, wakes, absolute time, the void, and the contents of the Noether sea. Complete-state bookkeeping can infer a frame from that full record. Observers reach only effective records, through clocks, rulers, and signals that are themselves assemblies.
 
-**Complete-state reconstruction:** The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
+**Complete-state reconstruction** has every position together with the transmitter identities, emission times, and retained path histories needed to reconstruct tagged wake geometry. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
-**Physical Observer access:** Physical Observers cannot directly measure the complete transmitter-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
-- **Proper time** $\tau$, not absolute time $T$
-- **Effective coordinates** via local rulers
-- **Relative velocities** via Doppler shifts and aberration
+**Observer access** does not automatically supply this complete-state construction. An observer's rulers and clocks are assemblies, deformed by motion and by coupling to the medium. They record proper time $\tau$, effective ruler coordinates, and signal-based relative-motion data. Whether a sufficiently extended time series can infer any preferred-frame leakage is an empirical closure question, not something the existence lemma decides.
 
-The obstruction is structural. No operator acting on the superposed received potential alone recovers the transmitter-tagged center set $\{\mathbf Z_a(T_t)\}$ without provenance data already in hand. Transmitter identity, emission time, and wake-center provenance are complete-state ledger entries; once a Physical Observer has only a summed effective record, those tags are not restored by a more clever coordinate reconstruction.
+At one event, an unrestricted summed potential does not uniquely determine the transmitter-tagged center set $\{\mathbf Z_a(T_t)\}$: different tagged source histories can give the same local sum. Transmitter identity, emission time, and wake-center tags are complete-state entries. Extended detector arrays, time series, or a restricted source model may recover partial information, but that is a separate inverse problem and cannot be claimed from the local sum alone.
 
-This can be stated as a quotient obstruction. Let $\mathcal{T}$ denote the provenance-tagged configuration record containing transmitter identity, emission time, and wake-center data, and let
+Stated as a map, let $\mathcal{T}$ be the tagged record and
+
 $$
 Q_{\mathrm{erase}}:\mathcal{T}\to\mathcal{T}/\!\sim_{\mathrm{erase}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b154232fac8d3d1c)
-be the map that forgets the labels retained only by complete-state bookkeeping. The summed observer record lies in the quotient fiber, not in $\mathcal{T}$ itself. Absolute-frame reconstruction requires a section of $Q_{\mathrm{erase}}$ selecting the correct tagged representative. No such section is determined by the superposed potential alone, because many tagged configurations can lie over the same unlabeled record. This is the same kind of label-erasure map that appears in the provenance-leakage bound of [Architrino](architrino.md#provenance-and-persistence).
 
-The reconstruction described here is a **foundational consistency proof**. It shows that the theory has the mathematical structure necessary to define absolute rest and an absolute-frame coordinate system **in principle** from complete ontic data. It does not claim that an embedded observer can perform the reconstruction directly. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological background beneath the effective geometry.
+the operation that forgets the labels only complete-state bookkeeping retains. The observer's record lives on the far side of that map.
 
-For the effective kinematic layer built on top of this scaffold, see [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Emergent Metric](../spacetime/emergent-metric.md).
+The quotient map erases the tags by definition, so it has no unique inverse on unrestricted tagged histories. A physical observer map may retain other correlations from multiple locations or times, and those can distinguish some quotient classes. The exact conclusion is therefore non-identifiability from the erased record alone, not a theorem that every operational inference must fail. This is the same label-erasure structure that appears in the provenance-leakage bound of [Architrino](architrino.md#provenance-and-persistence).
+
+So the reconstruction here is a **foundational consistency proof**. It shows the theory has the structure needed to define absolute rest and an absolute frame **in principle**, from complete data. It claims nothing about an embedded observer's ability to do it.
+
+The matching closure target sits at the other end: moving-assembly deformation, clock and ruler retuning, and two-way signal synchronization must bound preferred-frame leakage below the declared experimental limits while the frame remains the background beneath effective geometry. Both halves are needed. Nagel and collaborators' rotating-resonator experiment reported no significant orientation-dependent frequency shift at the $10^{-18}$ scale; see [*Direct terrestrial test of Lorentz symmetry in electrodynamics to $10^{-18}$* (2015)](https://doi.org/10.1038/ncomms9174). A detectable excess would falsify the proposed observer-hiding closure. Failure of this reconstruction would instead falsify the stated reconstruction lemma or its data assumptions; it would not by itself disprove a preferred frame defined directly by the propagation law.
+
+For the effective layer built on this scaffold, see [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Emergent Metric](../spacetime/emergent-metric.md).

@@ -3546,7 +3546,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-      "name": "Self-energy and regularization notes",
+      "name": "Self-Energy and Regularization",
       "path": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "nodeType": "markdown_doc"
     },
@@ -8800,7 +8800,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-      "name": "Self-energy and regularization notes",
+      "name": "Self-Energy and Regularization",
       "path": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "implicit": false
@@ -9465,7 +9465,7 @@
       "to": "scene:content/scenes/archie/research_notebook.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/documentation.json",
@@ -9473,6 +9473,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
       "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/archie/documentation.json",
+      "to": "scene:content/scenes/archie/ui_guidelines.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/documentation.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/operations.json",
@@ -9620,13 +9627,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/user_interface.json",
       "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/archie/user_interface.json",
-      "to": "scene:content/scenes/archie/ui_guidelines.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/user_interface.json",
-      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",

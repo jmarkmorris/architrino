@@ -153,6 +153,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ba8fc2bca7b714c9)
+
 where $\pi_{\mathrm{shared}}$ keeps the common Noether sea, assembly, weak-exposure, metric, and provenance coordinates consumed by both the positive benchmark and the null channel. The operational audit residual is
 $$
 \mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)
@@ -168,6 +169,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-563febb2371718fa)
+
 The original promotion condition is recovered by requiring $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)=0$. This form rejects a second failure mode: a channel can be numerically hidden but still fail because its suppression uses a different shared record from the one that fit the observed sector.
 
 | Added-channel family | Example observable $O_e(\theta)$ | Null data product | Same-record requirement |
@@ -196,6 +198,7 @@ v_-(\omega,\hat{\mathbf{k}};\theta)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-be440df4c80c8d28)
+
 The photon/effective-metric record can be promoted only when $\mathcal{R}_{\mathrm{biref}}(\theta)\le\epsilon_{\mathrm{biref}}$ in the declared weak homogeneous regime and when the same $\theta$ also supplies the clock, ruler, signal, and metric coefficients used for the positive GR-facing benchmarks. If birefringence is numerically hidden by switching to a different channel record than the one used for lensing, Shapiro delay, spectra, or photon synchronization, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ fails even if the split is individually small.
 
 #### Null-Result Ownership Matrix
@@ -219,6 +222,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d3bddeffcc50cf81)
+
 The current benchmark scale is already severe: PDG 2024 summaries give $\tau/B(p\to e^+\pi^0)>2.4\times10^{34}\,\mathrm{yr}$ and proton neutrino/kaon modes near $5.9\times10^{33}\,\mathrm{yr}$ at 90% confidence. These numbers are comparison anchors, not permanent constants; a closure packet should cite the current experimental source when the hadronic gate is evaluated.
 
 ## Sector Acceptance Sets

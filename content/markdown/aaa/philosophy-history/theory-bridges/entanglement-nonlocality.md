@@ -1,10 +1,8 @@
 # Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture
 
-This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that ordinary pair entanglement is a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and resolved at measurement through the declared live substrate-causal $c_f$ coordination channel gated by that provenance; the epistemic limitations of Physical Observers explain why the record looks operationally irreducible, while the Bell nonfactorizability itself is carried by the live channel. Bell-level operational equivalence remains a closure target until the pair-provenance ledger and the coupled apparatus-response law on the $c_f$ channel have passed the Bell gate.
+This bridge maps quantum entanglement and nonlocality in standard quantum mechanics to the proposed deterministic path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The proposed mapping treats ordinary pair entanglement as a record problem rather than an invisible connection between distant objects. Two assemblies inherit one causal origin, maintain correlated path-history ledgers, and resolve measurement through the declared live substrate-causal $c_f$ coordination channel gated by that provenance. Physical Observers cannot access the complete ledger, which makes the correlation operationally irreducible, while the live channel is proposed to carry the Bell nonfactorizability. Bell-level operational equivalence remains a closure target until the pair-provenance ledger and coupled apparatus-response law on the $c_f$ channel pass the Bell gate, reproduce the observed quantum correlations, and block controllable faster-than-$c_f$ signaling.
 
 It forms a tight cluster with [Bell Theorem](./bell-theorem.md), [Measurement Ontology](../../quantum/measurement-ontology.md), [Wavefunction Ontology](../../quantum/wavefunction-ontology.md), [Superposition Mechanism](./superposition-mechanism.md), and [Pilot-Wave Character](./pilot-wave-character.md).
-
-In plain terms, entanglement is not treated here as an invisible connection between distant objects. It is treated as a hard record problem. Two assemblies can inherit one source history, carry correlated internal ledgers, and later produce records that cannot be reduced to two independent local value tables. The closure task is to show that this record structure gives the observed quantum correlations while still blocking controllable faster-than-$c_f$ signaling.
 
 This distinction protects both sides of the comparison. Standard quantum mechanics is right that entangled records are not just ignorance about ordinary independent variables. $\mathbb{A}\mathbb{A}\mathbb{A}$ adds that the missing implementation should be searched for in source provenance, path-history memory, apparatus response, and Noether sea context rather than in a primitive nonlocal command sent at measurement time.
 
@@ -384,6 +382,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b949f770a2246495)
+
 The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\le\epsilon_{\mathrm{NS}}$ and the analogous $B$-side residual. This residual keeps the non-separable ontology from becoming an operational signal channel.
 
 ---
@@ -473,6 +472,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-9c43fd6312283be1)
+
   which yields
   $$
   E_{\mathrm{SG}}
@@ -485,6 +485,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-89c9b46fd8526964)
+
 - Investigate whether the non-separability of $\lambda$ can be given a precise geometric characterization in terms of correlated binary-plane orientations and wake-phase offsets.
 
 The philosophy-facing framing of this problem lives in [Crisis in Physics](../crisis-in-physics.md), especially its Bell and measurement sections.

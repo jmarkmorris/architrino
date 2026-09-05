@@ -335,6 +335,12 @@ const topDynamicControlBarRuntime = createTopDynamicControlBar({
         resultsId: "scene-search-results",
       },
     },
+    {
+      kind: "documents",
+      id: "comparative-glossary-button",
+      label: "Open comparative glossary",
+      onActivate: () => openComparativeGlossary(),
+    },
   ],
   document: globalThis.document,
   window: globalThis.window,
@@ -5431,6 +5437,7 @@ const markdownManifestPath = "content/markdown/markdown_index.json";
 const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
+const comparativeGlossaryScenePath = "content/scenes/archie/glossary.json";
 const animatorScenePath = ANIMATOR_SCENE_PATH;
 const animatorSceneId = "animator";
 const animatorPreviewSceneId = "animator_preview";
@@ -6732,6 +6739,7 @@ const fileSourceRuntime = createFileSourceRuntime({
 });
 
 function updateSceneMarkdown() {
+  scenePanelUiRuntime.updateMarkdownCloseAction();
   if (!currentLevel || !currentLevel.markdownPath) {
     markdownRuntime.hideMarkdownPanel();
     return;
@@ -8797,6 +8805,13 @@ function toggleTextbookToc() {
   jumpToScene(textbookTocScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
 }
 
+function openComparativeGlossary() {
+  if (transitionState.active || !currentLevel || currentLevel.id === comparativeGlossaryScenePath) {
+    return;
+  }
+  jumpToScene(comparativeGlossaryScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
+}
+
 const sceneSearchRuntime = createSceneSearchRuntime({
   sceneSearch,
   sceneSearchToggle,
@@ -8839,6 +8854,16 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   closeDetailPanel,
   getCurrentLevel: () => currentLevel,
   isTransitionActive: () => transitionState.active,
+  returnFromDocumentLevel: async () => {
+    if (!appDirector) {
+      return false;
+    }
+    if (await appDirector.goBack()) {
+      return true;
+    }
+    await appDirector.resetHome();
+    return true;
+  },
   toggleTextbookToc,
   documentLike: globalThis.document,
 });

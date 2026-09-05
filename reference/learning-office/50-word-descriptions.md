@@ -4,11 +4,11 @@ Six 50-word options give different audiences one clear emphasis and one invitati
 
 ## General Architecture
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ is an open research architecture built from a small substrate basis: architrinos, absolute time, Euclidean void, polarity, and finite-speed causal wakes. Particles, clocks, gravity, and quantum behavior are assembly-level recovery targets, with delayed deterministic dynamics and explicit validation burdens.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is an open research architecture built from a small substrate basis: architrinos, absolute time, Euclidean void, polarity, and finite-speed causal wakes. Particles, clocks, gravity, and quantum behavior are assembly-level recovery targets, with delayed deterministic dynamics and explicit validation burdens. Readers can inspect the equations, question assumptions, and test claims.
 
 ## Physics-Curious Reader
 
-At its core, $\mathbb{A}\mathbb{A}\mathbb{A}$ asks whether modern physics can be recovered from discrete architrino assemblies rather than fundamental spacetime curvature or fundamental quantum randomness. It keeps empirical targets in view while replacing black-box postulates with causal-wake path history, deterministic multistability, Noether sea medium response, and branch-certified derivations and public critique.
+At its core, $\mathbb{A}\mathbb{A}\mathbb{A}$ asks whether modern physics can be recovered from discrete architrino assemblies rather than fundamental spacetime curvature or fundamental quantum randomness. It keeps empirical targets in view while replacing black-box postulates with causal-wake path history, deterministic multistability, Noether sea medium response, and branch-certification targets and public critique.
 
 ## Open-Source Reader
 

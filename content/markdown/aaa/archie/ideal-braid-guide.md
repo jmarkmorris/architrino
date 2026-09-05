@@ -1,19 +1,17 @@
 # Coincident-Midpoint Three-Axis Circular Lorentz Geometry Guide
 
-Coincident-Midpoint Three-Axis Circular Lorentz Geometry is the app-facing guide for the standalone prescribed coincident-midpoint orthogonal-axis braid Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
-
-The app is useful because Lorentz factors can become too abstract too quickly. This lesson puts $\beta_f$, $\gamma_f$, length contraction, relative-time behavior, and oblate spheroidal envelope geometry into one inspectable picture.
+Coincident-Midpoint Three-Axis Circular Lorentz Geometry is the app-facing guide for a standalone prescribed coincident-midpoint orthogonal-axis braid lesson. The application makes $\beta_f$, $\gamma_f$, length contraction, relative-time behavior, and oblate spheroidal envelope geometry visible in one inspectable picture, with controls mapped explicitly to the equations and to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
 
 This is not a proof document. The app is an inspection surface: it makes a candidate geometry legible so that the theory documents can state the mathematical obligations clearly.
 
-Read this alongside:
+The related mathematical treatments are:
 
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
 - [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md)
 - [About the Webapp](about-the-webapp.md)
 
-## Purpose
+## Linked Quantities
 
 The app shows a prescribed coincident-midpoint orthogonal-axis Noether braid whose velocity-dependent boundary is treated as an oblate spheroidal envelope. The user changes the velocity fraction $\beta_f = v/c_f$ and sees the same factor appear in four linked places:
 
@@ -50,6 +48,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ef6d57164647837d)
+
 as that direction. The binary orbital normals then tilt toward $\hat{\mathbf{n}}$ as the oblate spheroidal envelope contracts along $\hat{\mathbf{n}}$. Near the limit $\beta_f\to1$, the displayed orbit planes approach a common plane orthogonal to the assembly momentum direction, so a viewer looking along $\hat{\mathbf{n}}$ should see the orbits approach concentric circles.
 
 This is a visualization hypothesis, not a completed theorem. The app makes the proposed convergence visible so that later simulation, return-cycle, and branch-ledger work can test whether the convergence follows from the underlying dynamics.
@@ -94,6 +93,7 @@ R_{\parallel}=\frac{R_0}{\gamma_f}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f64231e75556379f)
+
 so the relative envelope volume follows the same inverse Lorentz factor:
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
@@ -102,6 +102,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ba7e98758f16c775)
+
 If a later lesson exposes a separate scale channel $\lambda$, then
 $$
 R_{\perp}=\lambda R_0
@@ -110,6 +111,7 @@ R_{\parallel}=\frac{\lambda R_0}{\gamma_f}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d89f8ca174aafd04)
+
 and the volume ratio becomes
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
@@ -118,6 +120,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8ee8c0b6dd56540b)
+
 The scale channel is separate from the Lorentz shape channel: $\gamma_f$ fixes the axis ratio, while $\lambda$ changes the absolute size.
 
 ## Time And Return Cycles
@@ -183,6 +186,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7a0f3dda2d2a2e6b)
+
 falls in lockstep with the length-contraction factor because the denominator is total center-of-mass energy while the numerator is the fixed rest mass.
 
 ## Control Meanings

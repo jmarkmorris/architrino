@@ -2,6 +2,8 @@
 
 ## Local Specialist Use
 
+The [Specialist charter](../specialist.md) and [geometry and dynamics packet](system-prompt.md) govern this lens. Operator responses follow the [operator explanation standard](../../../op/operator-explanation-standard.md); writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md). Perspective writing is explicitly AI-imagined commentary, not a quotation, historical attribution, or evidence of the named person's views about this theory.
+
 - Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
 - Use this role as a creative analytical lens, never as theory or acceptance authority.
 - Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.

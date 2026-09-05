@@ -1,6 +1,6 @@
 # Corpus Dragnet Concept Synthesis
 
-Corpus Dragnet is a read-only correlation lane for evidence-backed relationships among published and internal material. It records candidates for later human triage; it does not rewrite, promote, merge, regrade, or reorganize the material it scans.
+Corpus Dragnet is a correlation workstream for evidence-backed relationships among published and internal material. It records candidates for later triage and may implement bounded changes when an accepted queue item grants that authority; it does not independently change claim grades, promotions, or ownership beyond the accepted scope.
 
 ## Finding Discipline
 

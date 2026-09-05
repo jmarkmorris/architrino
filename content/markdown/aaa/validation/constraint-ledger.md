@@ -1,14 +1,14 @@
 # Constraint Ledger
 
-Notes collected here document the falsification criteria, ordering priorities, and supporting mechanisms for the architrino framework. Keep this page focused on observable constraints so each model version can be checked against experimental scrutiny.
+This ledger collects the observable constraints that can reject the architrino framework. It keeps measurable limits separate from general research priorities so each model version can be tested against experimental scrutiny.
 
 ## Experimental Constraint Ledger and Falsification Criteria
 
-This ledger crystallizes the measurable thresholds and theoretical guardrails that could falsify the architrino proposal. Each numbered entry combines the empirical bound, the proposed mechanism, and the explicit failure condition so that we can track how discrete experimental results shape or reject the model.
+Each numbered entry combines an empirical bound, the proposed mechanism, and an explicit failure condition so that experimental results can shape or reject the model.
 
 ### Lorentz Invariance & Preferred Frame Effects (Tier 1)
 
-The purpose of this section is to define the combination of experimental isotropy and observational invariance that must hold if a putative absolute frame is to remain hidden. We identify the observables, derive the emergent timing/ruler behavior implied by the Noether sea, and explicitly state the tolerance beyond which the preferred frame would become perceivable.
+An absolute frame remains hidden only if the required experimental isotropy and observational invariance hold together. The entries below identify the observables, state the emergent timing and ruler behavior attributed to the Noether sea, and define the tolerance beyond which the preferred frame would become detectable.
 
 * **Constraint** – isotropy from Michelson–Morley and resonator experiments constrains $|\Delta c/c| < 10^{-17}$ while atomic clock sidereal drift stays below $10^{-16}$, keeping Lorentz-invariance leakage under the $10^{-17}$ falsification threshold.
 * **Consolidated Requirement** – prove preferred-frame hiding: architrino assemblies must acquire Lorentz-compatible deformation and clock behavior in the Euclidean-void rest frame so no local observer can detect the Noether sea's rest frame.
@@ -34,6 +34,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cfbc53f331d1f5c8)
+
 Here $\Gamma_z$ is the observer-level path used by the comparison, and $\chi_\gamma$ is the photon-channel delay factor from the same branch record used for photon synchronization. A useful residual is
 $$
 \mathcal{R}_{\gamma\mathrm{disp}}
@@ -51,6 +52,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1abb38f3751b71cb)
+
 where $\mathcal{E}$ is the declared transient catalog, $\Delta t_{\mathrm{src}}$ is the modeled source lag, and $\sigma_{\Delta t}$ is the adopted timing uncertainty.
 
 * **Constraint** – the same photon branch that recovers local Lorentz synchronization must keep $\mathcal{R}_{\gamma\mathrm{disp}}$ below the declared catalog threshold without per-source retuning.
@@ -96,6 +98,7 @@ The propagation speed of gravitational-wave disturbances in the Noether sea must
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-e5dc0f030c4b58dc)
+
   Equivalently, for the weak homogeneous observer branch in which $c_\gamma\to c_0$,
   $$
   \left|
@@ -108,6 +111,7 @@ The propagation speed of gravitational-wave disturbances in the Noether sea must
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-1a57d4fecb90841c)
+
   is the order-of-magnitude ledger tolerance. Any tighter ledger tolerance adopted for a specific validation band should be stated explicitly rather than inferred from ontology.
 * **Shared-Channel Requirement** – the effective gravitational-wave channel and photon channel must be derived from one Noether sea state record in the weak-field branch, as required by [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). A medium-based gravity model fails this row if it lets gravitational waves and photons acquire independently tunable dressed speeds in the same region.
 * **Mode and Dispersion Gate** – finite-range or medium-compliance corrections must keep accumulated dispersion, false-alarm residuals, calibration residuals, and any scalar, vector, or longitudinal gravitational-wave detector response below the residual bounds for the validated band.
@@ -144,6 +148,7 @@ Massive-interference experiments and precision gravity readouts jointly test whe
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-ad599d5e1bd52189)
+
   with $\Delta h_A(t_{\mathrm{eff}})=h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)$, must remain below the declared which-path threshold for any interference-preserving run unless a record-forming separatrix crossing and persistence window are also derived.
 * **Observable** – the data products are massive-superposition coherence time, branch separation and mass-displacement history, precision-gravity response, detector noise covariance, any two-probe entanglement witness, non-gravitational coupling residuals, and the absence or presence of a durable which-path record.
 * **Validation Target** – combine long-coherence interferometry with Cavendish-like, atom-interferometric, or gravitational-wave-instrument precision bounds to constrain $\mathcal{D}_{\mathrm{grav}}$ using one effective-metric constitutive record $\theta$; the concrete scaffold is [Massive-Superposition Gravity Validation Packet](massive-superposition-gravity.md).
@@ -171,6 +176,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8fbef462600b538c)
+
 The corresponding impulse scale on a tracked body is
 $$
 \Delta v_{\mathrm{test}}
@@ -179,6 +185,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d00c040262a64977)
+
 with the accepted comparison using the full ephemeris covariance rather than this estimate alone.
 
 * **Constraint** – any claimed local compact dark-sector signal must produce an ephemeris residual $\Delta x_{\mathrm{ephem,eff}}^{i,\theta}(t_{\mathrm{eff}})$ above the declared ranging and model-error floor while remaining inconsistent with ordinary catalogued bodies under the same orbit-reconstruction covariance.
@@ -215,4 +222,5 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b6a0379c548612df)
+
 If the intersection is empty after uncertainty propagation, the integrated model version is rejected.

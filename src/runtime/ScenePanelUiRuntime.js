@@ -11,11 +11,48 @@ export function createScenePanelUiRuntime(deps) {
     closeDetailPanel,
     getCurrentLevel,
     isTransitionActive,
+    returnFromDocumentLevel,
     toggleTextbookToc,
     documentLike = typeof document !== "undefined" ? document : null,
   } = deps;
 
-  function openCurrentLevelDoc() {
+  function isDocumentOnlyMarkdownLevel(level = getCurrentLevel()) {
+    return Boolean(
+      level?.markdownPath &&
+        level.markdownAutoOpen !== false &&
+        Array.isArray(level.nodes) &&
+        level.nodes.length === 0
+    );
+  }
+
+  function updateMarkdownCloseAction() {
+    if (!markdownClose) {
+      return;
+    }
+    const returnsFromDocument = isDocumentOnlyMarkdownLevel();
+    markdownClose.setAttribute?.(
+      "aria-label",
+      returnsFromDocument ? "Close document and return" : "Close document"
+    );
+    markdownClose.title = returnsFromDocument ? "Close and return" : "Close";
+  }
+
+  async function closeMarkdownSurface() {
+    if (isTransitionActive()) {
+      return false;
+    }
+    if (
+      isDocumentOnlyMarkdownLevel() &&
+      typeof returnFromDocumentLevel === "function" &&
+      (await returnFromDocumentLevel())
+    ) {
+      return true;
+    }
+    markdownRuntime.hideMarkdownPanel();
+    return false;
+  }
+
+  async function openCurrentLevelDoc() {
     if (isTransitionActive()) {
       return;
     }
@@ -30,7 +67,7 @@ export function createScenePanelUiRuntime(deps) {
       typeof markdownRuntime.isActiveLevelMarkdown === "function" &&
       markdownRuntime.isActiveLevelMarkdown(docLevel)
     ) {
-      markdownRuntime.hideMarkdownPanel();
+      await closeMarkdownSurface();
       return;
     }
     markdownRuntime.showMarkdownPanel(docLevel);
@@ -49,7 +86,7 @@ export function createScenePanelUiRuntime(deps) {
     );
   }
 
-  function closeMarkdownFromOutsidePointer(event) {
+  async function closeMarkdownFromOutsidePointer(event) {
     if (
       !markdownRuntime ||
       typeof markdownRuntime.isMarkdownPanelOpen !== "function" ||
@@ -60,7 +97,7 @@ export function createScenePanelUiRuntime(deps) {
     if (isMarkdownChromeTarget(event?.target)) {
       return;
     }
-    markdownRuntime.hideMarkdownPanel();
+    await closeMarkdownSurface();
   }
 
   function wireListeners() {
@@ -79,14 +116,14 @@ export function createScenePanelUiRuntime(deps) {
     }
 
     if (markdownClose) {
-      markdownClose.addEventListener("click", () => {
-        markdownRuntime.hideMarkdownPanel();
+      markdownClose.addEventListener("click", async () => {
+        await closeMarkdownSurface();
       });
     }
 
     if (markdownDocButton) {
-      markdownDocButton.addEventListener("click", () => {
-        openCurrentLevelDoc();
+      markdownDocButton.addEventListener("click", async () => {
+        await openCurrentLevelDoc();
       });
     }
 
@@ -125,6 +162,7 @@ export function createScenePanelUiRuntime(deps) {
   }
 
   return {
+    updateMarkdownCloseAction,
     wireListeners,
   };
 }

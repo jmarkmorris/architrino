@@ -177,7 +177,7 @@ Required runner inputs for each active branch $\alpha\in\{P_1,P_2,P_3,S_1\}$:
 | Active tube | Outward interval enclosure for the branch over a slab $I_m\subset I_\ast$ and $\Delta$ tube $K_{\alpha,m}\subset D_{\mathrm{cert}}$. |
 | Root equation | The corresponding $F_p$ or $F_s$ used to certify the active root. |
 | Partial derivatives | Outward interval forms for $\partial_\theta F_\alpha$ and $\partial_\Delta F_\alpha$. |
-| Jacobian identity | Certified row $\partial_\Delta F_\alpha=-J_\alpha/b(\theta)$ using the same $J_{12}$ or $J_{11}$ as the force row. |
+| Jacobian identity | Certified row $\partial_\Delta F_\alpha=-J_\alpha/b(\theta)$ using the same $J_{12}$ or $J_{11}$ as the acceleration row. |
 | Velocity projections | $\beta_{i,\alpha}=\hat{\mathbf r}_\alpha\cdot\mathbf v_i/c_f$ and $\beta_{j,\alpha}=\hat{\mathbf r}_\alpha\cdot\mathbf v_{j_\alpha}/c_f$, with $J_\alpha=1-\beta_{j,\alpha}$. |
 | Separation | Positive lower bound for $L_\alpha=r(\theta)\Lambda_\alpha$ on the active tube. |
 

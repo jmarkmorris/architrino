@@ -5,7 +5,7 @@
 - Kind: `priority`
 - Rank: `unranked / supporting`
 - Status: `idle-no-executable-object`
-- Default execution mode: `read-only correlation pass`
+- Default execution mode: `scoped correlation action`
 - Default economical worker: `Codex Luna`, with explicit bounded prompts
 
 ## Objective
@@ -20,15 +20,15 @@ Maintain a durable, reviewable inventory of possible corpus connections, duplica
 
 ## Non-Authority Rules
 
-- Dragnet workers are read-only outside this directory.
-- A finding is a recommendation candidate, not an accepted correction, priority, theory claim, promotion, or reorganization decision.
+- Dragnet workers follow the edit authority, inspected scope, owner routes, and completion conditions declared by the accepted queue item.
+- A finding is a recommendation candidate unless the accepted queue item also authorizes its bounded implementation or records an owner-approved disposition; it is never authority for a new theory claim or claim-grade change by itself.
 - Every finding must name the exact paths and the observable relationship. Similar wording alone is insufficient.
-- Do not infer that an internal note should enter published corpus material, or that published text should be demoted, without operator or owner triage.
+- Do not infer that an internal note should enter published corpus material, or that published text should be demoted, without operator or owner triage or explicit authority in the accepted queue item.
 - Do not collapse independent evidence, terminology, or claim grades merely because two passages appear related.
 
 ## Triage Route
 
-Record findings in [recommendations.md](recommendations.md). A human or authorized integrator may set the finding's disposition and route an accepted action to its owning priority lane. The detailed execution order lives in [work-queue.md](work-queue.md).
+Record findings in [recommendations.md](recommendations.md). A human or authorized integrator may set the finding's disposition and route an accepted action to its owning priority workstream; an accepted queue item may also authorize bounded implementation and disposition directly. The detailed execution order and edit authority live in [work-queue.md](work-queue.md).
 
 ## Current
 

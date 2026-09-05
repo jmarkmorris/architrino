@@ -21,6 +21,12 @@ The reader-facing app guide is [Photon Guide](../../../content/markdown/aaa/arch
 
 Historical promotion note is preserved in [work-log.md](work-log.md#2026-07-02-photon-guide-promotion-note).
 
+## Document Role And Authority
+
+This tracker combines four kinds of material that must not be read as one status. **Implemented Baseline** and statements that the app currently implements or emits record deployed behavior; **Runtime Requirements Kept In Force** records accepted requirements whether or not a later refinement is complete; **Candidate Model**, statements using `should` or `next`, and the phase-lock discussion retain proposal or open-design status; and **Deferred Non-Goals** names work the app does not currently claim. [work-queue.md](work-queue.md) is the authority for executable task state, while [work-log.md](work-log.md) and the focused sibling packets carry the validation and historical evidence.
+
+Every mathematical row in this tracker is an app diagnostic, requirement, comparison, or open closure burden at the scope stated where it appears. Its presence here does not establish a retained photon branch, stability, helicity, Malus-law recovery, or a Noether sea constitutive law.
+
 ## Implemented Baseline
 
 The current app implements:
@@ -447,6 +453,8 @@ $$
 \frac{\left\langle|\hat{\mathbf a}\cdot\mathbf E|^2\right\rangle}
 {\left\langle|\mathbf E|^2\right\rangle+\varepsilon}.
 $$
+
+Here $\hat{\mathbf a}$ is the unit analyzer direction at angle $\theta$ in the transverse YZ plane, $\mathbf E$ is the displayed transverse field sample, $\varepsilon$ is the small positive denominator regularizer, and the angle brackets average over the declared common-period window. The instantaneous fraction $\mu_{\mathrm{analyzer}}$ evaluates one field sample, whereas $\bar\mu_{\mathrm{analyzer}}$ compares the accumulated projected and total transverse energies over the window. Both are observer-level app diagnostics; neither supplies a material-analyzer mechanism or establishes Malus-law recovery.
 
 ### Configuration Search Design
 

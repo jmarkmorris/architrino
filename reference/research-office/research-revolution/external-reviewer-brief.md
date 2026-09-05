@@ -60,16 +60,11 @@ The highest-value review questions are:
 6. What would make a rejection responsible: missing equation, missing benchmark, missing computation, missing failure condition, missing safety case, or missing governance control?
 7. Does the proposal give skeptics enough authority to attack the candidate without allowing legacy institutions to veto object formation?
 
-## Suggested Review Output
+## Review Coverage
 
-A useful technical response can be short if it is specific:
+Identify the strongest supported contribution, any overreach and its missing evidence threshold, and the most useful next technical object. Where the evidence warrants a governance correction, name the funding, workforce, review, or facility safeguard and explain its purpose. Exact replacement wording is useful when it resolves a concrete defect. State what evidence would justify moving beyond planning. These are assessment questions, not required report sections or quotas for findings.
 
-1. **Strongest current contribution:** one paragraph.
-2. **Most serious overreach:** identify the section and the threshold that is missing.
-3. **Most valuable missing reviewable object:** name the primitives, equations, computations, or benchmark family that must appear next.
-4. **One governance correction:** identify a funding, workforce, review, or facility safeguard that should be added or tightened.
-5. **One exact sentence to add or revise:** propose wording if possible.
-6. **Go/no-go threshold:** state what would move the proposal from current planning material to a serious intervention program.
+Repository agents follow the [operator explanation standard](../../op/operator-explanation-standard.md) for responses and authorized capture, and the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style. External reviewers may organize their answers around the findings that matter.
 
 ## Review Posture
 

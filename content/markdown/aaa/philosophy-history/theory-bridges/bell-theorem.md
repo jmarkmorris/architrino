@@ -1,6 +1,6 @@
 # Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response
 
-This document presents the standard derivation and physical content of Bell's theorem, then states how the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) should approach the experimentally observed violations of Bell inequalities. It is a bridge document, not the final mechanism. The final account must be rebuilt from the architrino-level angular-momentum and spin ledger developed in [Angular Momentum and Spin](./angular-momentum-and-spin.md).
+This bridge presents the standard derivation and physical content of Bell's theorem, then states how the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) approaches the experimentally observed violations of Bell inequalities. It is not the final mechanism. The final account must be rebuilt from the architrino-level angular-momentum and spin ledger developed in [Angular Momentum and Spin](./angular-momentum-and-spin.md).
 
 The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, Noether braid, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
 
@@ -117,12 +117,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d37a0ffe81d173e2)
+
 Quantum mechanics assigns product signs $\chi_C\in\{-1,+1\}$ for those contexts such that
 $$
 \prod_{C\in\mathcal{C}_{\mathrm{GHZ}}}\chi_C=-1
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5c587e011fd281ef)
+
 Any context-independent local assignment of predetermined values $x_A,y_A,x_B,y_B,x_C,y_C\in\{-1,+1\}$ gives product $+1$, because every local value appears twice when the four context products are multiplied. This is the all-or-nothing GHZ obstruction: a model cannot pass by reproducing only a Bell average while carrying one fixed local value table across all contexts.
 
 For an $\mathbb{A}\mathbb{A}\mathbb{A}$ record model, the corresponding residual is
@@ -136,6 +138,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ce48d89e43da7413)
+
 where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and the coupled substrate-response kernels on the declared $c_f$ coordination channel, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
 
 **Hardy zero/positive event benchmark.** Hardy's two-particle proof uses binary observables $U_i,D_i$ and a nonmaximally entangled state to combine three zero-probability constraints with one positive-probability event. In one common convention the quantum target is
@@ -146,6 +149,7 @@ P(D_1=1,U_2=0)=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-84c44955b3870301)
+
 $$
 P(U_1=0,D_2=1)=0,
 \qquad
@@ -153,6 +157,7 @@ P(D_1=1,D_2=1)>0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7dc9328b2315179f)
+
 Local realism turns the positive $D_1=D_2=1$ event into a forbidden $U_1=U_2=1$ event. A compact validation margin is
 $$
 \Delta_{\mathrm{Hardy}}
@@ -169,6 +174,7 @@ P_\theta(U_1=0,D_2=1)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0c1e63f033c00ce8)
+
 The target is not to import Hardy's notation as ontology. The target is to make the declared joint record measure reproduce the zero constraints and the positive event while preserving measurement independence and no-signaling.
 
 ### Experimental Status
@@ -414,6 +420,7 @@ P(a,b|x,y,B\prec_T A)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0fa61fc5aabf1a90)
+
 This condition is not implied by setting-independent marginals. The marginals can be local while a correlation-timing residual still leaks the absolute simultaneity structure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell closure must therefore preserve both marginal invariance and ordering invariance.
 
 Correlation recovery is the third guardrail:
@@ -451,6 +458,7 @@ T_A+\tau_A-T_B-\frac{d_{AB}}{c_f}.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f4c89cf49d574fd7)
+
 If both margins are negative, neither wing's causal wake can enter the other wing's record-closure window before the relevant record closes. If either margin is nonnegative, the experiment lies in a wake-reach exposure window. This matters whenever $c_f>c_\gamma$: a pair can be spacelike by the dressed photon-channel record while still allowing primitive causal-wake reach during the measurement window. A Bell closure must therefore either keep the record windows mutually outside $c_f$ causal-wake reach or prove that any such reach leaves $\Delta_{\mathrm{ord}}$ below the coincidence-timing and correlation-residual tolerance.
 
 Using the preferred-motion null-test residual $\mathcal{R}_{\mathrm{PF\text{-}bundle}}$ from [PPN Parameters](../../spacetime/ppn-parameters.md#preferred-motion-null-test-bundle), a Bell candidate $\theta$ over a validity window $W$ must therefore satisfy
@@ -481,6 +489,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9b3b03195c45671d)
+
 the required joint distribution is
 $$
 P(a,b\mid\hat{m}_A,\hat{m}_B)
@@ -491,6 +500,7 @@ P(a,b\mid\hat{m}_A,\hat{m}_B)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ac83dd80104abf75)
+
 The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage. In the strongest form, marginal preservation is supplied by local-setting relabeling invariance of $\mu_*^{AB}$ rather than by a cancellation added after the joint law is fitted:
 $$
 \Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
@@ -508,6 +518,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-935d0e4ce997bbfd)
+
 Thus record reconstruction is the output surface of the Bell program, not a substitute for the pair-provenance and apparatus-response derivation.
 
 ### Why Angular Momentum Must Come First
@@ -627,6 +638,7 @@ d\rho_{\mathrm{prov}}(\Pi)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3a62c5825ec300d8)
+
 That form can preserve no-signaling and measurement independence while still staying inside the Bell-local bound. The validation harness records this as `bell.product_screening_collapse`, so pair provenance is useful only if the retained record law avoids this compression without introducing setting-dependent provenance or distant signaling.
 
 ### Threshold-Pullback Product-Screening No-Go
@@ -829,7 +841,7 @@ $$
 
 follow as consequences. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the joint law while preserving no-signaling and measurement independence and while failing the product-screened local reconstruction above.
 
-**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether braid, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated braids. The single-assembly half-angle basin arithmetic and the external apparatus-term origins are now available in the reduced Stern-Gerlach chart, but this is not yet a Bell-pair correlation proof.
+This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether braid, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated braids. The reduced Stern-Gerlach chart supplies the single-assembly half-angle basin arithmetic and the external apparatus-term origins, but it is not a Bell-pair correlation proof.
 
 ---
 

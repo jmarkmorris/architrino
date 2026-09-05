@@ -66,6 +66,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cecd952f67a47199)
+
 up to the usual order-one correction for relative molecular motion. A probe of size $L$ is in a continuum regime only when
 $$
 \mathrm{Kn}_m
@@ -75,6 +76,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-726caa113120b005)
+
 When $\mathrm{Kn}_m$ is not small, a molecular continuum pressure or viscosity description is a poor model even if the geometric occupancy is tiny.
 
 This distinction is useful for $\mathbb{A}\mathbb{A}\mathbb{A}$ because molecular exclusion and Noether sea response answer different questions. Molecular packing fraction estimates what ordinary matter blocks geometrically. Mean-free-path and Knudsen estimates say whether a gas can be treated as a continuum at the scale of the probe. Neither estimate determines whether a photon, neutrino, gravitational-wave channel, or clock-rate comparison couples strongly to the Noether sea. Those channels require their own coupling and propagation records.
@@ -95,6 +97,7 @@ n_m V_{\mathrm{VdW}},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-42ef6a486d95fda5)
+
 A low $\phi_{\mathrm{VdW}}$ or high $\mathrm{Kn}_m$ may explain molecular sparsity or gas-kinetic behavior; it is not evidence by itself for transparency of channel $X$.
 
 ---

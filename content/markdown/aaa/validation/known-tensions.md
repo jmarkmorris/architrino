@@ -1,10 +1,6 @@
 # Known Tensions
 
-This chapter is the pressure ledger for unresolved closure burdens. Its purpose is to collect the burdens that matter most for closure without mixing them with vague future ideas or low-stakes wishlist items.
-
-## Purpose
-
-This chapter is the pressure ledger for $\mathbb{A}\mathbb{A}\mathbb{A}$. It collects the places where the framework is not yet closed, where the derivation stack is thinner than the claim it supports, or where observations impose a hard quantitative burden that the corpus has not yet fully carried.
+This chapter is the pressure ledger for unresolved $\mathbb{A}\mathbb{A}\mathbb{A}$ closure burdens. It collects the places where the framework is not yet closed, where the derivation stack is thinner than the claim it supports, or where observations impose a hard quantitative burden that the corpus has not yet fully carried. Vague future ideas and low-stakes wishlist items do not belong here.
 
 This page is not a dumping ground for vague uncertainty. Each tension should identify:
 
@@ -89,12 +85,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e427327b2d9dcf27)
+
 with the collapse-time estimate
 $$
 \tau_G\sim \frac{\hbar}{\Delta E_G}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f84f0cdfb8311821)
+
 The useful comparison pressure is the tension between local free-fall equivalence and linear superposition when the two branches carry measurably different mass distributions. The validation burden is to compare $\tau_{\text{meas}}$ for demonstrated massive-superposition records against $\tau_G$ and ordinary environmental decoherence. Spatially separated BEC records containing roughly $10^9$ to $10^{10}$ atoms are a forecast target, not an achieved interference class. The comparison must preserve the $\mathbb{A}\mathbb{A}\mathbb{A}$ claim that branch selection is finite-time threshold resolution rather than fundamental gravitational collapse. Any collapse variant that predicts persistent spontaneous heating must also pass low-background and compact-object heating bounds before it can serve even as a comparison baseline.
 
 ### Spacetime cluster

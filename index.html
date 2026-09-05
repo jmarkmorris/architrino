@@ -506,5 +506,31 @@
       </div>
     </div>
     <script type="module" src="./app.js?v=2026-06-28-historical-context-single-ring"></script>
+    <!--
+      Local-only operator entry point. The reference surface is excluded from the
+      Pages deployment by scripts/build-static-site.mjs, so its generated manifest
+      is absent on the published site and this link never renders there. Nothing is
+      hidden: the control simply appears only where the surface exists.
+    -->
+    <a
+      id="reference-surface-entry"
+      href="./reference.html"
+      hidden
+      title="Local reference navigation surface"
+      aria-label="Open the local reference navigation surface"
+      style="position:fixed;left:10px;bottom:10px;z-index:9000;width:22px;height:22px;border-radius:5px;border:1px solid #24314f;background:#101728;color:#6f7d9c;font:600 11px/20px 'Helvetica Neue',Arial,sans-serif;text-align:center;text-decoration:none;opacity:0.45;"
+      onmouseover="this.style.opacity='1';this.style.color='#7fb0ff';"
+      onmouseout="this.style.opacity='0.45';this.style.color='#6f7d9c';"
+      >P</a
+    >
+    <script type="module">
+      fetch("./content/generated/reference/reference-surface.v1.json", { method: "HEAD", cache: "no-cache" })
+        .then((response) => {
+          if (response.ok) document.getElementById("reference-surface-entry")?.removeAttribute("hidden");
+        })
+        .catch(() => {
+          /* absent manifest means no local surface; the entry stays hidden */
+        });
+    </script>
   </body>
 </html>

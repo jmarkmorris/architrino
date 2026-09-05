@@ -1,6 +1,6 @@
 # Information / Computation
 
-## Overview
+## Information, Computation, and Ontology
 
 This document maps the information-theoretic and computational concepts that shape modern attempts to interpret physics, ontology, and explanation.
 
@@ -12,7 +12,7 @@ The chapter's core discipline is carrier before code. Information can measure di
 
 This page is indexed by subjects rather than by biography. Related people-centered material remains in [major-thinkers.md](major-thinkers.md).
 
-The architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
+The [architrino](../foundations/architrino.md) position begins from massless polarity carriers and their causal dynamics as primary; information and computation are derived descriptions of organized states, constraints, and update structure.
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
@@ -218,6 +218,7 @@ S_t,\mathcal{H}_{W}(S_t),\Theta_{\mathrm{sea}}(t),c
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e6f87b468bf6ec1f)
+
 where $\mathcal{H}_{W}(S_t)$ is the retained path-history window and $c$ is the surrounding assembly or environmental context. This is computable in principle, but its meaning is physical: the assembly's realized structure constrains the future basin geometry. That is why life-like and agency-like discussions should not reduce persistence to an information count alone.
 
 Its transition relevance is high because computational ontology keeps attention on update law rather than on static formal summary. That is useful during a replacement period, especially when one is trying to derive effective continuum behavior from lower-level organization. Still, the transition use is conditional. Computation should guide model construction, not terminate ontological analysis. The critical distinction is between a process that is computable and a process whose essence is exhausted by being called computation.
@@ -369,6 +370,7 @@ M(w)\ \text{halts}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c71c3eef0c5606ab)
+
 then no general algorithm can decide that reachability question for every encoded input. The retained lesson is methodological rather than ontological: a lawful deterministic model may contain questions that outrun algorithmic decision, but that does not make the physical substrate identical to computation or turn computability limits into the substance of the world.
 
 ### Core Commitments

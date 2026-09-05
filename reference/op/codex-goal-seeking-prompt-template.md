@@ -1,5 +1,3 @@
-Closure goal: [GOAL]
-
 # Scope
 
 Use this template as the default meta-optimization wrapper for any Codex thread in this repository.
@@ -38,17 +36,9 @@ Do not optimize for minimizing tokens if doing so would materially reduce qualit
 
 # Operator/Developer Communication
 
-Treat operator comprehension as part of verification: an explanation the operator can independently check is safer than an opaque correct-looking result.
-
-- Follow `reference/op/operator-explanation-standard.md`: every technical unit (equation stack, derivation step, dense table, jargon-dense paragraph, code or measurement block) is immediately followed by an inline `Plainly:` passage that explains it — what the object is, what just happened, why it matters, every symbol named in words — at the level of a high-school AP STEM senior or sophomore EE whose math may be rusty. Never more than three consecutive technical paragraphs without an interlude. Response length is not a constraint; inline comprehensibility outranks brevity. A closing recap never substitutes for inline explanation.
-- State the finding in plain language before the mathematics. The sentence is the claim; equations, code, and measurements are the evidence.
-- Use engineering vocabulary when the mapping is exact, and state where the analogy stops. For example, an irreducible stored error radius is a noise floor, a seed effect against numerical scatter is a signal-to-noise ratio, and a converging corrector is a settling feedback loop. Define other technical or project-specific terms in one clause at first use.
-- Explain components and their relationships before asking the operator to accept a conclusion. Use a compact mapping, comparison, or diagram when it makes three or more relationships easier to check.
-- Give a short overview before detailed step-by-step instructions.
-- Ask necessary questions one at a time. For yes/no or fixed-choice questions, rank the options with the preferred option first and end with the explicit option prompt, such as `(y/n)` or `(a/b)`. Use open discussion for genuinely nuanced decisions.
+- Read [`reference/op/operator-explanation-standard.md`](operator-explanation-standard.md) and follow it. It is the whole of operator-facing communication policy and this template restates none of it.
 - Use established project terminology exactly. Resolve overlapping terms against live canon and ask before introducing a new project term.
 - Give every substantive claim its grade and an operator-checkable falsifier: what observation would overturn it and where the operator would look.
-- End every substantive response with a concise `Closure goal:` line. Begin every generated or recommended prompt with its `Closure goal:`.
 
 ---
 
@@ -146,7 +136,7 @@ When substantial progress is made:
 - record rationale,
 - record unresolved questions,
 - record next actions.
-- make a durable capture decision for any substantive theory advancement: promote corpus-solid material into `content/markdown/aaa`, stage valuable but provisional material in the owning `reference/priorities` workstream or sibling `brainstorming.md`, or state why no durable capture was made.
+- maintain the owning priority material as substantive ideas emerge, following the operator explanation standard and priority guidance.
 
 Think of summaries as checkpoints.
 
@@ -186,25 +176,7 @@ Perform independent verification where appropriate.
 
 # Reporting
 
-Milestone and completion reports follow `reference/op/operator-explanation-standard.md`: inline `Plainly:` interludes after every technical unit, not only a closing summary.
-
-At major milestones provide:
-
-1. Current status
-2. Decisions made
-3. Remaining work
-4. Risks
-5. Recommended next action
-
-Upon completion provide:
-
-1. Executive summary
-2. What was completed
-3. What remains
-4. Key decisions
-5. Durable capture decision for substantive insights
-6. Suggested follow-up work
-7. `Closure goal:` naming the next concrete objective, or `none required` when no useful continuation remains
+Follow [the operator explanation standard](operator-explanation-standard.md) for responses and live priority capture.
 
 ---
 

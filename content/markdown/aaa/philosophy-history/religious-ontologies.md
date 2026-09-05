@@ -2,9 +2,9 @@
 
 ---
 
-## Overview
+## Comparative Scope
 
-**Purpose:** Survey how major religious traditions conceptualize foundational ontology, cosmic origin, temporal structure, and end-state claims, providing disciplined comparison context for scientific cosmologies and for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This chapter surveys how major religious traditions conceptualize foundational ontology, cosmic origin, temporal structure, and end-state claims, providing disciplined comparison context for scientific cosmologies and for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 This comparative map pairs naturally with [Cosmology Ontology](../cosmology/cosmology-ontology.md), [Historical Context and Missed Opportunities](historical-context-and-missed-opportunities.md), and [Philosophy of Science](philosophy-of-science.md).
 
@@ -164,7 +164,7 @@ The inference is only as strong as its premises and scope. The first premise ext
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation is **foundational contradiction when the conclusion is a transcendent personal creator**, and **methodological comparison** at the level of premise discipline. $\mathbb{A}\mathbb{A}\mathbb{A}$ uses absolute time and a continuing physical substrate, so it does not infer creation from a finite observer reconstruction or from an effective scale-factor boundary. A beginning claim must instead identify a first substrate state, the law that makes it first, and the failure of every admissible prior continuation.
+The relation is **foundational contradiction when the conclusion is a transcendent personal creator**, and **methodological comparison** at the level of premise discipline. $\mathbb{A}\mathbb{A}\mathbb{A}$ uses [absolute time](../foundations/absolute-time.md), one universal temporal order independent of observer clocks, and a continuing physical substrate, so it does not infer creation from a finite observer reconstruction or from an effective scale-factor boundary. A beginning claim must instead identify a first substrate state, the law that makes it first, and the failure of every admissible prior continuation.
 
 #### What Survives for Comparison
 

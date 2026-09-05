@@ -2,7 +2,7 @@
 
 ---
 
-## Overview
+## Historical Near-Misses and Recovery Burdens
 
 This chapter asks a counterfactual question:
 
@@ -47,7 +47,7 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 
 Rømer's episode is a useful front-end case because it did not begin as a theory of light ontology. It began as a table-residual problem in a remote clock: Io's eclipses were predicted from an average period, then the observed times drifted with the changing Earth-Jupiter distance. The correction was cumulative, not a one-shot anomaly: successive observed intervals differed from the source clock by the changing light-time term $P_{\mathrm{obs}}=P+(D_2-D_1)/c$. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is that finite propagation first entered physics as path-history timing in an observation record. The recovery target is not to identify Rømer's measured light speed with primitive $c_f$, but to keep the levels separated: primitive causal wakes use $c_f$, photon-channel propagation must recover $c_\gamma$, and weak homogeneous observers calibrate $c_0$ only after the channel closure is declared.
 
-Early collision mechanics gives a parallel conservation packet. Galileo's attention to speed-squared behavior, Descartes's scalar quantity of motion, Huygens's vector correction for opposing motions, Leibniz's vis viva, and Newton's momentum definition show conservation first appearing as finite-window event bookkeeping before the later symmetry explanation existed. Noether's theorem then supplied the structural bridge: a continuous active symmetry of the action yields a conserved boundary charge, while a passive coordinate relabeling is only a representation check. The retained lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is that conservation laws should enter as recovery targets for the whole action-derived ledger, including causal-wake and boundary terms, not as primitive particle-only slogans.
+Early collision mechanics gives a parallel conservation packet. Galileo's attention to speed-squared behavior, Descartes's scalar quantity of motion, Huygens's vector correction for opposing motions, Leibniz's vis viva, and Newton's momentum definition show conservation first appearing as finite-window event bookkeeping before the later symmetry explanation existed. Noether's theorem then supplied the structural bridge: a continuous active symmetry of the action yields a conserved boundary charge, while a passive coordinate relabeling is only a representation check. The retained lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is that conservation laws should enter as recovery targets for the whole action-derived ledger, including [causal-wake](../foundations/architrino.md) terms carried by expanding disturbances from earlier emissions and boundary terms, not as primitive particle-only slogans.
 
 Electromagnetic field language contains a second early bridge. Coulomb's inverse-square law made electric force precise while leaving action at a distance conceptually exposed. Faraday's field picture then moved the explanatory burden into the space around charged and magnetic bodies, and Gauss-style flux bookkeeping made that move testable: electric closed-surface flux tracks enclosed charge, while magnetic closed-surface flux vanishes in the no-monopole regime. The missed opportunity was not that field language was wrong; it was that a successful field representation could become the stopping point before the carrier, medium response, and apparatus probe were implemented. The current recovery target is stated in [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauss-law-source-and-closure-benchmarks): recover the electric source row, magnetic closure row, and measured force response from one branch record rather than treating $\mathbf{E}$ and $\mathbf{B}$ as primitive substances.
 
@@ -331,7 +331,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-793978b6b1a5fa1d)
 
-Plainly: $L(x)$ is the ruler standard chosen at event $x$, $\lambda(x)$ is the freely chosen local rescaling, and $A_\mu$ is the comparison rule connecting neighboring standards. The two changes compensate, so a physical statement cannot depend on which local ruler convention was selected. Reversing the sign used to define the connection reverses the sign in the transformation but not the content.
+$L(x)$ is the ruler standard chosen at event $x$, $\lambda(x)$ is the freely chosen local rescaling, and $A_\mu$ is the comparison rule connecting neighboring standards. The two changes compensate, so a physical statement cannot depend on which local ruler convention was selected. Reversing the sign used to define the connection reverses the sign in the transformation but not the content.
 
 Einstein's objection exposed the physical failure. If length calibration depended on the path through the proposed electromagnetic connection, identical atoms that followed different routes could return with different clock rates or spectral lines. Stable atomic spectra do not show that history-dependent calibration. The objection, printed with Weyl's 1918 paper and reviewed in the historical literature, rejected the proposed identification of electromagnetism with length transport; it did not erase the mathematical idea that local standards require a comparison rule. The historical sequence and the objection are documented in the [O'Raifeartaigh-Straumann review](https://arxiv.org/abs/hep-ph/9810524) and in the review of the predicted [second-clock effect](https://doi.org/10.1016/j.shpsb.2019.02.005).
 
@@ -343,7 +343,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f3a8866472772602)
 
-Plainly: $\psi$ is the quantum wavefunction, $q$ is its charge label, $\lambda(x)$ is the arbitrary local phase convention, $A_\mu$ is the electromagnetic connection, and $D_\mu$ is the derivative that compares phases at neighboring events without mistaking a convention change for a physical change. Weyl's [1929 paper](https://edition-open-sources.org/sources/10/14/index.html) made this new gauge principle explicit. Yang and Mills then generalized local gauge covariance to a non-Abelian internal symmetry in their [1954 paper](https://doi.org/10.1103/PhysRev.96.191), supplying the structural form later used by the Standard Model.
+$\psi$ is the quantum wavefunction, $q$ is its charge label, $\lambda(x)$ is the arbitrary local phase convention, $A_\mu$ is the electromagnetic connection, and $D_\mu$ is the derivative that compares phases at neighboring events without mistaking a convention change for a physical change. Weyl's [1929 paper](https://edition-open-sources.org/sources/10/14/index.html) made this new gauge principle explicit. Yang and Mills then generalized local gauge covariance to a non-Abelian internal symmetry in their [1954 paper](https://doi.org/10.1103/PhysRev.96.191), supplying the structural form later used by the Standard Model.
 
 The name preserves the earlier calibration problem. Weyl used *Eichung* and *Eichinvarianz*; the German verb *eichen* means to test or adjust a measuring instrument against a standard, and an *Eichamt* is a public weights-and-measures office. The [Duden entry for *eichen*](https://www.duden.de/rechtschreibung/eichen_pruefen_einstellen) preserves that calibration sense. English *gauge* likewise entered as a fixed standard or measuring rod through Anglo-French and Old North French *gauge/jauge*, as recorded by the [Online Etymology Dictionary](https://www.etymonline.com/word/gauge). The familiar railway-track comparison is a useful later explanation of a shared standard across a network, but the available primary text does not support attributing that analogy to Weyl himself; a [later editorial introduction](https://assets.press.princeton.edu/chapters/i8959.pdf) presents railway gauge only as a possible inspiration. The defensible historical statement is therefore narrower: Weyl called the local unit system a gauge system, and later writers illustrated that system with railway gauge.
 
@@ -369,7 +369,7 @@ The irony is what makes this a near-miss episode. The discarded half of Weyl's 1
 
 The unfinished question local to this episode is not whether gauge covariance works. It is why nature supplies this gauge group, these representations, these couplings, this topology, and one invariant record across all admissible descriptions. Connections and transition rules make local representatives agree; they do not by themselves derive the physical history whose curvature, holonomy, charge compatibility, anomaly cancellation, and reaction records survive the relabeling.
 
-Plainly: gauge theory ensures that changing descriptive coordinates cannot change a prediction. A substrate theory must additionally produce the invariant physical record that those coordinates describe.
+gauge theory ensures that changing descriptive coordinates cannot change a prediction. A substrate theory must additionally produce the invariant physical record that those coordinates describe.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -381,7 +381,7 @@ No new measured $\mathbb{A}\mathbb{A}\mathbb{A}$ result is claimed in this episo
 
 ### Recovery Target
 
-Gauge recovery remains owned by the assembly lane. [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target) owns the map from retained assembly, causal-wake, axial-layer, and Noether sea records to effective connections and curvatures. [Gauge Symmetries](../assemblies/gauge-symmetries.md#standard-model-recovery-gate) owns the theorem-facing recovery gate for the Standard Model representation, coupling-running, chirality, anomaly, holonomy, and null-channel record. This episode adds no competing gauge mechanism.
+Gauge recovery remains owned by the assembly chapters. [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target) owns the map from retained assembly, causal-wake, axial-layer, and Noether sea records to effective connections and curvatures. [Gauge Symmetries](../assemblies/gauge-symmetries.md#standard-model-recovery-gate) owns the theorem-facing recovery gate for the Standard Model representation, coupling-running, chirality, anomaly, holonomy, and null-channel record. This episode adds no competing gauge mechanism.
 
 The historical closure condition is therefore an ownership condition. Gauge-equivalent observer records must be passive relabelings of one retained physical history, while gauge-invariant loop, charge, anomaly, and reaction records must be projections of that same history. The assembly gauge chapters own the derivation and acceptance tests; this episode owns only why the distinction became historically easy to overlook.
 
@@ -423,6 +423,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f8e6d9964b2aa959)
+
 Here $\mathcal{R}_{\mathrm{obs}}$ measures mismatch to the declared astronomical data packet, $\mathcal{R}_{\mathrm{stab}}$ measures growth of admissible perturbations around the branch, and $\mathcal{R}_{\mathrm{src/bdy}}$ measures whether boundary fluxes and source terms close one shared ledger rather than being inserted independently. The last term has the following schematic continuity form.
 $$
 \mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
@@ -431,6 +432,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-587eb0276e465a06)
+
 Here $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its boundary flux, $\mathcal{S}_\theta$ is its declared source, and $\epsilon_Q$ is the tolerance fixed by the comparison packet. A global geometry, medium interpretation, or effective scale-factor story should not be promoted unless the three terms are simultaneously small under one branch record.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
@@ -493,6 +495,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e7a4289b985a74b7)
+
 Einstein then connected $D$ to temperature, viscosity, particle radius, and $N_A$ by joining van't Hoff's osmotic-pressure analogy, Stokes drag, Fick diffusion, and drift-diffusion equilibrium. Perrin's 1908-1909 measurements turned the same wandering trajectories into a value for Avogadro's constant. The historical sequence is therefore data product -> stochastic effective law -> transport-coefficient recovery -> hidden-population count -> later statistical lock-in. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is not that Brownian randomness is fundamental. It is that an observer-level statistical law can be a disciplined recovery target for hidden deterministic microstructure when the same record fixes the fluctuation scale, transport coefficient, and population count.
 
 An earlier bridge came from blackbody radiation. Experiments supplied a robust spectrum for hot objects that classical cavity reasoning could not match. Rayleigh and Jeans treated the cavity as a standing-wave mode inventory and applied equipartition to the allowed modes; that mode count was the right kind of structural data product, but continuous energy sharing made the high-frequency energy density diverge. Planck's move was to preserve the successful low-frequency limit while replacing continuous oscillator energy with discrete packets $\epsilon=h\nu$, giving a frequency-dependent occupation rule that suppressed ultraviolet modes. Historically, the sequence was data product, classical recovery attempt, ultraviolet failure, ad hoc quantum recovery rule, and then later operational lock-in.
@@ -555,6 +558,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-65e619e4eff876f0)
+
 Here $A_{\mathrm{cycle}}$ is the effective action accumulated around the declared closed branch. A de Broglie-style standing-wave description is acceptable only as the observer-level face of this closure test, not as an imported substrate ontology. The stronger $\mathbb{A}\mathbb{A}\mathbb{A}$ target is to derive small $\Delta_{\mathrm{cycle}}$ from the same causal-root, path-history, and branch-stability record that also explains record formation and transition weights.
 
 A second pre-Copenhagen residue is blackbody recovery. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ target is not to import Planck's oscillator model or later photon ontology as primitive. It is to derive the Planck occupation from photon-channel mode inventory, detailed balance, thermalization depth, and finite source and absorption records, while preserving the Rayleigh-Jeans limit at $h\nu\ll k_B T_{\mathrm{temp}}$ and ultraviolet suppression at $h\nu\gg k_B T_{\mathrm{temp}}$. The radiation-side theorem target is stated in [Radiation](../reactions/radiation.md#blackbody-limit) and the cosmology-facing [CMB Planck-recovery target](../cosmology/CMB.md#thermalization-depth-and-planck-recovery-target).
@@ -661,6 +665,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9c5d5918cd5937a8)
+
 This expression was meant to recover a geometrical relation from world lines and causal light-ray contact alone. The important opening was not the success of this formula as a theory. It was the attempt to make geometry and field structure answer to observable interparticle connection data rather than treating them as the first layer of ontology.
 
 The Tokyo lecture added a second opening: inertia and mass were treated as effects that should be generated by interaction rather than inserted by hand. Wheeler's Machian comparison used the following condition.
@@ -669,6 +674,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-389fa5605d1efcb5)
+
 The condition served as a proof-of-principle scale statement for inertia from cosmic matter, while the field-generated-mass discussion pressed the same question locally for elementary particles. From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the safe lesson is not that Wheeler's formulas should be imported. It is that mass and inertia were already being forced into the form of a ledger problem: if a particle has an exposed inertial response, the response should be derived from its interaction history and the surrounding universe record.
 
 ### What Current Physics Still Gets Right
@@ -695,6 +701,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4e99a0fc68e9618a)
+
 Here $\Delta\mathbf{p}_{\mathrm{wake}}$ is the impulse accumulated from finite-speed causal-wake hits, $\Delta\mathbf{p}_{\mathrm{eff}}$ is the corresponding impulse in the effective field description being recovered, $\mathcal{P}_{\mathrm{wake}}$ and $\mathcal{P}_{\mathrm{field}}$ are matched provenance records for where the interaction content enters and exits the calculation, and $m_{\mathrm{resp}}$ is the externally exposed inertial response derived from path history, shielding, and Noether sea coupling. A Wheeler-style near miss becomes live only if all three terms are small without adding instantaneous action, non-causal branch content, or independent mass constants.
 
 The later collapse crisis adds a companion requirement: no-hair coarse-graining must not be mistaken for literal source erasure unless the derivation says so. A recovery account has to identify which incoming assembly records remain available to exterior effective variables, which are hidden behind the collapse boundary, and which conservation labels were only valid at the pre-collapse effective layer. That is the concrete historical pressure behind Wheeler's law-without-law language: if lawfulness is emergent closure, the corpus must specify the closure map rather than simply deny Wheeler's worry.
@@ -727,6 +734,7 @@ a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0e^{H_*t_{\mathrm{eff}}},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d61f3fb83dfc1bdb)
+
 The mathematical pressure is immediate. The following expression gives the dust-continuity equation with no source term.
 $$
 \frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
@@ -734,6 +742,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-10a214f410989994)
+
 Consequently, a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
 
 ### What Current Physics Still Gets Right

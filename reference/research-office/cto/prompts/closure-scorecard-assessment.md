@@ -1,6 +1,8 @@
-Closure goal: Reassess the published closure scorecard against current evidence without treating document growth or implementation plans as scientific validation.
+Reassess the published closure scorecard against current evidence without treating document growth or implementation plans as scientific validation.
 
 # Closure Scorecard Assessment
+
+Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and live priority capture.
 
 Use only when the operator requests a new assessment. The public [scorecard](../../../../content/markdown/aaa/validation/closure-scorecard.md) owns the rubric, scores, and reader-facing interpretation. This procedure owns editing instructions; do not embed it in the chapter.
 

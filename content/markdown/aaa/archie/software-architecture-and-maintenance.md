@@ -1,14 +1,10 @@
 # Software Architecture and Maintenance
 
-This note defines contributor-facing guidance for keeping the Architrino webapp codebase coherent as it grows. Its purpose is to prevent experimental paths, hardcoded stopgaps, duplicated logic, and abandoned prototypes from quietly hardening into the long-term architecture.
+This guide keeps the Architrino webapp codebase coherent as it grows by preventing experimental paths, hardcoded stopgaps, duplicated logic, and abandoned prototypes from quietly hardening into the long-term architecture.
 
 Architecture is how the codebase remembers what owns what. When ownership is clear, a change can improve one layer without leaving another layer full of old paths, hidden assumptions, or duplicate behavior.
 
-Read this as maintenance governance for the software side of the project: first the governing claim, then the major failure modes, then the rules used to keep the codebase from drifting into legacy cruft.
-
-## Purpose
-
-This note explains how the project should treat software architecture, cleanup, superseded implementations, and temporary development paths. It is not a speculative engineering memo. It is the common contributor guidance for how to add, revise, and retire implementation paths without letting old experiments accumulate into structural debt.
+It is the common contributor guidance for adding, revising, and retiring implementation paths without letting old experiments accumulate into structural debt. It governs software architecture, cleanup, superseded implementations, and temporary development paths rather than proposing a speculative engineering direction.
 
 This guide should be read alongside [about-the-webapp.md](about-the-webapp.md).
 

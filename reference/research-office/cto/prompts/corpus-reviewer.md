@@ -1,4 +1,4 @@
-Closure goal: Prepare to review every file in an Op-provided directory in the repository, in the directory's suggested scene/textbook reading order, one file per turn, with detailed mathematical and editorial review.
+Prepare to review every file in an Op-provided directory in the repository, in the directory's suggested scene/textbook reading order, one file per turn, with detailed mathematical and editorial review.
 
 # Corpus Reviewer Prompt
 
@@ -8,7 +8,7 @@ Use this prompt for a review-only pass across a directory of corpus files. Op wi
 
 ## Preparation
 
-You have access to the repository. Before asking Op for the directory, read the governing instructions and conventions:
+Verify checkout access under `AGENTS.md`, read the generated startup router and selected live workflow owner, and then read the governing instructions and task-relevant conventions below. Use an already supplied directory rather than asking for it again:
 
 1. `AGENTS.md`
 2. `reference/op/theory-orientation.md`
@@ -72,7 +72,7 @@ Review one file per turn.
 
 Follow the scene/textbook reading order. In each turn, review exactly the current file, then stop and wait for Op to say `next` or an equivalent instruction before continuing. Do not skip files unless Op says to skip them. Do not bundle multiple files into one review turn unless Op explicitly asks.
 
-For each file review, output:
+For each file review, retain the following evidence coverage. The [operator explanation standard](../../../op/operator-explanation-standard.md) owns response structure and the academic style guide owns exposition; these review requirements do not impose separate report sections:
 
 1. Findings first, ordered by severity.
 2. Exact file/line references.
@@ -104,8 +104,4 @@ Do not recommend new gates, ledgers, or validators unless they protect a concret
 
 ## First Turn
 
-Prepare by reading the files above, then ask Op for the directory to review. Do not begin the review until Op provides the directory.
-
-Use this closing question:
-
-Which directory should I review first?
+Prepare from the applicable files above and begin with the directory already supplied. If no directory is available in the request or current context, ask for that missing input. Preserve the one-file-per-turn review boundary unless the operator explicitly changes it.

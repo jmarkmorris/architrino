@@ -2,7 +2,7 @@
 
 This chapter gives a first-class home to the candidate topological label of a Noether braid assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-return degree data of a resonance-locked orthogonal-axis three-binary member. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate Noether braid branch charts is developed in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
 
-The reader-facing idea is that a topological charge is not a decorative name for a braid. It is a proposed invariant label carried by one retained branch chart. Root counts tell which self-hit and partner-hit channels are active; signed degrees say what survives fold-pair surgery; phase-return degree data say how the locked branch winds over one cycle. Only the combination can become a stable assembly label.
+A topological charge is not a decorative name for a braid. It is a proposed invariant label carried by one retained branch chart. Root counts tell which self-hit and partner-hit channels are active; signed degrees say what survives fold-pair surgery; phase-return degree data say how the locked branch winds over one cycle. Only the combination can become a stable assembly label.
 
 This page therefore starts from computation, not classification. A solver must first produce a retained branch with causal-root floors, finite memory, gluing, wake-boundary closure, and stability. The topological label is read from that branch; it does not certify the branch by itself.
 
@@ -18,12 +18,14 @@ c_1
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5c3ef0e6336e0fea)
+
 where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1$ denotes the established phase-entry slot of the retained resonance lock. In this chapter that slot means return-map degree data unless a later two-torus curvature chart is explicitly supplied. For a promoted lock with a three-phase chart this last entry is usually a pair
 $$
 c_1=(m,n)\in\mathbb{Z}^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-95061d2c99d113a9)
+
 rather than a scalar integer: $m$ and $n$ are the binary-2 and binary-1 winding numbers over one binary-3 reference period.
 
 This compact form records the count data most directly emitted by a branch solver. The conserved refinement is
@@ -38,6 +40,7 @@ c_1
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-16765cc9e26c59b6)
+
 where $D_{\mathrm{self}}$ and $D_p$ are signed root degrees. The unsigned counts $N_s$ and $M_p$ can change by opposite-sign fold-pair birth or death, while $D_{\mathrm{self}}$ and $D_p$ are the degree-like data preserved by generic fold surgery. A promoted report should therefore carry both the compact assembly topological charge and its signed-degree refinement.
 
 This is a definition and closure target, not a completed classification theorem. It becomes a physical assembly label only after the same retained branch chart supplies positive root floors, finite memory, finite local-to-global gluing, stable return data, and a closed wake-history boundary ledger.
@@ -48,7 +51,7 @@ In the terminology of [Noether Braid Configuration Space](noether-braid-configur
 
 This chapter is the downstream classifier for retained Noether braid branch charts. It owns $[\mathfrak B]_{\mathrm{top}}$, the signed-degree refinement, invariance conditions, allowed transitions, and simulation extraction order for the topological label.
 
-It does not certify branch retention by itself and does not create a base classification label. It consumes a same-record branch chart from the neutral-base, A/B/C-member, rank-three, or lower-rank proof effort; the label becomes physical only after the causal-root, phase-return, gluing, wake-boundary, and stability rows close on that same record.
+It does not certify branch retention by itself and does not create a base classification label. It consumes a same-record branch chart from a neutral-base, orthogonal-axis three-binary, coincident-axis three-binary, two-component circular, rank-three, or lower-rank proof effort; the label becomes physical only after the causal-root, phase-return, gluing, wake-boundary, and stability rows close on that same record.
 
 ## Source Of The Three Entries
 
@@ -64,6 +67,7 @@ C_{s,-}(\mathfrak B)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5c4a043e82570230)
+
 For the partner-hit sector,
 $$
 C_{p,+}(\mathfrak B)
@@ -76,6 +80,7 @@ C_{p,-}(\mathfrak B)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0c0fdc8e22b6c1be)
+
 The unsigned ledgers are
 $$
 N_s
@@ -88,6 +93,7 @@ M_p
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-744eda06a9dbfe18)
+
 The signed degrees
 $$
 D_{\mathrm{self}}
@@ -100,6 +106,7 @@ D_p
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-79c1729b162dfe77)
+
 are not extra entries in the compact assembly topological charge, but they are required side data and form the conserved-degree refinement $[\mathfrak B]_{\mathrm{deg}}$. A solver that reports only $N_s$ and $M_p$ has counted roots without proving which opposite-sign pairs can be born, die, or persist under deformation.
 
 Equivalently, each source sector is a $\mathbb{Z}_2$-graded two-term root module, inheriting the signed causal-root-complex reading from [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex):
@@ -112,6 +119,7 @@ C_{\sigma,+}\oplus C_{\sigma,-},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ee9b2f7ea455aa30)
+
 The unsigned ledgers $N_s$ and $M_p$ are ranks of a chosen presentation. They are useful live-channel counts, but they are not the conserved quantities across fold-pair surgery. The conserved local degree is the Euler characteristic
 $$
 \chi(C_{\sigma,\bullet})
@@ -122,6 +130,7 @@ D_\sigma.
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-018d03fd646916ed)
+
 A generic fold birth adds one positive and one negative generator, so the presentation rank changes by two while $\chi(C_{\sigma,\bullet})$ is unchanged.
 
 The geometric reading is intersection-theoretic. On a lifted finite-memory strip, each connected retained causal-locus component has an oriented intersection number with a generic receiver-time fiber. Let $\mathcal L_\sigma$ be the retained causal-locus chain in sector $\sigma\in\{s,p\}$ and let $F_{T_\ast}$ be a generic receiver-time fiber at fixed absolute time $T_\ast$. Then
@@ -132,6 +141,7 @@ D_\sigma
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7dd719d8e4b1d442)
+
 On a regular one-parameter family with parameter $\mu$,
 $$
 \frac{d}{d\mu}
@@ -140,6 +150,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fc16157e93b25807)
+
 Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_{\mathrm{self}}$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This sector restriction is $D_\sigma=\left.\chi_{\mathrm{root}}\right|_\sigma=\chi(C_{\sigma,\bullet})$ for $\sigma\in\{s,p\}$, the self and partner parts of the causal-root ledger in [Absolute Timespace](../foundations/absolute-timespace.md#causal-wake-geometry). This is also the bridge to [Causal Action Functional](../dynamics/causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight supply the signed root degrees used by the assembly topological charge.
 
 The third entry comes from the phase-return chart of a resonance-locked Noether braid. Let $\theta_1,\theta_2,\theta_3$ be the phase coordinates attached to the persistent binary indices. Exact integer closure over one binary-3 reference period $P_3$ means
@@ -148,6 +159,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3cc6546c59b0a3ae)
+
 $$
 \theta_2(T+P_3)=\theta_2(T)+2\pi m,
 \qquad
@@ -155,6 +167,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-23c93d1f7f4dbdf2)
+
 Equivalently, the relative-phase one-forms
 $$
 \vartheta_2=d\theta_2-m\,d\theta_3,
@@ -163,6 +176,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f63f94e5cace664a)
+
 have integer holonomy and become flat on a promoted phase-locked branch. Let $\rho_3:S^1_3\to\mathfrak B$ be one retained binary-3 return cycle. The shorthand
 $$
 c_1[\theta_1,\theta_2,\theta_3]
@@ -175,7 +189,8 @@ c_1[\theta_1,\theta_2,\theta_3]
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c78f8a7682e27ddf)
-records this phase-return degree data. The doubling-frequency `4:2:1` candidate is the binary-3-normalized case $(m,n)=(2,4)$, equivalently $f_1:f_2:f_3=4:2:1$.
+
+records this phase-return degree data. The doubling-frequency `4:2:1` candidate is the binary-3-normalized case $(m,n)=(2,4)$, and the corresponding frequency ratio is $f_1:f_2:f_3=4:2:1$.
 
 The symbol $c_1$ is retained as the established phase-entry notation, but it should not be read here as a literal first Chern class of principal circle bundles over the binary-3 phase circle. Such bundles over $S^1_3$ are topologically trivial because $H^2(S^1_3;\mathbb{Z})=0$. The claim is the degree-pair claim
 $$
@@ -183,6 +198,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-10d19f31b5dec1bf)
+
 with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
 
 The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated axially separated 4:2:1 reference member and its coincident-midpoint 4:2:1 reference zero-axial-offset locus. They are not generic Noether braid data. In particular, [coincident-axis three-binary locus](3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart) is common-frequency on one common-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A coincident-axis three-binary locus branch may still report the partial charge $(N_s,M_p)$; a coincident-axis three-binary locus lower-rank return invariant would require a separate definition and certificate.
@@ -193,6 +209,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4d637ca60065d414)
+
 When this floor fails, the three phases no longer supply an independent return chart, so $c_1$ must be suspended rather than compared across the degeneracy.
 
 ## Candidate Definition
@@ -222,6 +239,7 @@ c_1[\theta_1,\theta_2,\theta_3]
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d612f31fe86154a1)
+
 For a Noether braid branch without a phase-return chart, the partial assembly topological charge $(N_s,M_p)$ may be recorded, but $c_1$ is not assigned until that chart exists.
 
 A useful refinement is a branch-preserving chirality label
@@ -230,6 +248,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-05af92406596673b)
+
 The richer ordered-braid chirality label $\chi_c$ is introduced in [Reduced coincident-midpoint orthogonal-axis locus Closure Label](zero-axial-offset-three-binary-dynamics-and-interpretation.md#reduced-coincident-midpoint-closure-label). In this chapter, $\chi_{\mathrm{fr}}$ is the certified $\mathbb{Z}_2$ projection of that richer chirality data when the same branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. The marker's canonical source is the framing row of the [retained-branch certificate](braid-recovery-requirements.md#the-retained-branch-certificate), which carries the framed-path record $Lk=\operatorname{Wr}+\operatorname{Tw}$, the framing sign, and its positive conditioning floor on the same ledger identity as the root and phase-return data. It is not an independent competitor to $\chi_c$, and it is not part of the base triple until the projection is certified. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
 
 ## Invariance And Allowed Transitions
@@ -242,6 +261,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f8eaf6b785ebc880)
+
 for an ordinary fold-pair event. In the sector where the fold occurs, the unsigned count changes by $\pm2$ while both signed degrees remain unchanged.
 
 Cusp or higher singular strata are not automatically governed by the generic fold law. They require a separate regularized normal form before their ledger surgery can be promoted. Likewise, $c_1=(m,n)$ remains fixed under deformation only while the return-map degree pair is unchanged, the relative-phase connection stays flat, and the plane-independence floor remains positive. A loss of resonance lock, a plane-degeneracy transition, or a branch-fold event that changes the return chart can change the phase entry.
@@ -258,6 +278,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-df13a5d2dce37ca8)
+
 with $\Sigma_{\mathrm{frame}}$ added when $\chi_{\mathrm{fr}}$ is part of the certified report. Away from intersections these are transverse codimension-one walls, so exactly one entry of the compact label or one certified refinement changes. Codimension-two intersections encode simultaneous events, such as a cusp, a root-plus-phase transition, or a plane-plus-phase transition; those require their own normal form before any ledger surgery is inferred.
 
 The transition catalogue therefore has a native form:
@@ -289,6 +310,7 @@ c_1,\,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fff95cc207445792)
+
 together with its stability margins, energy/wake ledger, and gluing status.
 
 The intended use is constrained:

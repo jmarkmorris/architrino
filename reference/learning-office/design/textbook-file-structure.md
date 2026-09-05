@@ -36,7 +36,7 @@ The primary textbook corpus lives under `content/markdown/aaa`. The current top-
 - `cosmology`
 - `dynamics`
 - `foundations`
-- `interactions`
+- `noether-braid`
 - `nuclear-atomic`
 - `philosophy-history`
 - `quantum`
@@ -153,7 +153,6 @@ Current examples of justified second-level subdivision include:
 - `assemblies/bosons`
 - `assemblies/fermions`
 - `assemblies/mesons`
-- `validation/data-sources`
 - `validation/simulations`
 
 Do not create deep trees for the sake of mirroring every conceptual sub-branch. The scene system already supplies navigable hierarchy at the reader level.
@@ -167,13 +166,13 @@ Use relative markdown links relative to the current document.
 Example from an Archie document linking into foundations:
 
 ```markdown
-See [Absolute Time Defense](../../../content/markdown/aaa/foundations/absolute-time-defense.md).
+See [Absolute Time Defense](../foundations/absolute-time-defense.md).
 ```
 
 Example from one philosophy-history document linking to another in the same directory:
 
 ```markdown
-See [major-thinkers.md](../../../content/markdown/aaa/philosophy-history/major-thinkers.md).
+See [major-thinkers.md](major-thinkers.md).
 ```
 
 Do not use:

@@ -28,6 +28,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-20e201007dbe8e77)
+
 usually with $K=\mathbb{R}$ or $\mathbb{C}$. It assigns one scalar value to each point of the domain and carries no intrinsic direction, orientation, or tensor index.
 
 Here scalar primarily means Lorentz scalar: the field has no spacetime vector or tensor index. Within spin-0 sectors, an ordinary scalar is parity-even, while a pseudoscalar is parity-odd. Axions and pion-like modes are standard pseudoscalar examples.
@@ -66,6 +67,7 @@ E_{n,k}\approx\hbar\omega_k\left(n+\frac12\right).
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-94b22f2b391f37cf)
+
 In standard QFT, one increment of that ladder is called one particle of the corresponding field. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this is retained as observer-level occupation bookkeeping. The native burden is to derive the mode basis, frequency gap, and stable increments from Noether sea and assembly dynamics before particle-count language is promoted beyond an effective chart.
 
 | QFT language | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
@@ -88,6 +90,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e03f947fe0f1e780)
+
 in the mostly-plus metric convention.
 
 The layer-explicit effective bridge keeps the same operator pattern but maps $t\mapsto t_{\mathrm{eff}}$, the spatial chart to $x_{\mathrm{eff}}^i$, and $\phi\mapsto\phi_{\mathrm{eff}}$:
@@ -109,6 +112,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-860dbe5d6c96bbfb)
+
 with $\omega_0$ supplying the Klein-Gordon-like mode gap.
 
 In the standard relativistic comparison, the same dispersion relation becomes the particle dictionary when $c_{\mathrm{eff}}\to c$ and one assigns
@@ -121,12 +125,14 @@ m=\frac{\hbar\omega_0}{c^2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-001778a09a84ca40)
+
 so that the mode relation recovers
 $$
 E^2=p^2c^2+m^2c^4
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-12750a8041626908-2)
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is a recovery equation, not an ontology update. The native task is to derive which Noether sea or assembly normal modes supply a stable gap $\omega_0$, which observer chart exposes the conserved increments as $E$ and $p$, and when one increment of the effective occupation ladder may be named a particle.
 
 ## Curved-Spacetime Equation
@@ -137,6 +143,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-17bf1d816ca0b343)
+
 Here $\nabla^\mu\nabla_\mu$ is the metric wave operator, $R$ is scalar curvature, and $\xi$ controls nonminimal coupling between the scalar mode and curvature.
 
 The layer-explicit reading is that $g_{\mu\nu}$, $R$, $d^4x$, and the covariant derivative are effective observer-geometry objects: $g_{\mu\nu}^{\mathrm{eff}}$, $R_{\mathrm{eff}}$, $d^4x_{\mathrm{eff}}$, and $\nabla_{\mathrm{eff}}$. The corresponding curved-spacetime action is commonly written in standard comparison notation:
@@ -158,6 +165,7 @@ G_{\mu\nu}=8\pi G\left(T_{\mu\nu}^{\mathrm{matter}}+T_{\mu\nu}^{(\phi)}\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7f9a29c430d6ae13)
+
 so scalar-field energy density, pressure, and gradients can affect curvature. This is the common mathematical route behind subjects such as Higgs-like scalar modes, inflaton fields, quintessence, boson stars, scalar-tensor gravity, and semiclassical matter-on-geometry models.
 
 Operationally, the metric background used in this equation is normally reconstructed through signal-mediated observations: clock synchronization, radar distance, redshift, lensing, null-cone timing, and later multi-messenger channels. The Klein-Gordon field need not itself be electromagnetic, but its spacetime stage is usually calibrated through Physical Observer readout.
@@ -211,24 +219,28 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-34345a56b3986343)
+
 where
 $$
 \phi
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-57dbfee99fb13a3e)
+
 is a coarse-grained Noether sea or assembly-response amplitude, not a substrate primitive. A homogeneous branch
 $$
 \phi=\phi_\ast
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-480605959a35a5bf)
+
 is a candidate background only if
 $$
 V_{\mathrm{eff}}'(\phi_\ast)=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bc8cf8cceece744c)
+
 Linearizing gives
 $$
 \partial_T^2\delta\phi
@@ -240,6 +252,7 @@ c_{\mathrm{eff}}^2\Delta\delta\phi
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4c74c07ccbfb543c)
+
 which is the bridge route to the Klein-Gordon dispersion target.
 
 The same benchmark supplies a defect test. If
@@ -248,6 +261,7 @@ V_{\mathrm{eff}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e2a4f8a0d203905e)
+
 has two locally stable branches
 $$
 \phi_-
@@ -256,6 +270,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7c77ff35d6d63c73)
+
 then a one-dimensional interface profile should satisfy the saddle equation
 $$
 K_\phi\frac{d^2\phi}{dx^2}
@@ -268,6 +283,7 @@ V_{\mathrm{eff}}'(\phi),
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3ea91464ca3c5255)
+
 Its interface cost is
 $$
 \sigma_\phi
@@ -280,6 +296,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-192ee8e572204d28)
+
 with the appropriate branch value subtracted on each side. For this bridge, such domain-wall or kink-like profiles are comparison diagnostics for coarse scalar closure; they are not evidence that the underlying architrino ontology is a continuous scalar field.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Reading

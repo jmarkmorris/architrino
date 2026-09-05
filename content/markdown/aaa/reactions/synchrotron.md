@@ -295,6 +295,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-76c8e0c9627088f2)
+
 where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment, after accounting for Faraday rotation, beam averaging, and turbulent depolarization, would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
 - Radiation-zone closure: for the local transverse-acceleration segment with $\mathbf{v}\cdot\mathbf{a}_\perp=0$, axes chosen so $\mathbf{v}$ lies along $z$ and $\mathbf{a}_\perp$ along $x$, and $\beta=\|\mathbf{v}\|/c$, recover the angular target
 
@@ -388,7 +389,7 @@ This source packet also disciplines composition claims. The observed synchrotron
 
 Standard high-energy source models treat synchrotron cascades as local plasma-radiation processes governed by magnetic structure, injection spectra, and transport. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ program, the same radiative microphysics is retained while interpretation shifts to mapping cascade outputs onto assembly transport and SMBH-local recycling histories.
 
-## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Mapping (Provisional)
+## Provisional $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Map
 
 Status convention used below:
 
@@ -396,7 +397,7 @@ Status convention used below:
 - **Provisional map:** ontology-level working hypothesis pending deeper derivation.
 - **Requirement:** compatibility condition for known observables.
 
-### Provisional Architrino-Level Mapping
+### Architrino-Level Hypotheses
 
 This file uses the following provisional mapping targets.
 
@@ -408,6 +409,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-275707859b37a0e9)
+
 (where $\beta = \sqrt{1-4m_e^2c^4/s}$) to within factor-of-2 accuracy across the range $4m_e^2c^4 < s < 100m_e^2c^4$ used in cascade modeling. Deviations larger than this bound would constitute observable new physics and require dedicated experimental tests beyond astrophysical inference.
 
 These mapping targets are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
@@ -559,11 +561,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2997ff94cf43b4c7)
 
-Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
+Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any proposed deviation must be confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
 
 Propagation and timing conventions must remain explicit in cosmology-facing use.
 
-## Anticipated Mapping Targets
+## Open Mapping Targets
 
 - Recover observed cascade-like spectral slopes and break structures in limits where synchrotron cooling dominates.
 - Recover synchrotron self-absorption from the same event family as emissivity, including the optically thick source function and its separation from plasma-dispersion suppression.
@@ -572,7 +574,7 @@ Propagation and timing conventions must remain explicit in cosmology-facing use.
 - Quantify joint regimes where synchrotron cascades and bremsstrahlung together set the photon bath relevant to nucleation-era mapping.
 - Bound acceptable parameter freedom in provisional mapping variables so parsimony does not degrade relative to standard transport models.
 
-## Explanatory Gain (Provisional)
+## Possible Explanatory Gain
 
 This mapping aims at mechanistic compression across channels:
 
@@ -582,7 +584,7 @@ This mapping aims at mechanistic compression across channels:
 
 If future derivations show no measurable deviations in tested regimes, the remaining claim is ontological unification rather than new phenomenology.
 
-## Why Reinterpret (Theory Payoff)
+## Conditions for a Useful Reinterpretation
 
 The reinterpretation is justified only if it improves theory structure, not vocabulary. In this chapter the intended payoff is:
 

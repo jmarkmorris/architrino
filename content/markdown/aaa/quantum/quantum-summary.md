@@ -4,7 +4,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 
 Read this hub as a map of what must be recovered. The branch keeps ordinary quantum practice intact at the observer level, but it relocates the physical implementation below that practice: an assembly has provenance, a wake supplies distributed causal structure, a detector is another assembly network, and a probability is only valid after a declared record channel earns it.
 
-## Current Status
+## Open Quantum Obligations
 
 - **Finite measurement time is open:** the record ontology defines $\tau_{\mathrm{meas}}$, $\tau_{\mathrm{split}}$, and $\tau_{\mathrm{rec}}$, but no apparatus class yet has a derived positive lower bound $\tau_{\min}$.
 - **The Born square is open:** the branch now requires a selected physical basin measure, preparation-frequency convergence, and a derivation that its record pushforward equals the independently extracted envelope density $\rho_{\mathrm{env}}=|\psi|^2$. Those obligations are stated but not discharged.

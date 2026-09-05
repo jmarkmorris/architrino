@@ -1,6 +1,6 @@
 # Braid Recovery Requirements
 
-Before any particular braid geometry is featured, the theory owes the reader a contract: what must a candidate braid actually deliver? This chapter states that contract once, independently of which realization — one support band, three ordered bands, or another exact configuration — eventually satisfies it. The requirements come in two layers. The retention layer asks whether the source-declared neutral inventory can persist as one coherent causal-return record. The recovery layer asks what a retained branch must then hand to the rest of physics: the clocks, rulers, masses, charges, spectra, statistics, forces, and cosmological histories that general relativity, quantum theory, the Standard Model, and the $\Lambda$CDM-era observations already describe at the observer level.
+Before any particular braid geometry is featured, the theory owes the reader a contract: what must a candidate braid actually deliver? This chapter states that contract once, independently of which exact configuration eventually satisfies it. The requirements come in two layers. The retention layer asks whether the source-declared neutral inventory can persist as one coherent causal-return record. The recovery layer asks what a retained branch must then hand to the rest of physics: the clocks, rulers, masses, charges, spectra, statistics, forces, and cosmological histories that general relativity, quantum theory, the Standard Model, and the $\Lambda$CDM-era observations already describe at the observer level.
 
 Stating the requirements realization-independently protects the proof order. A realization chapter may carry beautiful exact structure and still leave every row below open; a recovery chapter may state a sharp observer-level target that no current branch can yet consume. Keeping the contract in one place prevents both failure modes from hiding: every claim in the braid scene can be checked against this chapter's ladder, and every ladder row names the chapter where its detailed burden lives.
 
@@ -14,7 +14,7 @@ A reader should use this chapter the way an engineer uses a requirements specifi
 
 ## The Retained-Branch Certificate
 
-The retention question has the same row structure for every exact configuration. A candidate branch $B$ over a test window $W$ is a claim that the source-declared neutral inventory keeps returning to one repeatable causal relationship: the same identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold. The base and orthogonal-axis three-binary/B cases use six architrinos with inventory $3\epsilon_+ + 3\epsilon_-$; two-component circular configurations uses twelve worldlines grouped into six neutral binaries. The certificate makes that claim auditable by splitting it into rows that must all close on one ledger identity:
+The retention question has the same row structure for every exact configuration. A candidate branch $B$ over a test window $W$ is a claim that the source-declared neutral inventory keeps returning to one repeatable causal relationship: the same identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold. The neutral-base, orthogonal-axis three-binary, and coincident-axis three-binary configurations use six architrinos with inventory $3\epsilon_+ + 3\epsilon_-$; two-component circular configurations use twelve worldlines grouped into six neutral binaries. The certificate makes that claim auditable by splitting it into rows that must all close on one ledger identity:
 
 $$
 \mathsf{R}(B,W)
@@ -85,7 +85,7 @@ $$
 \mathrm{first\_failed\_row},
 \mathrm{ledger\_id},
 \mathrm{margin},
-\mathrm{blocking\_packet},
+\mathrm{blocking\_record},
 \mathrm{repair\_or\_rejection}
 \right)
 $$
@@ -96,7 +96,7 @@ The ladder shape carries the scene's central reading rule. Rows through converge
 
 ## Proof-Burden Order
 
-The retention certificate is the first rung of a longer ladder. The burdens close in a fixed order, and a packet can supply evidence for one rung while leaving the next rung open. The realization-independent ladder is:
+The retention certificate is the first rung of a longer ladder. The burdens close in a fixed order, and an evidence record can support one rung while leaving the next rung open. The realization-independent ladder is:
 
 | Order | Burden | What must close on the same record |
 | --- | --- | --- |
@@ -116,16 +116,16 @@ A retained, transportable braid branch is the theory's proposed common cause for
 | Target | Requirement | Owning chapters |
 | --- | --- | --- |
 | Lorentz clock/ruler export | A moving retained branch must retune its internal record so that clock rate and envelope contraction collapse to the observer-calibrated $\gamma_0(v_{\mathrm{eff}})=(1-v_{\mathrm{eff}}^2/c_0^2)^{-1/2}$ in the homogeneous weak-field limit, with preferred-frame leakage bounded below current test sensitivity. | [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) |
-| Effective metric and weak-field gravity | The braid-bearing Noether sea must export an effective metric whose weak clock row reproduces $d\tau_{\mathcal A}/dt\approx1-U_N/c_0^2-\|\mathbf w\|^2/(2c_0^2)$, with the Newtonian potential match, effective coupling, and PPN coefficients derived from one same-record constitutive response rather than fit separately. | [Emergent Metric](../spacetime/emergent-metric.md), [General Relativity](../spacetime/general-relativity.md), [PPN Parameters](../spacetime/ppn-parameters.md) |
+| Effective metric and weak-field gravity | The braid-bearing Noether sea must export an effective metric whose weak clock row reproduces $d\tau_{\mathcal A}/dt_{\mathrm{eff}}\approx1-U/c_0^2-\|\mathbf w\|^2/(2c_0^2)$, where $U\ge 0$ is the positive Newtonian-potential magnitude and $\mathbf w$ is the clock's group velocity through the local Noether sea. The Newtonian-potential match, effective coupling, and PPN coefficients must follow from one same-record constitutive response rather than be fitted separately. | [Emergent Metric](../spacetime/emergent-metric.md), [General Relativity](../spacetime/general-relativity.md), [PPN Parameters](../spacetime/ppn-parameters.md) |
 | Strong-field and horizon behavior | The terminal-alignment condition of the braid family must recover horizon phenomenology — darkness, entropy counting over alignment-restricted closure labels, and singularity resolution — as branch-boundary behavior rather than as imported geometry. | [Black Holes](../spacetime/black-holes.md), [Singularity Resolution](../spacetime/singularity-resolution.md) |
-| Decay-rate dilation and the clock hypothesis | A moving unstable retained branch must dilate its decay and transaction rates by the same $1/\gamma_0(v_{\mathrm{eff}})$ as its clock export — the storage-ring muon-lifetime record and rotor time-dilation measurements are the tested benchmarks — with the candidate mechanism that internal cadence, and therefore the pacing of action-transaction events, slows with the clock. The residual acceleration dependence of decay rates must remain below the clock-hypothesis bounds (pure $1/\gamma$ behavior verified at accelerations of order $10^{18}\,g$ in storage rings), which bounds how much braid-geometry strain per unit acceleration may leak into transaction rates. | [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) |
+| Decay-rate dilation and the clock hypothesis | A moving unstable retained branch must dilate its decay and transaction rates by the same $1/\gamma_0(v_{\mathrm{eff}})$ as its clock export. The [CERN storage-ring muon-lifetime measurement](https://doi.org/10.1038/268301a0) and [Kündig rotor measurement](https://doi.org/10.1103/PhysRev.129.2371) are observer-level benchmarks. The candidate mechanism is that internal cadence, and therefore the pacing of action-transaction events, slows with the clock. The storage-ring result agreed with the relativistic lifetime prediction while the muons underwent high centripetal acceleration, so any independent acceleration dependence of decay rates must remain within the experimental bound; this constrains how much braid-geometry strain per unit acceleration may leak into transaction rates. | [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) |
 
 ### Quantum and Standard-Model Targets
 
 | Target | Requirement | Owning chapters |
 | --- | --- | --- |
 | Mass map | Observed particle masses must be extracted as effective inertial response of retained branches — small observed mass from large shielded interior energy — with the extraction rule derived from the same branch record used for retention. | [Particle Masses](../assemblies/particle-masses.md) |
-| Fermion generations | The three-generation ladder must be recovered as a structural ladder of the braid family — the working reading is a shielding-tier ladder — with the generation count derived from the delayed dynamics rather than postulated. | [coincident-midpoint orthogonal-axis locus Shielding](zero-axial-offset-three-binary-dynamics-and-interpretation.md#coincident-midpoint-orthogonal-axis-three-binary-configuration-shielding-and-fermion-generations), [Muon and Tau](../assemblies/fermions/muon-tau.md) |
+| Fermion generations | The three-generation ladder must be recovered as a structural ladder of the braid family — the working reading is a shielding-tier ladder — with the generation count derived from the delayed dynamics rather than postulated. | [coincident-midpoint orthogonal-axis locus Shielding](zero-axial-offset-three-binary-dynamics-and-interpretation.md#coincident-midpoint-orthogonal-axis-three-binary-shielding-and-fermion-generations), [Muon and Tau](../assemblies/fermions/muon-tau.md) |
 | Spin-statistics and exchange | Fermionic antisymmetry and bosonic shared occupation must be recovered from braid envelope geometry plus an exchange sign consumed from the same retained row that supplies spinor closure, not from a separately selected bookkeeping sign. | [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md), [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) |
 | Photon and Maxwell recovery | The photon channel must be recovered as a propagating assembly of released action history whose superposed delayed potentials reproduce Maxwell behavior, transverse polarization, and propagation at the recovered signal speed. | [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Radiation](../reactions/radiation.md) |
 | Strong force and color | Color bookkeeping, gluon-like exchange, and confinement must be recovered from braid substructure and its interaction channels, including why isolated color-carrying assemblies are unstable. | [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), [Gluons](../assemblies/bosons/gluons.md), [Nucleon Structure](../nuclear-atomic/nucleon-structure.md) |
@@ -237,7 +237,8 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1be1255a6bb5bbd5)
-coaxial-separated co-rotating two-component configuration through coaxial two-planar-braid counter-rotating configuration may expose two exact coincident-axis three-binary locus or planar common-center three-binary locus component ledgers, but those component rows do not replace the 132-pair two-component circular ledger unless a proved reduction map accounts for every cross-component pair. An associated Accessory Configuration remains a separate inventory and certificate input rather than part of these twelve defining worldlines.
+
+The coaxial-separated two-component and two-planar-braid configurations, in both co-rotating and counter-rotating forms, may expose two exact coincident-axis three-binary or planar common-center three-binary component ledgers. Those component rows do not replace the 132-pair two-component circular ledger unless a proved reduction map accounts for every cross-component pair. An associated Accessory Configuration remains a separate inventory and certificate input rather than part of these twelve defining worldlines.
 
 The certificate should report the first blocking row as
 
@@ -248,15 +249,15 @@ $$
 \mathrm{first\_failed\_row},
 \mathrm{ledger\_id},
 \mathrm{margin},
-\mathrm{blocking\_packet},
+\mathrm{blocking\_record},
 \mathrm{repair\_or\_rejection}
 \right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2cebd92863a852e6)
 
-Rows through convergence block branch retention. Case-reduction and observer-export rows classify downstream structure only after the required neutral rows close. Therefore a favorable Lorentz, photon, topology, mass-map, or shell-geometry diagnostic cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row.
+Rows through convergence block branch retention. Case-reduction and observer-export rows classify downstream structure only after the required neutral rows close. Therefore a favorable Lorentz, photon, topology, mass-map, or envelope-geometry diagnostic cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row.
 
-### Reading Discipline
+### Neutral-Braid Reading Discipline
 
-Reading discipline for future diagnostics on this chart, retained from earlier work at method level: a resolved causal-root ledger does not imply acceleration-balance closure; inventory attraction bias does not imply acceleration-balance closure; resolved positive-delay root rows do not imply acceleration-balance closure; and sampled phase or polarity-phase improvements do not imply retention. A negative result for one fixed-coordinate carrier hypothesis is not a rejection of the neutral braid, any A/B/C member, or the bounded-speed, controlled-self-hit, fold-layer, and medium-response programs. No measured residuals are carried in this chapter: results enter only when established, with instrument and claim level stated.
+A resolved causal-root ledger does not imply acceleration-balance closure; inventory attraction bias does not imply acceleration-balance closure; resolved positive-delay root rows do not imply acceleration-balance closure; and sampled phase or polarity-phase improvements do not imply retention. A negative result for one fixed-coordinate carrier hypothesis is not a rejection of the neutral braid, any orthogonal-axis three-binary, coincident-axis three-binary, or two-component circular configuration, or the bounded-speed, controlled-self-hit, fold-layer, and medium-response programs. This chapter carries no measured residuals.

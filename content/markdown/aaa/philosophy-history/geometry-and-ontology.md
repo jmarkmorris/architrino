@@ -1,6 +1,6 @@
 # Geometry and Ontology
 
-## Overview
+## Where Geometry Belongs
 
 This document addresses a philosophical pressure that appears whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ criticizes curved spacetime ontology. The issue is not whether physics should use geometry. The issue is where each geometry belongs in the explanatory stack.
 
@@ -30,6 +30,7 @@ R^i{}_{jkl}(h)=0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b6198375748cb1e9)
+
 This geometry gives distance, direction, and Euclidean differential operators on each absolute-time slice. Absolute time $T$, not the spatial metric $h_{ij}$, supplies simultaneity. The spatial metric does not bend light, slow clocks, store stress, expand, or respond to matter. Those effects belong to the dynamics of architrinos, causal wakes, assemblies, and the Noether sea, then to the observer-level metric reconstructed from them.
 
 The inherited spacetime metric belongs at the other end of the stack:
@@ -49,6 +50,7 @@ e^a{}_i,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d9bc26c339a539b6)
+
 Here $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\mathrm{sea,eff}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. These are reduced constitutive summaries derived from the complete ontic state; the complete state itself is deliberately absent from the displayed map. Otherwise $\mathcal{G}_{\text{metric}}$ could hide an arbitrary state-dependent reconstruction and the claimed reduction would be empty. The constitutive recovery problem is to show that a declared, independently constrained summary is sufficient for the effective metric and passes GR-level tests without benchmark-specific repair terms.
 
 ## Geometry-Layer Map
@@ -97,6 +99,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0df99441d26cd018)
+
 In technical chapters this becomes a residual such as the effective-metric recovery condition in [Emergent Metric](../spacetime/emergent-metric.md). In philosophy-facing language, the point is that curved-spacetime behavior must arise from one shared constitutive record, not from an interpretive overlay added after the measurements.
 
 ## The Correct Critique
@@ -129,4 +132,4 @@ Whenever a document invokes geometry, the reader should be able to answer five q
 
 For the Euclidean void, the invariant is flat spatial metric structure: $\partial_T h_{ij}=0$ and $R^i{}_{jkl}(h)=0$. For causal wakes, the invariant is finite-speed delayed intersection: $r=c_f(T-T_t)$. For effective spacetime, the invariant target is operational agreement across clock, ruler, signal, and gravity records under one shared constitutive map.
 
-This gives the philosophy-history lane a clean answer to the original worry. $\mathbb{A}\mathbb{A}\mathbb{A}$ is geometric, but it is not geometrically naive. It treats geometry as a layered explanatory instrument and refuses to let an effective observer geometry replace the substrate generator it is supposed to recover.
+This gives the Philosophy and History section a clean answer to the original worry. $\mathbb{A}\mathbb{A}\mathbb{A}$ is geometric, but it is not geometrically naive. It treats geometry as a layered explanatory instrument and refuses to let an effective observer geometry replace the substrate generator it is supposed to recover.

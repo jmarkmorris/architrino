@@ -48,4 +48,4 @@ API-key usage follows the OpenAI Platform account's billing and data-handling se
 
 For current command behavior and credential-storage details, see the official [Codex authentication guide](https://learn.chatgpt.com/docs/auth).
 
-Closure goal: use a supported sign-in method while keeping all credential values and credential caches outside repository documentation.
+use a supported sign-in method while keeping all credential values and credential caches outside repository documentation.

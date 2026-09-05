@@ -1,18 +1,14 @@
 # Braid Taxonomy
 
-This chapter defines the characteristics used to identify braid assemblies. The catalog is flat: every exact configuration is a peer, and no label, chapter, filename, visual resemblance, or filter result is a parent template. Worked planar configurations appear in [Planar (2D) Braid Assemblies](2d-braid-assemblies.md); worked spatial configurations appear in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md).
+This chapter defines the characteristics used to identify the [Noether braid](noether-braid.md) assemblies developed in this part of the corpus. The catalog is flat: every exact configuration is a peer, and no label, chapter, filename, visual resemblance, or filter result is a parent template. Worked planar configurations appear in [Planar (2D) Braid Assemblies](2d-braid-assemblies.md); worked spatial configurations appear in [Spatial (3D) Braid Assemblies](3d-braid-assemblies.md).
 
-A classification states supported facts about a complete prescribed or evolved record. It does not establish acceleration balance, EOM-solver release, retention, stability, binding, particle identity, or formation. Those claims require their own evidence.
-
-Plainly: a taxonomy tells us what a configuration is made of and how its paths are arranged. It does not tell us whether the configuration survives when released.
+A classification states supported facts about a complete prescribed or evolved record. It does not establish acceleration balance, EOM-solver release, retention, stability, binding, particle identity, or formation. Those claims require their own evidence. A taxonomy tells us what a configuration is made of and how its paths are arranged. It does not tell us whether the configuration survives when released.
 
 ## Exact Configuration Identity
 
 Every concrete configuration has an opaque `assemblyId` and an exact `modelRevisionSha256`. These are persistent record identities, not a sorting by radius, frequency, speed, or any derived dynamical role. The identifier carries no geometry or taxonomy meaning. The model revision is computed from a versioned canonical serialization of the identity-bearing scientific content: inventory, persistent member order, component relations, coordinates, paths, units, motion policy, and source-law version.
 
-Changing a label, explanation, filename, chapter, URL, camera, or display styling preserves both values. Changing any identity-bearing scientific content creates a new `assemblyId` and a new `modelRevisionSha256`. `recordSha256` separately identifies the exact emitted display bytes.
-
-Plainly: names can improve without changing the configuration. Changing a path, coordinate, member, or scientific rule creates a different configuration.
+Changing a label, explanation, filename, chapter, URL, camera, or display styling preserves both values. Changing any identity-bearing scientific content creates a new `assemblyId` and a new `modelRevisionSha256`. `recordSha256` separately identifies the exact emitted display bytes. Names can improve without changing the configuration. Changing a path, coordinate, member, or scientific rule creates a different configuration.
 
 ## Assembly, Component Braid, and Binary
 
@@ -22,9 +18,7 @@ A **component braid** is a source-declared nonempty member subset whose complete
 
 A **neutral binary** is a declared pair of one electrino and one positrino with persistent endpoint identities. Antipodal positions, equal radii, or opposite pixels do not establish a binary unless the source declares the pairing.
 
-A symmetry transformation may establish equivalence between complete records, but it does not relabel the binaries inside one record. Persistent indices remain attached to their declared members even when radii, frequencies, speeds, or axial positions cross.
-
-Plainly: Borg never discovers a braid or binary by counting dots. Membership comes from the exact source record.
+A symmetry transformation may establish equivalence between complete records, but it does not relabel the binaries inside one record. Persistent indices remain attached to their declared members even when radii, frequencies, speeds, or axial positions cross. Borg never discovers a braid or binary by counting dots. Membership comes from the exact source record.
 
 ## Component-Braid Dimensionality
 
@@ -45,9 +39,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-04a6583db7ff791d)
 
-Whole-assembly affine span is a separate characteristic named **Assembly span**. Two planar braids in different parallel planes remain a 2D-braid assembly even when their union spans three dimensions.
-
-Plainly: `2D` or `3D` describes each braid, not the bounding box around the entire assembly.
+Whole-assembly affine span is a separate characteristic named **Assembly span**. Two planar braids in different parallel planes remain a 2D-braid assembly even when their union spans three dimensions. `2D` or `3D` describes each braid, not the bounding box around the entire assembly.
 
 ## Circle Occupancy
 
@@ -76,9 +68,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-340c34317f650055)
 
-Several distinct circles may occur in one assembly, and their centers, planes, and radii may differ. `Multiple per circle` therefore does not mean that the whole assembly occupies one circle. Equal radii, instantaneous crossings, independent recentering, or rendered overlap do not prove circle equality.
-
-Plainly: circle occupancy counts travelers on each actual circle. It allows many circles and many radii.
+Several distinct circles may occur in one assembly, and their centers, planes, and radii may differ. `Multiple per circle` therefore does not mean that the whole assembly occupies one circle. Equal radii, instantaneous crossings, independent recentering, or rendered overlap do not prove circle equality. Circle occupancy counts travelers on each actual circle. It allows many circles and many radii.
 
 ## Co-Sphericity
 
@@ -90,9 +80,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-694356e882becc4d)
 
-throughout the complete interval. A sphere through orbit centers, a spherical display envelope, or one instantaneous vertex set is insufficient. Co-sphericity is independent of component-braid dimensionality and circle occupancy.
-
-Plainly: the architrinos themselves must remain on the spherical surface. The centers of their circles do not count as substitutes.
+throughout the complete interval. A sphere through orbit centers, a spherical display envelope, or one instantaneous vertex set is insufficient. Co-sphericity is independent of component-braid dimensionality and circle occupancy. The architrinos themselves must remain on the spherical surface. The centers of their circles do not count as substitutes.
 
 ## Independent Identification Characteristics
 
@@ -122,7 +110,7 @@ No row is inherited from another row. Two configurations with common values rema
 
 ## Coordinate Constraints Used by Worked Configurations
 
-The catalog contains several exact coordinate loci. Their descriptive names state their constraints directly:
+For binary $a$, let $R_a$ be the endpoint distance from its midpoint, $h_a$ its axial half-separation, and $\rho_a$ its transverse orbit radius, so $R_a^2=h_a^2+\rho_a^2$. The catalog contains several exact coordinate loci. Their descriptive names state their constraints directly:
 
 - **Orthogonal-axis three-binary records** use three declared binary frames. At one endpoint the axes are mutually orthogonal; a declared flattening operator may move them toward a common direction.
 - **Coincident-midpoint orthogonal-axis three-binary configurations** set every binary midpoint at the braid center and every axial half-separation to zero.
@@ -131,9 +119,7 @@ The catalog contains several exact coordinate loci. Their descriptive names stat
 - **Coincident-axis three-binary records** place three declared neutral binaries on one oriented axis with a common frequency. The planar locus sets $h_a=0$ for all three binaries; the all-axial boundary sets $\rho_a=0$.
 - **Two-component circular records** declare two complete component subsets and their center, axis, frequency, phase, and circulation relations. Co-rotation and counter-rotation are independent values, not subclasses with inherited physics.
 
-These loci are coordinate facts. They do not establish that an EOM-solver trajectory occupies the locus.
-
-Plainly: the old letter containers were unnecessary. The equations themselves say what each chart is.
+These loci are coordinate facts. They do not establish that an EOM-solver trajectory occupies the locus. Each chart is identified by its equations and named constraints.
 
 ## Borg Correspondence
 
@@ -143,6 +129,4 @@ The reader-facing label may change while the exact scientific link remains valid
 
 ## Claim Boundary and Falsifiers
 
-The taxonomy is falsified for a record if Borg and the corpus assign different characteristics from the same source, if a component dimension is assigned without complete membership and paths, if circle occupancy is inferred from samples or appearance, or if scientifically different payloads share an exact identity. A presentation-only change that changes `assemblyId` or `modelRevisionSha256` also falsifies the identity contract.
-
-Plainly: every classification can be checked against the exact source. Ambiguity closes the classification; it never licenses a guess.
+The taxonomy is falsified for a record if Borg and the corpus assign different characteristics from the same source, if a component dimension is assigned without complete membership and paths, if circle occupancy is inferred from samples or appearance, or if scientifically different payloads share an exact identity. A presentation-only change that changes `assemblyId` or `modelRevisionSha256` also falsifies the identity contract. Every classification can be checked against the exact source. Ambiguity closes the classification; it never licenses a guess.

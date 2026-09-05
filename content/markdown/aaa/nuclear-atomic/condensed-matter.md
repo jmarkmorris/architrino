@@ -1,10 +1,10 @@
 # Condensed Matter
 
-This chapter states the condensed-matter closure target for medium-level behavior in the Noether sea. Its current focus is Noether sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of neutral Noether braids.
+This chapter states the condensed-matter closure target for medium-level behavior in the Noether sea. It focuses on Noether sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of neutral Noether braids.
 
 This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the Noether sea stores stress and permits transport.
 
-At present this is a closure target rather than a finished derivation. The residual and its critical value must still be extracted from stable assembly dynamics, Noether sea constitutive response, and the relevant stability diagnostics.
+The transport account is a closure target rather than a finished derivation. Its residual and critical value must still be extracted from stable assembly dynamics, Noether sea constitutive response, and the relevant stability diagnostics.
 
 ## Noether Sea Transport
 
@@ -412,6 +412,7 @@ Q:\Omega\setminus D\longrightarrow\mathcal{Q}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f28384fbdf809f56)
+
 be an observer-level order-parameter map for a material region with defect set $D$ and target space $\mathcal{Q}$. A loop $\gamma$ around a line defect may then carry a homotopy label
 $$
 \mathcal{I}_\gamma
@@ -430,6 +431,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-91e5a7da1acb8027)
+
 These are recovery or comparison objects. They do not replace the architrino, causal-wake, or Noether sea branch records that must generate the effective material description.
 
 The transport consequence is a gap rule. A stable branch may deform, strain, or retune without changing its defect label while the relevant stability gap remains open:
@@ -440,6 +442,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5a29e240f1fbea66)
+
 for branch-preserving perturbations. If a material event changes the topological label, creates a vortex or dislocation, unbinds a defect pair, or opens an edge mode, the event has crossed a branch threshold. In the condensed-matter closure target that means
 $$
 \Delta\mathcal{I}_\gamma\ne0
@@ -450,6 +453,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-47b7f6e464fe79fc)
+
 Below that threshold the response remains reversible retuning or coherent transport. Above it, the energy and momentum ledger must route the event through lattice excitation, surface transport, heating, radiation-like shedding, boundary exchange, or structural transition.
 
 ## Hall and Topological Response Benchmarks

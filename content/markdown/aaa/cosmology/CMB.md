@@ -16,7 +16,7 @@ The CMB timeline is presented as an effective observer-level chronology map that
 
 ## Chronology Mapping Note
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is conceptually adjacent to cyclical/recycling cosmology families, but its mechanism is explicitly SMBH-local source architecture in a fixed-void ontology.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ chronology is conceptually adjacent to cyclical and recycling cosmology families, but its mechanism is explicitly an SMBH-local source architecture in a fixed-void ontology.
 
 The symbol $t_{\mathrm{eff}}=0$ anchors each declared local release or reaction record when an effective epoch window is applied; it is not the origin of absolute time. The stitched observer chronology aligns stages recovered from many such local records.
 
@@ -75,6 +75,7 @@ S_{PW}(\hat{\mathbf{n}},\theta)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3b930c43ccb882b1)
+
 For a proposed set of $N$ localized features, the comparison pressure is the null probability
 $$
 p_N
@@ -249,6 +250,7 @@ Y_{\gamma,H},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cd45449201b499ca)
+
 where $\mathcal{B}_{H}$ is the horizon-interface label ensemble, $Y_{\gamma,H}$ is the signed strong-field photon-frequency exchange row, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{H\gamma}$ is the energy, momentum, angular-momentum, provenance, and medium-update ledger for the released channel, $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}$ is the thermalization depth, and $\mathcal{P}_{E\to R}$ is the path-history propagation factor. This packet is admissible only if it feeds the same blackbody, anisotropy, polarization, damping, lensing, redshift, and BBN handoff records already required by the CMB module.
 
 The candidate is strong because it links several otherwise separate clues: black-hole recycling, horizon-interface planar lock, photon-channel ontology, signed redshift/blueshift transport, and CMB thermalization. Its failure mode is equally clear. If the horizon contribution can explain only an energy scale while spoiling the near-blackbody spectrum, erasing TT/TE/EE information, overproducing spectral distortions, or requiring a different Noether sea state from the one used for redshift and growth, then it is not a valid CMB source branch.
@@ -300,6 +302,7 @@ Y_p,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-39683ab2f74c5d17)
+
 where $T_{\mathrm{src}}$ is the effective source or last-thermalization temperature, $\eta_{\gamma b}$ is the photon-to-baryon loading ledger, $N_{\mathrm{eff}}$ and $Y_p$ carry the neutrino and helium-facing constraints, $\mathcal{P}_{\mathrm{instr}}$ records the antenna, atmosphere, calibration, foreground, polarization, and seasonal checks, and $\mathbf{D}_{\mathrm{frame}}$ is the residual frame vector used in the dipole gate above. A distributed or recycling interpretation is admissible only when the same $\Theta_{\mathrm{CMB}}$ supports the spectrum, isotropy, BBN handoff, and frame correction. Fitting the microwave temperature while assigning the helium abundance, neutrino history, foreground subtraction, or dipole correction to separate records would reproduce a number while failing the CMB constraint.
 
 The same record must close the photon energy inventory, not only the fitted temperature. For a declared source-and-thermalization branch $\theta$, let $u_\gamma^\theta(t_{\mathrm{eff}})$ be the effective photon energy density that reaches the CMB comparison surface, $B_{\mathrm{therm}}^\theta$ the energy transferred through thermalizing channels, $B_{\mathrm{loss}}^\theta$ the energy irreversibly routed into non-photon reservoirs, and $\mathcal{F}_\gamma^\theta$ the boundary flux through the selected comparison window. The CMB energy-budget residual can be written schematically as
@@ -328,6 +331,7 @@ B_{\mathrm{loss}}^\theta
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f1fecc4aa9a229d6)
+
 This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
 
 Post-free-streaming redshift adds the same constraint on the transport side. Once source, recoil, remnant, and boundary rows are separated, a redshifted photon bundle must close its energy deficit into the Noether sea path update,
@@ -378,6 +382,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cff6a7b35592c256)
+
 Here $T_0^\theta$ is the present observer-side radiation temperature, while $z_{\mathrm{eq}}^\theta$ and $k_{\mathrm{eq}}^\theta$ are the matter-radiation equality redshift and scale in observer variables. The term $H_{\mathrm{eff}}^\theta$ is the effective expansion or relaxation projection, and $\Omega_{K,\mathrm{eff}}^\theta$ is the effective curvature projection of the same Noether sea record. The positive-scale terms $M_{\mathrm{grow}}^\theta$ and $R_{\mathrm{grow}}^\theta$ are declared condensation/growth-scale comparisons supplied by the structure-formation packet rather than imported 1948 values. A successful CMB record must make this residual small without changing $\theta$ between the blackbody, equality, effective expansion, curvature, and growth projections.
 
 ### Thermalization-Depth and Planck-Recovery Target
@@ -420,6 +425,7 @@ D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})\,\Delta\alpha
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-11d9312a2348d80b)
+
 This scale is meaningful only after the branch computes $D_{\mathrm{eff}}^\theta$ from its source, transport, and thermalization record. If no finite $D_{\mathrm{eff}}^\theta$ exists, or if it varies too strongly with frequency or sky direction, the distributed-source interpretation has not supplied a stable CMB comparison surface.
 
 Thermalization mechanisms that use this opacity or distributed absorbers must also pass a side-effect test. Let $\mathcal{A}_{\ell}^{\theta}$, $\mathcal{P}_{\ell}^{\theta}$, and $\mathcal{D}_{\mathrm{FIR}}^\theta$ denote the induced changes in temperature anisotropy, polarization, and far-infrared/submillimeter background intensity. The side-effect residual is
@@ -436,6 +442,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1065f140442c611a)
+
 A thermalizing component is admissible only if it helps make $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before the free-streaming record is fixed while keeping $\mathcal{R}_{\mathrm{op}}^\theta\le1$ afterward. This is the native exclusion of absorber stories that smooth the spectrum by erasing the anisotropy and polarization record they must also preserve.
 
 In the weak homogeneous photon-channel limit, the observer-level recovery target is the Planck spectral form
@@ -481,6 +488,7 @@ I_j-F_j(\psi)-B_{\nu_j}(T;\theta)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7d35f666919edf64)
+
 where $B_\nu(T;\theta)$ is the photon-channel blackbody comparison spectrum projected through the same medium record $\theta$. A distributed or recycling source story must make $\mathcal{R}_{\mathrm{spec}}$ small without using a foreground, calibration, or post-decoupling transport residual to erase the acoustic and polarization information.
 
 In the homogeneous comparison limit, the redshift handoff must preserve the Planck form by scaling frequency and temperature together:
@@ -495,6 +503,7 @@ T_{\mathrm{obs}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-99a74cfa3937210c)
+
 This is an observer-level transport benchmark. It does not say that the Euclidean void expanded; it says the photon-channel distribution, endpoint clock comparison, and path-history propagation must carry a blackbody spectrum into the present microwave band without generating a chemical-potential or chromaticity residual above the CMB tolerance.
 
 Transparency supplies the complementary exclusion test. Once the universe is optically thin in the microwave band, a redshift mechanism that changes photon frequencies without the same temperature scaling generically distorts the spectrum. The CMB branch therefore carries the distortion residual
@@ -509,6 +518,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c78e3506e83a37f1)
+
 where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. The [COBE/FIRAS full-data analysis](https://arxiv.org/abs/astro-ph/9605054) gives the observer-level 95% bounds $|\mu|<9\times10^{-5}$ and $|y|<1.5\times10^{-5}$. Translating either bound into a generic energy-injection fraction requires a declared thermalization epoch and spectrum; it is not a universal $10^{-4}$ energy-budget shortcut. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
 
 The last-scattering benchmark should also retain the rate condition that makes the surface sharp. In standard comparison language decoupling occurs when the scattering rate falls through the effective expansion or relaxation rate,
@@ -521,6 +531,7 @@ H_{\mathrm{eff}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-34084353b5f94348)
+
 where $c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{dec}})$ is the dressed photon-channel speed in the decoupling environment and reduces to $c_0$ only in the weak homogeneous calibration limit. With recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN, the native CMB record has to recover a thin enough last-scattering window, not only a plausible source story.
 
 The same ionization and transfer history must continue through reionization. It has to recover the integrated optical depth $\tau$, the low-$\ell$ $EE$ polarization enhancement, and the quasar Gunn-Peterson and Lyman-$\alpha$ absorption record without changing the source or photon-transport branch per observable.
@@ -544,6 +555,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e6c4f45ccd2d03d9)
+
 The final term projects the same ionization record into Gunn-Peterson trough and Lyman-$\alpha$ forest observables. The numerical tolerances belong to the declared CMB and quasar data products, not to a separately tuned source model.
 
 ## Consistency Anchors
@@ -600,6 +612,7 @@ r^{\theta}(k_*) \le r_{\max}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0d7b24448d3984f9)
+
 with $r_{\max}$ supplied by the current observational analysis being used for the comparison. This keeps tensor non-detection as a pressure on source models without turning any particular inflationary or anti-inflationary interpretation into corpus doctrine.
 
 The tensor row should not collapse all early sources into a single inflation signal. Split the tensor-to-scalar comparison into vacuum-like and causal-source components,
@@ -611,6 +624,7 @@ r_{\mathrm{vac}}^\theta(k_*)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f0a1292ed287e3c9)
+
 where $r_{\mathrm{vac}}^\theta$ is the vacuum-like tensor contribution and $r_{\mathrm{causal}}^\theta$ is any tensor power sourced by phase-transition-like, defect-like, strong-release, recycling, or other causal-source processes. Finite-range or medium-compliance gravity comparisons enter this same tensor gate. They do not add a massive-graviton ontology; they add the requirement that the same Noether sea record which weakens the large-scale response also predicts the tensor and B-mode data products. A compact comparison residual is
 $$
 \mathcal{R}_{\mathrm{T,split}}(\theta)
@@ -632,6 +646,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6b0e1c1deff18955)
+
 where $\mathcal{L}_{\mathrm{BB}}$ is the declared B-mode comparison window, $r_{\mathrm{vac},\max}$ and $r_{\mathrm{causal},\max}$ are supplied by the data product or simulation protocol, and $\mathcal{R}_{\mathrm{GW,low}}$ is the low-frequency dispersion forecast from [Gravitational Waves](../spacetime/gravitational-waves.md#linear-wave-equation). This keeps the CMB tensor bound, causal-source tensor bound, and gravitational-wave dispersion gate tied to one comparison record rather than allowing a finite-range branch to fit them separately.
 
 A compact residual for CMB closure is
@@ -665,6 +680,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-34ce9001ef644684)
+
 where $\ell_{p,X}$ denotes the location of the $p$th acoustic feature in spectrum $X$. This residual keeps acoustic ringing as an observational phase-coherence requirement. It does not select a particular origin story for why those phases are coherent.
 
 The vector sector supplies a separate absence gate. For an effective pre-decoupling velocity field $\mathbf{u}_{\theta}^{\mathrm{eff}}$ and vorticity $\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}\equiv\nabla\times\mathbf{u}_{\theta}^{\mathrm{eff}}$, use
@@ -682,6 +698,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ddf9fcdcab75c536)
+
 Here $\delta_{\gamma}^{\theta}$ is the photon-channel density contrast in the observer-level reconstruction. The numerator tests effective vector/vorticity content; the denominator normalizes it against the scalar contrast being recovered. A successful CMB history must keep this residual small in the same state record that fits TT/TE/EE.
 
 The CMB-lensing sector adds a late-time integrated-mass reconstruction gate. In standard comparison language, lensing remaps the primary CMB by an effective lensing potential $\phi$ and yields a lensing-potential spectrum $C_{L}^{\phi\phi}$. For a candidate history $\theta$, use
@@ -697,6 +714,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-86cd266e69f8ec1e)
+
 This is a data-product constraint, not a dark-sector ontology by itself. The same Noether sea and assembly history that fits the primary TT/TE/EE spectra must also project to the lensing potential consumed by the growth and dark-matter modules.
 
 The same gate should include the smoothness pressure usually hidden inside origin-story language. Conformal-cosmology comparisons are useful here only because they isolate a real burden: the effective early record must have a very small free gravitational-mode contribution compared with the complicated strong-field behavior expected near generic collapse. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import conformal continuation as ontology. It preserves the observable requirement by asking the CMB-producing Noether sea history to suppress effective Weyl-like curvature in the decoupling comparison layer.
@@ -737,6 +755,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-26206ee0894c78a1)
+
 with $\lambda_{\mathrm{T,eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{T,split}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same Noether sea and assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, causal-source tensor limits, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
 
 ### Forward Prediction Map
@@ -773,6 +792,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-acfe5f51c56ce43a)
+
 where $\mathcal{S}_{\gamma}$ is the photon-channel source and release record, $\mathcal{D}_{\mathrm{th}}$ is the thermalization-depth record, $\mathcal{T}_{\gamma}$ is the coherent photon-channel transport record, and $\mathcal{P}_{\mathrm{TT/TE/EE}}$ is the transfer record for temperature and polarization spectra. A distributed-source or recycling interpretation is admissible only if these four rows are restrictions of one Noether sea and source-history record. It is not enough to fit the monopole with one story and then import acoustic peaks, damping, lensing, or polarization from a different state record.
 
 ### Redshift and Clock Link

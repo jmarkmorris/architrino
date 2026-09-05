@@ -1,6 +1,6 @@
 # Energy
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with moving architrinos and the causal wakes recorded by their motion. A wake is not a hidden fuel, a vacuum reservoir, or a second substance in the Euclidean void. It is the source-dependent causal-isochron record of an architrino's emissions. Motion changes the wake geometry, branch timing, and received potential; it does not turn the wake into an independent material thing.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with moving architrinos and the causal wakes recorded by their motion. An architrino is a primitive pointlike entity carrying one polarity. A [causal wake](../foundations/architrino.md#the-emitted-wake) is the expanding record emitted along its path, not hidden fuel, a vacuum reservoir, or a second substance in the Euclidean void. Motion changes wake geometry, branch timing, and the acceleration available at a receiver; it does not turn the wake into an independent material thing.
 
 This chapter answers four linked questions. What kinetic bookkeeping is allowed for a single architrino? How does work occur when a receiver crosses delayed causal wakes? How do assemblies hide or expose internal energy? How can Noether sea coupling make energy, inertia, and effective geometry appear at larger scales?
 
@@ -10,27 +10,29 @@ All such dynamics unfold on a fixed ontological background: absolute time plus t
 
 The chapter keeps four levels separate. At the substrate level, kinetic and potential terms are architrino and causal-wake records on absolute time and the Euclidean void. At the dynamical level, energy changes through receiver-side causal hits and radial power. At the effective level, assemblies acquire inertia, apparent energy, and effective metric response through Noether sea coupling. At the inference level, scalar masses, thermodynamic records, and cosmological inventories are accepted only after a window, boundary record, and residual are declared.
 
-Spacetime in this framework belongs to the effective level, not the ontological one. The ambient Noether sea is built from dense populations of neutral Noether braid assemblies occupying the Euclidean void. Its energetic state and configuration control how energy, inertia, and effective geometry appear at larger scales.
+Spacetime in this framework belongs to the effective level, not the ontological one. The [Noether sea](../spacetime/noether-sea.md) is the proposed ambient population of neutral Noether braid assemblies occupying the Euclidean void. Its constitutive state is a candidate common source of assembly inertia and effective geometry; deriving that shared response from stable assemblies remains a closure obligation.
 
 ---
 
 ## Kinetic Energy and Momentum of a Single Architrino
 
-An architrino in motion possesses kinetic energy and momentum.
+The Master Equation specifies architrino acceleration but does not independently specify a kinetic-energy or momentum functional. This section therefore introduces the most general isotropic bookkeeping pair used by the later energy tests and states the conditions under which the pair is mutually compatible.
 
 - **Kinetic Energy $E_k$**
   
-  A scalar quantity representing the energy of motion. For a single architrino $a$ with velocity $\mathbf V_a(T)$, we write
+  For a single architrino $a$ with velocity $\mathbf V_a(T)$, define a candidate kinetic scalar by
   
   $$E_{k,a}(T) = K(s_a),\qquad s_a=\|\mathbf V_a(T)\|,$$
 
   [View →](../../../../equation-mapping.html#corpus-equation-9c26d744155fdd7c)
   
-  where $s_a$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s_a)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether braids in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf V_a\|\to\infty$. **Scaffold-grade:** at this stage $K(s)$ is an unconstrained functional degree of freedom; it must eventually be fixed by back-solution consistency across certified branches, and inconsistent back-solved $\mu_K$ across certified branches would falsify this kinetic-scalar scaffold.
+  where $s_a$ is the speed. The bookkeeping assumptions are $K(0)=0$, strict convexity, and monotonic increase for $s>0$. These assumptions make speed recoverable from the scalar value, but they do not follow from the acceleration law. A finite saturation proxy may additionally impose $K'(s)\to\infty$ at a declared scale; the primitive unbounded-speed chart instead leaves the domain unbounded. The function must ultimately be fixed by consistency across independently certified branches.
+
+  > Claim grade: guessed for the existence and form of the primitive kinetic scalar. Falsifier: incompatible back-solved $K$ or $\mu_K=K'(s)/s$ on two certified branches, after matching units and boundary conventions, would reject a universal scalar of this form.
 
 - **Momentum $\mathbf{p}_a$**
   
-  The vector counterpart of kinetic energy:
+  Define the corresponding isotropic momentum-like vector by
   
   $$\mathbf p_a(T) = P\big(\|\mathbf V_a(T)\|\big)\,\hat{\mathbf V}_a(T), \quad \hat{\mathbf V}_a = \frac{\mathbf V_a}{\|\mathbf V_a\|},$$
 
@@ -46,6 +48,7 @@ An architrino in motion possesses kinetic energy and momentum.
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-7ef7b1701c66d826)
+
   after choosing $P(0)=0$. The integral through rest additionally requires $K'(0)=0$ and local integrability of $K'(u)/u$ near $u=0$; these conditions are not supplied by differentiability away from rest alone. If work-power compatibility is not imposed, $\mathbf{p}$ should be read as a momentum-like bookkeeping vector rather than a conjugate momentum generated by the same kinetic chart.
 
   Under the stated differentiability and near-zero assumptions, the kinetic Lagrangian associated with this momentum account is
@@ -70,9 +73,9 @@ An architrino in motion possesses kinetic energy and momentum.
 
   [View →](../../../../equation-mapping.html#corpus-equation-9055ca326d6a89e1)
 
-  Plainly: $K$ is the kinetic-energy scalar, while $\ell_K$ is the kinetic Lagrangian whose velocity derivative generates the declared momentum. A general action cannot use $K$ itself as the kinetic Lagrangian.
+  The scalar $K$ is the kinetic-energy candidate, while $\ell_K$ is the kinetic Lagrangian whose velocity derivative generates the declared momentum. A general action cannot use $K$ itself as the kinetic Lagrangian.
 
-  **Conditional radial-collinearity theorem.** Let $D\subseteq\mathbb R^3$ be a connected open velocity domain. Assume every pair $\mathbf u,\mathbf w\in D$ is admissible, or that the admissible increment graph is separately proved triangle-connected, and require
+  **Radial-collinearity theorem.** Let $D\subseteq\mathbb R^3$ be a connected open velocity domain. Assume every pair $\mathbf u,\mathbf w\in D$ is admissible, or that the admissible increment graph is separately proved triangle-connected, and require
 
   $$
   \mathbf p(\mathbf w)-\mathbf p(\mathbf u)
@@ -98,9 +101,9 @@ An architrino in motion possesses kinetic energy and momentum.
 
   [View →](../../../../equation-mapping.html#corpus-equation-4f07d9efe71f026b)
 
-  Plainly: the linear momentum and quadratic kinetic family follows only when all sufficiently rich radial velocity increments must remain radial in momentum-account space. Radial acceleration by itself does not supply this hypothesis.
+  The linear momentum and quadratic kinetic family follows only when all sufficiently rich radial velocity increments remain radial in momentum-account space. Radial acceleration by itself does not supply this hypothesis.
 
-  Claim grade: **derived conditional theorem**. A non-affine momentum map on a connected open domain satisfying the stated all-pairs or triangle-connected collinearity condition would falsify it. The coefficient $a$ is an undetermined bookkeeping scale, not primitive architrino mass, and the theorem does not establish a physical conservation law.
+  > Claim grade: derived under the stated all-pairs or triangle-connected collinearity hypothesis. Falsifier: a non-affine momentum map on a connected open domain satisfying that hypothesis would refute the theorem. The coefficient $a$ is an undetermined bookkeeping scale, not primitive architrino mass, and the theorem does not establish a physical conservation law.
 
   **Kinetic-scalar / closure compatibility.** The conjugacy relation above also prevents a hidden second speed scale. If the primitive kinetic scalar is modeled with a finite saturation scale $c_K$, meaning $K'(s)\to\infty$ as $s\to c_K^-$, then any effective assembly closure using a signal speed $c_{\text{eff}}$ is admissible on the declared comparison window only when
   $$
@@ -108,16 +111,17 @@ An architrino in motion possesses kinetic energy and momentum.
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-551a6457c0e9f82d)
-  with $\epsilon_{cK}$ declared before the comparison is promoted. If $K$ is instead kept in the primitive unbounded-speed limit, then $c_{\text{eff}}$ is wholly a Noether sea response quantity and no substrate-level particle speed cap may be invoked in the energy or mass-shell argument. This is the Legendre-compatibility condition for the kinetic scalar: once $K$ is chosen, the canonical radial momentum magnitude is fixed by the same generating function. A later effective mass-shell closure may introduce $c_{\text{eff}}$ only as the declared sea-response scale, or as the same finite scale already present in $K$ to the stated tolerance; it may not carry an unrelated second speed limit.
 
-**No fundamental mass:**
+  with $\epsilon_{cK}$ declared before the comparison is accepted. If $K$ is instead kept in the primitive unbounded-speed limit, then $c_{\text{eff}}$ is wholly a Noether sea response quantity and no substrate-level particle speed cap may be invoked in the energy or mass-shell argument. This is the Legendre-compatibility condition for the kinetic scalar: once $K$ is chosen, the canonical radial momentum magnitude is fixed by the same generating function. A later effective mass-shell closure may introduce $c_{\text{eff}}$ only as the declared sea-response scale, or as the same finite scale already present in $K$ to the stated tolerance; it may not carry an unrelated second speed limit.
 
-In this model, there is no **particle-specific substrate mass** assigned to individual architrinos. We do **not** assume $E_k = \frac{1}{2}m\|\mathbf V\|^2$ or $\mathbf p = m \mathbf V$ at the substrate level for distinct architrino species. Instead:
+**No fundamental mass.**
 
-- Kinetic energy and momentum are **primitive kinematic quantities** of architrinos.
+The ontology assigns no particle-specific substrate mass to individual architrinos. Neither $E_k = \frac{1}{2}m\|\mathbf V\|^2$ nor $\mathbf p = m \mathbf V$ is a substrate premise for distinct architrino species. Instead:
+
+- A kinetic scalar and momentum are candidate bookkeeping functions constrained by work-power and branch consistency.
 - The substrate law is written in **acceleration-first** form.
-- If force-like or quadratic-kinetic bookkeeping is needed, one may introduce a single universal conversion constant $\mu_{\text{arch}}$, but this is not a particle-specific inertial mass.
-- "Mass" in the usual observer sense appears **only at the assembly level** as a derived property of how a large internal energy distribution responds to external forcing in the Noether sea.
+- A quadratic-kinetic chart may introduce one universal coefficient $\mu_{\text{arch}}$, but this is not a particle-specific inertial mass.
+- "Mass" in the usual observer sense is sought only at the assembly level as an effective response property of a large internal causal-history record coupled to the Noether sea.
 
 ---
 
@@ -137,15 +141,15 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a5a7fe4b87f9cb63)
 
-If one introduces the optional universal bookkeeping constant $\mu_{\text{arch}}$ and defines $\mathbf F_a \equiv \mu_{\text{arch}}\mathbf A_a$, then the quadratic bookkeeping proxy $K_{\mu,a}=\frac{1}{2}\mu_{\text{arch}}\|\mathbf V_a\|^2$ satisfies
+If the optional universal bookkeeping coefficient $\mu_{\text{arch}}$ is introduced, the quadratic proxy $K_{\mu,a}=\frac{1}{2}\mu_{\text{arch}}\|\mathbf V_a\|^2$ satisfies
 
 $$
-\frac{dK_{\mu,a}}{dT} = \mathbf F_a(T)\cdot\mathbf V_a(T)
+\frac{dK_{\mu,a}}{dT} = \mu_{\text{arch}}\mathbf A_a(T)\cdot\mathbf V_a(T).
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a47c01bd459d1e0f)
 
-Here $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated with the net acceleration from all causal hits; it is not a particle-specific substrate mass law.
+This identity is only the derivative of the chosen quadratic scalar. It does not establish that $\mu_{\text{arch}}$ is primitive mass or that the scalar is conserved.
 
 From the canonical per-hit law
 
@@ -175,6 +179,7 @@ W_{ij}^{\mathrm{acc}}(T;T_t)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f456741d2054c9b9)
+
 is the transmitter-side acceleration weight. Here $r_{ij}$ and $\hat{\mathbf r}_{ij}$ are evaluated on the same retained causal branch. The transmitter-side factor $D_t$ sets root transversality and acceleration density; $D_r/D_t$ separately records signed root playback.
 
 Decompose the receiver's velocity into radial and transverse components:
@@ -206,7 +211,7 @@ Because $\mathbf A_{ij}\parallel\hat{\mathbf{r}}_{ij}$:
 
 ## Potential Energy and Causal-Wake Potential
 
-Potential energy arises from the interaction of an architrino with the **net causal-wake potential** generated by all architrinos, including in some regimes its own past emissions.
+Potential energy is a candidate scalar reconstruction of the interaction between a receiver architrino and the net causal-wake record generated by all transmitters, including nontrivial self-hit branches where they exist. The Master Equation supplies acceleration directly; a potential is valid only on a branch chart where its receiver-coordinate gradient reproduces that acceleration.
 
 ### Net Causal-Wake Potential
 
@@ -268,17 +273,17 @@ The sign of $\Phi_{\text{net}}$ is not a sign on total energy. A negative causal
 
 Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf X_i(T)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
 
-When we work with the mollified effective potential $\Phi_\eta$, we can also write the fixed-history, force-like relation:
+For a mollified effective potential $\Phi_\eta$ in the quadratic bookkeeping chart, the fixed-history target is
 
-$$\mathbf F_i(T) = -\nabla_{\mathbf X_i}U_i(T) = -q_i \nabla_{\mathbf X_i} \Phi_\eta[\text{history}]\big(\mathbf X_i(T),T\big),$$
+$$\mu_{\text{arch}}\mathbf A_i(T) = -\nabla_{\mathbf X_i}U_i(T) = -q_i \nabla_{\mathbf X_i} \Phi_\eta[\text{history}]\big(\mathbf X_i(T),T\big),$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6eef4154628cac82)
 
-and this is required to be equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_i=\mu_{\text{arch}}\mathbf A_i$ or the appropriate $\mu_K\mathbf A_i$, has been declared; the recovery is graded a target in the Master Equation chapter. The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental acceleration law remains the per-hit sum of the Master EOM.
+and this must reproduce the Master Equation in the quasi-static, resolved-in-time limit with the same kinetic-bookkeeping coefficient and retained causal history. For a general kinetic scalar, the corresponding statement is an equation for the conjugate-momentum rate and must be rederived rather than obtained by replacing $\mu_{\text{arch}}$ pointwise. The gradient identity is valid only at fixed causal history; the fundamental acceleration law remains the per-hit sum of the Master EOM.
 
 ### Macroscopic Cancellation and Localized Resonance
 
-Constant causal emission by many architrinos does not imply a large random macroscopic force. The net causal-wake potential is a superposition, and in a large, incoherent population the leading gradients arrive with many signs, distances, phases, and line-of-action directions. For a receiver sampling such a population, macroscopic quietness is a two-moment condition, not only a mean-zero statement:
+Constant causal emission by many architrinos does not imply a large random macroscopic acceleration. The net causal-wake potential is a superposition, and in a large, incoherent population the leading gradients arrive with many signs, distances, phases, and line-of-action directions. For a receiver sampling such a population, macroscopic quietness is a two-moment condition, not only a mean-zero statement:
 
 $$
 \left\|
@@ -310,7 +315,7 @@ Phase-locked bound states are the important exception. In a localized assembly, 
 
 ## Energy Conservation and Exchange
 
-Energy conservation is a required closure target. Its derivation must show, on one retained causal-root record, how kinetic motion exchanges with causal-history interaction content while every active root, admitted self entry, fold, and boundary transfer has unique provenance. The wake term in the candidate ledger should not be read as an independent material reservoir that drains from the transmitter with every unreceived isochron; it must be derived as nonlocal bookkeeping from the same time-translation-invariant causal action or causal-wake update that generates the acceleration contributions. Time-translation symmetry is necessary but insufficient: the action route also requires a proved delay-compatible Noether theorem with retained-history boundary terms, while either route requires signed motion, wake, and boundary accounts with complete pairwise provenance and no double booking. For mollified working models, an exact conservation claim additionally requires the regularization to inherit the accepted action or update rather than being inserted only at the acceleration-operator level.
+Energy conservation is a required closure target. Its derivation must show, on one retained causal-root record, how kinetic motion exchanges with causal-history interaction content while every active root, admitted self entry, fold, and boundary transfer has unique provenance. The wake term in the candidate ledger should not be read as an independent material reservoir that drains from the transmitter with every unreceived isochron; it must be derived as nonlocal bookkeeping from the same time-translation-invariant causal action or causal-wake update that generates the acceleration contributions. Time-translation symmetry is necessary but insufficient: the action route must extend the variational symmetry argument of [Noether (1918)](https://eudml.org/doc/59024) to the delayed history and its boundary terms, while either route requires signed motion, wake, and boundary accounts with complete pairwise provenance and no double booking. For mollified working models, an exact conservation claim additionally requires the regularization to inherit the accepted action or update rather than being inserted only at the acceleration-operator level.
 
 Classical virial language is recovered only at branch level. The familiar comparison form $\langle 2K-pU\rangle=0$ is admissible after a retained branch chart supplies a branch-local potential, homogeneity degree, and proof that the same acceleration contribution used by the Master EOM is generated by that potential over the declared window. Standard mechanics often writes $T$ for kinetic energy in this formula; here $K$ avoids collision with absolute time $T$. Until those rows close, virial behavior remains a diagnostic on the causal-root ledger rather than a primitive substrate axiom; see the branch-virial target in [Analytic Baselines](../validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
 
@@ -333,12 +338,12 @@ $$E_{\text{total}} = \sum_a E_{k,a} + U_{\text{int}} + E_{\text{wake}},$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8c38f91bbb573425)
 
-Its promotion to a constant of motion requires a derivation from the accepted causal action or causal-wake update, a provenance-complete causal-root ledger with no double booking, and closed motion, wake, and boundary accounts on the same record. In mollified working models, this same bookkeeping is exact only when the mollified kernel inherits the action-level time-translation symmetry; otherwise it remains the natural candidate history functional to monitor, but not an established exact invariant.
+Its acceptance as a constant of motion requires a derivation from the accepted causal action or causal-wake update, a provenance-complete causal-root ledger with no double booking, and closed motion, wake, and boundary accounts on the same record. In mollified working models, this same bookkeeping is exact only when the mollified kernel inherits the action-level time-translation symmetry; otherwise it remains the natural candidate history functional to monitor, but not an established exact invariant.
 
 - $U_{\text{int}}$ is an optional effective decomposition of near-field interaction energy.
 - $E_{\text{wake}}$ is the candidate history-dependent account for nonlocal interaction content carried by wake structures and any radiation-like transport through the Noether sea.
 
-Plainly: these equations specify the ledger that must be derived and closed; they do not assert that exact energy conservation has already been established.
+These equations specify the ledger that must be derived and closed; they do not assert that exact energy conservation has already been established.
 
 The same distinction governs cosmological redshift. Because the Euclidean void does not expand and absolute time supplies the comparison parameter, a transparent redshift branch cannot treat the photon's missing energy as a bookkeeping disappearance. At the universe-state level, the conservation target is a scalar ledger of architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy:
 
@@ -365,20 +370,20 @@ $$
 tested through finite windows and boundary fluxes. In the pure transparent-path limit, after source, recoil, remnant, and boundary terms have been separated, a bundle redshifted by $1+z$ carries the deficit
 
 $$
-\Delta E_{\gamma}
+\Delta E_{\gamma}^{\mathrm{loss}}
 =
 E_{\mathrm{emit}}-E_{\mathrm{obs}}
 =
 E_{\mathrm{emit}}\frac{z}{1+z},
 \qquad
-\Delta E_{\gamma}
+-\Delta E_{\gamma}^{\mathrm{loss}}
 +\Delta E_{\mathrm{sea,path}}
 =0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c9d3af81587e21ed)
 
-If the Noether sea update needed to close this row is nonlocal, re-radiating, path-history inconsistent, or incompatible with image sharpness and CMB blackbody preservation, the fixed-void redshift branch has failed the energy ledger rather than solved cosmological redshift.
+Here $\Delta E_{\mathrm{sea,path}}>0$ denotes energy gained by the retained path and Noether sea account. If the Noether sea update needed to close this row is nonlocal, re-radiating, path-history inconsistent, or incompatible with image sharpness and CMB blackbody preservation, the fixed-void redshift branch has failed the energy ledger rather than solved cosmological redshift.
 
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
@@ -408,6 +413,7 @@ E_{\mathrm{wake},W}^{\mathrm{near}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-89a902362ac9cb61)
+
 with $\varepsilon_E > 0$ a declared denominator floor. A retained $U_{\text{int}}+E_{\text{wake}}$ decomposition is admissible only when $\mathcal{R}_{\mathrm{dbl},W}\to0$ under refinement of the same window, boundary record, and regularized causal action.
 
 ### Conservation Status
@@ -434,11 +440,11 @@ This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a 
 
 For any candidate scalar action kernel proportional to $1/r$ with the time-normalized constraint $\tilde g=T_r-T_t-r/c_f$, dimensional consistency requires the coefficient $\mu_{\text{arch}}\kappa$, not $\kappa/c_f$. The corresponding regularized interaction diagnostic for that candidate is proportional to $\delta_\eta(\tilde g)/r$; simple-root collapse produces $W^{\mathrm{acc}}/r$ once. An inverse-square acceleration density with a manually inserted $W^{\mathrm{acc}}$ is not an energy functional. With the polarity convention that like signs repel, the sharp like-polarity interaction charge is positive and the boundary derivative inherits the outer minus sign declared in the action.
 
-Plainly: the wake-energy account must come from whatever action kernel is eventually accepted as generating the acceleration operator. The $1/r$ construction above constrains candidates only. Reusing the $1/r^2$ acceleration formula as energy gives the wrong units and double-counts the root weight.
+The wake-energy account must come from whatever action kernel is eventually accepted as generating the acceleration operator. The $1/r$ construction above constrains candidates only. Reusing the $1/r^2$ acceleration formula as energy gives the wrong units and double-counts the root weight.
 
-In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or another history-kernel construction is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same symmetry-preserving action or independently derived causal-wake update supplies both the acceleration contribution and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
+In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or another history-kernel construction is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is established only when the same symmetry-preserving action or independently derived causal-wake update supplies both the acceleration contribution and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and acceptance conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
-The finite-$\eta$ pathology theorem target in [Master Equation](./master-equation.md#finite-regulator-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not promoted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
+The finite-$\eta$ pathology theorem target in [Master Equation](./master-equation.md#finite-regulator-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not accepted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
 
 For reaction or radiation events, energy can leave the source assembly as photon output, recoil, medium excitation, remnant excitation, wake-carried exchange, or handoff terms, but those are named outputs rather than hidden losses. The event-level version is the componentwise ledger closure in [Reaction Ledger](../validation/reaction-ledger.md#residual-routing-event-ledger-contract).
 
@@ -460,12 +466,14 @@ c_f(T-T_t)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f9ab8f3a26ebd83e)
+
 The emitted isochron belongs to the escapement set $\mathcal{E}_{\mathrm{esc}}(W)$ when it has a first retained boundary crossing
 $$
 C_a(T_{\partial W};T_t)\cap\partial W\ne\varnothing
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cf92985fd69d74d1)
+
 and there is no retained receiver hit before that crossing:
 $$
 \nexists\, b,T_r
@@ -497,6 +505,7 @@ E_{\mathrm{wake},W}(T)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-caaead4cfb7cf0ad)
+
 where the terms include only the kinetic, interaction, and wake-history content retained by the declared window record. The finite-window energy balance should take the residual form
 $$
 \frac{dE_W}{dT}
@@ -509,6 +518,7 @@ P_{\mathrm{ext},W}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-06b99ef1ba25294f)
+
 Here $\mathbf{J}_E$ is the boundary flux of causal-wake energy bookkeeping, including any wake escapement through $\partial W$; $P_{\mathrm{ext},W}$ is declared external work through sources or controls not included in $W$; and $\mathcal{R}_E$ records mollifier, timestep, and omitted-boundary-history error. A finite-window conservation claim is mature only when $\mathcal{R}_E\to0$ under the same regularized causal action used for the local equation of motion.
 
 A receiver-gradient kernel identity does not by itself define a wake-energy boundary flux. Any proposed boundary contribution must be derived from the same accepted action or causal-wake update as the motion law, and its finite-window leakage must vanish or appear explicitly in $\mathbf J_E$. Otherwise it remains a diagnostic partition rather than exact energy conservation.
@@ -525,6 +535,7 @@ F_{\mathrm{ext},W}^i
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-304b6c99102112b3)
+
 For a declared origin $\mathbf X_0$, the corresponding angular-momentum history functional has the schematic form
 $$
 \mathbf{L}_W(T)
@@ -536,6 +547,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b1002c4d8bd76364)
+
 where $\mathbf p_a$ is the declared mechanical momentum proxy for the chosen kinetic bookkeeping. Its finite-window balance target is
 $$
 \frac{dL_W^i}{dT}
@@ -566,6 +578,7 @@ E_{\mathrm{bind},W}^{\mathrm{grav}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b85e0d24b6eb535b)
+
 where $\mathcal{B}_{\partial W}$ records boundary and embedding terms. The corresponding inventory residual is
 $$
 \mathcal{R}_{\mathrm{grav\,bind},W}
@@ -582,6 +595,7 @@ E_{\mathrm{bind},W}^{\mathrm{obs}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6855e08f0b925e8f)
+
 The circularity check is the post-handoff residual
 $$
 \mathcal{R}_{G\text{-consist},W}
@@ -602,6 +616,7 @@ G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-de6b1951adaebcc7)
+
 where $G_{\mathrm{eff}}^{\mathrm{bind}}$ is the value used in the inventory comparison and $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$ is the value derived from shielding, exposed response, and the Noether sea response tensor. Until $\mathcal{R}_{G\text{-consist},W}$ is reported on the same window, the cosmological binding line is comparison bookkeeping only, not a derived inventory contribution. This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch. The stronger same-record requirement is that $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$, the response-speed tensor that supplies $c_{\text{eff}}$, and the ruler/metric response consumed by the effective geometry chapter all be read from one Noether sea response record. If those quantities require separate sea records or separately tuned response tensors, the gravity, clock, and ruler sectors have been fitted independently rather than derived from one exposed-energy and medium-response ledger.
 
 **Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_T$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(T)$, the replacement target is to prove that there is a response center $\mathbf X_{\mathrm{resp}}(T)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
@@ -616,6 +631,7 @@ F_{\mathrm{ext},W_A}^i
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-460fea5f9bf52b7e)
+
 The pair $(\mathbf{X}_{\mathrm{resp}},M_A^{ij})$ is not free to be chosen after the balance is fitted. The response center must be pinned independently by the exposed internal-energy ledger,
 $$
 X_{\mathrm{resp}}^i(T)
@@ -633,7 +649,8 @@ e_{\text{internal}}(\mathbf X,T)\,dV
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1ace26de4419922b)
-whenever the denominator is positive and the window contains the exposed assembly record on the native slice $\Sigma_T$. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously. Equivalently, $\mathbf{X}_{\mathrm{resp}}$ and the inertial-response center are two different moment maps on the same retained assembly record: one weights exposed internal energy, while the other is inferred from momentum response. Their coincidence is a theorem target, not a definition. The obstruction is the finite-window wake-momentum flux across $\partial W_A$; if that boundary record has a secular or nonrecurrent component, the two centers can differ even when the equal-time particle picture looks nearly balanced. This is the center-of-response version of the memory-boundary recurrence condition used by the effective-Lagrangian symplectic-promotion row.
+
+whenever the denominator is positive and the window contains the exposed assembly record on the native slice $\Sigma_T$. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed acceleration contributions cancel instantaneously. Equivalently, $\mathbf{X}_{\mathrm{resp}}$ and the inertial-response center are two different moment maps on the same retained assembly record: one weights exposed internal energy, while the other is inferred from momentum response. Their coincidence is a theorem target, not a definition. The obstruction is the finite-window wake-momentum flux across $\partial W_A$; if that boundary record has a secular or nonrecurrent component, the two centers can differ even when the equal-time particle picture looks nearly balanced. This is the center-of-response version of the memory-boundary recurrence condition used by the effective-Lagrangian symplectic-validity condition.
 
 Particle-only recoil is therefore not anomalous merely because mechanical momentum changes. The anomalous-recoil row is the already defined irreducible $\mathcal R_{\mathrm{resp}}^i$ after the independently defined response center, external contribution, and boundary wake-momentum flux have been fixed on the same window. A nonzero mechanical recoil balanced by that ledger is ordinary delayed exchange, not isolated self-acceleration.
 
@@ -651,6 +668,7 @@ S_{\mathcal Q}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c0ed442a8c9df90d)
+
 When a temperature-like channel $T_{\mathcal Q}$ is declared by the same record, the Helmholtz-style free-energy diagnostic is
 $$
 F_{\mathcal Q}
@@ -661,11 +679,12 @@ T_{\mathcal Q}S_{\mathcal Q}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fa5054ee6924be6c)
+
 This is not an added thermodynamic postulate. It is a test that the chosen coarse variables have retained enough state counting to make relaxation and response claims reproducible.
 
 The distinction matters because energy conservation does not by itself measure work availability. Two records with the same total energy can have different free-energy diagnostics when one retains a concentrated heat, chemical, photon-channel, or potential-gradient channel and the other has dispersed the same energy into unresolved thermal, boundary, or wake-history records. A finite-window calculation must therefore close the energy ledger and the entropy ledger on the same retained record before claiming that energy remained useful, became waste heat, or crossed the boundary as low-grade radiation.
 
-For an isolated finite window, the minimum coarse thermodynamic gate is the same-record entropy-production residual
+For an isolated finite window, the minimum coarse thermodynamic criterion is the same-record entropy-production residual
 $$
 \mathcal R_{S,W}
 =
@@ -694,7 +713,8 @@ dT'
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-11c8271067035366)
-where $[x]_+=\max(x,0)$ and $\mathcal D_{\mathcal Q}$ is the declared coherent-to-incoherent transfer rate, including viscous, thermal, wake-boundary, or Noether sea response channels retained by the packet. Passing this gate means only that the selected coarse record has not made entropy decrease after unresolved boundary leakage is accounted for. It does not prove a fundamental stochastic substrate.
+
+where $[x]_+=\max(x,0)$ and $\mathcal D_{\mathcal Q}$ is the declared coherent-to-incoherent transfer rate, including viscous, thermal, wake-boundary, or Noether sea response channels retained by the record. Passing this criterion means only that the selected coarse record has not made entropy decrease after unresolved boundary leakage is accounted for. It does not prove a fundamental stochastic substrate.
 
 For the consolidated mapping from legacy entropy formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ record projections, see [Entropy](entropy.md).
 
@@ -720,7 +740,8 @@ T_{\mathcal Q}^{(A'B')}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-866c9c36d6549fc3)
-If this sea-temperature admissibility check fails, the packet may report the dissipative response $\chi_{AB}''$ alone, but it may not use an equilibrium fluctuation-dissipation map as closure evidence. If an observable $O_A$ has response kernel $\chi_{AB}(\omega)$ to a controlled source coupled to $O_B$, the causal-response check is that the dissipative part and the equilibrium fluctuation spectrum $S_{AB}(\omega)$ obey a declared classical or quantum fluctuation-dissipation row. A dimensionless packet residual can be written as
+
+If this sea-temperature admissibility check fails, the record may report the dissipative response $\chi_{AB}''$ alone, but it may not use an equilibrium fluctuation-dissipation map as closure evidence. If an observable $O_A$ has response kernel $\chi_{AB}(\omega)$ to a controlled source coupled to $O_B$, the causal-response check is that the dissipative part and the equilibrium fluctuation spectrum $S_{AB}(\omega)$ obey a declared classical or quantum fluctuation-dissipation row. A dimensionless record residual can be written as
 $$
 \mathcal R_{\mathrm{FD}}(A,B)
 =
@@ -739,7 +760,8 @@ S_{AB}^{\mathrm{meas}}(\omega)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0d9aa2aa4280bef2)
-Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\chi_{AB}''$ is the imaginary, dissipative response. A passing value supports the coarse response chart; a failing value means the noise, dissipation, and energy ledger have been fitted separately.
+
+Here $\mathcal F_T$ is the record's chosen fluctuation-dissipation map, and $\chi_{AB}''$ is the imaginary, dissipative response. A passing value supports the coarse response chart; a failing value means the noise, dissipation, and energy ledger have been fitted separately.
 
 ---
 
@@ -764,7 +786,7 @@ Energy in this picture is distributed across:
 
 ## Assemblies: Internal vs Apparent Energy
 
-For composite systems such as Standard Model particles, nuclei, and composite bound states formed from architrinos and embedded in the Noether sea, we distinguish:
+For composite systems such as Standard Model particles, nuclei, and other bound states formed from architrinos and embedded in the Noether sea, distinguish:
 
 - **Total internal energy**: energy retained by the assembly and by its immediate Noether braid environment,
 - **Apparent energy**: what leaks out as a long-range wake signature and governs how the assembly interacts with the outside world.
@@ -808,7 +830,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5da0199a4b2c37b1)
 
-evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. For a strongly shielded, neutral Noether braid in the Noether sea, we expect $\zeta\ll 1$. Operationally, extract $\zeta(A)$ from a far-field fit of $\Phi_{\text{net}}$ (or hit amplitude) at $r \gg \text{size}(A)$: $\zeta \equiv A_{\text{measured}}/A_{\text{naive}}$, the ratio of the leading $1/r^2$ (or multipole) coefficient to the naive constituent sum, with anisotropic residuals reported separately. The scalar shielding summary is admissible only when anisotropic leakage is small enough for the comparison being made, for example
+evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. A strongly shielded, neutral Noether braid in the Noether sea is guessed to have $\zeta\ll1$. Operationally, extract $\zeta(A)$ from a far-field fit of $\Phi_{\text{net}}$ or hit amplitude at $r\gg\operatorname{size}(A)$: $\zeta\equiv A_{\text{measured}}/A_{\text{naive}}$, the ratio of the leading $1/r^2$ or multipole coefficient to the naive constituent sum, with anisotropic residuals reported separately. The scalar shielding summary is admissible only when anisotropic leakage is small enough for the comparison being made, for example
 $$
 \frac{\|\mathcal{L}_{\text{aniso}}(A_0)\|}
 {\|\mathcal{L}_{\text{naive}}(A_0)\|}
@@ -817,15 +839,18 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f4acab4b99976a5d)
-with $\epsilon_{\text{aniso}}$ declared before the branch is promoted to a scalar mass-facing result.
 
-The scalar apparent-energy proxy that influences other assemblies at large distances is then:
+with $\epsilon_{\text{aniso}}$ declared before the branch is accepted as a scalar mass-facing result.
+
+The candidate scalar apparent-energy proxy for long-range assembly response is
 
 $$E_{\text{apparent}}(A) \sim \zeta(A)\,E_{\text{internal}}(A),$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-70c7b08600f11ed4)
 
-This is a roadmap relation, not a substrate identity; proportionality constants must be fixed by matching to effective low-energy theory (e.g. mapping to $mc^2$).
+This is a guessed proportionality, not a substrate identity. Its coefficient must be derived from the Noether sea response and then tested against observer-level mass-energy measurements; matching to $mc^2$ alone would fit the target rather than derive the mechanism.
+
+> Claim grade: guessed. Falsifier: a certified assembly whose independently measured long-range response is not proportional to its exposed-energy channel, or whose fitted coefficient varies irreducibly across the declared universal branch family, would reject the scalar proxy.
 
 The exposed energy cannot be counted twice as both the direct probe readout and the sea-retuning source. On a declared comparison window, split the exposed ledger into a probe channel and a sea-coupled channel:
 $$
@@ -843,6 +868,7 @@ E_{\text{probe}}(A)+E_{\text{sea-coupled}}(A)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8b37e9a042bf7aac)
+
 with partition residual
 $$
 \mathcal R_{\text{part}}(A)
@@ -865,6 +891,7 @@ E_{\text{unresolved}}(A)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-96170d01e45cbeac)
+
 The mass map couples distant probes to $E_{\text{probe}}$ through the retuned Noether sea; the matter-to-sea source uses $E_{\text{sea-coupled}}$. A calculation that uses the raw $\zeta E_{\text{internal}}$ in both roles must report $\mathcal R_{\text{part}}$ as unresolved rather than treating the two uses as independent evidence. This is an exactness condition on one forgetting map. The full internal ledger is first projected to the exposed ledger $\zeta E_{\text{internal}}$, and the probe, sea-coupled, and unresolved channels are further projections of that same exposed ledger. The residual $\mathcal R_{\text{part}}$ measures whether those fibers close back to the once-projected total; it is therefore an anti-double-count rule, not an optional accounting convention.
 
 Define the probe-channel share
@@ -875,17 +902,18 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7ce39270e77ce478)
+
 when $E_{\text{internal}}(A)>0$. The raw far-field scalar $\zeta(A)$ names the total exposed ledger before the probe, sea-coupled, and unresolved split. The probe-channel scalar $\zeta_{\text{probe}}(A)$ names only the trace part consumed by the inertial probe formulas below.
 
 ---
 
 ## Emergent Inertia (Mass) from Shielded Energy
 
-**Inertia** is not fundamental; it is the externally exposed response of an assembly's closed internal causal-history ledger, shielding factor, and Noether sea coupling to changes in bulk motion.
+Inertia is an observer-level response property rather than primitive architrino mass. The specific claim that it is determined by an assembly's closed internal causal-history ledger, shielding factor, and Noether sea coupling is the mass-map target developed below, not an established consequence of the Master Equation.
 
 ### Operational Definition of Inertial Mass
 
-For an assembly $A$, define its inertial mass $m_{\text{inertial}}(A)$ operationally via:
+For an assembly $A$ in a regime already shown to have isotropic, linear, collinear response, define its scalar inertial mass $m_{\text{inertial}}(A)$ operationally by the following procedure:
 
 - Apply a small external wake potential (from a distant test source) that exerts a known net force $\mathbf{F}_{\text{ext}}$ on $A$,
 - Measure the resulting acceleration of the response center; in regimes where the effective center-of-mass readout has been justified, denote this acceleration by $\mathbf A_{\text{cm}}$,
@@ -895,7 +923,7 @@ $$m_{\text{inertial}}(A) \equiv \frac{\|\mathbf F_{\text{ext}}\|}{\|\mathbf A_{\
 
 [View →](../../../../equation-mapping.html#corpus-equation-c454de0e25062cfd)
 
-Because the external wake couples mainly to the probe-facing exposed energy, not the full internal circulation, the scalar roadmap limit is:
+The scalar mass-map hypothesis is that the external wake couples mainly to the probe-facing exposed energy rather than to the full internal circulation:
 
 $$m_{\text{inertial}}(A) \approx \alpha_{\mathrm{m}}\,\frac{E_{\text{probe}}(A)}{c_{\text{eff}}^2}.$$
 
@@ -911,12 +939,14 @@ V_{\text{cm},b}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1ca96579d18d148e)
+
 with homogeneous isotropic limit
 $$
 \mathcal{M}_{\text{sea}}^{ab}\to \frac{h^{ab}}{c_{\text{eff}}^2}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-689a5b7976efc5d1)
+
 A more complete first-order handoff keeps the scalar and trace-free exposure pieces visible. Write
 
 $$
@@ -983,7 +1013,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bc9d01090363429b)
 
-Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta_{\text{probe}}(A)$ names the probe-facing share of the small external leakage that survives cancellation and Noether sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch. The trace-free exposure tensor is also the mass-side carrier of orientation and framing leakage. Clock-orientation leakage, Hughes-Drever-style matter anisotropy, and scalar-mass anisotropy should therefore be compared as different contractions of the same branch-emitted trace-free exposure record against different probe or medium-response tensors. If $\mathcal{Z}_{\mathrm{tf}}^{ab}=0$ for an accepted branch in a homogeneous response record, all of these trace-free leakage channels vanish at this order; if it is nonzero, scalar mass remains protected only when the retained medium response has no matching trace-free component.
+Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the internal-energy candidate, while $\zeta_{\text{probe}}(A)$ names the probe-facing share of the external leakage that survives cancellation and Noether sea shielding. If the map is validated, it would explain a weak long-range inertial footprint without making the internal energy small. The trace-free exposure tensor is also a candidate carrier of orientation and framing leakage. Clock-orientation leakage, matter anisotropy, and scalar-mass anisotropy must therefore be compared as different contractions of the same branch-emitted trace-free exposure record against different probe or medium-response tensors. If $\mathcal{Z}_{\mathrm{tf}}^{ab}=0$ for an accepted branch in a homogeneous response record, these first-order trace-free terms vanish; that algebraic cancellation does not rule out higher-order leakage.
+
+> Claim grade: guessed for the exposed-energy mass map and derived for the stated trace contractions within that ansatz. Falsifier: a certified assembly and Noether sea record that passes the scalar-response assumptions but yields an inertial tensor inconsistent with $\mathsf I_A^{ab}$ would reject the map. A nonzero first-order anisotropy when both declared trace-free inputs vanish would refute the displayed first-order expansion.
 
 This scalar trace is admissible as a positive inertial mass only inside the shielding window
 $$
@@ -996,6 +1028,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fbad2ac2378276f1)
+
 with the comparison sea state declared. If a certified $A_0$ branch reports $\zeta_{\text{probe}}$ so small that this inequality fails for plausible $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ in the accepted environment, the shielded-energy mass map is falsified for that branch. Thus deep probe-channel shielding is a constrained exposure window, not an unconstrained way to suppress all long-range response. When $1+\delta\mathcal{M}_{0}>0$, a conservative sufficient lower bound is
 $$
 \zeta_{\text{probe}}(A)
@@ -1009,6 +1042,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0c71e78a30c3a8e3)
+
 on the same window. More anisotropic exposure therefore permits less deep scalar shielding before the trace response can become zero or negative. Highly anisotropic branches must either reduce their trace-free exposure, keep the medium response nearly isotropic, or leave the scalar-mass regime.
 
 At the matter-to-medium interface, a Standard Model fermion assembly should therefore be treated as a localized source of exposed response, not as an unshielded transfer of all internal energy into the surrounding Noether sea. For a coarse cell $\Omega_\ell$, the source supplied by stable matter assemblies can be written schematically as
@@ -1059,7 +1093,8 @@ E_{\text{internal}}(A)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0b2bc9bc06a945d4)
-on branches that pass the positivity gate above. For any pair $A,A'$ in the mass-map test set, require
+
+on branches that pass the positivity criterion above. For any pair $A,A'$ in the mass-map test set, require
 $$
 \mathcal R_{\alpha}(A,A')
 \equiv
@@ -1075,11 +1110,12 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0778c4b0460cae13)
-with $\epsilon_{\alpha}$ declared before promotion. If this residual cannot be held small without per-species tuning, the universality claim fails and the parameter count must be raised explicitly. On a connected family of realized assembly branches, this is a flatness condition for $\alpha_{\mathrm{m}}$ over the retained moduli. An irreducible jump in the back-solved $\alpha_{\mathrm{m}}$ across different assembly topological charge sectors would not be hidden inside the same symbol; it would mark either a disconnected mass-map family or a failed universality claim for the compared species.
+
+with $\epsilon_{\alpha}$ declared before accepting universality. If this residual cannot be held small without per-species tuning, the universality claim fails and the parameter count must be raised explicitly. On a connected family of realized assembly branches, this is a flatness condition for $\alpha_{\mathrm{m}}$ over the retained moduli. An irreducible jump in the back-solved $\alpha_{\mathrm{m}}$ across different assembly topological charge sectors would not be hidden inside the same symbol; it would mark either a disconnected mass-map family or a failed universality claim for the compared species.
 
 Thermodynamic or entropic derivations of gravitational force are therefore comparison benchmarks for this chapter, not replacements for the mass mechanism. They may sharpen the observer-level equation-of-state target for gravity, but $m_{\text{inertial}}(A)$ is not closed until the same assembly ledger supplies its closed internal causal-history record, shielding extraction, Noether sea response tensor, and acceleration response.
 
-The immediate hand-off is the $A_0$ reference attractor gate. The energy chapter owns the internal-energy and apparent-energy definitions that $A_0$ must report: layer energies, interaction and wake terms, total $E_{\text{internal}}(A_0)$, far-field wake coefficients, $E_{\text{probe}}(A_0)$, $E_{\text{sea-coupled}}(A_0)$, and $\mathcal R_{\text{part}}(A_0)$. Those outputs are still closure targets until a stable branch, shielding extraction, and response tensor are computed. Compact finite-coordinate no-go records and branch-chart checker results cannot be consumed as energy-accounting inputs: a rejection blocks the chart path, and a clearance authorizes only a rerun candidate until Tier 2 shielding exists on an accepted branch.
+The immediate mathematical dependency is the $A_0$ reference-attractor criterion. The energy chapter defines the internal-energy and apparent-energy quantities that $A_0$ must supply: layer energies, interaction and wake terms, total $E_{\text{internal}}(A_0)$, far-field wake coefficients, $E_{\text{probe}}(A_0)$, $E_{\text{sea-coupled}}(A_0)$, and $\mathcal R_{\text{part}}(A_0)$. Those quantities remain unestablished until a stable branch, shielding extraction, and response tensor are computed. Compact finite-coordinate no-go records and branch-chart checker results are not energy-accounting inputs: rejection excludes the chart, while clearance identifies only a candidate for recomputation until Tier 2 shielding exists on an accepted branch.
 
 The multi-scale status of $A_0$ matters for this accounting. Fast internal corrections should not be removed until they are classified. Nonresonant motion on a measured fast binary may average out of the leading apparent-energy fit, but corrections that change self-hit counts, the branch Jacobian near $c_f$, or the leakage tensor can change $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, or both. Apparent energy is therefore downstream of closure and stability, not an input used to force a convenient branch.
 
@@ -1134,6 +1170,7 @@ c_{\text{eff}}^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c633c02ee1ae0156)
+
 The scalar mass-shell closure is admissible only when the anisotropic propagation correction is bounded,
 $$
 \left\|\delta c_{\mathrm{tf}}\right\|
@@ -1142,6 +1179,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-40ad4b4ea6bfb56c)
+
 on the same comparison window. The scalar offset $\delta c_0\to0$ is not assumed by isotropy language alone; it must follow from the same homogeneous neutral summation and screening conditions that make the Noether sea macroscopically quiet.
 
 Equivalent parameterization:
@@ -1159,6 +1197,7 @@ E_\gamma=c_\gamma\|\mathbf{p}_\gamma\|
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c8abb51062ca1203)
+
 after the photon channel and its speed record have been declared. A calculation that uses the same scalar mass-shell formula to explain a massive assembly, a moving massive assembly, and a photon without naming these three records has collapsed distinct observer-level closures into one slogan.
 
 Consistency requirement: if this closure fails in regimes where emergent Lorentz behavior is claimed, the mass-loading and medium-response model is incomplete.
@@ -1173,36 +1212,36 @@ Cross-links:
 
 In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
 
-- Self-hit repulsion supplies an internal **outward floor** against collapse in Noether braids and more complex assemblies. On the uniform-circular chart it cannot supply centripetal support, and its tangential contribution is signed, so stability requires the other retained branch and wake-boundary entries.
+- On the uniform-circular chart, each canonical self-hit contribution is radially outward and therefore cannot supply centripetal support. Whether the corresponding self-hit branches provide a lower radial boundary in a Noether braid or more complex assembly depends on the complete vector balance and continuation record; it is not implied by the circular sign alone.
 - Under a candidate signed wake account, energy represented in an architrino's causal wake and local Noether sea response would be partially routed back through delayed self-interaction. The exchange between internal kinetic energy and wake/medium energy is candidate bookkeeping pending an accepted signed account on the same causal-root record.
 
 If an accepted causal action with a proved delay-compatible Noether theorem supplies both the acceleration contributions and the signed energy accounts on one provenance-complete record, then global conservation would follow and self-hit would route energy along more complex paths (architrino → causal isochron → local Noether sea → back to architrino/assembly) without net creation or loss. That action, theorem, account construction, pairwise provenance result, and boundary-flux closure remain open; until they close, self-hit routing is a candidate bookkeeping picture rather than an established conservation result.
 
 ---
 
-## Intuition (Plain Language)
+## Mechanism in One Picture
 
 Inside an assembly, large internal causal-history energy can circulate through many branch channels. Outside the assembly, distant probes couple only to the portion of that ledger that survives phase cancellation, shielding, and Noether sea response.
 
-Architrinos and their assemblies are where the energy bookkeeping lives. The Noether sea is a dense population of high-energy Noether braid assemblies whose net long-range wake response is usually quiet because incoherent contributions cancel and shielded internal rows leak only weakly. In candidate indexed fermion source records, declared support rows screen other rows from the ambient Noether sea. The small residual exposure is what the mass and gravitational-response program must derive; no screening order follows from the persistent indices.
+Architrinos, their causal histories, and their assemblies are the variables to which the energy bookkeeping is assigned. The Noether sea is proposed as a dense population of energetic Noether braid assemblies whose net long-range wake response becomes quiet when incoherent contributions cancel and shielded internal rows leak only weakly. Neither that cancellation nor the required stable Noether braid has yet been derived generally. In candidate indexed fermion source records, declared support rows may screen other rows from the ambient Noether sea. The mass and gravitational-response program must derive the residual exposure; no screening order follows from the persistent indices.
 
 ## Summary and Role in the Larger Theory
 
 - **At the architrino level:**
   
-  Kinetic energy and potential energy are defined via the Master EOM. Exact global conservation is a closure target for an accepted causal-action or causal-wake theory with proved same-record signed accounts and boundary closure. For the action route, time-translation symmetry and a symmetry-preserving regularization are necessary but insufficient without a delay-compatible Noether theorem, complete pairwise provenance, and no-double-booking closure. The substrate law is acceleration-first; no particle-specific fundamental mass is assigned to architrinos, and speeds are unbounded in principle. Potential availability is geometric rather than fuel-like: causal wakes are emitted as path-history structure, while work appears only when a receiver intersects active wake branches with nonzero radial power.
+  The Master Equation fixes acceleration but does not yet fix a unique kinetic scalar, momentum, or global potential. This chapter defines candidate energy accounts and the compatibility conditions they must satisfy. Exact global conservation remains a closure target for an accepted causal-action or causal-wake theory with proved same-record signed accounts and boundary closure. The substrate law is acceleration-first, and no particle-specific fundamental mass is assigned to architrinos. Potential availability is geometric rather than fuel-like: causal wakes are emitted as path-history structure, while work appears only when a receiver intersects active wake branches with nonzero radial power.
 
 - **At the assembly level:**
   
-  Large internal energies, plus coupling to the Noether sea, generate:
+  The mass-map hypothesis asks whether internal energy, shielding, and coupling to the Noether sea jointly generate:
   - Effective inertia (mass),
   - Shielded external wake signatures (tiny apparent energy compared to internal),
   - Generation dependence through which declared support rows remain active and how their shielding map changes,
-  - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior. Macroscopic quietness follows from superposition and shielding: incoherent populations cancel statistically, while phase-locked assemblies such as collinear breathers preserve localized, non-canceling wake structure.
+  - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior. The proposed quiet macroscopic limit requires both small mean response and controlled fluctuations after superposition and shielding; it has not been derived merely from incoherence. Phase-locked assemblies such as collinear breathers remain candidates for localized, non-canceling wake structure.
 
 - **For spacetime and gravity:**
   
-  The sea of small, high-energy Noether braids forms the Noether sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether braids in the Noether sea and "matter" assemblies contribute to:
+  The proposed sea of small, energetic Noether braids would form the Noether sea and, at coarse-grained level, the effective spacetime medium whose response is intended to yield an emergent metric. The closure program tests whether the shielding factors and internal energies of both sea assemblies and matter assemblies determine:
   - The effective Newton constant $G$,
   - The cosmological Noether sea energy density,
   - How strongly observer-level effective metric response is reconstructed from different kinds of energy.
@@ -1213,25 +1252,25 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 ## Appendix A: Energy Zero and Bookkeeping
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the maximum-curvature binary (MCB) radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. The present circular simple-root ledger supplies measured algebraic MCB candidates, not an accepted inner turning point. Until one candidate passes finite-event, retained-history, and stability certification, the energy gauge must use another explicitly declared reference event or radius and may not be described as a derived ground-state zero.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ permits a binding-energy convention that fixes the zero of a branch-local potential at the inner radial boundary of an accepted bound branch. This is a gauge choice: adding a constant to a valid potential does not change its gradient or the acceleration it represents. A certified inner boundary would provide a convenient reference, but it would not by itself prove that the configuration is a ground state, an energy minimum, or a stable maximum-curvature binary. The circular simple-root ledger supplies algebraic candidates, not an accepted inner turning point.
 
 Cosmology inventory prose uses the same convention only after declaring the comparison window. Positive component entries such as matter, radiation, dark-sector bookkeeping, and thermal reservoirs are mass-equivalent or energy-density terms measured relative to that window, while gravitational binding is a negative finite-window contribution. Mixing a local branch convention with a cosmological inventory convention without naming the window and boundary term risks double counting the same retained wake-history energy.
 
 ### Physical Setup and Why a New Zero is Needed
 
-For an accepted attractive bound branch (opposite polarities), the inward motion accelerates until it reaches a **minimum radius** $r_{\min}$ where the certified self-hit and curvature records prevent further collapse. The motion then rebounds or orbits. Unlike a pure Coulomb potential, this branch has a lower bound on radius (and hence on accessible energy states).
+Suppose an accepted attractive branch has a minimum admitted radius $r_{\min}$ because its complete delayed ledger prevents continuation to smaller separation. Unlike the ideal Coulomb comparison, such a branch has a lower radial boundary. A radial boundary alone does not imply a lower bound on every energy account; that conclusion requires the branch-local kinetic, potential, and wake terms to be bounded on the same record.
 
-Because a lower bound exists, the natural reference is **not** "infinite separation" but the **ground configuration** at $r_{\min}$.
+The inner boundary may then be used as a convenient reference in place of infinite separation. Calling it a ground configuration requires a separate energy-minimization and stability result.
 
 ### The Bookkeeping Convention
 
-We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$, we fix the potential gauge at this wall. If an MCB branch is later certified, its lower boundary is one candidate realization of this reference. Without such a certified wall, choose and name a conventional reference radius $r_{\mathrm{ref}}$ instead; that gauge supports comparisons within the declared ledger cell but carries no claim that $r_{\mathrm{ref}}$ is a physical minimum.
+On a certified branch chart with a declared self-hit lower boundary $r_{\min}$, fix the potential gauge at that boundary. If an MCB branch is later certified, its lower boundary is one candidate realization of this reference. Without such a certified boundary, choose and name a conventional reference radius $r_{\mathrm{ref}}$ instead; that gauge supports comparisons within the declared ledger cell but carries no claim that $r_{\mathrm{ref}}$ is a physical minimum.
 
 $$U(r_{\min}) \equiv 0.$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-eb4839c3b5a6c05d)
 
-In this gauge, $U(r)$ represents the **accumulated work** performed to separate the binary from its ground state to radius $r$. Total energy is thus partitioned into *kinetic* (motion) and *deformation* (separation) components, with fully separated (unbound) pairs carrying maximal deformation energy $U_{\max} \equiv B_{\max}$.
+In this gauge, $U(r)$ represents the candidate accumulated work required to move along the same certified branch from $r_{\min}$ to $r$. This interpretation is valid only where a branch-local scalar potential has been derived from the Master Equation. A fully separated limit carries $U_{\max}\equiv B_{\max}$ only if that limit exists and the corresponding integral converges.
 
 When the active causal-root ledger changes, this gauge must be indexed by the branch ledger. For ledger cell $b$,
 $$
@@ -1245,6 +1284,7 @@ B^{(b)}\!\left(r_{\min}^{(b)}\right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cd28152abf4b06a2)
+
 so a separator crossing that changes the effective inner wall cannot be counted once as a gauge-origin jump and again as an independent $h$-like energy quantum. At a crossing radius $r_\ast$ between ledger cells $b$ and $b'$, the physical bookkeeping must satisfy
 $$
 \left[E_{\text{total}}\right]_{b\to b'}
@@ -1255,6 +1295,7 @@ K^{(b')}(r_\ast)+U^{(b')}(r_\ast)+\Delta_{\text{ledger}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-90adb8aeda556212)
+
 where $\Delta_{\text{ledger}}$ is the declared root-change energy routed through the table entries such as $\varepsilon_3$, $\varepsilon_w$, and the binary-2 adjustment. The visible step is the ledger/gauge matching term; it is not additional to that matching. Thus $U^{(b)}$ is a ledger-indexed potential, and the zero-section can jump when the active causal-root cell changes. A globally consistent energy ledger requires the $\Delta_{\text{ledger}}$ increments to glue around overlaps of ledger cells; otherwise the local potential gauges are individually consistent but the global binding-energy record is multivalued.
 
 ### Binding Energy and Total Energy
@@ -1271,19 +1312,19 @@ $$U(r) = B_{\max} - B(r).$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-176c8c556150fe31)
 
-Then total energy bookkeeping is:
+Then total energy bookkeeping is
 
-$$E_{\text{total}} = K(r) + U(r), \qquad U(r) \ge 0.$$
+$$E_{\text{total}} = K(r) + U(r).$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f91f6ff9a16feefa)
 
-At the minimum radius:
+The additional inequality $U(r)\ge0$ holds only if $B(r_{\min})$ is proved to be the maximum binding value on the admitted branch. At the minimum radius, the gauge identity gives
 
-$$E_{\text{total}} = K_{\max}, \quad U(r_{\min}) = 0.$$
+$$E_{\text{total}} = K(r_{\min}), \quad U(r_{\min}) = 0.$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-82fb0af67261acf9)
 
-All available mechanical energy is kinetic at the inner turning point. Moving outward converts kinetic energy into potential energy (the rebound / climb-out phase).
+This equation is a consequence of the chosen zero, not a claim that kinetic energy is maximal. At a radial turning point the radial kinetic term is zero, while tangential or internal motion may remain. Whether motion outward converts kinetic energy into this branch-local potential must be shown by the same-record work identity.
 
 ### Effective Potential Language
 
@@ -1295,15 +1336,15 @@ $$V_{\text{eff}}(r) = V(r) + \frac{L^2}{2 m_{\text{eff}} r^2} + V_{\text{self-hi
 
 Here $m_{\text{eff}}$ is an **effective inertial scale** (a bookkeeping proxy for mass in the coarse-grained description), not a primitive architrino mass.
 
-The convention above fixes:
+If an effective-potential comparison needs the same displayed zero, define the separately shifted quantity
 
-$$V_{\text{eff}}(r_{\min}) = 0.$$
+$$\widetilde V_{\text{eff}}(r)\equiv V_{\text{eff}}(r)-V_{\text{eff}}(r_{\min}),\qquad \widetilde V_{\text{eff}}(r_{\min})=0.$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-aaaf2218ee120aa3)
 
-This does **not** change dynamics; it sets a physically meaningful reference.
+This additive shift does not change the effective radial equation. It is distinct from proving that $r_{\min}$ minimizes $V_{\text{eff}}$ or that the effective-potential reduction is valid for the delayed branch.
 
-### Self-Hit Echo and Discrete Steps (Working Note)
+### Self-Hit Branch Changes and Discrete Ledgers
 
 In this picture, the self-hit region is **not** assumed to change the local acceleration law. The radial slope remains smooth:
 
@@ -1311,7 +1352,9 @@ $$\frac{dU}{dr} \text{ remains finite and continuous across the retained regular
 
 [View →](../../../../equation-mapping.html#corpus-equation-b1b6e0fabff8a2c3)
 
-So the transition between the $v=c_f$ regime and the self-hit regime is a **regularized branch transition**, not a kink in the potential. The distinction shows up in **how action and energy bookkeeping are routed** between binaries, not in a new macroscopic slope.
+If this continuity condition is established, the transition between the $v=c_f$ regime and the self-hit regime is a regularized branch transition rather than a kink in the potential. The condition is not implied merely by mollifying the root selector; the complete variation and regulator limit must supply it.
+
+> Claim grade: guessed for continuity of $dU/dr$ through the self-hit branch transition. Falsifier: a regulator-stable jump or divergence in the same-record branch-potential slope would reject the smooth-graft hypothesis.
 
 The discrete step is a causal-root ledger effect, not an assumption that energy itself is made of independent chunks. On a fixed branch chart, the active causal intersections have an integer multiplicity: a self-hit count $N$ and an analogous partner-hit or channel count $M$. In the circular binary notation this same idea appears as the pair $(N_s,M_p)$ in [Super-Field-Speed Root Ledgers and Resonance Lock](binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock). Within one ledger cell the underlying trajectory and $U(r)$ remain continuous. A visible $h$-like transaction occurs when a separator crossing changes the admissible integer ledger, for example by adding one grouped channel or, in the raw simple-root table, by a fold-pair jump satisfying $\Delta N\in 2\mathbb{Z}$ with $\Delta D=0$.
 
@@ -1324,11 +1367,12 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5b0e0e63d5a78d85)
+
 This finite impulse is a candidate substrate mechanism for changing the active causal-root ledger by a discrete amount without making primitive energy granular.
 
-Thus the candidate quantum of action is geometric bookkeeping: it is the action scale assigned to a threshold crossing of the causal-root ledger. The energy shift appears in steps because the allowed causal intersections have changed discretely, even though the path-history geometry and the local potential slope remain continuous through the regularized fold layer. A closed branch chart must still expose the root-change energy, wake exchange, closure-channel adjustment, and any mismatch routed into unresolved modes.
+Thus a candidate discrete action transaction may be represented as geometric bookkeeping attached to a threshold crossing of the causal-root ledger. Discrete root counts do not by themselves quantize action or energy. That stronger result requires the action difference across neighboring certified ledger cells to approach a nonzero universal value while the path-history geometry, potential chart, and regulator are refined. A closed branch chart must expose the root-change energy, wake exchange, closure-channel adjustment, and any mismatch routed into unresolved modes.
 
-Working bookkeeping hypothesis:
+The guessed bookkeeping pattern is:
 
 - Source-record binary 3 registers a single-step transaction ($h$-like unit), meaning one minimal admissible update of its active partner and self channel ledger.
 - Source-record binary 2 adjusts to conserve total energy.
@@ -1363,11 +1407,33 @@ Notation in the table:
 - $K_1, U_1$ = binary-1 kinetic and potential energies.
 - Superscripts $(f-1)$, $(f_{\psi})$, and $(f)$ denote the state index (one-step update).
 
-Per-step increments (explicit, no deltas):
+Per-step increments are defined without overloaded delta notation.
 
-- Binary-3 step energy: $\varepsilon_3 \equiv \omega_3 \hbar$ with $$k_3 \equiv \chi_3\,\varepsilon_3,\quad u_3 \equiv (1-\chi_3)\,\varepsilon_3,$$ [View →](../../../../equation-mapping.html#corpus-equation-a35196e899147084) so $k_3 + u_3 = \varepsilon_3$.
-- Binary-1 step energy: $\varepsilon_1 \equiv \omega_1 \hbar$ with $$k_1 \equiv \chi_1\,\varepsilon_1,\quad u_1 \equiv (1-\chi_1)\,\varepsilon_1,$$ [View →](../../../../equation-mapping.html#corpus-equation-0b910a5e36da23c3) so $k_1 + u_1 = \varepsilon_1$. Because binary 1 takes **two steps** in this source record, it adds $2k_1$ and $2u_1$.
-- Binary-2 adjustment energy: $\varepsilon_2$ is whatever is needed to close the ledger. Here $\varepsilon_w$ denotes the **causal-wake exchange energy** during the step: $$\varepsilon_2 \equiv \varepsilon_w - 2\varepsilon_1,$$ [View →](../../../../equation-mapping.html#corpus-equation-3af21b70c4a6036c) and we split it as $$k_2 \equiv \chi_2\,\varepsilon_2,\quad u_2 \equiv (1-\chi_2)\,\varepsilon_2.$$
+**Binary-3 step energy.** Set $\varepsilon_3 \equiv \omega_3 \hbar$ and split it by
+
+$$k_3 \equiv \chi_3\,\varepsilon_3,\quad u_3 \equiv (1-\chi_3)\,\varepsilon_3,$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-a35196e899147084)
+
+so $k_3 + u_3 = \varepsilon_3$.
+
+**Binary-1 step energy.** Set $\varepsilon_1 \equiv \omega_1 \hbar$ and split it by
+
+$$k_1 \equiv \chi_1\,\varepsilon_1,\quad u_1 \equiv (1-\chi_1)\,\varepsilon_1,$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-0b910a5e36da23c3)
+
+so $k_1 + u_1 = \varepsilon_1$. Because binary 1 takes **two steps** in this source record, it adds $2k_1$ and $2u_1$.
+
+**Binary-2 adjustment energy.** Let $\varepsilon_w$ denote the **causal-wake exchange energy** during the step and define the amount needed to close the ledger by
+
+$$\varepsilon_2 \equiv \varepsilon_w - 2\varepsilon_1,$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-3af21b70c4a6036c)
+
+then split it by
+
+$$k_2 \equiv \chi_2\,\varepsilon_2,\quad u_2 \equiv (1-\chi_2)\,\varepsilon_2.$$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5334a3bc018c97a8)
 
@@ -1391,13 +1457,14 @@ Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-729564ce33deeadc)
+
   For a **net positive** transaction, the binary increments must satisfy $\Delta I_a\ge-\epsilon_w\hbar$ for $a\in\{1,2,3\}$. For a **net negative** transaction, the same bound applies with signs reversed. The nonnegative-increment claim is therefore an up-to-wake-tolerance statement, not a gauge-free statement that the wake channel carries exactly zero rotational action.
 - **Energy**: $(k_3+u_3) + (k_2+u_2) + 2(k_1+u_1) = \varepsilon_3 + \varepsilon_w$. This is the explicit version of conservation using the per-step increments defined above.
 - **Root-ledger closure**: the transition must move from one admissible integer causal-root ledger to another and then close consistently over the full cycle. In a raw self-root table, separator crossings obey the parity rule $\Delta N\in 2\mathbb{Z}$ and $\Delta D=0$; in a grouped channel ledger, the same event may be recorded as one newly active channel.
 - **Cross-ledger gauge matching**: any jump in $r_{\min}^{(b)}$ and $B_{\max}^{(b)}$ is part of the declared $\Delta_{\text{ledger}}$ budget above. A table row may not count the same gauge-origin shift once in $U^{(b)}$ and again as an extra wake or oscillator energy.
-- **Smooth slope**: $dU/dr$ remains continuous across the graft; the discrete behavior comes from **state updates**, not a kink in $U(r)$.
+- **Smooth-slope test**: the guessed graft requires $dU/dr$ to remain continuous; a computed kink or divergence rejects that graft.
 
-This table is intentionally explicit: every $h$ closed-cycle action transaction is represented by a radian-normalized $\hbar$ rotational-action increment, split into a kinetic part ($k$) and a potential part ($u$). The remaining freedom is **how** each binary partitions its step (the $\chi$ fractions) and how binaries 2 and 1 plus the causal-wake channel redistribute the initial binary-3 coupling in this source record.
+This table makes the guessed $h$-like transaction explicit by representing it as a radian-normalized $\hbar$ rotational-action increment split into kinetic and potential parts. It does not derive the value $h$. The remaining freedom is how each binary partitions its step through the $\chi$ fractions and how binaries 2 and 1 plus the causal-wake channel redistribute the initial binary-3 coupling in this source record.
 
 ### Comparison to Coulomb and Standard Conventions
 
@@ -1409,19 +1476,19 @@ $$V(r) = -\frac{k q^2}{r},$$
 
 so there is no inner bound and no natural finite zero. Classical mechanics therefore chooses $V(\infty)=0$.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, a certified hard inner bound **supplies** a natural zero at $r_{\min}$, which is the lowest accessible state. The bookkeeping therefore switches from "energy relative to infinity" to "energy relative to the ground state."
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, a certified hard inner bound permits a convenient zero at $r_{\min}$. It is the lowest accessible radius on that branch, not automatically the lowest-energy state. The bookkeeping may therefore use energy relative to the inner boundary rather than energy relative to infinity, provided the chosen potential is valid on that ledger cell.
 
 ### Summary Table (Operational Meaning)
 
 | Region | $K$ | $U$ | Meaning |
 | --- | --- | --- | --- |
-| $r = r_{\min}$ | max | 0 | Fully bound (ground) |
-| $r > r_{\min}$ | $\downarrow$ | $\uparrow$ | Climbing out / rebound |
-| escape limit | 0 | $B_{\max}$ | Free (unbound) |
+| $r = r_{\min}$ | branch-dependent | 0 by gauge | Inner radial boundary; ground-state status unproved |
+| $r > r_{\min}$ | branch-dependent | branch-dependent | Same-ledger continuation required |
+| escape limit | set by the asymptotic branch state | $B_{\max}$ if the integral converges | Unbound comparison state |
 
 ### One-Line Rule
 
-If the model has a hard inner bound, **set the potential zero at that bound** and measure all energies outward from it.
+If a certified branch has a hard inner bound and a valid branch-local potential, the potential zero may be set at that bound; the choice does not establish a ground state or determine the kinetic-energy profile.
 
 **Adiabatic branch invariant target.** On a certified branch chart for binary layer $a$, suppose an accepted action supplies a canonical pair $(Q_a,\Pi_a)$ for the reduced cycle and the branch has a slowly varying parameter $\lambda(T)$, such as a local Noether sea response variable, shielding parameter, or neighboring-layer phase parameter. The existence of this canonical pair is itself unestablished pending that accepted action, so the invariant target below is conditional on both the action and the adiabatic hypotheses. Define the rotational action
 $$
@@ -1433,6 +1500,7 @@ I_a(\lambda)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-22dd0aed2ee55168)
+
 If the parameter changes slowly compared with the cycle period $P_a(\lambda)$,
 $$
 \epsilon_{\mathrm{ad},a}
@@ -1447,6 +1515,7 @@ P_a(\lambda(T))\,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cb93cafc55af9651)
+
 and the path remains a positive distance from the causal-root ledger-cell boundary,
 $$
 \operatorname{dist}\!\left(\gamma_a(\lambda),\partial\mathcal{G}_a\right)
@@ -1457,6 +1526,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8c550a86d8d431b5)
+
 the interior adiabatic theorem target is
 $$
 \frac{dI_a}{dT}
@@ -1467,6 +1537,7 @@ O(\epsilon_{\mathrm{ad},a})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d1710e1ccb8d3aa2)
+
 Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian changes appreciably, and $\mathcal{R}_{\mathrm{int},a}$ records omitted wake-history exchange, non-characteristic boundary leakage, or small chart error while the branch stays inside one ledger cell. At a separator crossing or root-fold boundary, the interior estimate is void. The crossing rule is instead
 $$
 \Delta I_a\big|_{\mathrm{fold}}
@@ -1482,4 +1553,12 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-aebe9d3eb2270c88)
-where $\Delta I_{\mathrm{ledger},a}$ is the declared quantized ledger increment associated with the change in active causal-root multiplicity or branch chart. Thus the action variable is expected to drift only adiabatically inside a ledger cell, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch-boundary invariant target rather than an assumption that energy itself is quantized at the primitive level. In this form, an $h$-like action transaction is the finite phase-space area jump across a root-fold wall, not a primitive grain of energy. The floor $\delta_{\text{cell}}>0$ is the adiabatic validity condition: inside the cell the action is nearly invariant; at the wall the fold impulse, ledger update, and cross-ledger gauge matching must be booked together on the same retained branch record.
+
+where $\Delta I_{\mathrm{ledger},a}$ is the candidate ledger increment associated with the change in active causal-root multiplicity or branch chart. The adiabatic theorem would constrain drift inside a ledger cell, while a root-ledger transition may produce a discrete change in the action variable. Nothing here establishes that the change is universal, nonzero, or equal to $h$ or $\hbar$. That identification requires a regulator-stable phase-space area jump shared across independently certified transitions. The floor $\delta_{\text{cell}}>0$ marks the domain of the interior adiabatic estimate; at the wall, the fold impulse, ledger update, and cross-ledger gauge matching must be booked together on the same retained branch record.
+
+> Claim grade: guessed for a universal $h$-like ledger increment. Falsifier: transition-dependent, continuously variable, or regulator-vanishing values of $\Delta I_{\mathrm{ledger},a}$ on otherwise certified crossings would reject the proposed universal action step.
+
+## References
+
+- William Rowan Hamilton, “On a General Method in Dynamics,” *Philosophical Transactions of the Royal Society of London* 124 (1834): 247–308, [doi:10.1098/rstl.1834.0017](https://doi.org/10.1098/rstl.1834.0017).
+- Emmy Noether, “Invariante Variationsprobleme,” *Nachrichten von der Königlichen Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse* (1918): 235–257, [original publication](https://eudml.org/doc/59024).

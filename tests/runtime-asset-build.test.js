@@ -12,7 +12,7 @@ import { PRESCRIBED_ASSEMBLY_TARGETS } from "../scripts/eom/generate-prescribed-
 
 const root = path.resolve(import.meta.dirname, "..");
 const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
-const expectedRuntimeAssetCount = PRESCRIBED_ASSEMBLY_TARGETS.length + 2;
+const expectedRuntimeAssetCount = PRESCRIBED_ASSEMBLY_TARGETS.length + 3;
 
 function fixture(t) {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "runtime-site-"));
@@ -30,12 +30,12 @@ function fixture(t) {
   return { source, output: path.join(temp, "site"), write };
 }
 
-test("runtime manifest enumerates all Borg records and both derived indexes", () => {
+test("runtime manifest enumerates all Borg records and all three derived indexes", () => {
   const paths = runtimeAssetPaths();
   assert.equal(paths.length, expectedRuntimeAssetCount);
   assert.equal(new Set(paths).size, paths.length);
   assert.ok(paths.every((name) => !name.includes("..")));
-  assert.equal(readRuntimeAssetFamilies().length, 3);
+  assert.equal(readRuntimeAssetFamilies().length, 4);
 });
 
 test("static build includes deployable generated assets but never local service indexes, ignored extras, or git metadata", (t) => {

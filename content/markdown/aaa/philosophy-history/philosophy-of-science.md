@@ -2,7 +2,7 @@
 
 ---
 
-## Overview
+## Methods for Interpreting Theory and Evidence
 
 This document maps the methodological and epistemic schools that govern how science interprets theory, evidence, explanation, realism, and theory change.
 
@@ -49,6 +49,7 @@ P_{\mathrm{retune}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-957383f52e801bb1)
+
 Here the four entries separate empirical inputs, branch outputs, model controls, and after-the-fact repairs. A replacement theory earns explanatory compression only by moving quantities from $P_{\mathrm{emp}}$ or $P_{\mathrm{ctrl}}$ into $P_{\mathrm{branch}}$ without increasing $P_{\mathrm{retune}}$.
 
 A related constructor-set audit is required whenever inherited theories are recast. Observations and successful formal constraints are retained as evidence and benchmark pressure, while the ontology attached to them must be re-earned. The following audit asks which primitive substrate, branch record, and observer-export map can recover the data with the fewest independent assumptions.
@@ -65,6 +66,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-34a6417cf4cb9fbd)
+
 Here $\mathcal{O}_{\mathrm{data}}$ records the observation family, $\mathcal{F}_{\mathrm{formal}}$ records inherited mathematical constraints worth preserving, $\mathcal{S}_{\mathrm{sub}}$ is the proposed substrate record, $\Pi_{\mathrm{obs}}$ is the observer export, and $\mathcal{R}_{\mathrm{rec}}$ is the recovery residual. The rule is forward-only: keep the data, recover the successful formalism where it is tested, and let ontology pass only through the constructor and recovery rows.
 
 ---
@@ -97,7 +99,7 @@ What realism gets right is explanatory seriousness. It refuses to treat deep the
 
 The subject therefore contains a built-in tension between explanatory confidence and inferential restraint. That tension is not a defect to be eliminated. It is a governance problem to be managed. The mistake is to resolve it globally instead of by level and evidential role.
 
-The no-miracles argument and the pessimistic meta-induction make this tension exact. The no-miracles argument says the predictive and cross-domain success of mature theories would be difficult to explain if their central structures had no contact with reality. The pessimistic meta-induction replies that many once-successful theories carried entities and mechanisms later abandoned. The reply applies to $\mathbb{A}\mathbb{A}\mathbb{A}$ too: it cannot cite eventual fit, explanatory reach, or the failure of rivals as sufficient warrant for architrino ontology. Its ontological claims must earn support through independent derivations, linked predictions, and recovery maps that do not absorb mismatch after the fact.
+The no-miracles argument and the pessimistic meta-induction make this tension exact. The no-miracles argument says the predictive and cross-domain success of mature theories would be difficult to explain if their central structures had no contact with reality. The pessimistic meta-induction replies that many once-successful theories carried entities and mechanisms later abandoned. The reply applies to $\mathbb{A}\mathbb{A}\mathbb{A}$ too: it cannot cite eventual fit, explanatory reach, or the failure of rivals as sufficient warrant for [architrino ontology](../foundations/architrino.md), the proposed substrate of massless two-polarity carriers. Its ontological claims must earn support through independent derivations, linked predictions, and recovery maps that do not absorb mismatch after the fact.
 
 Structural realism offers a controlled middle position. What survives theory change may be a stable relation, invariant, or mathematical organization even when the entities used to describe it change. That is useful for inheriting conservation laws, symmetry relations, correlation structures, and effective equations without importing their prior ontology. It is not a complete answer by itself, because a relation still requires a physical bearer and a mechanism if the theory claims substrate closure. For this corpus, structural continuity is evidence about what must be recovered; it is not permission to leave the implementing objects unspecified.
 
@@ -220,6 +222,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7372dd166d8a8c9b)
+
 Here $\mathcal{E}_{\mathrm{obs}}$ is the nonempty set of observational or standard-theory contacts, $\mathcal{R}_{\mathrm{rec}}$ is the relevant recovery residual, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ is the operational null-result residual from [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels), and $\mathcal{S}_{\mathrm{retune}}$ records whether separate parameter choices are being used to pass different benchmarks. The rule is not anti-speculative; it simply keeps speculation in the comparison layer until it earns recovery, null-result discipline, and no-retuning closure.
 
 The same rule explains the methodological value of historical near-misses such as asymptotic-freedom discovery stories. A radical formal move may begin as a change of dimension, sign, or regularization scheme, but it becomes physics only when the result is written in a form other researchers can check and use. For $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding lesson is direct: dissatisfaction with quantum ontology, continuum excess, or black-hole paradoxes does not by itself promote a replacement. The replacement must calculate a known benchmark, expose the residual that disciplines it, and explain why the older effective theory succeeded.
@@ -837,6 +840,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1c53e5ca405b3d2d)
+
 Here $\mathcal{N}$ is the numerical implementation and $\mathcal{K}$ the calibration record. A discrepancy falsifies the packet as tested. Assigning it to one component requires an independent intervention, cross-benchmark comparison, or analytic reference that holds the other components fixed. Without that separation, blaming an auxiliary assumption or rescuing the central law are equally underdetermined moves.
 
 ### Internal Tensions

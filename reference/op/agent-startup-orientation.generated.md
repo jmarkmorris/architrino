@@ -30,7 +30,7 @@ This file is not the authority. If this file conflicts with a source file, the s
 
 ## Standing Rules
 
-- Start substantive prompts with `Closure goal:` and avoid addressing an agent by name.
+- [operator-explanation-standard.md](operator-explanation-standard.md) is the sole authority for all operator-facing output: audience, explanation density, response length, structure, register, question format, and live priority capture. Read it before writing to the operator and do not restate its rules elsewhere.
 - Treat dirty worktree state as normal ambient state; do not revert unrelated changes.
 - Prefer hard mathematical artifacts over broad prose cleanup in theory-facing work.
 - Classify claims as ontology, derivation or closure target, effective summary, or speculation before promotion.
@@ -77,33 +77,34 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 154 | `aa6094ba89ba4b16` |
+| [AGENTS.md](../../AGENTS.md) | 149 | `92e942c7c6b8dcf7` |
 | [README.md](../../README.md) | 220 | `81b723567a77aae0` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 171 | `dc8fc4e31bbafb4e` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 175 | `f2c36f33972d8d74` |
 | [reference/op/README.md](README.md) | 36 | `874e700c221e909c` |
-| [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 216 | `a6b6ad0c387cdbba` |
-| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `a12ec1f00ca37b55` |
-| [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6c9dc81dbdddb3f8` |
+| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 187 | `2332dcae26a52225` |
+| [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 188 | `b3d00da1ec2ae20e` |
+| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `816f3be029c6eec7` |
+| [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `df69b95fff3c8cf7` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 58 | `1e4f901a3869e4b4` |
-| [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 502 | `b5ed89182fb9ef20` |
-| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 841 | `9a420e39526ab8e2` |
-| [reference/priorities/README.md](../priorities/README.md) | 62 | `08bdcb72ca31da03` |
-| [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 47 | `c9074b9602a3bdd2` |
-| [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 76 | `40ee7728d1d26857` |
-| [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 135 | `7297c811d8a68462` |
-| [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 643 | `ccfe5149f551f33a` |
-| [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md) | 112 | `7d211bfccf0532d9` |
-| [reference/research-office/cto/prompts/selective-reference-pass.md](../research-office/cto/prompts/selective-reference-pass.md) | 65 | `0011905ee00985c9` |
-| [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md) | 125 | `e55d4ae033f560a7` |
-| [reference/research-office/cto/prompts/review-comment-assessor.md](../research-office/cto/prompts/review-comment-assessor.md) | 68 | `c0a96a381cac1579` |
-| [reference/research-office/cto/prompts/review-closure-verifier.md](../research-office/cto/prompts/review-closure-verifier.md) | 61 | `33a490900207a806` |
-| [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md) | 59 | `89ea3084d7e77a5d` |
-| [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | 73 | `ce8fd06fb4b75567` |
+| [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `62ed39fc2401a7f1` |
+| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 847 | `5b6110af0e8eb333` |
+| [reference/priorities/README.md](../priorities/README.md) | 70 | `acd0396491128f1c` |
+| [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 46 | `675947d23b17ba2b` |
+| [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 72 | `e2189b99c805d2ad` |
+| [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 102 | `40170ade3845b7b7` |
+| [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 575 | `a26571705a169714` |
+| [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md) | 108 | `fdac2ae0b73131c4` |
+| [reference/research-office/cto/prompts/selective-reference-pass.md](../research-office/cto/prompts/selective-reference-pass.md) | 65 | `600bdce36f98ad7e` |
+| [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md) | 113 | `b0490c175b08b854` |
+| [reference/research-office/cto/prompts/review-comment-assessor.md](../research-office/cto/prompts/review-comment-assessor.md) | 58 | `2ba934ef7c617d05` |
+| [reference/research-office/cto/prompts/review-closure-verifier.md](../research-office/cto/prompts/review-closure-verifier.md) | 56 | `cf186356866a913c` |
+| [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md) | 52 | `27a2322538682261` |
+| [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | 61 | `509a096fe5451928` |
 | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md) | 79 | `bab0a2cbe3a73eab` |
-| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 412 | `048b8d6ba9449ff2` |
-| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 349 | `ff128b1622cf028d` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 151 | `af58911e1e2a6ad4` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `def92453cf807042` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 177 | `9b04c7ae35b26449` |
+| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 518 | `f7e80e2b9436568f` |
+| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 364 | `9b6b4c319d1db052` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 152 | `5bffdd22c089275f` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `529168068a9d3450` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 183 | `f45955143cf8e7df` |

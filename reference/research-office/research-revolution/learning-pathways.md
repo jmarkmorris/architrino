@@ -6,7 +6,7 @@ This is conditional transition planning, not a claim that a candidate implementa
 
 The guiding idea is that education should provide many on-ramps. Learners should be able to begin with concrete experiences of observation, comparison, motion, path, delay, interaction, stable pattern, and evidence; progress into models, mathematics, and simulations as their preparation grows; and eventually evaluate the relation between detector records, inherited effective theories, and a deeper candidate architecture.
 
-## Two Complementary Pathways
+## Complementary Pathways
 
 ### Developmental Pathway
 

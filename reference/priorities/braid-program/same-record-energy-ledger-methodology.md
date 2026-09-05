@@ -897,7 +897,7 @@ with $R_1<R_2$, fixed enclosing surfaces, complete causal roots, the same histor
 
 **Acceptance condition:** the residual converges to the declared tolerance under time, surface-quadrature, root, and history refinement for separately authored static and periodic cases.
 
-**Falsifier:** the residual persists after refinement, or agreement requires a radius-dependent normalization or an unrecorded retardation shift.
+**Falsifier:** the residual persists after refinement, or agreement requires a radius-dependent normalization or an unrecorded causal-delay timing shift.
 
 **Possible promotion destination after acceptance:** `content/markdown/aaa/noether-braid/braid-analysis-methodology.md` as a causal-wake diagnostic only.
 

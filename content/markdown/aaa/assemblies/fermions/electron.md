@@ -36,6 +36,7 @@ Q_{\mathrm{eff}}(e^-)=-Q_{\mathrm{eff}}(e^+)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bd7e8a8f67e81046)
+
 The equality is a constraint on the mass-facing causal ledger: complete polarity inversion preserves the polarity-even internal products, shielding-coherence class, and medium response that feed scalar rest mass, while reversing the exposed electric bookkeeping. A partial polarity replacement inside the axial layer would not be the positron branch; it would generally change the assembly ledger and must be classified as a different or unstable charged-fermion candidate.
 
 ## Assembly and Detection Map

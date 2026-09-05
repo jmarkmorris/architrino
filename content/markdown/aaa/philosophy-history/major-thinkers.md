@@ -1,6 +1,6 @@
 # Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework
 
-## Overview
+## Historical and Conceptual Scope
 
 This document maps key historical and contemporary figures who have shaped foundational thinking about nature, reality, and the structure of physics. For each, it identifies the thinker's core commitments and assesses how $\mathbb{A}\mathbb{A}\mathbb{A}$ supports, challenges, reframes, or supersedes them.
 
@@ -9,7 +9,7 @@ It should be read alongside [Philosophy of Science](philosophy-of-science.md), [
 This document is not a ranking of thinkers. It is a stack-placement exercise. A thinker may be right about mechanism but wrong about ontology, right about method but wrong about physics, or wrong in final form while still preserving a clue that becomes useful after the substrate is rebuilt.
 
 The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
-- **Reductionist**: All complexity derives from one fundamental entity type, the architrino, with two polarity signs and shared interaction rules.
+- **Reductionist**: All complexity derives from one fundamental entity type, the [architrino](../foundations/architrino.md), a massless carrier with two polarity signs and shared interaction rules.
 - **Causal substrate with emergent quantum behavior**: Pilot-wave-like aspects without fundamental randomness in the base interactions, with **deterministic multistability** at self-hit branch points.
 - **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry, clock slowing, ruler contraction, and GR effective behavior emergent through Noether sea response.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
@@ -1198,7 +1198,7 @@ Weyl's second major particle-physics contribution concerned particle identity. H
 
 The wider mathematical legacy remains substantial but secondary to those two particle-physics routes. Weyl's 1927 quantization correspondence and symmetric ordering fed Wigner's quasidistribution and the phase-space and deformation-quantization programs, as the [Weyl-Wigner-Moyal history](https://arxiv.org/abs/hep-th/0110114) records. Local conformal rescaling supplied the language behind the Weyl anomaly, including world-sheet anomaly constraints in perturbative string theory summarized in the [Cambridge string-theory notes](https://www.damtp.cam.ac.uk/user/tong/string.html); the Weyl curvature tensor later entered Penrose's explicitly conjectural [Weyl curvature hypothesis](https://tannerlectures.org/wp-content/uploads/2024/07/Penrose96.pdf). His [spectral asymptotic law](https://eudml.org/doc/58792), [equidistribution criterion](https://www.math.uni-bonn.de/people/ursula/weyl.pdf), and [*Das Kontinuum*](https://plato.stanford.edu/archives/sum2024/entries/weyl/) remain major mathematical contributions. His 1949 tile argument and the experimentally realized band-crossing mathematics of [Weyl semimetals](https://doi.org/10.1038/nphys3425) show the later reach of his ideas without turning those applications into parts of one physical mechanism; the tile argument's limited domain is analyzed in later work ([Philosophy of Science](https://doi.org/10.1086/289379)).
 
-Plainly: Weyl influenced particle physics along two main routes. Gauge comparison says how different local descriptions can represent the same physics. Spinors and group representations say how particle states transform and therefore how they are distinguished. His work in quantization, geometry, analysis, and continuum foundations extends that legacy, but the shared name *Weyl* does not make these structures one mechanism.
+Weyl influenced particle physics along two main routes. Gauge comparison says how different local descriptions can represent the same physics. Spinors and group representations say how particle states transform and therefore how they are distinguished. His work in quantization, geometry, analysis, and continuum foundations extends that legacy, but the shared name *Weyl* does not make these structures one mechanism.
 
 **What They Got Wrong or Overstated:** The 1918 identification of electromagnetism with path-dependent length calibration fails the observed stability of atomic clocks and spectra. The gauge idea survived only after the calibrated object changed from ruler length to quantum phase. Weyl's 1949 tile argument also has a narrower target than the phrase "discrete substrate" suggests: it attacks physical space modeled as a regular finite adjacency tiling whose distance is tile count. It does not attack discrete matter assemblies moving in a continuous Euclidean void, and it does not rule out discrete models with a separately defined metric that demonstrably recovers Euclidean distance.
 

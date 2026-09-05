@@ -2,7 +2,7 @@
 
 This protocol documents the first replay fixture for the weak static response vector used in the $\Gamma_N$ geometry extraction target. It is a small arithmetic gate for the endpoint row in [Proper Time and Time Dilation](../../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target) and the Shapiro-delay coefficient in [PPN Parameters](../../spacetime/ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
-The fixture is not an empirical PPN fit. Its purpose is to keep the clock cadence row, the clock-rate row, and the signal-delay coefficient from being silently blended while the $\mathbb{A}\mathbb{A}\mathbb{A}$ constitutive response is still being derived.
+The fixture is not an empirical PPN fit. It keeps the clock cadence row, the clock-rate row, and the signal-delay coefficient separate while the $\mathbb{A}\mathbb{A}\mathbb{A}$ constitutive response is still being derived.
 
 ## Runtime Artifact
 

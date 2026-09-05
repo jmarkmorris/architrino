@@ -17,7 +17,7 @@ This ledger separates four levels:
 
 ## Leap Opportunity Record
 
-The opportunity tracked here is a possible unification of four previously separate bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether braid material, energy-momentum terms, and Noether sea state variables enter and exit the channel?
+The ledger tests a possible unification of four related bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether braid material, energy-momentum terms, and Noether sea state variables enter and exit the channel?
 
 ### Claim Status
 
@@ -68,7 +68,7 @@ The chapter-level source for the photon ontology and Gate A theorem scaffold is 
 
 | Gate | Claim bucket | What the ledger must track | Closure test |
 | --- | --- | --- | --- |
-| Gate A: kinematics and optics | Derivation-closure target | $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, planar-pair spacing $d$, phase frequency $\omega$, geometric phase, and medium delay state | Recover $E_\gamma=h\nu$, $p=h/\lambda$, masslessness, no rest proper-time branch, nondispersion, and no unacceptable preferred-frame leakage |
+| Gate A: kinematics and optics | Derivation-closure target | $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, planar-pair spacing $d$, phase frequency $\omega$, phase wavelength $\lambda_\gamma$, geometric phase, and medium delay state | Recover $E_\gamma=h\nu$, $p_\gamma=h/\lambda_\gamma$, masslessness, no rest proper-time branch, nondispersion, and no unacceptable preferred-frame leakage without identifying phase wavelength with carrier radius, pair spacing, or packet extent |
 | Gate B: polarization and spin | Derivation-closure target | transverse ledger orientation, analyzer basis, helicity, projection/capture geometry, accepted/rejected channel outcomes, source depletion, recoil, causal-wake, handoff, and event-balance rows | Recover exactly two transverse modes, no longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, no-signaling constraints, and $\mathcal R_{\gamma B}^{\mathrm{event}}$ below tolerance |
 | Gate C: vertices and transitions | Derivation-closure target | emission, absorption, pair production, recoil, medium excitation, transition rates, and overlap/capture probabilities | Recover QED/Maxwell limits, Breit-Wheeler thresholds and rates, blackbody behavior, Compton-like scattering, photon-photon limits, and the effective coupling scale $\alpha$ |
 
@@ -150,6 +150,7 @@ S_{\mathrm{return}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-eea86edc186d76ca)
+
 for a declared window $W$. Here $N_A$ records neutral or dark assembly candidates, $S_{\mathrm{pair}}$ records pair or reaction production inside the window, and $S_{\mathrm{return}}$ records content returned to the Noether sea or reclassified after reactions. This row is a source-component inventory, not a proof of a specific production rate; it prevents "empty intergalactic space" from replacing the actual component ledger.
 
 ### BBN Photon Loading
@@ -166,6 +167,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4174fcb7e432fb8f)
+
 For leptogenesis-like source routes, the ledger must also carry a neutrino/antineutrino CP-asymmetry comparison term rather than assuming the external mechanism. Source leads for this row are primary neutrino-oscillation and leptogenesis sources: long-baseline $\nu/\bar\nu$ transition measurements, PMNS CP-phase summaries, and baryogenesis/leptogenesis rate calculations. The comparison term is
 $$
 \Delta_{\nu\bar\nu}^{\mathrm{CP}}(E,L;\alpha,\beta)
@@ -176,6 +178,7 @@ P_{\bar\nu_\alpha\to\bar\nu_\beta}(E,L)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8a12867edd3ecb8c)
+
 where $E$ is neutrino energy, $L$ is baseline, and $\alpha,\beta$ label flavor channels. The source-window ledger may report $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}(W)$ as the event-record-weighted version of this comparison over $W$, but that reported value is only an input constraint on the matter-asymmetry closure. It is not an established $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation of baryon excess.
 
 The acceptance residual should be reported as
@@ -192,6 +195,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-01a825d10e240729)
+
 Here $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}$, $\Delta B_{\mathrm{unrec}}$, $\Delta Q_{\mathrm{unrec}}$, and $\Delta E_{\mathrm{unrec}}$ are not new ontology. They are comparison or failure counters for CP-asymmetric neutrino/antineutrino transition rates, baryon-number bookkeeping, electric-charge bookkeeping, and energy balance after all declared reaction, recoil, medium, and escape channels have been included. A leptogenesis-like source model may remain in the comparison ledger only when $\mathcal{R}_{B/\gamma}\le1$ and the same event record also passes the BBN photon-loading and CMB thermalization checks below.
 
 ### CMB Thermalization
@@ -289,6 +293,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8badadff6a6a3f3b)
+
 The segment-level energy closure remains
 $$
 \Delta E_{\gamma,s}
@@ -300,6 +305,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5cc26baa2c07808b)
+
 The kernel $\mathcal{K}_{\nu}$ is a derivation target, not a free redshift law. It must state whether the segment is coherent transparent transport, thermalizing exchange, spectral distortion, capture, or carrier exit, and it must preserve the same photon packet identity unless a reaction or remnant row explicitly terminates it.
 
 ## Closure Targets

@@ -4,6 +4,52 @@ This file records dated pass receipts, scan boundaries, tool versions when mater
 
 ## Log Entries
 
+### 2026-09-03 — CD-2026-003 owner triage resolved
+
+- The operator approved the complete reader-facing terminology correction recorded in CD-2026-003.
+- Corrected all 23 in-scope singular `lane` instances across 11 canonical files. Corpus-organization passages now identify sections or domain chapters directly, and the five reaction-provenance passages now identify the observer-level prediction source directly.
+- Deliberately retained `radius lanes` in the Photon Guide because it denotes groups of application search values rather than a corpus section, workstream, or prediction source.
+- Preserved every scientific claim, claim grade, equation, TeX expression, link, document placement, and owner assignment.
+- Validation passed: the authored reader-facing exact-match search returned only the deliberate `radius lanes` exclusion, `git diff --check` passed, strict content validation passed with zero errors and zero warnings, the generated scene-graph check passed with zero errors and zero warnings, and priority-ranking validation passed.
+
+### 2026-09-03 — CD-2026-002 owner triage resolved
+
+- The operator approved the complete acceleration-first terminology correction recorded in CD-2026-002.
+- Corrected all nine active `force row` / `force rows` instances: five under Mapping Equations, two under active Master-Equation Closure, one in the App Solver work log, and one in the Mapping Benchmarks Casimir packet.
+- Used `per-hit acceleration contribution`, `acceleration contribution`, or `acceleration row(s)` for master-equation consumers and `plate-response rows` for the effective Casimir benchmark.
+- Deliberately retained the three occurrences in the two revoked Master-Equation Closure history files. Their active tracker already isolates them from current acceleration, action, and promotion authority.
+- Preserved every equation, claim grade, evidence boundary, historical status, and owner assignment.
+- Validation passed: the active exact-match search returned no result, the historical exact-match search returned the three deliberately retained instances, `git diff --check` passed, strict content validation passed with zero errors and zero warnings, and priority-ranking validation passed.
+
+### 2026-09-03 — DRG-001 deprecated-term residue pass
+
+DRG-001 completed the accepted read-only terminology-residue pass and retained [CD-2026-002](recommendations.md#cd-2026-002--acceleration-first-terminology-is-unresolved-in-active-per-hit-rows) and [CD-2026-003](recommendations.md#cd-2026-003--undefined-organizational-lane-metaphor-appears-in-reader-facing-prose). The pass edited no inspected corpus, priority-owner, or historical file. It routed every retained occurrence to an existing owner or to deliberate retention and closed the only executable Corpus Dragnet item; the recommendations remain untriaged and authorize no downstream edit.
+
+#### Snapshot and scope
+
+- **HEAD:** `4e57122c4a035d133e9a9c53b504e060f7192ff3`.
+- **Working set:** none of the 20 string-match source files was modified at the pass snapshot. The already-modified Corpus Dragnet queue was the accepted task input; this pass changed only the Dragnet queue, recommendations ledger, and work log.
+- **Acceleration-first boundary:** exact case-insensitive `force row` / `force rows` search across Markdown in `reference/` and `content/markdown/aaa/`, excluding this Dragnet lane's control and output files. Generic `force law` and other force language were outside the accepted residue because assembly- and observer-level force language can be valid.
+- **Reader-facing boundary:** exact singular/plural `lane` search across Markdown in `content/markdown/aaa/`, excluding generated and archived surfaces, followed by local semantic inspection of every match.
+- **Source roles:** active priority packets were treated as internal supporting documents under their directory owners, Master-Equation Closure `history/` files as revoked historical records, and `content/markdown/aaa/` files as canonical published sources for their reader-facing prose.
+
+#### Results and dispositions
+
+- **Acceleration-first inventory:** 12 exact instances across eight files. Nine instances occur in six active files: five in Mapping Equations, two in active Master-Equation Closure, one in App Solver, and one in Mapping Benchmarks. Three instances occur in two revoked Master-Equation Closure history files. The queued figures of six live and two historical were file totals; CD-2026-002 records the string-instance counts and routes all 12.
+- **Reader-facing inventory:** 24 exact `lane` / `lanes` instances across 12 published files. Twenty-three singular instances across 11 files use an undefined organizational or source-provenance metaphor and are retained in CD-2026-003. The plural `radius lanes` occurrence in the Photon Guide denotes configuration-search values, not the accepted terminology class, and was deliberately excluded.
+- **Owner routing:** Mapping Equations, Master-Equation Closure, App Solver, and Mapping Benchmarks receive the active acceleration-first triage routes; revoked Master-Equation Closure history remains unedited. Corpus Rewrite receives the reader-facing editorial route, with the 11 canonical source files retained as the source owners.
+- **Confidence threshold:** both retained findings meet the ledger's `high` path-specific evidence threshold for inventory and source-role classification. Replacement eligibility remains owner-triaged where effective force bookkeeping, dated log chronology, or sentence-specific ordinary wording could justify retention.
+- **Claim boundary and falsifiers:** the searches establish only the presence, count, and local context of the strings. They do not establish a scientific error. CD-2026-002 is overturned occurrence by occurrence by an explicit effective assembly classification; CD-2026-003 is overturned document by document by a necessary, consistently defined reader-facing meaning that ordinary organizational or provenance language cannot carry.
+
+No mathematical object was attempted because DRG-001 is a terminology-routing audit with report-only authority. Its durable output is the two recommendation records and this pass receipt.
+
+#### Validation
+
+- `git diff --check` passed.
+- `node scripts/validate-priority-ranking.mjs` passed: 25 active owners had queues, with 14 ranked rows aligned to their local winners and tracker metadata.
+- `node scripts/check-content-integrity.mjs` passed the runtime-asset preparation, Borg byte-identity, strict content-index and reference, reader-facing publication-boundary, generated scene-graph, webapp release-profile, browser-budget, deployment-budget, owned-compute launch-policy, and secure-tunnel checks. It then failed the unrelated owned-compute stop-hook test because the fixture process did not reach started state within ten seconds.
+- `node --test tests/owned-compute-stop-hook.test.js` reproduced the same pre-existing validation failure: four tests passed and `Stop hook continues the turn while its owner has live compute` failed at the fixture-start timeout. DRG-001 changes no owned-compute code or test surface, so this failure does not invalidate the terminology inventory; it prevents a claim that the full content-integrity suite passed.
+
 ### 2026-09-01 — CD-2026-001 owner triage resolved
 
 - Accepted the first-pass terminology finding under the user-authorized queue-resolution campaign and applied the two bounded wording corrections in the owning App Solver and Master-Equation Closure supporting packets.

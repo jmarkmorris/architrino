@@ -2,11 +2,11 @@
 
 This chapter maps the standard dark-matter phenomenology onto substrate candidates available inside $\mathbb{A}\mathbb{A}\mathbb{A}$. The central task is to explain gravitational clustering without visible electromagnetic coupling, using assemblies or medium responses that belong to the same [Euclidean void](../foundations/euclidean-void.md) and [Noether sea](../spacetime/noether-sea.md) framework as the rest of the theory.
 
-The opening establishes the ontology and the criteria for what counts as dark in this setting. The later sections compare candidate substrates, summarize the current hybrid working baseline, and connect the picture to cosmological growth and observational interfaces.
+The argument defines what counts as dark in this ontology, compares candidate substrates, states the hybrid working baseline, and connects each candidate to cosmological growth and observational tests.
 
 ## Scope and Purpose
 
-Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly one quarter of the present energy budget to cold dark matter (CDM), with a representative comparison value $\Omega_c\approx0.26$. This pressureless, non-baryonic component clusters gravitationally but couples negligibly to electromagnetic radiation. This chapter maps dark-matter phenomenology onto $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly ontology and identifies candidate substrates.
+Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly one quarter of the present energy budget to cold dark matter (CDM), with a representative comparison value $\Omega_c\approx0.26$. This pressureless, non-baryonic component clusters gravitationally but couples negligibly to electromagnetic radiation. These observer-level properties are the recovery target; they do not identify the $\mathbb{A}\mathbb{A}\mathbb{A}$ substrate that supplies them.
 
 Throughout, "dark matter" refers to the set of phenomena conventionally attributed to CDM: flat galaxy rotation curves, cluster lensing offsets, the third acoustic peak of the CMB, large-scale structure growth, and BBN-consistent $\Omega_b$. The task is to explain this phenomenology within one ontology—Euclidean void, absolute time, architrinos, and Noether braid assemblies—without importing new fundamental fields or ad hoc modifications to gravity.
 
@@ -310,6 +310,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9c752dd8f9966fd0)
+
 A nearby passage gives the order-of-magnitude impulse
 $$
 \Delta v_{\mathrm{test}}
@@ -318,6 +319,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-00db7bd49d0b2570)
+
 before detailed $N$-body and relativistic corrections. The retained observable is the ephemeris residual, not the compact-object interpretation: a candidate detection must produce a trajectory-consistent perturbation above the ranging error floor, fail ordinary visible-object and catalogued-asteroid explanations under the same covariance model, and carry any high-energy co-signature through the same branch record.
 
 A compact dark-candidate branch also admits a track-search comparison. For a candidate compact fraction $f_X$, mass $M_X$, local dark-sector density $\rho_{\mathrm{DM}}$, and relative-speed distribution with mean $\langle v_{\mathrm{rel}}\rangle$, the flux estimate is
@@ -333,6 +335,7 @@ N_{\mathrm{track}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-38f668495f2a6a81)
+
 Here $A_{\mathrm{scan}}$ is the scanned cross-section, $T_{\mathrm{age}}$ is the exposure time of the material, $P_{\mathrm{surv}}$ is the survival probability of the track under thermal, geological, and mechanical erasure, and $P_{\mathrm{det}}$ is the detection efficiency after morphology cuts. The residual is not simply a count mismatch:
 $$
 \mathcal{R}_{\mathrm{track}}
@@ -345,6 +348,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fb10fb66f506875f)
+
 The morphology term requires the candidate track to match the predicted energy-deposition and damage profile for the branch, while $\mathcal{R}_{\mathrm{ordinary}}$ penalizes fits explained by ordinary radiation, defects, inclusions, machining damage, or impact history. A null search becomes a constraint on $f_X(M_X)$ only after the survival and detection functions are declared; a positive search becomes a compact-object claim only after the same branch also passes the BBN, CMB, ephemeris, and high-energy co-signature tests.
 
 ### Candidate B — Noether Sea Medium Response
@@ -434,6 +438,7 @@ S_{\mathrm{loc}}(\mathcal I_{\mathrm{loc}}),\,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1decb6afec2b0178)
+
 with every environment projection derived from one constitutive and assembly history. It earns predictive standing only if the allowed set $\mathcal O_\epsilon(\theta_{\mathrm{hyb}})$ is narrow relative to the nearby comparison family. If $a_\star$, $f$, screening, or $\mu$ can be changed independently by galaxy, cluster, CMB, lensing, and growth channel, Candidate C has widened the fit space rather than closed the dark sector.
 
 **Coupled equations (schematic).** Let $\rho_A(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ denote the observer-level neutral-assembly density and $\rho_{\text{NS}}(\mathbf X,T)$ the native Noether braid density. In the Newtonian limit, the effective Poisson equation becomes:
@@ -790,6 +795,7 @@ m_{\nu_R},
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4847224167751044)
+
 with
 $$
 \tau_{\nu_R}\gg t_0,
@@ -804,6 +810,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b5ba8639ea024dd6)
+
 Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether sea response map derives its mass and coupling suppression.
 
 ### Source-Limited WIMP/Neutralino Comparison Benchmark

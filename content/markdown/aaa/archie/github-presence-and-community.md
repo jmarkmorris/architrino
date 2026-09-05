@@ -1,14 +1,6 @@
 # GitHub Presence and Community
 
-This note explains why the repository is not only a storage location but also a public discussion surface for the theory. Its purpose is to frame GitHub as part of the reader-facing and critique-facing architecture of the project rather than as a purely internal engineering tool.
-
-GitHub is the public workbench. It holds the documents, the change history, the open questions, the critique surface, and the route by which useful discussion can become durable improvement.
-
-The sections below explain repository role, community function, and how the public discussion layer relates to the main web presentation.
-
-## Purpose
-
-This document explains how the project's GitHub presence functions as a public-facing layer for discussion, critique, revision, and collaborative refinement. The aim is not merely to host files. It is to provide a structured environment in which the theory can be examined, challenged, clarified, and improved in public view.
+GitHub is the project's public workbench: a versioned home for documents, open questions, critique, revision, and collaborative refinement. Its role is not merely to host files, but to provide a structured environment in which the theory can be examined, challenged, clarified, and improved in public view.
 
 GitHub is useful here because the project combines several different needs that rarely remain separate for long: versioned documents, issue tracking, line-level revision, theory discussion, and community review. In that sense, the repository is both a technical workspace and an evolving scholarly surface.
 
@@ -131,12 +123,10 @@ For these reasons, GitHub should be understood as one layer in the project's pub
 
 ## Related Pages
 
-This document connects outward to nearby project-guidance pages, including:
+Related project guidance includes:
 
 - [About the Webapp](about-the-webapp.md)
 - [Academic Style Guide](academic-style-guide.md)
 - [Mathematics Style Guide](mathematics-style-guide.md)
 - [Mathematics Terminology](mathematics-terminology.md)
 - [Research Notebook](research-notebook.md)
-
-Additional governance, contribution, and moderation pages may be added later if the public discussion surface grows enough to require them.

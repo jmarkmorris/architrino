@@ -6,6 +6,47 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-04 — Photon performance evidence refreshed for shared Markdown runtime changes
+
+- Remeasured the complete 38-file Photon source closure after changes to `MarkdownRuntime.js` and `MarkdownColumnPaginationRuntime.js` on a fresh loopback origin in a dedicated Codex in-app Chromium 152 tab at exactly 3,840 by 2,160 CSS pixels and device-pixel ratio 1.
+- The updated closure is 4,559,352 encoded bytes at SHA-256 `b60eb045c59250eee7587782a6249505a606ad0a885eccb0e46dbfb52a353f64`. The accepted profile measured a 439.7-millisecond cold load, 277.3-millisecond warm load, 4,570,752 cold-transfer bytes, 10,800 warm-transfer bytes, 37 loaded resources, 360 frame samples, 17.7-millisecond p95, 59.88 median frames per second, zero intervals above 33.34 milliseconds, 147,023,764 post-frame used-heap bytes, 836,416 bytes of frame-window heap growth, a 28,888,248-byte canvas-surface lower bound, and zero origin-storage bytes.
+- Retained the separately contracted shared-GPU-process envelope. This remeasurement updates the Photon route and source-bound evidence only; it is one local pre-release measurement and does not establish production performance or a general improvement.
+
+Plainly: the shared Markdown runtime change altered bytes loaded by Photon, so the old performance receipt was no longer valid. The current bytes were measured directly and remain within every unchanged Photon budget.
+
+### 2026-09-04 — Approved response standard startup refresh
+
+The operator approved the complete response standard and authorized regeneration and a related-guidance consistency pass. Updated the generated startup router and Claude pre-read floor, checked both for freshness, and aligned reusable prompts with automatic working-document capture, explicit read-only boundaries, and direct reader-facing integration when authorized and ready. Strict content validation, priority-ranking validation, and the whitespace check passed. This verifies guidance consistency and generated freshness, not future agent behavior. The approved document remains the response authority.
+
+### 2026-09-04 — OPS-018 sequential office document standards review
+
+Completed the operator-authorized one-document-at-a-time review of all 135 Research Office and 157 Learning Office Markdown documents. The [ledger](office-document-standards-review.md) records one disposition for each of the 458 inventoried files. Updated 49 Markdown documents: 39 ordinary guidance updates, 8 role updates with theory review deferred, 1 product-guidance update with product review deferred, and 1 technical-brief warning preserving its mathematics pending current-law correction. Baseline SHA-256 comparison verified that the other 243 Markdown documents and all 166 assets retained identical bytes; all paths reconciled with no additions or removals.
+
+Current guidance now routes writing style and response mechanics to their canonical owners while retaining task-specific evidence obligations, authorization boundaries, and production protections. Historical records and all 111 production QA receipts were read and preserved, including 15 recorded approvals and 96 pending decisions. Strict content validation, priority-ranking validation, and the whitespace check passed. Those checks do not validate scientific claims or artwork. The [tracker](priorities.md#office-document-standards-review) retains four separately scoped recommendations concerning the technical brief, older roles, protected stories, and product assumptions. Removed OPS-018 from the active queue under its stated completion condition. No generator writes, scientific-law changes, artwork regeneration, commits, or pushes were performed by this review agent.
+
+### 2026-09-04 — Operator response and live discussion capture
+
+The operator approved flexible answer-first responses, explanation proportional to the question, live organized capture in the owning `priorities.md`, and numbered next possible actions with a recommendation for each. Academic writing style remains governed by the academic style guide so prepared explanation remains suitable for corpus promotion. The operator rejected a separate conversational tone and replaced the separate completion report and closure-goal footer. The current decisions and requested review are indexed in [the operations tracker](priorities.md#operator-response-and-discussion-capture), and the procedure and short examples live in [the operator explanation standard](../../op/operator-explanation-standard.md). Authored prompt and bootstrap-generator guidance was aligned; generated startup projections remain subject to their explicit regeneration policy. Strict content validation, priority-ranking validation, generator syntax checks, and `git diff --check` passed. Both startup projection checks reported stale generated output; the exact regeneration commands and pending review are recorded in the operations tracker.
+
+### 2026-09-03 — OPS-014 generated Claude bootstrap floor
+
+- Replaced the hand-maintained pre-read floor in `CLAUDE.md` with a generated projection owned by `scripts/build-claude-bootstrap-floor.mjs`. The generator fingerprints `AGENTS.md`, the operator explanation standard, and the academic style guide; `--check` fails when the projection or any fingerprinted source changes, and regeneration changes only the floor section.
+- Added the floor check to the full content-integrity runner. The fingerprint is deliberately a drift alarm rather than a semantic proof: after an authority changes, the compact projection still requires review before `--write` is accepted.
+- Aligned the authored `CLAUDE.md` startup route with the readable-checkout and unavailable-checkout branches in `AGENTS.md`, while retaining the Claude-only per-action write-permission rule as the sole policy unique to that file.
+- Removed the stale `AGENTS.md` line count from OPS-014 rather than replacing it with another volatile count, added per-row verification dates to all three guidance-surface inventories, and corrected the progress description from treating repetition as a feature to treating it as a cost justified only when it buys clarity.
+- Targeted validation passed: generator and integrity-runner syntax checks, the generated-floor `--check`, strict content validation with zero errors and zero warnings, priority-ranking validation, and `git diff --check`. The existing generated startup-orientation target remains stale from changes to its own source set and was not regenerated during this ordinary edit batch.
+
+### 2026-09-03 — OPS-017 local repository document surface accepted
+
+- Closed OPS-017 by explicit operator acceptance of the delivered local-only repository document browser.
+- The accepted surface indexes `reference/` and `content/markdown/aaa/` to depth 3 under a synthetic repository node, uses a fixed six-column desktop grid, renders Markdown with KaTeX and Mermaid, rewrites indexed Markdown links, and uses the shared standalone-application navigation chrome.
+- `scripts/build-reference-surface.mjs` owns the ignored manifest; `reference.html` and `src/apps/reference/ReferenceSurfaceRuntime.js` own the page and runtime; generated-runtime configuration prepares the manifest for local development; and the `index.html` entry remains probe-gated so it appears only when the local manifest exists.
+- `scripts/build-static-site.mjs` excludes the page, runtime, and generated manifest from Pages. Direct exclusion checks and stub-DOM checks were recorded during delivery; a fresh `tests/reference-surface-math-rendering.test.js` run passed 1 of 1 on 2026-09-03.
+- The current ignored-manifest check reports staleness because repository documents have changed. Regeneration remains on demand and does not gate closure; no generator write was run during this closeout.
+- Removed OPS-017 from the live queue. Acceptance changes no public deployment, authored source, corpus prose, or scientific claim.
+
+Plainly: the local document browser is accepted as complete, its public-deployment exclusion remains intact, and any future manifest refresh is routine local maintenance rather than unfinished OPS-017 work.
+
 ### 2026-09-02 — GitHub Actions major-version maintenance
 
 - Consolidated the five open GitHub Actions Dependabot proposals into one reviewable workflow change: `actions/checkout` 7.0.1, `actions/setup-node` 7.0.0, `actions/upload-pages-artifact` 5.0.0, `actions/configure-pages` 6.0.0, and `actions/deploy-pages` 5.0.0.

@@ -31,6 +31,10 @@
         "scenePath": "content/scenes/archie/terminology_usage.json"
       },
       {
+        "nodeId": "ui_guidelines",
+        "scenePath": "content/scenes/archie/ui_guidelines.json"
+      },
+      {
         "nodeId": "research_notebook",
         "scenePath": "content/scenes/archie/research_notebook.json"
       }
@@ -75,6 +79,15 @@
       "radius": 2.2,
       "color": "#5a1f2e",
       "labelTitle": "Terminology Usage",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "ui_guidelines",
+      "title": "UI Guidelines",
+      "radius": 2.2,
+      "color": "#2f6b6f",
+      "labelTitle": "UI Guidelines",
+      "labelSubtitle": "Shared application standards",
       "labelBadge": "doc"
     },
     {

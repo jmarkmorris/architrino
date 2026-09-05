@@ -78,6 +78,18 @@ export function createMarkdownRuntime(deps) {
     return `${runtimeMarkdownReaderPrefix}${markdownPath}::${encodeURIComponent(markdownSection)}`;
   }
 
+  function decodeMarkdownFragment(hash) {
+    const fragment = String(hash ?? "").replace(/^#/, "").trim();
+    if (!fragment) {
+      return null;
+    }
+    try {
+      return decodeURIComponent(fragment);
+    } catch (error) {
+      return fragment;
+    }
+  }
+
   function resolveLocalMarkdownHref(rawHref) {
     if (typeof rawHref !== "string" || !rawHref.trim()) {
       return null;
@@ -104,6 +116,7 @@ export function createMarkdownRuntime(deps) {
     return {
       path: resolvedPath,
       searchParams: parsed.searchParams,
+      hash: parsed.hash,
     };
   }
 
@@ -133,6 +146,10 @@ export function createMarkdownRuntime(deps) {
       const section = resolved.searchParams.get("section");
       if (typeof section === "string" && section.trim()) {
         return buildMarkdownReaderTarget(resolvedPath, section.trim());
+      }
+      const fragment = decodeMarkdownFragment(resolved.hash);
+      if (fragment) {
+        return buildMarkdownReaderTarget(resolvedPath, fragment);
       }
       return resolvedPath;
     }
@@ -759,9 +776,12 @@ export function createMarkdownRuntime(deps) {
     decorateLocalAssetLinks();
     equationMapRuntime.decorate(markdownPath, sectionKey);
     decorateTextbookToc();
+    // Mermaid replaces source blocks synchronously before awaiting SVG rendering.
+    // Pagination must capture those replacement figures, not the detached blocks.
+    const diagramsRendered = mermaidRuntime.renderDiagrams();
     applyMarkdownLayout();
     typesetMarkdownWithRetry(startTypesetRetryCycle());
-    void mermaidRuntime.renderDiagrams().then(() => {
+    void diagramsRendered.then(() => {
       columnPaginationRuntime.scheduleRefresh();
     });
     resetMarkdownScroll();

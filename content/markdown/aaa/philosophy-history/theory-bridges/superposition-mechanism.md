@@ -1,8 +1,8 @@
 # Superposition Mechanism: Traditional vs. Architrino Assembly Architecture
 
-This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
+This bridge maps the traditional quantum-mechanical concept of state superposition to the deterministic path-history dynamics proposed by the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
 
-It should be read alongside [Wavefunction Ontology](../../quantum/wavefunction-ontology.md), [Measurement Ontology](../../quantum/measurement-ontology.md), [Measurement Problem and Collapse](./measurement-problem-and-collapse.md), and [Pilot-Wave Character](./pilot-wave-character.md).
+The adjacent accounts are [Wavefunction Ontology](../../quantum/wavefunction-ontology.md), [Measurement Ontology](../../quantum/measurement-ontology.md), [Measurement Problem and Collapse](./measurement-problem-and-collapse.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
 The core distinction is effective envelope versus substrate state. A Hilbert-space superposition is a powerful way to track unresolved alternatives in a declared basis. It is not, by itself, a claim that the underlying assembly is literally many final records at once. The bridge must show when causal-wake addition, metastable basin geometry, and observer-access limits justify the effective superposition description.
 
@@ -14,6 +14,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-532f618d9a79c292)
+
 The coefficients $c_n$ are complex probability amplitudes. In ordinary non-relativistic, fixed-particle-number quantum mechanics, the system evolves deterministically according to the linear Schrödinger equation until a measurement occurs. Upon measurement, the orthodox (Copenhagen) interpretation posits a discontinuous "collapse" of the wavefunction, where the system instantaneously projects into a single basis state $|k\rangle$ with probability $P_k = |c_k|^2$ (the Born rule). 
 
 Traditional superposition treats the indeterminacy as fundamental and ontological: prior to measurement, the particle possesses no definite state or trajectory.
@@ -72,6 +73,7 @@ N_{\mathcal{Q},W}(B_j(t))\ge 1,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-92f993a995edd85f)
+
 Here $N_{\mathcal{Q},W}$ is the recordable basin count defined in [Wavefunction Ontology](../../quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure), and $\Delta_{\mathrm{div}}$ is the restartability residual used in [Measurement Ontology](../../quantum/measurement-ontology.md#what-makes-an-interaction-a-record). This is not a consciousness criterion. It is a guardrail against treating an arbitrary basis expansion as a physical branch event.
 
 Closure requirements:

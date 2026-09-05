@@ -2,9 +2,7 @@
 
 This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The prescribed family coordinates belong to [Braid Taxonomy](braid-taxonomy.md), with orthogonal-axis three-binary configurations developed in [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md), coincident-axis three-binary configurations in [Braid coincident-axis three-binary configurations](3d-braid-assemblies.md), and two-component circular configurations in [Braid two-component circular configurations](3d-braid-assemblies.md); delayed retention and deformation mechanisms belong to their mathematical and member-specific owners.
 
-A Noether braid is not a static object. It is a dynamic system of six architrinos — twelve for a two-component circular record — whose high-frequency paths sweep out a persistent volume of intense wake activity. That swept volume is the assembly's effective exclusion envelope.
-
-In plain terms, this chapter explains what a retained braid "looks like" to neighboring assemblies and to the Noether sea. The envelope is not a hard surface. It is the region where the assembly's locked wake activity is strong enough that other histories are deflected, excluded, phase-disrupted, or forced to retune.
+A Noether braid is not a static object. It is a dynamic system of six architrinos — twelve for a two-component circular record — whose high-frequency paths sweep out a persistent volume of intense wake activity. That swept volume is the assembly's effective exclusion envelope: not a hard surface, but the region in which the assembly's locked wake activity is strong enough to deflect, exclude, phase-disrupt, or retune other histories. The envelope is therefore what a retained braid presents geometrically to neighboring assemblies and to the Noether sea.
 
 That is why this geometry matters downstream. Pressure, packing, clock/ruler response, effective metric behavior, and Noether sea density are all coarse readings of many such envelopes and their deformations. The page therefore keeps the geometric export rows separate from the proof that the branch itself is retained.
 
@@ -60,7 +58,7 @@ This is the Noether braid analogue of the familiar lesson from electron degenera
 
 The dynamic exclusion envelope supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether sea is the neighboring neutral braid population and its ambient wake record after the assembly ledger has been excluded.
 
-The bright-first question is operational: at a specified point and response channel, does wake activity tied to the assembly's accepted lock dominate, or does the ambient Noether sea dominate? That comparison locates usable clock corridors, packing boundaries, penetration regions, and interface layers before any sharp surface is inferred.
+The assembly-versus-ambient question is operational: at a specified point and response channel, does wake activity tied to the assembly's accepted lock dominate, or does the ambient Noether sea dominate? That comparison locates usable clock corridors, packing boundaries, penetration regions, and interface layers before any sharp surface is inferred.
 
 For an assembly $a$ and a declared response channel $X$, let $\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T)$ denote the ambient Noether sea contribution in the same region. A practical interface diagnostic is
 
@@ -739,7 +737,7 @@ Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor n
 
 ## Envelope Forms
 
-The envelope form is member data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. [coincident-axis three-binary locus](3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart) sweeps a common-axis envelope at rest, with axial extent set by the $h_a$ values and transverse extent set by the $\rho_a$ values. coincident-axis three-binary locus does not fix the sign of $R_{\parallel}-R_{\perp}$: an elongated, equatorial, or intermediate envelope can be selected by its binary coordinates. The orthogonal-axis three-binary response uses the **near-spherical-to-oblate envelope** described next. The moving Lorentz-projection target is a separate branch response and must not be inferred from a rest-shape sign.
+The envelope form is member data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. The [coincident-axis three-binary locus](3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart) sweeps a common-axis envelope at rest, with axial extent set by the $h_a$ values and transverse extent set by the $\rho_a$ values. This locus does not fix the sign of $R_{\parallel}-R_{\perp}$: an elongated, equatorial, or intermediate envelope can be selected by its binary coordinates. The orthogonal-axis three-binary response uses the **near-spherical-to-oblate envelope** described next. The moving Lorentz-projection target is a separate branch response and must not be inferred from a rest-shape sign.
 
 ### Near-Spherical-to-Oblate Form (coincident-midpoint orthogonal-axis locus)
 
@@ -755,6 +753,7 @@ H_a(\hat{\mathbf m};W)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-89aafdc4b2c8e842)
+
 and the full path-history support by
 $$
 H_{\mathrm{env}}(\hat{\mathbf m};W)
@@ -763,6 +762,7 @@ H_{\mathrm{env}}(\hat{\mathbf m};W)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a95f5f4756939763)
+
 An index is boundary-leading in direction $\hat{\mathbf m}$ only when it attains this maximum on the retained record. The maximizer may depend on direction or time, may be nonunique, and does not relabel the binary. Under the prescribed compression response, the union of all six paths produces the flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
 
 In low-stress coincident-midpoint orthogonal-axis locus prose, "coincident-midpoint orthogonal-axis locus envelope" means this effective path-history envelope, not a literal material surface.
@@ -792,9 +792,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2f81fc5593eff930)
 
-The averaging measure is the constant-time emission measure $dT_t$ declared in [Architrino](../foundations/architrino.md#constant-time-emission-measure-postulate). Each constituent therefore receives equal weight per unit absolute emission time. A receiver-selected root window is a different object: it must retain the delay-map Jacobian and may not be substituted for this emission-window moment without an explicit measure conversion.
-
-Plainly: $H_{\mathrm{env}}$ asks how far the braid ever reaches in a direction. $\mathsf M_{\mathrm{env}}$ asks how much of the declared emission window the paths spend distributed through the directions around the group position. A brief excursion can set the support boundary while contributing little to the second moment, although a sufficiently large excursion can still dominate both.
+The averaging measure is the constant-time emission measure $dT_t$ declared in [Architrino](../foundations/architrino.md#constant-time-emission-measure-postulate). Each constituent therefore receives equal weight per unit absolute emission time. A receiver-selected root window is a different object: it must retain the delay-map Jacobian and may not be substituted for this emission-window moment without an explicit measure conversion. $H_{\mathrm{env}}$ asks how far the braid ever reaches in a direction. $\mathsf M_{\mathrm{env}}$ asks how much of the declared emission window the paths spend distributed through the directions around the group position. A brief excursion can set the support boundary while contributing little to the second moment, although a sufficiently large excursion can still dominate both.
 
 **Derived geometric fact.** The tensor is symmetric and positive semidefinite because, for every Euclidean covector $z_a$,
 
@@ -810,9 +808,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f241eb36678c47f1)
 
-It is positive definite only when the centered paths span all three spatial directions on a set of nonzero emission measure. Planar and collinear records are allowed to produce rank-two and rank-one tensors. If the eigenpairs are $(\mu_r,\hat{\mathbf e}_r)$, the principal RMS radii are $\sigma_r=\sqrt{\mu_r}$. Repeated eigenvalues leave the corresponding principal directions non-unique, so an orientation angle must not be reported in a degenerate eigenspace.
-
-Plainly: the tensor always has non-negative directional spreads, but it need not describe a full three-dimensional ellipsoid. A planar braid record has no measured thickness normal to its plane, and a spherical or axisymmetric record does not select every orientation uniquely.
+It is positive definite only when the centered paths span all three spatial directions on a set of nonzero emission measure. Planar and collinear records are allowed to produce rank-two and rank-one tensors. If the eigenpairs are $(\mu_r,\hat{\mathbf e}_r)$, the principal RMS radii are $\sigma_r=\sqrt{\mu_r}$. Repeated eigenvalues leave the corresponding principal directions non-unique, so an orientation angle must not be reported in a degenerate eigenspace. The tensor always has non-negative directional spreads, but it need not describe a full three-dimensional ellipsoid. A planar braid record has no measured thickness normal to its plane, and a spherical or axisymmetric record does not select every orientation uniquely.
 
 **Defined compression.** When a consumer requires a six-component ellipsoidal compression of the exact directional support, it may fit a separate symmetric positive-definite tensor $\mathsf Q_{\mathrm{env}}^{ab}(W)$ through
 
@@ -855,9 +851,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5082f154a32a705f)
 
-Its eigenvalues are $R_{\parallel}^2$ along $\hat{\mathbf u}$ and $R_{\perp}^2$ on the transverse plane. The existing variables $\xi=R_{\parallel}/R_{\perp}$ and $\lambda=R_{\perp}/R_{\perp,0}$ therefore survive unchanged as the axisymmetric reduction of $\mathsf Q_{\mathrm{env}}$. They are not redefined from the eigenvalues of $\mathsf M_{\mathrm{env}}$.
-
-Plainly: the optional tensor $\mathsf Q_{\mathrm{env}}$ compresses a genuinely ellipsoidal or nearly ellipsoidal boundary into three semiaxes and an orientation. The moment tensor records dwell-weighted path spread. Keeping them separate prevents an attractive ellipsoid fit from erasing a rare but real boundary excursion or from being mistaken for the exact path-history envelope.
+Its eigenvalues are $R_{\parallel}^2$ along $\hat{\mathbf u}$ and $R_{\perp}^2$ on the transverse plane. The existing variables $\xi=R_{\parallel}/R_{\perp}$ and $\lambda=R_{\perp}/R_{\perp,0}$ therefore survive unchanged as the axisymmetric reduction of $\mathsf Q_{\mathrm{env}}$. They are not redefined from the eigenvalues of $\mathsf M_{\mathrm{env}}$. The optional tensor $\mathsf Q_{\mathrm{env}}$ compresses a genuinely ellipsoidal or nearly ellipsoidal boundary into three semiaxes and an orientation. The moment tensor records dwell-weighted path spread. Keeping them separate prevents an attractive ellipsoid fit from erasing a rare but real boundary excursion or from being mistaken for the exact path-history envelope.
 
 If the fitted support axes and the moment axes disagree beyond a predeclared angular or normalized-tensor tolerance, the record falsifies a single-quadratic summary for that consumer. Both source-derived objects remain exportable with the disagreement attached; the mismatch does not erase either the exact directional-support record or the dwell-weighted moment record.
 
@@ -869,6 +863,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3d77ce3fdd0bd0f3)
+
 so $\xi=1$ denotes a spherical envelope, $\xi>1$ denotes a fusiform envelope elongated along the parallel axis, and $\xi<1$ denotes an oblate spheroidal envelope compressed along the parallel axis. A family label must accompany any rest-envelope value of $\xi$.
 
 Use
@@ -877,6 +872,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ce95cf622b5d9db6)
+
 for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to braid envelope geometry: $\xi$ records shape and $\lambda$ records scale.
 
 The oblate spheroidal envelope volume is
@@ -894,7 +890,7 @@ Relative to the declared rest envelope,
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
 =
-\lambda^3(v)\,\xi(v)
+\lambda^3(v)\,\frac{\xi(v)}{\xi(0)}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-42219d941e2bd344)
@@ -904,20 +900,21 @@ This identity is geometric. If a homogeneous moving branch independently closes 
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
 =
-\frac{\lambda^3(v)}{\gamma_{\mathrm{eff}}(v)}
+\frac{\lambda^3(v)}{\gamma_{\mathrm{eff}}(v)\,\xi(0)}
 +O(\epsilon_{\mathrm{LV}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ed296930498af1b1)
 
-and the zero-extra-scale subclass $\lambda=1$ reduces to $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma_{\mathrm{eff}}+O(\epsilon_{\mathrm{LV}})$. The volume law does not establish $\lambda=1$ or Lorentz closure; it exposes the packing and exclusion-volume quantity once those branch relations are supplied.
+If the declared rest envelope is spherical, so $\xi(0)=1$, the zero-extra-scale subclass $\lambda=1$ reduces to $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma_{\mathrm{eff}}+O(\epsilon_{\mathrm{LV}})$. The volume law does not establish $\lambda=1$, $\xi(0)=1$, or Lorentz closure; it exposes the packing and exclusion-volume quantity once those branch relations are supplied.
 
 Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
 $$
-\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
+\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma_{\mathrm{eff}}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3070bac4118bc111)
+
 but this is a moving-branch closure target linking the clock channel to the envelope projection. It should not be used to define $\xi$, and it does not determine coincident-axis three-binary locus's rest-envelope aspect ratio.
 
 ## Lorentz Projection Role
@@ -934,9 +931,10 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-59914dc6e5c6b742)
+
 but the branch $q$ is accepted only when all three binary ledgers also retune consistently with clock closure, conservation, and preferred-frame leakage bounds.
 
-The direct Lorentz-to-geometry map comes from a closed return cycle. In a homogeneous cell, define
+The following is an observer-level two-way return construction, not a derivation from the Master Equation. Conditional on one dressed assembly channel with speed $c_{\mathrm{eff}}$ governing both longitudinal and transverse return legs in a homogeneous cell, define
 $$
 \gamma_{\text{eff}}(v)
 \equiv
@@ -944,6 +942,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bd38f42906e3952d)
+
 Let $P_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
 P_{\parallel}
@@ -956,6 +955,7 @@ P_{\parallel}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f4371071956b229d)
+
 while the transverse causal-budget return time is
 $$
 P_{\perp}
@@ -964,6 +964,7 @@ P_{\perp}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e661dcb2facaa3ca)
+
 Requiring $P_{\parallel}=P_{\perp}+O(\epsilon_{\mathrm{LV}}P_{\mathrm{ref}})$ gives
 $$
 \xi_q(v)
@@ -975,7 +976,10 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-54df338e8e9033cd)
-The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
+
+> Claim grade: derived within the declared observer-level return construction and conditional on its common dressed-channel premise. A same-record retained branch whose longitudinal and transverse return legs do not reduce to these two equations, or whose measured return closure gives a different axis ratio, falsifies application of the construction. Deriving its premise and closure coefficients from retained branch dynamics belongs to [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
+
+The role of the geometry chapter is to record this conditional envelope projection, not to use it as a primitive definition or as evidence that a branch satisfies the premise.
 
 This distinction prevents a single-binary shortcut. A branch-derived boundary-leading channel can estimate one visible deformation contribution, while a mature Lorentz closure must show that the same branch update also determines the clock factor
 $$
@@ -995,6 +999,7 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-277a6d51ffcecf41)
+
 The envelope is therefore the visible projection of the retained causal-root ledger, not an independently assigned Lorentz surface.
 
 ## Retuning Projection to Envelope Variables
@@ -1086,9 +1091,7 @@ For the special-relativity-facing comparison of this deformation channel, see [t
 
 ## Why Envelope Geometry Does Not Determine Mass
 
-**Inferred ownership boundary.** The exact directional support, centered path second moment, and any admitted quadratic fit are spatial projections of a fuller delayed branch record. They discard which historical path segments are selected by the active causal roots, how self-hit and partner-hit contributions are phased, how the internal energy ledger closes, how shielding partitions exposed response, and how the surrounding Noether sea responds. Two retained branches can therefore share $H_{\mathrm{env}}$, $\mathsf M_{\mathrm{env}}$, and $\mathsf Q_{\mathrm{env}}$ while carrying different internal causal-history and exposure ledgers. The mass program accordingly remains owned by the closed-history, shielding, and response construction in [Braid Mathematics](braid-mathematics.md#mass-thesis-as-a-dynamics-target) and [Energy](../dynamics/energy.md#emergent-inertia-mass-from-shielded-energy).
-
-Plainly: the envelope says where the paths reach and how their positions are distributed. It does not say which past emissions act now or how much of the internal history is visible to an external probe, so shape alone cannot determine inertial mass.
+**Inferred ownership boundary.** The exact directional support, centered path second moment, and any admitted quadratic fit are spatial projections of a fuller delayed branch record. They discard which historical path segments are selected by the active causal roots, how self-hit and partner-hit contributions are phased, how the internal energy ledger closes, how shielding partitions exposed response, and how the surrounding Noether sea responds. Two retained branches can therefore share $H_{\mathrm{env}}$, $\mathsf M_{\mathrm{env}}$, and $\mathsf Q_{\mathrm{env}}$ while carrying different internal causal-history and exposure ledgers. The mass program accordingly remains owned by the closed-history, shielding, and response construction in [Braid Mathematics](braid-mathematics.md#mass-thesis-as-a-dynamics-target) and [Energy](../dynamics/energy.md#emergent-inertia-mass-from-shielded-energy). The envelope says where the paths reach and how their positions are distributed. It does not say which past emissions act now or how much of the internal history is visible to an external probe, so shape alone cannot determine inertial mass.
 
 This separation would be overturned only by a theorem on an accepted branch family proving that the complete mass functional factors through the envelope record alone. Matching masses on branches generated from the same envelope-fitting code would not establish that theorem because the subject and comparison would not be independent.
 
@@ -1111,7 +1114,7 @@ For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [No
 
 > **coincident-midpoint orthogonal-axis locus Geometry Commitment:** coincident-midpoint orthogonal-axis locus has a near-spherical weak-stress envelope that becomes oblate under increased group speed or gravitational gradient. The exclusion envelope is generated by binary path histories and is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
 
-> **Member-Scoping Commitment:** coincident-axis three-binary locus's rest aspect ratio depends on its prescribed binary coordinates; coincident-midpoint orthogonal-axis locus is near spherical in its weak-stress reference state and becomes increasingly oblate along its prescribed compression response. The moving Lorentz-projection target $\xi\to1/\gamma$ is a branch-response statement and must be derived separately for each member.
+> **Member-Scoping Commitment:** coincident-axis three-binary locus's rest aspect ratio depends on its prescribed binary coordinates; coincident-midpoint orthogonal-axis locus is near spherical in its weak-stress reference state and becomes increasingly oblate along its prescribed compression response. The moving Lorentz-projection target $\xi\to1/\gamma_{\mathrm{eff}}$ is a branch-response statement and must be derived separately for each member.
 
 > **Lorentz Projection Commitment:** In Lorentz closure, the full six-path envelope supplies the observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to one binary path or to envelope shape alone.
 

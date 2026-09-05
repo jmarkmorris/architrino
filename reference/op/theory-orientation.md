@@ -57,7 +57,7 @@ Before editing or reporting, classify the claim as ontology, derivation or closu
 At startup, identify the likely durable home for any successful theory work: a direct corpus destination, the owning priority workstream, or that workstream's `brainstorming.md`.
 
 - Do not leave a substantive derivation, equation, invariant, mechanism, simulation target, proof route, terminology decision, or corrected claim level only in chat.
-- During operator brainstorming, capture worthwhile insights as they emerge rather than waiting for closeout.
+- Follow the [operator explanation standard](operator-explanation-standard.md#live-discussion-and-priority-capture) for live organized capture in the thread and the owning `priorities.md`, with the full academic treatment in its subject owner, including a reader-facing destination when the task authorizes it and the material is ready.
 - Promote corpus-solid material directly into `content/markdown/aaa` with its assumptions and remaining obligations.
 - Stage valuable but provisional material in the owning priority workstream with its claim level, assumptions, proof burden, and intended corpus destination.
-- If no durable capture is warranted, state why in the handoff.
+- When no substantive idea arises, no capture entry is needed; explain any actual write limitation under the operator explanation standard.

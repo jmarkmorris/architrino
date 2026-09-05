@@ -49,9 +49,10 @@ test("Equation Mapping renders the standard Back icon as a return link only for 
       assert.equal(link.getAttribute("aria-label"), "Return to page");
       assert.equal(link.title, "Return to page");
       assert.equal(link.href, resolveEquationMappingReturnHref(href));
-      const sceneShell = readFileSync(new URL("../index.html", import.meta.url), "utf8");
-      const backIcon = sceneShell.match(/id="nav-up"[\s\S]*?<polyline points="([^"]+)"/u)[1];
-      assert.ok(link.innerHTML.includes(`points="${backIcon}"`));
+      const controlBar = readFileSync(new URL("../src/runtime/TopDynamicControlBarRuntime.js", import.meta.url), "utf8");
+      const backIcon = controlBar.match(/back:\s*'<polyline points="([^"]+)"/u);
+      assert.ok(backIcon, "the shared control bar defines the Back chevron");
+      assert.ok(link.innerHTML.includes(`points="${backIcon[1]}"`));
     } else {
       assert.equal(link, null);
     }

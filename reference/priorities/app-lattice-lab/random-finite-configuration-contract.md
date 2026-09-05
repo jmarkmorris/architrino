@@ -10,6 +10,8 @@ The Ledger calculation for a selected receiver includes each of the other 87 dis
 
 The assignment identifier is `splitmix32-score-rank-fifty-fifty-v1`.
 
+The rule turns one recorded seed into a reproducible red/blue assignment without changing the 44/44 population. SplitMix32 is a deterministic 32-bit integer-mixing routine; here it is used only to assign a sortable score to each stable site identifier, not as evidence that the finite configuration represents a physical random process.
+
 1. Interpret the recorded seed as an unsigned 32-bit integer.
 2. Sort the displayed sites by ascending UTF-16 code-unit order of their stable site ids, using direct `<` and `>` comparisons rather than locale-sensitive collation. Let the resulting zero-based ordinal be $i$.
 3. Form $u_i = \operatorname{uint32}(s \mathbin{\mathtt{xor}} \operatorname{imul}(i+1,\mathtt{0x9e3779b9}))$.
@@ -28,3 +30,5 @@ The default seed is `20260801`. A recalculation chooses the smallest succeeding 
 ## Verification
 
 `scripts/verify-lattice-lab-random-finite.mjs` independently reimplements the score/rank assignment and the finite residual sum. It checks the live default gallery record against those independent paths. Focused tests also pin known seed fingerprints and verify that the recalculation rule changes the assignment rather than merely redrawing it.
+
+Claim grade: `measured` by the independent verifier over the declared 88-site finite domain and by the focused seed-fingerprint tests. Falsifier: a site assigned more than once or omitted, a generated population other than 44/44, a seed/fingerprint mismatch, a recalculation that preserves the assignment, or disagreement between the independently summed finite residual and the live gallery record.

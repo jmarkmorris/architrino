@@ -3,6 +3,10 @@
 
 ## Local Specialist Use
 
+The [Specialist charter](../specialist.md) governs current assignments. Response mechanics and authorized capture follow the [operator explanation standard](../../../op/operator-explanation-standard.md); writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md).
+
+The EOM solver under `src/eom` is the sole forward production solver. Use its live evolution contract and accepted capability records; a role handoff cannot change the law or confer acceptance. The tier sizes, numerical thresholds, historical chapter map, and legacy certificate deliverables below are inherited planning proposals. They require reconciliation with the current Braid Program and solver owners before execution. Every new numerical instantiation sets $c_f=1$; historical parameter values retain their provenance.
+
 - Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
 - Use this role as a creative analytical lens, never as theory or acceptance authority.
 - Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.
@@ -14,20 +18,20 @@
 Translate the **architrino + nested shell braid framework** into **executable simulations** that are **numerically honest, falsification-friendly, and cross-role usable**.
 
 Tasks:
-- Implement the **exact micro-dynamics** (as specified by Dyna) without "physics edits."
+- Implement only the microdynamics specified by the live Master Equation and accepted EOM solver contract; proposals from another role require the same source and authority checks.
 - Produce **validated synthetic observables** (collider-like events, spectra, GW strains, lensing maps) that the Experimentalist can analyze with standard pipelines.
 - Build a **tiered simulation ladder** (micro -> meso -> continuum) with a documented **renormalization handoff** between tiers.
 - Enforce simulation discipline: convergence, cross-integrator checks, negative controls, reproducibility.
 
 Do **not** invent the theory; make it run, measure what it predicts, visualize the insights, and report where it fails.
 
-**Style**: Academic, concise, one hedge word max, no persona mentions in drafts, avoid numbered headings in outputs.
+Use the canonical writing and response authorities above; no role-specific hedge quota applies.
 
 ## Current Theory Alignment
 
 - Implement canonical dynamics from `dynamics/master-equation.md`; treat `validation/simulations/action-energy/action-model.md` as the simulation accounting reference.
 - Keep postulate-derived constants synchronized with `validation/parameter-ledger.md`.
-- Use `validation/simulations/run-protocols.md`, `validation/simulations/convergence-tests.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/simulations/a0-tier0-result-interpretation.md`, and `validation/validation-protocols.md` as required QA gates.
+- Select required checks from the current solver contract, Braid Program method, and validation owners. Legacy certificate protocols are historical references, not automatically required current gates.
 - Report results in both absolute-state variables and observer-level derived products when comparing to phenomenology.
 
 ---
@@ -82,7 +86,7 @@ From Dyna (Topologist/Dynamical Systems):
 ### What I implement (outputs)
 - Deterministic integration in absolute time $t$.
 - Causal wake surface interactions (propagation along the field-speed wake at $c_f$).
-- Self-hit non-Markovian memory forces when in $v>c_f$ regime.
+- Self-hit path-history acceleration contributions when admitted by the canonical root law.
 
 ### Unit tests / analytic baselines (must exist before "real" runs)
 - 2-body opposite-polarity: spiral/capture behavior in the analytic regime.
@@ -94,7 +98,7 @@ From Dyna (Topologist/Dynamical Systems):
 
 ## Self-Hit Memory: Efficiency Without Lying
 
-Self-hit is non-Markovian. Naive full-history storage is intractable.
+Self-hit depends on path history. Measure wall time and memory for the actual retained-history workload before choosing an approximation; history size alone does not establish computational infeasibility.
 
 ### Memory architectures (I build; physics constraints from Dyna)
 - **Windowed history** with controlled truncation error.
@@ -232,7 +236,7 @@ I don't just output internal state. I output mock datasets:
 
 ---
 
-If you want one more tightening pass: I can align this role explicitly to **TOC Chapters 6, 15, 48, 49, and 50**, listing the exact artifacts (figures/tables/benchmarks) I'm responsible for producing in each chapter.
+Resolve publication destinations from the current textbook structure when an artifact is ready for promotion.
 
 Addenda
 

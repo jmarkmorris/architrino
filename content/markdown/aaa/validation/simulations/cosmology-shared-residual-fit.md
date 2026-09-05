@@ -69,6 +69,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-353e97dc6eff2fe6)
+
 and, when $\nu_X^{\mathrm{dof}}>0$, the reduced statistic
 $$
 \overline{\mathcal{R}}_X
@@ -77,6 +78,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2fbc568db154dbb9)
+
 The raw $\mathcal{R}_X$ remains the additive packet term; $\overline{\mathcal{R}}_X$ is a scale diagnostic and must not replace a likelihood without a declared statistical derivation.
 
 The nuisance record $\nu_X$ must state, before fitting, whether each nuisance quantity is fixed, profiled, or marginalized and how that choice changes $p_X$ and the effective covariance. The projection weights $w_a$, the penalty coefficient $\lambda$, and all residual and overlap thresholds are likewise frozen before fitting. They may be changed only in a separately identified sensitivity run, never retuned after seeing the shared-state result.
@@ -93,6 +95,7 @@ r_{\mathrm{SN/BAO}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ac97f573e12870bf)
+
 $$
 r_{\mathrm{CMB}}
 \supset
@@ -104,6 +107,7 @@ r_{\mathrm{CMB}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-086b4246d26df244)
+
 $$
 r_{\mathrm{growth}}
 \supset
@@ -114,6 +118,7 @@ r_{\mathrm{growth}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-106f9c9e30cd0bd7)
+
 and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether sea state interpretation is promoted.
 
 Redshift-facing packets must expose the signed photon-frequency transfer row rather than treating redshift as a primitive expansion coordinate. For a line or photon family $X$, retain
@@ -128,6 +133,7 @@ r_{\nu\text{-}\mathrm{path}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-161938fb0ad62752)
+
 where $Z_X$ is the total logarithmic redshift budget, $Y_{X,\mathrm{path}}$ is the signed path-history exchange contribution, and $Y_{X,\mathrm{cal}}^{\mathrm{obs}}$ is any declared calibration row such as a Sunyaev-Zeldovich or kinematic-Sunyaev-Zeldovich frequency-shift packet. This row does not add a separate cosmology gate. It prevents a shared-state fit from hiding path-frequency exchange inside $H(z)$, distance modulus, or CMB temperature calibration.
 
 The source-mined empirical packet should retain the following benchmark families without turning them into separate gates:
@@ -363,6 +369,7 @@ r_{\mathrm{PREBBN}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3f446f1eb1b133d1)
+
 The projection keys should include the ordinary shared cosmology coordinates plus branch-facing coordinates such as `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. The packet passes this subgate only when the ordinary residual $\mathcal{R}_{\mathrm{PREBBN}}$ is small and the projection penalty shows that the same $\theta_{\mathrm{sea}}$ is being consumed by BBN, CMB, growth, and gravitational-wave comparisons.
 
 ## Frame-Split Measurement Recipe
@@ -396,6 +403,7 @@ The preprocessing rules are:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-5f4ee677a09b9410)
+
   where $K_X$ is the catalogue kinematic amplification factor and $\mathbf{F}_X$ is the allowed non-kinematic directional residual from the shared frame state and survey context.
 - Supernovae: $\mathbf{y}_{\mathrm{SN}}(z_b)$ is the fitted distance-modulus dipole in redshift bin $z_b$, after standardization and host-environment bookkeeping; $\mathbf{m}_{\mathrm{SN}}(z_b)$ is the corresponding shared-frame prediction.
 - BAO: $\mathbf{y}_{\mathrm{BAO}}(z_b)$ is the anisotropic BAO-scale dipole or lowest retained directional harmonic in bin $z_b$; $\mathbf{m}_{\mathrm{BAO}}(z_b)$ is the shared-frame prediction in the same basis.

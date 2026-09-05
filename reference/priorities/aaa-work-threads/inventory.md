@@ -1,10 +1,10 @@
 # Priorities Inventory
 
-Snapshot: 2026-09-02.
+Snapshot: 2026-09-03.
 
 This is the developer-facing ownership and routing inventory for [reference/priorities](../README.md). The canonical numeric order lives in [priorities.md](priorities.md); the repeated mathematical joins live in [closure-join-matrix.md](closure-join-matrix.md).
 
-The live filesystem contains 27 immediate top-level directories plus the `dormant-deferred` container: 24 priority inventory directories comprising 10 ranked owners, 1 control surface, 1 unranked shared headless platform, and 12 other unranked owners, plus the non-owner `mapping` overview, the `mapping-cronin-assembly-theory` packet, and the legacy `app-simulation` compatibility directory. The archive contains 25 child directories. The four separately ranked shared packets are not additional directory owners.
+The live filesystem contains 26 immediate top-level directories plus the `dormant-deferred` container: 24 priority inventory directories comprising 10 ranked owners, 1 control surface, 1 unranked shared headless platform, and 12 other unranked owners, plus the non-owner `mapping` overview and the legacy `app-simulation` compatibility directory. The archive contains 26 child directories. The four separately ranked shared packets are not additional directory owners.
 
 ## Inclusion Rules
 
@@ -103,7 +103,7 @@ Plainly: these directories stay active as addresses and ownership boundaries, no
 
 ## Dormant-Deferred Archive
 
-The following 25 children are preserved as archived work. They are excluded from the active inventory, and archive policy excludes them from numeric ranking, the active discussion queue, and tracker-metadata synchronization. Historical tracker metadata does not reactivate a directory. The Archie service MCP adapter is a component of the archived `archie` owner, not a separate application or inventory owner.
+The following 26 children are preserved as archived work. They are excluded from the active inventory, and archive policy excludes them from numeric ranking, the active discussion queue, and tracker-metadata synchronization. Historical tracker metadata does not reactivate a directory. The Archie service MCP adapter is a component of the archived `archie` owner, not a separate application or inventory owner.
 
 | Archived child | Parked role |
 | --- | --- |
@@ -124,6 +124,7 @@ The following 25 children are preserved as archived work. They are excluded from
 | [`information-relay-machines`](../dormant-deferred/information-relay-machines/priorities.md) | Deferred terminology and transduction-chain concept. |
 | [`lissajou`](../dormant-deferred/lissajou/priorities.md) | Deferred phase-closure candidate. |
 | [`mapping-cosmology`](../dormant-deferred/mapping-cosmology/priorities.md) | Parked cosmology transfer-function and observer-interface program; 14 unresolved rows preserved. |
+| [`mapping-cronin-assembly-theory`](../dormant-deferred/mapping-cronin-assembly-theory/README.md) | Parked discussion-scoped comparison between Cronin assembly theory and $\mathbb{A}\mathbb{A}\mathbb{A}$ assemblies; no promotion path or active queue. |
 | [`mapping-nuclear-atomic-molecular`](../dormant-deferred/mapping-nuclear-atomic-molecular/priorities.md) | Parked nuclear-to-molecular recovery program; three unresolved rows and retained evidence preserved. |
 | [`media-comics`](../dormant-deferred/media-comics/priorities.md) | Deferred comic-production ideas. |
 | [`media-images`](../dormant-deferred/media-images/priorities.md) | Deferred image-production ideas. |
@@ -133,7 +134,7 @@ The following 25 children are preserved as archived work. They are excluded from
 | [`ruth-kastner`](../dormant-deferred/ruth-kastner/priorities.md) | Deferred source/interpretation packet. |
 | [`validation-gates`](../dormant-deferred/validation-gates/priorities.md) | Archived acceptance-intersection packet retained as reference, not a live ranked owner. |
 
-Plainly: all 25 top-level folders are parked. The nested MCP adapter remains preserved with Archie service contracts and tests, but it is not a website application or a separate workstream owner. An old active label or rank inside a parked file does not return it to the active inventory.
+Plainly: all 26 top-level folders are parked. The nested MCP adapter remains preserved with Archie service contracts and tests, but it is not a website application or a separate workstream owner. An old active label or rank inside a parked file does not return it to the active inventory.
 
 The pre-split monolith remains recoverable from Git history; it is not a live archive packet.
 
