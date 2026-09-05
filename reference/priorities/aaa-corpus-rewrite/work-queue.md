@@ -315,13 +315,13 @@ All nine files occur in `content/graph/textbook_toc.json` and as Markdown nodes 
 | Batch | Documents in reading order | Current disposition |
 | --- | --- | --- |
 | 1 | [Ontology](../../../content/markdown/aaa/foundations/ontology.md), [Architrino](../../../content/markdown/aaa/foundations/architrino.md) | Accepted corrections verified after full-document self-review |
-| 2 | [Absolute Time](../../../content/markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../content/markdown/aaa/foundations/euclidean-void.md) | Both read completely and partially integrated; F2-1 and F2-2 accepted corrections verified; F2-3 through F2-7 awaiting decision |
+| 2 | [Absolute Time](../../../content/markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../content/markdown/aaa/foundations/euclidean-void.md) | Both read completely; Absolute Time corrections verified; Euclidean Void partially integrated; F2-1 through F2-5 accepted corrections verified; F2-6 and F2-7 awaiting decision |
 | 3 | [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md) | Not yet reviewed as a campaign target; single batch for mathematical density |
 | 4 | [Absolute Time Defense](../../../content/markdown/aaa/foundations/absolute-time-defense.md) | Not yet reviewed; single batch for evidence and proof burden |
 | 5 | [Detecting the Absolute Frame](../../../content/markdown/aaa/foundations/detecting-the-absolute-frame.md), [Constructing the Absolute Frame](../../../content/markdown/aaa/foundations/constructing-the-absolute-frame.md) | Not yet reviewed as campaign targets |
 | 6 | [Emergence of Structure](../../../content/markdown/aaa/foundations/emergence-of-structure.md) | Not yet reviewed; separate synthesis and branch-selection burden |
 
-Reading a later chapter as a required foundation anchor does not count as its completed review. Coverage is 4 of 9 complete readings: 2 chapters with accepted corrections verified, 2 partially integrated chapters awaiting further decisions, 0 reviewed with no recommended change, 0 files explicitly deferred or blocked, and 5 not yet reviewed. F2-1 and F2-2 have verified corrections; the physical response identifications discussed in F2-2 remain open recovery obligations. Scientific closure is not implied by any coverage status.
+Reading a later chapter as a required foundation anchor does not count as its completed review. Coverage is 4 of 9 complete readings: 3 chapters with all recommended corrections accepted and verified, 1 partially integrated chapter awaiting further decisions, 0 reviewed with no recommended change, 0 files explicitly deferred or blocked, and 5 not yet reviewed. F2-1 through F2-5 have verified corrections; the physical response identifications discussed in F2-2 remain open recovery obligations. Scientific closure is not implied by any coverage status.
 
 | Path within Foundations | Baseline SHA-256 |
 | --- | --- |
@@ -584,6 +584,8 @@ The mathematical check is author derivation: reflection symmetry makes the off-d
 
 #### F2-3 — Direct wake reception is narrower than causal influence through a chain
 
+**Current disposition:** accepted, implemented, and verified on 2026-09-05. The integration receipt below supersedes the historical pending-acceptance statements in the original discussion.
+
 **Location:** `absolute-time.md:179`, with the direct root definition at lines 283–293. **Classification:** conceptual overstatement of the direct-hit criterion. **Smallest repair:** insert “directly through that emitted wake” in the support criterion and distinguish later influence through altered receiver histories and subsequent emissions.
 
 Membership in the sphere emitted at A is required for a direct contribution from that emission. The full delayed law also permits a reception to alter a worldline whose later emissions affect another receiver. The geometric relation “lies on this emitted sphere” is not transitive and therefore cannot alone define that complete causal dependence.
@@ -600,7 +602,17 @@ The conditional chain is therefore: emission event A; reception by an intermedia
 
 This is a bounded explanatory correction. The causal-root equality remains the direct-hit rule. The proposed repair is to qualify the sentence with “directly through that emitted wake” and then explain that indirect influence can pass through changed histories and later wake receptions. It prevents a reader from treating the absence of an original-source root at B as proof of no earlier causal dependence. It establishes neither an EOM solver defect nor a signalling-speed theorem. F2-3 remains awaiting operator decision; the request to explain it authorizes this discussion capture but not its corpus implementation.
 
+##### Accepted F2-3 integration — 2026-09-05
+
+The operator selected action 1: apply the bounded F2-3 clarification and then discuss F2-4. Under the live integrator-reviewer procedure, Absolute Time was checked at SHA-256 `e3d60d84d56dd68aa933d3b1256fa66769e766c3243dfa006a12fecb16a5237b`, matching the verified F2-1 result, and a local pre-edit byte baseline was retained. Only the direct-versus-indirect causal explanation was changed. The direct-hit condition now names its particular emission, and an added paragraph explains acceleration, changed intermediate trajectories, continuous later emissions, and the need for an actual dynamical response along a proposed chain. No wake equation, signalling-speed theorem, or other batch finding was changed.
+
+The complete resulting chapter, lines 1–420, was reread and compared with that immediate baseline. All 21 display blocks and all prior links are preserved; all 33 local file-link occurrences have existing targets; vendored KaTeX accepted all 134 mathematical expressions; `git diff --check` passed. The strict content check again returned zero errors and one existing generated-index warning at `content/scenes/scenes_index.json`. Its regeneration remains with the established owner via `node scripts/validate-content.mjs --write`; no regeneration was performed. Final SHA-256: `889069eebd665bb2ad1013180d9529dad84cfce15039872d58ca7f3b8e803a0c`.
+
+This is author self-review against the unchanged master-equation history dependence and the explicitly limited geometry already recorded above. It is not an independently validated dynamical relay or a solver result. The bounded F2-3 correction is complete. F2-4's original line 399 is now line 401, with its wording unchanged; all earlier findings retain their original reviewed hashes and line references.
+
 #### F2-4 — The time chapter denies structure it has already supplied
+
+**Current disposition:** accepted, implemented, and verified on 2026-09-05. The integration receipt below supersedes historical pending-acceptance statements. All three Absolute Time findings in batch 2 now have verified corrections.
 
 **Location:** `absolute-time.md:399`, compared with lines 33, 79–87, and 147–163. **Classification:** internal mathematical/explanatory inconsistency; bounded repair. **Smallest repair:** say there is no independent dynamical temporal metric or connection and no temporal acceleration law to solve.
 
@@ -610,13 +622,47 @@ This observation adds no relativistic substrate metric and no dynamical time fie
 
 Claim grade: `derived` from the specified affine line and clock form. Falsifier: the passage explicitly confines itself to the unstructured manifold and then restores the declared duration structure before describing the actual model. The current paragraph moves directly from the bare-line claim to the physical substrate.
 
+##### Discussion explanation — fixed structure does not require dynamics
+
+The time chapter supplies more than an ordering of instants: it fixes durations by $|T_2-T_1|$. That is already a mathematical distance rule, or metric, on the time line. A uniformly marked ruler provides an analogy for the distinction: the spacing of its marks is structure even when that spacing never changes. The analogy concerns a fixed interval scale, not a physical clock reading absolute time.
+
+The later paragraph at current line 401 explains the absence of temporal dynamics by saying no metric or connection is declared. Its intended physical conclusion is sound within the postulate: time has no independent field that responds to contents. The stated mathematical reason omits the fixed duration structure already in use. On the one-dimensional time factor, the exact clock form supplies the squared-duration form and a compatible flat affine connection. Requiring that connection to preserve $dT$ sets its sole coefficient in the $T$ coordinate to zero; this simply encodes the chosen uniform parameter. It is not an additional evolution equation or a clock-dilation mechanism. The separate full product connection in Absolute Timespace remains additional substrate data, as its live section explicitly states.
+
+The recommended correction is to describe a fixed temporal duration structure with no independent dynamical temporal metric or connection, preserving the distinction between a mathematical comparison rule and a responding physical field. This resolves an internal explanatory mismatch without changing the postulate or recovering any new observer effect. F2-4 remains awaiting operator discussion and acceptance; it was not implemented with F2-3.
+
+##### Accepted F2-4 integration — 2026-09-05
+
+The operator selected action 1: apply the bounded F2-4 correction and then discuss F2-5. The live integrator-reviewer procedure was followed. Absolute Time was checked against the verified F2-3 SHA-256 `889069eebd665bb2ad1013180d9529dad84cfce15039872d58ca7f3b8e803a0c` and backed up immediately before editing. The section now acknowledges the fixed duration rule, its squared-duration form, and the compatible flat connection on the time factor. Its geodesic equation is explained as a constant-rate parametrization, not an independent evolution law for time. A link preserves the separate ownership of the additional full product connection. The acceleration account and Postulate 1 are unchanged. Euclidean Void remains at its verified F2-2 hash; F2-5 was not implemented.
+
+The entire resulting Absolute Time chapter, lines 1–422, was reread and compared with its immediate pre-edit baseline. All 21 existing display equations and all prior links are preserved. Vendored KaTeX accepted all 140 mathematical expressions, and all 34 local file-link occurrences have existing targets; the new Absolute Timespace anchor was checked against its live heading. `git diff --check` passed. The strict content check reported zero errors and the same existing warning at `content/scenes/scenes_index.json`; it remains non-clean. Regeneration belongs to its established owner via `node scripts/validate-content.mjs --write`, which was not run. Final SHA-256: `fa03318d71b159e57c8bb2857540e8f49458859ced96da1d8b50b43d26a7ba42`.
+
+The mathematical check is the author derivation recorded above: on the one-dimensional time factor, preserving the clock form forces the sole connection coefficient to vanish in its affine coordinate. The unchanged Absolute Timespace section keeps the full product connection as additional data. These checks establish the bounded explanatory consistency of the edit; no independent mathematical reviewer, empirical result, or new physical clock derivation is claimed. F2-1, F2-3, and F2-4 now complete the recommended Absolute Time corrections from this batch, while existing scientific recovery obligations remain at their prior grade.
+
 #### F2-5 — The displayed frame bundle is the oriented one
+
+**Current disposition:** accepted, implemented, and verified on 2026-09-05. The integration receipt below supersedes the historical pending-acceptance statements.
 
 **Location:** `euclidean-void.md:137–145`. **Classification:** demonstrated naming/domain mismatch; small technical correction. **Smallest repair:** call the displayed object the oriented orthonormal frame bundle.
 
 At a point, all ordered orthonormal frames form $O(3)$, which includes both handedness choices. After a spatial orientation has been chosen, the orientation-compatible frames form $SO(3)$. Thus $\mathbb R^3\times SO(3)$ is the oriented orthonormal frame bundle, while the full orthonormal bundle is $\mathbb R^3\times O(3)$. The existing next sentence already mentions an unoriented version, so one adjective makes the intended distinction explicit. Both bundles are trivial here. The Euclidean Levi-Civita connection still has trivial holonomy; the correction changes no claim about flatness or assembly topology.
 
 Claim grade: `derived` by identifying an orthonormal frame with its orthogonal change-of-basis matrix. Falsifier: a previously declared orientation-restricted definition of $F$ at this point in the chapter. No new physical handedness is proposed.
+
+##### Discussion explanation — whether mirror-reversed axes are included
+
+A frame here is an ordered set of three perpendicular unit arrows attached to a point. All such frames have two possible handedness classes. Rotating the entire set preserves its handedness; reversing one arrow while retaining the other two switches it. Thus the collection of all orthonormal frames includes both classes, while the oriented orthonormal frames retain the class compatible with a chosen reference orientation.
+
+The matrix statement makes the distinction exact. A matrix whose columns are an orthonormal frame satisfies $Q^{\mathsf T}Q=I$, so $(\det Q)^2=1$. Both determinant signs belong to $O(3)$. The subgroup $SO(3)$ consists of determinant-positive matrices and describes frames of the selected orientation. The displayed $\mathbb R^3\times SO(3)$ therefore pairs each point with frames of one handedness. Calling it the collection of all orthonormal frames silently omits the other class. This derivation uses Euclidean geometry and introduces no substrate magnetic law or physical handedness preference.
+
+The sufficient repair is to name the displayed object the oriented orthonormal frame bundle and make its explanatory phrase orientation-compatible. The existing equation can remain unchanged. The choice of reference orientation is conventional, both relevant bundles are trivial over the Euclidean void, and the flatness and holonomy conclusions are unaffected. This is a small definition correction whose significance is preventing confusion between rotations and transformations that reverse orientation. F2-5 remains awaiting operator decision; no corpus change is authorized by its explanation alone.
+
+##### Accepted F2-5 integration — 2026-09-05
+
+The operator selected action 1: apply the naming clarification and then discuss F2-6. Under the live integrator-reviewer procedure, Euclidean Void was checked at its verified F2-2 SHA-256 `57aa722490223d3bb823556080766d69dfe6b8dfa453764991521598ab2e81e5` and a local pre-edit baseline was retained. The displayed bundle is now named the oriented orthonormal frame bundle, with ordered unit axes matching a chosen reference orientation. The companion explanation distinguishes the full bundle with both handedness classes and states that the choice introduces no physical handedness preference. No equation, flatness conclusion, holonomy claim, or other finding was changed.
+
+The complete resulting chapter, lines 1–596, was reread and compared with its immediate baseline. All 37 display equations and all prior links are preserved. Vendored KaTeX accepted all 132 mathematical expressions, all 53 local file-link occurrences have existing targets, and `git diff --check` passed. The strict content check returned zero errors and the existing warning at `content/scenes/scenes_index.json`; it remains non-clean. Regeneration stays with its established owner via `node scripts/validate-content.mjs --write`, which was not run. Final SHA-256: `272aa8e7c1782209ff38d72ecb832d261cb51196bb20127b01754c5f45d994a3`.
+
+The mathematical reference is the explicit orthogonal-matrix determinant argument in the preceding discussion. The full-document reread is author self-review; syntax and link checks are structural instruments, not independent mathematical validation. F2-5 is complete as a bounded definition correction. F2-6 and F2-7 remain unimplemented, and their current source line references are unchanged by this edit.
 
 #### F2-6 — The curvilinear formulas need regular chart domains
 
@@ -625,6 +671,14 @@ Claim grade: `derived` by identifying an orthonormal frame with its orthogonal c
 The spherical matrix has determinant $r^4\sin^2\theta$, so it is singular at $r=0$ and at $\theta=0,\pi$. Those values are included in the listed ranges. At a pole, changing $\phi$ names the same point, so the coordinate map is not one-to-one and its differential is not invertible. Cylindrical coordinates similarly have determinant $\rho^2$ and fail on the axis. A periodic angular range also requires a seam or multiple charts. These failures are coordinate degeneracies, not degeneracies of the Euclidean metric.
 
 The statements $R^i{}_{jkl}=0$ and coordinate invariance remain correct on valid chart overlaps. One cannot use the displayed inverse metric or Christoffel formula at a point where that purported chart has lost rank. This matters for readers implementing a root or derivative calculation in spherical variables. Claim grade: `derived` from the determinants and coordinate maps. Falsifier: explicit chart-domain restrictions already attached to the displayed formulas. No curvature correction is recommended.
+
+##### Discussion explanation — the labels fail at the pole, not the space
+
+Spherical coordinates identify a point by its distance from the origin, polar angle, and azimuth around the axis. A regular coordinate chart must let nearby points be labeled uniquely and smoothly in both directions. At the north pole of a sphere, every azimuth labels the same point. In the Cartesian map $X=r\sin\theta\cos\phi$, $Y=r\sin\theta\sin\phi$, $Z=r\cos\theta$, setting $\theta=0$ gives $(X,Y,Z)=(0,0,r)$ independently of $\phi$. The angular direction has therefore stopped identifying a distinct spatial displacement. At $r=0$, both angles lose that role. Cylindrical coordinates have the corresponding azimuthal failure on their axis.
+
+The zero factors in the displayed matrices describe that loss of coordinate rank. They do not make Euclidean distance degenerate: Cartesian coordinates remain regular there. Trying to invert the spherical matrix at a pole encounters division by $r^2\sin^2\theta$, so derivative formulas needing the inverse cannot be evaluated there as ordinary chart formulas. The separate angular seam is a continuity issue: a full-turn azimuth convention jumps at its chosen cut and needs an overlapping chart for a smooth neighborhood across that cut.
+
+The chapter currently supplies broad parameter ranges that cover these exceptional points without distinguishing them from the regular chart domain. The sufficient repair is to retain the metric formulas, state the regular spherical domain away from the origin, polar axis, and chosen angular seam, state the analogous cylindrical exclusions, and use Cartesian or overlapping regular charts at excluded locations. The flatness claim remains exact on valid charts. This is a domain and explanation correction; no physical singularity, curvature, or EOM solver defect is established. F2-6 awaits operator decision and was not implemented with F2-5.
 
 #### F2-7 — The CMB source has the wrong title and needs its method scope stated
 
@@ -666,4 +720,4 @@ No empirical reanalysis, independent solver comparison, global root-completeness
 
 ### Current discussion boundary after batch 2
 
-Coverage is 4 of 9 complete reviews: 2 chapters with accepted corrections verified (batch 1), 2 partially integrated chapters with findings awaiting further decision (batch 2), 0 reviewed unchanged with no recommended correction, 0 explicitly deferred or blocked files, and 5 not yet reviewed. F2-1 and the bounded F2-2 correction are accepted, implemented, and verified. F2-3 through F2-7 and the response-scalar deduction await discussion. The current discussion is F2-3; no next batch is authorized by this correction request. The next planned target is Absolute Timespace alone. Its later review must preserve the now-explicit F2-2 boundary: neither a cosmological scale nor a clock-comparison residual follows from a generic tensor trace without the physical response map. The existing response-recovery obligations remain open. Completed reading coverage and corrected exposition do not close those scientific obligations.
+Coverage is 4 of 9 complete reviews: 3 chapters with all recommended corrections accepted and verified (Ontology, Architrino, Absolute Time), 1 partially integrated chapter awaiting further decisions (Euclidean Void), 0 reviewed unchanged with no recommended correction, 0 explicitly deferred or blocked files, and 5 not yet reviewed. F2-1 through F2-5 have accepted, implemented, and verified corrections. F2-6, F2-7, and the response-scalar deduction await discussion. The current discussion is F2-6; no next batch is authorized by this correction request. The next planned target is Absolute Timespace alone. Its later review must preserve the now-explicit F2-2 boundary: neither a cosmological scale nor a clock-comparison residual follows from a generic tensor trace without the physical response map. The existing response-recovery obligations remain open. Completed reading coverage and corrected exposition do not close those scientific obligations.

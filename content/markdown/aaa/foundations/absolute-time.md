@@ -176,7 +176,9 @@ $$
 
 holds, with no ambiguity and no observer-dependence. Event A temporally precedes B if and only if $T_A<T_B$.
 
-Causal influence is stricter than temporal precedence, and conflating the two is a common error. A can influence B only when $T_A<T_B$ **and** B lies on the wake support emitted from A. Being earlier is necessary; being on the arriving wake is the additional physical requirement. Most earlier events are causally irrelevant to any given later one.
+Causal influence is stricter than temporal precedence. An emission event A can contribute directly at B through that emitted wake only when $T_A<T_B$ **and** B lies on its arriving wake support. Being earlier is necessary; the support condition selects the direct contribution from that particular emission.
+
+Indirect influence can pass through intervening histories. A wake received by another architrino contributes to its acceleration and can change its subsequent trajectory. That architrino emits continuously, so its later emissions carry the changed source history and can affect a later receiver. At B, the directly contributing wake then comes from the intermediate architrino; A's original wake need not pass through B at that reception time. The original sphere is not redirected, and reception does not switch emission on. Each wake reception still obeys its own causal-root condition. Establishing a nonzero effect along a particular chain requires the intervening dynamical response, not merely a sequence of geometrically possible receptions.
 
 ### The arrow of time
 
@@ -394,9 +396,11 @@ The identity claim is developed further in [Architrino](architrino.md).
 
 ## Geodesics and the Absence of Temporal Dynamics
 
-Time has no internal structure and no dynamics. It encodes no forces, no curvature, no acceleration.
+Time carries fixed ordering and duration structure, with no independent temporal dynamics. The interval rule $|T_2-T_1|$ measures separation along the time line; the corresponding squared-duration form is $dT\otimes dT$. This is a fixed mathematical structure, not a field that responds to matter or changes the rate of a physical clock.
 
-The flow of time is trivial: the parameter advances, and there is no geodesic equation to solve because no metric or connection is declared on the bare line. Every substrate acceleration arises from admitted causal-root contributions, including same-transmitter self-hits of an individual architrino and the combined self- and partner-hit ledgers of assemblies. None arises from curvature or dynamics of the time coordinate.
+On the one-dimensional time factor, the flat affine connection preserving $dT$ has zero connection coefficient in the $T$ coordinate. Its geodesic equation, $d^2T/ds^2=0$ for an auxiliary affine parameter $s$, simply describes constant-rate parametrizations of the same line. It supplies no independent evolution law for time itself. The full product connection that also compares spatial vectors across time slices is additional substrate data, as explained in [Absolute Timespace](absolute-timespace.md#the-connection-is-additional-substrate-data).
+
+Every substrate acceleration arises from admitted causal-root contributions, including same-transmitter self-hits of an individual architrino and the combined self- and partner-hit ledgers of assemblies. None arises from curvature or dynamics of the time coordinate. The absence of temporal dynamics means there is no independent dynamical temporal metric or connection to solve for; it does not remove the fixed duration structure.
 
 **Comparison with general relativity.** There, time is part of a dynamical spacetime that curves in response to energy and momentum. Here it is fixed and non-dynamical. Every observed clock dilation, lapse effect, and curvature must emerge from assembly dynamics, wakes, and medium response inside this fixed framework. The comparison does not deny relativistic phenomenology; it assigns it to a recovery layer rather than to fundamental time.
 

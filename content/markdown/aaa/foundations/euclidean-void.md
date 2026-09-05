@@ -134,7 +134,7 @@ Read it as a budget. Whatever effective curvature an observer measures is accoun
 
 There is a subtler way a background could smuggle in geometry, and it is worth closing off explicitly.
 
-Because the void is $\mathbb{R}^3$, it is **contractible** — it can be continuously shrunk to a single point, so it has no holes, handles, or loops that cannot be undone. It is also **parallelizable**, meaning you can lay down a consistent set of reference directions everywhere at once without them tangling. Its bundle of orthonormal frames — the collection of all possible ways to orient a set of perpendicular axes at each point — is therefore globally trivial:
+Because the void is $\mathbb{R}^3$, it is **contractible** — it can be continuously shrunk to a single point, so it has no holes, handles, or loops that cannot be undone. It is also **parallelizable**, meaning you can lay down a consistent set of reference directions everywhere at once without them tangling. After choosing a reference spatial orientation, its oriented orthonormal frame bundle — the collection of ordered perpendicular unit axes at each point with the chosen handedness — is therefore globally trivial:
 
 $$
 F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3),
@@ -142,7 +142,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9c718bbca3ed6ab9)
 
-which says that structure is just space paired with rotations, with no twisting between the two. The same triviality holds for the unoriented version and the general frame bundle.
+which says that structure is just space paired with rotations, with no twisting between the two. The orientation choice is conventional and assigns no physically preferred handedness to the void. The full orthonormal frame bundle includes both handedness classes and has $O(3)$ in place of $SO(3)$. The same triviality holds for that full bundle and the general frame bundle.
 
 The payoff is that the flat connection has trivial **holonomy**: carry a direction around any closed loop in the void and it comes back unrotated. There is no ambient twisting, no path-dependence, and no topological feature the container could use to secretly supply curvature or to label an assembly. If topological protection appears anywhere in this theory, it comes from the configurations inside the void, never from the void.
 
