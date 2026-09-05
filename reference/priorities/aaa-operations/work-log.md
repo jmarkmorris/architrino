@@ -6,6 +6,26 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-05 — Workflow and skill organization accepted
+
+The operator approved the completed 97-file campaign and final review. Recorded acceptance in [Operator Brainstorming](../../op/brainstorming.md#final-review--2026-09-05) and removed the completed discussion from the active priority tracker; no numbered queue item was assigned to this campaign. Prior validation, scientific holds, historical preservation, and bounded behavioral evidence retain their stated scope. The recommended next step is the explicit branch/PR publication procedure, then ordinary workflow use with concrete defects captured in README-op.md. Approval of this campaign does not itself invoke publication. The acceptance edit changes the startup-router source fingerprint; defer `node scripts/build-agent-startup-orientation.mjs --write` and its subsequent `--check` to the designated publication runner or an explicit refresh request.
+
+### 2026-09-05 — Workflow and skill plan prepared for final review
+
+Completed the remaining convergence/source-mining, research launch, role inheritance, and operational procedure review. Corrected mode and write-authority conflicts, optional-prompt presentation, regeneration and publication boundaries, liveness wording, and historical curation framing. All 97 inventory paths now have final dispositions in the [final review record](../../op/brainstorming.md#final-review--2026-09-05). A separate evaluator exercised nine bounded scenarios; Math Preview passed ten tests and rendered 100 expressions in a real chapter with no browser KaTeX errors. The record preserves the exact coverage limits, scientific holds, historical bytes, and mathematical preservation checks. Final structural and startup checks are recorded there; the operator requested completion through final review. No scientific document was edited and no PR workflow was executed.
+
+### 2026-09-05 — Review workflows and skill routing
+
+Reviewed the five Corpus Review owners, research brainstorming, all four repository skill instructions and their interface metadata, and the prompt index. Clarified outcome-based routing, retained skill identifiers and no-edit review boundaries, corrected the Corpus Reviewer independence claim, and routed brainstorming capture to existing subject owners. Math Preview now uses available documented browser tools without requiring a particular separately installed skill. The [family review](../../op/brainstorming.md#workflow-family-review--2026-09-05) records dispositions and representative source walkthroughs.
+
+All four skill validations, strict content validation, priority ranking, whitespace, and changed-file link checks passed. All 97 inventory paths reconcile; four unchanged review owners match the pre-edit baseline. The startup router is stale after these source edits and awaits an authorized refresh; its exact command is recorded in the family review. The Claude floor remains current. No generated writes or scientific document edits were performed. Automatic-selection and execution trials remain pending, as do the other workflow families.
+
+### 2026-09-05 — Shared workflow-source corrections
+
+Corrected the six findings in the [workflow baseline](../../op/brainstorming.md#shared-source-repair-dispositions--2026-09-05). Source mining delegates response and follow-up mechanics to the operator explanation standard and requires explicit regeneration authority. Parallel integration preserves the narrowest supported claim during disagreement. The geometry role packet integrates its explanation without changing mathematical spans. The startup generator identifies editorial self-review accurately, and both startup projections were regenerated under the operator's repair authorization.
+
+Both startup freshness checks passed, as did strict content validation (zero errors and warnings), priority-ranking validation, and the whitespace check. File-link checks passed and all 97 inventory paths remain accounted for. Baseline comparison confirmed unchanged mathematical spans in the edited source-mining and geometry prose, unchanged read-only workflow owners and historical entourage packet, and unchanged authored portions of CLAUDE.md. These checks and the scoped editorial review close F1–F6; they do not establish complete workflow-family conformance or behavioral routing quality. Those remain the next review stage.
+
 ### 2026-09-04 — Photon performance evidence refreshed for shared Markdown runtime changes
 
 - Remeasured the complete 38-file Photon source closure after changes to `MarkdownRuntime.js` and `MarkdownColumnPaginationRuntime.js` on a fresh loopback origin in a dedicated Codex in-app Chromium 152 tab at exactly 3,840 by 2,160 CSS pixels and device-pixel ratio 1.

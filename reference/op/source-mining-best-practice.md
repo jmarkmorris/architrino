@@ -13,9 +13,10 @@ Use the [Source Mining priority](../priorities/source-mining/priorities.md) for 
 ## Authority Map
 
 - [About Architrino](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) owns reference selection, omission, durable identification, and reader-facing presentation; its [AI-assisted research and review policy](../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) owns source-checking and disclosure expectations. Apply those policies to every source family and prompt addendum below rather than treating acquisition as permission to cite.
-- The [convergence campaign](../research-office/cto/prompts/convergence-campaign.md) is the shared protocol authority for convergence behavior: mode selection, edit authority, promotion triage, mathematics-first discipline, closure-goal prompt structure, follow-up prompt format, and handoff fields.
+- The [convergence campaign](../research-office/cto/prompts/convergence-campaign.md) owns mode selection, edit authority, promotion triage, mathematics-first discipline, and convergence evidence requirements.
+- The [operator explanation standard](operator-explanation-standard.md) owns responses, questions, follow-up prompts, and live discussion capture; the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md) owns explanatory prose in both working records and reader-facing material.
 - This guide is the source-intake specialization. It owns source-family acquisition, traceability, source maps, source-specific prompt addenda, mining-history routing, creative reframing, and external technique anchors.
-- The compatibility-identifier `aaa-corpus-advancement` skill is a thin router. It should point source-mining work here after loading the shared convergence campaign protocol.
+- The `aaa-corpus-advancement` skill is a thin router. It points source-mining work here after loading the shared convergence campaign protocol.
 - Source-mining history remains in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). This guide describes process; the history file records completed sources.
 
 If instructions overlap, apply workspace policy first, then the shared convergence campaign protocol, then this source-intake guide.
@@ -29,11 +30,10 @@ Source mining inherits the shared convergence campaign protocol instead of redef
 - operator responses, generated prompts, and live priority capture follow the operator explanation standard;
 - active source-mining threads default to safe scoped edits unless the operator/developer explicitly requests audit/report mode;
 - mined material is triaged as promote now, defer with blocker, discussion-needed, priority-only, duplicate, irrelevant, or too speculative;
-- approval boxes are used only for work outside safe scoped edit authority, such as canonizing a new theory leap, changing terminology policy, updating Archie canon, adding new hurdle infrastructure, or making broad multi-file rewrites;
-- numbered follow-up options use the inherited detailed prompt format;
+- work outside the current authority, such as canonizing a new theory leap, changing terminology policy, updating Archie canon, adding new hurdle infrastructure, or making broad multi-file rewrites, requires the applicable operator decision;
 - source-specific evidence is reported under the operator explanation standard.
 
-This file should not duplicate those formats. It supplies the source-family steps and the source-specific output additions that plug into the shared protocol.
+This guide supplies source-family steps and evidence coverage. It does not define a separate response or follow-up format.
 
 ## Core Operating Rules
 
@@ -58,7 +58,7 @@ This guide is a source-intake and source-processing practice. It is not another 
 
 ## Mining History
 
-The completed target list lives in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). When a source-mining pass mines a new source or source family, add it to that history file with the source identity, link or path when available, and date mined.
+The completed target list lives in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). When the declared write scope permits, record a newly mined source or source family there with its identity, link or path, date, and disposition. An explicit no-file-edit pass supplies the proposed history entry in its response without writing it.
 
 ## Common Source-Mining Prompt Skeleton
 
@@ -67,7 +67,7 @@ Use this skeleton for every source family. Add one source-family prompt addendum
 ```text
 Mine the supplied source for high-quality AAA insights, linkages, mappings, source leads, and theory-advancement candidates, then make safe scoped corpus edits when authorized.
 
-Use the compatibility-identifier `aaa-corpus-advancement` skill in edit-batch mode.
+Use the `aaa-corpus-advancement` skill in the mode authorized by the request.
 
 Source:
 [PASTE LINK, FILE PATH, ARCHIVE ROOT, IDENTIFIER, OR ATTACHMENT DESCRIPTION]
@@ -86,18 +86,18 @@ Required method:
 8. Separate observable/data products from interpretation, and separate external terminology from established AAA terminology.
 9. Do not add gates, certificates, residual inventories, live-ledger checklists, or similar hurdle artifacts unless explicitly asked.
 10. Search likely corpus and priority homes before recommending edits.
-11. Make safe scoped edits, update source-mining history, regenerate derived artifacts when source files changed, and run practical validation checks.
-12. Use inherited approval and follow-up formats for work outside current authority.
+11. Make authorized scoped edits, update source-mining history within the declared write scope, and run practical check-only validation. Report generated drift and the exact repair command. Regenerate only when the operator explicitly requests regeneration or drift repair, or during the authorized final branch/PR process; rerun the corresponding checks after regeneration.
+12. Follow `reference/op/operator-explanation-standard.md` for responses, questions, follow-up prompts, and live capture, and `content/markdown/aaa/archie/academic-style-guide.md` for explanatory prose.
 
-Expected output:
+Evidence to preserve in the authorized research record and explain as relevant under the operator explanation standard:
 - Source summary and source map.
 - High-signal map with timestamps, pages, slides, table rows, dataset ids, URLs, or section names.
 - Corpus value assessment.
 - Claim map: ontology / derivation or closure target / effective summary / speculation.
 - Concrete mathematical advance if the source supports one.
 - Affected-document table with action taken or approval requirement.
-- Source-mining history update, regeneration result, and validation result when applicable.
-- Follow-up prompt options only for work outside the current authority.
+- Source-mining history update, observed generated drift or authorized regeneration result, and validation result when applicable.
+- Unresolved work outside the current authority and the decision or continuation context it needs.
 ```
 
 ## Corpus Deferral Rules
@@ -132,9 +132,9 @@ Cosmology is the standard stress test for this discipline. Split redshift, the s
 
 The same discipline applies to GR, QM/QFT, thermodynamics, and particle phenomenology. A formula from those frameworks may be the thing to recover, the aggregate limit of a deeper mechanism, the wrong ontology with the right benchmark, or a useful bridge that should never be mistaken for assembly-level dynamics.
 
-## Standard Report Shape
+## Source-Mining Evidence Coverage
 
-Every source-mining pass should produce a compact report with these parts when applicable:
+Preserve the following source-specific evidence when applicable in the authorized research record. These fields let a reviewer trace a proposed corpus change to the source and assess its claim boundary. They specify coverage, not mandatory response sections; the operator explanation standard governs how the findings are presented.
 
 1. Source summary: title, author or channel, date, duration or page count, URL or file path, and local artifact paths.
 2. Source map: the exact transcript, slides, Notes pages, PDF sections, web hierarchy, figures, tables, datasets, or references inspected.

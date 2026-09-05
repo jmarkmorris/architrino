@@ -8,6 +8,10 @@ This document defines the standard process for using GitHub issues as an operato
 
 The objective is to keep every issue lifecycle explicit: identify the right issue, understand its evidence, make a scoped fix, validate it, publish it through a pull request, and resolve the GitHub issue only when the repository state supports closure.
 
+## Authority and Communication
+
+This procedure operates within the current task authority. A request to inspect or fix an issue does not by itself invoke the publication lifecycle. Run branch and PR operations only under the explicit invocation contract in [codex-pr-branch.md](git/codex-pr-branch.md). Post issue comments or other messages only when the operator has explicitly authorized that communication; otherwise prepare the proposed text in the local working record. Apply these boundaries to every mode below. Responses and live capture follow the [operator explanation standard](operator-explanation-standard.md), and explanatory prose follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).
+
 ## Operating Principles
 
 - Resolve the repository and issue scope before acting.
@@ -119,7 +123,7 @@ git diff --stat
    - generated outputs expected or not expected;
    - checks required for closure.
 
-When a generated artifact appears stale, run the generator in `--check` mode first. Regenerate only when the generator proves drift or the issue requires regenerated output.
+When a generated artifact appears stale, run the generator in `--check` mode first. Report detected drift and its exact repair command. Regenerate only when the operator explicitly requests regeneration or drift repair, or when the designated runner enters the authorized final branch/PR process.
 
 ## Implementation Process
 

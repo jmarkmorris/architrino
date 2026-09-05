@@ -1,14 +1,15 @@
 ---
 name: aaa-corpus-advancement
-description: Use when the user asks to converge, audit, integrate, mine, or explore the Architrino corpus. Routes the request to the live Research Office convergence and source-mining procedures.
+description: Run Architrino corpus convergence campaigns and mine external sources for corpus improvements. Use for active reconciliation and mathematical development; review feedback and open-ended brainstorming have separate workflows.
 ---
 
-# AAA Corpus Advancement
+# Corpus Convergence and Source Mining
 
-Use this as a discovery router, not as a duplicate procedure.
+This skill selects the live procedure for actively reconciling the corpus and developing mathematical material from corpus, priority, or source signals.
 
-1. Read the repository `AGENTS.md`.
-2. Read `reference/research-office/cto/prompts/convergence-campaign.md`.
-3. When the request includes an external source, also read `reference/op/source-mining-best-practice.md`.
-4. Follow those live files for scope, claim discipline, edits, validation, and closeout.
+1. Follow the repository [startup instructions](../../../AGENTS.md).
+2. Read [convergence-campaign.md](../../../reference/research-office/cto/prompts/convergence-campaign.md) and select the mode supported by the request, including its audit/report mode when edits are excluded.
+3. When source mining is requested, also read [source-mining-best-practice.md](../../../reference/op/source-mining-best-practice.md).
+4. Follow those owners for scope, claim discipline, edits, and validation, and their linked standards for responses and exposition.
 
+An external link alone does not select source mining. A request to judge, apply, or verify supplied review feedback belongs to [the review workflows](../corpus-review-workflow/SKILL.md); open-ended discussion and provisional idea capture belong to [research exploration](../research-exploration/SKILL.md). A specifically requested convergence exploration remains governed by the convergence procedure.

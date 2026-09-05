@@ -1,4 +1,4 @@
 interface:
-  display_name: "AAA Corpus Advancement"
-  short_description: "Route corpus advancement and source mining."
+  display_name: "Corpus Convergence and Source Mining"
+  short_description: "Route corpus convergence and source mining."
   default_prompt: "Use $aaa-corpus-advancement for this Architrino corpus or source-mining task."

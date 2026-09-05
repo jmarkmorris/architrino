@@ -28,7 +28,7 @@ Discover available roles directly from:
 
 Use a role file's basename before `.md` as the requested agent name. Examples from the live collections include `bill-thurston`, `emmy-noether`, `henri-poincare`, `jack-k-hale`, `hassler-whitney`, `lars-hormander`, `ramon-e-moore`, `germund-dahlquist`, `red`, and `sig`.
 
-Re-list the directories before every dispatch because the roster can change. Do not treat `system-prompt.md` as a role, and do not invent a role without a live role file.
+Re-list the directories before every dispatch because the roster can change. Do not treat `system-prompt.md` as a role, and do not invent a role without a live role file. Read the [Specialist charter](../../specialists/specialist.md) with the selected lens. Preserve each lens's local-use boundary: inherited theory packets and unverified thresholds are research leads, not premises or acceptance criteria. The historical entourage system prompt is excluded from local dispatch.
 
 ## Safe startup
 

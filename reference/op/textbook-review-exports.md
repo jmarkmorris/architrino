@@ -1,5 +1,7 @@
 # Textbook Review Exports
 
+Responses and working-document capture follow the [operator explanation standard](operator-explanation-standard.md); explanatory prose follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).
+
 This procedure owns maintainer instructions for the [PDF download page](../../content/markdown/aaa/archie/download-textbook-pdf.md). The public page explains access, reading order, and snapshot limitations; it does not carry build commands.
 
 Run writes only after an explicit regeneration or fix-drift request, or during the [final branch/PR process](git/codex-pr-branch.md). Ordinary edits use check mode and report drift.

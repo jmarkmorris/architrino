@@ -5,7 +5,7 @@ Starter prompt to paste into a new thread:
 ```text
 Converge the AAA corpus by turning priority, source, or corpus signals into concrete mathematical artifacts, safe scoped edits, and clear follow-up goals.
 
-Use the compatibility-identifier `aaa-corpus-advancement` skill in self-running mode.
+Use the `aaa-corpus-advancement` skill in self-running mode.
 ```
 
 Optionally follow it with a specific lane, shard, priority area, or edit-batch instruction.
@@ -36,14 +36,14 @@ Writing style follows the [academic style guide](../../../../content/markdown/aa
 
 ## Source Mining Standard
 
-When a source document, paper, lecture note, accepted observation list, or prior audit result is supplied, mine it for all valuable AAA-relevant material, not only the strongest highlights. Read section by section or observation by observation. For each relevant signal, decide whether it should be:
+When source mining is requested, mine the supplied source document, paper, lecture note, accepted observation list, or prior audit result for all valuable AAA-relevant material, not only the strongest highlights. Read section by section or observation by observation. For each relevant signal, decide whether it should be:
 
 - promoted directly into `content/markdown/aaa` as safe, scoped, canon-conforming textbook prose;
 - converted into a concrete theorem target, equation, invariant, proof route, closure condition, scale estimate, or simulation target in the current batch;
 - staged as a specific Op-discussion prompt because it would canonize a new theory leap, terminology policy, or broad ontology claim;
 - rejected as irrelevant, duplicate, too speculative, or lower value than the core geometry/math work at hand.
 
-The pass is complete only when the valuable material has been exhaustively triaged and the safe portion has advanced the AAA textbook corpus. Do not stop after one or two high-leverage edits if additional source signals can safely strengthen core geometry, dynamics, closure mathematics, branch certification, Lorentz/effective-metric recovery, photon closure, mass-map work, or executable validation targets.
+The pass is complete when the in-scope material has been exhaustively triaged and every supported action within the declared authority is complete. A report-only pass can complete with no corpus edits; unsupported or unsuitable material receives an explicit disposition. Do not stop after one or two high-leverage edits if additional source signals can safely strengthen core geometry, dynamics, closure mathematics, branch certification, Lorentz/effective-metric recovery, photon closure, mass-map work, or executable validation targets.
 
 For acquisition details, source-family prompt addenda, traceability, mining-history updates, and external technique anchors, use [source-mining-best-practice.md](../../../op/source-mining-best-practice.md). This protocol governs shared triage and convergence behavior; the source-mining guide governs how each source family is collected, inspected, and mapped.
 
@@ -90,9 +90,9 @@ Do not call a requirement card theory progress by itself. It contributes to theo
 
 Record the current status, operating mode, authority used, changed files, validation, blockers, and any continuation context in the owning priority material. Surface the parts needed to assess the current result in the response under the operator explanation standard. No separate closing handoff block is required.
 
-For self-running exploration, distinguish claim-card writes from AAA prose edits. If only a claim card was created, use `Authority used: claim-card-only`; if no AAA content changed, say so directly in `Files changed`.
+For self-running exploration, distinguish claim-card writes from AAA prose edits. Record claim-card-only work separately from corpus edits without imposing a fixed response label.
 
-Use one natural work packet per thread, but do not create an artificial stop just because the first pass produced a next action. If the current prompt grants broad convergence, integration, self-running, or team-agent authority, finish the first pass and continue into the highest-value direct follow-on task while it remains safe, scoped to the same workstream, and does not require Op discussion or a theory/canon/terminology decision. Do not ask Op to approve safe edits that are already low-risk and canon-conforming. Package only work outside current authority, risky edits, major scope expansions, new theory leaps, canon/terminology decisions, blocked tasks, or separate long-running packets as detailed prompt options. Ask for approval in the current thread only when the decision is required to complete the current task.
+Use one natural work packet per thread, but do not create an artificial stop just because the first pass produced a next action. If the current prompt grants broad convergence, integration, self-running, or team-agent authority, finish the first pass and continue into the highest-value direct follow-on task while it remains safe, scoped to the same workstream, and does not require Op discussion or a theory/canon/terminology decision. Do not ask Op to approve safe edits that are already low-risk and canon-conforming. Package only work outside current authority, risky edits, major scope expansions, new theory leaps, canon/terminology decisions, blocked tasks, or separate long-running packets as next actions, with reusable prompts when useful. Ask for approval in the current thread only when the decision is required to complete the current task.
 
 ## Next Actions and Continuation Prompts
 
@@ -278,7 +278,7 @@ Hygiene posture:
 Terminology, notation, cross-linking, and cleanup still matter, but they are secondary in this variant. Let them appear when they block mathematical clarity or provide a cheap safe edit candidate. Do not let a self-running exploration collapse into a terminology sweep, link-gardening pass, or vague future-work inventory unless Op explicitly asks for that.
 
 No empty future-work prose:
-Do not write paragraphs whose only content is that a topic deserves future attention. Either do the smallest useful mathematical step now, make the safe AAA edit when the current request authorizes it, draft the exact AAA edit for a later bounded pass, or turn the work into a detailed next-action list prompt. If the item belongs in `reference/priorities`, name the owning priority file and the concrete action that should be added or updated.
+Do not write paragraphs whose only content is that a topic deserves future attention. Either do the smallest useful mathematical step now, make the safe AAA edit when the current request authorizes it, draft the exact AAA edit for a later bounded pass, or record a concrete next action, with a reusable prompt when useful. If the item belongs in `reference/priorities`, name the owning priority file and the concrete action that should be added or updated.
 
 Before exploring:
 1. Run `git status --short`.
@@ -295,11 +295,11 @@ Use this protocol when Op starts multiple threads with this same prompt and want
 1. Check for existing claim cards:
    - `rg --files reference/research-office/research-history/exploration-reports 2>/dev/null`
    - If claim cards exist, read the recent active ones before choosing lanes or path shards.
-2. Create a short claim card before deep work. This metadata write is allowed for coordination in this exploration variant. In a multi-thread or team-agent run, do not edit AAA content unless Op assigned explicit non-overlapping edit authority; return detailed prompt options instead.
+2. When the request permits working-record writes, create a short claim card before deep work. An explicit no-file-edit instruction overrides this coordination write. In a multi-thread or team-agent run, do not edit AAA content unless Op assigned explicit non-overlapping edit authority; return scoped implementation proposals instead.
    - Claim directory: `reference/research-office/research-history/exploration-reports/`
    - Filename pattern: `YYYYMMDD-HHMMSS-short-focus.md`
    - Include: thread label, timestamp, selected lanes, selected path shard, excluded claims read, search patterns planned, and expected output.
-   - If the environment cannot write a claim card, print the same claim information at the top of the response and proceed with the least-overlapping visible territory.
+   - If writing is prohibited or unavailable, retain the relevant coordination information in the response under the operator explanation standard and proceed with the least-overlapping visible territory.
 3. Prefer unclaimed territory. If another active claim already owns the same lane and path shard, choose a different shard or a different lane before continuing.
 4. Treat claim cards older than 48 hours as historical unless they explicitly say work is still active.
 5. At the end, report the claim card path and the explored territory. If practical, update the claim card with final status and a one-paragraph summary.
@@ -323,7 +323,7 @@ Internal exploration palette:
 If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Give high priority to postures that can produce a concrete mathematical artifact now, bias away from active claim cards and recently covered territory, and keep hygiene postures as occasional secondary passes. State the selected posture in the claim card and final report.
 
 - **Priority-ledger convergence:** go through `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` to find operator-maintained issues that can move the AAA corpus toward canon. Convert priority items into present mathematical work: proof routes, definitions, equations, missing derivations, worked examples, validation ledgers, cross-document integration, or safe edit batches. Do not link from authored AAA prose to priority files; promote the substance into `content/markdown/aaa` when it belongs there.
-- **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, mathematical conjectures, and leaps of intuition. Do not edit speculative ideas into AAA prose; return disciplined theory cards with a candidate mathematical statement, assumptions, first calculation, failure mode, and detailed discussion or implementation prompt.
+- **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, mathematical conjectures, and leaps of intuition. Do not edit speculative ideas into AAA prose; return disciplined theory cards with a candidate mathematical statement, assumptions, first calculation, failure mode, and a concrete discussion or implementation proposal.
 - **Closure lab:** focus on theorem/closure targets such as Lorentz behavior, mass/inertia, photon stability, reaction provenance, emergent metric closure, and cosmology observer variables.
 - **Proof-route forge:** choose one important claim and outline the objects, assumptions, lemmas, equations, invariants, simulations, or counterexamples needed to turn it into a defensible derivation.
 - **Recent-change propagator:** mine recent git changes for theory advances and sweep related documents for integration opportunities.
@@ -361,7 +361,7 @@ Lane B: Random serious-document deep dive
 - If `shuf` is unavailable, choose a document by another reproducible method and state how it was chosen.
 - Read the chosen document, then inspect sibling documents, incoming/outgoing links where practical, and relevant canon.
 - Ask: What is the strongest defensible mathematical improvement this document can support today?
-- Output the candidate mathematical improvement first, then safe edits, missing derivation targets, and Op-discussion leaps.
+- Preserve the candidate mathematical improvement, safe edits, missing derivation targets, and Op-discussion leaps as evidence coverage under the operator explanation standard.
 
 Lane C: Missing-material and stub scan
 - Search for unwritten, thin, placeholder, or future-work material.
@@ -458,10 +458,10 @@ Evidence to capture during the work; use the operator explanation standard for r
    - closure-target ledger entries,
    - repeatable search patterns,
    - candidate validation rule additions.
-11. Detailed continuation prompt options and next-action list:
+11. Continuation context and next actions, with detailed prompts only when useful:
    - recommended next thread type: audit/report, edit-batch, discussion, or team-agent,
    - each relevant next action accompanied by its recommendation, following the operator explanation standard,
-   - every actionable leap of intuition represented as a discussion or implementation prompt,
+   - every actionable leap of intuition preserved as a proposal with the decision or implementation context it needs,
    - exact search commands or source paths that should seed that new thread,
    - no request for Op approval unless approval is required to complete this thread's current task.
 12. Durable handoff details in the owning priorities. Distinguish claim-card-only work, report-only work, and edited files, and say whether any AAA prose changed.
@@ -547,7 +547,7 @@ The coordinator must then:
 5. Identify recurring drift patterns for automation only when a concrete rule can be stated.
 6. Identify theorem targets that should enter a closure-target ledger, with candidate statement, objects, and first proof step.
 7. Produce one ranked convergence report.
-8. Make safe, non-overlapping edits only when Op explicitly granted team-agent edit authority; otherwise return detailed prompt options for coordinator-led edit batches.
+8. Make safe, non-overlapping edits only when Op explicitly granted team-agent edit authority; otherwise return scoped proposals for coordinator-led edit batches.
 
 Important constraints:
 - Preserve TeX exactly.

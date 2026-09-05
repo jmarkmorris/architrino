@@ -17,12 +17,12 @@ This file is not the authority. If this file conflicts with a source file, the s
 
 | Workflow | Use When | Minimal Live Read | Live Re-Read Trigger |
 | --- | --- | --- | --- |
-| Default thread startup | Choose the smallest live procedure that fits the requested work, then read only the linked files needed for that procedure. | [reference/op/README.md](README.md)<br>[reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md)<br>selected specialized procedure | Use the live source files when the task asks about policy, exact command order, branch state, validation, or source authority. |
+| Default thread startup | Choose the smallest live procedure that fits the requested work, then read only the linked files needed for that procedure. | [reference/op/brainstorming.md](brainstorming.md)<br>[reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md)<br>selected specialized procedure | Use the live source files when the task asks about policy, exact command order, branch state, validation, or source authority. |
 | Principal Investigator research | Launch one Principal Investigator with a bounded brief, then select only the role-based Specialists needed for independent research or implementation. | [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md)<br>[reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md)<br>relevant Foundations and live owner files | Check active task status before dispatch, preserve claim boundaries, and treat every role as an analytical lens rather than theory or acceptance authority. |
 | Corpus convergence | Move the corpus toward current canon by turning priority, source, or corpus signals into concrete mathematical artifacts and safe scoped edits when authority allows. | [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>relevant priority or corpus files | Read the full protocol before running a campaign, because it owns modes, edit authority, handoff shape, and priority action prompts. |
 | Source mining | Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations. | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md)<br>[reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md)<br>[reference/op/source-mining-best-practice.md](source-mining-best-practice.md)<br>source-family addendum | About Architrino owns reference selection, presentation, and source-checking policy; use the mining guide for acquisition, traceability, and source-family procedures. |
 | Corpus review | Prepare a review-only pass across a directory in scene or textbook order, one file per turn. | [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md)<br>[content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>style and terminology guides listed by the prompt | Read the live target file and nearby canon before raising file-specific findings. |
-| Review comment integration | Classify review comments, integrate the valid ones, run an independent closure-quality review, and stage larger issues in priorities. | [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md)<br>target document<br>nearby corpus and style authorities | Review comments are input, not authority; verify against live canon before editing. |
+| Review comment integration | Classify review comments, integrate the valid ones, perform a full-document editorial self-review, and stage larger issues in priorities. Independent validation requires a separate mathematical reference or instrument. | [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md)<br>target document<br>nearby corpus and style authorities | Review comments are input, not authority; verify against live canon before editing. |
 | Priority lane resume | Resume a named priority workstream from live state and make the next scoped progress step. | [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md)<br>[reference/priorities/README.md](../priorities/README.md)<br>priorities.md, work-queue.md, brainstorming.md, and work-log.md | Do not rely on memory for queue state; read work-queue.md and its owning packet. |
 | Core geometry theorem review | Request concentrated mathematical review of one theorem target, equation stack, branch certificate, or proof gap. | [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md)<br>the exact theorem or packet under review<br>nearby foundation, dynamics, and terminology files | Use live equations and local notation before making proof or closure claims. |
 | Branch, commit, push, and PR | Run the explicit branch/PR process, including validation, scoped staging, push, PR state checks, and rollover when requested. | [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md)<br>[.githooks/pre-commit](../../.githooks/pre-commit)<br>[.githooks/pre-push](../../.githooks/pre-push) | Always re-read the live procedure before publishing or regenerating; command order and required checks are policy. |
@@ -77,31 +77,31 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 149 | `92e942c7c6b8dcf7` |
+| [AGENTS.md](../../AGENTS.md) | 149 | `e4b76d2e5bd3a60c` |
 | [README.md](../../README.md) | 220 | `81b723567a77aae0` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 175 | `f2c36f33972d8d74` |
-| [reference/op/README.md](README.md) | 36 | `874e700c221e909c` |
+| [reference/op/brainstorming.md](brainstorming.md) | 358 | `8fa77cf15639d246` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 187 | `2332dcae26a52225` |
-| [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 188 | `b3d00da1ec2ae20e` |
-| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `816f3be029c6eec7` |
+| [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
+| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 99 | `3205999b99d803a1` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `df69b95fff3c8cf7` |
-| [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 58 | `1e4f901a3869e4b4` |
-| [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `62ed39fc2401a7f1` |
-| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 847 | `5b6110af0e8eb333` |
+| [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
+| [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `842222967d711edf` |
+| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 847 | `ef29302af46873bc` |
 | [reference/priorities/README.md](../priorities/README.md) | 70 | `acd0396491128f1c` |
-| [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 46 | `675947d23b17ba2b` |
+| [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 59 | `63963448fb79a605` |
 | [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 72 | `e2189b99c805d2ad` |
-| [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 102 | `40170ade3845b7b7` |
-| [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 575 | `a26571705a169714` |
-| [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md) | 108 | `fdac2ae0b73131c4` |
+| [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 102 | `6bc67e3dcddc6b1e` |
+| [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 575 | `52db7f1fc8203b9d` |
+| [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md) | 108 | `43b06ff65ea3671b` |
 | [reference/research-office/cto/prompts/selective-reference-pass.md](../research-office/cto/prompts/selective-reference-pass.md) | 65 | `600bdce36f98ad7e` |
 | [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md) | 113 | `b0490c175b08b854` |
 | [reference/research-office/cto/prompts/review-comment-assessor.md](../research-office/cto/prompts/review-comment-assessor.md) | 58 | `2ba934ef7c617d05` |
 | [reference/research-office/cto/prompts/review-closure-verifier.md](../research-office/cto/prompts/review-closure-verifier.md) | 56 | `cf186356866a913c` |
 | [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md) | 52 | `27a2322538682261` |
-| [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | 61 | `509a096fe5451928` |
+| [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | 61 | `79985e008194208f` |
 | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md) | 79 | `bab0a2cbe3a73eab` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 518 | `f7e80e2b9436568f` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 364 | `9b6b4c319d1db052` |
