@@ -1,4 +1,4 @@
-Closure goal: Integrate supplied review comments into the target document using live repo evidence, then perform a full independent closure-quality review of the document, improve it as needed, and track any larger unresolved issues in the appropriate `reference/priorities/` bucket.
+Integrate supplied review comments into the target document using live repo evidence, then perform a full independent closure-quality review of the document, improve it as needed, and track any larger unresolved issues in the appropriate `reference/priorities/` bucket.
 
 # Integrator Reviewer Prompt
 

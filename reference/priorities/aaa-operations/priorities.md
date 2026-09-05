@@ -23,6 +23,12 @@ This workstream tracks operational discipline for the project as the public weba
 4. Deployment decisions should be evidence-bound: site size, bundle size, static transfer, monthly bandwidth estimate, build/deploy behavior, artifact retention, browser performance, and cost model must be measured before changing hosting strategy.
 5. Operational work should protect product quality without creating a second solver path or bypassing EOM solver ownership.
 
+## Operator Response and Discussion Capture
+
+The [operator explanation standard](../../op/operator-explanation-standard.md) owns response mechanics, and the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md) defines writing style. The operator has accepted flexible answer-first responses, explanation proportional to the question, live organized capture of substantive discussion in the owning `priorities.md`, and a final numbered list of possible next actions with a recommendation for each. Fuller explanations, accepted executable tasks, and chronology retain the existing sibling-document split. Academic prose remains the standard so prepared material can be promoted into the corpus at its supported claim level.
+
+The revised standard is ready for operator review. The separate completion report and mandatory closure-goal footer are removed from the authored guidance. Related clarification questions may be bundled; decisions needed now are distinguished from optional or deferred follow-ups. The remaining review is whether the revised document and its short examples express the intended workflow; it does not reopen the accepted writing-style decision. Strict content validation and priority-ranking validation passed. Startup projection checks report drift in `reference/op/agent-startup-orientation.generated.md` and the generated floor of `CLAUDE.md`; the authored generators are updated, and regeneration is deferred until explicit authorization under the repository generation policy. The required commands are `node scripts/build-agent-startup-orientation.mjs --write` and `node scripts/build-claude-bootstrap-floor.mjs --write`, each followed by its corresponding `--check`.
+
 ## Work Queue
 
 The locally ranked operational tasks, measurement requirements, and completion boundaries live in [work-queue.md](work-queue.md).

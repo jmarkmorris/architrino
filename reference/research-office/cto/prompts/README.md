@@ -2,9 +2,9 @@
 
 This directory holds reusable prompts for CTO-led repository work. Use it for prompts that are general enough to start future tasks without being tied to one historical run, one priority packet, or one generated artifact.
 
-All reusable prompts in this directory should begin with `Closure goal:` and should avoid addressing an agent by name. Role labels and reviewer lenses may appear inside the prompt when they are useful context.
+All reusable prompts in this directory should begin directly with the task and should avoid addressing an agent by name. Role labels and reviewer lenses may appear inside the prompt when they are useful context.
 
-Every prompt in this directory produces operator-facing output, and [the operator explanation standard](../../../op/operator-explanation-standard.md) is the sole authority for that output: audience, explanation density, response length, structure, register, question format, and the required `Open items:` block. It applies to each prompt here whether or not that prompt names it, and no prompt may restate, narrow, or override its rules.
+Every prompt in this directory produces operator-facing output, and [the operator explanation standard](../../../op/operator-explanation-standard.md) is the sole authority for that output: audience, explanation density, response length, structure, register, question format, and live priority capture. It applies to each prompt here whether or not that prompt names it, and no prompt may restate, narrow, or override its rules.
 
 The compact cross-agent startup map is generated at [../../../op/agent-startup-orientation.generated.md](../../../op/agent-startup-orientation.generated.md). Use the generated map for quick routing, then read the live prompt file selected for the task.
 

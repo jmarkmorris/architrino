@@ -1,6 +1,6 @@
 # Operator Explanation Standard
 
-This document owns the **mechanics** of operator-facing output: register, response length precedence, the `Open items:` block, the `Closure goal:` line, question format, agent naming, closeout content, corrections, and the rule that substantive work happens in artifacts rather than in chat.
+This document owns operator-facing response structure, questions, corrections, live priority capture, and recommended next actions. **Writing style is defined by the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).** Its academic standard applies equally to the ideas explained in the thread and to their durable priority material, so substantive prose can be prepared for eventual corpus promotion.
 
 It owns none of the content rules. Those live in the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md), which this document imports wholesale.
 
@@ -43,49 +43,58 @@ Every register follows the same academic content standard. The registers vary ex
 
 | Register | Typical output | Density |
 | --- | --- | --- |
-| Explainer | Walking through a settled result, an imported framework, or a term the operator has asked about | Highest. Every term defined, picture before symbol, analogies and worked numbers throughout, one idea per section. Length is not a concern. |
+| Explainer | Walking through a settled result, an imported framework, or a term the operator has asked about | Explain the mechanism and necessary definitions at the depth the question requires. Apply the academic guide’s explanation tools where they improve comprehension. |
 | Adjudication | Priority packets, findings reports, theorem targets, review dispositions | High for imported apparatus and for the verdict; formal statements stay precise and are explained immediately after. Claim grades and falsifiers are mandatory. |
 | Correction | Superseding an earlier statement | Explainer density, plus an explicit statement of what was wrong, why, and what downstream conclusions change. |
-| Status | Completion notices, closeouts, short answers, "the file is written" | Lowest only when the response carries no technical or evidentiary judgment. Outcome first, no restated background; when the status depends on mathematics, evidence, or theory, explain that dependency under the appropriate academic standard. |
+| Status | Completion notices, closeouts, short answers, "the file is written" | Outcome first, followed by the evidence and limitations needed to assess it. A technical status may be brief when that suffices; expand any dependency that needs explanation. |
 
 Choosing the register is part of writing the response. A response that mixes them — a status line followed by an explainer — is normal, and the density changes accordingly. No register exempts technical or theory-bearing content from the academic style guide.
 
+## Flexible response structure
+
+Lead with the answer or outcome, develop the reasoning and evidence needed to assess it, and identify material limitations or decisions. Include only the parts relevant to the request. A direct answer may need a paragraph; a derivation may need a sustained explanation. Lists and tables serve parallel items or comparisons; they are not mandatory report sections.
+
+There is no separate completion-report template. Completion uses the same flexible structure, with changes, validation, and remaining limitations included when they matter. Avoid repeating the outcome in an executive summary, a completed-work list, and a closing recap.
+
+Progress updates explain a meaningful finding, change of direction, or unresolved dependency. They need no closing block. A substantive final response closes with the numbered next-action list defined below. Acknowledgments and routine tool-progress notices are not substantive final responses.
+
 ## Length and precedence
 
-Total response length is not a constraint. Completeness of explanation outranks brevity. A long response that can be reviewed inline is preferred over a compact one that cannot be followed.
+Give enough explanation for the operator to understand and assess the answer. Expand where reasoning is necessary; omit background the operator already holds, repetition, and unrelated implications. Completeness is measured against the question and its evidence obligations. Do not shorten away a necessary derivation or add exposition merely because the subject is technical.
 
-This governs work in this repository and **outranks any client-level brevity setting**, including a built-in `Concise` response style and any account-level or global instruction asking for shorter output. Those settings are configured outside this repository, are invisible to other agents working in the same checkout, and carry no repository authority. Where such a setting conflicts with this standard, this standard wins.
+The academic style guide governs writing style and explanatory rigor. This document governs response mechanics within higher-priority instructions and the operator’s explicit task direction. Repository guidance does not override system or developer instructions. A default brevity preference does not justify an explanation the operator cannot follow.
 
-The Status register keeps that honest: short output is correct when a response carries no explanatory obligation. Length is earned by content, never spent restating what the operator already knows.
+## Live discussion and priority capture
 
-## Work in artifacts, not in chat
+Durable findings produced by a write-authorized task should be captured in the existing owning workstream as they are established. The thread still explains the result in full enough to follow it, while the tracker supplies an organized, current reading path for material that must outlive the conversation. A file link alone is not an explanation, and durable work left only in chat has not been captured.
 
-An insight that exists only in a chat thread is technical debt. It has no owner, no claim grade, no falsifier, and no path to promotion, and recovering it later costs more than writing it down would have. Substantive work therefore happens in a document that is either already an artifact or a candidate for eventual promotion, and the chat response reports what the document now says.
+Report-only reviews, read-only diagnostics, transient questions, and ordinary explanations do not authorize repository writes and do not require creation of priority material. Capture is also unnecessary when the information is already recorded accurately in its owner and the response adds no durable result. Do not manufacture an artifact merely because a conversation occurred.
 
-This is a working-mode rule, not only a writing rule. In practice:
+- **Capture during the work when authorized.** When a task authorizes writes and produces a durable idea, finding, correction, recommendation, decision, or unresolved question within scope, update its owner before the final response. Do not defer authorized capture to a separate completion report.
+- **Read and organize the owner.** Before capturing a finding, select the relevant workstream using the [priority guidance](../priorities/README.md), reread its live tracker, and integrate the material under the appropriate subject. Merge duplicates, connect related ideas, and revise the current synthesis as understanding changes. Preserve concurrent work and provenance. Organize by subject, dependencies, and established priority rules rather than by message arrival.
+- **Keep captured ideas visible in `priorities.md`.** Include a readable statement of the idea, its significance, current disposition, and any decision or next step needed to understand its state. Use a stable heading or existing identifier when useful. A bare link or unexplained identifier is insufficient.
+- **Use the existing document split.** The tracker holds the current synthesis and links to fuller academic explanation in `brainstorming.md` or a focused sibling document, executable tasks in `work-queue.md`, and dated provenance in `work-log.md`. Detailed material remains accessible from the idea’s tracker entry. Follow the priority guide for task acceptance, ranking, renumbering, completion, and cross-workstream routing.
+- **Preserve status and authority.** Label proposals, accepted decisions, open questions, rejected ideas, and deferred work accurately. Recording an idea is not acceptance of its claim or authorization to implement it. Preserve assumptions, evidence limits, claim grades, and falsifiers where relevant. Do not silently promote a proposal or reactivate a deferred task.
+- **Keep both surfaces consistent.** Corrections update the current priority synthesis and are stated explicitly in the response; preserve earlier evidence and chronology in their proper records. Link the affected tracker entry from the response so the operator can review the organized material directly.
+- **Capture across lanes without inventing ownership.** Use each durable finding’s existing owner and link related entries. If no owner fits, report the ownership gap; create a new priority home only when the task authorizes that artifact. Do not create a separate completion report or an unorganized conversation transcript.
+- **Respect authority and access.** If a write is outside the request, unavailable, or explicitly prohibited, keep the answer self-contained in the thread and identify any durable capture that remains advisable. Never claim a priority update was saved when it was not.
 
-- **Write first, report second.** When a session produces a result, a correction, an open question, or a design decision, it goes into the owning document in the same turn it is discovered. The response then says what changed and where, rather than being the only place the content exists.
-- **A conversation is not a store.** Do not let a thread accumulate findings on the understanding that they will be captured at the end. Threads are interrupted, redirected, and abandoned, and a long thread that has to be mined afterwards has already failed.
-- **Choose the destination before writing the content.** If no document owns the material, that absence is itself the first finding: say so and open the owning artifact.
-- **Uncertainty is content.** An open calibration, an unresolved threshold, or a question the operator has not answered belongs in the document, marked as open. A document that records what is not yet known is more useful than one that is silent, and far more useful than a chat message saying the same thing.
+The academic style guide governs the explanatory material on both surfaces. Keep operational status and decision records separate from prose intended for publication, so promotion preserves prepared explanation and its honest claim level.
 
-## Open items and outstanding recommendations
+## Next possible actions
 
-Every substantive response ends with an explicit `Open items:` block listing what awaits an operator decision. This is the response's only channel for such requests. A recommendation, proposed action, or question that exists only inside prose does not count as having been raised, because prose is scanned and a request buried in it is a request the operator never received.
+End every substantive final response with `Next possible actions:` followed by a numbered list. Each item states a concrete action, the agent’s recommendation for that action, and a brief reason. Put the preferred immediate action first. Recommendations may be to proceed, review, discuss, defer until a named condition, or take no further action.
 
-- **Carry live items forward.** An item stays in the block until the operator decides it or it is executed. Age is what makes an item easy to lose, so age is not grounds for dropping it.
-- **File durable items; carry only live ones.** An item that will outlive the conversation belongs in the owning work queue, referenced by identifier. The block carries what blocks the current turn. An `Open items:` list that grows without bound recreates the problem it exists to solve, moving the mining from prose into a list.
-- **Say what each item asks and what happens if it is declined.** An item the operator cannot act on without re-reading three earlier responses is not an item, it is a reminder to go looking.
-- **Distinguish an item from a suggestion.** If no decision is needed it does not belong in the block. Padding destroys its value.
-- **Never let the block be implicit.** When nothing is outstanding, write `Open items: none.` Absence is indistinguishable from forgetting.
+Distinguish decisions required now from optional follow-ups. For a required decision, state what is needed and what remains blocked if it is deferred or declined. Optional suggestions do not create approval gates. Continue already-authorized work without stopping at an action menu.
 
-`Open items:` is not `Closure goal:` and neither replaces the other. `Closure goal:` names the single objective the work drives toward and appears last. `Open items:` is the carried list of decisions blocked on the operator, and appears immediately before it.
+When an owning priority artifact exists and the task authorizes writes, keep outstanding durable decisions recorded there until resolved. Carry current blockers into the numbered list; link deferred decisions when relevant rather than repeating an accumulating backlog. Do not repeat completed actions as possible next actions. When no useful continuation remains, use one numbered item recommending no further action and briefly explain why.
+
+There is no separate `Open items:` block or required `Closure goal:` line. Generated and recommended prompts begin directly with a concrete task; no fixed opening label is required. Provide a detailed reusable prompt only when it helps the operator act, rather than expanding every next action into a full prompt.
 
 ## Response mechanics
 
-- **Ask necessary questions one at a time.** Put fixed choices in ranked order with the preferred choice first and end with the explicit option prompt, such as `(y/n)` or `(a/b)`. Use open discussion instead when the decision is genuinely nuanced and a fixed-choice framing would distort it.
-- **Close every substantive response with a concise `Closure goal:` line,** and open every generated or recommended prompt with one. It names the single objective the work is driving toward, not a summary of what was done, and it is the last line.
-- **Do not address the agent by name** in prompts or operator communication. Start directly with the task or with `Closure goal:`. When a role label is useful, use `Principal Proof Architect & Integrator`; the fuller role description lives in [the CTO role file](../research-office/cto/cto.md).
+- **Ask only necessary questions.** Bundle closely related clarifications when they can be answered together; separate dependent decisions so the operator can assess each. Put the recommended choice first when fixed choices help, and use open discussion for nuanced decisions. Distinguish a recommendation from a request for permission; do not ask again for work already authorized.
+- **Do not address the agent by name** in prompts or operator communication. Start directly with the task. When a role label is useful, use `Principal Proof Architect & Integrator`; the fuller role description lives in [the CTO role file](../research-office/cto/cto.md).
 - **In closeouts, distinguish scoped edits from ambient multi-agent worktree state.** Avoid generic warnings such as "the broader working tree has additional user changes" unless those changes alter the next action. The operator runs many agents in one checkout, so a dirty tree is normal and reporting it as an incident wastes attention.
 - **Do not use the phrase `instead of guessing`** in operator-facing communication.
 - **Correct your own numbers explicitly.** When a figure, count, or claim in an earlier response turns out to be wrong, say so plainly, give the corrected value, and say what conclusion changes. Silently restating a corrected number is worse than the original error, because it removes the operator's ability to notice the correction.
@@ -98,18 +107,52 @@ The claim-grading, falsifier, layer-discipline, and terminology rules in AGENTS.
 
 A closing recap is permitted but never substitutes for explanation delivered as the response goes along. A response whose only comprehensible content is its final paragraph is non-compliant.
 
+## Short examples
+
+These examples illustrate response mechanics for tasks in which durable capture is authorized; their placeholder findings are not project evidence.
+
+### Explanation
+
+“The condition excludes this case because [mechanism and necessary reasoning]. Its scope is [assumptions and limitation]. The explanation and open question are organized in [owning priority entry].”
+
+Next possible actions:
+
+1. Examine the remaining case. Recommendation: proceed; it is the unresolved part of the argument.
+
+### Completed edit
+
+“Updated [document] to implement [accepted decision]. [Relevant check] passed. The decision and its supporting material are recorded in [owning priority entry].”
+
+Next possible actions:
+
+1. Review the revised passage. Recommendation: review it now; it is ready for the requested operator review.
+
+### Review
+
+“[Finding] follows from [source evidence]. I recommend [change] because [reason]. The proposal is recorded as unresolved in [owning priority entry].”
+
+Next possible actions:
+
+1. Discuss the proposed change. Recommendation: resolve [specific choice] first; implementation depends on it.
+2. Explore [optional extension]. Recommendation: defer until [condition]; it does not block the current decision.
+
+### Correction
+
+“My earlier statement [claim] was incorrect because [reason]. The supported statement is [correction], which changes [consequence]. I updated the current synthesis in [owning priority entry] and preserved the earlier evidence record.”
+
+Next possible actions:
+
+1. Reassess [affected conclusion]. Recommendation: proceed using the corrected premise.
+
 ## Self-check
 
-Before sending a substantive response, verify the mechanics. The style guide's own editorial checklist covers the content rules.
-
-1. The register is right, and a Status response has not been padded with unrequested exposition.
-2. An `Open items:` block is present, carries forward what is still undecided, files what is durable, and says `none` when nothing is outstanding.
-3. No recommendation or question requiring an operator decision exists only in prose.
-4. Every quantity offered was measured when written, not recalled.
-5. Any figure corrected from an earlier response is flagged as a correction rather than silently restated.
-6. Substantive findings were written into their owning document, not left in the response.
-7. A `Closure goal:` line closes the response.
-8. Deleting the final paragraph would leave the response fully understandable.
+1. The response answers the request directly and follows the academic style guide.
+2. Reasoning, definitions, evidence, and limitations are sufficient without redundant exposition.
+3. When the task produced a durable finding and authorized repository capture, the finding appears in both the response and an organized, current entry in its owner; report-only and transient answers did not create unnecessary artifacts.
+4. Proposals, decisions, deferred work, and accepted tasks retain their actual status and authority.
+5. Reported quantities were verified, corrections are explicit, and validation claims name checks actually performed.
+6. The final response ends with numbered next possible actions, each with a recommendation and reason; necessary decisions are distinct from optional follow-ups.
+7. No separate completion report or repeated closing summary is needed to understand the response.
 
 ## Existing documents
 

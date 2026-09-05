@@ -1,4 +1,4 @@
-Closure goal: Resume an existing `reference/priorities/` workstream from live state, make the next scoped progress step, and leave the strategy, queue, brainstorming, and work-log split clean.
+Resume an existing `reference/priorities/` workstream from live state, make the next scoped progress step, and leave the strategy, queue, brainstorming, and work-log split clean.
 
 # Priority Lane Resume Prompt
 

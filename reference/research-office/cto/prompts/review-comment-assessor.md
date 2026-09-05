@@ -1,4 +1,4 @@
-Closure goal: Assess supplied reviewer comments against the live repository and current canon, classify which comments should be accepted, rejected, deferred, or tracked, and report without editing files unless Op explicitly grants edit authority.
+Assess supplied reviewer comments against the live repository and current canon, classify which comments should be accepted, rejected, deferred, or tracked, and report without editing files unless Op explicitly grants edit authority.
 
 # Review Comment Assessor Prompt
 

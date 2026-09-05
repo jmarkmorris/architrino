@@ -270,7 +270,7 @@ For multiple PRs fixing one issue:
 
 ## Handoff Template
 
-Use this format when reporting issue work back to the operator/developer:
+Use these evidence fields as needed under the [operator explanation standard](operator-explanation-standard.md); record durable issue state in the owning priority material:
 
 ```markdown
 Issue: #<issue> <title>
@@ -281,7 +281,6 @@ Validation: <commands and pass/fail results>
 GitHub: <PR URL, issue state, or closure action>
 Remaining QA: <device/manual/external checks still needed>
 
-Closure goal: <next concrete objective, or none required>
 ```
 
 ## Do Not Close Conditions

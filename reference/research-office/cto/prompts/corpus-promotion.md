@@ -1,8 +1,8 @@
-Closure goal: Un-sequester high-quality theory from `reference/priorities/**` and memory into `content/markdown/aaa` at its honest claim grade — promoting explanatory structure that recovers observed or previously theorized physics, anticipating closure without ever claiming it, and stating plainly where the theory stands and what it means.
+Un-sequester high-quality theory from `reference/priorities/**` and memory into `content/markdown/aaa` at its honest claim grade — promoting explanatory structure that recovers observed or previously theorized physics, anticipating closure without ever claiming it, and stating plainly where the theory stands and what it means.
 
 # Corpus Promotion Pass (Aggressive but Honest)
 
-Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and the required `Open items:` block.
+Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and live priority capture.
 
 Use this prompt when the operator judges that the corpus is lagging its own best thinking: substantial insight has accumulated in priority brainstorming files, work logs, memory, and closeouts that is of higher quality than some material already in the authored chapters, and conservative promotion is starving the reader-facing theory. This is the shared [Convergence Campaign](convergence-campaign.md) protocol run with the promotion bias turned up. Apply that protocol's shared rules; this file adds the promotion philosophy and guardrails.
 
@@ -40,4 +40,4 @@ Aggressive promotion never means overclaiming. Preserve every claim-level discip
 
 ## Report
 
-End with: what was promoted and at what claim grade; the "where we are and what it means" statements added; what was converted to a target or staged for discussion; what was intentionally left sequestered and why; validation results; and a `Closure goal:` line naming the next promotion step.
+End with: what was promoted and at what claim grade; the "where we are and what it means" statements added; what was converted to a target or staged for discussion; what was intentionally left sequestered and why; validation results; and the next promotion step under the operator explanation standard.

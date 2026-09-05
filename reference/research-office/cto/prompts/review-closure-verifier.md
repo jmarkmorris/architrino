@@ -1,8 +1,8 @@
-Closure goal: Verify whether another agent's edits correctly resolve a specified review on a target file, and report any remaining issues without editing files.
+Verify whether another agent's edits correctly resolve a specified review on a target file, and report any remaining issues without editing files.
 
 # Review Closure Verifier Prompt
 
-Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and the required `Open items:` block.
+Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and live priority capture.
 
 Use this prompt when Op asks whether another agent's edits correctly resolved a prior numbered review. This is review-only by default.
 

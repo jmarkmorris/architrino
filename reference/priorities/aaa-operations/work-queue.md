@@ -77,6 +77,8 @@ Claim grade: `measured` by filesystem enumeration on 2026-09-03. Falsified by a 
 
 Plainly: inside the repository the policy story is now one governing file, one bootstrap file with a generated safety projection, and a set of specialised guides beneath them. The remaining seam is outside the repository, where client applications can hold rules that other agents cannot see.
 
+The current response and capture decisions are maintained in [the operations tracker](priorities.md#operator-response-and-discussion-capture). The dated inventory and calibration records below preserve their historical findings; the live operator standard owns current length precedence and response mechanics.
+
 #### Recommended approach
 
 1. **Make the mirror generated rather than hand-maintained.** The floor section of `CLAUDE.md` restates `AGENTS.md` by hand and can drift silently. The repository already solves this exact problem for the startup router with a generator, a `--check` gate, and source fingerprints. Applying the same pattern converts a recurring manual synchronization chore into a failing check. This is the single largest reduction in maintainer burden available here.

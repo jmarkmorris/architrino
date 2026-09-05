@@ -442,23 +442,13 @@ Organize each explanation in the order a reader needs to understand it: definiti
 
 Identify published computational evidence by a comprehensible title and stable public identifier, and explain what it establishes. Technical reproduction details belong in the accompanying methods or data-availability record. Raw content hashes do not belong in explanatory prose or visible link labels; hashes within URLs and functional link anchors may be retained.
 
-## Section-Length Standard
+## Explanatory Sufficiency
 
-For reader-facing conceptual leaves, length is not a constraint. Completeness of explanation outranks economy, and a long passage a reader can follow is preferred to a compact one they cannot. Substantial reader-facing leaves normally require at least one page of meaningful prose, and often more. This page-length expectation does not apply to working records whose function requires concise rows, dated entries, status fields, or narrowly bounded obligations.
+No page count, word count, or minimum section length establishes explanatory quality. A passage is long enough when its intended reader can locate the claim, follow the mechanism or reasoning, understand the necessary definitions and assumptions, identify the supporting derivation or evidence, distinguish the claim level, and see where the result's authority stops.
 
-The reason is the delivery surface. The corpus is written for online access and there is no printed edition to keep within a page count, so the usual pressure to compress does not apply. What replaces it is a different obligation: the prose must be **accessible and technical at once**. An expert scans quickly past what they already hold, which costs them little, while a new reader is carried through the same passage. Writing for the expert alone loses the newcomer, and writing for the newcomer alone would mean thinning the technical content, which is not the trade being made. Serve both in the same prose.
+Add length when it supplies a missing derivation step, definition, assumption, mechanism, historical fact needed for the argument, distinction between levels, assessment criterion, worked example, recovery target, or falsifier. Remove length when it repeats a thesis, narrates irrelevant process history, or adds examples and analogies that do not improve comprehension.
 
-That is not licence to pad. Explaining something again in different words because a reader may need it is completeness; restating a thesis in different words is padding, and remains a defect however unconstrained the length budget.
-
-Length is justified when it adds one or more of the following:
-
-- clearer derivation
-- stronger historical context
-- better distinction of levels
-- more explicit assessment criteria
-- concrete recovery or falsification targets
-
-Length is not justified when it only repeats the same thesis in slightly different words.
+The correct length therefore follows the artifact's purpose and evidentiary burden. A conceptual chapter may require sustained exposition; a queue row, dated log entry, requirement, or narrowly bounded proof obligation may be complete in a few precise sentences. Neither brevity nor length is evidence of rigor.
 
 ## Comparison Standard
 

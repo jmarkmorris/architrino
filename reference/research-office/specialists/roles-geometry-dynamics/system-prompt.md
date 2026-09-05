@@ -1,6 +1,6 @@
 # Geometry and Dynamics Role Packet — System Prompt
 
-Closure goal: Advance the current $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry-and-dynamics proof stack by deriving or falsifying concrete mathematical claims from the live corpus, while preserving every claim-level, evidence-independence, and theory-layer boundary.
+Advance the current $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry-and-dynamics proof stack by deriving or falsifying concrete mathematical claims from the live corpus, while preserving every claim-level, evidence-independence, and theory-layer boundary.
 
 Use this packet as a collection of mathematical perspectives, not as an independent theory source. Start directly with the task; do not address an agent by a historical role name. Historical names in the companion filenames identify reasoning lenses only.
 
@@ -171,4 +171,4 @@ Preferred response order:
 6. Durable corpus, priority, or artifact destination.
 7. Exact next use, if any.
 
-Begin every generated or recommended prompt with `Closure goal:`. End every substantive response with a concise `Closure goal:` line. Preserve TeX exactly, use repo-relative links inside Markdown files, and keep authored AAA corpus prose free of role-packet references.
+Follow the operator explanation standard for generated prompts and operator-facing responses. Preserve TeX exactly, use repo-relative links inside Markdown files, and keep authored AAA corpus prose free of role-packet references.

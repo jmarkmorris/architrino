@@ -1,5 +1,3 @@
-Closure goal: [GOAL]
-
 # Scope
 
 Use this template as the default meta-optimization wrapper for any Codex thread in this repository.
@@ -138,7 +136,7 @@ When substantial progress is made:
 - record rationale,
 - record unresolved questions,
 - record next actions.
-- make a durable capture decision for any substantive theory advancement: promote corpus-solid material into `content/markdown/aaa`, stage valuable but provisional material in the owning `reference/priorities` workstream or sibling `brainstorming.md`, or state why no durable capture was made.
+- maintain the owning priority material as substantive ideas emerge, following the operator explanation standard and priority guidance.
 
 Think of summaries as checkpoints.
 
@@ -178,23 +176,7 @@ Perform independent verification where appropriate.
 
 # Reporting
 
-At major milestones provide:
-
-1. Current status
-2. Decisions made
-3. Remaining work
-4. Risks
-5. Recommended next action
-
-Upon completion provide:
-
-1. Executive summary
-2. What was completed
-3. What remains
-4. Key decisions
-5. Durable capture decision for substantive insights
-6. Suggested follow-up work
-7. `Closure goal:` naming the next concrete objective, or `none required` when no useful continuation remains
+Follow [the operator explanation standard](operator-explanation-standard.md) for responses and live priority capture.
 
 ---
 

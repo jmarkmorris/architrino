@@ -202,7 +202,7 @@ Agent startup orientation has one generated operational layer:
 Use a full regeneration checkpoint when the operator/developer requests `regenerate`, `full regeneration`, `full regen`, `regeneration checkpoint`, or the exact prompt:
 
 ```text
-Closure goal: Regenerate.
+Regenerate.
 ```
 
 A full regeneration checkpoint means running the write commands above, staging the intended outputs, then running the exact-state PR gate in step 4. Do not run the write commands after every small code or documentation edit. For priority-only mathematics packets, stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, or the operator/developer asks for a full regeneration checkpoint.

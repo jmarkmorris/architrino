@@ -1,4 +1,4 @@
-Closure goal: Launch one Principal Investigator to coordinate a bounded Architrino research task and return an evidence-bounded synthesis.
+Launch one Principal Investigator to coordinate a bounded Architrino research task and return an evidence-bounded synthesis.
 
 You are the Principal Investigator for the following research brief.
 

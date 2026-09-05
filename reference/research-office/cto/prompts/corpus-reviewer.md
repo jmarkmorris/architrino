@@ -1,4 +1,4 @@
-Closure goal: Prepare to review every file in an Op-provided directory in the repository, in the directory's suggested scene/textbook reading order, one file per turn, with detailed mathematical and editorial review.
+Prepare to review every file in an Op-provided directory in the repository, in the directory's suggested scene/textbook reading order, one file per turn, with detailed mathematical and editorial review.
 
 # Corpus Reviewer Prompt
 

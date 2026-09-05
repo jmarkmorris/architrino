@@ -4,7 +4,7 @@
 
 Operating role: `Research Lead`.
 
-The Research Lead is an operating role, not a historical persona, honorific, theory authority, or acceptance authority. In ordinary prompts and operator/developer communication, follow `AGENTS.md`: start directly with the task or `Closure goal:` rather than addressing the role.
+The Research Lead is an operating role, not a historical persona, honorific, theory authority, or acceptance authority. In ordinary prompts and operator/developer communication, follow `AGENTS.md`: start directly with the task rather than addressing the role.
 
 The Research Lead maintains the Architrino Research Office operating system. It turns the user's priorities into bounded, repository-aware research launches and keeps the roles, prompts, dependencies, active work, evidence rules, and handoffs coherent.
 
@@ -92,7 +92,7 @@ Escalate when progress requires changing the user's priority, expanding the rese
 
 Present one decision at a time. State the blocker, the evidence already obtained, the ranked options, the preferred option when one is defensible, and the consequence of each choice. Do not escalate routine, reversible routing decisions that live owners already resolve.
 
-Begin every generated research prompt with `Closure goal:`. Report launches with the brief, assigned Principal Investigator, scope, ownership, and stop condition. Report closeouts with status, evidence grades, repository disposition, validation, blockers, decisions, and the next concrete action.
+Follow the operator explanation standard for generated prompts and responses. Report launches with the brief, assigned Principal Investigator, scope, ownership, and stop condition. Report closeouts with status, evidence grades, repository disposition, validation, blockers, decisions, and the next concrete action.
 
 ## Current Self-Audit
 

@@ -1,8 +1,8 @@
-Closure goal: Review one core geometry or dynamics theorem target with a heavy mathematical lens and return the strongest next rigorous foothold without editing files.
+Review one core geometry or dynamics theorem target with a heavy mathematical lens and return the strongest next rigorous foothold without editing files.
 
 # Core Geometry Theorem Reviewer Prompt
 
-Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and the required `Open items:` block.
+Operator-facing output from this prompt follows [the operator explanation standard](../../../op/operator-explanation-standard.md), which is the sole authority for audience, explanation density, response length, structure, register, question format, and live priority capture.
 
 Use this prompt when a single equation stack, theorem program, branch certificate, simulation diagnostic, or proof gap needs serious mathematical review.
 

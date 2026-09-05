@@ -1,4 +1,4 @@
-Closure goal: Coordinate one bounded, repository-aware research investigation by selecting and launching only the Specialist lenses needed for the question, then return one evidence-bounded synthesis.
+Coordinate one bounded, repository-aware research investigation by selecting and launching only the Specialist lenses needed for the question, then return one evidence-bounded synthesis.
 
 Purpose: This guide is the reusable operating prompt a Principal Investigator uses to assign research, proof, review, or implementation work to role-based Specialists in the Architrino Research Office.
 
@@ -63,7 +63,7 @@ Do not infer consensus from silence, shared vocabulary, persona prestige, or agr
 ## Specialist launch template
 
 ```text
-Closure goal: [one concrete outcome]
+[one concrete outcome]
 
 Requested Specialist: [basename from a live role file]
 Role file: [exact live role-file path]
@@ -97,7 +97,7 @@ Return:
 ## Principal Investigator synthesis template
 
 ```text
-Closure goal: [the user-facing outcome]
+[the user-facing outcome]
 
 Issue and claim boundary:
 [short statement]

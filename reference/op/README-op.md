@@ -20,7 +20,6 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 - [*] Keep substantial sessions centered on one core geometrical closure target before app, prose, presentation, or infrastructure work.
 - [*] Start each substantial session with one closure objective, likely files in scope, and a definition of done.
-- [ ] Start a substantial research or implementation brief with a one-sentence `Closure goal:` line.
 - [ ] Give the expected verification command, app path, or rendered target when that target is not obvious.
 - [ ] Default local web testing to the shared `5173` dev server; if another port is used, state why and include the active URL in the status or closeout.
 - [ ] Before any local browser or web-app turn, probe shared `5173`; if it is down, restart the server and verify `HTTP 200` before browser work or handoff.
@@ -47,19 +46,19 @@ This is the living feedback backlog for improving the shared operator/developer 
 ## Clarity
 
 - [ ] Use [math-preview](../../.agents/skills/math-preview/SKILL.md) for substantial mathematics whose normal view is inadequate, with verified KaTeX, the project theme, and unchanged source.
-- [ ] Agent response shape — leading with the decision, explanation density, question format, `Closure goal:`, and `Open items:` — is owned by [operator-explanation-standard.md](operator-explanation-standard.md) and is not tracked as backlog here. Items below concern how the operator frames requests, not how the agent answers. Free-association brainstorming remains welcome when no immediate decision is needed.
+- [ ] Agent response shape — leading with the decision, explanation density, question format, live priority capture, and recommended next actions — is owned by [operator-explanation-standard.md](operator-explanation-standard.md) and is not tracked as backlog here. Items below concern how the operator frames requests, not how the agent answers. Free-association brainstorming remains welcome when no immediate decision is needed.
 - [ ] Treat an unresolved discussion-scoped priority as requiring an explicit accept, reject, or defer response; do not infer implementation authority from silence.
 - [ ] Name the canonical project term when a concept has multiple nearby aliases.
 - [ ] For frequency-triplet work, state raw `B_1:B_2:B_3` search order first and use `I:M:O` only as a retained role map.
 - [ ] For solver geometry reports, state the retained physical model separately from the reduced executable chart.
 - [x] State the intended claim level: ontology, derivation, effective summary, comparison, or speculation.
 - [x] Attach the expected output shape to requests: patch, report, PR, checklist, proof route, or prose draft.
-- [ ] When asking for recommendations only, expect an answer in chat unless a durable repo file is explicitly requested.
+- [ ] Review discussed ideas through the owning `priorities.md`, with the capture procedure defined in the operator explanation standard.
 - [x] Use exact dates, branch names, PR numbers, filenames, and command names when referencing prior work.
 - [x] Flag non-negotiable constraints before asking for implementation.
 - [x] Separate hard guardrails from preferences the agent may trade off.
 - [ ] Define success in terms of observable behavior, passing check, equation recovered, or text promoted.
-- [ ] Preserve the returned `Closure goal:` when restarting, splitting, or refocusing a task.
+- [ ] Preserve the agreed objective and relevant priority links when restarting, splitting, or refocusing a task.
 - [ ] Before requesting terminology-change approval, complete the current-use/history inventory, conflict/clearance assessment, destinations for displaced meanings and their further conflicts, preserved exceptions, downstream scope, and verification plan; assess the connected set of moves and keep the current planning phase and next prerequisite explicit.
 - [ ] Avoid temporal phrasing for theory claims; use canonical definition/status language such as `canonical Master EOM`.
 - [x] Keep authored Markdown prose unwrapped in source so Codex Review controls visual wrapping; preserve only structural, mathematical, code, table, quotation, and explicit hard breaks.

@@ -5,7 +5,7 @@ description: Render math-heavy Markdown, notation tables, or drafted explanation
 
 # Math Preview
 
-Closure goal: Show readable, accurately rendered mathematics while preserving the source.
+Show readable, accurately rendered mathematics while preserving the source.
 
 Use the repository's bundled Markdown-It, KaTeX, fonts, and app colors through [the helper](scripts/render-preview.mjs). This is an on-demand local presentation workflow, not a corpus generator or mathematical verifier. Do not change formulas, source documents, app code, or generated publication artifacts to make a preview render.
 

@@ -1,4 +1,4 @@
-Closure goal: Examine the reader-facing Architrino corpus for reference opportunities that meet the About Architrino policy, verify qualifying candidates, and deliver precise proposed source notes within 48 elapsed hours or sooner if the bounded pass is complete.
+Examine the reader-facing Architrino corpus for reference opportunities that meet the About Architrino policy, verify qualifying candidates, and deliver precise proposed source notes within 48 elapsed hours or sooner if the bounded pass is complete.
 
 # Selective Reference Discovery Pass
 
@@ -61,4 +61,4 @@ Deliver the durable coverage record and findings, plus a concise summary of:
 - Checks performed on report links, identifiers, placements, coverage counts, and whitespace; label retrieval limits rather than claiming exhaustive verification.
 - Whether the same-task automation was paused, or why automation cleanup could not be confirmed.
 
-No corpus edit, publication, or generated-artifact refresh is authorized by completion of this pass. End with the inherited thread-state handoff and a concise `Closure goal:` for a separately authorized integration pass, or state that no qualifying additions were found.
+No corpus edit, publication, or generated-artifact refresh is authorized by completion of this pass. Report the scope and evidence under the operator explanation standard, identifying any separately authorized integration action or stating that no qualifying additions were found.

@@ -1,4 +1,4 @@
-Closure goal: Adjudicate the results of parallel builder and analyst sessions honestly and decisively — accept or reject each against the discipline, reconcile it with the program's live state, decide the next concrete step, parallelize independent work, and hand the operator a plain-language decision — without letting any session's self-verdict, claim inflation, or circular result slip through.
+Adjudicate the results of parallel builder and analyst sessions honestly and decisively — accept or reject each against the discipline, reconcile it with the program's live state, decide the next concrete step, parallelize independent work, and hand the operator a plain-language decision — without letting any session's self-verdict, claim inflation, or circular result slip through.
 
 # Deciding and Adjudicating Session
 
@@ -21,7 +21,7 @@ For each finished result, decide accept, accept-with-caveat, or reject, and stat
 
 - Reconcile the result with the live state across lanes: what it confirms, what it retires, what it reframes. Note when several independent threads converge on one direction — that convergence is itself evidence.
 - Name the next concrete step or steps. Prefer the cheapest decisive test. Explicitly separate work that is independent — route it to parallel side threads and say so — from work that must stay on the decision hub.
-- Write or request the paste-ready prompts for the next steps, each beginning with `Closure goal:`.
+- Write or request the paste-ready prompts for the next steps, each stating the concrete task.
 
 ## Keep the record honest
 
@@ -32,4 +32,4 @@ For each finished result, decide accept, accept-with-caveat, or reject, and stat
 
 - Deliver the decision in the Adjudication register of [the operator explanation standard](../../../op/operator-explanation-standard.md), which owns audience, density, and length; lead with the outcome and what it means.
 - Remind the operator to parallelize when several independent tests are queued.
-- End with a plain-language `Closure goal:` line: the outcome, what it means, and the single next move.
+- Follow the operator explanation standard for the response ending.

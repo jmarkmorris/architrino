@@ -44,7 +44,7 @@ Before launching worker threads:
 Start each worker prompt with a concrete closure goal:
 
 ```text
-Closure goal:
+
 [One concrete objective this worker can complete or advance independently.]
 
 Context:

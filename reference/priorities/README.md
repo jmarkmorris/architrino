@@ -54,6 +54,10 @@ The current preferred style for live priority docs is:
 - if a task is done, record any durable result in the work log or focused evidence packet, remove it from the live queue, and renumber the list.
 - keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.
 
+## Live Discussion Capture
+
+Follow the [operator explanation standard](../op/operator-explanation-standard.md#live-discussion-and-priority-capture) for live capture of ideas discussed with the operator. Keep every substantive idea visible in the owning `priorities.md` through a readable current synthesis, disposition, and links to any fuller material. Organize it when captured, using the maintenance pattern above: explanations in sibling material, accepted executable tasks in `work-queue.md`, and chronology in `work-log.md`. Capture does not itself accept a task, strengthen a claim, change a score, or reactivate deferred work.
+
 ## Discuss-First Handling
 
 `Discuss-first` is a live priority status, not a report-only disposition. When an agent identifies a theory leap, terminology decision, broad ontology claim, or other item that requires operator judgment before implementation:
