@@ -18,7 +18,7 @@ Record the actual start time and an immutable deadline 48 elapsed hours later, b
 
 Use the product’s supported same-task heartbeat automation to resume this task every 30 minutes while unfinished, if available. Discover and inspect any matching existing automation before creating one; reuse it rather than duplicating it. Record its identifier and put the original absolute deadline, checkpoint location, report-only authority, and stop conditions in its prompt. Do not create a standalone task per run or use shell sleep loops. Each wake must read the checkpoint and check the deadline before starting research. Pause only this run’s automation when the pass is complete, the deadline has arrived, or the whole pass requires operator intervention. Never alter unrelated automations. If scheduling is unavailable, record that limitation, continue the active session, and leave an exact resumption point; do not claim that unattended continuation is guaranteed.
 
-Scheduled local work requires the computer and app to remain available; the [official scheduled-task guidance](https://learn.chatgpt.com/docs/automations?surface=app) explains this dependency. Do not change device sleep settings. Persist progress after each batch and before yielding. During active work, provide concise progress updates at the cadence required by the current environment; at every scheduled wake report reviewed/remaining files, verified/deferred candidates, and the next batch.
+Scheduled local work requires the computer and app to remain available; the [official scheduled-task guidance](https://learn.chatgpt.com/docs/automations?surface=app) explains this dependency. Do not change device sleep settings. Persist progress after each batch and before yielding. During active work, follow the current environment's progress-update cadence. Scheduled wakes update the checkpoint; notify the operator on meaningful progress, completion, failure, or required action, while remaining quiet when the state is unchanged or non-actionable unless periodic status was explicitly requested.
 
 ## Coverage
 
@@ -52,7 +52,7 @@ Do not paste full copyrighted works or long excerpts into reports. Preserve TeX 
 
 Finish early only when every accessible current path in the reconciled inventory has been read, removed or inaccessible paths are explicitly accounted for, every identified opportunity has a reasoned disposition, and no feasible in-scope verification work remains. Unread or stale accessible pages prevent an early completion claim. Deferred and inaccessible items must remain visible; do not describe them as verified. If the deadline arrives first, stop research and close out as time-limited with the exact unread, stale, and deferred remainder. If one source is blocked, continue elsewhere; stop for operator intervention only when safe progress across the pass is impossible.
 
-Deliver the durable coverage record and findings, plus a concise summary of:
+The durable coverage record and findings preserve:
 
 - Start, deadline, stop time, and why the pass stopped.
 - Total paths, reviewed-current paths, no-opportunity paths, unread/stale paths, and recommendations, omissions, and deferrals.

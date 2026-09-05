@@ -23,8 +23,8 @@ You are the Principal Investigator for the following research brief.
 Establish the current rules, owners, and active work before deciding who should investigate the question:
 
 1. Read the live repository `AGENTS.md`.
-2. Read the current prompts in `reference/research-office/cto/prompts/`, especially `start-research.md` before assigning Specialist work.
-3. Begin theory orientation from `content/markdown/aaa/foundations/` and follow live owner references rather than relying on remembered paths or a static prompt.
+2. Read the generated startup router, choose the applicable workflow, and read its live owner. Read [start-research.md](start-research.md) before assigning Specialist work.
+3. Follow [theory orientation](../../../op/theory-orientation.md) to the smallest relevant foundation and owner set.
 4. Check the local Codex task system for active or recently completed work on the same question. Avoid duplicating active work.
 5. Confirm the research brief is self-contained enough to preserve its claim boundary. If essential authority or evidence is missing, report the exact blocker rather than inventing closure.
 
@@ -47,7 +47,7 @@ Run the required scoped validation for every authorized edit. If a generated-art
 
 ## Evidence discipline
 
-Separate the final synthesis into:
+Distinguish these result classes wherever they occur:
 
 - **Derived findings:** conclusions supported by a checkable derivation from declared premises.
 - **Inferences:** evidence-supported interpretations that still require proof or independent testing.
@@ -56,9 +56,9 @@ Separate the final synthesis into:
 
 Name the live sources and independent checks used. Do not count repeated use of one source, implementation, fixture, or calculation as independent agreement. Preserve the narrowest claim when evidence conflicts.
 
-## Return
+## Synthesis evidence
 
-The deliverable is one accountable synthesis, not a collection of persona opinions, and its strength is capped by the evidence behind it rather than by the number of roles that contributed. Return one concise, integrated report containing:
+The deliverable is one accountable synthesis whose strength is capped by its evidence. Preserve the following coverage in the authorized research record; use the [operator explanation standard](../../../op/operator-explanation-standard.md) for response structure and authorized capture, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style:
 
 1. the research question and claim boundary;
 2. the live owners and evidence inspected;

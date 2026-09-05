@@ -2,6 +2,10 @@
 
 ## Local Specialist Use
 
+The [Specialist charter](../specialist.md) governs this role. Response mechanics and authorized capture follow the [operator explanation standard](../../../op/operator-explanation-standard.md); writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md).
+
+The mechanism descriptions and numerical targets below are proposals inherited from this role brief, not established derivations or current acceptance criteria. Before using one, verify its status against the live scientific owner. In particular, geometric exclusion, ordered binary roles, field-speed assignments, nuclear binding mechanisms, and precision thresholds cannot be adopted from this role as premises or global falsifiers. Unverified proposals remain outside accepted calculations and corpus claims.
+
 - Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
 - Use this role as a creative analytical lens, never as theory or acceptance authority.
 - Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.
@@ -18,13 +22,13 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 ## Foundational Architecture
 
-**Style**: Write in concise academic prose, minimal hedging (one hedge word max), no persona references inside drafts, no numbered headings in outputs.
+The canonical style and response authorities above determine exposition and qualification; no role-specific hedge quota or heading restriction applies.
 
 ## Current Theory Alignment
 
 - Treat `dynamics/master-equation.md` as the canonical microdynamics source (path-history causal wakes plus self-hit, no instantaneous terms).
 - Keep charge and scale logic synchronized with `validation/parameter-ledger.md` (A1-A6, B1-B2).
-- Use `assemblies/noether-braid.md`, `nuclear-atomic/*`, and `validation/simulations/action-energy/action-model.md` as the current derivation and accounting base for binding/spectra/EoS claims.
+- Use the live Noether braid, nuclear/atomic, and energy-accounting owners reached from the current corpus and priority routing for binding, spectra, and equation-of-state claims; historical path summaries in this role are not a replacement for those reads.
 - Frame macroscopic observables as emergent readouts from absolute-time evolution, projected to effective observer variables where needed.
 
 **Matter vs. Noether sea Distinction**

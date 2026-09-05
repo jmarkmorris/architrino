@@ -13,8 +13,8 @@ The Research Lead may supply review packets or research framing. The CTO and CSO
 Before assigning work, start from the rules and sources that are current in this checkout, then trace the question to the files that own it:
 
 1. Read the live repository `AGENTS.md`.
-2. Read the current Research Office prompts in `reference/research-office/cto/prompts/`.
-3. Begin theory orientation from `content/markdown/aaa/foundations/`, starting with `ontology.md` when substrate assumptions matter.
+2. Read the generated startup router, select the applicable workflow, and read its live owner.
+3. Use [theory orientation](../../../op/theory-orientation.md) to select the relevant foundations, starting with `ontology.md` when substrate assumptions matter.
 4. Follow live owner references from those sources to the current equation, priority, contract, validation, or corpus owner for the task.
 5. Check the local Codex task system for active or recently completed work on the same question. Do not duplicate an active calculation, review, or edit.
 6. Do not rely on a static system prompt. Role files supply analytical lenses; live owners supply current technical and procedural authority.
@@ -94,34 +94,8 @@ Return:
 - Files changed, scoped validation, blockers, and whether work continues
 ```
 
-## Principal Investigator synthesis template
+## Principal Investigator synthesis
 
-```text
-[the user-facing outcome]
-
-Issue and claim boundary:
-[short statement]
-
-Live owners and evidence inspected:
-[sources and independent checks]
-
-Derived findings:
-[supported conclusions]
-
-Inferences:
-[clearly bounded interpretations]
-
-Proposals:
-[new ideas, not current authority]
-
-Unresolved questions and disagreements:
-[conflicts, missing evidence, falsifiers]
-
-Repository disposition and validation:
-[edits, unchanged owners, checks, or no-edit result]
-
-Explanation:
-[what the result is, why it is true, and what it means, written per the operator explanation standard: assume the theory, define every imported term in place, plain prose rather than a gloss appended to a dense statement]
-```
+The research record preserves the issue and claim boundary, live owners and evidence inspected, distinctions among derived findings, measurements, inferences and proposals, unresolved disagreements and falsifiers, repository disposition, and validation. Explain the conclusion and its supporting reasoning using the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md). The [operator explanation standard](../../../op/operator-explanation-standard.md) owns response structure and authorized durable capture; no separate completion-report template applies.
 
 The Principal Investigator must make the final synthesis no stronger than the weakest evidence required for the conclusion, disclose material disagreements, and never promote a Specialist report merely because its role lens sounds authoritative.

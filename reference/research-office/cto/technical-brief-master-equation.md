@@ -1,5 +1,9 @@
 # Technical Brief: Master Equation And Validation Burden
 
+## Current Review Status
+
+This brief requires scientific correction before use as a current-law introduction or promotion. Its branch-resolved section retains an older receiver-weighted acceleration expression that conflicts with the live [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md). The current law uses transmitter-side acceleration weighting and keeps receiver root playback separate. The integral and branch normalization must be reconciled together against that owner. This standards review preserves the existing mathematics for a focused correction; it does not validate the retained equations or authorize their use in calculations.
+
 ## Audience And Scope
 
 For advanced undergraduate physics readers, recent physics graduates, and doctoral students who can read ordinary mechanics, field-theory notation, and delayed-interaction equations. The brief is not a full proof of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is a compact technical orientation to the proposed substrate ontology, the master equation, the meaning of its symbols, and the validation burden that follows if the equation is taken seriously.

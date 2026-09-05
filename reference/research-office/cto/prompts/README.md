@@ -2,9 +2,7 @@
 
 This directory holds reusable prompts for CTO-led repository work. Use it for prompts that are general enough to start future tasks without being tied to one historical run, one priority packet, or one generated artifact.
 
-All reusable prompts in this directory should begin directly with the task and should avoid addressing an agent by name. Role labels and reviewer lenses may appear inside the prompt when they are useful context.
-
-Every prompt in this directory produces operator-facing output, and [the operator explanation standard](../../../op/operator-explanation-standard.md) is the sole authority for that output: audience, explanation density, response length, structure, register, question format, and live priority capture. It applies to each prompt here whether or not that prompt names it, and no prompt may restate, narrow, or override its rules.
+Every prompt in this directory follows [the operator explanation standard](../../../op/operator-explanation-standard.md) for response mechanics and authorized durable capture, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style. Task-specific evidence and procedure requirements remain in their live owners; they do not establish a separate completion-report template.
 
 The compact cross-agent startup map is generated at [../../../op/agent-startup-orientation.generated.md](../../../op/agent-startup-orientation.generated.md). Use the generated map for quick routing, then read the live prompt file selected for the task.
 
@@ -29,15 +27,14 @@ All prompts that select, review, or promote sources apply the [About Architrino 
 | [brainstorming.md](brainstorming.md) | Capture-first cross-lane brainstorming session: engage each idea at its strongest defensible claim level and capture every insight to the priority lane or memory. |
 | [adjudication.md](adjudication.md) | Decision-hub session: judge finished work from parallel builder/analyst threads, hold claim levels honest, decide and parallelize next steps, and summarize for the operator in plain language. |
 
-## Prompt-Like Files To Consider Consolidating
+## Related Procedure Owners
 
-These files contain reusable prompt material or prompt procedures. They were not moved during the initial consolidation because other repo guidance links to them or because they are specialized to a local workflow.
+These procedures and specialized prompts retain their canonical homes. Link to their live owners rather than maintaining mirrored copies.
 
 | Current file | Recommendation |
 | --- | --- |
-| [../../../op/codex-goal-seeking-prompt-template.md](../../../op/codex-goal-seeking-prompt-template.md) | High-value general wrapper. Consider moving or mirroring here after updating links from `reference/op/README.md` and other process docs. |
-| [../../../op/codex-multiprompt.md](../../../op/codex-multiprompt.md) | General multi-thread procedure. Keep in `reference/op/` unless Op wants all Codex operating procedures mirrored here. |
-| Retired `reference/op/research-lead-prompt-template.md` | Generalized here as [core-geometry-theorem-reviewer.md](core-geometry-theorem-reviewer.md). |
+| [../../../op/codex-goal-seeking-prompt-template.md](../../../op/codex-goal-seeking-prompt-template.md) | General execution wrapper, owned in `reference/op/`. |
+| [../../../op/codex-multiprompt.md](../../../op/codex-multiprompt.md) | General multi-thread procedure, owned in `reference/op/`. |
 | [../../../op/source-mining-best-practice.md](../../../op/source-mining-best-practice.md) | Source-intake specialization with many source-family prompt addenda. Keep in `reference/op/` because it owns procedure, not only prompt text. |
 | [../../research-history/review-packets/README.md](../../research-history/review-packets/README.md) and `reference/research-office/research-history/review-packets/*.md` | Historical self-contained review packets. Keep in place as review artifacts, not reusable prompt templates. |
 | [../../../priorities/mapping-equations/equation-breakthrough-search-prompt.md](../../../priorities/mapping-equations/equation-breakthrough-search-prompt.md) | Priority-specific live breakthrough-search prompt. It resolves queue state from the current tracker and score ladder instead of embedding a dated checkpoint. |

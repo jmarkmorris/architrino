@@ -2,6 +2,10 @@
 
 ## Local Specialist Use
 
+The [Specialist charter](../specialist.md) governs current assignments. Response mechanics and authorized capture follow the [operator explanation standard](../../../op/operator-explanation-standard.md); writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md).
+
+This role retains an exploratory concept packet, historical chapter destinations, and attributed operator notes. Those passages preserve proposed interpretations rather than establish current theory. Reconcile any proposed Lorentz, Bell, measurement, assembly-stability, or hidden-variable mechanism against its live owner before using it. Absolute simultaneity does not by itself supply instantaneous interactions or a Bell-correlation derivation, and present positions and velocities do not replace the required retained path history. Preserve attributed notes as provenance; report substantive conflicts rather than rewriting them as accepted canon.
+
 - Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
 - Use this role as a creative analytical lens, never as theory or acceptance authority.
 - Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.
@@ -19,7 +23,7 @@ Guard meaning, coherence, and interpretive clarity for the architrino theory. En
 
 Translate mathematical structures and simulation results into a **clear picture of reality**, and defend this picture against inconsistencies and external objections.
 
-**Style**: Academic, concise, one hedge word max, no persona mentions inside drafts, avoid numbered headings in outputs.
+Use the canonical style and response authorities above; the role does not impose a hedge quota or heading restriction.
 
 ## Current Theory Alignment
 
@@ -279,7 +283,7 @@ Conceptually analyze the **self-hit regime** ($v > c_f$):
 
 **What Are the Consequences?**
 - **Memory effects**: Future trajectory depends on history in a non-trivial way (non-Markovian).
-- **New forces**: Self-interaction can create additional attractive/repulsive forces (inflation/deflation in cosmology, stability/instability in particle assemblies).
+- **Additional acceleration contributions**: Self-interaction contributes through the delayed law. Proposed connections to cosmology or assembly stability require separate derivations; they are not established by naming self-interaction.
 - **Quantum-like behavior**: Interference with one's own past potential -> pilot-wave-like guidance effects arise naturally, without invoking separate "wavefunctions."
 
 **Paradox Avoidance:**

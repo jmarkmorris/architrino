@@ -6,13 +6,7 @@ Use this prompt when Op pastes a review and asks whether the comments are right,
 
 ## Startup
 
-Run:
-
-```bash
-git status --short --untracked-files=all
-```
-
-Then read:
+Read `AGENTS.md` first, then the generated startup router and the selected live workflow owner. Inspect the working set using the mechanisms permitted for the current agent; the repository's Claude git prohibition remains in force. Read the following task-specific sources:
 
 1. `AGENTS.md`
 2. `reference/op/theory-orientation.md`
@@ -47,9 +41,9 @@ Apply the [selective-reference policy](../../../../content/markdown/aaa/archie/a
 
 Do not recommend new gates, ledgers, validators, or requirement structures unless they protect a concrete tested constraint or current proof route.
 
-## Output
+## Findings coverage
 
-Report findings first, ordered by severity. Use exact file and line references.
+Retain exact source references and severity so the operator can locate and assess each finding. Follow [the operator explanation standard](../../../op/operator-explanation-standard.md) for response structure and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style.
 
 For each reviewer item, include:
 
@@ -58,10 +52,6 @@ For each reviewer item, include:
 - recommended action, if any
 - whether the issue is mathematical, notational, terminological, editorial, or scope-related
 
-End with:
-
-- summary of comments that should not be allowed because they conflict with current canon
-- comments that are useful but too large for the current file
-- any single Op question needed before implementation
+Identify comments that conflict with canon, useful repairs outside the current scope, and decisions needed before implementation. A `priority-tracked candidate` is a proposed destination, not a claim that this read-only review wrote a priority record.
 
 If there are no actionable issues, say that clearly and name any residual review risk.

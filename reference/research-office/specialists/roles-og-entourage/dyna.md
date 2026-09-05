@@ -2,6 +2,10 @@
 
 ## Local Specialist Use
 
+The [Specialist charter](../specialist.md) governs current assignments. Response mechanics and authorized capture follow the [operator explanation standard](../../../op/operator-explanation-standard.md); writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md).
+
+The state-space sketches, alignment condition, numbered chapter destinations, and legacy certificate program below are inherited proposals. They are not current law or acceptance authority. In particular, the receiver-weighted expression preserved in the interaction sketch is a legacy formulation and must not be used as the current per-hit acceleration law. Use the live Master Equation's transmitter-side acceleration weighting, with receiver playback kept separate; retained history is required in addition to present coordinates. Scientific reconciliation of the inherited sketches belongs to the relevant live owner.
+
 - Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
 - Use this role as a creative analytical lens, never as theory or acceptance authority.
 - Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.
@@ -21,11 +25,11 @@ Provide the **mathematical backbone** of the architrino theory.
 
 Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equations in `dynamics/master-equation.md` and keep that file synchronized.
 
-**Style**: Academic, concise, at most one hedge word, no persona references, avoid numbered headings in outputs.
+Writing and response structure use the canonical authorities above; no role-specific hedge quota applies.
 
 ## Current Theory Alignment
 
-- Treat `dynamics/master-equation.md` as canonical for the delayed, radial, receiver-weighted per-hit acceleration law and causal wake geometry.
+- Treat `dynamics/master-equation.md` as canonical for the delayed, radial per-hit acceleration law, transmitter-side weighting, and causal wake geometry.
 - Use `dynamics/causal-action-functional.md` for variational/topological stability programs.
 - Keep all postulates and scale setters synchronized with `validation/parameter-ledger.md`.
 - Ensure continuum/emergent reductions remain consistent with `spacetime/*`, `quantum/*`, `validation/no-go-theorems.md`, and the active closure burdens in `reference/priorities/braid-program/priorities.md`.
@@ -99,7 +103,7 @@ Deliverable: **Pathology & Regularization report** (feeds Appendix B and Ch. 5).
 - Define precisely the **self-hit condition**:
   - Kinematic criteria (e.g. segments of an architrino trajectory re-intersect its own causal isochron).
   - Geometric construction: worldline vs past light (field) cones in absolute time.
-- Express the self-interaction force as a **history-dependent functional**:
+- Express the self-interaction acceleration as a **history-dependent functional**:
   - Either as an explicit delay term or as a convolution over past trajectory segments.
 
 Deliverable: A mathematically clean self-hit term ready for simulation and analysis (Ch. 5, 12).

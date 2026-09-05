@@ -46,15 +46,6 @@ Review questions:
 - Prioritize equations, lemmas, invariants, proof routes, branch certificates, and simulation diagnostics.
 - Apply the [selective-reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) in About Architrino. Flag missing or unsuitable source support when it matters to a claim under review; do not request citations merely for completeness or expand into a literature search unless Op asks for source work.
 
-## Output Format
+## Review coverage
 
-1. Executive assessment
-2. Best next theorem target
-3. Object and assumption review
-4. Domain, chart, boundary, and invariant review
-5. Theorem-ready pieces
-6. Hidden assumptions and red flags
-7. Proposed theorem
-8. Proof strategy
-9. Capture recommendation
-10. Final recommendation
+Address the review questions to the depth needed for the target, preserving explicit assumptions, domain and chart restrictions, invariants, evidence grades, and falsifiers. Distinguish proposed statements and proof routes from established results. The operator explanation standard owns response structure; the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) owns exposition. This review is read-only: recommend a capture destination where useful without creating or editing priority material.

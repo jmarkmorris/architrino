@@ -8,7 +8,7 @@ This plan treats Learning Office as the public communication layer for the open-
 
 The long-term goal is broader than attracting the small population that can already work with GR, QM, or professional fundamental-physics literature. $\mathbb{A}\mathbb{A}\mathbb{A}$ should test whether a more explicit level structure, visual causal geometry, simulations, children's books, and AI-assisted learning can let far more people understand how nature works from fundamentals.
 
-The scale argument is motivational, not demographic precision. If only about `100,000` people worldwide can currently follow foundational physics deeply, then against a public measured in billions that is an order-of-magnitude signal of how narrow the current doorway is. Learning Office should widen the doorway without weakening claim discipline.
+The accessibility objective does not depend on an unsupported estimate of the number of expert readers. Evaluate whether the materials help their intended audiences explain the level structure, identify assumptions, and assess evidence; wider participation must preserve claim discipline.
 
 AI is part of the accessibility strategy when it helps a learner animate hidden histories, run safe simulations, translate the same concept across ages, identify assumptions, and name claim levels. It should not make unfinished theory sound complete or replace physical play, reproducible checks, or careful criticism.
 
@@ -32,6 +32,8 @@ The offer should avoid implying that all derivations are complete. The stronger 
 | Donors and patrons | They can support sustained research time without changing the zero-price access model. | Why does support matter if access is free? | Recurring support, one-time contributions, introductions, venue support. |
 
 ## Potential Channels
+
+Channel suitability and effort ratings below are planning hypotheses, not measured cost or audience-return results. A selected experiment records actual labor, expenditure, audience response, and limitations before a cost or effectiveness conclusion is drawn. Listing a channel does not establish that it is active or authorize posting, outreach, or data collection.
 
 | Channel | Main use | Typical investment | Notes |
 | --- | --- | --- | --- |
@@ -83,7 +85,7 @@ $$
 }.
 $$
 
-This is only a planning heuristic. Replace it with measured data once campaigns exist.
+This is an ordinal planning heuristic: each named factor is the assigned score from the table, not a measured quantity in hours or currency. It does not estimate financial return. Replace provisional scores with a documented comparison of measured costs and declared outcomes once campaigns exist; a campaign whose results reverse the predicted ordering overturns that channel hypothesis.
 
 ## First-Pass ROI Matrix
 

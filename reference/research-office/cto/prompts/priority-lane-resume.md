@@ -6,13 +6,7 @@ Use this prompt when Op names a priority workstream and wants the next practical
 
 ## Startup
 
-Run:
-
-```bash
-git status --short --untracked-files=all
-```
-
-Then read:
+Read `AGENTS.md`, the generated startup router, and the selected live workflow owner before inspecting the working set using mechanisms permitted for the current agent. The repository's Claude git prohibition remains in force. Read the following workstream sources:
 
 1. `AGENTS.md`
 2. `reference/priorities/README.md`
@@ -37,7 +31,7 @@ Identify the smallest next step that actually advances the workstream. Prefer on
 - validation criterion
 - source-backed evidence object
 - focused priority packet update
-- safe corpus promotion when the material is already corpus-solid and Op's request grants edit authority
+- corpus promotion when the mathematics, evidence, assumptions, claim grading, and exposition are reader-ready and Op's request grants the required edit authority
 
 Maintain the priority-lane split:
 
@@ -51,22 +45,16 @@ If a queue item is completed, remove it from the live queue, record the result i
 
 ## Validation
 
-Run focused validation appropriate to the files touched. At minimum, run:
+Run focused validation appropriate to the files touched. Codex checks whitespace with:
 
 ```bash
 git diff --check
 ```
 
+Agents prohibited from using git use the applicable non-git validators and report the scope of verification actually performed.
+
 For ordinary priority or corpus edits, do not run generator `--write` commands unless Op explicitly asks for regeneration or the task is in final PR flow.
 
-## Closeout
+## Progress record
 
-Report:
-
-1. Workstream resumed.
-2. Live top item or blocker found.
-3. Files changed.
-4. Concrete progress made.
-5. Queue item removed, updated, or left open.
-6. Validation commands and results.
-7. Remaining blocker or next step.
+Keep the workstream, selected item, changed-file scope, concrete progress, queue disposition, validation results, and remaining blocker current in the authorized owner. Follow [the operator explanation standard](../../../op/operator-explanation-standard.md) for responses and capture, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style.

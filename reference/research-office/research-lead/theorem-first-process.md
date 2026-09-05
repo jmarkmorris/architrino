@@ -1,6 +1,6 @@
 # Research Lead Process
 
-Use a theorem-first pipeline for core geometrical theory work. The goal is not a broad drafting round; the goal is to turn a hard local question into a mathematical artifact that can be proved, simulated, falsified, or staged for corpus integration.
+Use a theorem-first pipeline for core geometrical theory work. Turn a precise local question into a mathematical artifact that can be proved, simulated, falsified, or staged for corpus integration. Exposition follows the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md), and operator responses and authorized capture follow the [operator explanation standard](../../op/operator-explanation-standard.md).
 
 ## Core Geometry Pipeline
 
@@ -8,7 +8,7 @@ Use a theorem-first pipeline for core geometrical theory work. The goal is not a
 2. Write a compact mathematical nucleus before any broad prose: definitions, assumptions, variables, candidate equations, closure condition, and the first lemma or computation.
 3. Run a focused review round with only the specialists needed for that mathematical obstacle.
 4. Run one integrator pass that resolves the critique into a coherent theorem scaffold, proof route, simulation target, or corpus/priority edit.
-5. Capture the result directly in `content/markdown/aaa` when solid, or stage it in `reference/priorities` with claim level, assumptions, proof burden, and intended corpus destination.
+5. Capture the result within the authorized write scope. Corpus integration requires reader-ready mathematics, exposition, evidence, assumptions, and claim grading under the live promotion procedure; material still requiring preparation belongs in its existing priority owner with the remaining proof burden and intended corpus destination.
 
 ## Avoid
 

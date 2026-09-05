@@ -2,6 +2,8 @@
 
 Series frame: **The Wonder of Nature and the Universe**
 
+This is a design proposal. Dimensions, age-use assumptions, material choices, manufacturing routes, shipping estimates, and compliance references require their stated prototype, engineering, and regulatory reviews before product use or sale. The editorial standards review does not certify the product or refresh external requirements. Preserve the selected concept artwork and recorded prototype results as design provenance.
+
 The series play-surface merchandise set lets a child roll pure red and pure blue balls across modular contoured tiles while seeing path, return path, surface slope, and later potential-landscape lessons as physical play.
 
 The product should live alongside the book series without requiring the books to depict it or match it. The play surface is a separate physical activity product for caregiver-led play, classroom use, and possible merchandise.
@@ -430,7 +432,7 @@ Initial roll-distance target:
 - `12` tiles is a useful upper target for longer tabletop scenes;
 - the ball should not require a hard launch to reach that range.
 
-The `2.75"` target is comfortably above the current CPSC small-ball threshold of `1.75"`, but it is not by itself a safety certification. It does not certify the balls, the tiles, the joiners, broken-part behavior, age grading, labeling, or the complete set. Final product development must include applicable toy-safety review and testing.
+The `2.75"` target is comfortably above the recorded CPSC small-ball threshold of `1.75"`, but it is not by itself a safety certification. It does not certify the balls, the tiles, the joiners, broken-part behavior, age grading, labeling, or the complete set. Final product development must include applicable toy-safety review and testing.
 
 ## Logistics Targets
 

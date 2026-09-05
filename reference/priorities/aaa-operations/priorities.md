@@ -29,6 +29,10 @@ The [operator explanation standard](../../op/operator-explanation-standard.md) o
 
 The revised standard is ready for operator review. The separate completion report and mandatory closure-goal footer are removed from the authored guidance. Related clarification questions may be bundled; decisions needed now are distinguished from optional or deferred follow-ups. The remaining review is whether the revised document and its short examples express the intended workflow; it does not reopen the accepted writing-style decision. Strict content validation and priority-ranking validation passed. Startup projection checks report drift in `reference/op/agent-startup-orientation.generated.md` and the generated floor of `CLAUDE.md`; the authored generators are updated, and regeneration is deferred until explicit authorization under the repository generation policy. The required commands are `node scripts/build-agent-startup-orientation.mjs --write` and `node scripts/build-claude-bootstrap-floor.mjs --write`, each followed by its corresponding `--check`.
 
+## Office Document Standards Review
+
+The operator authorized sequential review and safe updates to every document in Research Office and Learning Office on 2026-09-04. The [per-document review ledger](office-document-standards-review.md) records the complete measured inventory, individual dispositions, and preservation boundaries. The baseline includes 135 Research Office and 157 Learning Office Markdown documents; 166 other files are inventoried for preservation. Review begins with governing roles and procedures, then subordinate prompts and remaining documents. Historical evidence, append-only records, artwork, manuscripts, production prompts, and appearance baselines retain their applicable protections. The current task is in progress; pending documents carry no conformance claim.
+
 ## Work Queue
 
 The locally ranked operational tasks, measurement requirements, and completion boundaries live in [work-queue.md](work-queue.md).

@@ -2,6 +2,10 @@
 
 ## Local Specialist Use
 
+The [Specialist charter](../specialist.md) governs current assignments. Response mechanics and authorized capture follow the [operator explanation standard](../../../op/operator-explanation-standard.md); writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md).
+
+The mechanism sketches, numbered chapter map, and numeric success/failure thresholds below are inherited research proposals. They do not establish current dynamics, observational bounds, or acceptance criteria. Resolve current scope and requirements through the live gravity, cosmology, braid, and validation owners before using them. Fixed inner/middle/outer identities, a field-speed carrier, Planck alignment, and metric or clock recovery cannot be assumed from this role.
+
 - Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
 - Use this role as a creative analytical lens, never as theory or acceptance authority.
 - Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.
@@ -20,7 +24,7 @@ Develop **gravity and cosmology** as **effective emergent physics** of architrin
   - **Nested shell braid architecture** (inner/mid/outer)
   - **Pro/anti coupling and Noether sea density**
   - **Field-speed regimes**: $v<c_f$, $v=c_f$, $v>c_f$
-- **Style**: Academic textbook tone, one hedge word max, no persona callouts, no numbered headings in outputs.
+- Writing and response structure use the canonical authorities above; no role-specific hedge quota applies.
 
 ## Current Theory Alignment
 
@@ -115,7 +119,7 @@ Link the three dynamical regimes to gravitational/cosmological behavior:
 
 - $v < c_f$: quasi-hydrodynamic deformation of the Noether sea -> observer-level expansion variables, subluminal matter motion, everyday gravity.
 - $v = c_f$: emergent Lorentz symmetry and effective universal speed "c"; define how this threshold arises from nested shell braid scaling.
-- $v > c_f$: self-hit -> inflation/deflation forces, Black hole cores, jetting; map this to early-universe inflation and to strong-gravity phenomena (Ch. 34, 39, 41).
+- $v > c_f$: investigate self-hit acceleration contributions and proposed connections to inflation/deflation, black-hole cores, and jetting. These connections require separate derivations within their live owners.
 
 Deliver explicit **transition criteria** and a sketch of governing equations in each regime.
 

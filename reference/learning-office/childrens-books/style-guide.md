@@ -239,7 +239,7 @@ Preferred composition pattern:
 1. Human play or experiment in the foreground.
 2. $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry integrated into the action.
 3. Quiet Noether sea or assembly hints in the background only when useful.
-4. White space reserved for later black text placement.
+4. Quiet space reserved for deterministic text layout; story text uses the deep-purple band and adult notes use black on white.
 
 Avoid:
 
@@ -297,7 +297,7 @@ Every image prompt should include this exemplar instruction:
 
 > Match the approved children's-book exemplar style: natural human skin and hair, informal global children-at-play energy, white paper space, black expressive linework, red/blue/purple $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry integrated into the scene, and no non-human colors outside the restricted palette.
 
-If the model adds naturalistic color, regenerate with stricter language:
+During an authorized artwork creation or revision task, if the model adds naturalistic color, regenerate with stricter language:
 
 > Treat every non-human part of the scene as a two-ink children's book print using only red ink, blue ink, their purple mixtures, black ink, and white paper. Preserve natural human skin and hair tones only for people.
 
@@ -333,4 +333,4 @@ Before saving an image as production direction, check:
 
 ## Cover Compliance
 
-Production covers should use this style guide and the approved [exemplars.md](exemplars.md) direction. Covers that do not meet the restricted palette, no-text, and one-continuous-scene rules should be replaced before final production.
+Production covers should use this style guide and the approved [exemplars.md](exemplars.md) direction. Covers that do not meet the restricted palette, no-text, and one-continuous-scene rules require an artwork review before final production. Record the issue without replacing protected source artwork or the appearance baseline during ordinary export or editorial work.

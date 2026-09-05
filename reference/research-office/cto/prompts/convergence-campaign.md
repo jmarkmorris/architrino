@@ -32,6 +32,8 @@ For reference selection, omission, durable identification, and reader-facing pre
 
 Follow [the operator explanation standard](../../../op/operator-explanation-standard.md) for response structure, live organized priority capture, questions, and recommended next actions. This protocol supplies convergence-specific evidence and authority requirements; it does not prescribe another response template.
 
+Writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md). Each variant begins with the `AGENTS.md` access gate, generated router, and selected live owner. Git commands below are Codex-only examples; agents barred from git inspect current files and use applicable non-git validators. The selected mode and operator request determine write authority: report-only work does not create priority records unless that mode explicitly authorizes named report or coordination artifacts. Standalone tasks, subagents, and persistent memory use the current environment's authorization rules.
+
 ## Source Mining Standard
 
 When a source document, paper, lecture note, accepted observation list, or prior audit result is supplied, mine it for all valuable AAA-relevant material, not only the strongest highlights. Read section by section or observation by observation. For each relevant signal, decide whether it should be:
@@ -63,7 +65,7 @@ Rules:
 
 - In every audit/report or self-running exploration pass, attempt at least one concrete mathematical advance unless the user gave a narrow non-mathematical task.
 - A concrete mathematical advance may be a candidate definition, named lemma, conjecture with assumptions, closure equation, invariant, variational principle, scale estimate, reaction provenance equation, validation criterion, or minimal simulation experiment.
-- Each major report paragraph must do one of four jobs: state a specific claim, give a calculation/proof route, identify an exact edit, or create a concrete priority/prompt item. Avoid filler paragraphs that only say a topic is important or may matter later.
+- Each mathematical result identifies its claim, calculation or proof route, scope, evidence, and remaining obligation. The operator explanation standard determines how those findings are explained in the response.
 - Leaps of intuition are welcome. For each leap, give the trigger, the candidate claim, the mathematical form it would take, the first calculation or proof step, and a failure mode that could disprove or discipline it.
 - Every actionable leap of intuition must also appear as a recorded proposal in the owning priorities and, when actionable now and not already authorized, in the recommended next actions. Use `Recommendation: discuss first` when canonization is not yet safe.
 - Future-only work belongs in the owning priorities and appears in the next-action list when relevant. Do not leave vague future-work prose in authored AAA content or final reports.
@@ -150,7 +152,7 @@ Required method:
 8. Search the corpus for related claims, older terminology, weaker formulations, missing implications, inconsistent notation, and documents that would benefit from the source signal.
 9. Search for exact stale phrases first, then broaden to conceptual neighbors. Prefer `rg` searches and include search patterns only when they seed a concrete follow-on prompt.
 10. If this request is report-only, do not edit. Otherwise, apply safe, low-risk, canon-conforming edits discovered inside the current pass. Do not edit to canonize a new theory leap, change terminology policy, update Archie canon, or make a broad scope expansion without Op discussion or an explicit prompt granting that authority.
-11. Produce a report organized by mathematical advance first, then by affected document.
+11. Preserve mathematical advances and affected-document dispositions in the authorized research record. Follow the operator explanation standard for response structure.
 
 For each affected document, report:
 - Path
@@ -251,10 +253,10 @@ After editing, run:
 
 For branch, commit, push, or PR publication, run the full required check set in [codex-pr-branch.md](../../../op/git/codex-pr-branch.md).
 
-If scene graph drift appears, run:
+If scene graph drift appears, report the affected paths and these repair commands without running them:
 - `node scripts/build-scene-graph.mjs --write --strict`
 - `node scripts/build-textbook-md-pdf.mjs --write` when reading-copy drift is also reported.
-then rerun the checks.
+Run them only when regeneration or final PR authority is explicit, then rerun the corresponding checks. A source-edit batch alone does not authorize generated writes or textbook exports.
 
 Final response:
 Explain the main cleanup, affected files, validation, and any generated-artifact refresh under the operator explanation standard.

@@ -4,7 +4,7 @@ Learning Office brings the $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture to diff
 
 ## Accessibility Thesis
 
-The long-term Learning Office thesis is that $\mathbb{A}\mathbb{A}\mathbb{A}$ should make the core architecture of nature accessible to far more people than can presently engage GR, QM, or fundamental physics at a technical level. Rough comparisons such as `100,000` deeply engaged physics readers against a global public measured in billions are useful only as order-of-magnitude motivation: the point is not the exact count, but the enormous gap between human curiosity about nature and the number of people currently able to participate in foundational physics.
+The long-term Learning Office objective is to make the core architecture of nature accessible beyond readers already trained in general relativity, quantum mechanics, or fundamental physics. This is an educational objective, not a measured claim about audience size or learning outcomes. Its success requires evidence that the intended readers can explain the level distinctions and assess the supporting arguments.
 
 The Learning Office should therefore build many on-ramps: caregiver-led early learning, children's books, visual simulations, public documentation, AI-assisted tutoring, and contributor workflows. The goal is not to make every reader a physicist. The goal is to let many more people understand the level structure, ask sharper questions, inspect simulations, explain ideas to others, and participate according to their age, skill, and interest.
 
@@ -24,6 +24,8 @@ The Learning Office should therefore build many on-ramps: caregiver-led early le
 - [CTO prompt library](../research-office/cto/prompts/README.md): reusable agent/operator prompts for corpus review, review integration, priority-lane resumes, and theorem-review workflows.
 
 ## Message Discipline
+
+Explanatory material follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md), with vocabulary and density suited to each declared audience. Agent responses and authorized priority capture follow the [operator explanation standard](../op/operator-explanation-standard.md). Operator response mechanics do not become requirements for children's manuscripts, spoken stories, or reader-facing teaching material. Existing manuscripts, illustrations, production prompts, QA records, and appearance baselines retain their preservation rules.
 
 Learning Office language should preserve the core level distinctions:
 
