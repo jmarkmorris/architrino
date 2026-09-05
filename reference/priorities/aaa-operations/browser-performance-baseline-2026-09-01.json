@@ -2,8 +2,8 @@
   "schema": "architrino.browser-performance-evidence.v1",
   "status": "passed_pre_release",
   "productionMutation": false,
-  "measuredAtUtc": "2026-09-03T02:35:56.383Z",
-  "measurementBoundary": "The public-feedback-interaction profile and its source closure retain their accepted measurement after the public scene indexes changed. On 2026-09-03 the UI Guidelines scene node moved from the Archie user-interface index to the Archie documentation index, which regenerated content/graph/scene_graph.json and changed the profile's source closure by two bytes, from 824446 to 824444, with the file count unchanged at seven. The closure fingerprint was re-pinned and the measurement was retained rather than re-asserted: the moved node is a scene-index entry that is not on the /feedback.html interaction path, and no file in the feedback entrypoint, stylesheet, or runtime changed. The retained cold-load encodedBytes of 824446 is the earlier measured transfer and is deliberately not edited. This profile's closure includes the generated scene graph, so any scene edit invalidates it; a change that touches the feedback route itself requires remeasurement rather than a re-pin. The photon-4k-visual profile was remeasured after the Mermaid 11.17.2 vendor update from the complete current source closure in a dedicated Codex in-app Chromium 152 tab at exactly 3840 by 2160 CSS pixels and device-pixel ratio 1, with no active managed compute lease. Earlier wrong-device-scale and contention-bound samples remain rejected. The shared Codex GPU-process envelope retains its original foreground 2026-09-02 measurement because the accepted contract assigns that distinct shared-process instrument.",
+  "measuredAtUtc": "2026-09-05T03:34:39.194Z",
+  "measurementBoundary": "The public-feedback-interaction profile and its source closure retain their accepted measurement after public scene-graph metadata changed. On 2026-09-03 the UI Guidelines scene node moved from the Archie user-interface index to the Archie documentation index, which regenerated content/graph/scene_graph.json and changed the profile's source closure by two bytes, from 824446 to 824444, with the file count unchanged at seven. On 2026-09-04 the same generated graph incorporated the completed node move and a title-only Self-Energy metadata change, changing the closure by another twelve bytes, from 824444 to 824432, again with seven files. The closure fingerprint was re-pinned and the measurement was retained rather than re-asserted: these are navigation metadata changes outside the /feedback.html interaction path, and no file in the feedback entrypoint, stylesheet, runtime, or authored scene indexes changed. The retained cold-load encodedBytes of 824446 is the earlier measured transfer and is deliberately not edited. This profile's closure includes the generated scene graph, so any scene edit invalidates it; a change that touches the feedback route itself requires remeasurement rather than a re-pin. The photon-4k-visual profile was remeasured from the complete current source closure after shared Markdown runtime and pagination changes. The accepted current run used a fresh loopback origin in a dedicated Codex in-app Chromium 152 tab at exactly 3840 by 2160 CSS pixels and device-pixel ratio 1. Earlier wrong-device-scale and contention-bound samples remain rejected. The shared Codex GPU-process envelope retains its original foreground 2026-09-02 measurement because the accepted contract assigns that distinct shared-process instrument.",
   "environment": {
     "browser": "Chrome 152.0.0.0 through the Codex in-app browser for Public Feedback and the remeasured Photon profile",
     "platform": "macOS",
@@ -74,7 +74,7 @@
     "photon-4k-visual": {
       "status": "passed",
       "route": "/photon.html",
-      "measuredAtUtc": "2026-09-03T02:35:56.383Z",
+      "measuredAtUtc": "2026-09-05T03:34:39.194Z",
       "viewport": {
         "cssWidth": 3840,
         "cssHeight": 2160,
@@ -83,29 +83,29 @@
       "launch": {
         "cold": {
           "originWasFresh": true,
-          "loadEventEndMs": 549.1999999880791,
-          "transferBytes": 4568660,
-          "encodedBytes": 4557260,
+          "loadEventEndMs": 439.69999998807907,
+          "transferBytes": 4570752,
+          "encodedBytes": 4559352,
           "resourceCount": 37
         },
         "warm": {
           "sameOriginReload": true,
-          "loadEventEndMs": 294,
-          "transferBytes": 11400,
-          "encodedBytes": 561899,
+          "loadEventEndMs": 277.30000001192093,
+          "transferBytes": 10800,
+          "encodedBytes": 577529,
           "resourceCount": 37
         }
       },
       "frameTiming": {
         "samples": 360,
-        "p95Ms": 17.199999999999818,
+        "p95Ms": 17.699999999999818,
         "medianFps": 59.88023952095874,
         "intervalsOver33_34Ms": 0
       },
       "heap": {
         "supported": true,
-        "warmAfterFramesUsedBytes": 21872226,
-        "frameWindowGrowthBytes": -58068185
+        "warmAfterFramesUsedBytes": 147023764,
+        "frameWindowGrowthBytes": 836416
       },
       "gpuSurfaceProxy": {
         "method": "canvas backing-store lower bound; excludes textures, geometry, driver allocation, compositor copies, and shared GPU-process memory",
@@ -135,8 +135,8 @@
   "sourceClosures": {
     "public-feedback-interaction": {
       "files": 7,
-      "bytes": 824444,
-      "sha256": "fef1ee3a1780daa8a6ef8a82ff91c7fe05344d46d65f96b0f71e1d313430f8a0",
+      "bytes": 824432,
+      "sha256": "a56a1997b67e056834bc072a5b0ef855623c78de08c9ae0e553fa8d98088be4c",
       "paths": [
         "feedback.html",
         "src/apps/feedback/feedback.css",
@@ -149,8 +149,8 @@
     },
     "photon-4k-visual": {
       "files": 38,
-      "bytes": 4557260,
-      "sha256": "a855748978dfe25c460de2597bcb6bb8d0060282f78a583c116da4902a0f155d",
+      "bytes": 4559352,
+      "sha256": "b60eb045c59250eee7587782a6249505a606ad0a885eccb0e46dbfb52a353f64",
       "paths": [
         "photon.html",
         "src/runtime/top-dynamic-control-bar.css",

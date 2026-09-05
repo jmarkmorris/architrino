@@ -3546,7 +3546,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-      "name": "Self-energy and regularization notes",
+      "name": "Self-Energy and Regularization",
       "path": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "nodeType": "markdown_doc"
     },
@@ -8800,7 +8800,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-      "name": "Self-energy and regularization notes",
+      "name": "Self-Energy and Regularization",
       "path": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "implicit": false

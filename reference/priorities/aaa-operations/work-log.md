@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-04 — Photon performance evidence refreshed for shared Markdown runtime changes
+
+- Remeasured the complete 38-file Photon source closure after changes to `MarkdownRuntime.js` and `MarkdownColumnPaginationRuntime.js` on a fresh loopback origin in a dedicated Codex in-app Chromium 152 tab at exactly 3,840 by 2,160 CSS pixels and device-pixel ratio 1.
+- The updated closure is 4,559,352 encoded bytes at SHA-256 `b60eb045c59250eee7587782a6249505a606ad0a885eccb0e46dbfb52a353f64`. The accepted profile measured a 439.7-millisecond cold load, 277.3-millisecond warm load, 4,570,752 cold-transfer bytes, 10,800 warm-transfer bytes, 37 loaded resources, 360 frame samples, 17.7-millisecond p95, 59.88 median frames per second, zero intervals above 33.34 milliseconds, 147,023,764 post-frame used-heap bytes, 836,416 bytes of frame-window heap growth, a 28,888,248-byte canvas-surface lower bound, and zero origin-storage bytes.
+- Retained the separately contracted shared-GPU-process envelope. This remeasurement updates the Photon route and source-bound evidence only; it is one local pre-release measurement and does not establish production performance or a general improvement.
+
+Plainly: the shared Markdown runtime change altered bytes loaded by Photon, so the old performance receipt was no longer valid. The current bytes were measured directly and remain within every unchanged Photon budget.
+
 ### 2026-09-04 — Approved response standard startup refresh
 
 The operator approved the complete response standard and authorized regeneration and a related-guidance consistency pass. Updated the generated startup router and Claude pre-read floor, checked both for freshness, and aligned reusable prompts with automatic working-document capture, explicit read-only boundaries, and direct reader-facing integration when authorized and ready. Strict content validation, priority-ranking validation, and the whitespace check passed. This verifies guidance consistency and generated freshness, not future agent behavior. The approved document remains the response authority.

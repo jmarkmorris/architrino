@@ -67,7 +67,7 @@ A null result constrains a declared observable map; it does not show that the un
 
 This chapter examines how the modern SI system interfaces with $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
 
-It should be read together with [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md).
+The required parameter, action, mass, scale, and spectroscopy interfaces are developed in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md).
 
 ### Executive Summary
 
@@ -116,6 +116,7 @@ u_r(\alpha)\approx1.51\times10^{-10}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6fb75e10f6253f63)
+
 while the Newtonian constant is
 $$
 G=6.67430\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}},
@@ -124,6 +125,7 @@ u_r(G)\approx2.25\times10^{-5}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3ba8046cca4fb71f)
+
 Thus $\alpha$ is a much sharper dimensionless target than $G$, while Planck-unit rows such as $\ell_P$, $m_P$, and $t_P$ inherit roughly half of the relative uncertainty of $G$ through square-root dependence. A Planck-alignment claim should therefore not over-read the apparent precision of derived Planck-unit numbers.
 
 The standard uncertainty convention matters for scoring. For a measured or adjusted row $X$, use
@@ -134,6 +136,7 @@ Z_X
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8086133e73d9fc7c)
+
 when the same observable has been derived from the same record. For exact SI rows, do not form a false zero-uncertainty residual; instead test whether the unit map and the adjusted rows that depend on it close simultaneously.
 
 ---
@@ -223,6 +226,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f61b3d6b23fd83d3)
+
 where $c$ is the speed of light.
 
 **Architrino Interpretation:**
@@ -264,6 +268,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-31393e5ede6a895d)
+
 via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
@@ -287,6 +292,7 @@ h = 2\pi\hbar
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-30d92a90f0b0e032)
+
 where $\kappa\epsilon^2/c_f$ has units of specific action and $\mathcal J_3$ is a dimensionless branch output built from the declared indexed geometry and causal-root record. The normalization $\mu_{\text{arch}}$ must be fixed before comparison with $h$. This is a candidate internal braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The particle assignment and action role are source-record hypotheses, not meanings of index 3 or of a coincident-midpoint orthogonal-axis braid taxonomy label.
 
 **Derivation pathway:**
@@ -409,6 +415,7 @@ m_u=\frac{m({}^{12}\mathrm C)}{12}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4b4a0af04b5029f5)
+
 where $m_u$ is the unified atomic mass constant and $M_u$ is the molar-mass constant. The proton mass is not one twelfth of the carbon-12 mass.
 
 **What we must derive:**
@@ -519,6 +526,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
      $$
 
      [View →](../../../../../equation-mapping.html#corpus-equation-3760e7503aee13bf)
+
      where $\mu_0$ is the reference probe scale and $\theta_{\mathrm{sea}}$ denotes the fixed Noether sea record for the comparison window.
    - Running with probe scale must be recovered as an effective electromagnetic response:
      $$
@@ -529,6 +537,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
      $$
 
      [View →](../../../../../equation-mapping.html#corpus-equation-f87315c0fab0a87f)
+
      where $\mathcal K_{\mathrm{EM}}$ carries wake dressing, shielding exposure, and vacuum-polarization-like response, while $I_\mu$ records the charged thresholds visible at scale $\mu$.
    - In architrino terms, the fixed part of the low-energy anchor must be derived from $\epsilon$, the geometry-derived action period $h_\vartheta$, the photon-channel speed $c_\gamma$, and the declared Noether sea record; the scale-dependent part belongs in $\mathcal K_{\mathrm{EM}}$ and $I_\mu$, not in hidden retuning of $c_f$, $h_\vartheta$, the observer charge convention, or the Noether sea state.
    - Derive numerically; explain why $\alpha_{\mathrm{ref}}\ll 1$ and why $\alpha(\mu)$ runs with energy without changing the primitive wake speed or the action-period carrier.
@@ -600,6 +609,7 @@ c_f
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fd14eacc9dd4bd4a)
+
 as the canonical symbol for the physical wake speed. Numerical instantiations use $c_f=1$; a generic velocity symbol must not replace it.
 
 #### Parameter versus field
@@ -665,6 +675,7 @@ Z_X
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-513d15a756279280)
+
 where $u(X)$ is the quoted standard uncertainty. If $X$ is exact by SI definition, the residual is not a measurement residual. The closure test is instead whether the same substrate-to-observer unit map recovers the exact convention while also passing the adjusted measured rows that depend on it.
 
 The uncertainty convention is also fixed. A standard uncertainty $u(y)$ is an estimated standard deviation for the result $y$, and the relative standard uncertainty is
@@ -673,6 +684,7 @@ u_r(y)=\frac{u(y)}{|y|}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f39bec73110a44c8)
+
 for $y\ne0$. When the quoted distribution is approximately Gaussian, $y\pm u(y)$ is the one-standard-uncertainty comparison interval, not a broad tolerance band to be enlarged after a fit.
 
 Useful 2022 CODATA rows for the closure stack are:
@@ -726,6 +738,7 @@ M_H^{\mathrm{ledger}}=126.0\,\mathrm{GeV},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f283da4c13fc3b29)
+
 with the channel set
 $$
 \mathcal{C}_{H}^{\mathrm{ATLAS\,2012}}
@@ -734,6 +747,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-797be6d4c83539ce)
+
 The corresponding validation contribution is
 $$
 \mathcal{R}_{H,\mathrm{ATLAS\,2012}}(\theta)
@@ -758,6 +772,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4e92a4c55241055e)
+
 Here $M_H^{\mathrm{breath}}(\theta)$ is the predicted scalar or breathing-mode mass from the same branch record, $\mu_H^{\mathrm{eff}}(\theta)$ is the observer-level production-and-branching normalization, and $Z_c$ records the declared channel significance or likelihood contribution. This row does not identify the Higgs with a named native mode, does not update to a current world-average mass, and must not be used as a branch-search, shielding, or mass-map input. Higgs-sector closure requires the residual to close after the branch, shielding, channel, and detector-provenance records have been fixed independently.
 
 #### Naturalness and sensitivity
@@ -769,6 +784,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3d0c9994146c3809)
+
 as the default sensitivity diagnostic.
 
 Here $\Delta p/p$ is the fractional perturbation of a parameter or closure output, and $\Delta \mathrm{obs}/\mathrm{obs}$ is the resulting fractional perturbation of the observable being tested. Values $\mathrm{FTQ}(p)>10$ should be treated as fine-tuning pressure unless a discrete topology, symmetry, attractor basin, or measured benchmark explains the sensitivity.
@@ -791,6 +807,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6762729b0329ae98)
+
 spans the base dimensions $(\mathrm{L},\mathrm{T},\mathrm{Q})$ because
 $$
 [c_f]=\mathrm{L}\,\mathrm{T}^{-1},
@@ -801,6 +818,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-91f5f3fec832e76d)
+
 It therefore defines canonical two-body units
 $$
 Q_*=\epsilon,
@@ -811,12 +829,14 @@ T_*=\frac{R_*}{c_f}=\frac{\kappa\epsilon^2}{c_f^3}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2b6eafb45d37a37a)
+
 For $\tilde{\mathbf X}=\mathbf X/R_*$, $\tilde T=T/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
 $$
 \tilde R_{ij}=\tilde T-\tilde T_t
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f4ca714a9893ed48)
+
 and
 $$
 \frac{d^2\tilde{\mathbf X}_i}{d\tilde T^2}
@@ -829,6 +849,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ec1cfba383b1b28c)
+
 up to the separately declared regulator ratio $\eta/R_*$ when a mollified surrogate is being used.
 
 Consequently, every dimensionless output of the isolated bare two-body problem is a pure branch-geometry result: root multiplicities, branch-birth thresholds, maximum-curvature speed ratios, residual signs, and any certified radius in units of $R_*$. This does not certify that a stable maximum-curvature binary exists. It says that if a certified two-body branch produces such a number, that number is computed by the root ledger and stability problem rather than fitted by changing a Layer-I dimensionless constant.
@@ -905,6 +926,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dc8084e941317a8f)
+
 A representative regularized form is
 $$
 \frac{d^2\mathbf X_a}{dT^2}
@@ -928,6 +950,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-83891c7a130507c1)
+
 with canonical normalization choice
 $$
 Z_e=1
@@ -947,6 +970,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e6cb05ef8b933aa2)
+
 and
 $$
 \Phi_{\text{eff}}(x_{\mathrm{eff}}^i)
@@ -980,6 +1004,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b18b7ff2a38aea93)
+
 and
 $$
 \beta_{\mathrm{PPN}}=\frac{1+2C_2}{2}
@@ -1004,6 +1029,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a89e0bc1240ed7ec)
+
 The coefficient $\Xi_4$ is not constrained by this three-parameter map. Full zero-leakage closure additionally requires either the independent condition $\Xi_4=0$ or a separately declared observable that extracts $\Xi_4$.
 
 #### 5. Mass map
@@ -1016,6 +1042,7 @@ m_{\text{inertial}}(A)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ba82b34369d50270)
+
 with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit separately for each particle.
 
 This relation means that $m_{\text{inertial}}(A)$ is not a primitive parameter. It is an output of shielding, internal energy, and medium response.
@@ -1044,9 +1071,10 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fe1b1bb03918ffaa)
+
 together with the unresolved constants and response-map assumptions needed to turn that dimensionless coefficient into an observer-level mass prediction.
 
-The compact finite-coordinate no-go is a status blocker inside $\mathcal{P}_{A_0}$, not an additional free parameter and not a benchmark input. It requires a predeclared branch-chart revision before Tier 1 continuation can be interpreted as progress toward the mass-facing output above.
+The compact finite-coordinate no-go blocks further interpretation inside $\mathcal{P}_{A_0}$; it is neither an additional free parameter nor a benchmark input. Tier 1 continuation can count as progress toward the mass-facing output above only after a branch-chart revision has been declared in advance.
 
 #### 6. Planck-alignment map
 
@@ -1060,6 +1088,7 @@ I_{\text{align}} \stackrel{\text{hyp.}}{\approx} \hbar,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-568a4acff58ea768)
+
 and the effective gravity-side alignment estimate
 $$
 G_{\text{eff}}
@@ -1081,6 +1110,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cbd33793a8a0a990)
+
 and the discrete axial-frame branch hypothesis
 $$
 \alpha_n=n\,\theta_W^{\text{bare}}
@@ -1140,6 +1170,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-889bfc545ab9c36b)
+
 where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive set that survives particle, spacetime, and quantum-side tests simultaneously.
 
 ### Related Chapters
@@ -1156,7 +1187,7 @@ where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive se
 
 ## Reaction Ledger
 
-This ledger records how reaction channels should account for constituent architrinos, Noether braids, axial layers, energy, momentum, charge, polarity, and path-history provenance. Its purpose is not to replace Standard Model reaction notation. Its purpose is to state what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
+This ledger records how reaction channels account for constituent architrinos, Noether braids, axial layers, energy, momentum, charge, polarity, and path-history provenance. It retains Standard Model reaction notation while stating what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
 
 For radiative channels, use this ledger together with [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema). For cosmology-facing radiation and thermalization channels, use it together with [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
@@ -1189,7 +1220,7 @@ Each reaction record should state:
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
 8. **Weak-corridor record, when applicable:** for $W^\pm$ or $Z^0$ channels, record the axial-inventory payload $\Delta A_W$, any neutral Noether braid scaffold recruited into the corridor, the generation-step count $\Delta N_{\mathrm{scaffold}}=-2\,\Delta g$ when applicable, shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, corridor recoil, outgoing-product identity routing, and Noether sea return row.
 9. **Radiation event record, when applicable:** for emitted, absorbed, shifted, captured, or failed photon channels, attach the shared event fields from [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), including $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, and causal-wake ledger.
-10. **Hybrid Standard Model matching, when applicable:** identify the source lane for the observer-level prediction: perturbative electroweak chart, matched weak effective theory, lattice-QCD or nuclear matrix element, infrared-safe QCD observable, QED, kinetic model, or detector functional. Include the scheme, operator or observable definition, matching normalization, CKM/PMNS factor when applicable, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record when one is used.
+10. **Hybrid Standard Model matching, when applicable:** identify the source for the observer-level prediction: perturbative electroweak chart, matched weak effective theory, lattice-QCD or nuclear matrix element, infrared-safe QCD observable, QED, kinetic model, or detector functional. Include the scheme, operator or observable definition, matching normalization, CKM/PMNS factor when applicable, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record when one is used.
 11. **Closure status:** baseline, provisional map, derivation target, failed map, or inherited gate.
 
 ### Record Template
@@ -1204,7 +1235,7 @@ Each reaction record should state:
 | Weak-corridor record, when applicable | $\Delta A_W$, neutral Noether braid scaffold sourcing, $\Delta N_{\mathrm{scaffold}}=-2\,\Delta g$ for generation changes, shielded-energy exposure, corridor payload, recoil, product identity routing, and Noether sea return row |
 | Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
 | Provenance data | Transmitter identity, emission time, causal-root branch, and local Noether sea state |
-| Hybrid Standard Model matching, when applicable | Source lane, scheme, operator or observable, matching normalization, CKM/PMNS factor when applicable, matrix-element or factorization source, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record |
+| Hybrid Standard Model matching, when applicable | Observer-level prediction source, scheme, operator or observable, matching normalization, CKM/PMNS factor when applicable, matrix-element or factorization source, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
 ### High-Energy Collision Records
@@ -1344,6 +1375,7 @@ B_{\mathrm{post}},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-841b7edb919624f1)
+
 Here $B_{\mathrm{pre}}$ and $B_{\mathrm{post}}$ are the retained branch records before and after the interaction, $W_{\mathrm{in}}$ is the applied work or incoming excitation, $\Delta\mathcal A$ is the branch-action change, $\tau_{\mathrm{return}}$ is the return or relaxation time when a stable branch is recovered, and $\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{post}}$ is the post-event balance. This prevents a reaction map from closing only by label replacement while leaving the outgoing assemblies dynamically unsettled.
 
 The stronger event-balance target bundles energy, momentum, and angular momentum instead of checking photon polarization separately from the source ledger. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, define source depletion by
@@ -1548,6 +1580,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8909242d8a237edc)
+
 such that, for every routed identity $a$,
 $$
 q_{\Pi_{\mathsf e}(a)}=q_a,\qquad
@@ -1556,6 +1589,7 @@ q_a=\sigma_a\epsilon,\qquad
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c4fd41e2c372412c)
+
 Equivalently, the polarity inventory vector
 $$
 \mathbf{N}_{\mathsf e}
@@ -1567,6 +1601,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dbe4751658e9ad74)
+
 must agree before and after the event once all named reservoir terms are included. Photon assemblies, causal wakes, and corridor payloads may carry energy, momentum, angular momentum, phase, and path-history data, but they do not create new elements of $\mathcal{A}$. If a pair-production, weak, charged-pair relock, bremsstrahlung, synchrotron, or scattering record lacks $\Pi_{\mathsf e}$ or an equivalent identity-routing statement, the record remains provisional even when its net observer-level charge balances.
 
 The contract for each serious channel is:
@@ -1775,7 +1810,7 @@ This ledger separates four levels:
 
 ### Leap Opportunity Record
 
-The opportunity tracked here is a possible unification of four previously separate bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether braid material, energy-momentum terms, and Noether sea state variables enter and exit the channel?
+The ledger tests a possible unification of four related bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether braid material, energy-momentum terms, and Noether sea state variables enter and exit the channel?
 
 #### Claim Status
 
@@ -1826,7 +1861,7 @@ The chapter-level source for the photon ontology and Gate A theorem scaffold is 
 
 | Gate | Claim bucket | What the ledger must track | Closure test |
 | --- | --- | --- | --- |
-| Gate A: kinematics and optics | Derivation-closure target | $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, planar-pair spacing $d$, phase frequency $\omega$, geometric phase, and medium delay state | Recover $E_\gamma=h\nu$, $p=h/\lambda$, masslessness, no rest proper-time branch, nondispersion, and no unacceptable preferred-frame leakage |
+| Gate A: kinematics and optics | Derivation-closure target | $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, planar-pair spacing $d$, phase frequency $\omega$, phase wavelength $\lambda_\gamma$, geometric phase, and medium delay state | Recover $E_\gamma=h\nu$, $p_\gamma=h/\lambda_\gamma$, masslessness, no rest proper-time branch, nondispersion, and no unacceptable preferred-frame leakage without identifying phase wavelength with carrier radius, pair spacing, or packet extent |
 | Gate B: polarization and spin | Derivation-closure target | transverse ledger orientation, analyzer basis, helicity, projection/capture geometry, accepted/rejected channel outcomes, source depletion, recoil, causal-wake, handoff, and event-balance rows | Recover exactly two transverse modes, no longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, no-signaling constraints, and $\mathcal R_{\gamma B}^{\mathrm{event}}$ below tolerance |
 | Gate C: vertices and transitions | Derivation-closure target | emission, absorption, pair production, recoil, medium excitation, transition rates, and overlap/capture probabilities | Recover QED/Maxwell limits, Breit-Wheeler thresholds and rates, blackbody behavior, Compton-like scattering, photon-photon limits, and the effective coupling scale $\alpha$ |
 
@@ -1908,6 +1943,7 @@ S_{\mathrm{return}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-eea86edc186d76ca)
+
 for a declared window $W$. Here $N_A$ records neutral or dark assembly candidates, $S_{\mathrm{pair}}$ records pair or reaction production inside the window, and $S_{\mathrm{return}}$ records content returned to the Noether sea or reclassified after reactions. This row is a source-component inventory, not a proof of a specific production rate; it prevents "empty intergalactic space" from replacing the actual component ledger.
 
 #### BBN Photon Loading
@@ -1924,6 +1960,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4174fcb7e432fb8f)
+
 For leptogenesis-like source routes, the ledger must also carry a neutrino/antineutrino CP-asymmetry comparison term rather than assuming the external mechanism. Source leads for this row are primary neutrino-oscillation and leptogenesis sources: long-baseline $\nu/\bar\nu$ transition measurements, PMNS CP-phase summaries, and baryogenesis/leptogenesis rate calculations. The comparison term is
 $$
 \Delta_{\nu\bar\nu}^{\mathrm{CP}}(E,L;\alpha,\beta)
@@ -1934,6 +1971,7 @@ P_{\bar\nu_\alpha\to\bar\nu_\beta}(E,L)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8a12867edd3ecb8c)
+
 where $E$ is neutrino energy, $L$ is baseline, and $\alpha,\beta$ label flavor channels. The source-window ledger may report $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}(W)$ as the event-record-weighted version of this comparison over $W$, but that reported value is only an input constraint on the matter-asymmetry closure. It is not an established $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation of baryon excess.
 
 The acceptance residual should be reported as
@@ -1950,6 +1988,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-01a825d10e240729)
+
 Here $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}$, $\Delta B_{\mathrm{unrec}}$, $\Delta Q_{\mathrm{unrec}}$, and $\Delta E_{\mathrm{unrec}}$ are not new ontology. They are comparison or failure counters for CP-asymmetric neutrino/antineutrino transition rates, baryon-number bookkeeping, electric-charge bookkeeping, and energy balance after all declared reaction, recoil, medium, and escape channels have been included. A leptogenesis-like source model may remain in the comparison ledger only when $\mathcal{R}_{B/\gamma}\le1$ and the same event record also passes the BBN photon-loading and CMB thermalization checks below.
 
 #### CMB Thermalization
@@ -2047,6 +2086,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8badadff6a6a3f3b)
+
 The segment-level energy closure remains
 $$
 \Delta E_{\gamma,s}
@@ -2058,6 +2098,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5cc26baa2c07808b)
+
 The kernel $\mathcal{K}_{\nu}$ is a derivation target, not a free redshift law. It must state whether the segment is coherent transparent transport, thermalizing exchange, spectral distortion, capture, or carrier exit, and it must preserve the same photon packet identity unless a reaction or remnant row explicitly terminates it.
 
 ### Closure Targets
@@ -2088,15 +2129,15 @@ The provenance program fails for a channel if a source story cannot survive the 
 
 ## Constraint Ledger
 
-Notes collected here document the falsification criteria, ordering priorities, and supporting mechanisms for the architrino framework. Keep this page focused on observable constraints so each model version can be checked against experimental scrutiny.
+This ledger collects the observable constraints that can reject the architrino framework. It keeps measurable limits separate from general research priorities so each model version can be tested against experimental scrutiny.
 
 ### Experimental Constraint Ledger and Falsification Criteria
 
-This ledger crystallizes the measurable thresholds and theoretical guardrails that could falsify the architrino proposal. Each numbered entry combines the empirical bound, the proposed mechanism, and the explicit failure condition so that we can track how discrete experimental results shape or reject the model.
+Each numbered entry combines an empirical bound, the proposed mechanism, and an explicit failure condition so that experimental results can shape or reject the model.
 
 #### Lorentz Invariance & Preferred Frame Effects (Tier 1)
 
-The purpose of this section is to define the combination of experimental isotropy and observational invariance that must hold if a putative absolute frame is to remain hidden. We identify the observables, derive the emergent timing/ruler behavior implied by the Noether sea, and explicitly state the tolerance beyond which the preferred frame would become perceivable.
+An absolute frame remains hidden only if the required experimental isotropy and observational invariance hold together. The entries below identify the observables, state the emergent timing and ruler behavior attributed to the Noether sea, and define the tolerance beyond which the preferred frame would become detectable.
 
 * **Constraint** – isotropy from Michelson–Morley and resonator experiments constrains $|\Delta c/c| < 10^{-17}$ while atomic clock sidereal drift stays below $10^{-16}$, keeping Lorentz-invariance leakage under the $10^{-17}$ falsification threshold.
 * **Consolidated Requirement** – prove preferred-frame hiding: architrino assemblies must acquire Lorentz-compatible deformation and clock behavior in the Euclidean-void rest frame so no local observer can detect the Noether sea's rest frame.
@@ -2122,6 +2163,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cfbc53f331d1f5c8)
+
 Here $\Gamma_z$ is the observer-level path used by the comparison, and $\chi_\gamma$ is the photon-channel delay factor from the same branch record used for photon synchronization. A useful residual is
 $$
 \mathcal{R}_{\gamma\mathrm{disp}}
@@ -2139,6 +2181,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1abb38f3751b71cb)
+
 where $\mathcal{E}$ is the declared transient catalog, $\Delta t_{\mathrm{src}}$ is the modeled source lag, and $\sigma_{\Delta t}$ is the adopted timing uncertainty.
 
 * **Constraint** – the same photon branch that recovers local Lorentz synchronization must keep $\mathcal{R}_{\gamma\mathrm{disp}}$ below the declared catalog threshold without per-source retuning.
@@ -2184,6 +2227,7 @@ The propagation speed of gravitational-wave disturbances in the Noether sea must
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-e5dc0f030c4b58dc)
+
   Equivalently, for the weak homogeneous observer branch in which $c_\gamma\to c_0$,
   $$
   \left|
@@ -2196,6 +2240,7 @@ The propagation speed of gravitational-wave disturbances in the Noether sea must
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-1a57d4fecb90841c)
+
   is the order-of-magnitude ledger tolerance. Any tighter ledger tolerance adopted for a specific validation band should be stated explicitly rather than inferred from ontology.
 * **Shared-Channel Requirement** – the effective gravitational-wave channel and photon channel must be derived from one Noether sea state record in the weak-field branch, as required by [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). A medium-based gravity model fails this row if it lets gravitational waves and photons acquire independently tunable dressed speeds in the same region.
 * **Mode and Dispersion Gate** – finite-range or medium-compliance corrections must keep accumulated dispersion, false-alarm residuals, calibration residuals, and any scalar, vector, or longitudinal gravitational-wave detector response below the residual bounds for the validated band.
@@ -2232,6 +2277,7 @@ Massive-interference experiments and precision gravity readouts jointly test whe
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-ad599d5e1bd52189)
+
   with $\Delta h_A(t_{\mathrm{eff}})=h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)$, must remain below the declared which-path threshold for any interference-preserving run unless a record-forming separatrix crossing and persistence window are also derived.
 * **Observable** – the data products are massive-superposition coherence time, branch separation and mass-displacement history, precision-gravity response, detector noise covariance, any two-probe entanglement witness, non-gravitational coupling residuals, and the absence or presence of a durable which-path record.
 * **Validation Target** – combine long-coherence interferometry with Cavendish-like, atom-interferometric, or gravitational-wave-instrument precision bounds to constrain $\mathcal{D}_{\mathrm{grav}}$ using one effective-metric constitutive record $\theta$; the concrete scaffold is [Massive-Superposition Gravity Validation Packet](../../../../markdown/aaa/validation/massive-superposition-gravity.md).
@@ -2259,6 +2305,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8fbef462600b538c)
+
 The corresponding impulse scale on a tracked body is
 $$
 \Delta v_{\mathrm{test}}
@@ -2267,6 +2314,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d00c040262a64977)
+
 with the accepted comparison using the full ephemeris covariance rather than this estimate alone.
 
 * **Constraint** – any claimed local compact dark-sector signal must produce an ephemeris residual $\Delta x_{\mathrm{ephem,eff}}^{i,\theta}(t_{\mathrm{eff}})$ above the declared ranging and model-error floor while remaining inconsistent with ordinary catalogued bodies under the same orbit-reconstruction covariance.
@@ -2303,6 +2351,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b6a0379c548612df)
+
 If the intersection is empty after uncertainty propagation, the integrated model version is rejected.
 
 ## Failure Criteria
@@ -2460,6 +2509,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ba8fc2bca7b714c9)
+
 where $\pi_{\mathrm{shared}}$ keeps the common Noether sea, assembly, weak-exposure, metric, and provenance coordinates consumed by both the positive benchmark and the null channel. The operational audit residual is
 $$
 \mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)
@@ -2475,6 +2525,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-563febb2371718fa)
+
 The original promotion condition is recovered by requiring $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)=0$. This form rejects a second failure mode: a channel can be numerically hidden but still fail because its suppression uses a different shared record from the one that fit the observed sector.
 
 | Added-channel family | Example observable $O_e(\theta)$ | Null data product | Same-record requirement |
@@ -2503,6 +2554,7 @@ v_-(\omega,\hat{\mathbf{k}};\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-be440df4c80c8d28)
+
 The photon/effective-metric record can be promoted only when $\mathcal{R}_{\mathrm{biref}}(\theta)\le\epsilon_{\mathrm{biref}}$ in the declared weak homogeneous regime and when the same $\theta$ also supplies the clock, ruler, signal, and metric coefficients used for the positive GR-facing benchmarks. If birefringence is numerically hidden by switching to a different channel record than the one used for lensing, Shapiro delay, spectra, or photon synchronization, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ fails even if the split is individually small.
 
 ##### Null-Result Ownership Matrix
@@ -2526,6 +2578,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d3bddeffcc50cf81)
+
 The current benchmark scale is already severe: PDG 2024 summaries give $\tau/B(p\to e^+\pi^0)>2.4\times10^{34}\,\mathrm{yr}$ and proton neutrino/kaon modes near $5.9\times10^{33}\,\mathrm{yr}$ at 90% confidence. These numbers are comparison anchors, not permanent constants; a closure packet should cite the current experimental source when the hadronic gate is evaluated.
 
 ### Sector Acceptance Sets
@@ -2728,6 +2781,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5bb7e87614bf70d1)
+
 where $E_\theta(C)$ is the product expectation for the declared apparatus context and $[x]_+\equiv\max(x,0)$. For a Hardy setup, $U_i$ and $D_i$ are the two calibrated binary measurement settings on wing $i\in\{1,2\}$, and the displayed probabilities come from four distinct setting pairs: $(D_1,D_2)$, $(U_1,U_2)$, $(D_1,U_2)$, and $(U_1,D_2)$. They must therefore be assembled from those four declared apparatus contexts rather than treated as one joint context. Use the zero-probability constraints and positive Hardy event as a margin:
 $$
 \Delta_{\mathrm{Hardy}}
@@ -2744,6 +2798,7 @@ P_\theta(U_1=0,D_2=1)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dde13de1c762fe9e)
+
 A useful Bell-family closure must make $\Delta_{\mathrm{GHZ}}$ small on the perfect-correlation contexts, produce the positive Hardy margin where the experiment requires it, and still keep $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ inside tolerance. These are validation targets for the joint record measure, not new ontology.
 
 The Kochen-Specker row includes the Mermin-Peres magic square as a preferred compact benchmark when a candidate operator map claims contextuality recovery. In that subcase the six commuting row/column contexts carry product signs $\chi_C\in\{+1,+1,+1,+1,+1,-1\}$. The closure must derive context-indexed apparatus records that satisfy those products and preserve shared marginals while refusing a global noncontextual value map. A proof that only assigns prewritten substrate values to all effective operators fails the parity check: each observable appears twice, so the product of all assigned values is $+1$, whereas the benchmark product signs multiply to $-1$.
@@ -2759,6 +2814,7 @@ D_{\mathrm{TV}}\!\left(
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6d6792f3a465044d)
+
 If a candidate avoids the theorem by allowing $\Delta_{\mathrm{PI}}>0$, that residual must be tied to a physical shared-provenance, boundary-data, or apparatus-coupling record. Otherwise it is an untracked preparation correlation. The useful closure target is therefore two-part: recover the PBR state-discrimination statistics in the declared record channel while reporting whether the substrate preparation measure factorizes. If both the PBR measurement statistics and preparation independence are accepted in the same domain, overlapping effective wavefunction descriptions cannot be treated as a harmless epistemic overlap.
 
 The Leggett-Garg row protects temporal correlation data without importing macrorealism as ontology. For dichotomic records $q_i\in\{-1,+1\}$ at times $t_i$, define
@@ -2772,6 +2828,7 @@ K_{\mathrm{LG}}=C_{12}+C_{23}-C_{13}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fa042f9258181515)
+
 Macrorealism plus noninvasive measurability gives $K_{\mathrm{LG}}\le 1$ for this sign convention. The $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement burden is not to accept noninvasive readout, but to declare the disturbance residual
 $$
 \Delta_{\mathrm{NIM}}
@@ -2784,6 +2841,7 @@ P_\theta(q_j|\mathcal{K}_i,\mathcal{K}_j)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e0a9ccb05be2c366)
+
 recover the observed $K_{\mathrm{LG}}$-type statistics, and state whether the violation is carried by ordinary record-forming apparatus coupling, weak-probe disturbance, or a still-unclosed measurement model. A result that leaves $\Delta_{\mathrm{NIM}}$ implicit has not converted the Leggett-Garg comparison into a usable validation gate.
 
 For finite-range gravity comparisons, positivity bounds should be treated as an effective-domain filter, not as imported ontology. Let $E_{\min}^{\mathrm{phys}}(\theta)$ denote the lowest physical perturbation energy after gauge and redundant variables are removed, and let $\Pi_a(\theta)$ denote the low-energy positivity functionals whose signs are fixed by the accepted comparison theorem for the declared scattering or response domain. A compact residual for a candidate large-scale weakening record is
@@ -2816,6 +2874,7 @@ w_{\mathrm{cos}}\mathcal{R}_{\mathrm{shared}}(\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3d02cb85278d2376)
+
 where $[x]_+\equiv\max(x,0)$. The record is useful only if one shared Noether sea response map can make this residual small. A result that passes local GR tests by changing the energy, positivity, polarization, dispersion, or cosmology record separately is not a promoted closure.
 
 ### Use in Validation
@@ -2826,11 +2885,7 @@ The no-go record therefore becomes one component of the sector predicate $\mathc
 
 ## Known Tensions
 
-This chapter is the pressure ledger for unresolved closure burdens. Its purpose is to collect the burdens that matter most for closure without mixing them with vague future ideas or low-stakes wishlist items.
-
-### Purpose
-
-This chapter is the pressure ledger for $\mathbb{A}\mathbb{A}\mathbb{A}$. It collects the places where the framework is not yet closed, where the derivation stack is thinner than the claim it supports, or where observations impose a hard quantitative burden that the corpus has not yet fully carried.
+This chapter is the pressure ledger for unresolved $\mathbb{A}\mathbb{A}\mathbb{A}$ closure burdens. It collects the places where the framework is not yet closed, where the derivation stack is thinner than the claim it supports, or where observations impose a hard quantitative burden that the corpus has not yet fully carried. Vague future ideas and low-stakes wishlist items do not belong here.
 
 This page is not a dumping ground for vague uncertainty. Each tension should identify:
 
@@ -2915,12 +2970,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e427327b2d9dcf27)
+
 with the collapse-time estimate
 $$
 \tau_G\sim \frac{\hbar}{\Delta E_G}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f84f0cdfb8311821)
+
 The useful comparison pressure is the tension between local free-fall equivalence and linear superposition when the two branches carry measurably different mass distributions. The validation burden is to compare $\tau_{\text{meas}}$ for demonstrated massive-superposition records against $\tau_G$ and ordinary environmental decoherence. Spatially separated BEC records containing roughly $10^9$ to $10^{10}$ atoms are a forecast target, not an achieved interference class. The comparison must preserve the $\mathbb{A}\mathbb{A}\mathbb{A}$ claim that branch selection is finite-time threshold resolution rather than fundamental gravitational collapse. Any collapse variant that predicts persistent spontaneous heating must also pass low-background and compact-object heating bounds before it can serve even as a comparison baseline.
 
 #### Spacetime cluster
@@ -3030,6 +3087,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c69723565da73081)
+
 The branch pair is interference-preserving only if the apparatus and environment have not produced an autonomous which-path record. The gravitational or effective-metric channel therefore becomes a constraint through the response difference
 $$
 \Delta h_A(t_{\mathrm{eff}})
@@ -3038,6 +3096,7 @@ h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-375d225ad5501528)
+
 where $A$ labels the resolved detector response channel and $\theta$ is the shared effective-metric constitutive record.
 
 The which-path diagnostic is
@@ -3051,6 +3110,7 @@ N^{-1}_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}};\theta)\,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-50e88c5154061093)
+
 Here $N_{AB}$ is the observer-level covariance decomposed in [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md#boundary-wake-covariance-scaffold). It summarizes unresolved deterministic boundary histories and calibrated detector/environment residuals; it is not an ontological randomness postulate.
 
 ### Minimal Response Model
@@ -3064,6 +3124,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e4d48d120889744e)
+
 For branch separation $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$ around center $x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})$, set
 $$
 \begin{aligned}
@@ -3081,6 +3142,7 @@ x_{\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})+\frac{d_{\mathrm{eff}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4fd6fbfe6f73ce2f)
+
 Let $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ be the detector response kernel implied by the same effective-metric constitutive record used for redshift, Shapiro delay, lensing, gravitational-wave speed, and, when the record is extrapolated to compact sources, horizon-scale ring/shadow imaging. The branch response is
 $$
 h_A(t_{\mathrm{eff}};\rho_k,\theta)
@@ -3091,6 +3153,7 @@ G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)\,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2dbca964292c79b2)
+
 Therefore
 $$
 \Delta h_A(t_{\mathrm{eff}})
@@ -3103,6 +3166,7 @@ G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)\,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-302094ee722b2d79)
+
 When $\|d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\|$ is small relative to the packet scale,
 $$
 \rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})-\rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
@@ -3114,6 +3178,7 @@ O(\|d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\|^3)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fd544e0647db09fe)
+
 so the leading branch response is
 $$
 \Delta h_A(t_{\mathrm{eff}})
@@ -3126,6 +3191,7 @@ G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)\,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0e4a6803bb07bbdd)
+
 This gives the first closure equation: a mass displacement history should map to a predicted detector-channel separation before any interpretive claim about classical or quantum spacetime is introduced.
 
 ### Mediated Entanglement Comparison
@@ -3145,6 +3211,7 @@ U_{ab}^{\mathrm{eff}}(t_{\mathrm{eff}};\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c958539326c1fe1e)
+
 The branch phase is then
 $$
 \Phi_{ab}(T_W;\theta)
@@ -3155,6 +3222,7 @@ U_{ab}^{\mathrm{eff}}(t_{\mathrm{eff}};\theta)\,dt_{\mathrm{eff}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-be3fcd29783bff71)
+
 Local branch phases can be absorbed into the one-probe descriptions. The entangling invariant is the cross-branch phase combination
 $$
 \Delta\Phi_{\mathrm{ent}}(T_W;\theta)
@@ -3164,6 +3232,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-445d12e9377697cc)
+
 For the ideal equal-amplitude two-branch packet, a first witness target is
 $$
 C_{\mathrm{GIE}}(T_W;\theta)
@@ -3174,6 +3243,7 @@ C_{\mathrm{GIE}}(T_W;\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a2fd3ef591382d1e)
+
 This formula is an observer-level benchmark. It does not say that the Euclidean void is quantized, that the effective metric is fundamental, or that a graviton field is the native substrate. It says that the same gravity-side constitutive record must produce the branch phase that standard low-energy descriptions would attribute to gravitational mediation.
 
 The comparison is meaningful only when the non-gravitational residual is bounded. Let $\mathcal{R}_{\mathrm{nongrav}}$ collect calibrated electromagnetic, spin-spin, Casimir, thermal, vibration, and apparatus cross-talk contributions to the same entanglement witness. A run can be used as a gravity-side validation target only if
@@ -3184,6 +3254,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-513877d2a0e424f8)
+
 with $\varepsilon_{\mathrm{iso}}$ declared by the apparatus class and retained alongside the covariance record $N_{AB}$.
 
 ### Input Record Schema
@@ -3233,6 +3304,7 @@ S_{AB}^{-1}\,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-176db1732240ec6c)
+
 This special case is the first numerical target because it turns the validation packet into a finite time-series calculation once $m$, $\sigma$, $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$, $G_A$, and $S_{AB}$ are supplied.
 
 ### Worked Acceleration Bound
@@ -3245,6 +3317,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5f1d153305299ef6)
+
 For a white acceleration readout covariance $N(t_{\mathrm{eff}},t'_{\mathrm{eff}})=S_a\delta(t_{\mathrm{eff}}-t'_{\mathrm{eff}})$, the distinguishability obeys
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
@@ -3253,6 +3326,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-574ade487f4f363b)
+
 With benchmark values
 $$
 M=10^{-14}\,\mathrm{kg},\qquad
@@ -3262,12 +3336,14 @@ T_W=1\,\mathrm{s}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-054b99eaa3208ed3)
+
 and an aggressive acceleration-noise amplitude
 $$
 S_a^{1/2}=10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7830ae65acb464c1)
+
 the bound is
 $$
 \mathcal{D}_{\mathrm{grav}}
@@ -3283,6 +3359,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-966cd853ccca3102)
+
 For a which-path threshold of order unity, this run is deep in the weak-probe class. Solving the same bound for the mass needed to reach $\mathcal{D}_{\mathrm{grav}}\sim\varepsilon_{\mathrm{wp}}$ gives
 $$
 M_{\mathrm{crit}}
@@ -3292,6 +3369,7 @@ M_{\mathrm{crit}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-67400247e859d41c)
+
 or, in the same benchmark geometry,
 $$
 M_{\mathrm{crit}}
@@ -3307,6 +3385,7 @@ M_{\mathrm{crit}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cba1f5370733d869)
+
 This is not a new ontology or an experimental forecast. It is a scale check: for ordinary mesoscopic masses, gravity-side which-path leakage is negligible unless the branch mass, separation, proximity, coherence time, or readout sensitivity moves by many orders of magnitude. A full detector calculation should replace the scalar factor $2/R^3$ with the tensor response in the Minimal Response Model above.
 
 ### Acceptance Criteria
@@ -3319,6 +3398,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-baf70e8bcbab6b6a)
+
 For a mediated-entanglement run, the same record must also satisfy
 $$
 C_{\mathrm{GIE}}(T_W;\theta)
@@ -3331,6 +3411,7 @@ C_{\mathrm{obs}}-\varepsilon_C,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f6c04406d9dbf53e)
+
 This combined gate preserves the observable without overclaiming the interpretation: the run tests whether the retained gravity-side constitutive record can generate the observed branch correlation while avoiding premature which-path record formation.
 
 If a which-path record is claimed instead, the measurement chapter's record criteria must also hold:
@@ -3344,6 +3425,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bd4cb4ebf205ebde)
+
 The failure condition is strict. If $\mathcal{D}_{\mathrm{grav}}\gg1$ while interference visibility remains high and no record-autonomy condition is satisfied, the effective-metric response has overproduced observable which-path information.
 
 The same $\theta$ must also remain compatible with the gravity-side ledger: redshift, Shapiro delay, lensing, PPN parameters, gravitational-wave speed, dispersion, detector-mode bounds, and compact-source ring/shadow extrapolations. A parameter set that fits the massive-superposition channel only by changing the weak-field metric record is not a valid closure.
@@ -3368,6 +3450,7 @@ C_{\mathrm{GIE}},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3454fb0e13ca120b)
+
 The inputs are the branch mass scale, packet width, separation history, coherence window, detector response kernel, covariance decomposition, record variable, separatrix, and two-probe branch histories when present. The outputs are the gravitational distinguishability, interference visibility, entangling phase, mediated-entanglement witness, finite measurement time, and record-autonomy residual.
 
 The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{grav}}$ estimate. The mediated-entanglement comparison supplies the first branch-phase target. Full packet closure still requires one numerical or analytic instance that computes the retained outputs from a shared constitutive record and reports whether the branch pair is weak-probe, mediated-entangling, record-forming, or falsifying.
@@ -3376,7 +3459,7 @@ The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{
 
 ### Architrino
 
-This note records the minimum tier-1 simulation tests that should be passed before any strong self-hit or non-Markovian claims are trusted numerically. Its purpose is narrow: establish provenance-resolved propagation, baseline diagnostics, and a workable history-buffer strategy before moving to richer dynamics.
+The minimum tier-1 tests establish provenance-resolved propagation, baseline diagnostics, and a workable history-buffer strategy before any strong [self-hit](../../../../markdown/aaa/foundations/architrino.md) claim—one in which an architrino encounters its own earlier wake—or other delayed-memory claim is trusted numerically.
 
 The reader should treat this as the simulator's first honesty check. Before the code is allowed to talk about rich self-hit behavior, it has to show that causal rings arrive in the right order, source identities are preserved, and history lookups are not quietly inventing the past.
 
@@ -3410,11 +3493,7 @@ Implement 1-architrino and 2-architrino setups with $\mathbb{U}_{\text{now}}$ se
 
 ### Convergence Tests
 
-This chapter defines the convergence standard for simulations that include self-hit structure and other delayed-memory effects. Its role is to specify which observables are checked, which refinement ladders are required, and what pass/fail thresholds count as numerical control rather than artifact.
-
-Convergence means the result is not a trick of the mesh, time step, history buffer, root solver, or regulator. For delayed dynamics that matters especially, because a tiny bookkeeping error in the past can return later as a fake branch, fake stability window, or fake invariant.
-
-Because self-hit dynamics are especially prone to fake structure under poor time or history resolution, this document should be read as a validation gate rather than as optional numerical hygiene.
+The convergence standard specifies which observables are checked, which refinement ladders are required, and what pass/fail thresholds distinguish numerical control from artifacts in simulations with [self-hit structure](../../../../markdown/aaa/foundations/architrino.md), where an architrino encounters its own earlier wake, and other delayed-memory effects. Convergence means that a reported result is not produced by the mesh, time step, history buffer, root solver, or regulator. This requirement is especially important for delayed dynamics, because a small bookkeeping error in the past can return later as a spurious branch, stability window, or invariant. The standard is therefore a validation gate, not optional numerical hygiene.
 
 All convergence claims in this chapter are finite-window claims. Passing the gates below validates the declared observables on the analysis window, with the stated detector set, history horizon, and regulator choices. It does not decide unbounded reachability questions for the full delayed dynamics; those would require a separate theorem about the global flow rather than a stronger convergence plot.
 
@@ -3439,6 +3518,7 @@ E_{\mathrm{rel}}(Y;A,B)\equiv
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5d43236ba1f86777)
+
 Here $R$ is restriction of the finer run to the coarser sampling grid, and $\varepsilon_{0,Y}$ is a predeclared floor with the same units as the norm of $Y$. A bare dimensionless constant must not be added to a dimensional channel.
 
 For provenance distributions of solved `t_emit`, define:
@@ -3449,6 +3529,7 @@ D_{JS}\equiv \mathrm{JSD}(P_A\|P_B)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-72d15bc24c00f4fb)
+
 where $W_1$ is 1-Wasserstein distance, JSD uses logarithm base $2$, and $\varepsilon_T$ is a predeclared absolute-time floor.
 
 For delayed source-state interpolation, the run must declare an order-$q$ history interpolation operator $I_{\Delta H_{\mathrm{hist}}}^q$. On a fixed analysis window $W$, define
@@ -3463,6 +3544,7 @@ E_{\mathrm{hist}}(S_\eta;\Delta H_{\mathrm{hist}},\Delta H_{\mathrm{hist}}/2;W)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6beb3447a5cd62ba)
+
 The weights $w_m\ge0$ are predeclared quadrature or sample weights normalized by $\sum_{m\in W}w_m=1$, and $\varepsilon_{0,S}$ has the same units as the weighted state norm.
 
 For nonsmooth state-dependent delay windows, define the jump residual rows
@@ -3478,6 +3560,7 @@ R_{\mathrm{jump},a}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-98702b057ef78ec6)
+
 Here $\xi_a$ is a sampled reception time in the transition window, $k_a$ is the tracked root index, $\ell_a$ is its branch/root-class label, and $\pi(a)$ is the predeclared matching permutation into the comparison run. The map $T_{0,\ell_a}(\xi_a)$ returns the matched transition time for that labeled root. A row is invalid if the matching rule or permutation is chosen after inspecting the residual.
 
 ##### Required refinements with pass/fail thresholds
@@ -3491,6 +3574,7 @@ p_{\mathrm{obs}}(Y)=\log_2\!\frac{E_{\mathrm{rel}}(Y;\Delta T,\Delta T/2)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b32cc921fe0fef67)
+
 Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$ or $\|\nabla\Phi\|$).
 
 2. History-resolution refinement (history step halved or interpolation order increased):
@@ -3518,6 +3602,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-c74a4352b28ee9e6)
+
 - The moment-closure residual must decrease under temporal, history, and spatial refinement. A continuum plot is not promotion evidence if the next unresolved moment grows or if the memory-current residual is absorbed into fitted constants.
 
 6. Stochastic and response refinement when a run adds Langevin, Fokker-Planck, or fluctuation-response summaries:
@@ -3529,6 +3614,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-aac85420eb464059)
+
 - If a diffusion tensor $D^{ij}(z)$ is inferred from jump or ledger increments, require it to remain positive semidefinite on the retained domain and stable under refinement.
 - If a response kernel $\chi_{AB}$ is promoted, require the causal dispersion residual $\mathcal R_{\mathrm{KK}}(\chi_{AB})\le0.05$ on the declared frequency band and require any fluctuation-dissipation residual to be reported from the same record.
 
@@ -3545,6 +3631,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-1bce23587507a703)
+
   or an explicitly justified equivalent if a linear hat matrix $H$ is not available.
 - Branch identity must persist under temporal refinement, history-window refinement, regulator refinement when a regulator is used, and root-ledger refinement. A coordinate that only improves the fitted residual while changing the active branch identity fails model selection.
 
@@ -3569,6 +3656,7 @@ E_\eta(Y;\eta,\eta/2)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4ef903e8a02b096f)
+
 It also records whether active root-ledger entries match between $\eta$ and $\eta/2$ after matching source, receiver, root class, and branch status. A convergence plot is not promotion evidence unless the table row containing the plotted quantity is present and tied to the campaign artifact hash.
 
 Regulator extrapolation fits must report the fitted observable, the regulator ladder, the assumed asymptotic form, excluded points if any, stability under fit-window changes, endpoint or singular-window controls when they affect the extrapolation, and a negative-control observable. A fit that behaves smoothly but has no declared observable map, topology, normalization, volume or window estimate when relevant, remainder bound, or independent continuum reconstruction remains below theorem-grade evidence.
@@ -3591,7 +3679,7 @@ A claim is numerically validated only if all applicable refinement gates pass an
 
 ### Perspective
 
-This chapter separates the mechanisms already defined by the Master Equation from the recovery claims that simulation must still test. The primitive inputs are the two architrino polarities, delayed line-of-action acceleration, transmitter-side causal-surface weighting, and same-transmitter causal-root branches. Stability, scale selection, inertia, gauge-sector behavior, and quantum-like statistics are downstream closure targets rather than consequences licensed by naming those inputs.
+This chapter separates the mechanisms already defined by the Master Equation from the recovery claims that simulation must still test. The primitive inputs are the [two architrino polarities](../../../../markdown/aaa/foundations/architrino.md), which set the sign of each interaction, delayed line-of-action acceleration, transmitter-side causal-surface weighting, and same-transmitter causal-root branches. Stability, scale selection, inertia, gauge-sector behavior, and quantum-like statistics are downstream closure targets rather than consequences licensed by naming those inputs.
 
 General relativity and quantum mechanics supply observer-level recovery targets. A simulation supports such a recovery only when an independently specified observable map and benchmark residual pass; resemblance of internal geometry is not evidence by itself.
 
@@ -3634,6 +3722,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-c1c370d5a364709f)
+
   is nonempty and the active root passes the transversality/Jacobian floor and carries a retained transmitter-side acceleration weight. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).
 
@@ -3733,7 +3822,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - Rigorous conditions for uniqueness/multiplicity of causal roots in accelerated motion and their contribution to stability.
 - Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-consistent effective cones emerge from moving-assembly deformation, clock/ruler retuning, and Noether sea response, and with what characteristic speed relative to the declared branch speed $c_\star$?
 
-Plain language summary: radial hits, causal delay, constant per-wavefront amplitude, and admitted self-hit roots define a compact simulation mechanism. Stable branches, natural scales, inertial response, and magnetic-like observables are the results that mechanism must still earn.
+Radial hits, causal delay, constant per-wavefront amplitude, and admitted self-hit roots define the simulation mechanism. Stable branches, natural scales, inertial response, and magnetic-like observables are results that the mechanism must still earn.
 
 ---
 
@@ -3759,7 +3848,7 @@ Observability axioms:
 Bayesian operational stance:
 - State update = conditioning on new hit histories; active interventions (changing receiver geometry/filters) alter future histories and thus the posterior over ledger classes.
 
-Plain language: a receiver never sees the full ledger of who emitted what; it sees only a time series of acceleration vectors. The appropriate language is therefore statistical over source and polarity histories that fit those vectors.
+A receiver never sees the full transmitter ledger; it sees only a time series of acceleration vectors. The appropriate description is therefore statistical over source and polarity histories that fit those vectors.
 
 ---
 
@@ -3790,7 +3879,7 @@ Measurement procedures are interventions that condition future hit histories:
 - Let $F,G$ be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates). Because they modify trajectories and thus the set of future causal roots, their composition generally satisfies $F\circ G\ne G\circ F$ at the level of observed statistics.
 - Contextuality: the distribution over ledger classes that best explains data depends on which filters were applied and in what order; the outcomes are context-dependent without invoking microscopic cross-product acceleration terms.
 
-Plain language: a present intervention changes which pushes will be recorded later; doing $A$ then $B$ is not generally the same as doing $B$ then $A$.
+A present intervention changes which acceleration contributions will be recorded later; applying $A$ and then $B$ is therefore not generally equivalent to applying $B$ and then $A$.
 
 ---
 
@@ -3801,7 +3890,7 @@ Linear wake superposition nominates, but does not derive, an effective complex-a
 - The Born-like target is to derive an intensity proportional to $|A_{\mathrm{mode}}|^2$ from that detector map and an independently specified ensemble measure.
 - The polarization target is to recover Malus’s $\cos^2\theta$ benchmark from a retained planar-mode and analyzer interaction record. Geometric projection alone is implementation scaffolding until the record-forming dynamics supply the measure.
 
-Plain language: planar-mode overlap supplies a candidate geometry for interference, while the amplitude-squared measure and analyzer statistics remain explicit recovery tests.
+Planar-mode overlap supplies a candidate geometry for interference, while the amplitude-squared measure and analyzer statistics remain explicit recovery tests.
 
 ---
 
@@ -3837,34 +3926,18 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 - Multi-receiver triangulation under ambiguity: show that two-sided localization from unoriented lines plus time series reduces, but does not eliminate, sign/side and distance–speed degeneracies—matching Step 9 limits.
 - Bell-type correlation target (open): assess whether planar-mode phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product acceleration terms; treat Tsirelson-like bounds as a stringent benchmark.
 
-Plain language: we can test the framework by checking order effects, interference weakening when we scramble coherence, and how much multiple receivers really help; reproducing quantum correlations is the toughest, and we flag it as an explicit target.
+Together these tests check order effects, the weakening of interference under disrupted coherence, and the information gained from multiple receivers. Reproducing quantum correlations is the most demanding target and remains explicitly open.
 
 ### README
 
-This note is the launch overview for the simulation branch. It explains the common simulation frame, the role of the virtual $\mathbb{U}_{\text{now}}$ universe-state perspective, and the separation between raw microstate logging and detector-level synthetic observables.
-
-Use it as the top orientation document. The sibling documents are grouped by responsibility:
+The simulation protocols share an [absolute-frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md) execution model, meaning fixed Euclidean coordinates and one universal time, together with a virtual $\mathbb{U}_{\text{now}}$ universe-state perspective for complete-state bookkeeping and a strict separation between raw microstate logs and detector-level synthetic observables. The protocols are grouped by responsibility:
 
 - common execution and interpretation: [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md), [Architrino Simulation Record](../../../../markdown/aaa/validation/simulations/architrino.md), and [Simulation Perspective](../../../../markdown/aaa/validation/simulations/perspective.md);
 - detector-facing and statistical outputs: [Synthetic Observables](../../../../markdown/aaa/validation/simulations/synthetic-observables.md), [Bell-Family Record Measure](../../../../markdown/aaa/validation/simulations/bell-family-record-measure.md), and [Thermodynamic Residual](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md);
 - mass-map and action closure: [$A_0$ Branch Certificate Protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), [$A_0$ Tier 0 Result-Schema Interpretation](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), [Coincident-Midpoint Orthogonal-Axis Action-Increment Protocol](../../../../markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md), [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), and the [Action-Energy Model](../../../../markdown/aaa/validation/simulations/action-energy/action-model.md) with its sibling derivation notes;
 - cosmology and response scaffolds: [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md), [Redshift-Budget Toy Model](../../../../markdown/aaa/validation/simulations/redshift-budget-toy-model.md), [Static Response Vector Toy Model](../../../../markdown/aaa/validation/simulations/static-response-vector-toy-model.md), and [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md).
 
-#### Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective
-
-- All tiers are implemented in the absolute frame (fixed Euclidean-void coordinates $X,Y,Z$; absolute time $T$).
-- The simulator effectively plays the role of the $\mathbb{U}_{\text{now}}$ universe-state perspective by integrating the master equation and maintaining $S(T)$.
-- Raw outputs are $\mathbb{U}_{\text{now}}$-style (fields, provenance, microstate summaries).
-- “What experiments see” is generated by post-processing: embed detector assemblies with native worldlines $\mathbf{X}_{\text{det}}(T)$, compute the derived clock readout $\tau_{\text{det}}(T)$ through a declared clock map, and generate detector-like logs.
-
-Checklist per tier:
-- What $\mathbb{U}_{\text{now}}$ records ($\Phi$, $\nabla\Phi$, Noether sea variables, provenance)
-- How to compute physical observables ($\tau$, redshift, lensing proxies, public gravitational-wave packet outputs: detector strain, phase, event energy ledger, timing residuals, and provenance)
-- Convergence requirements for each output type
-- For the first mass-map target, how the $A_0$ Tier 0/Tier 1 branch certificate is separated from later energy, shielding, and Noether sea response interpretation
-- For Tier 0 rows, how active roots, raw roots, excluded near-zero self roots, residual semantics, and promotion gates should be read before any Tier 1 continuation
-
-##### Simulation Frame and the $\mathbb{U}_{\text{now}}$ universe-state perspective
+#### Simulation Frame and the $\mathbb{U}_{\text{now}}$ Universe-State Perspective
 
 All simulation tiers are implemented in the absolute frame:
 
@@ -3872,18 +3945,15 @@ All simulation tiers are implemented in the absolute frame:
 - **Temporal frame:** global absolute time $T$, advanced in discrete steps $\Delta T$.
 - **Microdynamics:** architrino positions and velocities updated according to the master equation; potentials propagated at speed $c_f$.
 
-From the code’s perspective, we are always the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
+The simulator occupies the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
 
-- We know $S(T)$ (all architrinos, all assemblies) at each time step.
-- We can compute fields and Noether sea state anywhere in the domain.
+- It records $S(T)$, including all modeled architrinos and assemblies, at each time step.
+- It computes fields and Noether sea state anywhere in the declared domain.
 
 To connect to experiment:
 
-- We embed **model detectors** (assembly worldlines) in this frame.
-- We compute:
-  - What fields they experience along their paths,
-  - How their internal clocks tick ($\tau$ vs $T$),
-  - What signals they register (arrival times, redshifts, intensity patterns).
+- Embed **model detectors**, represented by assembly worldlines, in this frame.
+- Compute the fields they experience along their paths, their internal clock readings $\tau$ relative to $T$, and the arrival times, redshifts, and intensity patterns they register.
 - Synthetic observables are derived from these detector responses, not from raw $S(T)$ directly.
 
 This enforces a clean separation between:
@@ -3913,9 +3983,7 @@ This does not make the simulator a physical observer and does not require unboun
 
 ### Run Protocols
 
-This chapter defines the mandatory runtime protocol for simulations carried out in the absolute-frame implementation of the theory. Its role is to standardize the frame, logging requirements, provenance bookkeeping, metadata, and acceptance gates so results from different runs can be compared and audited coherently.
-
-The opening gives the top-level simulation rule set; the later sections unpack the absolute-frame interpretation and the required $\mathbb{U}_{\text{now}}$ instrumentation in more detail.
+The mandatory runtime protocol standardizes the [absolute frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md)—fixed Euclidean coordinates governed by one universal time—together with logging requirements, provenance bookkeeping, metadata, and acceptance gates so that results from different simulations can be compared and audited coherently.
 
 #### Master Simulation Protocol (Absolute Frame)
 
@@ -3952,6 +4020,7 @@ I_{\Delta H_{\mathrm{hist}}}^q,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5f180b89feee6f9e)
+
 Here $\mathsf{id}$ fixes the run identifier and source commit, $S_\eta$ is the regularized state history, $\mathcal{G}_{\mathrm{mesh}}$ is the spatial and history mesh, $\Delta T$ is the absolute-time step, $\eta > 0$ is the causal-wake regularization width, $I_{\Delta H_{\mathrm{hist}}}^q$ is the declared order-$q$ history interpolation operator, $\mathcal{L}_{\mathrm{root}}$ is the causal-root ledger, $\mathcal{T}_{\eta}$ is the transition-record family for fold-layer, separator, or active-root status windows, $\mathcal{R}_{\mathrm{branch}}$ is the named branch-residual vector, $\Pi_{\mathbb{U}_{\text{now}}}$ is the provenance log, $\mathcal{E}_{\mathrm{conv}}$ is the convergence-measure vector, and $\mathcal{F}$ is the finite failure-code set.
 
 When a campaign is used for a continuum, field-theory, or regulator-removal claim, it must also attach an extraction map: the regulated observables, test windows, volume or window trajectory when relevant, normalization and mixing rules, convergence topology, positivity or reconstruction condition when applicable, and the artifact hashes for the regulator ladder. If independent methods or benchmarks are used, the packet must expose their normalization conventions and error envelopes before comparing coordinates. These fields tell reviewers exactly what is claimed to survive the finite run and what remains only a regulator-level diagnostic.
@@ -3968,6 +4037,7 @@ S_{\eta,T}(\theta)=S_\eta(T+\theta),\quad \theta\in[-H_{\mathrm{hist}},0]
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2fcf7a56df428c35)
+
 A Tier 1 packet must state whether this history is evaluated in $C^1([-H_{\mathrm{hist}},0])$, $W^{1,\infty}([-H_{\mathrm{hist}},0])$, or a stricter history class. Here $H_{\mathrm{hist}}>0$ is the retained-history horizon; it is distinct from the observer-level Planck benchmark $h$. A missing history class is an incomplete artifact, because the delayed transmitter-state evaluation cannot be audited without it.
 
 The mesh and interpolation record is
@@ -3976,6 +4046,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f8987fe2240989d2)
+
 where $\Omega_{\mathrm{sim}}\subset\mathbb{R}^3$ is the Euclidean-void computational domain, $\{\mathbf X_k\}$ are the fixed $\mathbb{U}_{\text{now}}$ sample points, $\Theta_{\mathrm{hist}}\subset[-H_{\mathrm{hist}},0]$ is the stored path-history mesh, $\Delta H_{\mathrm{hist}}$ is the history resolution, and $\mathsf{bc}$ records boundary conditions. The interpolation operator $I_{\Delta H_{\mathrm{hist}}}^q$ is part of the packet; delayed transmitter states cannot be reconstructed by an implicit or undocumented lookup rule.
 
 The path-history part of $\mathcal{G}_{\mathrm{mesh}}$ and $\Pi_{\mathbb{U}_{\text{now}}}$ should distinguish authoritative kinematic segments from attached audit rows. Authoritative segments reconstruct $\mathbf X_i(T)$ and $\mathbf V_i(T)$ over declared intervals with error bounds. Causal-root rows, delayed source-state rows, assembly-membership intervals, reaction-event references, and display projections attach to those segments by identifier and time range. Chunking, compression, and broad-phase indices are allowed as storage or acceleration layers; they do not replace authoritative replay when a promoted claim depends on provenance.
@@ -4001,6 +4072,7 @@ D_{\mathrm{jump}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e6033146454ef60f)
+
 where every component is a ratio with passing threshold $1$. The component meanings are:
 
 | Component | Required role |
@@ -4028,6 +4100,7 @@ R_0\in\mathsf{Candidate}_{1},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d554ab86f5f9ce0f)
+
 $$
 \Delta_{\mathrm{root}}(\Delta H_{\mathrm{hist}},\Delta H_{\mathrm{hist}}/2)=0,
 \quad
@@ -4039,6 +4112,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0e40a08d19729731)
+
 Here $R_0\in\mathsf{Candidate}_1$ means the Tier 0 packet has `failure_code: "candidate"` and its `tier0_continuation` gate passes. For two runs $A,B$, $\Delta_{\mathrm{root}}(A,B)$ is the number of unmatched active-root records after matching receiver, transmitter, root class, branch label, and transition status. The regulator version $\Delta_{\eta,\mathrm{root}}$ applies the same matching rule between adjacent $\eta$ values. Thus a zero value means identity-preserving root agreement, not merely equal root counts. Finally, $\mathsf{NullFail}=1$ means the negative control violates at least one required null-test margin, and $\mathsf{Artifacts}=1$ means every required artifact exists with a content hash and source commit.
 
 Failure routing is deterministic. Missing required artifacts, source commits, pre-run tolerances, or hashes route to $\mathsf{artifact\_incomplete}$. Changing a promoted observable, tolerance, branch label, or regulator ladder after output inspection routes to $\mathsf{hidden\_tuning}$. Unstable active-root identity routes to $\mathsf{branch\_root\_instability}$; failed refinement routes to $\mathsf{mesh\_nonconvergence}$; failed provenance routes to $\mathsf{provenance\_discontinuity}$; failed conservation routes to $\mathsf{conservation\_drift}$; failed regulator rows route to $\mathsf{regulator\_dependence}$; and exit from the admissible $\eta$ continuation set routes to $\mathsf{eta\_continuation\_failure}$.
@@ -4064,6 +4138,7 @@ W,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b00aeecb82963742)
+
 It names the source certificate, initial history, analysis window, branch label, expected active-root classes, branch tolerances, convergence tolerances, regulator ladder, negative-control mutation, and required output channels before the run starts.
 
 The simulation-to-proof handoff is
@@ -4083,6 +4158,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-88f09a895086b857)
+
 A proof packet may cite a simulation only through this handoff. It must state whether every expected active root was matched under $\Delta T$, $\Delta H_{\mathrm{hist}}$, and $\eta$ refinement, which residual component controls the verdict, and which artifact contains each value.
 
 **Lemma (simulation-promotion criterion).** Let $Q$ be a priority-theory claim whose variables are contained in $\mathcal{C}_{\mathrm{sim}}$, and let $R_1$ be a Tier 1 continuation of a Tier 0 candidate $R_0$. If $R_0$ satisfies the Tier 0 acceptance criteria, $R_1$ satisfies the Tier 1 acceptance criteria, the negative control fails as required, and
@@ -4095,6 +4171,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c243717f0feffac2)
+
 $$
 \max_a\frac{\mathcal{R}_{\mathrm{branch},a}}{\tau_{\mathrm{branch},a}}\le 1,
 \qquad
@@ -4102,6 +4179,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-909e0ce8a28038e2)
+
 with all tolerances declared before the run, then the result may be promoted from numerical candidate to simulation-supported priority claim for $Q$. This lemma does not convert a simulation-supported priority claim into an analytic theorem; it authorizes proof-program routing only with artifact hashes and the failure-code ledger attached.
 
 In this lemma, $\mathcal E_{\mathrm{ref},a}$ are temporal, history, spatial, and integrator-parity refinement errors; $\mathcal E_{\mathrm{prov},a}$ are causal-root and transmitter-provenance errors; $\mathcal E_{\mathrm{cons},a}$ are declared conservation-ledger residuals; and $\mathcal R_{\mathrm{branch},a}$ are the owning branch protocol's residual components. Each $\tau_{\cdot,a}>0$ has the same units as its numerator and is frozen before execution.
@@ -4152,6 +4230,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5890b528aec32323)
+
 Here $\mathcal{D}$ names the detectors, $\mathcal{S}_h$ names the strain files, $\mathcal{P}_{\mathrm{PE}}$ names posterior-sample and parameter-estimation records, $\mathcal{P}_{\mathrm{wave}}$ names the waveform-family or numerical-relativity provenance, $\mathcal{Q}_{\mathrm{det}}$ carries calibration, data-quality, injection-mask, down-sampling, and glitch-treatment records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event conservation ledger, $\mathcal{R}_{\mathrm{GW}}$ is the residual vector, and $\Pi_{\mathrm{wave}}$ maps each fitted or plotted sample back to public artifacts.
 
 The residual vector is
@@ -4164,6 +4243,7 @@ R_h,R_\phi,R_E,R_J,R_{c_g},R_{\mathrm{det}},R_{\mathrm{PE}},R_{\mathrm{prov}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-28eb7c6ab9d0959c)
+
 $R_h$ compares whitened or otherwise declared detector strain on the predeclared analysis window; $R_\phi$ compares unwrapped inspiral-merger phase on the declared frequency band; $R_E$ checks source masses, remnant mass, radiated energy, recoil, ejecta or heat-channel terms, and boundary exchange in one conservation ledger; $R_J$ checks angular-momentum accounting when the packet claims spin or recoil closure; $R_{c_g}$ is used only for multimessenger timing rows; and the final three residuals are provenance-completeness checks.
 
 For a multimessenger row,
@@ -4176,6 +4256,7 @@ R_{c_g}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fe7e80122ceb6452)
+
 The intrinsic effective-chart source-emission delay $\Delta t_{\mathrm{eff,src}}$ must be declared before fitting the gravity-channel speed. A packet fails as hidden tuning if it absorbs photon/gravity timing into an undeclared source delay, changes the analysis band after inspecting residuals, substitutes a cleaned strain product without recording a new provenance row, or changes waveform family after comparing to the data.
 
 The minimum artifact list is `event.json`, `strain_files.json`, `detector_quality.json`, `parameter_estimation.json`, `waveform_provenance.json`, `analysis_window.json`, `strain_residuals.csv`, `phase_residuals.csv`, `energy_ledger.csv`, `speed_residual.json` when applicable, `artifact_hashes.json`, and `failure_report.md`. For long binary-neutron-star inspirals the packet must also include a glitch/cleaning row, a low-frequency cutoff row, and a reason if any detector is excluded from a visible-strain comparison. For short binary-black-hole benchmarks the packet must include an inspiral-merger-ringdown window, detector arrival-time comparison, and ringdown handoff row.
@@ -4190,6 +4271,7 @@ D_h,D_\phi,D_E,D_{c_g},D_{\mathrm{det}},D_{\mathrm{PE}},D_{\mathrm{prov}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a66d4ddde2fba4f7)
+
 with
 $$
 D_h=\frac{R_h}{\tau_h},
@@ -4202,12 +4284,14 @@ D_{c_g}=\frac{|R_{c_g}|}{\tau_{c_g}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2b476af8027a70db)
+
 $D_{\mathrm{det}}$, $D_{\mathrm{PE}}$, and $D_{\mathrm{prov}}$ are binary completeness ratios whose value is `0` only when detector masks/calibration, parameter-estimation release metadata, and artifact hashes are all present. A packet can support a promoted gravitational-wave claim only if
 $$
 \max_a\mathcal{D}_{\mathrm{GW},a}\le 1
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9ca0778f323eaef8)
+
 and the public-data provenance row was fixed before waveform comparison.
 
 The first benchmark triad is:
@@ -4247,7 +4331,7 @@ A vacuum one- or two-architrino benchmark therefore uses the same coordinate and
 
 This protocol defines the mathematical and numerical evidence for the $A_0$ reference attractor described in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), and [Energy](../../../../markdown/aaa/dynamics/energy.md). It specializes the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) to the first neutral rest-branch mass-map candidate constrained to coincident-midpoint orthogonal-axis braid coordinates: persistent indices, independently assignable positive radii and frequencies, mutually orthogonal near-rest axes, the declared orthogonal-axis three-binary response direction, and explicit remaining binary coordinates. No computed $A_0$ branch is reported here. Retention and stability require the stated conditions to hold on the same evolved history.
 
-The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale causal-root ledger before energy, shielding, Noether sea response, or mass comparisons enter.
+The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale [causal-root](../../../../markdown/aaa/foundations/architrino.md) ledger, whose entries identify the earlier emissions that reach a receiver at an evaluation time, before energy, shielding, Noether sea response, or mass comparisons enter.
 
 #### Master-Equation Handoff Boundary
 
@@ -4300,6 +4384,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4b5f8d0c47ae2134)
+
 Tier 0 may evaluate only part of this vector. Every omitted component remains explicitly uncomputed, together with the later analysis needed to determine it. A missing tolerance is not evidence that a residual is small.
 
 ##### Self-Hit Energy And Action-Spacing Order
@@ -4331,6 +4416,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e6bd9714da63ff7a)
+
 define
 $$
 D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
@@ -4343,6 +4429,7 @@ D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-56322f39346f96b8)
+
 $$
 Q^{ij}_{A_0}
 =
@@ -4354,6 +4441,7 @@ Q^{ij}_{A_0}-\frac{1}{3}h^{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f022c55f30d3b266)
+
 Here $h_{mn}=\delta_{mn}$ is the Euclidean spatial metric on $\Sigma_T$ and $h^{ij}=\delta^{ij}$ is its inverse, so the denominator is the Euclidean trace of $D^{ij}_{A_0}$. This tensor measures motion-induced or probe-induced Noether braid deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
 
 #### Tier 0: Algebraic Branch Search
@@ -4473,12 +4561,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-aee97242a02ad6b6)
+
 The rerun may proceed toward monodromy only if
 $$
 \mathcal{R}_{\mathrm{1per}}\le 0.02
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7579aacacf0ef4a6)
+
 with $\mathbf D_\ell(T)$, the basis terms $\mathbf A_{a,B}$, the coefficient rule for $\alpha_B$, and any held-out interval declared before fitting. A scalar-basis no-go is therefore a chart or basis failure; it does not become an attractor failure unless every admissible corrected carrier and branch-native basis inside the declared search class fails the same residual boundary.
 
 #### Tier 2: Energy and Shielding
@@ -4505,14 +4595,11 @@ The $A_0$ branch is not an attractor until Tier 1 passes. It is not a mass-map r
 
 ### Synthetic Observables
 
-This note defines the canonical logging standard for the virtual $\mathbb{U}_{\text{now}}$ perspective and explains how those logs are turned into detector-like synthetic observables. Its purpose is to keep the separation clear between exact simulation bookkeeping and the post-processed quantities that stand in for what a physical observer would measure.
-
-The file therefore serves as both a data-contract note and an observer-interface note for the simulation stack.
+The virtual $\mathbb{U}_{\text{now}}$ perspective provides a canonical log of the [complete modeled state](../../../../markdown/aaa/foundations/ontology.md), meaning every modeled entity and its history at the same absolute time. Detector-like synthetic observables are post-processed from that log through a declared physical-observer model, so exact simulation bookkeeping remains distinct from the quantities that stand in for measurements.
 
 #### $\mathbb{U}_{\text{now}}$ Logging Standard
 
-##### Purpose
-Define a canonical $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) used across all simulation tiers for logging, diagnostics, and synthetic datasets. $\mathbb{U}_{\text{now}}$ is not physically realizable; it is a bookkeeping operator acting on the full microstate.
+The canonical $\mathbb{U}_{\text{now}}$ universe-state perspective is used across all simulation tiers for logging, diagnostics, and synthetic datasets. It is not physically realizable; it is a bookkeeping operator acting on the full microstate.
 
 ##### Definition
 A $\mathbb{U}_{\text{now}}$ is defined by:
@@ -4557,6 +4644,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-6ff7273d4e81cb6c)
+
   where $\varepsilon_r>0$ is a predeclared floor with units of length. Pass if at least $99.9\%$ of records satisfy $\rho_m\le 10^{-2}$ and $\max_m \rho_m \le 5\times 10^{-2}$.
 
 - **Temporal ordering check:**
@@ -4565,6 +4653,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-7ac22ecc1b685464)
+
   Pass if fraction with $\theta_m>10^{-9}$ is $\le 10^{-6}$.
 
 - **Cross-integrator parity:** For any channel $Y$ use a predeclared floor $\varepsilon_{0,Y}$ with the same units as the norm of $Y$:
@@ -4574,6 +4663,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-45d921bacfcb3108)
+
   Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$ and $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$. Passing shows implementation parity on the declared channels; it is not an independent correctness oracle.
 
 - **Finite-window Gauss/Stokes residuals:** for any declared reconstructed vector channel $\mathbf{Y}_\eta$ on $\Sigma_T$, use
@@ -4584,6 +4674,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-de36de38c8014c6a)
+
   and
   $$
   R_S[S,T;\mathbf{Y}_\eta]\equiv
@@ -4592,6 +4683,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-71bcfdb75185b2f8)
+
   Here $\varepsilon_G$ and $\varepsilon_S$ are predeclared floors with the units of their respective integral channels. Pass if both residuals are $\le 2\times10^{-2}$ on resolved windows and decrease under spatial refinement. These are diagnostics on reconstructed continuum channels, not claims that the channel is substrate ontology.
 
 - **Distributional wake-surface normalization:** for emitted wake surface $m$ with source strength $q_m$, causal delay $\Delta_m=T-T_{t,m}$, and radial annulus $R_-\le r_m\le R_+$ around the emission point, use
@@ -4601,6 +4693,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-68fb0e6740be2980)
+
   and
   $$
   R_{N,m}\equiv
@@ -4609,6 +4702,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-16c23eb963833104)
+
   Here $\varepsilon_q$ is a predeclared source-strength floor with the same units as $q_m$. Pass if at least $99.9\%$ of emitted wake surfaces satisfy $R_{N,m}\le 10^{-2}$ and the maximum resolved-window residual is $\le 5\times10^{-2}$.
 
 - **Photon-frequency exchange closure:** when a photon packet changes frequency during transport, the logged before/after frequencies must close with medium, recoil, and remnant rows:
@@ -4627,6 +4721,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-052bcc73fc3ef5ff)
+
   Here $E_\gamma(\nu)$ is the declared photon-channel energy map and $\varepsilon_{\nu\text{-}\mathrm{ex}}>0$ is a predeclared photon-exchange tolerance with units of energy; it is distinct from the normalized energy-drift observable $\epsilon_E$ in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md). Pass if $R_{\nu\text{-}\mathrm{ex},m}\le1$. The medium, recoil, and remnant entries use the same signed balance equation and outcome-neutral ledger convention defined in the [Redshift-Budget Toy Model](../../../../markdown/aaa/validation/simulations/redshift-budget-toy-model.md#replay-equation). The observer-level comparison $E_\gamma=h\nu$ may be used only as a labeled recovery calibration after the $\mathbb{A}\mathbb{A}\mathbb{A}$ map is declared; it is not an architrino-level premise. A cosmology-facing redshift or blueshift product may consume this row only after the residual is reported with the same photon provenance used for arrival-time, flux, and image-sharpness outputs.
 
 - **Operator consistency across PDE and event-root runs:** after resampling the event-root reconstruction onto the PDE grid, define
@@ -4639,6 +4734,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-7ed20edd08550fc8)
+
   Pass if $E_{\mathrm{op}}\le0.03$ on the declared validation windows and decreases under temporal/history/spatial refinement. This is a parity check on the common observable map, not independent evidence for that map or the canonical law.
 
 - **Curvilinear-coordinate hygiene:** finite-window residuals must use the coordinate weights and operator formulas of the declared Euclidean scaffold. In spherical coordinates $(r,\theta,\varphi)$,
@@ -4648,12 +4744,14 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-e4643ea121b6bf2e)
+
   and a radial channel must evaluate $\nabla\!\cdot(F_r\hat{\mathbf{r}})$ as
   $$
   \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2F_r\right)
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-abc15d6ef5fa2b06)
+
   not as $\partial_rF_r$. Fail the run if the coordinate scaffold does not declare these weights.
 
 - **Provenance distribution agreement:** for `t_emit` distributions, require
@@ -4674,6 +4772,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-a3a1b083c3f39089)
+
   and compare them with the reduced continuum reconstruction. The reduced channel must report
   $$
   R_{\mathrm{mom}}
@@ -4687,6 +4786,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-4417dca37385cf10)
+
   where $Y$ ranges over the retained density, current, momentum-current, and energy-flux channels. Pass if $R_{\mathrm{mom}}\le0.05$ and the omitted memory-current residual decreases under refinement.
 
 - **Drift-diffusion reconstruction:** if a Fokker-Planck or Langevin surrogate is emitted, estimate drift and diffusion from increments,
@@ -4703,6 +4803,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-fd952a25a000734c)
+
   The synthetic distribution must match direct event-root ensembles in $\langle z\rangle$ and $\operatorname{Cov}(z)$ before higher stochastic claims are trusted. Higher cumulants may differ from the surrogate unless a separate closure row has been declared.
 
 - **Reaction-diffusion and pattern probes:** when a reduced scalar or multi-channel field $y$ obeys
@@ -4717,6 +4818,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-934747a7edb23032)
+
   the packet must report the fixed points, the linearized growth matrix, the unstable wavenumber band if one exists, and the front-speed estimate if a traveling-front claim is made. For two-channel pattern claims, the Turing-style gate is that the homogeneous fixed point is stable before diffusion and that the diffusion-shifted linear operator has a declared finite unstable band. Without those rows, visual pattern formation is not a validated synthetic observable.
 
 - **Jet/outflow head and radiation probes:** when a simulation claims an astrophysical jet, outflow, knot chain, or working surface, the synthetic packet must compare the logged event-root dynamics to the observer-level jet-head and radiation benchmarks. For a supersonic head with jet speed $v_j$, beam radius $R_j$, head radius $R_h$, density ratio $\eta_j=\rho_j/\rho_a$, and $a_h=(R_j/R_h)^2$, the bow-shock speed target is
@@ -4730,6 +4832,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-0dedd040f9d66e89)
+
   The head residual is
   $$
   R_{\mathrm{head}}
@@ -4741,6 +4844,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-1a782a336acb1682)
+
   For radiative shocks, also report
   $$
   \mathcal{R}_{\mathrm{cool}}
@@ -4751,6 +4855,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-8a0d4df15f3b9d02)
+
   and route the synthetic emission to thermal line/free-free rows when $\mathcal{R}_{\mathrm{cool}}\ll1$, or to adiabatic, particle-acceleration, synchrotron, inverse-Compton, cocoon, and lobe rows when $\mathcal{R}_{\mathrm{cool}}\gg1$. If a pulsed inlet is declared with period $P$, the knot spacing should report
   $$
   R_{\mathrm{knot}}
@@ -4762,6 +4867,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-a616e48e6d3fc870)
+
   up to projection, cooling, and deceleration corrections named in the packet. For synchrotron-bearing jets, the same run must emit $I_\nu^{\mathrm{syn}}$, $I_\nu^{\mathrm{IC}}$, $\Pi_\nu$, and $\psi_\nu$ maps from one effective $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ reconstruction. These are observer-level comparison variables; passing them does not promote MHD fields into substrate ontology.
 
 - **Convergence triad:** must pass temporal/history/spatial gates from [convergence-tests.md](../../../../markdown/aaa/validation/simulations/convergence-tests.md), including null-test failure.
@@ -4807,7 +4913,7 @@ Failure of a compact coordinate chart does not falsify every possible $A_0$ bran
 
 ##### Quotient-Coordinate Row
 
-The reduced coordinate $z_\Lambda$ describes the geometry after quotienting away global rotations, the common $S^1_{\mathbf{k}}$ phase gauge, and allowed discrete relabelings $\Gamma_\Lambda$ that preserve polarity assignment, layer roles, speed ordering, and causal-root branch class.
+The reduced coordinate $z_\Lambda$ describes the geometry after quotienting away global rotations, the common $S^1_{\mathbf{k}}$ phase gauge, and allowed discrete relabelings $\Gamma_\Lambda$ that preserve polarity assignment, layer roles, speed ordering, and the [causal-root](../../../../markdown/aaa/foundations/architrino.md) branch class identifying which earlier emissions reach the receiver.
 
 For this protocol only, the source-record layer aliases map to persistent indices by
 $$
@@ -4815,6 +4921,7 @@ I\leftrightarrow1,\qquad M\leftrightarrow2,\qquad O\leftrightarrow3.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cf884bbe20f012b6)
+
 Persistent indices identify the binaries. The aliases describe the declared radial role on this one chart and do not relabel the taxonomy.
 
 | Geometric information | Meaning |
@@ -4862,6 +4969,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ae45d430bea6eace)
+
 Each component has a stated tolerance and interpretation. An uncomputed component is explicitly identified as uncomputed, not assigned zero.
 
 The Tier 0 residual surface deliberately includes entries that are not computed at Tier 0:
@@ -4921,7 +5029,7 @@ These implications distinguish preliminary geometric consistency from dynamical 
 
 #### Bell-Family Record-Measure Harness
 
-This protocol gives the Bell-family residuals in [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md) their first executable scaffold. It is not a closure proof. It is a probability-table harness that checks whether a proposed record table preserves the standard benchmark shape before any claim is made about deriving that table from architrino dynamics, pair provenance, detector kernels, and finite-time basin measures.
+This protocol gives the Bell-family residuals in [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md) their first executable scaffold. It is not a closure proof. It is a probability-table harness that checks whether a proposed record table preserves the standard benchmark shape before any claim is made about deriving that table from [architrino dynamics](../../../../markdown/aaa/foundations/architrino.md), where two polarity classes interact through delayed line-of-action acceleration, pair provenance, detector kernels, and finite-time basin measures.
 
 The simple point is that one Bell number is not enough. A candidate table may look good on a CHSH average while failing no-signaling, GHZ parity, Hardy structure, or measurement-independence accounting. This harness keeps those checks in one place before the deeper dynamics are allowed to claim success.
 
@@ -5243,19 +5351,21 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6c4b509a949c3341)
+
 for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted coincident-midpoint orthogonal-axis braid dynamics select a positive increment $\Delta I_*$ such that
 $$
 h_{\mathbb{A}\mathbb{A}\mathbb{A}}=2\pi\Delta I_*
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c08fff78900e1809)
+
 matches the observer-level Planck constant benchmark.
 
 Passing this protocol would not complete quantum theory. It would only promote the action-increment step from bookkeeping convention to candidate derived output.
 
 ##### Accepted Transition Class
 
-Let $B_q$ and $B_{q'}$ denote candidate coincident-midpoint orthogonal-axis braid branch states with passed stability rows, indexed binary radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
+Let $B_q$ and $B_{q'}$ denote candidate coincident-midpoint orthogonal-axis braid branch states with passed stability rows, indexed binary radii, frequencies, speeds, plane normals, an active [causal-root](../../../../markdown/aaa/foundations/architrino.md) ledger identifying the earlier emissions that reach each receiver, and a wake ledger. A candidate accepted transition belongs to
 
 $$
 \mathcal{T}_{\mathrm{acc}}=\varnothing
@@ -5283,9 +5393,8 @@ B_q\to B_{q'}:
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f12757a4496ccae3)
-The tolerances $\tau_{\mathrm{phase}}$, $\tau_E$, $\tau_P$, $\tau_J$, and $\tau_{\mathrm{root}}$ must be declared before the run. The transition is not accepted merely because it improves a fit to `$h$`.
 
-Plain language: only stable, conservation-accounted, root-accounted branch changes are allowed to vote on the action increment.
+The tolerances $\tau_{\mathrm{phase}}$, $\tau_E$, $\tau_P$, $\tau_J$, and $\tau_{\mathrm{root}}$ must be declared before the run. The transition is not accepted merely because it improves a fit to `$h$`: only stable branch changes with accounted conservation and causal roots contribute to the action increment.
 
 ##### Master-Equation Increment
 
@@ -5300,6 +5409,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-07210d95933edafb)
+
 which has units of specific torque. The index carries no radius order. With transaction axis $\hat{\mathbf n}_{\mathrm{txn}}$, the action-unit increment is
 $$
 \Delta I_{\mathrm{ME}}
@@ -5315,6 +5425,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1afa3c3d67c9e6b8)
+
 Here $\Delta\mathbf L_{\mathrm{wake},\partial}^{\mathrm{spec}}$ is the specific angular momentum still carried across the chosen braid boundary at the end of the transition window. The universal $\mu_{\text{arch}}$ is an action/energy bookkeeping conversion only; it is not primitive architrino mass.
 
 The packet must declare $\mu_{\text{arch}}$ in `campaign.json`, record units for every action and acceleration-moment column, and keep that normalization fixed across all candidate and control transitions. A packet that omits the conversion may report a specific-action diagnostic, but it may not evaluate $\delta_h$ or promote `candidate_h_recovery`.
@@ -5333,6 +5444,7 @@ K_{\mu}+E_{\mathrm{wake}}^{(\eta)},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dfa6dd9138d96765)
+
 $$
 \boldsymbol{\mathcal{J}}_{\mathrm{tot}}^{(\eta)}
 =
@@ -5340,6 +5452,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-06c4d8a4e74d35da)
+
 The residuals $\mathcal{R}_{E}$, $\mathcal{R}_{P}$, and $\mathcal{R}_{J}$ are the normalized window changes of these three totals after subtracting the declared Euler-residual and endpoint-leakage terms. They must use the same branch rows as the root ledger, acceleration residual, and $\Delta I_{\mathrm{ME}}$ calculation. A work-integral energy reconstruction or torque projection may be reported as a diagnostic, but it does not replace the exact wake-history pullback.
 
 The candidate increment floor is
@@ -5351,12 +5464,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c6b35efac3472013)
+
 with required positivity condition
 $$
 0<\Delta I_*<\infty
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4d2f12a6478c55c2)
+
 The benchmark comparison is
 $$
 \delta_h
@@ -5383,6 +5498,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-796980e1e5662ff5)
+
 Here $\varepsilon_I$ is a predeclared action-increment floor with the same units as $\Delta I_{\mathrm{ME}}$. Also report the Floquet basin-robustness gap
 $$
 \Delta_{\mathbf{k}}
@@ -5391,6 +5507,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e1bb97ae077631e6)
+
 for each endpoint branch and each transition continuation.
 
 The action-increment claim is numerically meaningful only when $\delta_I$ is small, $\Delta_{\mathbf{k}}>0$, and the phase, energy, and root residuals remain below their predeclared tolerances across refinement.
@@ -5607,7 +5724,7 @@ The physical derivation remains open. It requires a return-map-derived $\mathbf{
 
 This protocol documents the first replay fixture for the weak static response vector used in the $\Gamma_N$ geometry extraction target. It is a small arithmetic gate for the endpoint row in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target) and the Shapiro-delay coefficient in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
-The fixture is not an empirical PPN fit. Its purpose is to keep the clock cadence row, the clock-rate row, and the signal-delay coefficient from being silently blended while the $\mathbb{A}\mathbb{A}\mathbb{A}$ constitutive response is still being derived.
+The fixture is not an empirical PPN fit. It keeps the clock cadence row, the clock-rate row, and the signal-delay coefficient separate while the $\mathbb{A}\mathbb{A}\mathbb{A}$ constitutive response is still being derived.
 
 ##### Runtime Artifact
 
@@ -6193,6 +6310,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-75cb6c62dd8f8dee)
+
 The current toy scaffold sets the correction terms to zero by declaration and therefore tests only the shared-row handling of the leading Rydberg factor. A non-toy packet must report a residual-separation check
 $$
 \mathcal{R}_{\mathrm{H,res}}^{(\ell)}
@@ -6212,6 +6330,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6fd6aa7d88433d84)
+
 This prevents the coefficient scan from passing by absorbing known spectral physics into the cadence-stretch row. It also fixes the degeneracy burden: the leading Coulomb target must recover the $n^2$ orbital degeneracy before correction channels split it, while the fine-structure channel may depend on $j$ and the hyperfine channel may depend on nuclear-spin records.
 
 ##### Compensated-Row Readout
@@ -6528,6 +6647,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8b633f489c34b06c)
+
 where $\mathbf a^{G}=(a_n,a_\chi,a_\lambda,a_R)$ is the static Noether sea response row for the same cell and $\boldsymbol{\tau}$ collects the declared tolerances.
 
 The certificate residual vector is
@@ -6544,6 +6664,7 @@ b_\xi^{\mathrm{spec}}-1,\,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-eb0cef5d6dcf9a1c)
+
 with
 $$
 \mathcal R_{\mathrm{line}}
@@ -6561,6 +6682,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f393c7f4c4feebe7)
+
 and
 $$
 \mathcal R_{\mathrm{ref}}
@@ -6581,6 +6703,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-44e1ef7dd7312079)
+
 Here $\mathbf b_{N,\mathrm{stat}}^{\mathrm{spec}}=(b_n^{\mathrm{spec}},b_\chi^{\mathrm{spec}},b_\lambda^{\mathrm{spec}},b_R^{\mathrm{spec}})$ is the four-entry static endpoint subrow. The packet passes only if every component of $\mathcal R_{\mathrm H}^{\Gamma}$ is within its declared tolerance and all packet inputs share the same provenance ledger $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ and the same static Noether sea cell. Otherwise it fails with the first violated row: provenance, $b_\xi$, endpoint, line-set, refinement, or residual separation.
 
 ##### Failure Tests
@@ -6619,7 +6742,7 @@ The packet succeeds only when its declared expectations are met. A failure witne
 
 #### Thermodynamic Residual
 
-This protocol turns the local-horizon target in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target) into a validation scaffold. It does not assume that gravity is thermodynamic at the substrate level. It tests whether one Noether sea state and observer-channel record can supply the three observer-level quantities used in the Jacobson comparison: boundary entropy, local temperature, and boost-energy flux.
+This protocol turns the local-horizon target in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target) into a validation scaffold. It does not assume that gravity is thermodynamic at the substrate level. It tests whether one [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) state—the ambient assembly medium—and observer-channel record can supply the three observer-level quantities used in the Jacobson comparison: boundary entropy, local temperature, and boost-energy flux.
 
 The protocol is a proof-and-simulation target, not an empirical claim. A successful packet would show that the same record that recovers weak-field ADM/Cartan and PPN behavior also makes the local Clausius residual small in the equilibrium comparison regime.
 
@@ -6680,6 +6803,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6d0011c0615ed3d5)
+
 where $U$ is the declared connected patch block and $\mathcal{B}_{U}^{(O)}$ retains only labels accessible to the same observer record. When $|U|$ is physical patch area, $\widehat{s}_{U}^{(O)}$ has inverse-area units and the large-block target is
 $$
 \widehat{s}_{U}^{(O)}
@@ -6688,6 +6812,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f2a9596dff16070c)
+
 after boundary corrections. The dimensionless value $1/4$ applies only when the packet has explicitly normalized $A_{\text{align}}=1$; it is not a literal one-patch cardinality.
 
 Area scaling is a recovery target, not a definition. Compare neighboring patches or refinements with the same observer and record:
@@ -6746,6 +6871,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4010deace7face00)
+
 Here $\sigma_b$ is the signed crossing convention, $E_b^{(O)}$ is the observer-level energy assigned by the same channel that builds $T_{\mu\nu}^{\mathrm{eff}}$, and $\omega_b^{(O)}$ is the declared quadrature or coarse-graining weight.
 
 The measured local-horizon residual is then
@@ -6810,6 +6936,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-919e2119526aa9ec)
+
 and the same $\theta$ also satisfies the weak-field metric gates relevant to the run. A packet that fits $\widehat{S}$, $\widehat{T}_U$, and $\widehat{dQ}$ with independent records fails even if each scalar looks plausible by itself.
 
 ##### Free-Energy and Response Consistency
@@ -6824,6 +6951,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4f8237eae20a7ef1)
+
 On a relaxation window with no declared external work, the free-energy residual is
 $$
 \widehat{\mathcal R}_{F}^{(O)}
@@ -6842,6 +6970,7 @@ W_{\mathrm{ext},z}^{(O)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-57d7414d9ab567f8)
+
 The gate is optional unless the packet uses free-energy minimization, order-parameter relaxation, or Landau-Ginzburg language. If invoked, it must pass with the same $\theta$ that supplies $\widehat{\mathcal{R}}_{\mathrm{thermo}}^{(O)}$.
 
 If the packet includes stochastic or fluctuation claims, it must report a response/noise residual rather than fitting noise independently. For a declared observable pair $(A,B)$, use the measured fluctuation spectrum $S_{AB}^{(O)}(\omega)$ and the dissipative response $\chi_{AB}^{\prime\prime(O)}(\omega)$:
@@ -6871,6 +7000,7 @@ S_{AB}^{(O)}(\omega)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6a2d20c88edfa0f8)
+
 Here $\mathcal F_{\widehat T_z}$ is the packet's declared classical or quantum fluctuation-dissipation map. This check is a same-record discipline for equilibrium response. It does not assert that Noether sea dynamics is fundamentally stochastic.
 
 ##### Proof Route
@@ -7012,6 +7142,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-353e97dc6eff2fe6)
+
 and, when $\nu_X^{\mathrm{dof}}>0$, the reduced statistic
 $$
 \overline{\mathcal{R}}_X
@@ -7020,6 +7151,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2fbc568db154dbb9)
+
 The raw $\mathcal{R}_X$ remains the additive packet term; $\overline{\mathcal{R}}_X$ is a scale diagnostic and must not replace a likelihood without a declared statistical derivation.
 
 The nuisance record $\nu_X$ must state, before fitting, whether each nuisance quantity is fixed, profiled, or marginalized and how that choice changes $p_X$ and the effective covariance. The projection weights $w_a$, the penalty coefficient $\lambda$, and all residual and overlap thresholds are likewise frozen before fitting. They may be changed only in a separately identified sensitivity run, never retuned after seeing the shared-state result.
@@ -7036,6 +7168,7 @@ r_{\mathrm{SN/BAO}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ac97f573e12870bf)
+
 $$
 r_{\mathrm{CMB}}
 \supset
@@ -7047,6 +7180,7 @@ r_{\mathrm{CMB}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-086b4246d26df244)
+
 $$
 r_{\mathrm{growth}}
 \supset
@@ -7057,6 +7191,7 @@ r_{\mathrm{growth}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-106f9c9e30cd0bd7)
+
 and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether sea state interpretation is promoted.
 
 Redshift-facing packets must expose the signed photon-frequency transfer row rather than treating redshift as a primitive expansion coordinate. For a line or photon family $X$, retain
@@ -7071,6 +7206,7 @@ r_{\nu\text{-}\mathrm{path}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-161938fb0ad62752)
+
 where $Z_X$ is the total logarithmic redshift budget, $Y_{X,\mathrm{path}}$ is the signed path-history exchange contribution, and $Y_{X,\mathrm{cal}}^{\mathrm{obs}}$ is any declared calibration row such as a Sunyaev-Zeldovich or kinematic-Sunyaev-Zeldovich frequency-shift packet. This row does not add a separate cosmology gate. It prevents a shared-state fit from hiding path-frequency exchange inside $H(z)$, distance modulus, or CMB temperature calibration.
 
 The source-mined empirical packet should retain the following benchmark families without turning them into separate gates:
@@ -7306,6 +7442,7 @@ r_{\mathrm{PREBBN}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3f446f1eb1b133d1)
+
 The projection keys should include the ordinary shared cosmology coordinates plus branch-facing coordinates such as `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. The packet passes this subgate only when the ordinary residual $\mathcal{R}_{\mathrm{PREBBN}}$ is small and the projection penalty shows that the same $\theta_{\mathrm{sea}}$ is being consumed by BBN, CMB, growth, and gravitational-wave comparisons.
 
 ##### Frame-Split Measurement Recipe
@@ -7339,6 +7476,7 @@ The preprocessing rules are:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-5f4ee677a09b9410)
+
   where $K_X$ is the catalogue kinematic amplification factor and $\mathbf{F}_X$ is the allowed non-kinematic directional residual from the shared frame state and survey context.
 - Supernovae: $\mathbf{y}_{\mathrm{SN}}(z_b)$ is the fitted distance-modulus dipole in redshift bin $z_b$, after standardization and host-environment bookkeeping; $\mathbf{m}_{\mathrm{SN}}(z_b)$ is the corresponding shared-frame prediction.
 - BAO: $\mathbf{y}_{\mathrm{BAO}}(z_b)$ is the anisotropic BAO-scale dipole or lowest retained directional harmonic in bin $z_b$; $\mathbf{m}_{\mathrm{BAO}}(z_b)$ is the shared-frame prediction in the same basis.
@@ -7587,6 +7725,7 @@ d_L=(1+z_X)^2D_A
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ed2d332ff83e42bf)
+
 These are observer-level distance-ladder diagnostics. A path law that shifts line frequencies but does not dilate packet cadence, or that loses flux without the two redshift factors and angular-distance reciprocity, is not an acceptable cosmological redshift replacement.
 
 ##### Input Packet
@@ -7817,7 +7956,7 @@ A promotable redshift-distance packet must keep these diagnostics attached to th
 
 This chapter is the reusable assessment surface for closure progress across the theory stack. Its purpose is to keep evaluation criteria stable from one scoring cycle to the next so that changes in score reflect actual progress or regression rather than drift in the assessment lens itself.
 
-It is meant to be used with [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md), [Validation Protocols](../../../../markdown/aaa/validation/validation-protocols.md), [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md), and [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
+The scorecard uses the rejection logic, protocol rules, formal obstructions, and parameter classifications in [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md), [Validation Protocols](../../../../markdown/aaa/validation/validation-protocols.md), [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md), and [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
 ### Assessment Method
 

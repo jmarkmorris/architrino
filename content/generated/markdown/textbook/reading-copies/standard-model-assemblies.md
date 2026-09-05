@@ -107,6 +107,7 @@ d_Q(Q_\theta,Q_{\mathrm{SM}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f84f42dd11cd785a)
+
 Here $\theta$ is the retained Noether sea state and assembly branch record, $d_Q$ measures charge-table mismatch, $d_{\mathrm{mix}}$ measures electroweak-coupling and weak-mixing mismatch, $d_{\mathrm{chiral}}$ measures failure of the weak-coupling-triad exposure record to recover observed handedness, and $\mathcal{R}_{\mathrm{null}}$ penalizes any added low-energy channel that is not observed. This residual is not a new ontology; it names the observer-level recovery burden.
 
 ### Standard Model Recovery Discipline
@@ -144,6 +145,7 @@ N_{2,\mathrm{Weyl}}\bmod2,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b4788a5e559fd7ac)
+
 This does not make the Standard Model variables substrate ontology. It says that any accepted Noether sea state and axial-layer branch must project to the same anomaly-free effective gauge record; otherwise the branch cannot be the observer-level Standard Model limit.
 
 From the $\mathbb{A}\mathbb{A}\mathbb{A}$ side, that means the Noether sea state and assembly variables must first reproduce the known gauge bookkeeping. Larger group unification, supersymmetric partner bookkeeping, or extra-dimensional geometry may be useful comparison languages, but none of them is native ontology here. They become relevant only if a branch record derives the Standard Model pattern and also explains why every added observable channel is absent without using a separate suppression parameter for each failed prediction.
@@ -169,6 +171,7 @@ m_b^\theta,\,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e6f37b5a2cb4360c)
+
 where $J_b^\theta$ is the recovered spin label, $P_b^\theta$ the parity or transverse/longitudinal projector record when applicable, $m_b^\theta$ the mass or gap, $\omega_b^\theta(k)$ the dispersion, and $\mathcal{C}_b^\theta$ the coupling ledger to fermion, photon, weak, color, or gravitational channels. A collective-mode interpretation is admissible only when one Noether sea state and assembly branch supplies $\mathcal{M}_b^\theta$ while also suppressing unobserved scalar, vector, tensor, mirror, or hidden channels. Otherwise "boson as excitation" is an analogy, not gauge-structure emergence.
 
 ### Gauge-Covariance Recovery Target
@@ -181,6 +184,7 @@ F_{\mu\nu}^\theta=\frac{i}{g_\theta}[D_\mu^\theta,D_\nu^\theta]
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-df1219703d066871)
+
 If $U(x)$ is an allowed effective gauge relabeling, then the record should transform as
 $$
 \Psi_\theta' = U\Psi_\theta,
@@ -191,6 +195,7 @@ F_{\mu\nu}^{\theta'}=U F_{\mu\nu}^\theta U^{-1}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1f0df80ad99c0dd6)
+
 This is a redundancy test. It asks whether different gauge charts describe the same observer-level channel, not whether the Noether sea itself has been changed.
 
 The passive/active distinction is load-bearing here. A gauge relabeling is passive when it changes only the effective bookkeeping basis and leaves the retained assembly, causal-wake, axial-layer, and Noether sea record fixed. An active physical change belongs in the branch record $\theta$ itself: it may alter medium response, exposed axial inventory, apparatus coupling, or causal-wake provenance. Gauge covariance is recovered only when passive relabelings preserve the same record. It cannot be used to hide a changed physical branch behind a different chart.
@@ -210,6 +215,7 @@ D^{\theta'}(U\Psi)-U D^\theta\Psi
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8940befe85a0dceb)
+
 The electroweak or color branch passes only when this residual stays below its declared tolerance on the same record domain used for charge, chirality, mixing, and null-channel tests. If covariance appears only after changing the physical branch ledger, the construction has not recovered gauge redundancy; it has renamed a different physical state.
 
 The same discipline applies to holonomy. For a closed observer-level loop $\gamma$, the non-Abelian comparison object is
@@ -224,6 +230,7 @@ i g_\theta\oint_\gamma A_{\mathrm{eff},\mu}^\theta\,d\ell^\mu
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-53b01f7c197128b8)
+
 This Wilson-loop language is useful because it tests gauge-invariant loop content. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the loop value must be reconstructed from the closed causal-wake and axial-layer provenance sampled by the apparatus channel. It is not a claim that the loop integral is fundamental ontology.
 
 Topological sectors supply a stronger global guardrail. In an effective non-Abelian chart, a standard comparison integer is
@@ -241,6 +248,7 @@ k_\theta
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2c0fbae2c6d5f3b8)
+
 This target belongs to the gauge recovery map only after $\mathcal{D}_\theta$, $F_{\mathrm{eff}}$, and the apparatus-accessible sector have been declared. It passes when the integer sector is fixed by the same branch record that supplies the local gauge response. It fails if the winding number is imported as an external bundle label while the assembly and Noether sea provenance remain silent.
 
 The same topological-sector map must recover the strong-$CP$ null result. Let $\bar\theta_{\mathrm{eff}}(\theta)$ be the observer-level $CP$-odd strong-sector angle extracted from the declared assembly and Noether sea branch. The target is
@@ -273,6 +281,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e6f8542bcb5cf0dd)
+
 This equation is a locality-emergence test. It says that a boundary of the event-window description must reduce to two lower-channel records connected by the same accepted transient channel $h$. If the pole residue cannot be traced to a replayable branch-boundary decomposition, the amplitude has been fitted but not derived.
 
 Color/kinematics duality supplies a sharper optional comparison. Whenever an oriented color triple satisfies a Jacobi relation, the corresponding kinematic numerators should satisfy the matched relation on a closed representation,
@@ -283,6 +292,7 @@ n_i^\theta+n_j^\theta+n_k^\theta\to0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4cd36298b163af16)
+
 The native value of this test is not the formal identity by itself. The value is whether the indexed color-exceptionality relation $Q_1+Q_2+Q_3=0$ and the scattering numerator ledger can be derived as two projections of the same branch geometry.
 
 Positive-geometry amplitude work adds one more useful guardrail. If an amplitude is represented by a positive-coordinate auxiliary geometry, then physical boundaries should carry the factorization residues above, while spurious cell boundaries should cancel in the sum. In native terms, a positive-geometry chart is admissible only as a certificate for boundary factorization, spurious-pole cancellation, and record-domain consistency. It does not replace the causal-wake and assembly derivation.
@@ -345,24 +355,28 @@ N_+ + N_- = 6,\qquad N_+,N_- \in \{0,1,\dots,6\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cc4af1db2fb4e01f)
+
 The net observer-level charge carried by the six-slot inventory is
 $$
 Q=\epsilon(N_+ - N_-)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-426c0f692b15e8a3)
+
 Using $N_-=6-N_+$,
 $$
 Q=\epsilon(2N_+ - 6)=\frac{|e|}{3}(N_+ - 3)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e5052cd60fa821c3)
+
 Since $N_+$ is an integer from $0$ to $6$, $(N_+-3)\in\{-3,-2,-1,0,1,2,3\}$, so
 $$
 Q\in\left\{-|e|,-\frac{2|e|}{3},-\frac{|e|}{3},0,\frac{|e|}{3},\frac{2|e|}{3},|e|\right\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fc9c725b3a71b1d7)
+
 No other values are possible. Different permutations with the same $(N_+,N_-)$ have identical total $Q$; they only change micro-geometry, not net charge.
 
 #### Loop-Phase Quantization Target
@@ -377,12 +391,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b7971fadbf8c5a5b)
+
 with the physical ambiguity only
 $$
 \Theta_\gamma(Q)-2\pi N_\gamma \to 0,\qquad N_\gamma\in\mathbb{Z}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3cbabbd3e60c1476)
+
 The six-unit charge inventory, and in the axial-layer realization the axial bookkeeping, must make this a charge-compatibility condition, not a separately imposed monopole postulate. A compact residual for the allowed six-slot charge set is
 $$
 \mathcal{R}_{\mathrm{loop}\text{-}Q}
@@ -396,6 +412,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f64b6fdc10e1e4e1)
+
 This residual belongs to the observer-level recovery map. It passes only when the same Noether sea state and axial-layer branch record that supplies local electromagnetic force and phase transport also yields $\mathcal{R}_{\mathrm{loop}\text{-}Q}\le\varepsilon_{\mathrm{loop}\text{-}Q}$ for the benchmark loop family. If a branch recovers the charge table locally but cannot make closed-loop phase globally consistent, the six-site quantization proof is only combinatorial and has not yet recovered the gauge-topological content of charge quantization.
 
 A magnetic-charge comparison branch must also separate formation from capture. In observer-level language a magnetically charged compact object can form with charge or later capture charged defects. The $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge map should not import either story as ontology, but it can retain the provenance distinction as a residual on the effective flux record:
@@ -412,6 +429,7 @@ Q_{m,\mathrm{form}}^\theta
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-633c706466aa96f1)
+
 The loop-phase target above then requires the same branch record to support both the effective magnetic-flux label and the allowed electric axial-layer charge set. A compact object that solves a monopole-abundance problem by hiding charge in an untracked capture channel has not recovered gauge structure; it has moved the charge ledger outside the derivation.
 
 ### Observer-Level Electroweak Closure Map (Working)
@@ -460,12 +478,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7e073514a964601a)
+
 with
 $$
 D_\mu=\partial_\mu-i g\frac{\tau^a}{2}W_\mu^a-i g'\frac{Y}{2} B_\mu
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cd2f81d27ae52b9b)
+
 The leading composite correction is modeled as
 $$
 \mathcal{L}_{\text{comp}}
@@ -475,6 +495,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d62995ddba0279d8)
+
 where $R_{\mathrm{comp}}$ is the declared composite scale extracted from the indexed binary record.
 
 For the formal closure layer beneath this working map, see [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md) and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
@@ -487,6 +508,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3be08633ce7cc70b)
+
 This is separate from the dimensionful electromagnetic coupling normalization used by the force-response map:
 $$
 \mathcal{G}_{\mathrm{em}}
@@ -495,6 +517,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-48c6c52b7fdbbf12)
+
 where $Z_e$ is the coarse-graining normalization factor ($Z_e=1$ under canonical normalization choice). In dimensional units $\mathcal{G}_{\mathrm{em}}$ scales as $[\epsilon]\sqrt{[\kappa][c_f]}$ rather than as electric charge, so it must not be identified with the charge label $e$.
 
 Weak mixing is represented as a geometric overlap functional:
@@ -507,6 +530,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-370d941b7462b1c3)
+
 This dictionary entry carries branch-increment-hypothesis grade; the graded derivation, its conditionality, and the falsifier live in [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 
 Mass channels are mapped by
@@ -516,18 +540,21 @@ m_Z^2=\frac{1}{4}(g^2+g'^2)\,v_{\text{eff}}^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-063e3ef562bf5d9c)
+
 so
 $$
 \frac{m_W}{m_Z}=\cos\theta_W
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-eba4396e8d774cc4)
+
 Fermion masses are targeted as cycle-averaged attractor energies, conditional on a retained attractor branch — an open closure item:
 $$
 m_f \approx \frac{\langle E_{\mathrm{kin}}+U_{\text{pot}}\rangle_f}{c_{\text{eff}}^2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-599f68fccc5a7ce8)
+
 in the weak homogeneous branch where the scalar mass-map roadmap applies. The sharper closure still belongs to the medium-response tensor and shielding map in [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
 #### Precision Interface to Measured Quantities
@@ -558,6 +585,7 @@ F(s)=1-\frac{sR_{\mathrm{comp}}^2}{4},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f636e3e786ad8dd5)
+
 For $R_{\mathrm{comp}}\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at $\sqrt{s}=10.58\,\text{GeV}$ but a deviation of order the explicit $10^{-3}$ first falsification tolerance below near the $Z$ pole at $\sqrt{s}=91.19\,\text{GeV}$. Calling the $Z$-pole shift negligible requires a substantially smaller composite scale, for example $R_{\mathrm{comp}}\lesssim3\times10^{-20}\,\text{m}$.
 
 #### Falsification Gates for This Map
@@ -575,7 +603,7 @@ The page is deliberately stricter than the emergence narrative. It does not ask 
 
 The reader-facing rule is direct: gauge symmetry is a recovery constraint on the record, not a new ontology for the void. The Standard Model gauge structure survives here only if it can be produced as effective bookkeeping over real assembly histories, with no extra observable channels introduced by the same move.
 
-Interface chapters:
+Three companion chapters develop the parts of this bridge used below:
 - Electroweak emergence narrative: [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md)
 - Color $SU(3)$ algebra closure: [Color Charge SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md)
 - Variational substrate: [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md)
@@ -658,6 +686,7 @@ G_\mu\sim V G_\mu V^{-1}+\frac{i}{g_3}V\partial_\mu V^{-1}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-13316968984b4020)
+
 The $U(1)$ parameter is normalized consistently with the sector convention below, so $g_1$ remains explicit rather than being absorbed into $\alpha$. This is why the chapter treats $A_\mu,W_\mu,G_\mu$ as effective connections. The substrate burden is not to find primitive gauge fields, but to recover one gauge-invariant record of forces, phases, holonomies, and charge ledgers from causal-wake and assembly histories.
 
 Global symmetries and gauge redundancies have different tests. For a genuine global transformation $\delta\Psi=\epsilon X(\Psi)$, the regularized effective action gives a Noether current through
@@ -670,6 +699,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9bb18d704ce4909e)
+
 on solutions. In the quantum/effective bridge this becomes a Ward-identity recovery target for the coarse-grained generating functional. A local gauge redundancy, by contrast, is acceptable only if the unphysical directions are quotiented out and no anomalous gauge variation remains.
 
 The anomaly ledger for a candidate branch record $\theta$ is therefore
@@ -687,12 +717,14 @@ N_{2,\mathrm{Weyl}}\bmod 2,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cebb275d46fea303)
+
 For the Standard Model recovery gate this vector must equal
 $$
 \mathcal{A}_{\mathrm{gauge}}(\theta)=(0,0,0,0,0,0)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2caea01285fdabb9)
+
 The second entry is the non-perturbative $SU(2)$ Witten check: the number of left-handed $SU(2)$ doublets must be even. Global anomalies that are part of known physics, such as axial-current violation and pion-to-photon anomaly matching, may be retained as observer-level recovery targets, but a gauge anomaly is a consistency failure rather than an optional correction.
 
 Chiral gauge structure also constrains how this bridge may be regulated. A finite lattice, cutoff, or discrete branch approximation is not automatically a physical explanation of the Standard Model because weak handedness and gauge anomaly cancellation must survive the regulator. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, a cutoff is admissible only as an approximation to one retained branch and observer-level gauge record. It fails if left-handed weak exposure, charge bookkeeping, anomaly cancellation, locality, and unitarity can be made compatible only by changing the underlying Noether sea state, axial inventory, or reaction provenance from row to row.
@@ -750,6 +782,7 @@ w_g\mathcal{R}_{\mathrm{gauge}}(\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-60e832831cb199bb)
+
 where $\mathcal{R}_{\mathrm{fact}}$ measures failure of the recovered observer-level scattering and gauge sector to factor into the validated spacetime and internal-gauge records once those effective records exist. The container is only comparison language unless one shared $\theta$ drives all terms below tolerance; in particular, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}=0$ must follow from the accepted branch family rather than from sector-specific hiding parameters.
 
 The same filter applies to especially elegant symmetry containers, including grand-unified and exceptional-group embeddings. It is not enough for a larger algebra to contain $U(1)_Y\times SU(2)_L\times SU(3)_c$ or to organize one generation of fermions. The promoted record must also explain why mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs are absent in the tested regime. If those absences require separate masses, thresholds, compactification choices, or sector-specific suppressions, the construction remains a comparison framework rather than an $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge closure.
@@ -763,6 +796,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-88fc4c3f087c3a8a)
+
 then there exists a conserved current $j^\mu$ such that
 $$
 \partial_\mu j^\mu=0
@@ -779,6 +813,7 @@ D_\mu=\partial_\mu-i g_1 A_\mu
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9a0d1052e557f099)
+
 with $U(1)$ gauge transform
 $$
 \Psi\mapsto e^{i\alpha(x)}\Psi,\qquad
@@ -786,6 +821,7 @@ A_\mu\mapsto A_\mu+\frac{1}{g_1}\partial_\mu\alpha
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-aa7c2557657d3751)
+
 Here $A_\mu$ is the generic $U(1)_Y$ connection before electroweak mixing, not the already-mixed photon connection.
 
 #### Aharonov-Bohm Holonomy Benchmark
@@ -802,6 +838,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2478579fd6c6c50e)
+
 the coarse-grained wake/action ledger must still produce the observer-level phase shift
 $$
 \Delta\phi_{\mathrm{AB}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
@@ -818,6 +855,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-87c3ddb9f4b398df)
+
 Here $\mathcal{S}_{\mathrm{wake}}[\gamma_a]$ is the effective action accumulated by the coarse-grained causal-wake history assigned to arm $\gamma_a$, and $\Phi_B$ is the standard enclosed magnetic-flux observable. The equality also carries a calibration burden: a validated branch must identify the emergent phase quantum with the measured one on this benchmark window, $\hbar_{\mathrm{eff}}=\hbar$, rather than fitting two independent phase scales. A useful residual is
 $$
 \Delta_{\mathrm{AB}}
@@ -831,6 +869,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-303a339b8e81f4d6)
+
 When the benchmark is evaluated as a concrete interferometer packet, the force-free and phase requirements should be checked together rather than fitted separately. For a branch record $\theta$, one compact validation residual is
 $$
 \mathcal{V}_{\mathrm{AB}}(\theta)
@@ -850,6 +889,7 @@ w_\phi
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ed2dcdfb29c76484)
+
 with $w_F$ and $w_\phi$ fixed by the declared interferometer tolerance. The benchmark passes only when $\mathcal{V}_{\mathrm{AB}}(\theta)\le\varepsilon_{\mathrm{AB}}$ for the same wake/action ledger, so a model cannot trade a hidden local force for phase recovery or tune the phase apart from the local electromagnetic-force record.
 
 The U(1) closure passes this benchmark only if $\Delta_{\mathrm{AB}}$ remains below the declared interferometric tolerance while the same effective connection also preserves charge continuity and ordinary electromagnetic force recovery. If the phase recovery requires a local force on the arms, a separate phase fit, or a literal promotion of $A_\mu$ to substrate ontology, this gauge bridge has failed at the AB gate.
@@ -874,6 +914,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7085ca2178a29614)
+
 Here $F_{\mathrm{eff}}$ is the observer-level curvature recovered from the same effective gauge record used for force and phase transport. The integer $N$ records the allowed $2\pi$ ambiguity of the phase, not an independent hidden sector.
 
 A compact sector check inside the same target is useful when the benchmark includes disconnected flux sectors or instanton-like sectors rather than a single loop. Let $\mathcal{C}_{\mathrm{top}}$ be the declared family of observer-level gauge-topology sectors, and let $\mathcal{O}_{\mathrm{SM}}(s)$ be the corresponding Standard Model comparison record for sector $s$. The same wake/action ledger may define
@@ -895,6 +936,7 @@ d_{\mathrm{obs}}\!\left(
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d15e501b45aa5af9)
+
 Here $\mathcal{Q}^{\mathbb{A}\mathbb{A}\mathbb{A}}_{\mathrm{wake}}$ is only the sector label extracted from the retained causal-wake/action record. It is not an independent topological charge assigned after the effective gauge description has already been fitted.
 
 The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ and any declared $\Delta_{\mathrm{sector}}$ stay below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether sea variables for force, phase, and charge recovery.
@@ -910,6 +952,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8174965f15888f12)
+
 then the derivative must be promoted to
 $$
 D_\mu\psi_L
@@ -918,6 +961,7 @@ D_\mu\psi_L
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d2f039773e1d296c)
+
 with curvature
 $$
 F_{\mu\nu}^a
@@ -926,6 +970,7 @@ F_{\mu\nu}^a
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-abaa56fa2138ac7b)
+
 Here $\epsilon^{abc}$ is the $SU(2)$ Levi-Civita structure constant; it is unrelated to the polarity-unit magnitude $\epsilon$ used in axial-inventory bookkeeping.
 
 *Proof sketch:* Standard principal-connection construction for local non-Abelian basis changes; the commutator term follows from non-commutativity of $SU(2)$ generators.
@@ -957,6 +1002,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-57c72afc5264eac5)
+
 where omitted terms are higher-order constitutive corrections from the Noether sea.
 
 This is an emergent effective description, not a claim that gauge fields are ontologically fundamental.
@@ -971,7 +1017,7 @@ Required consistency conditions:
 3. **Energy-side compatibility:** gauge sector must admit open-vs-closed braid scaling laws without violating local covariance of the effective Lagrangian.
 4. **Global completion:** local effective connections must assemble into one gauge record whose holonomies, fluxes, and charge ledgers agree across chart boundaries.
 
-Interface chapters:
+The corresponding topology, confinement, and preferred-frame conditions are developed in these chapters:
 - topology and action invariants: [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md)
 - color structure and confinement geometry: [assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md)
 - preferred-frame closure: [spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md)
@@ -1114,6 +1160,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7e076692c993e259)
+
 The trace-free exposed leakage is
 $$
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A)
@@ -1129,6 +1176,7 @@ h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A)=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ad437ad30fc323d5)
+
 The exposed-response tensor is therefore
 $$
 \mathcal{Z}_{A}^{ab}
@@ -1155,6 +1203,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-047c310d8f606320)
+
 and set
 $$
 \mathsf{I}_{A}^{ab}
@@ -1168,6 +1217,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2c21b541a5e5b621)
+
 The scalar mass readout is the rotational trace
 $$
 m_{\mathrm{tr}}(A)
@@ -1176,6 +1226,7 @@ m_{\mathrm{tr}}(A)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7b2652e107ea2b60)
+
 In the homogeneous isotropic limit this reduces to the roadmap scalar formula. Pure exposure anisotropy changes direction-dependent inertia without changing the scalar trace unless it contracts with a trace-free part of the medium response. Antisymmetric response residue belongs to orientation, transport, loss accounting, or branch transition, not to scalar rest mass.
 
 ##### Reference-Normalized Mass Ratio
@@ -1188,6 +1239,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b19242f2265b8038)
+
 then the scalar roadmap implies
 $$
 \frac{m_{\text{inertial}}(A)}{m_{\text{inertial}}(B)}
@@ -1197,6 +1249,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1a2c7aa2b56fb289)
+
 Equivalently, once a reference assembly $A_{\mathrm{ref}}$ fixes $\alpha_{\mathrm{m}}$ in that regime, every later scalar mass prediction must factor through
 $$
 m_{\text{inertial}}(A)
@@ -1262,6 +1315,7 @@ q_a(\bar A)=-q_a(A)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c4a0d9cff74a57a0)
+
 Here $q_a$ is a polarity ledger entry in the charged-sector projection. Electrino/Positrino polarity is not the matter/antimatter label.
 
 If the mass-facing ledger depends on polarity through even data such as $q_aq_b$, $|q_a|$, causal-root topology, shielding, and polarity-neutral medium response, then complete conjugation leaves the scalar mass trace invariant:
@@ -1276,12 +1330,14 @@ m_{\mathrm{tr}}(\bar A)=m_{\mathrm{tr}}(A)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e8af38430122f13c)
+
 The odd channel is the exposed charge-like projection,
 $$
 Q_{\mathrm{eff}}(\bar A)=-Q_{\mathrm{eff}}(A)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3c8eb1f27cbf7400)
+
 not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: complete branch-record conjugation preserves every internal pair product, every polarity-even exposure term, and the identity-bearing history rows. The constraint does not permit arbitrary partial polarity replacement, and it does not identify Electrino versus Positrino with matter versus antimatter. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, the causal-root ledger, and the wake-history provenance, so it is generally a different assembly rather than the antiparticle of $A$.
 
 Thus a candidate mass map fails if an accepted matter branch and its complete anti-branch receive different scalar rest masses in the same neutral Noether sea environment, unless the model explicitly supplies a conjugation-odd medium or branch-asymmetry term and keeps the resulting mass splitting within the declared particle-antiparticle bounds.
@@ -1296,6 +1352,7 @@ E_{\mathrm{branch}}^\theta(A)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3c205d7d4ed5ded5)
+
 computed from the same causal ledger, shielding, and Noether sea response record as the mass map. A compact comparison residual is
 $$
 \mathcal{R}_{\mathrm{gap}\to m}(A;\theta)
@@ -1318,6 +1375,7 @@ M_{\mathrm{sh}}(A;\theta)c_{\text{eff}}^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-06d1c731faa6c767)
+
 If this residual is small, the gap comparison supports the mass-map thesis. If it is small only after choosing a separate gap for each particle species, the comparison has merely renamed the observed mass table.
 
 ##### Sector Exposure Quotient
@@ -1389,6 +1447,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1b083692a826a4db)
+
 Any discarded channel above tolerance blocks promotion of the sector response. It cannot be absorbed into shielding, fitted by the benchmark, or left as an unnamed hidden variable.
 
 ##### Scalar Mass-Trace Composition
@@ -1522,6 +1581,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-acc3bb7c3af299b6)
+
 - **Generational Hierarchy:** Heavier generations (Gen II, Gen III) are hypothesized to have **reduced shielding** because one or two declared indexed supports are depleted on the branch lifetime window. With fewer coherent supports, more of the high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement over the persistent binary indices, not a deletion of the axial frame that carries color and electroweak bookkeeping.
 
 ##### Medium-Dressed Inertial Response
@@ -1535,6 +1595,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-6dcdd1c349fd9872)
+
   Language about velocity-dependent inertia should therefore be read as the moving center-of-mass response of the dressed assembly ledger, not as a change in scalar rest mass.
 - **Environment Dependence:** Local variations in Noether sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
 
@@ -1670,6 +1731,7 @@ y_f^{\mathrm{eff}}(\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-052d6145db06a3d1)
+
 after $M_{\mathrm{sh}}$, $v_{\mathrm{EW}}^{\mathrm{eff}}$, and the scalar coupling derivative are all fixed by one shared record. A compact benchmark residual is
 $$
 \mathcal{R}_{\mathrm{Higgs\,match}}(\theta)
@@ -1726,6 +1788,7 @@ Z_c^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)-Z_c^{\mathrm{ledger}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-65b6ac76aab7ff42)
+
 Here $\mu_H^{\mathrm{eff}}$ is the observer-level production-and-branching normalization, and $Z_c$ records the channel significance or equivalent likelihood contribution for the high-resolution $ZZ^{(*)}\to4\ell$, $\gamma\gamma$, and $WW^{(*)}$ channels. The $\gamma\gamma$ channel also protects the scalar-vs-vector distinction: it supports a spin-$0$-compatible comparison and rules against treating the Higgs benchmark as another photon or massive-vector corridor.
 
 #### Naturalness Comparison: QCD Running
@@ -1753,6 +1816,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e637a5d9e0127ad3)
+
 with $\Pi_{\mathrm{mass}}$ fixed by the sector exposure quotient. A derivation of this ratio from the accepted branch would explain why large internal scales can coexist with small exposed masses without fine tuning.
 
 #### Generation-Mass Fitting Packet
@@ -1765,6 +1829,7 @@ a\in\{0,1,2\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0b6e1f08fd1e5e44)
+
 where $a=0,1,2$ label Generations I, II, and III through the shielding quotient in [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#candidate-generation-operator). For one family representative $A_{f,0}$, define
 $$
 A_{f,a}
@@ -1788,6 +1853,7 @@ E_{\mathrm{sector}}(A_{f,a};\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4a315581fd3ade46)
+
 Here $\zeta_{\mathrm{sh}}$ depends on the shielding class, $\alpha_{\mathrm{m}}$ is a single mass normalization for the declared weak homogeneous regime, and $E_{\mathrm{sector}}$ is zero for charged leptons while quark contributions must be derived from the same color/topology and strong-sector ledger used in the hadronic chapters. The allowed family dependence is therefore carried by axial inventory, color/topology, and internal-energy bookkeeping, not by changing the shielding law.
 
 The first hierarchy residual should be ratio-first. It is evaluated only after the branch ledger, scalar exposure quotient, internal energy, sector term, and shared response record have emitted predicted values $M_{\mathrm{sh}}(A_c;\theta)$ without using the observed mass table. Let $c=(f,a)$ range over the nine generation channels, write $A_c=A_{f,a}$ and $m_c^{\mathrm{obs}}=m_{f,a}^{\mathrm{obs}}$, and fix a reference channel $c_{\mathrm{ref}}$ before evaluating the benchmark rather than choosing it to improve the residual. For quark channels, $m_c^{\mathrm{obs}}$ denotes the predeclared scheme-and-scale benchmark row with its covariance, not a scheme-free constituent mass. The ratio residual is
@@ -1807,6 +1873,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b3a73b131a76ee79)
+
 The shared factor $\alpha_{\mathrm{m}}/c_{\mathrm{eff}}^2$ cancels inside each predicted ratio when the channels share one homogeneous weak-field response record. The displayed denominator is the diagonal approximation to the log-ratio covariance; a full comparison should replace it by the covariance matrix on the ratio vector when shared benchmark uncertainties matter. The absolute scale is therefore a separate reference calibration,
 $$
 \mathcal{R}_{\mathrm{gen\,scale}}(\theta)
@@ -1822,6 +1889,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9e444af88363b31c)
+
 and the combined benchmark residual is
 $$
 \mathcal{R}_{\mathrm{gen\,mass}}(\theta)
@@ -1840,6 +1908,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-10de69537538e40c)
+
 Here $\theta_f$ denotes the record that would be used if family $f$ were fit separately, while $\theta_{\mathrm{shared}}$ is the one promoted record. The split term is the no-retuning guard: it penalizes any attempt to fit charged leptons, up-type quarks, and down-type quarks with different shielding maps or different medium-response coefficients. The null-result term prevents the fit from improving the observed masses by adding partner branches, extra gauge modes, or proton-instability channels that are not independently suppressed.
 
 The first benchmark is not exact mass prediction. It is monotone hierarchy and shared-map survival:
@@ -1852,6 +1921,7 @@ M_{\mathrm{sh}}(A_{f,2};\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-623963cfffd565bc)
+
 for $f=\ell,u,d$, while the same $\zeta_{\mathrm{sh}}$, $\alpha_{\mathrm{m}}$, and $\mathcal{M}_{\text{sea}}^{ab}$ remain in force. If the charged-lepton hierarchy can be fit only by changing the map that fits quarks, or if quarks require independent per-generation shielding factors after color/topology terms are included, generation-by-shielding has not closed.
 
 ### Speculative Charged-Lepton Benchmark: Koide
@@ -1864,6 +1934,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5337186ea8f93a53)
+
 The empirical Koide relation can be written as
 $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}
@@ -1931,7 +2002,7 @@ The accepted $A_0$ branch must have small closure residuals over at least one cl
 
 Compact-carrier diagnostics have reached a finite-coordinate no-go for the compact branch chart tested so far. That result is a branch-certificate status blocker, not a mass result: $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, and the baseline mass prediction remain unavailable until a predeclared branch-chart revision and an accepted branch packet pass the same gates above. Even if a branch-chart checker clears a revised coordinate, the clearance authorizes only a Tier 1 rerun candidate; it does not accept the branch, supply accepted $A_0$ history, or make the downstream mass-facing quantities available.
 
-The canonical chapter should carry this interface but not the detailed simulation protocol. Its role is to state the mass thesis, define the terms, and make clear which derivations remain open; implementation details belong with the simulation and proof-program material once the $A_0$ state vector and output schema are formalized.
+This chapter carries the interface needed to state the mass thesis, define its terms, and identify the open derivations. The linked simulation chapter owns the detailed protocol for the $A_0$ state vector and output schema.
 
 ---
 
@@ -2057,12 +2128,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-985d948dac6c319b)
+
 for which
 $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c6a24b397e517747)
+
 This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether braid survive without strong radiative leakage.
 
 ##### Electron and positron
@@ -2095,12 +2168,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6aeebafc1b64fb61)
+
 or
 $$
 (+/+,\ -/+,\ -/-)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b92b8f5b6c5072e5)
+
 are therefore best read as effective exposure diagrams for weak-channel coupling, not as the canonical neutrino inventory. Residual internal-binary exposure inside the near-photon pair remains the natural place to seek neutrino mass eigenstates and oscillation structure.
 
 A PMNS-level derivation remains a closure target in the [neutrino section](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
@@ -2230,6 +2305,7 @@ F_\star(q,\mathcal{B})\in\{I,II\},\qquad q\in\{d,s,b\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b1634b00731f6506)
+
 where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether sea environment. Once $F_\star$ is selected, its three 1/2/3 permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
 
 ##### Rigorous low-energy branch-selection criterion
@@ -2242,12 +2318,14 @@ E_F^\star \equiv \min_{X\in\Omega_F}\mathcal{E}(X),\qquad F\in\{I,II\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4e0dda62c362d76d)
+
 and local Hessians
 $$
 H_F \equiv D^2\mathcal{E}(X_F^\star)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-80764e22d02435e2)
+
 For finite but low noise/temperature scale $T_{\mathcal Q,W}$, with temperature understood as a same-record ensemble variable in the sense of [Entropy](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable), use the harmonic free-energy approximation
 $$
 \mathcal{F}_F(T_{\mathcal Q,W})
@@ -2264,6 +2342,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9b04cfae33bdb36c)
+
 be the Floquet spectral radius of nontrivial multipliers.
 
 **Theorem (Single-family low-energy survival).** Assume there exists $F_\star\in\{I,II\}$ such that:
@@ -2275,6 +2354,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5796b4e75f8a39f8)
+
 3. **Low-energy regime:** $T_{\mathcal Q,W}\ll \Delta\mathcal{F}$ and forcing amplitude is below the inter-family escape barrier.
 
 Then stationary occupation satisfies
@@ -2285,6 +2365,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8eeb0253a343f421)
+
 so $\pi_{\bar F}\to 0$ as $T_{\mathcal Q,W}\to 0$. Hence exactly one down-family survives as the low-energy ambient family.
 
 *Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight. The harmonic free-energy and Kramers steps are part of the approximation burden: the reduced state-dependent delay record must admit this metastable-well reduction before the criterion becomes quantitative.
@@ -2295,6 +2376,7 @@ E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{\m
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-93d87b36626184d3)
+
 with $N_{\mathrm{mix}}^{(I)}=0$, $N_{\mathrm{mix}}^{(II)}=2$, then Family II is selected whenever
 $$
 2s>
@@ -2304,6 +2386,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-43164c6e0accf6cf)
+
 and the stability condition $\rho_{II}<1$ holds.
 
 **Failure condition (theory-level, explicit).** The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
@@ -2313,6 +2396,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-66f8ed6018bf8bb6)
+
 for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening. In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
 
 #### Color Hilbert Space and SU(3) Structure
@@ -2323,6 +2407,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-24b6c355c2866dad)
+
 where $|q_1\rangle,|q_2\rangle,|q_3\rangle$ mean "axis-exceptionality on 1/2/3", respectively. Fix this ordered basis and identify it with the canonical triplet basis
 $$
 |q_1\rangle\leftrightarrow e_1,\quad |q_2\rangle\leftrightarrow e_2,\quad |q_3\rangle\leftrightarrow e_3
@@ -2358,6 +2443,7 @@ T^{(y)}_{ab}\equiv -\frac{i}{2}(E_{ab}-E_{ba})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4a6d6184bfe40c01)
+
 giving six off-diagonal generators: $(12),(13),(23)$ each with $(x,y)$ components. Define diagonal generators:
 $$
 H_1\equiv \frac{1}{2}(E_{11}-E_{22}),\qquad
@@ -2365,6 +2451,7 @@ H_2\equiv \frac{1}{2\sqrt{3}}(E_{11}+E_{22}-2E_{33})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-303a244bf5bcafe7)
+
 These eight matrices are exactly the standard $T^a=\lambda_a/2$ basis in the indexed-axis ordering.
 
 ##### Algebra closure (rigorous statement)
@@ -2375,12 +2462,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7d62774375504791)
+
 is an 8-dimensional Lie algebra isomorphic to $\mathfrak{su}(3)$; equivalently,
 $$
 [T^a,T^b]=i f^{abc}T^c
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c4dd5017232ecae4)
+
 for the standard SU(3) structure constants in this basis.
 
 **Proof.** Each element of $\mathcal{B}$ is Hermitian and traceless, and there are eight linearly independent such matrices. Under the basis identification above, $\mathcal{B}$ maps one-to-one to the Gell-Mann basis $\{\lambda_a/2\}_{a=1}^8$, whose commutator algebra is $\mathfrak{su}(3)$. Therefore the axis-exceptionality generators close under commutator with the same structure constants.
@@ -2397,6 +2486,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-892ca4158548e42b)
+
 with the observable closed sectors assembled through the usual singlet-containing products
 $$
 3\otimes\bar 3=1\oplus 8,\qquad
@@ -2404,6 +2494,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-adca47545bca5d8c)
+
 This does not identify the Eightfold Way flavor octets with color itself. It says that any successful color branch must reproduce the same algebraic fact that eight traceless generators organize an octet-class residual, while native confinement and color-singlet closure still come from axis exceptionality, braid closure, and Noether sea energetics.
 
 Symmetry breaking is then tested as a residual, not promoted to a second color rule. Let $M_{\mathrm{obs}}$ be the observed hadron mass vector for a chosen baryon or meson octet, and let $M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)$ be the mass vector predicted after projecting a closed color-singlet assembly onto its flavor and axial-layer labels. The admissible branch must support a decomposition
@@ -2412,6 +2503,7 @@ M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)=m_0\mathbf{1}+\alpha T_8+\beta D_8+\D
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-54d131a82e3e8d73)
+
 where $T_8$ and $D_8$ denote the two octet-breaking directions available to the adjoint classification, and $\Delta_{\mathrm{axis}}(\theta)$ is the native correction from indexed-axis response differences, axial-layer family selection, and braid energy. The recovery residual is
 $$
 \mathcal{R}_{8}
@@ -2420,6 +2512,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-63e3efed5cc57877)
+
 A branch fails this Eightfold-way check if $\mathcal{R}_{8}$ can be made small only by fitting unrelated parameters separately for baryons, mesons, and color confinement, or if $\Delta_{\mathrm{axis}}$ erases the triplet/conjugate-triplet and adjoint structure above. The source signal to preserve is therefore narrow: algebraic classification and Gell-Mann-Okubo-style mass splitting are recovery constraints on the emergent branch, not evidence that the classification algebra is the underlying medium.
 
 ##### Example: 1↔2 axis-swap generator
@@ -2436,6 +2529,7 @@ T^{(x)}_{12}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-06f8440b2a0e9bc5)
+
 It continuously rotates exceptionality between 1 and 2 while leaving 3 unchanged at first order. Together with $T^{(y)}_{12}=\lambda_2/2$, it generates the embedded SU(2) subgroup acting on the $(1,2)$ color plane.
 
 #### Baryons, Color Singlets, and the 9‑Axis Braid
@@ -2501,12 +2595,14 @@ E_{\mathrm{open}}(\ell_{\mathrm{corr}})=\sigma_{\mathrm{eff}}\ell_{\mathrm{corr}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-426bafde2669cfd1)
+
 for open color braids/flux sectors, while closed singlet sectors satisfy
 $$
 E_{\mathrm{closed}}(\ell_{\mathrm{corr}})\to E_{\infty}<\infty
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e3d515945a0108c7)
+
 and vanishing far-field color flux. Here $\ell_{\mathrm{corr}}$ is the open color-corridor length, distinct from binary index 3.
 
 The Wilson-loop benchmark is the observer-level gauge-theory diagnostic for the same distinction. For a rectangular loop $C_{R,T}$ in the fundamental color representation, with $R$ and $T$ retained as standard lattice loop-extents rather than native axis or absolute-time labels, the strong-sector branch should recover
@@ -2517,6 +2613,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2008de96bfe403b9)
+
 in the confining window, while non-confining or screened limits must show the corresponding perimeter-law or string-breaking behavior. This target is not a claim that the lattice Wilson loop is fundamental ontology; it is the tested gauge-invariant way to compare open color-corridor energy with QCD.
 
 The same branch must also provide a closed-sector mass-gap diagnostic. For a pair of gauge-invariant closed color probes separated by $R$,
@@ -2529,6 +2626,7 @@ M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)>0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-183a360c95c75bde)
+
 This is the mass-gap recovery target for closed strong-sector braids, separate from the open-string tension target.
 
 This energy law is a closure target, not a restatement of QCD in native vocabulary. The observer-level benchmarks to preserve are the static-potential string tension, the absence of asymptotic free color charge, a finite pure-gauge mass gap, and the hadron-spectrum constraints currently organized by QCD and lattice calculations. A useful confinement residual is
@@ -2543,6 +2641,7 @@ d_{\mathrm{free}}\!\left(O_{\mathrm{color}}(\theta),O_{\mathrm{color}}^{\max}\ri
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-836ac00bb9ffc403)
+
 where the terms compare the extracted open-sector tension, the lowest closed strong-sector excitation scale, and the predicted free-color signal against the corresponding accepted benchmark or bound. The same branch record must drive all three terms. If $\sigma_{\mathrm{eff}}$, the mass gap, and free-color suppression require independent Noether sea variables or separate color-sector fits, the confinement program has reproduced the appearance of QCD rather than deriving its non-perturbative content.
 
 This chapter therefore carries:
@@ -2600,6 +2699,7 @@ Q_{\mathrm{eff}}(e^-)=-Q_{\mathrm{eff}}(e^+)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bd7e8a8f67e81046)
+
 The equality is a constraint on the mass-facing causal ledger: complete polarity inversion preserves the polarity-even internal products, shielding-coherence class, and medium response that feed scalar rest mass, while reversing the exposed electric bookkeeping. A partial polarity replacement inside the axial layer would not be the positron branch; it would generally change the assembly ledger and must be classified as a different or unstable charged-fermion candidate.
 
 #### Assembly and Detection Map
@@ -2801,6 +2901,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-43455336df35e401)
+
 where $\omega_{\nu 0}\mathbf{1}$ is the large near-photon common propagation term and $\delta\Omega_{\mathrm{bin}}$ is the residual internal-binary phase operator. The common term is why the neutrino is a high-speed neutral channel. The residual term is why it can oscillate instead of becoming a photon-channel packet.
 
 **This split is referent-pending, and the mark is not a formality.** $\delta\Omega_{\mathrm{bin}}$ is defined as the departure from the photon lock, so it is well posed exactly when that lock is an equilibrium the assembly occupies. The declared family does not bind, so the split currently has no located base point to be a departure *from*. The consequence is specific and worth stating plainly: no property of $\delta\Omega_{\mathrm{bin}}$ — its magnitude, its spectrum, its symmetry character — can be measured or argued about before a lock closes, because a perturbation about a non-equilibrium has no referent at any anchoring, magnitude, or sign. The split is retained as the intended construction and as the shape the closure program targets. It is not yet a decomposition of a retained object, and it should not be used as a premise.
@@ -2814,6 +2915,7 @@ E_{\nu,\mathrm{exp}}(T)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3297348da6caaa42)
+
 where $E_{\nu,\mathrm{exp}}(T)$ is the weak-channel exposed part and $E_{\nu,\mathrm{sh}}(T)$ is the internally shielded part of the same retained branch. The state $|\psi_\nu(T)\rangle$ lives in the three-mode residual-binary space on which $H_{\mathrm{geo}}$ acts. Because $H_{\mathrm{geo}}$ carries mass-squared-response units rather than energy units, the weak-projected response must first be mapped into an energy-facing phase row for a declared ultrarelativistic comparison energy $E_\nu$:
 $$
 \mu_{\nu,W}^2(T)
@@ -2826,6 +2928,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2d748b8012a897ed)
+
 A compact closure target is
 $$
 \mathcal{R}_{\nu,\mathrm{shield}}
@@ -2845,6 +2948,7 @@ E_{\nu,\mathrm{exp}}+E_{\nu,\mathrm{sh}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-03ceda953bfdddd6)
+
 with $\Pi_W$ the weak-exposure projector on the near-photon branch. This does not make the neutrino's mass a hidden-energy label. It states that the tiny observer-facing mass and oscillation signal must come from the same exposed fraction that the weak channel samples, while the total retained internal ledger remains conserved during free propagation.
 
 The three residual internal binaries should remain visible in the closure record before PMNS fitting begins. A resolved near-photon branch may be written schematically as
@@ -2868,9 +2972,10 @@ E_{\nu,\mathrm{exp}}(T)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fcfb96e421e278bc)
+
 Here $E_{\ell}$, $R_{\ell}$, $\hat{\mathbf{J}}_{\ell}$, and $\phi_{\ell}$ record the layer energy, scale, angular-momentum direction, and phase of each residual internal binary, while $\zeta_{\ell W}$ is the weak-channel exposure weight derived from the near-photon geometry. The PMNS map should recover its effective three-mode behavior from this exposure record, not from three independent flavor labels added after propagation.
 
-Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar polarity-conjugate lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
+A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar polarity-conjugate lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
 
 #### Handedness: Why the Observed Neutrino Is Left-Handed
 
@@ -2909,6 +3014,7 @@ H_{\mathrm{geo}}=
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-91879a44ba03295f)
+
 with $(\varpi_i,\Omega_{ij},\phi_{ij})$ derived from near-planar polarity-conjugate braid-pair geometry, residual internal-binary exposure, and Noether sea coupling.
 
 Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagation phase, not an ordinary energy Hamiltonian. In natural units, $\varpi_i$ and $\Omega_{ij}$ carry mass-squared-response units. Diagonalization defines the mixing matrix and the effective mass-squared-response eigenvalues:
@@ -2919,6 +3025,7 @@ H_{\mathrm{geo}}=U_{\mathrm{PMNS}}\Lambda U_{\mathrm{PMNS}}^\dagger,\qquad
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cac4da89653d1c29)
+
 Thus $\lambda_i$ is not an energy eigenvalue; it is the geometric counterpart of a mass-squared propagation response, and $\Delta\lambda_{ij}=\lambda_i-\lambda_j$.
 
 Vacuum oscillation probabilities follow:
@@ -2930,11 +3037,13 @@ P_{\alpha\to\beta}(L,E)=
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-779fcc2e064faeab)
+
 $$
 \Delta_{ij}=\frac{\Delta\lambda_{ij}L}{4E}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f86c5bad6a561cfc)
+
 The displayed CP-odd sign fixes the neutrino convention for the basis above. Antineutrino comparisons use the complex-conjugated mixing matrix, so the CP-odd term changes sign; in matter, the charged-current part of the matter potential also reverses sign.
 
 The two-basis distinction is part of the recovery target, not optional notation. Weak reactions create and detect flavor-basis states $|\nu_\alpha\rangle$, while propagation follows the eigenbasis $|\nu_i\rangle$ of $H_{\mathrm{geo}}$. In the two-state limit this reduces to the benchmark form
@@ -2946,6 +3055,7 @@ P_{\nu_e\to\nu_\mu}(L,E)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b964eb17aee3bb04)
+
 using the same mass-squared-response eigenvalue gap convention as the three-flavor equation above. Any later conversion to ordinary mass language is a comparison-layer unit map; it must not replace the geometric eigenvalue derivation.
 
 The experimental implementation makes this split operational. A long-baseline beam creates a flavor-tagged neutrino through a weak reaction, lets the neutral branch propagate over a declared baseline, and reads the detector flavor from the charged products of the rare interaction that finally occurs. The beamline may be described as a muon-neutrino source, but in the propagation interval the retained state is not a flavor eigenstate; it is a superposition of mass-response eigencomponents whose relative phases change with $L/E$ and with the intervening matter record. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is therefore one event ledger with source, propagation, and detector rows: source flavor tag, energy spectrum, baseline, in-medium phase correction, detector flavor tag, recoil, and missing neutral-lepton row must all refer to the same near-photon branch history. Oscillation measurements then constrain eigenvalue gaps and ordering pressure, not the absolute mass scale by themselves.
@@ -2956,6 +3066,7 @@ n(\mathbf X,T)\equiv\frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-33d3c4be7249a212)
+
 but the MSW-facing correction must also sample the embedded electron, proton, and neutron assembly content through the weak-exposure projector. Let $\theta_{\mathrm{sea}}(\mathbf X,T)$ denote that local Noether sea record, including $n(\mathbf X,T)$ and the matter-assembly content relevant to coherent weak scattering. The effective operator is
 $$
 H_{\mathrm{eff}}^{\alpha\beta}
@@ -2971,6 +3082,7 @@ E_\nu
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-20f0b4c4aef5206b)
+
 where $V_{\mathrm{mat}}^{\alpha\beta}$ is a flavor-structured mass-squared-response operator. In the Standard Model comparison limit it must reduce, up to the oscillation-irrelevant identity part, to the charged-current MSW row,
 $$
 V_{\mathrm{mat}}^{\alpha\beta}
@@ -2985,6 +3097,7 @@ V_{\mathrm{CC}}(n_e(\mathbf X,T)) & 0 & 0\\
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a07a3dea8d8edd2d)
+
 Here $n_e$ is the local electron density in the matter record. The charged-current term tracks that electron density, while the neutral-current identity term contributes only a common phase unless sterile or right-handed branches are being compared. The full matter term must be normalized to the same mass-squared-response units as $H_{\mathrm{geo}}$ before the $\Delta\lambda L/(4E)$ phase formula is used.
 
 Closure criterion for this chapter: one near-photon geometric phase-operator family must reproduce PMNS angles/phases and the observed $L/E$ pattern without introducing unconstrained flavor-specific ad hoc terms. For the electroweak-angle side of the same lepton sector, see [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md); for validation targets, see [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
@@ -3017,6 +3130,7 @@ m_{\mathrm{lightest}}\to 0,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-839f7e31d1c8b412)
+
 paired with a suppressed neutrinoless double-beta rate and a sterile or right-handed branch only if the same branch also closes the dark-sector abundance and free-streaming gates. In this chapter the mass-sum and sterile-branch values are discriminator targets: convergence toward them would pressure the near-photon phase operator toward a boundary or shielding limit, while a measured larger mass sum or a detected sterile branch with the wrong coupling pattern would force revision of the neutral-lepton geometry. The suppressed neutrinoless double-beta rate is not a discriminator target in the same sense — it is the prediction of the Dirac/Majorana gate above on the $C$-odd branch, and a contrary signal would force revision beyond the neutral-lepton geometry, reaching the $C$-parity of the chirality invariant on which the exact-$CP$ derivation also rests.
 
 ### Quantum Number Mapping
@@ -3103,7 +3217,7 @@ This makes selection a closure burden. A viable fermion branch must pass branch 
 
 The geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether braid. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
 
-In plain terms, most of the braid-scaffold volume is a storm of whipping delayed potentials. Near the axis-defined poles, opposing contributions from the rotating support rows can partially cancel in the transverse directions while still preserving axial attachment. That does not mean the poles are force-free. It means they are the places where an axial architrino can remain phase-locked to the braid scaffold with the least continual lateral correction.
+Most of the braid-scaffold volume is a storm of whipping delayed potentials. Near the axis-defined poles, opposing contributions from the rotating support rows can partially cancel in the transverse directions while still preserving axial attachment. That does not mean the poles are acceleration-free. It means they are the places where an axial architrino can remain phase-locked to the braid scaffold with the least continual lateral correction.
 
 This gives a provisional dwelling mechanism for polar sites:
 
@@ -3202,6 +3316,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d5d5cb5461a36220)
+
 and the exposure margin
 $$
 \Delta_{\mathrm{WCT}}(A,\hat{\mathbf p})
@@ -3212,6 +3327,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a8192bab23f6fe01)
+
 The diagnostic is
 $$
 \mathcal{E}_{\mathrm{WCT}}(A,\hat{\mathbf p})
@@ -3229,6 +3345,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ee33b17786fc7536)
+
 because then the active weak-coupling triad has been assigned to the wrong exposed domain.
 
 Once $\mathcal{E}_{\mathrm{WCT}}$ selects an exposed triad with positive margin, **Weak Isospin ($T_3$)** is defined by the polarity of that **weak-coupling triad**:
@@ -3278,12 +3395,14 @@ g_Z\left(T_3-Q\sin^2\theta_W\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3f96fd155545597a)
+
 For right-handed charged fermions, the weak-coupling triad is hidden and the $SU(2)_L$ label is a singlet, so $T_3^{(R)}=0$. The neutral-current handle does not vanish automatically; it reduces to the electric/hypercharge-side term
 $$
 g_Z\left(-Q\sin^2\theta_W\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5f2d846248af742a)
+
 This is why a right-handed electron can still have a neutral weak coupling, while a charged-current reaction such as $e^-_R\to\nu$ is blocked. A sterile right-handed neutrino candidate would have $T_3=0$ and $Q=0$, so this leading neutral-current handle would also be absent.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the sector exposure map is:
@@ -3328,6 +3447,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a714b04dd8ef035b)
+
 These labels are a basis convention on the quark color triplet, not an additional physical charge layered on top of axis exceptionality.
 
 ##### Confinement (The Flux Tube)
@@ -3341,6 +3461,7 @@ Because a colored quark leaves one axis exceptional, it opens a non-singlet stro
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-012ba03d3e85eb68)
+
   leaving no far-field color flux.
 
 ##### Gluons
@@ -3373,6 +3494,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3067e6b04e8e9e9c)
+
 for every tested baryon-violating channel $\mathcal{C}_{\Delta B\ne0}$, while the bound-state proton calculation separately recovers the observed charged color-singlet ground state.
 
 ---
@@ -3449,12 +3571,14 @@ In formulas:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-24c8f67427cf0a68)
+
 - singlet branches carry
   $$
   T_3=0
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-139f16b84ea4d925)
+
 - and hypercharge is always reconstructed from
   $$
   Y = 2(Q-T_3)
@@ -3499,12 +3623,14 @@ For elementary fermions, the clean geometric bookkeeping is:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-aa5b2dbafdb3466d)
+
 - lepton-like color-singlet assemblies carry
   $$
   B=0,\qquad L=\pm 1
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-6d3f6263f8201410)
+
 - the sign is set by the matter-versus-polarity-conjugate branch relation:
   $$
   s_C=
@@ -3537,6 +3663,7 @@ e^c_L:(1,1,+2)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1faaa6f49943b762)
+
 the Standard-Model gauge anomalies cancel exactly.
 
 The pure color anomaly cancels before hypercharge is even used:
@@ -3548,6 +3675,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c2dba0b5bbd6f665)
+
 where the factor $2$ is the weak-doublet multiplicity of $q_L$ and $A(\bar 3)=-A(3)$.
 
 The non-perturbative $SU(2)$ Witten check also passes. One generation contains three quark doublets, one for each color, plus one lepton doublet:
@@ -3557,6 +3685,7 @@ N_{2,\mathrm{Weyl}}\equiv0\pmod2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-de6ef0cbb7ae4c26)
+
 Thus the quark and lepton sectors are tied together by the same consistency condition: removing either $q_L$ or $\ell_L$ breaks the even-doublet requirement.
 
 With $T(3)=T(\bar 3)=\tfrac{1}{2}$ and $T(2)=\tfrac{1}{2}$, the mixed non-abelian anomalies are
@@ -3570,6 +3699,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-aa3dc2fbd12018e4)
+
 and
 $$
 \mathcal{A}_{[SU(2)_L]^2U(1)_Y}
@@ -3617,6 +3747,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b96b4d881166571a)
+
 it contributes zero to all of these SM gauge anomalies, so the minimal anomaly cancellation is unchanged.
 
 However, for the global bookkeeping symmetry $B-L$, one generation without $\nu_R$ gives
@@ -3627,6 +3758,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9760234962e0418f)
+
 while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restores both to zero. So in the minimal architecture, $B-L$ works as a global label, but not yet as an independently gauged anomaly-free channel.
 
 ##### Right-handed neutrino stance and mass eigenstates (hypothesis)
@@ -3717,6 +3849,7 @@ d_{\mathrm{rep}}\!\left(
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-722a3b758ab30a26)
+
 This prevents a comparison framework from explaining mixing by altering charge, weak isospin, hypercharge, color, handed weak exposure, or by adding hidden partner branches.
 
 ###### Candidate Generation Operator
@@ -3730,6 +3863,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d7b58e68035fe690)
+
 record which persistently indexed binaries remain coherently active as shielding support for the charged-fermion or quark branch $A$ in this source record. The present generation thesis admits only the three quotient classes
 $$
 \mathfrak{G}_{\mathrm{sh}}
@@ -3738,6 +3872,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-627f5a791e4d16aa)
+
 corresponding to Generations I, II, and III. The candidate comparison operator is
 $$
 T_{\mathrm{gen}}:
@@ -3745,6 +3880,7 @@ T_{\mathrm{gen}}:
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fa988d11c72dbd60)
+
 where the last arrow is a quotient-closure check, not a claim that an exposed Generation III assembly dynamically rebuilds the missing shielding tiers.
 
 The entries of $\mathsf{s}_{\mathrm{sh}}$ are shielding-coherence bits, not a deletion of the gauge-facing axial frame. They do record real scaffold-count reduction: depleted tiers are absent or unassembled as coherent shielding supports, while the 1/2/3 axial frame persists as a delayed branch record for gauge projection. Let the axial dyads be
@@ -3753,6 +3889,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-57809285847e82cb)
+
 For quark branches the color label remains
 $$
 \mathrm{col}(A)
@@ -3761,6 +3898,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9161bc6786e2469d)
+
 while $\mathsf{s}_{\mathrm{sh}}(A)$ controls exposed mass response and lifetime. A branch fails this separation if changing generation removes the three-color triplet structure before the assembly has left the quark sector.
 
 One explicit order residual is
@@ -3776,6 +3914,7 @@ d_{\mathrm{ord}}\!\left(T_{\mathrm{gen}}^3,\mathrm{id}\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-de32e4b494634d47)
+
 This term fails if the shielding quotient admits a fourth stable class, collapses two observed generations into one class, or cannot define the third iterate on every admitted class.
 
 For a family representative $A_f$, the representation residual should use the same observer-level gauge projection across all three classes:
@@ -3786,6 +3925,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-82f5ea47d69c3f8a)
+
 where $\mathrm{col}(A)$ is the color singlet/triplet bookkeeping and $\mathcal{E}_{\mathrm{weak}}(A)$ records the weak-coupling-triad exposure class. A concrete first pass is
 $$
 d_{\mathrm{rep}}(A,B)
@@ -3796,6 +3936,7 @@ d_{\mathrm{rep}}(A,B)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cd1a016d82f926d0)
+
 with discrete penalties for mismatched color or weak-exposure classes. This enforces that generation changes exposed mass response while leaving the Standard-Model-facing representation table fixed.
 
 The mass term becomes testable once one shielding-energy map is selected:
@@ -3807,6 +3948,7 @@ M_{\mathrm{sh}}\!\left(A_f,T_{\mathrm{gen}}^a,\theta\right),
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d7c8b7a9de08bf8b)
+
 The corresponding log-residual is
 $$
 d_{\mathrm{mass}}
@@ -3823,6 +3965,7 @@ d_{\mathrm{mass}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e4dcad50e6775c68)
+
 with one shared $\theta$ and one shared $M_{\mathrm{sh}}$ across leptons, up-type quarks, and down-type quarks. A fit that changes the shielding map by family is therefore not generation closure; it is a hidden parameter split.
 
 The explicit shared fitting packet lives in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#generation-mass-fitting-packet), where $M_{\mathrm{sh}}$ is treated as a mass-response map rather than a new generation ontology.
@@ -4000,6 +4143,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0b66afc72a5fc2be)
+
 with the candidate ordered-frame evolution transforming on the double cover so that $2\pi$ and $4\pi$ rotations are distinguished at the internal phase level.
 
 #### Weak-Mixing and Composite-Observable Closure Hooks
@@ -4014,12 +4158,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2e57fbb54097108b)
+
 The proof burden is to derive this value from the axial-site quotient and then show how electroweak-scale dressing moves it to the measured value. Until that derivation is supplied, the measurable relation should be read as a recovery target,
 $$
 \sin^2\theta_W(m_Z)=\sin^2\theta_W^{\text{bare}}+\Delta_{\text{wake}}(m_Z)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bfd7a2e7cba9f421)
+
 where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the Noether sea at the electroweak scale.
 
 Using the representative effective $Z$-pole value $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ (PDG comparison value), the required dressing is not numerically negligible:
@@ -4073,6 +4219,7 @@ I_A^{\mathrm{obs}}(\hat{\mathbf{n}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6f27720484f9a39e)
+
 Here $\mathcal{H}_A$ is the path-history/causal-root ledger, $\mathcal{S}_A$ is the shielding state, $\mathcal{N}_A$ is the local Noether sea state, and $R_A$ records assembly orientation. In an isotropic low-energy branch, $m_A^{\mathrm{obs}}$ reduces to the scalar mass used in Standard Model kinematics; away from that limit, the anisotropic response belongs to the medium-response map, not to a new quantum number.
 
 The lepton magnetic-moment correction below should be read through the same interface. The coefficient $\mathcal{C}_\ell$ is a channel projection of response data,
@@ -4088,6 +4235,7 @@ R_\ell
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-39846fde5c766ba0)
+
 where $\mathcal{P}_\ell$ denotes the observer-channel projection into the measured lepton magnetic-moment observable. This keeps magnetic moment tied to finite-size orientation response and Noether sea dressing without treating magnetic language as substrate ontology.
 
 ##### Lepton magnetic moments
@@ -4101,6 +4249,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-88d346bcfafbcaa3)
+
 which keeps electron-channel corrections highly suppressed when $\mathcal{C}_e\sim \mathcal{C}_\mu$.
 
 ##### Lepton-pair production form factor
@@ -4154,12 +4303,14 @@ N_{\text{quark}} = N_{\text{braid}} + 6
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0195af62a01fdc6b)
+
 with
 $$
 N_{\text{braid}} \in \{6,4,2\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cca1c4e5c36b7bb5)
+
 for Generations I, II, and III respectively. Here $N_{\text{braid}}$ counts coherent shielding-scaffold architrinos in the promoted branch, not every transient residue of an ablated or relocking tier. This gives:
 
 - Generation I quark: 12 architrinos.
@@ -4193,6 +4344,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b1f7a88e9029bf66)
+
 That gives net charge
 $$
 Q = \frac{5-1}{6}e = +\frac{2}{3}e
@@ -4220,6 +4372,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ca8bdff68a4533c4)
+
 That gives net charge
 $$
 Q = \frac{2-4}{6}e = -\frac{1}{3}e
@@ -4235,6 +4388,7 @@ The down-type sector admits two allowed axis-pattern families:
    $$
 
    [View →](../../../../../equation-mapping.html#corpus-equation-9d1e411e23a32c36)
+
 2. Family II: one negative-polarity dyad and two mixed-polarity dyads, i.e. permutations of
    $$
    \big((\epsilon_-,\epsilon_-),(\epsilon_+,\epsilon_-),(\epsilon_+,\epsilon_-)\big)
@@ -4258,6 +4412,7 @@ For right-handed quarks:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-e021f2a9523c201b)
+
 - and the weak hypercharge is determined directly by
   $$
   Y = 2Q
@@ -4292,6 +4447,7 @@ In this bookkeeping:
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-ba25e79f03f58d30)
+
 - the down-type branch carries
   $$
   T_3 = -\frac{1}{2}, \qquad Y = +\frac{1}{3}
@@ -4327,6 +4483,7 @@ Start by mapping the quark axial inventories to their charged-sector conjugate r
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-56fe0008e30972a9)
+
 - anti-down family $(\bar d,\bar s,\bar b)$:
   $$
   4\epsilon_+,2\epsilon_-,\qquad Q=+\frac{1}{3}
@@ -4387,6 +4544,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-462a99f3f8bceb14)
+
 while electric charge appears on the diagonal through
 $$
 Q = T_3 + \frac{Y}{2}
@@ -4465,6 +4623,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0e011ea95dd2d916)
+
 where $|q_1\rangle$, $|q_2\rangle$, and $|q_3\rangle$ mean that the exceptional axis sits on indexed axis 1, 2, or 3 respectively.
 
 This basis may be identified with the conventional color labels by the fixed phase convention
@@ -4473,11 +4632,13 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f742ed0a807cbf75)
+
 $$
 |q_2\rangle \leftrightarrow \text{Green} \leftrightarrow 120^\circ
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b2f63c07975910a3)
+
 $$
 |q_3\rangle \leftrightarrow \text{Blue} \leftrightarrow 240^\circ
 $$
@@ -4519,6 +4680,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c7f61d2fe99d2f12)
+
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
 The corresponding antiquark is obtained by the charged-sector conjugate axial pattern together with the polarity-conjugate antimatter branch, giving the anti-red, anti-green, and anti-blue states. Its pro/anti ordered orientation is inherited unchanged under that conjugation.
@@ -4591,6 +4753,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-57dafda2a8c456dc)
+
 and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion. For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate exceptionality among indexed axes 1, 2, and 3, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
 
 ##### Generator picture
@@ -4601,6 +4764,7 @@ U \in SU(3)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a8ee260cc9e6e344)
+
 because the transformation must preserve norm, remain within the one-axis-exceptionality sector, and have unit determinant after removing the unobservable overall phase.
 
 The eight gluon modes are then the eight traceless generators of this action. In axis language:
@@ -4720,6 +4884,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5edccdb229904559)
+
 so that
 $$
 \theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ
@@ -4792,6 +4957,7 @@ R_{\text{rel}} = I
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e8754f7e3c8b409a)
+
 or equivalently a vanishing misalignment angle
 $$
 \alpha = 0
@@ -4799,7 +4965,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-42b29e1153c74876)
 
-This should be read as the **isotropic limit** of the axial geometry, not as a separate dynamical law. In plain terms: when all six axial architrinos share the same polarity, there is no internal reason for the axial frame to rotate away from the core triad.
+This is the **isotropic limit** of the axial geometry, not a separate dynamical law. When all six axial architrinos share the same polarity, there is no internal reason for the axial frame to rotate away from the core triad.
 
 ---
 
@@ -4821,6 +4987,7 @@ M_{ij} = \sum_{a=1}^{6} q_a\,n_i^{(a)} n_j^{(a)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-64ea267ec4594462)
+
 where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six polar-site directions measured in the core frame.
 
 Because $M_{ij}$ is even under $\mathbf{n}\mapsto-\mathbf{n}$, it detects signed same-polarity dyad loading but is blind to a perfectly antipodal mixed polar dyad. A mixed dyad with one $\epsilon_+$ and one $\epsilon_-$ cancels in $M_{ij}$ even though it is exactly the local axis-exceptional structure that matters for up-type quarks and one down-type family. The complementary odd moment is therefore required:
@@ -4829,6 +4996,7 @@ d_i = \sum_{a=1}^{6}q_a\,n_i^{(a)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8f7ad26b23d4ce3a)
+
 A same-polarity polar dyad gives no contribution to $d_i$, while a mixed polar dyad contributes a vector $\pm2\epsilon\,\hat{\mathbf n}$ according to which pole carries which polarity. The axial frame should therefore be read from the joint moment record $(M_{ij},d_i)$, not from $M_{ij}$ alone.
 
 This also limits what the idealized on-axis polarity count can prove. In the symmetric charged-lepton limit $M_{ij}$ is proportional to the identity and $d_i=0$, so the axial frame is not separately distinguished. In an idealized quark pattern, $(M_{ij},d_i)$ can identify the exceptional axis while still remaining diagonal or axis-aligned in the core frame. The actual misalignment diagnostic belongs to the displaced equilibrium selected by the effective energy, with the off-diagonal axial-tensor load measured after the polar-site directions have relaxed:
@@ -4839,6 +5007,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3fcc2166922a10db)
+
 The axial-frame rotation target is $\mathcal{R}_{\mathrm{off}}>0$ on that relaxed record, or equivalently a joint principal frame for $(M_{ij},d_i)$ that is rotated away from $\mathcal{F}_{\text{core}}$. If $\mathcal{R}_{\mathrm{off}}=0$ while $d_i$ selects a core axis or the eigenvalues of $M_{ij}$ differ, the axial layer is exceptional or anisotropic while still aligned with the core frame; that case should not be counted as a misalignment branch.
 
 The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**. In that sense this note is also an interface to [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md), where the quark-sector overlap structure is pushed further.
@@ -4853,6 +5022,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fcc32a1815545064)
+
 This implies the candidate geometric branch increment
 $$
 \theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ
@@ -4881,6 +5051,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e13894ed6eaf46d7)
+
 Equivalently, $\alpha_n=n\times30^\circ$ for reader-facing degree notation. In energy or action functionals below, $\alpha$ and $\theta_{\mathrm{inc}}$ are radians.
 
 Because an axial frame is an oriented triad and because many rotations are physically equivalent up to sign flips, pole relabelings, or color-phase shifts, the physically distinct set is expected to be much smaller than all integers. A practical first working set is
@@ -4889,6 +5060,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-05db8b7b6faffd21)
+
 with additional identifications made by symmetry.
 
 This set is explicitly pre-quotient. In particular, the $90^\circ$ entry survives only if pole reversal and axis-flip equivalences do not reduce it to a lower representative.
@@ -4940,6 +5112,7 @@ R_{\text{rel}}(\alpha,c) = R_{\text{axis}}(c)\,R_{\text{tilt}}(\alpha)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d04ee9f83c934a45)
+
 where:
 
 - $R_{\text{axis}}$ chooses the exceptional-axis sector,
@@ -5015,12 +5188,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b82fb0a95a119a76)
+
 at
 $$
 \alpha = n\theta_{\mathrm{inc}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1f1c79e6bbb2fe7b)
+
 and that these stationary points are true minima for the stable branches.
 
 A simple toy realization, with $\alpha$ and $\theta_{\mathrm{inc}}$ measured in radians, is
@@ -5029,6 +5204,7 @@ E_{\text{polarity}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c9c917aaf96da80f)
+
 where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the branch increment.
 
 ##### Closure handoff
@@ -5144,7 +5320,7 @@ The fourth point matters. The discrete-angle idea is only worthwhile if it expla
 
 ---
 
-#### Working Summary
+#### Summary
 
 The sharpened hypothesis is:
 
@@ -5158,13 +5334,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-32098856e80d51f2)
+
 with color providing an independent exceptional-axis label.
 
 In short: do not rotate the scaffold; rotate the axial frame. Then ask whether the six-pole electroweak geometry selects discrete quark misalignment angles as part of the same underlying assembly logic.
 
 ## Electroweak Bosons
 
-**Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors. **Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes. This chapter is the bosonic-side companion to [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+This chapter develops the candidate assembly geometry for photons, the charged and neutral weak bosons, and the Higgs-sector scalar mode. In the observer-level Standard Model, the photon carries electromagnetic interactions, the $W^\pm$ and $Z$ carry weak interactions, and the Higgs field supplies a scalar sector whose couplings enter particle mass terms. The $\mathbb{A}\mathbb{A}\mathbb{A}$ construction instead treats these bosonic channels as discrete, propagating assemblies of architrinos organized into phase-locked modes; whether they reproduce the Standard Model record is a recovery question, not a premise. The companion treatments are [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
 Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
@@ -5230,13 +5407,15 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Energy-Frequency:** For a periodic source $\omega=2\pi\nu$, the closure target is the photon-channel relation $E_\gamma=h\nu$; the cycle being counted is the propagating planar-mode phase cycle, not a rest-state volumetric clock.
 *   **Malus' Law:** Gate B must derive this as the geometric projection of the transverse planar-mode profile onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
 
+Gate A uses $p_\gamma=\|\mathbf p_\gamma\|$ for the photon-channel momentum magnitude and $\lambda_\gamma$ for the phase wavelength along the propagation axis. On the weak homogeneous nondispersive branch, the three recovery targets $E_\gamma=h\nu$, $E_\gamma=p_\gamma c_\gamma$, and $p_\gamma=h/\lambda_\gamma$ imply $\lambda_\gamma=c_\gamma/\nu$: the phase pattern advances by one spatial period during one phase cycle. This wavelength is not the transverse radius of either planar braid, the leading--trailing pair spacing $d$, the packet's total longitudinal extent, or an exclusion-envelope size. Any equality between $\lambda_\gamma$ and one of those geometric quantities requires a separate relation derived from the retained branch dynamics; it cannot be inferred from energy and frequency alone.
+
 #### Photon Closure Interface
 
 The photon description above is the ontology-level target. The theorem-level program should be kept in three closure gates so the chapter does not treat open derivations as already complete.
 
 | Gate | Closure target | Required recovery |
 | :--- | :--- | :--- |
-| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating polarity-conjugate planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
+| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating polarity-conjugate planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p_\gamma=h/\lambda_\gamma$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
 | **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
 | **Gate C: vertices and transitions** | Map emission, absorption, the photoelectric effect, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating polarity-conjugate planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, photoelectric thresholds, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
@@ -5279,11 +5458,12 @@ d(\omega,\delta_\gamma)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a6c09100f8819a58)
+
 with finite branch constant $\Lambda_\gamma$. This branch keeps $\omega d/(c_f-c_\gamma)=O(1)$ while forcing $d\to0$ as $c_\gamma\to c_f$. A fixed-$d$ branch would generally make the photon channel frequency-dependent and is therefore a failure mode unless a separate cancellation is derived.
 
 Gate A is closed only when this branch proves the following recoveries in the same speed convention:
 - The planar-pair mode has no rest-state volumetric clock and therefore imports no rest proper-time branch from massive Noether braid assemblies.
-- The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p=h/\lambda$ recovered from the phase-cycle ledger.
+- The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p_\gamma=h/\lambda_\gamma$ recovered from the phase-cycle ledger.
 - The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
 - The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
 
@@ -5298,6 +5478,7 @@ c_0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-02c2a6ca01d6524e)
+
 The weak homogeneous photon branch must derive this relation from the same Noether sea response record used by clock and ruler synchronization. A separately tuned photon-channel speed would leave Lorentz closure branch-split rather than structurally intact.
 
 Gate A also owns the long-baseline photon time-of-flight check in [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md#photon-time-of-flight-dispersion-gate). If a candidate branch permits frequency-dependent photon-channel delay, its accumulated prediction for two photon phase frequencies must be
@@ -5313,6 +5494,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9795f09957437af0)
+
 The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homogeneous branch after the same $c_\gamma$ and $\chi_\gamma$ record has recovered local synchronization. A branch that requires a different photon speed for time-of-flight events than for clock, ruler, or scattering comparisons has not closed Gate A.
 
 ##### Gate B Theorem Scaffold: Polarization and Spin
@@ -5436,6 +5618,7 @@ A_u^2+A_v^2=1,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-24ea674e2ba30f8a)
+
 Then linear polarization is the phase-aligned case $\delta=0$ or $\pi$, so the ledger can be represented by a real transverse axis. Circular polarization is the equal-amplitude quarter-cycle case $A_u=A_v=1/\sqrt2$ and $\delta=\pm\pi/2$. Elliptical polarization is the remaining coherent case: both transverse components are retained with a stable relative phase, with linear and circular polarization appearing as limiting cases of the same ledger.
 
 Unpolarized and partially polarized light are ensemble or source-window summaries. For a distribution $\rho$ over retained transverse photon ledgers, define the normalized ensemble transverse record
@@ -5452,6 +5635,7 @@ h_{ab}C_{\rho}^{ab}=1
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cde77f8ad7e6879e)
+
 A pure polarization record is rank one inside $\operatorname{im}P_{\perp}$. An unpolarized record has $C_{\rho}^{ab}=\frac12P_{\perp}^{ab}$, so no analyzer axis is preferred. A partially polarized record lies between these cases. Gate B must derive the underlying transverse ledgers, source or material averaging window, and analyzer response before these effective summaries are treated as recovered optical behavior.
 
 The polarity-conjugate planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
@@ -5626,6 +5810,7 @@ a_{\perp,\mathrm{in}}^b
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5d84907ba1de22b6)
+
 where $T_\Omega$ is the effective response of the material branch $\Omega$ and $r_\Omega^a$ carries capture, heat, scattering, or remnant leakage. In this notation:
 
 | Optical effect | Material return-map reading | Required ledger behavior |
@@ -5696,6 +5881,7 @@ E_{\mathrm{sh}\to W/Z},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a206cb853fb81661)
+
 Here $\Delta A_W$ is the axial-inventory payload, $N_{\mathrm{NB}}^{\mathrm{corr}}$ records any neutral Noether braid scaffold recruited into the corridor, $E_{\mathrm{sh}\to W/Z}$ records shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, and the $\mathcal Q$ rows carry energy, momentum, angular momentum, polarity, architrino inventory, path-history, and medium update terms. For each conserved or routed quantity $\mathcal Q\in\{E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{med}\}$, the superscript $0$ marks the leading event-window contribution after the surrounding baseline has been subtracted, and closure requires a balance of the form
 $$
 \Delta\mathcal Q_{\mathrm{src}}^{0}
@@ -5712,6 +5898,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6b8cfae978cac162)
+
 This is the local mathematical burden behind the claim that a $W/Z$ corridor can appear massive and short-lived without becoming an elementary container that manufactures outgoing fermion identity.
 
 The exposed-energy burden is therefore stricter than saying that the weak corridor is heavy. The Standard Model $W/Z$ scale must be recovered as the apparent energy cost of a routed event in which shielded assembly energy becomes corridor stiffness and bounded Noether sea participation:
@@ -5725,6 +5912,7 @@ E_{\mathrm{stiff}}^{\mathrm{corr}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c61fb51b5bd596fb)
+
 The same event record must also recover low-energy weak rates after the corridor is integrated out. If the apparent $W/Z$ mass scale is fit separately from the corridor payload, axial-inventory routing, and recoil/medium rows, the weak channel has imported a mass parameter rather than deriving one.
 
 | Corridor event | Participating architrinos | Neutral Noether braid provenance | Corridor payload | Required ledger closure |
@@ -5763,6 +5951,7 @@ G_F=\frac{1}{\sqrt 2\,v_{\mathrm{EW}}^2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6680351e14acff71)
+
 This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
 
 #### Effective Mass Scales
@@ -5780,6 +5969,7 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
     $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-ad806f6796c31ede)
+
     The terms must be read inside the same event ledger as the weak-corridor payload: corridor stiffness, shielded internal energy exposed during the transition, and bounded Noether sea participation together produce the measured peak and width. The target is not a persistent assembly rest mass, and it does not allow the Standard Model value to be inserted independently of the weak-corridor provenance record.
 *   **Environment Dependence as a bounded closure target:**
     *   Because a $W/Z$ corridor is a dynamic bundle, its effective width and peak position may depend on Noether sea density, compliance, drift, and tethering stiffness only through the same medium-response record that recovers ordinary electroweak precision behavior.
@@ -5814,6 +6004,7 @@ g_{H,A}^{\mathrm{eff}}(\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e49c7697a56ce569)
+
 The Higgs comparison closes only if this derivative reproduces the observed Higgs-coupling pattern while the radial mode's own resonance scale gives $M_H^{\mathrm{breath}}\approx 125$ GeV on the same Noether sea branch. The scalar mode is therefore a shared medium-response benchmark, not a license to add independent Yukawa parameters or a separate mass-generating substance.
 
 At the electroweak-boson level, the scalar benchmark is also a channel ledger. For collider energy $s$, final-state channel $c$, detector category $k$, and production route $p\in\{\mathrm{ggF},\mathrm{VBF},WH/ZH,t\bar tH\}$, the observer-level event-count target has the schematic form
@@ -5831,6 +6022,7 @@ B_{s,c,k}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6fa3d61869f35d49)
+
 The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gamma\gamma$, and $H\to WW^{(*)}$. The $\gamma\gamma$ channel is especially important for this chapter because it disfavors a spin-$1$ assignment while keeping the photon channel itself a separate transverse planar-pair ledger.
 
 ---
@@ -5866,6 +6058,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7cb83ccd7ebb9a75)
+
 with the direct row given by $\mathcal I_{\mathrm{sea}}^{\mathrm{req}}=\mathcal I_{\mathrm{sea}}^{\mathrm{ret}}=0$. Whichever row survives must also close energy, momentum, angular momentum, charge/polarity, path-history, and Noether sea recoil. If neither row closes, the channel has not explained Breit-Wheeler pair production.
 - The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon polarity-conjugate braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a typed neutral two-braid source plus the required axial split -> fermion + antifermion -> the source assembly bookkeeping relaxes back into the Noether sea.
@@ -5880,6 +6073,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2e8cc82defd86132)
+
 with effective amplitudes weighted by overlap matrices:
 $$
 \mathcal{M}_{q}\propto V_{\mathrm{CKM}},\qquad
@@ -5910,11 +6104,11 @@ The key reader distinction is that a gluon is not introduced here as a new subst
 
 In the Standard Model, color is an abstract $SU(3)$ label. In $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
 
-Plainly, a quark is colored when the assembly has a "which axis is special" degree of freedom. A gluon event is then a controlled way of changing, transporting, or balancing that exceptional-axis information without breaking the event ledger.
+A quark is colored when the assembly has a "which axis is special" degree of freedom. A gluon event is then a controlled way of changing, transporting, or balancing that exceptional-axis information without breaking the event ledger.
 
 #### The Noether Braid Substrate
 
-The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is populated by high-energy, small-scale Noether braids, often in tightly bound pro/anti groups. These form an ambient Noether sea of color-singlet braids.
+The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), the fixed three-dimensional container of the theory, is populated by high-energy, small-scale [Noether braids](../../../../markdown/aaa/noether-braid/noether-braid.md)—candidate neutral assemblies built from three indexed electrino:positrino binaries—often in tightly bound pro/anti groups. These assemblies form an ambient Noether sea of color-singlet braids.
 
 A Noether braid also has three persistently indexed axes $(1,2,3)$, each carrying two polar sites.
 
@@ -5988,6 +6182,7 @@ a_{\mathrm{out}},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a9c75365af7d9e6f)
+
 Here $a_{\mathrm{in}}$ and $a_{\mathrm{out}}$ name the exceptional-axis sectors before and after the corridor acts, $\Delta A_{\mathrm{ax}}$ records any axial-inventory rerouting, $\mathcal Q_{\mathrm{corr}}$ records the corridor payload, $\mathcal Q_{\mathrm{tube}}$ records the Noether sea flux-tube strain, and $\mathcal Q_{\mathrm{recoil}}$ records the balancing response of the source, target, and surrounding hadron. The allowed-actions rule from [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md#allowed-gluon-actions) constrains $\Delta A_{\mathrm{ax}}$: it may describe within-flavor captive-potential transfer or axis-sector rerouting, but it must preserve the total six-site axial inventory, electric charge, generation tier, and selected down-family sector rather than licensing a strong flavor change.
 
 For each routed quantity
@@ -6000,6 +6195,7 @@ E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{tube}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7abb81e30b22492e)
+
 the closure burden is
 $$
 \mathcal L_{\mathrm{color}}(\mathsf e;\mathcal Q)
@@ -6017,6 +6213,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-150d7aa903eba2aa)
+
 This is a provenance target, not a new interaction law. It prevents the gluon story from stopping at "color changed" by requiring the same record to bind axis exceptionality, axial inventory, energy, momentum, angular momentum, polarity, path history, and flux-tube strain for one color-reconfiguration event.
 
 #### The 8 Gluon Modes (Recovering the Octet Count, Bookkeeping)
@@ -6033,6 +6230,7 @@ The octet count comes from the color-basis operator space.
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-90656043e4dc42e1)
+
   is totally symmetric. It carries no net color change and is required not to interact as an open color mode.
 - **The octet:** removing this one singlet leaves 8 traceless modes: six off-diagonal color-changing generators plus two diagonal traceless generators, the familiar gluon octet of QCD.
 
@@ -6061,12 +6259,14 @@ Quarks are confined because an open color corridor stores energy in the surround
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-87debac3510b4cac)
+
   If $E_{\mathrm{coh}}\sim 1\;\mathrm{GeV}$ and $L_{\mathrm{coh}}\sim 1\;\mathrm{fm}$ — inputs set by the QCD benchmark, not derived here — then
   $$
   \sigma \sim 1\;\mathrm{GeV/fm}
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-a3a58292fb5f505c)
+
 - **Result:** the energy grows approximately linearly with separation, $V \propto r$, until it becomes cheaper to create a new quark-antiquark pair than to keep stretching the corridor.
 
 This is the standard flux-tube observable pressure translated into Noether sea language, not an import of perturbative string ontology. The string-tension scale is useful because QCD and lattice calculations already treat the approximately linear static potential as a non-perturbative benchmark. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to extract $\sigma_{\mathrm{eff}}$ from the same medium shear/torsion record that also suppresses free color and produces a finite closed-braid excitation scale.
@@ -6088,6 +6288,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-51ff1806d86f953c)
+
 in the confining window. At the assembly level, this says that an open color corridor must accumulate energy proportional to the swept corridor area in the comparison geometry, while a closed singlet branch avoids that open-sector cost. A gluon-corridor story that cannot be read through this gauge-invariant diagnostic has not yet recovered QCD confinement.
 
 #### The Color Singlet (White)
@@ -6104,6 +6305,7 @@ A proton candidate such as $(u_R,u_G,d_B)$ has a schematic color-singlet assignm
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-e5f369e14a755963)
+
 - **Far field:** at distances larger than the proton radius, the open color corridors close and no net color flux leaks into the surrounding Noether sea. The composite is therefore transparent in the color channel at large distances.
 
 ---
@@ -6144,12 +6346,13 @@ Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. 
 
 While the Standard Model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the transient particles, primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons), are the functional machinery of the strong interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$, these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether braids](../../../../markdown/aaa/noether-braid/noether-braid.md) connected by color flux tubes.
 
-Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations. The implementation burden is to say which branch record forms, which corridor carries the exchange, how long the basin remains stable, and where the ledger goes when the meson dissociates.
+At the observer level, these states mediate interactions, preserve quantum-number accounting through high-energy transitions, and participate in flavor mixing between generations. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation must identify which branch record forms, which corridor carries the exchange, how long the basin remains stable, and where every conserved ledger entry goes when the meson dissociates.
 
 #### Geometric variational lens
 The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether sea to topological defects (fermions). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are modeled as stable minima — attractor status that remains an open closure target of the braid program — while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the Noether sea.
 
-Plainly, the meson is the temporary bridge state the strong sector can afford. It is stable enough to carry a corridor, but not necessarily stable enough to become an ordinary long-lived matter assembly.
+The meson is the temporary bridge state the strong sector can afford. It is stable enough to carry a corridor, but not necessarily stable enough to become an ordinary long-lived matter assembly.
+
 * **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. **Dissociation** means the trajectory reaches a region where that action loses its minimum, so gradient flow carries the system toward another basin and into a new assembly pattern.
 
 **Confinement as topological shear (nonlinear elasticity lens)**
