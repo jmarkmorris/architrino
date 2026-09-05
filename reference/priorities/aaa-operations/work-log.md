@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-05 — Technical brief and all legacy roles reconciled
+
+Completed the operator-authorized correction of the Master Equation technical brief and sequential reconciliation of all ten legacy role documents. The brief now derives canonical transmitter-side acceleration weighting and separate signed playback with consistent integral normalization. Independent affine-path symbolic and local quadrature checks support this representation correction within their stated scope. All role briefs now use live scientific and operational owners, preserve distinct research questions and attributed notes, and remove obsolete active laws, fixed mechanism assignments, and unsupported acceptance authority. The [existing review record](office-document-standards-review.md#2026-09-05--technical-brief-and-legacy-role-reconciliation) contains the derivation explanation, reproducible check parameters, and all ten dispositions. The [priority tracker](priorities.md#office-document-standards-review) records completion and keeps only the separate story and play-surface recommendations for future selection.
+
+Validation: all ten role files passed relative-link, heading-fragment, and KaTeX checks; preserved attributed lines and historical blocks match their saved baselines. Priority ranking and whitespace checks passed. Strict content validation found zero authored errors but reports the separate feedback-scene index drift; its exact generation and recheck commands remain in the linked review record. No generated write was performed.
+
 ### 2026-09-05 — Feedback sphere in User Interface
 
 Added the Webapp Feedback sphere, its scene descriptor, and the scene-ID/path mappings in the canonical standalone route resolver. A local browser rendering confirms the sphere alongside the existing User Interface entries. Content validation reports no authored errors; the new scene causes expected scene-index and graph drift, left for authorized regeneration. The standalone-launch suite passed 23 tests and failed its existing UI Guidelines placement assertion: that sphere was absent from the User Interface source before this edit. The feedback change preserves that unrelated placement.

@@ -497,7 +497,7 @@ The proposed correction is to align the integral, branch expression, coupling co
 
 ### Legacy Specialist briefs: proposals embedded in instructions
 
-The eight [legacy role briefs](../../research-office/specialists/roles-og-entourage/) combine useful disciplinary responsibilities with inherited mechanism proposals, numerical targets, historical chapter maps, and acceptance language. The review corrected response and authority guidance and added explicit limits on using the retained material. Those limits do not themselves reconcile each proposal with current scientific owners.
+The eight [legacy role briefs](../../research-office/specialists/roles-og-entourage/system-prompt.md) combine useful disciplinary responsibilities with inherited mechanism proposals, numerical targets, historical chapter maps, and acceptance language. The review corrected response and authority guidance and added explicit limits on using the retained material. Those limits do not themselves reconcile each proposal with current scientific owners.
 
 | Brief | Main unresolved material |
 | --- | --- |
@@ -529,3 +529,32 @@ An independent affine-path calculation differentiates the causal constraint symb
 For reproducibility, the local scalar check fixes reception time to zero and uses transmitter position $uT_t$, receiver position $x$, separation $r=|x-uT_t|$, and causal constraint $g=r+T_t$. The Gaussian delta approximation is $\exp[-(g/a)^2]/(\sqrt{\pi}a)$ with width $a=0.001$. The triples $(x,u,T_t)$ are $(2,0,-2)$, $(1,0.5,-2)$, and $(-1,2,-1)$, integrated within root-neighborhood half-widths 0.4, 0.4, and 0.15 respectively. The reference magnitudes are 0.25, 0.5, and 1. The local support isolates each selected root and makes no all-history completeness claim. SymPy supplies the symbolic differentiation and SciPy quadrature evaluates the mollified integral; both run in the repository's shared Python environment.
 
 The equation audit identifies two revised display blocks, two added derivation blocks, and nine preserved blocks. Browser inspection of the on-demand KaTeX preview verifies legible equations and the symbol table; final structural checks are recorded with the completed role review below.
+
+### Complete legacy role review
+
+All ten Markdown files in the legacy-role directory were reconciled sequentially: nine named specialist briefs and the shared prompt. This extends the earlier eight-brief finding inventory to include Christo and the shared prompt. A second reader inspected every revised document. The review replaces obsolete active instructions with current owner-based responsibilities; it does not claim to have solved the underlying research programs.
+
+| Document | Reconciled guidance and retained research scope |
+| --- | --- |
+| [Shared prompt](../../research-office/specialists/roles-og-entourage/system-prompt.md) | Routes law, assignments, writing, and evidence to current owners. Removes competing dynamics and acceptance authority; preserves attributed context, scientific snapshots, and external-workflow history in explicitly historical sections. |
+| [Alfa](../../research-office/specialists/roles-og-entourage/alfa.md) | Separates binding, Pauli exchange, spectroscopy, and dense-matter recovery from shape or speed assignments. Retains nuclear, atomic, molecular, collective, and stellar-matter questions. |
+| [Cami](../../research-office/specialists/roles-og-entourage/cami.md) | Reconciles history-dependent state, Lorentz maps, wavefunction and measurement interpretation, and theorem applicability. Retains both attributed operator notes and the interpretation remit. |
+| [Christo](../../research-office/specialists/roles-og-entourage/christo.md) | Distinguishes the scalar action statistic from a proved variational generator, local from global continuation, and finite impulse from uniqueness. Retains geometric-analysis techniques as source-verified tools with hypotheses. |
+| [Cos](../../research-office/specialists/roles-og-entourage/cos.md) | Replaces fixed binary-speed roles and automatic metric recovery with shared constitutive and observation maps. Retains gravity, clocks, cosmological benchmarks, dark-sector alternatives, frequency plateaus, and alignment proposals. |
+| [Dyna](../../research-office/specialists/roles-og-entourage/dyna.md) | Separates canonical acceleration weighting from signed playback and uses a history state. Retains topology, assembly classification, generation alternatives, mass response, bifurcations, statistical reductions, and effective geometry. |
+| [Phe](../../research-office/specialists/roles-og-entourage/phe.md) | Separates charge arithmetic from particle identification and preserves the neutrino owner's missing-lock boundary. Retains spin, exchange, gauge, confinement, mixing, masses, effective interactions, precision tests, and optional additional channels. |
+| [Red](../../research-office/specialists/roles-og-entourage/red.md) | Corrects Bell factorization, independent-evidence requirements, conservation scope, controls, and Bayesian comparison. Retains adversarial and observational tests; removes unsourced cost, schedule, numerical-tier, and automatic-halt authority. |
+| [Sig](../../research-office/specialists/roles-og-entourage/sig.md) | Defines observation maps and uncertainty comparison, including covariance. Retains empirical and synthetic-data responsibilities and the attributed frequency-to-mass proposal; numerical bounds require verified sources. |
+| [Sol](../../research-office/specialists/roles-og-entourage/sol.md) | Uses the EOM evolution contract and accepted production host, with explicit history, root completeness, reduction, and independence requirements. Retains numerical methods and diagnostic families without fixed scale quotas, automatic legacy progression, or a substitute production solver. |
+
+Distinct research questions remain in these briefs or are routed to their scientific owners at the supported claim level. Repeated speculative assertions, stale chapter maps, arbitrary thresholds, unsourced biographical claims, and illustrative workflow templates no longer direct current work. Attributed notes and explicitly retained historical snapshots are separated from present authority. An unproved mechanism remains a research question; a role's completion does not establish that mechanism.
+
+The technical brief and these ten role documents complete the authorized reconciliation scope. The children's-story and play-surface recommendations remain separate, unaccepted follow-ups in [priorities](priorities.md#office-document-standards-review). No scientific owner, solver, manuscript, artwork, or generated publication artifact was changed by this follow-up.
+
+### Final verification
+
+The frozen role inventory contains exactly ten Markdown documents. The role-only audit checked 125 relative links, five heading-fragment uses, and 61 math expressions with bundled KaTeX 0.16.11; all passed. Four attributed lines (two in Cami, one in Sig, and the shared Note Bene), the shared scientific snapshot block, and the external consolidation-procedure block match the saved pre-edit baseline exactly. The independent full read covered all ten revised briefs. The combined 14-file source-and-record path check resolved all 667 local link targets; the technical preview contains 105 rendered math expressions, zero browser KaTeX errors, and no page-width overflow.
+
+Priority ranking and whitespace checks passed. Strict content validation reports zero authored errors but does not pass while the shared scene index omits the separately added feedback scene. The drift is in `content/scenes/scenes_index.json`, missing `content/scenes/archie/feedback.json`; the required generation command is `node scripts/validate-content.mjs --write --strict`, followed by `node scripts/validate-content.mjs --check --strict`. This follow-up did not authorize or perform that generated write. A directory-link warning in the earlier explanation was corrected to the shared role index.
+
+These checks establish source reconciliation, preserved recorded text, resolving links, and rendered mathematical syntax at this checkpoint. They do not establish physical recovery, solver correctness, observational acceptance, or readiness of the separate educational/product proposals.
