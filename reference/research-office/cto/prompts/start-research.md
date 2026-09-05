@@ -96,6 +96,6 @@ Return:
 
 ## Principal Investigator synthesis
 
-The research record preserves the issue and claim boundary, live owners and evidence inspected, distinctions among derived findings, measurements, inferences and proposals, unresolved disagreements and falsifiers, repository disposition, and validation. Explain the conclusion and its supporting reasoning using the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md). The [operator explanation standard](../../../op/operator-explanation-standard.md) owns response structure and authorized durable capture; no separate completion-report template applies.
+The research record preserves the issue and claim boundary, live owners and evidence inspected, distinctions among derived findings, measurements, inferences and proposals, unresolved disagreements and falsifiers, repository disposition, and validation. Explain the conclusion and its supporting reasoning using the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md). The [operator explanation standard](../../../op/operator-explanation-standard.md) owns response structure and live discussion capture; no separate completion-report template applies.
 
 The Principal Investigator must make the final synthesis no stronger than the weakest evidence required for the conclusion, disclose material disagreements, and never promote a Specialist report merely because its role lens sounds authoritative.

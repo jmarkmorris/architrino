@@ -78,7 +78,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Technical Closure
 
-- [ ] End each substantive theory discussion with a capture decision: promote supported advances into `content/markdown/aaa` or stage provisional work in `reference/priorities`.
+- [ ] Keep substantive theory discussion captured as it develops under the operator explanation standard, with the full treatment in its subject owner.
 - [ ] Require scorecard increases to separate hard mathematical closure from auditability, terminology, and priority-queue improvements.
 - [x] Require each major theory push to leave behind at least one mathematical artifact: equation, lemma, invariant, proof route, branch certificate, or simulation target.
 - [x] Prioritize native derivations, invariants, equations, and testable variables over new gates or ledgers.

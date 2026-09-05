@@ -25,9 +25,9 @@ For each finished result, decide accept, accept-with-caveat, or reject, and stat
 
 ## Keep the record honest
 
-- Capture the adjudicated result in the authorized priority owner at its supported claim level. Update persistent memory only when explicitly requested. Corpus integration follows a separately authorized promotion pass after reader-ready preparation, with assumptions, evidence, and remaining obligations preserved.
+- Capture the adjudicated result in the authorized priority owner at its supported claim level. Update persistent memory only when explicitly requested. Reader-ready material may be integrated directly when corpus edits are already authorized; otherwise stage it for an authorized promotion task. Preserve assumptions, evidence, and remaining obligations.
 - Reconcile any staging note that a promotion consumed.
 
 ## Front-end for the operator
 
-Follow [the operator explanation standard](../../../op/operator-explanation-standard.md) for responses and authorized capture, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style. Recommend additional assignments only when the evidence and current authority support them.
+Follow [the operator explanation standard](../../../op/operator-explanation-standard.md) for responses and live discussion capture, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style. Recommend additional assignments only when the evidence and current authority support them.

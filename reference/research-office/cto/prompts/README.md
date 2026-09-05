@@ -2,7 +2,7 @@
 
 This directory holds reusable prompts for CTO-led repository work. Use it for prompts that are general enough to start future tasks without being tied to one historical run, one priority packet, or one generated artifact.
 
-Every prompt in this directory follows [the operator explanation standard](../../../op/operator-explanation-standard.md) for response mechanics and authorized durable capture, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style. Task-specific evidence and procedure requirements remain in their live owners; they do not establish a separate completion-report template.
+Every prompt in this directory follows [the operator explanation standard](../../../op/operator-explanation-standard.md) for response mechanics and live discussion capture, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style. Task-specific evidence and procedure requirements remain in their live owners; they do not establish a separate completion-report template.
 
 The compact cross-agent startup map is generated at [../../../op/agent-startup-orientation.generated.md](../../../op/agent-startup-orientation.generated.md). Use the generated map for quick routing, then read the live prompt file selected for the task.
 

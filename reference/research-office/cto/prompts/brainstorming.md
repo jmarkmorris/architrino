@@ -2,7 +2,7 @@ Run an open-ended, cross-lane brainstorming session that engages each idea at it
 
 # Brainstorming Session (Capture-First)
 
-Operator-facing output and authorized capture follow [the operator explanation standard](../../../op/operator-explanation-standard.md); writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md).
+Operator-facing output and live discussion capture follow [the operator explanation standard](../../../op/operator-explanation-standard.md); writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md).
 
 Use this prompt for a working brainstorm: the operator wants to think out loud across the theory, and the session's job is both to reason well and to capture relentlessly. The failure mode to avoid is a good conversation that leaves no durable trace.
 
@@ -16,13 +16,13 @@ Use this prompt for a working brainstorm: the operator wants to think out loud a
 
 - Capture substantive ideas in both the thread and the owning `priorities.md` as they emerge, following the operator explanation standard. Organize fuller explanation in the sibling `brainstorming.md` and link it from a readable tracker entry. Memory updates require an explicit operator request.
 - Each captured item identifies its theory level (ontology, derivation, effective description, or speculation) and its evidence grade (derived, measured, inferred, or guessed), with assumptions, proof burden, a checkable falsifier, a concrete promotion target where relevant, and the next artifact needed to test it.
-- Do not promote into `content/markdown/aaa` during a brainstorm unless explicitly asked — capture is to the priority lane. Corpus promotion is a separate, deliberate pass; see [corpus-promotion.md](corpus-promotion.md).
+- Do not promote into `content/markdown/aaa` during a brainstorm unless explicitly asked — capture is to the priority lane. When the task also authorizes reader-facing edits, ready material may be integrated directly under the operator explanation standard and [corpus-promotion guidance](corpus-promotion.md); a separate pass is not required merely for capture.
 - Do not link `content/markdown/aaa` to `reference/priorities`. Keep Research Office workflow and Specialist names out of any corpus prose.
 
 ## Discipline
 
 - KaTeX `$...$` with balanced delimiters in captured notes. Convert relative dates to absolute when writing memory.
-- Keep the write set scoped to `reference/priorities/**`; do not touch the solver, generators, or canon during a brainstorm.
+- For a brainstorming-only task, keep the write set scoped to the appropriate working documents under the operator explanation standard. Additional implementation, generator, controlled-canon, or reader-facing edits require applicable task authority.
 - Before asserting that the corpus does or does not say something, check the relevant chapter rather than relying on memory.
 
 ## Close
