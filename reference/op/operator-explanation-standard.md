@@ -6,9 +6,9 @@ It owns none of the content rules. Those live in the [academic style guide](../.
 
 ## Import
 
-**Every content rule in the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md) applies to operator-facing output.** The imported edition is **1.0**; when that guide advances an edition, this import follows it without needing an edit here. That guide is the single authority for audience, plain-by-default prose, what an explanation must do, definition at first use, clarity and the cost of repetition, scope of assumed knowledge, structure, and the expected tools of analogy, worked numbers, signposting, and picture-before-symbol.
+**Every content rule in the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md) applies to operator-facing output and to every operator-facing Markdown artifact that carries technical or theory information.** The imported edition is **1.1**; when that guide advances an edition, this import follows it without needing an edit here. That guide is the single authority for audience, plain-by-default prose, what an explanation must do, definition at first use, clarity and the cost of repetition, scope of assumed knowledge, structure, and the expected tools of analogy, worked numbers, signposting, and picture-before-symbol.
 
-The import is wholesale and is not restated here, because a summary would drift from its source. Read the style guide. This document adds only what a published textbook has no use for.
+The import is wholesale and is not restated here, because a summary would drift from its source. Read the style guide. Technical or theory content does not receive a lesser prose standard because it appears in `reference/`, a dormant lane, a queue, a brainstorming file, a work log, a requirements packet, a design record, a prompt, or an operator report. Artifact purpose still controls structure, chronology, lifecycle fields, and appropriate density. This document adds only what a published textbook has no use for.
 
 ### The audience rule applied to operator output
 
@@ -19,7 +19,7 @@ The style guide's audience rule is a test, not a fixed answer: **define what the
 | Priority packet, analysis, findings report | Operator and repository agents | $\mathbb{A}\mathbb{A}\mathbb{A}$, repository vocabulary | imported apparatus, material from another lane |
 | Chat response | The operator | $\mathbb{A}\mathbb{A}\mathbb{A}$, repository vocabulary, this thread | imported apparatus, anything load-bearing |
 
-So operator-facing output assumes the theory and defines the imports. Architrinos, causal roots, path history, wake, polarity, the transmitter-side row, the master equation, absolute time, the Euclidean void, and claim grading need no introduction; the operator knows them better than the agent does. Anything brought in from outside — a class of differential equation, a geometric construction, a numerical method, a term of art such as *secular* or *areal rate* or *codimension* — is defined completely, in place.
+So operator-facing output assumes the theory and defines the imports. Architrinos, causal roots, path history, wake, polarity, the transmitter-side row, the master equation, absolute time, the Euclidean void, and claim grading need no introductory tutorial; the operator knows them better than the agent does. They are still restated in a clause when their meaning carries the local argument. Anything brought in from outside — a class of differential equation, a geometric construction, a numerical method, a term of art such as *secular* or *areal rate* or *codimension* — is defined completely, in place.
 
 The style guide's three refinements apply unchanged and matter most here. The **load-bearing override** means a term decisive for the claim being made right now gets a restating clause even though the operator knows it. **Never define a term the operator has just used**: if it appeared in their message, they hold it. And **redundancy cost scales with the artifact**, so a chat response tolerates an unneeded definition far better than a corpus chapter does.
 
@@ -27,9 +27,11 @@ One surface difference changes what a rule requires rather than whether it appli
 
 ## Scope
 
-These mechanics apply to all operator-facing output from any agent working in this repository: chat responses, adjudications, findings reports, closeouts, milestone reports, completion reports, priority and analysis packets under `reference/priorities`, and the reporting sections of generated or recommended prompts.
+These mechanics apply to all operator-facing output from any agent working in this repository: chat responses, adjudications, findings reports, closeouts, milestone reports, completion reports, priority and analysis packets under `reference/priorities`, and the reporting sections of generated or recommended prompts. The imported academic content standard additionally applies to all authored operator-facing Markdown containing technical or theory information, including trackers, work queues, brainstorming documents, work logs, proof and evidence packets, requirements, designs, contracts, protocols, audits, and source-mining records.
 
 They do not apply to reader-facing corpus prose under `content/markdown/aaa`, nor to end-user application chrome, which follows the [UI guidelines](../../content/markdown/aaa/archie/ui-guidelines.md). Those surfaces take the style guide's content rules without these mechanics.
+
+Historical evidence, append-only chronology, exact quotations, generated artifacts, code, commands, schemas, identifiers, and machine-readable records retain their preservation rules. Existing protected bytes are not rewritten for tone; academically written framing, companion synthesis, and new entries carry the explanation when clarification is needed.
 
 Three neighbouring authorities own different material and are not consolidated here: the [mathematics style guide](../../content/markdown/aaa/archie/mathematics-style-guide.md) owns notation, [terminology usage](../../content/markdown/aaa/archie/terminology-usage.md) owns project vocabulary, and the [UI guidelines](../../content/markdown/aaa/archie/ui-guidelines.md) own end-user wording. Terminology rules in AGENTS.md, including the canonical name of the EOM solver and the ban on causal-delay variants, are terminology rather than response shape.
 
@@ -37,16 +39,16 @@ AGENTS.md, CLAUDE.md, the generated startup router, the Codex prompt template, t
 
 ## Registers
 
-One standard does not fit every output. Four registers, each with its own density:
+Every register follows the same academic content standard. The registers vary explanatory density and response shape, not rigor, terminology, claim authority, or evidence discipline:
 
 | Register | Typical output | Density |
 | --- | --- | --- |
 | Explainer | Walking through a settled result, an imported framework, or a term the operator has asked about | Highest. Every term defined, picture before symbol, analogies and worked numbers throughout, one idea per section. Length is not a concern. |
 | Adjudication | Priority packets, findings reports, theorem targets, review dispositions | High for imported apparatus and for the verdict; formal statements stay precise and are explained immediately after. Claim grades and falsifiers are mandatory. |
 | Correction | Superseding an earlier statement | Explainer density, plus an explicit statement of what was wrong, why, and what downstream conclusions change. |
-| Status | Completion notices, closeouts, short answers, "the file is written" | Lowest. Outcome first, no exposition, no restated background. Do not pad a status with explanation the operator did not ask for. |
+| Status | Completion notices, closeouts, short answers, "the file is written" | Lowest only when the response carries no technical or evidentiary judgment. Outcome first, no restated background; when the status depends on mathematics, evidence, or theory, explain that dependency under the appropriate academic standard. |
 
-Choosing the register is part of writing the response. A response that mixes them — a status line followed by an explainer — is normal, and the density changes accordingly.
+Choosing the register is part of writing the response. A response that mixes them — a status line followed by an explainer — is normal, and the density changes accordingly. No register exempts technical or theory-bearing content from the academic style guide.
 
 ## Length and precedence
 
@@ -111,6 +113,6 @@ Before sending a substantive response, verify the mechanics. The style guide's o
 
 ## Existing documents
 
-Documents written under the retired inline plain-language tag keep their form. Do not mass-edit those occurrences out of the corpus, the priority packets, the procedure files, or the Research Office prompts; that would be a large mechanical diff with no reader benefit and real review cost.
+Documents written under the retired inline plain-language tag keep those passages unless a scoped rewrite improves the surrounding explanation. Do not run a mechanical tag-removal campaign; the objective is academic explanation, not deletion of a historical formatting habit.
 
-New writing follows this standard and the style guide it imports. A document already under substantial revision for other reasons may be converted opportunistically, as part of that revision rather than as a separate cleanup pass.
+New writing follows this standard and the style guide it imports. Existing authored Markdown whose purpose includes technical or theory information is also a conversion obligation, whether active or dormant. Carry out that work through reviewable editorial campaigns that preserve exact mathematics, technical meaning, evidence boundaries, claim grades, source support, queue state, chronology, provenance, functional anchors, and operational purpose. Generated artifacts and provenance-bearing historical bytes remain controlled by their own preservation rules rather than being rewritten for stylistic uniformity.

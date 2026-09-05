@@ -30,7 +30,7 @@ sequenceDiagram
     Potential-->>Core: Acknowledge checked prefix
     Audit-->>Core: Acknowledge independently checked prefix
     alt a connected queue reaches its declared limit
-        Core-->>EOM: Backpressure; admit no new unique chunk
+        Core-->>EOM: Backpressure, admit no new unique chunk
     end
     EOM->>Core: Seal complete prefix or halt exactly
     Core-->>Potential: Deliver exact terminal event after retained prefix

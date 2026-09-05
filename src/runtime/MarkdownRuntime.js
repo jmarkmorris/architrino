@@ -776,9 +776,12 @@ export function createMarkdownRuntime(deps) {
     decorateLocalAssetLinks();
     equationMapRuntime.decorate(markdownPath, sectionKey);
     decorateTextbookToc();
+    // Mermaid replaces source blocks synchronously before awaiting SVG rendering.
+    // Pagination must capture those replacement figures, not the detached blocks.
+    const diagramsRendered = mermaidRuntime.renderDiagrams();
     applyMarkdownLayout();
     typesetMarkdownWithRetry(startTypesetRetryCycle());
-    void mermaidRuntime.renderDiagrams().then(() => {
+    void diagramsRendered.then(() => {
       columnPaginationRuntime.scheduleRefresh();
     });
     resetMarkdownScroll();

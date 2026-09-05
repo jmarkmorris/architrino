@@ -4,6 +4,12 @@ Automation is desirable only when it mirrors the checked procedure below and the
 
 This document defines the standard repo process for ending a work session, publishing a pull request, cleaning up the previous branch in the branch series, and preparing the next branch.
 
+## Awareness Is Not Invocation
+
+This procedure is available to every repository agent as awareness of how deferred generation, validation, commits, pull requests, cleanup, and branch rollover are eventually handled. Reading this file, reaching it through the startup router, following a link to it, citing it, or noticing work that the procedure will later consume does not invoke the procedure and creates no obligation to execute any of its steps.
+
+Only an explicit instruction from Op to a specific agent to `run codex-pr-branch.md`, including the equivalent linked-file instruction defined below, designates that agent as the procedure runner for the applicable handoff. Unless separately designated by Op, every other reading or editing agent stays within its own task and does not regenerate for this procedure, stage, commit, push, create or update a pull request, verify a merge, clean up a branch, or roll over to a successor branch. Encountering generated drift outside an active invocation means reporting the drift and its owning command, then leaving execution to the designated runner.
+
 ## Branch Naming Convention
 
 The active branch series for this repo is currently the minerals/gemstones sequence, using the committed [mineral/gemstone branch registry](branch-series/minerals-gemstones.md). The moon sequence ended at `codex/sao` and is consumed. When a branch series is exhausted, continue with the next series in [Branch Series Rollover Order](#branch-series-rollover-order) rather than reusing retired branch names. The branch-series index and configured counts are tracked in [branch-series registry](branch-series/registry.md).
@@ -49,9 +55,9 @@ This repository normally uses one direct shared checkout. Multiple agents may ed
 - Do not ask for approval, require branch surgery, or propose a split merely because the branch contains coordinated lattice, theory, documentation, application, or mechanical-maintenance work.
 - Preserve unrelated ambient edits by keeping them out of the candidate branch-tip scope. Stop only when ownership or overlap cannot be determined, when an edit would be overwritten or endangered, or when resolving it would require a substantive decision.
 
-### Routine authority through the review handoff
+### Routine authority after Op invocation
 
-An explicit instruction to run this procedure authorizes the healthy path all the way to the operator's PR-review handoff. Do not re-ask for approval for routine inspection, deterministic whitespace or generated-file repair, validation and retry, deliberate staging of the declared branch-tip scope, commit, ordinary non-force push, PR title/body preparation, PR creation or update, draft-to-ready transition, remote-check watching, or mergeability verification.
+Once Op explicitly instructs a specific agent to run this procedure, that invocation authorizes the healthy path all the way to the operator's PR-review handoff. Do not re-ask for approval for routine inspection, deterministic whitespace or generated-file repair, validation and retry, deliberate staging of the declared branch-tip scope, commit, ordinary non-force push, PR title/body preparation, PR creation or update, draft-to-ready transition, remote-check watching, or mergeability verification.
 
 Ask only for a new decision: a semantic or product-design change not already directed, uncertain file ownership or destructive overlap, a non-deterministic validation failure, force push/history rewrite/rebase/reset/stash/discard, branch deletion outside the verified post-merge path, or merging the PR. Host permission dialogs remain host-controlled; request the narrow reusable approval needed by the documented command rather than asking the operator to re-authorize the repository step.
 

@@ -4,6 +4,7 @@ const WIDE_BLOCK_SELECTOR = [
   "h1",
   "table",
   ".markdown-image-block",
+  ".markdown-mermaid",
   "pre",
   "blockquote",
 ].join(", ");
@@ -39,12 +40,16 @@ function isWideBlock(node) {
 }
 
 function equationOverflowsColumn(node) {
-  if (node?.nodeType !== 1 || !node.matches?.(EQUATION_BLOCK_SELECTOR)) {
+  if (node?.nodeType !== 1) {
     return false;
   }
   // Measure in the actual column, including the equation's View control.
   // Scroll containers inside the row can hide overflow from the row itself.
-  return [node, ...node.querySelectorAll(EQUATION_BLOCK_SELECTOR)].some(
+  const equations = [...(node.querySelectorAll?.(EQUATION_BLOCK_SELECTOR) ?? [])];
+  if (node.matches?.(EQUATION_BLOCK_SELECTOR)) {
+    equations.push(node);
+  }
+  return equations.some(
     element => element.scrollWidth > element.clientWidth + 1
   );
 }

@@ -53,6 +53,18 @@ CRW-005 is the active row.
 
 No rows.
 
+## Deferred / discussion-scoped
+
+### CRW-006 — Offline context-aware glossary-link classifier
+
+- **Status:** Discussion-scoped; not accepted for implementation
+- **Opened:** 2026-09-04
+- **Priority object:** `offline_context_aware_glossary_link_classifier`
+- **Request / acceptance:** If automated term-link assistance is reconsidered, consider only an offline context-aware classifier that reads the surrounding sentence or paragraph and proposes one of three human-reviewable actions: no glossary link, a link to a specific glossary meaning, or a terminology correction such as replacing an effective or imported use of `field` with `causal wake` when the passage intends the substrate concept. The classifier must never run as an autonomous render-time feature and must never write accepted links without human approval.
+- **Scope:** Running the assistant over a document may produce proposals, but it changes no reader-facing page by itself. A term such as `wake` appears as a link only in occurrences a human reviewer accepts and writes into the Markdown source. The eventual scan domain, candidate-term families, benchmark, error threshold, and maximum review batch all require separate approval; this row authorizes neither an all-document run nor a corpus-wide link insertion.
+- **Evidence / blocker:** The persistent Glossary control already supplies universal lookup. The rejected literal decorator produced 10 false positives in 30 ambiguity-stratified contexts because exact spelling did not establish intended meaning. A context-aware classifier could separate uses such as `field of mathematics`, `effective electromagnetic field`, and an architrino's causal wake, but that possibility is unmeasured. It would require a human-reviewed benchmark for each ambiguous term family and a proposal-only review workflow. The operator has not decided that the possible reader benefit warrants that development and review cost.
+- **Completion:** Either the operator accepts a bounded classifier prototype with a declared benchmark and human-acceptance workflow, or declines the idea and this row moves to `Withdrawn`.
+
 ## Verified
 
 ### CRW-003 — Phase 2: Remaining chapters
@@ -219,7 +231,7 @@ Claim grade: `inferred` for the judgment that a decorator beats 70 document edit
 
 1. **Glossary gap fill.** Add a `Wake` entry as a first-class term, add `Causal Root`, and audit the remaining foundational vocabulary against the first column rather than against the definitions. Corpus content, so it is subject to the academic style guide and to canon review.
 2. **Glossary reachability.** Make the glossary reachable from a document view without prior knowledge of it. The toolbar and the textbook TOC are both candidates and the choice is a UI decision, not a foregone one; the [UI guidelines](../../../content/markdown/aaa/archie/ui-guidelines.md) govern.
-3. **Term decorator, scoped and prototyped before committed.** A render-time decorator on the `MarkdownRuntime.js` hook, driven by the glossary table. Prototype the matching before building the feature; the disambiguation question decides whether this is worth doing at all.
+3. **Term decorator — declined.** The tested literal render-time decorator failed its semantic-disambiguation burden. Any later automation proposal is separated into [CRW-006](#crw-006--offline-context-aware-glossary-link-classifier) and limited to an offline context-aware classifier that proposes links or terminology corrections for human acceptance; autonomous runtime decoration remains excluded.
 4. **Selective inline clues.** Only where a term carries the argument of the passage. Not a sweep.
 
 Deliverables 1 and 2 are independent of 3 and 4 and should not wait on them.

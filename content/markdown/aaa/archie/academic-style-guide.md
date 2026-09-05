@@ -1,25 +1,29 @@
 # Academic Style Guide
 
-This guide defines the prose standard for reader-facing textbook material in the webapp. It governs chapters, scene notes, comparative essays, and explanatory reference documents so that they read as parts of one coherent corpus rather than isolated notes with incompatible habits.
+This guide defines the prose standard for authored Markdown that carries technical, mathematical, scientific, or theory information anywhere in the repository. It governs reader-facing books and webapp material as well as operator-facing priority packets, analyses, proof and evidence records, requirements, designs, and other working documents, so the repository explains difficult material with one coherent academic discipline rather than a different prose standard in each directory.
 
 The core writing rule is simple: make the claim easy to locate, the mechanism easy to follow, and the claim level impossible to confuse. A reader should not have to guess whether a sentence is ontology, effective recovery, comparison, open proof work, or historical explanation.
 
 This guide complements, rather than replaces, the mathematical guide in [mathematics-style-guide.md](mathematics-style-guide.md). The mathematical guide governs notation and formal dialect. This guide governs prose, structure, tone, and editorial discipline.
 
-**Edition 1.0**, settled 2026-09-03. The edition identifies the substantive standard against which a document is assessed. A later substantive standard changes the edition number; a typographical fix does not.
+**Edition 1.1**, settled 2026-09-04. Edition 1.1 extends the same academic standard from reader-facing corpus prose to every authored Markdown artifact whose purpose includes technical or theory information. The edition identifies the substantive standard against which a document is assessed. A later substantive standard changes the edition number; a typographical fix does not.
 
 ## Scope
 
-Apply this guide to the following content classes unless a more specific local template overrides it:
+Apply this guide to every authored Markdown artifact whose purpose includes explaining, evaluating, preserving, routing, or specifying technical, mathematical, scientific, or theory information. Repository location, publication status, lifecycle state, and audience do not create exemptions. The covered classes include:
 
-- chapter overviews
-- section leaves derived from markdown trees or splits
-- comparative essays
-- historical and philosophical analysis
-- explanatory theory summaries
-- methodology and meta-reference documents intended for readers
+- books, chapters, chapter overviews, and section leaves derived from Markdown trees or splits
+- comparative, historical, philosophical, and explanatory theory writing
+- working analyses, findings, proof packets, calculations, evidence records, and scientific audits
+- priority trackers, work queues, brainstorming documents, and work logs wherever their entries carry technical or theory content
+- requirements, designs, contracts, protocols, source-mining records, methodology documents, and technical meta-reference documents
+- operator-facing standards, prompts, handoffs, and reports that explain technical or theory material
 
-Do not apply this guide mechanically to interface chrome such as button labels, tooltips, and ultra-short glossary entries, where a hard size constraint makes full explanation impossible. Longer in-application guides, help pages, and explanatory panels are explanatory prose and do follow this guide.
+The standard is uniform, but document form is not. A work queue remains an executable queue, brainstorming remains provisional, a work log remains chronological, a requirements document distinguishes accepted requirements from proposed design, and a proof or evidence packet retains its exact mathematical and evidentiary boundaries. Academic rewriting clarifies those functions; it does not turn every artifact into a textbook chapter, reactivate dormant work, promote speculation, reorder history, or change queue state.
+
+Historical evidence, exact quotations, append-only records, generated artifacts, code blocks, commands, schemas, identifiers, and machine-readable data retain their preservation and generation rules. Do not rewrite provenance-bearing historical bytes merely to modernize their voice; use academically written framing or a companion synthesis when current explanation is needed. New explanatory prose and new append-only entries follow this guide.
+
+Do not apply the guide mechanically to interface chrome such as button labels, tooltips, and ultra-short glossary entries, where a hard size constraint makes full explanation impossible. Longer in-application guides, help pages, and explanatory panels are explanatory prose and do follow this guide.
 
 ## Audience
 
@@ -34,8 +38,12 @@ An author does not decide who the reader is. They identify what they are writing
 | Artifact class | Reader | May assume | Must define |
 | --- | --- | --- | --- |
 | Chapter, essay, explanatory reference | Unknown; may hold nothing | nothing | every $\mathbb{A}\mathbb{A}\mathbb{A}$ concept, all established physics, all imported apparatus |
-| Working analysis, findings record | Someone already working on the project | $\mathbb{A}\mathbb{A}\mathbb{A}$ and project vocabulary | imported apparatus, and material from another line of work |
+| Working analysis, findings, proof, evidence, requirements, or design record | Someone already working on the project | $\mathbb{A}\mathbb{A}\mathbb{A}$ and project vocabulary | imported apparatus, material from another line of work, and any term or symbol carrying the local argument |
+| Priority tracker, work queue, brainstorming document, or work log | Operator and repository agents | $\mathbb{A}\mathbb{A}\mathbb{A}$, repository vocabulary, and the artifact's declared lifecycle | technical mechanism, evidence or blocker, claim boundary, and any imported or load-bearing apparatus needed to interpret an entry |
+| Historical or provenance-bearing record | Reader of the preserved record | vocabulary supplied by the record and its historical context | current framing outside preserved bytes; do not retroactively rewrite the evidentiary record |
 | Interface chrome | Application user, with no room to explain | nothing | nothing; route the reader to the explanation instead |
+
+Every covered artifact uses academic prose: clear claims, explained mechanisms, explicit assumptions, stable terminology, and visible evidence limits. The audience row determines what may be assumed and how much local explanation is necessary; it does not determine whether the standard applies.
 
 Three refinements carry most of the judgment.
 
@@ -59,7 +67,7 @@ The corpus does not assume that a reader started at page one. It is published as
 
 ## Core Aim
 
-The target voice is that of an academic textbook: clear, orderly, explicit, and serious without becoming inflated, evasive, or bureaucratic.
+The target voice is academic: clear, orderly, explicit, and serious without becoming inflated, evasive, or bureaucratic. Books and explanatory references should read like academic textbooks; working documents should carry the same rigor and explanatory clarity in the structure required by their operational purpose.
 
 The prose should do three things at once:
 
@@ -205,7 +213,7 @@ In Markdown source, keep each prose paragraph and each prose-bearing list item o
 
 ## Expected Tools
 
-These are expected of good explanatory prose, not merely permitted.
+These tools are expected when they materially improve comprehension. They are not quota requirements: a queue row, chronology entry, requirement, or short proof obligation should not acquire an analogy or numerical example that does no explanatory work.
 
 **Analogy that carries the mechanism.** A concrete comparison conveying how something works is worth more than a careful restatement of what it does. Always say where the analogy stops, because an unbounded analogy quietly becomes a claim. Choose comparisons from everyday experience or from geometry rather than from an observer-level physical theory the framework must derive.
 
@@ -306,7 +314,7 @@ Labelled plain-language restatements, such as a passage introduced by a fixed ta
 
 ## Forward-Only Documentation
 
-Reader-facing prose should state the architecture, claim, rule, or curriculum directly. It should not preserve drafting history, migration story, abandoned counts, old names, or "what changed from the last version" unless that history is the subject of the document.
+Current explanatory prose should state the architecture, claim, rule, curriculum, requirement, or queue state directly. It should not preserve drafting history, migration story, abandoned counts, old names, or "what changed from the last version" unless history or provenance is the document's declared function.
 
 Use present-tense, source-of-truth wording:
 
@@ -322,7 +330,7 @@ Avoid process-history wording:
 - "This is now obsolete..."
 - "The old version used to..."
 
-Historical context belongs where it helps explain the subject, such as a history of an idea or a comparison in which an earlier formulation is relevant evidence. Ordinary textbook and reference prose should present the current explanation without narrating its drafting or revision history.
+Historical context belongs where it helps explain the subject, such as a history of an idea or a comparison in which an earlier formulation is relevant evidence. Work logs, audit trails, source-mining records, and other provenance-bearing artifacts preserve their chronology and recorded facts while making each new entry academically clear. Ordinary textbook, reference, requirements, design, queue, and current-state prose should present the current explanation without narrating unrelated drafting or revision history.
 
 ## Project-Specific Rules
 
@@ -436,7 +444,7 @@ Identify published computational evidence by a comprehensible title and stable p
 
 ## Section-Length Standard
 
-Length is not a constraint. Completeness of explanation outranks economy, and a long passage a reader can follow is preferred to a compact one they cannot. For substantial conceptual leaves, the default target is at least one page of meaningful prose, and often more.
+For reader-facing conceptual leaves, length is not a constraint. Completeness of explanation outranks economy, and a long passage a reader can follow is preferred to a compact one they cannot. Substantial reader-facing leaves normally require at least one page of meaningful prose, and often more. This page-length expectation does not apply to working records whose function requires concise rows, dated entries, status fields, or narrowly bounded obligations.
 
 The reason is the delivery surface. The corpus is written for online access and there is no printed edition to keep within a page count, so the usual pressure to compress does not apply. What replaces it is a different obligation: the prose must be **accessible and technical at once**. An expert scans quickly past what they already hold, which costs them little, while a new reader is carried through the same passage. Writing for the expert alone loses the newcomer, and writing for the newcomer alone would mean thinning the technical content, which is not the trade being made. Serve both in the same prose.
 
@@ -490,28 +498,28 @@ Published source notes and contribution statements support transparency, but the
 
 ## Editorial Checklist
 
-Before finalizing a reader-facing chapter or section, check the following:
+Before finalizing any authored technical or theory-bearing Markdown artifact, identify its artifact class and check the following:
 
 1. Does the opening identify the subject and its significance?
-2. Could a reader who knows neither $\mathbb{A}\mathbb{A}\mathbb{A}$ nor established physics follow it, with every $\mathbb{A}\mathbb{A}\mathbb{A}$ concept defined where used and every appeal to established physics explained rather than named?
-3. Does the document stand on its own at its opening, assuming nothing from other documents that it does not introduce?
+2. Could the intended reader identified by the Audience table follow it, with every concept outside that reader's allowed knowledge defined and every load-bearing term restated where needed?
+3. Does the document establish its purpose, current authority, and assumptions without requiring the reader to reconstruct them from another artifact?
 4. Does the prose say why each claim is true, not only what it says and why it matters?
 5. Is every symbol named in words where it appears, and is each irreducible object followed immediately by prose explaining it?
 6. Is the technical prose plain on its own, rather than dense followed by a simpler restatement?
 7. Are ontology, effective description, and inference kept distinct where needed?
-8. Does the section preserve real strengths before stating criticism?
-9. Are transitions explicit enough for textbook reading?
+8. Where the artifact compares or criticizes another account, does it preserve real strengths before stating limitations?
+9. Are transitions explicit enough for the artifact's reader and operational purpose?
 10. Is the tone formal and explanatory rather than conversational?
 11. Are all project-specific notation and terminology rules respected?
-12. Does the final paragraph clarify what survives, what changes, or what remains open?
+12. Does the conclusion, completion condition, final entry, or current-state section clarify what is established, what remains open, and where the artifact's authority stops?
 13. Are factual, legal, and scientific assertions supported by explicit derivations, independently checkable sources, or declared validation records as appropriate, with references selected under the About Architrino policy?
 14. Does any material AI assistance use clear contribution language without implying independent AI authorship or accountability?
 
 ## Relation to Local Templates
 
-Many major documents in the project define their own local coverage templates in their overview sections. Those local templates remain authoritative for document-specific structure.
+Many documents in the project define local coverage templates for their particular functions. Those templates remain authoritative for document-specific structure, lifecycle fields, and required records.
 
-This guide supplies the higher-level prose standard that those templates should be written in.
+This guide supplies the higher-level prose standard in which those templates and their technical contents are written. A local template may require concise rows, chronology, fixed metadata, or a specialized proof form; it may not exempt technical or theory prose from academic clarity, claim discipline, or evidence boundaries.
 
 In short:
 

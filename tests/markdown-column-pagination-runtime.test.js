@@ -208,6 +208,29 @@ test("a wide first equation does not leave an empty spread", () => {
   assert.equal(markdownBody.childNodes[0].childNodes[0], equation);
 });
 
+test("wide equations nested in ordinary blocks receive full width", () => {
+  const list = createFakeNode({ height: 200 });
+  list.querySelectorAll = () => [{ scrollWidth: 700, clientWidth: 400 }];
+  const { markdownBody, runtime } = createRuntime([list]);
+  runtime.apply(2);
+  assert.equal(markdownBody.childNodes[0].className, "markdown-column-wide-block");
+  assert.equal(markdownBody.childNodes[0].childNodes[0], list);
+});
+
+test("rendered diagram figures retain full width through refresh and toggling", () => {
+  const figure = createFakeNode({ height: 240, text: "Rendered diagram" });
+  figure.matches = selector => selector.includes(".markdown-mermaid");
+  const { markdownBody, runtime } = createRuntime([figure]);
+  runtime.apply(2);
+  runtime.refresh();
+  assert.equal(markdownBody.childNodes[0].className, "markdown-column-wide-block");
+  assert.equal(markdownBody.childNodes[0].childNodes[0], figure);
+  runtime.apply(1);
+  assert.deepEqual(markdownBody.childNodes, [figure]);
+  runtime.apply(2);
+  assert.equal(markdownBody.childNodes[0].childNodes[0], figure);
+});
+
 test("short passages between equations do not reserve a viewport of blank space", () => {
   const introduction = createFakeNode({ height: 100, text: "Manifold and Metric" });
   const equation = createFakeNode({ height: 40, text: "R cubed", wide: true });

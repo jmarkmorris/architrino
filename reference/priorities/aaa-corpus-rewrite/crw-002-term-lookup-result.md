@@ -66,9 +66,9 @@ The ambiguity test separately collected every eligible exact-form occurrence for
 
 The prototype therefore settles longest-match ordering but fails the semantic-disambiguation burden. Exact-only matching also avoids false inflections by missing `wakes`, `Wake's`, and similar forms, which makes the coverage incomplete rather than safely extensible.
 
-Recommendation: **decline the render-time decorator.** A context-aware classifier or author-supplied semantic marker could be reconsidered, but a literal glossary-driven decorator should not ship.
+Recommendation: **decline the render-time decorator.** If automated term-link assistance is reconsidered, retain only an offline context-aware classifier that reads the surrounding sentence or paragraph and proposes a specific glossary link, no link, or a terminology correction for human acceptance. It must not run autonomously during rendering or write links without review. No classifier prototype, all-document run, or corpus-wide link insertion is approved.
 
-Claim grade: `measured` by the inline Node source scanner over the named domains plus manual semantic classification of the 30 selected contexts. Falsifier: an independent classification that reduces the observed errors below an accepted threshold, or a context-aware prototype that preserves the exclusions while producing a materially lower measured false-positive rate on the same and an independent sample.
+Claim grade: `measured` by the inline Node source scanner over the named domains plus manual semantic classification of the 30 selected contexts. Falsifier: an independent classification of the same sampled passages that materially changes the observed 10-of-30 false-positive count. The implementation boundary may be superseded only by a later operator decision.
 
 ## Repeat scan and selective inline clues
 
@@ -85,18 +85,18 @@ Those passages now carry concise definitions and links. The high-use spatial-bra
 
 Claim grade: `measured` for the 149-file domain and 113 candidates; `inferred` for the two-passage load-bearing judgment. Falsifier: recovery of the original scan specification that yields a comparable repeat, or a reviewed already-converted passage where understanding the next claim depends on a foundational term that still lacks both local explanation and an adequate owning link.
 
-## Existing glossary rows reported, not changed
+## Later glossary canon review
 
-The dispatch barred side-effect corrections to existing rows. The following rows remain mismatched with the rewritten foundations and should receive a separate canon review:
+The dispatch initially barred side-effect corrections to six pre-existing rows. A later operator-approved canon review compared those rows with their current foundation and spacetime owners and corrected them:
 
-- `Absolute Frame / Preferred Frame` says the frame is `operationally hidden`; the foundations retain observer hiding as a recovery and theorem burden rather than a completed result.
-- `Absolute Time` uses lowercase $t$ and compresses substrate simultaneity into `universal synchronization`; the foundations use $T$ and distinguish absolute ordering from derived assembly-clock synchronization.
-- `Causal Cone` uses lowercase $t$ and can be read as identifying the entire filled causal region with actual source-dependent wake support.
-- `Causal Wake` calls the wake a `residue` and a union of isochrons; the rewritten foundation instead treats it as real, continuously emitted, source-dependent dynamical geometry and explicitly rejects fluid or independent-substance readings.
-- `Effective Metric` says the medium geometry `reproduces GR-like behavior`; the foundations retain that reproduction as an observer-level recovery target.
-- `Spacetime Medium` says the assembly network gives rise to effective metric and inertia without retaining the still-open derivation boundary.
+- `Absolute Frame / Preferred Frame` now distinguishes complete-state identification of the Euclidean-void rest frame from the still-open question of preferred-frame leakage to embedded Physical Observers.
+- `Absolute Time` now uses canonical $T$ and separates absolute simultaneity and duration from derived assembly-clock readouts and synchronization procedures.
+- `Causal Cone` now distinguishes the filled reachability region from the spherical boundary that carries actual wake support.
+- `Causal Wake` now names a continuously emitted, transmitter-dependent physical causal record and excludes material-shell, fluid, and independently specifiable field-substance readings.
+- `Effective Metric` now states the shared Noether sea and Physical Observer reconstruction while retaining the constitutive map and general-relativistic benchmark agreement as closure targets.
+- `Spacetime Medium` now identifies itself as a bridge term for the Noether sea and retains effective-metric and inertial-response maps as open constitutive recovery problems.
 
-Claim grade: `inferred` by comparing the compressed rows with the current foundation claim boundaries. Falsifier: a controlling canon passage that establishes the stronger wording as a completed derived or measured result.
+Claim grade: `derived` by direct comparison with the controlling canon passages in `foundations/detecting-the-absolute-frame.md`, `foundations/absolute-time.md`, `foundations/absolute-timespace.md`, `foundations/architrino.md`, `spacetime/emergent-metric.md`, and `spacetime/noether-sea.md`. Falsifier: a controlling owner passage that establishes observer-level frame hiding, the complete shared-record metric map, or the inertial-response map at a stronger completed claim level.
 
 ## Validation and generated drift
 
@@ -114,8 +114,7 @@ Claim grade: `measured` by the named commands and live browser instrument. Falsi
 
 ## Open items
 
-- The six pre-existing glossary mismatches above remain a separate canon-review task; they do not block the new lookup route.
 - The original 70-document measurement remains non-reproducible from repository evidence because its exact specification was not retained. The explicit 149-document replacement scan should be used for any future comparison unless the original specification is recovered.
 - Generated textbook navigation and reading copies remain stale by policy and await authorized regeneration or the final branch process.
 
-Closure goal: met for CRW-002 — a reader who lands on an arbitrary corpus document can resolve an unfamiliar $\mathbb{A}\mathbb{A}\mathbb{A}$ term through an explicit persistent Glossary control without knowing in advance that the glossary exists; a precise definition link lands on its owning section, and closing a document-only route returns to useful context rather than a blank canvas.
+Closure goal: met for CRW-002 — a reader who lands on an arbitrary corpus document can resolve an unfamiliar $\mathbb{A}\mathbb{A}\mathbb{A}$ term through an explicit persistent Glossary control without knowing in advance that the glossary exists; a precise definition link lands on its owning section, closing a document-only route returns to useful context rather than a blank canvas, and the reviewed glossary rows preserve their controlling claim boundaries.
