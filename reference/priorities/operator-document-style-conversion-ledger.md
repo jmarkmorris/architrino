@@ -40,9 +40,9 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 | already conforming | 316 |
 | protected or append-only | 51 |
 | generated | 1 |
-| historical evidence requiring byte preservation | 227 |
+| historical evidence requiring byte preservation | 226 |
 | blocked by concurrent editing | 0 |
-| deferred for owner or authority reason | 141 |
+| deferred for owner or authority reason | 142 |
 | **Total accounted inventory** | **758** |
 
 ## File Dispositions
@@ -605,7 +605,7 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 | `reference/priorities/field-speed-ceiling/analysis/regular-chart-history-to-ledger-well-posedness.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md` | historical evidence requiring byte preservation | Provenance-bearing evidence, audit, review, archive, or source record; preserved without rewrite. |
 | `reference/priorities/field-speed-ceiling/analysis/trailing-front-activation-dichotomy.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
-| `reference/priorities/field-speed-ceiling/analysis/two-lobe-return-map-and-autonomous-trigger-audit.md` | historical evidence requiring byte preservation | Provenance-bearing evidence, audit, review, archive, or source record; preserved without rewrite. |
+| `reference/priorities/field-speed-ceiling/analysis/two-lobe-return-map-and-autonomous-trigger-audit.md` | deferred for owner or authority reason | Corrected 2026-09-06 from `historical evidence requiring byte preservation`: this is the lane's live theorem packet, revised after the 2026-09-02 review it records (its line 344 lists the seventeen incorporated findings), and it still carries eleven `Plainly:` labels, so it is neither a dated snapshot nor already conforming; its conversion belongs to the field-speed-ceiling owner. |
 | `reference/priorities/field-speed-ceiling/analysis/uniform-translation-spatial-receiver-measure-limit.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/field-speed-ceiling/work-log.md` | protected or append-only | Chronological log; existing dated entries remain byte-preserved and in order. |
 | `reference/priorities/field-speed-ceiling/work-queue.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
@@ -819,6 +819,8 @@ The final concurrency retry began only after that owner released all three paths
 The second retry adjudicated the Master-Equation coincidence packet after its owning research task became idle and the file held a stable byte snapshot. A complete-file review found no further useful edition 1.0 edit: the packet establishes the picture before each mathematical construction, names its assumptions and symbols, separates prescribed controls from EOM measurements and accepted reachability, follows its equations with interpretation, and closes with an exhaustive claim register and nonclaim boundary. Its 83 display-math blocks are balanced, all 10 relative links resolve, no prohibited terminology appears, and all 21 inherited `Plainly:` passages remain preserved.
 
 In the completed dispatch retry, no lifecycle state, dependency, rank, score, acceptance condition, date, identifier, command, code block, equation, numerical result, source, or claim grade changed. The one earlier App Photon correction remains explicit: its dated code review enumerates eleven modules, so the introductory count was corrected from ten to eleven without changing the list or any finding.
+
+One disposition was corrected on 2026-09-06 after the campaign pass: the field-speed-ceiling two-lobe theorem packet moved from `historical evidence requiring byte preservation` to `deferred for owner or authority reason`, for the reason stated in its row. The accounting counts above were re-measured from the table after the change (226 and 142) rather than adjusted by arithmetic. The independent correction pass still owns the wider question, including that this ledger grades against style guide edition 1.0 while the operator explanation standard now imports edition 1.1.
 
 ## Validation And Remaining Review
 

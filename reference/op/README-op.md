@@ -33,6 +33,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Keep iOS textbook packaging on demand rather than requiring it for each PR; preserve the app/exporter and defer App Store release until theory closure and an explicit operator release decision.
 - [ ] Keep the children's-book pilot as preserved sources plus verified on-demand local exports, without adding generated books to routine PRs or the website.
 - [ ] Keep the local push gate and GitHub Content Integrity gate aligned before treating a push as clean.
+- [ ] Run `node scripts/check-content-integrity.mjs` whenever a session judges it useful, not only at closeouts (operator decision, 2026-09-06): it costs about two minutes and a few summary lines, and it turns an impression of a clean tree into a measured one. In a sandbox its step 11 and any venv-dependent test fail by construction, so a fully green run comes only from the operator's machine.
 - [ ] Keep easily regenerated runtime payloads out of Git; verify fresh-clone setup and Pages builds, and audit aggregate machine-output growth before merging.
 - [ ] Keep GitHub PR validation deduplicated and timed so slow Content Integrity subchecks identify their bottleneck.
 - [ ] For broad advancement prompts, let the agent continue into the next safe scoped action rather than stopping at a menu.
