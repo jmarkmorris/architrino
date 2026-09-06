@@ -8,7 +8,7 @@ import { checkWebappReleaseGate } from "../scripts/check-webapp-release-gate.mjs
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CONTRACT_PATH = "reference/priorities/aaa-operations/contracts/webapp-release-gate.v1.json";
-const EVIDENCE_PATH = "reference/priorities/aaa-operations/evidence/feedback-webapp-release-gate-2026-09-01.json";
+const EVIDENCE_PATH = "reference/priorities/aaa-operations/evidence/feedback-webapp-release-gate-2026-09-06.json";
 const contract = JSON.parse(fs.readFileSync(path.join(ROOT, CONTRACT_PATH), "utf8"));
 const evidence = JSON.parse(fs.readFileSync(path.join(ROOT, EVIDENCE_PATH), "utf8"));
 const copy = (value) => structuredClone(value);
@@ -21,8 +21,10 @@ test("accepted webapp release profile passes its source-bound gate", () => {
       id: "public-feedback",
       status: "passed_pre_release",
       route: "/feedback.html",
-      resourceFiles: 4,
-      uncompressedBytes: 18211,
+      // Fifteen files: the four feedback sources plus the shared control strip
+      // accepted on 2026-09-05. Re-capture the receipt before changing these.
+      resourceFiles: 15,
+      uncompressedBytes: 69882,
       evidencePath: EVIDENCE_PATH,
     },
   ]);

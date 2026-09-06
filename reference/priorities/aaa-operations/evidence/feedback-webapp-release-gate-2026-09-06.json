@@ -1,0 +1,250 @@
+{
+  "schema": "architrino.webapp-release-gate-evidence.v1",
+  "profileId": "public-feedback",
+  "measuredAt": "2026-09-06T15:01:51Z",
+  "status": "passed_pre_release",
+  "productionMutation": false,
+  "sourceHead": "2bbc6a5b2aa8cee226742da126c966ad6efd8f80",
+  "sourceHeadNote": "Isolated build base. At capture the working tree differed from this head in one closure file, src/apps/feedback/FeedbackManifestRuntime.js (clipboard rejection fallback, 2026-09-06); every recorded hash is the working-tree file at capture time. An earlier capture the same day (14:51:57Z, base bf0f35a4d plus feedback.css) was superseded by this one after that runtime change.",
+  "sourceFiles": [
+    {
+      "path": "feedback.html",
+      "bytes": 4563,
+      "sha256": "2ec6166a55784df1f4692fc9fcf38b33562dd94463ccc7979a075e7489dcc7d5"
+    },
+    {
+      "path": "src/apps/feedback/FeedbackManifestRuntime.js",
+      "bytes": 9113,
+      "sha256": "8c28c5ece627f59c132917224ff83054172b92b4a3ae06f240a61a46bb8a861d"
+    },
+    {
+      "path": "src/apps/feedback/feedback.css",
+      "bytes": 5627,
+      "sha256": "7be2a9bf77a6c7dfca3a16f7201b2ba46e3a7af76df07387973aaca2ecd48c23"
+    },
+    {
+      "path": "src/apps/feedback/main.js",
+      "bytes": 666,
+      "sha256": "3b5c720064cce8019132e55f1b1733db23cf921604da71acbe3f31b7e7d3fe25"
+    },
+    {
+      "path": "src/apps/navigator/StandaloneAppHomeRuntime.js",
+      "bytes": 3180,
+      "sha256": "51b3e2c9877c1e0d45dbf601c54e520fd91a0baa031861c09f90b88dd3198efa"
+    },
+    {
+      "path": "src/apps/navigator/StandaloneAppLaunchRuntime.js",
+      "bytes": 3084,
+      "sha256": "f0766dcddf3b301b6e870f30fb437fa75ec14aefb03aa54356d06e4dd898361a"
+    },
+    {
+      "path": "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+      "bytes": 6691,
+      "sha256": "36303ad3b5e71ef54c9db0a2496299654502ef91b41459bd15600438090c2f9b"
+    },
+    {
+      "path": "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+      "bytes": 4388,
+      "sha256": "4184f209a4cad5bbba0c098a7c3b90bfdfe1b1a68412897b51bad0fa4f7c5db3"
+    },
+    {
+      "path": "src/runtime/SceneSearchRuntime.js",
+      "bytes": 5066,
+      "sha256": "debbd089b2d6b7ef6cd6df8d4d4eb3e48582cedc4ce248b70214aed6548e1744"
+    },
+    {
+      "path": "src/runtime/SceneSearchUiRuntime.js",
+      "bytes": 2498,
+      "sha256": "4168ec11ec7b6a8bcae4f1a6e04d7e147e699499ee8fde6411fdecb130d119e0"
+    },
+    {
+      "path": "src/runtime/TopDynamicControlBarRuntime.js",
+      "bytes": 14183,
+      "sha256": "310190c054ad3d664f582a6941706c066aa57d811183466edab2760a0f8c02e9"
+    },
+    {
+      "path": "src/runtime/top-dynamic-control-bar.css",
+      "bytes": 3990,
+      "sha256": "9e5d510675727b98db04d3c452d56507ab687be96143bd0a6fe6f00433024589"
+    },
+    {
+      "path": "src/services/SceneIndexService.js",
+      "bytes": 3698,
+      "sha256": "f6bb16e1674dfaaa2d70a6e1a7196cf4d16b1732fcdaef0d108c27fe37c3ccd3"
+    },
+    {
+      "path": "src/services/SceneSearchCoordinatorService.js",
+      "bytes": 1430,
+      "sha256": "fce777df3fe8591a099eb24aeda2eef1a76118d3b678d096a3d9569b72af4425"
+    },
+    {
+      "path": "ui-tokens.css",
+      "bytes": 1705,
+      "sha256": "04e1043746825af744468abd155b8f374e4d218ac2e86fdabc11104652ebd5b0"
+    }
+  ],
+  "checks": {
+    "content": {
+      "status": "passed",
+      "commands": [
+        "node scripts/validate-content.mjs --check --strict",
+        "node --test tests/public-feedback-intake.test.js tests/webapp-release-gate.test.js"
+      ],
+      "strictContentErrors": 0,
+      "strictContentWarnings": 0,
+      "strictContentNotes": 30,
+      "strictContentNoteKinds": "no-incoming-link on element scenes only",
+      "inlineExecutableBlocks": 0,
+      "remoteLoadResources": 0,
+      "focusedTests": {
+        "files": 2,
+        "passed": 9,
+        "failed": 0
+      },
+      "note": "The focused tests were run after this receipt was written and the profile evidencePath repointed; before that, three release-gate tests failed on the stale 2026-09-01 receipt."
+    },
+    "graph": {
+      "status": "passed",
+      "command": "node scripts/build-scene-graph.mjs --check --strict",
+      "errors": 0,
+      "warnings": 0,
+      "nodes": 608,
+      "edges": 1377,
+      "searchEntries": 587,
+      "markdownIndexFiles": 199,
+      "textbookTocEntries": 184
+    },
+    "size": {
+      "status": "passed",
+      "resourceFiles": 15,
+      "uncompressedBytes": 69882,
+      "maximumUncompressedBytes": 81920,
+      "sharedControlStripBytes": 49913,
+      "feedbackApplicationBytes": 19969
+    },
+    "visual": {
+      "status": "passed",
+      "method": "In-app browser (Claude desktop) with viewport emulation at the exact declared sizes; overflow measured as documentElement.scrollWidth minus clientWidth and by scanning every element bounding box for right edges past the viewport; screenshots inspected at the declared viewport for the first screen and, for the remainder of the page, at the same width with the height extended to the full document height (layout depends on width only; the stylesheet uses no viewport-height units except body min-height). No image artifacts retained. The stylesheet and markup bytes inspected are the ones recorded above; the only source change after the screenshot inspection was JavaScript (the clipboard fallback), re-measured for overflow at both viewports afterwards.",
+      "viewports": [
+        {
+          "id": "desktop",
+          "width": 1440,
+          "height": 900,
+          "overflowXCssPx": 0,
+          "visuallyInspected": true,
+          "documentHeightCssPx": 1723,
+          "observed": "Sticky header with the shared five-button control strip (TOC, back, forward, home, search) top right; introduction in two columns; step cards, path input, expanded diagnostics textarea, both action buttons, the full-width issue link, and the omissions list all legible with no overlap, clipping, or wrapping defects."
+        },
+        {
+          "id": "mobile",
+          "width": 390,
+          "height": 844,
+          "overflowXCssPx": 0,
+          "visuallyInspected": true,
+          "documentHeightCssPx": 2285,
+          "elementsPastRightEdge": 0,
+          "observed": "Control strip sits above the stacked title; intro and public notice stack; cards, input, textarea, stacked action buttons, issue link, and omissions list stay inside the viewport; long manifest JSON wraps inside the textarea. Mobile emulation reports an Android user agent, so the manifest classifies the OS as Android there."
+        }
+      ]
+    },
+    "browser": {
+      "status": "passed",
+      "origin": "http://localhost:5173",
+      "surface": "Operator local dev server serving the working tree in a fresh in-app browser tab; the served feedback sources are byte-identical to the sourceFiles above.",
+      "route": "/feedback.html?page=%2Fmolecule.html%3Fformula%3Dprivate%23result",
+      "consoleMessageCount": 0,
+      "consoleScope": "Fresh tab: page load at 1440x900 and again at 390x844, manifest load, path sanitization, issue-link inspection, and the copy action on its fallback path. Zero messages.",
+      "requiredInteractionsPassed": true,
+      "expectedSchema": "architrino.public-feedback-manifest.v1",
+      "sanitizedPath": "/molecule.html",
+      "reportedPagePath": "/molecule.html",
+      "feedbackPagePath": "/feedback.html",
+      "interactions": [
+        {
+          "name": "load all three same-origin public manifests",
+          "instrument": "in-app browser, manifest JSON read from the textarea",
+          "result": "scene-index available (391 scenes), markdown-index available (199 files), scene-graph available (608 nodes, 1377 edges, 587 search entries)"
+        },
+        {
+          "name": "strip query and fragment from the supplied public route",
+          "instrument": "in-app browser",
+          "result": "?page=/molecule.html?formula=private#result became /molecule.html in the input and in reportedPagePath"
+        },
+        {
+          "name": "copy the reviewed sanitized manifest",
+          "instrument": "in-app browser for the fallback path; operator, own browser, for the clipboard-write path",
+          "result": "Fallback path measured: in the hidden pane writeText rejects with NotAllowedError, the runtime now catches it, focuses and selects the whole textarea, sets the status to the manual-copy message, and logs nothing. Clipboard-write path: the operator confirmed the collapsible diagnostics pane and its copy action work in their own browser earlier the same day, on the previous revision of the runtime; that branch is unchanged apart from the surrounding try block. The pane cannot exercise the write path because its document is hidden and Chrome denies clipboard writes there."
+        },
+        {
+          "name": "expose the public issue link without submitting it",
+          "instrument": "in-app browser",
+          "result": "anchor visible, href https://github.com/jmarkmorris/architrino/issues/new?template=public-webapp-feedback.yml, target _blank, rel noopener noreferrer, no form element on the page, nothing submitted"
+        }
+      ],
+      "publicManifests": [
+        {
+          "id": "scene-index",
+          "status": "available",
+          "scenes": 391
+        },
+        {
+          "id": "markdown-index",
+          "status": "available",
+          "files": 199
+        },
+        {
+          "id": "scene-graph",
+          "status": "available",
+          "nodes": 608,
+          "edges": 1377,
+          "searchEntries": 587
+        }
+      ]
+    },
+    "accessibility": {
+      "status": "passed",
+      "method": "Every button, link, input, textarea, and summary with a rendered box, measured by getBoundingClientRect at both viewports with the diagnostics pane expanded; accessible name from aria-label, aria-labelledby, label[for], text content, or title; duplicate ids from all [id] elements.",
+      "unnamedControlCount": 0,
+      "duplicateIdCount": 0,
+      "minimumControlHeightCssPx": 32,
+      "minimumControlHeightNote": "32 px is the five shared control-strip icon buttons at both viewports, matching the UI guidelines hit-target row; every page-owned control is at least 42 px (path input 44, summary 42 desktop / 66 mobile, refresh 42, copy 42, issue link 42).",
+      "focusableControlCount": 11,
+      "collapsedControlsExcluded": [
+        "scene-search-input (0 px until search is expanded)"
+      ],
+      "headingAndMainLandmarksPassed": true,
+      "h1Count": 1,
+      "mainCount": 1,
+      "h2Count": 4,
+      "repairMade": "The diagnostics summary measured 24 px on desktop before capture; feedback.css now gives it a 42 px minimum height with 9 px vertical padding."
+    },
+    "preview": {
+      "status": "passed",
+      "isolatedCleanCheckoutBuild": true,
+      "isolation": "git clone --shared of the checkout into sandbox scratch, checked out at sourceHead, plus the one modified profile source file (FeedbackManifestRuntime.js) copied over its tracked path; no other working-tree state present",
+      "buildStatus": "passed",
+      "buildCommand": "node scripts/build-static-site.mjs --out <scratch>/site",
+      "fileCount": 4424,
+      "runtimeAssetCount": 146,
+      "siteByteCount": 453248076,
+      "entrypointIncluded": true,
+      "profileResourceFilesIncluded": 15,
+      "profileResourceBytes": 69882,
+      "profileResourceHashesMatchSourceFiles": true,
+      "localServer": "python3 -m http.server on 127.0.0.1:8765 from the built site directory",
+      "localRouteStatus": 200,
+      "localRouteBytes": 4563,
+      "publicManifestRouteStatuses": {
+        "/content/scenes/scenes_index.json": 200,
+        "/content/markdown/markdown_index.json": 200,
+        "/content/graph/scene_graph.json": 200,
+        "/src/apps/feedback/FeedbackManifestRuntime.js": 200
+      }
+    }
+  },
+  "observations": [
+    "The in-app browser pane reported document.hidden === true for the whole session, so requestAnimationFrame never fires there. None of the fifteen closure files uses requestAnimationFrame (grep over the closure), so no layout pass on this page is frame-gated and nothing here was frame-timed; the pane is not a surface for the public-feedback-interaction performance baseline.",
+    "Clipboard: in the hidden pane navigator.clipboard.writeText rejects with NotAllowedError. FeedbackManifestRuntime.js originally fell back to select-for-manual-copy only when writeText was absent, so the rejection was unhandled and the status line never changed. Fixed the same day under operator direction: a rejected writeText now takes the same fallback as an absent one. Measured in the pane after the fix: no unhandled rejection, textarea focused with its full contents selected, status set to the manual-copy message.",
+    "Accessibility floor lowered from 42 to 32 CSS px in the contract by operator decision on 2026-09-06, because the shared control strip is 32 px by design; see the profile rationale."
+  ]
+}

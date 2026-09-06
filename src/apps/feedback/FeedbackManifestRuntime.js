@@ -215,13 +215,23 @@ export function renderPublicFeedbackApp(options = {}) {
   pathInput.addEventListener("change", refresh);
   copyButton.addEventListener("click", async () => {
     if (!currentManifest) await refresh();
-    if (typeof windowLike.navigator?.clipboard?.writeText !== "function") {
+    // A browser can expose writeText and still reject it (permission denied,
+    // hidden document). Treat a rejection like an absent clipboard.
+    let copied = false;
+    if (typeof windowLike.navigator?.clipboard?.writeText === "function") {
+      try {
+        await windowLike.navigator.clipboard.writeText(manifestOutput.value);
+        copied = true;
+      } catch {
+        copied = false;
+      }
+    }
+    if (!copied) {
       manifestOutput.focus();
       manifestOutput.select();
       status.textContent = "Clipboard writing is unavailable. The diagnostic details are selected for manual copy.";
       return;
     }
-    await windowLike.navigator.clipboard.writeText(manifestOutput.value);
     status.textContent = "Diagnostic details copied. Paste them into the optional diagnostic details field on GitHub.";
   });
 

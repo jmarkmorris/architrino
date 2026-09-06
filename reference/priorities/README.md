@@ -92,6 +92,22 @@ When a workstream directory exceeds roughly twelve top-level files, treat that a
 
 Moving files has two consequences that a filing pass must handle in the same change. Relative links break, both the links inside the moved documents and the links pointing at them from elsewhere, so audit both directions and repair them before reporting the move complete. And the generated reference surface enumerates these paths, so a move leaves `content/generated/reference/reference-surface.v1.json` stale; report that drift with the regeneration command under the [generated-artifact rules](../../AGENTS.md#generated-artifacts) rather than running a generator write outside an authorized regeneration.
 
+## Promotion Test
+
+`analysis/` is where theory waits, and promotion is what moves it into the reader-facing corpus. The webapp's navigation is a graph of scenes, of which 183 are backed one-to-one by a document under `content/markdown/aaa`. Promoting a document therefore mints it a sphere a reader can navigate to, and the test is that simple:
+
+**Would a reader ever set out to visit this?**
+
+A sphere is a destination with a subject. `Sagnac Effect`, `Absolute Time Defense`, and `Noether Braid` are places someone arrives on purpose. A proof design, a cancellation certificate, a specialist review, a readiness matrix, and a recommendations ledger are apparatus: they can be complete, carry a `derived` claim grade, state a falsifier, and still name nothing a reader would look up. Apparatus stays in `analysis/` and is cited by the documents that do become scenes.
+
+Two corollaries, both learned by getting this wrong.
+
+**Scene-worthiness and readiness are independent, and a candidate must pass both.** A scan for completeness markers — a derived grade, a stated falsifier, no open-work label — selects apparatus, because apparatus is what gets finished. A scan for subject-shaped titles selects drafts, because the reader-facing subjects are the ones still being written. On 2026-09-05 the first scan returned twelve documents and the sphere question eliminated eleven of them, while all 27 benchmark recoveries were perfectly scene-shaped and every one was `Status: draft`. Neither scan alone is worth running.
+
+**A subject that already has a corpus document is a supplement, not a new sphere.** Check `content/markdown/aaa` for an existing owner before proposing promotion. Merging material into `bell-theorem.md` and creating a Bell sphere are different editorial acts, and getting them the wrong way round produces a duplicate scene for a subject the corpus already covers.
+
+A document that passes both tests is a candidate, not a promotion. [AGENTS.md](../../AGENTS.md) owns what reader-ready then requires: complete mathematics, evidence, assumptions, claim grading, and academic exposition, prepared before the move rather than after it.
+
 ## Live Discussion Capture
 
 Follow the [operator explanation standard](../op/operator-explanation-standard.md#live-discussion-and-priority-capture) for live capture of ideas discussed with the operator. Keep every substantive idea visible in the owning `priorities.md` through a readable current synthesis, disposition, and links to any fuller material. Organize it when captured, using the maintenance pattern above: fuller explanations in their existing subject owners, accepted executable tasks in `work-queue.md`, and chronology in `work-log.md`. The subject owner may be a procedure, design, analysis, or other working document outside the priority directory; link it from the tracker rather than duplicating its full content. Capture does not itself accept a task, strengthen a claim, change a score, or reactivate deferred work.
