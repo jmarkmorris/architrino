@@ -38,14 +38,6 @@ Plainly: the task asks whether avoiding expensive close encounters is worth the 
 
 ## Queued
 
-### EOM-014 — GPU harness static test reads a removed document
-
-- **Status:** Queued; routed here on 2026-09-06 from [OPS-020](../aaa-operations/work-queue.md#ops-020--release-gate-profile-coverage). Repository-state defect only; no solver claim is affected.
-- **Priority object:** `gpu_harness_static_test_repair`; unranked, small.
-- **Defect:** `tests/solver-gpu-harness-static.test.js` reads `reference/priorities/app-solver/gpu-feasibility-harness.md` at load time and asserts that `priorities.md` links to it. Commit `4ea188081` (2026-07-16) deleted that document, and `priorities.md` no longer links it, so the test has failed with `ENOENT` for seven weeks. Its other two tests, which check that `solver-gpu-harness.html` and `src/apps/solver-gpu-harness/main.js` keep CPU parity and WebGPU detection explicit, never run because the read happens at module scope. Grade: measured on 2026-09-06 by running the file, `git show --name-status 4ea188081`, `find reference -name gpu-feasibility-harness.md`, and `grep` over `priorities.md`. The file is not among the 27 the PR gate can reach, which is why the deletion passed.
-- **Decision needed:** Whether the harness's exploratory, non-authoritative status is now stated somewhere else in this lane that the test should read instead, or whether the third test is dropped and the first two kept. Do not restore the deleted document to satisfy the test.
-- **Completion:** The file passes with its wiring and parity assertions intact, and the status assertion either points at the live owner of that statement or is removed with the reason recorded here.
-
 ### EOM-007 — EOM application surface
 
 - **Status:** Queued
@@ -121,7 +113,15 @@ No rows.
 
 ## Verified
 
-No rows.
+### EOM-014 — GPU harness static test reads a removed document
+
+- **Status:** Verified, 2026-09-06; routed here on 2026-09-06 from [OPS-020](../aaa-operations/work-queue.md#ops-020--release-gate-profile-coverage). Repository-state defect only; no solver claim is affected.
+- **Priority object:** `gpu_harness_static_test_repair`; unranked, small.
+- **Defect:** `tests/solver-gpu-harness-static.test.js` reads `reference/priorities/app-solver/gpu-feasibility-harness.md` at load time and asserts that `priorities.md` links to it. Commit `4ea188081` (2026-07-16) deleted that document, and `priorities.md` no longer links it, so the test has failed with `ENOENT` for seven weeks. Its other two tests, which check that `solver-gpu-harness.html` and `src/apps/solver-gpu-harness/main.js` keep CPU parity and WebGPU detection explicit, never run because the read happens at module scope. Grade: measured on 2026-09-06 by running the file, `git show --name-status 4ea188081`, `find reference -name gpu-feasibility-harness.md`, and `grep` over `priorities.md`. The file is not among the 27 the PR gate can reach, which is why the deletion passed.
+- **Decision needed:** Whether the harness's exploratory, non-authoritative status is now stated somewhere else in this lane that the test should read instead, or whether the third test is dropped and the first two kept. Do not restore the deleted document to satisfy the test.
+- **Completion:** The file passes with its wiring and parity assertions intact, and the status assertion either points at the live owner of that statement or is removed with the reason recorded here.
+- **Repaired, 2026-09-06.** The deleted document's three statements — learning harness, WebGPU `f32` output non-authoritative for precision claims, CPU path the precision authority — have one live owner: decision 12 of [priorities.md](priorities.md), which keeps GPU and accelerator paths as research lanes whose promotion depends on agreement with the independent oracle and declared precision budgets. The test now reads only `priorities.md` and asserts that decision plus the EOM sole-production-target sentence; the wiring and CPU/GPU-parity assertions over `solver-gpu-harness.html` and `main.js` are unchanged. The deleted document was not restored. Result: 3 of 3 tests pass. Grade: measured, by running the file on 2026-09-06.
+
 
 ## Superseded / withdrawn
 
