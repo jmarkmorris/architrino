@@ -60,7 +60,7 @@ A native recovery must produce the measured hadronic spectral function and its d
 
 ## Assessment and Promotion Boundary
 
-The operator-selected [Geometric Phase and Holonomy exploration](geometric-phase-and-holonomy/brainstorming.md) owns the conceptual learning sequence and provisional questions connecting gauge conventions to closed transport and measurable phase comparisons. [SMC-012](work-queue.md#smc-012--geometric-phase-and-holonomy-exploration) owns its first introductory session. The existing assembly gauge chapters retain mechanism and recovery authority.
+The operator-selected [Geometric Phase and Holonomy exploration](analysis/geometric-phase-and-holonomy.md) owns the conceptual learning sequence and provisional questions connecting gauge conventions to closed transport and measurable phase comparisons. [SMC-012](work-queue.md#smc-012--geometric-phase-and-holonomy-exploration) owns its first introductory session. The existing assembly gauge chapters retain mechanism and recovery authority.
 
 These comparators identify discriminating mathematical forms and falsifiers. They do not change the Standard Model closure queue, explain an anomaly, or justify corpus promotion.
 

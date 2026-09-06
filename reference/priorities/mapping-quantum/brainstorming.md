@@ -44,7 +44,7 @@ The scope decision and [dynamic pair-provenance packet](analysis/dynamic-pair-pr
 
 ## Spinors as a Conceptual Exploration
 
-The operator-selected [Spinors, Rotations, and History exploration](spinors-rotations-and-history/brainstorming.md) owns the learning sequence, source references, questions, and interpretation boundaries. [QC-012](work-queue.md#qc-012--spinors-rotations-and-history-exploration) owns its first introductory session. The existing ordered-frame target retains physical spin-recovery authority; this conceptual work does not advance the deferred physical program.
+The operator-selected [Spinors, Rotations, and History exploration](analysis/spinors-rotations-and-history.md) owns the learning sequence, source references, questions, and interpretation boundaries. [QC-012](work-queue.md#qc-012--spinors-rotations-and-history-exploration) owns its first introductory session. The existing ordered-frame target retains physical spin-recovery authority; this conceptual work does not advance the deferred physical program.
 
 ## Assessment and Promotion Boundary
 

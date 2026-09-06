@@ -121,11 +121,11 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 | `reference/priorities/app-lattice-lab/evidence/final-low-risk-reconciliation-audit-2026-09-02.md` | historical evidence requiring byte preservation | Provenance-bearing evidence, audit, review, archive, or source record; preserved without rewrite. |
 | `reference/priorities/app-lattice-lab/evidence/lattice-primer-removal-audit-2026-09-02.md` | converted in this campaign | Bounded editorial change; baseline mathematics, state, chronology, and claim authority preserved. |
 | `reference/priorities/app-lattice-lab/evidence/low-risk-geometry-presentation-audit-2026-09-02.md` | historical evidence requiring byte preservation | Provenance-bearing evidence, audit, review, archive, or source record; preserved without rewrite. |
-| `reference/priorities/app-lattice-lab/evidence/periodic-gallery-cancellation-certificates.md` | converted in this campaign | Bounded editorial change; baseline mathematics, state, chronology, and claim authority preserved. |
+| `reference/priorities/app-lattice-lab/analysis/periodic-gallery-cancellation-certificates.md` | converted in this campaign | Bounded editorial change; baseline mathematics, state, chronology, and claim authority preserved. |
 | `reference/priorities/app-lattice-lab/priorities.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/app-lattice-lab/contracts/random-finite-configuration-contract.md` | converted in this campaign | Bounded editorial change; baseline mathematics, state, chronology, and claim authority preserved. |
 | `reference/priorities/app-lattice-lab/contracts/requirements-design.md` | converted in this campaign | Bounded editorial change; baseline mathematics, state, chronology, and claim authority preserved. |
-| `reference/priorities/app-lattice-lab/evidence/simple-cubic-checkerboard-cancellation-certificate.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
+| `reference/priorities/app-lattice-lab/analysis/simple-cubic-checkerboard-cancellation-certificate.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/app-lattice-lab/contracts/site-ledger-presentation-design.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/app-lattice-lab/work-log.md` | converted in this campaign | Bounded editorial change; baseline mathematics, state, chronology, and claim authority preserved. |
 | `reference/priorities/app-lattice-lab/work-queue.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
@@ -714,10 +714,10 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 | `reference/priorities/mapping-quantum/brainstorming.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-quantum/analysis/dynamic-pair-provenance-source-measure.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-quantum/mapping-hilbert/README.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
-| `reference/priorities/mapping-quantum/mapping-hilbert/brainstorming.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
+| `reference/priorities/mapping-quantum/analysis/hilbert-space-and-braid-mapping.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-quantum/decisions/pair-provenance-local-compliance-scope-decision.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-quantum/priorities.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
-| `reference/priorities/mapping-quantum/spinors-rotations-and-history/brainstorming.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
+| `reference/priorities/mapping-quantum/analysis/spinors-rotations-and-history.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-quantum/analysis/transfer-operator-basin-measure.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-quantum/work-log.md` | protected or append-only | Chronological log; existing dated entries remain byte-preserved and in order. |
 | `reference/priorities/mapping-quantum/work-queue.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
@@ -725,7 +725,7 @@ Claim grade: inferred editorial judgment. The judgment is based on edition 1.0 o
 | `reference/priorities/mapping-standard-model/analysis/atlas-higgs-scalar-benchmark.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-standard-model/brainstorming.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-standard-model/brainstorming.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
-| `reference/priorities/mapping-standard-model/geometric-phase-and-holonomy/brainstorming.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
+| `reference/priorities/mapping-standard-model/analysis/geometric-phase-and-holonomy.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-standard-model/analysis/geometry-first-program.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-standard-model/analysis/precision-electroweak-gauge-running-benchmark-packet.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |
 | `reference/priorities/mapping-standard-model/priorities.md` | already conforming | Active nonhistorical document; no useful edition 1.0 edit found in the campaign audit. |

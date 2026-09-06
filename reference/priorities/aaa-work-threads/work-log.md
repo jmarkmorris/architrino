@@ -6,6 +6,28 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-05 — Theory consolidated into `analysis/`, and the rule that bounds it
+
+The operator asked for one place to look for theory: every document carrying theory work, an insight, an advance in $\mathbb{A}\mathbb{A}\mathbb{A}$, or material that could become reader-facing corpus content belongs in a lane's `analysis/`, while internal operations material keeps its existing home. Sixty-six documents moved, and `analysis/` now holds 185 across seventeen lanes.
+
+The largest arrivals were 27 benchmark recoveries from `mapping-benchmarks/benchmarks/` and 21 specialist theory reviews and responses from `field-speed-ceiling/reviews/`. Both had been filed under names that described their genre rather than their content, which is precisely what made a lane's theory impossible to survey. Four master-equation documents came from `history/`, four Standard Model benchmark packets, three strong-field documents that derive and prove rather than specify, two categorical contracts, two lattice cancellation certificates, and three singles including the F6c geometry definition.
+
+Eight subdirectories emptied and were retired: every `benchmarks/`, plus `reviews/`, `history/`, and the `contracts/` directories in lanes where every member turned out to be theory. The empty `packets/` and `proofs/` left by an earlier pass were removed in the same pass. The [layout section](../README.md#workstream-directory-layout) now forbids re-creating any of those five names, because splitting theory across several genre-named subdirectories is the failure this pass corrected.
+
+#### The boundary, learned by overshooting it
+
+An intermediate step moved ten further documents into `analysis/`: five dated audits and the five mined-lead staging files under `braid-program/mining/`. The operator stopped it, and all ten were reverted. The error was applying the rule to a document's subject rather than its content: an audit of a claim's status, a receipt, a source-acquisition manifest, and a staging area of unassessed leads are records of the state of the work, not the theory itself, and they stay operational however deep their subject.
+
+That distinction is now written into the layout section rather than left to judgment, with the reason stated: filing state-of-the-work records under `analysis/` would refill the single location the operator relies on with exactly the material they were separating out.
+
+Six active lanes have no `analysis/` at all, and each was checked rather than assumed: `aaa-operations`, `aaa-corpus-rewrite`, `app-equation-mapping`, `app-lattice-lab`, `app-ui-guidelines`, and `mapping` hold only operations, editorial campaign, or application interface material.
+
+Claim grade: `measured` for the file counts, the per-lane totals, the retired directories, and the link and validator results, all produced by the commands run on 2026-09-05. Which documents carry theory rather than the state of the work is an editorial judgment applied from titles and opening paragraphs, not a measured property, and one batch of ten was judged wrongly before being corrected. Falsifier: a document in `analysis/` whose content is a record of what a run measured, or a theory-bearing document still filed elsewhere.
+
+Validation: zero broken links across `reference/priorities` beyond three pre-existing false positives, and `node scripts/validate-priority-ranking.mjs` passes with 25 active owners.
+
+Plainly: theory now lives in one directory per lane, and operations records stay where they were.
+
 ### 2026-09-05 — Data-file layout Stage B, and a systemic side effect of the layout pass
 
 Stage B filed the remaining 26 machine-readable data files, completing the layout campaign. No data file remains at the top level of any active lane. 62 links and 80 literal paths were rewritten across 85 files.

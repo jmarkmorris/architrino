@@ -10,7 +10,7 @@ Case records therefore distinguish geometry facts from derived or measured accel
 
 ## Established Ownership
 
-The gallery, display conventions, interaction model, and evidence-state requirements belong in [requirements-design.md](contracts/requirements-design.md). The exact simple-cubic cancellation result belongs in [simple-cubic-checkerboard-cancellation-certificate.md](evidence/simple-cubic-checkerboard-cancellation-certificate.md), and accepted remaining tasks retain their status in [work-queue.md](work-queue.md).
+The gallery, display conventions, interaction model, and evidence-state requirements belong in [requirements-design.md](contracts/requirements-design.md). The exact simple-cubic cancellation result belongs in [simple-cubic-checkerboard-cancellation-certificate.md](analysis/simple-cubic-checkerboard-cancellation-certificate.md), and accepted remaining tasks retain their status in [work-queue.md](work-queue.md).
 
 ## Promotion Boundary
 
